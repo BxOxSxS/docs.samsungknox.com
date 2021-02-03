@@ -1,0 +1,1706 @@
+<!DOCTYPE html>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" lang="en-us" xml:lang="en-us" data-mc-search-type="Stem" data-mc-help-system-file-name="Default.xml" data-mc-path-to-help-system="../../" data-mc-conditions="KnoxTags.MyUserGuide(Enterprise),KnoxTags.ChinaTopic-Workspace" data-mc-target-type="WebHelp2" data-mc-runtime-file-type="Topic;Default" data-mc-preload-images="false" data-mc-in-preview-mode="false" data-mc-toc-path="">
+    <head>
+	<link href="../assets/kp/kp4-v5.css" rel="stylesheet" />
+	
+	<style>
+	tr:first-child {
+	    color: black;
+    background: white;
+    border-bottom: 0px solid rgb(204, 204, 204);
+	</style>
+	
+	<style>
+	.table-scroll{
+	
+	overflow-x: inherit; 
+padding-top:20px; 
+    }
+
+	</style>
+	<style>
+	
+	table thead th, table thead td, table tfoot th, table tfoot td{
+	padding: 0.1rem 0.1rem 0.1rem;
+	}
+	
+	p{
+	margin-bottom: 0.1rem;}
+	
+	input[type=checkbox] {
+	opacity: 99;
+	
+	}
+	
+	th td {
+	
+	padding: 1px 1px; 
+	}
+	
+	.table-scroll{ font-size:13px;}
+	
+	</style>
+		
+	<style>
+	.table th {
+  text-align: center;
+}
+	</style>
+	
+
+  <!-- <link rel="stylesheet" href="https://docs.samsungknox.com/assets/kp/external/jquery.dataTables.min.css" /> -->
+	<script type="text/javascript" language="javascript" src="../assets/kp/external/jquery-3.3.1.js"></script>
+	<script type="text/javascript" language="javascript" src="../assets/kp/external/jquery.dataTables.min.js"></script>
+	
+	<script type="text/javascript" >
+	$(document).ready(function () {
+	
+    $(".industry,.job").on("change", function () {
+        var industry = $(".industry:checked").map(function () {
+            return $(this).val()
+        }).get();
+		
+        
+        var all = $("tbody tr").hide();
+        var professions = $(".profession").filter(function () {
+            var profession = $(this).text(),
+            	index2 = $.inArray(profession, job);
+            	return index2 >=0
+        }).parent()
+        if (!professions.length) professions = all
+        var cities = $(".city").filter(function () {
+            var city = $(this).text(),
+                index = $.inArray(city, industry);
+                
+            return index >= 0
+        }).parent()
+        if (!cities.length) cities = all
+        
+        professions.filter(cities).show()
+        
+        console.log(professions,cities)
+
+    }).first().change()
+});
+	</script>
+	
+	<script type="text/javascript" class="init">
+
+$(document).ready(function() {
+    $('#example').DataTable( {
+        "paging": false
+		
+    } );
+} );;
+	</script>
+
+
+	</head>
+    <body>
+        <!-- mobile resonsive styles -->
+        <div class="off-canvas-wrapper">
+            <div class="off-canvas-wrapper-inner" data-off-canvas-wrapper="">
+                <div class="title-bar hide-for-medium">
+                    <div class="title-bar-left">
+                        <div class="menu-icon" type="button" data-open="offCanvasLeft">
+                        </div><span class="title-bar-title">Menu</span>
+                    </div>
+                </div>
+                <div class="off-canvas position-left" id="offCanvasLeft" data-off-canvas="">
+                    <div id="nav-drilldown">
+                    </div>
+                </div>
+                <!--end Knox styles -->
+                <div class="off-canvas-content" data-off-canvas-content="">
+                    <script src="../assets/kp/header.js">
+                    </script>
+                    <!-- breadcrumbs -->
+                    <div class="breadcrumbs>
+                        <nav class="navbar navbar-toggleable-md navbar-light" style="height:30px">
+                            <div class="container">
+                                <ol class="breadcrumbs">
+                                    <li title="Samsung Knox Support" value="1"><a href="https://support.samsungknox.com/hc/en-us">Samsung Knox Support</a>
+                                    </li>
+                                    <li title="Security Technical Implementation Guide (STIG" value="2">Knox Security Technical Implementation API Guide  (STIG)
+									</li>
+                                   
+                                </ol>
+                            </div>
+                        </nav>
+                    </div>
+                    <!-- end breadcrumbs -->
+                    <!-- Madcap guide titles-->
+                    <main role="main">
+                        <section class="section-hero section hero">  Knox Security Technical Implementation API table (STIG)
+						</section>
+                    </main>
+                    <!-- end Madcap guide titles-->
+                    <section id="page-content">
+                        <div class="row" style="width:100%;">
+                            <div class="small-12 medium-8 large-9 columns" id="topic-content" style="width:100%;">
+                               
+                                  
+ 
+        <h2>About STIG </h2>
+        <p>Any mobile device used for the US military must meet a minimum set of <a href="https://iase.disa.mil/stigs/mobility/Pages/smartphone.aspx"> STIG  requirements.</a> This ensures the maximum protection for sensitive military data and improves the security of Department of Defense (DoD) information systems. Knox meets the STIG requirements when appropriate APIs are applied to lock down the device 	&ndash; these are described in the table below.   </p>  	 <br/>
+		<p> For a full list of STIG documentation 	&ndash; including past releases 	&ndash;  see the <a href="https://www.samsungknox.com/en/knox-platform/knox-certifications"> Knox certifications page.</a> </p>
+		
+		
+		<br/>
+		
+		
+		<h2>Knox STIG API Table (Knox 3.x / Android 8) </h2>
+		<p>This guide is an explicit list of the APIs required to reach  STIG compliance on a Samsung Knox device. It is addendum to the official STIG configuration tables to help remove any ambiguous interpretation of MDM agnostic language used.  The intended audience is either MDM developers responsible for implementing configuration controls, or Administrators (MDM) wishing to verify that an MDM has used the correct API.</p></br>
+		
+		<div class="callout primary">
+		 <h3>Terms</h3><ul>
+		 
+		
+		 
+		<li><b>Group - </b> the device feature category</li> 
+		<li><b>Rule - </b>the policy used to control the feature</li> 
+		<li><b>Class - </b>the  class in the Knox SDK used to control the feature</li> 
+		<li><b>Method -</b>the API in the Knox SDK used to control the feature</li> 
+		 <p><span class="badge badge-success">fix</span> - API used to implement the policy </p>
+		 <p><span class="badge warning">check</span> - API used to validate/audit the policy</p>
+		<li><b>Scope - </b>the variable scope of the APIs used</li> 
+		<li><b>Use Case -</b> the work activated deployment mode </li> 
+		<li><b>Owner - </b>the type of Android Work profile to target </li> 
+		<li><b>SFRID -</b> Security Functional Requirement (SFR) identifier as listed in the Mobile Device Fundamentals Protection Profile (MDFPP) </li> 
+		<li><b>Severity - </b> The Severity Category Code (CAT) is an indicator of the risk associated with non-compliance as determined by DISA </li> 
+		<li><b>Related Requirement Number - </b> The STIGID uniquely identifies a requirement in the Samsung Android OS 8 with Knox 3.x STIG</li>
+        <li><b>OS 8/Knox3.x API Changes -</b> New API changes in Knox 3.x and above</li>
+		</ul>
+			</div>
+		
+		
+			<p>Use the following API reference table to help audit your device configuration:</p>
+	
+   
+	
+	
+		<ul> <!-- <li>Click the headers to sort the columns</li><li>Type in the search box to refine results</li>  <li>Choose a filter to narrow results</li>  --></ul>
+			
+			
+	
+			<div class="contain" style="padding-left: 28px;margin-top:-11px;>
+			
+						<div class="checkbox" id="filter">
+								
+                                        <input type="checkbox" class="industry" value="Samsung" style="    margin-top: 6px;" ><p style="padding-left:20px;"><b>Samsung (required) - </b>  these Samsung APIs must be enabled to reach STIG compliance</p></input>
+                                    
+                              
+                                  
+                                        <input type="checkbox" class="industry" value="Google" style="    margin-top: 6px;" ><p style="padding-left:20px;"><b>Google (required) - </b>  these Google APIs must be enabled to reach STIG compliance </p> </input>
+                                 
+
+                                    
+                                        <input type="checkbox" class="industry" value="Optional" style="    margin-top: 6px;" ><p style="padding-left:20px;"> <b> Samsung (optional) - </b> these Samsung APIs add extra security on top of the minimum level of STIG compliance</p> </input>
+                                
+									
+									 
+                                        <input type="checkbox" class="industry" value="new" style="    margin-top: 6px;" ><p style="padding-left:20px;"> <b> Android 8 / Knox 3.x API Changes - </b> these APIs have changed to meet STIG compliance in Android 8.0 / Knox 3.x </p> </input>
+                               
+                                  
+                                </div>
+
+                                
+                               
+                                <table id="example" class="display" style="width:100%" data-page-length="25">
+                                 
+
+								 <thead>
+                                        <tr>
+                                            <th style="display:none">Vendor</th>
+											<td class="city" style="display:none;">new</td>
+                                            <th>Group</th>
+											
+                                            <th>Rule</th>
+                                            <th>Class</th>
+                                            <th>Method</th>
+                                            <th>Scope</th>
+                                            <th>Use Case</th>
+                                            <th>Owner</th>
+                                            <th>SFRID</th>
+                                            <th>Severity</th>
+                                            <th>Related Requirement Number</th>
+                                            <th>OS 8/Knox3.x API Changes</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                <tr>
+				  <td class="city" style="display:none;">Samsung</td> 
+					<td class="city" style="display:none;"></td>
+				  
+				  <td style="font-weight: bold;">Container Accounts, Android Accounts</td>
+                    <td>Account Blacklist</td>
+                    <td>DeviceAccountPolicy</td>
+                    <td><p><span class="badge badge-success">fix</span> <a href="https://seap.samsung.com/api-references/android/reference/com/samsung/android/knox/accounts/DeviceAccountPolicy.html#addAccountsToAdditionBlackList(java.lang.String,%20java.util.List%3Cjava.lang.String%3E)"> addAccountsToAdditionBlackList(String type, List  accounts)</a></p><span class="badge warning">check</span><a href="https://seap.samsung.com/api-references/android/reference/com/samsung/android/knox/accounts/DeviceAccountPolicy.html#getAccountsFromAdditionBlackLists(java.lang.String)"> getAccountsFromAdditionBlackLists(String type)</td>
+                    <td>User</td>
+                    <td>COBO, COPE</td>
+                    <td>DO, PO</td>
+                    <td>FMT_SMF_EXT.1.1 #47</td>
+                    <td>CAT II</td>
+                    <td>KNOX-08-000200,<br/> KNOX-08-000400</td>
+                    <td>
+                        <p>New "Account Blacklist" for DO</p>
+                    </td>
+                </tr>
+                <tr >
+				     <td class="city" style="display:none;">Samsung</td> 
+					<td class="city" style="display:none;">new</td> 
+                    <td style="font-weight: bold;">Container Accounts, Android Accounts</td>
+                    <td>Account Whitelist</td>
+                    <td>DeviceAccountPolicy</td>
+                    <td>
+                        <p><span class="badge badge-success">fix</span> <a href="https://seap.samsung.com/api-references/android/reference/com/samsung/android/knox/accounts/DeviceAccountPolicy.html#addAccountsToAdditionWhiteList(java.lang.String,%20java.util.List%3Cjava.lang.String%3E,%20boolean)"> addAccountsToAdditionWhiteList(String type, List  accounts)</a></p>
+                        <p><span class="badge warning">check</span> <a href="https://seap.samsung.com/api-references/android/reference/com/samsung/android/knox/accounts/DeviceAccountPolicy.html#getAccountsFromAdditionWhiteLists(java.lang.String)"> getAccountsFromAdditionWhiteLists(String type)</a></p>
+                    </td>
+                    <td>User</td>
+                    <td>COBO, COPE</td>
+                    <td>DO, PO</td>
+                    <td>FMT_SMF_EXT.1.1 #47</td>
+                    <td>CAT II</td>
+                    <td>KNOX-08-000100, </br>KNOX-08-000300</td>
+                    <td>
+                        <p>New "Account Whitelist" for DO</p>
+                    </td>
+                </tr>
+              
+                <tr>
+					<td class="city" style="display:none;">Samsung</td> 
+					<td class="city" style="display:none;"></td>
+                    <td style="font-weight: bold;">Android Vpn</td>
+                    <td>Add Container Packages To Vpn</td>
+                    <td>GenericVpnPolicy</td>
+                    <td>
+                        <p><span class="badge badge-success">fix</span>  <a href="https://seap.samsung.com/api-references/android/reference/com/samsung/android/knox/net/vpn/GenericVpnPolicy.html#addAllContainerPackagesToVpn(int,%20java.lang.String)">addAllContainerPackagesToVpn(int mContainerId, String profileName)</a></p>
+                        <p><span class="badge warning">check</span> <a href="https://seap.samsung.com/api-references/android/reference/com/samsung/android/knox/net/vpn/GenericVpnPolicy.html#getAllContainerPackagesInVpnProfile(int,%20java.lang.String)">getAllContainerPackagesInVpnProfile(int containerId, String profileName)</a></p>
+                    </td>
+                    <td>Unspecified</td>
+                    <td>COPE</td>
+                    <td>DO</td>
+                    <td>FMT_SMF_EXT.1.1 #3</td>
+                    <td>CAT II</td>
+                    <td>KNOX-08-023100</td>
+                    <td>&#160;</td>
+                </tr>
+                <tr>
+					<td class="city" style="display:none;">Samsung</td> 
+					<td class="city" style="display:none;"></td>
+                    <td style="font-weight: bold;">Android Vpn</td>
+                    <td>Add Container Packages To Vpn</td>
+                    <td>GenericVpnPolicy</td>
+                    <td>
+                        <p><span class="badge badge-success">fix</span> <a href="https://seap.samsung.com/api-references/android/reference/com/samsung/android/knox/net/vpn/GenericVpnPolicy.html#addContainerPackagesToVpn(int,%20java.lang.String[],%20java.lang.String)">addContainerPackagesToVpn(int mContainerId, String[] packageList, String profileName)</a></p>
+                        <p><span class="badge warning">check</span><a href="https://seap.samsung.com/api-references/android/reference/com/samsung/android/knox/net/vpn/GenericVpnPolicy.html#getAllContainerPackagesInVpnProfile(int,%20java.lang.String)"> getAllContainerPackagesInVpnProfile(int containerId, String profileName)</a></p>
+                    </td>
+                    <td>Unspecified</td>
+                    <td>COPE</td>
+                    <td>DO</td>
+                    <td>FMT_SMF_EXT.1.1 #3</td>
+                    <td>CAT II</td>
+                    <td>KNOX-08-023100</td>
+                    <td>&#160;</td>
+                </tr>
+                <tr>
+					<td class="city" style="display:none;">Samsung</td> 
+					<td class="city" style="display:none;"></td>
+                    <td style="font-weight: bold;">Android Vpn</td>
+                    <td>Add Packages To Vpn</td>
+                    <td>GenericVpnPolicy</td>
+                    <td>
+                        <p><span class="badge badge-success">fix</span> <a href="https://seap.samsung.com/api-references/android/reference/com/samsung/android/knox/net/vpn/GenericVpnPolicy.html#addPackagesToVpn(java.lang.String[],%20java.lang.String)">  addPackagesToVpn(String[] packageList, String profileName)</a></p>
+                        <p><span class="badge warning">check</span> <a href="https://seap.samsung.com/api-references/android/reference/com/samsung/android/knox/net/vpn/GenericVpnPolicy.html#getAllPackagesInVpnProfile(java.lang.String)">getAllPackagesInVpnProfile(String profileName)</a></p>
+                    </td>
+                    <td>User</td>
+                    <td>COPE</td>
+                    <td>DO</td>
+                    <td>FMT_SMF_EXT.1.1 #3</td>
+                    <td>CAT II</td>
+                    <td>KNOX-08-023200</td>
+                    <td>&#160;</td>
+                </tr>
+                <tr>
+				<td class="city" style="display:none;">Samsung</td> 	<td class="city" style="display:none;"></td>
+                    <td style="font-weight: bold;">Android Restrictions</td>
+                    <td>Allow Admin Remove</td>
+                    <td>EnterpriseDeviceManager</td>
+                    <td>
+                        <p><span class="badge badge-success">fix</span> <a href="https://seap.samsung.com/api-references/android/reference/com/samsung/android/knox/EnterpriseDeviceManager.html#setAdminRemovable(boolean)">setAdminRemovable(boolean removable)</a></p>
+                        <p><span class="badge warning">check</span><a href="https://seap.samsung.com/api-references/android/reference/com/samsung/android/knox/EnterpriseDeviceManager.html#getAdminRemovable()">getAdminRemovable()</a></p>
+                    </td>
+                    <td>User</td>
+                    <td>COBO, COPE</td>
+                    <td>DO</td>
+                    <td>FMT_SMF_EXT.1.1 #47</td>
+                    <td>CAT II</td>
+                    <td>KNOX-08-014200</td>
+                    <td>&#160;</td>
+                </tr>
+                <tr>
+				<td class="city" style="display:none;">Samsung</td> 	
+					<td class="city" style="display:none;">new</td>
+                    <td style="font-weight: bold;">Container Restrictions, Android Restrictions</td>
+                    <td>Allow Auto-Fill</td>
+                    <td>BrowserPolicy</td>
+                    <td>
+                        <p><span class="badge badge-success">fix</span><a href="https://seap.samsung.com/api-references/android/reference/com/samsung/android/knox/browser/BrowserPolicy.html#setAutoFillSetting(boolean)">  setAutoFillSetting(boolean enable)</a></p>
+                        <p><span class="badge warning">check</span>  <a href="https://seap.samsung.com/api-references/android/reference/com/samsung/android/knox/browser/BrowserPolicy.html#getAutoFillSetting()">getAutoFillSetting()</a></p>
+                    </td>
+                    <td>User</td>
+                    <td>COBO, COPE</td>
+                    <td>DO, PO</td>
+                    <td>FMT_SMF_EXT.1.1 #47</td>
+                    <td>CAT II</td>
+                    <td>KNOX-08-012700,</br> KNOX-08-012800</td>
+                    <td>
+                        <p>New "Allow Auto-Fill" for DO</p>
+                    </td>
+                </tr>
+                <tr>
+				<td class="city" style="display:none;">Samsung</td> <td class="city" style="display:none;"></td>
+                    <td style="font-weight: bold;">Container Rcp</td>
+                    <td>Allow Calendar Info Outside Container</td>
+                    <td>RCPPolicy</td>
+                    <td>
+                        <p><span class="badge badge-success">fix</span> <a href="https://seap.samsung.com/api-references/android/reference/com/samsung/android/knox/container/KnoxConfigurationType.html#setAllowChangeDataSyncPolicy(java.util.List%3Cjava.lang.String%3E,%20java.lang.String,%20boolean)">setAllowChangeDataSyncPolicy(List  appNames, String syncProperty, boolean value)</a></p>
+                        <span class="badge warning">check</span><a href="https://seap.samsung.com/api-references/android/reference/com/samsung/android/knox/container/KnoxConfigurationType.html#getAllowChangeDataSyncPolicy(java.lang.String,%20java.lang.String)">   getAllowChangeDataSyncPolicy(String appName, String syncProperty)</a></p>
+                    </td>
+                    <td>Unspecified</td>
+                    <td>COPE</td>
+                    <td>PO</td>
+                    <td>FMT_SMF_EXT.1.1 #47</td>
+                    <td>CAT II</td>
+                    <td>KNOX-08-007500, </br>KNOX-08-022000,</br> KNOX-08-022400</td>
+                    <td>&#160;</td>
+                </tr>
+                <tr>
+				<td class="city" style="display:none;">Samsung</td> 
+					<td class="city" style="display:none;">new</td>
+                    <td style="font-weight: bold;">Container Rcp</td>
+                    <td>Allow Clipboard Data Outside Container</td>
+                    <td>RCPPolicy</td>
+                    <td>
+                        <p><span class="badge badge-success">fix</span><a href="https://seap.samsung.com/api-references/android/reference/com/samsung/android/knox/container/RCPPolicy.html#allowShareClipboardDataToOwner(boolean)">  allowShareClipboardDataToOwner(boolean allow)</a></p>
+                        <span class="badge warning">check</span><a href="https://seap.samsung.com/api-references/android/reference/com/samsung/android/knox/container/RCPPolicy.html#isShareClipboardDataToOwnerAllowed()">   isShareClipboardDataToOwnerAllowed()</a></p>
+                    </td>
+                    <td>Unspecified</td>
+                    <td>COPE</td>
+                    <td>PO</td>
+                    <td>FMT_SMF_EXT.1.1 #47</td>
+                    <td>CAT II</td>
+                    <td>KNOX-08-022200</td>
+                    <td>
+                        <p>New "Allow Clipboard Data Outside Container" for PO</p>
+                    </td>
+                </tr>
+                <tr>
+				<td class="city" style="display:none;">Samsung</td> <td class="city" style="display:none;"></td>
+                    <td style="font-weight: bold;">Container Rcp</td>
+                    <td>Allow Contact Info Outside Container</td>
+                    <td>RCPPolicy</td>
+                    <td>
+                        <p><span class="badge badge-success">fix</span><a href="https://seap.samsung.com/api-references/android/reference/com/samsung/android/knox/container/KnoxConfigurationType.html#setAllowChangeDataSyncPolicy(java.util.List%3Cjava.lang.String%3E,%20java.lang.String,%20boolean)">  setAllowChangeDataSyncPolicy(List  appNames, String syncProperty, boolean value)</a></p>
+                        <span class="badge warning">check</span><a href="https://seap.samsung.com/api-references/android/reference/com/samsung/android/knox/container/KnoxConfigurationType.html#getAllowChangeDataSyncPolicy(java.lang.String,%20java.lang.String)">   getAllowChangeDataSyncPolicy(String appName, String syncProperty)</a></p>
+                    </td>
+                    <td>Unspecified</td>
+                    <td>COPE</td>
+                    <td>PO</td>
+                    <td>FMT_SMF_EXT.1.1 #47</td>
+                    <td>CAT II</td>
+                    <td>KNOX-08-007500,</br> KNOX-08-022000,</br> KNOX-08-022400</td>
+                    <td>&#160;</td>
+                </tr>
+                <tr>
+				<td class="city" style="display:none;">Samsung</td> <td class="city" style="display:none;"></td>
+                    <td style="font-weight: bold;">Android Restrictions</td>
+                    <td>Allow Developer Mode</td>
+                    <td>RestrictionPolicy</td>
+                    <td>
+                        <p><span class="badge badge-success">fix</span><a href="https://seap.samsung.com/api-references/android/reference/com/samsung/android/knox/restriction/RestrictionPolicy.html#allowDeveloperMode(boolean)"> allowDeveloperMode(boolean allow)<a/></p>
+                        <span class="badge warning">check</span><a href="https://seap.samsung.com/api-references/android/reference/com/samsung/android/knox/restriction/RestrictionPolicy.html#isDeveloperModeAllowed()">  isDeveloperModeAllowed()</a></p>
+                    </td>
+                    <td>Global</td>
+                    <td>COBO, COPE</td>
+                    <td>DO</td>
+                    <td>FMT_SMF_EXT.1.1 #26</td>
+                    <td>CAT II</td>
+                    <td>KNOX-08-017900</td>
+                    <td>&#160;</td>
+                </tr>
+                <tr>
+				<td class="city" style="display:none;">Samsung</td> 
+				<td class="city" style="display:none;">new</td>
+                    <td style="font-weight: bold;">Container Restrictions, Android Restrictions</td>
+                    <td>Allow Google Accounts Auto Sync</td>
+                    <td>RestrictionPolicy</td>
+                    <td>
+                        <p><span class="badge badge-success">fix</span><a href="https://seap.samsung.com/api-references/android/reference/com/samsung/android/knox/restriction/RestrictionPolicy.html#allowGoogleAccountsAutoSync(boolean)"> allowGoogleAccountsAutoSync(boolean allow)</a></p>
+                        <span class="badge warning">check</span><a href="https://seap.samsung.com/api-references/android/reference/com/samsung/android/knox/restriction/RestrictionPolicy.html#isGoogleAccountsAutoSyncAllowed()">   isGoogleAccountsAutoSyncAllowed()</a></p>
+                    </td>
+                    <td>User</td>
+                    <td>COBO, COPE</td>
+                    <td>DO, PO</td>
+                    <td>FMT_SMF_EXT.1.1 #40</td>
+                    <td>CAT II</td>
+                    <td>KNOX-08-017100,</br> KNOX-08-017200</td>
+                    <td>
+                        <p>New "Allow Google Accounts Auto Sync" for PO</p>
+                    </td>
+                </tr>
+                <tr>
+				<td class="city" style="display:none;">Samsung</td> <td class="city" style="display:none;"></td>
+                    <td style="font-weight: bold;">Android Restrictions</td>
+                    <td>Allow Google Backup</td>
+                    <td>RestrictionPolicy</td>
+                    <td>
+                        <p><span class="badge badge-success">fix</span><a href="https://seap.samsung.com/api-references/android/reference/com/samsung/android/knox/restriction/RestrictionPolicy.html#setBackup(boolean)">setBackup(boolean)</a></p>
+                        <span class="badge warning">check</span><a href="https://seap.samsung.com/api-references/android/reference/com/samsung/android/knox/restriction/RestrictionPolicy.html#isBackupAllowed(boolean)">   isBackupAllowed(boolean showMsg)</a></p>
+                    </td>
+                    <td>Global</td>
+                    <td>COBO, COPE</td>
+                    <td>DO</td>
+                    <td>FMT_SMF_EXT.1.1 #40</td>
+                    <td>CAT II</td>
+                    <td>KNOX-08-017400</td>
+                    <td>&#160;</td>
+                </tr>
+                <tr>
+				<td class="city" style="display:none;">Samsung</td> 
+					<td class="city" style="display:none;">new</td>
+                    <td style="font-weight: bold;">Container Restrictions, Android Restrictions</td>
+                    <td>Allow Google Crash Report</td>
+                    <td>RestrictionPolicy</td>
+                    <td>
+                        <p><span class="badge badge-success">fix</span><a href="https://seap.samsung.com/api-references/android/reference/com/samsung/android/knox/restriction/RestrictionPolicy.html#allowGoogleCrashReport(boolean)">  allowGoogleCrashReport(boolean allow)</a></p>
+                        <span class="badge warning">check</span><a href="https://seap.samsung.com/api-references/android/reference/com/samsung/android/knox/restriction/RestrictionPolicy.html#isGoogleCrashReportAllowed()">  isGoogleCrashReportAllowed()</a></p>
+                    </td>
+                    <td>User</td>
+                    <td>COBO, COPE</td>
+                    <td>DO, PO</td>
+                    <td>FMT_SMF_EXT.1.1 #47a</td>
+                    <td>CAT III</td>
+                    <td>KNOX-08-013200,</br> KNOX-08-013400</td>
+                    <td>
+                        <p>New "Allow Google Crash Report" for PO</p>
+                    </td>
+                </tr>
+                <tr>
+				<td class="city" style="display:none;">Samsung</td> <td class="city" style="display:none;"></td>
+                    <td style="font-weight: bold;">Android Restrictions</td>
+                    <td>Allow Install Non Market App</td>
+                    <td>RestrictionPolicy</td>
+                    <td>
+                        <p><span class="badge badge-success">fix</span><a href="https://seap.samsung.com/api-references/android/reference/com/samsung/android/knox/restriction/RestrictionPolicy.html#setAllowNonMarketApps(boolean)">  setAllowNonMarketApps(boolean)<a/></p>
+                        <span class="badge warning">check</span><a href="https://seap.samsung.com/api-references/android/reference/com/samsung/android/knox/restriction/RestrictionPolicy.html#isNonMarketAppAllowed()">   isNonMarketAppAllowed()</a></p>
+                    </td>
+                    <td>Global</td>
+                    <td>COBO, COPE</td>
+                    <td>DO</td>
+                    <td>FMT_SMF_EXT.1.1 #8a</td>
+                    <td>CAT II</td>
+                    <td>KNOX-08-002900</td>
+                    <td>&#160;</td>
+                </tr>
+                <tr>
+				<td class="city" style="display:none;">Samsung</td> <td class="city" style="display:none;"></td>
+                    <td style="font-weight: bold;">Android Multiuser</td>
+                    <td>Allow Multi-User Mode</td>
+                    <td>MultiUserManager</td>
+                    <td>
+                        <p><span class="badge badge-success">fix</span><a href="https://seap.samsung.com/api-references/android/reference/com/samsung/android/knox/multiuser/MultiUserManager.html#allowMultipleUsers(boolean)"> allowMultipleUsers(boolean allow)</p>
+                        <span class="badge warning">check</span><a href="https://seap.samsung.com/api-references/android/reference/com/samsung/android/knox/multiuser/MultiUserManager.html#multipleUsersAllowed()">   multipleUsersAllowed()</a></p>
+                    </td>
+                    <td>Global</td>
+                    <td>COBO, COPE</td>
+                    <td>DO</td>
+                    <td>FMT_SMF_EXT.1.1 #47b</td>
+                    <td>CAT II</td>
+                    <td>KNOX-08-013000</td>
+                    <td>&#160;</td>
+                </tr>
+                <tr>
+				<td class="city" style="display:none;">Samsung</td> 
+                    <td class="city" style="display:none;">new</td>
+					<td style="font-weight: bold;">Container Restrictions, Android Restrictions</td>
+                    <td>Allow S Voice</td>
+                    <td>RestrictionPolicy</td>
+                    <td>
+                        <p><span class="badge badge-success">fix</span><a href="https://seap.samsung.com/api-references/android/reference/com/samsung/android/knox/restriction/RestrictionPolicy.html#allowSVoice(boolean)">  allowSVoice(boolean allow)</a></p>
+                        <span class="badge warning">check</span><a href="https://seap.samsung.com/api-references/android/reference/com/samsung/android/knox/restriction/RestrictionPolicy.html#isSVoiceAllowed()">   isSVoiceAllowed()</a></p>
+                    </td>
+                    <td>User</td>
+                    <td>COBO, COPE</td>
+                    <td>DO, PO</td>
+                    <td>FMT_SMF_EXT.1.1 #47</td>
+                    <td>CAT II</td>
+                    <td>KNOX-08-014700,</br> KNOX-08-014800</td>
+                    <td>
+                        <p>New "Allow S Voice" for PO</p>
+                    </td>
+                </tr>
+                <tr>
+				<td class="city" style="display:none;">Samsung</td> <td class="city" style="display:none;"></td>
+                    <td style="font-weight: bold;">Container Rcp</td>
+                    <td>Allow Show Detailed Notifications</td>
+                    <td>RCPPolicy</td>
+                    <td>
+                        <p><span class="badge badge-success">fix</span><a href="https://docs.samsungknox.com/knox-security-technical-implementation-api-guides/setAllowChangeDataSyncPolicy">  setAllowChangeDataSyncPolicy(List  appNames, String syncProperty, boolean value)</a></p>
+                        <span class="badge warning">check</span> <a href="https://seap.samsung.com/api-references/android/reference/com/samsung/android/knox/container/KnoxConfigurationType.html#getAllowChangeDataSyncPolicy(java.lang.String,%20java.lang.String)">  getAllowChangeDataSyncPolicy(String appName, String syncProperty)</a></p>
+                    </td>
+                    <td>Unspecified</td>
+                    <td>COPE</td>
+                    <td>PO</td>
+                    <td>FMT_SMF_EXT.1.1 #47</td>
+                    <td>CAT II</td>
+                    <td>KNOX-08-007500,</br> KNOX-08-022000,</br> KNOX-08-022400</td>
+                    <td>&#160;</td>
+                </tr>
+                <tr>
+				<td class="city" style="display:none;">Samsung</td> <td class="city" style="display:none;"></td>
+                    <td style="font-weight: bold;">Android Wifi</td>
+                    <td>Allow Unsecured Hotspot</td>
+                    <td>WifiPolicy</td>
+                    <td>
+                        <p><span class="badge badge-success">fix</span><a href="https://seap.samsung.com/api-references/android/reference/com/samsung/android/knox/net/wifi/WifiPolicy.html#allowOpenWifiAp(boolean)">  allowOpenWifiAp(boolean allow)</a></p>
+                        <span class="badge warning">check</span> <a href="https://seap.samsung.com/api-references/android/reference/com/samsung/android/knox/net/wifi/WifiPolicy.html#isOpenWifiApAllowed()">  isOpenWifiApAllowed()</a></p>
+                    </td>
+                    <td>Global</td>
+                    <td>COBO, COPE</td>
+                    <td>DO</td>
+                    <td>FMT_SMF_EXT.1.1 #41a</td>
+                    <td>CAT II</td>
+                    <td>KNOX-08-018100</td>
+                    <td>&#160;</td>
+                </tr>
+                <tr>
+				<td class="city" style="display:none;">Samsung</td> <td class="city" style="display:none;"></td>
+                    <td style="font-weight: bold;">Android Restrictions</td>
+                    <td>Allow Vpn</td>
+                    <td>RestrictionPolicy</td>
+                    <td>
+                        <p><span class="badge badge-success">fix</span><a href="https://seap.samsung.com/api-references/android/reference/com/samsung/android/knox/restriction/RestrictionPolicy.html#allowVpn(boolean)">  allowVpn(boolean allow)</a></p>
+                        <span class="badge warning">check</span>  <a href="https://seap.samsung.com/api-references/android/reference/com/samsung/android/knox/restriction/RestrictionPolicy.html#isVpnAllowed()">isVpnAllowed()</a></p>
+                    </td>
+                    <td>Global</td>
+                    <td>COPE</td>
+                    <td>DO</td>
+                    <td>FMT_SMF_EXT.1.1 #3</td>
+                    <td>CAT II</td>
+                    <td>KNOX-08-023000</td>
+                    <td>&#160;</td>
+                </tr>
+                <tr>
+				<td class="city" style="display:none;">Samsung</td> <td class="city" style="display:none;"></td>
+                    <td style="font-weight: bold;">Android Bluetooth</td>
+                    <td>Allowed Bluetooth Profiles</td>
+                    <td>BluetoothSecureModePolicy</td>
+                    <td>
+                        <p><span class="badge badge-success">fix</span><a href="https://seap.samsung.com/api-references/android/reference/com/samsung/android/knox/bluetooth/BluetoothSecureModePolicy.html#enableSecureMode(com.samsung.android.knox.bluetooth.BluetoothSecureModeConfig,%20java.util.List%3Ccom.samsung.android.knox.bluetooth.BluetoothSecureModeWhitelistConfig%3E)">  enableSecureMode(BluetoothSecureModeConfig configObj, ListwhiteList)</a></p>
+                        <span class="badge warning">check</span> <a href="https://seap.samsung.com/api-references/android/reference/com/samsung/android/knox/bluetooth/BluetoothSecureModePolicy.html#isSecureModeEnabled()">  isSecureModeEnabled()</a></p>
+                        <span class="badge warning">check</span> <a href="https://seap.samsung.com/api-references/android/reference/com/samsung/android/knox/bluetooth/BluetoothSecureModePolicy.html#getSecureModeConfiguration()">  getSecureModeConfiguration()</a></p>
+                        <span class="badge warning">check</span> <a href="https://seap.samsung.com/api-references/android/reference/com/samsung/android/knox/bluetooth/BluetoothSecureModePolicy.html#getBluetoothDevicesFromWhiteList()">  getBluetoothDevicesFromWhiteList()</a></p>
+                    </td>
+                    <td>Global</td>
+                    <td>COBO, COPE</td>
+                    <td>DO</td>
+                    <td>FMT_SMF_EXT.1.1 #18h</td>
+                    <td>CAT III</td>
+                    <td>KNOX-08-013900</td>
+                    <td>&#160;</td>
+                </tr>
+                <tr>
+				<td class="city" style="display:none;">Samsung</td> <td class="city" style="display:none;"></td>
+                    <td style="font-weight: bold;">Container Application, Android Application</td>
+                    <td>Application Disable List</td>
+                    <td>ApplicationPolicy</td>
+                    <td>
+                        <p><span class="badge badge-success">fix</span><a href="https://seap.samsung.com/api-references/android/reference/com/samsung/android/knox/application/ApplicationPolicy.html#setDisableApplication(java.lang.String)">  setDisableApplication(String packageName)</a></p>
+                        <span class="badge warning">check</span> <a href="https://seap.samsung.com/api-references/android/reference/com/samsung/android/knox/application/ApplicationPolicy.html#getApplicationStateEnabled(java.lang.String)">  getApplicationStateEnabled(String packageName)</a></p>
+                        <span class="badge warning">check</span><a href="https://seap.samsung.com/api-references/android/reference/com/samsung/android/knox/application/ApplicationPolicy.html#getApplicationStateList(boolean)">   getApplicationStateList(boolean state)</a></p>
+                    </td>
+                    <td>User</td>
+                    <td>COBO, COPE</td>
+                    <td>DO, PO</td>
+                    <td>FMT_SMF_EXT.1.1 #47</td>
+                    <td>CAT II</td>
+                    <td>KNOX-08-000700,</br> KNOX-08-000800</td>
+                    <td>&#160;</td>
+                </tr>
+                <tr>
+				<td class="city" style="display:none;">Samsung</td> 
+					<td class="city" style="display:none;">new</td>
+                    <td style="font-weight: bold;">Container Application, Android Application</td>
+                    <td>Battery Optimizations Modes Whitelist</td>
+                    <td>ApplicationPolicy</td>
+                    <td>
+                        <p><span class="badge badge-success">fix</span><a href="https://seap.samsung.com/api-references/android/reference/com/samsung/android/knox/application/ApplicationPolicy.html#addPackageToBatteryOptimizationWhiteList(com.samsung.android.knox.AppIdentity)">  addPackageToBatteryOptimizationWhiteList(AppIdentity appIdentity)</a></p>
+                        <span class="badge warning">check</span><a href="https://seap.samsung.com/api-references/android/reference/com/samsung/android/knox/application/ApplicationPolicy.html#getPackagesFromBatteryOptimizationWhiteList()">  getPackagesFromBatteryOptimizationWhiteList()</a></p>
+                    </td>
+                    <td>User</td>
+                    <td>COBO, COPE</td>
+                    <td>DO, PO</td>
+                    <td>FMT_SMF_EXT.1.1 #47</td>
+                    <td>CAT III</td>
+                    <td>KNOX-08-003200,</br> KNOX-08-003300</td>
+                    <td>
+                        <p>New "Battery Optimizations Modes Whitelist" for PO</p>
+                    </td>
+                </tr>
+                <tr>
+				<td class="city" style="display:none;">Samsung</td> 
+					<td class="city" style="display:none;">new</td>	
+                    <td style="font-weight: bold;">Android Certificate, Container Certificate</td>
+                    <td>Certificate</td>
+                    <td>CertificateProvisioning</td>
+                    <td>
+                        <p><span class="badge badge-success">fix</span><a href="https://seap.samsung.com/api-references/android/reference/com/samsung/android/knox/keystore/CertificateProvisioning.html#installCertificateToKeystore(java.lang.String,%20byte[],%20java.lang.String,%20java.lang.String,%20int)">  installCertificateToKeystore(String type, byte[] value, String name, String password, int keystore)</a></p>
+                        <span class="badge warning">check</span><a href="https://seap.samsung.com/api-references/android/reference/com/samsung/android/knox/keystore/CertificateProvisioning.html#getCertificatesFromKeystore(int)">   getCertificatesFromKeystore(int keystore)</a></p>
+                    </td>
+                    <td>User</td>
+                    <td>COBO, COPE</td>
+                    <td>DO, PO</td>
+                    <td>FMT_SMF_EXT.1.1 #47</td>
+                    <td>CAT II</td>
+                    <td>KNOX-08-019400,</br> KNOX-08-019500</td>
+                    <td>
+                        <p>New "Certificate" for PO</p>
+                    </td>
+                </tr>
+                <tr>
+				<td class="city" style="display:none;">Samsung</td> 
+					<td class="city" style="display:none;">new</td>
+                    <td style="font-weight: bold;">Android Certificate, Container Certificate</td>
+                    <td>Certificate Revocation Check (Crl)</td>
+                    <td>CertificatePolicy</td>
+                    <td>
+                        <p><span class="badge badge-success">fix</span><a href="https://seap.samsung.com/api-references/android/reference/com/samsung/android/knox/keystore/CertificatePolicy.html#enableRevocationCheck(java.lang.String,%20boolean)"> enableRevocationCheck(String pkgName, boolean enable)</a></p>
+                        <span class="badge warning">check</span><a href="https://seap.samsung.com/api-references/android/reference/com/samsung/android/knox/keystore/CertificatePolicy.html#isRevocationCheckEnabled(java.lang.String)">   isRevocationCheckEnabled(String pkgName)</a></p>
+                    </td>
+                    <td>User</td>
+                    <td>COBO, COPE</td>
+                    <td>DO, PO</td>
+                    <td>FMT_SMF_EXT.1.1 #47</td>
+                    <td>CAT II</td>
+                    <td>KNOX-08-019100,</br> KNOX-08-019200</td>
+                    <td>
+                        <p>New "Certificate Revocation Check (Crl)" for PO</p>
+                    </td>
+                </tr>
+                <tr>
+				<td class="city" style="display:none;">Samsung</td> <td class="city" style="display:none;"></td>
+                    <td style="font-weight: bold;">Android Date Time</td>
+                    <td>Date Time Change Enabled</td>
+                    <td>DateTimePolicy</td>
+                    <td>
+                        <p><span class="badge badge-success">fix</span><a href="https://seap.samsung.com/api-references/android/reference/com/samsung/android/knox/datetime/DateTimePolicy.html#setDateTimeChangeEnabled(boolean)"> setDateTimeChangeEnabled(boolean)</a></p>
+                        <span class="badge warning">check</span><a href="https://seap.samsung.com/api-references/android/reference/com/samsung/android/knox/datetime/DateTimePolicy.html#isDateTimeChangeEnabled()">   isDateTimeChangeEnabled()</a></p>
+                    </td>
+                    <td>Global</td>
+                    <td>COBO, COPE</td>
+                    <td>DO</td>
+                    <td>FMT_SMF_EXT.1.1 #47</td>
+                    <td>CAT II</td>
+                    <td>KNOX-08-015500</td>
+                    <td>&#160;</td>
+                </tr>
+                <tr>
+				<td class="city" style="display:none;">Samsung</td> <td class="city" style="display:none;"></td>
+					<td class="city" style="display:none;">new</td>
+                    <td style="font-weight: bold;">Android Restrictions</td>
+                    <td>Disable Android Beam</td>
+                    <td>RestrictionPolicy</td>
+                    <td>
+                        <p><span class="badge badge-success">fix</span><a href="https://seap.samsung.com/api-references/android/reference/com/samsung/android/knox/restriction/RestrictionPolicy.html#allowAndroidBeam(boolean)"> allowAndroidBeam(boolean allow)</a></p>
+                        <span class="badge warning">check</span><a href="https://seap.samsung.com/api-references/android/reference/com/samsung/android/knox/restriction/RestrictionPolicy.html#isAndroidBeamAllowed()"> isAndroidBeamAllowed()</a></p>
+                    </td>
+                    <td>Global</td>
+                    <td>COBO</td>
+                    <td>DO</td>
+                    <td>FMT_SMF_EXT.1.1 #47</td>
+                    <td>CAT II</td>
+                    <td>KNOX-08-016000</td>
+                    <td>
+                        <p>New "Disable Android Beam" for DO</p>
+                    </td>
+                </tr>
+                <tr>
+				<td class="city" style="display:none;">Samsung</td> 	
+				<td class="city" style="display:none;">new</td>	
+                    <td style="font-weight: bold;">Container Application, Android Application</td>
+                    <td>Disable Bixby Vision</td>
+                    <td>NA</td>
+                    <td>
+                        <p><span class="badge badge-success">fix</span>  Use the same APIs as for rule Application Disable List</p>
+                    </td>
+                    <td>User</td>
+                    <td>COBO, COPE</td>
+                    <td>DO, PO</td>
+                    <td>FMT_SMF_EXT.1.1 #47</td>
+                    <td>CAT III</td>
+                    <td>KNOX-08-003500, </br>KNOX-08-003600</td>
+                    <td>
+                        <p>New "Disable Bixby Vision" for PO</p>
+                        <p>New "Disable Bixby Vision" for DO</p>
+                    </td>
+                </tr>
+                <tr>
+				<td class="city" style="display:none;">Samsung</td>
+					<td class="city" style="display:none;">new</td>
+                    <td style="font-weight: bold;">Android Password Restrictions, Container Password Restrictions</td>
+                    <td>Disable Face Recognition</td>
+                    <td>PasswordPolicy</td>
+                    <td>
+                        <p><span class="badge badge-success">fix</span><a href="https://seap.samsung.com/api-references/android/reference/com/samsung/android/knox/container/KnoxConfigurationType.html#setBiometricAuthenticationEnabled(int,%20boolean)">  setBiometricAuthenticationEnabled(int bioAuth, boolean enable)</a></p>
+                        <span class="badge warning">check</span><a href="https://seap.samsung.com/api-references/android/reference/com/samsung/android/knox/devicesecurity/PasswordPolicy.html#isBiometricAuthenticationEnabled(int)">  isBiometricAuthenticationEnabled(int bioAuth)</a></p>
+                    </td>
+                    <td>User</td>
+                    <td>COBO, COPE</td>
+                    <td>DO, PO</td>
+                    <td>FMT_SMF_EXT.1.1 #23, FIA_UAU.5.1</td>
+                    <td>CAT II</td>
+                    <td>KNOX-08-011000</td>
+                    <td>
+                        <p>New optional "Disable Iris" for DO</p>
+                        <p>New optional "Disable Fingerprint" for PO</p>
+                        <p>New optional "Disable Iris" for PO</p>
+                    </td>
+                </tr>
+                <tr>
+				<td class="city" style="display:none;">Samsung</td> <td class="city" style="display:none;"></td>
+                    <td style="font-weight: bold;">Android Password Restrictions</td>
+                    <td>Disable Intelligent Scanning</td>
+                    <td>NA</td>
+                    <td>
+                        <p><span class="badge badge-success">fix</span> Use the same APIs as for Disable Face Recognition rule or Disable Iris rule</p>
+                    </td>
+                    <td>User</td>
+                    <td>COBO, COPE</td>
+                    <td>DO</td>
+                    <td>FMT_SMF_EXT.1.1 #23, FIA_UAU.5.1</td>
+                    <td>CAT II</td>
+                    <td>KNOX-08-010800</td>
+                    <td>&#160;</td>
+                </tr>
+                <tr>
+                    <td class="city" style="display:none;">Google</td> 
+						<td class="city" style="display:none;">new</td>
+					<td style="font-weight: bold;background-color:white:">Android Password Restrictions, Container Password Restrictions</td>
+                    <td>Disable Keyguard Trust Agents</td>
+                    <td>DevicePolicyManager</td>
+                    <td>
+                        <p><span class="badge badge-success">fix</span><a href="https://seap.samsung.com/api-references/android/reference/com/samsung/android/knox/container/BasePasswordPolicy.html#setKeyguardDisabledFeatures(android.content.ComponentName,%20int)">  setKeyguardDisabledFeatures(ComponentName admin, int which)</a></p>
+                        <span class="badge warning">check</span><a href="https://seap.samsung.com/api-references/android/reference/com/samsung/android/knox/container/BasePasswordPolicy.html#getKeyguardDisabledFeatures(android.content.ComponentName)">   getKeyguardDisabledFeatures(ComponentName admin)</a></p>
+                    </td>
+                    <td>User</td>
+                    <td>COBO, COPE</td>
+                    <td>DO, PO</td>
+                    <td>FMT_SMF_EXT.1.1 #23, FIA_UAU.5.1</td>
+                    <td>CAT II</td>
+                    <td>KNOX-08-010300, </br>KNOX-08-010500</td>
+                    <td>
+                        <p>New "Disable Keyguard Trust Agents" for PO</p>
+                    </td>
+                </tr>
+                <tr>
+				<td class="city" style="display:none;">Samsung</td> 
+				<td class="city" style="display:none;">new</td>
+                    <td style="font-weight: bold;">Container Restrictions, Android Restrictions</td>
+                    <td>Disable Share Via List</td>
+                    <td>RestrictionPolicy</td>
+                    <td>
+                        <p><span class="badge badge-success">fix</span><a href="https://seap.samsung.com/api-references/android/reference/com/samsung/android/knox/restriction/RestrictionPolicy.html#allowShareList(boolean)">  allowShareList(boolean allow)</a></p>
+                        <span class="badge warning">check</span><a href="https://seap.samsung.com/api-references/android/reference/com/samsung/android/knox/restriction/RestrictionPolicy.html#isShareListAllowed()">  isShareListAllowed()</a></p>
+                    </td>
+                    <td>User</td>
+                    <td>COBO, COPE</td>
+                    <td>DO, PO</td>
+                    <td>FMT_SMF_EXT.1.1 #47</td>
+                    <td>CAT II</td>
+                    <td>KNOX-08-015950, </br>KNOX-08-015955</td>
+                    <td>
+                        <p>New "Disable Share Via List" for DO</p>
+                        <p>New "Disable Share Via List" for PO</p>
+                    </td>
+                </tr>
+                <tr>
+				<td class="city" style="display:none;">Samsung</td> <td class="city" style="display:none;"></td>
+                    <td style="font-weight: bold;">Android Restrictions</td>
+                    <td>Disable Usb Media Player</td>
+                    <td>RestrictionPolicy</td>
+                    <td>
+                        <p><span class="badge badge-success">fix</span><a href="https://seap.samsung.com/api-references/android/reference/com/samsung/android/knox/restriction/RestrictionPolicy.html#setUsbMediaPlayerAvailability(boolean)">  setUsbMediaPlayerAvailability(boolean enable)</a></p>
+                        <span class="badge warning">check</span><a href="https://seap.samsung.com/api-references/android/reference/com/samsung/android/knox/restriction/RestrictionPolicy.html#isUsbMediaPlayerAvailable(boolean)">   isUsbMediaPlayerAvailable(boolean showMsg)</a></p>
+                    </td>
+                    <td>Global</td>
+                    <td>COBO, COPE</td>
+                    <td>DO</td>
+                    <td>FMT_SMF_EXT.1.1 #40, FMT_SMF_EXT.1.1 #39a</td>
+                    <td>CAT II</td>
+                    <td>KNOX-08-015000, </br>KNOX-08-017300</td>
+                    <td>&#160;</td>
+                </tr>
+                <tr>
+				<td class="city" style="display:none;">Samsung</td> <td class="city" style="display:none;"></td>
+                    <td style="font-weight: bold;">Android Audit Log</td>
+                    <td>Enable Audit Log</td>
+                    <td>AuditLog</td>
+                    <td>
+                        <p><span class="badge badge-success">fix</span><a href="https://seap.samsung.com/api-references/android/reference/com/samsung/android/knox/log/AuditLog.html#enableAuditLog()">  enableAuditLog()</a></p>
+                        <span class="badge warning">check</span><a href="https://seap.samsung.com/api-references/android/reference/com/samsung/android/knox/log/AuditLog.html#isAuditLogEnabled()">   isAuditLogEnabled()</a></p>
+                    </td>
+                    <td>User</td>
+                    <td>COBO, COPE</td>
+                    <td>DO</td>
+                    <td>FAU_GEN.1.1 #8</td>
+                    <td>CAT II</td>
+                    <td>KNOX-08-004000</td>
+                    <td>&#160;</td>
+                </tr>
+                <tr>
+				<td class="city" style="display:none;">Samsung</td> <td class="city" style="display:none;"></td>
+                    <td style="font-weight: bold;">Android Advanced Restrictions</td>
+                    <td>Enable Cc Mode</td>
+                    <td>AdvancedRestrictionPolicy</td>
+                    <td>
+                        <p><span class="badge badge-success">fix</span><a href="https://seap.samsung.com/api-references/android/reference/com/samsung/android/knox/restriction/AdvancedRestrictionPolicy.html#setCCMode(boolean)"> setCCMode(boolean)</a></p>
+                        <p><span class="badge badge-success">fix</span> <a href="https://seap.samsung.com/api-references/android/reference/com/samsung/android/knox/devicesecurity/DeviceSecurityPolicy.html#setInternalStorageEncryption(boolean)"> setInternalStorageEncryption(boolean isEncrypt)</a></p>
+                        <span class="badge warning">check</span> <a href="https://seap.samsung.com/api-references/android/reference/com/samsung/android/knox/restriction/AdvancedRestrictionPolicy.html#getCCModeState()">  getCCModeState()</a></p>
+                        <span class="badge warning">check</span>  <a href="https://seap.samsung.com/api-references/android/reference/com/samsung/android/knox/devicesecurity/DeviceSecurityPolicy.html#isInternalStorageEncrypted()"> isInternalStorageEncrypted()</a></p>
+                    </td>
+                    <td>Global</td>
+                    <td>COBO, COPE</td>
+                    <td>DO</td>
+                    <td>FMT_SMF_EXT.1.1 #47</td>
+                    <td>CAT II</td>
+                    <td>KNOX-08-015300</td>
+                    <td>&#160;</td>
+                </tr>
+                <tr>
+				<td class="city" style="display:none;">Google</td> 
+				<td class="city" style="display:none;">new</td>
+                    <td style="font-weight: bold;">Container Management</td>
+                    <td>Enable Container</td>
+                    <td>Context</td>
+                    <td>
+                        <p><span class="badge badge-success">fix</span><a href="https://developer.android.com/reference/android/app/admin/DevicePolicyManager.html#ACTION_PROVISION_MANAGED_PROFILE">startActivity(DevicePolicyManager<br/>.ACTION_PROVISION_MANAGED_PROFILE)</a></p>
+                    </td>
+                    <td>Global</td>
+                    <td>COPE</td>
+                    <td>DO</td>
+                    <td>FMT_SMF_EXT.1.1 #42, FDP_ACF_EXT.1.2</td>
+                    <td>CAT II</td>
+                    <td>KNOX-08-006600</td>
+                    <td>
+                        <p>New "Enable Container" for DO</p>
+                    </td>
+                </tr>
+                <tr>
+				<td class="city" style="display:none;">Samsung</td> <td class="city" style="display:none;"></td>
+                    <td style="font-weight: bold;">Container Management</td>
+                    <td>Enable Container</td>
+                    <td>KnoxContainerManager</td>
+                    <td>
+                        <p><span class="badge badge-success">fix</span><a href="https://seap.samsung.com/api-references/android/reference/com/samsung/android/knox/container/KnoxContainerManager.html#createContainer(java.lang.String)">  createContainer(CreationParams params)</a></p>
+                    </td>
+                    <td>Global</td>
+                    <td>COPE</td>
+                    <td>DO</td>
+                    <td>FMT_SMF_EXT.1.1 #42, FDP_ACF_EXT.1.2</td>
+                    <td>CAT II</td>
+                    <td>KNOX-08-006600</td>
+                    <td>&#160;</td>
+                </tr>
+                <tr>
+				<td class="city" style="display:none;">Samsung</td> <td class="city" style="display:none;"></td>
+                    <td style="font-weight: bold;">Container Management</td>
+                    <td>Enable Container</td>
+                    <td>KnoxContainerManager</td>
+                    <td>
+                        <p><span class="badge badge-success">fix</span><a href="https://seap.samsung.com/api-references/android/reference/com/samsung/android/knox/container/KnoxContainerManager.html#createContainer(java.lang.String)">  createContainer(String type)</a></p>
+                    </td>
+                    <td>Global</td>
+                    <td>COPE</td>
+                    <td>DO</td>
+                    <td>FMT_SMF_EXT.1.1 #42, FDP_ACF_EXT.1.2</td>
+                    <td>CAT II</td>
+                    <td>KNOX-08-006600</td>
+                    <td>&#160;</td>
+                </tr>
+                <tr>
+				<td class="city" style="display:none;">Samsung</td> <td class="city" style="display:none;"></td>
+                    <td style="font-weight: bold;">Container Management</td>
+                    <td>Enable Container</td>
+                    <td>KnoxContainerManager</td>
+                    <td>
+                        <p><span class="badge badge-success">fix</span><a href="https://seap.samsung.com/api-references/android/reference/com/samsung/android/knox/container/KnoxContainerManager.html#createContainer(java.lang.String)"> createContainer(String type, String adminPackageName)</a></p>
+                    </td>
+                    <td>Global</td>
+                    <td>COPE</td>
+                    <td>DO</td>
+                    <td>FMT_SMF_EXT.1.1 #42, FDP_ACF_EXT.1.2</td>
+                    <td>CAT II</td>
+                    <td>KNOX-08-006600</td>
+                    <td>&#160;</td>
+                </tr>
+                <tr>
+				<td class="city" style="display:none;">Samsung</td> <td class="city" style="display:none;"></td>
+                    <td style="font-weight: bold;">Android Security</td>
+                    <td>External Storage Encryption</td>
+                    <td>DeviceSecurityPolicy</td>
+                    <td>
+                        <p><span class="badge badge-success">fix</span><a href="https://seap.samsung.com/api-references/android/reference/com/samsung/android/knox/devicesecurity/DeviceSecurityPolicy.html#setExternalStorageEncryption(boolean)">  setExternalStorageEncryption(boolean isEncrypt)</a></p>
+                        <span class="badge warning">check</span><a href="https://seap.samsung.com/api-references/android/reference/com/samsung/android/knox/devicesecurity/DeviceSecurityPolicy.html#isExternalStorageEncrypted()">   isExternalStorageEncrypted()</a></p>
+                    </td>
+                    <td>Global</td>
+                    <td>COBO, COPE</td>
+                    <td>DO</td>
+                    <td>FMT_SMF_EXT.1.1 #21, #47f</td>
+                    <td>CAT I</td>
+                    <td>KNOX-08-018500</td>
+                    <td>&#160;</td>
+                </tr>
+                <tr>
+				<td class="city" style="display:none;">Google</td> <td class="city" style="display:none;"></td>
+                    <td style="font-weight: bold;">Android Password Restrictions</td>
+                    <td>Maximum Failed Attempts For Wipe</td>
+                    <td>DevicePolicyManager</td>
+                    <td>
+                        <p><span class="badge badge-success">fix</span><a href="https://developer.android.com/reference/android/app/admin/DevicePolicyManager#setMaximumFailedPasswordsForWipe(android.content.ComponentName,%20int)"> setMaximumFailedPasswordsForWipe(ComponentName admin, int num)</a></p>
+                        <span class="badge warning">check</span><a href="https://developer.android.com/reference/android/app/admin/DevicePolicyManager#getMaximumFailedPasswordsForWipe(android.content.ComponentName)">   getMaximumFailedPasswordsForWipe(ComponentName admin)</a></p>
+                    </td>
+                    <td>User</td>
+                    <td>COBO, COPE</td>
+                    <td>DO</td>
+                    <td>FMT_SMF_EXT.1.1 #47, FMT_SMF_EXT.1.1 #2c, FIA_AFL_EXT.1.5</td>
+                    <td>CAT III</td>
+                    <td>KNOX-08-009400,</br> KNOX-08-009500</td>
+                    <td>&#160;</td>
+                </tr>
+                <tr>
+				<td class="city" style="display:none;">Samsung</td> <td class="city" style="display:none;"></td>
+                    <td style="font-weight: bold;">Container Password Restrictions</td>
+                    <td>Maximum Failed Attempts For Wipe</td>
+                    <td>BasePasswordPolicy</td>
+                    <td>
+                        <p><span class="badge badge-success">fix</span><a href="https://seap.samsung.com/api-references/android/reference/com/samsung/android/knox/container/BasePasswordPolicy.html#setMaximumFailedPasswordsForWipe(android.content.ComponentName,%20int)">  setMaximumFailedPasswordsForWipe(ComponentName admin, int num)</a></p>
+                        <span class="badge warning">check</span><a href="https://seap.samsung.com/api-references/android/reference/com/samsung/android/knox/container/BasePasswordPolicy.html#getMaximumFailedPasswordsForWipe(android.content.ComponentName)">   getMaximumFailedPasswordsForWipe(ComponentName admin)</a></p>
+                    </td>
+                    <td>User</td>
+                    <td>COPE</td>
+                    <td>PO</td>
+                    <td>FMT_SMF_EXT.1.1 #47, FMT_SMF_EXT.1.1 #2c, FIA_AFL_EXT.1.5</td>
+                    <td>CAT III</td>
+                    <td>KNOX-08-009400,</br> KNOX-08-009500</td>
+                    <td>&#160;</td>
+                </tr>
+                <tr>
+				<td class="city" style="display:none;">Samsung</td> <td class="city" style="display:none;"></td>
+                    <td style="font-weight: bold;">Android Password Restrictions, Container Password Restrictions</td>
+                    <td>Maximum Sequential Characters</td>
+                    <td>PasswordPolicy</td>
+                    <td>
+                        <p><span class="badge badge-success">fix</span><a href="https://seap.samsung.com/api-references/android/reference/com/samsung/android/knox/devicesecurity/PasswordPolicy.html#setMaximumCharacterSequenceLength(int)">  setMaximumCharacterSequenceLength(int length)</a></p>
+                        <span class="badge warning">check</span><a href="https://seap.samsung.com/api-references/android/reference/com/samsung/android/knox/devicesecurity/PasswordPolicy.html#getMaximumCharacterSequenceLength()">   getMaximumCharacterSequenceLength()</a></p>
+                    </td>
+                    <td>User</td>
+                    <td>COBO, COPE</td>
+                    <td>DO, PO</td>
+                    <td>FMT_SMF_EXT.1.1 #1b</td>
+                    <td>CAT III</td>
+                    <td>KNOX-08-008600,</br> KNOX-08-008700</td>
+                    <td>&#160;</td>
+                </tr>
+                <tr>
+				<td class="city" style="display:none;">Samsung</td> <td class="city" style="display:none;"></td>
+                    <td style="font-weight: bold;">Android Password Restrictions, Container Password Restrictions</td>
+                    <td>Maximum Sequential Numbers</td>
+                    <td>PasswordPolicy</td>
+                    <td>
+                        <p><span class="badge badge-success">fix</span><a href="https://seap.samsung.com/api-references/android/reference/com/samsung/android/knox/devicesecurity/PasswordPolicy.html#setMaximumNumericSequenceLength(int)">  setMaximumNumericSequenceLength(int length)</a></p>
+                        <span class="badge warning">check</span><a href="https://seap.samsung.com/api-references/android/reference/com/samsung/android/knox/devicesecurity/PasswordPolicy.html#getMaximumNumericSequenceLength()">   getMaximumNumericSequenceLength()</a></p>
+                    </td>
+                    <td>User</td>
+                    <td>COBO, COPE</td>
+                    <td>DO, PO</td>
+                    <td>FMT_SMF_EXT.1.1 #1b</td>
+                    <td>CAT III</td>
+                    <td>KNOX-08-008600,</br> KNOX-08-008700</td>
+                    <td>&#160;</td>
+                </tr>
+                <tr>
+				<td class="city" style="display:none;">Google</td> <td class="city" style="display:none;"></td>
+                    <td style="font-weight: bold;">Container Password Restrictions</td>
+                    <td>Maximum Time To Lock</td>
+                    <td>BasePasswordPolicy</td>
+                    <td>
+                        <p><span class="badge badge-success">fix</span><a href="https://seap.samsung.com/api-references/android/reference/com/samsung/android/knox/container/BasePasswordPolicy.html#setMaximumTimeToLock(android.content.ComponentName,%20long)">setMaximumTimeToLock(ComponentName admin, long timeMs)</a></p>
+                        <span class="badge warning">check</span> <a href="https://seap.samsung.com/api-references/android/reference/com/samsung/android/knox/container/BasePasswordPolicy.html#getMaximumTimeToLock(android.content.ComponentName)">  getMaximumTimeToLock(ComponentName admin)</a></p>
+                    </td>
+                    <td>User</td>
+                    <td>COPE</td>
+                    <td>PO</td>
+                    <td>FMT_SMF_EXT.1.1 #47, FMT_SMF_EXT.1.1 #2a, 2b</td>
+                    <td>CAT II</td>
+                    <td>KNOX-08-009100,</br> KNOX-08-009200</td>
+                    <td>&#160;</td>
+                </tr>
+                <tr>
+				<td class="city" style="display:none;">Samsung</td> <td class="city" style="display:none;"></td>
+                    <td style="font-weight: bold;">Android Password Restrictions</td>
+                    <td>Maximum Time To Lock</td>
+                    <td>DevicePolicyManager</td>
+                    <td>
+                        <p><span class="badge badge-success">fix</span><a href="https://seap.samsung.com/api-references/android/reference/com/samsung/android/knox/container/BasePasswordPolicy.html#setMaximumTimeToLock(android.content.ComponentName,%20long)">  setMaximumTimeToLock(ComponentName admin, long timeMs)</a></p>
+                        <span class="badge warning">check</span><a href="https://seap.samsung.com/api-references/android/reference/com/samsung/android/knox/container/BasePasswordPolicy.html#getMaximumTimeToLock(android.content.ComponentName)">  getMaximumTimeToLock(ComponentName admin)</a></p>
+                    </td>
+                    <td>User</td>
+                    <td>COBO, COPE</td>
+                    <td>DO</td>
+                    <td>FMT_SMF_EXT.1.1 #47, FMT_SMF_EXT.1.1 #2a, 2b</td>
+                    <td>CAT II</td>
+                    <td>KNOX-08-009100,</br> KNOX-08-009200</td>
+                    <td>&#160;</td>
+                </tr>
+                <tr>
+				<td class="city" style="display:none;">Google</td> <td class="city" style="display:none;"></td>
+                    <td style="font-weight: bold;">Container Password Restrictions</td>
+                    <td>Minimum Length</td>
+                    <td>BasePasswordPolicy</td>
+                    <td>
+                        <p><span class="badge badge-success">fix</span><a href="https://developer.android.com/reference/android/app/admin/DevicePolicyManager.html#setPasswordMinimumLength(android.content.ComponentName,%20int)">  setPasswordMinimumLength(ComponentName admin, int length)</a></p>
+                        <span class="badge warning">check</span><a href="https://developer.android.com/reference/android/app/admin/DevicePolicyManager.html#getPasswordMinimumLength(android.content.ComponentName)">   getPasswordMinimumLength(ComponentName admin)</a></p>
+                    </td>
+                    <td>User</td>
+                    <td>COPE</td>
+                    <td>PO</td>
+                    <td>FMT_SMF_EXT.1.1 #47, FMT_SMF_EXT.1.1 #1a</td>
+                    <td>CAT II, CAT III</td>
+                    <td>KNOX-08-008300,</br> KNOX-08-008400</td>
+                    <td>&#160;</td>
+                </tr>
+                <tr>
+				<td class="city" style="display:none;">Samsung</td> <td class="city" style="display:none;"></td>
+                    <td style="font-weight: bold;">Android Password Restrictions</td>
+                    <td>Minimum Length</td>
+                    <td>DevicePolicyManager</td>
+                    <td>
+                        <p><span class="badge badge-success">fix</span><a href="https://seap.samsung.com/api-references/android/reference/com/samsung/android/knox/container/BasePasswordPolicy.html#setPasswordMinimumLength(android.content.ComponentName,%20int)">  setPasswordMinimumLength(ComponentName admin, int length)</a></p>
+                        <span class="badge warning">check</span><a href="https://seap.samsung.com/api-references/android/reference/com/samsung/android/knox/container/KnoxConfigurationType.html#getPasswordMinimumLength()">   getPasswordMinimumLength(ComponentName admin)</a></p>
+                    </td>
+                    <td>User</td>
+                    <td>COBO, COPE</td>
+                    <td>DO</td>
+                    <td>FMT_SMF_EXT.1.1 #47, FMT_SMF_EXT.1.1 #1a</td>
+                    <td>CAT II, CAT III</td>
+                    <td>KNOX-08-008300, </br>KNOX-08-008400</td>
+                    <td>&#160;</td>
+                </tr>
+                <tr>
+				<td class="city" style="display:none;">Google</td> <td class="city" style="display:none;"></td>
+                    <td style="font-weight: bold;">Container Password Restrictions</td>
+                    <td>Minimum Password Complexity</td>
+                    <td>BasePasswordPolicy</td>
+                    <td>
+                        <p><span class="badge badge-success">fix</span> <a href="https://developer.android.com/reference/android/app/admin/DevicePolicyManager.html#setPasswordQuality(android.content.ComponentName,%20int)"> setPasswordQuality(ComponentName admin, int quality)</a></p>
+                        <span class="badge warning">check</span><a href="https://developer.android.com/reference/android/app/admin/DevicePolicyManager.html#getPasswordQuality(android.content.ComponentName)">  getPasswordQuality(ComponentName admin)</a></p>
+                    </td>
+                    <td>User</td>
+                    <td>COPE</td>
+                    <td>PO</td>
+                    <td>FMT_SMF_EXT.1.1 #47</td>
+                    <td>CAT II</td>
+                    <td>KNOX-08-008800,</br> KNOX-08-008900</td>
+                    <td>&#160;</td>
+                </tr>
+                <tr>
+				<td class="city" style="display:none;">Samsung</td> <td class="city" style="display:none;"></td>
+                    <td style="font-weight: bold;">Android Password Restrictions</td>
+                    <td>Minimum Password Complexity</td>
+                    <td>DevicePolicyManager</td>
+                    <td>
+                        <p><span class="badge badge-success">fix</span><a href="https://seap.samsung.com/api-references/android/reference/com/samsung/android/knox/container/BasePasswordPolicy.html#setPasswordQuality(android.content.ComponentName,%20int)"> setPasswordQuality(ComponentName admin, int quality)</a></p>
+                        <span class="badge warning">check</span>   <a href="https://seap.samsung.com/api-references/android/reference/com/samsung/android/knox/container/BasePasswordPolicy.html#getPasswordQuality(android.content.ComponentName)"> getPasswordQuality(ComponentName admin)</a></p>
+                    </td>
+                    <td>User</td>
+                    <td>COBO, COPE</td>
+                    <td>DO</td>
+                    <td>FMT_SMF_EXT.1.1 #47</td>
+                    <td>CAT II</td>
+                    <td>KNOX-08-008800, </br>KNOX-08-008900</td>
+                    <td>&#160;</td>
+                </tr>
+                <tr>
+				<td class="city" style="display:none;">Samsung</td> <td class="city" style="display:none;"></td>
+                    <td style="font-weight: bold;">Container Rcp</td>
+                    <td>Move Applications To Container</td>
+                    <td>RCPPolicy</td>
+                    <td>
+                        <p><span class="badge badge-success">fix</span><a href="https://seap.samsung.com/api-references/android/reference/com/samsung/android/knox/container/RCPPolicy.html#allowMoveAppsToContainer(boolean)">  allowMoveAppsToContainer(boolean allow)</a></p>
+                        <span class="badge warning">check</span><a href="https://seap.samsung.com/api-references/android/reference/com/samsung/android/knox/container/RCPPolicy.html#isMoveAppsToContainerAllowed()">   isMoveAppsToContainerAllowed()</a></p>
+                    </td>
+                    <td>Unspecified</td>
+                    <td>COPE</td>
+                    <td>PO</td>
+                    <td>FMT_SMF_EXT.1.1 #47</td>
+                    <td>CAT II</td>
+                    <td>KNOX-08-022600</td>
+                    <td>&#160;</td>
+                </tr>
+                <tr>
+				<td class="city" style="display:none;">Samsung</td> <td class="city" style="display:none;"></td>
+                    <td style="font-weight: bold;">Container Rcp</td>
+                    <td>Move Files From Container To Personal</td>
+                    <td>RCPPolicy</td>
+                    <td>
+                        <p><span class="badge badge-success">fix</span><a href="https://seap.samsung.com/api-references/android/reference/com/samsung/android/knox/container/RCPPolicy.html#allowMoveFilesToOwner(boolean)"> allowMoveFilesToOwner(boolean allow)</a></p>
+                        <span class="badge warning">check</span><a href="https://seap.samsung.com/api-references/android/reference/com/samsung/android/knox/container/RCPPolicy.html#isMoveFilesToOwnerAllowed()">  isMoveFilesToOwnerAllowed()</a></p>
+                    </td>
+                    <td>Unspecified</td>
+                    <td>COPE</td>
+                    <td>PO</td>
+                    <td>FMT_SMF_EXT.1.1 #47</td>
+                    <td>CAT II</td>
+                    <td>KNOX-08-021800</td>
+                    <td>&#160;</td>
+                </tr>
+                <tr>
+				<td class="city" style="display:none;">Google</td> <td class="city" style="display:none;"></td>
+                    <td style="font-weight: bold;">Android Restrictions</td>
+                    <td>Notifications On Lock Screen</td>
+                    <td>DevicePolicyManager</td>
+                    <td>
+                        <p><span class="badge badge-success">fix</span><a href="https://developer.android.com/reference/android/app/admin/DevicePolicyManager.html#setKeyguardDisabledFeatures(android.content.ComponentName,%20int)">  setKeyguardDisabledFeatures(ComponentName admin, int which)</a></p>
+                        <span class="badge warning">check</span><a href="https://developer.android.com/reference/android/app/admin/DevicePolicyManager.html#getKeyguardDisabledFeatures(android.content.ComponentName)">   getKeyguardDisabledFeatures(ComponentName admin)</a></p>
+                    </td>
+                    <td>Global</td>
+                    <td>COBO</td>
+                    <td>DO</td>
+                    <td>FMT_SMF_EXT.1.1 #19</td>
+                    <td>CAT II</td>
+                    <td>KNOX-08-007300</td>
+                    <td>&#160;</td>
+                </tr>
+                <tr>
+				<td class="city" style="display:none;">Samsung</td> <td class="city" style="display:none;"></td>
+                    <td style="font-weight: bold;">Container Application, Android Application</td>
+                    <td>Package Name Blacklist</td>
+                    <td>ApplicationPolicy</td>
+                    <td>
+                        <p><span class="badge badge-success">fix</span><a href="https://seap.samsung.com/api-references/android/reference/com/samsung/android/knox/application/ApplicationPolicy.html#addAppPackageNameToBlackList(java.lang.String)">  addAppPackageNameToBlackList(String packageName)</a></p>
+                        <span class="badge warning">check</span><a href="https://seap.samsung.com/api-references/android/reference/com/samsung/android/knox/application/ApplicationPolicy.html#addAppPackageNameToBlackList(java.lang.String)">   getAppPackageNamesAllBlackLists()</a></p>
+                    </td>
+                    <td>User</td>
+                    <td>COBO, COPE</td>
+                    <td>DO, PO</td>
+                    <td>FMT_SMF_EXT.1.1 #47</td>
+                    <td>CAT II</td>
+                    <td>KNOX-08-001000,</br> KNOX-08-001100</td>
+                    <td>&#160;</td>
+                </tr>
+                <tr>
+				<td class="city" style="display:none;">Samsung</td> <td class="city" style="display:none;"></td>
+                    <td style="font-weight: bold;">Container Application, Android Application</td>
+                    <td>Package Name Whitelist</td>
+                    <td>ApplicationPolicy</td>
+                    <td>
+                        <p><span class="badge badge-success">fix</span><a href="https://seap.samsung.com/api-references/android/reference/com/samsung/android/knox/application/ApplicationPolicy.html#addAppPackageNameToWhiteList(java.lang.String,%20boolean)">  addAppPackageNameToWhiteList(String packageName, boolean defaultBlackList)</a></p>
+                        <span class="badge warning">check</span><a href="https://seap.samsung.com/api-references/android/reference/com/samsung/android/knox/application/ApplicationPolicy.html#getAppPackageNamesAllWhiteLists()">   getAppPackageNamesAllWhiteLists()</a></p>
+                    </td>
+                    <td>User</td>
+                    <td>COBO, COPE</td>
+                    <td>DO, PO</td>
+                    <td>FMT_SMF_EXT.1.1 #8b</td>
+                    <td>CAT II</td>
+                    <td>KNOX-08-001300,<br/>KNOX-08-001400, <br/> KNOX-08-001600,<br/> KNOX-08-001700, <br/>KNOX-08-001800,<br/> KNOX-08-001900,<br/> KNOX-08-002000,<br/> KNOX-08-002100,<br/> KNOX-08-002200,<br/> KNOX-08-002300, <br/>KNOX-08-002400,<br/> KNOX-08-002500,<br/> KNOX-08-002600,<br/> KNOX-08-002700</td>
+                    <td>&#160;</td>
+                </tr>
+                <tr>
+				<td class="city" style="display:none;">Samsung</td> <td class="city" style="display:none;"></td>
+                    <td style="font-weight: bold;">Container Application, Android Application</td>
+                    <td>Package Name Whitelist</td>
+                    <td>ApplicationPolicy</td>
+                    <td>
+                        <p><span class="badge badge-success">fix</span><a href="https://seap.samsung.com/api-references/android/reference/com/samsung/android/knox/application/ApplicationPolicy.html#addAppPackageNameToWhiteList(java.lang.String,%20boolean)"> addAppPackageNameToWhiteList(String packageName)</a></p>
+                        <span class="badge warning">check</span><a href="https://seap.samsung.com/api-references/android/reference/com/samsung/android/knox/application/ApplicationPolicy.html#getAppPackageNamesAllWhiteLists()">   getAppPackageNamesAllWhiteLists()</a></p>
+                    </td>
+                    <td>User</td>
+                    <td>COBO, COPE</td>
+                    <td>DO, PO</td>
+                    <td>FMT_SMF_EXT.1.1 #8b</td>
+                    <td>CAT II</td>
+                    <td>KNOX-08-001300,<br/> KNOX-08-001400, <br/>KNOX-08-001600,<br/> KNOX-08-001700,<br/> KNOX-08-001800,<br/> KNOX-08-001900, <br/>KNOX-08-002000,<br/> KNOX-08-002100,<br/> KNOX-08-002200, <br/>KNOX-08-002300,<br/> KNOX-08-002400,<br/> KNOX-08-002500,<br/>KNOX-08-002600,<br/> KNOX-08-002700</td>
+                    <td>&#160;</td>
+                </tr>
+                <tr>
+				<td class="city" style="display:none;">Samsung</td> 
+					<td class="city" style="display:none;">new</td>
+                    <td style="font-weight: bold;">Container Advanced Restrictions, Android Advanced Restrictions</td>
+                    <td>Prevent New Admin Install</td>
+                    <td>ApplicationPolicy</td>
+                    <td>
+                        <p><span class="badge badge-success">fix</span><a href="https://seap.samsung.com/api-references/android/reference/com/samsung/android/knox/application/ApplicationPolicy.html#preventNewAdminInstallation(boolean)">  preventNewAdminInstallation(boolean prevent)</a></p>
+                        <span class="badge warning">check</span><a href="https://seap.samsung.com/api-references/android/reference/com/samsung/android/knox/application/ApplicationPolicy.html#isNewAdminInstallationEnabled(boolean)">   isNewAdminInstallationEnabled(boolean showMsg)</a></p>
+                    </td>
+                    <td>User</td>
+                    <td>COBO, COPE</td>
+                    <td>DO, PO</td>
+                    <td>FMT_SMF_EXT.1.1 #47</td>
+                    <td>CAT II</td>
+                    <td>KNOX-08-014100,</br> KNOX-08-014300</td>
+                    <td>
+                        <p>New "Prevent New Admin Install" for PO</p>
+                    </td>
+                </tr>
+                <tr>
+				<td class="city" style="display:none;">Samsung</td> <td class="city" style="display:none;"></td>
+                    <td style="font-weight: bold;">Container Application, Android Application</td>
+                    <td>Signature Blacklist</td>
+                    <td>ApplicationPolicy</td>
+                    <td>
+                        <p><span class="badge badge-success">fix</span><a href="https://seap.samsung.com/api-references/android/reference/com/samsung/android/knox/application/ApplicationPolicy.html#addAppSignatureToBlackList(java.lang.String)">  addAppSignatureToBlackList(String appSignature)</a></p>
+                        <span class="badge warning">check</span><a href="https://seap.samsung.com/api-references/android/reference/com/samsung/android/knox/application/ApplicationPolicy.html#getAppSignaturesBlackList()">   getAppSignaturesBlackList()</a></p>
+                    </td>
+                    <td>User</td>
+                    <td>COBO, COPE</td>
+                    <td>DO, PO</td>
+                    <td>FMT_SMF_EXT.1.1 #47</td>
+                    <td>CAT II</td>
+                    <td>KNOX-08-001000, </br>KNOX-08-001100</td>
+                    <td>&#160;</td>
+                </tr>
+				
+                <tr>
+				<td class="city" style="display:none;">Samsung</td> <td class="city" style="display:none;"></td>
+                    <td style="font-weight: bold;">Container Application, Android Application</td>
+                    <td>Signature Whitelist</td>
+                    <td>ApplicationPolicy</td>
+                    <td>
+                        <p><span class="badge badge-success">fix</span><a href="https://seap.samsung.com/api-references/android/reference/com/samsung/android/knox/application/ApplicationPolicy.html#addAppSignatureToWhiteList(java.lang.String,%20boolean)"> addAppSignatureToWhiteList(String appSignature)</a></p>
+                        <span class="badge warning">check</span><a href="https://seap.samsung.com/api-references/android/reference/com/samsung/android/knox/application/ApplicationPolicy.html#getAppSignaturesWhiteList()">  getAppSignaturesWhiteList()</a></p>
+                        <span class="badge warning">check</span><a href="https://seap.samsung.com/api-references/android/reference/com/samsung/android/knox/application/ApplicationPolicy.html#getAppSignaturesAllWhiteLists()">   getAppSignaturesAllWhiteLists ()</a></p>
+                    </td>
+                    <td>User</td>
+                    <td>COBO, COPE</td>
+                    <td>DO, PO</td>
+                    <td>FMT_SMF_EXT.1.1 #8b</td>
+                    <td>CAT II</td>
+                    <td>KNOX-08-001300, <br/>KNOX-08-001400,<br/> KNOX-08-001600,<br/> KNOX-08-001700, <br/>KNOX-08-001800,<br/> KNOX-08-001900,<br/> KNOX-08-002000,<br/> KNOX-08-002100, <br/>KNOX-08-002200,<br/> KNOX-08-002300,<br/> KNOX-08-002400,<br/> KNOX-08-002500, <br/>KNOX-08-002600,<br/> KNOX-08-002700</td>
+                    <td>&#160;</td>
+                </tr>
+                <tr>
+				<td class="city" style="display:none;">Samsung</td> <td class="city" style="display:none;"></td>
+                    <td style="font-weight: bold;">Container Application, Android Application</td>
+                    <td>Signature Whitelist</td>
+                    <td>ApplicationPolicy</td>
+                    <td>
+                        <p><span class="badge badge-success">fix</span><a href="https://seap.samsung.com/api-references/android/reference/com/samsung/android/knox/application/ApplicationPolicy.html#addAppSignatureToWhiteList(java.lang.String,%20boolean)">  addAppSignatureToWhiteList(String appSignature, boolean defaultBlackList)</a></p>
+                        <span class="badge warning">check</span><a href="https://seap.samsung.com/api-references/android/reference/com/samsung/android/knox/application/ApplicationPolicy.html#getAppSignaturesWhiteList()">   getAppSignaturesWhiteList()</a></p>
+                        <span class="badge warning">check</span><a href="https://seap.samsung.com/api-references/android/reference/com/samsung/android/knox/application/ApplicationPolicy.html#getAppSignaturesAllWhiteLists()">   getAppSignaturesAllWhiteLists()</a></p>
+                    </td>
+                    <td>User</td>
+                    <td>COBO, COPE</td>
+                    <td>DO, PO</td>
+                    <td>FMT_SMF_EXT.1.1 #8b</td>
+                    <td>CAT II</td>
+                    <td>KNOX-08-001300,<br/> KNOX-08-001400, <br/>KNOX-08-001600,<br/> KNOX-08-001700,<br/> KNOX-08-001800,<br/> KNOX-08-001900, <br/>KNOX-08-002000,<br/> KNOX-08-002100, <br/>KNOX-08-002200, <br/>KNOX-08-002300, KNOX-08-002400, KNOX-08-002500, KNOX-08-002600, KNOX-08-002700</td>
+                    <td>&#160;</td>
+                </tr>
+                <tr>
+				<td class="city" style="display:none;">Samsung</td> 
+				<td class="city" style="display:none;">new</td>
+                    <td style="font-weight: bold;">Android Restrictions</td>
+                    <td>Usb Host Modes Whitelist</td>
+                    <td>RestrictionPolicy</td>
+                    <td>
+                        <p><span class="badge badge-success">fix</span><a href="https://seap.samsung.com/api-references/android/reference/com/samsung/android/knox/restriction/RestrictionPolicy.html#allowUsbHostStorage(boolean)">  allowUsbHostStorage(boolean allow)</a></p>
+                        <p><span class="badge badge-success">fix</span><a href="https://seap.samsung.com/api-references/android/reference/com/samsung/android/knox/restriction/RestrictionPolicy.html#setUsbExceptionList(int)">  SetUsbExceptionList(int exceptionList)</a></p>
+                        <span class="badge warning">check</span><a href="https://seap.samsung.com/api-references/android/reference/com/samsung/android/knox/restriction/RestrictionPolicy.html#isUsbHostStorageAllowed()">   isUsbHostStorageAllowed()</a></p>
+                        <span class="badge warning">check</span><a href="https://seap.samsung.com/api-references/android/reference/com/samsung/android/knox/restriction/RestrictionPolicy.html#getUsbExceptionList()">   getUsbExceptionList()</a></p>
+                    </td>
+                    <td>Global</td>
+                    <td>COBO, COPE</td>
+                    <td>DO</td>
+                    <td>FMT_SMF_EXT.1.1 #47</td>
+                    <td>CAT II</td>
+                    <td>KNOX-08-015700</td>
+                    <td>
+                        <p>New "Usb Host Modes Whitelist" for DO</p>
+                    </td>
+                </tr>
+                <tr>
+				<td class="city" style="display:none;">Optional</td> <td class="city" style="display:none;"></td>
+                    <td style="font-weight: bold;">Android Vpn</td>
+                    <td>Vpn Profile</td>
+                    <td>GenericVpnPolicy</td>
+                    <td>
+                        <p><span class="badge badge-success">fix</span><a href="https://seap.samsung.com/api-references/android/reference/com/samsung/android/knox/net/vpn/GenericVpnPolicy.html#createVpnProfile(java.lang.String)">  createVpnProfile(String profileInfo)</a></p>
+                        <span class="badge warning">check</span><a href="https://seap.samsung.com/api-references/android/reference/com/samsung/android/knox/net/vpn/GenericVpnPolicy.html#getVpnProfile(java.lang.String)">   getVpnProfile(String profileName)</a></p>
+                    </td>
+                    <td>User</td>
+                    <td>COPE</td>
+                    <td>DO</td>
+                    <td>FMT_SMF_EXT.1.1 #3</td>
+                    <td>CAT II</td>
+                    <td>KNOX-08-023100,</br> KNOX-08-023200</td>
+                    <td>&#160;</td>
+                </tr>
+                <tr>
+				<td class="city" style="display:none;">Optional</td> <td class="city" style="display:none;"></td>
+                    <td style="font-weight: bold;">Android Restrictions</td>
+                    <td>Allow Bluetooth Tethering</td>
+                    <td>RestrictionPolicy</td>
+                    <td>
+                        <p><span class="badge badge-success">fix</span><a href="https://seap.samsung.com/api-references/android/reference/com/samsung/android/knox/restriction/RestrictionPolicy.html#setBluetoothTethering(boolean)">  setBluetoothTethering(boolean enable)</a></p>
+                        <span class="badge warning">check</span><a href="https://seap.samsung.com/api-references/android/reference/com/samsung/android/knox/restriction/RestrictionPolicy.html#isBluetoothTetheringEnabled()">   isBluetoothTetheringEnabled()</a></p>
+                    </td>
+                    <td>Global</td>
+                    <td>&#160;</td>
+                    <td>DO</td>
+                    <td>&#160;</td>
+                    <td>&#160;</td>
+                    <td>&#160;</td>
+                    <td>&#160;</td>
+                </tr>
+                <tr>
+<td class="city" style="display:none;">Optional</td> <td class="city" style="display:none;"></td>
+				<td style="font-weight: bold;">Container Restrictions, Android Restrictions</td>
+                    <td>Allow Camera</td>
+                    <td>RestrictionPolicy</td>
+                    <td>
+                        <p><span class="badge badge-success">fix</span><a href="https://seap.samsung.com/api-references/android/reference/com/samsung/android/knox/restriction/RestrictionPolicy.html#setCameraState(boolean)"> setCameraState(boolean enable)</p></a>
+                        <span class="badge warning">check</span><a href="https://seap.samsung.com/api-references/android/reference/com/samsung/android/knox/restriction/RestrictionPolicy.html#isCameraEnabled(boolean)">   isCameraEnabled(boolean showMsg)</a></p>
+                    </td>
+                    <td>User</td>
+                    <td>&#160;</td>
+                    <td>DO, PO</td>
+                    <td>&#160;</td>
+                    <td>&#160;</td>
+                    <td>&#160;</td>
+                    <td>&#160;</td>
+                </tr>
+                <tr>
+				<td class="city" style="display:none;">Optional</td> 
+				<td class="city" style="display:none;">new</td>
+                    <td style="font-weight: bold;">Container Restrictions, Android Restrictions</td>
+                    <td>Allow Location</td>
+                    <td>LocationPolicy</td>
+                    <td>
+                        <p><span class="badge badge-success">fix</span><a href="https://seap.samsung.com/api-references/android/reference/com/samsung/android/knox/location/LocationPolicy.html#setLocationProviderState(java.lang.String,%20boolean)">  setLocationProviderState(String provider, boolean enable)</a></p>
+                        <span class="badge warning">check</span><a href="https://seap.samsung.com/api-references/android/reference/com/samsung/android/knox/location/LocationPolicy.html#getLocationProviderState(java.lang.String)">   getLocationProviderState(String provider)</a></p>
+                    </td>
+                    <td>User</td>
+                    <td>&#160;</td>
+                    <td>DO, PO</td>
+                    <td>&#160;</td>
+                    <td>&#160;</td>
+                    <td>&#160;</td>
+                    <td>
+                        <p>New optional "Allow Location" for PO</p>
+                    </td>
+                </tr>
+                <tr>
+				<td class="city" style="display:none;">Optional</td> 
+				<td class="city" style="display:none;">new</td>
+                    <td style="font-weight: bold;">Container Restrictions, Android Restrictions</td>
+                    <td>Allow Microphone</td>
+                    <td>RestrictionPolicy</td>
+                    <td>
+                        <p><span class="badge badge-success">fix</span> <a href="https://seap.samsung.com/api-references/android/reference/com/samsung/android/knox/restriction/RestrictionPolicy.html#setMicrophoneState(boolean)"> setMicrophoneState(boolean enable)</a></p>
+                        <span class="badge warning">check</span><a href="https://seap.samsung.com/api-references/android/reference/com/samsung/android/knox/restriction/RestrictionPolicy.html#setMicrophoneState(boolean)">   setMicrophoneState(boolean enable)</a></p>
+                    </td>
+                    <td>User</td>
+                    <td>&#160;</td>
+                    <td>DO, PO</td>
+                    <td>&#160;</td>
+                    <td>&#160;</td>
+                    <td>&#160;</td>
+                    <td>
+                        <p>New optional "Allow Microphone" for PO</p>
+                    </td>
+                </tr>
+                <tr>
+				<td class="city" style="display:none;">Optional</td> <td class="city" style="display:none;"></td>
+                    <td style="font-weight: bold;">Android Restrictions</td>
+                    <td>Allow Nfc</td>
+                    <td>NfcPolicy</td>
+                    <td>
+                        <p><span class="badge badge-success">fix</span> <a href="https://seap.samsung.com/api-references/android/reference/com/samsung/android/knox/nfc/NfcPolicy.html#startNFC(boolean)"> startNFC (boolean start)</a></p>
+                        <p><span class="badge badge-success">fix</span> <a href="https://seap.samsung.com/api-references/android/reference/com/samsung/android/knox/nfc/NfcPolicy.html#allowNFCStateChange(boolean)">  allowNFCStateChange (boolean allow)</a></p>
+                        <span class="badge warning">check</span>  <a href="https://seap.samsung.com/api-references/android/reference/com/samsung/android/knox/nfc/NfcPolicy.html#isNFCStarted()"> isNFCStarted()</a></p>
+                        <span class="badge warning">check</span> <a href="https://seap.samsung.com/api-references/android/reference/com/samsung/android/knox/nfc/NfcPolicy.html#isNFCStateChangeAllowed()">  isNFCStateChangeAllowed()</a></p>
+                    </td>
+                    <td>Global</td>
+                    <td>&#160;</td>
+                    <td>DO</td>
+                    <td>&#160;</td>
+                    <td>&#160;</td>
+                    <td>&#160;</td>
+                    <td>&#160;</td>
+                </tr>
+                <tr>
+				<td class="city" style="display:none;">Optional</td> <td class="city" style="display:none;"></td>
+                    <td style="font-weight: bold;">Android Restrictions</td>
+                    <td>Allow Wi-Fi Tethering</td>
+                    <td>RestrictionPolicy</td>
+                    <td>
+                        <p><span class="badge badge-success">fix</span>  <a href="https://seap.samsung.com/api-references/android/reference/com/samsung/android/knox/restriction/RestrictionPolicy.html#setWifiTethering(boolean)">setWifiTethering(boolean)</a></p>
+                        <span class="badge warning">check</span>  <a href="https://seap.samsung.com/api-references/android/reference/com/samsung/android/knox/restriction/RestrictionPolicy.html#isWifiTetheringEnabled()"> isWifiTetheringEnabled()</a></p>
+                    </td>
+                    <td>Global</td>
+                    <td>&#160;</td>
+                    <td>DO</td>
+                    <td>&#160;</td>
+                    <td>&#160;</td>
+                    <td>&#160;</td>
+                    <td>&#160;</td>
+                </tr>
+                <tr>
+				<td class="city" style="display:none;">Optional</td> 
+				<td class="city" style="display:none;">new</td>
+                    <td style="font-weight: bold;">Android Password Restrictions, Container Password Restrictions</td>
+                    <td>Disable Fingerprint</td>
+                    <td>PasswordPolicy</td>
+                    <td>
+                        <p><span class="badge badge-success">fix</span><a href="https://seap.samsung.com/api-references/android/reference/com/samsung/android/knox/devicesecurity/PasswordPolicy.html#setBiometricAuthenticationEnabled(int,%20boolean)"> setBiometricAuthenticationEnabled(int bioAuth, boolean enable)</a></p>
+                        <span class="badge warning">check</span>   <a href="https://seap.samsung.com/api-references/android/reference/com/samsung/android/knox/devicesecurity/PasswordPolicy.html#isBiometricAuthenticationEnabled(int)">isBiometricAuthenticationEnabled(int bioAuth)</a></p>
+                    </td>
+                    <td>User</td>
+                    <td>COBO, COPE</td>
+                    <td>DO, PO</td>
+                    <td>FMT_SMF_EXT.1.1 #23, FIA_UAU.5.1</td>
+                    <td>CAT II</td>
+                    <td>KNOX-08-011000</td>
+                    <td>
+                        <p>New optional "Disable Iris" for DO</p>
+                        <p>New optional "Disable Fingerprint" for PO</p>
+                        <p>New optional "Disable Iris" for PO</p>
+                    </td>
+                </tr>
+                
+                <tr>
+				<td class="city" style="display:none;">Optional</td> 
+				<td class="city" style="display:none;">new</td>
+                    <td style="font-weight: bold;">Android Device Boot Banner</td>
+                    <td>Dod Banner</td>
+                    <td>BootBanner</td>
+                    <td>
+                        <p><span class="badge badge-success">fix</span> <a href="https://seap.samsung.com/api-references/android/reference/com/samsung/android/knox/lockscreen/BootBanner.html#enableRebootBanner(boolean)"> enableRebootBanner(boolean enable, String bannerText)</a></p>
+                        <span class="badge warning">check</span> <a href="https://seap.samsung.com/api-references/android/reference/com/samsung/android/knox/lockscreen/BootBanner.html#isRebootBannerEnabled()">  isRebootBannerEnabled()</a></p>
+                    </td>
+                    <td>User</td>
+                    <td>&#160;</td>
+                    <td>DO</td>
+                    <td>&#160;</td>
+                    <td>&#160;</td>
+                    <td>&#160;</td>
+                    <td>
+                        <p>Removed "Dod Banner" for DO</p>
+                    </td>
+                </tr>
+               
+            </tbody>
+                                </table>
+								 <script src="../assets/kp/feedback.js">
+                                </script>
+
+								
+                            </div>
+                        </div>
+						
+						   <script src="../assets/kp/footer.js">
+                        </script>
+
+                    </section>
+                </div>
+            </div>
+        </div>
+		 </div>
+        <div class="off-canvas-wrapper">
+        </div>
+        <!-- scripts -->
+        <script type="text/javascript" src="https://docs.samsungknox.com/Resources/MasterPages/Scripts/what-input.js">
+        </script>
+        <script type="text/javascript" src="https://docs.samsungknox.com/Resources/MasterPages/Scripts/foundation.js">
+        </script>
+        <script type="text/javascript" src="https://docs.samsungknox.com/Resources/MasterPages/Scripts/prettify/prettify.js">
+        </script>
+        <script type="text/javascript" src="https://docs.samsungknox.com/Resources/MasterPages/Scripts/foundation-menu-off-canvas-initialisation.js">
+        </script>
+        <script>/* <![CDATA[ */
+			($("a[href='welcome-header.htm']").replaceWith("<p style='padding-top:8px;text-transform:uppercase;font-family:SamsungOne;'><b>Knox guide</b></p>"))
+		/* ]]> */</script>
+        <script>
+			/* <![CDATA[ */
+			($("a[href='knox-header.htm']").replaceWith("<p style='padding-top:8px;text-transform:uppercase;font-family:SamsungOne;'><b>GET STARTED</b></p>"))
+		/* ]]> */</script>
+        <script>/* <![CDATA[ */
+			($("a[href='features-header.htm']").replaceWith("<p style='padding-top:8px;text-transform:uppercase;font-family:SamsungOne;'><b>USE KNOX WORKSPACE</b></p>"))
+		/* ]]> */</script>
+        <script>/* <![CDATA[ */
+			($("a[href='appendix-header.htm']").replaceWith("<p style='padding-top:8px;text-transform:uppercase;font-family:SamsungOne;'><b>Appendix</b></p>"))
+		/* ]]> */</script>
+        <!-- finds the h1 on each page and inserts it into the breadcrumb in the header. Only have 1 h1 on each page. -->
+        <script>/* <![CDATA[ */
+			var pageTitle = document.getElementsByTagName('h1');
+			document.getElementById("demo").innerHTML = pageTitle[0].innerHTML;
+											
+		/* ]]> */</script>
+        <!-- finds all h2's and creates links to them inside the on this page box. -->
+        <script>/*<![CDATA[*/(function($) {
+			$.fn.toc = function(opts) {
+			let settings = $.extend({
+			'to': 'aside',
+			'link': true
+			}, opts),
+			li = $('<li />'),
+			ul = $('<ul />').appendTo(settings.to),
+			a = $('<a />'),
+			ref;
+
+			this.each(function() {
+			li.clone().append(this.textContent).appendTo(ul);
+			});
+
+			if (settings.link === true) {
+			this.prop('id', function(i, p) {
+			return p.length ? p : this.localName + '_' + i;
+			}).each(function(i, e) {
+			ref = ul.find('li').eq(i);
+			a.clone().prop('href', '#' + this.id).append(ref.contents()).appendTo(ref);
+			});
+			}
+
+			return ul.find('li');
+			};
+			})(jQuery);
+
+			$('h2').toc();
+		/*]]>*/</script>
+        <!-- finds all h5's and creates links to them inside the in this section box. -->
+        <script>/*<![CDATA[*/(function($) {
+			$.fn.toc2 = function(opts) {
+			let settings = $.extend({
+			'to': 'toc2',
+			'link': true
+			}, opts),
+			li = $('<li />'),
+			ul = $('<ul />').appendTo(settings.to),
+			a = $('<a />'),
+			ref;
+
+			this.each(function() {
+			li.clone().append(this.textContent).appendTo(ul);
+			});
+
+			if (settings.link === true) {
+			this.prop('id', function(i, p) {
+			return p.length ? p : this.localName + '_' + i;
+			}).each(function(i, e) {
+			ref = ul.find('li').eq(i);
+			a.clone().prop('href', '#' + this.id).append(ref.contents()).appendTo(ref);
+			});
+			}
+
+			return ul.find('li');
+			};
+			})(jQuery);
+
+			$('h5').toc2();
+		/*]]>*/</script>
+        <!-- finds all h6's and creates links to them inside the in this section box. -->
+        <script>/*<![CDATA[*/(function($) {
+			$.fn.toc3 = function(opts) {
+			let settings = $.extend({
+			'to': 'toc3',
+			'link': true
+			}, opts),
+			li = $('<li />'),
+			ul = $('<ul />').appendTo(settings.to),
+			a = $('<a />'),
+			ref;
+
+			this.each(function() {
+			li.clone().append(this.textContent).appendTo(ul);
+			});
+
+			if (settings.link === true) {
+			this.prop('id', function(i, p) {
+			return p.length ? p : this.localName + '_' + i;
+			}).each(function(i, e) {
+			ref = ul.find('li').eq(i);
+			a.clone().prop('href', '#' + this.id).append(ref.contents()).appendTo(ref);
+			});
+			}
+
+			return ul.find('li');
+			};
+			})(jQuery);
+
+			$('h6').toc3();
+		/*]]>*/</script>
+        <!-- creates the on this page menu on the side. It does this by finding the h7 tag on the page and wrapping it in 2 divs. toc-outside and toc-inside.  These are controlled in the stylesheet. Never have 
+		more than 1 h7 on a page or it will create multiple boxs -->
+        <script type="text/javascript">/*<![CDATA[*/		
+		
+			$('h7').wrap('<div class="toc-outside">');
+			$('h7').wrap('<div class="toc-inside">');
+			$(' ul > aside').each(function() {
+			var getContentWithTags = $(this).clone();
+			$('.toc-inside').append(getContentWithTags);
+			$(this).remove();
+			})
+		/*]]>*/</script>
+        <!-- Finds all h2's and inserts a hr line below it -->
+        <script type="text/javascript">/*<![CDATA[*/var articles = document.getElementsByTagName('h2')
+			for (var i = 0; i < articles.length; i ++) {
+			articles[i].parentNode.insertBefore(document.createElement('hr'), articles[i].nextSibling)
+		}/*]]>*/</script>
+        <!-- sends click event data to google analytics for the "was this useful module" -->
+        <script type="text/javascript">/*<![CDATA[*/		
+		
+			$('table').wrap('<div class="table-scroll">');
+		
+			
+		/*]]>*/</script>
+        <script>/* <![CDATA[ */
+			$(document).ready(function(){
+   
+			/* -------------- Feedback -------------- */
+			/* Yes click */
+			$('.feedback-yes').click(function() {
+			/* fade out question, fade in thankyou message */
+			$('.feedback-question').fadeOut(function() {
+			$('.feedback-reason.yes-thanks').fadeIn();
+			});
+               
+			ga('send', 'event', 'Feedback - Yes', 'N/A', location.href);
+
+			});
+
+			/* No click */
+			$('.feedback-no').click(function() {
+			/* fade out question, fade in thankyou message */
+			$('.feedback-question').fadeOut(function() {
+			$('.feedback-reason.no').fadeIn();
+			});
+			});
+      
+			/* No - response reasons */
+			$('.feedback-reason .option').change(function() {
+			/* if any options change, disable checkbox, record event, and fade in thankyou and email link */
+			$(this).attr('disabled', true);
+			if ($(this).is(':checked')) {
+			var reason = $(this).attr('data-analytics-label');
+			ga('send', 'event', 'Feedback - No', reason, location.href);
+			}
+			$('.feedback-reason.no-thanks').fadeIn();
+			});
+   
+			});   
+			
+		/* ]]> */</script>
+        <!--end scripts -->
+    </body>
+</html>z`
