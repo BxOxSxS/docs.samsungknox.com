@@ -1589,20 +1589,20 @@
                                             <li value="2">Enforce hardware key associations to an ISV app so device users cannot make changes to the corporate policy.</li>
                                             <li value="3">Map both the XCover and Top keys seamlessly.</li>
                                         </ul>
-                                        <div class="callout success"><b>NOTE</b> — There is no cost to ISVs to integrate. However, a IT admin needs to have any one of the following paid <a href="../common/knox-licenses.htm">Knox licenses</a> loaded into their EMM or similar device management service to use this functionality:</div>
+                                        <div class="callout success"><b>NOTE</b> — There is no cost to ISVs to integrate. However, a IT admin needs to have any one of the following paid <a href="../common/knox-licenses.htm">Knox product licenses</a> loaded into their EMM or similar device management service to use this functionality:</div>
                                         <ol>
-                                            <li value="1">EMM Service Licenses (to be used on a customer’s EMM service)<ol style="list-style-type: lower-alpha;"><li value="1">Knox Platform for Customization license</li><li value="2">Knox Platform for Enterprise - Premium Edition license</li></ol></li>
-                                            <li value="2">Non EMM Licenses (Standalone Knox configuration product)<ol style="list-style-type: lower-alpha;"><li value="1">Knox Configure Setup or Dynamic License (Coming soon. Expected timeline: September 2020)</li></ol></li>
+                                            <li value="1">Knox Service Plugin (used on a customer’s EMM service)<ol style="list-style-type: lower-alpha;"><li value="1">Knox Platform for Customization license</li><li value="2">Knox Platform for Enterprise - Premium Edition license</li></ol></li>
+                                            <li value="2">Knox Configure (Standalone Knox product)<ol style="list-style-type: lower-alpha;"><li value="1">Knox Configure (Setup or Dynamic Edition) license</li></ol></li>
                                         </ol>
-                                        <h2>Handle hardware key intents</h2>
+                                        <h2>Handle hardware key intents (custom intent only)</h2>
                                         <p>Setting up an ISV app for a managed integration requires two things:</p>
                                         <ul>
-                                            <li value="1">Ensure the ISV app includes logic to receive and handle XCover and Top key intents by registering a receiver intent for KEY_ACTION_UP and KEY_ACTION_DOWN for each key.</li>
+                                            <li value="1">Ensure the ISV app includes logic to receive and handle XCover and Top key intents by registering a receiver intent for key press and key release for each key.</li>
                                             <li value="2">Include metadata in your AndroidManifest.xml file to register your static intents as shown below 
 		</li>
                                         </ul>
                                         <h2>Define custom intents</h2>
-                                        <p>Register a custom intent so the Knox Service Plugin can wake the app to handle a button event. Define the intents in your manifest file as follows:</p><pre class="prettyprint" xml:space="preserve">&lt;receiver
+                                        <p>Register a custom intent so the Knox Service Plugin and/or the Knox Configure can wake the app to handle a button event. Define the intents in your manifest file as follows:</p><pre class="prettyprint" xml:space="preserve">&lt;receiver
   android:name=".PTTKeyReceiver"
   android:permission="com.samsung.android.knox.permission.KNOX_CUSTOM_SETTING"
   android:exported="true" &gt;
@@ -1612,14 +1612,10 @@
   &lt;/intent-filter&gt;
 &lt;/receiver&gt;
 </pre>
-                                        <p>To ensure your app is listening to intent actions only from the Knox Service Plugin, you add the above KNOX_CUSTOM_SETTING permission in the receiver, which is platform signature protected.</p>
+                                        <p>To ensure your app is listening to intent actions only from the Knox Service Plugin or the Knox Configure, you add the above KNOX_CUSTOM_SETTING permission in the receiver, which is platform signature protected.</p>
                                         <h2>Provide custom intents to IT admin</h2>
-                                        <p>The customer can plug the custom intents into the Knox Service Plugin in their preferred EMM service.</p>
-                                        <p>There are two settings for each Hardware Key:</p>
-                                        <ul>
-                                            <li value="1">Button Press: Ask IT&#160;admins to enter the custom intent  defined for KEY_ACTION_DOWN.</li>
-                                            <li value="2">Button Release: Ask IT&#160;admins to enter the custom intent defined for KEY_ACTION_UP.</li>
-                                        </ul>
+                                        <p>The customer can plug the custom intents into the Knox Service Plugin in their preferred EMM service or the Knox Configure.</p>
+                                        <p>Please ask IT admins to enter the custom intent defined for key press and release, respectively.</p>
                                         <!-- Inserts feedback module here -->
                                         <div id="feedback">
                                         </div>
