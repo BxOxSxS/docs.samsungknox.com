@@ -5,4 +5,4 @@ but wihtout *.apk files
 
 Mirror is automaticly updating at every 18:00 (6 PM) on Sunday using github actions by command:
 
-`wget -m -np -E -k -p -e robots=off  https://docs.samsungknox.com`
+`wget -m -np -E -k -p -e robots=off --restrict-file-names=windows https://docs.samsungknox.com`
