@@ -1349,6 +1349,8 @@
                                                                         </li>
                                                                         <li><a href="assign-applications-to-groups.htm">Assign applications to groups</a>
                                                                         </li>
+                                                                        <li><a href="export-information-to-csv.htm">Export Group details to CSV</a>
+                                                                        </li>
                                                                         <li><a href="apply-profiles-to-groups.htm">Apply profiles to groups</a>
                                                                         </li>
                                                                         <li><a href="distribute-content-to-groups.htm">Distribute content to groups</a>
@@ -1502,6 +1504,8 @@
                                                                         <li><a href="manage-application-categories.htm">Manage application categories</a>
                                                                         </li>
                                                                         <li><a href="add-modify-delete-control-apps.htm">Manage control apps</a>
+                                                                        </li>
+                                                                        <li><a href="export-application-information-to-csv.htm">Export Application detail to CSV</a>
                                                                         </li>
                                                                     </ul>
                                                                 </li>
@@ -1981,6 +1985,8 @@
                                                                 </li>
                                                             </ul>
                                                         </li>
+                                                        <li><a href="list-of-lookup-items.htm">List of Lookup Items</a>
+                                                        </li>
                                                         <li><a href="migration-guide.htm">Knox Manage Migration Guide</a>
                                                         </li>
                                                         <li><a href="user-guide.htm">Knox Manage User Guide</a>
@@ -2432,40 +2438,59 @@
 									-->
                                     <div id="sec2" class="small-12 medium-8 large-9 columns">
                                         <div itemscope="itemscope" itemtype="http://schema.org/Guide">
-                                            <h1><a name="Manage"></a><a name="aanchor273"></a>
+                                            <h1><a name="Manage"></a><a name="aanchor274"></a>
                                                 <MadCap:concept term="knox-manage" />Manage limited enrollment</h1>
-                                            <p>You can set only the devices that are registered with their IMEI (International Mobile Equipment Identity) numbers to be enrolled in Knox Manage.</p>
-                                            <p>IMEI numbers can be registered individually or collectively using an XLS file. You can also register Wi-Fi only devices with their serial numbers instead of IMEI numbers.</p>
-                                            <div class="callout warning"><b>Items to note—</b>
-                                                <ul>
-                                                    <li value="1">Android Legacy devices running Android 10 or later only can be controlled by OS version and model name. With IMEI/MEID, the devices can be enrolled even if you don't register their IMEI/MEIDs under Limited Enrollment.</li>
-                                                    <li value="2">Devices with Knox Mobile Enrollment and Android Zero Touch are always activated regardless of Limited Enrollment setting.</li>
-                                                    <li value="3">As of KM&#160;v20.11, you can add use Limited Enrollment to enroll devices using one of the following three types of information:&#160;
-        <ul><li value="1">IMEI/MEID, Serial Number</li><li value="2">OS&#160;Version</li><li value="3">Model Name</li></ul></li>
-                                                    <li value="4">Currently, you cannot register multiple devices using OS Version or Model Name.</li>
-                                                </ul>
-                                            </div>
-                                            <h2>Add a single device with Limited Enrollment</h2>
-                                            <p>To register devices individually, do as follows:</p>
+                                            <p>You can set the devices that are registered with their IMEI (International Mobile Equipment Identity), Serial Number, OS Version, or Model name to be enrolled in Knox Manage.</p>
+                                            <p>IMEI numbers can be registered individually or collectively using an XLS file. You can also register Wi-Fi only devices with their serial numbers instead of IMEI numbers. Currently, you cannot register multiple devices using OS Version or Model Name.</p>
+                                            <p>Now you can activate limited enrollment for KME devices. When you turn on the <b>Activated for KME Devices</b> option, only devices registered through KME can be enrolled. Enrollment Devices cannot be enrolled through manual registration or Zero Touch.</p>
+                                            <div class="callout warning"><b>NOTE—</b>Android Legacy devices running Android 10 or later only can be controlled by OS version and model name. With IMEI/MEID, the devices can be enrolled even if you don't register their IMEI/MEIDs under Limited Enrollment.</div>
+                                            <h2>Enroll non-KME&#160;devices</h2>
+                                            <p>For non-KME devices in KM v21.2, when you select the <b>OR</b> condition, only devices that match one or the other criteria are enrolled. When you select the <b>AND</b> condition, only the devices that satisfy all the selected criteria are enrolled.</p>
+                                            <h3>Add a single device with Limited Enrollment</h3>
+                                            <p>To register KME devices individually, do as follows:</p>
                                             <ol>
                                                 <li value="1">Navigate to <b>Setting</b> &gt; <b>Android</b> &gt; <b>Limited Enrollment</b>.</li>
-                                                <li value="2">On the “Limited Enrollment” page, click <b>Activate</b> at the bottom of the page.<ul><li value="1">Alternatively, navigate to <b>Setting</b> &gt; <b>Configuration</b> &gt;&#160;<b>Basic Configuration</b>, and click the <b>Device</b> tab. Then, set <b>Limited Enrollment</b> to <b>Activate</b>.</li></ul></li>
-                                                <li value="3">On the left side of the page, in the Type list, select one of the following three options:&#160;<ul><li value="1">IMEI/MEID, Serial number</li><li value="2">OS&#160;Version</li><li value="3">Model Name</li></ul></li>
+                                                <li value="2">On the <b>Limited Enrollment</b> page, click <b>Activate</b> at the bottom of the page.<ul><li value="1">Alternatively, navigate to <b>Setting</b> &gt; <b>Configuration</b> &gt;&#160;<b>Basic Configuration</b>, and click the <b>Device</b> tab. Then, set <b>Limited Enrollment</b> to <b>Activate</b>.</li></ul></li>
+                                                <li value="3">On the left side of the page, in the Type list, select one or more of the following three options:&#160;<ul><li value="1">IMEI/MEID, Serial number</li><li value="2">OS&#160;Version</li><li value="3">Model Name</li></ul></li>
                                                 <li value="4">Click <b>Add</b>.</li>
-                                                <li value="5">In the “Add Device” window, enter the appropriate information.</li>
-                                                <div class="callout success"><b>NOTE</b>If you selected IMEI/MEID, Serial Number, click the option you want to use to enroll devices. Then, enter an IMEI/MEID or serial number into the field as needed.</div>
+                                                <li value="5">On the <b>Add Device</b> screen, enter the appropriate information.</li>
+                                                <div class="callout success"><b>NOTE—</b>If you selected IMEI/MEID, Serial Number, click the option you want to use to enroll devices. Then, enter an IMEI/MEID or serial number into the field as needed.</div>
                                                 <li value="6">Click <b>Save</b>.</li>
                                             </ol>
-                                            <h2>Add multiple devices with Limited Enrollment</h2>
+                                            <h3>Add multiple devices with Limited Enrollment</h3>
                                             <div class="callout warning"><b>NOTE</b>—Currently, you cannot register multiple devices using OS Version or Model Name.</div>
                                             <p>To register multiple devices at the same time, do as follows:</p>
                                             <ol>
                                                 <li value="1">Navigate to <b>Setting</b> &gt; <b>Android</b> &gt; <b>Limited Enrollment</b>.</li>
-                                                <li value="2">On the “Limited Enrollment” page, click <b>Activate</b> at the bottom of the page.<ul><li value="1">Alternatively, navigate to <b>Setting</b> &gt; <b>Configuration</b> &gt;&#160;<b>Basic Configuration</b>, and click the <b>Device</b> tab. Then, set <b>Limited Enrollment</b> to <b>Activate</b>.</li></ul></li>
+                                                <li value="2">On the <b>Limited Enrollment</b> page, click <b>Activate</b> at the bottom of the page.<ul><li value="1">Alternatively, navigate to <b>Setting</b> &gt; <b>Configuration</b> &gt;&#160;<b>Basic Configuration</b>, and click the <b>Device</b> tab. Then, set <b>Limited Enrollment</b> to <b>Activate</b>.</li></ul></li>
                                                 <li value="3">Click <b>Bulk Add</b>.</li>
-                                                <li value="4">In the “Bulk Add Devices” window, click <b>Download Template</b>.</li>
+                                                <li value="4">On the <b>Bulk Add Devices</b> screen, click <b>Download Template</b>.</li>
                                                 <li value="5">Enter the IMEI numbers in the downloaded XLS file, and then save it.<ul><li value="1">Enter the serial number of a Wi-Fi only device.</li></ul></li>
-                                                <li value="6">In the “Bulk Add Devices” window, click <img src="../../assets/merge/images/B-upload.png" style="width: 25px;height: 21px;" />, and select the saved XLS file.</li>
+                                                <li value="6">On the <b>Bulk Add Devices</b> screen, click <img src="../../assets/merge/images/B-upload.png" style="width: 25px;height: 21px;" />, and select the saved XLS file.</li>
+                                                <li value="7">Click <b>Save</b>.</li>
+                                            </ol>
+                                            <h2>Enroll KME devices</h2>
+                                            <h3>Add a single device with Limited Enrollment</h3>
+                                            <p>To register devices individually, do as follows:</p>
+                                            <ol>
+                                                <li value="1">Navigate to <b>Setting</b> &gt; <b>Android</b> &gt; <b>Limited Enrollment</b>.</li>
+                                                <li value="2">On the <b>Limited Enrollment</b> page, click  <b>Activate for KME&#160;Devices</b> at the bottom of the page.<ul><li value="1">Alternatively, navigate to <b>Setting</b> &gt; <b>Configuration</b> &gt;&#160;<b>Basic Configuration</b>, and click the <b>Device</b> tab. Then, set <b>Limited Enrollment</b> to <b>Activate for KME&#160;Devices</b>.</li></ul><div class="callout note"><b>NOTE—</b>Once you activate Limited Enrollment for KME&#160;devices, you cannot enroll devices using manual registration or Zero Touch.</div></li>
+                                                <li value="3">On the left side of the page, in the <b>Type</b> list, select one or more of the following three options:&#160;<ul><li value="1">IMEI/MEID, Serial number</li><li value="2">OS&#160;Version</li><li value="3">Model Name</li></ul></li>
+                                                <li value="4">Click <b>Add</b>.</li>
+                                                <li value="5">On the <b>Add Device</b> screen, enter the appropriate information.</li>
+                                                <div class="callout success"><b>NOTE—</b>If you selected IMEI/MEID, Serial Number, click the option you want to use to enroll devices. Then, enter an IMEI/MEID or serial number into the field as needed.</div>
+                                                <li value="6">Click <b>Save</b>.</li>
+                                            </ol>
+                                            <h3>Add multiple devices with Limited Enrollment</h3>
+                                            <div class="callout warning"><b>NOTE</b>—Currently, you cannot register multiple devices using OS Version or Model Name.</div>
+                                            <p>To register multiple devices at the same time, do as follows:</p>
+                                            <ol>
+                                                <li value="1">Navigate to <b>Setting</b> &gt; <b>Android</b> &gt; <b>Limited Enrollment</b>.</li>
+                                                <li value="2">On the <b>Limited Enrollment</b> page, click <b>Activate for KME&#160;devices</b> at the bottom of the page.<ul><li value="1">Alternatively, navigate to <b>Setting</b> &gt; <b>Configuration</b> &gt;&#160;<b>Basic Configuration</b>, and click the <b>Device</b> tab. Then, set <b>Limited Enrollment</b> to <b>Activate for KME&#160;devices</b>.</li></ul></li>
+                                                <li value="3">Click <b>Bulk Add</b>.</li>
+                                                <li value="4">On the <b>Bulk Add Devices</b> screen, click <b>Download Template</b>.</li>
+                                                <li value="5">Enter the IMEI numbers in the downloaded XLS file, and then save it.<ul><li value="1">Enter the serial number of a Wi-Fi only device.</li></ul></li>
+                                                <li value="6">On the <b>Bulk Add Devices</b> screen, click <img src="../../assets/merge/images/B-upload.png" style="width: 25px;height: 21px;" />, and select the saved XLS file.</li>
                                                 <li value="7">Click <b>Save</b>.</li>
                                             </ol>
                                             <h2>&#160;</h2>

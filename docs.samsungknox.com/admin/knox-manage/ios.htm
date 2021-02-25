@@ -1349,6 +1349,8 @@
                                                                         </li>
                                                                         <li><a href="assign-applications-to-groups.htm">Assign applications to groups</a>
                                                                         </li>
+                                                                        <li><a href="export-information-to-csv.htm">Export Group details to CSV</a>
+                                                                        </li>
                                                                         <li><a href="apply-profiles-to-groups.htm">Apply profiles to groups</a>
                                                                         </li>
                                                                         <li><a href="distribute-content-to-groups.htm">Distribute content to groups</a>
@@ -1502,6 +1504,8 @@
                                                                         <li><a href="manage-application-categories.htm">Manage application categories</a>
                                                                         </li>
                                                                         <li><a href="add-modify-delete-control-apps.htm">Manage control apps</a>
+                                                                        </li>
+                                                                        <li><a href="export-application-information-to-csv.htm">Export Application detail to CSV</a>
                                                                         </li>
                                                                     </ul>
                                                                 </li>
@@ -1981,6 +1985,8 @@
                                                                 </li>
                                                             </ul>
                                                         </li>
+                                                        <li><a href="list-of-lookup-items.htm">List of Lookup Items</a>
+                                                        </li>
                                                         <li><a href="migration-guide.htm">Knox Manage Migration Guide</a>
                                                         </li>
                                                         <li><a href="user-guide.htm">Knox Manage User Guide</a>
@@ -2432,7 +2438,7 @@
 									-->
                                     <div id="sec2" class="small-12 medium-8 large-9 columns">
                                         <div itemscope="itemscope" itemtype="http://schema.org/Guide">
-                                            <h1><a name="aanchor277"></a>
+                                            <h1><a name="aanchor278"></a>
                                                 <MadCap:concept term="knox-manage" />iOS</h1>
                                             <p>The available device commands vary depending on device manage type.</p>
                                             <h2>Device</h2>
@@ -2484,6 +2490,14 @@
                                                         </td>
                                                     </tr>
                                                     <tr>
+                                                        <td>Power Off Device (Supervised)</td>
+                                                        <td>Turns off the device.</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>Reboot Device (Supervised)</td>
+                                                        <td>Restarts the device.</td>
+                                                    </tr>
+                                                    <tr>
                                                         <td>
                                                             <p>Reset Screen Password</p>
                                                         </td>
@@ -2500,7 +2514,32 @@
                                                         <td>
                                                             <p>Initializes the block settings of the
  device.</p>
-                                                            <div class="callout note"><b>NOTE—</b>	Only iOS Supervised devices are supported.</div>
+                                                            <div class="callout note"><b>NOTE</b>—Only iOS Supervised devices are supported.</div>
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>OS&#160;Update (Supervised)</td>
+                                                        <td>
+                                                            <p>IT admins can force iOS devices enrolled under the supervised mode to the latest OS version. The following options are available:</p>
+                                                            <ul>
+                                                                <li value="1">Download and install 
+							<div class="callout note"><b>NOTE</b>—Download and install doesn't happen continuously. If the update file is already downloaded on the device, then only the install command is carried out. If the update file is not downloaded to the device, deploying this command downloads the file. To install the OS update, deploy the Download and install or Install only option.</div></li>
+                                                                <li value="2">Download only</li>
+                                                                <li value="3">Install only
+ 
+							</li>
+                                                            </ul>
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>Enable/Disable Lost Mode (Supervised).</td>
+                                                        <td>
+                                                            <p>IT admins can now remotely enable Lost Mode on devices that are lost or stolen.&#160;When sending this device command, IT admins can specify the following information:&#160;</p>
+                                                            <ul>
+                                                                <li value="1">Information shown on the device—IT admins can add information that shows on the device, including a message with instructions to do when such a device is found, contact information, and a footer with additional information. </li>
+                                                                <li value="2">Collect location data—Check this box to collect location information about lost or stolen devices, even when location permissions are turned off. </li>
+                                                            </ul>
+                                                            <div class="callout important"><b>NOTE—</b>Devices with Lost Mode enabled cannot be unenrolled from KM. IT Admins must disable Lost Mode to allow the device user to use the device again. </div>
                                                         </td>
                                                     </tr>
                                                 </tbody>
@@ -2523,9 +2562,9 @@
                                                         </td>
                                                         <td>
                                                             <p>Installs applications on a device.</p>
-                                                            <p>In the “Request Command” window,
- select an application to be installed.</p>
-                                                            <div class="callout note"><b>NOTE—</b>	The Application installation blocklist/allowlist policies take a higher priority than device commands.</div>
+                                                            <p>On the <b>Request Command</b> screen,
+ select the application that you want to install. </p>
+                                                            <div class="callout note"><b>NOTE</b>—The Application installation blocklist or allowlist policies take a higher priority than device commands.</div>
                                                         </td>
                                                     </tr>
                                                     <tr>
@@ -2534,9 +2573,9 @@
                                                         </td>
                                                         <td>
                                                             <p>Deletes applications from a device.</p>
-                                                            <p>In the “Request Command” window,
- select an application to be uninstalled.</p>
-                                                            <div class="callout note"><b>NOTE—</b>	The Application uninstallation prevention list setting policy takes a higher priority than device commands.</div>
+                                                            <p>On the <b>Request Command</b> screen,
+ select the application you want to uninstall.</p>
+                                                            <div class="callout note"><b>NOTE</b>—The Application uninstallation prevention list setting policy takes a higher priority than device commands.</div>
                                                         </td>
                                                     </tr>
                                                     <tr>
@@ -2568,9 +2607,7 @@
                                                         </td>
                                                         <td>
                                                             <p>Sends an emergency message to the
- device. The message icon is shown on the status bar of the device.</p>
-                                                            <p>In the “Push Notification” window,
- enter the title and content of the message.</p>
+ device. The message icon shows on the status bar of the device. When prompted on the Push Notification screen, enter the title and content of the message.</p>
                                                         </td>
                                                     </tr>
                                                     <tr>
@@ -2588,8 +2625,8 @@
                                                         </td>
                                                         <td>
                                                             <p>Updates the device user information
- such as the user activation status/username/user settings (Secure Browser
- website URL information, bookmark information) and license information.</p>
+ such as the user activation status, username, user settings—such as Secure Browser
+ website URL information and bookmark information—as well as license information.</p>
                                                             <p>If the user is logged out from the
  enrolled device, you can send this device command to enable the user to log
  in to Knox Manage automatically.</p>
@@ -2602,9 +2639,9 @@
                                                         <td>
                                                             <p>Locks the Knox Manage agent.</p>
                                                             <p>When the application is locked, the
- users have to enter the screen lock password which was configured during installation.
+ users have to enter the screen lock password that was configured during installation.
  If a user forgets the password of Knox Manage agent screen lock, you can send
- the Delete Account command and make the user logged out from the Knox Manage agent. Then, the user can set the password again upon login.</p>
+ the Delete Account command to log the user out from the Knox Manage agent. Then, the user can set the password again upon login.</p>
                                                         </td>
                                                     </tr>
                                                     <tr>
@@ -2650,7 +2687,7 @@
                                                         <td>
                                                             <p>Collects a device log to diagnose the
  cause of device lock.</p>
-                                                            <div class="callout note"><b>NOTE—</b>Personally identifiable or sensitive information will be data masked.</div>
+                                                            <div class="callout note"><b>NOTE</b>—Personally identifiable or sensitive information is data masked.</div>
                                                         </td>
                                                     </tr>
                                                     <tr>
@@ -2659,9 +2696,9 @@
  service is deactivated)</p>
                                                         </td>
                                                         <td>
-                                                            <p>Syncs the application auto-deletion
- property when managed applications are deactivated if the value of <b>Delete app during Unenrollment
- process</b> has changed in the server configuration.</p>
+                                                            <p>If the value of <b>Delete app during Unenrollment
+ process</b> has changed in the server configuration, this option syncs the application auto-deletion
+ property when managed applications are deactivated.</p>
                                                         </td>
                                                     </tr>
                                                 </tbody>
@@ -2687,7 +2724,8 @@
  device.</p>
                                                             <p>To view the location of a device
  after sending a device command, navigate to <b>Device</b>, click the
- checkbox for the device, and then click <b>Check Location</b>.</p>
+ check box for the device, and then click <b>Check Location</b>.</p>
+                                                            <div class="callout note"><b>NOTE</b>—Location history for iOS devices is stored for 30 days from the last collection date. The check location device command is activated in the case where device location is collected. The device user must run the KM agent and agree to allow collection of the device's location.</div>
                                                         </td>
                                                     </tr>
                                                     <tr>
@@ -2699,8 +2737,8 @@
  information on the device.</p>
                                                             <p>To view the updated information after
  sending the device command, navigate to <b>Device</b>, click a
- device name or tag, and view the information on the “Device Detail” page.</p>
-                                                            <div class="callout note"><b>NOTE—</b>	For iOS devices, only the hardware status is updated.</div>
+ device name or tag, and view the information on the <b>Device Detail</b> page.</p>
+                                                            <div class="callout note"><b>NOTE</b>—For iOS devices, only the hardware status is updated.</div>
                                                         </td>
                                                     </tr>
                                                     <tr>
@@ -2714,7 +2752,7 @@
  to delete application feedback when sending the device command.</p>
                                                             <p>To view the list of installed
  applications after sending a device command, navigate to <b>Device</b>, click a
- device name or tag, and click the “Application” tab.</p>
+ device name or tag, and click the <b>Application</b> tab.</p>
                                                         </td>
                                                     </tr>
                                                     <tr>
@@ -2726,7 +2764,7 @@
  of the device.</p>
                                                             <p>To check the status of the device
  after sending the device command, navigate to <b>Device</b>, click a
- device name or tag, click the “Security” tab, and view the connection status
+ device name or tag, click the <b>Security</b> tab, and view the connection status
  below the device name.</p>
                                                             <p>For information on the different connection statuses, see <a href="device-connection-statuses.htm">Device connection statuses</a>.</p>
                                                         </td>
@@ -2738,7 +2776,7 @@
                                                         <td>
                                                             <p>Collects the ID of the profile
  applied to the device.</p>
-                                                            <p>If the device has been enrolled, then
+                                                            <p>If the device was enrolled, then
  the ID is automatically collected from the device’s inventory information
  without sending the device command.</p>
                                                         </td>

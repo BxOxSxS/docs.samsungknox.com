@@ -1349,6 +1349,8 @@
                                                                         </li>
                                                                         <li><a href="assign-applications-to-groups.htm">Assign applications to groups</a>
                                                                         </li>
+                                                                        <li><a href="export-information-to-csv.htm">Export Group details to CSV</a>
+                                                                        </li>
                                                                         <li><a href="apply-profiles-to-groups.htm">Apply profiles to groups</a>
                                                                         </li>
                                                                         <li><a href="distribute-content-to-groups.htm">Distribute content to groups</a>
@@ -1502,6 +1504,8 @@
                                                                         <li><a href="manage-application-categories.htm">Manage application categories</a>
                                                                         </li>
                                                                         <li><a href="add-modify-delete-control-apps.htm">Manage control apps</a>
+                                                                        </li>
+                                                                        <li><a href="export-application-information-to-csv.htm">Export Application detail to CSV</a>
                                                                         </li>
                                                                     </ul>
                                                                 </li>
@@ -1981,6 +1985,8 @@
                                                                 </li>
                                                             </ul>
                                                         </li>
+                                                        <li><a href="list-of-lookup-items.htm">List of Lookup Items</a>
+                                                        </li>
                                                         <li><a href="migration-guide.htm">Knox Manage Migration Guide</a>
                                                         </li>
                                                         <li><a href="user-guide.htm">Knox Manage User Guide</a>
@@ -2432,92 +2438,89 @@
 									-->
                                     <div id="sec2" class="small-12 medium-8 large-9 columns">
                                         <div itemscope="itemscope" itemtype="http://schema.org/Guide">
-                                            <h1><a name="aanchor412"></a>
+                                            <h1><a name="aanchor414"></a>
                                                 <MadCap:concept term="knox-manage" />Add a directory server</h1>
                                             <p>Add a directory server in the Admin Portal to synchronize corporate user information by integrating the corporate directory server.</p>
-                                            <p>To add a directory server, complete the following steps:</p>
-                                            <p>1. Navigate to <b>Advanced &gt; Directory Integration &gt; Directory Pool</b>.</p>
-                                            <p>2. On the “Directory Pool” page, click <b>Add</b>.</p>
-                                            <p>3. On the “Add Directory Pool” page, enter the following information:</p>
-                                            <ul>
-                                                <li value="1"><b>Directory Pool Name</b>—Enter a name for the pool that is up to 20 characters and that consists of letters, numbers, or special characters (only dashes and underscores are allowed) to distinguish it from other directory services.</li>
-                                                <li value="2"><b>Encryption Type</b>—Select one of the following encryption types for the internet communication protocol used for communication with the directory server.<ul><li value="1"><b>None</b>—No encryption</li><li value="2"><b>SSL</b>—Secured Socket Layer</li><li value="3"><b>TLS</b>—Transport Layer Security</li></ul></li>
-                                                <li value="3"><b>Auth Type</b>—Select one of the following authentication types used for communication with the directory server.</li>
-                                            </ul>
-                                            <p><b>NOTE—</b> Knox Manage provides a secure channel between the directory server and the Knox Manage server through Cloud Connector. If you select the authentication type as <b>GSSAPI (Kerberos)</b>, Cloud Connector cannot be used. For more information about Cloud Connector, see <a href="overview-cloud-connector.htm">Using Cloud Connector</a>.&#160;</p>
-                                            <ul>
-                                                <li value="1"><b>None</b>—no encryption</li>
-                                                <li value="2"><b>Simple</b>—Select this if you are not certain about the authentication type.</li>
-                                                <li value="3"><b>DIGEST-MD5 (SASL), CRAM-MD5 (SASL) </b>, or<b> GSSAPI (Kerberos)</b>—If you select one of these authentication types, configure the additional advanced settings on the Authentication Detailed Setting tab as follows:</li>
-                                            </ul>
-                                            <table>
-                                                <tbody>
-                                                    <tr>
-                                                        <th>
-                                                            <p>Authentication
+                                            <p>To add a directory server, do as follows:</p>
+                                            <ol>
+                                                <li value="1">Navigate to <b>Advanced &gt; Directory Integration &gt; Directory Pool</b>.</li>
+                                                <li value="2">On the <b>Directory Pool</b> page, click <b>Add</b>.</li>
+                                                <li value="3">On the <b>Add Directory Pool</b> page, enter the following information:<ul><li value="1"><b>Directory Pool Name</b>—Enter a name for the pool that is up to 20 characters and that consists of letters, numbers, or special characters (only dashes and underscores are allowed) to distinguish it from other directory services.</li><li value="2"><b>Encryption Type</b>—Select one of the following encryption types for the internet communication protocol used for communication with the directory server.<ul><li value="1"><b>None</b>—No encryption</li><li value="2"><b>TLS</b>—Transport Layer Security</li></ul></li><li value="3"><b>Auth Type</b>—Select one of the following authentication types used for communication with the directory server.</li></ul></li>
+                                                <div class="callout note"><b>NOTE—</b> Knox Manage provides a secure channel between the directory server and the Knox Manage server through Cloud Connector. If you select the authentication type as <b>GSSAPI (Kerberos)</b>, Cloud Connector cannot be used. For more information about Cloud Connector, see <a href="overview-cloud-connector.htm">Using Cloud Connector</a>.&#160;</div>
+                                                <ul>
+                                                    <li value="1"><b>None</b>—no encryption</li>
+                                                    <li value="2"><b>Simple</b>—Select this option if you are not certain about the authentication type.</li>
+                                                    <li value="3"><b>DIGEST-MD5 (SASL), CRAM-MD5 (SASL) </b>, or<b> GSSAPI (Kerberos)</b>—If you select one of these authentication types, configure the additional advanced settings on the Authentication Detailed Setting tab as follows:</li>
+                                                </ul>
+                                                <table>
+                                                    <tbody>
+                                                        <tr>
+                                                            <th>
+                                                                <p>Authentication
 						type</p>
-                                                        </th>
-                                                        <th>
-                                                            <p>Description</p>
-                                                        </th>
-                                                    </tr>
-                                                    <tr>
-                                                        <td>
-                                                            <p>DIGESTMD5 (SASL) and CRAMMD5 (SASL)</p>
-                                                        </td>
-                                                        <td>
-                                                            <p>Enter the following information for
+                                                            </th>
+                                                            <th>
+                                                                <p>Description</p>
+                                                            </th>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>
+                                                                <p>DIGESTMD5 (SASL) and CRAMMD5 (SASL)</p>
+                                                            </td>
+                                                            <td>
+                                                                <p>Enter the following information for
  configuring the settings for Simple Authentication and security layer (SASL),
  which is a telnet-based protocol.</p>
-                                                            <ul>
-                                                                <li value="1"><b>SASL Realm</b>—Enter the realm value
+                                                                <ul>
+                                                                    <li value="1"><b>SASL Realm</b>—Enter the realm value
  of the SASL server in the relevant domain’s format, such as <code>sample.com</code>.</li>
-                                                                <li value="2"><b>Quality of Protection</b>—Select one
+                                                                    <li value="2"><b>Quality of Protection</b>—Select one
  of the following qualities of the data protection options.<ol style="list-style-type: lower-roman;"><li value="1"><b>Authentication only</b>—Protects the
  data only for authentication.</li><li value="2"><b>Authentication with integrity</b>—Ensures the integrity of all the data exchanged, including authentication
  data.</li><li value="3"><b>Authentication with integrity and privacy</b>—Ensures integrity for all the data exchanges, including
  authentications through data encryption.</li></ol></li>
-                                                            </ul>
-                                                            <ul>
-                                                                <li value="1"><b>Protection Strength</b>—Select one of
+                                                                </ul>
+                                                                <ul>
+                                                                    <li value="1"><b>Protection Strength</b>—Select one of
  the data protection levels.<ol style="list-style-type: lower-roman;"><li value="1"><b>High</b>—Use 128-bit encryption.</li><li value="2"><b>Medium</b>—Use 56-bit encryption.</li><li value="3"><b>Low</b>—Use 40-bit encryption.</li><li value="4"><b>Mutual authentication</b>—Click the
- checkbox to ensure data validity by inserting the key into the data exchanged
+ check box to ensure data validity by inserting the key into the data exchanged
  between the client and server.</li></ol></li>
-                                                            </ul>
-                                                        </td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td>
-                                                            <p>GSSAPI (Kerberos)</p>
-                                                        </td>
-                                                        <td>
-                                                            <p>Enter the following information for
+                                                                </ul>
+                                                            </td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>
+                                                                <p>GSSAPI (Kerberos)</p>
+                                                            </td>
+                                                            <td>
+                                                                <p>Enter the following information for
  GSSAPI (Kerberos) authentication.</p>
-                                                            <ul>
-                                                                <li value="1"><b>Kerberos Credential Configuration</b>—Select one of the following methods for obtaining a Kerberos ticket.<ol style="list-style-type: lower-roman;"><li value="1"><b>Use native TGT</b>—Select this if you
+                                                                <ul>
+                                                                    <li value="1"><b>Kerberos Credential Configuration</b>—Select one of the following methods for obtaining a Kerberos ticket.<ol style="list-style-type: lower-roman;"><li value="1"><b>Use native TGT</b>—Select this if you
  have already issued a ticket in the Admin Portal.</li><li value="2"><b>Obtain TGT from KDC</b>—Issue a new
  ticket using the default user ID and password.</li></ol></li>
-                                                            </ul>
-                                                            <ul>
-                                                                <li value="1"><b>Kerberos Configuration</b>—Select one
+                                                                </ul>
+                                                                <ul>
+                                                                    <li value="1"><b>Kerberos Configuration</b>—Select one
  of the following methods for configuring the Kerberos server.<ol style="list-style-type: lower-roman;"><li value="1"><b>Use native system configuration</b>—Use the Kerberos server information defined in the Java Property.</li><li value="2"><b>Use following configuration</b>—Enter
  the following Kerberos server information manually.</li><li value="3"><b>Kerberos Realm</b>—Enter the realm of
  the Kerberos server.</li><li value="4"><b>KDC Host</b>—Enter the Kerberos Key
  Distribution Center (KDC) host or the IP address.</li><li value="5"><b>KDC Port</b>—Enter the KDC port number.</li></ol></li>
-                                                            </ul>
-                                                        </td>
-                                                    </tr>
-                                                </tbody>
-                                            </table>
-                                            <ul>
-                                                <li value="1"><b>IP/Host</b>—Enter the IP or host address of the directory address. Enter the TCP port number to use for communication with the directory server. 389 is the default port number used for unencrypted communication with the directory server.</li>
-                                                <li value="2"><b>User ID</b>—Enter the user ID (administrator account) that can access the directory server and read it. It can be entered in various forms, such as domain\administrator ID, administrator ID@domain or CN=administrator ID, CN=Users, DC=domain, DC=com.</li>
-                                                <li value="3"><b>Password</b>—Enter the user ID’s password.</li>
-                                                <li value="4"><b>Max Active Limit</b>—Select the maximum number of active connections available from 10 to 50.</li>
-                                                <li value="5"><b>Max Idle Limit</b>—Select the maximum number of idle connections available from 0 to 30.</li>
-                                                <li value="6"><b>Description</b>—Enter a description of the directory server.</li>
-                                            </ul>
-                                            <p>4. Click <b>Test Connection</b> to test suitability with the entered information of the directory server, and then click <b>Save</b> to add the directory server.</p>
+                                                                </ul>
+                                                            </td>
+                                                        </tr>
+                                                    </tbody>
+                                                </table>
+                                                <ul>
+                                                    <li value="1"><b>IP/Host</b>—Enter the IP or host address of the directory address. Enter the TCP port number to use for communication with the directory server. 389 is the default port number used for unencrypted communication with the directory server.</li>
+                                                    <li value="2"><b>User ID</b>—Enter the user ID (administrator account) that can access the directory server and read it. It can be entered in various forms, such as domain\administrator ID, administrator ID@domain or CN=administrator ID, CN=Users, DC=domain, DC=com.</li>
+                                                    <li value="3"><b>Password</b>—Enter the user ID’s password.</li>
+                                                    <li value="4"><b>Max Active Limit</b>—Select the maximum number of active connections available from 10 to 50.</li>
+                                                    <li value="5"><b>Max Idle Limit</b>—Select the maximum number of idle connections available from 0 to 30.</li>
+                                                    <li value="6"><b>Description</b>—Enter a description of the directory server.</li>
+                                                </ul>
+                                                <li value="4">Click <b>Test Connection</b> to test suitability with the entered information of the directory server, and then click <b>Save</b> to add the directory server.</li>
+                                            </ol>
                                         </div>
                                         <!-- Inserts feedback module here -->
                                         <div id="feedback">

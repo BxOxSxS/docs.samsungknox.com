@@ -1349,6 +1349,8 @@
                                                                         </li>
                                                                         <li><a href="assign-applications-to-groups.htm">Assign applications to groups</a>
                                                                         </li>
+                                                                        <li><a href="export-information-to-csv.htm">Export Group details to CSV</a>
+                                                                        </li>
                                                                         <li><a href="apply-profiles-to-groups.htm">Apply profiles to groups</a>
                                                                         </li>
                                                                         <li><a href="distribute-content-to-groups.htm">Distribute content to groups</a>
@@ -1502,6 +1504,8 @@
                                                                         <li><a href="manage-application-categories.htm">Manage application categories</a>
                                                                         </li>
                                                                         <li><a href="add-modify-delete-control-apps.htm">Manage control apps</a>
+                                                                        </li>
+                                                                        <li><a href="export-application-information-to-csv.htm">Export Application detail to CSV</a>
                                                                         </li>
                                                                     </ul>
                                                                 </li>
@@ -1981,6 +1985,8 @@
                                                                 </li>
                                                             </ul>
                                                         </li>
+                                                        <li><a href="list-of-lookup-items.htm">List of Lookup Items</a>
+                                                        </li>
                                                         <li><a href="migration-guide.htm">Knox Manage Migration Guide</a>
                                                         </li>
                                                         <li><a href="user-guide.htm">Knox Manage User Guide</a>
@@ -2432,7 +2438,7 @@
 									-->
                                     <div id="sec2" class="small-12 medium-8 large-9 columns">
                                         <div itemscope="itemscope" itemtype="http://schema.org/Guide">
-                                            <h1><a name="aanchor344"></a>
+                                            <h1><a name="aanchor346"></a>
                                                 <MadCap:concept term="knox-manage" />Certificate templates</h1>
                                             <p>The CA server manages certificates through certificate templates. You can add multiple templates and modify them to standardize and simplify the process of issuing certificates.</p>
                                             <h2>Adding certificate templates</h2>
@@ -2476,19 +2482,12 @@
                                             </ul>
                                             <h2>Modifying certificate templates</h2>
                                             <p>To modify a certificate template, complete the following steps:</p>
-                                            <p>1.  Navigate to <b>Advanced</b> &gt; <b>Certificate</b> &gt; <b>Certificate Template</b>.</p>
-                                            <p>2.  On the “Certificate Template” page, click the checkbox for the certificate you want to modify, and the click <b>Modify</b>.</p>
-                                            <p>3.  On the “Modify Certificate Template” page, modify the certificate template information.</p>
-                                            <ul>
-                                                <li value="1"><b>Template Name</b>: Assign a unique name for the certificate template.</li>
-                                                <li value="2"><b>Description</b>: Enter a description for the certificate template.</li>
-                                                <li value="3"><b>Type</b>: Only External is supported.</li>
-                                                <li value="4"><b>Platform</b>: Select a device platform from among <b>Common</b>, <b>Android</b> or <b>iOS</b>.</li>
-                                                <li value="5"><b>CA</b>: Select a CA type. Input information will vary depending on the selected CA type.</li>
-                                                <li value="6"><b>CA Template Name</b>: Enter the CA template name. The CA template name is required when ADCS type CA is selected.</li>
-                                                <li value="7"><b>Profile ID</b>: Enter the profile ID. The profile ID is required when CertAgent type CA is selected.</li>
-                                            </ul>
-                                            <p><b>Note</b>: A primary profile is used for an empty value.</p>
+                                            <ol>
+                                                <li value="1"> Navigate to <b>Advanced</b> &gt; <b>Certificate</b> &gt; <b>Certificate Template</b>.</li>
+                                                <li value="2"> On the “Certificate Template” page, click the check box for the certificate you want to modify, and the click <b>Modify</b>.</li>
+                                                <li value="3"> On the <b>Modify Certificate Template</b> page, modify the certificate template information.<ul><li value="1"><b>Template Name</b>: Assign a unique name for the certificate template.</li><li value="2"><b>Description</b>: Enter a description for the certificate template.</li><li value="3"><b>Type</b>: Only External is supported.</li><li value="4"><b>Platform</b>: Select a device platform from among <b>Common</b>, <b>Android</b> or <b>iOS</b>.</li><li value="5"><b>CA</b>: Select a CA type. Input information varies depending on the selected CA type.</li><li value="6"><b>CA Template Name</b>: Enter the CA template name. The CA template name is required when ADCS type CA is selected.</li><li value="7"><b>Profile ID</b>: Enter the profile ID. The profile ID is required when CertAgent type CA is selected.</li></ul></li>
+                                            </ol>
+                                            <div class="callout note"><b>NOTE</b>—A primary profile is used for an empty value.</div>
                                             <ul>
                                                 <li value="1"><b>CA Label</b>: Enter the CA label. The CA label is required when EST type CA is selected.</li>
                                             </ul>
@@ -2499,33 +2498,33 @@
                                             <p><b>Note</b>: You can also click <b>Lookup</b> to open the reference item list and select an item from it. The reference value is automatically entered.</p>
                                             <ul>
                                                 <li value="1"><b>Certificate Usage</b>: Select a certificate usage type.</li>
+                                                <li value="2"><b>Wi-Fi:</b> Authorizes connecting with AP for Wi-Fi.</li>
+                                                <div class="callout note"><b>NOTE</b>: The device configuration for Wi-Fi needs to be checked if <b>Wi-Fi</b> is selected as the certificate usage.</div>
+                                                <li value="3"><b>VPN</b>: Authorizes encrypted VPN communication when registering Knox Manage on devices.</li>
+                                                <div class="callout note"><b>NOTE</b>: The device configuration for VPN needs to be checked if <b>VPN</b> is selected as the certificate usage.</div>
+                                                <li value="4"><b>Exchange</b>: Authorizes user authentication and services in Exchange.</li>
+                                                <li value="5"><b>Knox Generic VPN</b>: Authorizes encrypted VPN communication for Knox enabled devices.</li>
+                                                <div class="callout note"><b>NOTE</b>
+                                                    <ul>
+                                                        <li value="1">This field appears only when <b>Android</b> is selected as the device platform.</li>
+                                                        <li value="2">The device configuration for VPN needs to be checked if <b>Knox Generic VPN</b> is selected as the certificate usage.</li>
+                                                    </ul>
+                                                </div>
+                                                <li value="6"><b>Knox VPN</b>: Authorizes encrypted VPN communication specialized for Galaxy devices.</li>
+                                                <li value="7"><b>Note</b>: This appears only when <b>Android</b> is selected as the device platform.</li>
+                                                <li value="8"><b>SAN Type</b>: Select a SAN type and then enter the SAN value. Then click  to add.</li>
+                                                <div class="callout note"><b>NOTE</b>: You can also click <b>Lookup</b> to open the reference item list and select a SAN reference item from it. The reference value is automatically entered.</div>
                                             </ul>
-                                            <blockquote>
-                                                <p><b>Wi-Fi:</b> Authorizes connecting with AP for Wi-Fi.</p>
-                                                <p><b>Note</b>: The device configuration for Wi-Fi needs to be checked if <b>Wi-Fi</b> is selected as the certificate usage.</p>
-                                                <p><b>VPN</b>: Authorizes encrypted VPN communication when registering Knox Manage on devices.</p>
-                                                <p><b>Note</b>: The device configuration for VPN needs to be checked if <b>VPN</b> is selected as the certificate usage.</p>
-                                                <p><b>Exchange</b>: Authorizes user authentication and services in Exchange.</p>
-                                                <p><b>Knox Generic VPN</b>: Authorizes encrypted VPN communication for Knox enabled devices.</p>
-                                                <p><b>Note</b>
-                                                </p>
-                                                <ul>
-                                                    <li value="1">This field appears only when <b>Android</b> is selected as the device platform.</li>
-                                                    <li value="2">The device configuration for VPN needs to be checked if <b>Knox Generic VPN</b> is selected as the certificate usage.</li>
-                                                </ul>
-                                                <p><b>Knox VPN</b>: Authorizes encrypted VPN communication specialized for Galaxy devices.</p>
-                                                <p><b>Note</b>: This appears only when <b>Android</b> is selected as the device platform.</p>
-                                                <p><b>SAN Type</b>: Select a SAN type and then enter the SAN value. Then click  to add.</p>
-                                                <p><b>Note</b>: You can also click <b>Lookup</b> to open the reference item list and select a SAN reference item from it. The reference value is automatically entered.</p>
-                                            </blockquote>
-                                            <p>4.  Click <b>Save</b>.</p>
-                                            <p>5.  In the “OK” window, click <b>OK</b>.</p>
+                                            <li value="32">Click <b>Save</b>.</li>
+                                            <li value="33">When prompted, click <b>OK</b>.</li>
                                             <h2>Deleting certificate templates</h2>
                                             <p>To delete certificate templates, complete the following steps:</p>
-                                            <p>1.  Navigate to <b>Advanced</b> &gt; <b>Certificate</b> &gt; <b>Certificate Template</b>.</p>
-                                            <p>2.  On the “Certificate Template” page, click the checkbox for the certificate template you want to delete, and the click <b>Delete</b>.</p>
-                                            <p>3.  In the “Delete Certificate Template” window, click <b>OK</b>.</p>
-                                            <p><b>Note</b>: You can delete the template in use only when the Android and iOS settings have been deleted from the device management profile.</p>
+                                            <ol>
+                                                <li value="1">Navigate to <b>Advanced</b> &gt; <b>Certificate</b> &gt; <b>Certificate Template</b>.</li>
+                                                <li value="2">On the Certificate Template page, click the check box for the certificate template you want to delete, and the click <b>Delete</b>.</li>
+                                                <li value="3">On the Delete Certificate Template screen, click <b>OK</b>.</li>
+                                                <div><b>Note</b>: You can delete the template in use only when the Android and iOS settings have been deleted from the device management profile.</div>
+                                            </ol>
                                         </div>
                                         <!-- Inserts feedback module here -->
                                         <div id="feedback">
