@@ -6,7 +6,6 @@
         <meta http-equiv="x-ua-compatible" content="ie=edge" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <!-- Samsung Knox fonts -->
-        <!-- Social media icons CSS-->
         <!-- Knox portal bootstrap CSS - for the header and footer and any other KP styles you use (e.g. buttons). -->
         <!-- Foundation CSS styles for body of document. -->
         <!-- Custom CSS styles. -->
@@ -46,7 +45,6 @@
 			url(https://cdn.Samsung.com/etc/designs/smg/global/fonts/SamsungOne-400.ttf) format("truetype");
 			}
 		</style>
-        <link href="https://use.fontawesome.com/releases/v5.14.0/css/all.css?ver=5.5.1" rel="stylesheet" />
         <link href="../../assets/merge/kp-bootstrap.css" rel="stylesheet" />
         <link href="../../assets/merge/kp-foundation.css" rel="stylesheet" />
         <link href="../../assets/merge/kpp-madcap.css" rel="stylesheet" />
@@ -73,10 +71,6 @@
                     <div class="title-bar-left">
                         <div class="menu-icon" type="button" data-open="offCanvasLeft">
                         </div><span class="title-bar-title">Menu</span>
-                    </div>
-                </div>
-                <div class="off-canvas position-left" id="offCanvasLeft" data-off-canvas="">
-                    <div id="nav-drilldown">
                     </div>
                 </div>
                 <div class="off-canvas-content" data-off-canvas-content="">
@@ -848,7 +842,7 @@
                                                                         </li>
                                                                         <li><a href="../knox-sdk/faqs/operation/what-keystore-can-i-use.htm">What Keystores can I use?</a>
                                                                         </li>
-                                                                        <li><a href="../knox-sdk/faqs/operation/what-kind-of-phone-numbers-are-allowed-after-setting-setemergencycallonly_true_-in-the-knox-sdk.htm">What kind of phone numbers are allowed after setting setEmergencyCallOnly(true) in the Knox SDK?</a>
+                                                                        <li><a href="https://docs.samsungknox.com/dev/knox-sdk/faqs/operation/what-kind-of-phone-numbers-are-allowed-after-setting-setemergencycallonly(true)-in-the-knox-sdk.htm">What kind of phone numbers are allowed after setting setEmergencyCallOnly(true) in the Knox SDK?</a>
                                                                         </li>
                                                                         <li><a href="../knox-sdk/faqs/operation/what-secure-hardware-can-i-use-with-the-ucm-apis-to-store-credentials.htm">What secure hardware can I use with the UCM APIs to store credentials?</a>
                                                                         </li>
@@ -1332,6 +1326,12 @@
                                                         </li>
                                                     </ul>
                                                 </li>
+                                                <li class="has-children"><a href="tutorial.htm#">Knox Manage</a>
+                                                    <ul class="sub-menu">
+                                                        <li><a href="../../devref/knox-manage/index.html">API Reference</a>
+                                                        </li>
+                                                    </ul>
+                                                </li>
                                                 <li class="has-children"><a href="tutorial.htm#">Knox Attestation</a>
                                                     <ul class="sub-menu">
                                                         <li><a href="index.htm">Overview</a>
@@ -1606,9 +1606,9 @@ sudo /etc/init.d/apache2 restart</pre>
                                         <h2>Get a nonce</h2>
                                         <p>A nonce is a random value that uniquely identifies each attestation request. To protect from replay attacks, each nonce is valid only for a short period of time. This ensures that the Attestation server can fail requests made using an invalid nonce once it expires, which prevents malicious attackers from accessing a past attestation result. A nonce also serves as a unique identifier for each attestation request.</p>
                                         <ul class="tabs" data-tabs="" id="example-tabs">
-                                            <li class="tabs-title is-active" value="1"><a href="tutorial.htm#panel1" aria-selected="true" class="selected">Get a nonce from the attestation server</a>
+                                            <li class="tabs-title is-active" value="1"><a href="tutorial.htm#panel1" aria-selected="true" class="selected">Get nonce from the attestation server</a>
                                             </li>
-                                            <li class="tabs-title" value="2"><a data-tabs-target="panel2" href="tutorial.htm#panel2" class="selected">Get a nonce from web script</a>
+                                            <li class="tabs-title" value="2"><a data-tabs-target="panel2" href="tutorial.htm#panel2" class="selected">Get nonce from web script</a>
                                             </li>
                                         </ul>
                                         <div class="tabs-content" data-tabs-content="example-tabs">
@@ -1696,14 +1696,14 @@ EnhancedAttestationPolicyCallback cb = new EnhancedAttestationPolicyCallback() {
 };</pre>
                                         <h3>Get verdict</h3>
                                         <ul class="tabs" data-tabs="" id="example-tabs">
-                                            <li class="tabs-title is-active" value="1"><a href="tutorial.htm#panel11" aria-selected="true" class="selected">Get a verdict from web script</a>
+                                            <li class="tabs-title is-active" value="1"><a href="tutorial.htm#panel11" aria-selected="true" class="selected">Send a blob to your web server</a>
                                             </li>
-                                            <li class="tabs-title" value="2"><a data-tabs-target="panel22" href="tutorial.htm#panel22" class="selected">Get a verdict from attestation server</a>
+                                            <li class="tabs-title" value="2"><a data-tabs-target="panel22" href="tutorial.htm#panel22" class="selected">Get verdict from attestation server</a>
                                             </li>
                                         </ul>
                                         <div class="tabs-content" data-tabs-content="example-tabs">
                                             <div class="tabs-panel is-active" id="panel11">
-                                                <h3>Get a verdict from web script</h3>
+                                                <h3>Send a blob to your web server</h3>
                                                 <p>Send the result (unique Id) to your web server using the HTTP protocol. On the web server, you need a script to take the unique id which should be same as nonce and forward it to Samsung’s Attestation server. In the sample Attestation app, there is a script called <code>measurements.php</code> that does the following:</p><pre class="prettyprint" xml:space="preserve">// identify the URL of your web server
 private static final String URL_MDM_SERVER_MEASUREMENTS = "http://attestation.example.com/attestations/";
 
@@ -1794,17 +1794,6 @@ public static class EAResultInfo {
                                         <!-- Inserts feedback module here -->
                                         <div id="feedback">
                                         </div>
-                                        <!-- Link sharing -->
-                                        <div style="text-align: center; font-size: 1.8em "><span style="font-size: 0.8em; text-transform: uppercase;font-weight: 700;">Share it:</span><a rel="external nofollow" style="width:40px;height:40px; display:inline-block" onclick="tweetFunction();" target="_blank" title="Share on Twitter"><i class="fab fa-twitter"></i></a><a rel="external nofollow" style="width:40px;height:40px; display:inline-block" onclick="linkedinFunction();" target="_blank" title="Share on LinkedIn"><i class="fab fa-linkedin-in"></i></a><a rel="external nofollow" style="width:40px;height:40px; display:inline-block" onclick="emailFunction();" target="_blank" title="Share via email"><i class="fas fa-envelope"></i></a><a rel="external nofollow" style="width:40px;height:40px; display:inline-block" onclick="copyFunction(this);" target="_blank" title="Copy to clipboard"><i class="fas fa-copy"></i></a><i style="text-align: center; font-size: 0.5em; position:absolute; "></i>
-                                        </div>
-                                        <script src="../../assets/merge/share/share-twitter.js">
-                                        </script>
-                                        <script src="../../assets/merge/share/share-linkedin.js">
-                                        </script>
-                                        <script src="../../assets/merge/share/share-email.js">
-                                        </script>
-                                        <script src="../../assets/merge/share/share-copy.js">
-                                        </script>
                                     </div>
                                     <div class="medium-3 large-3 hide-for-small-only columns sticky-container" data-sticky-container="" data-magellan="">
                                         <!-- hide for side bar -->
@@ -1868,9 +1857,6 @@ public static class EAResultInfo {
         </script>
         <!-- Footer -->
         <script src="../../assets/kpp/kpp-footer.js">
-        </script>
-        <!-- dynamic meta tags -->
-        <script type="text/javascript" src="../../assets/merge/og-meta-tags-dev.js">
         </script>
     </body>
 </html>

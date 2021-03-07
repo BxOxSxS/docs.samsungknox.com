@@ -6,7 +6,6 @@
         <meta http-equiv="x-ua-compatible" content="ie=edge" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <!-- Samsung Knox fonts -->
-        <!-- Social media icons CSS-->
         <!-- Knox portal bootstrap CSS - for the header and footer and any other KP styles you use (e.g. buttons). -->
         <!-- Foundation CSS styles for body of document. -->
         <!-- Custom CSS styles. -->
@@ -46,7 +45,6 @@
 			url(https://cdn.Samsung.com/etc/designs/smg/global/fonts/SamsungOne-400.ttf) format("truetype");
 			}
 		</style>
-        <link href="https://use.fontawesome.com/releases/v5.14.0/css/all.css?ver=5.5.1" rel="stylesheet" />
         <link href="../../assets/merge/kp-bootstrap.css" rel="stylesheet" />
         <link href="../../assets/merge/kp-foundation.css" rel="stylesheet" />
         <link href="../../assets/merge/kpp-madcap.css" rel="stylesheet" />
@@ -74,10 +72,6 @@
                     <div class="title-bar-left">
                         <div class="menu-icon" type="button" data-open="offCanvasLeft">
                         </div><span class="title-bar-title">Menu</span>
-                    </div>
-                </div>
-                <div class="off-canvas position-left" id="offCanvasLeft" data-off-canvas="">
-                    <div id="nav-drilldown">
                     </div>
                 </div>
                 <div class="off-canvas-content" data-off-canvas-content="">
@@ -849,7 +843,7 @@
                                                                         </li>
                                                                         <li><a href="faqs/operation/what-keystore-can-i-use.htm">What Keystores can I use?</a>
                                                                         </li>
-                                                                        <li><a href="faqs/operation/what-kind-of-phone-numbers-are-allowed-after-setting-setemergencycallonly_true_-in-the-knox-sdk.htm">What kind of phone numbers are allowed after setting setEmergencyCallOnly(true) in the Knox SDK?</a>
+                                                                        <li><a href="https://docs.samsungknox.com/dev/knox-sdk/faqs/operation/what-kind-of-phone-numbers-are-allowed-after-setting-setemergencycallonly(true)-in-the-knox-sdk.htm">What kind of phone numbers are allowed after setting setEmergencyCallOnly(true) in the Knox SDK?</a>
                                                                         </li>
                                                                         <li><a href="faqs/operation/what-secure-hardware-can-i-use-with-the-ucm-apis-to-store-credentials.htm">What secure hardware can I use with the UCM APIs to store credentials?</a>
                                                                         </li>
@@ -1333,6 +1327,12 @@
                                                         </li>
                                                     </ul>
                                                 </li>
+                                                <li class="has-children"><a href="hardware-key-remapping.htm#">Knox Manage</a>
+                                                    <ul class="sub-menu">
+                                                        <li><a href="../../devref/knox-manage/index.html">API Reference</a>
+                                                        </li>
+                                                    </ul>
+                                                </li>
                                                 <li class="has-children"><a href="hardware-key-remapping.htm#">Knox Attestation</a>
                                                     <ul class="sub-menu">
                                                         <li><a href="../knox-attestation/index.htm">Overview</a>
@@ -1585,40 +1585,28 @@
                                         <h1>Hardware key mapping</h1>
                                         <p>The <a href="https://www.samsung.com/us/business/products/mobile/phones/galaxy-xcover-pro/">Samsung Galaxy XCover Pro</a> has two configurable hardware keys:</p>
                                         <ul>
-                                            <li value="1"><b>XCover/Active key</b>—Also called the Push-to-talk or PTT key, this key is located on the left side of the device.</li>
+                                            <li value="1"><b>XCover key</b>—Also called the Push-to-talk or PTT key, this key is located on the left side of the device.</li>
                                             <li value="2"><b>Top key</b>—Sometimes referred to as the Emergency key, located on the top-right of the device.</li>
                                         </ul>
-                                        <div class="callout success"><b>NOTE</b> — <b><i>Supported on Galaxy XCover &amp; Tab Active series only</i></b> (<b style="font-style: italic;">May not be available on certain device models</b>)</div>
                                         <p>There are two ways to map the function of these keys: </p>
                                         <ul>
                                             <li value="1"><a href="hardware-key-remapping-isv.htm">Unmanaged key mapping</a>
                                                 <ul>
                                                     <li value="1">A device user configures how the keys are used, through the device Settings. </li>
-                                                    <li value="2">An <b>ISV vendor</b> adapts an app so that it or its specific function can be mapped to and launched by a key, by handling the Samsung standard intent.</li>
+                                                    <li value="2">An <b>ISV developer</b> adapts an app so that it can be mapped to and launched by a key.</li>
                                                 </ul>
                                             </li>
                                             <li value="2"><a href="hardware-key-remapping-emm.htm">Managed key mapping</a>
                                                 <ul>
                                                     <li value="1">An IT admin configures how the keys are used on all enterprise devices, through an EMM web console or <a href="../../admin/knox-service-plugin/advanced-policies.htm#mag_15">Knox Service Plugin</a>.</li>
-                                                    <li value="2">An <b>ISV vendor</b> adapts an app so that it can or its specific function can be mapped to and launced by a key, by handling any custom (vendor-defined) intent. The Samsung standard intent will be supported with Android 11 in the future.</li>
+                                                    <li value="2">An <b>EMM developer</b> can adapt an EMM app to deploy EMM configurations on the device, or just support the Knox Service Plugin which has its own app on the device.</li>
                                                 </ul>
                                             </li>
                                         </ul>
-                                        <p>Enterprises can support both unmanaged and managed key mappings.</p>
+                                        <p>Enterprises can support both unmanaged and managed key mappings. The linked topics above provide information about how ISV and EMM&#160;developers support the two approaches.</p>
                                         <!-- Inserts feedback module here -->
                                         <div id="feedback">
                                         </div>
-                                        <!-- Link sharing -->
-                                        <div style="text-align: center; font-size: 1.8em "><span style="font-size: 0.8em; text-transform: uppercase;font-weight: 700;">Share it:</span><a rel="external nofollow" style="width:40px;height:40px; display:inline-block" onclick="tweetFunction();" target="_blank" title="Share on Twitter"><i class="fab fa-twitter"></i></a><a rel="external nofollow" style="width:40px;height:40px; display:inline-block" onclick="linkedinFunction();" target="_blank" title="Share on LinkedIn"><i class="fab fa-linkedin-in"></i></a><a rel="external nofollow" style="width:40px;height:40px; display:inline-block" onclick="emailFunction();" target="_blank" title="Share via email"><i class="fas fa-envelope"></i></a><a rel="external nofollow" style="width:40px;height:40px; display:inline-block" onclick="copyFunction(this);" target="_blank" title="Copy to clipboard"><i class="fas fa-copy"></i></a><i style="text-align: center; font-size: 0.5em; position:absolute; "></i>
-                                        </div>
-                                        <script src="../../assets/merge/share/share-twitter.js">
-                                        </script>
-                                        <script src="../../assets/merge/share/share-linkedin.js">
-                                        </script>
-                                        <script src="../../assets/merge/share/share-email.js">
-                                        </script>
-                                        <script src="../../assets/merge/share/share-copy.js">
-                                        </script>
                                     </div>
                                     <div class="medium-3 large-3 hide-for-small-only columns sticky-container" data-sticky-container="" data-magellan="">
                                         <!-- hide for side bar -->
@@ -1682,9 +1670,6 @@
         </script>
         <!-- Footer -->
         <script src="../../assets/kpp/kpp-footer.js">
-        </script>
-        <!-- dynamic meta tags -->
-        <script type="text/javascript" src="../../assets/merge/og-meta-tags-dev.js">
         </script>
     </body>
 </html>

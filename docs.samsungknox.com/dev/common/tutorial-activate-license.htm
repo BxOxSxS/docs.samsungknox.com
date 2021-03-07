@@ -6,7 +6,6 @@
         <meta http-equiv="x-ua-compatible" content="ie=edge" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <!-- Samsung Knox fonts -->
-        <!-- Social media icons CSS-->
         <!-- Knox portal bootstrap CSS - for the header and footer and any other KP styles you use (e.g. buttons). -->
         <!-- Foundation CSS styles for body of document. -->
         <!-- Custom CSS styles. -->
@@ -46,7 +45,6 @@
 			url(https://cdn.Samsung.com/etc/designs/smg/global/fonts/SamsungOne-400.ttf) format("truetype");
 			}
 		</style>
-        <link href="https://use.fontawesome.com/releases/v5.14.0/css/all.css?ver=5.5.1" rel="stylesheet" />
         <link href="../../assets/merge/kp-bootstrap.css" rel="stylesheet" />
         <link href="../../assets/merge/kp-foundation.css" rel="stylesheet" />
         <link href="../../assets/merge/kpp-madcap.css" rel="stylesheet" />
@@ -848,7 +846,7 @@
                                                                         </li>
                                                                         <li><a href="../knox-sdk/faqs/operation/what-keystore-can-i-use.htm">What Keystores can I use?</a>
                                                                         </li>
-                                                                        <li><a href="../knox-sdk/faqs/operation/what-kind-of-phone-numbers-are-allowed-after-setting-setemergencycallonly_true_-in-the-knox-sdk.htm">What kind of phone numbers are allowed after setting setEmergencyCallOnly(true) in the Knox SDK?</a>
+                                                                        <li><a href="https://docs.samsungknox.com/dev/knox-sdk/faqs/operation/what-kind-of-phone-numbers-are-allowed-after-setting-setemergencycallonly(true)-in-the-knox-sdk.htm">What kind of phone numbers are allowed after setting setEmergencyCallOnly(true) in the Knox SDK?</a>
                                                                         </li>
                                                                         <li><a href="../knox-sdk/faqs/operation/what-secure-hardware-can-i-use-with-the-ucm-apis-to-store-credentials.htm">What secure hardware can I use with the UCM APIs to store credentials?</a>
                                                                         </li>
@@ -1332,6 +1330,12 @@
                                                         </li>
                                                     </ul>
                                                 </li>
+                                                <li class="has-children"><a href="tutorial-activate-license.htm#">Knox Manage</a>
+                                                    <ul class="sub-menu">
+                                                        <li><a href="../../devref/knox-manage/index.html">API Reference</a>
+                                                        </li>
+                                                    </ul>
+                                                </li>
                                                 <li class="has-children"><a href="tutorial-activate-license.htm#">Knox Attestation</a>
                                                     <ul class="sub-menu">
                                                         <li><a href="../knox-attestation/index.htm">Overview</a>
@@ -1584,7 +1588,7 @@
                                             </div>
                                         </nav>
                                         <h1>Activate your Knox License</h1>
-                                        <p>Your app must activate your Knox license to authenticate API access. For more, see <a href="knox-licenses.htm">Knox licenses</a>.</p>
+                                        <p>Your app needs to activate your Knox license so that we can authenticate your access to our APIs. For more, see <a href="knox-licenses.htm">Knox licenses</a>.</p>
                                         <h2>Set up the License </h2>
                                         <ul class="tabs" data-tabs="" id="example-tabs">
                                             <li class="tabs-title is-active" value="1"><a href="tutorial-activate-license.htm#panel10" aria-selected="true" class="selected">Knox 2.8 and above</a>
@@ -1595,7 +1599,7 @@
                                         <div class="tabs-content" data-tabs-content="example-tabs">
                                             <div class="tabs-panel is-active" id="panel10">
                                                 <h3><a name="Create"></a>Create the License Receiver class </h3>
-                                                <p>In your app, create a new class called <code>SampleLicenseReceiver.java</code> that contains a license receiver for your KPE key.</p><pre class="prettyprint">import android.content.BroadcastReceiver;
+                                                <p>In your app, create a new class called <code>SampleLicenseReceiver.java</code>. This contains a license receiver for your KPE key.</p><pre class="prettyprint">import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.util.Log;
@@ -1701,7 +1705,7 @@ public class SampleLicenseReceiver extends BroadcastReceiver {
 	&lt;action android:name="com.samsung.android.knox.intent.action.LICENSE_STATUS" /&gt;
 	&lt;/intent-filter&gt;
 &lt;/receiver&gt;</pre>
-                                                <p>When your app receives a <code>com.samsung.android.knox.intent.action.LICENSE_STATUS</code> intent, it passes the intent to <code>SampleLicenseReceiver.onReceive().</code> Use this method for your app's response to the license activation.</p>
+                                                <p>When your app receives a <code>com.samsung.android.knox.intent.action.LICENSE_STATUS</code> intent, it passes the intent to <code>SampleLicenseReceiver.onReceive().</code> This method is where you can have your app respond to the license being activated.</p>
                                                 <h3><a name="Activate"></a>Activate the license / deactivate </h3>
                                                 <p style="font-weight: normal;">Use these methods to activate / deactivate the license.</p><pre class="prettyprint" xml:space="preserve" style="font-weight: normal;"> private void ActivateLicense() {
 
@@ -1721,13 +1725,13 @@ public class SampleLicenseReceiver extends BroadcastReceiver {
                                                 <p>
                                                     <img src="../../images/knox-sdk/KPE-klms-agent.png" style="width: 261px;height: 535px;" />
                                                 </p>
-                                                <p>There are three results you can receive in the<code> KnoxEnterpriseLicenseManager.ACTION_LICENSE_STATUS</code> broadcast:</p>
+                                                <p>There are three terms that are important when it comes to licenses that you can receive in the<code> KnoxEnterpriseLicenseManager.ACTION_LICENSE_STATUS</code> broadcast:</p>
                                                 <ol>
                                                     <li value="1"><b>Activation</b> - Initial license activation (Constant is integer 800)</li>
                                                     <li value="2"><b>Deactivation -</b> License deactivation (Constant is integer 802)</li>
-                                                    <li value="3"><b>Validation -</b> Once or twice a day, the license agent checks to see if this license is still valid. If your license expires before a validation check is made, the license agent returns a value that represents license expiration. (Constant is integer 801)</li>
+                                                    <li value="3"><b>Validation -</b> Once or twice a day, the license agent checks to see if this license is still valid. For example if it expires, then a validation check is made, the license agent will let you know that the license is now expired (Constant is integer 801)</li>
                                                 </ol>
-                                                <p>Below is the block of code from the Broadcast receiver that catches the license activation:</p><pre class="prettyprint">
+                                                <p>Here's the block of code from the Broadcast receiver that catches the license activation:</p><pre class="prettyprint">
 if (action.equals(KnoxEnterpriseLicenseManager.ACTION_LICENSE_STATUS)) {
 	String status = intent.getStringExtra(KnoxEnterpriseLicenseManager.EXTRA_LICENSE_STATUS);
 	int errorCode = intent.getIntExtra(KnoxEnterpriseLicenseManager.EXTRA_LICENSE_ERROR_CODE, 1);
@@ -1736,14 +1740,14 @@ if (action.equals(KnoxEnterpriseLicenseManager.ACTION_LICENSE_STATUS)) {
 	toast.show();
 	Log.d(TAG, "KLM Status = " + status + ",  " + "Error Code= " + errorCode + ",  " + "Extra Result Type= " + extraResult);
 }</pre>
-                                                <p>For example, if a validation request is made and passes, the following toast appears:</p>
+                                                <p>So for example, if its a validation request and it passes, the resulting toast would look like:</p>
                                                 <p><code>KLM Status = Success, Error Code = 0, Extra Result Type = 801</code>
                                                 </p>
                                             </div>
                                             <!-- Panel 11 -->
                                             <div class="tabs-panel" id="panel11">
                                                 <h3><a name="Create"></a>Create the License Receiver class </h3>
-                                                <p>In your app, create a new class called SampleLicenseReceiver.java. This contains a license receiver for your KPE and backwards-compatible keys.</p>
+                                                <p>In your app, create a new class called SampleLicenseReceiver.java. This contains a license receiver for your KPE and backwards-compatible key.</p>
                                                 <p>The <code>KnoxEnterpriseLicenseManager</code> class is used to receive the KPE key,
 				while the <code>EnterpriseLicenseManager</code> class is used to receive the backwards-compatible key.</p><pre class="prettyprint">
 package com.samsung.knox.example.compatibility;
@@ -1915,7 +1919,7 @@ public class SampleLicenseReceiver extends BroadcastReceiver {
 }
 					</pre>
                                                 <h3><a name="Register"></a>Register the License Receiver class</h3>
-                                                <p>When the KPE and backwards-compatible keys are validated, the <code>com.samsung.android.knox.intent.action.LICENSE_STATUS</code> intent is emitted. The app uses the <code>SampleLicenseReceiver</code> class to intercept this intent. </p>
+                                                <p>When the KPE and backwards-compatible key are validated, the <code>com.samsung.android.knox.intent.action.LICENSE_STATUS</code> intent is emitted. The app uses the <code>SampleLicenseReceiver</code> class to intercept this intent. </p>
                                                 <p>Paste this code in <code>AndroidManifest.xml</code> to define the receiver for<code> com.samsung.android.knox.intent.action.LICENSE_STATUS</code> intents:</p><pre class="prettyprint">
 &lt;receiver android:name=".SampleLicenseReceiver"&gt;
 	&lt;intent-filter&gt;
@@ -1923,9 +1927,9 @@ public class SampleLicenseReceiver extends BroadcastReceiver {
 	&lt;/intent-filter&gt;
 &lt;/receiver&gt;
 				</pre>
-                                                <p>When your app receives a <code>com.samsung.android.knox.intent.action.LICENSE_STATUS</code> intent, it passes the intent to <code>SampleLicenseReceiver.onReceive()</code>, which is used for your app's response to the license activation.</p>
+                                                <p>When your app receives a <code>com.samsung.android.knox.intent.action.LICENSE_STATUS</code> intent, it passes the intent to <code>SampleLicenseReceiver.onReceive().</code> This method is where you can have your app respond to the license being activated.</p>
                                                 <h3><a name="Activate"></a>Activate the license</h3>
-                                                <p style="font-weight: normal;">Use the following method in your <b>MainActivity</b> to activate the license:</p><pre class="prettyprint" xml:space="preserve" style="font-weight: normal;"> private void ActivateLicense() {
+                                                <p style="font-weight: normal;">Use this method in your <b>MainActivity</b> to activate the license.</p><pre class="prettyprint" xml:space="preserve" style="font-weight: normal;"> private void ActivateLicense() {
 
     // Instantiate the KnoxEnterpriseLicenseManager class to use the activateLicense method
     KnoxEnterpriseLicenseManager licenseManager = KnoxEnterpriseLicenseManager.getInstance(this);
@@ -1956,13 +1960,13 @@ private void ActivateBackwardsCompatibleKey() {
                                                 <p>
                                                     <img src="../../images/knox-sdk/KPE-klms-agent.png" style="width: 261px;height: 535px;" />
                                                 </p>
-                                                <p>There are three results you can receive in the<code> KnoxEnterpriseLicenseManager.ACTION_LICENSE_STATUS</code> broadcast:</p>
+                                                <p>There are three terms that are important when it comes to licenses that you can receive in the<code> KnoxEnterpriseLicenseManager.ACTION_LICENSE_STATUS</code> broadcast:</p>
                                                 <ol>
                                                     <li value="1"><b>Activation</b> - Initial license activation (Constant is integer 800)</li>
                                                     <li value="2"><b>Deactivation -</b> License deactivation (Constant is integer 802)</li>
-                                                    <li value="3"><b>Validation -</b> Once or twice a day, the license agent checks to see if this license is still valid. If your license expires before a validation check is made, the license agent returns a value that represents license expiration. (Constant is integer 801)</li>
+                                                    <li value="3"><b>Validation -</b> Once or twice a day, the license agent checks to see if this license is still valid. For example if it expires, then a validation check is made, the license agent will let you know that the license is now expired (Constant is integer 801)</li>
                                                 </ol>
-                                                <p>Below is the block of code from the Broadcast receiver that catches the license activation:</p><pre class="prettyprint">
+                                                <p>Here's the block of code from the Broadcast receiver that catches the license activation:</p><pre class="prettyprint">
 if (action.equals(KnoxEnterpriseLicenseManager.ACTION_LICENSE_STATUS)) {
 	String status = intent.getStringExtra(KnoxEnterpriseLicenseManager.EXTRA_LICENSE_STATUS);
 	int errorCode = intent.getIntExtra(KnoxEnterpriseLicenseManager.EXTRA_LICENSE_ERROR_CODE, 1);
@@ -1971,7 +1975,7 @@ if (action.equals(KnoxEnterpriseLicenseManager.ACTION_LICENSE_STATUS)) {
 	toast.show();
 	Log.d(TAG, "KLM Status = " + status + ",  " + "Error Code= " + errorCode + ",  " + "Extra Result Type= " + extraResult);
 }</pre>
-                                                <p>For example, if a validation request is made and passes, the following toast appears:</p>
+                                                <p>So for example, if its a validation request and it passes, the resulting toast would look like:</p>
                                                 <p><code>KLM Status = Success, Error Code = 0, Extra Result Type = 801</code>
                                                 </p>
                                             </div>
@@ -1996,17 +2000,6 @@ if (action.equals(KnoxEnterpriseLicenseManager.ACTION_LICENSE_STATUS)) {
                                         <!-- Inserts feedback module here -->
                                         <div id="feedback">
                                         </div>
-                                        <!-- Link sharing -->
-                                        <div style="text-align: center; font-size: 1.8em "><span style="font-size: 0.8em; text-transform: uppercase;font-weight: 700;">Share it:</span><a rel="external nofollow" style="width:40px;height:40px; display:inline-block" onclick="tweetFunction();" target="_blank" title="Share on Twitter"><i class="fab fa-twitter"></i></a><a rel="external nofollow" style="width:40px;height:40px; display:inline-block" onclick="linkedinFunction();" target="_blank" title="Share on LinkedIn"><i class="fab fa-linkedin-in"></i></a><a rel="external nofollow" style="width:40px;height:40px; display:inline-block" onclick="emailFunction();" target="_blank" title="Share via email"><i class="fas fa-envelope"></i></a><a rel="external nofollow" style="width:40px;height:40px; display:inline-block" onclick="copyFunction(this);" target="_blank" title="Copy to clipboard"><i class="fas fa-copy"></i></a><i style="text-align: center; font-size: 0.5em; position:absolute; "></i>
-                                        </div>
-                                        <script src="../../assets/merge/share/share-twitter.js">
-                                        </script>
-                                        <script src="../../assets/merge/share/share-linkedin.js">
-                                        </script>
-                                        <script src="../../assets/merge/share/share-email.js">
-                                        </script>
-                                        <script src="../../assets/merge/share/share-copy.js">
-                                        </script>
                                     </div>
                                     <div class="medium-3 large-3 hide-for-small-only columns">
                                         <!-- hide for side bar -->
@@ -2061,9 +2054,6 @@ if (action.equals(KnoxEnterpriseLicenseManager.ACTION_LICENSE_STATUS)) {
         </script>
         <!-- kpp footer -->
         <script src="../../assets/kpp/kpp-footer.js">
-        </script>
-        <!-- dynamic meta tags -->
-        <script type="text/javascript" src="../../assets/merge/og-meta-tags-dev.js">
         </script>
     </body>
 </html>
