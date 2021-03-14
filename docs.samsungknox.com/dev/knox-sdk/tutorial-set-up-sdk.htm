@@ -7,6 +7,7 @@
         <meta http-equiv="x-ua-compatible" content="ie=edge" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <!-- Samsung Knox fonts -->
+        <!-- Social media icons CSS-->
         <!-- Knox portal bootstrap CSS - for the header and footer and any other KP styles you use (e.g. buttons). -->
         <!-- Foundation CSS styles for body of document. -->
         <!-- Custom CSS styles. -->
@@ -32,7 +33,7 @@
 			src: url(https://cdn.Samsung.com/etc/designs/smg/global/fonts/SamsungOne-700.eot);
 			src: url(https://cdn.Samsung.com/etc/designs/smg/global/fonts/SamsungOne-700.eot?#iefix) format("embedded-opentype"),
 			url(https://cdn.Samsung.com/etc/designs/smg/global/fonts/SamsungOne-700.woff2) format("woff2"),
-			url(tutorial-set-up-sdk.htm) format("woff"),
+			url() format("woff"),
 			url(https://cdn.Samsung.com/etc/designs/smg/global/fonts/SamsungOne-700.ttf) format("truetype");
 			font-weight: 700;
 			font-style: bold;
@@ -42,10 +43,11 @@
 			src: url(https://cdn.Samsung.com/etc/designs/smg/global/fonts/SamsungOne-400.eot);
 			src: url(https://cdn.Samsung.com/etc/designs/smg/global/fonts/SamsungOne-400.eot?#iefix) format("embedded-opentype"),
 			url(https://cdn.Samsung.com/etc/designs/smg/global/fonts/SamsungOne-400.woff2) format("woff2"),
-			url(tutorial-set-up-sdk.htm) format("woff"),
+			url() format("woff"),
 			url(https://cdn.Samsung.com/etc/designs/smg/global/fonts/SamsungOne-400.ttf) format("truetype");
 			}
 		</style>
+        <link href="https://use.fontawesome.com/releases/v5.14.0/css/all.css?ver=5.5.1" rel="stylesheet" />
         <link href="../../assets/merge/kp-bootstrap.css" rel="stylesheet" />
         <link href="../../assets/merge/kp-foundation.css" rel="stylesheet" />
         <link href="../../assets/merge/kpp-madcap.css" rel="stylesheet" />
@@ -72,6 +74,10 @@
                     <div class="title-bar-left">
                         <div class="menu-icon" type="button" data-open="offCanvasLeft">
                         </div><span class="title-bar-title">Menu</span>
+                    </div>
+                </div>
+                <div class="off-canvas position-left" id="offCanvasLeft" data-off-canvas="">
+                    <div id="nav-drilldown">
                     </div>
                 </div>
                 <div class="off-canvas-content" data-off-canvas-content="">
@@ -151,7 +157,7 @@
                                                                 </li>
                                                                 <li><a href="../common/how-licenses-work.htm">How licenses work</a>
                                                                 </li>
-                                                                <li><a href="../common/license-permissions.htm">License permissions</a>
+                                                                <li><a href="https://docs.samsungknox.com/dev/common/permissions.htm">Permissions</a>
                                                                 </li>
                                                                 <li><a href="../common/knox-version-mapping.htm">Knox version mapping</a>
                                                                 </li>
@@ -843,7 +849,7 @@
                                                                         </li>
                                                                         <li><a href="faqs/operation/what-keystore-can-i-use.htm">What Keystores can I use?</a>
                                                                         </li>
-                                                                        <li><a href="https://docs.samsungknox.com/dev/knox-sdk/faqs/operation/what-kind-of-phone-numbers-are-allowed-after-setting-setemergencycallonly(true)-in-the-knox-sdk.htm">What kind of phone numbers are allowed after setting setEmergencyCallOnly(true) in the Knox SDK?</a>
+                                                                        <li><a href="faqs/operation/what-kind-of-phone-numbers-are-allowed-after-setting-setemergencycallonly_true_-in-the-knox-sdk.htm">What kind of phone numbers are allowed after setting setEmergencyCallOnly(true) in the Knox SDK?</a>
                                                                         </li>
                                                                         <li><a href="faqs/operation/what-secure-hardware-can-i-use-with-the-ucm-apis-to-store-credentials.htm">What secure hardware can I use with the UCM APIs to store credentials?</a>
                                                                         </li>
@@ -1623,7 +1629,7 @@
                                         <p class="note"><b>Note</b>: The <span class="VariablesKnoxSDK">(Undefined variable: Variables.KnoxSDK)</span> includes a JAR library file called the knoxsdk.jar. You add this library to your Android Studio project if you want to enable your app to manage devices using the <span class="VariablesKnoxSDK">(Undefined variable: Variables.KnoxSDK)</span></p>
                                         <p>For more information on creating a project in Android, see Google's page on how to <a href="https://developer.android.com/training/basics/firstapp/creating-project.html" target="_blank">Create an Android project.</a></p><![CDATA[            ]]><h2>Adding <span class="generalSDKname">Knox SDK</span> libraries to a project</h2><ol><li value="1"><p>Open the project in Android Studio.</p></li><li value="2"><p>Use a file browser to navigate to the location that the library files are stored. </p></li></ol><ol data-mc-continue="true"><li value="3">Select the<code>knoxsdk.jar</code> and copy it. <ul data-mc-continue="true"><li value="1">If you need to target lower than API level 26, you must also use the <a href="https://partner.samsungknox.com/dashboard/download" target="_blank">add-on support library jar</a>. </li></ul></li></ol><ol data-mc-continue="true"><li style="font-weight: normal;" value="4">Switch to your Android Studio project, select the <b>libs</b> directory, and paste the libraries into your project. If you do not see the <b>libs</b> directory, ensure your file browser is using 'Project' view rather than 'Android' view. You may have to create this folder yourself</li></ol><p><img src="../../images/knox-sdk/libs_300x158.png" /></p><ol data-mc-continue="true"><li value="5">A <b>copy</b> dialog appears. Click <b>OK</b> to complete copying the libraries into the project.</li></ol><p><img src="../../images/knox-sdk/copy.png" /></p><ol data-mc-continue="true"><li value="6">The libraries appear in your project under the <b>libs</b> directory:<br /><img src="../../images/knox-sdk/libs_300x158.png" /></li></ol><ol data-mc-continue="true"><li value="7"> Select the library, right-click and select <b>Add As Library...</b></li><li value="8">Select the module to add the library to, and click <b>OK</b>. If your app contains several modules, you must ensure that you add the library to the appropriate module. For the purpose of this tutorial, select the <b>app</b> module.</li></ol><p><img src="../../images/knox-sdk/Create-library_200x127.png" /></p><p>Your project now includes the Knox SDK.</p><h2 class="big"> Tutorial Progress
   
-		</h2><div class="progress" role="progressbar" tabindex="0" aria-valuenow="50" aria-valuemin="0" aria-valuetext="30 percent" aria-valuemax="100"><div class="progress-meter" style="width: 30%"></div></div><p> You are 3/10 done! <a href="tutorial-layout.htm">Go to the next step.</a></p><!-- Inserts feedback module here --><div id="feedback"></div></div>
+		</h2><div class="progress" role="progressbar" tabindex="0" aria-valuenow="50" aria-valuemin="0" aria-valuetext="30 percent" aria-valuemax="100"><div class="progress-meter" style="width: 30%"></div></div><p> You are 3/10 done! <a href="tutorial-layout.htm">Go to the next step.</a></p><!-- Inserts feedback module here --><div id="feedback"></div><!-- Link sharing --><div style="text-align: center; font-size: 1.8em "><span style="font-size: 0.8em; text-transform: uppercase;font-weight: 700;">Share it:</span><a rel="external nofollow" style="width:40px;height:40px; display:inline-block" onclick="tweetFunction();" target="_blank" title="Share on Twitter"><i class="fab fa-twitter"></i></a><a rel="external nofollow" style="width:40px;height:40px; display:inline-block" onclick="linkedinFunction();" target="_blank" title="Share on LinkedIn"><i class="fab fa-linkedin-in"></i></a><a rel="external nofollow" style="width:40px;height:40px; display:inline-block" onclick="emailFunction();" target="_blank" title="Share via email"><i class="fas fa-envelope"></i></a><a rel="external nofollow" style="width:40px;height:40px; display:inline-block" onclick="copyFunction(this);" target="_blank" title="Copy to clipboard"><i class="fas fa-copy"></i></a><i style="text-align: center; font-size: 0.5em; position:absolute; "></i></div><script src="../../assets/merge/share/share-twitter.js"></script><script src="../../assets/merge/share/share-linkedin.js"></script><script src="../../assets/merge/share/share-email.js"></script><script src="../../assets/merge/share/share-copy.js"></script></div>
                                     <div class="medium-3 large-3 hide-for-small-only columns sticky-container" data-sticky-container="" data-magellan="">
                                         <!-- hide for side bar -->
                                         <div class="sticky" data-sticky="" data-anchor="sec2">
@@ -1686,6 +1692,9 @@
         </script>
         <!-- Footer -->
         <script src="../../assets/kpp/kpp-footer.js">
+        </script>
+        <!-- dynamic meta tags -->
+        <script type="text/javascript" src="../../assets/merge/og-meta-tags-dev.js">
         </script>
     </body>
 </html>

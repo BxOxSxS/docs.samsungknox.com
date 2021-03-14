@@ -6,6 +6,7 @@
         <meta http-equiv="x-ua-compatible" content="ie=edge" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <!-- Samsung Knox fonts -->
+        <!-- Social media icons CSS-->
         <!-- Knox portal bootstrap CSS - for the header and footer and any other KP styles you use (e.g. buttons). -->
         <!-- Foundation CSS styles for body of document. -->
         <!-- Custom CSS styles. -->
@@ -31,7 +32,7 @@
 			src: url(https://cdn.Samsung.com/etc/designs/smg/global/fonts/SamsungOne-700.eot);
 			src: url(https://cdn.Samsung.com/etc/designs/smg/global/fonts/SamsungOne-700.eot?#iefix) format("embedded-opentype"),
 			url(https://cdn.Samsung.com/etc/designs/smg/global/fonts/SamsungOne-700.woff2) format("woff2"),
-			url(hardware-key-remapping-emm.htm) format("woff"),
+			url() format("woff"),
 			url(https://cdn.Samsung.com/etc/designs/smg/global/fonts/SamsungOne-700.ttf) format("truetype");
 			font-weight: 700;
 			font-style: bold;
@@ -41,10 +42,11 @@
 			src: url(https://cdn.Samsung.com/etc/designs/smg/global/fonts/SamsungOne-400.eot);
 			src: url(https://cdn.Samsung.com/etc/designs/smg/global/fonts/SamsungOne-400.eot?#iefix) format("embedded-opentype"),
 			url(https://cdn.Samsung.com/etc/designs/smg/global/fonts/SamsungOne-400.woff2) format("woff2"),
-			url(hardware-key-remapping-emm.htm) format("woff"),
+			url() format("woff"),
 			url(https://cdn.Samsung.com/etc/designs/smg/global/fonts/SamsungOne-400.ttf) format("truetype");
 			}
 		</style>
+        <link href="https://use.fontawesome.com/releases/v5.14.0/css/all.css?ver=5.5.1" rel="stylesheet" />
         <link href="../../assets/merge/kp-bootstrap.css" rel="stylesheet" />
         <link href="../../assets/merge/kp-foundation.css" rel="stylesheet" />
         <link href="../../assets/merge/kpp-madcap.css" rel="stylesheet" />
@@ -72,6 +74,10 @@
                     <div class="title-bar-left">
                         <div class="menu-icon" type="button" data-open="offCanvasLeft">
                         </div><span class="title-bar-title">Menu</span>
+                    </div>
+                </div>
+                <div class="off-canvas position-left" id="offCanvasLeft" data-off-canvas="">
+                    <div id="nav-drilldown">
                     </div>
                 </div>
                 <div class="off-canvas-content" data-off-canvas-content="">
@@ -151,7 +157,7 @@
                                                                 </li>
                                                                 <li><a href="../common/how-licenses-work.htm">How licenses work</a>
                                                                 </li>
-                                                                <li><a href="../common/license-permissions.htm">License permissions</a>
+                                                                <li><a href="https://docs.samsungknox.com/dev/common/permissions.htm">Permissions</a>
                                                                 </li>
                                                                 <li><a href="../common/knox-version-mapping.htm">Knox version mapping</a>
                                                                 </li>
@@ -843,7 +849,7 @@
                                                                         </li>
                                                                         <li><a href="faqs/operation/what-keystore-can-i-use.htm">What Keystores can I use?</a>
                                                                         </li>
-                                                                        <li><a href="https://docs.samsungknox.com/dev/knox-sdk/faqs/operation/what-kind-of-phone-numbers-are-allowed-after-setting-setemergencycallonly(true)-in-the-knox-sdk.htm">What kind of phone numbers are allowed after setting setEmergencyCallOnly(true) in the Knox SDK?</a>
+                                                                        <li><a href="faqs/operation/what-kind-of-phone-numbers-are-allowed-after-setting-setemergencycallonly_true_-in-the-knox-sdk.htm">What kind of phone numbers are allowed after setting setEmergencyCallOnly(true) in the Knox SDK?</a>
                                                                         </li>
                                                                         <li><a href="faqs/operation/what-secure-hardware-can-i-use-with-the-ucm-apis-to-store-credentials.htm">What secure hardware can I use with the UCM APIs to store credentials?</a>
                                                                         </li>
@@ -1589,20 +1595,20 @@
                                             <li value="2">Enforce hardware key associations to an ISV app so device users cannot make changes to the corporate policy.</li>
                                             <li value="3">Map both the XCover and Top keys seamlessly.</li>
                                         </ul>
-                                        <div class="callout success"><b>NOTE</b> — There is no cost to ISVs to integrate. However, a IT admin needs to have any one of the following paid <a href="../common/knox-licenses.htm">Knox licenses</a> loaded into their EMM or similar device management service to use this functionality:</div>
+                                        <div class="callout success"><b>NOTE</b> — There is no cost to ISVs to integrate. However, a IT admin needs to have any one of the following paid <a href="../common/knox-licenses.htm">Knox product licenses</a> loaded into their EMM or similar device management service to use this functionality:</div>
                                         <ol>
-                                            <li value="1">EMM Service Licenses (to be used on a customer’s EMM service)<ol style="list-style-type: lower-alpha;"><li value="1">Knox Platform for Customization license</li><li value="2">Knox Platform for Enterprise - Premium Edition license</li></ol></li>
-                                            <li value="2">Non EMM Licenses (Standalone Knox configuration product)<ol style="list-style-type: lower-alpha;"><li value="1">Knox Configure Setup or Dynamic License (Coming soon. Expected timeline: September 2020)</li></ol></li>
+                                            <li value="1">Knox Service Plugin (used on a customer’s EMM service)<ol style="list-style-type: lower-alpha;"><li value="1">Knox Platform for Customization license</li><li value="2">Knox Platform for Enterprise - Premium Edition license</li></ol></li>
+                                            <li value="2">Knox Configure (Standalone Knox product)<ol style="list-style-type: lower-alpha;"><li value="1">Knox Configure (Setup or Dynamic Edition) license</li></ol></li>
                                         </ol>
-                                        <h2>Handle hardware key intents</h2>
+                                        <h2>Handle hardware key intents (custom intent only)</h2>
                                         <p>Setting up an ISV app for a managed integration requires two things:</p>
                                         <ul>
-                                            <li value="1">Ensure the ISV app includes logic to receive and handle XCover and Top key intents by registering a receiver intent for KEY_ACTION_UP and KEY_ACTION_DOWN for each key.</li>
+                                            <li value="1">Ensure the ISV app includes logic to receive and handle XCover and Top key intents by registering a receiver intent for key press and key release for each key.</li>
                                             <li value="2">Include metadata in your AndroidManifest.xml file to register your static intents as shown below 
 		</li>
                                         </ul>
                                         <h2>Define custom intents</h2>
-                                        <p>Register a custom intent so the Knox Service Plugin can wake the app to handle a button event. Define the intents in your manifest file as follows:</p><pre class="prettyprint" xml:space="preserve">&lt;receiver
+                                        <p>Register a custom intent so the Knox Service Plugin and/or the Knox Configure can wake the app to handle a button event. Define the intents in your manifest file as follows:</p><pre class="prettyprint" xml:space="preserve">&lt;receiver
   android:name=".PTTKeyReceiver"
   android:permission="com.samsung.android.knox.permission.KNOX_CUSTOM_SETTING"
   android:exported="true" &gt;
@@ -1612,17 +1618,24 @@
   &lt;/intent-filter&gt;
 &lt;/receiver&gt;
 </pre>
-                                        <p>To ensure your app is listening to intent actions only from the Knox Service Plugin, you add the above KNOX_CUSTOM_SETTING permission in the receiver, which is platform signature protected.</p>
+                                        <p>To ensure your app is listening to intent actions only from the Knox Service Plugin or the Knox Configure, you add the above KNOX_CUSTOM_SETTING permission in the receiver, which is platform signature protected.</p>
                                         <h2>Provide custom intents to IT admin</h2>
-                                        <p>The customer can plug the custom intents into the Knox Service Plugin in their preferred EMM service.</p>
-                                        <p>There are two settings for each Hardware Key:</p>
-                                        <ul>
-                                            <li value="1">Button Press: Ask IT&#160;admins to enter the custom intent  defined for KEY_ACTION_DOWN.</li>
-                                            <li value="2">Button Release: Ask IT&#160;admins to enter the custom intent defined for KEY_ACTION_UP.</li>
-                                        </ul>
+                                        <p>The customer can plug the custom intents into the Knox Service Plugin in their preferred EMM service or the Knox Configure.</p>
+                                        <p>Please ask IT admins to enter the custom intent defined for key press and release, respectively.</p>
                                         <!-- Inserts feedback module here -->
                                         <div id="feedback">
                                         </div>
+                                        <!-- Link sharing -->
+                                        <div style="text-align: center; font-size: 1.8em "><span style="font-size: 0.8em; text-transform: uppercase;font-weight: 700;">Share it:</span><a rel="external nofollow" style="width:40px;height:40px; display:inline-block" onclick="tweetFunction();" target="_blank" title="Share on Twitter"><i class="fab fa-twitter"></i></a><a rel="external nofollow" style="width:40px;height:40px; display:inline-block" onclick="linkedinFunction();" target="_blank" title="Share on LinkedIn"><i class="fab fa-linkedin-in"></i></a><a rel="external nofollow" style="width:40px;height:40px; display:inline-block" onclick="emailFunction();" target="_blank" title="Share via email"><i class="fas fa-envelope"></i></a><a rel="external nofollow" style="width:40px;height:40px; display:inline-block" onclick="copyFunction(this);" target="_blank" title="Copy to clipboard"><i class="fas fa-copy"></i></a><i style="text-align: center; font-size: 0.5em; position:absolute; "></i>
+                                        </div>
+                                        <script src="../../assets/merge/share/share-twitter.js">
+                                        </script>
+                                        <script src="../../assets/merge/share/share-linkedin.js">
+                                        </script>
+                                        <script src="../../assets/merge/share/share-email.js">
+                                        </script>
+                                        <script src="../../assets/merge/share/share-copy.js">
+                                        </script>
                                     </div>
                                     <div class="medium-3 large-3 hide-for-small-only columns sticky-container" data-sticky-container="" data-magellan="">
                                         <!-- hide for side bar -->
@@ -1686,6 +1699,9 @@
         </script>
         <!-- Footer -->
         <script src="../../assets/kpp/kpp-footer.js">
+        </script>
+        <!-- dynamic meta tags -->
+        <script type="text/javascript" src="../../assets/merge/og-meta-tags-dev.js">
         </script>
     </body>
 </html>

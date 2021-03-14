@@ -6,6 +6,7 @@
         <meta http-equiv="x-ua-compatible" content="ie=edge" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <!-- Samsung Knox fonts -->
+        <!-- Social media icons CSS-->
         <!-- Knox portal bootstrap CSS - for the header and footer and any other KP styles you use (e.g. buttons). -->
         <!-- Foundation CSS styles for body of document. -->
         <!-- Custom CSS styles. -->
@@ -31,7 +32,7 @@
 			src: url(https://cdn.Samsung.com/etc/designs/smg/global/fonts/SamsungOne-700.eot);
 			src: url(https://cdn.Samsung.com/etc/designs/smg/global/fonts/SamsungOne-700.eot?#iefix) format("embedded-opentype"),
 			url(https://cdn.Samsung.com/etc/designs/smg/global/fonts/SamsungOne-700.woff2) format("woff2"),
-			url(whats-new.htm) format("woff"),
+			url() format("woff"),
 			url(https://cdn.Samsung.com/etc/designs/smg/global/fonts/SamsungOne-700.ttf) format("truetype");
 			font-weight: 700;
 			font-style: bold;
@@ -41,10 +42,11 @@
 			src: url(https://cdn.Samsung.com/etc/designs/smg/global/fonts/SamsungOne-400.eot);
 			src: url(https://cdn.Samsung.com/etc/designs/smg/global/fonts/SamsungOne-400.eot?#iefix) format("embedded-opentype"),
 			url(https://cdn.Samsung.com/etc/designs/smg/global/fonts/SamsungOne-400.woff2) format("woff2"),
-			url(whats-new.htm) format("woff"),
+			url() format("woff"),
 			url(https://cdn.Samsung.com/etc/designs/smg/global/fonts/SamsungOne-400.ttf) format("truetype");
 			}
 		</style>
+        <link href="https://use.fontawesome.com/releases/v5.14.0/css/all.css?ver=5.5.1" rel="stylesheet" />
         <link href="../../assets/merge/kp-bootstrap.css" rel="stylesheet" />
         <link href="../../assets/merge/kp-foundation.css" rel="stylesheet" />
         <link href="../../assets/merge/kpp-madcap.css" rel="stylesheet" />
@@ -154,7 +156,7 @@
                                                                 </li>
                                                                 <li><a href="../common/how-licenses-work.htm">How licenses work</a>
                                                                 </li>
-                                                                <li><a href="../common/license-permissions.htm">License permissions</a>
+                                                                <li><a href="https://docs.samsungknox.com/dev/common/permissions.htm">Permissions</a>
                                                                 </li>
                                                                 <li><a href="../common/knox-version-mapping.htm">Knox version mapping</a>
                                                                 </li>
@@ -846,7 +848,7 @@
                                                                         </li>
                                                                         <li><a href="../knox-sdk/faqs/operation/what-keystore-can-i-use.htm">What Keystores can I use?</a>
                                                                         </li>
-                                                                        <li><a href="https://docs.samsungknox.com/dev/knox-sdk/faqs/operation/what-kind-of-phone-numbers-are-allowed-after-setting-setemergencycallonly(true)-in-the-knox-sdk.htm">What kind of phone numbers are allowed after setting setEmergencyCallOnly(true) in the Knox SDK?</a>
+                                                                        <li><a href="../knox-sdk/faqs/operation/what-kind-of-phone-numbers-are-allowed-after-setting-setemergencycallonly_true_-in-the-knox-sdk.htm">What kind of phone numbers are allowed after setting setEmergencyCallOnly(true) in the Knox SDK?</a>
                                                                         </li>
                                                                         <li><a href="../knox-sdk/faqs/operation/what-secure-hardware-can-i-use-with-the-ucm-apis-to-store-credentials.htm">What secure hardware can I use with the UCM APIs to store credentials?</a>
                                                                         </li>
@@ -1598,7 +1600,64 @@
                                         <div class="tabs-content" data-tabs-content="example-tabs">
                                             <div class="tabs-panel is-active" id="panel2">
                                                 <h2>Knox Mobile Enrollment 1.1</h2>
-                                                <p>Note that the server endpoint is still v1.</p>
+                                                <p>Note that the server endpoint is still v1.1</p>
+                                                <p><i>December 2020</i>
+                                                </p>
+                                                <p>The following&#160;APIs were updated:</p>
+                                                <table style="width: 100%;">
+                                                    <col style="width: 350px;" />
+                                                    <col />
+                                                    <tbody>
+                                                        <tr>
+                                                            <td style="font-weight: bold;text-align: center;">API</td>
+                                                            <td style="font-weight: bold;text-align: center;">Updates</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td><code>POST /kcs/v1/kme/profiles/create</code>
+                                                                <br /><code>POST /kcs/v1/kme/profiles/createAsync</code>
+                                                            </td>
+                                                            <td>
+                                                                <ul>
+                                                                    <li value="1">The <code>aeEnabled</code> parameter was added. If the MDM supports out-of-box work profile creation through PO mode, set <code>aeEnabled</code> to true and configure PO profile enrollment settings for Android 10 and above devices. This setting is echoed in the response.</li>
+                                                                    <li value="2">The <code>supportPhoneNumber</code> parameter is now required only if doEnabled is false.</li>
+                                                                    <li value="3">The <code>supportEmailAddress</code> is now required only if doEnabled is false.</li>
+                                                                    <li value="4">When <code>doEnabled</code> is true, the Android Enterprise profile settings screen is now displayed with settings for configuring a DO-supported enrollment profile. When <code>doEnabled</code> is set to false, the Android Enterprise profile settings screen is also displayed (if running Android 10 or later) to let the MDM optionally enroll the device in PO (Profile Owner) mode.</li>
+                                                                    <li value="5">The <code>skipSetupWizard</code> parameter was modified such that if <code>doEnabled</code> or <code>aeEnabled</code> is true, <code>skipSetupWizard</code> should also be set to true.</li>
+                                                                    <li value="6">The <code>supportedMDM</code> parameter was modified such that if <code>doEnabled</code> or <code>aeEnabled</code> is true, <code>supportedMDM</code> is required.</li>
+                                                                    <li value="7">The <code>allowUserCancel</code> parameter was modified such that if <code>doEnabled</code> or <code>aeEnabled</code> is true, <code>allowUserCancel</code> should be set to false.</li>
+                                                                </ul>
+                                                            </td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td><code>PUT /kcs/v1/kme/profiles/{profileId}</code>
+                                                            </td>
+                                                            <td>This API was added. It updates all details of a particular profile.</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td><code>GET /kcs/v1/kme/profiles/list</code>
+                                                            </td>
+                                                            <td>
+                                                                <ul>
+                                                                    <li value="1">The <code>resellerId</code> query parameter was added. It can be used to retrieve a list of Profile Alias objects.</li>
+                                                                    <li value="2">The <code>profileAlias</code> property was added to the response.</li>
+                                                                </ul>
+                                                            </td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td><code>PUT /kcs/v1/kme/profiles/{id}</code>
+                                                            </td>
+                                                            <td>This API was removed because it is the same as <code>PUT /kcs/v1/kme/profiles/{profileId}</code>.</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td><code>POST /kcs/v1/kme/reseller/profilealias</code>
+                                                                <br /><code>PUT /kcs/v1/kme/reseller/profilealias</code>
+                                                                <br /><code>DELETE /kcs/v1/kme/reseller/profilealias</code>
+                                                                <br />
+                                                            </td>
+                                                            <td>These APIs were added. They allow the creation, modification, or deletion of a Profile Alias. A Profile Alias is shared to a reseller so they can automatically assign profiles to approved uploads.</td>
+                                                        </tr>
+                                                    </tbody>
+                                                </table>
                                                 <p><i>July 2020</i>
                                                 </p>
                                                 <ul>
@@ -1633,6 +1692,17 @@
                                         <!-- Inserts feedback module here -->
                                         <div id="feedback">
                                         </div>
+                                        <!-- Link sharing -->
+                                        <div style="text-align: center; font-size: 1.8em "><span style="font-size: 0.8em; text-transform: uppercase;font-weight: 700;">Share it:</span><a rel="external nofollow" style="width:40px;height:40px; display:inline-block" onclick="tweetFunction();" target="_blank" title="Share on Twitter"><i class="fab fa-twitter"></i></a><a rel="external nofollow" style="width:40px;height:40px; display:inline-block" onclick="linkedinFunction();" target="_blank" title="Share on LinkedIn"><i class="fab fa-linkedin-in"></i></a><a rel="external nofollow" style="width:40px;height:40px; display:inline-block" onclick="emailFunction();" target="_blank" title="Share via email"><i class="fas fa-envelope"></i></a><a rel="external nofollow" style="width:40px;height:40px; display:inline-block" onclick="copyFunction(this);" target="_blank" title="Copy to clipboard"><i class="fas fa-copy"></i></a><i style="text-align: center; font-size: 0.5em; position:absolute; "></i>
+                                        </div>
+                                        <script src="../../assets/merge/share/share-twitter.js">
+                                        </script>
+                                        <script src="../../assets/merge/share/share-linkedin.js">
+                                        </script>
+                                        <script src="../../assets/merge/share/share-email.js">
+                                        </script>
+                                        <script src="../../assets/merge/share/share-copy.js">
+                                        </script>
                                     </div>
                                     <div class="medium-3 large-3 hide-for-small-only columns">
                                         <!-- hide for side bar -->
@@ -1687,6 +1757,9 @@
         </script>
         <!-- kpp footer -->
         <script src="../../assets/kpp/kpp-footer.js">
+        </script>
+        <!-- dynamic meta tags -->
+        <script type="text/javascript" src="../../assets/merge/og-meta-tags-dev.js">
         </script>
     </body>
 </html>

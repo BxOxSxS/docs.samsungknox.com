@@ -1,11 +1,12 @@
 <!DOCTYPE html>
 <html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" lang="en-US" xml:lang="en-US" data-mc-search-type="Stem" data-mc-help-system-file-name="Default.xml" data-mc-path-to-help-system="../" data-mc-conditions="Builds.kdp-build" data-mc-target-type="WebHelp2" data-mc-runtime-file-type="Topic;Default" data-mc-preload-images="false" data-mc-in-preview-mode="false" data-mc-toc-path="Web services|Knox Deployment Program">
     <head>
-        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" /><title>Tutorial: How to use Knox Deployment Program REST APIs</title>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" /><title>Knox Deployment Program (KDP) Integration</title>
         <meta charset="utf-8" />
         <meta http-equiv="x-ua-compatible" content="ie=edge" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <!-- Samsung Knox fonts -->
+        <!-- Social media icons CSS-->
         <!-- Knox portal bootstrap CSS - for the header and footer and any other KP styles you use (e.g. buttons). -->
         <!-- Foundation CSS styles for body of document. -->
         <!-- Custom CSS styles. -->
@@ -31,7 +32,7 @@
 			src: url(https://cdn.Samsung.com/etc/designs/smg/global/fonts/SamsungOne-700.eot);
 			src: url(https://cdn.Samsung.com/etc/designs/smg/global/fonts/SamsungOne-700.eot?#iefix) format("embedded-opentype"),
 			url(https://cdn.Samsung.com/etc/designs/smg/global/fonts/SamsungOne-700.woff2) format("woff2"),
-			url(tutorial.htm) format("woff"),
+			url() format("woff"),
 			url(https://cdn.Samsung.com/etc/designs/smg/global/fonts/SamsungOne-700.ttf) format("truetype");
 			font-weight: 700;
 			font-style: bold;
@@ -41,10 +42,11 @@
 			src: url(https://cdn.Samsung.com/etc/designs/smg/global/fonts/SamsungOne-400.eot);
 			src: url(https://cdn.Samsung.com/etc/designs/smg/global/fonts/SamsungOne-400.eot?#iefix) format("embedded-opentype"),
 			url(https://cdn.Samsung.com/etc/designs/smg/global/fonts/SamsungOne-400.woff2) format("woff2"),
-			url(tutorial.htm) format("woff"),
+			url() format("woff"),
 			url(https://cdn.Samsung.com/etc/designs/smg/global/fonts/SamsungOne-400.ttf) format("truetype");
 			}
 		</style>
+        <link href="https://use.fontawesome.com/releases/v5.14.0/css/all.css?ver=5.5.1" rel="stylesheet" />
         <link href="../../assets/merge/kp-bootstrap.css" rel="stylesheet" />
         <link href="../../assets/merge/kp-foundation.css" rel="stylesheet" />
         <link href="../../assets/merge/kpp-madcap.css" rel="stylesheet" />
@@ -71,6 +73,10 @@
                     <div class="title-bar-left">
                         <div class="menu-icon" type="button" data-open="offCanvasLeft">
                         </div><span class="title-bar-title">Menu</span>
+                    </div>
+                </div>
+                <div class="off-canvas position-left" id="offCanvasLeft" data-off-canvas="">
+                    <div id="nav-drilldown">
                     </div>
                 </div>
                 <div class="off-canvas-content" data-off-canvas-content="">
@@ -150,7 +156,7 @@
                                                                 </li>
                                                                 <li><a href="../common/how-licenses-work.htm">How licenses work</a>
                                                                 </li>
-                                                                <li><a href="../common/license-permissions.htm">License permissions</a>
+                                                                <li><a href="https://docs.samsungknox.com/dev/common/permissions.htm">Permissions</a>
                                                                 </li>
                                                                 <li><a href="../common/knox-version-mapping.htm">Knox version mapping</a>
                                                                 </li>
@@ -842,7 +848,7 @@
                                                                         </li>
                                                                         <li><a href="../knox-sdk/faqs/operation/what-keystore-can-i-use.htm">What Keystores can I use?</a>
                                                                         </li>
-                                                                        <li><a href="https://docs.samsungknox.com/dev/knox-sdk/faqs/operation/what-kind-of-phone-numbers-are-allowed-after-setting-setemergencycallonly(true)-in-the-knox-sdk.htm">What kind of phone numbers are allowed after setting setEmergencyCallOnly(true) in the Knox SDK?</a>
+                                                                        <li><a href="../knox-sdk/faqs/operation/what-kind-of-phone-numbers-are-allowed-after-setting-setemergencycallonly_true_-in-the-knox-sdk.htm">What kind of phone numbers are allowed after setting setEmergencyCallOnly(true) in the Knox SDK?</a>
                                                                         </li>
                                                                         <li><a href="../knox-sdk/faqs/operation/what-secure-hardware-can-i-use-with-the-ucm-apis-to-store-credentials.htm">What secure hardware can I use with the UCM APIs to store credentials?</a>
                                                                         </li>
@@ -1581,144 +1587,152 @@
                                                 </ul>
                                             </div>
                                         </nav>
-                                        <h1>Tutorial: How to use Knox Deployment Program REST APIs</h1>
-                                        <p>Follow these steps to get started with the KDP APIs.</p>
-                                        <ol>
-                                            <li value="1">Sign up for the Knox Deployment Program.</li>
-                                            <li value="2">Request access to the Knox Cloud APIs service.</li>
-                                            <li value="3">Generate your unique Client Identifier and download your key pair from the portal, Knox Cloud
-            APIs.</li>
-                                            <li value="4">Create your access token.</li>
-                                            <li value="5">Upload customer devices.</li>
-                                            <li value="6">Check the status of the upload.</li>
-                                            <li value="7">Delete customer devices.</li>
-                                        </ol>
+                                        <h1>Knox Deployment Program (KDP) Integration</h1>
+                                        <p>The aim of this integration is to be able to upload customer devices that are sold through [CARRIER COMPANY] with their customer-side Samsung Knox services, such as <a href="https://www.samsungknox.com/en/solutions/it-solutions/knox-mobile-enrollment">Knox Mobile Enrollment</a> and <a href="https://www.samsungknox.com/en/solutions/it-solutions/knox-mobile-enrollment">Knox Configure</a>.</p>
+                                        <ul>
+                                            <li value="1">Prerequisites and Documentation (General Steps)</li>
+                                            <ol>
+                                                <li value="1">Creating a Knox Deployment Program (KDP) account</li>
+                                                <li value="2">Applying for KDP&#160;API access andgetting your Access Key Pair</li>
+                                                <li value="3">Ensuring you can generate session tokens (requires coding)</li>
+                                                <li value="4">Create your access token</li>
+                                                <li value="5">Integrating with the KDP APIs (requires coding)</li>
+                                                <li value="6">Testing your KDP API Integration</li>
+                                                <li value="7">Integrating you KDP integration with <b>[CARRIER&#160;COMPANY]</b> internal systems</li>
+                                                <li value="8">Go Live with your KDP&#160;API Integration</li>
+                                            </ol>
+                                        </ul>
                                         <h2>Step 1: Sign up for the Knox Deployment Program
     </h2>
                                         <ol>
-                                            <li value="1">
-                                                <p>Register for a <a href="https://www.samsungknox.com/en/for-resellers">Samsung Knox account as
-                    a reseller</a>. Follow these steps on getting access to the KDP Portal from the KDP
-                Portal admin guide:</p>
-                                                <p> a. Select <strong>APPLY NOW</strong> to submit your Knox Deployment Program application.</p>
-                                                <p> b. A screen displays cautioning that once you have registered from the Knox Deployment
-                Program (KDP) you are not able to register for Knox IT solutions such as Knox Configure
-                (KC), Samsung SDS IAM &amp; EMM, Knox Mobile Enrollment (KME), and Knox Manage. If satisfied
-                with those conditions, select <strong>CONTINUE</strong> to proceed.</p>
-                                                <p> c. Enter your business email address to <strong>Register for Samsung Knox web
-                    portal</strong>. Select <strong>NEXT</strong> to continue.</p>
-                                                <p> d. If you need to create a <strong>Samsung account</strong>, complete the required fields
-                and select <strong>Continue</strong> to proceed. You will receive an email verification
-                screen prompting you whether the provided credentials are correct. Select
-                <strong>DONE</strong> to proceed if the listed email address is correct. If not correct,
-                follow the steps listed within the email verification screen.</p>
+                                            <li value="1"><a href="../../admin/knox-deployment-program/reseller-portal-access.htm">Get access to the Reseller Portal</a>
                                             </li>
                                             <li value="2">Login to your account through the KDP Portal within <a href="https://www2.samsungknox.com/en/user">the
                 Samsung Knox dashboard</a>.</li>
                                             <li value="3">Select <strong>LAUNCH CONSOLE</strong> to open <a href="https://us-kc-portal.samsungknox.com/reseller/">the
                 KDP Portal console</a>.</li>
-                                            <li value="4">Find your <code>resellerId</code> in the main dashboard of the console.</li>
+                                            <li value="4">Find your <code>resellerId</code> in the main dashboard of the console</li>
+                                            <li value="5">
+                                                <p>As soon as you apply, please email the [SALES ENGINEER] to let them know that the application has taken place.</p>
+                                            </li>
+                                            <ul>
+                                                <li value="1">Please provide the Samsung account (email address) that you have used to apply </li>
+                                                <li value="2">This will fast-track your application</li>
+                                            </ul>
                                         </ol>
-                                        <h2>Step 2: Request access to the Knox Cloud
-        APIs service</h2>
-                                        <p>Apply for Knox Cloud API access to the cloud REST service by contacting your local Samsung
-        representative or <a href="https://www2.samsungknox.com/en/user">raising a support ticket</a>. This
-        provides portal access to the Knox Cloud APIs to generate the authentication token sent in the
-        header of a request. For more information, see the <a href="../common/web-services.htm">Knox Web Services overview</a>.</p>
-                                        <h2>
-        Step 3: Generate your unique Client Identifier and download your key pair from the portal, Knox
-        Cloud APIs</h2>
-                                        <p>Download your unique key pair and <code>clientIdentifier</code> from the Knox Cloud APIs. The
+                                        <h2>Step 2: Applying for KDP&#160;API&#160;access and getting your Access Key Pair</h2>
+                                        <p>As soon as you get your KDP&#160;account, log into the <a href="https://www.samsungknox.com/en/for-resellers">Samsung Knox Resellers page</a>.</p>
+                                        <ul>
+                                            <li value="1">Click on "Apply for KDP API access"</li>
+                                            <li value="2">Please email the <b>[SALES ENGINEER]</b> to let them know</li>
+                                            <ul>
+                                                <li value="1">Alternatively, you can apply for Knox Cloud API access to the cloud REST service by contacting your local Samsung
+					representative or <a href="https://www2.samsungknox.com/en/user">raise a support ticket</a></li>
+                                            </ul>
+                                            <li value="3">Once you receive your API access approval, log into the <a href="https://www.samsungknox.com/en/for-resellers">Samsung Knox Resellers page</a></li>
+                                            <li value="4">Download your Key pair and generate your <code>clientIdentifier</code> from the Knox Cloud APIs by following Steps 1, 2 and 3 of the <a href="../knox-cloud-authentication/tutorial.htm">Knox Cloud Authentication Developer Guide</a><ul><li value="1">The
         <code>clientIdentifier</code> can be re-generated through the console, but must be bound to the
         downloaded certificate, as described in the <a href="../common/web-services.htm">Knox Web Services overview
-        </a>.</p>
+     </a>.</li></ul></li>
+                                        </ul>
+                                        <p>For more information, see the <a href="../common/web-services.htm">Knox Web Services overview</a>.</p>
+                                        <h2>
+        Step 3: Ensure you can generate session tokens</h2>
+                                        <p>Creating the session token is a security-heavy process and is required for any Cloud API call.</p>
+                                        <ul>
+                                            <li value="1">Follow Steps 4-8 of the <a href="../knox-cloud-authentication/tutorial.htm">Knox Cloud Authentication Developer Guide</a></li>
+                                            <li value="2">As a practical guide, use the attached sample Javascript token signing and session token generating code.<ul><li value="1">There are Javascript and Native Java libraries to integrate.</li><li value="2">We created a sample script on Javascript, based on the APIs for the Knox Cloud APIs Integration.<ol><li value="1">The name of the file is <a href="SampleSessionID-GeneratingCode.gz">SampleSessionID-GeneratingCode.gz</a></li><li value="2">The .gz file can be opened with Winzip. It needs to be renamed as .js and is meant to be run with node (The file name is modified so your antivirus does nott catch it).</li><li value="3">You need to install node.js and the Samsung javascript libraries as per the guide</li></ol></li></ul></li>
+                                        </ul>
                                         <h2>Step 4: Create your access token</h2>
                                         <p>Call the <code>access token</code> REST API to generate your access token
         <code>x-knox-apitoken</code>.</p>
                                         <p><strong>Note:</strong> For security reasons, the access token has an expiry of 30 minutes. Regenerate
         as specified in the <a href="../common/web-services.htm">Knox Web Services overview</a>.</p>
-                                        <h2>Step 5: Upload customer devices</h2>
-                                        <p>Now that you have your <code>resellerId</code> and access token <code>x-knox-apitoken</code>,
-        asynchronously register a customer's device by calling the <a href="../../devref/knox-deployment-program/index.htm#operation/uploadDevicesUsingPUT">Upload
-            Devices</a> API.</p><pre class="prettyprint" xml:space="preserve">
+                                        <h2>Step 5: Integrating with the KDP APIs</h2>
+                                        <p>At a minimum, these are the APIs that you need to integrate with:</p>
+                                        <ul>
+                                            <li value="1"><a href="../../devref/knox-deployment-program/index.htm#operation/uploadDevicesUsingPUT">Upload Devices</a>
+                                            </li>
+                                        </ul><pre class="prettyprint" xml:space="preserve">
     PUT /kcs/v1/rp/devices/upload HTTP/1.1
     host: https://us-kcs-api.samsungknox.com
     content-type: application/json
     x-knox-apitoken: "&lt;insert-token-step-4&gt;"
-
-    {
-        "customerId": "string",
-        "resellerId": "string",
-        "transactionId": "string",
-        "devices": [
-        "string"
-        ],
-        "type": "IMEI",
-        "orderNo": "string",
-        "orderTime": 1542405655,
-        "vendorId": "string"
-    }</pre>
-                                        <h2>Step 6: Check the status of the upload</h2>
+</pre>
                                         <ul>
-                                            <li value="1">
-                                                <p>Next, use the <a href="../../devref/knox-deployment-program/index.htm#operation/getDeviceTransactionStatusUsingGET">List Device Transaction Status</a> API to check if the upload was successful.</p><pre class="prettyprint" xml:space="preserve">
+                                            <li value="1"><a href="../../devref/knox-deployment-program/index.htm#operation/getDeviceTransactionStatusUsingGET">List Device Transaction Status</a>
+                                            </li>
+                                        </ul><pre class="prettyprint" xml:space="preserve">
     GET /kcs/v1/rp/devices/status?resellerId="&lt;your-reseller-id&gt;"&amp;customerId="&lt;your-customer-id&gt;"; HTTP/1.1
     host: https://us-kcs-api.samsungknox.com
     content-type:application/json
     x-knox-apitoken: "&lt;insert-token-step-4&gt;"</pre>
+                                        <ul>
+                                            <li value="1"><a href="../../devref/knox-deployment-program/index.htm#operation/deleteDevicesUsingPUT">Delete
+            Devices</a>
                                             </li>
-                                            <li value="2">
-                                                <p>Optionally, you can use the <a href="../../devref/knox-deployment-program/index.htm#operation/getDevicesUsingGET">List Devices</a> API to
-                view all successfully loaded devices for a customer.</p><pre class="prettyprint" xml:space="preserve">
-    GET /kcs/v1/rp/devices?resellerId="&lt;your-reseller-id&gt;"&amp;pageSize=100&amp;pageNum=0
-    host: https://us-kcs-api.samsungknox.com
-    content-type:application/json
-    x-knox-apitoken: "&lt;insert-token-step-4&gt;"</pre>
-                                            </li>
-                                            <li value="3">
-                                                <p>Optionally, you can also access the list of customers in your portal by using the <a href="../../devref/knox-deployment-program/index.htm#operation/getAssociatedCustomersUsingGET">List Reseller's Customers</a> API.</p><pre class="prettyprint" xml:space="preserve">
-    GET /kcs/v1/rp/customers/list?resellerId="%lt;your-reseller-id&gt;" HTTP/1.1
-    content-type:application/json
-    x-knox-apitoken: "&lt;insert-token-step-4&gt;"
-    host: https://us-kcs-api.samsungknox.com</pre>
-                                            </li>
-                                        </ul>
-                                        <h2>Step 7: Delete customer devices</h2>
-                                        <p>Lastly, if you want to remove a device, you can call the <a href="../../devref/knox-deployment-program/index.htm#operation/deleteDevicesUsingPUT">Delete
-            Devices</a> API.</p><pre class="prettyprint" xml:space="preserve">
+                                        </ul><pre class="prettyprint" xml:space="preserve">
     PUT /kcs/v1/rp/devices/delete HTTP/1.1
     host: https://us-kcs-api.samsungknox.com
     content-type:application/json
     x-knox-apitoken: "&lt;insert-token-step-4&gt;"
-
-    // Using Remove Transaction ID
-    {
-        "customerId": "string",
-        "resellerId": "string",
-        "transactionId": "string",
-        "removeTransactionId": "string",
-        "type": "string",
-        "vendorId": "string"
-    }
-
-    // Using Device List
-    {
-        "customerId": "string",
-        "resellerId": "string",
-        "transactionId": "string",
-        "devices": [
-        "string"
-        ],
-        "type": "string",
-        "vendorId": "string"
-    }</pre>
+</pre>
+                                        <ul>
+                                            <li value="1">Optionally, you can use the <a href="../../devref/knox-deployment-program/index.htm#operation/getDevicesUsingGET">List Devices</a> API to
+                view all successfully loaded devices for a customer.</li>
+                                        </ul><pre class="prettyprint" xml:space="preserve">
+    GET /kcs/v1/rp/devices?resellerId="&lt;your-reseller-id&gt;"&amp;pageSize=100&amp;pageNum=0
+    host: https://us-kcs-api.samsungknox.com
+    content-type:application/json
+    x-knox-apitoken: "&lt;insert-token-step-4&gt;"</pre>
+                                        <ul>
+                                            <li value="1">You can also access the list of customers in your portal by using the <a href="../../devref/knox-deployment-program/index.htm#operation/getAssociatedCustomersUsingGET">List Reseller's Customers</a> API (optional as well).
+            </li>
+                                        </ul><pre class="prettyprint" xml:space="preserve">
+    GET /kcs/v1/rp/customers/list?resellerId="%lt;your-reseller-id&gt;" HTTP/1.1
+    content-type:application/json
+    x-knox-apitoken: "&lt;insert-token-step-4&gt;"
+    host: https://us-kcs-api.samsungknox.com</pre>
+                                        <p>Evaluate any additional APIs and specific methods with which you might wish to integrate.</p>
                                         <p>As a participating KDP reseller, you are responsible for uploading devices purchased by your
         customers for access to Knox Mobile Enrollment, Knox Configure, and other Knox cloud services. The
         association between the reseller and the customer is automatically created during a device’s first
-        upload based on their <code>customerId</code>.</p>
+        upload based on their <code>customerId</code>.<br /></p>
+                                        <h2>Step 6: Testing your KDP&#160;API&#160;Integration</h2>
+                                        <p>Since you are testing as a <u>Samsung Device Vendor</u> you will need a Samsung Knox Customer-Side Knox Mobile Enrollment account for testing the end-to-end flow.</p>
+                                        <p>Create a <b>different</b> Knox Portal account than the account used on Step 1 above.</p>
+                                        <ul>
+                                            <li value="1">Head to the<a href="https://www.samsungknox.com/en/for-resellers"> Samsung Knox Customers page</a>.</li>
+                                            <li value="2">Click on "Enroll" (top, right-hand side).</li>
+                                            <li value="3">This application button will have you create a Samsung Account.</li>
+                                            <li value="4">This means that you will temporarily be taken to account.samsung.com where you can create a Samsung account with a test email address.<ol><li value="1">You can use any email address that is not from a free email provider (i.e. use a business email address).</li><li value="2">The Samsung Account will serve as the Single Sign On for the Knox Portal.</li></ol></li>
+                                            <li value="5">Once you create the Samsung Account, you will be re-routed back to the main Knox Portal and will have access.</li>
+                                        </ul>
+                                        <p>Get Knox Mobile Enrollment access for your newly-created test account.</p>
+                                        <ul>
+                                            <li value="1">Once you are inside the Knox Portal, find the "Knox Suite" heading, then the "Knox Mobile Enrollment" heading and request access.</li>
+                                        </ul>
+                                        <p>Ensure that you can upload and delete devices against a (test) customer-side Samsung Knox Customer account.</p>
+                                        <h2>Step 7: Integrating your KDP integration with [CARRIER&#160;COMPANY] internal systems</h2>
+                                        <p>The effort and duration of this project stage is dependent on <b>[CARRIER&#160;COMPANY]</b>'s integration resources, technical availability and internal system complexity.</p>
+                                        <h2>Step 8: Going Live with your KDP API Integration</h2>
+                                        <p>Once all your internal and KDP API integration testing is complete, you are ready to go live with your KDP integration and to upload devices to customer's environments.</p>
+                                        <p>Coordinate with your Samsung representative on go-live steps.</p>
+                                        <p>&#160;</p>
                                         <!-- Inserts feedback module here -->
                                         <div id="feedback">
                                         </div>
+                                        <!-- Link sharing -->
+                                        <div style="text-align: center; font-size: 1.8em "><span style="font-size: 0.8em; text-transform: uppercase;font-weight: 700;">Share it:</span><a rel="external nofollow" style="width:40px;height:40px; display:inline-block" onclick="tweetFunction();" target="_blank" title="Share on Twitter"><i class="fab fa-twitter"></i></a><a rel="external nofollow" style="width:40px;height:40px; display:inline-block" onclick="linkedinFunction();" target="_blank" title="Share on LinkedIn"><i class="fab fa-linkedin-in"></i></a><a rel="external nofollow" style="width:40px;height:40px; display:inline-block" onclick="emailFunction();" target="_blank" title="Share via email"><i class="fas fa-envelope"></i></a><a rel="external nofollow" style="width:40px;height:40px; display:inline-block" onclick="copyFunction(this);" target="_blank" title="Copy to clipboard"><i class="fas fa-copy"></i></a><i style="text-align: center; font-size: 0.5em; position:absolute; "></i>
+                                        </div>
+                                        <script src="../../assets/merge/share/share-twitter.js">
+                                        </script>
+                                        <script src="../../assets/merge/share/share-linkedin.js">
+                                        </script>
+                                        <script src="../../assets/merge/share/share-email.js">
+                                        </script>
+                                        <script src="../../assets/merge/share/share-copy.js">
+                                        </script>
                                     </div>
                                     <div class="medium-3 large-3 hide-for-small-only columns sticky-container" data-sticky-container="" data-magellan="">
                                         <!-- hide for side bar -->
@@ -1782,6 +1796,9 @@
         </script>
         <!-- Footer -->
         <script src="../../assets/kpp/kpp-footer.js">
+        </script>
+        <!-- dynamic meta tags -->
+        <script type="text/javascript" src="../../assets/merge/og-meta-tags-dev.js">
         </script>
     </body>
 </html>

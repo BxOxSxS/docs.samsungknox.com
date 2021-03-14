@@ -6,6 +6,7 @@
         <meta http-equiv="x-ua-compatible" content="ie=edge" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <!-- Samsung Knox fonts -->
+        <!-- Social media icons CSS-->
         <!-- Knox portal bootstrap CSS - for the header and footer and any other KP styles you use (e.g. buttons). -->
         <!-- Foundation CSS styles for body of document. -->
         <!-- Custom CSS styles. -->
@@ -31,7 +32,7 @@
 			src: url(https://cdn.Samsung.com/etc/designs/smg/global/fonts/SamsungOne-700.eot);
 			src: url(https://cdn.Samsung.com/etc/designs/smg/global/fonts/SamsungOne-700.eot?#iefix) format("embedded-opentype"),
 			url(https://cdn.Samsung.com/etc/designs/smg/global/fonts/SamsungOne-700.woff2) format("woff2"),
-			url(prepare-knox-for-android-11.htm) format("woff"),
+			url() format("woff"),
 			url(https://cdn.Samsung.com/etc/designs/smg/global/fonts/SamsungOne-700.ttf) format("truetype");
 			font-weight: 700;
 			font-style: bold;
@@ -41,10 +42,11 @@
 			src: url(https://cdn.Samsung.com/etc/designs/smg/global/fonts/SamsungOne-400.eot);
 			src: url(https://cdn.Samsung.com/etc/designs/smg/global/fonts/SamsungOne-400.eot?#iefix) format("embedded-opentype"),
 			url(https://cdn.Samsung.com/etc/designs/smg/global/fonts/SamsungOne-400.woff2) format("woff2"),
-			url(prepare-knox-for-android-11.htm) format("woff"),
+			url() format("woff"),
 			url(https://cdn.Samsung.com/etc/designs/smg/global/fonts/SamsungOne-400.ttf) format("truetype");
 			}
 		</style>
+        <link href="https://use.fontawesome.com/releases/v5.14.0/css/all.css?ver=5.5.1" rel="stylesheet" />
         <link href="../../assets/merge/kp-bootstrap.css" rel="stylesheet" />
         <link href="../../assets/merge/kp-foundation.css" rel="stylesheet" />
         <link href="../../assets/merge/kpp-madcap.css" rel="stylesheet" />
@@ -71,6 +73,10 @@
                     <div class="title-bar-left">
                         <div class="menu-icon" type="button" data-open="offCanvasLeft">
                         </div><span class="title-bar-title">Menu</span>
+                    </div>
+                </div>
+                <div class="off-canvas position-left" id="offCanvasLeft" data-off-canvas="">
+                    <div id="nav-drilldown">
                     </div>
                 </div>
                 <div class="off-canvas-content" data-off-canvas-content="">
@@ -150,7 +156,7 @@
                                                                 </li>
                                                                 <li><a href="../common/how-licenses-work.htm">How licenses work</a>
                                                                 </li>
-                                                                <li><a href="../common/license-permissions.htm">License permissions</a>
+                                                                <li><a href="https://docs.samsungknox.com/dev/common/permissions.htm">Permissions</a>
                                                                 </li>
                                                                 <li><a href="../common/knox-version-mapping.htm">Knox version mapping</a>
                                                                 </li>
@@ -842,7 +848,7 @@
                                                                         </li>
                                                                         <li><a href="faqs/operation/what-keystore-can-i-use.htm">What Keystores can I use?</a>
                                                                         </li>
-                                                                        <li><a href="https://docs.samsungknox.com/dev/knox-sdk/faqs/operation/what-kind-of-phone-numbers-are-allowed-after-setting-setemergencycallonly(true)-in-the-knox-sdk.htm">What kind of phone numbers are allowed after setting setEmergencyCallOnly(true) in the Knox SDK?</a>
+                                                                        <li><a href="faqs/operation/what-kind-of-phone-numbers-are-allowed-after-setting-setemergencycallonly_true_-in-the-knox-sdk.htm">What kind of phone numbers are allowed after setting setEmergencyCallOnly(true) in the Knox SDK?</a>
                                                                         </li>
                                                                         <li><a href="faqs/operation/what-secure-hardware-can-i-use-with-the-ucm-apis-to-store-credentials.htm">What secure hardware can I use with the UCM APIs to store credentials?</a>
                                                                         </li>
@@ -1582,121 +1588,86 @@
                                             </div>
                                         </nav>
                                         <h1>Prepare Knox for Android 11</h1>
-                                        <p>Samsung Knox supports the new <a href="https://developer.android.com/work/versions/android-11#work-company-owned" target="_blank">work profile on company-owned devices</a> introduced in Android 11.</p>
-                                        <p>Knox policies will fall into two categories based on privacy guidelines:</p>
+                                        <p>Samsung Knox supports the new <a href="../../admin/knox-platform-for-enterprise/work-profile-on-company-owned-devices.htm" target="_blank">work profile on company-owned device</a> introduced in Android 11.</p>
+                                        <p>Knox policies fall into two categories based on privacy guidelines:</p>
                                         <ol>
-                                            <li value="1">Available to the profile owner of the new work profile on company-owned devices.</li>
-                                            <li value="2">Not available to the profile owner of the new work profile on company-owned devices.</li>
+                                            <li value="1">Policies that don't infringe on personal privacy and are available to the profile owner of the new work profile on company-owned device. For a complete list of these, see <a href="../../admin/knox-platform-for-enterprise/knox-policies-in-personal-profile.htm">Knox policies in the personal profile</a>.</li>
+                                            <li value="2">Policies that may infringe on privacy and are not available to the profile owner of the new work profile on company-owned device.</li>
                                         </ol>
-                                        <p>See the complete list of <a href="wpc-knox-apis-allowed.htm" class="MCXref xref">Knox APIs in the personal profile</a>.</p>
-                                        <p>We recommend our EMM partners review the Knox policies they are setting today in the <a href="https://developers.google.com/android/work/terminology#fully_managed_device_with_a_work_profile" target="_blank">fully managed device with a work profile</a> and make any required changes based on whether or not those policies are still available in the new <a href="https://developer.android.com/work/versions/android-11#work-company-owned" target="_blank">work profile on company-owned devices</a>.</p>
-                                        <h2>Android 11 upgrade</h2>
-                                        <p>During the Android 11 upgrade from fully managed device with a work profile to the new work profile on company-owned devices:</p>
+                                        <p>During the Android 11 upgrade from the deprecated <a href="../../admin/knox-platform-for-enterprise/device-management-modes.htm#fmdwp">fully managed device with a work profile</a> to the new work profile on company-owned device:</p>
                                         <ul>
-                                            <li value="1">Device owner  will be disabled.</li>
-                                            <li value="2">Knox policies available in the new work profile on company-owned devices and called by EMMs will be silently migrated to the profile owner.</li>
+                                            <li value="1">Device owner  is disabled.</li>
+                                            <li value="2">Knox policies available in the new work profile on company-owned device and called by UEMs are silently migrated to the profile owner. The profile owner retains existing Knox permissions granted through the Knox license, even though the device owner (from User 0) is disabled. </li>
                                             <li value="3">Knox polices not available in the new work profile on company-owned devices will be unset.</li>
                                         </ul>
+                                        <p>If you are currently using the <a href="../../admin/knox-platform-for-enterprise/device-management-modes.htm#fmdwp" target="_blank">fully managed device with a work profile</a> that's been deprecated in Android 11, review the Knox policies you are setting, ensure they are still <a href="../../admin/knox-platform-for-enterprise/knox-policies-in-personal-profile.htm">Knox policies in the personal profile</a> on the new <a href="../../admin/knox-platform-for-enterprise/device-management-modes.htm#wpc">work profile on company-owned device</a>.</p>
+                                        <div class="callout warning"><b>NOTE</b> - The following Knox areas are impacted by Android 11 and can result in service disruptions if not prepared properly before the Android 11 upgrade. Please read carefully and follow the recommendations.</div>
                                         <p>Below are specific Knox areas to consider with regards to the upcoming changes.</p>
                                         <h2>Knox licenses</h2>
                                         <p>A Knox license grants permission to a package in the platform. Knox permissions are of type <b>signature</b> and shared across users (User 0/10) for the same package.  </p>
                                         <p>During migration from <a href="https://developers.google.com/android/work/terminology#fully_managed_device_with_a_work_profile" target="_blank">fully managed device with a work profile</a> to the new <a href="https://developer.android.com/work/versions/android-11#work-company-owned" target="_blank">work profile on company-owned devices</a>, the profile owner will retain existing Knox permissions even though the device owner from User 0 is disabled. The above is true provided the device owner and profile owner are associated with same package names.</p>
                                         <h2><a name="KnoxSdk"></a>Knox SDK</h2>
                                         <p>There is a new way to call Knox SDK&#160;APIs in the new <a href="https://developer.android.com/work/versions/android-11#work-company-owned" target="_blank">work profile on company-owned devices</a> mode.</p>
-                                        <p>Similar to the work profile on a personally-owned device, the profile owner for a work profile on company-owned devices can use the Knox SDK user and container scope APIs for its own user space (profile) management.</p>
+                                        <p>Similar to the work profile on a personally owned device, the profile owner for a work profile on company-owned devices can use the Knox SDK user and container scope APIs for its own user space (profile) management.</p>
                                         <p>For personal profile management, the profile owner of a work profile on company-owned devices must first create a parent instance before calling a Knox policy. Use either of the following new Knox 3.7 API methods:</p>
                                         <ul>
-                                            <li value="1">EnterpriseDeviceManager.getParentInstance</li>
-                                            <li value="2">EnterpriseKnoxManager.getParentInstance</li>
+                                            <li value="1"><a href="../../devref/knox-sdk/reference/com/samsung/android/knox/EnterpriseDeviceManager.html#getParentInstance">EnterpriseDeviceManager.getParentInstance</a> <![CDATA[ ]]></li>
+                                            <li value="2"><a href="../../devref/knox-sdk/reference/com/samsung/android/knox/EnterpriseKnoxManager.html#getParentInstance">EnterpriseKnoxManager.getParentInstance</a>
+                                            </li>
                                         </ul>
-                                        <p>To call the API:</p><pre class="prettyprint" xml:space="preserve">EnterpriseDeviceManager.getParentInstance(Context);
+                                        <p>To call the API:</p><pre class="prettyprint" xml:space="preserve"><a href="../../devref/knox-sdk/reference/com/samsung/android/knox/EnterpriseDeviceManager.html#getParentInstance">EnterpriseDeviceManager.getParentInstance</a>(Context);
 EnterpriseDeviceManager edm = EnterpriseDeviceManager.getInstance(context);
 ApplicationPolicy obj = edm.getApplicationPolicy();
 // Call Knox policy for parent
-
-EnterpriseKnoxManager.getParentInstance(Context);
+<a href="../../devref/knox-sdk/reference/com/samsung/android/knox/EnterpriseKnoxManager.html#getParentInstance">EnterpriseKnoxManager.getParentInstance</a>(Context);
 EnterpriseKnoxManager ekm = EnterpriseKnoxManager.getInstance(context);
 AdvancedRestrictionPolicy obj =  ekm.getAdvancedRestrictionPolicy();
 // Call Knox policy for parent</pre>
                                         <p>Note:</p>
                                         <ul>
                                             <li value="1">Only work profiles on company-owned devices can call getParentInstance, otherwise an exception will be thrown.</li>
-                                            <li value="2">Only <a href="wpc-knox-apis-allowed.htm">allowed Knox policies for the personal profile</a> can be called, otherwise an exception will be thrown.</li>
+                                            <li value="2">Only allowed <a href="wpc-knox-apis-allowed.htm">Knox APIs in the personal profile</a> can be called, otherwise an exception will be thrown.</li>
                                         </ul>
-                                        <h2>Knox Service Plugin (KSP)</h2>
-                                        <p>EMM vendors need to ensure the following:</p>
-                                        <ol>
-                                            <li value="1">Do not uninstall the KSP app in a personal profile prior to the Android 11 upgrade.</li>
-                                            <li value="2">Make sure the KSP app is updated to the latest version prior to the upgrade.</li>
-                                        </ol>
-                                        <div class="callout warning"><b>NOTE</b> – If the KSP app is not updated, the device might go into a bad state and the device will need to be factory reset.</div>
-                                        <p>After upgrading to Android 11, the Knox framework will uninstall the KSP app from the personal profile.</p>
-                                        <h4>What happens if I don't make this change?</h4>
-                                        <p>If you do not update to the latest version of the KSP&#160;app, policies applied by KSP will remain unless they violate privacy. KSP cannot apply policies for the device owner after the Android 11 upgrade and will result in some exceptions and unexpected behavior.</p>
-                                        <h2>Knox Mobile Enrollment (KME)</h2>
-                                        <p>For a <a href="https://developers.google.com/android/work/terminology#fully_managed_device_with_a_work_profile" target="_blank">fully managed device with a work profile</a> enrolled via KME, we recommend that you:</p>
-                                        <ol>
-                                            <li value="1">Update your KME profile to the new <a href="https://developer.android.com/work/versions/android-11#work-company-owned" target="_blank">work profile on company-owned device</a>.</li>
-                                            <li value="2">Update to Android 11.</li>
-                                            <li value="3">Factory reset the device.</li>
-                                        </ol>
-                                        <h4> What happens if I don't make this change?</h4>
-                                        <p>If you do not update your KME&#160;profile, after the Android 11 update and a factory reset, the device will be enrolled automatically as a <a href="https://developers.google.com/android/work/terminology#fully_managed_device" target="_blank">fully managed device</a> (device owner) because a <a href="https://developers.google.com/android/work/terminology#fully_managed_device_with_a_work_profile" target="_blank">fully managed device with a work profile</a> is <a href="work-profile-on-company-owned-devices.htm">no longer supported on Android 11</a>.</p>
-                                        <h2>Knox E-FOTA</h2>
-                                        <p>Samsung will install the E-FOTA client in the personal profile once enabled by the IT admin using the Knox Deployment Program or Knox Service Plugin. EMMs will not need to push the E-FOTA client to the device.</p>
-                                        <h2>Knox VPNs</h2>
-                                        <p>In the new <a href="https://developer.android.com/work/versions/android-11#work-company-owned" target="_blank">work profile on company-owned devices</a>, the IT admin is <b>not</b> permitted to configure and manage a VPN in the personal profile.</p>
-                                        <p>As such, EMMs <b>must</b> do the following prior to upgrade to Android 11:</p>
+                                        <h2>Knox Services</h2>
+                                        <p>For details about the impact of Android 11 on individual Knox services, see:</p>
                                         <ul>
-                                            <li value="1">Uninstall the VPN agent in the personal profile.<ul><li value="1">If using the Android Settings VPN, delete the VPN profile in the personal profile.</li></ul></li>
-                                            <li value="2">Configure VPNs inside work profiles prior to the Android 11 upgrade.</li>
+                                            <li value="1"><a href="../../admin/knox-platform-for-enterprise/prepare-knox-for-android-11.htm#mag_0">Knox Audit Log</a>
+                                            </li>
+                                            <li value="2"><a href="../../admin/knox-platform-for-enterprise/prepare-knox-for-android-11.htm#mag_1">Knox Configure</a> (KC)</li>
+                                            <li value="3"><a href="../../admin/knox-platform-for-enterprise/prepare-knox-for-android-11.htm#mag_2">Knox Deployment App</a> (KDA)</li>
+                                            <li value="4"><a href="../../admin/knox-platform-for-enterprise/prepare-knox-for-android-11.htm#mag_3">Knox DualDAR</a>
+                                            </li>
+                                            <li value="5"><a href="../../admin/knox-platform-for-enterprise/prepare-knox-for-android-11.htm#mag_4">Knox E-FOTA</a>
+                                            </li>
+                                            <li value="6"><a href="../../admin/knox-platform-for-enterprise/prepare-knox-for-android-11.htm#mag_5">Knox firewall and domain filter</a>
+                                            </li>
+                                            <li value="7"><a href="../../admin/knox-platform-for-enterprise/prepare-knox-for-android-11.htm#mag_6">Knox global proxy</a>
+                                            </li>
+                                            <li value="8"><a href="../../admin/knox-platform-for-enterprise/prepare-knox-for-android-11.htm#mag_7">Knox Mobile Enrollment</a> (KME)</li>
+                                            <li value="9"><a href="../../admin/knox-platform-for-enterprise/prepare-knox-for-android-11.htm#mag_8">Knox Manage</a>
+                                            </li>
+                                            <li value="10"><a href="../../admin/knox-platform-for-enterprise/prepare-knox-for-android-11.htm#mag_9">Knox Network Platform Analytics</a> (NPA)</li>
+                                            <li value="11"><a href="../../admin/knox-platform-for-enterprise/prepare-knox-for-android-11.htm#mag_11">Knox Sensitive Data Protection (SDP) and Samsung Email</a>
+                                            </li>
+                                            <li value="12"><a href="../../admin/knox-platform-for-enterprise/prepare-knox-for-android-11.htm#mag_12">Knox Service Plugin</a> (KSP)</li>
+                                            <li value="13"><a href="../../admin/knox-platform-for-enterprise/prepare-knox-for-android-11.htm#mag_13">Knox VPNs</a>
+                                            </li>
+                                            <li value="14"><a href="../../admin/knox-platform-for-enterprise/prepare-knox-for-android-11.htm#mag_14">Universal Credential Manager</a> (UCM)</li>
                                         </ul>
-                                        <h4>What happens if I don't make this change?</h4>
-                                        <p>The Knox framework will <b>not</b> remove the VPN agent or Settings VPN profile in the personal profile prior to Android 11 upgrade because the EMM console, EMM agent, and VPN vendor will not be in sync. Thus, if you do not take any action device wide or in the personal profile, the VPN will continue to work after the Android 11 upgrade, however you will not be able to manage the VPN in the personal profile.</p>
-                                        <p>Note: If the VPN agent is inside the work profile, you do not need to make any changes to the VPN configuration inside the work profile.</p>
-                                        <h2>Knox Network Platform Analytics (NPA)</h2>
-                                        <p>In the new <a href="https://developer.android.com/work/versions/android-11#work-company-owned" target="_blank">work profile on company-owned devices</a>, the IT admin is <b>not</b> permitted to collect netflow data via solutions such as Knox NPA.</p>
-                                        <p>As such EMMs <b>must</b> do the following prior to upgrade to Android 11:</p>
-                                        <ul>
-                                            <li value="1">Uninstall the NPA agent in the personal profile.</li>
-                                            <li value="2">Configure NPA inside the work profile prior to the Android 11 upgrade.</li>
-                                        </ul>
-                                        <h4>What happens if I don't make this change?</h4>
-                                        <p>The Knox framework will not remove the NPA agent or profile prior to the Android 11 upgrade because the EMM console, EMM agent, and NPA vendor will not be in sync. Thus, if you do not take any action device wide or in the personal profile, NPA will continue to work after Android 11 upgrade, however you will not be able to manage Knox NPA in the personal profile.</p>
-                                        <h2>Knox firewall and domain filter</h2>
-                                        <p>The Knox firewall and domain filter APIs are permitted in the new <a href="https://developer.android.com/work/versions/android-11#work-company-owned" target="_blank">work profile on company-owned devices</a>.</p>
-                                        <p>You need to ensure that you update your implementation to manage the Knox firewall and domain filter in the personal profile, by calling APIs using a parent instance, as described above in <a href="prepare-knox-for-android-11.htm#Knox" class="MCXref xref selected">Prepare Knox for Android 11</a>.</p>
-                                        <h2>Knox global proxy</h2>
-                                        <p>In the new <a href="https://developer.android.com/work/versions/android-11#work-company-owned" target="_blank">work profile on company-owned devices</a>, an IT admin is not permitted to configure and manage the Knox global proxy.</p>
-                                        <p>The Knox framework will unset the Knox global proxy policy after the Android 11 upgrade.</p>
-                                        <h2>Samsung Email and Knox Sensitive Data Protection (SDP)</h2>
-                                        <p>In the <a href="https://developers.google.com/android/work/terminology#fully_managed_device_with_a_work_profile" target="_blank">fully managed device with a work profile</a> deployment, if Samsung Email is installed in the personal profile then the Samsung Email app will no longer work  after the auto upgrade to the new <a href="https://developer.android.com/work/versions/android-11#work-company-owned" target="_blank">work profile on company-owned devices</a> in Android 11.</p>
-                                        <p>Samsung Email leverages the Knox Sensitive Data Protection (SDP) feature. SDP in the personal profile does not operate as soon as the device owner is disabled.</p>
-                                        <p>You need to ensure the following:</p>
-                                        <ol>
-                                            <li value="1">Uninstall the Samsung Email app from the personal profile and install it in the work profile prior to the Android 11 upgrade.</li>
-                                            <li value="2">Do the same for any other SDP-enabled application.</li>
-                                        </ol>
-                                        <h4> What happens if I don't make this change?</h4>
-                                        <p>If you do not uninstall Samsung Email from the personal profile, the email will not show the body of emails. The customer will need to uninstall the Samsung Email app in the personal profile.</p>
-                                        <h2>Audit Log</h2>
-                                        <p>If a device owner has enabled the Knox Audit Log functionality in a <a href="https://developers.google.com/android/work/terminology#fully_managed_device_with_a_work_profile" target="_blank">fully managed device with a work profile</a> deployment, log entries from the personal profile stored to audit log buffer will remain as is after the Android 11 upgrade to the new <a href="https://developer.android.com/work/versions/android-11#work-company-owned" target="_blank">work profile on company-owned devices</a>.</p>
-                                        <p>To protect the end user's privacy in the new <a href="https://developer.android.com/work/versions/android-11#work-company-owned" target="_blank">work profile on company-owned devices</a>, some audit log messages generated in user 0 that impact end user privacy, either will not be visible or will be redacted.</p>
-                                        <h2>DualDAR</h2>
-                                        <p>Existing DualDAR deployments on a <a href="https://developers.google.com/android/work/terminology#fully_managed_device_with_a_work_profile" target="_blank">fully managed device with a work profile</a> will be auto migrated to the new <a href="https://developer.android.com/work/versions/android-11#work-company-owned" target="_blank">work profile on company-owned devices</a>.</p>
-                                        <p>For new DualDAR deployments, the use case where the second-layer encryption is provided by a third-party ISV is impacted. Going forward, Samsung will install the second-layer app instead of the EMM. EMMs will need to provide the second-layer app to Samsung. </p>
-                                        <h2>Universal Credential Manager (UCM)</h2>
-                                        <p>UCM is <b>not</b> supported on the new <a href="https://developer.android.com/work/versions/android-11#work-company-owned" target="_blank">work profile on company-owned devices</a>. Existing UCM deployments on a <a href="https://developers.google.com/android/work/terminology#fully_managed_device_with_a_work_profile" target="_blank">fully managed device with a work profile</a> will not be migrated to the new <a href="https://developer.android.com/work/versions/android-11#work-company-owned" target="_blank">work profile on company-owned devices</a>.</p>
-                                        <p>As such, you <b>must</b> do the following prior to upgrade to Android 11:</p>
-                                        <ul>
-                                            <li value="1">In the case of UCM-ODE and UCM-Keyguard, the device must be factory reset before the Android 11 upgrade.</li>
-                                            <li value="2">In other cases, you must uninstall the UCM plugin client in the personal profile.</li>
-                                        </ul>
-                                        <h4> What happens if I don't make this change?</h4>
-                                        <p>The Knox UCM framework will not remove the UCM plugin client and UCM policies in the personal profile prior to the Android 11 upgrade because the EMM console, EMM agent, and UCM plugin client will not be in sync. Thus, if you do not take any action, UCM will work after Android 11 upgrade, however you will not be able to configure or manage UCM in user 0. This could lead to unexpected behavior of the device.</p>
                                         <!-- Inserts feedback module here -->
                                         <div id="feedback">
                                         </div>
+                                        <!-- Link sharing -->
+                                        <div style="text-align: center; font-size: 1.8em "><span style="font-size: 0.8em; text-transform: uppercase;font-weight: 700;">Share it:</span><a rel="external nofollow" style="width:40px;height:40px; display:inline-block" onclick="tweetFunction();" target="_blank" title="Share on Twitter"><i class="fab fa-twitter"></i></a><a rel="external nofollow" style="width:40px;height:40px; display:inline-block" onclick="linkedinFunction();" target="_blank" title="Share on LinkedIn"><i class="fab fa-linkedin-in"></i></a><a rel="external nofollow" style="width:40px;height:40px; display:inline-block" onclick="emailFunction();" target="_blank" title="Share via email"><i class="fas fa-envelope"></i></a><a rel="external nofollow" style="width:40px;height:40px; display:inline-block" onclick="copyFunction(this);" target="_blank" title="Copy to clipboard"><i class="fas fa-copy"></i></a><i style="text-align: center; font-size: 0.5em; position:absolute; "></i>
+                                        </div>
+                                        <script src="../../assets/merge/share/share-twitter.js">
+                                        </script>
+                                        <script src="../../assets/merge/share/share-linkedin.js">
+                                        </script>
+                                        <script src="../../assets/merge/share/share-email.js">
+                                        </script>
+                                        <script src="../../assets/merge/share/share-copy.js">
+                                        </script>
                                     </div>
                                     <div class="medium-3 large-3 hide-for-small-only columns sticky-container" data-sticky-container="" data-magellan="">
                                         <!-- hide for side bar -->
@@ -1760,6 +1731,9 @@ AdvancedRestrictionPolicy obj =  ekm.getAdvancedRestrictionPolicy();
         </script>
         <!-- Footer -->
         <script src="../../assets/kpp/kpp-footer.js">
+        </script>
+        <!-- dynamic meta tags -->
+        <script type="text/javascript" src="../../assets/merge/og-meta-tags-dev.js">
         </script>
     </body>
 </html>

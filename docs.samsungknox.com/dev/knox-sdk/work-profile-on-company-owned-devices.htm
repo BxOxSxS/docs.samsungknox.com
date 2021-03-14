@@ -6,6 +6,7 @@
         <meta http-equiv="x-ua-compatible" content="ie=edge" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <!-- Samsung Knox fonts -->
+        <!-- Social media icons CSS-->
         <!-- Knox portal bootstrap CSS - for the header and footer and any other KP styles you use (e.g. buttons). -->
         <!-- Foundation CSS styles for body of document. -->
         <!-- Custom CSS styles. -->
@@ -31,7 +32,7 @@
 			src: url(https://cdn.Samsung.com/etc/designs/smg/global/fonts/SamsungOne-700.eot);
 			src: url(https://cdn.Samsung.com/etc/designs/smg/global/fonts/SamsungOne-700.eot?#iefix) format("embedded-opentype"),
 			url(https://cdn.Samsung.com/etc/designs/smg/global/fonts/SamsungOne-700.woff2) format("woff2"),
-			url(work-profile-on-company-owned-devices.htm) format("woff"),
+			url() format("woff"),
 			url(https://cdn.Samsung.com/etc/designs/smg/global/fonts/SamsungOne-700.ttf) format("truetype");
 			font-weight: 700;
 			font-style: bold;
@@ -41,10 +42,11 @@
 			src: url(https://cdn.Samsung.com/etc/designs/smg/global/fonts/SamsungOne-400.eot);
 			src: url(https://cdn.Samsung.com/etc/designs/smg/global/fonts/SamsungOne-400.eot?#iefix) format("embedded-opentype"),
 			url(https://cdn.Samsung.com/etc/designs/smg/global/fonts/SamsungOne-400.woff2) format("woff2"),
-			url(work-profile-on-company-owned-devices.htm) format("woff"),
+			url() format("woff"),
 			url(https://cdn.Samsung.com/etc/designs/smg/global/fonts/SamsungOne-400.ttf) format("truetype");
 			}
 		</style>
+        <link href="https://use.fontawesome.com/releases/v5.14.0/css/all.css?ver=5.5.1" rel="stylesheet" />
         <link href="../../assets/merge/kp-bootstrap.css" rel="stylesheet" />
         <link href="../../assets/merge/kp-foundation.css" rel="stylesheet" />
         <link href="../../assets/merge/kpp-madcap.css" rel="stylesheet" />
@@ -71,6 +73,10 @@
                     <div class="title-bar-left">
                         <div class="menu-icon" type="button" data-open="offCanvasLeft">
                         </div><span class="title-bar-title">Menu</span>
+                    </div>
+                </div>
+                <div class="off-canvas position-left" id="offCanvasLeft" data-off-canvas="">
+                    <div id="nav-drilldown">
                     </div>
                 </div>
                 <div class="off-canvas-content" data-off-canvas-content="">
@@ -150,7 +156,7 @@
                                                                 </li>
                                                                 <li><a href="../common/how-licenses-work.htm">How licenses work</a>
                                                                 </li>
-                                                                <li><a href="../common/license-permissions.htm">License permissions</a>
+                                                                <li><a href="https://docs.samsungknox.com/dev/common/permissions.htm">Permissions</a>
                                                                 </li>
                                                                 <li><a href="../common/knox-version-mapping.htm">Knox version mapping</a>
                                                                 </li>
@@ -842,7 +848,7 @@
                                                                         </li>
                                                                         <li><a href="faqs/operation/what-keystore-can-i-use.htm">What Keystores can I use?</a>
                                                                         </li>
-                                                                        <li><a href="https://docs.samsungknox.com/dev/knox-sdk/faqs/operation/what-kind-of-phone-numbers-are-allowed-after-setting-setemergencycallonly(true)-in-the-knox-sdk.htm">What kind of phone numbers are allowed after setting setEmergencyCallOnly(true) in the Knox SDK?</a>
+                                                                        <li><a href="faqs/operation/what-kind-of-phone-numbers-are-allowed-after-setting-setemergencycallonly_true_-in-the-knox-sdk.htm">What kind of phone numbers are allowed after setting setEmergencyCallOnly(true) in the Knox SDK?</a>
                                                                         </li>
                                                                         <li><a href="faqs/operation/what-secure-hardware-can-i-use-with-the-ucm-apis-to-store-credentials.htm">What secure hardware can I use with the UCM APIs to store credentials?</a>
                                                                         </li>
@@ -1582,45 +1588,55 @@
                                             </div>
                                         </nav>
                                         <h1>Work profile on company-owned devices</h1>
-                                        <p>This guide describes how Enterprise Mobility Management (EMM) vendors migrate their Knox Platform for Enterprise deployments from the <a href="https://developers.google.com/android/work/terminology#fully_managed_device_with_a_work_profile" target="_blank">fully managed device with a work profile</a> in Android 10 to the new <a href="https://developer.android.com/work/versions/android-11#work-company-owned" target="_blank">work profile on company-owned devices</a> in Android 11.</p>
-                                        <h2>Overview</h2>
-                                        <p>Android 10 made extensive changes to protect privacy and give users control. For details, see: <a href="https://developer.android.com/about/versions/10/privacy">https://developer.android.com/about/versions/10/privacy</a>.</p>
-                                        <p>Android 11 will enhance privacy for B2B end users. Specifically, the use case of Corporate Owned Personally Enabled (COPE) will be enhanced to protect user privacy.</p>
-                                        <p>In Android 10 and lower, the COPE use case is met by the deployment mode of fully managed device with a work profile. In this mode, the IT admin has full visibility and control over the user's personal area, the user does not have privacy.</p>
-                                        <p>To protect the user's privacy, a new mode is introduced and described in work profile on company-owned devices.</p>
-                                        <p>Any existing  fully managed device with a work profile deployments will be auto-migrated to work profile on company-owned devices upon upgrade to Android 11.</p>
-                                        <h2>What is changing?</h2>
-                                        <p>The following information is taken from Google's <a href="https://emm.androidenterprise.dev/s/article/Work-profiles-on-fully-manage-devices-Getting-ready-for-Android-11" target="_blank">EMM migration guidelines</a>, which requires a partner login.</p>
-                                        <h3>Work profile</h3>
-                                        <p>If a work profile is added from the setup wizard using the provisioning tools added in Android 10, the device is recognized as company-owned and a wider range of asset management and device security policies is made available to the device policy controller (DPC).</p>
-                                        <p>If a work profile is added to a device after the setup wizard, Android 11 recognizes the device as personally owned. The behavior and features available to work profiles on personally-owned devices remains unchanged.</p>
-                                        <h3>Fully managed device with work profile</h3>
-                                        <h4>New enrollments</h4>
-                                        <p>Setting up a fully managed device with a work profile is <b>not</b> possible on Android 11. After setting up a fully managed device, your DPC's request to create a work profile will fail.</p>
-                                        <h4>Existing enrollments</h4>
-                                        <p>A fully managed device with a work profile will undergo the following changes upon upgrade to Android 11:</p>
+                                        <p>As described in <a href="../../admin/knox-platform-for-enterprise/device-management-modes.htm">device management modes</a>, Android 11 replaces the <a href="https://developers.google.com/android/work/terminology#fully_managed_device_with_a_work_profile" target="_blank">fully managed device with work profile</a> with a new <a href="https://developer.android.com/work/versions/android-11#work-company-owned" target="_blank">work profile on company-owned devices</a>, to enhance the privacy of personal activities on company devices.</p>
+                                        <p class="img">
+                                            <img class="no-border" src="../../assets/merge/images/kpe-whitepaper/cope.png" />
+                                        </p>
+                                        <p>The work profile on a company-owned device is:</p>
+                                        <ul>
+                                            <li value="1">similar to that on a personally owned device, in that the enterprise uses a UEM&#160;app to serve as a profile owner, which fully manages work apps in a work profile</li>
+                                            <li value="2">different from a personally owned device, in that if the enterprise deploys the work profile from the setup wizard using the <a href="https://developer.android.com/work/versions/android-10#improved_provisioning_tools_for_work_profiles" target="_blank">provisioning tools added in Android 10</a>, the device is recognized as <b>company-owned</b> and a wider range of asset management and device security policies is made available to the device policy controller (DPC). </li>
+                                        </ul>
+                                        <p>If a work profile is added after the setup wizard using any other method, Android 11 recognizes the device as <b>personally owned</b>. The behavior and features available to work profiles on company-owned devices remains unchanged.</p>
+                                        <div class="callout primary"><b>NOTE</b> - If your enterprise needs to retain full control over devices, with a UEM&#160;app serving as Device Owner, consider using <a href="../../admin/knox-platform-for-enterprise/separated-apps.htm">Separated apps</a> instead.</div>
+                                        <h2>Migrating to Android 11</h2>
+                                        <h3>New enrollments</h3>
+                                        <p>With Android 11, you can no longer deploy a  <a href="https://developers.google.com/android/work/terminology#fully_managed_device_with_a_work_profile" target="_blank">fully managed device with work profile</a>. The DPC’s request fails with no workaround. </p>
+                                        <h3>Existing enrollments</h3>
+                                        <p>Upon upgrade to Android 11, any existing  <a href="https://developers.google.com/android/work/terminology#fully_managed_device_with_a_work_profile" target="_blank">fully managed device with work profile</a> deployments are auto-migrated to the new <a href="https://developer.android.com/work/versions/android-11#work-company-owned" target="_blank">work profile on company-owned devices</a>, as follows:</p>
                                         <ul>
                                             <li value="1">A new device ownership flag will be set to <b>company-owned</b>, granting elevated privileges to the Profile Owner.</li>
                                             <li value="2">Device-level and personal-use policies previously set by the Device Owner will be silently migrated to the Profile Owner or be unset.</li>
-                                            <li value="3">The Android policies that are migrated and policies that are unset can be found in Google's <a href="https://emm.androidenterprise.dev/s/article/Work-profiles-on-fully-manage-devices-Getting-ready-for-Android-11" target="_blank">EMM migration guidelines</a>.</li>
-                                            <li value="4">The now redundant Device Owner will be disabled, its privileges will be revoked, and any cross-profile communication with the Profile Owner will be severed.</li>
+                                            <li value="3">The Android policies that are:
+                <ul><li value="1"><b>Migrated</b> are found in Appendix A of Google's <a href="https://emm.androidenterprise.dev/s/article/Work-profiles-on-fully-manage-devices-Getting-ready-for-Android-11" target="_blank">EMM migration guidelines</a>.&#160;Policies will be migrated silently; DPCs will need to query policy state if they want to review the details.</li><li value="2"><b>Unset</b> are found in Appendix B of Google's <a href="https://emm.androidenterprise.dev/s/article/Work-profiles-on-fully-manage-devices-Getting-ready-for-Android-11" target="_blank">EMM migration guidelines</a>.&#160;Policies not migrated will be removed (for example, managed configurations applied to apps in the personal profile).</li></ul></li>
+                                            <li value="4">The Knox policies that are allowed and unset can be found in <a href="wpc-knox-apis-allowed.htm">Knox APIs in the personal profile</a>.</li>
+                                            <li value="5">The now redundant Device Owner will be disabled, its privileges will be revoked, and any cross-profile communication with the Profile Owner will be severed.</li>
                                         </ul>
                                         <p>The complete list of Android Enterprise policies that will be:</p>
                                         <ul>
-                                            <li value="1"><b>Migrated</b> is found in Appendix A of Google's guidelines.&#160;Policies will be migrated silently; DPCs will need to query policy state if they want to review the details.</li>
-                                            <li value="2"><b>Unset</b> is found in Appendix B of Google's guidelines.&#160;Policies not migrated will be removed (for example, managed configurations applied to apps in the personal profile).</li>
+                                            <li value="1"><b>Migrated</b> is found in Appendix A of Google's <a href="https://emm.androidenterprise.dev/s/article/Work-profiles-on-fully-manage-devices-Getting-ready-for-Android-11" target="_blank">EMM migration guidelines</a>.&#160;Policies will be migrated silently; DPCs will need to query policy state if they want to review the details.</li>
+                                            <li value="2"><b>Unset</b> is found in Appendix B of Google's <a href="https://emm.androidenterprise.dev/s/article/Work-profiles-on-fully-manage-devices-Getting-ready-for-Android-11" target="_blank">EMM migration guidelines</a>.&#160;Policies not migrated will be removed (for example, managed configurations applied to apps in the personal profile).</li>
                                         </ul>
-                                        <p>For a list of policies that are migrated and unset, see the Appendix A and B of Google's <a href="https://emm.androidenterprise.dev/s/article/Work-profiles-on-fully-manage-devices-Getting-ready-for-Android-11" target="_blank">EMM migration guidelines</a>.</p>
                                         <p>See also:&#160;</p>
                                         <ul>
-                                            <li value="1"><a href="prepare-knox-for-android-11.htm">How to prepare Knox Platform for Enterprise deployments for Android 11</a>
-                                            </li>
-                                            <li value="2"><a href="wpc-knox-apis-allowed.htm">Knox APIs that can be called in the personal profile of company-owned devices</a>
-                                            </li>
+                                            <li value="1">Google's <a href="https://emm.androidenterprise.dev/s/article/Work-profiles-on-fully-manage-devices-Getting-ready-for-Android-11" target="_blank">EMM migration guidelines</a>, which requires a partner login</li>
+                                            <li value="2"><a href="prepare-knox-for-android-11.htm">Prepare Knox for Android 11</a>, which impacts a wide range of Knox services</li>
+                                            <li value="3"><a href="../../admin/knox-platform-for-enterprise/knox-policies-in-personal-profile.htm">Knox policies in the personal profile</a>, to see which Knox policies you can apply to the personal space</li>
                                         </ul>
                                         <!-- Inserts feedback module here -->
                                         <div id="feedback">
                                         </div>
+                                        <!-- Link sharing -->
+                                        <div style="text-align: center; font-size: 1.8em "><span style="font-size: 0.8em; text-transform: uppercase;font-weight: 700;">Share it:</span><a rel="external nofollow" style="width:40px;height:40px; display:inline-block" onclick="tweetFunction();" target="_blank" title="Share on Twitter"><i class="fab fa-twitter"></i></a><a rel="external nofollow" style="width:40px;height:40px; display:inline-block" onclick="linkedinFunction();" target="_blank" title="Share on LinkedIn"><i class="fab fa-linkedin-in"></i></a><a rel="external nofollow" style="width:40px;height:40px; display:inline-block" onclick="emailFunction();" target="_blank" title="Share via email"><i class="fas fa-envelope"></i></a><a rel="external nofollow" style="width:40px;height:40px; display:inline-block" onclick="copyFunction(this);" target="_blank" title="Copy to clipboard"><i class="fas fa-copy"></i></a><i style="text-align: center; font-size: 0.5em; position:absolute; "></i>
+                                        </div>
+                                        <script src="../../assets/merge/share/share-twitter.js">
+                                        </script>
+                                        <script src="../../assets/merge/share/share-linkedin.js">
+                                        </script>
+                                        <script src="../../assets/merge/share/share-email.js">
+                                        </script>
+                                        <script src="../../assets/merge/share/share-copy.js">
+                                        </script>
                                     </div>
                                     <div class="medium-3 large-3 hide-for-small-only columns sticky-container" data-sticky-container="" data-magellan="">
                                         <!-- hide for side bar -->
@@ -1684,6 +1700,9 @@
         </script>
         <!-- Footer -->
         <script src="../../assets/kpp/kpp-footer.js">
+        </script>
+        <!-- dynamic meta tags -->
+        <script type="text/javascript" src="../../assets/merge/og-meta-tags-dev.js">
         </script>
     </body>
 </html>
