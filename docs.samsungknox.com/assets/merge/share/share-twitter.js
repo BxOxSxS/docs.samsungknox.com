@@ -27,7 +27,7 @@ function tweetFunction(){
 
               xhr.open("POST", "https://api.rebrandly.com/v1/links");
               xhr.setRequestHeader("content-type", "application/json");
-              xhr.setRequestHeader("apikey", "cbef5c3db6cf4f70b86c99053c797b59");
+              xhr.setRequestHeader("apikey", "6f704b4382624ded9033576a87078799");
               xhr.send(data);
 
 
