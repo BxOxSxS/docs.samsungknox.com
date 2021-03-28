@@ -661,7 +661,7 @@
                                                                         </li>
                                                                         <li><a href="../uem/soti-deploy-byod.htm">Deploy BYOD device</a>
                                                                         </li>
-                                                                        <li><a href="../uem/soti-deploy-company-owned-device.htm">Deploy Company-owned device</a>
+                                                                        <li><a href="https://docs.samsungknox.com/admin/uem/soti-deploy-company-owned-device.htm">Deploy Company-owned device</a>
                                                                         </li>
                                                                         <li><a href="../uem/soti-deploy-fully-managed-device-with-work-profile.htm">Deploy fully managed device with work profile</a>
                                                                         </li>
@@ -2477,7 +2477,11 @@
                                                         </li>
                                                         <li><a href="../knox-managed-service-provider/administrators.htm">Manage administrators</a>
                                                         </li>
+                                                        <li><a href="../knox-managed-service-provider/roles.htm">Manage roles</a>
+                                                        </li>
                                                         <li><a href="../knox-managed-service-provider/view-activity-log.htm">View activity log</a>
+                                                        </li>
+                                                        <li><a href="../knox-managed-service-provider/email-notifications.htm">Email notifications</a>
                                                         </li>
                                                         <li><a href="../knox-managed-service-provider/support.htm">Get support</a>
                                                         </li>
@@ -2554,126 +2558,14 @@
                                                 <li value="21"><b>Tags</b>—Labels associated with the device (if any). There are two types:<ul style="list-style-type: circle;"><li value="1">System tags—Labels that Knox E-FOTA&#160;One automatically assigns to devices.&#160;You cannot delete these. For example:<ul style="list-style-type: square;"><li value="1"><p><b>DUMMY</b>—The device has a dummy binary installed through a <a href="create-test-campaign.htm">test campaign</a>.</p><p class="callout warning"><b>NOTE</b>—Devices synced to Knox E-FOTA&#160;One from an EMM cannot be assigned a test campaign, so they will never have this system tag.</p></li></ul></li><li value="2">Custom tags—Custom labels you can assign to devices.</li></ul></li>
                                             </ul>
                                             <h2><a name="Device"></a>Device statuses</h2>
-                                            <p>This section describes the different statuses devices can have and what they mean.</p>
-                                            <p class="callout warning"><b>NOTE</b>—Changes in the sales code does not affect the device status.</p>
-                                            <table style="width: 100%;">
-                                                <col />
-                                                <col />
-                                                <tbody>
-                                                    <tr>
-                                                        <td>Status</td>
-                                                        <td>Description</td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td>Pending (visible only in <b>Devices</b> &gt; <b>Uploads</b>)</td>
-                                                        <td>The reseller has uploaded the device but an admin has not <a href="add-devices.htm#Approve">approved</a> it.</td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td>Not enrolled</td>
-                                                        <td>
-                                                            <p>The upload was approved by an IT&#160;admin. The device is now in the device candidate pool and is ready to be enrolled.</p>
-                                                            <p>A device that was previously enrolled also has this status if an admin unenrolls it. In this case, the following occur:</p>
-                                                            <ul>
-                                                                <li value="1">The device loses its license seat.</li>
-                                                                <li value="2">The device is unassigned from any campaign it's assigned to.</li>
-                                                                <li value="3">The Knox E-FOTA client is automatically uninstalled from the device.</li>
-                                                                <li value="4">Any default Knox E-FOTA&#160;policies applied to the device are removed. For example:<ul style="list-style-type: circle;"><li value="1">The B2C FOTA client is enabled.</li><li value="2">Factory reset is allowed on the device.</li><li value="3">Recovery mode is allowed on the device.</li></ul></li>
-                                                            </ul>
-                                                        </td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td>Enrollment pending</td>
-                                                        <td>
-                                                            <p>An IT admin has enrolled the device under a valid license key.</p>
-                                                            <p>One of the following:</p>
-                                                            <ul>
-                                                                <li value="1">The device is waiting for the Knox E-FOTA client to be installed.</li>
-                                                                <li value="2">The Knox E-FOTA client is installed and is waiting to complete provisioning. The provisioning process involves the following:<ul style="list-style-type: circle;"><li value="1">Downloading and installing the Knox E-FOTA&#160;client.</li><li value="2">Registering the device information to the Knox E-FOTA server.</li><li value="3">Disabling the B2C FOTA client.</li><li value="4">Applying a default Knox E-FOTA policy.</li></ul></li>
-                                                            </ul>
-                                                        </td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td>Enrolled</td>
-                                                        <td>
-                                                            <p>	
-Provisioning is complete; the device is enrolled.</p>
-                                                            <p>A device also has this status if:</p>
-                                                            <ul>
-                                                                <li value="1">Its license expires. In this case, no campaign can be assigned to the device until there is a valid license for it.</li>
-                                                                <li value="2">The device that was previously assigned to a campaign is unassigned.</li>
-                                                            </ul>
-                                                        </td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td>Failed to enroll</td>
-                                                        <td>
-                                                            <p>The device failed to enroll to the Knox E-FOTA&#160;service due to any of the following reasons:</p>
-                                                            <ul>
-                                                                <li value="1">The device failed to install the Knox
-
-E-FOTA client.</li>
-                                                                <li value="2">The license of the device expired while it was in <b>Enrollment pending</b> state.</li>
-                                                                <li value="3">A network failure occurred.
-</li>
-                                                                <li value="4">Other error cases occurred, for example, the default Knox E-FOTA policy was not applied to the device.</li>
-                                                            </ul>
-                                                        </td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td>Campaign assigned</td>
-                                                        <td>
-                                                            <p>An admin has assigned the device  to a campaign.</p>
-                                                            <p>A device also has this status if:</p>
-                                                            <ul>
-                                                                <li value="1">The campaign it's assigned to has been scheduled.</li>
-                                                                <li value="2">The campaign it's assigned to has ended.</li>
-                                                            </ul>
-                                                        </td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td>Campaign canceled</td>
-                                                        <td>An admin has canceled the campaign the device is assigned to.</td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td>Campaign error</td>
-                                                        <td>An error occurred while the device was attempting to apply the campaign policy.</td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td>Campaign failed</td>
-                                                        <td>An error occurred while attempting to download or install the firmware update.</td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td>Campaign active</td>
-                                                        <td>
-                                                            <ul>
-                                                                <li value="1"><b>Campaign active (locked firmware)</b>—The campaign has locked the firmware of the device.</li>
-                                                                <li value="2"><b>Campaign active (downloading)</b>—The device is downloading the firmware update.</li>
-                                                                <li value="3"><b>Campaign active (ready to install)</b>—The device was able to download the firmware update and will install it during the "FOTA allowed period"</li>
-                                                                <li value="4"><b>Campaign active (installing)</b>—The device is installing the firmware update.</li>
-                                                                <li value="5"><b>Campaign active (update complete)</b>—The device has been updated to the target firmware version.</li>
-                                                                <li value="6"><b>Campaign active (update complete)</b>—The device already has a higher version than the target version set in the campaign.</li>
-                                                            </ul>
-                                                        </td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td>Exchanging</td>
-                                                        <td>	
-The IMEI or serial number is in the process of being changed by a Samsung Admin.</td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td>Reverting</td>
-                                                        <td>The device is trying to revert to normal firmware from a dummy binary. When this is complete, the device's status changes to one of the statuses above.</td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td>Error</td>
-                                                        <td>A system error has occurred. View the device log for more information.</td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td>Unenrollment pending</td>
-                                                        <td>An admin has unenrolled the device through the Knox E-FOTA admin portal, but the unenrollment has not reached the device.</td>
-                                                    </tr>
-                                                </tbody>
-                                            </table>
+                                            <p>This section describes the different statuses devices can have and what they mean:</p>
+                                            <ul>
+                                                <li value="1">Operation status: Describes the status of the device licensing and campaign sync.</li>
+                                                <li value="2">Campaign status: Describes the status of an assigned campaign.</li>
+                                                <li value="3">Client status: Describes the status of the Knox E-FOTA client app on the device.</li>
+                                                <li value="4">Update status: Describes the status of a firmware update, information that is now also included in the Device Update Status dashboard and Campaign Graph.</li>
+                                            </ul>
+                                            <p>For details about a status, hover over the status to pop up a tooltip description.</p>
                                             <h2><a name="Perform"></a>Perform common operations on devices</h2>
                                             <p class="callout warning"><b>NOTE</b>—For devices that were synced from an EMM, most operations can only be performed in the <b>EMM groups</b> tab.</p>
                                             <p>You can perform the following operations on one or more devices:</p>
