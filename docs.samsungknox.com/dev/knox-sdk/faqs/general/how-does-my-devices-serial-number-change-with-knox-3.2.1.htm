@@ -1699,38 +1699,42 @@
                                             </div>
                                         </nav>
                                         <h1>How does my device's serial number change with Knox 3.2.1?</h1>
-                                        <p>If you have implemented either the Android or Knox serial number APIs, please see the below table on how they have changed based on device model and operating system. Knox versioning table maps Android OS to Knox SDK versions.</p>
+                                        <p>Article last updated April 6, 2021</p>
+                                        <p>If you are using Android’s <a href="https://developer.android.com/reference/android/os/Build#getSerial()">Build.getSerial()</a> or Knox’s <a href="../../../../devref/knox-sdk/reference/com/samsung/android/knox/deviceinfo/DeviceInventory.html#getSerialNumber()">DeviceInventory.getSerialNumber()</a> to obtain the device serial number, please refer to the following summary of the changes based on device model and operating system.</p>
                                         <table>
                                             <thead>
                                                 <tr>
                                                     <td>Device</td>
-                                                    <td>OS</td>
-                                                    <td>Samsung serial number (ril.serialnumber)</td>
-                                                    <td>Android Serial number (ro.serialno)</td>
+                                                    <td>ril.serialnumber</td>
+                                                    <td>ro.serialno</td>
+                                                    <td>Build.getSerial()</td>
+                                                    <td>DeviceInventory.getSerialNumber()</td>
                                                 </tr>
                                             </thead>
                                             <tbody>
                                                 <tr>
-                                                    <td>S9 and below, Note 9 and below, A8 and below</td>
-                                                    <td>Android P and below</td>
+                                                    <td>Devices released prior to January 2019, including S9, Note9, Tab S4.</td>
                                                     <td>11 digit value</td>
                                                     <td>16 digit value</td>
-                                                </tr>
-                                                <tr>
-                                                    <td>S10</td>
-                                                    <td>Android P and above</td>
-                                                    <td>Deprecated</td>
-                                                    <td>11 digit &#160;ril.serialnumer will replace 16 digit &#160;ro.serialno</td>
-                                                </tr>
-                                                <tr>
-                                                    <td>TBD</td>
-                                                    <td>Android Q</td>
-                                                    <td>Obsolete</td>
+                                                    <td>16 digit value</td>
                                                     <td>11 digit value</td>
+                                                </tr>
+                                                <tr>
+                                                    <td>Devices released on or after January 2019, including S10, Tab A 10.1 and newer.</td>
+                                                    <td>
+                                                        <p>OS 10 (deprecated): 11 digit value</p>
+                                                        <p>OS 11: removed</p>
+                                                    </td>
+                                                    <td>11 digit value</td>
+                                                    <td>11 digit value</td>
+                                                    <td>
+                                                        <p>OS 10 (deprecated in Knox API level 30): 11 digit value</p>
+                                                        <p>OS 11 (Knox API level 33): "00000000000"</p>
+                                                    </td>
                                                 </tr>
                                             </tbody>
                                         </table>
-                                        <p>If the Knox API is called on a device running Android Q, "00000000000" will be returned. For additional information on retrieving the serial number and what permissions are required, see Android’s <a href="https://developer.android.com/reference/android/os/Build.html#getSerial()">getSerial()</a> method.</p>
+                                        <p>Please refer <a href="https://en.wikipedia.org/wiki/Samsung_Galaxy">here</a> for a list of device release dates.</p>
                                         <!-- Inserts feedback module here -->
                                         <div id="feedback">
                                         </div>
