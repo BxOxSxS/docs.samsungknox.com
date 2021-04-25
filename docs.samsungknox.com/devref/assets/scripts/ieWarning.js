@@ -1,0 +1,1 @@
+var userAgentString=navigator.userAgent,isIeBrowser=-1<userAgentString.indexOf("MSIE")||-1<userAgentString.indexOf("rv")&&-1<userAgentString.indexOf("Trident");isIeBrowser&&document.body.insertAdjacentHTML("afterbegin",'<div class="callout warning"><b>NOTE</b>—Internet Explorer does not support our REST API documentation, please use any other browser.</div>');

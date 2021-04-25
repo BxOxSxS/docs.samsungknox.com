@@ -1195,6 +1195,8 @@
                                                         </li>
                                                         <li><a href="how-it-works/keystroke-output.htm">Keystroke output</a>
                                                         </li>
+                                                        <li><a href="how-it-works/intent-output.htm">Intent output</a>
+                                                        </li>
                                                         <li><a href="how-it-works/deployment.htm">Deployment</a>
                                                         </li>
                                                     </ul>
@@ -2548,7 +2550,7 @@
 									-->
                                     <div id="sec2" class="small-12 medium-8 large-9 columns">
                                         <div itemscope="itemscope" itemtype="http://schema.org/Guide">
-                                            <h1><a name="aanchor202"></a>
+                                            <h1><a name="aanchor203"></a>
                                                 <MadCap:concept term="knox-capture;KBAs and FAQs" />FAQs</h1>
                                             <h2>License</h2>
                                             <ul>
@@ -2633,6 +2635,8 @@
                                                 </li>
                                                 <li value="11"><a href="faqs/disable-xcover-key-from-emm.htm">On a Verizon XCover Pro device, why doesn't the XCover key trigger a camera scan?</a>
                                                 </li>
+                                                <li value="12"><a href="faqs.htm#Why4" class="selected">My devices are enrolled in WP-C mode. Why isn’t scanned data being sent to my browser or web app through keystroke output?</a>
+                                                </li>
                                             </ul>
                                             <h3><a name="What"></a>What are the different scanning configuration export and import options?</h3>
                                             <p>Export a configuration as a text file (saved to your device), through email, using near-field communication (NFC), or as a QR code. For more information on configuration export options, refer to <a href="common-tasks/export-scanning-config.htm">Export a scanning configuration</a>.</p>
@@ -2677,6 +2681,10 @@
                                             <p>There is a difference between the number of digits/characters, and the number of active symbol counts when setting the length. The correlation between characters and symbol counts depends on the encoding standard, for instance, code 128 differs from code 39. For code 128, there are three different encoding schemes that can be mixed within a single code 128 to achieve the shortest possible code.
 
 </p>
+                                            <h3><a name="Why4"></a>My devices are enrolled in WP-C mode. Why isn’t scanned data being sent to my browser or web app through keystroke output?</h3>
+                                            <p>In <a href="../knox-platform-for-enterprise/device-management-modes.htm#wpc">WP-C</a>, a change was made to the way web apps (apps that load web pages internally instead of through the Android native UI) handle text view focus after scanning. In previous deployment modes, the text view is already in focus when scanned data returns to the business app. This focus behavior is no longer required in WP-C.</p>
+                                            <p>To handle this change, you must enable the <b>Allow remote control</b> policy in your EMM to allow Knox Capture to restore focus to the text view.</p>
+                                            <div class="callout warning"><b>NOTE</b>—Enabling the <b>Allow remote control</b> policy is only required if you have activated a <a href="../../dev/common/knox-licenses.htm#:~:text=KPE%20Premium,-%E2%80%94Provides" target="_blank">KPE (Knox Platform for Enterprise) Premium license</a>.</div>
                                         </div>
                                         <!-- Inserts feedback module here -->
                                         <div id="feedback">

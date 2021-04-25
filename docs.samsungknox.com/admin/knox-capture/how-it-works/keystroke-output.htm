@@ -1195,6 +1195,8 @@
                                                         </li>
                                                         <li><a href="keystroke-output.htm#" class="selected">Keystroke output</a>
                                                         </li>
+                                                        <li><a href="intent-output.htm">Intent output</a>
+                                                        </li>
                                                         <li><a href="deployment.htm">Deployment</a>
                                                         </li>
                                                     </ul>
@@ -2553,6 +2555,7 @@
                                             <p><span class="GeneralKnoxScanProductNameShort">Knox Capture</span> sends scanned data to business apps as keystrokes, imitating the way a user manually enters data using a keyboard.</p>
                                             <p>
             To review an example of setting keystroke output rules, refer to  <a href="../admin-tutorial/step-5-keystroke-output.htm" target="_blank">IT admins: Getting started with Knox Capture - Step 5: Set keystroke output rules.</a></p>
+                                            <div class="callout warning"><b>NOTE—</b>If you activate a KPE (Knox Platform for Enterprise) Premium license with a WP-C deployment, you must set <code>AdvancedRestrictionPolicy.allowRemoteControl() </code>to <b>True</b> in your EMM. Enabling this policy allows keystroke output to function as expected.</div>
                                             <h2>Overall formatting</h2>
                                             <p>Refer to the following settings to modify scanned data and format its output: </p>
                                             <table style="width: 100%;">
@@ -2653,11 +2656,12 @@ and key event.</p>
                                                 <col />
                                                 <tbody>
                                                     <tr>
-                                                        <td><b>Setting</b>
+                                                        <td style="text-align: center;"><b>Setting</b>
                                                         </td>
-                                                        <td><b>Description</b>
+                                                        <td style="text-align: center;"><b>Description</b>
                                                         </td>
-                                                        <td>Default</td>
+                                                        <td style="text-align: center;"><b>Default</b>
+                                                        </td>
                                                     </tr>
                                                     <tr>
                                                         <td>Prefix to data </td>
@@ -2683,6 +2687,148 @@ and key event.</p>
                                                         <td>Send as Hex </td>
                                                         <td>Sends the data in hexadecimal format. </td>
                                                         <td>OFF</td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                            <h2><a name="Advanced"></a>Advanced data formatting</h2>
+                                            <p>In Knox Capture, you can add one or more rules that modify data based on certain actions and criteria. These rules convert scanned data into various formats, which are then passed to business apps through keystrokes.</p>
+                                            <p>To create a rule and configure its actions and criteria:</p>
+                                            <ol>
+                                                <li value="1">On the Knox Capture home screen, tap on the profile you want to create a rule for.</li>
+                                                <li value="2">Under <b>Keystroke output and data formatting</b>, tap <b>Advanced data formatting</b>.</li>
+                                                <li value="3">In the top right corner of the screen, tap <b>+</b>.</li>
+                                                <li value="4">Enter a name for the rule, then tap <b>Done</b>.</li>
+                                                <li value="5">Under <b>Set criteria</b>, configure the below settings as needed:</li>
+                                                <ul>
+                                                    <li value="1"><b>Barcode type</b> – The types of barcodes that the rule applies to.</li>
+                                                    <li value="2"><b>String length</b> – The required length of scanned data to trigger the rule.</li>
+                                                    <li value="3"><b>String</b> – A string that must be present for the rule to trigger.</li>
+                                                    <li value="4"><b>String position</b> – When the cursor reaches this position in the string, the rule executes.</li>
+                                                </ul>
+                                                <li value="6">Under <b>Set actions in order</b>, tap <b>Add actions</b>.</li>
+                                                <li value="7">A popup appears, prompting you to select actions you want to add. See the table below for details on each action. Tap <b>Add </b>when you're finished.</li>
+                                                <li value="8">Configure the actions as necessary, then tap <b>&lt;</b> in the top left to return to the rules list.</li>
+                                                <li value="9">Repeat <b>Steps 3-8</b> for any additional rules you want to create, then rearrange them in the order they should be executed.</li>
+                                            </ol>
+                                            <p>Refer to the advanced data formatting actions below to move the cursor, modify, send, or delay data being sent to business apps.</p>
+                                            <div class="callout warning"><b>NOTE</b>—If you add multiple actions to your rule, you can change the order in which they execute.</div>
+                                            <table style="width: 100%;">
+                                                <tbody>
+                                                    <tr>
+                                                        <td style="text-align: center;"><b>Action</b>
+                                                        </td>
+                                                        <td style="text-align: center;"><b>Description</b>
+                                                        </td>
+                                                        <td style="text-align: center;"><b>Options</b>
+                                                        </td>
+                                                        <td style="text-align: center;"><b>Default</b>
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td rowspan="5"><b>Cursor movement</b>
+                                                        </td>
+                                                        <td rowspan="5">Sets the cursor to move to a location in the output data.</td>
+                                                        <td><b>Skip ahead by characters</b> – Moves the cursor forward by a specific number of characters.</td>
+                                                        <td>1</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td><b>Skip back by characters </b>– Moves the cursor backwards by a specific number of characters.</td>
+                                                        <td>1</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td><b>Skip to start</b> – Moves the cursor to the beginning of the output data.</td>
+                                                        <td>None</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td><b>Move ahead to substring </b>– Moves the cursor forward until a specific string is found.
+                    </td>
+                                                        <td>
+                                                            <p>Blank</p>
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td><b>Move past</b> <b>substring</b> – Moves the cursor past a specific string in the output data.
+                    </td>
+                                                        <td>Blank
+                    </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td rowspan="6"><b>Data modification</b>
+                                                        </td>
+                                                        <td rowspan="6">Sets the elements for Knox Capture to add, edit, or remove from the data.</td>
+                                                        <td><b>Remove extra spaces </b>– Deletes all but one space between words, and removes any blank space at the beginning and end of the data.
+                    </td>
+                                                        <td>None
+                    </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td><b>Remove all space</b> – Remove all spaces in the data.
+                    </td>
+                                                        <td>None
+                    </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td><b>Remove beginning zeros</b> – Remove any zeroes at the beginning of the data.
+                    </td>
+                                                        <td>None
+                    </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td><b>Pad with zeros to the left</b> – Specify the desired length of the output, and Knox Capture pads the left side of the string with zeros.
+                    </td>
+                                                        <td>Blank
+                    </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td><b>Replace string </b>– Replaces a specific string with a new, specified string. You must specify both strings.
+                    </td>
+                                                        <td>Blank
+                    </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td><b>Remove characters</b> – When sending data, removes a specific number of characters from the given positions. You must provide the start position and the number of characters to remove.
+                    </td>
+                                                        <td><b>Start position</b>: 1
+                    <p><b>Number of characters</b>: 1</p></td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td rowspan="6"><b>Data sending</b>
+                                                        </td>
+                                                        <td rowspan="6">Controls a selected amount of data to send to business apps.
+                    </td>
+                                                        <td><b>Send next characters </b>– Sends a specific number of characters from the current cursor position.
+                    </td>
+                                                        <td>1
+                    </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td><b>Send remaining characters </b>– Sends all data after the current cursor position.
+                    </td>
+                                                        <td>None
+                    </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td><b>Send up to substring</b> – Sends all data up to a specific string.
+                    </td>
+                                                        <td>Blank
+                    </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td><b>Send pause </b>– Pauses all actions for a specific number of milliseconds (max. 120000).
+                    </td>
+                                                        <td>50ms
+                    </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td><b>Send string</b> – Sends a specific string when the corresponding rule is triggered.
+                    </td>
+                                                        <td>Blank</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td><b>Send char </b>– Sends a specific ASCII/Unicode character when the corresponding rule is triggered.
+                    </td>
+                                                        <td>32
+                    </td>
                                                     </tr>
                                                 </tbody>
                                             </table>
