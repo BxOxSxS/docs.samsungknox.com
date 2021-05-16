@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" lang="en-US" xml:lang="en-US" data-mc-search-type="Stem" data-mc-help-system-file-name="Default.xml" data-mc-path-to-help-system="../" data-mc-conditions="Default.uem-build" data-mc-target-type="WebHelp2" data-mc-runtime-file-type="Topic;Default" data-mc-preload-images="false" data-mc-in-preview-mode="false" data-mc-toc-path="Knox Platform for Enterprise|Get started with UEMs|SOTI MobiControl|Configure Android Enterprise">
     <head>
-        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" /><title>SOTI MobiControl: Deploy Company-owned device</title>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" /><title>SOTI MobiControl: Deploy Fully Managed Enrollment</title>
         <!-- Google analytics tag-->
         <script>/* <![CDATA[ */
 			(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
@@ -137,7 +137,7 @@
                                             <ul class="sub-menu">
                                                 <li class="has-children"><a href="soti-deploy-company-owned-device.htm#">Introduction</a>
                                                     <ul class="sub-menu">
-                                                        <li><a href="../whitepaper/kpe/samsung-knox.htm">Samsung Knox</a>
+                                                        <li><a href="../whitepaper/kpe/samsung-knox.htm">The Samsung Knox Platform</a>
                                                         </li>
                                                         <li><a href="../whitepaper/kpe/feature-summary.htm">Feature Summary</a>
                                                         </li>
@@ -667,9 +667,11 @@
                                                                         </li>
                                                                         <li><a href="soti-configure-ae.htm">Configure Android Enterprise</a>
                                                                         </li>
-                                                                        <li><a href="soti-deploy-byod.htm">Deploy BYOD device</a>
+                                                                        <li><a href="soti-create-device-rule.htm">Create Android Enterprise Device Rule</a>
                                                                         </li>
-                                                                        <li><a href="soti-deploy-company-owned-device.htm#" class="selected">Deploy Company-owned device</a>
+                                                                        <li><a href="soti-deploy-byod.htm">Deploy Work Profile</a>
+                                                                        </li>
+                                                                        <li><a href="soti-deploy-company-owned-device.htm#" class="selected">Deploy fully managed device</a>
                                                                         </li>
                                                                         <li><a href="soti-deploy-fully-managed-device-with-work-profile.htm">Deploy fully managed device with work profile</a>
                                                                         </li>
@@ -684,10 +686,6 @@
                                                                 <li class="has-children"><a href="soti-deploy-company-owned-device.htm#">Configure Knox Platform for Enterprise</a>
                                                                     <ul class="sub-menu">
                                                                         <li><a href="soti-configure-knox-platform-for-enterprise.htm">Configure Knox Platform for Enterprise</a>
-                                                                        </li>
-                                                                        <li><a href="soti-configure-kpe-standard.htm">Configure KPE Standard</a>
-                                                                        </li>
-                                                                        <li><a href="soti-configure-kpe-premium.htm">Configure KPE Premium</a>
                                                                         </li>
                                                                     </ul>
                                                                 </li>
@@ -948,6 +946,8 @@
                                         <li class="has-children"><a href="soti-deploy-company-owned-device.htm#">Knox Mobile Enrollment</a>
                                             <ul class="sub-menu">
                                                 <li><a href="../knox-mobile-enrollment/welcome.htm">Introduction</a>
+                                                </li>
+                                                <li><a href="../knox-mobile-enrollment/videos.htm">How-to videos</a>
                                                 </li>
                                                 <li class="has-children"><a href="soti-deploy-company-owned-device.htm#">Get started</a>
                                                     <ul class="sub-menu">
@@ -2293,7 +2293,17 @@
                                                                 </li>
                                                                 <li><a href="../efota-one/monitor-operations.htm">Monitor operations</a>
                                                                 </li>
-                                                                <li><a href="../efota-one/manage-devices.htm">Manage devices</a>
+                                                                <li class="has-children"><a href="../efota-one/manage-devices.htm">Manage devices</a>
+                                                                    <ul class="sub-menu">
+                                                                        <li><a href="../efota-one/operation-status.htm">Operation Status</a>
+                                                                        </li>
+                                                                        <li><a href="../efota-one/campaign-status.htm">Campaign status</a>
+                                                                        </li>
+                                                                        <li><a href="../efota-one/client-status.htm">Client status</a>
+                                                                        </li>
+                                                                        <li><a href="../efota-one/update-status.htm">Update status</a>
+                                                                        </li>
+                                                                    </ul>
                                                                 </li>
                                                                 <li><a href="../efota-one/share-license.htm">Share a license to another tenant</a>
                                                                 </li>
@@ -2389,7 +2399,7 @@
                                                         </li>
                                                         <li class="has-children"><a href="soti-deploy-company-owned-device.htm#">Troubleshoot</a>
                                                             <ul class="sub-menu">
-                                                                <li><a href="../efota-one/troubleshoot.htm">Troubleshoot</a>
+                                                                <li><a href="../efota-one/troubleshoot.htm">Overview</a>
                                                                 </li>
                                                                 <li><a href="../efota-one/tools.htm">Knox tools</a>
                                                                 </li>
@@ -2634,79 +2644,77 @@
 									-->
                                     <div id="sec2" class="small-12 medium-8 large-9 columns">
                                         <div itemscope="itemscope" itemtype="http://schema.org/Guide">
-                                            <h1>SOTI MobiControl: Deploy Company-owned device</h1>
+                                            <h1>SOTI MobiControl: Deploy Fully Managed Enrollment</h1>
+                                            <p>Android Enterprise Company-owned Device Deployment</p>
                                             <p>To enroll your device as an Android Enterprise Company-owned device, you need to ensure the device is factory reset and at the welcome screen. From here, there are 3 ways you can enroll your device into MobiControl UEM as an Android Enterprise Company-owned device. Use the same ‘Android Enterprise Rule’ configuration but start from a factory reset device.</p>
-                                            <ul>
-                                                <li value="1">DPC Identifier, also known as the hashtag method, afw#mobicontrol</li>
+                                            <ol>
+                                                <li value="1">DPC Identifier [Also known as the hashtag method] afw#mobicontrol</li>
                                                 <li value="2">QR Code Enrollment / NFC Enrollment</li>
-                                                <li value="3"><a href="../knox-mobile-enrollment/welcome.htm">Knox Mobile Enrollment</a>
-                                                </li>
+                                                <li value="3">Knox Mobile Enrollment</li>
+                                            </ol>
+                                            <ul>
+                                                <li value="1">Below is a screen-by-screen play to enroll your device using the DPC Identifier method.</li>
                                             </ul>
-                                            <p>Below is a screen-by-screen play to enroll your device using the DPC Identifier method.</p>
                                             <div class="row">
                                                 <div class="large-4 column" style="text-align:center;">
                                                     <p>
-                                                        <img src="../../assets/merge/images/uem/ibm_configure_co_1.png" />
+                                                        <img src="../../assets/merge/images/uem/soti_fm_1.png" />
                                                     </p>
-                                                    <p>1. Click Start arrow</p>
-                                                </div>
-                                                <div class="large-4 column" style="text-align:center;">
-                                                    <img src="../../assets/merge/images/uem/ibm_configure_co_2.png" />
-                                                    <p>2. Accept T’s &amp; C’s</p>
+                                                    <p>1. Select the arrow</p>
                                                 </div>
                                                 <div class="large-4 column" style="text-align:center;">
                                                     <p>
-                                                        <img src="../../assets/merge/images/uem/ibm_configure_co_3.png" />
+                                                        <img src="../../assets/merge/images/uem/soti_fm_2.png" />
                                                     </p>
-                                                    <p>3. Skip Backup</p>
+                                                    <p>2. Accept the EULA, Select Next<![CDATA[				]]></p>
                                                 </div>
                                                 <div class="large-4 column" style="text-align:center;">
                                                     <p>
-                                                        <img src="../../assets/merge/images/uem/ibm_configure_co_4.png" />
+                                                        <img src="../../assets/merge/images/uem/soti_fm_3.png" />
                                                     </p>
-                                                    <p>4. Enter afw#mobicontrol and click next</p>
+                                                    <p>3. Enter afw#mobicontrol then select Next</p>
                                                 </div>
                                                 <div class="large-4 column" style="text-align:center;">
                                                     <p>
-                                                        <img src="../../assets/merge/images/uem/ibm_configure_co_5.png" />
+                                                        <img src="../../assets/merge/images/uem/soti_fm_4.png" />
                                                     </p>
-                                                    <p>5. Install MobiControl Client</p>
+                                                    <p>4. Install<![CDATA[				]]></p>
                                                 </div>
                                                 <div class="large-4 column" style="text-align:center;">
                                                     <p>
-                                                        <img src="../../assets/merge/images/uem/ibm_configure_co_6.png" />
+                                                        <img src="../../assets/merge/images/uem/soti_fm_5.png" />
                                                     </p>
-                                                    <p>6. Install MobiControl Client</p>
+                                                    <p>5. Install<![CDATA[				]]></p>
                                                 </div>
                                                 <div class="large-4 column" style="text-align:center;">
                                                     <p>
-                                                        <img src="../../assets/merge/images/uem/ibm_configure_co_7.png" />
+                                                        <img src="../../assets/merge/images/uem/soti_fm_6.png" />
                                                     </p>
-                                                    <p>7. Accept and Continue</p>
+                                                    <p>
+                    6. Accept and continue
+                </p>
                                                 </div>
                                                 <div class="large-4 column" style="text-align:center;">
                                                     <p>
-                                                        <img src="../../assets/merge/images/uem/ibm_configure_co_8.png" />
+                                                        <img src="../../assets/merge/images/uem/soti_fm_7.png" />
                                                     </p>
-                                                    <p>8. Setting Up Work Device</p>
+                                                    <p>7. Next</p>
                                                 </div>
                                                 <div class="large-4 column" style="text-align:center;">
                                                     <p>
-                                                        <img src="../../assets/merge/images/uem/soti_configure_co_1.png" />
+                                                        <img src="../../assets/merge/images/uem/soti_fm_8.png" />
                                                     </p>
-                                                    <p>9. Enter EnrollmentID</p>
+                                                    <p>
+					8. Accept
+				</p>
                                                 </div>
                                                 <div class="large-4 column" style="text-align:center;">
                                                     <p>
-                                                        <img src="../../assets/merge/images/uem/soti_configure_co_3.png" />
+                                                        <img src="../../assets/merge/images/uem/soti_fm_9.png" />
                                                     </p>
-                                                    <p>10. Setting up Managed Google Play Account</p>
-                                                </div>
-                                                <div class="large-4 column" style="text-align:center;">
                                                     <p>
-                                                        <img src="../../assets/merge/images/uem/soti_configure_co_4.png" />
-                                                    </p>
-                                                    <p>11. Device Enrollment Successful!</p>
+					9. Enter your Enrollment ID, Enroll
+				</p>
                                                 </div>
                                             </div>
                                         </div>
