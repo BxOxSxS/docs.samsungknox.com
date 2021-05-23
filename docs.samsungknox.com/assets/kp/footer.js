@@ -18,7 +18,7 @@ document.write("          <\/span>");
 document.write("          <span>");
 document.write("            <a href=\"https:\/\/www.samsungknox.com\/en\/eula\">End user license agreement<\/a>");
 document.write("          <\/span>");
-document.write("          <p class=\"copyright\">CopyrightÂ© 1995-2021 SAMSUNG. All rights reserved.<\/p>");
+document.write("          <p class=\"copyright\">Copyright © 1995-2021 SAMSUNG. All rights reserved.<\/p>");
 document.write("        <\/div>");
 document.write("       ");
 document.write("      <\/div>");

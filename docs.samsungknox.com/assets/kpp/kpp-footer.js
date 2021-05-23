@@ -17,7 +17,7 @@ document.write("            <a href=\"https:\/\/eula.secb2b.com\/EULA\/KLMS\/en.
 document.write("            <a href=\"https:\/\/eula.secb2b.com\/EULA\/GDPR\/en.html\">European Union</a> | ");
 document.write("            <a href=\"https:\/\/eula.secb2b.com\/EULA\/KLMS\/korea_en.html\">Korea</a>");
 document.write("          <\/span>");
-document.write("          <p class=\"copyright\">Copyright Â© 1995-2021 SAMSUNG. All rights reserved.<\/p>");
+document.write("          <p class=\"copyright\">Copyright © 1995-2021 SAMSUNG. All rights reserved.<\/p>");
 document.write("        <\/div>");
 document.write("       ");
 document.write("      <\/div>");
