@@ -1398,6 +1398,8 @@
                                                         </li>
                                                         <li><a href="../../../knox-deployment-program/comparison-gen2-gen1.htm">Comparing Gen2 and Gen1</a>
                                                         </li>
+                                                        <li><a href="../../../knox-deployment-program/migrate-gen2-gen1.htm">Migrating from&#160;Gen1 to Gen2</a>
+                                                        </li>
                                                         <li><a href="../../../../devref/knox-deployment-program/index.htm" target="_blank">API&#160;Reference</a>
                                                         </li>
                                                         <li><a href="../../../knox-deployment-program/error-codes.htm">Error codes</a>
@@ -1440,6 +1442,12 @@
                                                 </li>
                                                 <li class="has-children"><a href="what-does-security-policy-prevents-app-installation-mean.htm#">Knox Manage</a>
                                                     <ul class="sub-menu">
+                                                        <li><a href="../../../knox-manage/index.htm">Overview</a>
+                                                        </li>
+                                                        <li><a href="../../../knox-manage/whats-new.htm">What's new</a>
+                                                        </li>
+                                                        <li><a href="../../../knox-manage/tutorial.htm">Tutorial</a>
+                                                        </li>
                                                         <li><a href="../../../../devref/knox-manage/index.html">API Reference</a>
                                                         </li>
                                                     </ul>
@@ -1698,14 +1706,35 @@
                                             </div>
                                         </nav>
                                         <h1>What does "Security policy prevents installation of this application" mean?</h1>
-                                        <p>You might see the error message, "Security policy prevents installation of this application" if you perform the following steps:</p>
+                                        <p>You might see this message in these scenarios:</p>
+                                        <ul>
+                                            <li value="1"><a href="what-does-security-policy-prevents-app-installation-mean.htm#block" class="selected">Device user installs an app blocked by corporate policy</a>
+                                            </li>
+                                            <li value="2"><a href="what-does-security-policy-prevents-app-installation-mean.htm#mdm" class="selected">MDM developer re-installs an MDM app</a>
+                                            </li>
+                                        </ul>
+                                        <h2><a name="block"></a>Device user installs an app blocked by corporate policy</h2>
+                                        <p>An enterprise can use an MDM system to define the apps that employees 
+           are or are not allowed to install on mobile devices. This is for security
+           purposes, to prevent unauthorized apps from potentially interfering
+           with devices and apps used to manage private company assets.</p>
+                                        <p>If you see this message, this means there is an app blocking policy 
+           applied on your device. Only an enterprise IT admin with access to
+           the MDM system can modify the policy. You should consult with the 
+           IT admin to determine if the app you want to install can be allowed,
+           by either adding it to an app allow list or removing it from an app block list.</p>
+                                        <p>How IT admins unblock an app depends on the MDM system and whether the 
+           <a href="../../../../admin/uem/index.htm">Knox Service Plugin</a>
+           is being used.</p>
+                                        <h2><a name="mdm"></a>MDM developer re-installs an MDM app</h2>
+                                        <p>MDM developers might also see the message if you do the following:</p>
                                         <ol>
                                             <li value="1">Install an MDM app onto a device, for example, using Android Studio ADB.</li>
-                                            <li value="2">Create a Knox container.</li>
-                                            <li value="3">Change MDM app code and install it on the device again.</li>
+                                            <li value="2">Create a work profile.</li>
+                                            <li value="3">Change the MDM app code and install it on the device again.</li>
                                         </ol>
-                                        <p>The Android Multiple User Framework attempts to install the MDM app into all user spaces, including the Knox container. For security reasons, you cannot use ADB to install apps into the Knox container.</p>
-                                        <p>You must remove the Knox container before you can re-install your MDM app. To do this, disable the Device Administrator from Settings &gt; Security &gt; Device Administrators. If you need to re-install your MDM app regularly, for debugging purposes, you should programmatically do this as an active admin by calling:</p><pre class="prettyprint" xml:space="preserve">ComponentName devAdminReceiver = new ComponentName(getBaseContext(), TestAdmin.class); 
+                                        <p>The Android Multiple User Framework attempts to install the MDM app into all user spaces, including the work profile. For security reasons, you cannot use ADB to install apps into the work profile.</p>
+                                        <p>You must remove the work profile before you can re-install your MDM app. To do this, disable the Device Administrator from Settings &gt; Security &gt; Device Administrators. If you need to re-install your MDM app regularly, for debugging purposes, you should programmatically do this as an active admin by calling:</p><pre class="prettyprint" xml:space="preserve">ComponentName devAdminReceiver = new ComponentName(getBaseContext(), TestAdmin.class); 
 // Context and class name of your device admin 
 DevicePolicyManager dpm = (DevicePolicyManager)getBaseContext().getSystemService(Context.DEVICE_POLICY_SERVICE); 
 dpm.removeActiveAdmin(devAdminReceiver);</pre>

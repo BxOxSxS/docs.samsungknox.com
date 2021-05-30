@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" lang="en-US" xml:lang="en-US" data-mc-search-type="Stem" data-mc-help-system-file-name="Default.xml" data-mc-path-to-help-system="../" data-mc-conditions="Builds.kdp-build" data-mc-target-type="WebHelp2" data-mc-runtime-file-type="Topic;Default" data-mc-preload-images="false" data-mc-in-preview-mode="false" data-mc-toc-path="Web services|Knox Deployment Program">
     <head>
-        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" /><title>Migrating from KDP&#160;Generation 1 APIs to Generation 2</title>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" /><title>Migrating from KDP Gen1 APIs to Gen2</title>
         <meta charset="utf-8" />
         <meta http-equiv="x-ua-compatible" content="ie=edge" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -1399,7 +1399,7 @@
                                                         </li>
                                                         <li><a href="comparison-gen2-gen1.htm">Comparing Gen2 and Gen1</a>
                                                         </li>
-                                                        <li><a href="migrate-gen2-gen1.htm#" class="selected">Migrating from KDP&#160;Generation 1 APIs to Generation 2</a>
+                                                        <li><a href="migrate-gen2-gen1.htm#" class="selected">Migrating from&#160;Gen1 to Gen2</a>
                                                         </li>
                                                         <li><a href="../../devref/knox-deployment-program/index.htm" target="_blank">API&#160;Reference</a>
                                                         </li>
@@ -1702,172 +1702,152 @@
                                                 </ul>
                                             </div>
                                         </nav>
-                                        <h1>Migrating from KDP&#160;Generation 1 APIs to Generation 2</h1>
+                                        <h1>Migrating from KDP Gen1 APIs to Gen2</h1>
                                         <p>The Knox Deployment Program (KDP) is designed for Samsung device resellers, including carriers and distributors, who purchase devices on behalf of enterprise customers. KDP is the underlying backbone of Samsung’s Knox Mobile Enrollment, Knox Configure, and other Knox cloud services, as it supplies information about enterprise devices to other services.</p>
                                         <p>This guide shows how to migrate from KDP REST  APIs of the 1st generation (GEN1) to the 2nd generation (GEN2). In GEN2, the latest generation, the KDP APIs have been restructured to simplify your workflow and enhance API authentication security.</p>
                                         <h2>Audience</h2>
-                                        <p>This guide is intended for web developers working for Samsung device resellers, who purchase devices on behalf of enterprise customers and use their own websites to identify which customers own the devices - that currently using GEN1 KDP APIs for their existing solution.</p>
+                                        <p>This guide is intended for web developers working for Samsung device resellers, who purchase devices on behalf of enterprise customers and use their own websites to identify which customers own the devices.</p>
                                         <h2>Introduction</h2>
-                                        <p>KDP GEN1 APIs were launched in late 2017; this was the initial release with a number of APIs and basic authentication.</p>
-                                        <p>In KDP APIs GEN2, the KDP APIs have been restructured to simplify your workflow and enhance API authentication security. The GEN1 static API authentication key X-WSM-API-TOKEN has been replaced with an authentication JSON  Web Token called x-knox-apitoken. This token expires every 30 minutes, making it more secure than the GEN1 license key.</p>
-                                        <p>You can find more details about history in the <a href="whats-new.htm">Samsung Knox developer site</a></p>
-                                        <p>This article outlines Authentication &amp; API changes<a href="comparison-gen2-gen1.htm">https://docs.samsungknox.com/dev/knox-deployment-program/comparison-gen2-gen1.htm</a></p>
+                                        <p>KDP Gen1 APIs were launched in late 2017; this was the initial release with a number of APIs and basic authentication.</p>
+                                        <p>In KDP APIs Gen2, the KDP APIs have been restructured to simplify your workflow and enhance API authentication security. The Gen1 static API authentication key X-WSM-API-TOKEN has been replaced with an authentication JSON  Web Token called x-knox-apitoken. This token expires every 30 minutes, making it more secure than the Gen1 license key.</p>
+                                        <p>For more detail about the API changes, see <a href="whats-new.htm">What's New in KDP Gen2</a> and 
+        <a href="comparison-gen2-gen1.htm">Comparing Gen2 and Gen1 KDP APIs</a>.</p>
                                         <h2>Server URL&#160;change</h2>
-                                        <p>Currently, you must be using server URL for GEN1 API, which is-
-        <br />https://eu-be-reseller.samsungknox.com (For EU server) and
-        <br />https://us-be-reseller.samsungknox.com (For US server).
-<br />       And must be whitelisting this URL from your network firewall.</p>
-                                        <p>For using GEN2 APIs, the new server URL is-
-        <br />https://eu-kcs-api.samsungknox.com (For the EU server) and
-        <br />https://us-kcs-api.samsungknox.com (For the US server).
-        <br />Please whitelist this URL if required.</p>
-                                        <p>During migration/development, please use the new GEN2 server URL &amp; test the APIs.</p>
-                                        <p>You can stop using the GEN1 server URL once your GEN2 solution is live.</p>
+                                        <p>We will migrate from the following Gen1 API servers, which must be whitelisted in your network firewall as required:</p>
+                                        <ul>
+                                            <li value="1"><a href="https://eu-be-reseller.samsungknox.com">https://eu-be-reseller.samsungknox.com</a> (EU server)</li>
+                                            <li value="2"><a href="https://us-be-reseller.samsungknox.com">https://us-be-reseller.samsungknox.com</a> (US server)</li>
+                                        </ul>
+                                        <p>To the following Gen2 API servers, which should also be whitelisted as required:</p>
+                                        <ul>
+                                            <li value="1"><a href="https://eu-kcs-api.samsungknox.com">https://eu-kcs-api.samsungknox.com</a> (EU server)</li>
+                                            <li value="2"><a href="https://us-kcs-api.samsungknox.com">https://us-kcs-api.samsungknox.com</a> (US server)</li>
+                                        </ul>
+                                        <p>During migration/development, please use the new Gen2 server URL to test the APIs.</p>
+                                        <p>You can stop using the Gen1 server URL once your Gen2 solution is live.</p>
                                         <h2>Request for the KDP API access</h2>
-                                        <p>When you’re using GEN1 APIs, your reseller portal dashboard has a reseller API key section, as shown below. This static API key is for API usage.</p>
+                                        <p>When you’re using Gen1 APIs, your reseller portal dashboard has a reseller API key section, as shown below. This static API key is for API usage.</p>
                                         <p>
-                                            <img src="https://docs.samsungknox.com/dev/Resources/Images/reseller-portal-dashboard.png" />
+                                            <img src="../Resources/Images/reseller-portal-dashboard.png" />
                                         </p>
-                                        <p>In order to use the GEN2 API, please apply for KDP API access &amp; get your access Key pair. Follow this <a href="tutorial.htm">tutorial</a> for detailed instructions (Step 2).</p>
+                                        <p>In order to use the Gen2 API, please apply for KDP API access &amp; get your access Key pair. Follow this <a href="tutorial.htm">tutorial</a> for detailed instructions (Step 2).</p>
                                         <p>Once KDP API access is approved, your reseller portal dashboard will show a Knox Cloud API section</p>
                                         <p>
-                                            <img src="https://docs.samsungknox.com/dev/Resources/Images/reseller-portal-gen2.png" />
+                                            <img src="../Resources/Images/reseller-portal-gen2.png" />
                                         </p>
                                         <h2>API message payload and response format changes</h2>
-                                        <p>For overall mapping of the GEN1 API to GEN2, please read the REST API Comparison section in this <a href="comparison-gen2-gen1.htm">article</a>.</p>
+                                        <p>For overall mapping of the Gen1 API to Gen2, please read the REST API Comparison section in this <a href="comparison-gen2-gen1.htm">article</a>.</p>
                                         <p>Below are the differences in message payload &amp; response format.</p>
                                         <p>For Upload/Delete Devices:</p>
                                         <ul>
-                                            <li value="1">V1 message:<pre class="prettyprint" xml:space="preserve">
-{
-	"transactionId": "244303",
-	"resellerId": "4680000925",
-	"customerId": "123004321",
-	"transactionType": "New",
-	"devices": {
-			"type": "IMEI",
-			"list": ["351800000675702"
-			]
-	}
-}
-
-			</pre></li>
-                                            <li value="2">V2 message:<pre class="prettyprint" xml:space="preserve">
-{
-	"transactionId": "244303",
-	"resellerId": "4600000925",
-	"customerId": "123400321",
-	"type": "IMEI",
-	"devices": [
-		"351826100005702"
-		]
+                                            <li value="1">V1 message:<br /><pre class="prettyprint" xml:space="preserve">{
+  "transactionId": "244303",
+  "resellerId": "4680000925",
+  "customerId": "123004321",
+  "transactionType": "New",
+  "devices": {
+    "type": "IMEI",
+    "list": ["351800000675702"
+    ]
+  }
+}</pre></li>
+                                            <li value="2">V2 message:<br /><pre class="prettyprint" xml:space="preserve">{
+  "transactionId": "244303",
+  "resellerId": "4600000925",
+  "customerId": "123400321",
+  "type": "IMEI",
+  "devices": [
+    "351826100005702"
+  ]
 }</pre></li>
                                         </ul>
                                         <p><b>transactionType</b> has been removed (now identified by endpoint) and type has been moved to a different level.</p>
                                         <p>For List Devices:</p>
                                         <ul>
-                                            <li value="1">V1 message:<pre class="prettyprint" xml:space="preserve">
-{
-	"totalCount": 0,
-	"totalPage": 0,
-	"pageNum": 0,
-	"devices": [{
-					"imei": "357192611111112"
-			}
-}
-
-
-			</pre></li>
-                                            <li value="2">V2 message:<pre class="prettyprint" xml:space="preserve">
-{
-	"code": "2000000",
-	"message": "SUCCESS",
-	"pageNum": 0,
-	"pageSize": 1000000,
-	"totalCount": 0,
-	"totalPages": 0,
-	"size": 0,
-	"devices": [{
-				"id": "6012afe85f18342e67ee9126",
-				"createTime": 1611837416372,
-				"mei": "351826000675702",
-				"customerName": "TOP Oil",
-				"customerId": "4600001586",
-				"serialNumber": "R3OOO00WKLD",
-				"meid": "089077500000423280",
-				"model": "SM-G981B/DS",
-				"state": "Verified",
-				"uploadId": "ddb71b6c-3aef-4d54-b1f4-b86480aa447d"
-			}]
-}
-
-				</pre></li>
+                                            <li value="1">V1 message:<br /><pre class="prettyprint" xml:space="preserve">{
+  "totalCount": 0,
+  "totalPage": 0,
+  "pageNum": 0,
+  "devices": [{
+    "imei": "357192611111112"
+  }]
+}</pre></li>
+                                            <li value="2">V2 message:<br /><pre class="prettyprint" xml:space="preserve">{
+  "code": "2000000",
+  "message": "SUCCESS",
+  "pageNum": 0,
+  "pageSize": 1000000,
+  "totalCount": 0,
+  "totalPages": 0,
+    "size": 0,
+    "devices": [{
+      "id": "6012afe85f18342e67ee9126",
+      "createTime": 1611837416372,
+      "mei": "351826000675702",
+      "customerName": "TOP Oil",
+      "customerId": "4600001586",
+      "serialNumber": "R3OOO00WKLD",
+      "meid": "089077500000423280",
+      "model": "SM-G981B/DS",
+      "state": "Verified",
+      "uploadId": "ddb71b6c-3aef-4d54-b1f4-b86480aa447d"
+    }]
+}</pre></li>
                                         </ul>
                                         <p>Element <b>totalPage</b> was changed to <b>totalPages</b> and new elements were added.</p>
                                         <p>For Check Transaction status message</p>
                                         <ul>
-                                            <li value="1">V1 message:<pre class="prettyprint" xml:space="preserve">
-{
-	"totalCount": 2,
-	"totalPage": 1,
-	"pageNum": 0,
-	"transactions": [{
-		"transactionId": "7500657464",
-		"state": "Complete",
-		"type": "Put",
-		"devices": [{
-						"imei": "807212627606673"
-				}, {
-						"imei": "21975175979444"
-				}, {
-						"imei": "40649504931126",
-						"code": 4092100,
-						"message": "RESELLER_DEVICE_ALREADY_EXISTS",
-						"data": "device imei[097436145498341] already exists"
-				}]
-		}
-	]
-}
-			</pre></li>
-                                            <li value="2">V2 message:<ul><li value="1">Whole message is <i>surrounded</i> by <b>devices</b> element not present earlier<pre class="prettyprint" xml:space="preserve">
-{
-	"devices": {
-			"totalCount": 1,
-			"totalPage": 1,
-			"pageNum": 0,
-			"transactions": [{
-					"transactionId": "246903",
-					"state": "Complete",
-					"type": "Put",
-					"operationType": "UPLOAD",
-					"devices": [{
-								"imei": "351826110675643",
-								"code": 40000004,
-								"message": "DEVICE_INVALID",
-								"data": "The specified device is not valid."
-								}]
-					}
-			]
-	}
-}
-				</pre></li><li value="2"><p>Internal element <b>devices</b> contain information about only failed transaction of all the devices in the transaction. If transaction went all fine, this element will be missing:</p><pre class="prettyprint" xml:space="preserve">
-{
-	"devices": {
-			"totalCount": 1,
-			"totalPage": 1,
-			"pageNum": 0,
-			"transactions": [{
-							"transactionId": "248603",
-							"state": "Complete",
-							"type": "Put",
-							"operationType": "UPLOAD"
-						}
-			]
-	}
-}
-
-
-				</pre></li></ul></li>
+                                            <li value="1">V1 message:<br /><pre class="prettyprint" xml:space="preserve">{
+  "totalCount": 2,
+  "totalPage": 1,
+  "pageNum": 0,
+  "transactions": [{
+    "transactionId": "7500657464",
+    "state": "Complete",
+    "type": "Put",
+    "devices": [{
+      "imei": "807212627606673"
+    }, {
+      "imei": "21975175979444"
+    }, {
+      "imei": "40649504931126",
+      "code": 4092100,
+      "message": "RESELLER_DEVICE_ALREADY_EXISTS",
+      "data": "device imei[097436145498341] already exists"
+    }]
+  }]
+}</pre></li>
+                                            <li value="2">V2 message:<ul><li value="1">Whole message is <i>surrounded</i> by <b>devices</b> element not present earlier:<br /><pre class="prettyprint" xml:space="preserve">{
+  "devices": {
+    "totalCount": 1,
+    "totalPage": 1,
+    "pageNum": 0,
+    "transactions": [{
+      "transactionId": "246903",
+      "state": "Complete",
+      "type": "Put",
+      "operationType": "UPLOAD",
+      "devices": [{
+        "imei": "351826110675643",
+        "code": 40000004,
+        "message": "DEVICE_INVALID",
+        "data": "The specified device is not valid."
+      }]
+    }]
+  }
+}</pre></li><li value="2"><p>Internal element <b>devices</b> contain information about only failed transaction of all the devices in the transaction. If transaction went all fine, this element will be missing:</p><pre class="prettyprint" xml:space="preserve">{
+  "devices": {
+    "totalCount": 1,
+    "totalPage": 1,
+    "pageNum": 0,
+    "transactions": [{
+      "transactionId": "248603",
+      "state": "Complete",
+      "type": "Put",
+      "operationType": "UPLOAD"
+    }]
+  }
+}</pre></li></ul></li>
                                         </ul>
                                         <!-- Inserts feedback module here -->
                                         <div id="feedback">
