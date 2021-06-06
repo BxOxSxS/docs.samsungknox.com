@@ -667,11 +667,9 @@
                                                                         </li>
                                                                         <li><a href="../uem/soti-configure-ae.htm">Configure Android Enterprise</a>
                                                                         </li>
-                                                                        <li><a href="../uem/soti-create-device-rule.htm">Create Android Enterprise Device Rule</a>
+                                                                        <li><a href="../uem/soti-deploy-byod.htm">Deploy BYOD device</a>
                                                                         </li>
-                                                                        <li><a href="../uem/soti-deploy-byod.htm">Deploy Work Profile</a>
-                                                                        </li>
-                                                                        <li><a href="../uem/soti-deploy-company-owned-device.htm">Deploy fully managed device</a>
+                                                                        <li><a href="../uem/soti-deploy-company-owned-device.htm">Deploy Company-owned device</a>
                                                                         </li>
                                                                         <li><a href="../uem/soti-deploy-fully-managed-device-with-work-profile.htm">Deploy fully managed device with work profile</a>
                                                                         </li>
@@ -686,6 +684,10 @@
                                                                 <li class="has-children"><a href="create-campaign.htm#">Configure Knox Platform for Enterprise</a>
                                                                     <ul class="sub-menu">
                                                                         <li><a href="../uem/soti-configure-knox-platform-for-enterprise.htm">Configure Knox Platform for Enterprise</a>
+                                                                        </li>
+                                                                        <li><a href="../uem/soti-configure-kpe-standard.htm">Configure KPE Standard</a>
+                                                                        </li>
+                                                                        <li><a href="../uem/soti-configure-kpe-premium.htm">Configure KPE Premium</a>
                                                                         </li>
                                                                     </ul>
                                                                 </li>
@@ -2293,17 +2295,7 @@
                                                                 </li>
                                                                 <li><a href="monitor-operations.htm">Monitor operations</a>
                                                                 </li>
-                                                                <li class="has-children"><a href="manage-devices.htm">Manage devices</a>
-                                                                    <ul class="sub-menu">
-                                                                        <li><a href="operation-status.htm">Operation Status</a>
-                                                                        </li>
-                                                                        <li><a href="campaign-status.htm">Campaign status</a>
-                                                                        </li>
-                                                                        <li><a href="client-status.htm">Client status</a>
-                                                                        </li>
-                                                                        <li><a href="update-status.htm">Update status</a>
-                                                                        </li>
-                                                                    </ul>
+                                                                <li><a href="manage-devices.htm">Manage devices</a>
                                                                 </li>
                                                                 <li><a href="share-license.htm">Share a license to another tenant</a>
                                                                 </li>
@@ -2399,7 +2391,7 @@
                                                         </li>
                                                         <li class="has-children"><a href="create-campaign.htm#">Troubleshoot</a>
                                                             <ul class="sub-menu">
-                                                                <li><a href="troubleshoot.htm">Overview</a>
+                                                                <li><a href="troubleshoot.htm">Troubleshoot</a>
                                                                 </li>
                                                                 <li><a href="tools.htm">Knox tools</a>
                                                                 </li>
@@ -2647,9 +2639,8 @@
                                             <h1><a name="aanchor525"></a>
                                                 <MadCap:concept term="efota-one" />Create a campaign</h1>
                                             <ol>
-                                                <li value="1"><a href="before-you-begin.htm#log-in">Log in to the <span class="GeneralEFOTAOne">Knox E-FOTA&#160;One</span> portal</a>.</li>
-                                                <li value="2">Go to <b>Campaigns</b> and then click <b>Create&#160;Campaign</b>.<p><img src="../../assets/merge/images/efota/campaign/create-campaign.png" /></p></li>
-                                                <li value="3">
+                                                <li value="1"><a href="before-you-begin.htm#log-in">Log in to the <span class="GeneralEFOTAOne">Knox E-FOTA&#160;One</span> portal</a>.<ol><li value="1">Go to <b>Campaigns</b> and then click <b>Create&#160;Campaign</b>.<p><img src="../../assets/merge/images/efota/campaign/create-campaign.png" /></p><div class="callout warning"><b>NOTE</b><ul><li value="1">In the Devices tab, you can customize the table columns to include each device’s CSC (Consumer Software Customization). When you export the device list to a CSV file, the CSC info is also included.</li><li value="2">When viewing a device’s Device details, you can now see that device’s CSC.</li><li value="3">When assigning target devices to a campaign, fill in the Assign Devices and Firmware table in the campaign creation screen. Each row of that table represents a device group, that is, a model/sales-code pair. The CSC of each device group is now pre-populated next to the sales code. For device groups that have multiple possible CSCs, dropdown-menu is displayed instead, so that you can select the CSC for that group.</li><li value="4">When you move on to select target firmware for a device group, you only see target firmware versions that are compatible with that device group given its model, sales code, and CSC.</li><li value="5">When creating, editing, and viewing a campaign, you can now see the CSCs of devices in that campaign.</li></ul></div></li></ol></li>
+                                                <li value="2">
                                                     <p>
                                                         <div class="MCDropDown MCDropDown_Open dropDown"><span class="MCDropDownHead dropDownHead"><a href="javascript:void(0);" class="MCDropDownHotSpot dropDownHotspot MCDropDownHotSpot_ MCHotSpotImage" style="font-weight: bold;"><img class="MCDropDown_Image_Icon" src="../Skins/Default/Stylesheets/Images/transparent.gif" height="11" width="16" alt="Closed" data-mc-alt2="Open" />Fill in the campaign details.</a><![CDATA[    ]]></span>
                                                             <div class="MCDropDownBody dropDownBody">
@@ -2717,20 +2708,20 @@
                                                         </div>
                                                     </p>
                                                 </li>
-                                                <li value="4">Assign devices to the campaign:<ol style="list-style-type: lower-alpha;"><li value="1">Click <b>Assign Devices</b>.</li><li value="2"><p>In the <b>Assign devices</b> screen, select one or more devices to assign to the campaign.</p><div class="callout warning"><p><b>NOTE</b>—By default, the device list is pre-filtered to show only the following:</p><ul><li value="1">Devices that aren't assigned to any campaign. </li><li value="2">Devices assigned to expired or canceled campaigns.</li></ul><p>If you want to select a device currently assigned to an active campaign, click <b>Clear Filters</b>. </p><p>Devices that are not enrolled are excluded from the device list. Only enrolled devices can be assigned to a campaign.</p></div></li><li value="3"><p>Click <b>Assign</b>.</p><p>The table at the bottom of the form is populated based on the devices you selected.</p></li></ol></li>
-                                                <li value="5">
+                                                <li value="3">Assign devices to the campaign:<ol style="list-style-type: lower-alpha;"><li value="1">Click <b>Assign Devices</b>.</li><li value="2"><p>In the <b>Assign devices</b> screen, select one or more devices to assign to the campaign.</p><div class="callout warning"><p><b>NOTE</b>—By default, the device list is pre-filtered to show only the following:</p><ul><li value="1">Devices that aren't assigned to any campaign. </li><li value="2">Devices assigned to expired or canceled campaigns.</li></ul><p>If you want to select a device currently assigned to an active campaign, click <b>Clear Filters</b>. </p><p>Devices that are not enrolled are excluded from the device list. Only enrolled devices can be assigned to a campaign.</p><p>When you download the device list as a CSV file, the CSV file will now contain the version of the Knox E-FOTA One app installed on each device.</p></div></li><li value="3"><p>Click <b>Assign</b>.</p><p>The table at the bottom of the form is populated based on the devices you selected.</p></li></ol></li>
+                                                <li value="4">
                                                     <p>For each row in the table, do one of the following:</p>
                                                     <ul>
                                                         <li value="1">
                                                             <p>Click <b>Latest firmware</b> if you want the campaign to automatically push the latest firmware version to the assigned devices. Additionally, select one of the following:</p>
                                                             <ul style="list-style-type: circle;">
                                                                 <li value="1">
-                                                                    <p><b>Any</b>—The latest firmware, regardless of its OS version, will be pushed to devices.</p>
+                                                                    <p><b>Any</b>—The latest firmware, regardless of its OS version, is pushed to devices.</p>
                                                                 </li>
                                                                 <li value="2">
-                                                                    <p><b>Up to</b>—The latest firmware, within a particular OS version, will be pushed to devices.</p>
-                                                                    <p class="callout alert"><b>IMPORTANT</b>—If you select this, you may not receive security patches included in the latest firmware of the latest OS version.</p>
-                                                                    <p>If no firmware that meets your criteria is available for devices of a particular model-carrier pair, an error is displayed.</p>
+                                                                    <p><b>Up to</b>—The latest firmware, within a particular OS version, is pushed to devices.</p>
+                                                                    <p class="callout alert"><b>IMPORTANT</b>—If you select this option, you may not receive security patches included in the latest firmware of the latest OS version.</p>
+                                                                    <p>If no firmware meeting your criteria is available for devices of a particular model-carrier pair, an error is displayed.</p>
                                                                 </li>
                                                             </ul>
                                                         </li>
@@ -2759,7 +2750,7 @@
                                                         </ul>
                                                     </div>
                                                 </li>
-                                                <li value="6">
+                                                <li value="5">
                                                     <p>Click <b>Create and Activate</b>.</p>
                                                     <p>A notification is displayed confirming that the campaign was created. The campaign is added to the <b>Campaigns</b> list.</p>
                                                 </li>
@@ -2770,7 +2761,7 @@
                                                         <p>A device that is  off during this campaign period will have a pending status until the device is turned on. If the device remains off during the duration of the campaign period, it won't receive the command to update.</p>
                                                     </li>
                                                     <li value="2">
-                                                        <p>In some cases, especially when upgrading devices to a major Android OS version, several firmware updates are installed incrementally to reach the target firmware version, even if you only applied one campaign. This will result in devices automatically rebooting multiple times, corresponding to the number of firmware updates that actually occurred.</p>
+                                                        <p>In some cases, especially when upgrading devices to a major Android OS version, several firmware updates are installed incrementally to reach the target firmware version, even if you only applied one campaign. This process results in devices automatically rebooting multiple times, corresponding to the number of firmware updates that actually occurred.</p>
                                                     </li>
                                                 </ul>
                                             </div>
