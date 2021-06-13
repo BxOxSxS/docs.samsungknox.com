@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" lang="en-US" xml:lang="en-US" data-mc-search-type="Stem" data-mc-help-system-file-name="Default.xml" data-mc-path-to-help-system="../" data-mc-conditions="Builds.knox-sdk-build" data-mc-target-type="WebHelp2" data-mc-runtime-file-type="Topic;Default" data-mc-preload-images="false" data-mc-in-preview-mode="false" data-mc-toc-path="Device apps|Knox SDK|Features|Independent Software Vendors (DA)">
     <head>
@@ -1703,6 +1704,7 @@
                                         </nav>
                                         <!-- MENU START -->
                                         <h1>Sensitive Data Protection (SDP)</h1>
+                                        <div class="callout alert"><b>NOTE</b>—This feature was <a href="deprecated-api-methods.htm#:~:text=isSVoiceAllowed-,com.samsung.android.knox.sdp,-SdpDatabase">deprecated</a> in API level 33 with Knox SDK v3.7.</div>
                                         <p>Knox Sensitive Data Protection provides protection of Data-at-rest (DAR) in your app.&#160;This protection is provided with minimum development effort and at a negligible user experience loss.</p>
                                         <h2> About SDP </h2>
                                         <p>Data at rest is a term referring to inactive data stored in any digital form, for example, in files or databases. Protecting DAR is an increasing concern for businesses due to the rise of sophisticated malicious attacks. Using the Knox Sensitive Data Protection (SDP) APIs, you can easily secure your app’s confidential data, protecting apps from data leakage if devices are stolen or compromised. SDP encrypts your app-data and remains that way until the device owner provides authentication (pattern, pin, password, fingerprint, and so on).</p>
@@ -1817,7 +1819,7 @@ SdpEngine.getInstance().addEngine(builder.getParam(), password, resetToken)</pre
 
 sdpEngine = SdpEngine.getInstance();
 sdpEngine.lock("myapp.alias");
- 
+
 //recommended code for unlock()
 sdpEngine = SdpEngine.getInstance();
 sdpEngine.unlock("myapp.alias", "my_password");
@@ -1831,7 +1833,7 @@ sdpEngine.unlock("myapp.alias", "my_password");
 SdpEngine sdpEngine;
 sdpEngine = SdpEngine.getInstance();
 sdpEngine.setPassword("myapp.alias", "new_password");
-	
+
 //recommended code for resetPassword()
 
 SdpEngine sdpEngine;
@@ -1848,7 +1850,7 @@ sdpEngine.resetPassword("myapp.alias", "new_password", "my_reset_token");</pre>
                                             <li value="3"><b>The app user:</b>&#160;marks user data as sensitive.
 <br /></li>
                                         </ul>
-                                        <p>During engine creation, the app that invokes <code>addEngine</code> is the "engine owner". You configure privileged apps by calling <code>SdpCreationParam.addPrivilegedApp()</code>. <code>SdpDomain</code> represents the app installed in the system to apply policies.</p><pre class="prettyprint" xml:space="preserve">int flag = SdpEngineConstants.Flags.SDP_MDFPP;	
+                                        <p>During engine creation, the app that invokes <code>addEngine</code> is the "engine owner". You configure privileged apps by calling <code>SdpCreationParam.addPrivilegedApp()</code>. <code>SdpDomain</code> represents the app installed in the system to apply policies.</p><pre class="prettyprint" xml:space="preserve">int flag = SdpEngineConstants.Flags.SDP_MDFPP;
 SdpCreationParamBuilder sdpCreationParamBuilder = new SdpCreationParamBuilder(myapp.alias, flag);
 builder.addPrivilegedApp(new SdpDomain("myapp.alias", "com.myapp.keyguard"));
 builder.addPrivilegedApp(new SdpDomain("myapp.alias", "com.myapp.agent"));</pre>
@@ -1919,7 +1921,7 @@ sdpColumn.setSensitive(mDb, null, "table_name", columnsList);</pre>
         </script>
         <!-- Format left ToC headings  -->
         <script>/* <![CDATA[ */
-			($("a[href='http://docs.samsungknox.com/dev/assets/navheads/welcome.htm']").replaceWith("<p style='padding-top:20px;text-transform:uppercase;'><b>Basics</b></p>"))	
+			($("a[href='http://docs.samsungknox.com/dev/assets/navheads/welcome.htm']").replaceWith("<p style='padding-top:20px;text-transform:uppercase;'><b>Basics</b></p>"))
 		/* ]]> */</script>
         <script>/* <![CDATA[ */
 			($("a[href='http://docs.samsungknox.com/dev/assets/navheads/device-apps.htm']").replaceWith("<p style='padding-top:20px;text-transform:uppercase;'><b>Device Apps</b></p>"))
