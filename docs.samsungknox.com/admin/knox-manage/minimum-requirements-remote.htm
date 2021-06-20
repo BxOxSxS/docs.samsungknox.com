@@ -1059,6 +1059,8 @@
                                                                         </li>
                                                                         <li><a href="../knox-configure/kiosk-Mode.htm">Dynamic editon: ProKiosk mode</a>
                                                                         </li>
+                                                                        <li><a href="../knox-configure/kids-mode.htm">Samsung Kids mode</a>
+                                                                        </li>
                                                                         <li><a href="../knox-configure/dex.htm">DeX profile support</a>
                                                                         </li>
                                                                         <li><a href="../knox-configure/request-device-animation-files.htm">Custom booting and shutdown animation</a>
@@ -1110,8 +1112,6 @@
                                                                 <li><a href="../knox-configure/to-get-support.htm">Get support</a>
                                                                 </li>
                                                             </ul>
-                                                        </li>
-                                                        <li><a href="../knox-configure/kbas/index.htm">KBAs</a>
                                                         </li>
                                                     </ul>
                                                 </li>
@@ -1182,6 +1182,8 @@
                                                     </ul>
                                                 </li>
                                                 <li><a href="../../KC-Shared-Device/KC&#32;Shared&#32;Device&#32;-&#32;Admin&#32;Guide.pdf" target="_blank">Shared Device</a>
+                                                </li>
+                                                <li><a href="../knox-configure/kbas/index.htm">KBAs</a>
                                                 </li>
                                             </ul>
                                         </li>
@@ -1311,6 +1313,8 @@
                                                         </li>
                                                         <li><a href="../knox-asset-intelligence/modules/location-tracking.htm">Location tracking</a>
                                                         </li>
+                                                        <li><a href="../knox-asset-intelligence/modules/device-debug-log.htm">Device debug log</a>
+                                                        </li>
                                                     </ul>
                                                 </li>
                                                 <li class="has-children"><a href="minimum-requirements-remote.htm#">Features</a>
@@ -1324,6 +1328,8 @@
                                                         <li><a href="../knox-asset-intelligence/features/invite-admin.htm">Invite and manage administrators</a>
                                                         </li>
                                                         <li><a href="../knox-asset-intelligence/features/view-activity-log.htm">View the activity log</a>
+                                                        </li>
+                                                        <li><a href="../knox-asset-intelligence/features/view-debug-log.htm">View the device debug log</a>
                                                         </li>
                                                     </ul>
                                                 </li>
@@ -1436,6 +1442,8 @@
                                                                 <li><a href="assigning-to-groups.htm">Assign profiles to groups and organizations</a>
                                                                 </li>
                                                                 <li><a href="enroll-a-single-device.htm">Enroll devices</a>
+                                                                </li>
+                                                                <li><a href="register-a-shared-device.htm">Register and enroll a shared device</a>
                                                                 </li>
                                                                 <li class="has-children"><a href="minimum-requirements-remote.htm#">View device information</a>
                                                                     <ul class="sub-menu">
@@ -2603,7 +2611,7 @@
                                                         </li>
                                                     </ul>
                                                 </li>
-                                                <li><a href="../knox-managed-service-provider/revision-history.htm">Release notes</a>
+                                                <li><a href="../knox-managed-service-provider/release-notes.htm">Release notes</a>
                                                 </li>
                                                 <li><a href="../knox-managed-service-provider/faqs.htm">FAQs</a>
                                                 </li>
@@ -2636,7 +2644,7 @@
 									-->
                                     <div id="sec2" class="small-12 medium-8 large-9 columns">
                                         <div itemscope="itemscope" itemtype="http://schema.org/Guide">
-                                            <h1><a name="aanchor444"></a>
+                                            <h1><a name="aanchor441"></a>
                                                 <MadCap:concept term="knox-manage" />Minimum requirements</h1>
                                             <p>Check the download sources, supported OS/platform, and firewall settings before using Remote Support.</p>
                                             <h2>Supported platforms</h2>
@@ -2742,95 +2750,127 @@
                                                     <li value="2">For non-Samsung devices, several features, such as the Home, left/right controls, screen rotation buttons, and touch controls, are not available while using Remote Support. Devices should be controlled by the user.</li>
                                                 </ul> <![CDATA[ ]]></div>
                                             <h2>Disabling the firewall</h2>
-                                            <p>Disable the firewall for domains and ports for the administrator’s computer, Remote Support server, and TMS &amp; CRS server.</p>
+                                            <p>Disable the firewall for domains and ports for the administrator and device user using the internal network, Remote Support server, and TMS &amp; CRS server.</p>
                                             <p>The relevant servers are set up for each region (Asia, US, EU) as shown below:</p>
-                                            <table class="no-stripes">
+                                            <table>
                                                 <tbody>
                                                     <tr>
-                                                        <td style="font-weight: bold;text-align: center;">Server</td>
-                                                        <td style="font-weight: bold;text-align: center;">Region</td>
-                                                        <td style="font-weight: bold;text-align: center;">Domain</td>
-                                                        <td style="font-weight: bold;text-align: center;">IP</td>
-                                                        <td style="font-weight: bold;text-align: center;">Port</td>
+                                                        <th style="font-weight: bold;">
+                                                            <p>Region</p>
+                                                        </th>
+                                                        <th style="font-weight: bold;">
+                                                            <p>Server</p>
+                                                        </th>
+                                                        <th style="font-weight: bold;">
+                                                            <p>Domain</p>
+                                                        </th>
+                                                        <th style="font-weight: bold;">
+                                                            <p>IP</p>
+                                                        </th>
+                                                        <th style="font-weight: bold;">
+                                                            <p>Port</p>
+                                                        </th>
                                                     </tr>
                                                     <tr>
                                                         <td rowspan="3">
-                                                            <p>Remote Support server</p>
-                                                        </td>
-                                                        <td>
                                                             <p>Asia</p>
                                                         </td>
-                                                        <td>
-                                                            <p>ap-rs.manage.samsungknox.com</p>
+                                                        <td rowspan="2">
+                                                            <p>Relay</p>
+                                                        </td>
+                                                        <td rowspan="2">
+                                                            <p>ap-rs-relay.manage.samsungknox.com</p>
                                                         </td>
                                                         <td>
-                                                            <p>52.76.170.118</p>
+                                                            <p>18.139.215.237</p>
                                                         </td>
-                                                        <td rowspan="3">
-                                                            <p>8118</p>
+                                                        <td rowspan="2">
+                                                            <p>4500</p>
                                                         </td>
                                                     </tr>
                                                     <tr>
                                                         <td>
-                                                            <p>US</p>
-                                                        </td>
-                                                        <td>
-                                                            <p>us-rs.manage.samsungknox.com</p>
-                                                        </td>
-                                                        <td>
-                                                            <p>34.213.113.19</p>
+                                                            <p>54.179.110.67</p>
                                                         </td>
                                                     </tr>
                                                     <tr>
                                                         <td>
-                                                            <p>EU</p>
+                                                            <p>WAS</p>
                                                         </td>
                                                         <td>
-                                                            <p>eu-rs.manage.samsungknox.com</p>
+                                                            <p>&#160;ap-rs-web.manage.samsungknox.com</p>
                                                         </td>
+                                                        <td>&#160;</td>
                                                         <td>
-                                                            <p>52.50.15.50</p>
-                                                        </td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td rowspan="4">
-                                                            <p>TMS &amp; CRS server</p>
-                                                        </td>
-                                                        <td>
-                                                            <p>CRS</p>
-                                                        </td>
-                                                        <td>
-                                                            <p>crs.manage.samsungknox.com</p>
-                                                        </td>
-                                                        <td rowspan="4">
-                                                            <p>N/A</p>
-                                                        </td>
-                                                        <td rowspan="4">
                                                             <p>443</p>
                                                         </td>
                                                     </tr>
                                                     <tr>
-                                                        <td>
-                                                            <p>Asia</p>
-                                                        </td>
-                                                        <td>
-                                                            <p>tms-ap.manage.samsungknox.com</p>
-                                                        </td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td>
+                                                        <td rowspan="3">
                                                             <p>US</p>
                                                         </td>
+                                                        <td rowspan="2">
+                                                            <p>Relay</p>
+                                                        </td>
+                                                        <td rowspan="2">
+                                                            <p>us-rs-relay.manage.samsungknox.com</p>
+                                                        </td>
                                                         <td>
-                                                            <p>tms-us.manage.samsungknox.com</p>
+                                                            <p>52.13.63.13</p>
+                                                        </td>
+                                                        <td rowspan="2">
+                                                            <p>4500</p>
                                                         </td>
                                                     </tr>
                                                     <tr>
                                                         <td>
-                                                            <p>EU</p>
+                                                            <p>44.237.193.55</p>
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>
+                                                            <p>WAS</p>
                                                         </td>
                                                         <td>
-                                                            <p>tms-eu.manage.samsungknox.com</p>
+                                                            <p>&#160;us-rs-web.manage.samsungknox.com</p>
+                                                        </td>
+                                                        <td>&#160;</td>
+                                                        <td>
+                                                            <p>443</p>
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td rowspan="3">
+                                                            <p>EU</p>
+                                                        </td>
+                                                        <td rowspan="2">
+                                                            <p>Relay</p>
+                                                        </td>
+                                                        <td rowspan="2">
+                                                            <p>eu-rs-relay.manage.samsungknox.com</p>
+                                                        </td>
+                                                        <td>
+                                                            <p>54.75.184.188</p>
+                                                        </td>
+                                                        <td rowspan="2">
+                                                            <p>45001</p>
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>
+                                                            <p>54.74.254.82</p>
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>
+                                                            <p>WAS</p>
+                                                        </td>
+                                                        <td>
+                                                            <p>&#160;eu-rs-web.manage.samsungknox.com</p>
+                                                        </td>
+                                                        <td>&#160;</td>
+                                                        <td>
+                                                            <p>443</p>
                                                         </td>
                                                     </tr>
                                                 </tbody>
