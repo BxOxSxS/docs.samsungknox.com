@@ -464,6 +464,8 @@
                                                                         </li>
                                                                         <li><a href="model-protection-tool.htm">ML Encryption Tool</a>
                                                                         </li>
+                                                                        <li><a href="tool-revision.htm">Knox ML Encryption Tool Revision</a>
+                                                                        </li>
                                                                         <li class="has-children"><a href="model-protection-deployment.htm#">FAQs</a>
                                                                             <ul class="sub-menu">
                                                                                 <li><a href="../faqs/ml-protection/add-step-linux-execute-tool.htm">Are there any additional steps for Linux to give execute permissions to conversion tool?</a>
@@ -1702,6 +1704,7 @@
                                             </div>
                                         </nav>
                                         <h1>Knox SDK for Model Protection deployment</h1>
+                                        <h2>APIs for deployment</h2>
                                         <p>After <a href="model-protection-tool.htm">encrypting the ML model</a>, APIs are used to deploy it. To deploy and execute the model, following instances are used—</p>
                                         <table style="width: 100%;">
                                             <col />
@@ -2133,6 +2136,32 @@ try {
             <p>If(knoxAIManager != null)
      knoxAIManager.destroyKnoxAiSession(publicsession);
 </p>
+        </pre>
+                                        <h2 id="proguard">Proguard Rules for Application</h2>
+                                        <p>The application should have the <b>proguard-rules.pro</b> file added to allow the Knox SDK API classes to ensure these classes are available without obfuscation.</p>
+                                        <p>Add the following line in the proguard-rules.pro file for KnoxV2 package/classes to be allowed:</p><pre class="prettyprint" xml:space="preserve">
+            <p>-keep class com.samsung.android.knox.ex.knoxAI.* { *; }</p>
+        </pre>
+                                        <p>In the build.gradle file update the proguard-rules.pro file in the release and debug configurations:</p><pre class="prettyprint" xml:space="preserve">
+            <p>buildTypes {
+    release {
+        signingConfig signingConfigs.knoxai
+                debuggable false
+        minifyEnabled true
+        shrinkResources true
+        proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+    }
+    debug {
+        signingConfig signingConfigs.knoxai
+                debuggable true
+        minifyEnabled false
+        shrinkResources false
+        proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+    }
+}</p>
+        </pre>
+                                        <p>Application should add the following to <b>the build.gradle</b> file to ensure Gradle does not compress the models while building the application:</p><pre class="prettyprint" xml:space="preserve">
+            <p>-keep class com.samsung.android.knox.ex.knoxAI.* { *; }</p>
         </pre>
                                         <!-- Inserts feedback module here -->
                                         <div id="feedback">

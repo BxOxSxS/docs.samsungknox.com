@@ -464,6 +464,8 @@
                                                                         </li>
                                                                         <li><a href="model-protection-tool.htm#" class="selected">ML Encryption Tool</a>
                                                                         </li>
+                                                                        <li><a href="tool-revision.htm">Knox ML Encryption Tool Revision</a>
+                                                                        </li>
                                                                         <li class="has-children"><a href="model-protection-tool.htm#">FAQs</a>
                                                                             <ul class="sub-menu">
                                                                                 <li><a href="../faqs/ml-protection/add-step-linux-execute-tool.htm">Are there any additional steps for Linux to give execute permissions to conversion tool?</a>
@@ -1756,9 +1758,10 @@
                                             </tbody>
                                         </table>
                                         <h2>Encrypt files</h2>
-                                        <p>To encrypt your ML model, open the Knox ML Encryption Tool on your computer and do as follows:</p>
+                                        <p>To encrypt your ML model, open the Knox ML Encryption Tool on your computer and do as follows depending on the tool's version. To see which version you can use depending on device, refer to <a href="tool-revision.htm">Knox ML Encryption Tool Revision</a> page.</p>
+                                        <h3>Model Encryption Tool V1.0 steps</h3>
                                         <ol>
-                                            <li value="1">(Optional) Click on the settings icon on the top right and select file locations folder. Only English-language folder names are supported. This will be the folder where the encrypted package is stored. If not specified, the encrypted file is stored in a folder called ‘<i>Encrypted Models</i>’ in the same location where the plain ML file is located. The encrypted file will be saved in that path from the next time onwards. </li>
+                                            <li value="1">(Optional) click the settings icon on the top right and select file locations folder. Only English-language folder names are supported. This folder is where the encrypted package is stored. If not specified, the encrypted file is stored in a folder called ‘<i>Encrypted Models</i>’ in the same location where the plain ML file is located. The encrypted file is saved in that path from the next time onwards. </li>
                                             <li value="2">Click <b>Return to Encrypt file</b>.</li>
                                             <li value="3">Select the ML file in one of the formats as explained above in the <a href="model-protection-tool.htm#ui" class="selected">UI elements table</a>.</li>
                                             <li value="4">Select the package version for the output encrypted file.</li>
@@ -1766,9 +1769,27 @@
                                             <li value="6">Click <b>Encrypt</b>.</li>
                                             <li value="7">In the <b>Encryption Successful</b> screen, select one of the following:<ul><li value="1"><b>View file</b> to view the encrypted package file</li><li value="2"><b>Quit</b> to quit and close the converter</li><li value="3"><b>Encrypt new file</b> to start a new encryption process.</li></ul></li>
                                         </ol>
+                                        <h3>Model Encryption Tool V1.1 steps</h3>
+                                        <ol>
+                                            <li value="1">click <b>Get Started</b>.</li>
+                                            <li value="2">(Optional) click <b>Settings</b> icon and select the path where you want to save the encrypted model.</li>
+                                            <li value="3">click <b>Utility</b> option next to Settings icon. Browse and select the allowed app certificate file and click <b>Generate Hash</b>.</li>
+                                            <li value="4">click <b>Copy Hash</b> and dd it to the Allowed Apps List.</li>
+                                            <li value="5">Return to <b>Encrypt Screen</b> and dd plain ML Model file and its package version.</li>
+                                            <li value="6">Attach the Allowed_Apps List. Refer to Template option for proper format.</li>
+                                            <li value="7">Click <b>Encrypt</b>. *.KMLPKG file is created.</li>
+                                            <li value="8">click <b>View File</b> button to view the encrypted package file.</li>
+                                        </ol>
+                                        <h2>Types of Encrypted Knox ML output packages</h2>
+                                        <p>You can generate following two types of Knox ML packages:</p>
+                                        <ul>
+                                            <li value="1"><b>KAIPKG</b>—This ML model package format is generated from Knox ML Encryption Tool v1.0 only. This format is supported on devices with Knox SDK 3.7.1 and KnoxML Version v1.0.</li>
+                                            <li value="2"><b>KMLPKG</b>—This ML model package format supported by Knox ML Encryption Tool v1.1 onwards. This format is currently supported in devices with SDK 3.7.1  with KnoxML version v1.1 or higher.</li>
+                                        </ul>
+                                        <div class="callout note"><b>NOTE</b>—To find out what Knox version your device is on, go to <b>Settings</b> &gt; <b>About phone</b> &gt; <b>Software information</b> &gt;&#160;<b>Knox version</b>.</div>
                                         <h2>Deploy encrypted package to app</h2>
-                                        <p>You can deploy the generated model packag by keeping it in the application assets folder. Knox SDK provides the APIs to load the model in the application run-time.</p>
-                                        <p>To load the Model package in the application run-time make a File Descriptor (FD) or create a data buffer of the package, if the package is present in assets of the application, and call the subsequent API. To learn more about the development process, see <a href="model-protection-deployment.htm">model protection deployment</a>,but ensure that you have the <a href="model-protection-developer.htm">Knox SDK installed</a> before you do so.</p>
+                                        <p>You can deploy the generated model package by keeping it in the application assets folder. Knox SDK provides the APIs to load the model in the application run-time.</p>
+                                        <p>To load the Model package in the application run-time, make a File Descriptor (FD) or create a data buffer of the package —if the package is present in the assets of the application— and call the subsequent API. To learn more about the development process, see <a href="model-protection-deployment.htm">model protection deployment</a>, but ensure that you have the <a href="model-protection-developer.htm">Knox SDK installed</a> before you do so.</p>
                                         <h2 id="troubleshooting">Troubleshooting</h2>
                                         <p>If you run into any errors, a failure log is generated. You can create a support ticket through your <a href="https://partner.samsungknox.com/dashboard/support" target="_blank">Knox Partner Portal &gt; Support</a>. Attach the failure log with the ticket and describe the issue in detail so that we can reproduce it to fix the error.</p>
                                         <p>
