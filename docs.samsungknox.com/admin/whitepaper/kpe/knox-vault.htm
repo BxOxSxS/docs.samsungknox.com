@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" lang="en-US" xml:lang="en-US" data-mc-search-type="Stem" data-mc-help-system-file-name="Default.xml" data-mc-path-to-help-system="../../" data-mc-conditions="Default.whitepaper-build" data-mc-target-type="WebHelp2" data-mc-runtime-file-type="Topic;Default" data-mc-preload-images="false" data-mc-in-preview-mode="false" data-mc-toc-path="White Paper|Core Platform Security">
     <head>
@@ -1023,6 +1024,8 @@
                                                         </li>
                                                         <li><a href="../../knox-mobile-enrollment/on-premise/release-notes.htm">Release notes</a>
                                                         </li>
+                                                        <li><a href="../../knox-mobile-enrollment/on-premise/kme-direct-faqs.htm">FAQs</a>
+                                                        </li>
                                                     </ul>
                                                 </li>
                                             </ul>
@@ -1477,9 +1480,7 @@
                                                                 </li>
                                                                 <li><a href="../../knox-manage/view-modify-existing-license.htm">View and modify a license</a>
                                                                 </li>
-                                                                <li><a href="../../knox-manage/upgrade-license-to-knox-suite.htm">Upgrade or downgrade a Knox Suite license</a>
-                                                                </li>
-                                                                <li><a href="../../knox-manage/upgrade-license-to-kpe.htm">Upgrade a Knox Manage license to Knox Platform for Enterprise (KPE)</a>
+                                                                <li><a href="../../knox-manage/convert-a-license.htm">Convert a license</a>
                                                                 </li>
                                                             </ul>
                                                         </li>
@@ -2247,7 +2248,7 @@
                                                     <ul class="sub-menu">
                                                         <li><a href="../../efota-one/features-overview.htm">Features overview</a>
                                                         </li>
-                                                        <li><a href="../../efota-one/navigate-portal.htm">About the Knox E-FOTA One admin portal</a>
+                                                        <li><a href="../../efota-one/navigate-portal.htm">About the Knox E-FOTA admin portal</a>
                                                         </li>
                                                         <li class="has-children"><a href="knox-vault.htm#">Create a campaign</a>
                                                             <ul class="sub-menu">
@@ -2273,7 +2274,7 @@
                                                         </li>
                                                         <li><a href="../../efota-one/admin-roles.htm">Manage roles</a>
                                                         </li>
-                                                        <li><a href="../../efota-one/join-knox-efota.htm">Join Knox E-FOTA&#160;One</a>
+                                                        <li><a href="../../efota-one/join-knox-efota.htm">Join Knox E-FOTA</a>
                                                         </li>
                                                         <li><a href="../../efota-one/view-activity-log.htm">View the activity log</a>
                                                         </li>
@@ -2660,123 +2661,148 @@
                                                 <h3 class="page-header" id="">Knox White Paper</h3> <!--[CDATA[ ]]--></div>
                                             <h1><a name="aanchor4"></a>
                                                 <MadCap:concept term="knox-platform-for-enterprise" />Knox Vault</h1>
-                                            <p>Samsung's Knox Vault is an evolution of the hardware-based security that Samsung has been building within Galaxy smartphones for years. Knox Vault extends upon the protection offered by our TrustZone, the Trusted Execution Environment (TEE) pioneered by Samsung to protect sensitive data such as passwords, biometrics, and cryptographic keys. Whereas the TrustZone runs a different OS alongside Android on the primary application processor, Knox Vault operates completely independently from the primary processor running the Android OS.</p>
-                                            <p>
-                                                <img class="no-border" src="../../../assets/merge/images/kpe-whitepaper/knox-vault.png" />
-                                            </p>
-                                            <p>As a core component of the Knox security platform, Knox Vault is an isolated, tamper-proof, secure subsystem with its own processor and memory, as well as an interface to dedicated, non-volatile secure storage. Knox Vault can:</p>
-                                            <ul>
-                                                <li value="1">Store sensitive data such as hardware-backed Android Keystore keys, the Samsung Attestation Key (SAK), biometric data, and blockchain credentials.</li>
-                                                <li value="2">Run security-critical code that authenticates users with increasing timeouts between failures and controls access to keys depending on authentication.</li>
-                                            </ul>
-                                            <p>Knox Vault is integrated into Samsung devices starting from the Galaxy S21, and is comprised of components that are 
-        <a href="knox-vault.htm#cc" class="selected">Common Criteria</a> evaluated to the requirements in BSI PP0084 at EAL4+ or higher. These components are tested by an independent lab against a wide array of hardware attacks and through a review of their software and firmware.</p>
-                                            <h3>Protection from attacks</h3>
-                                            <p>Knox Vault provides strong security guarantees against both software and hardware attacks. Because Knox Vault is independent from the primary processor that runs Android, code running on the Knox Vault Processor is resistant to attacks that exploit shared resources, such as software side-channel attacks that can compromise other software executing on the same processor. This separation means Knox Vault protects sensitive data even if the primary processor itself is completely compromised.</p>
-                                            <p>In addition to being resistant to software attacks, Knox Vault is also designed to be tamper-proof to thwart hardware attacks, which require that an attacker have physical possession of a device to extract secrets. Knox Vault is resistant to hardware attacks such as the following:</p>
-                                            <ul>
-                                                <li value="1">Physical probing to disclose data</li>
-                                                <li value="2">Physical manipulation of the circuitry to deactivate security mechanisms</li>
-                                                <li value="3">Forced information leakage</li>
-                                                <li value="4">Hardware side-channel attacks such as differential power analysis to disclose data</li>
-                                                <li value="5">Fault injection to bypass security mechanisms.</li>
-                                            </ul>
-                                            <p>For details about these attack types, see <a href="knox-vault.htm#attacks" class="selected">Protection from Hardware Attacks</a>.</p>
-                                            <h2>Knox Vault features</h2>
-                                            <p>Among the many capabilities of Knox Vault, the following are key to the overall security of protected devices.</p>
-                                            <h3>Weaver</h3>
-                                            <p>Weaver is used for secure password authentication to Android. Running on the Knox Vault Processor, Weaver’s data and secrets (passwords) are stored encrypted in the secure Knox Vault Storage. When Weaver receives the secret data to be stored, it also receives a key, and this key must be provided to read the secret data again from Weaver.</p>
-                                            <p>To prevent brute-force attempts to extract secrets, Weaver uses a binary exponential back-off algorithm. When attempting to read a secret, if the proper key is not provided, Weaver declines read operations for a time period decided by the back-off algorithm. A non-bypassable secure timer is used to track these time periods.</p>
-                                            <h3>Credential storage</h3>
-                                            <p>This feature stores data encrypted by the Knox Vault Processor in the Knox Vault Storage, using a secure channel to protect data transfered between the Knox Vault Processor and the Knox Vault Storage.</p>
-                                            <p>The following data is stored in the Knox Vault Storage:</p>
-                                            <ul>
-                                                <li value="1">Cryptographic keys to protect biometric data</li>
-                                                <li value="2">Blockchain keystore credentials</li>
-                                                <li value="3">Samsung Attestation Key (SAK)</li>
-                                            </ul>
-                                            <p>All data in Credential Storage is encrypted using a Knox Vault-unique key. This prevents the data from being decrypted in other devices.</p>
-                                            <h3>Samsung Attestation Key</h3>
-                                            <p>Samsung <a href="attestation.htm">Knox Attestation</a> is a Knox platform feature that is designed to detect if a device or its keys are compromised, and can be used to prevent access to security-sensitive Samsung systems like Knox services, Samsung Pay, and Samsung Pass.</p>
-                                            <p>Each device has a unique, asymmetric, elliptic-curve private Samsung Attestation Key (SAK) that is stored in Knox Vault. The key generation processes ensure the keys are unique, based on strong random number generation.</p>
-                                            <h3>StrongBox Keymaster support</h3>
-                                            <p>The StrongBox Keymaster is a key management module supporting various cryptographic algorithms that can be used by applications to generate keys and perform cryptographic operations with them.</p>
-                                            <p>The Android framework provides a <a href="https://developer.android.com/reference/java/security/KeyStore">KeyStore API</a> for applications to use the StrongBox Keymaster. All keys generated by the StrongBox Keymaster or imported into it are encrypted with the unique key of Knox Vault. Thus, these keys cannot be decrypted outside of the StrongBox Keymaster running on the Knox Vault Processor.</p>
-                                            <h2>Knox Vault architecture</h2>
-                                            <p>Knox Vault is made up of the following:</p>
-                                            <ul>
-                                                <li value="1">Knox Vault Subsystem: implemented as part of the SoC</li>
-                                                <li value="2">Knox Vault Storage: an integrated circuit physically outside the SoC</li>
-                                            </ul>
-                                            <p>Through a secure interface, the Knox Vault Subsystem communicates with the Knox Vault Storage.</p>
-                                            <p>
-                                                <img class="no-border" src="../../../assets/merge/images/kpe-whitepaper/knox-vault-architecture.png" />
-                                            </p>
-                                            <h3>Knox Vault Subsystem</h3>
-                                            <p>The Knox Vault Subsystem is designed to operate separately from other SoC components. It has its own secure processing environment consisting of the Knox Vault Processor, SRAM, and ROM. It also provides enhanced security and data protection against various hardware-based attacks, by monitoring the hardware status and its environment using a series of security sensors or detectors including:</p>
-                                            <ul>
-                                                <li value="1">High and Low Temperature detectors</li>
-                                                <li value="2">High and Low Supply Voltage detectors</li>
-                                                <li value="3">Supply Voltage Glitch detector</li>
-                                                <li value="4">Laser detector</li>
-                                            </ul>
-                                            <p>The Knox Vault Subsystem also includes a dedicated random number generator, and its own Crypto Engine. The Knox Vault Processor can access system DRAM though the External Memory Manager.</p>
-                                            <h4>Knox Vault Processor</h4>
-                                            <p>The Knox Vault Processor provides the main computing power for Knox Vault. To provide the strongest isolation, the Knox Vault Processor is separated from the primary processor on the SoC. This separation helps prevent side-channel attacks that depend on malicious software sharing the same execution core as the target software under attack.</p>
-                                            <p>By executing the instructions and managing data on SRAM, the Knox Vault Processor also guarantees a physically isolated execution environment. The Knox Vault Subsystem ROM where the secure boot loader code is located is also separated and protected by the hardware protection mechanisms. When the Knox Vault Processor starts, the ROM code is loaded to SRAM. While the ROM code loads the Knox Vault Processor firmware, with the help of the modules running on the SOC main processor, the software stack of Knox Vault Processor has its own secure boot chain.</p>
-                                            <h4>Hardware monitor</h4>
-                                            <p>The Hardware Monitor checks for abnormal hardware status from the security sensors and detectors. The monitoring and detection cannot be affected or bypassed by any application running on Knox Vault Processor.</p>
-                                            <h4>Crypto engine</h4>
-                                            <p>A hardware cryptographic module provides the following cryptographic functions:</p>
-                                            <ul>
-                                                <li value="1">AES encryption/decryption</li>
-                                                <li value="2">DRBG random number generation</li>
-                                                <li value="3">SHA hashing</li>
-                                                <li value="4">HMAC keyed-hashing for message authentication code</li>
-                                                <li value="5">RSA and ECC key generation and services</li>
-                                            </ul>
-                                            <h4>Knox Vault unique key</h4>
-                                            <p>The Knox Vault unique key is written into one-time-programmable fuses. This unique key is used for protecting keys imported into or generated in the Knox Vault Subsystem. Thus, a key generated in Knox Vault on one device cannot be used outside of that device.</p>
-                                            <h4>External memory manager</h4>
-                                            <p>The Knox Vault Subsystem can read or write to external memory using the External Memory Manager.</p>
-                                            <h3>Knox Vault Storage</h3>
-                                            <p>The Knox Vault Storage is a dedicated, secure, non-volatile memory device that stores sensitive data such as the following:</p>
-                                            <ul>
-                                                <li value="1">Cryptographic keys such as Blockchain keys and Device keys</li>
-                                                <li value="2">Biometric data</li>
-                                                <li value="3">Hashed authentication credentials</li>
-                                            </ul>
-                                            <p>Like the Knox Vault Processor, the Knox Vault Storage is designed to prevent various physical and side-channel attacks, using its own secure processor, SRAM, ROM, cryptographic module, and hardware monitor which detects physical tampering.</p>
-                                            <h4>Secure core</h4>
-                                            <p>The Secure Core is the Knox Vault Storage processor used to do the following:</p>
-                                            <ul>
-                                                <li value="1">Execute the ROM code</li>
-                                                <li value="2">Provide cryptographic operations for public key algorithms (RSA, ECC) and SHA algorithm with software libraries</li>
-                                                <li value="3">Safely store data in dedicated SRAM and ROM</li>
-                                            </ul>
-                                            <h4>Crypto engine</h4>
-                                            <p>The Crypto Engine supports symmetric encryption to verify authentication codes after receiving packets from the Knox Vault Processor and also to enhance performance.</p>
-                                            <h4>Hardware monitor</h4>
-                                            <p>As with the Hardware Monitor of the Knox Vault Subsystem, the Hardware Monitor of Knox Vault Storage also detects physical or side-channel attacks related to power, temperature, and electromagnetics. If the Hardware Monitor detects an attack, the Knox Vault Storage is automatically wiped.</p>
-                                            <h4>Non-volatile memory</h4>
-                                            <p>The Non-Volatile Memory is a bank of NOR (NOT OR) flash used to store data received from the Knox Vault Processor.</p>
-                                            <h3>Knox Vault intercommunication</h3>
-                                            <p>The Knox Vault Subsystem and Knox Vault Storage communicate securely over a dedicated I2C (Inter-Integrated Circuit) bus. All traffic on this bus is encrypted and transmitted with an authentication code. Additionally, all communications are protected against replay attacks.</p>
-                                            <h2><a name="attacks"></a>Protection from Attacks</h2>
-                                            <p>Knox Vault is tested to provide protection against the following classes of hardware probing attacks.</p>
-                                            <h3>Physical probing</h3>
-                                            <p>An attacker might physically probe secure hardware to disclose user data or other critical information, while the data is stored in memory or being processed. The attacker directly measures information using electric contact with the secure hardware internals, using techniques commonly employed in IC failure analysis and IC reverse engineering.</p>
-                                            <h3>Physical manipulation</h3>
-                                            <p>An attacker might physically modify the secure hardware to change user data, secure hardware software, or security services or mechanisms. The attacker might make modifications through techniques commonly employed in IC failure analysis and IC reverse engineering. To make these modifications, the attacker identifies hardware security mechanisms, layout characteristics, or software design, including how secure hardware treats user data. Changes of circuitry or data can be permanent or temporary.</p>
-                                            <h3>Forced information leakage</h3>
-                                            <p>An attacker might exploit information that is leaked from the secure hardware in order to disclose confidential user data, even if the information leakage is not inherent but caused by the attacker. For example, fault injection or physical manipulation might cause information leakage from signals which normally do not contain significant information about secrets.</p>
-                                            <h3>Side-channel attack</h3>
-                                            <p>An attacker might exploit information that is leaked from the secure hardware during its operation in order to disclose confidential user data. Direct contact with the secure hardware internals is not required. Information leakage might occur through emanations, variations in power consumption, I/O characteristics, clock frequency, or by changes in processing time. One example is the Differential Power Analysis (DPA). This leakage can be interpreted as a covert channel transmission, but is more closely related to the measurement of operating parameters. These operating parameters might be derived either from direct measurements or measurement of emanations. The attacker can associate the measurements with the specific operation being performed.</p>
-                                            <h3>Fault injection</h3>
-                                            <p>An attacker might cause a malfunction of the secure hardware software by applying environmental stress like light or a power glitch. This attack type could modify the hardware and software functions, or deactivate or affect security mechanisms of the secure hardware. Thus, the attacker could disclose or manipulate the user data existing in the secure hardware. For example, the modification of the security hardware function might affect the quality of random numbers provided by the random number generator, and then the software may get constant values or value with low entropy.</p>
-                                            <h2><a name="cc"></a>Common Criteria Certification</h2>
-                                            <p><a href="https://www.commoncriteriaportal.org">Common Criteria</a> is a framework for evaluating security products in a standardized way that is recognized by 31 countries globally through the Common Criteria Recognition Agreement (CCRA).</p>
-                                            <p>Knox Vault components are evaluated and certified by a Common Criteria Testing Laboratory (CCTL), an independent third party. Depending on the processor configuration, Knox Vault is evaluated to the requirements specified in the <a href="https://www.commoncriteriaportal.org/files/ppfiles/pp0084b_pdf.pdf">Security IC Platform Protection Profile with Augmentation Packages</a> at EAL4+ or EAL5+ assurance requirements, a measure of the depth of the review performed on the product. These evaluations cover testing of a wide array of hardware attacks in addition to a review of the software/firmware of the Knox Vault Subsystem.</p>
+                                                <p>Samsung's Knox Vault is an evolution of the hardware-based security that Samsung has been building within Galaxy smartphones for years. Knox Vault extends upon the protection offered by our TrustZone, the Trusted Execution Environment (TEE) pioneered by Samsung to protect sensitive data such as passwords, biometrics, and cryptographic keys. Whereas the TrustZone runs a different OS alongside Android on the primary application processor, Knox Vault operates completely independently from the primary processor running the Android OS.</p>
+                                                <p>
+                                                    <img class="no-border" src="../../../assets/merge/images/kpe-whitepaper/knox-vault.png" />
+                                                </p>
+                                                <p>As a core component of the Knox security platform, Knox Vault is an isolated, tamper-proof, secure processor with its own core and memory, as well as an interface to dedicated, non-volatile secure storage. Knox Vault can:</p>
+                                                <ul>
+                                                    <li>Store sensitive data such as hardware-backed Android Keystore keys, the Samsung Attestation Key (SAK), biometric data, and blockchain credentials.</li>
+                                                    <li>Run security-critical code that authenticates users with increasing timeouts between failures and controls access to keys depending on authentication.</li>
+                                                </ul>
+                                                <p>Knox Vault is integrated into Samsung devices starting from the Galaxy S21, and is comprised of components that are
+                                                <a href="knox-vault.htm#cc">Common Criteria</a> evaluated to the requirements in BSI PP0084 at EAL4+ or higher. These components are tested by an independent lab against a wide array of hardware attacks and through a review of their software and firmware.</p>
+
+                                                <h3>Protection from attacks</h3>
+                                                <p>Knox Vault provides strong security guarantees against both software and hardware attacks. Because Knox Vault is independent from the primary processor that runs Android, code running on the Knox Vault Processor is resistant to attacks that exploit shared resources, such as software side-channel attacks that can compromise other software executing on the same processor. This separation means Knox Vault protects sensitive data even if the primary processor itself is completely compromised.</p>
+                                                <p>In addition to being resistant to software attacks, Knox Vault is also designed to be tamper-proof to thwart hardware attacks, which require that an attacker have physical possession of a device to extract secrets. Knox Vault is resistant to hardware attacks such as the following:</p>
+                                                <ul>
+                                                    <li>Physical probing to disclose data</li>
+                                                    <li>Physical manipulation of the circuitry to deactivate security mechanisms</li>
+                                                    <li>Forced information leakage</li>
+                                                    <li>Hardware side-channel attacks such as differential power analysis to disclose data</li>
+                                                    <li>Fault injection to bypass security mechanisms.</li>
+                                                </ul>
+                                                <p>For details about these attack types, see <a href="knox-vault.htm#attacks">Protection from Hardware Attacks</a>.</p>
+
+                                                <h2>Knox Vault features</h2>
+                                                <p>Among the many capabilities of Knox Vault, the following are key to the overall security of protected devices.</p>
+
+                                                <h3>Weaver</h3>
+                                                <p>Weaver is used for secure password authentication to Android. Running on the Knox Vault Processor, Weaver’s data and secrets (passwords) are stored encrypted in the secure Knox Vault Storage. When Weaver receives the secret data to be stored, it also receives a key, and this key must be provided to read the secret data again from Weaver.</p>
+                                                <p>To prevent brute-force attempts to extract secrets, Weaver uses a binary exponential back-off algorithm. When attempting to read a secret, if the proper key is not provided, Weaver declines read operations for a time period decided by the back-off algorithm. A non-bypassable secure timer is used to track these time periods.</p>
+
+                                                <h3>Credential storage</h3>
+                                                <p>This feature stores data encrypted by the Knox Vault Processor in the Knox Vault Storage, using a secure channel to protect data transferred between the Knox Vault Processor and the Knox Vault Storage.</p>
+                                                <p>The following data is stored in the Knox Vault Storage:</p>
+                                                <ul>
+                                                    <li>Cryptographic keys to protect biometric data</li>
+                                                    <li>Blockchain keystore credentials</li>
+                                                    <li>Samsung Attestation Key (SAK)</li>
+                                                </ul>
+                                                <p>All data in Credential Storage is encrypted using a Knox Vault-unique key. This encryption method prevents the data from being decrypted in other devices.</p>
+
+                                                <h3>Samsung Attestation Key</h3>
+                                                <p>Samsung <a href="attestation.htm">Knox Attestation</a> is a Knox platform feature that is designed to detect if a device or its keys are compromised, and can be used to prevent access to security-sensitive Samsung systems like Knox services, Samsung Pay, and Samsung Pass.</p>
+                                                <p>Each device has a unique, asymmetric, elliptic-curve private Samsung Attestation Key (SAK) that is stored in Knox Vault. The SAK’s digital certificate is signed by Samsung’s Root-of-Trust and the key-certificate pair is injected into Knox Vault during the device’s factory manufacturing process. SAK is used to attest keys and devices for Samsung security services like Knox services, Samsung Pay, Samsung Pass, and so on. The key generation processes ensure the keys are unique, based on strong random number generation.</p>
+
+                                                <h3>StrongBox Keymaster support</h3>
+                                                <p>The StrongBox Keymaster is a key management module supporting various cryptographic algorithms that can be used by applications to generate keys and perform cryptographic operations with them.</p>
+                                                <p>The Android framework provides a <a href="https://developer.android.com/reference/java/security/KeyStore">KeyStore API</a> for applications to use the StrongBox Keymaster. All keys generated by the StrongBox Keymaster or imported into it are encrypted with the unique key of Knox Vault. Thus, these keys cannot be decrypted outside of the StrongBox Keymaster running on the Knox Vault Processor.</p>
+
+                                                <h2>Knox Vault architecture</h2>
+                                                <p>Knox Vault is made up of the following:</p>
+                                                <ul>
+                                                    <li><b>Knox Vault Processor—</b>implemented as part of the SoC</li>
+                                                    <li><b>Knox Vault Storage—</b>an integrated circuit physically outside the SoC</li>
+                                                </ul>
+                                                <p>Through a secure interface, the Knox Vault Processor communicates with the Knox Vault Storage.</p>
+                                                <p>
+                                                    <img class="no-border" src="../../../assets/merge/images/kpe-whitepaper/knox-vault-architecture.png" />
+                                                </p>
+
+                                                <h3>Knox Vault Processor</h3>
+                                                <p>The Knox Vault Processor is designed to operate separately from other SoC components. It has its own secure processing environment consisting of the Knox Vault Processor, SRAM, and ROM. It also provides enhanced security and data protection against various hardware-based attacks, by monitoring the hardware status and its environment using a series of security sensors or detectors including:</p>
+                                                <ul>
+                                                    <li>High and Low Temperature detectors</li>
+                                                    <li>High and Low Supply Voltage detectors</li>
+                                                    <li>Supply Voltage Glitch detector</li>
+                                                    <li>Laser detector</li>
+                                                </ul>
+                                                <p>The Knox Vault Processor also includes a dedicated random number generator, and its own Crypto Engine. The Knox Vault Processor can access system DRAM though the External Memory Manager. The Knox Vault Processor provides the main computing power for Knox Vault. To provide the strongest isolation, the Knox Vault Processor is separated from the primary processor on the SoC. This separation helps prevent side-channel attacks that depend on malicious software sharing the same execution core as the target software under attack.</p>
+
+                                                <h4>Secure core</h4>
+                                                <p>By executing the instructions and managing data on SRAM, the Knox Vault Processor also guarantees a physically isolated execution environment. The Knox Vault Processor ROM where the secure boot loader code is located is also separated and protected by the hardware protection mechanisms. When the Knox Vault Processor starts, the ROM code is loaded to SRAM. While the ROM code loads the Knox Vault Processor firmware, with the help of the modules running on the SOC main processor, the software stack of Knox Vault Processor has its own secure boot chain.</p>
+
+                                                <h4>Hardware sensors</h4>
+                                                <p>The Hardware sensors check for abnormal hardware status from the security sensors and detectors. The monitoring and detection cannot be affected or bypassed by any application running on Knox Vault Processor.</p>
+
+                                                <h4>Crypto engine</h4>
+                                                <p>A hardware cryptographic module provides the following cryptographic functions:</p>
+                                                <ul>
+                                                    <li>AES encryption/decryption</li>
+                                                    <li>DRBG random number generation</li>
+                                                    <li>SHA hashing</li>
+                                                    <li>HMAC keyed-hashing for message authentication code</li>
+                                                    <li>RSA and ECC key generation and services</li>
+                                                </ul>
+
+                                                <h4>Knox Vault unique key</h4>
+                                                <p>The Knox Vault unique key is written into one-time-programmable fuses. This unique key is used for protecting keys imported into or generated in the Knox Vault Processor. Thus, a key generated in Knox Vault on one device cannot be used outside of that device.</p>
+
+                                                <h4>External memory manager</h4>
+                                                <p>The Knox Vault Processor can read or write to external memory using the External Memory Manager.</p>
+
+                                                <h3>Knox Vault Storage</h3>
+                                                <p>The Knox Vault Storage is a dedicated, secure, non-volatile memory device that stores sensitive data such as the following:</p>
+                                                <ul>
+                                                    <li>Cryptographic keys such as Blockchain keys and Device keys</li>
+                                                    <li>Biometric data</li>
+                                                    <li>Hashed authentication credentials</li>
+                                                </ul>
+                                                <p>Like the Knox Vault Processor, the Knox Vault Storage is designed to prevent various physical and side-channel attacks, using its own secure processor, SRAM, ROM, cryptographic module, and hardware monitor which detects physical tampering.</p>
+
+                                                <h4>Secure core</h4>
+                                                <p>The Secure Core is the Knox Vault Storage processor used to do the following:</p>
+                                                <ul>
+                                                    <li>Execute the ROM code</li>
+                                                    <li>Provide cryptographic operations for public key algorithms (RSA, ECC) and SHA algorithm with software libraries</li>
+                                                    <li>Safely store data in dedicated SRAM and ROM</li>
+                                                </ul>
+
+                                                <h4>Crypto engine</h4>
+                                                <p>The Crypto Engine supports symmetric encryption to verify authentication codes after receiving packets from the Knox Vault Processor and also to enhance performance.</p>
+
+                                                <h4>Hardware sensors</h4>
+                                                <p>As with the hardware sensors of the Knox Vault Processor, the hardware sensors of Knox Vault Storage also detect physical or side-channel attacks related to power, temperature, and electromagnetics. If the hardware sensors detect an attack, the Knox Vault Storage is automatically wiped.</p>
+
+                                                <h4>Non-volatile memory</h4>
+                                                <p>The Non-Volatile Memory is a bank of NOR (NOT OR) flash used to store data received from the Knox Vault Processor.</p>
+
+                                                <h3>Knox Vault intercommunication</h3>
+                                                <p>The Knox Vault Processor and Knox Vault Storage communicate securely over a dedicated I2C (Inter-Integrated Circuit) bus. All traffic on this bus is encrypted and transmitted with an authentication code. Additionally, all communications are protected against replay attacks.</p>
+
+                                                <h2><a name="attacks"/>Protection from Attacks</h2>
+                                                <p>Knox Vault is tested to provide protection against the following classes of hardware probing attacks.</p>
+
+                                                <h3>Physical probing</h3>
+                                                <p>An attacker might physically probe secure hardware to disclose user data or other critical information, while the data is stored in memory or being processed. The attacker directly measures information using electric contact with the secure hardware internals, using techniques commonly employed in IC failure analysis and IC reverse engineering.</p>
+
+                                                <h3>Physical manipulation</h3>
+                                                <p>An attacker might physically modify the secure hardware to change user data, secure hardware software, or security services or mechanisms. The attacker might make modifications through techniques commonly employed in IC failure analysis and IC reverse engineering. To make these modifications, the attacker identifies hardware security mechanisms, layout characteristics, or software design, including how secure hardware treats user data. Changes of circuitry or data can be permanent or temporary.</p>
+
+                                                <h3>Forced information leakage</h3>
+                                                <p>An attacker might exploit information that is leaked from the secure hardware in order to disclose confidential user data, even if the information leakage is not inherent but caused by the attacker. For example, fault injection or physical manipulation might cause information leakage from signals which normally do not contain significant information about secrets.</p>
+
+                                                <h3>Side-channel attack</h3>
+                                                <p>An attacker might exploit information that is leaked from the secure hardware during its operation in order to disclose confidential user data. Direct contact with the secure hardware internals is not required. Information leakage might occur through emanations, variations in power consumption, I/O characteristics, clock frequency, or by changes in processing time. One example is the Differential Power Analysis (DPA). This leakage can be interpreted as a covert channel transmission, but is more closely related to the measurement of operating parameters. These operating parameters might be derived either from direct measurements or measurement of emanations. The attacker can associate the measurements with the specific operation being performed.</p>
+
+                                                <h3>Fault injection</h3>
+                                                <p>An attacker might cause a malfunction of the secure hardware software by applying environmental stress like light or a power glitch. This attack type could modify the hardware and software functions, or deactivate or affect security mechanisms of the secure hardware. Thus, the attacker could disclose or manipulate the user data existing in the secure hardware. For example, the modification of the security hardware function might affect the quality of random numbers provided by the random number generator, and then the software may get constant values or value with low entropy.</p>
+
+                                                <h2><a name="cc" />Common Criteria Certification</h2>
+                                                <p><a href="https://www.commoncriteriaportal.org">Common Criteria</a> is a framework for evaluating security products in a standardized way that is recognized by 31 countries globally through the Common Criteria Recognition Agreement (CCRA).</p>
+                                                <p>Knox Vault components are evaluated and certified by a Common Criteria Testing Laboratory (CCTL), an independent third party. Depending on the processor configuration, Knox Vault is evaluated to the requirements specified in the <a href="https://www.commoncriteriaportal.org/files/ppfiles/pp0084b_pdf.pdf">Security IC Platform Protection Profile with Augmentation Packages</a> at EAL4+ or EAL5+ assurance requirements, a measure of the depth of the review performed on the product. These evaluations cover testing of a wide array of hardware attacks in addition to a review of the software and firmware of Knox Vault.</p>
                                         </div>
                                         <!-- Inserts feedback module here -->
                                         <div id="feedback">
@@ -2831,7 +2857,7 @@
         <!--end scripts -->
         <!--Header scripts, needs to be in master page or search results page will break -->
         <script>/* <![CDATA[ */
-			($("a[href='welcome-header.htm']").replaceWith("<p style='padding-top:20px;text-transform:uppercase;'><b>Basics</b></p>"))	
+			($("a[href='welcome-header.htm']").replaceWith("<p style='padding-top:20px;text-transform:uppercase;'><b>Basics</b></p>"))
 		/* ]]> */</script>
         <script>/* <![CDATA[ */
 			($("a[href='for-it-admins-header.htm']").replaceWith("<p style='padding-top:20px;text-transform:uppercase;'><b>For IT Admins</b></p>"))
@@ -2844,7 +2870,7 @@
 		/* ]]> */</script>
         <!--end scripts -->
         <script>/* <![CDATA[ */
-			($("a[href='../welcome-header.htm']").replaceWith("<p style='padding-top:20px;text-transform:uppercase;'><b>Basics</b></p>"))	
+			($("a[href='../welcome-header.htm']").replaceWith("<p style='padding-top:20px;text-transform:uppercase;'><b>Basics</b></p>"))
 		/* ]]> */</script>
         <script>/* <![CDATA[ */
 			($("a[href='../for-it-admins-header.htm']").replaceWith("<p style='padding-top:20px;text-transform:uppercase;'><b>For IT Admins</b></p>"))
@@ -2858,7 +2884,7 @@
         <!-- finds the h1 on each page and inserts it into the breadcrumb in the header. Only have 1 h1 on each page. -->
         <script>/* <![CDATA[ */
 			var pageTitle = document.getElementsByTagName('h1');
-			document.getElementById("demo").innerHTML = pageTitle[0].innerHTML;									
+			document.getElementById("demo").innerHTML = pageTitle[0].innerHTML;
 		/* ]]> */</script>
         <!-- Finds all h2's and inserts a hr line below it -->
         <script type="text/javascript">/*<![CDATA[*/var articles = document.getElementsByTagName('h2')
@@ -2866,7 +2892,7 @@
 			articles[i].parentNode.insertBefore(document.createElement('hr'), articles[i].nextSibling)
 		}/*]]>*/</script>
         <script>/* <![CDATA[ */
-			($("a[href='../../welcome-header.htm']").replaceWith("<p style='padding-top:20px;text-transform:uppercase;'><b>Basics</b></p>"))	
+			($("a[href='../../welcome-header.htm']").replaceWith("<p style='padding-top:20px;text-transform:uppercase;'><b>Basics</b></p>"))
 		/* ]]> */</script>
         <script>/* <![CDATA[ */
 			($("a[href='../../for-it-admins-header.htm']").replaceWith("<p style='padding-top:20px;text-transform:uppercase;'><b>For IT Admins</b></p>"))
