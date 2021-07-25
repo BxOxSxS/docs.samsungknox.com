@@ -27,7 +27,7 @@ document.write("            <a href=\"https:\/\/www.samsungknox.com\/en\/legal\"
 document.write("          <\/span>");
 // New footer ends ------
 
-document.write("          <p class=\"copyright\">Copyright Â© 1995-2021 SAMSUNG. All rights reserved.<\/p>");
+document.write("          <p class=\"copyright\">Copyright © 1995-2021 SAMSUNG. All rights reserved.<\/p>");
 document.write("        <\/div>");
 document.write("       ");
 document.write("      <\/div>");
