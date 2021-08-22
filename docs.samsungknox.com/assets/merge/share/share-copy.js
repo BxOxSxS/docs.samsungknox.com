@@ -30,6 +30,6 @@ navigator.clipboard.writeText(shortUrl).then(function() {
 
         xhr.open("POST", "https://api.rebrandly.com/v1/links");
         xhr.setRequestHeader("content-type", "application/json");
-        xhr.setRequestHeader("apikey", "8f3567ebdee84803a96dbaf4a410d0b2");
+        xhr.setRequestHeader("apikey", "31806549ff51476f8be018428f181cdc");
         xhr.send(data);
       }
