@@ -23,7 +23,7 @@
 
               xhr.open("POST", "https://api.rebrandly.com/v1/links");
               xhr.setRequestHeader("content-type", "application/json");
-              xhr.setRequestHeader("apikey", "31806549ff51476f8be018428f181cdc");
+              xhr.setRequestHeader("apikey", "3427b0da8563417faffceaa5a7a6625b");
               xhr.send(data);
 
 
