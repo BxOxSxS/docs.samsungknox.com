@@ -1,3 +1,4 @@
+﻿
 <!DOCTYPE html>
 <html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" lang="en-us" xml:lang="en-us" data-mc-search-type="Stem" data-mc-help-system-file-name="Default.xml" data-mc-path-to-help-system="../" data-mc-target-type="WebHelp2" data-mc-runtime-file-type="Topic;Default" data-mc-preload-images="false" data-mc-in-preview-mode="false" data-mc-toc-path="Device actions">
     <head>
@@ -219,6 +220,14 @@
                                     <li value="6">Refer to the <b>Block incoming calls when device is locked</b> checkbox to block incoming calls when the device is in any lock state (SIM Lock, Offline lock, etc.). Leave this option unselected to permit the receipt of incoming calls when the device is locked. Select <b>Edit option in default lockscreen policy</b> to configure this option and make available for default device assignment. For more information, go to: <a href="Manage_defaults.htm">manage defaults</a>.</li>
                                     <li value="7">Select <b>LOCK</b> to proceed with locking the selected devices. A notification message displays on the top portion of the Devices screen stating the selected devices will be locked. </li>
                                 </ol>
+								
+								<div class="callout warning"><b>NOTE</b> – Starting from the 1.40 release, a new device status is available to provide customers additional information about devices. The new status is <b>Active┃Locked</b>. This <b>Active┃Locked</b> status indicates the device is locked due to the Relock time being passed. This feature is only applicable to PAYG tenants where the device status information is provided either using the device table or a CSV file. </div>
+								
+								
+								
+								
+								
+								
                                 <h2>Lock devices in bulk</h2>
                                 <p>A standardized CSV template is available to read devices into the Knox Guard console using their IMEI. The maximum number of devices that can be locked in bulk is 10,000.</p>
                                 <p>To lock devices in bulk:</p>
@@ -259,8 +268,70 @@
                                 <ol start="1" data-mc-continue="true">
                                     <li value="3">Select <b>CONFIRM</b> to proceed with the device unlock. A notification message displays on the top portion of the Devices screen stating the devices will be unlocked.</li>
                                 </ol>
-                                <div class="callout warning"><b>NOTE</b> - Devices can also be unlocked when a Knox Guard administrator selects the PIN button within the <b>DEVICE STATUS</b> column of the Devices screen. The resulting <b>PIN to unlock device</b> screen displays the auto-generated numeric PIN the device user must enter on their device to restore functionality.</div>&#160;<h2>Unlock devices in bulk</h2><p>A standardized CSV template is available to read devices into the Knox Guard console using their IMEI. The maximum number of devices that can be bulk unlocked is 10,000. </p><p>To bulk unlock devices:</p><ol start="1"><li value="1">Select <b>BULK ACTIONS</b> from the lower, left-hand, side of the screen. </li><li value="2">Select the <b>Download CSV template</b> link from the top portion of the screen.</li></ol><div class="callout warning"><b>NOTE</b> - As an additional bulk device unlock option, an Excel file (.xls or .xlsx) can an be used  if not wanting to use a CSV formatted file.</div><div class="callout warning"><b>NOTE</b> - If unsure of how to create a properly formatted CSV file for bulk unlock devices, select <b>Instructions for all bulk actions</b> from the bottom, left-hand, side of the Bulk actions screen.</div><ol start="1" data-mc-continue="true"><li value="3">Select the <b>UNLOCK DEVICES</b> portion of the Bulk actions screen and add the CSV file into the <b>Unlock devices</b> screen. </li></ol><blockquote><p><img src="Resources/Images/bulk_actions_unlock.png" /></p></blockquote><ol start="4"><li value="4">Select <b>CONFIRM</b> to unlock the selected devices and restore their functionality. A  message displays on the top portion of the Devices screen stating the device unlock has started. </li></ol><!-- Back-to-top-button-JS --><script src="../../dev/resources/masterpages/scripts/back-to-top-button.js"></script><!-- Back-to-top-button --><div id="back-to-top"></div><script src="../../assets/kp/feedback.js"></script></div>
-                        </div>
+                                <div class="callout warning"><b>NOTE</b> - Devices can also be unlocked when a Knox Guard administrator selects the PIN button within the <b>DEVICE STATUS</b> column of the Devices screen. The resulting <b>PIN to unlock device</b> screen displays the auto-generated numeric PIN the device user must enter on their device to restore functionality.</div>&#160;<h2>Unlock devices in bulk</h2><p>A standardized CSV template is available to read devices into the Knox Guard console using their IMEI. The maximum number of devices that can be bulk unlocked is 10,000. </p><p>To bulk unlock devices:</p><ol start="1"><li value="1">Select <b>BULK ACTIONS</b> from the lower, left-hand, side of the screen. </li><li value="2">Select the <b>Download CSV template</b> link from the top portion of the screen.</li></ol><div class="callout warning"><b>NOTE</b> - As an additional bulk device unlock option, an Excel file (.xls or .xlsx) can an be used  if not wanting to use a CSV formatted file.</div><div class="callout warning"><b>NOTE</b> - If unsure of how to create a properly formatted CSV file for bulk unlock devices, select <b>Instructions for all bulk actions</b> from the bottom, left-hand, side of the Bulk actions screen.</div><ol start="1" data-mc-continue="true"><li value="3">Select the <b>UNLOCK DEVICES</b> portion of the Bulk actions screen and add the CSV file into the <b>Unlock devices</b> screen. </li></ol><blockquote><p><img src="Resources/Images/bulk_actions_unlock.png" /></p></blockquote><ol start="4"><li value="4">Select <b>CONFIRM</b> to unlock the selected devices and restore their functionality. A  message displays on the top portion of the Devices screen stating the device unlock has started. </li></ol>
+								
+								
+								
+								
+								
+								
+								
+								
+								
+								
+								
+								
+								
+								
+								
+								
+								
+								
+								
+								
+								
+								
+								
+								
+								
+								
+								
+								
+								
+								
+								
+								
+								
+											<h2>Relock reminder feature for PAYG tenant</h2>
+											<p>IT admins can send a reminder message to device users regarding Timestamp expiry or to request payment prior to a device lock. These reminders are available for Activating and Active devices.</p>
+											<div class="callout warning"><b>NOTE</b> — This particular feature requires additional permissions and is available for PAYG type tenants only.</div>
+											<ol>
+											<li>Navigate to the <b>Policies</b> section and under <b>MESSAGING</b>, select the <b>Relock Reminder</b> This will bring you to a screen that allows you to configure reminder messages to let end-users knows that their devices will be locked again soon.</li>
+											<li>On the screen, you can set the reminder to a certain number of days, hours, or minutes before a device relock timestamp is reached.</li>
+											<li>Then, you can check off the option for whether or not you want to show the message as a full screen reminder on devices.</li>
+											<li>In the message box, you can enter the text which will be shown to the end-user.</li>
+											<li>Under contact information, the phone number field should be auto-filled.</li>
+											<li>Click the <b>Save</b> button to save your configuration.</li>
+											<li>Under <b>Devices</b> &gt; <b>Actions</b>, the On/Off Reminder menu is displayed and you can choose to switch it on or off. This is a similar concept to the Start/Stop blinking reminder.</li>
+											</ol>
+											<p>Afterwards, you can navigate to <b>Devices</b> and view the Device table. An indicator is displayed when the device gets this policy and when the reminder is set to on.</p>
+								
+								
+								
+								
+								
+								
+								
+								
+								
+								
+								
+								
+								
+								
+								<!-- Back-to-top-button-JS --><script src="../../dev/resources/masterpages/scripts/back-to-top-button.js"></script><!-- Back-to-top-button --><div id="back-to-top"></div><script src="../../assets/kp/feedback.js"></script></div>
+  
+						</div>
                         <script src="../../assets/kp/footer.js">
                         </script>
                     </section>
