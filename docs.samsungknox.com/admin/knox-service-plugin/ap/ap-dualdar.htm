@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" lang="en-US" xml:lang="en-US" data-mc-search-type="Stem" data-mc-help-system-file-name="Default.xml" data-mc-path-to-help-system="../../" data-mc-conditions="Default.ksp-build" data-mc-target-type="WebHelp2" data-mc-runtime-file-type="Topic;Default" data-mc-preload-images="false" data-mc-in-preview-mode="false" data-mc-toc-path="">
     <head>
@@ -1112,6 +1113,8 @@
                                                                 </li>
                                                                 <li><a href="../../knox-configure/providing-kc-feedback.htm">Provide KC feedback</a>
                                                                 </li>
+                                                                <li><a href="../../knox-configure/knox-configure-routines.htm">Knox Configure Routines</a>
+                                                                </li>
                                                                 <li><a href="../../knox-configure/about-kda.htm">Knox Deployment App</a>
                                                                 </li>
                                                             </ul>
@@ -1258,7 +1261,7 @@
                                                 </li>
                                                 <li class="has-children"><a href="ap-dualdar.htm#">Features</a>
                                                     <ul class="sub-menu">
-                                                        <li><a href="../../knox-capture/common-tasks/manage-license.htm">Manage your license</a>
+                                                        <li><a href="../../knox-capture/common-tasks/activate-license.htm">Activate your license</a>
                                                         </li>
                                                         <li><a href="../../knox-capture/common-tasks/add-activities.htm">Add activities to a profile</a>
                                                         </li>
@@ -2697,29 +2700,94 @@
 									-->
                                     <div id="sec2" class="small-12 medium-8 large-9 columns">
                                         <div itemscope="itemscope" itemtype="http://schema.org/Guide">
-                                            <h1><a name="aanchor1860"></a>
-                                                <MadCap:concept term="knox-service-plugin" /><a name="top"></a>DualDAR
-    </h1>
-                                            <!-- <div class="callout success">
-      <b>NOTE</b>—See
-      <a href="../policy-descriptions.htm">policy descriptions</a>
-      for a full list of policies including the DualDAR policies.
-    </div> -->
-                                            <p>
-      This example enables DualDAR encryption for your Workspace. With it, we
-      set a 5 minute lockout time.
-    </p>
+                                            <h1>
+                                                <MadCap:concept term="knox-service-plugin" /><a name="top"></a>Enabling Dual DAR with Knox Service Plugin (KSP)
+                                            </h1>
+                                            <h3>Prerequisites</h3>
+                                            <ul>
+                                                <li>MDM/UEM to deploy KSP</li>
+                                                <li>KSP Premium license Key</li>
+                                                <li>Device that has Dual DAR 1.1.0 or higher</li>
+                                            </ul>
+                                            <h3>Supported devices</h3>
+                                            <table style="border-style: solid; border-collapse: collapse;" border="black" width="967">
+                                                <tbody>
+                                                    <tr>
+                                                        <td>Android version</td>
+                                                        <td>Samsung Exynos</td>
+                                                        <td>Qualcomm Snapdragon</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>Android 9</td>
+                                                        <td>Galaxy S10e (Spring 2019)</td>
+                                                        <td>Galaxy S10+ (Spring 2019)</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>Android 10</td>
+                                                        <td>
+                                                            Galaxy S20+ (Spring 2020)<br>
+                                                            Galaxy S10e (Spring 2020)
+                                                        </td>
+                                                        <td>
+                                                            Galaxy S20+ (Spring 2020)<br>
+                                                            Galaxy S10e (Spring 2020)
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>Android 11</td>
+                                                        <td>
+                                                            Galaxy S21 Ultra (Spring 2021)<br>
+                                                            Galaxy S20+ (Spring 2021)<br>
+                                                            Galaxy S10e (Spring 2021)<br>
+                                                            Galaxy Tab Active3 (Spring 2021)
+                                                        </td>
+                                                        <td>
+                                                            Galaxy S21 Ultra (Spring 2021)<br>
+                                                            Galaxy S20+ (Spring 2021)<br>
+                                                            Galaxy S10+ (Spring 2021)
+                                                        </td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                         
+                                            <h2>How to Enable Dual DAR</h2>
                                             <ol>
-                                                <li value="1">
-        In your supported UEM, under the
-        <b>Work profile policies (Profile Owner)</b> category turn on
-        <b>Enable work profile policies</b>.
-      </li>
-                                                <li value="2">Enable <b>Dual DAR controls</b>.</li>
-                                                <li value="3">
-        Set Data lock timeout type to <b>specified value</b>, and enter the data
-        lock timeout value as <b>5</b> (minutes).
-      </li>
+                                                <li>Through your MDM/UEM of choice, go to the <b>KSP Configuration</b></li>
+                                                <li>
+                                                    Under the initial KPE Screen
+                                                    <ol style="list-style-type: lower-alpha;"><li>Enter profile name if applicable (some MDM/UEM don’t require this)</li><li>Enter the <b>KPE Premium key</b></li></ol>
+                                                    <img src="../../../assets/merge/images/ksp/dualdar-kpekey.png" alt="kpe key">
+                                                </li>
+                                                <li>Click on <b>Work Profile Policies</b>(which drops down additional configurations) under <b>Enable Work Profiles</b> set to <b>True</b>
+                                                    <img src="../../../assets/merge/images/ksp/dualdar-workprofilepolicies.png" alt="work profile policies">
+                                                </li>
+                                                <li>Click on <b>Work Profile Configuration</b> (which drops down additional configurations) and set <b>Enable Work Profile Configuration Controls</b> to true
+                                                    <img src="../../../assets/merge/images/ksp/dualdar-workprofileconfig.png" alt="work profile config">
+                                                </li>
+                                                <li>
+                                                    Click on <b>Dual Data-at-Rest (DAR) Encryption</b> (which drops down additional configurations)
+                                                    <ol style="list-style-type: lower-alpha;"><li><b>Enable Dual DAR Controls</b> set to <b>True</b></li><li><b>Data lock timoeout type</b> set to any option in the drop down
+                                                                <ul><li>Use this control to set a data lock type. This locks the credential encrypted (CE) storage and flushes the key from memory. Once locked, apps can’t use the CE until user provides the credential again</li></ul></li><li><b>Data lock timeout value (in mimutes)</b> set to any value above 1
+                                                                <ul><li>Use this control to specify the data lock timeout value in minutes. To use this feature, you must set the data lock timeout type to specified value.</li></ul></li><li><b>List of apps approved to access DE storage</b><ul><li>List application’s package name (example com.android.messages)</li></ul></li></ol>
+                                                                <img src="../../../assets/merge/images/ksp/dualdar.png" alt="dualdar">
+                                                            </li>
+                                            </ol>
+                                            <h2>How to verify Dual DAR is enabled on a device</h2>
+                                            <h3>Verification method 1 via KSP application</h3>
+                                            <ol>
+                                                <li>Go to your <b>Work Profile</b> and click on <b>Knox Service Plugin</b></li>
+                                                <li>Click on <b>Configuration on date &amp;&#160;time</b></li>
+                                                <li>Configuration results should show Dual Data-at-rest(DAR) Encryption as successful</li>
+                                            </ol>
+                                            <h3>Verification Method 2 via Settings and Work Profile</h3>
+                                            <ol>
+                                                <li>Navigate to <b>Settings</b> (gear icon)</li>
+                                                <li>Scroll down to <b>Work Profile Settings</b></li>
+                                                <li>Scroll to the very bottom to <b>About Work Profile</b></li>
+                                                <li>Under version number it will say <b>DualDAR enabled</b> (if successfully configured)<br>
+                                                    <img src="../../../assets/merge/images/ksp/dualdar-screenshot.png" alt="dualdar screenshot" width="208" height="416">
+                                                </li>
+
                                             </ol>
                                         </div>
                                         <!-- Inserts feedback module here -->
