@@ -55,6 +55,24 @@
         <link href="../../../assets/merge/kp-foundation.css" rel="stylesheet" />
         <link href="../../Resources/kp-madcap.css" rel="stylesheet" />
         <link href="../../Resources/print.css" rel="stylesheet" />
+        <style>
+            body tr:first-child {
+                background: initial;
+                color: initial;
+                font-style: initial;
+                border-bottom: initial;
+            }
+
+            .table-scroll thead tr {
+                background: #217acb;
+                color: white;
+                font-style: bold;
+            }
+
+            .table-scroll thead tr:last-of-type {
+                border-bottom: 2px solid #cccccc;
+            }
+        </style>
         <script src="../../Resources/Scripts/custom.modernizr.js">
         </script>
         <script src="../../Resources/Scripts/jquery.min.js">
@@ -1041,6 +1059,8 @@
                                                         </li>
                                                         <li><a href="../../knox-mobile-enrollment/on-premise/kme-direct-faqs.htm">FAQs</a>
                                                         </li>
+                                                        <li><a href="../../knox-mobile-enrollment/on-premise/kbas/index.htm">KBAs</a>
+                                                        </li>
                                                     </ul>
                                                 </li>
                                             </ul>
@@ -1106,6 +1126,8 @@
                                                                 <li><a href="../../knox-configure/license-management.htm">License management</a>
                                                                 </li>
                                                                 <li><a href="../../knox-configure/about-shared-device.htm">Shared Device</a>
+                                                                </li>
+                                                                <li><a href="../../knox-configure/knox-configure-routines.htm">Knox Configure Routines</a>
                                                                 </li>
                                                                 <li><a href="../../knox-configure/lock-and-unlock-devices.htm">Lock and unlock devices</a>
                                                                 </li>
@@ -2265,7 +2287,7 @@
                                                 </li>
                                                 <li><a href="../release-notes.htm">Release notes</a>
                                                 </li>
-                                                <li><a href="https://support.samsungknox.com/hc/en-us/articles/360036323633">Features</a>
+                                                <li><a href="../km-feature-list.htm">Features</a>
                                                 </li>
                                                 <li><a href="../faqs/index.htm">FAQs</a>
                                                 </li>
@@ -2698,13 +2720,13 @@
 									-->
                                     <div id="sec2" class="small-12 medium-8 large-9 columns">
                                         <div itemscope="itemscope" itemtype="http://schema.org/Guide">
-                                            <h1><a name="aanchor1289"></a>
+                                            <h1><a name="aanchor1304"></a>
                                                 <MadCap:concept term="knox-manage" />Knox Manage release notes — September 1st, 2021</h1>
                                             <p>This Knox Manage v21.9 release scheduled to go live on September 1st, 2021 includes several improvements and enhancements to existing features and functionality.</p>
                                             <h2>Highlights</h2>
                                             <p>The following features constitute the highlights of this release:</p>
                                             <ol>
-                                                <li value="1">Integration with KCS's MSP</li>
+                                                <li value="1">Integration with Knox MSP Program</li>
                                                 <li value="2">Enhancements to MDM device security </li>
                                                 <li value="3">Use Azure AD SSO in KM direct login</li>
                                                 <li value="4">Bulk enrollment for Windows 10 devices</li>
@@ -2712,28 +2734,28 @@
                                                 <li value="6">Shared device enhancements</li>
                                             </ol>
                                             <h2>Knox Service Integration</h2>
-                                            <h3>MSP Integration</h3>
-                                            <p>Starting with this release, Knox Manage (KM) is now included as one of the services available from within Knox Cloud Service's (KCS) Managed Service Provider (MSP). This integration with the KCS common services allows a unified customer management experience, so that KM now works within the same framework as other Knox services such as Knox Portal and Knox License. KM users have a Samsung Account like all other KCS components, but does not have its own Samsung admin portal. This change means that user application approval happens within the Knox portal.</p>
+                                            <h3>Knox MSP Program Integration</h3>
+                                            <p>Starting with this release, Knox Manage (KM) is now included as one of the services available from within the Knox MSP Program. This integration with the Knox cloud service allows a unified customer management experience, so that KM now works within the same framework as other Knox services such as Knox Portal and Knox License. KM users have a Samsung Account like all other Knox cloud service components, but does not have its own Samsung admin portal. This change means that user application approval happens within the Knox portal.</p>
                                             <p>
-                                                <img src="../../../assets/merge/images/knox-manage/21-8-Release-Notes-001.png" />
+                                                <img src="../../../assets/merge/images/knox-manage/21-8-Release-Notes-001-02.png" />
                                             </p>
-                                            <p>The following KM functionality is available from within MSP:</p>
+                                            <p>The following KM functionality is available from within the Knox MSP Program:</p>
                                             <ul>
-                                                <li value="1"><b>Add KM Customer</b> — MSP can add a new Knox Manage customer from within the MSP portal. When adding a new customer, the MSP can provide all necessary and mandatory KM information such as customer ID, organizational information, and any other information needed to onboard the customer. By default, when adding a new customer, the customer's access permissions are set to <b>No access</b>, meaning the customer cannot access the KCS portal and is fully managed by the MSP.  The MSP can change this permission to <b>Full access</b>, meaning the customer can access the KCS portal and is jointly managed by the MSP.
-				<p><img src="../../../assets/merge/images/knox-manage/21-8-Release-Notes-002.png" /></p></li>
-                                                <li value="2"><b>KM SSO login from the MSP console</b> — Users of the MSP portal can now access the KM portal with their single sign-on login credentials. To access the KM portal, go to left hand navigation menu &gt; <b>Customers</b> &gt; List of customers &gt; click <b>Active</b> to open the KM portal in a new browser tab.
-				<p><img src="../../../assets/merge/images/knox-manage/21-8-Release-Notes-003.png" /></p></li>
-                                                <li value="3"><b>Change customer access permissions</b> — MSP users can also change the access permissions for KM customers from within the MSP portal. Note that MSP cannot change the access permission for a <b>Full access</b> customer into a <b>No access</b> customer. Once the access permissions are changed, the customer receives an email notification with details about the change as well as complete Knox portal registration information that they can use to log in to the MSP portal.<p><img src="../../../assets/merge/images/knox-manage/21-8-Release-Notes-004.png" /></p></li>
-                                                <li value="4"><b>KM MSP delink</b> — Fully managed customers who have access to the MSP portal and jointly manage their account can also request to revoke the access rights of the MSP to their account. This request is known as a delink MSP request. Once the request is accepted, the MSP does not have access to the customer's account.
-				<p><img src="../../../assets/merge/images/knox-manage/21-8-Release-Notes-005.png" /></p></li>
-                                                <li value="5"><b>Migrate existing KM tenants</b> — MSPs can also migrate existing KM customers to the MSP portal. <p><img src="../../../assets/merge/images/knox-manage/21-8-Release-Notes-006.png" /></p></li>
-                                                <li value="6"><b>KM notifications on MSP console</b> — Any notifications set up for customer accounts on KM are also shown on the MSP portal, including but not limited to: expired licenses, add new administrators, or add a new KM customer tenant. To view these notifications, on the MSP portal's left navigation menu, go to the Dashboard.
-				<p><img src="../../../assets/merge/images/knox-manage/21-8-Release-Notes-007.png" /></p></li>
-                                                <li value="7"><b>View KM and Knox Services license usage</b> — MSPs can also view details of the Knox Manage and Knox services' license usage, such as:
-				<ul><li value="1">Purchased seats</li><li value="2">Remaining seats</li><li value="3">Used seats of KM or KS</li><li value="4">License key information</li></ul><p><img src="../../../assets/merge/images/knox-manage/21-8-Release-Notes-008.png" /></p></li>
+                                                <li value="1"><b>Add KM Customer</b> — The Knox MSP Program can add a new Knox Manage customer from within the Knox MSP Portal. When adding a new customer, the Knox MSP Program can provide all necessary and mandatory KM information such as customer ID, organizational information, and any other information needed to onboard the customer. By default, when adding a new customer, the customer's access permissions are set to <b>No access</b>, meaning the customer cannot access the Knox cloud service portal and is fully managed by the Knox MSP Program. The Knox MSP Program can change this permission to <b>Full access</b>, meaning the customer can access the Knox cloud service portal and is jointly managed by the Knox MSP Program.
+                <p><img src="../../../assets/merge/images/knox-manage/21-8-Release-Notes-002.png" /></p></li>
+                                                <li value="2"><b>KM SSO login from the Knox MSP Portal</b> — Users of the Knox MSP Portal can now access the KM portal with their single sign-on login credentials. To access the KM portal, go to left hand navigation menu &gt; <b>Customers</b> &gt; List of customers &gt; click <b>Active</b> to open the KM portal in a new browser tab.
+                <p><img src="../../../assets/merge/images/knox-manage/21-8-Release-Notes-003.png" /></p></li>
+                                                <li value="3"><b>Change customer access permissions</b> — Knox MSP Program users can also change the access permissions for KM customers from within the Knox MSP Portal. Note that the Knox MSP Program cannot change the access permission for a <b>Full access</b> customer into a <b>No access</b> customer. Once the access permissions are changed, the customer receives an email notification with details about the change as well as complete Knox portal registration information that they can use to log in to the Knox MSP Portal.<p><img src="../../../assets/merge/images/knox-manage/21-8-Release-Notes-004.png" /></p></li>
+                                                <li value="4"><b>KM service delink</b> — Fully managed customers who have access to the Knox MSP Portal and jointly manage their account can also request to revoke the access rights of the Knox MSP Program to their account. This request is known as a KM service delink request. Once the request is accepted, the Knox MSP Program does not have access to the customer's account.
+                <p><img src="../../../assets/merge/images/knox-manage/21-8-Release-Notes-005-02.png" /></p></li>
+                                                <li value="5"><b>Migrate existing KM tenants</b> — Knox MSP Portal admins can also migrate existing KM customers to the Knox MSP Portal. <p><img src="../../../assets/merge/images/knox-manage/21-8-Release-Notes-006-02.png" /></p></li>
+                                                <li value="6"><b>KM notifications on Knox MSP Portal</b> — Any notifications set up for customer accounts on KM are also shown on the Knox MSP Portal, including but not limited to: expired licenses, add new administrators, or add a new KM customer tenant. To view these notifications, on the Knox MSP Portal's left navigation menu, go to the Dashboard.
+                <p><img src="../../../assets/merge/images/knox-manage/21-8-Release-Notes-007.png" /></p></li>
+                                                <li value="7"><b>View KM and Knox Services license usage</b> — Knox MSP Program admins can also view details of the Knox Manage and Knox services' license usage, such as:
+                <ul><li value="1">Purchased seats</li><li value="2">Remaining seats</li><li value="3">Used seats of KM or KS</li><li value="4">License key information</li></ul><p><img src="../../../assets/merge/images/knox-manage/21-8-Release-Notes-008.png" /></p></li>
                                             </ul>
                                             <h3>Azure AD SSO in KM Direct Login</h3>
-                                            <p>Going forward, KM users can now use their Knox Cloud Services' (KCS) Azure AD single sign-on login to log in to Knox Manage. For more information about how to log in to KCS portals, including KM, using Azure AD SSO, see <a href="../../ad-sso/welcome.htm">Sign in with Azure AD</a>.</p>
+                                            <p>Going forward, KM users can now use their Knox cloud service's Azure AD single sign-on login to log in to Knox Manage. For more information about how to log in to the Knox cloud service portal, including KM, using Azure AD SSO, see <a href="../../ad-sso/welcome.htm">Sign in with Azure AD</a>.</p>
                                             <p>
                                                 <img src="../../../assets/merge/images/knox-manage/21-8-Release-Notes-009.png" />
                                             </p>
@@ -2852,8 +2874,7 @@
                                                 <li value="1"><b>Support for Polish language</b> — This release adds support for the Polish language on the KM admin console as well as the KM agent. <p><img src="../../../assets/merge/images/knox-manage/21-8-Release-Notes-033.png" /></p></li>
                                                 <li value="2"><b>Add Device Commands for Service Admin</b> — This release adds a new delete app data command for service admins. To access this option go to the Modify Administrator screen &gt; <b>Delete App Data</b>.<p><img src="../../../assets/merge/images/knox-manage/21-8-Release-Notes-034.png" /></p></li>
                                                 <li value="3"><b>New OpenAPIs</b> — The following new OpenAPIs are included:
-				<table style="width: 100%;"><col /><col /><col /><col /><col /><thead><tr><th>Purpose</th><th>Method</th><th>Path</th><th>Parameter</th><th>New response</th></tr></thead><tbody><tr><td><p>Get tags by device ID</p></td><td><p>POST</p></td><td><p>/emm/oapi/device/selectDeviceTagsByDeviceId</p></td><td><p>deviceId</p></td><td><p>&#160;</p></td></tr><tr><td><p>Update device tags</p></td><td><p>POST</p></td><td><p>/emm/oapi/device/updateDeviceTags</p></td><td><p>deviceId, tags</p></td><td><p>&#160;</p></td></tr><tr><td><p>Get device details</p></td><td><p>POST</p></td><td><p>/emm/oapi/device/selectDeviceInfo</p></td><td><p>deviceId</p></td><td><p>isRoaming, iccid, subscriberMcc, subscriberMncNa,
- currentMcc, currentMncName</p></td></tr></tbody></table></li>
+                <table style="width: 100%;"><thead><tr><th>Purpose</th><th>Method</th><th>Path</th><th>Parameter</th><th>New response</th></tr></thead><tbody><tr><td><p>Get tags by device ID</p></td><td><p>POST</p></td><td><p>/emm/oapi/device/selectDeviceTagsByDeviceId</p></td><td><p>deviceId</p></td><td><p>&#160;</p></td></tr><tr><td><p>Update device tags</p></td><td><p>POST</p></td><td><p>/emm/oapi/device/updateDeviceTags</p></td><td><p>deviceId, tags</p></td><td><p>&#160;</p></td></tr><tr><td><p>Get device details</p></td><td><p>POST</p></td><td><p>/emm/oapi/device/selectDeviceInfo</p></td><td><p>deviceId</p></td><td><p>isRoaming, iccid, subscriberMcc, subscriberMncNa, currentMcc, currentMncName</p></td></tr></tbody></table></li>
                                                 <li value="4"><b>Deleted devices list</b> — You can now export the deleted devices list into .csv format and download it like other reports. <p><img src="../../../assets/merge/images/knox-manage/21-8-Release-Notes-035.png" /></p></li>
                                                 <li value="5"><b>Advanced search options for devices</b> — The following new advanced search options are now available: OS version, Model name, and Firmware version.
                   <div class="callout note"><b>NOTE</b> — The OS version and model name list is shown based on the device pool of the tenant.</div><p><img src="../../../assets/merge/images/knox-manage/21-8-Release-Notes-036.png" /></p></li>
