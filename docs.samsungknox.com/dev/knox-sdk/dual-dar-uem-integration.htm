@@ -474,11 +474,11 @@
                                                                                 </li>
                                                                                 <li><a href="faqs/ml-protection/where-encrypted-files-saved.htm">Where are the encrypted files saved?</a>
                                                                                 </li>
-                                                                                <li><a href="faqs/ml-protection/which-devices-supported-knox-model-protection.htm">Which devices support Knox AI for Model Protection?</a>
+                                                                                <li><a href="faqs/ml-protection/which-devices-supported-knox-model-protection.htm">Which devices support Knox for Model Protection?</a>
                                                                                 </li>
-                                                                                <li><a href="faqs/ml-protection/which-ml-file-supported-knox-ai.htm">Which ML file types are supported by Knox AI for Model Protection?</a>
+                                                                                <li><a href="faqs/ml-protection/which-ml-file-supported-knox-ai.htm">Which ML file types are supported by Knox for Model Protection?</a>
                                                                                 </li>
-                                                                                <li><a href="faqs/ml-protection/which-os-support-knox-model-conversion-tool.htm">Which operating systems (OS) support Knox AI ML Model Conversion Tool?</a>
+                                                                                <li><a href="faqs/ml-protection/which-os-support-knox-model-conversion-tool.htm">Which operating systems (OS) support Knox ML Model Conversion Tool?</a>
                                                                                 </li>
                                                                             </ul>
                                                                         </li>
@@ -814,6 +814,8 @@
                                                                         </li>
                                                                         <li><a href="faqs/general/what-is-a-deprecated-api-method.htm">What is a deprecated API method?</a>
                                                                         </li>
+                                                                        <li><a href="faqs/general/why-api-deprecated.htm">Why were the API classes deprecated?</a>
+                                                                        </li>
                                                                         <li><a href="faqs/general/what-are-the-features-by-default-set-to-hidden-disabled-in-prokiosk-mode.htm">What are the features by default set to hidden/disabled in ProKiosk mode?</a>
                                                                         </li>
                                                                         <li><a href="faqs/general/what-are-credentials.htm">What are credentials?</a>
@@ -837,6 +839,8 @@
                                                                         <li><a href="faqs/general/how-does-my-devices-serial-number-change-with-knox-3.2.1.htm">How does my device's serial number change with Knox 3.2.1?</a>
                                                                         </li>
                                                                         <li><a href="faqs/general/if-i-dont-use-the-ucm-apis-of-the-knox-sdk-what-are-my-options-for-credential-storage.htm">If I don’t use the UCM APIs of the Knox SDK, what are my options for credential storage?</a>
+                                                                        </li>
+                                                                        <li><a href="faqs/general/samsung-calendar-sharing-removed-knox38.htm">What are the changes in Samsung Calendar data sharing in Knox SDK 3.8?</a>
                                                                         </li>
                                                                     </ul>
                                                                 </li>
@@ -1544,6 +1548,8 @@
                                             </div>
                                         </nav>
                                         <h1>DualDAR UEM integration</h1>
+                                        <div class="callout note"><b>NOTE</b> — DualDAR is supported in DO mode from Knox 3.8. It has been supported on WP-C devices from Knox 3.7. For infor on different device modes, see <a href="../../admin/knox-platform-for-enterprise/device-management-modes.htm">Device management modes</a>
+		.</div>
                                         <h2>Prerequisite</h2>
                                         <p>DualDAR is supported on Galaxy S10, N10, S20, and future flagship models. </p>
                                         <ul>
@@ -1566,10 +1572,15 @@
                                             <li value="1">Set up a DualDAR&#160;container by configuring the <a href="https://developer.android.com/work/managed-profiles">Profile</a> with DualDAR settings.</li>
                                             <li value="2">Create a KPE&#160;container:<ul><li value="1">Setup an <a href="https://developer.android.com/work/managed-profiles" target="_blank">Android Profile</a>.</li><li value="2">Once a KPE license has been activated, the Android enterprise will be upgraded to a KPE&#160;container.</li></ul></li>
                                         </ol>
+                                        <div class="callout note"><b>NOTE</b> — Normally it’s recommended activating DualDAR license before setting up DualDAR container. But in case of 2 <a href="../../admin/knox-platform-for-enterprise/device-management-modes.htm">additional modes</a> (WP-C and DO), license cannot be activated before setting up WP-C or DO because they can be initiated from SUW. So we allow to set up DualDAR for WP-C or DO devices without DualDAR license activation. However if the license is not activated within 24 hours after creation, Work Profile (WP-C) or the device(DO) will be admin –locked and they don’t work until the license is activated.</div>
                                         <ul class="tabs" data-tabs="" id="example-tabs">
                                             <li class="tabs-title is-active" value="1"><a href="dual-dar-uem-integration.htm#panel1" aria-selected="true" class="selected">Setup DualDAR Container</a>
                                             </li>
                                             <li class="tabs-title" value="2"><a data-tabs-target="panel2" href="dual-dar-uem-integration.htm#panel2" class="selected">Create a KPE container</a>
+                                            </li>
+                                            <li class="tabs-title" value="3"><a data-tabs-target="panel3" href="dual-dar-uem-integration.htm#panel3" class="selected">Setup DualDAR Container for company-owned devices</a>
+                                            </li>
+                                            <li class="tabs-title" value="4"><a data-tabs-target="panel4" href="dual-dar-uem-integration.htm#panel4" class="selected">Setup DualDAR for fully managed devices</a>
                                             </li>
                                         </ul>
                                         <div class="tabs-content" data-tabs-content="example-tabs">
@@ -1609,7 +1620,51 @@ startActivityForResult(provisioningIntent, 1);
 provisioningActivity.finish();
 </pre>
                                             </div>
+                                            <div class="tabs-panel" id="panel3">
+                                                <h3>Setup DualDAR Container for company-owned devices </h3>
+                                                <p>The following are steps to set up a <a href="../../admin/knox-platform-for-enterprise/device-management-modes.htm" target="_blank">company-owned device</a>. </p>
+                                                <ul>
+                                                    <li value="1">Once a KPE license is activated, before or after the following code executes, it will upgrade the Android enterprise profile to a KPE workspace.</li>
+                                                </ul><pre class="prettyprint" xml:space="preserve">
+Intent mIntent = new Intent();
+
+// Create Dual DAR configuration bundle
+PersistableBundle adminExtras = new PersistableBundle();
+adminExtras.putBoolean(DualDARPolicy.KEY_DUAL_DAR_CONFIG, true);
+adminExtras.putString(DualDARPolicy.KEY_CONFIG_CLIENT_PACKAGE, "");
+adminExtras.putString(DualDARPolicy.KEY_CONFIG_CLIENT_SIGNATURE, "");
+adminExtras.putString(DualDARPolicy.KEY_CONFIG_CLIENT_LOCATION, "");
+mIntent.putExtra(EXTRA_PROVISIONING_ADMIN_EXTRAS_BUNDLE, adminExtras);
+
+// Set provisioning mode
+mIntent.putExtra(EXTRA_PROVISIONING_MODE, PROVISIONING_MODE_MANAGED_PROFILE);
+
+// Provide result data from admin app's ACTION_GET_PROVISIONING_MODE activity
+setResult(RESULT_OK , mIntent);				</pre>
+                                            </div>
+                                            <div class="tabs-panel" id="panel4">
+                                                <h3>Setup DualDAR for fully managed devices</h3>
+                                                <p>The following are steps to set up a <a href="../../admin/knox-platform-for-enterprise/device-management-modes.htm" target="_blank">fully managed device</a>. </p>
+                                                <ul>
+                                                    <li value="1">Once a KPE license is activated, before or after the following code executes, it will upgrade the Android enterprise profile to a KPE workspace.</li>
+                                                </ul><pre class="prettyprint" xml:space="preserve">Intent mIntent = new Intent();
+
+// Create Dual DAR configuration bundle
+PersistableBundle adminExtras = new PersistableBundle();
+adminExtras.putBoolean(DualDARPolicy.KEY_DUAL_DAR_CONFIG, true);
+adminExtras.putString(DualDARPolicy.KEY_CONFIG_CLIENT_PACKAGE, "");
+adminExtras.putString(DualDARPolicy.KEY_CONFIG_CLIENT_SIGNATURE, "");
+adminExtras.putString(DualDARPolicy.KEY_CONFIG_CLIENT_LOCATION, "");
+mIntent.putExtra(EXTRA_PROVISIONING_ADMIN_EXTRAS_BUNDLE, adminExtras);
+
+// Set provisioning mode
+mIntent.putExtra(EXTRA_PROVISIONING_MODE, PROVISIONING_MODE_FULLY_MANAGED_DEVICE);
+
+// Provide result data from admin app's ACTION_GET_PROVISIONING_MODE activity
+setResult(RESULT_OK , mIntent);		</pre>
+                                            </div>
                                         </div>
+                                        <p>The API reference for the feature is <a href="../../devref/knox-sdk/reference/com/samsung/android/knox/ddar/DualDARPolicy.html" target="_blank">com.samsung.android.knox.ddar</a>.</p>
                                         <h2>Setup DualDAR&#160;configuration</h2>
                                         <p>There are many different ways to configure a DualDAR workspace. As seen above, all DualDAR workspace configuration must begin with:</p><pre class="prettyprint" xml:space="preserve">&lt;uses-permission android:name="com.samsung.android.knox.permission.KNOX_DUAL_DAR" /&gt;</pre>
                                         <p>After this, any additional configuration options may be added before the profile is provisioned. </p>

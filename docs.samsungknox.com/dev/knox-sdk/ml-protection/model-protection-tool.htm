@@ -474,11 +474,11 @@
                                                                                 </li>
                                                                                 <li><a href="../faqs/ml-protection/where-encrypted-files-saved.htm">Where are the encrypted files saved?</a>
                                                                                 </li>
-                                                                                <li><a href="../faqs/ml-protection/which-devices-supported-knox-model-protection.htm">Which devices support Knox AI for Model Protection?</a>
+                                                                                <li><a href="../faqs/ml-protection/which-devices-supported-knox-model-protection.htm">Which devices support Knox for Model Protection?</a>
                                                                                 </li>
-                                                                                <li><a href="../faqs/ml-protection/which-ml-file-supported-knox-ai.htm">Which ML file types are supported by Knox AI for Model Protection?</a>
+                                                                                <li><a href="../faqs/ml-protection/which-ml-file-supported-knox-ai.htm">Which ML file types are supported by Knox for Model Protection?</a>
                                                                                 </li>
-                                                                                <li><a href="../faqs/ml-protection/which-os-support-knox-model-conversion-tool.htm">Which operating systems (OS) support Knox AI ML Model Conversion Tool?</a>
+                                                                                <li><a href="../faqs/ml-protection/which-os-support-knox-model-conversion-tool.htm">Which operating systems (OS) support Knox ML Model Conversion Tool?</a>
                                                                                 </li>
                                                                             </ul>
                                                                         </li>
@@ -814,6 +814,8 @@
                                                                         </li>
                                                                         <li><a href="../faqs/general/what-is-a-deprecated-api-method.htm">What is a deprecated API method?</a>
                                                                         </li>
+                                                                        <li><a href="../faqs/general/why-api-deprecated.htm">Why were the API classes deprecated?</a>
+                                                                        </li>
                                                                         <li><a href="../faqs/general/what-are-the-features-by-default-set-to-hidden-disabled-in-prokiosk-mode.htm">What are the features by default set to hidden/disabled in ProKiosk mode?</a>
                                                                         </li>
                                                                         <li><a href="../faqs/general/what-are-credentials.htm">What are credentials?</a>
@@ -837,6 +839,8 @@
                                                                         <li><a href="../faqs/general/how-does-my-devices-serial-number-change-with-knox-3.2.1.htm">How does my device's serial number change with Knox 3.2.1?</a>
                                                                         </li>
                                                                         <li><a href="../faqs/general/if-i-dont-use-the-ucm-apis-of-the-knox-sdk-what-are-my-options-for-credential-storage.htm">If I don’t use the UCM APIs of the Knox SDK, what are my options for credential storage?</a>
+                                                                        </li>
+                                                                        <li><a href="../faqs/general/samsung-calendar-sharing-removed-knox38.htm">What are the changes in Samsung Calendar data sharing in Knox SDK 3.8?</a>
                                                                         </li>
                                                                     </ul>
                                                                 </li>
@@ -1547,8 +1551,16 @@
                                         <h2>Installation</h2>
                                         <ol>
                                             <li value="1">Log in to <a href="https://partner.samsungknox.com/dashboard/download">Knox Partner Portal &gt;&#160;Dashboard &gt;&#160;Download</a>.</li>
-                                            <li value="2">Download one of the following:<ul><li value="1"><b>Knox ML&#160;encryption tool - Linux</b><br /><i>Supported OS version—</i> Ubuntu 16.04, 18.04, 20.04 <br /></li><li value="2"><b>Knox ML&#160;encryption tool - Windows</b><br /> <i>Supported OS version—</i> Windows 10</li></ul></li>
-                                            <li value="3">Run the executable. On Linux, give the execute permission as needed.</li>
+                                            <li value="2">Download one of the following:<ul><li value="1"><b>Knox ML&#160;encryption tool - Linux</b><br /><i>Supported OS version—</i> Ubuntu 20.04 <br /></li><li value="2"><b>Knox ML&#160;encryption tool - Windows</b><br /> <i>Supported OS version—</i> Windows 10</li></ul></li>
+                                            <li value="3">Run the executable. On Linux, Please follow below steps to run the Knox ML Encryption Tool:
+              <ol><li value="1">Unzip  <code>KnoxMLEncryptionTool1.2.6_linux.zip</code>.
+                </li><li value="2">Change the permission and run the setup.
+                  <pre class="prettyprint" xml:space="preserve">
+                    <p>&gt; chmod 777 setup.sh
+                       &gt; sudo ./setup.sh
+                    </p>
+                  </pre></li><li value="3">Run the Tool from Desktop icon.
+                </li></ol></li>
                                         </ol>
                                         <h2 id="ui">UI parameters</h2>
                                         <p>To generate the encrypted neural model package, following inputs from the user are required:</p>
@@ -1567,16 +1579,26 @@
                                             </thead>
                                             <tbody>
                                                 <tr>
-                                                    <td>ML file</td>
+                                                    <td>ML file format</td>
                                                     <td>Yes</td>
-                                                    <td>Plain ML Model file to be encrypted.					  </td>
+                                                    <td>List of Model formats to choose from. The user need to select format of the Raw model which will be encrypted. Currently supported model formats are tflite, tensorflow, caffe, keras, coreML, and pytorch.</td>
                                                     <td>
                                                         <ul>
                                                             <li value="1">Tensorflow (*.pb)</li>
                                                             <li value="2">Tensorflow Lite (*.tflite)</li>
                                                             <li value="3">Caffe (*.caffemodel)</li>
+                                                            <li value="4">Keras (*.pb)</li>
+                                                            <li value="5">coreML (*.mlmodel)</li>
+                                                            <li value="6">pytorch (*.pth)</li>
+                                                            <li value="7">ONNX (*.onnx)</li>
                                                         </ul>
                                                     </td>
+                                                </tr>
+                                                <tr>
+                                                    <td>ONNX conversion</td>
+                                                    <td>Yes</td>
+                                                    <td>Select whether you want to convert to ONNX format.<br /><i>* CoreML,Keras,Pytorch format is required to conver to ONNX format as mandatory</i></td>
+                                                    <td />
                                                 </tr>
                                                 <tr>
                                                     <td>Package Version</td>
@@ -1585,9 +1607,9 @@
                                                     <td style="vertical-align: super;">An integer in the range 1 - 4294967296</td>
                                                 </tr>
                                                 <tr>
-                                                    <td>Allowed Apps List</td>
+                                                    <td>Allowed Apps List and Certificate Hash</td>
                                                     <td>Yes</td>
-                                                    <td>List of allowed app packages that can load the model.</td>
+                                                    <td>List of allowed packages that can load the model along with Hash of the signing certificate used to sign the Apk which will be allowed to load and execute the model. </td>
                                                     <td>
                                                         <ul>
                                                             <li value="1">Text (*.txt)</li>
@@ -1599,32 +1621,67 @@
                                         </table>
                                         <h2>Encrypt files</h2>
                                         <p>To encrypt your ML model, open the Knox ML Encryption Tool on your computer and do as follows depending on the tool's version. To see which version you can use depending on device, refer to <a href="tool-revision.htm">Knox ML Encryption Tool Revision</a> page.</p>
-                                        <h3>Model Encryption Tool V1.0 steps</h3>
-                                        <ol>
-                                            <li value="1">(Optional) click the settings icon on the top right and select file locations folder. Only English-language folder names are supported. This folder is where the encrypted package is stored. If not specified, the encrypted file is stored in a folder called ‘<i>Encrypted Models</i>’ in the same location where the plain ML file is located. The encrypted file is saved in that path from the next time onwards. </li>
-                                            <li value="2">Click <b>Return to Encrypt file</b>.</li>
-                                            <li value="3">Select the ML file in one of the formats as explained above in the <a href="model-protection-tool.htm#ui" class="selected">UI elements table</a>.</li>
-                                            <li value="4">Select the package version for the output encrypted file.</li>
-                                            <li value="5">Select the allowed apps list. Doing so restricts the access to only these apps to run the encrypted file.</li>
-                                            <li value="6">Click <b>Encrypt</b>.</li>
-                                            <li value="7">In the <b>Encryption Successful</b> screen, select one of the following:<ul><li value="1"><b>View file</b> to view the encrypted package file</li><li value="2"><b>Quit</b> to quit and close the converter</li><li value="3"><b>Encrypt new file</b> to start a new encryption process.</li></ul></li>
-                                        </ol>
                                         <h3>Model Encryption Tool V1.1 steps</h3>
                                         <ol>
-                                            <li value="1">click <b>Get Started</b>.</li>
+                                            <li value="1">Click <b>Get Started</b>.</li>
                                             <li value="2">(Optional) click <b>Settings</b> icon and select the path where you want to save the encrypted model.</li>
-                                            <li value="3">click <b>Utility</b> option next to Settings icon. Browse and select the allowed app certificate file and click <b>Generate Hash</b>.</li>
-                                            <li value="4">click <b>Copy Hash</b> and dd it to the Allowed Apps List.</li>
+                                            <li value="3">Click <b>Utility</b> option next to Settings icon. Browse and select the certificate file used to sign the Apk and click <b>Generate Hash</b>.</li>
+                                            <li value="4">Click <b>Copy Hash</b> and add it to the Allowed Apps List along side of the package name for the App.</li>
                                             <li value="5">Return to <b>Encrypt Screen</b> and dd plain ML Model file and its package version.</li>
-                                            <li value="6">Attach the Allowed_Apps List. Refer to Template option for proper format.</li>
+                                            <li value="6">Enter Model Package version and add Allowed_Apps List under "Set Model Policy" section. Refer to Template option for proper format.</li>
                                             <li value="7">Click <b>Encrypt</b>. *.KMLPKG file is created.</li>
-                                            <li value="8">click <b>View File</b> button to view the encrypted package file.</li>
+                                            <li value="8">Click <b>View File</b> button to view the encrypted package file.</li>
+                                        </ol>
+                                        <h3>Model Encryption Tool V1.2 steps</h3>
+                                        <p><b>Tool Configurations:</b>
+                                        </p>
+                                        <p>Before encryption, you need to do some configurations. In the image, Action 1 shows the <b>Settings tab</b>, Action 2 shows the <b>Utility tab</b>, and Action 3 shows the <b>Resource Manager tab</b>.
+        <img src="../../../assets/merge/images/knox-sdk/ml/ml-tool-actions.png" /></p>
+                                        <p><b>Settings Tab:</b>
+                                        </p>
+                                        <p>In the Settings tab, you can choose the location to save the encrypted models. If you do not select any location, the encrypted model is saved at the same location as the raw model. Action 4 in in the image shows the <b>Change</b> button to click first and Action 5 shows the <b>Select folder</b> button after browsing to the desired location. Action 6 shows the selected location under <b>Location</b>.</p>
+                                        <p>
+                                            <img src="../../../assets/merge/images/knox-sdk/ml/ml-tool-settings.png" />
+                                        </p>
+                                        <p> <img src="../../../assets/merge/images/knox-sdk/ml/ml-tool-settings-2.png" /></p>
+                                        <p><b>Utility Tab:</b>
+                                        </p>
+                                        <p>In the Utility tab you can choose the certificate used to sign the Apk and generate hash which is used during packaging after model encryption. Action 7 in the image shows the <b>Browse</b> button to choose this certificate file. After choosing the certificate, its path is visible under Location shown by Action 8. Action 9 shows the <b>Generate Hash</b> button. After hash generation, hash code is visible in <b>Generated Hash</b> box. Click <b>Copy</b> to copy Hash and add it to the Allowed Apps List along side of the package name for the App.</p>
+                                        <p />
+                                        <p>
+                                            <img src="../../../assets/merge/images/knox-sdk/ml/ml-tool-utility.png" />
+                                        </p>
+                                        <p> <img src="../../../assets/merge/images/knox-sdk/ml/ml-tool-utility-2.png" /></p>
+                                        <p><b>Resource Manager Tab:</b>
+                                        </p>
+                                        <p> In the Resource Manager tab you can download resources required for conversion of models to ONNX. This is a one-time process and once downloaded, the resources will remain downloaded. Alternatively, resources can be downloaded during encryption, as and when required.</p>
+                                        <p />
+                                        <p>
+                                            <img src="../../../assets/merge/images/knox-sdk/ml/ml-tool-resource-manager.png" />
+                                        </p>
+                                        <p />
+                                        <ol>
+                                            <li value="1">Click <b>Get Started</b> button as shown in Action 1 in the image. Action 2 shows the <b>Encrypt file</b> highlighted with blue underline, Action 3 shows the <b>ML File format</b> button, and Action 4 displays the disabled <b>Add</b> button.
+              <p><img src="../../../assets/merge/images/knox-sdk/ml/ml-tool-encryption-1.png" /></p></li>
+                                            <li value="2">Select <b>Model type</b> from drop down list as demonstrated by Action 7 and download the resources required to convert ML model to ONNX model type as demonstrated by Action 8.
+              <p><img src="../../../assets/merge/images/knox-sdk/ml/ml-tool-encryption-2.png" /></p></li>
+                                            <li value="3">Click the <b>Add</b> button as demonstrated in Action 4. This opens up the file browser. Select the appropriate file as indicated in Action 9 and after the selection, click <b>Open</b> as indicated in Action 10. The name of the selected file is visible in the <b>ML File</b> field as shown in Action 11.
+              <p><img src="../../../assets/merge/images/knox-sdk/ml/ml-tool-encryption-3.png" /></p></li>
+                                            <li value="4">Add the package name as demonstrated in Action 12. To select <b>Allowed Apps List</b> click the <b>Add</b> button as in Action 13. A file browser pops up. Select the appropriate list and click <b>Open</b> as demonstrated in the Action 14 and 15.
+              <p><img src="../../../assets/merge/images/knox-sdk/ml/ml-tool-encryption-4.png" /></p></li>
+                                            <p>
+                                                <img src="../../../assets/merge/images/knox-sdk/ml/ml-tool-encryption-5.png" />
+                                            </p>
+                                            <li value="5">The allowed apps list file name is visible in the <b>Allowed Apps</b> field as demonstrated in Action 16. If ONNX conversion option is selected, Click the <b>Next</b> button and provide input parameters required for ONNX conversion, otherwise click the <b>Encrypt</b> button as demonstrated in Action 17, and encryption process starts as demonstrated in Action 18.
+            </li>
+                                            <li value="6">As the encryption is completed you are redirected to the <b>Encryption Successful!</b>. Your encrypted model package is generated in the folder specified. Clicking on <b>View file</b> as shown in Action 19 takes you to the generated package.
+              <p><img src="../../../assets/merge/images/knox-sdk/ml/ml-tool-encryption-6.png" /></p></li>
                                         </ol>
                                         <h2>Types of Encrypted Knox ML output packages</h2>
                                         <p>You can generate following two types of Knox ML packages:</p>
                                         <ul>
-                                            <li value="1"><b>KAIPKG</b>—This ML model package format is generated from Knox ML Encryption Tool v1.0 only. This format is supported on devices with Knox SDK 3.7.1.</li>
-                                            <li value="2"><b>KMLPKG</b>—This ML model package format supported by Knox ML Encryption Tool v1.1 onwards. This format is currently supported in devices with SDK 3.7.1  with KnoxML version v1.1 or higher.</li>
+                                            <li value="1"><b>KONPKG</b>—This ONNX converted-ML model package format is supported by Knox ML Encryption Tool v1.2 onwards. This format is currently supported in devices with SDK 3.8 with KnoxML version v1.2 or higher</li>
+                                            <li value="2"><b>KMLPKG</b>—This ML model package format is supported by Knox ML Encryption Tool v1.1 onwards. This format is currently supported in devices with SDK 3.7.1  with KnoxML version v1.1 or higher.</li>
                                         </ul>
                                         <div class="callout note"><b>NOTE</b>—To find out what Knox version your device is on, go to <b>Settings</b> &gt; <b>About phone</b> &gt; <b>Software information</b> &gt;&#160;<b>Knox version</b>.</div>
                                         <h2>Deploy encrypted package to app</h2>

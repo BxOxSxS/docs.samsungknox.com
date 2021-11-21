@@ -1,3 +1,5 @@
+
+
 <!DOCTYPE html>
 <html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" lang="en-US" xml:lang="en-US" data-mc-search-type="Stem" data-mc-help-system-file-name="Default.xml" data-mc-path-to-help-system="../../" data-mc-conditions="Builds.knox-sdk-build,Builds.ai-build" data-mc-target-type="WebHelp2" data-mc-runtime-file-type="Topic;Default" data-mc-preload-images="false" data-mc-in-preview-mode="false" data-mc-toc-path="Device apps|Knox SDK|Features|ML Developers">
     <head>
@@ -1561,31 +1563,31 @@
                                                 <tr>
                                                     <td>1.</td>
                                                     <td><a href="../../../devref/knox-sdk/reference/com/samsung/android/knox/ex/knoxAI/KnoxAiManager.html">KnoxAiManager</a> getInstance(context)
-					</td>
+                                					</td>
                                                     <td>3rd party app  gets the KnoxAiManager.</td>
                                                 </tr>
                                                 <tr>
                                                     <td>2.</td>
                                                     <td>void getKeyProvisioning(<a href="../../../devref/knox-sdk/reference/com/samsung/android/knox/ex/knoxAI/KeyProvisioningResultCallback.html">KeyProvisioningResultCallback</a> cb)
-                    </td>
+                                                    </td>
                                                     <td> Provision Device Encryption Key (DEK) from Server for KnoxAI ML Model Protection. KeyProvisioningResultCallback is an abstract class for handling Knox key provisioning result.</td>
                                                 </tr>
                                                 <tr class="alt-color api apilevel-34">
                                                     <td>3.</td>
                                                     <td><a href="../../../devref/knox-sdk/reference/com/samsung/android/knox/ex/knoxAI/KnoxAiSession.html">KnoxAiSession</a> createKnoxAISession()
-					</td>
+                                					</td>
                                                     <td>3rd party app creates a session to get secure session handle before all operations related to ML begin.</td>
                                                 </tr>
                                                 <tr>
                                                     <td>4.</td>
                                                     <td>int open(<a href="../../../devref/knox-sdk/reference/com/samsung/android/knox/ex/knoxAI/KfaOptions.html">KfaOptions</a> option)
-					</td>
+                                					</td>
                                                     <td>Loads the encrypted ML model to Knox Framework using the given options.</td>
                                                 </tr>
                                                 <tr>
                                                     <td>5.</td>
                                                     <td>int execute (<a href="../../../devref/knox-sdk/reference/com/samsung/android/knox/ex/knoxAI/DataBuffer.html">DataBuffer</a>[] inputs, DataBuffer[] outputs)
-					</td>
+                                					</td>
                                                     <td>Executes the model using the given input and returns a vector of pointers to the outputs.</td>
                                                 </tr>
                                                 <tr>
@@ -1596,56 +1598,60 @@
                                                 <tr>
                                                     <td>7.</td>
                                                     <td>int destroyKnoxAISession(<a href="../../../devref/knox-sdk/reference/com/samsung/android/knox/ex/knoxAI/KnoxAiSession.html">KnoxAiSession</a> session)
-					</td>
+                                					</td>
                                                     <td>Destroy the instance of Knox session handle.</td>
                                                 </tr>
                                             </tbody>
                                         </table>
                                         <h2>Get instance of KnoxAiManager</h2>
                                         <p>Call this API in the beginning to get an instance of KnoxAiManager to expose getKeyProvisioning(KeyProvisioningResultCallback cb), createKnoxAiSession(), and destroyKnoxAiSession() APIs.</p><pre class="prettyprint" xml:space="preserve">
-            <p>private static KnoxAiManager knoxAIManager = null;
-if (knoxAIManager == null) {
-    knoxAIManager = KnoxAiManager.getInstance(getApplicationContext());
-}
-</p>
-        </pre>
+                                            <p>private static KnoxAiManager knoxAIManager = null;
+                                if (knoxAIManager == null) {
+                                    knoxAIManager = KnoxAiManager.getInstance(getApplicationContext());
+                                }
+                                </p>
+                                        </pre>
                                         <h2>Get provisioning key</h2>
                                         <p>Call this API to provision Device Encryption Key (DEK) from server for Knox ML Model Protection. Implement the KeyProvisioningResultCallback abstract class for handling Knox key provisioning result and pass its object.</p><pre class="prettyprint" xml:space="preserve">
-            <p>               KeyProvisioningResultCallback callBack = new KeyProvisioningResultCallback() {
-                @Override
-                public void onFinished(KnoxAiManager.ErrorCodes errorCodes) {
-                    if (errorCodes == KnoxAiManager.ErrorCodes.SUCCESS){
+                                            <p>
+KeyProvisioningResultCallback callBack = new KeyProvisioningResultCallback() {
+    @Override
+    public void onFinished(KnoxAiManager.ErrorCodes errorCodes) {
+        if (errorCodes == KnoxAiManager.ErrorCodes.SUCCESS){
 
-                        Log.d(TAG, "Server Provisioning Success !!!");
+            Log.d(TAG, "Server Provisioning Success !!!");
 
-                    } else {
+        } else {
 
-                        // error handling code
+            // error handling code
 
-                    }
+        }
 
-                }
-            };
+    }
+};
 
-            try {
+try {
 
-                knoxAIManager.getKeyProvisioning(callBack);
+    knoxAIManager.getKeyProvisioning(callBack);
 
-            } catch (SecurityException e) {
+} catch (SecurityException e) {
 
-                Log.d(TAG, "Security Failed !!!");
+    Log.d(TAG, "Security Failed !!!");
 
-            }</p>
-        </pre>
+}
+                                            </p>
+                                        </pre>
                                         <h2>Create KnoxAiSession</h2>
                                         <p>Call this API after DEK key provision is successful. This API exposes open(KfaOptions option), execute(DataBuffer[] inputs, DataBuffer[] outputs) and close() APIs</p><pre class="prettyprint" xml:space="preserve">
-         <p>        KnoxAiSession session;
-        try {
-             session = knoxAIManager.createKnoxAiSession();
-        }catch (SecurityException e) {
-            session = null;
-        }</p>
-</pre>
+                                         <p>
+KnoxAiSession session;
+try {
+    session = knoxAIManager.createKnoxAiSession();
+}catch (SecurityException e) {
+   session = null;
+}
+                                         </p>
+                                </pre>
                                         <h2>Load encrypted ML model</h2>
                                         <p>The Open(KfaOptions options) API is used to load and decrypt the encrypted model. The input parameter of this API is the object of KfaOptions which needs to be filled properly before calling this API.</p>
                                         <h3>Filling KfaOptions object</h3>
@@ -1670,7 +1676,7 @@ if (knoxAIManager == null) {
                                                     </td>
                                                     <td>
                                                         <p>Execution type for model(Float32,Float16
- etc)</p>
+                                 etc)</p>
                                                     </td>
                                                 </tr>
                                                 <tr>
@@ -1678,7 +1684,7 @@ if (knoxAIManager == null) {
                                                         <p>int <a href="../../../devref/knox-sdk/reference/com/samsung/android/knox/ex/knoxAI/KfaOptions.html">compUnit</a>;</p>
                                                     </td>
                                                     <td>
-                                                        <p>Computing Unit(CPU,GPU etc)</p>
+                                                        <p>Computing Unit(CPU,GPU, NPU, DSP and so on)</p>
                                                     </td>
                                                 </tr>
                                                 <tr>
@@ -1694,7 +1700,7 @@ if (knoxAIManager == null) {
                                                         <p>int <a href="../../../devref/knox-sdk/reference/com/samsung/android/knox/ex/knoxAI/KfaOptions.html#setmType(int)">mType</a>;</p>
                                                     </td>
                                                     <td>
-                                                        <p>Model Type(Tflite, SNF, Tensorflow etc)</p>
+                                                        <p>Model Type(Tflite, Tensorflow, ONNX and so on)</p>
                                                     </td>
                                                 </tr>
                                                 <tr>
@@ -1787,15 +1793,70 @@ if (knoxAIManager == null) {
                                                 </tr>
                                             </tbody>
                                         </table>
+                                        <h3>Supported model types</h3>
+                                        <p>Following are the supported model types:</p>
+                                        <table>
+                                        	<colgroup>
+                                        		<col />
+                                        		<col />
+                                        	</colgroup>
+                                        	<thead>
+                                        		<tr>
+                                        			<th><p>Model Type</p>
+                                        			</th>
+                                        			<th><p>Use</p>
+                                        			</th>
+                                        		</tr>
+                                        	</thead>
+                                        	<tbody>
+                                        		<tr>
+                                        			<td><p>Tflite</p>
+                                        			</td>
+                                        			<td><p>Can be used independently and with ONNX Conversion as well</p>
+                                        			</td>
+                                        		</tr>
+                                        		<tr>
+                                        			<td><p>Tensorflow</p>
+                                        			</td>
+                                        			<td><p>Can be used with ONNX Conversion</p>
+                                        			</td>
+                                        		</tr>
+                                        		<tr>
+                                        			<td><p>Caffe</p>
+                                        			</td>
+                                        			<td><p>Can be used independently and with ONNX Conversion as well</p>
+                                        			</td>
+                                        		</tr>
+                                        		<tr>
+                                        			<td><p>Keras</p>
+                                        			</td>
+                                        			<td><p>Can be used with ONNX Conversion</p>
+                                        			</td>
+                                        		</tr>
+                                        		<tr>
+                                        			<td><p>Pytorch</p>
+                                        			</td>
+                                        			<td><p>Can be used with ONNX Conversion</p>
+                                        			</td>
+                                        		</tr>
+                                        		<tr>
+                                        			<td><p>CoreML</p>
+                                        			</td>
+                                        			<td><p>Can be used with ONNX Conversion</p>
+                                        			</td>
+                                        		</tr>
+                                        	</tbody>
+                                        </table>
                                         <h3>KfaOptions example</h3><pre class="prettyprint" xml:space="preserve">
-            <p>KfaOptions options = new KfaOptions();
+                                            <p>
+KfaOptions options = new KfaOptions();
 options.setExecType(KnoxAiSession.ExecType.FLOAT32.getValue());
 options.setCompUnit(comp);
 options.setmType(model);
-ArrayList&lt;String&gt; ipNames = new ArrayList&lt;String&gt;();
+ArrayList<String> ipNames = new ArrayList<String>();
 ipNames.add("conv2d_6_input");
 options.setInputNames(ipNames);
-ArrayList&lt;String&gt; opNames = new ArrayList&lt;String&gt;();
+ArrayList<String> opNames = new ArrayList<String>();
 opNames.add("Identity");
 options.setOutputNames(opNames);
 AssetManager assetManager = mContext.getAssets();
@@ -1808,16 +1869,25 @@ try {
 options.setCompUnit(KnoxAiSession.CompUnit.CPU.getValue());
 options.setmType(KnoxAiSession.ModelType.TENSORFLOWLITE.getValue());
 options.setModelInputType(KnoxAiSession.ModelInputType.FD);
-
-</p>
-        </pre>
+                                            </p>
+                                        </pre>
+                                        <h4>Passing converted ONNX models</h4>
+                                        <pre class="prettyprint" xml:space="preserve">
+                                            <p>
+KfaOptions options = new KfaOptions(); options.setExecType(KnoxAiSession.ExecType.FLOAT32.getValue());
+options.setCompUnit(KnoxAiSession.CompUnit.CPU.getValue());
+options.setmType((KnoxAiSession.ModelType.ONXX.getValue()));
+                                            </p>
+                                        </pre>
                                         <h3>Calling Open() API</h3><pre class="prettyprint" xml:space="preserve">
-            <p>int status = -1;</p>
-            <p>status = session.open(options).getValue();</p>
-        </pre>
+                                            <p>
+int status = -1;
+status = session.open(options).getValue();
+                                            </p>
+                                        </pre>
                                         <p>When open(KfaOptions option) is called, it loads the model package buffer and decrypt the encrypted model according to policies and makes the model ready for execution.</p>
                                         <h2>Decrypt ML model</h2>
-                                        <p>Call this API to run model to take the input DataBuffer array and return the output in output DataBuffer array.</p>
+                                        <p>Call Execute API to run model to take the input DataBuffer array and return the output in output DataBuffer array.</p>
                                         <h3>Filling DataBuffer inputs for calling execute API</h3>
                                         <p>Following are the fields of DataBuffer Class:</p>
                                         <table>
@@ -1855,7 +1925,7 @@ options.setModelInputType(KnoxAiSession.ModelInputType.FD);
                                                         <p>byte <a href="../../../devref/knox-sdk/reference/com/samsung/android/knox/ex/knoxAI/DataBuffer.html#getDataType()">dataType</a>;</p>
                                                     </td>
                                                     <td>
-                                                        <p>Type of data in dataOriginal</p>
+                                                        <p>Type of data in dataOriginal (Float32, Float16, Byte, INT64, String, Sequence_map, INT32)</p>
                                                     </td>
                                                 </tr>
                                                 <tr>
@@ -1894,8 +1964,154 @@ options.setModelInputType(KnoxAiSession.ModelInputType.FD);
                                                 </tr>
                                             </tbody>
                                         </table>
-                                        <h3>Filling DataBuffer and Calling execute() API Example</h3><pre class="prettyprint" xml:space="preserve">
-            <p>DataBuffer[] input = new DataBuffer[1];
+                                        <h3>Different Input Data Types Supported</h3>
+                                <p>Following table represent different input data types supported. To set a particular data type user can use enumerated value.</p>
+                                <table>
+                                    <col />
+                                    <col />
+                                    <thead>
+                                      <tr>
+                                        <th><p>Data Type</p></th>
+                                  			<th><p>Enumerated Value</p></th>
+                                  			<th><p>Use</p></th>
+                                  			<th><p>Supported for</p></th>
+                                      </tr>
+                                  </thead>
+                                  <tbody>
+                                      <tr>
+                                			<td><p>Float32</p>
+                                			</td>
+                                			<td><p>FLOAT32(0)</p>
+                                			</td>
+                                			<td><p>When input data type is float</p>
+                                			</td>
+                                			<td><p>All model types</p>
+                                			</td>
+                                		</tr>
+                                		<tr>
+                                			<td><p>Float16</p>
+                                			</td>
+                                			<td><p>FLOAT16(1)</p>
+                                			</td>
+                                			<td><p>When input data type is float16</p>
+                                			</td>
+                                			<td><p>ONNX</p>
+                                			</td>
+                                		</tr>
+                                		<tr>
+                                			<td><p>String</p>
+                                			</td>
+                                			<td><p>STRING(4)</p>
+                                			</td>
+                                			<td><p>When input data type is string</p>
+                                			</td>
+                                			<td><p>ONNX</p>
+                                			</td>
+                                		</tr>
+                                		<tr>
+                                			<td><p>Int32</p>
+                                			</td>
+                                			<td><p>INT32(6)</p>
+                                			</td>
+                                			<td><p>When input data type is int</p>
+                                			</td>
+                                			<td><p>ONNX</p>
+                                			</td>
+                                		</tr>
+                                	</tbody>
+                                </table>
+
+                                <h3>Different Output Data Types Supported</h3>
+
+                                <p>Following table represent different input data types supported. To set a particular data type user can use enumerated value.</p>
+                                <table>
+                                    <col />
+                                    <col />
+                                    <thead>
+                                        <tr>
+                                			<th><p>Data Type</p></th>
+                                			<th><p>Enumerated Value</p></th>
+                                			<th><p>Use</p></th>
+                                			<th><p>Supported on</p></th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                			<td><p>Float32</p>
+                                			</td>
+                                			<td><p>FLOAT32(0)</p>
+                                			</td>
+                                			<td><p>When output data type is float</p>
+                                			</td>
+                                			<td><p>All model types</p>
+                                			</td>
+                                		</tr>
+                                		<tr>
+                                			<td><p>Int64</p>
+                                			</td>
+                                			<td><p>INT64(3)</p>
+                                			</td>
+                                			<td><p>When output data type is long</p>
+                                			</td>
+                                			<td><p>ONNX</p>
+                                			</td>
+                                		</tr>
+                                		<tr>
+                                			<td><p>String</p>
+                                			</td>
+                                			<td><p>STRING(4)</p>
+                                			</td>
+                                			<td><p>When output data type is string</p>
+                                			</td>
+                                			<td><p>ONNX</p>
+                                			</td>
+                                		</tr>
+                                		<tr>
+                                			<td><p>Sequence map</p>
+                                			</td>
+                                			<td><p>SEQUENCE_MAP(5)</p>
+                                			</td>
+                                			<td><p>When output data type is a sequence of maps</p>
+                                			</td>
+                                			<td><p>ONNX</p>
+                                			</td>
+                                		</tr>
+                                		<tr>
+                                			<td><p>Int32</p>
+                                			</td>
+                                			<td><p>INT32(6)</p>
+                                			</td>
+                                			<td><p>When output data type is int</p>
+                                			</td>
+                                			<td><p>ONNX</p>
+                                			</td>
+                                		</tr>
+                                	</tbody>
+                                </table>
+
+                                        <h3>Filling DataBuffer and Calling execute() API Example</h3>
+                                          <h4>Models with single output layer</h4><pre class="prettyprint" xml:space="preserve">
+                                              <p>
+DataBuffer[] input = new DataBuffer[1];
+DataBuffer[] output = output = new DataBuffer[1];
+/* Set the Input DataBuffer options */
+status = session.execute(input, output).getValue();
+                                              </p>
+                                              </pre>
+                                          </h4>
+                                          <h4>Models with multiple output layers</h4><pre class="prettyprint" xml:space="preserve">
+                                              <p>
+DataBuffer[] input = new DataBuffer[1];
+DataBuffer[] output = new
+DataBuffer[output_layers.length];
+/* Set the Input DataBuffer options */
+status = session.execute(input, output).getValue();
+                                              </p>
+                                              </pre>
+                                          </h4>
+                                            <pre class="prettyprint" xml:space="preserve">
+                                              <p>
+DataBuffer[] input = new DataBuffer[1];
 DataBuffer[] output = new DataBuffer[1];
 DataBuffer dB = new DataBuffer();
 dB.setDataType((byte) 0);
@@ -1917,11 +2133,49 @@ try {
     Log.e(TAG, "Failed creating Shared Memory : " + e);
     e.printStackTrace();
 }
-</p>
-        </pre>
+                                </p>
+                                        </pre>
                                         <h3>Inferencing Output from outputs DataBuffer</h3>
-                                        <p>The output is received in the output DataBuffer object that is needed to extract the desired result.</p><pre class="prettyprint" xml:space="preserve">
-            <p>    if (output != null &amp;&amp; output.length &gt; 0 ) {
+                                        <p>The output is received in the output DataBuffer object that is needed to extract the desired result.</p>
+                                        <pre class="prettyprint" xml:space="preserve">
+                                            <p>
+if (output != null && output.length > 0 ) {
+  if (output[0].getDataSource() == 0) {  // Output data source is float buffer
+     for (int i = 0; i &lt; outputData.length; i++) {
+         prediction[i] = output[0].getDataOriginal()[i];
+     }
+  } else if (output[0].getDataSource() == 1) { // Output data source is FD
+
+     /* Read the Ouput data from File Descriptor to Bytes */
+
+         byte bytes[] = new byte[size * 4];
+         int readDataSize = fileStream.read(bytes);
+         if (readDataSize != 0) {
+            for (int iter = 0; iter &lt; size; iter++) {
+                prediction[iter] = DataBuffer.readFloatFromBytes(bytes, (iter + 1) * 4);
+            }
+         }
+  }
+}
+                                            </p>
+                                        </pre>
+                                        <h4>Getting the prediction result</h4>
+                                        <pre class="prettyprint" xml:space="preserve">
+                                            <p>
+float confidence = -1f;
+int label = 0;
+for (int i = 0; i< prediction.length; i++){
+    if(prediction[i]>confidence) {
+       confidence = prediction[i];
+       label = i;
+     }
+}
+Return ModelInfoProvider.labelList.get(label)+"\n"+"confidence: "+Float.toString(prediction[label]);
+                                            </p>
+                                        </pre>
+                                            <pre class="prettyprint" xml:space="preserve">
+                                            <p>
+if (output != null &amp;&amp; output.length &gt; 0 ) {
         if (output[0].getDataSource() == 0) {
             float[] outputData = output[0].getDataOriginal();
             for (int i = 0; i &lt; outputData.length; i++)  {
@@ -1963,46 +2217,37 @@ try {
             }
         }
     }
-</p>
-        </pre>
+                                            </p>
+                                        </pre>
                                         <h2>Close ML model</h2>
                                         <p>Close the session after execution is complete to ensure session handle is closed. It should open again for next execute session, this avoids any unknown execution. This API is followed by <code>destroyKnoxAiSession()</code>.</p><pre class="prettyprint" xml:space="preserve">
-            <p>int status = -1;</p>
-            <p>Log.i(TAG, "Close session");</p>
-            <p>status = session.close().getValue();</p>
-        </pre>
+                                            <p>
+int status = -1;
+Log.i(TAG, "Close session");
+status = session.close().getValue();
+                                            </p>
+                                        </pre>
                                         <h2>Destroy KnoxAiSession</h2>
                                         <p>Call this API in the end to destroy the session handle ensuring it is needed to be created again for new cycle.</p><pre class="prettyprint" xml:space="preserve">
-            <p>If(knoxAIManager != null)
-     knoxAIManager.destroyKnoxAiSession(publicsession);
-</p>
-        </pre>
+                                            <p>
+If(knoxAIManager != null)
+knoxAIManager.destroyKnoxAiSession(publicsession);
+                                </p>
+                                        </pre>
                                         <h2 id="proguard">Proguard Rules for Application</h2>
                                         <p>The application should have the <b>proguard-rules.pro</b> file added to allow the Knox SDK API classes to ensure these classes are available without obfuscation.</p>
-                                        <p>Add the following line in the proguard-rules.pro file for KnoxV2 package/classes to be allowed:</p><pre class="prettyprint" xml:space="preserve">
-            <p>-keep class com.samsung.android.knox.ex.knoxAI.* { *; }</p>
-        </pre>
-                                        <p>In the build.gradle file update the proguard-rules.pro file in the release and debug configurations:</p><pre class="prettyprint" xml:space="preserve">
-            <p>buildTypes {
-    release {
-        signingConfig signingConfigs.knoxai
-                debuggable false
-        minifyEnabled true
-        shrinkResources true
-        proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
-    }
-    debug {
-        signingConfig signingConfigs.knoxai
-                debuggable true
-        minifyEnabled false
-        shrinkResources false
-        proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
-    }
-}</p>
-        </pre>
+                                        <p>Add the following line in the proguard-rules.pro file for KnoxV2 package/classes to be allowed:</p>
+                                        <pre class="prettyprint" xml:space="preserve">
+                                            <p>
+-keep class com.samsung.android.knox.ex.knoxAI.* { *; }
+-keep class com.samsung.android.knox.license.KnoxEnterpriseLicenseManager {*;}
+                                </p>
+                                        </pre>
                                         <p>Application should add the following to <b>the build.gradle</b> file to ensure Gradle does not compress the models while building the application:</p><pre class="prettyprint" xml:space="preserve">
-            <p>-keep class com.samsung.android.knox.ex.knoxAI.* { *; }</p>
-        </pre>
+                                            <p>
+-keep class com.samsung.android.knox.ex.knoxAI.* { *; }
+                                            </p>
+                                        </pre>
                                         <!-- Inserts feedback module here -->
                                         <div id="feedback">
                                         </div>
@@ -2052,7 +2297,7 @@ try {
         </script>
         <!-- Format left ToC headings  -->
         <script>/* <![CDATA[ */
-			($("a[href='http://docs.samsungknox.com/dev/assets/navheads/welcome.htm']").replaceWith("<p style='padding-top:20px;text-transform:uppercase;'><b>Basics</b></p>"))	
+			($("a[href='http://docs.samsungknox.com/dev/assets/navheads/welcome.htm']").replaceWith("<p style='padding-top:20px;text-transform:uppercase;'><b>Basics</b></p>"))
 		/* ]]> */</script>
         <script>/* <![CDATA[ */
 			($("a[href='http://docs.samsungknox.com/dev/assets/navheads/device-apps.htm']").replaceWith("<p style='padding-top:20px;text-transform:uppercase;'><b>Device Apps</b></p>"))
