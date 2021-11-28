@@ -1,5 +1,6 @@
 
 
+
 <!DOCTYPE html>
 <html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" lang="en-US" xml:lang="en-US" data-mc-search-type="Stem" data-mc-help-system-file-name="Default.xml" data-mc-path-to-help-system="../../" data-mc-conditions="Builds.knox-sdk-build,Builds.ai-build" data-mc-target-type="WebHelp2" data-mc-runtime-file-type="Topic;Default" data-mc-preload-images="false" data-mc-in-preview-mode="false" data-mc-toc-path="Device apps|Knox SDK|Features|ML Developers">
     <head>
@@ -1605,11 +1606,12 @@
                                         </table>
                                         <h2>Get instance of KnoxAiManager</h2>
                                         <p>Call this API in the beginning to get an instance of KnoxAiManager to expose getKeyProvisioning(KeyProvisioningResultCallback cb), createKnoxAiSession(), and destroyKnoxAiSession() APIs.</p><pre class="prettyprint" xml:space="preserve">
-                                            <p>private static KnoxAiManager knoxAIManager = null;
-                                if (knoxAIManager == null) {
-                                    knoxAIManager = KnoxAiManager.getInstance(getApplicationContext());
-                                }
-                                </p>
+                                          <p>
+private static KnoxAiManager knoxAIManager = null;
+if (knoxAIManager == null) {
+    knoxAIManager = KnoxAiManager.getInstance(getApplicationContext());
+}
+                              </p>
                                         </pre>
                                         <h2>Get provisioning key</h2>
                                         <p>Call this API to provision Device Encryption Key (DEK) from server for Knox ML Model Protection. Implement the KeyProvisioningResultCallback abstract class for handling Knox key provisioning result and pass its object.</p><pre class="prettyprint" xml:space="preserve">
@@ -1618,26 +1620,17 @@ KeyProvisioningResultCallback callBack = new KeyProvisioningResultCallback() {
     @Override
     public void onFinished(KnoxAiManager.ErrorCodes errorCodes) {
         if (errorCodes == KnoxAiManager.ErrorCodes.SUCCESS){
-
-            Log.d(TAG, "Server Provisioning Success !!!");
-
+             Log.d(TAG, "Server Provisioning Success !!!");
         } else {
-
-            // error handling code
-
+             // error handling code
         }
-
     }
 };
 
 try {
-
     knoxAIManager.getKeyProvisioning(callBack);
-
 } catch (SecurityException e) {
-
     Log.d(TAG, "Security Failed !!!");
-
 }
                                             </p>
                                         </pre>
@@ -1646,7 +1639,7 @@ try {
                                          <p>
 KnoxAiSession session;
 try {
-    session = knoxAIManager.createKnoxAiSession();
+   session = knoxAIManager.createKnoxAiSession();
 }catch (SecurityException e) {
    session = null;
 }
@@ -1812,37 +1805,37 @@ try {
                                         		<tr>
                                         			<td><p>Tflite</p>
                                         			</td>
-                                        			<td><p>Can be used independently and with ONNX Conversion as well</p>
+                                        			<td><p>Can be used independently and with ONNX conversion as well</p>
                                         			</td>
                                         		</tr>
                                         		<tr>
                                         			<td><p>Tensorflow</p>
                                         			</td>
-                                        			<td><p>Can be used with ONNX Conversion</p>
+                                        			<td><p>Can be used independently and with ONNX conversion as well</p>
                                         			</td>
                                         		</tr>
                                         		<tr>
                                         			<td><p>Caffe</p>
                                         			</td>
-                                        			<td><p>Can be used independently and with ONNX Conversion as well</p>
+                                        			<td><p>Can be used independently and with ONNX conversion as well</p>
                                         			</td>
                                         		</tr>
                                         		<tr>
                                         			<td><p>Keras</p>
                                         			</td>
-                                        			<td><p>Can be used with ONNX Conversion</p>
+                                        			<td><p>Can be used with ONNX conversion</p>
                                         			</td>
                                         		</tr>
                                         		<tr>
                                         			<td><p>Pytorch</p>
                                         			</td>
-                                        			<td><p>Can be used with ONNX Conversion</p>
+                                        			<td><p>Can be used with ONNX conversion</p>
                                         			</td>
                                         		</tr>
                                         		<tr>
                                         			<td><p>CoreML</p>
                                         			</td>
-                                        			<td><p>Can be used with ONNX Conversion</p>
+                                        			<td><p>Can be used with ONNX conversion</p>
                                         			</td>
                                         		</tr>
                                         	</tbody>
@@ -1876,7 +1869,7 @@ options.setModelInputType(KnoxAiSession.ModelInputType.FD);
                                             <p>
 KfaOptions options = new KfaOptions(); options.setExecType(KnoxAiSession.ExecType.FLOAT32.getValue());
 options.setCompUnit(KnoxAiSession.CompUnit.CPU.getValue());
-options.setmType((KnoxAiSession.ModelType.ONXX.getValue()));
+options.setmType(KnoxAiSession.ModelType.ONNX.getValue());
                                             </p>
                                         </pre>
                                         <h3>Calling Open() API</h3><pre class="prettyprint" xml:space="preserve">
@@ -1917,7 +1910,7 @@ status = session.open(options).getValue();
                                                         <p>int[] <a href="../../../devref/knox-sdk/reference/com/samsung/android/knox/ex/knoxAI/DataBuffer.html#getShape()">shape</a>;</p>
                                                     </td>
                                                     <td>
-                                                        <p>Shape of Data(Dimention)</p>
+                                                        <p>Shape of Data(Dimension)</p>
                                                     </td>
                                                 </tr>
                                                 <tr>
@@ -2170,7 +2163,7 @@ for (int i = 0; i< prediction.length; i++){
        label = i;
      }
 }
-Return ModelInfoProvider.labelList.get(label)+"\n"+"confidence: "+Float.toString(prediction[label]);
+return labelList.get(label) +"\n"+ "confidence: " + Float.toString(prediction[label]);
                                             </p>
                                         </pre>
                                             <pre class="prettyprint" xml:space="preserve">
@@ -2231,7 +2224,7 @@ status = session.close().getValue();
                                         <p>Call this API in the end to destroy the session handle ensuring it is needed to be created again for new cycle.</p><pre class="prettyprint" xml:space="preserve">
                                             <p>
 If(knoxAIManager != null)
-knoxAIManager.destroyKnoxAiSession(publicsession);
+knoxAIManager.destroyKnoxAiSession(session);
                                 </p>
                                         </pre>
                                         <h2 id="proguard">Proguard Rules for Application</h2>
