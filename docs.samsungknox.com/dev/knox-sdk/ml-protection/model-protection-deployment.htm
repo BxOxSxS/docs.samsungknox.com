@@ -1,6 +1,3 @@
-
-
-
 <!DOCTYPE html>
 <html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" lang="en-US" xml:lang="en-US" data-mc-search-type="Stem" data-mc-help-system-file-name="Default.xml" data-mc-path-to-help-system="../../" data-mc-conditions="Builds.knox-sdk-build,Builds.ai-build" data-mc-target-type="WebHelp2" data-mc-runtime-file-type="Topic;Default" data-mc-preload-images="false" data-mc-in-preview-mode="false" data-mc-toc-path="Device apps|Knox SDK|Features|ML Developers">
     <head>
@@ -477,11 +474,11 @@
                                                                                 </li>
                                                                                 <li><a href="../faqs/ml-protection/where-encrypted-files-saved.htm">Where are the encrypted files saved?</a>
                                                                                 </li>
-                                                                                <li><a href="../faqs/ml-protection/which-devices-supported-knox-model-protection.htm">Which devices support Knox AI for Model Protection?</a>
+                                                                                <li><a href="../faqs/ml-protection/which-devices-supported-knox-model-protection.htm">Which devices support Knox for Model Protection?</a>
                                                                                 </li>
-                                                                                <li><a href="../faqs/ml-protection/which-ml-file-supported-knox-ai.htm">Which ML file types are supported by Knox AI for Model Protection?</a>
+                                                                                <li><a href="../faqs/ml-protection/which-ml-file-supported-knox-ai.htm">Which ML file types are supported by Knox for Model Protection?</a>
                                                                                 </li>
-                                                                                <li><a href="../faqs/ml-protection/which-os-support-knox-model-conversion-tool.htm">Which operating systems (OS) support Knox AI ML Model Conversion Tool?</a>
+                                                                                <li><a href="../faqs/ml-protection/which-os-support-knox-model-conversion-tool.htm">Which operating systems (OS) support Knox ML Model Conversion Tool?</a>
                                                                                 </li>
                                                                             </ul>
                                                                         </li>
@@ -817,6 +814,8 @@
                                                                         </li>
                                                                         <li><a href="../faqs/general/what-is-a-deprecated-api-method.htm">What is a deprecated API method?</a>
                                                                         </li>
+                                                                        <li><a href="../faqs/general/why-api-deprecated.htm">Why were the API classes deprecated?</a>
+                                                                        </li>
                                                                         <li><a href="../faqs/general/what-are-the-features-by-default-set-to-hidden-disabled-in-prokiosk-mode.htm">What are the features by default set to hidden/disabled in ProKiosk mode?</a>
                                                                         </li>
                                                                         <li><a href="../faqs/general/what-are-credentials.htm">What are credentials?</a>
@@ -840,6 +839,8 @@
                                                                         <li><a href="../faqs/general/how-does-my-devices-serial-number-change-with-knox-3.2.1.htm">How does my device's serial number change with Knox 3.2.1?</a>
                                                                         </li>
                                                                         <li><a href="../faqs/general/if-i-dont-use-the-ucm-apis-of-the-knox-sdk-what-are-my-options-for-credential-storage.htm">If I don’t use the UCM APIs of the Knox SDK, what are my options for credential storage?</a>
+                                                                        </li>
+                                                                        <li><a href="../faqs/general/samsung-calendar-sharing-removed-knox38.htm">What are the changes in Samsung Calendar data sharing in Knox SDK 3.8?</a>
                                                                         </li>
                                                                     </ul>
                                                                 </li>
@@ -1564,31 +1565,31 @@
                                                 <tr>
                                                     <td>1.</td>
                                                     <td><a href="../../../devref/knox-sdk/reference/com/samsung/android/knox/ex/knoxAI/KnoxAiManager.html">KnoxAiManager</a> getInstance(context)
-                                					</td>
+					</td>
                                                     <td>3rd party app  gets the KnoxAiManager.</td>
                                                 </tr>
                                                 <tr>
                                                     <td>2.</td>
                                                     <td>void getKeyProvisioning(<a href="../../../devref/knox-sdk/reference/com/samsung/android/knox/ex/knoxAI/KeyProvisioningResultCallback.html">KeyProvisioningResultCallback</a> cb)
-                                                    </td>
+                    </td>
                                                     <td> Provision Device Encryption Key (DEK) from Server for KnoxAI ML Model Protection. KeyProvisioningResultCallback is an abstract class for handling Knox key provisioning result.</td>
                                                 </tr>
                                                 <tr class="alt-color api apilevel-34">
                                                     <td>3.</td>
                                                     <td><a href="../../../devref/knox-sdk/reference/com/samsung/android/knox/ex/knoxAI/KnoxAiSession.html">KnoxAiSession</a> createKnoxAISession()
-                                					</td>
+					</td>
                                                     <td>3rd party app creates a session to get secure session handle before all operations related to ML begin.</td>
                                                 </tr>
                                                 <tr>
                                                     <td>4.</td>
                                                     <td>int open(<a href="../../../devref/knox-sdk/reference/com/samsung/android/knox/ex/knoxAI/KfaOptions.html">KfaOptions</a> option)
-                                					</td>
+					</td>
                                                     <td>Loads the encrypted ML model to Knox Framework using the given options.</td>
                                                 </tr>
                                                 <tr>
                                                     <td>5.</td>
                                                     <td>int execute (<a href="../../../devref/knox-sdk/reference/com/samsung/android/knox/ex/knoxAI/DataBuffer.html">DataBuffer</a>[] inputs, DataBuffer[] outputs)
-                                					</td>
+					</td>
                                                     <td>Executes the model using the given input and returns a vector of pointers to the outputs.</td>
                                                 </tr>
                                                 <tr>
@@ -1599,23 +1600,23 @@
                                                 <tr>
                                                     <td>7.</td>
                                                     <td>int destroyKnoxAISession(<a href="../../../devref/knox-sdk/reference/com/samsung/android/knox/ex/knoxAI/KnoxAiSession.html">KnoxAiSession</a> session)
-                                					</td>
+					</td>
                                                     <td>Destroy the instance of Knox session handle.</td>
                                                 </tr>
                                             </tbody>
                                         </table>
                                         <h2>Get instance of KnoxAiManager</h2>
                                         <p>Call this API in the beginning to get an instance of KnoxAiManager to expose getKeyProvisioning(KeyProvisioningResultCallback cb), createKnoxAiSession(), and destroyKnoxAiSession() APIs.</p><pre class="prettyprint" xml:space="preserve">
-                                          <p>
+            <p>
 private static KnoxAiManager knoxAIManager = null;
 if (knoxAIManager == null) {
     knoxAIManager = KnoxAiManager.getInstance(getApplicationContext());
 }
-                              </p>
-                                        </pre>
+</p>
+        </pre>
                                         <h2>Get provisioning key</h2>
                                         <p>Call this API to provision Device Encryption Key (DEK) from server for Knox ML Model Protection. Implement the KeyProvisioningResultCallback abstract class for handling Knox key provisioning result and pass its object.</p><pre class="prettyprint" xml:space="preserve">
-                                            <p>
+            <p>
 KeyProvisioningResultCallback callBack = new KeyProvisioningResultCallback() {
     @Override
     public void onFinished(KnoxAiManager.ErrorCodes errorCodes) {
@@ -1632,19 +1633,19 @@ try {
 } catch (SecurityException e) {
     Log.d(TAG, "Security Failed !!!");
 }
-                                            </p>
-                                        </pre>
+            </p>
+        </pre>
                                         <h2>Create KnoxAiSession</h2>
                                         <p>Call this API after DEK key provision is successful. This API exposes open(KfaOptions option), execute(DataBuffer[] inputs, DataBuffer[] outputs) and close() APIs</p><pre class="prettyprint" xml:space="preserve">
-                                         <p>
+         <p>
 KnoxAiSession session;
 try {
    session = knoxAIManager.createKnoxAiSession();
 }catch (SecurityException e) {
    session = null;
 }
-                                         </p>
-                                </pre>
+         </p>
+</pre>
                                         <h2>Load encrypted ML model</h2>
                                         <p>The Open(KfaOptions options) API is used to load and decrypt the encrypted model. The input parameter of this API is the object of KfaOptions which needs to be filled properly before calling this API.</p>
                                         <h3>Filling KfaOptions object</h3>
@@ -1669,7 +1670,7 @@ try {
                                                     </td>
                                                     <td>
                                                         <p>Execution type for model(Float32,Float16
-                                 etc)</p>
+ etc)</p>
                                                     </td>
                                                 </tr>
                                                 <tr>
@@ -1789,67 +1790,81 @@ try {
                                         <h3>Supported model types</h3>
                                         <p>Following are the supported model types:</p>
                                         <table>
-                                        	<colgroup>
-                                        		<col />
-                                        		<col />
-                                        	</colgroup>
-                                        	<thead>
-                                        		<tr>
-                                        			<th><p>Model Type</p>
-                                        			</th>
-                                        			<th><p>Use</p>
-                                        			</th>
-                                        		</tr>
-                                        	</thead>
-                                        	<tbody>
-                                        		<tr>
-                                        			<td><p>Tflite</p>
-                                        			</td>
-                                        			<td><p>Can be used independently and with ONNX conversion as well</p>
-                                        			</td>
-                                        		</tr>
-                                        		<tr>
-                                        			<td><p>Tensorflow</p>
-                                        			</td>
-                                        			<td><p>Can be used independently and with ONNX conversion as well</p>
-                                        			</td>
-                                        		</tr>
-                                        		<tr>
-                                        			<td><p>Caffe</p>
-                                        			</td>
-                                        			<td><p>Can be used independently and with ONNX conversion as well</p>
-                                        			</td>
-                                        		</tr>
-                                        		<tr>
-                                        			<td><p>Keras</p>
-                                        			</td>
-                                        			<td><p>Can be used with ONNX conversion</p>
-                                        			</td>
-                                        		</tr>
-                                        		<tr>
-                                        			<td><p>Pytorch</p>
-                                        			</td>
-                                        			<td><p>Can be used with ONNX conversion</p>
-                                        			</td>
-                                        		</tr>
-                                        		<tr>
-                                        			<td><p>CoreML</p>
-                                        			</td>
-                                        			<td><p>Can be used with ONNX conversion</p>
-                                        			</td>
-                                        		</tr>
-                                        	</tbody>
+                                            <colgroup>
+                                                <col />
+                                                <col />
+                                            </colgroup>
+                                            <thead>
+                                                <tr>
+                                                    <th>
+                                                        <p>Model Type</p>
+                                                    </th>
+                                                    <th>
+                                                        <p>Use</p>
+                                                    </th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr>
+                                                    <td>
+                                                        <p>Tflite</p>
+                                                    </td>
+                                                    <td>
+                                                        <p>Can be used independently and with ONNX conversion as well</p>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td>
+                                                        <p>Tensorflow</p>
+                                                    </td>
+                                                    <td>
+                                                        <p>Can be used independently and with ONNX conversion as well</p>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td>
+                                                        <p>Caffe</p>
+                                                    </td>
+                                                    <td>
+                                                        <p>Can be used independently and with ONNX conversion as well</p>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td>
+                                                        <p>Keras</p>
+                                                    </td>
+                                                    <td>
+                                                        <p>Can be used with ONNX conversion</p>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td>
+                                                        <p>Pytorch</p>
+                                                    </td>
+                                                    <td>
+                                                        <p>Can be used with ONNX conversion</p>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td>
+                                                        <p>CoreML</p>
+                                                    </td>
+                                                    <td>
+                                                        <p>Can be used with ONNX conversion</p>
+                                                    </td>
+                                                </tr>
+                                            </tbody>
                                         </table>
                                         <h3>KfaOptions example</h3><pre class="prettyprint" xml:space="preserve">
-                                            <p>
+            <p>
 KfaOptions options = new KfaOptions();
 options.setExecType(KnoxAiSession.ExecType.FLOAT32.getValue());
 options.setCompUnit(comp);
 options.setmType(model);
-ArrayList<String> ipNames = new ArrayList<String>();
+ArrayList ipNames = new ArrayList();
 ipNames.add("conv2d_6_input");
 options.setInputNames(ipNames);
-ArrayList<String> opNames = new ArrayList<String>();
+ArrayList opNames = new ArrayList();
 opNames.add("Identity");
 options.setOutputNames(opNames);
 AssetManager assetManager = mContext.getAssets();
@@ -1862,22 +1877,21 @@ try {
 options.setCompUnit(KnoxAiSession.CompUnit.CPU.getValue());
 options.setmType(KnoxAiSession.ModelType.TENSORFLOWLITE.getValue());
 options.setModelInputType(KnoxAiSession.ModelInputType.FD);
-                                            </p>
-                                        </pre>
-                                        <h4>Passing converted ONNX models</h4>
-                                        <pre class="prettyprint" xml:space="preserve">
-                                            <p>
+            </p>
+        </pre>
+                                        <h4>Passing converted ONNX models</h4><pre class="prettyprint" xml:space="preserve">
+            <p>
 KfaOptions options = new KfaOptions(); options.setExecType(KnoxAiSession.ExecType.FLOAT32.getValue());
 options.setCompUnit(KnoxAiSession.CompUnit.CPU.getValue());
 options.setmType(KnoxAiSession.ModelType.ONNX.getValue());
-                                            </p>
-                                        </pre>
+            </p>
+        </pre>
                                         <h3>Calling Open() API</h3><pre class="prettyprint" xml:space="preserve">
-                                            <p>
+            <p>
 int status = -1;
 status = session.open(options).getValue();
-                                            </p>
-                                        </pre>
+            </p>
+        </pre>
                                         <p>When open(KfaOptions option) is called, it loads the model package buffer and decrypt the encrypted model according to policies and makes the model ready for execution.</p>
                                         <h2>Decrypt ML model</h2>
                                         <p>Call Execute API to run model to take the input DataBuffer array and return the output in output DataBuffer array.</p>
@@ -1958,152 +1972,198 @@ status = session.open(options).getValue();
                                             </tbody>
                                         </table>
                                         <h3>Different Input Data Types Supported</h3>
-                                <p>Following table represent different input data types supported. To set a particular data type user can use enumerated value.</p>
-                                <table>
-                                    <col />
-                                    <col />
-                                    <thead>
-                                      <tr>
-                                        <th><p>Data Type</p></th>
-                                  			<th><p>Enumerated Value</p></th>
-                                  			<th><p>Use</p></th>
-                                  			<th><p>Supported for</p></th>
-                                      </tr>
-                                  </thead>
-                                  <tbody>
-                                      <tr>
-                                			<td><p>Float32</p>
-                                			</td>
-                                			<td><p>FLOAT32(0)</p>
-                                			</td>
-                                			<td><p>When input data type is float</p>
-                                			</td>
-                                			<td><p>All model types</p>
-                                			</td>
-                                		</tr>
-                                		<tr>
-                                			<td><p>Float16</p>
-                                			</td>
-                                			<td><p>FLOAT16(1)</p>
-                                			</td>
-                                			<td><p>When input data type is float16</p>
-                                			</td>
-                                			<td><p>ONNX</p>
-                                			</td>
-                                		</tr>
-                                		<tr>
-                                			<td><p>String</p>
-                                			</td>
-                                			<td><p>STRING(4)</p>
-                                			</td>
-                                			<td><p>When input data type is string</p>
-                                			</td>
-                                			<td><p>ONNX</p>
-                                			</td>
-                                		</tr>
-                                		<tr>
-                                			<td><p>Int32</p>
-                                			</td>
-                                			<td><p>INT32(6)</p>
-                                			</td>
-                                			<td><p>When input data type is int</p>
-                                			</td>
-                                			<td><p>ONNX</p>
-                                			</td>
-                                		</tr>
-                                	</tbody>
-                                </table>
-
-                                <h3>Different Output Data Types Supported</h3>
-
-                                <p>Following table represent different input data types supported. To set a particular data type user can use enumerated value.</p>
-                                <table>
-                                    <col />
-                                    <col />
-                                    <thead>
-                                        <tr>
-                                			<th><p>Data Type</p></th>
-                                			<th><p>Enumerated Value</p></th>
-                                			<th><p>Use</p></th>
-                                			<th><p>Supported on</p></th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <tr>
-                                			<td><p>Float32</p>
-                                			</td>
-                                			<td><p>FLOAT32(0)</p>
-                                			</td>
-                                			<td><p>When output data type is float</p>
-                                			</td>
-                                			<td><p>All model types</p>
-                                			</td>
-                                		</tr>
-                                		<tr>
-                                			<td><p>Int64</p>
-                                			</td>
-                                			<td><p>INT64(3)</p>
-                                			</td>
-                                			<td><p>When output data type is long</p>
-                                			</td>
-                                			<td><p>ONNX</p>
-                                			</td>
-                                		</tr>
-                                		<tr>
-                                			<td><p>String</p>
-                                			</td>
-                                			<td><p>STRING(4)</p>
-                                			</td>
-                                			<td><p>When output data type is string</p>
-                                			</td>
-                                			<td><p>ONNX</p>
-                                			</td>
-                                		</tr>
-                                		<tr>
-                                			<td><p>Sequence map</p>
-                                			</td>
-                                			<td><p>SEQUENCE_MAP(5)</p>
-                                			</td>
-                                			<td><p>When output data type is a sequence of maps</p>
-                                			</td>
-                                			<td><p>ONNX</p>
-                                			</td>
-                                		</tr>
-                                		<tr>
-                                			<td><p>Int32</p>
-                                			</td>
-                                			<td><p>INT32(6)</p>
-                                			</td>
-                                			<td><p>When output data type is int</p>
-                                			</td>
-                                			<td><p>ONNX</p>
-                                			</td>
-                                		</tr>
-                                	</tbody>
-                                </table>
-
+                                        <p>Following table represent different input data types supported. To set a particular data type user can use enumerated value.</p>
+                                        <table>
+                                            <col />
+                                            <col />
+                                            <thead>
+                                                <tr>
+                                                    <th>
+                                                        <p>Data Type</p>
+                                                    </th>
+                                                    <th>
+                                                        <p>Enumerated Value</p>
+                                                    </th>
+                                                    <th>
+                                                        <p>Use</p>
+                                                    </th>
+                                                    <th>
+                                                        <p>Supported for</p>
+                                                    </th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr>
+                                                    <td>
+                                                        <p>Float32</p>
+                                                    </td>
+                                                    <td>
+                                                        <p>FLOAT32(0)</p>
+                                                    </td>
+                                                    <td>
+                                                        <p>When input data type is float</p>
+                                                    </td>
+                                                    <td>
+                                                        <p>All model types</p>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td>
+                                                        <p>Float16</p>
+                                                    </td>
+                                                    <td>
+                                                        <p>FLOAT16(1)</p>
+                                                    </td>
+                                                    <td>
+                                                        <p>When input data type is float16</p>
+                                                    </td>
+                                                    <td>
+                                                        <p>ONNX</p>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td>
+                                                        <p>String</p>
+                                                    </td>
+                                                    <td>
+                                                        <p>STRING(4)</p>
+                                                    </td>
+                                                    <td>
+                                                        <p>When input data type is string</p>
+                                                    </td>
+                                                    <td>
+                                                        <p>ONNX</p>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td>
+                                                        <p>Int32</p>
+                                                    </td>
+                                                    <td>
+                                                        <p>INT32(6)</p>
+                                                    </td>
+                                                    <td>
+                                                        <p>When input data type is int</p>
+                                                    </td>
+                                                    <td>
+                                                        <p>ONNX</p>
+                                                    </td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                        <h3>Different Output Data Types Supported</h3>
+                                        <p>Following table represent different input data types supported. To set a particular data type user can use enumerated value.</p>
+                                        <table>
+                                            <col />
+                                            <col />
+                                            <thead>
+                                                <tr>
+                                                    <th>
+                                                        <p>Data Type</p>
+                                                    </th>
+                                                    <th>
+                                                        <p>Enumerated Value</p>
+                                                    </th>
+                                                    <th>
+                                                        <p>Use</p>
+                                                    </th>
+                                                    <th>
+                                                        <p>Supported on</p>
+                                                    </th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr>
+                                                    <td>
+                                                        <p>Float32</p>
+                                                    </td>
+                                                    <td>
+                                                        <p>FLOAT32(0)</p>
+                                                    </td>
+                                                    <td>
+                                                        <p>When output data type is float</p>
+                                                    </td>
+                                                    <td>
+                                                        <p>All model types</p>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td>
+                                                        <p>Int64</p>
+                                                    </td>
+                                                    <td>
+                                                        <p>INT64(3)</p>
+                                                    </td>
+                                                    <td>
+                                                        <p>When output data type is long</p>
+                                                    </td>
+                                                    <td>
+                                                        <p>ONNX</p>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td>
+                                                        <p>String</p>
+                                                    </td>
+                                                    <td>
+                                                        <p>STRING(4)</p>
+                                                    </td>
+                                                    <td>
+                                                        <p>When output data type is string</p>
+                                                    </td>
+                                                    <td>
+                                                        <p>ONNX</p>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td>
+                                                        <p>Sequence map</p>
+                                                    </td>
+                                                    <td>
+                                                        <p>SEQUENCE_MAP(5)</p>
+                                                    </td>
+                                                    <td>
+                                                        <p>When output data type is a sequence of maps</p>
+                                                    </td>
+                                                    <td>
+                                                        <p>ONNX</p>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td>
+                                                        <p>Int32</p>
+                                                    </td>
+                                                    <td>
+                                                        <p>INT32(6)</p>
+                                                    </td>
+                                                    <td>
+                                                        <p>When output data type is int</p>
+                                                    </td>
+                                                    <td>
+                                                        <p>ONNX</p>
+                                                    </td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
                                         <h3>Filling DataBuffer and Calling execute() API Example</h3>
-                                          <h4>Models with single output layer</h4><pre class="prettyprint" xml:space="preserve">
-                                              <p>
+                                        <h4>Models with single output layer</h4><pre class="prettyprint" xml:space="preserve">
+              <p>
 DataBuffer[] input = new DataBuffer[1];
 DataBuffer[] output = output = new DataBuffer[1];
 /* Set the Input DataBuffer options */
 status = session.execute(input, output).getValue();
-                                              </p>
-                                              </pre>
-                                          </h4>
-                                          <h4>Models with multiple output layers</h4><pre class="prettyprint" xml:space="preserve">
-                                              <p>
+              </p>
+              </pre>
+                                        <h4>Models with multiple output layers</h4><pre class="prettyprint" xml:space="preserve">
+              <p>
 DataBuffer[] input = new DataBuffer[1];
 DataBuffer[] output = new
 DataBuffer[output_layers.length];
 /* Set the Input DataBuffer options */
 status = session.execute(input, output).getValue();
-                                              </p>
-                                              </pre>
-                                          </h4>
-                                            <pre class="prettyprint" xml:space="preserve">
-                                              <p>
+              </p>
+              </pre><pre class="prettyprint" xml:space="preserve">
+              <p>
 DataBuffer[] input = new DataBuffer[1];
 DataBuffer[] output = new DataBuffer[1];
 DataBuffer dB = new DataBuffer();
@@ -2126,13 +2186,12 @@ try {
     Log.e(TAG, "Failed creating Shared Memory : " + e);
     e.printStackTrace();
 }
-                                </p>
-                                        </pre>
+</p>
+        </pre>
                                         <h3>Inferencing Output from outputs DataBuffer</h3>
-                                        <p>The output is received in the output DataBuffer object that is needed to extract the desired result.</p>
-                                        <pre class="prettyprint" xml:space="preserve">
-                                            <p>
-if (output != null && output.length > 0 ) {
+                                        <p>The output is received in the output DataBuffer object that is needed to extract the desired result.</p><pre class="prettyprint" xml:space="preserve">
+            <p>
+if (output != null &amp;&amp; output.length &gt; 0 ) {
   if (output[0].getDataSource() == 0) {  // Output data source is float buffer
      for (int i = 0; i &lt; outputData.length; i++) {
          prediction[i] = output[0].getDataOriginal()[i];
@@ -2150,111 +2209,109 @@ if (output != null && output.length > 0 ) {
          }
   }
 }
-                                            </p>
-                                        </pre>
-                                        <h4>Getting the prediction result</h4>
-                                        <pre class="prettyprint" xml:space="preserve">
-                                            <p>
-float confidence = -1f;
-int label = 0;
-for (int i = 0; i< prediction.length; i++){
-    if(prediction[i]>confidence) {
-       confidence = prediction[i];
-       label = i;
-     }
-}
+            </p>
+        </pre>
+                                        <h4>Getting the prediction result</h4><pre class="prettyprint" xml:space="preserve">
+            <p>
+ float confidence = -1f;
+  int label = 0;
+  for (int i = 0; i&lt; prediction.length; i++){
+      if(prediction[i]&gt;confidence) {
+         confidence = prediction[i];
+         label = i;
+       }
+  }
 return labelList.get(label) +"\n"+ "confidence: " + Float.toString(prediction[label]);
-                                            </p>
-                                        </pre>
-                                            <pre class="prettyprint" xml:space="preserve">
-                                            <p>
+            </p>
+        </pre><pre class="prettyprint" xml:space="preserve">
+            <p>
 if (output != null &amp;&amp; output.length &gt; 0 ) {
-        if (output[0].getDataSource() == 0) {
-            float[] outputData = output[0].getDataOriginal();
-            for (int i = 0; i &lt; outputData.length; i++)  {
-                    Log.i(TAG, "Output data :" + outputData[i]);
-                }
-        } else if (output[0].getDataSource() == 1) {
-            FileDescriptor filedesc = output[0].getFileDesc();
-            int[] outputShape = output[0].getShape();
-            for (int iter = 0; iter &lt; outputShape.length; iter++) {
-                Log.d(TAG, "Shape: " + outputShape[iter]);
+    if (output[0].getDataSource() == 0) {
+        float[] outputData = output[0].getDataOriginal();
+        for (int i = 0; i &lt; outputData.length; i++)  {
+                Log.i(TAG, "Output data :" + outputData[i]);
             }
-            int size = 1;
-            for (int i : outputShape) {
-                size = size * i;
-            }
-            float[] prediction = new float[0];
-            prediction = new float[size];
-            FileInputStream fileStream = null;
-            try {
-                fileStream = new FileInputStream(filedesc);
-                byte bytes[] = new byte[size * 4];
-                int readDataSize = fileStream.read(bytes);
-                if (readDataSize != 0) {
-                    for (int iter = 0; iter &lt; size; iter++) {
-                        prediction[iter] = DataBuffer.readFloatFromBytes(bytes, (iter + 1) * 4);
-                        Log.d(TAG, "Output data from FD: " + prediction[iter]);
-                    }
+    } else if (output[0].getDataSource() == 1) {
+        FileDescriptor filedesc = output[0].getFileDesc();
+        int[] outputShape = output[0].getShape();
+        for (int iter = 0; iter &lt; outputShape.length; iter++) {
+            Log.d(TAG, "Shape: " + outputShape[iter]);
+        }
+        int size = 1;
+        for (int i : outputShape) {
+            size = size * i;
+        }
+        float[] prediction = new float[0];
+        prediction = new float[size];
+        FileInputStream fileStream = null;
+        try {
+            fileStream = new FileInputStream(filedesc);
+            byte bytes[] = new byte[size * 4];
+            int readDataSize = fileStream.read(bytes);
+            if (readDataSize != 0) {
+                for (int iter = 0; iter &lt; size; iter++) {
+                    prediction[iter] = DataBuffer.readFloatFromBytes(bytes, (iter + 1) * 4);
+                    Log.d(TAG, "Output data from FD: " + prediction[iter]);
                 }
-            } catch (IOException e) {
-                e.printStackTrace();
-            } finally {
-                if (fileStream != null) {
-                    try {
-                        fileStream.close();
-                    } catch (IOException e) {
-                        e.printStackTrace();
-                    }
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        } finally {
+            if (fileStream != null) {
+                try {
+                    fileStream.close();
+                } catch (IOException e) {
+                    e.printStackTrace();
                 }
             }
         }
     }
-                                            </p>
-                                        </pre>
+}
+</p>
+        </pre>
                                         <h2>Close ML model</h2>
                                         <p>Close the session after execution is complete to ensure session handle is closed. It should open again for next execute session, this avoids any unknown execution. This API is followed by <code>destroyKnoxAiSession()</code>.</p><pre class="prettyprint" xml:space="preserve">
-                                            <p>
+            <p>
 int status = -1;
 Log.i(TAG, "Close session");
 status = session.close().getValue();
-                                            </p>
-                                        </pre>
+            </p>
+        </pre>
                                         <h2>Destroy KnoxAiSession</h2>
                                         <p>Call this API in the end to destroy the session handle ensuring it is needed to be created again for new cycle.</p><pre class="prettyprint" xml:space="preserve">
-                                            <p>
+            <p>
 If(knoxAIManager != null)
 knoxAIManager.destroyKnoxAiSession(session);
-                                </p>
-                                        </pre>
+</p>
+        </pre>
                                         <h2 id="proguard">Proguard Rules for Application</h2>
                                         <p>The application should have the <b>proguard-rules.pro</b> file added to allow the Knox SDK API classes to ensure these classes are available without obfuscation.</p>
-                                        <p>Add the following line in the proguard-rules.pro file for KnoxV2 package/classes to be allowed:</p>
-                                        <pre class="prettyprint" xml:space="preserve">
-                                            <p>
+                                        <p>Add the following line in the proguard-rules.pro file for KnoxV2 package/classes to be allowed:</p><pre class="prettyprint" xml:space="preserve">
+            <p>
 -keep class com.samsung.android.knox.ex.knoxAI.* { *; }
 -keep class com.samsung.android.knox.license.KnoxEnterpriseLicenseManager {*;}
-                                </p>
-                                        </pre>
+</p>
+        </pre>
                                         <p>Application should add the following to <b>the build.gradle</b> file to ensure Gradle does not compress the models while building the application:</p><pre class="prettyprint" xml:space="preserve">
-                                            <p>
+            <p>
 -keep class com.samsung.android.knox.ex.knoxAI.* { *; }
-                                            </p>
-                                        </pre>
+</p>
+        </pre>
                                         <!-- Inserts feedback module here -->
                                         <div id="feedback">
                                         </div>
+                                        <!-- Commented out until the Rebrandly service is approved, contact Kevin for status -->
                                         <!-- Link sharing -->
-                                        <div style="text-align: center; font-size: 1.8em "><span style="font-size: 0.8em; text-transform: uppercase;font-weight: 700;">Share it:</span><a rel="external nofollow" style="width:40px;height:40px; display:inline-block" onclick="tweetFunction();" target="_blank" title="Share on Twitter"><i class="fab fa-twitter"></i></a><a rel="external nofollow" style="width:40px;height:40px; display:inline-block" onclick="linkedinFunction();" target="_blank" title="Share on LinkedIn"><i class="fab fa-linkedin-in"></i></a><a rel="external nofollow" style="width:40px;height:40px; display:inline-block" onclick="emailFunction();" target="_blank" title="Share via email"><i class="fas fa-envelope"></i></a><a rel="external nofollow" style="width:40px;height:40px; display:inline-block" onclick="copyFunction(this);" target="_blank" title="Copy to clipboard"><i class="fas fa-copy"></i></a><i style="text-align: center; font-size: 0.5em; position:absolute; "></i>
+                                        <!--<div style="text-align: center; font-size: 1.8em "><span style="font-size: 0.8em; text-transform: uppercase;font-weight: 700;">Share it:</span><a rel="external nofollow" style="width:40px;height:40px; display:inline-block" onclick="tweetFunction();" target="_blank" title="Share on Twitter"><i class="fab fa-twitter"></i></a><a rel="external nofollow" style="width:40px;height:40px; display:inline-block" onclick="linkedinFunction();" target="_blank" title="Share on LinkedIn"><i class="fab fa-linkedin-in"></i></a><a rel="external nofollow" style="width:40px;height:40px; display:inline-block" onclick="emailFunction();" target="_blank" title="Share via email"><i class="fas fa-envelope"></i></a><a rel="external nofollow" style="width:40px;height:40px; display:inline-block" onclick="copyFunction(this);" target="_blank" title="Copy to clipboard"><i class="fas fa-copy"></i></a><i style="text-align: center; font-size: 0.5em; position:absolute; "></i>
                                         </div>
-                                        <script src="../../../assets/merge/share/share-twitter.js">
+                                        <script src="https://docs.samsungknox.com/assets/merge/share/share-twitter.js">
                                         </script>
-                                        <script src="../../../assets/merge/share/share-linkedin.js">
+                                        <script src="https://docs.samsungknox.com/assets/merge/share/share-linkedin.js">
                                         </script>
-                                        <script src="../../../assets/merge/share/share-email.js">
+                                        <script src="https://docs.samsungknox.com/assets/merge/share/share-email.js">
                                         </script>
-                                        <script src="../../../assets/merge/share/share-copy.js">
-                                        </script>
+                                        <script src="https://docs.samsungknox.com/assets/merge/share/share-copy.js">
+                                        </script>-->
                                     </div>
                                     <div class="medium-3 large-3 hide-for-small-only columns sticky-container" data-sticky-container="" data-magellan="">
                                         <!-- hide for side bar -->
