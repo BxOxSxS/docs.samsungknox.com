@@ -1567,6 +1567,8 @@
                                                                 </li>
                                                                 <li><a href="sync-user-info-with-ad-ldap.htm">Sync user information with AD/LDAP</a>
                                                                 </li>
+                                                                <li><a href="sync-user-info-with-azure-ad-microsoft-graph-api.htm">Sync user information with Azure AD through Microsoft Graph API</a>
+                                                                </li>
                                                                 <li><a href="add-sync-services.htm">Add sync services</a>
                                                                 </li>
                                                                 <li><a href="run-sync-services.htm">Run sync services</a>
@@ -1671,7 +1673,7 @@
                                                                         </li>
                                                                     </ul>
                                                                 </li>
-                                                                <li><a href="check-the-locations-of-devices.htm">Check the locations of the devices</a>
+                                                                <li><a href="check-the-locations-of-devices.htm">Check the locations of devices</a>
                                                                 </li>
                                                                 <li><a href="view-device-logs.htm">View device logs</a>
                                                                 </li>
@@ -2107,13 +2109,13 @@
                                                         </li>
                                                     </ul>
                                                 </li>
-                                                <li class="has-children"><a href="ios-policies.htm#">Remote Support</a>
+                                                <li class="has-children"><a href="ios-policies.htm#">Knox Remote Support</a>
                                                     <ul class="sub-menu">
                                                         <li><a href="remote-support.htm">Introduction</a>
                                                         </li>
                                                         <li><a href="minimum-requirements-remote.htm">Minimum requirements</a>
                                                         </li>
-                                                        <li><a href="remote-support-viewer.htm">Remote Support viewer</a>
+                                                        <li><a href="remote-support-viewer.htm">Knox Remote Support Web Viewer</a>
                                                         </li>
                                                         <li><a href="control-devices-using-km.htm">Control devices</a>
                                                         </li>
@@ -3064,10 +3066,18 @@
                                                         </td>
                                                     </tr>
                                                     <tr>
-                                                        <td>Force Wi-Fi On</td>
+                                                        <td>Wi-Fi On</td>
                                                         <td>Set whether to allow users to turn off Wi-Fi from Settings or Control Center on their device. When this policy is set to Allow, users cannot turn off Wi-Fi, even by entering or leaving Airplane mode. This option does not prevent users from selecting a Wi-Fi network to use.</td>
                                                         <td>
                                                             <p>iOS 13.0 or higher</p>
+                                                            <p>Supervised</p>
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>Connect Wi-Fi to Allowed Networks Only</td>
+                                                        <td>Whether to restrict Wi-Fi connections to an allowlist of network SSIDs specified by the <b>Wi-Fi</b> policy group.</td>
+                                                        <td>
+                                                            <p>iOS 14.5 or higher</p>
                                                             <p>Supervised</p>
                                                         </td>
                                                     </tr>
@@ -3437,6 +3447,16 @@
                                                         <td>Allows users to remove system apps from their device.</td>
                                                         <td>iOS 11.0 or higher</td>
                                                     </tr>
+                                                    <tr>
+                                                        <td>Managed Apps to Write Contacts to Unmanaged Contacts Accounts</td>
+                                                        <td>Allows managed apps to save contact data to unmanaged apps and contact accounts. By default, managed and unmanaged apps and accounts can't share contact data, so that sensitive or private contact information isn't exposed to potentially insecure apps.</td>
+                                                        <td>iOS 12 and higher</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>Unmanaged Apps to Read Contacts from Managed Contacts Accounts</td>
+                                                        <td>Allows unmanaged apps to read contact data stored in managed apps and managed contact accounts. By default, managed and unmanaged apps and accounts can't share contact data, so that sensitive or private contact information isn't exposed to potentially insecure apps.</td>
+                                                        <td>iOS 12 and higher</td>
+                                                    </tr>
                                                 </tbody>
                                             </table>
                                             <h2 id="Phone">Phone</h2>
@@ -3755,6 +3775,10 @@
                                                         <td>&gt; For all enterprises</td>
                                                     </tr>
                                                     <tr>
+                                                        <td>MAC Randomization</td>
+                                                        <td>Randomizes the device's MAC address when connected to the Wi-Fi network.</td>
+                                                    </tr>
+                                                    <tr>
                                                         <td>Hotspot Availability</td>
                                                         <td>Check to enable Hotspot usage and configure its settings. If this policy is enabled, the device is connected to Wi-Fi access points that support Hotspot 2.0.</td>
                                                     </tr>
@@ -3953,7 +3977,7 @@
                                                     <tr>
                                                         <td>&gt; Manual Input</td>
                                                         <td>
-                                                            <p>Select to manually enter the email address, account ID, and password of a user.</p>
+                                                            <p>Select to manually enter the device user's email address, account ID, password, and whether to override the password.</p>
                                                             <p>You can also click <b>Lookup</b> to open the reference items list and select an item from it. The reference value is automatically entered.</p>
                                                         </td>
                                                     </tr>
@@ -3974,6 +3998,10 @@
                                                             <p>Enter a domain address for the Exchange server.</p>
                                                             <p>You can also click <b>Lookup</b> to open the reference items list and select an item from it. The reference value is automatically entered.</p>
                                                         </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>Override Previous Password (iOS 14 or later)</td>
+                                                        <td>Overrides the device user's EAS password.</td>
                                                     </tr>
                                                     <tr>
                                                         <td>Host</td>
@@ -4123,6 +4151,26 @@
                                                     <tr>
                                                         <td>&gt; S/MIME Enable Per Message Switch</td>
                                                         <td>Check the check box to enable S/MIME per message.</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>Control Calendar App</td>
+                                                        <td>Toggles whether Exchange configures and syncs account data to the Calendar app, and whether the device user can also configure it. At least one app in this policy cluster must be set to <b>Enable App</b>.</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>Control Contacts App</td>
+                                                        <td>Toggles whether Exchange configures and syncs account data to the Contacts app, and whether the device user can also configure it. At least one app in this policy cluster must be set to <b>Enable App</b>.</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>Control Mail App</td>
+                                                        <td>Toggles whether Exchange configures and syncs account data to the Mail app, and whether the device user can also configure it. At least one app in this policy cluster must be set to <b>Enable App</b>.</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>Control Note App</td>
+                                                        <td>Toggles whether Exchange configures and syncs account data to the Note app, and whether the device user can also configure it. At least one app in this policy cluster must be set to <b>Enable App</b>.</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>Control Reminder App</td>
+                                                        <td>Toggles whether Exchange configures and syncs account data to the Reminder app, and whether the device user can also configure it. At least one app in this policy cluster must be set to <b>Enable App</b>.</td>
                                                     </tr>
                                                 </tbody>
                                             </table>
@@ -4637,6 +4685,10 @@
                                                             </ul>
                                                         </td>
                                                     </tr>
+                                                    <tr>
+                                                        <td>Full Screen</td>
+                                                        <td>Opens the Web Clip as a web app without browser features—no navigation buttons, address bar, search bar, or bookmark features. This mode is similar to full-screen mode in a web browser.</td>
+                                                    </tr>
                                                 </tbody>
                                             </table>
                                             <h2 id="App">App Lock</h2>
@@ -4722,6 +4774,10 @@
                                                     <tr>
                                                         <td>&gt; VoiceOver</td>
                                                         <td>Enables Voice over for the screen-reading feature.</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>&gt; Voice Control</td>
+                                                        <td>Allows the device to be controlled with Siri voice commands. When enabled, the device user cannot turn off voice control.</td>
                                                     </tr>
                                                     <tr>
                                                         <td>&gt; Zoom In/Out</td>
@@ -4911,6 +4967,10 @@
                                                             <p>Add an application and allow cellular data and data roaming.</p>
                                                             <p>Click <img class="no-border" src="../../assets/merge/images/B-drop_down.png" alt="drop down" style="width: 17px;height: 14px;" />, add an application, set the data settings, and then click <img class="no-border" src="../../assets/merge/images/B-add.png" alt="add" style="width: 15.56px;height: 14px;" />.</p>
                                                         </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>SIM Network Settings (iOS 13 or later)</td>
+                                                        <td>Enables Wi-Fi Assist based on the SIM card identifier (ICCID). You can add multiple SIMs as needed. <b>Use Default System</b> enables Wi-Fi Assist, letting OS switch to using cellular data when Wi-Fi signal strength is poor. <b>Use Cellular Data</b> forces cellular data use at all times. Supported on iOS 13 and higher devices.</td>
                                                     </tr>
                                                 </tbody>
                                             </table>

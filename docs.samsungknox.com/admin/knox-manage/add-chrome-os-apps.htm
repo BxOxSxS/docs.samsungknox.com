@@ -55,16 +55,6 @@
         <link href="../../assets/merge/kp-foundation.css" rel="stylesheet" />
         <link href="../Resources/kp-madcap.css" rel="stylesheet" />
         <link href="../Resources/print.css" rel="stylesheet" />
-        <style>
-            .md-draft,
-            .md-draft &gt; *,
-            .md-draft &gt; * &gt; *,
-            .md-draft &gt; * &gt; * &gt; *,
-            .md-draft &gt; * &gt; * &gt; * &gt; *,
-            .md-draft &gt; * &gt; * &gt; * &gt; * &gt; * {
-                background-color: #ddffdd !important;
-            }
-        </style>
         <script src="../Resources/Scripts/custom.modernizr.js">
         </script>
         <script src="../Resources/Scripts/jquery.min.js">
@@ -1577,6 +1567,8 @@
                                                                 </li>
                                                                 <li><a href="sync-user-info-with-ad-ldap.htm">Sync user information with AD/LDAP</a>
                                                                 </li>
+                                                                <li><a href="sync-user-info-with-azure-ad-microsoft-graph-api.htm">Sync user information with Azure AD through Microsoft Graph API</a>
+                                                                </li>
                                                                 <li><a href="add-sync-services.htm">Add sync services</a>
                                                                 </li>
                                                                 <li><a href="run-sync-services.htm">Run sync services</a>
@@ -1681,7 +1673,7 @@
                                                                         </li>
                                                                     </ul>
                                                                 </li>
-                                                                <li><a href="check-the-locations-of-devices.htm">Check the locations of the devices</a>
+                                                                <li><a href="check-the-locations-of-devices.htm">Check the locations of devices</a>
                                                                 </li>
                                                                 <li><a href="view-device-logs.htm">View device logs</a>
                                                                 </li>
@@ -2117,13 +2109,13 @@
                                                         </li>
                                                     </ul>
                                                 </li>
-                                                <li class="has-children"><a href="add-chrome-os-apps.htm#">Remote Support</a>
+                                                <li class="has-children"><a href="add-chrome-os-apps.htm#">Knox Remote Support</a>
                                                     <ul class="sub-menu">
                                                         <li><a href="remote-support.htm">Introduction</a>
                                                         </li>
                                                         <li><a href="minimum-requirements-remote.htm">Minimum requirements</a>
                                                         </li>
-                                                        <li><a href="remote-support-viewer.htm">Remote Support viewer</a>
+                                                        <li><a href="remote-support-viewer.htm">Knox Remote Support Web Viewer</a>
                                                         </li>
                                                         <li><a href="control-devices-using-km.htm">Control devices</a>
                                                         </li>
@@ -2762,43 +2754,40 @@
 									-->
                                     <div id="sec2" class="small-12 medium-8 large-9 columns">
                                         <div itemscope="itemscope" itemtype="http://schema.org/Guide">
-                                            <div class="md-draft-none">
-                                                <h1><a name="aanchor345"></a>
-                                                    <MadCap:concept term="knox-manage" />Add Chrome OS apps</h1>
-                                                <p>To add a Chrome OS app or extension for use by Chromebooks:</p>
-                                                <h2 id="choose-type-source">Choose an app or extension type and source</h2>
-                                                <p>First, choose the type and source of the app or extension:</p>
-                                                <ol>
-                                                    <li value="1">Go to the <b>Application</b> page, then click <b>Add</b>. The <b>Select Application Type</b> dialog opens.</li>
-                                                    <li value="2">For <b>Platform</b>, select <b>Chrome OS</b>.</li>
-                                                    <li value="3">For <b>Type &amp; Source</b>, select <b>Public</b>, and then choose the type and source:
+                                            <h1><a name="aanchor345"></a>
+                                                <MadCap:concept term="knox-manage" />Add Chrome OS apps</h1>
+                                            <p>To add a Chrome OS app or extension for use by Chromebooks:</p>
+                                            <h2 id="choose-type-source">Choose an app or extension type and source</h2>
+                                            <p>First, choose the type and source of the app or extension:</p>
+                                            <ol>
+                                                <li value="1">Go to the <b>Application</b> page, then click <b>Add</b>. The <b>Select Application Type</b> dialog opens.</li>
+                                                <li value="2">For <b>Platform</b>, select <b>Chrome OS</b>.</li>
+                                                <li value="3">For <b>Type &amp; Source</b>, select <b>Public</b>, and then choose the type and source:
                 <ul><li value="1"><a href="add-chrome-os-apps.htm#managed-google-play" class="selected"><b>Managed Google Play</b></a> — Add a Managed Google Play (MGP) app.</li><li value="2"><a href="add-chrome-os-apps.htm#id" class="selected"><b>ID</b></a> — Add an app or extension hosted on the Chrome Web Store or a custom host.</li><li value="3"><a href="add-chrome-os-apps.htm#url" class="selected"><b>URL</b></a> — Add a link to a progressive web app or a regular website.</li></ul></li>
-                                                </ol>
-                                                <h3 id="managed-google-play">Managed Google Play</h3>
-                                                <div class="callout note"><b>NOTE</b> — MGP apps for Chrome OS are managed separately from MGP apps for Android. If you add the same app to both types of devices, you need to approve the app and its permissions for each.</div>
-                                                <p>Next, add and configure the MGP app:</p>
-                                                <ol>
-                                                    <li value="1">Search for the app by name.</li>
-                                                    <li value="2">Select the app, click <b>Select</b>, then click <b>OK</b> to grant access authority to the app. The <b>Add Application</b> page opens, and all the fields auto-populate.</li>
-                                                    <li value="3">Click <b>Save</b>.</li>
-                                                </ol>
-                                                <p>The app is added.</p>
-                                                <h3 id="id-url">ID or URL</h3>
-                                                <p>Next, add the app:</p>
-                                                <ul>
-                                                    <li value="1"><b>App or Extension ID</b> (ID method) — Add the alphabetical ID of the app or extension on the Chrome Web Store. This ID is the last segment of the app's listing on the store.</li>
-                                                    <li value="2"><b>Where to Get the App</b> (ID method) — The host of the app or extension:
+                                            </ol>
+                                            <h3 id="managed-google-play">Managed Google Play</h3>
+                                            <div class="callout note"><b>NOTE</b> — MGP apps for Chrome OS are managed separately from MGP apps for Android. If you add the same app to both types of devices, you need to approve the app and its permissions for each.</div>
+                                            <p>Next, add and configure the MGP app:</p>
+                                            <ol>
+                                                <li value="1">Search for the app by name.</li>
+                                                <li value="2">Select the app, click <b>Select</b>, then click <b>OK</b> to grant access authority to the app. The <b>Add Application</b> page opens, and all the fields auto-populate.</li>
+                                                <li value="3">Click <b>Save</b>.</li>
+                                            </ol>
+                                            <p>The app is added.</p>
+                                            <h3 id="id-url">ID or URL</h3>
+                                            <p>Next, add the app:</p>
+                                            <ul>
+                                                <li value="1"><b>URL</b> (URL method) — Enter the URL of the app or extension from the <a href="https://chrome.google.com/webstore">Chrome Web Store.</a></li>
+                                                <li value="2"><b>App or Extension ID</b> (ID method) — Enter the alphabetical ID of the app or extension. To fetch an ID:
+                <ul><li value="1">Open the <a href="https://chrome.google.com/webstore">Chrome Web Store.</a></li><li value="2">Browse to the app or extension's listing.</li><li value="3"><p>The ID is the last segment of the page's URL. For example, the URL for the listing of Google Hangouts is:</p><p><b>https://chrome.google.com/webstore/detail/google-hangouts/nckgahadagoaajjgafhacjanaoiihapd</b></p><b>Its ID is therefore <b>nckgahadagoaajjgafhacjanaoiihapd</b>.</b></li><li value="4">Copy the ID from the URL and paste it into the field.</li></ul></li>
+                                                <li value="3"><b>Where to Get the App</b> (ID method) — The host of the app or extension:
                 <ul><li value="1"><b>Chrome Web Store</b></li><li value="2"><b>Custom URL</b> — Use a custom host. Enter the address of the host in the <b>URL</b> field.</li></ul></li>
-                                                    <li value="3"><b>Description</b> (optional) — Enter a description for the app.</li>
-                                                </ul>
-                                                <p>After you fill all the required fields, <a href="add-chrome-os-apps.htm#save" class="selected">save the app</a>.</p>
-                                                <h2 id="save">Save the app</h2>
-                                                <p>Lastly, save the app and choose whether to assign it right away:</p>
-                                                <ol>
-                                                    <li value="1">Click <b>Save &amp; Assign</b> to save the app and assign it. The console takes you to the <b>Assign Application</b> page. For more details, see <a href="assign-chrome-os-apps.htm">Assign Chrome OS applications</a>.</li>
-                                                    <li value="2">Click <b>Save</b> to save the app and return to the app list.</li>
-                                                </ol>
-                                            </div>
+                                                <li value="4"><b>Description</b> (optional) — Enter a description for the app.</li>
+                                            </ul>
+                                            <p>After you fill all the required fields, <a href="add-chrome-os-apps.htm#save" class="selected">save the app</a>.</p>
+                                            <h2 id="save">Save the app</h2>
+                                            <p>Lastly, click <b>Save</b> to save the app. The <b>Application</b> page re-opens, where you can see the newly added app on the list.</p>
+                                            <p>Once added, you can assign the app to an organization. For more details, see <a href="assign-chrome-os-apps.htm">Assign Chrome OS applications</a>.</p>
                                         </div>
                                         <!-- Inserts feedback module here -->
                                         <div id="feedback">

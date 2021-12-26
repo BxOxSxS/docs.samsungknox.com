@@ -55,16 +55,6 @@
         <link href="../../assets/merge/kp-foundation.css" rel="stylesheet" />
         <link href="../Resources/kp-madcap.css" rel="stylesheet" />
         <link href="../Resources/print.css" rel="stylesheet" />
-        <style>
-            .md-draft,
-            .md-draft&gt;*,
-            .md-draft&gt;*&gt;*,
-            .md-draft&gt;*&gt;*&gt;*,
-            .md-draft&gt;*&gt;*&gt;*&gt;*,
-            .md-draft&gt;*&gt;*&gt;*&gt;*&gt;* {
-                background-color: #ddffdd !important;
-            }
-        </style>
         <script src="../Resources/Scripts/custom.modernizr.js">
         </script>
         <script src="../Resources/Scripts/jquery.min.js">
@@ -1577,6 +1567,8 @@
                                                                 </li>
                                                                 <li><a href="sync-user-info-with-ad-ldap.htm">Sync user information with AD/LDAP</a>
                                                                 </li>
+                                                                <li><a href="sync-user-info-with-azure-ad-microsoft-graph-api.htm">Sync user information with Azure AD through Microsoft Graph API</a>
+                                                                </li>
                                                                 <li><a href="add-sync-services.htm">Add sync services</a>
                                                                 </li>
                                                                 <li><a href="run-sync-services.htm">Run sync services</a>
@@ -1681,7 +1673,7 @@
                                                                         </li>
                                                                     </ul>
                                                                 </li>
-                                                                <li><a href="check-the-locations-of-devices.htm">Check the locations of the devices</a>
+                                                                <li><a href="check-the-locations-of-devices.htm">Check the locations of devices</a>
                                                                 </li>
                                                                 <li><a href="view-device-logs.htm">View device logs</a>
                                                                 </li>
@@ -2117,13 +2109,13 @@
                                                         </li>
                                                     </ul>
                                                 </li>
-                                                <li class="has-children"><a href="assign-windows-apps.htm#">Remote Support</a>
+                                                <li class="has-children"><a href="assign-windows-apps.htm#">Knox Remote Support</a>
                                                     <ul class="sub-menu">
                                                         <li><a href="remote-support.htm">Introduction</a>
                                                         </li>
                                                         <li><a href="minimum-requirements-remote.htm">Minimum requirements</a>
                                                         </li>
-                                                        <li><a href="remote-support-viewer.htm">Remote Support viewer</a>
+                                                        <li><a href="remote-support-viewer.htm">Knox Remote Support Web Viewer</a>
                                                         </li>
                                                         <li><a href="control-devices-using-km.htm">Control devices</a>
                                                         </li>
@@ -2761,26 +2753,24 @@
 									</div>
 									-->
                                     <div id="sec2" class="small-12 medium-8 large-9 columns">
-                                        <div itemscope="itemscope" itemtype="http://schema.org/Guide">
-                                            <div class="md-draft-none"><a name="aanchor352"></a>
-                                                <MadCap:concept term="knox-manage" />
-                                                <h1>Assign Windows apps</h1>
-                                                <p>Windows apps have different assignment options depending on whether they're internal or public. With internal apps, you can choose to have the KM agent install them to devices automatically, and you can select which user accounts to install it to. Public apps can only be manually installed by the device user on their own user account.</p>
-                                                <p>To assign a Windows app:</p>
-                                                <ol>
-                                                    <li value="1">Start the assignment process:
-                    <ul><li value="1">If you are in the process of adding an app on the <b>Add Application</b> page, click <b>Add and Assign</b>.</li><li value="2">If the app is already assigned, on the <b>Application</b> page, select one or more Windows apps, then click <b>Assign</b>.</li></ul>
-                    The <b>Assign Application</b> page opens.
-                </li>
-                                                    <li value="2">Assign the app:
-                    <ul><li value="1"><b>Installation Type</b> (internal apps):
-                            <div class="callout note"><b>NOTE</b> — Public apps can only be manually installed by the device user.</div><ul><li value="1"><b>Manual</b> — Device users can manually install the app.</li><li value="2"><b>Automatic</b> — The app installs automatically. After intallation, device users are also allowed to manually remove the application.</li></ul></li><li value="2"><b>Installation Context</b> (internal apps) — Choose which user account to install the app on:
-                            <ul><li value="1"><b>All Users</b> — Install the apps for all user accounts on the device.</li><li value="2"><b>Current User</b> — Install the apps for the currently signed in user account on the device.</li></ul></li><li value="3">Choose the targets of the app assignment:
-                            <ol><li value="1"><b>Target Type</b> — Choose to assign the apps to a group or an organization.</li><li value="2">Search for and choose one or more targets.</li></ol></li></ul></li>
-                                                    <li value="3">Click <b>Assign</b>. The apps assign to the chosen groups or organizations. If the apps are internal and set to install automatically, they begin installing on the devices belonging to the groups or organizations.</li>
-                                                </ol>
-                                                <p>To view an app's assignments, go to the <b>Application</b> page and select the app to see its details. On the <b>Application Detail</b> page, the <b>Assigned Group/Organization</b> tab lists all of the app's assignments.</p>
-                                            </div>
+                                        <div itemscope="itemscope" itemtype="http://schema.org/Guide"><a name="aanchor352"></a>
+                                            <MadCap:concept term="knox-manage" />
+                                            <h1>Assign Windows apps</h1>
+                                            <p>Windows apps have different assignment options depending on whether they're internal or public. With internal apps, you can choose to have the KM agent install them to devices automatically, and you can select which user accounts to install it to. Public apps can only be manually installed by the device user on their own user account.</p>
+                                            <p>To assign a Windows app:</p>
+                                            <ol>
+                                                <li value="1">Start the assignment process:
+                <ul><li value="1">If you are in the process of adding an app on the <b>Add Application</b> page, click <b>Add and Assign</b>.</li><li value="2">If the app is already assigned, on the <b>Application</b> page, select one or more Windows apps, then click <b>Assign</b>.</li></ul>
+                The <b>Assign Application</b> page opens.
+            </li>
+                                                <li value="2">Assign the app:
+                <ul><li value="1"><b>Installation Type</b> (internal apps):
+                        <div class="callout note"><b>NOTE</b> — Public apps can only be manually installed by the device user.</div><ul><li value="1"><b>Manual</b> — Device users can manually install the app.</li><li value="2"><b>Automatic</b> — The app installs automatically. After intallation, device users are also allowed to manually remove the application.</li></ul></li><li value="2"><b>Installation Context</b> (internal apps) — Choose which user account to install the app on:
+                        <ul><li value="1"><b>All Users</b> — Install the apps for all user accounts on the device.</li><li value="2"><b>Current User</b> — Install the apps for the currently signed in user account on the device.</li></ul></li><li value="3">Choose the targets of the app assignment:
+                        <ol><li value="1"><b>Target Type</b> — Choose to assign the apps to a group or an organization.</li><li value="2">Search for and choose one or more targets.</li></ol></li></ul></li>
+                                                <li value="3">Click <b>Assign</b>. The apps assign to the chosen groups or organizations. If the apps are internal and set to install automatically, they begin installing on the devices belonging to the groups or organizations.</li>
+                                            </ol>
+                                            <p>To view an app's assignments, go to the <b>Application</b> page and select the app to see its details. On the <b>Application Detail</b> page, the <b>Assigned Group/Organization</b> tab lists all of the app's assignments.</p>
                                         </div>
                                         <!-- Inserts feedback module here -->
                                         <div id="feedback">

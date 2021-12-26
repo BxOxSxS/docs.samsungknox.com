@@ -1567,6 +1567,8 @@
                                                                 </li>
                                                                 <li><a href="sync-user-info-with-ad-ldap.htm">Sync user information with AD/LDAP</a>
                                                                 </li>
+                                                                <li><a href="sync-user-info-with-azure-ad-microsoft-graph-api.htm">Sync user information with Azure AD through Microsoft Graph API</a>
+                                                                </li>
                                                                 <li><a href="add-sync-services.htm">Add sync services</a>
                                                                 </li>
                                                                 <li><a href="run-sync-services.htm">Run sync services</a>
@@ -1671,7 +1673,7 @@
                                                                         </li>
                                                                     </ul>
                                                                 </li>
-                                                                <li><a href="check-the-locations-of-devices.htm">Check the locations of the devices</a>
+                                                                <li><a href="check-the-locations-of-devices.htm">Check the locations of devices</a>
                                                                 </li>
                                                                 <li><a href="view-device-logs.htm">View device logs</a>
                                                                 </li>
@@ -2107,13 +2109,13 @@
                                                         </li>
                                                     </ul>
                                                 </li>
-                                                <li class="has-children"><a href="manage-reports.htm#">Remote Support</a>
+                                                <li class="has-children"><a href="manage-reports.htm#">Knox Remote Support</a>
                                                     <ul class="sub-menu">
                                                         <li><a href="remote-support.htm">Introduction</a>
                                                         </li>
                                                         <li><a href="minimum-requirements-remote.htm">Minimum requirements</a>
                                                         </li>
-                                                        <li><a href="remote-support-viewer.htm">Remote Support viewer</a>
+                                                        <li><a href="remote-support-viewer.htm">Knox Remote Support Web Viewer</a>
                                                         </li>
                                                         <li><a href="control-devices-using-km.htm">Control devices</a>
                                                         </li>
@@ -2754,22 +2756,42 @@
                                         <div itemscope="itemscope" itemtype="http://schema.org/Guide">
                                             <h1><a name="aanchor428"></a>
                                                 <MadCap:concept term="knox-manage" />Manage reports</h1>
-                                            <p>Modify or delete the newly added reports. The default reports cannot be modified or deleted.</p>
-                                            <h2>Modifying reports</h2>
+                                            <p>You can modify or delete added reports. The default reports cannot be modified or deleted.</p>
+                                            <h2 id="modify-report">Modify a report</h2>
                                             <p>To modify the newly added reports, complete the following steps:</p>
                                             <ol>
-                                                <li value="1">Navigate to <b>Advanced</b> &gt; <b>Report</b>.</li>
-                                                <li value="2">On the “Report” page, click the check box for the report you want to modify and click <b>Modify</b>.</li>
-                                                <li value="3">On the “Modify Report” page, modify the existing information.</li>
+                                                <li value="1">Go to <b>Advanced</b> &gt; <b>Report</b>.</li>
+                                                <li value="2">On the <b>Report</b> page, select the report and click <b>Modify</b>.</li>
+                                                <li value="3">On the <b>Modify Report</b> page, edit the existing information.</li>
                                                 <li value="4">Click <b>Save</b>.</li>
-                                                <li value="5">In the “Save Report” window, click <b>OK</b>.</li>
+                                                <li value="5">In the <b>Save Report</b> window, click <b>OK</b>.</li>
                                             </ol>
-                                            <h2><a name="Deleting"></a>Deleting reports</h2>
-                                            <p>To delete the newly added reports, complete the following steps:</p>
+                                            <h2 id="delete-report">Delete a report</h2>
+                                            <p>To delete a report, complete the following steps:</p>
                                             <ol>
-                                                <li value="1">Navigate to <b>Advanced</b> &gt; <b>Report</b>.</li>
-                                                <li value="2">On the “Report” page, click the check box for the report you want to delete and click <b>Delete</b>.</li>
-                                                <li value="3">In the “Delete Report” window, click <b>OK</b>.</li>
+                                                <li value="1">Go to <b>Advanced</b> &gt; <b>Report</b>.</li>
+                                                <li value="2">On the <b>Report</b> page, select the report and click <b>Delete</b>.</li>
+                                                <li value="3">In the <b>Delete Report</b> window, click <b>OK</b>.</li>
+                                            </ol>
+                                            <h2 id="report-mailing">Report mailing</h2>
+                                            <p>You can schedule an automated email containing a report's information to KM admins. Each email links to an Excel spreadsheet of the report, which is available for download for 7 days. The downloads are authenticated with a one-time password sent by SMS. Email frequency can be daily, weekly, or monthly. Up to 10 reports can be scheduled.</p>
+                                            <p>Here is an example of a report email and the report's one-time password authentication:</p>
+                                            <p>
+                                                <img class="no-border" src="../../assets/merge/images/knox-manage/km-report-mailing-download.png" srcset="../../assets/merge/images/knox-manage/km-report-mailing-download.png 2x" alt="An emailed report and the download prompt." />
+                                            </p>
+                                            <div class="callout note">
+                                                <p><b>NOTE</b> — To preserve system performance and stability, the following reports are not available for scheduling:</p>
+                                                <ul>
+                                                    <li value="1">App Information Installed in Device</li>
+                                                    <li value="2">Device Location</li>
+                                                </ul>
+                                            </div>
+                                            <p>To schedule a report for mailing:</p>
+                                            <ol>
+                                                <li value="1">Go to <b>Advanced</b> &gt; <b>Report</b>, then click <b>Report Mailing Settings</b>.</li>
+                                                <li value="2">Click <b>Add</b>.</li>
+                                                <li value="3">Complete the <b>Add Report Schedule</b> form:
+                <ol><li value="1"><b>Schedule Name</b> — A unique name for the schedule.</li><li value="2"><b>Period</b> — The time interval during which the reports are emailed.</li><li value="3"><b>Frequency</b> — How often to email the report. Choose Daily, Weekly, or Monthly.</li><li value="4"><b>Report</b> — The report to email.</li><li value="5"><b>Sent To</b> — The KM admins who receive the emails.</li></ol></li>
                                             </ol>
                                         </div>
                                         <!-- Inserts feedback module here -->

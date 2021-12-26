@@ -55,16 +55,6 @@
         <link href="../../assets/merge/kp-foundation.css" rel="stylesheet" />
         <link href="../Resources/kp-madcap.css" rel="stylesheet" />
         <link href="../Resources/print.css" rel="stylesheet" />
-        <style>
-            .md-draft,
-            .md-draft &gt; *,
-            .md-draft &gt; * &gt; *,
-            .md-draft &gt; * &gt; * &gt; *,
-            .md-draft &gt; * &gt; * &gt; * &gt; *,
-            .md-draft &gt; * &gt; * &gt; * &gt; * &gt; * {
-                background-color: #ddffdd !important;
-            }
-        </style>
         <script src="../Resources/Scripts/custom.modernizr.js">
         </script>
         <script src="../Resources/Scripts/jquery.min.js">
@@ -1577,6 +1567,8 @@
                                                                 </li>
                                                                 <li><a href="sync-user-info-with-ad-ldap.htm">Sync user information with AD/LDAP</a>
                                                                 </li>
+                                                                <li><a href="sync-user-info-with-azure-ad-microsoft-graph-api.htm">Sync user information with Azure AD through Microsoft Graph API</a>
+                                                                </li>
                                                                 <li><a href="add-sync-services.htm">Add sync services</a>
                                                                 </li>
                                                                 <li><a href="run-sync-services.htm">Run sync services</a>
@@ -1681,7 +1673,7 @@
                                                                         </li>
                                                                     </ul>
                                                                 </li>
-                                                                <li><a href="check-the-locations-of-devices.htm">Check the locations of the devices</a>
+                                                                <li><a href="check-the-locations-of-devices.htm">Check the locations of devices</a>
                                                                 </li>
                                                                 <li><a href="view-device-logs.htm">View device logs</a>
                                                                 </li>
@@ -2117,13 +2109,13 @@
                                                         </li>
                                                     </ul>
                                                 </li>
-                                                <li class="has-children"><a href="add-applications-intro.htm#">Remote Support</a>
+                                                <li class="has-children"><a href="add-applications-intro.htm#">Knox Remote Support</a>
                                                     <ul class="sub-menu">
                                                         <li><a href="remote-support.htm">Introduction</a>
                                                         </li>
                                                         <li><a href="minimum-requirements-remote.htm">Minimum requirements</a>
                                                         </li>
-                                                        <li><a href="remote-support-viewer.htm">Remote Support viewer</a>
+                                                        <li><a href="remote-support-viewer.htm">Knox Remote Support Web Viewer</a>
                                                         </li>
                                                         <li><a href="control-devices-using-km.htm">Control devices</a>
                                                         </li>
@@ -2846,31 +2838,29 @@
                                                     </tr>
                                                 </tbody>
                                             </table>
-                                            <div class="md-draft-none">
-                                                <h2 id="windows">Windows app support</h2>
-                                                <p>Managed Windows apps are divided between internal and public sources. The KM agent on Windows has an <b>Application Store</b> page, which the device user can browse for all managed apps. When they select an app, it either installs from the agent, or takes them to the Microsoft Store, where they can install it like a normal app.</p>
-                                                <p>There are two Windows app types, each with different installation rules:</p>
-                                                <ul>
-                                                    <li value="1"><b>Public apps</b> available through the Windows Store</li>
-                                                    <li value="2"><b>Internal apps</b> available through the KM agent</li>
-                                                </ul>
-                                                <p>Device users can browse public apps on the KM agent, which redirects them to the Microsoft Store for download.</p>
-                                                <p>You can configure internal apps to either automatically install to the device, or be made available for download directly from the KM agent. KM supports two Windows installer technologies for internal apps:</p>
-                                                <ul>
-                                                    <li value="1">Universal Windows Platform (UWP):
+                                            <h2 id="windows">Windows app support</h2>
+                                            <p>Managed Windows apps are divided between internal and public sources. The KM agent on Windows has an <b>Application Store</b> page, which the device user can browse for all managed apps. When they select an app, it either installs from the agent, or takes them to the Microsoft Store, where they can install it like a normal app.</p>
+                                            <p>There are two Windows app types, each with different installation rules:</p>
+                                            <ul>
+                                                <li value="1"><b>Public apps</b> available through the Windows Store</li>
+                                                <li value="2"><b>Internal apps</b> available through the KM agent</li>
+                                            </ul>
+                                            <p>Device users can browse public apps on the KM agent, which redirects them to the Microsoft Store for download.</p>
+                                            <p>You can configure internal apps to either automatically install to the device, or be made available for download directly from the KM agent. KM supports two Windows installer technologies for internal apps:</p>
+                                            <ul>
+                                                <li value="1">Universal Windows Platform (UWP):
                 <ul><li value="1">Appx or APPXBUNDLE file format</li><li value="2">MSIX or MSIXBUNDLE file format</li></ul></li>
-                                                    <li value="2">Windows Installer (MSI):
+                                                <li value="2">Windows Installer (MSI):
                 <ul><li value="1">MSI file format</li></ul></li>
-                                                </ul>
-                                                <h2 id="chrome-os">Chrome OS app support</h2>
-                                                <p>Managed Chrome OS apps are divided between public and internal sources. There are three app types, each with different methods for adding them:</p>
-                                                <ul>
-                                                    <li value="1"><b>Managed Google Play</b> — Add an app through an iframe of Google Play on the KM console, the same way you add managed apps in Android. Even though both Android and Chrome OS use the same app store, you can't create one app configuration and assign it to both types of devices—you'll need to manage a separate app configuration for each.</li>
-                                                    <li value="2"><b>ID</b> — Add an app or a Chrome browser extension by entering a valid identifier from Google Play or the Chrome Web store. To obtain an identifier, see <a href="https://support.google.com/chrome/a/answer/7532015%23getid">Get Chrome app or extension IDs</a>.</li>
-                                                    <li value="3"><b>URL</b> — Add an app by entering its URL.</li>
-                                                </ul>
-                                                <div class="callout note"><b>NOTE</b> — Adding a managed app in the KM console does not add it to the Google Admin console.</div>
-                                            </div>
+                                            </ul>
+                                            <h2 id="chrome-os">Chrome OS app support</h2>
+                                            <p>Managed Chrome OS apps are divided between three app sources, each with different methods for adding them:</p>
+                                            <ul>
+                                                <li value="1"><b>Managed Google Play</b> — Add an app through an iframe of Google Play on the KM console, the same way you add managed apps in Android. Even though both Android and Chrome OS use the same app store, you can't create one app configuration and assign it to both types of devices—you'll need to manage a separate app configuration for each.</li>
+                                                <li value="2"><b>ID</b> — Add an app or a Chrome browser extension by entering a valid identifier from Google Play or the Chrome Web store. To obtain an identifier, see <a href="https://support.google.com/chrome/a/answer/7532015%23getid">Get Chrome app or extension IDs</a>.</li>
+                                                <li value="3"><b>URL</b> — Add an app by entering its URL.</li>
+                                            </ul>
+                                            <div class="callout note"><b>NOTE</b> — Adding a managed app in the KM console does not add it to the Google Admin console.</div>
                                         </div>
                                         <!-- Inserts feedback module here -->
                                         <div id="feedback">

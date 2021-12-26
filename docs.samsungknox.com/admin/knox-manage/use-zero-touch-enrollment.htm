@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" lang="en-US" xml:lang="en-US" data-mc-search-type="Stem" data-mc-help-system-file-name="Default.xml" data-mc-path-to-help-system="../" data-mc-conditions="Default.km-build" data-mc-target-type="WebHelp2" data-mc-runtime-file-type="Topic;Default" data-mc-preload-images="false" data-mc-in-preview-mode="false" data-mc-toc-path="Knox Manage|Configure|Devices|Enroll devices|Enroll devices in bulk">
     <head>
-        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" /><title>Use Android zero-touch enrollment (Android devices only)</title>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" /><title>Use Android zero-touch enrollment</title>
         <!-- Google analytics tag-->
         <script>/* <![CDATA[ */
 			(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
@@ -1567,6 +1567,8 @@
                                                                 </li>
                                                                 <li><a href="sync-user-info-with-ad-ldap.htm">Sync user information with AD/LDAP</a>
                                                                 </li>
+                                                                <li><a href="sync-user-info-with-azure-ad-microsoft-graph-api.htm">Sync user information with Azure AD through Microsoft Graph API</a>
+                                                                </li>
                                                                 <li><a href="add-sync-services.htm">Add sync services</a>
                                                                 </li>
                                                                 <li><a href="run-sync-services.htm">Run sync services</a>
@@ -1671,7 +1673,7 @@
                                                                         </li>
                                                                     </ul>
                                                                 </li>
-                                                                <li><a href="check-the-locations-of-devices.htm">Check the locations of the devices</a>
+                                                                <li><a href="check-the-locations-of-devices.htm">Check the locations of devices</a>
                                                                 </li>
                                                                 <li><a href="view-device-logs.htm">View device logs</a>
                                                                 </li>
@@ -2107,13 +2109,13 @@
                                                         </li>
                                                     </ul>
                                                 </li>
-                                                <li class="has-children"><a href="use-zero-touch-enrollment.htm#">Remote Support</a>
+                                                <li class="has-children"><a href="use-zero-touch-enrollment.htm#">Knox Remote Support</a>
                                                     <ul class="sub-menu">
                                                         <li><a href="remote-support.htm">Introduction</a>
                                                         </li>
                                                         <li><a href="minimum-requirements-remote.htm">Minimum requirements</a>
                                                         </li>
-                                                        <li><a href="remote-support-viewer.htm">Remote Support viewer</a>
+                                                        <li><a href="remote-support-viewer.htm">Knox Remote Support Web Viewer</a>
                                                         </li>
                                                         <li><a href="control-devices-using-km.htm">Control devices</a>
                                                         </li>
@@ -2752,135 +2754,130 @@
 									-->
                                     <div id="sec2" class="small-12 medium-8 large-9 columns">
                                         <div itemscope="itemscope" itemtype="http://schema.org/Guide">
-                                            <h1><a name="Use"></a><a name="aanchor318"></a>
-                                                <MadCap:concept term="knox-manage" />Use Android zero-touch enrollment (Android devices only)</h1>
-                                            <p>Zero-touch enrollment allows you to quickly and easily enroll a large number of corporate-owned Android devices. Once the devices are registered to the zero-touch enrollment portal, the devices are automatically enrolled when users connect to the Internet and log in to Knox Manage. Even if you reset the devices enrolled by zero-touch, the Knox Manage application is reinstalled automatically and the devices are re-enrolled in to Knox Manage.</p>
+                                            <h1><a name="aanchor318"></a>
+                                                <MadCap:concept term="knox-manage" />Use Android zero-touch enrollment</h1>
+                                            <p>Zero-touch enrollment allows you to quickly and easily enroll a large number of company-owned Android devices. After a device is registered with zero-touch, it automatically enrolls when the device user connects to the Internet and logs in to the KM agent. If you factory reset a device enrolled by zero-touch, the KM agent will automatically reinstall and the device will re-enroll in KM.</p>
                                             <p>Zero-touch enrollment provides the following advantages:</p>
                                             <ul>
                                                 <li value="1">Enrolls a large number of devices in bulk without having to manually enroll each device.</li>
-                                                <li value="2">Allows the devices to automatically install the Knox Manage application when the zero-touch devices are reset.</li>
-                                                <li value="3">Prevents unauthorized devices from joining your EMM environment to enhance your security.</li>
+                                                <li value="2">Allows a device to automatically install the KM agent after a factory reset.</li>
+                                                <li value="3">Prevents an unauthorized device from joining your EMM environment.</li>
                                                 <li value="4">Allows resellers to add devices to your zero-touch enrollment account.</li>
                                             </ul>
-                                            <p>For devices running Android 11, KM now supports a new device provisioning method that lets the device user choose the device's mode, depending upon whether the device is for Work use only or work and personal use.</p>
-                                            <div class="callout note"><b>NOTE</b>—KM still supports all the older provisioning methods that were available until the Android 10 release.</div>
+                                            <p>For devices running Android 11 and higher, KM now supports a new device provisioning method that lets the device user choose the device's mode, depending upon whether the device is for work use only or a mix of work and personal use.</p>
+                                            <div class="callout note"><b>NOTE</b> — KM still supports all the older provisioning methods that were available until the Android 10 release.</div>
                                             <p>To enroll devices using zero-touch enrollment, complete the following steps.</p>
                                             <p>
-                                                <img src="../../assets/merge/images/E-device_zero-touch.jpg" />
+                                                <img src="../../assets/merge/images/E-device_zero-touch.jpg" alt="Zero-touch enrollment flow" />
                                             </p>
-                                            <h2>Before using zero-touch enrollment</h2>
-                                            <p>To use zero-touch enrollment properly, you must do the following:</p>
+                                            <h2 id="before-you-use-zero-touch-enrollment">Before you use zero-touch enrollment</h2>
+                                            <p>To use zero-touch enrollment properly, you should:</p>
                                             <ul>
-                                                <li value="1">Make sure that the devices are compatible with zero-touch enrollment. All devices running Android 9.0 and later support zero-touch. For devices running earlier versions of Android, ensure compatibility by checking with your zero-touch reseller or device manufacturer.</li>
-                                                <li value="2">Prepare a device from a <a href="https://androidenterprisepartners.withgoogle.com/resellers/">zero-touch reseller partner</a>.</li>
-                                                <li value="3">Sign up for a Google account associated with the corporate email. A personal Gmail account cannot be used. To create a Google account for the corporate, visit the <a href="https://accounts.google.com/signup/v2/webcreateaccount?flowName=GlifWebSignIn&amp;flowEntry=SignUp&amp;nogm=true" target="_blank">Google website</a>.</li>
-                                                <li value="4">Before enrolling devices using Android Enterprise’s Fully Managed Device, make sure the devices are running on Samsung Galaxy S8 and Android 5.0 (Lollipop) or above. For more information about Android Enterprise, visit the <a href="https://www.android.com/enterprise/" target="_blank">Android website</a>.</li>
+                                                <li value="1">Make sure that the devices are compatible with zero-touch enrollment. All devices running Android 9 and higher support zero-touch. For devices running earlier versions of Android, you should verify their compatibility by checking with your zero-touch reseller or device manufacturer.</li>
+                                                <li value="2">Prepare a device from a <a href="https://androidenterprisepartners.withgoogle.com/resellers/" target="_blank">zero-touch reseller partner</a>.</li>
+                                                <li value="3">Sign up for an enterprise Google account. A personal Gmail account cannot be used. To create a Google account for enterprise use, go to <a href="https://accounts.google.com/signup/v2/webcreateaccount?flowName=GlifWebSignIn%26flowEntry=SignUp%26nogm=true" target="_blank">Create your Google account</a>.</li>
+                                                <li value="4">Link your zero-touch account to KM to speed up registration.</li>
+                                                <li value="5">Before enrolling a device in Fully Managed mode, make sure it is running Android 5 and higher. For more information about Android Enterprise, see the <a href="https://www.android.com/enterprise/" target="_blank">Android home page</a>.</li>
                                             </ul>
-                                            <h2>Logging in to the zero-touch enrollment portal</h2>
-                                            <p>You can log in to the zero-touch enrollment  portal using the Google account with the corporate email.</p>
-                                            <p>To log in the zero-touch enrollment portal, complete the following steps:</p>
-                                            <ol>
-                                                <li value="1">Visit the <a href="https://partner.android.com/zerotouch" target="_blank">zero-touch enrollment portal</a>.</li>
-                                                <li value="2">Enter your Google account information and then click <b>NEXT</b> to log in to the zero-touch enrollment portal. Once you have logged in to the zero-touch enrollment portal, the following navigation pages are provided on the zero-touch enrollment portal.<ul><li value="1"><b>Configurations</b>—Create, modify, and delete Knox Manage configurations.</li><li value="2"><b>Devices</b>—Displays the registered device list. You can assign also apply the created Knox Manage configurations to the selected devices on the list.</li><li value="3"><b>Users</b>—Add, modify, or delete the users who can access and manage the portal.</li><li value="4"><b>Resellers</b>—Add resellers to share your account with multiple resellers.</li></ul></li>
-                                            </ol>
-                                            <h2>Creating Knox Manage configurations</h2>
-                                            <p>To create Knox Manage configurations, complete the following steps:</p>
-                                            <ol>
-                                                <li value="1">On the zero-touch enrollment portal, navigate to <b>Configurations</b>.</li>
-                                                <li value="2"> On the “Configurations” page, click <img src="../../assets/merge/images/B-plus.png" style="width: 22px;height: 18px;" />.</li>
-                                                <li value="3">In the “Add a new configuration” window, enter the following information.<ul><li value="1"><b>Configuration name</b>—Enter a configuration name.</li><li value="2"><b>EMM DPC</b>—Select <b>Samsung Knox Manage</b> from the EMM DPC dropdown list.</li><li value="3"><b>DPC extras</b>—Enter the JSON data (Samsung Knox Manage DPC extras) as follows.</li></ul></li><code><p>{</p><p>“android.app.extra.PROVISIONING_LEAVE_ALL_SYSTEM_APPS_ENABLED”:true,</p><p>“android.app.extra.PROVISIONING_ADMIN_EXTRAS_BUNDLE”: {</p><p>“ServerUrl”: “Your Server Url”,</p><p>“TenantId”: “Your Knox Manage Tenant ID”,</p><p>“TenantType”: “M”,</p><p>“Method”: “ZeroTouch”</p><p>}</p><p>}</p></code>
-                                                <p>&#160;</p>
-                                                <div class="callout note"><b>NOTE</b>—Enter the server URL of the DPC extras for the applicable region as stated in the following table:
-            <table><col style="width: 148px;" /><col /><tbody><tr><td style="font-weight: bold;">Region</td><td style="font-weight: bold;">Domain</td></tr><tr><td>Asia</td><td>https://ap01.manage.samsungknox.com/emm</td></tr><tr><td>Asia (India only)</td><td>https://ap02.manage.samsungknox.com/emm</td></tr><tr><td>US</td><td>https://us01.manage.samsungknox.com/emm</td></tr><tr><td>EU</td><td>https://eu01.manage.samsungknox.com/emm</td></tr></tbody></table></div>
-                                                <ul>
-                                                    <li value="1"><b>Company Name</b>—Enter the name of your organization. It will be displayed on the user’s device during enrollment.</li>
-                                                    <li value="2"><b>Support email address</b>—Enter a corporate IT admin email address. It shows on the user’s device during enrollment, and it can be used to contact the IT admin in case of any enrollment issues.</li>
-                                                    <li value="3"><b>Support phone number</b>—Enter a corporate IT support phone number. It shows on the user’s device during enrollment, and it can be used to contact the IT admin in case of any enrollment issues.</li>
-                                                    <li value="4"><b>Custom message</b>—Enter an optional message to show on the device screen during enrollment.</li>
-                                                </ul>
-                                                <li value="4">Click <b>Add</b> to create a new Knox Manage configuration.</li>
-                                            </ol>
-                                            <h2>Assigning Knox Manage configurations to zero-touch devices</h2>
-                                            <p>Once zero-touch reseller partners have registered devices in the zero-touch enrollment portal, assign the newly created Knox Manage configurations to the devices. You can assign them to the registered devices either individually or in bulk using a CSV file.</p>
-                                            <p><b>Individual Assignment</b>
-                                            </p>
-                                            <p>To assign a Knox Manage configuration to a device individually, complete the following steps:</p>
-                                            <p>1.  On the zero-touch enrollment portal, navigate to <b>Devices</b>.</p>
-                                            <p>2.  On the “Devices” page, select the devices to which configurations are to be applied to on the device list, and then, under <b>Configuration</b>, against the selected devices, the Knox Manage configuration which you have created previously.</p>
-                                            <p><b>Bulk Assignment</b>
-                                            </p>
-                                            <p>To assign Knox Manage configurations to multiple devices at once using a CSV file, complete the following steps:</p>
-                                            <p>1.  On the zero-touch enrollment portal, navigate to <b>Devices</b>.</p>
-                                            <p>2.  On the “Devices” page, click  <img src="../../assets/merge/images/B-batch_upload.png" style="width: 22px;height: 19px;" />&gt; <b>Download results as .csv</b> to download the CSV file, and then enter the device information in the CSV file.</p>
+                                            <h2 id="link-zero-touch-km">Link your zero-touch account to KM</h2>
+                                            <p>To link your zero-touch account to your KM tenant:</p>
+                                            <p>Normally, you would perform all zero-touch-related tasks on the Google admin portal. To provide a more productive and smoother experience, KM allows you to link your zero-touch account with your KM tenant, which lets you perform several tasks from the KM console:</p>
                                             <ul>
-                                                <li value="1">Open the CSV file and fill out the following fields in the file.</li>
+                                                <li value="1">View account details at a glance</li>
+                                                <li value="2">Add more or remove zero-touch accounts</li>
+                                                <li value="3">Navigate directly to the zero-touch device list</li>
                                             </ul>
-                                            <table>
-                                                <col />
-                                                <col />
-                                                <col />
-                                                <tbody>
-                                                    <tr>
-                                                        <td style="font-weight: bold;">Field</td>
-                                                        <td style="font-weight: bold;">Example</td>
-                                                        <td style="font-weight: bold;">Description</td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td>modemtype</td>
-                                                        <td>IMEI</td>
-                                                        <td>This field should be always set as <b>IMEI</b> in uppercase characters.</td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td>modemid</td>
-                                                        <td>123456789012347</td>
-                                                        <td>Enter the IMEI number of the device.</td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td>serial</td>
-                                                        <td>ABcd1235678</td>
-                                                        <td>Enter the serial number of the device.</td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td>model</td>
-                                                        <td>VM1A</td>
-                                                        <td>Enter the model name of the device.</td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td>manufacturer</td>
-                                                        <td>Google</td>
-                                                        <td>Enter the name of the device manufacturer.</td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td>Profiletype</td>
-                                                        <td>ZERO_TOUCH</td>
-                                                        <td>This field should always be set as ZERO_TOUCH in uppercase characters.</td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td>Profileid</td>
-                                                        <td>54321</td>
-                                                        <td>Enter the numeric ID of the configuration you want to apply to the device. To see the configuration ID, check the table's ID column on the “Configurations” page. To remove the device from zero-touch enrollment, enter 0 (zero).</td>
-                                                    </tr>
-                                                </tbody>
-                                            </table>
-                                            <p>3. On the “Devices” page, click <img src="../../assets/merge/images/B-batch_upload.png" style="width: 22px;height: 19px;" /> &gt; <b>Upload batch configurations</b>, and then select the saved .csv file to upload it. All the devices in the CSV file will be assigned to the specific Knox Manage configuration.</p>
-                                            <h2>Logging in to Knox Manage for enrollment</h2>
-                                            <p>After the Knox Manage configuration is assigned to zero-touch devices, log in to Knox Manage to enroll the devices.</p>
-                                            <p>To log in to Knox Manage for enrollment, complete the following steps:</p>
-                                            <p>1. Turn on the factory-reset device, and then tap <b>Start</b> on the welcome screen.</p>
-                                            <p>2. On the “Connect to mobile network” screen, insert a sim card or tap Skip.</p>
-                                            <p>3. On the “Connect to mobile network” screen, tap an available Wi-Fi network to connect to a network. The device will check for updates.</p>
-                                            <p>4. On the “Set up your device” screen, read the privacy policy of Knox Manage and Google, and then tap <b>Accept &amp; continue</b>. The device will get account information for Knox Manage.</p>
-                                            <p>5. On the “Google Services” screen, tap <b>Accept</b>. The Knox Manage application will be installed and launched automatically on the device.</p>
-                                            <p>6. On the “Sign in with your Samsung Knox Manage Account” screen, enter a user ID and password, and then tap <b>SIGN IN</b> to sign in to Knox Manage.</p>
-                                            <p>7. On the Knox Manage terms and agreements screen, read the terms of use, privacy policy, and end-user license agreement, tap the check box next to <b>Agree all</b>, and then tap <b>NEXT</b>.</p>
-                                            <p>8. On the “Display over other apps” page, if required, tap <b>All display over other</b>. The device will be registered and enrolled in the Knox Manage Admin Portal.</p>
-                                            <h2>Deleting  devices from the zero-touch enrollment portal</h2>
-                                            <p>You can delete devices from the zero-touch enrollment portal if you are required to transfer ownership. You can delete one device at a time by selecting devices in the zero-touch enrollment portal.</p>
-                                            <p>To delete devices from the zero-touch enrollment portal, complete the following steps:</p>
-                                            <div class="callout note"><b>NOTE</b>—After you delete a device, you need to contact your reseller if you want to register the device in the zero-touch enrollment portal again. Consider removing the Knox Manage configuration, if you want to temporarily exclude a device from the zero-touch enrollment portal.</div>
-                                            <p>1. On the zero-touch enrollment portal, navigate to <b>Devices</b>.</p>
-                                            <p>2. On the “Devices” page, select the device you want to remove, and then click <b>DEREGISTER</b>.</p>
-                                            <p>3. In the “Deregister device?” window, click <b>DEREGISTER</b> to delete the devices from the zero-touch enrollment portal</p>
+                                            <p>To link your zero-touch account with KM:</p>
+                                            <ol>
+                                                <li value="1">On the KM console, go to <b>Device Enrollment</b> &gt; <b>Zero-Touch</b>.</li>
+                                                <li value="2">Under <b>Link your zero-touch account to your EMM provider</b>, click <b>Next</b>.</li>
+                                                <li value="3">Select one or more zero-touch accounts associated with the Google account to link, then click <b>Link</b>.</li>
+                                                <li value="4">Click <b>Next</b> on the confirmation screen.</li>
+                                            </ol>
+                                            <h2 id="log-in-zero-touch-enrollment-portal">Log in to the zero-touch enrollment portal</h2>
+                                            <h3 id="log-in-km-console">On the KM console</h3>
+                                            <p>After your zero-touch account is linked to KM, you can log in and manage the account through the KM console.</p>
+                                            <p>To log in the zero-touch enrollment portal on the KM console:</p>
+                                            <ol>
+                                                <li value="1">On the KM console, go to <b>Device Enrollment</b> &gt; <b>Zero-Touch</b>.</li>
+                                                <li value="2">Submit your enterprise Google account credentials.</li>
+                                            </ol>
+                                            <p>After you log in to your enterprise Google account on KM, you can view the account details, add or remove zero-touch accounts, and follow the link to view the registered zero-touch devices. If you need to perform other tasks, you should access your zero-touch settings from the Google admin console.</p>
+                                            <h3 id="log-in-google-admin-console">On the Google admin console</h3>
+                                            <p>To log in to the zero-touch enrollment portal on the Google admin console:</p>
+                                            <ol>
+                                                <li value="1">Go to the <a href="https://partner.android.com/zerotouch" target="_blank">zero-touch enrollment portal</a>.</li>
+                                                <li value="2">Submit your enterprise Google account credentials.</li>
+                                            </ol>
+                                            <p>After you log in to the zero-touch enrollment portal, the following pages are available:</p>
+                                            <ul>
+                                                <li value="1"><b>Configurations</b> — Create, modify, and delete KM configurations.</li>
+                                                <li value="2"><b>Devices</b> — Displays the registered device list. You can assign and apply the KM configurations to the selected devices on the list.</li>
+                                                <li value="3"><b>Users</b> — Add, modify, and delete users who can access and manage the portal.</li>
+                                                <li value="4"><b>Resellers</b> — Add resellers to share your account with multiple resellers.</li>
+                                            </ul>
+                                            <h2 id="create-km-configuration">Create a KM configuration</h2>
+                                            <p>To create a KM configuration:</p>
+                                            <ol>
+                                                <li value="1">On the zero-touch enrollment portal, go to <b>Configurations</b>.</li>
+                                                <li value="2">Click <img class="no-border" src="../../assets/merge/images/B-plus.png" style="width: 22px;height: 18px;" alt="add" />. The <b>Add a new configuration</b> window opens.</li>
+                                                <li value="3">Fill the fields:
+                <ul><li value="1"><b>Configuration name</b> — Enter a configuration name.</li><li value="2"><b>EMM DPC</b> — Select <b>Samsung Knox Manage</b> from the EMM DPC dropdown list.</li><li value="3"><p><b>DPC extras</b> — Enter Samsung Knox Manage DPC extras:</p><pre><!--
+                         -->{
+<!--                     -->    "android.app.extra.PROVISIONING_LEAVE_ALL_SYSTEM_APPS_ENABLED":true,
+<!--                     -->    "android.app.extra.PROVISIONING_ADMIN_EXTRAS_BUNDLE":
+<!--                     -->    {
+<!--                     -->        "ServerUrl": "Your Server Url",
+<!--                     -->        "TenantId": "Your Knox Manage Tenant ID",
+<!--                     -->        "TenantType": "M",
+<!--                     -->        "Method": "ZeroTouch"
+<!--                     -->    }
+<!--                     -->}<!--
+                     --></pre><p>The <b>ServerURL</b> of your applicable region is as follows:</p><table><tbody><tr><th>Region</th><th>Domain</th></tr><tr><td>Asia</td><td>https://ap01.manage.samsungknox.com/emm</td></tr><tr><td>Asia (India only)</td><td>https://ap02.manage.samsungknox.com/emm</td></tr><tr><td>US</td><td>https://us01.manage.samsungknox.com/emm</td></tr><tr><td>EU</td><td>https://eu01.manage.samsungknox.com/emm</td></tr></tbody></table></li><li value="4"><b>Company Name</b> — Enter the name of your enterprise. It will display on the user's device during enrollment.</li><li value="5"><b>Support email address</b> — Enter your enterprise IT admin email address. This address is shown on the user's device during enrollment, and it can be used to contact your IT admin in case of any enrollment issues.</li><li value="6"><b>Support phone number</b> — Enter your enterprise IT support phone number. This number is shown on the user's device during enrollment, and it can be used to contact your IT admin in case of any enrollment issues.</li><li value="7"><b>Custom message</b> (optional) — Enter a message to show on the device screen during enrollment.</li></ul></li>
+                                                <li value="4">Click <b>Add</b> to create the new KM configuration.</li>
+                                            </ol>
+                                            <h2 ud="assign-km-configuration-zero-touch-devices">Assign a KM configuration to zero-touch devices</h2>
+                                            <p>After zero-touch reseller partners have registered devices in the zero-touch enrollment portal, you can assign the newly created KM configurations to the devices either individually or in bulk with a CSV file.</p>
+                                            <h3 id="individual-assignment">Individual assignment</h3>
+                                            <p>To assign a KM configuration to a device individually:</p>
+                                            <ol>
+                                                <li value="1">On the zero-touch enrollment portal, go to <b>Devices</b>.</li>
+                                                <li value="2">Select the devices to which configurations are to be applied to on the device list, and then, under <b>Configuration</b>, select a KM configuration.</li>
+                                            </ol>
+                                            <h3 id="bulk-assignment">Bulk assignment</h3>
+                                            <p>To assign a KM configuration to multiple devices at once:</p>
+                                            <ol>
+                                                <li value="1">On the zero-touch enrollment portal, go to <b>Devices</b>.</li>
+                                                <li value="2">Click <img class="no-border" src="../../assets/merge/images/B-batch_upload.png" style="width: 22px;height: 19px;" alt="upload" /> &gt; <b>Download results as .csv</b> and save it to your local file system.</li>
+                                                <li value="3">Open the CSV file with a text editor and fill the following fields:
+                <table><tbody><tr><th>Field</th><th>Example value</th><th>Description</th></tr><tr><td>modemtype</td><td>IMEI</td><td>This field should be always set to <b>IMEI</b> in uppercase letters.</td></tr><tr><td>modemid</td><td>123456789012347</td><td>Enter the IMEI number of the device.</td></tr><tr><td>serial</td><td>ABcd1235678</td><td>Enter the serial number of the device.</td></tr><tr><td>model</td><td>VM1A</td><td>Enter the model name of the device.</td></tr><tr><td>manufacturer</td><td>Google</td><td>Enter the name of the device manufacturer.</td></tr><tr><td>Profiletype</td><td>ZERO_TOUCH</td><td>This field should always be set as <b>ZERO_TOUCH</b> in uppercase letters.</td></tr><tr><td>Profileid</td><td>54321</td><td>Enter the ID of the KM configuration you want to apply to the device. To view the configuration's ID, check the ID column on the <b>Configurations</b> page. To remove the device from zero-touch enrollment, enter <b>0</b>.</td></tr></tbody></table></li>
+                                                <li value="4">Go to the <b>Devices</b> page, then click <img class="no-border" src="../../assets/merge/images/B-batch_upload.png" style="width: 22px;height: 19px;" alt="upload" /> &gt; <b>Upload batch configurations</b>. A file dialog opens. Select the modified CSV file.</li>
+                                            </ol>
+                                            <p>The devices in the CSV file are assigned to the chosen KM configuration.</p>
+                                            <h2 id="enroll-zero-touch-device">Enroll a zero-touch device</h2>
+                                            <p>After the KM configuration is assigned to a zero-touch device, in order to enroll it you must first install KM and sign in with a KM account.</p>
+                                            <p>To enroll a zero-touch device:</p>
+                                            <ol>
+                                                <li value="1">Ensure the device is factory reset.</li>
+                                                <li value="2">Turn on the device, and then tap <b>Start</b> on the welcome screen.</li>
+                                                <li value="3">On the <b>Connect to mobile network screen</b>, insert a sim card or tap <b>Skip</b>.</li>
+                                                <li value="4">Tap an available Wi-Fi network to connect to it. The device checks for updates.</li>
+                                                <li value="5">On the <b>Set up your device screen</b>, read the privacy policy of KM and Google, and then tap <b>Accept &amp; continue</b>. The device contacts the KM server.</li>
+                                                <li value="6">On the <b>Google Services</b> screen, tap <b>Accept</b>. The KM agent installs and launches.</li>
+                                                <li value="7">On the <b>Sign in with your Samsung Knox Manage Account</b> screen, enter a KM user ID and password, and then tap <b>SIGN IN</b>.</li>
+                                                <li value="8">On the KM terms and agreements screen, read the terms of use, privacy policy, and end-user license agreement, tap the check box next to <b>Agree all</b>, and then tap <b>NEXT</b>.</li>
+                                                <li value="9">On the <b>Display over other apps</b> page, if required, tap <b>All display over other</b>.</li>
+                                            </ol>
+                                            <p>The device is registered and enrolled in KM.</p>
+                                            <h2 id="delete-devices">Delete devices from the zero-touch enrollment portal</h2>
+                                            <p>If you need to transfer ownership of a device, you can delete devices one at a time from the zero-touch enrollment portal.</p>
+                                            <p>To delete a device from the zero-touch enrollment portal:</p>
+                                            <ol>
+                                                <li value="1">On the zero-touch enrollment portal, go to <b>Devices</b>.</li>
+                                                <li value="2">On the <b>Devices</b> page, select the device you want to remove, and then click <b>DEREGISTER</b>.</li>
+                                                <li value="3">In the <b>Deregister device?</b> window, click <b>DEREGISTER</b> to delete the devices from the zero-touch enrollment portal.</li>
+                                            </ol>
+                                            <p>After you delete a device, if you want to re-register it to the zero-touch enrollment portal, you must contact your reseller. If you need to temporarily exclude a device from the zero-touch enrollment portal, consider removing its KM configuration.</p>
                                         </div>
                                         <!-- Inserts feedback module here -->
                                         <div id="feedback">

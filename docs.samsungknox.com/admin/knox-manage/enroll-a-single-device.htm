@@ -55,16 +55,6 @@
         <link href="../../assets/merge/kp-foundation.css" rel="stylesheet" />
         <link href="../Resources/kp-madcap.css" rel="stylesheet" />
         <link href="../Resources/print.css" rel="stylesheet" />
-        <style>
-            .md-draft,
-            .md-draft &gt; *,
-            .md-draft &gt; * &gt; *,
-            .md-draft &gt; * &gt; * &gt; *,
-            .md-draft &gt; * &gt; * &gt; * &gt; *,
-            .md-draft &gt; * &gt; * &gt; * &gt; * &gt; * {
-                background-color: #ddffdd !important;
-            }
-        </style>
         <script src="../Resources/Scripts/custom.modernizr.js">
         </script>
         <script src="../Resources/Scripts/jquery.min.js">
@@ -1577,6 +1567,8 @@
                                                                 </li>
                                                                 <li><a href="sync-user-info-with-ad-ldap.htm">Sync user information with AD/LDAP</a>
                                                                 </li>
+                                                                <li><a href="sync-user-info-with-azure-ad-microsoft-graph-api.htm">Sync user information with Azure AD through Microsoft Graph API</a>
+                                                                </li>
                                                                 <li><a href="add-sync-services.htm">Add sync services</a>
                                                                 </li>
                                                                 <li><a href="run-sync-services.htm">Run sync services</a>
@@ -1681,7 +1673,7 @@
                                                                         </li>
                                                                     </ul>
                                                                 </li>
-                                                                <li><a href="check-the-locations-of-devices.htm">Check the locations of the devices</a>
+                                                                <li><a href="check-the-locations-of-devices.htm">Check the locations of devices</a>
                                                                 </li>
                                                                 <li><a href="view-device-logs.htm">View device logs</a>
                                                                 </li>
@@ -2117,13 +2109,13 @@
                                                         </li>
                                                     </ul>
                                                 </li>
-                                                <li class="has-children"><a href="enroll-a-single-device.htm#">Remote Support</a>
+                                                <li class="has-children"><a href="enroll-a-single-device.htm#">Knox Remote Support</a>
                                                     <ul class="sub-menu">
                                                         <li><a href="remote-support.htm">Introduction</a>
                                                         </li>
                                                         <li><a href="minimum-requirements-remote.htm">Minimum requirements</a>
                                                         </li>
-                                                        <li><a href="remote-support-viewer.htm">Remote Support viewer</a>
+                                                        <li><a href="remote-support-viewer.htm">Knox Remote Support Web Viewer</a>
                                                         </li>
                                                         <li><a href="control-devices-using-km.htm">Control devices</a>
                                                         </li>
@@ -2762,7 +2754,7 @@
 									-->
                                     <div id="sec2" class="small-12 medium-8 large-9 columns">
                                         <div itemscope="itemscope" itemtype="http://schema.org/Guide">
-                                            <h1><a name="aanchor271"></a>
+                                            <h1><a name="aanchor270"></a>
                                                 <MadCap:concept term="knox-manage" />Enroll a single device</h1>
                                             <p>With Knox Manage, you can enroll devices manually or with a token, QR code, or Zero-touch.</p>
                                             <h2 id="enrolling-general">Enrolling general devices (Android Legacy, iOS, and Windows)</h2>
@@ -2788,21 +2780,19 @@
                                                 <li value="3"><b>Company-owned with a Work Profile type</b> — This type, a combination of the Fully Managed and Work Profile types, allows you to control company-owned devices with enhanced privacy protection for the personal area. You can manage the device's personal area by sending device commands while controlling business apps and data within the separate Work Profile. KM cannot control or monitor apps and data in the personal area. This profile type is supported on devices running Android 11 or higher.</li>
                                                 <li value="4"><b>Work Profile type</b> — This type allows you to control personal devices (BYOD). In this case, KM only manages the Work Profile—the work area separated from the personal area—on the device.</li>
                                             </ul>
-                                            <div class="md-draft-none">
-                                                <div class="callout warning">
-                                                    <p><b>IMPORTANT</b> — In order for KM to track the location of Android 11 and higher devices, the device user must grant the KM agent location access. This affects devices with the following deployment types:</p>
-                                                    <ul>
-                                                        <li value="1">Bring your own device (BYOD) with a Work Profile</li>
-                                                        <li value="2">Shared devices with a secondary account</li>
-                                                    </ul>
-                                                    <p>You should inform users with these devices that after device enrollment and installation of the KM agent, they must allow the following access settings:</p>
-                                                    <ul>
-                                                        <li value="1">Android 11:
-                            <ol><li value="1">When the KM agent requests location access, the user must select <b>While using this app</b>.</li><li value="2">Then, they must go to <b>Work profile settings</b> &gt;<b>Apps</b> &gt;<b>Knox Manage</b> &gt;<b>App permissions</b>, and set <b>Location</b> to <b>Allow all the time</b>.</li></ol></li>
-                                                        <li value="2">Android 12 and higher:
-                            <ul><li value="1">When the KM agent requests location access, the user must select <b>Precise</b> and <b>While using this app</b>.</li></ul></li>
-                                                    </ul>
-                                                </div>
+                                            <div class="callout warning">
+                                                <p><b>IMPORTANT</b> — In order for KM to track the location of Android 11 and higher devices, the device user must grant the KM agent location access. This affects devices with the following deployment types:</p>
+                                                <ul>
+                                                    <li value="1">Bring your own device (BYOD) with a Work Profile</li>
+                                                    <li value="2">Shared devices with a secondary account</li>
+                                                </ul>
+                                                <p>You should inform users with these devices that after device enrollment and installation of the KM agent, they must allow the following access settings:</p>
+                                                <ul>
+                                                    <li value="1">Android 11:
+                        <ol><li value="1">When the KM agent requests location access, the user must select <b>While using this app</b>.</li><li value="2">Then, they must go to <b>Work profile settings</b> &gt;<b>Apps</b> &gt;<b>Knox Manage</b> &gt;<b>App permissions</b>, and set <b>Location</b> to <b>Allow all the time</b>.</li></ol></li>
+                                                    <li value="2">Android 12 and higher:
+                        <ul><li value="1">When the KM agent requests location access, the user must select <b>Precise</b> and <b>While using this app</b>.</li></ul></li>
+                                                </ul>
                                             </div>
                                             <h3 id="enroll-fully-managed">Enrolling as the Fully Managed type</h3>
                                             <p>Enroll Android devices in the Fully Managed type to control the whole area of the device. You must factory reset the device in advance. Select one of the following methods.</p>
@@ -2881,21 +2871,19 @@
                 <div class="callout note"><b>NOTE</b> — For devices running Android 10 or higher, tap the enrollment notification on the status bar to install the Work Profile manually.</div></li>
                                                 <li value="4">On the <b>Set up a work profile</b> screen, read the Knox Manage privacy policy, and then tap <b>Agree</b>. The work apps with the briefcase badge icons—for apps managed by KM—show on the device.</li>
                                             </ol>
-                                            <div class="md-draft-none">
-                                                <h3 id="use-a-token">Use a token</h3>
-                                                <p>With this method, the device user enters the token (<b>afw#KnoxManage</b>) to enroll the Android device as Fully Managed, Fully Managed with a Work Profile, or company-owned with a Work Profile. The token replaces the need for user credentials, and also automatically installs and starts the KM agent.</p>
-                                                <p>To enroll an Android device with the <b>afw#KnoxManage</b> token:</p>
-                                                <ol>
-                                                    <li value="1">Turn on the factory-reset device, and on the device screen, tap <b>Start</b>.</li>
-                                                    <li value="2">On the <b>Connect to Wi-Fi</b> screen, select an available Wi-Fi network, and then tap <b>Next</b>.</li>
-                                                    <li value="3">On the <b>Agree to Terms and Conditions</b> screen, read the terms and conditions, and then tap the check box next to <b>I have read and agree to all of the above</b>. Then, tap <b>Agree</b>. The device checks for updates and the updated terms and conditions are applied.</li>
-                                                    <li value="4">On the <b>Sign in</b> screen, for <b>Email or phone</b> enter <b>afw#KnoxManage</b>, and then tap <b>Next</b>.</li>
-                                                    <li value="5">On the <b>Android Enterprise</b> screen, tap <b>Install</b> to download the KM agent on the device. The KM agent is downloaded and launched automatically.</li>
-                                                    <li value="6">On the <b>Set up your device</b> screen of the KM agent, read the privacy policy of Knox Manage and Google, and then tap <b>Accept &amp; continue</b>.</li>
-                                                    <li value="7">On the <b>How will you use this phone?</b> screen, depending on how the device should be managed, choose either <b>Fully managed device</b> or <b>Work profile on a company-owned device</b>. The KM agent launches automatically.</li>
-                                                    <li value="8">On the <b>Sign in with your Samsung Knox Manage Account</b> screen, enter a user ID and password, and then tap <b>Sign In</b> to sign in to KM. Depending on the profiles applied to the device, the device is enrolled as the Fully Managed or Fully Managed with a Work Profile type.</li>
-                                                </ol>
-                                            </div>
+                                            <h3 id="use-a-token">Use a token</h3>
+                                            <p>With this method, the device user enters the token (<b>afw#KnoxManage</b>) to enroll the Android device as Fully Managed, Fully Managed with a Work Profile, or company-owned with a Work Profile. The token replaces the need for user credentials, and also automatically installs and starts the KM agent.</p>
+                                            <p>To enroll an Android device with the <b>afw#KnoxManage</b> token:</p>
+                                            <ol>
+                                                <li value="1">Turn on the factory-reset device, and on the device screen, tap <b>Start</b>.</li>
+                                                <li value="2">On the <b>Connect to Wi-Fi</b> screen, select an available Wi-Fi network, and then tap <b>Next</b>.</li>
+                                                <li value="3">On the <b>Agree to Terms and Conditions</b> screen, read the terms and conditions, and then tap the check box next to <b>I have read and agree to all of the above</b>. Then, tap <b>Agree</b>. The device checks for updates and the updated terms and conditions are applied.</li>
+                                                <li value="4">On the <b>Sign in</b> screen, for <b>Email or phone</b> enter <b>afw#KnoxManage</b>, and then tap <b>Next</b>.</li>
+                                                <li value="5">On the <b>Android Enterprise</b> screen, tap <b>Install</b> to download the KM agent on the device. The KM agent is downloaded and launched automatically.</li>
+                                                <li value="6">On the <b>Set up your device</b> screen of the KM agent, read the privacy policy of Knox Manage and Google, and then tap <b>Accept &amp; continue</b>.</li>
+                                                <li value="7">On the <b>How will you use this phone?</b> screen, depending on how the device should be managed, choose either <b>Fully managed device</b> or <b>Work profile on a company-owned device</b>. The KM agent launches automatically.</li>
+                                                <li value="8">On the <b>Sign in with your Samsung Knox Manage Account</b> screen, enter a user ID and password, and then tap <b>Sign In</b> to sign in to KM. Depending on the profiles applied to the device, the device is enrolled as the Fully Managed or Fully Managed with a Work Profile type.</li>
+                                            </ol>
                                             <h3 id="use-a-qr-code">Use a QR code</h3>
                                             <p>Use a QR code sent by email to enroll a devices. For more information on sending a QR code, see <a href="send-enrollment-guides-to-users-using-email-and-sms.htm">Sending enrollment guides to users using email and SMS</a>.</p>
                                             <p>To enroll an Android device with a QR code:</p>

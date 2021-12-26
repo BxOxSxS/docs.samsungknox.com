@@ -55,16 +55,6 @@
         <link href="../../assets/merge/kp-foundation.css" rel="stylesheet" />
         <link href="../Resources/kp-madcap.css" rel="stylesheet" />
         <link href="../Resources/print.css" rel="stylesheet" />
-        <style>
-            .md-draft,
-            .md-draft &gt; *,
-            .md-draft &gt; * &gt; *,
-            .md-draft &gt; * &gt; * &gt; *,
-            .md-draft &gt; * &gt; * &gt; * &gt; *,
-            .md-draft &gt; * &gt; * &gt; * &gt; * &gt; * {
-                background-color: #ddffdd !important;
-            }
-        </style>
         <script src="../Resources/Scripts/custom.modernizr.js">
         </script>
         <script src="../Resources/Scripts/jquery.min.js">
@@ -1577,6 +1567,8 @@
                                                                 </li>
                                                                 <li><a href="sync-user-info-with-ad-ldap.htm">Sync user information with AD/LDAP</a>
                                                                 </li>
+                                                                <li><a href="sync-user-info-with-azure-ad-microsoft-graph-api.htm">Sync user information with Azure AD through Microsoft Graph API</a>
+                                                                </li>
                                                                 <li><a href="add-sync-services.htm">Add sync services</a>
                                                                 </li>
                                                                 <li><a href="run-sync-services.htm">Run sync services</a>
@@ -1681,7 +1673,7 @@
                                                                         </li>
                                                                     </ul>
                                                                 </li>
-                                                                <li><a href="check-the-locations-of-devices.htm">Check the locations of the devices</a>
+                                                                <li><a href="check-the-locations-of-devices.htm">Check the locations of devices</a>
                                                                 </li>
                                                                 <li><a href="view-device-logs.htm">View device logs</a>
                                                                 </li>
@@ -2117,13 +2109,13 @@
                                                         </li>
                                                     </ul>
                                                 </li>
-                                                <li class="has-children"><a href="add-organization.htm#">Remote Support</a>
+                                                <li class="has-children"><a href="add-organization.htm#">Knox Remote Support</a>
                                                     <ul class="sub-menu">
                                                         <li><a href="remote-support.htm">Introduction</a>
                                                         </li>
                                                         <li><a href="minimum-requirements-remote.htm">Minimum requirements</a>
                                                         </li>
-                                                        <li><a href="remote-support-viewer.htm">Remote Support viewer</a>
+                                                        <li><a href="remote-support-viewer.htm">Knox Remote Support Web Viewer</a>
                                                         </li>
                                                         <li><a href="control-devices-using-km.htm">Control devices</a>
                                                         </li>
@@ -2762,10 +2754,10 @@
 									-->
                                     <div id="sec2" class="small-12 medium-8 large-9 columns">
                                         <div itemscope="itemscope" itemtype="http://schema.org/Guide">
-                                            <h1><a name="aanchor266"></a>
+                                            <h1><a name="aanchor265"></a>
                                                 <MadCap:concept term="knox-manage" />Add an organization</h1>
                                             <p>Create a sub-organization in the parent organizations individually, or add a sub-organization by synchronizing organizations with the Active Directory (AD) or Lightweight Directory Access Protocol (LDAP) system.</p>
-                                            <div class="callout warning md-draft-none"><b>IMPORTANT</b> — Chrome OS organizations sync through the Google Admin console. You cannot add a Chrome OS organization on the KM console.</div>
+                                            <div class="callout warning"><b>IMPORTANT</b> — Chrome OS organizations sync through the Google Admin console. You cannot add a Chrome OS organization on the KM console.</div>
                                             <p>To add a sub-organization:</p>
                                             <ol>
                                                 <li value="1">Navigate to <b>Organization</b>.</li>
@@ -2773,7 +2765,7 @@
                                                 <li value="3">On the <b>Add Organization</b> page, enter the following user information:
                 <ul><li value="1"><b>Parent Organization</b> — Select the parent organization to add a sub-organization to.</li><li value="2"><b>Inheritable Profile</b> — Displays the profiles inherited with the parent organization. If there are no inheritable profiles, <b>None</b> is displayed.
                         <div class="callout note"><b>NOTE</b> — The applications assigned to the parent organization are inherited.</div></li><li value="3"><b>Code</b> — Enter a new organization code that complies with the organization format.
-                        <div><b>NOTE</b> — Once the organization code is saved, you cannot change it.</div></li><li value="4"><b>Name</b> — Enter a new organization name.</li><li value="5"><b>AD/LDAP Sync</b> — Allow the creation of organizations from the ADor LDAP system. If <b>AD/LDAPSync</b> is selected, the existing organization information—including its sub-organizations—is synchronized from the ADor LDAP system and registered to the admin portal.
+                        <div class="callout note"><b>NOTE</b> — Once the organization code is saved, you cannot change it.</div></li><li value="4"><b>Name</b> — Enter a new organization name.</li><li value="5"><b>AD/LDAP Sync</b> — Allow the creation of organizations from the ADor LDAP system. If <b>AD/LDAPSync</b> is selected, the existing organization information—including its sub-organizations—is synchronized from the ADor LDAP system and registered to the admin portal.
                         <div class="callout note"><b>NOTE</b> — To create AD or LDAP organizations, you must connect AD or LDAP directory services with Knox Manage and add a sync service. For more information about adding a sync services, see <a href="add-sync-services.htm">Adding sync services</a>.</div></li><li value="6"><b>License</b> — Select the license type to be used for this organization—<b>Knox Suite</b> or <b>Knox Manage</b>. Select <b>Knox Suite</b> if you have <a href="../knox-suite/apply-for-access-to-ks.htm">a Knox Suite license</a> and you want to use the same license to enroll this organization's devices to other Knox services included in Knox Suite.
                         <div class="callout note"><b>NOTE</b> — With a Knox Suite license, only one license seat is consumed by each device (IMEI) regardless of how many Knox services (in Knox Suite) that device is enrolled in.</div></li><li value="7"><b>Android Manage Type</b> — Select either <b>Android Legacy</b> or <b>Android Enterprise</b> as an enrollment type. If you select <b>Android Enterprise</b>, then you can also select whether to apply a Fully Managed with Work Profile profile type to the device.</li><li value="8"><b>Sub-Administrator</b> — Select the administrators to manage the organization. If you log in to the Admin Portal for the first time as a super administrator, there are no sub-administrators registered to the Admin Portal. For more information on creating sub-administrators, see <a href="add-an-administrator.htm">Adding an administrator</a>.</li></ul></li>
                                                 <li value="4">Click <b>Save &amp; Assign</b>. The <b>Save &amp; Assign</b> screen opens.</li>

@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" lang="en-US" xml:lang="en-US" data-mc-search-type="Stem" data-mc-help-system-file-name="Default.xml" data-mc-path-to-help-system="../" data-mc-conditions="Default.km-build" data-mc-target-type="WebHelp2" data-mc-runtime-file-type="Topic;Default" data-mc-preload-images="false" data-mc-in-preview-mode="false" data-mc-toc-path="Knox Manage|Configure|Devices">
     <head>
-        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" /><title>Check the locations of the devices</title>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" /><title>Check the locations of devices</title>
         <!-- Google analytics tag-->
         <script>/* <![CDATA[ */
 			(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
@@ -55,16 +55,6 @@
         <link href="../../assets/merge/kp-foundation.css" rel="stylesheet" />
         <link href="../Resources/kp-madcap.css" rel="stylesheet" />
         <link href="../Resources/print.css" rel="stylesheet" />
-        <style>
-            .md-draft,
-            .md-draft &gt; *,
-            .md-draft &gt; * &gt; *,
-            .md-draft &gt; * &gt; * &gt; *,
-            .md-draft &gt; * &gt; * &gt; * &gt; *,
-            .md-draft &gt; * &gt; * &gt; * &gt; * &gt; * {
-                background-color: #ddffdd !important;
-            }
-        </style>
         <script src="../Resources/Scripts/custom.modernizr.js">
         </script>
         <script src="../Resources/Scripts/jquery.min.js">
@@ -1577,6 +1567,8 @@
                                                                 </li>
                                                                 <li><a href="sync-user-info-with-ad-ldap.htm">Sync user information with AD/LDAP</a>
                                                                 </li>
+                                                                <li><a href="sync-user-info-with-azure-ad-microsoft-graph-api.htm">Sync user information with Azure AD through Microsoft Graph API</a>
+                                                                </li>
                                                                 <li><a href="add-sync-services.htm">Add sync services</a>
                                                                 </li>
                                                                 <li><a href="run-sync-services.htm">Run sync services</a>
@@ -1681,7 +1673,7 @@
                                                                         </li>
                                                                     </ul>
                                                                 </li>
-                                                                <li><a href="check-the-locations-of-devices.htm#" class="selected">Check the locations of the devices</a>
+                                                                <li><a href="check-the-locations-of-devices.htm#" class="selected">Check the locations of devices</a>
                                                                 </li>
                                                                 <li><a href="view-device-logs.htm">View device logs</a>
                                                                 </li>
@@ -2117,13 +2109,13 @@
                                                         </li>
                                                     </ul>
                                                 </li>
-                                                <li class="has-children"><a href="check-the-locations-of-devices.htm#">Remote Support</a>
+                                                <li class="has-children"><a href="check-the-locations-of-devices.htm#">Knox Remote Support</a>
                                                     <ul class="sub-menu">
                                                         <li><a href="remote-support.htm">Introduction</a>
                                                         </li>
                                                         <li><a href="minimum-requirements-remote.htm">Minimum requirements</a>
                                                         </li>
-                                                        <li><a href="remote-support-viewer.htm">Remote Support viewer</a>
+                                                        <li><a href="remote-support-viewer.htm">Knox Remote Support Web Viewer</a>
                                                         </li>
                                                         <li><a href="control-devices-using-km.htm">Control devices</a>
                                                         </li>
@@ -2763,31 +2755,52 @@
                                     <div id="sec2" class="small-12 medium-8 large-9 columns">
                                         <div itemscope="itemscope" itemtype="http://schema.org/Guide">
                                             <h1><a name="aanchor315"></a>
-                                                <MadCap:concept term="knox-manage" />Check the locations of the devices</h1>
+                                                <MadCap:concept term="knox-manage" />Check the locations of devices</h1>
                                             <p>You can check the locations of the selected devices. Only the devices that have the <a href="collect-device-location-information.htm">location policy applied</a> can be tracked.</p>
-                                            <div class="md-draft-none">
-                                                <div class="callout warning">
-                                                    <p><b>IMPORTANT</b> — In order to track the location of Android 11 and 12 devices, the device user must grant the KM agent location access. This affects devices with the following deployment types:</p>
-                                                    <ul>
-                                                        <li value="1">Employee-owned devices with a Work Profile</li>
-                                                        <li value="2">Shared devices with a secondary account</li>
-                                                    </ul>
-                                                    <p>You should inform users with these devices to allow the following access settings:</p>
-                                                    <ul>
-                                                        <li value="1">Android 11:
-                            <ol><li value="1">When the KM agent requests location access, the user must select <b>While using this app</b>.</li><li value="2">Then, they must go to <b>Work profile settings</b> &gt;<b>Apps</b> &gt;<b>Knox Manage</b> &gt;<b>App permissions</b>, and set <b>Location</b> to <b>Allow all the time</b>.</li></ol></li>
-                                                        <li value="2">Android 12 and higher:
-                            <ul><li value="1">When the KM agent requests location access, the user must select <b>Precise</b> and <b>While using this app</b>.</li></ul></li>
-                                                    </ul>
-                                                </div>
+                                            <div class="callout note"><b>NOTE</b> — You can only check a device's location if location data was collected at least once.</div>
+                                            <div class="callout warning">
+                                                <p><b>IMPORTANT</b> — In order to track the location of Android 11 and 12 devices, the device user must grant the KM agent location access. This affects devices with the following deployment types:</p>
+                                                <ul>
+                                                    <li value="1">Employee-owned devices with a Work Profile</li>
+                                                    <li value="2">Shared devices with a secondary account</li>
+                                                </ul>
+                                                <p>You should inform users with these devices to allow the following access settings:</p>
+                                                <ul>
+                                                    <li value="1">Android 11:
+                        <ol><li value="1">When the KM agent requests location access, the user must select <b>While using this app</b>.</li><li value="2">Then, they must go to <b>Work profile settings</b> &gt;<b>Apps</b> &gt;<b>Knox Manage</b> &gt;<b>App permissions</b>, and set <b>Location</b> to <b>Allow all the time</b>.</li></ol></li>
+                                                    <li value="2">Android 12 and higher:
+                        <ul><li value="1">When the KM agent requests location access, the user must select <b>Precise</b> and <b>While using this app</b>.</li></ul></li>
+                                                </ul>
                                             </div>
                                             <ol>
                                                 <li value="1">Navigate to <b>Device</b>.</li>
-                                                <li value="2">On the <b>Device</b> page, select the relevant device, and then click <b>Check Location</b>.
-                <div class="callout note"><b>NOTE</b> — <b>Check Location</b> is only visible if the selected device's location was collected at least once.</div></li>
-                                                <li value="3">On the <b>Check Location</b> page, search by date and view the location history.</li>
+                                                <li value="2">On the <b>Device</b> page, select one or more devices, and then click <b>Check Location</b>.</li>
+                                                <li value="3">On the <b>Check Location</b> page, search by date. The view shows an interactive map of the devices and their location history.</li>
                                             </ol>
-                                            <p>Click <b>Export to GPX</b> to download a GPX file that includes detailed device location information. You can use a GPX viewer to open the file.</p>
+                                            <p>On this page, you can inspect individual device information, as well as export their location history as as a GPX file.</p>
+                                            <h2 id="device-information">Device information</h2>
+                                            <p>On the <b>Check Location</b> screen, you can view an individual device's status by hovering over its pin. On hover, a tooltip lists the following information:</p>
+                                            <ul>
+                                                <li value="1">Device name</li>
+                                                <li value="2">IMEI/MEID</li>
+                                                <li value="3">Serial Number</li>
+                                                <li value="4">Mobile Number</li>
+                                                <li value="5">User Name</li>
+                                                <li value="6">Last Location Scanned</li>
+                                                <li value="7">Organization Name</li>
+                                                <li value="8">Group Name</li>
+                                                <li value="9">Tag</li>
+                                                <li value="10">Platform &amp; Management Type</li>
+                                                <li value="11">Model Name</li>
+                                                <li value="12">MAC Address</li>
+                                                <li value="13">Manufacturer</li>
+                                            </ul>
+                                            <h2 id="export-location-information-gpx">Export location history to GPX</h2>
+                                            <p>You can export the location history of the selected devices to a <a href="https://en.wikipedia.org/wiki/GPS_Exchange_Format" target="_blank">GPS exchange format</a> (GPX) file. GPX includes detailed historical location information, including routes and tracks.</p>
+                                            <p>To export the device location history to a GPX file:</p>
+                                            <ul>
+                                                <li value="1">Click <b>Export to GPX</b>. A file dialog opens.</li>
+                                            </ul>
                                         </div>
                                         <!-- Inserts feedback module here -->
                                         <div id="feedback">

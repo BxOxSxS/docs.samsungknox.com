@@ -55,16 +55,6 @@
         <link href="../../assets/merge/kp-foundation.css" rel="stylesheet" />
         <link href="../Resources/kp-madcap.css" rel="stylesheet" />
         <link href="../Resources/print.css" rel="stylesheet" />
-        <style>
-            .md-draft,
-            .md-draft &gt; *,
-            .md-draft &gt; * &gt; *,
-            .md-draft &gt; * &gt; * &gt; *,
-            .md-draft &gt; * &gt; * &gt; * &gt; *,
-            .md-draft &gt; * &gt; * &gt; * &gt; * &gt; * {
-                background-color: #ddffdd !important;
-            }
-        </style>
         <script src="../Resources/Scripts/custom.modernizr.js">
         </script>
         <script src="../Resources/Scripts/jquery.min.js">
@@ -1577,6 +1567,8 @@
                                                                 </li>
                                                                 <li><a href="sync-user-info-with-ad-ldap.htm">Sync user information with AD/LDAP</a>
                                                                 </li>
+                                                                <li><a href="sync-user-info-with-azure-ad-microsoft-graph-api.htm">Sync user information with Azure AD through Microsoft Graph API</a>
+                                                                </li>
                                                                 <li><a href="add-sync-services.htm">Add sync services</a>
                                                                 </li>
                                                                 <li><a href="run-sync-services.htm">Run sync services</a>
@@ -1681,7 +1673,7 @@
                                                                         </li>
                                                                     </ul>
                                                                 </li>
-                                                                <li><a href="check-the-locations-of-devices.htm">Check the locations of the devices</a>
+                                                                <li><a href="check-the-locations-of-devices.htm">Check the locations of devices</a>
                                                                 </li>
                                                                 <li><a href="view-device-logs.htm">View device logs</a>
                                                                 </li>
@@ -2117,13 +2109,13 @@
                                                         </li>
                                                     </ul>
                                                 </li>
-                                                <li class="has-children"><a href="add-internal-apps-windows.htm#">Remote Support</a>
+                                                <li class="has-children"><a href="add-internal-apps-windows.htm#">Knox Remote Support</a>
                                                     <ul class="sub-menu">
                                                         <li><a href="remote-support.htm">Introduction</a>
                                                         </li>
                                                         <li><a href="minimum-requirements-remote.htm">Minimum requirements</a>
                                                         </li>
-                                                        <li><a href="remote-support-viewer.htm">Remote Support viewer</a>
+                                                        <li><a href="remote-support-viewer.htm">Knox Remote Support Web Viewer</a>
                                                         </li>
                                                         <li><a href="control-devices-using-km.htm">Control devices</a>
                                                         </li>
@@ -2762,22 +2754,18 @@
 									-->
                                     <div id="sec2" class="small-12 medium-8 large-9 columns">
                                         <div itemscope="itemscope" itemtype="http://schema.org/Guide">
-                                            <div class="md-draft-none">
-                                                <h1><a name="aanchor339"></a>
-                                                    <MadCap:concept term="knox-manage" />Add internal Windows apps</h1>
-                                                <p>To add an internal Windows app for use by Windows devices:</p>
-                                                <p>To add a public app from the Microsoft Store for use by Windows devices:</p>
-                                                <ol>
-                                                    <li value="1">Go to the <b>Application</b> page, then click <b>Add</b>. The <b>Select Application Type</b> dialog opens.</li>
-                                                    <li value="2">For <b>Platform</b> select <b>Windows</b>, and for <b>Type &amp; Source</b> select <b>Internal</b> and <b>Knox Manage Portal</b>. Then, click <b>OK</b>. The console takes you to <b>Add Application</b> page.</li>
-                                                    <li value="3">Add and configure the app:
-                <ul><li value="1">Select <b>UWP</b> or <b>MSI</b> according to the app's installer technology.</li><li value="2"><b>Application File</b> — Click to open a file dialog, then select the app installer from your file system.</li><li value="3"><b>Name</b> — Enter a name for the app as it will appear on the device.</li><li value="4"><b>Application ID</b> —
-                        <ul><li value="1"><b>UWP</b> — KM detects the version from the installer.</li><li value="2"><b>MSI</b> — Enter an ID for the app.</li></ul></li><li value="5"><b>Version</b> —
+                                            <h1><a name="aanchor339"></a>
+                                                <MadCap:concept term="knox-manage" />Add internal Windows apps</h1>
+                                            <p>To add an internal app from the Microsoft Store for use by Windows devices:</p>
+                                            <ol>
+                                                <li value="1">Go to the <b>Application</b> page, then click <b>Add</b>. The <b>Select Application Type</b> dialog opens.</li>
+                                                <li value="2">For <b>Platform</b> select <b>Windows</b>, and for <b>Type &amp; Source</b> select <b>Internal</b> and <b>Knox Manage Portal</b>. Then, click <b>OK</b>. The console takes you to <b>Add Application</b> page.</li>
+                                                <li value="3">Add and configure the app:
+                <ul><li value="1">Select <b>UWP</b> or <b>MSI</b> according to the app's installer technology.</li><li value="2"><b>Application File</b> — Click to open a file dialog, then select the app installer from your file system.</li><li value="3"><b>Name</b> — Enter a name for the app as it will appear on the device.</li><li value="4"><b>Application ID</b> (MSI) — Enter an ID for the app.</li><li value="5"><b>Version</b>:
                         <ul><li value="1"><b>UWP</b> — KM detects the version from the installer.</li><li value="2"><b>MSI</b> — Enter a version number for the app.</li></ul></li><li value="6"><b>Category</b> — Choose a category to organize the app under. If necessary, you can click <b>Manage Category</b> and create a new category.</li><li value="7"><b>Code Signing Certificate</b> (UWP) — Select a signing certificate for the app. For details about how to add a certificate, see <a href="external-certificates.htm"></a>External certificates</li><li value="8"><b>Restart Device After App Installation</b> (MSI) — Choose whether to make the device restart after the app is installed.</li><li value="9"><b>Silent App Installation</b> (MSI) — Choose whether to make the app install in the background.</li><li value="10"><b>Supported Processor Architecture</b> (MSI) — Select the CPU architecture of the app. KM does not automatically detect the code compatibility of MSI installers.</li><li value="11"><b>Unassign Option</b> — Select to uninstall the app from the device when it is unassigned from the deployment profile.</li><li value="12"><b>Description</b> (optional) — Enter a description for the app.</li><li value="13"><b>Icon</b> — Add an icon for the app. Click the frame to open a file dialog, then select an image from your file system. The icon can be a JPG or PNG file and must not exceed 5MB in size.</li><li value="14"><b>Screenshot</b> (optional) — Add up to four preview images of the app for device users. Click a frame to open a file dialog, then select an image from your file system. Each screenshot can be a JPG or PNG file and must not exceed 5MB in size.</li></ul></li>
-                                                    <li value="4">Save the app, and choose whether to assign it right away:
+                                                <li value="4">Save the app, and choose whether to assign it right away:
                 <ul><li value="1">Click <b>Save &amp; Assign</b> to save the app and assign it. The console takes you to the <b>Assign Application</b> page. For more details, see <a href="assign-windows-apps.htm">Assign Windows applications</a>.</li><li value="2">Click <b>Save</b> to save the app and return to the app list.</li></ul></li>
-                                                </ol>
-                                            </div>
+                                            </ol>
                                         </div>
                                         <!-- Inserts feedback module here -->
                                         <div id="feedback">

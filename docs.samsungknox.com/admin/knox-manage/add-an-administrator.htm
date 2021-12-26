@@ -1567,6 +1567,8 @@
                                                                 </li>
                                                                 <li><a href="sync-user-info-with-ad-ldap.htm">Sync user information with AD/LDAP</a>
                                                                 </li>
+                                                                <li><a href="sync-user-info-with-azure-ad-microsoft-graph-api.htm">Sync user information with Azure AD through Microsoft Graph API</a>
+                                                                </li>
                                                                 <li><a href="add-sync-services.htm">Add sync services</a>
                                                                 </li>
                                                                 <li><a href="run-sync-services.htm">Run sync services</a>
@@ -1671,7 +1673,7 @@
                                                                         </li>
                                                                     </ul>
                                                                 </li>
-                                                                <li><a href="check-the-locations-of-devices.htm">Check the locations of the devices</a>
+                                                                <li><a href="check-the-locations-of-devices.htm">Check the locations of devices</a>
                                                                 </li>
                                                                 <li><a href="view-device-logs.htm">View device logs</a>
                                                                 </li>
@@ -2107,13 +2109,13 @@
                                                         </li>
                                                     </ul>
                                                 </li>
-                                                <li class="has-children"><a href="add-an-administrator.htm#">Remote Support</a>
+                                                <li class="has-children"><a href="add-an-administrator.htm#">Knox Remote Support</a>
                                                     <ul class="sub-menu">
                                                         <li><a href="remote-support.htm">Introduction</a>
                                                         </li>
                                                         <li><a href="minimum-requirements-remote.htm">Minimum requirements</a>
                                                         </li>
-                                                        <li><a href="remote-support-viewer.htm">Remote Support viewer</a>
+                                                        <li><a href="remote-support-viewer.htm">Knox Remote Support Web Viewer</a>
                                                         </li>
                                                         <li><a href="control-devices-using-km.htm">Control devices</a>
                                                         </li>
@@ -2752,33 +2754,35 @@
 									-->
                                     <div id="sec2" class="small-12 medium-8 large-9 columns">
                                         <div itemscope="itemscope" itemtype="http://schema.org/Guide">
-                                            <h1><a name="Add"></a><a name="aanchor418"></a>
+                                            <h1><a name="aanchor418"></a>
                                                 <MadCap:concept term="knox-manage" />Add an administrator</h1>
-                                            <p>Before you can configure and monitor devices, groups, and other items using the KM admin portal, you must create at least one administrator account on the KM&#160;admin portal. These administrator accounts are used by IT admins in an organization to manage their devices and other users.</p>
-                                            <p>In cases where additional IT admins are necessary, the existing IT admins can log in to KM using their Samsung SSO credentials and invite other secondary KM admins—such as super admins, sub-admins, service admins, or read-only admins—using an email invite. This functionality is similar to the KCS process to invite users.</p>
-                                            <h2>Add an administrator</h2>
-                                            <p>To add an administrator account, complete the following steps: </p>
+                                            <p>Before you can configure and monitor devices, groups, and other items using the KM console, you must create at least one administrator account on the KM console. These administrator accounts are used by IT admins in an organization to manage their devices and other users.</p>
+                                            <p>In cases where additional IT admins are necessary, the existing IT admins can log in to KM using their Samsung SSO credentials and invite other secondary KM admins—such as super admins, sub-admins, service admins, or read-only admins—using an email invite. This functionality is similar to the Knox Admin Portal's process to invite users.</p>
+                                            <h2 id="add-administrator">Add an administrator</h2>
+                                            <p>To add an administrator account: </p>
                                             <ol>
-                                                <li value="1">Navigate to <b>Setting</b> &gt; <b>Administrator</b>.</li>
+                                                <li value="1">Go to <b>Setting</b> &gt; <b>Administrator</b>.</li>
                                                 <li value="2">On the <b>Administrator</b> page, click <b>Add</b>.</li>
-                                                <li value="3">On the <b>Add Administrator</b> page, enter the following information:<ul><li value="1"><b>Event Type</b>—Select how to add an administrator.<ul><li value="1"><b>New</b>—Create a new administrator account.</li><li value="2"><b>EMM User</b>—Select a user from among the previously added users to be an administrator.</li></ul></li><li value="2"><b>Admin ID</b>—Enter the administrator ID.</li><li value="3"><b>Admin Name</b>—Enter the administrator name.</li><li value="4"><b>Email</b>—Enter the administrator’s email address.</li><li value="5"><b>Mobile Number</b>—Enter the mobile phone number of the administrator.</li><li value="6"><b>Type</b>—Select the administrator type.</li><li value="7"><b>Menu</b>—Select the administration rights to give to the administrator.</li><li value="8"><b>Service Type</b>—Select which device commands service administrators are allowed to use.<ul><li value="1"><b>Allow All Device Command</b>—Allows service administrators to use all device commands.</li><li value="2"><b>Selected Device Command Only</b>—Allows service administrators to use only selected device commands.</li></ul></li><li value="9"><b>Device Command</b>—Select a device command to allow for service administrators.</li></ul></li>
+                                                <li value="3">On the <b>Add Administrator</b> page, enter the following information:<ul><li value="1"><b>Event Type</b> — Select how to add an administrator.<ul><li value="1"><b>New</b> — Create a new administrator account.</li><li value="2"><b>EMM User</b> — Select a user from among the previously added users to be an administrator.</li></ul></li><li value="2"><b>Admin ID</b> — Enter the administrator ID.</li><li value="3"><b>Admin Name</b> — Enter the administrator name.</li><li value="4"><b>Email</b> — Enter the administrator's email address.</li><li value="5"><b>Mobile Number</b> — Enter the mobile phone number of the administrator.</li><li value="6"><b>Type</b> — Select the administrator type.</li><li value="7"><b>Menu</b> — Select the administration rights to give to the administrator.</li><li value="8"><b>Service Type</b> — Select which device commands service administrators are allowed to use.
+                        <ul><li value="1"><b>Allow All Device Command</b> — Allows service administrators to use all device commands.</li><li value="2"><b>Selected Device Command Only</b> — Allows service administrators to use only selected device commands.</li></ul></li><li value="9"><b>Device Command</b> — Select a device command to allow for service administrators. The available commands are:
+                        <ul><li value="1">Apply Latest Profiles</li><li value="2">Lock/Unlock Device</li><li value="3">Reset Screen Password</li><li value="4">Factory Reset</li><li value="5">Push notification</li><li value="6">Unenroll &amp; Force Unenroll Device</li><li value="7">Delete App Data</li><li value="8">Delete Unenrolled Device</li></ul></li></ul></li>
                                                 <li value="4">Click <b>Invite</b>. When prompted, click <b>OK</b>.</li>
                                                 <li value="5">If the email address entered on this page is correct, the secondary IT admin receives an email notification. When the email recipient clicks this link, the Verify your Samsung Account details page opens where they can verify their Samsung Account details.</li>
                                                 <li value="6">The secondary admin then enters the appropriate details to create their new Samsung Account.</li>
-                                                <li value="7">Upon successful completion of the account creation process, the Knox Admin Portal opens to show all relevant KCS services in a single unified portal.</li>
+                                                <li value="7">Upon successful completion of the account creation process, the Knox Admin Portal opens to show all relevant Knox cloud services in a single unified portal.</li>
                                             </ol>
-                                            <h2>Changing passwords (super administrators)</h2>
-                                            <p>Super administrators can change their account passwords and the passwords of sub-administrator accounts.</p>
-                                            <p>To change passwords, complete the following steps:</p>
+                                            <h2 id="change-admin-password-super-admin">Change an admin password (super admins)</h2>
+                                            <p>Super admins can change their account passwords and the passwords of sub-admin accounts.</p>
+                                            <p>To change a password:</p>
                                             <ol>
-                                                <li value="1">Navigate to <b>Setting</b> &gt; <b>Administrator</b>.</li>
-                                                <li value="2">On the <b>Administrator</b> page, click the check box for an administrator you want to change the password for, and then click <b>Change Password</b>.</li>
+                                                <li value="1">Go to <b>Setting</b> &gt; <b>Administrator</b>.</li>
+                                                <li value="2">On the <b>Administrator</b> page, click the check box for an admin you want to change the password for, and then click <b>Change Password</b>.</li>
                                                 <li value="3">On the <b>Change Password</b> screen, enter a new password.</li>
                                                 <li value="4">Click <b>Save</b>.</li>
                                             </ol>
-                                            <h2>Changing passwords (sub-administrators)</h2>
-                                            <p>The super administrator sets the initial password for all users. Sub-administrators must ask the super administrator for an initial password for their first login. After the initial login, the <b>Change Password</b> screen opens, allowing sub-administrators to change the password.</p>
-                                            <div class="callout note"><b>NOTE</b>—In accordance with each country or region's privacy policies, ensure that you notify the administrator or obtain consent before registering them as users in the KM&#160;admin portal.</div>
+                                            <h2 id="change-admin-password-sub-admin">Change an admin password (sub-admins)</h2>
+                                            <p>The super admin sets the initial password for all users. Sub-admins must ask the super admin for an initial password for their first login. After the initial login, the <b>Change Password</b> screen opens, allowing sub-admins to change the password.</p>
+                                            <div class="callout note"><b>NOTE</b> — In accordance with each country or region's privacy policies, ensure that you notify the admin or obtain consent before registering them as users in the KM console.</div>
                                         </div>
                                         <!-- Inserts feedback module here -->
                                         <div id="feedback">

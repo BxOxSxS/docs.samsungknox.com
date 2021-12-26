@@ -1570,6 +1570,8 @@
                                                                 </li>
                                                                 <li><a href="../../knox-manage/sync-user-info-with-ad-ldap.htm">Sync user information with AD/LDAP</a>
                                                                 </li>
+                                                                <li><a href="../../knox-manage/sync-user-info-with-azure-ad-microsoft-graph-api.htm">Sync user information with Azure AD through Microsoft Graph API</a>
+                                                                </li>
                                                                 <li><a href="../../knox-manage/add-sync-services.htm">Add sync services</a>
                                                                 </li>
                                                                 <li><a href="../../knox-manage/run-sync-services.htm">Run sync services</a>
@@ -1674,7 +1676,7 @@
                                                                         </li>
                                                                     </ul>
                                                                 </li>
-                                                                <li><a href="../../knox-manage/check-the-locations-of-devices.htm">Check the locations of the devices</a>
+                                                                <li><a href="../../knox-manage/check-the-locations-of-devices.htm">Check the locations of devices</a>
                                                                 </li>
                                                                 <li><a href="../../knox-manage/view-device-logs.htm">View device logs</a>
                                                                 </li>
@@ -2110,13 +2112,13 @@
                                                         </li>
                                                     </ul>
                                                 </li>
-                                                <li class="has-children"><a href="faq-115013562087.htm#">Remote Support</a>
+                                                <li class="has-children"><a href="faq-115013562087.htm#">Knox Remote Support</a>
                                                     <ul class="sub-menu">
                                                         <li><a href="../../knox-manage/remote-support.htm">Introduction</a>
                                                         </li>
                                                         <li><a href="../../knox-manage/minimum-requirements-remote.htm">Minimum requirements</a>
                                                         </li>
-                                                        <li><a href="../../knox-manage/remote-support-viewer.htm">Remote Support viewer</a>
+                                                        <li><a href="../../knox-manage/remote-support-viewer.htm">Knox Remote Support Web Viewer</a>
                                                         </li>
                                                         <li><a href="../../knox-manage/control-devices-using-km.htm">Control devices</a>
                                                         </li>
@@ -2754,9 +2756,9 @@
 									</div>
 									-->
                                     <div id="sec2" class="small-12 medium-8 large-9 columns">
-                                        <div itemscope="itemscope" itemtype="http://schema.org/Guide"><a name="aanchor1488"></a>
+                                        <div itemscope="itemscope" itemtype="http://schema.org/Guide"><a name="aanchor1499"></a>
                                             <MadCap:concept term="Knox Platform for Enterprise" />
-                                            <h1><a name="aanchor1489"></a>
+                                            <h1><a name="aanchor1500"></a>
                                                 <MadCap:concept term="KBAs and FAQs" />What is a Knox Warranty Bit and how is it triggered?</h1>
                                             <p>The Samsung Knox warranty bit is a security feature that detects if unofficial software has been installed on your phone. This helps prevent malicious attempts from accessing your data.</p>
                                             <p>The Knox Warranty Bit detects if a non-Knox kernel has been loaded on the device. It is a one-time programmable bit e-fuse, which can only be turned from 0X0 to 0X1 (i.e. tripped). If a non-Knox boot loader or kernel has been installed on the device, Knox can no longer guarantee the security of the Knox container. As a result, the Warranty Bit is tripped to 0X1, indicating that this device can no longer use the <a href="../../whitepaper/kpe/app-container.htm" target="_blank" rel="noopener">Knox Workspace (container.)</a></p>
@@ -2767,23 +2769,35 @@
                                                 <li value="3">Other Samsung services that utilize Knox security stop working (Samsung Pay, Secure Folder.)</li>
                                             </ul>
                                             <p>Everything else outside the Workspace should be the same as before.</p>
-                                            <p>To check whether the Warranty Bit has tripped, follow these steps:</p>
+                                            <p>To check whether the Warranty Bit has tripped for new Samsung models:</p>
                                             <ol>
-                                                <li value="1">Power off your device.</li>
-                                                <li value="2">Once off, simultaneously press the volume down, home, and power button.</li>
-                                                <li value="3">When warning screen is displayed, press the volume up button.</li>
-                                                <li value="4">The Warranty Bit status is displayed in upper left hand corner.</li>
+                                                <li value="1">Connect a compatible USB cable to a powered-on PC.</li>
+                                                <li value="2">Power off the device.</li>
+                                                <li value="3">Once off, simultaneously press and hold the volume up and volume down buttons.</li>
+                                                <li value="4">While holding the buttons, connect the USB cable to the device.</li>
+                                                <li value="5">When a warning screen shows, release the buttons and press the volume up button.</li>
+                                                <li value="6">The Warranty Bit status (warranty void) is displayed on a screen among other parameters.</li>
+                                                <li value="7">Disconnect the USB cable, then simultaneously press and hold the volume up and power buttons for more than 7 seconds to exit and reboot the device.</li>
                                             </ol>
                                             <p>
-                                                <img src="../../../assets/merge/images/knox-platform-for-enterprise/115013562087/knoxbit.png" />
+                                                <img class="no-border" src="../../../assets/merge/images/knox-platform-for-enterprise/115013562087/knoxbit.png" alt="The image displays the warning screen that appears for users" />
                                             </p>
-                                            <p>If the Warranty Bit is tripped, the device displays&#160;<strong>Knox WARRANTY VOID: 0x01.</strong></p>
+                                            <h2 id="method-for-older-devices-with-home-button">Method for older devices with a home button</h2>
+                                            <p>To check whether the Warranty Bit has tripped for older devices:</p>
+                                            <ol>
+                                                <li value="1">Power off the device.</li>
+                                                <li value="2">Once off, simultaneously press the volume down, home, and power button.</li>
+                                                <li value="3">When warning screen is displayed, press the volume up button.</li>
+                                                <li value="4">The Warranty Bit status is displayed in upper-left corner.</li>
+                                            </ol>
+                                            <p>If the Warranty Bit is tripped, the device displays&#160;<b>Knox WARRANTY VOID: 0x01.</b></p>
                                             <p>If that is the case, there is no way to revert the Warranty Bit and Knox won't work on this device. The only way to get the device back to its original settings is to replace the PBA (Printed Board Assembly) on the device; hardware replacement will be required.</p>
-                                            <p><strong>For more information:</strong>
-                                            </p>
+                                            <h2 id="additional-information">Additional information</h2>
                                             <ul>
-                                                <li value="1"><strong>Warranty bit:</strong> <a href="faq-115013719548.htm" target="_blank" rel="noopener"><u>What happens if I root my device running a Knox service?</u></a></li>
-                                                <li value="2"><strong>How the Knox platform works: </strong> <a href="../../whitepaper/kpe/samsung-knox.htm" target="_blank" rel="noopener">Knox Whitepaper</a></li>
+                                                <li value="1"><a href="faq-115013719548.htm">What happens if I root my device running a Knox service?</a>
+                                                </li>
+                                                <li value="2"><a href="../../whitepaper/kpe/samsung-knox.htm" target="_blank">Knox Whitepaper</a>
+                                                </li>
                                             </ul>
                                             <div class="back"><a href="index.htm">Back to FAQs </a>
                                             </div>

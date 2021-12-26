@@ -55,16 +55,6 @@
         <link href="../../../assets/merge/kp-foundation.css" rel="stylesheet" />
         <link href="../../Resources/kp-madcap.css" rel="stylesheet" />
         <link href="../../Resources/print.css" rel="stylesheet" />
-        <style>
-            .md-draft,
-            .md-draft &gt; *,
-            .md-draft &gt; * &gt; *,
-            .md-draft &gt; * &gt; * &gt; *,
-            .md-draft &gt; * &gt; * &gt; * &gt; *,
-            .md-draft &gt; * &gt; * &gt; * &gt; * &gt; * {
-                background-color: #ddffdd !important;
-            }
-        </style>
         <script src="../../Resources/Scripts/custom.modernizr.js">
         </script>
         <script src="../../Resources/Scripts/jquery.min.js">
@@ -1577,6 +1567,8 @@
                                                                 </li>
                                                                 <li><a href="../sync-user-info-with-ad-ldap.htm">Sync user information with AD/LDAP</a>
                                                                 </li>
+                                                                <li><a href="../sync-user-info-with-azure-ad-microsoft-graph-api.htm">Sync user information with Azure AD through Microsoft Graph API</a>
+                                                                </li>
                                                                 <li><a href="../add-sync-services.htm">Add sync services</a>
                                                                 </li>
                                                                 <li><a href="../run-sync-services.htm">Run sync services</a>
@@ -1681,7 +1673,7 @@
                                                                         </li>
                                                                     </ul>
                                                                 </li>
-                                                                <li><a href="../check-the-locations-of-devices.htm">Check the locations of the devices</a>
+                                                                <li><a href="../check-the-locations-of-devices.htm">Check the locations of devices</a>
                                                                 </li>
                                                                 <li><a href="../view-device-logs.htm">View device logs</a>
                                                                 </li>
@@ -2117,13 +2109,13 @@
                                                         </li>
                                                     </ul>
                                                 </li>
-                                                <li class="has-children"><a href="faq-508-locate-device-android-enterprise-device-owner-mode.htm#">Remote Support</a>
+                                                <li class="has-children"><a href="faq-508-locate-device-android-enterprise-device-owner-mode.htm#">Knox Remote Support</a>
                                                     <ul class="sub-menu">
                                                         <li><a href="../remote-support.htm">Introduction</a>
                                                         </li>
                                                         <li><a href="../minimum-requirements-remote.htm">Minimum requirements</a>
                                                         </li>
-                                                        <li><a href="../remote-support-viewer.htm">Remote Support viewer</a>
+                                                        <li><a href="../remote-support-viewer.htm">Knox Remote Support Web Viewer</a>
                                                         </li>
                                                         <li><a href="../control-devices-using-km.htm">Control devices</a>
                                                         </li>
@@ -2762,7 +2754,7 @@
 									-->
                                     <div id="sec2" class="small-12 medium-8 large-9 columns">
                                         <div itemscope="itemscope" itemtype="http://schema.org/Guide">
-                                            <h1><a name="aanchor1108"></a>
+                                            <h1><a name="aanchor1112"></a>
                                                 <MadCap:concept term="Knox Manage" />How to locate devices in Android Enterprise (AE) Device Owner (DO) mode</h1>
                                             <div class="callout primary">
                                                 <p>To force enable GPS and Report Device Location, and prevent the user from disabling GPS:</p>
@@ -2775,25 +2767,22 @@
                                                     <li value="6">Click <b>Save</b> to modify the policy.</li>
                                                 </ol>
                                                 <p>As the device's GPS configuration is turned on by default, enrolling it in KM applies the Location Setting policy and prevents the user from disabling GPS.</p>
-                                                <div class="md-draft">
-                                                    <div class="callout warning">
-                                                        <p><b>IMPORTANT</b> — In order to track the location of Android 11 and 12 devices, the device user must grant the KM agent location access. This affects devices with the following deployment types:</p>
-                                                        <ul>
-                                                            <li value="1">Employee-owned devices with a Work Profile</li>
-                                                            <li value="2">Shared devices with a secondary account</li>
-                                                        </ul>
-                                                        <p>You should inform users with these devices to allow the following access settings:</p>
-                                                        <ul>
-                                                            <li value="1">Android 11:
-                                <ol><li value="1">When the KM agent requests location access, the user must select <b>While using this app</b>.</li><li value="2">Then, they must go to <b>Work profile settings</b> &gt;<b>Apps</b> &gt;<b>Knox Manage</b> &gt;<b>App permissions</b>, and set <b>Location</b> to <b>Allow all the time</b>.</li></ol></li>
-                                                            <li value="2">Android 12 and higher:
-                                <ul><li value="1">When the KM agent requests location access, the user must select <b>Precise</b> and <b>While using this app</b>.</li></ul></li>
-                                                        </ul>
-                                                    </div>
+                                                <div class="callout warning">
+                                                    <p><b>IMPORTANT</b> — In order to track the location of Android 11 and 12 devices, the device user must grant the KM agent location access. This affects devices with the following deployment types:</p>
+                                                    <ul>
+                                                        <li value="1">Employee-owned devices with a Work Profile</li>
+                                                        <li value="2">Shared devices with a secondary account</li>
+                                                    </ul>
+                                                    <p>You should inform users with these devices to allow the following access settings:</p>
+                                                    <ul>
+                                                        <li value="1">Android 11:
+                            <ol><li value="1">When the KM agent requests location access, the user must select <b>While using this app</b>.</li><li value="2">Then, they must go to <b>Work profile settings</b> &gt;<b>Apps</b> &gt;<b>Knox Manage</b> &gt;<b>App permissions</b>, and set <b>Location</b> to <b>Allow all the time</b>.</li></ol></li>
+                                                        <li value="2">Android 12 and higher:
+                            <ul><li value="1">When the KM agent requests location access, the user must select <b>Precise</b> and <b>While using this app</b>.</li></ul></li>
+                                                    </ul>
                                                 </div>
-                                                <p>If you want to find your device but it's not possible with KM, you can try another option like <a href="https://www.google.com/android/find">Google Find My Device</a>.
-            </p>
                                             </div>
+                                            <p>If you want to find your device but it's not possible with KM, you can try another option like <a href="https://www.google.com/android/find">Google Find My Device</a>.</p>
                                             <div class="back"><a href="index.htm">Back to FAQs </a>
                                             </div>
                                         </div>

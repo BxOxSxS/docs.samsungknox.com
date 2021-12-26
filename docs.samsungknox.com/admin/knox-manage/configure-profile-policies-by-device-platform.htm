@@ -1,8 +1,7 @@
 <!DOCTYPE html>
 <html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" lang="en-US" xml:lang="en-US" data-mc-search-type="Stem" data-mc-help-system-file-name="Default.xml" data-mc-path-to-help-system="../" data-mc-conditions="Default.km-build" data-mc-target-type="WebHelp2" data-mc-runtime-file-type="Topic;Default" data-mc-preload-images="false" data-mc-in-preview-mode="false" data-mc-toc-path="Knox Manage|Configure|Profile|Configure profile policies">
     <head>
-        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" /><title>Configure profile policies by device platform
-        </title>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" /><title>Configure profile policies by device platform</title>
         <!-- Google analytics tag-->
         <script>/* <![CDATA[ */
 			(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
@@ -1568,6 +1567,8 @@
                                                                 </li>
                                                                 <li><a href="sync-user-info-with-ad-ldap.htm">Sync user information with AD/LDAP</a>
                                                                 </li>
+                                                                <li><a href="sync-user-info-with-azure-ad-microsoft-graph-api.htm">Sync user information with Azure AD through Microsoft Graph API</a>
+                                                                </li>
                                                                 <li><a href="add-sync-services.htm">Add sync services</a>
                                                                 </li>
                                                                 <li><a href="run-sync-services.htm">Run sync services</a>
@@ -1672,7 +1673,7 @@
                                                                         </li>
                                                                     </ul>
                                                                 </li>
-                                                                <li><a href="check-the-locations-of-devices.htm">Check the locations of the devices</a>
+                                                                <li><a href="check-the-locations-of-devices.htm">Check the locations of devices</a>
                                                                 </li>
                                                                 <li><a href="view-device-logs.htm">View device logs</a>
                                                                 </li>
@@ -2108,13 +2109,13 @@
                                                         </li>
                                                     </ul>
                                                 </li>
-                                                <li class="has-children"><a href="configure-profile-policies-by-device-platform.htm#">Remote Support</a>
+                                                <li class="has-children"><a href="configure-profile-policies-by-device-platform.htm#">Knox Remote Support</a>
                                                     <ul class="sub-menu">
                                                         <li><a href="remote-support.htm">Introduction</a>
                                                         </li>
                                                         <li><a href="minimum-requirements-remote.htm">Minimum requirements</a>
                                                         </li>
-                                                        <li><a href="remote-support-viewer.htm">Remote Support viewer</a>
+                                                        <li><a href="remote-support-viewer.htm">Knox Remote Support Web Viewer</a>
                                                         </li>
                                                         <li><a href="control-devices-using-km.htm">Control devices</a>
                                                         </li>
@@ -2754,28 +2755,35 @@
                                     <div id="sec2" class="small-12 medium-8 large-9 columns">
                                         <div itemscope="itemscope" itemtype="http://schema.org/Guide">
                                             <h1><a name="aanchor373"></a>
-                                                <MadCap:concept term="knox-manage" />Configure profile policies by device platform
-        </h1>
-                                            <p>Specify the policies for device controls, such as the security policy or application policy. After specifying the policies, you can directly apply the profile to the assigned organization or group. Going forward, for devices running a Work Profile on a company-owned device, KM now supports Knox policies.</p>
-                                            <p>When applying system updates to devices running Android 9.0 (API 29) and higher, IT admins can now use the <b>Freeze Period</b> option to delay deployment of system update to target devices. The following are important points to consider:</p>
-                                            <ul>
-                                                <li value="1"><b>Support for all update policies</b>—The <b>Freeze Period</b> option supports all kinds of update policy such as automatic, postpone, and windowed.</li>
-                                                <li value="2"><b>Freeze periods apply one at a time</b>—Currently, IT admins cannot set up freeze periods that overlap each other. IT admins can set up multiple freeze periods  but only one freeze period applies to devices at one time.</li>
-                                                <li value="3"><b>Freeze period duration</b>—IT admins can add a total freeze period of 90 days.</li>
-                                                <li value="4"><b>Multiple freeze periods</b>—Two freeze periods cannot overlap each other and must remain separated by a minimum of 60 days.</li>
-                                            </ul>
-                                            <p>To add policies to a profile, complete the following steps:</p>
+                                                <MadCap:concept term="knox-manage" />Configure profile policies by device platform</h1>
+                                            <p>In a device profile, you can configure policies for device controls, such as security and app policies. After, to deploy the policies, you can apply the profile to the assigned organization or group. Going forward, for devices running a Work Profile on a company-owned device, KM now supports Knox policies.</p>
+                                            <p>To add policies to a profile:</p>
                                             <div class="callout note"><b>NOTE</b> — For detailed information about each of the look up items, see <a href="list-of-lookup-items.htm#List">List of lookup items</a>.</div>
                                             <ol>
                                                 <li value="1">Navigate to <b>Profile</b>.</li>
                                                 <li value="2">On the <b>Profile</b> page, click the name of the profile to configure policies for.</li>
                                                 <li value="3">On the <b>Profile Detail</b> page, click <b>Modify Policy</b>.</li>
                                                 <li value="4">Configure the policy details by device platform. Each device platform has different groups of policies.
-                <ol style="list-style-type: lower-alpha;"><li value="1">Select the platform to configure, for example, <b>Samsung&#160;Knox</b>.</li><li value="2">Find the setting you want to configure by selecting the proper category or by performing a keyword search in the <b>Search Policy</b> field.</li><li value="3">Configure the settings as needed.
-                        <div class="callout success"><b>TIP</b>—For information on the different policies available in each supported platform, see the other pages in the following sections.</div></li></ol></li>
-                                                <li value="5">Do one of the following:
-                <ul><li value="1">Click <b>Save &amp; Assign</b> to save your changes and to proceed with assigning the profile to groups or organizations.</li><li value="2">Click <b>Save</b> to save your changes.</li></ul></li>
+                <ol style="list-style-type: lower-alpha;"><li value="1">Select the platform to configure, for example, <b>Samsung Knox</b>.</li><li value="2">Find the setting you want to configure by selecting the proper category or by performing a keyword search in the <b>Search Policy</b> field.</li><li value="3">Configure the policy as needed.</li></ol></li>
+                                                <li value="5">Save the policy:
+                <ul><li value="1">Click <b>Save &amp; Assign</b> to save your changes and proceed to assigning the profile to groups or organizations.</li><li value="2">Click <b>Save</b> to save your changes.</li></ul></li>
                                             </ol>
+                                            <h2 id="android-policy-details">Android policy details</h2>
+                                            <h3 id="freeze-periods">Freeze periods</h3>
+                                            <p>When applying system updates to devices running Android 9 and higher, IT admins can now use the <b>Freeze Period</b> option to delay deployment of system update to target devices. The following are important points to consider:</p>
+                                            <ul>
+                                                <li value="1">Support for all update policies — The <b>Freeze Period</b> option supports many update policies such as automatic, postpone, and windowed.</li>
+                                                <li value="2">Freeze periods apply one at a time — Currently, IT admins cannot set up freeze periods that overlap each other. IT admins can set up multiple freeze periods but only one freeze period applies to devices at one time.</li>
+                                                <li value="3">Freeze period duration — IT admins can add a total freeze period of 90 days.</li>
+                                                <li value="4">Multiple freeze periods — Two freeze periods cannot overlap each other and must remain separated by a minimum of 60 days.</li>
+                                            </ul>
+                                            <h2 id="chrome-os-policy-details">Chrome OS policy details</h2>
+                                            <p>On KM, Chrome OS organizations, users, and devices sync with the Google Admin console. By default, a Chrome OS policy on the KM console is unset and greyed out, because it inherits the setting from either a parent organization or the Google Admin console. When you apply a policy setting on the KM console, you are in fact overriding it.</p>
+                                            <p>Within an enterprise, organizations have parent-child relationships with each other. If an organization has no parent, unset policies show as <b>Inherit from Google Default</b>, which reflects that the original policy values come from the Google Admin console. If an organization is a child of another organization, its unset policies show as <b>Inherit from <i>parent organization</i></b>, which reflects that the original policy values come from its parent. If a child organization has children, its policy overrides cascade down to its children.</p>
+                                            <p>In order to set a policy, you must first deactivate its inheritance by selecting <b>Locally applied</b> from the drop-down next to it:</p>
+                                            <p>
+                                                <img class="no-border" src="../../assets/merge/images/knox-manage/km-chromeos-policies-local-override.png" srcset="../../assets/merge/images/knox-manage/km-chromeos-policies-local-override.png 2x" alt="Selecting Locally applied from the local override drop-down" />
+                                            </p>
                                         </div>
                                         <!-- Inserts feedback module here -->
                                         <div id="feedback">

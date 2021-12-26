@@ -55,16 +55,6 @@
         <link href="../../../assets/merge/kp-foundation.css" rel="stylesheet" />
         <link href="../../Resources/kp-madcap.css" rel="stylesheet" />
         <link href="../../Resources/print.css" rel="stylesheet" />
-        <style>
-            .md-draft,
-            .md-draft &gt; *,
-            .md-draft &gt; * &gt; *,
-            .md-draft &gt; * &gt; * &gt; *,
-            .md-draft &gt; * &gt; * &gt; * &gt; *,
-            .md-draft &gt; * &gt; * &gt; * &gt; * &gt; * {
-                background-color: #ddffdd !important;
-            }
-        </style>
         <script src="../../Resources/Scripts/custom.modernizr.js">
         </script>
         <script src="../../Resources/Scripts/jquery.min.js">
@@ -1577,6 +1567,8 @@
                                                                 </li>
                                                                 <li><a href="../sync-user-info-with-ad-ldap.htm">Sync user information with AD/LDAP</a>
                                                                 </li>
+                                                                <li><a href="../sync-user-info-with-azure-ad-microsoft-graph-api.htm">Sync user information with Azure AD through Microsoft Graph API</a>
+                                                                </li>
                                                                 <li><a href="../add-sync-services.htm">Add sync services</a>
                                                                 </li>
                                                                 <li><a href="../run-sync-services.htm">Run sync services</a>
@@ -1681,7 +1673,7 @@
                                                                         </li>
                                                                     </ul>
                                                                 </li>
-                                                                <li><a href="../check-the-locations-of-devices.htm">Check the locations of the devices</a>
+                                                                <li><a href="../check-the-locations-of-devices.htm">Check the locations of devices</a>
                                                                 </li>
                                                                 <li><a href="../view-device-logs.htm">View device logs</a>
                                                                 </li>
@@ -2117,13 +2109,13 @@
                                                         </li>
                                                     </ul>
                                                 </li>
-                                                <li class="has-children"><a href="kba-360047836374.htm#">Remote Support</a>
+                                                <li class="has-children"><a href="kba-360047836374.htm#">Knox Remote Support</a>
                                                     <ul class="sub-menu">
                                                         <li><a href="../remote-support.htm">Introduction</a>
                                                         </li>
                                                         <li><a href="../minimum-requirements-remote.htm">Minimum requirements</a>
                                                         </li>
-                                                        <li><a href="../remote-support-viewer.htm">Remote Support viewer</a>
+                                                        <li><a href="../remote-support-viewer.htm">Knox Remote Support Web Viewer</a>
                                                         </li>
                                                         <li><a href="../control-devices-using-km.htm">Control devices</a>
                                                         </li>
@@ -2762,32 +2754,29 @@
 									-->
                                     <div id="sec2" class="small-12 medium-8 large-9 columns">
                                         <div itemscope="itemscope" itemtype="http://schema.org/Guide">
-                                            <div class="md-draft"><a name="aanchor1277"></a>
-                                                <MadCap:concept term="Knox Manage" />
-                                                <h1><a name="aanchor1278"></a>
-                                                    <MadCap:concept term="KBAs and FAQs" />How to secure a ProKiosk device with a password</h1>
-                                                <div class="callout primary">
-                                                    <p>This KBA describes how to set a PIN or password on a ProKiosk device. For full details on the different possible options for setting a lock screen in Knox Manage, see <a href="../android-enterprise-policies.htm#password">Android Enterprise policies</a> or <a href="../android-legacy-policies.htm">Android Legacy policies</a>.</p>
-                                                    <p>To secure to a ProKiosk device with a password:</p>
-                                                    <ol>
-                                                        <li value="1">On the KM console, go to the <b>Kiosk</b> page, select your kiosk, and then click <b>Modify</b>.</li>
-                                                        <li value="2">Click <b>Device Setting</b> &gt; <b>Select</b>.</li>
-                                                        <li value="3">Ensure <b>Lock Screen</b> is disabled.
+                                            <h1><a name="aanchor1279"></a>
+                                                <MadCap:concept term="knox-manage;KBAs and FAQs" />How to secure a ProKiosk device with a password</h1>
+                                            <div class="callout primary">
+                                                <p>This KBA describes how to set a PIN or password on a ProKiosk device. For full details on the different possible options for setting a lock screen in Knox Manage, see <a href="../android-enterprise-policies.htm#password">Android Enterprise policies</a> or <a href="../android-legacy-policies.htm">Android Legacy policies</a>.</p>
+                                                <p>To secure to a ProKiosk device with a password:</p>
+                                                <ol>
+                                                    <li value="1">On the KM console, go to the <b>Kiosk</b> page, select your kiosk, and then click <b>Modify</b>.</li>
+                                                    <li value="2">Click <b>Device Setting</b> &gt; <b>Select</b>.</li>
+                                                    <li value="3">Ensure <b>Lock Screen</b> is disabled.
                 </li>
-                                                        <li value="4">Go to <b>Profile</b>, then create or modify a profile for the kiosk.</li>
-                                                        <li value="5">Adjust the password policy to require a PIN or password on the device:
+                                                    <li value="4">Go to <b>Profile</b>, then create or modify a profile for the kiosk.</li>
+                                                    <li value="5">Adjust the password policy to require a PIN or password on the device:
                     <ul><li value="1">Android Enterprise:
                             <ol style="list-style-type: lower-alpha"><li value="1">Go to the <b>Android Enterprise</b> &gt; <b>Password</b> policy list.</li><li value="2">Set a password under <b>Device Controls</b>:
                                     <ul><li value="1">Android 12 and higher — Set <b>Minimum Complexity</b> to <b>Medium</b>.</li><li value="2">Android 11 and lower — Set <b>Minimum Strength</b> to <b>Numeric</b>.</li></ul></li></ol></li><li value="2">Android Legacy:
                             <ol style="list-style-type: lower-alpha"><li value="1">Go to the <b>Android Legacy</b> &gt; <b>Security</b> policy list.</li><li value="2">Set <b>Device Password</b> to <b>Apply</b>.</li><li value="3">Set <b>Minimum Strength</b> to <b>Numeric</b>.</li></ol></li></ul></li>
-                                                        <li value="6">Click <b>Save and Assign</b>.</li>
-                                                        <li value="7">If the profile hasn't been assigned yet, assign it to a group or organization that the kiosk belongs to.</li>
-                                                        <li value="8">Go to <b>Profile</b>, select the profile, then click <b>Apply</b>.</li>
-                                                    </ol>
-                                                    <p>The updated password policy applies to the kiosk, and a new password must be set on the device itself.</p>
-                                                    <h2>Additional information</h2>
-                                                    <p>To learn more about ProKiosk mode, see the <a href="../../knox-configure/kiosk-Mode.htm">Kiosk mode</a>.</p>
-                                                </div>
+                                                    <li value="6">Click <b>Save and Assign</b>.</li>
+                                                    <li value="7">If the profile hasn't been assigned yet, assign it to a group or organization that the kiosk belongs to.</li>
+                                                    <li value="8">Go to <b>Profile</b>, select the profile, then click <b>Apply</b>.</li>
+                                                </ol>
+                                                <p>The updated password policy applies to the kiosk, and a new password must be set on the device itself.</p>
+                                                <h2>Additional information</h2>
+                                                <p>To learn more about ProKiosk mode, see the <a href="../../knox-configure/kiosk-Mode.htm">Kiosk mode</a>.</p>
                                             </div>
                                             <div class="back"><a href="index.htm">Back to KBAs </a>
                                             </div>

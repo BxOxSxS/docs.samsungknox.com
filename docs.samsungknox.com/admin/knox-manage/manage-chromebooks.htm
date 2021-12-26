@@ -55,16 +55,6 @@
         <link href="../../assets/merge/kp-foundation.css" rel="stylesheet" />
         <link href="../Resources/kp-madcap.css" rel="stylesheet" />
         <link href="../Resources/print.css" rel="stylesheet" />
-        <style>
-            .md-draft,
-            .md-draft &gt; *,
-            .md-draft &gt; * &gt; *,
-            .md-draft &gt; * &gt; * &gt; *,
-            .md-draft &gt; * &gt; * &gt; * &gt; *,
-            .md-draft &gt; * &gt; * &gt; * &gt; * &gt; * {
-                background-color: #ddffdd !important;
-            }
-        </style>
         <script src="../Resources/Scripts/custom.modernizr.js">
         </script>
         <script src="../Resources/Scripts/jquery.min.js">
@@ -1577,6 +1567,8 @@
                                                                 </li>
                                                                 <li><a href="sync-user-info-with-ad-ldap.htm">Sync user information with AD/LDAP</a>
                                                                 </li>
+                                                                <li><a href="sync-user-info-with-azure-ad-microsoft-graph-api.htm">Sync user information with Azure AD through Microsoft Graph API</a>
+                                                                </li>
                                                                 <li><a href="add-sync-services.htm">Add sync services</a>
                                                                 </li>
                                                                 <li><a href="run-sync-services.htm">Run sync services</a>
@@ -1681,7 +1673,7 @@
                                                                         </li>
                                                                     </ul>
                                                                 </li>
-                                                                <li><a href="check-the-locations-of-devices.htm">Check the locations of the devices</a>
+                                                                <li><a href="check-the-locations-of-devices.htm">Check the locations of devices</a>
                                                                 </li>
                                                                 <li><a href="view-device-logs.htm">View device logs</a>
                                                                 </li>
@@ -2117,13 +2109,13 @@
                                                         </li>
                                                     </ul>
                                                 </li>
-                                                <li class="has-children"><a href="manage-chromebooks.htm#">Remote Support</a>
+                                                <li class="has-children"><a href="manage-chromebooks.htm#">Knox Remote Support</a>
                                                     <ul class="sub-menu">
                                                         <li><a href="remote-support.htm">Introduction</a>
                                                         </li>
                                                         <li><a href="minimum-requirements-remote.htm">Minimum requirements</a>
                                                         </li>
-                                                        <li><a href="remote-support-viewer.htm">Remote Support viewer</a>
+                                                        <li><a href="remote-support-viewer.htm">Knox Remote Support Web Viewer</a>
                                                         </li>
                                                         <li><a href="control-devices-using-km.htm">Control devices</a>
                                                         </li>
@@ -2762,34 +2754,30 @@
 									-->
                                     <div id="sec2" class="small-12 medium-8 large-9 columns">
                                         <div itemscope="itemscope" itemtype="http://schema.org/Guide">
-                                            <div class="md-draft-none">
-                                                <h1><a name="aanchor277"></a>
-                                                    <MadCap:concept term="knox-manage" />Manage Chromebooks</h1>
-                                                <p>For approved users, the KM console can now manage and enroll Chromebooks and Chrome OS apps. Like with Android devices, the KM agent for Chromebooks is available on Google Play.</p>
-                                                <h2 id="overview">Chrome OS management overview</h2>
-                                                <p>Chrome OS and Chromebook management on KM relies on a link between the managed services on the Google Admin console and the KM console. Due to this fact, there are some important differences you should keep in mind when managing Chrome OS and Chromebooks compared to the other supported OSs on KM:</p>
-                                                <ul>
-                                                    <li value="1">Automatic syncing — Organizations, users, and devices are synced from the Google Admin console. You cannot create new organizations or users from the KM console.</li>
-                                                    <li value="2">Organization-based deployment — Devices can only be assigned to organizations. Groups are not supported.</li>
-                                                    <li value="3">Organization-based profiles — Each organization has an automatically-generated profile associated with it. To set policies for deployments, you must edit the associated profile. You cannot create additional profiles.</li>
-                                                    <li value="4">User-based enrollment — Each user account is associated with a Chromebook.</li>
-                                                </ul>
-                                                <div class="callout warning"><b>IMPORTANT</b> — Currently, the <b>User &amp; Browser</b> and <b>App &amp; Extension</b> policies are available. Support for <b>Device</b> policies is planned for a future release.</div>
-                                                <h2 id="set-up">Set up Chromebook management</h2>
-                                                <p>Before you can begin managing Chromebooks, you must set up your Google Admin Console and KM:</p>
-                                                <ol>
-                                                    <li value="1">First, you need to upgrade your Chrome license:
-                <ol><li value="1">Depending on which license you have, purchase the <a href="https://chromeenterprise.google/os/upgrade/">Chrome Enterprise Upgrade</a> or <a href="https://chromeenterprise.google/os/upgrade/">Chrome Education Upgrade</a> from your Knox reseller or the Google Admin Console.</li></ol></li>
-                                                    <li value="2">Next, you need to set up an organization and users:
-                <ol><li value="1">On the Google Admin console, create an organization and users.</li><li value="2">Register at least one Chromebook with the organization.</li></ol></li>
-                                                    <li value="3">Lastly, register the Google admin account with KM:
+                                            <h1><a name="aanchor276"></a>
+                                                <MadCap:concept term="knox-manage" />Manage Chromebooks</h1>
+                                            <p>For approved users, the KM console can now manage and enroll Chromebooks and Chrome OS apps. Unlike with Android devices, KM does not directly interact with devices through an agent on the device itself. KM instead interfaces with the Google Admin console, which does the intermediary work of enrolling Chromebooks and setting their policies. Communication between Chromebooks and the Google Admin console is enabled by native technologies on Chrome OS.</p>
+                                            <h2 id="overview">Chrome OS management overview</h2>
+                                            <p>Chrome OS and Chromebook management on KM relies on a link between the managed services on the Google Admin console and the KM console. Due to this fact, there are some important differences you should keep in mind when managing Chrome OS and Chromebooks compared to the other supported OSs on KM:</p>
+                                            <ul>
+                                                <li value="1">Automatic syncing — Organizations, users, and devices are synced from the Google Admin console. You cannot create new organizations or users from the KM console.</li>
+                                                <li value="2">Organization-based deployment — Devices can only be assigned to organizations. Groups are not supported.</li>
+                                                <li value="3">Organization-based profiles — Each organization has an automatically-generated profile associated with it. To set policies for deployments, you must edit the associated profile. You cannot create additional profiles.</li>
+                                                <li value="4">User-based enrollment — Each user account is associated with a Chromebook.</li>
+                                            </ul>
+                                            <div class="callout warning"><b>IMPORTANT</b> — Currently, the <b>User &amp; Browser</b> and <b>App &amp; Extension</b> policies are available. Support for <b>Device</b> policies is planned for a future release.</div>
+                                            <h2 id="set-up">Set up Chromebook management</h2>
+                                            <p>Before you can begin managing Chromebooks, you must set up your Google Admin Console and KM:</p>
+                                            <ol>
+                                                <li value="1">First, you need to upgrade your Chrome license. Depending on which license you have, purchase the <a href="https://chromeenterprise.google/os/upgrade/">Chrome Enterprise Upgrade</a> or <a href="https://chromeenterprise.google/os/upgrade/">Chrome Education Upgrade</a> from the Google Admin Console.</li>
+                                                <li value="2">Once upgraded, you need to set up an organization and users. On the Google Admin console, create an organization and add your users.</li>
+                                                <li value="3">Lastly, register the Google admin account with KM:
                 <ol><li value="1">On the KM console, go to <b>Setting</b> &gt; <b>Chrome OS</b> &gt; <b>Sign in with Google</b>. The Google accounts page opens.</li><li value="2">Log in to the Google account.</li><li value="3">Select all permissions, then click <b>Continue</b>. The browser returns you to the KM console. The <b>Google Authorization Code</b> field is now filled in.
-                        <p><img src="../../assets/merge/images/knox-manage/km-21-11-rn-chromeos-register-google-account-01.png" srcset="../../assets/merge/images/knox-manage/km-21-11-rn-chromeos-register-google-account-01.png x4" alt="Granting Google account permissions on GSuite." /></p></li><li value="4">Enter the same account for the <b>Google Admin Email Address</b>, then click <b>Authorize</b>.
+                        <p><img src="../../assets/merge/images/knox-manage/km-21-11-rn-chromeos-register-google-account-01.png" srcset="../../assets/merge/images/knox-manage/km-21-11-rn-chromeos-register-google-account-01.png 3x" alt="Granting Google account permissions on GSuite." /></p></li><li value="4">Enter the same account for the <b>Google Admin Email Address</b>, then click <b>Authorize</b>.
                         <p><img src="../../assets/merge/images/knox-manage/km-21-11-rn-chromeos-register-google-account-02.png" alt="Registering the Google account on the KM console." /></p></li></ol></li>
-                                                </ol>
-                                                <h2 id="see-also">See also</h2>
-                                                <p>Once your tenant is set up to manage Chromebooks, you can configure <a href="chrome-os-policies.htm">Chrome OS profiles</a>, <a href="add-chrome-os-apps.htm">add apps</a>, and then <a href="assign-chrome-os-apps.htm">assign apps</a>.</p>
-                                            </div>
+                                            </ol>
+                                            <h2 id="see-also">See also</h2>
+                                            <p>Once your tenant is set up to manage Chromebooks, you can configure <a href="chrome-os-policies.htm">Chrome OS profiles</a>, <a href="add-chrome-os-apps.htm">add apps</a>, and then <a href="assign-chrome-os-apps.htm">assign apps</a>.</p>
                                         </div>
                                         <!-- Inserts feedback module here -->
                                         <div id="feedback">
