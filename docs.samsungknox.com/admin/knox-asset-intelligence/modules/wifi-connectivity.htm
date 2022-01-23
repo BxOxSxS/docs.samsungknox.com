@@ -2304,7 +2304,7 @@
                                                     <ul class="sub-menu">
                                                         <li><a href="../../efota-one/features-overview.htm">Features overview</a>
                                                         </li>
-                                                        <li><a href="../../efota-one/navigate-portal.htm">About the Knox Admin portal</a>
+                                                        <li><a href="../../efota-one/navigate-portal.htm">About the Knox Admin Portal</a>
                                                         </li>
                                                         <li class="has-children"><a href="wifi-connectivity.htm#">Create a campaign</a>
                                                             <ul class="sub-menu">
@@ -2761,104 +2761,779 @@
 									-->
                                     <div id="sec2" class="small-12 medium-8 large-9 columns">
                                         <div itemscope="itemscope" itemtype="http://schema.org/Guide">
-                                            <h1><a name="aanchor228"></a>
+                                            <h1><a name="aanchor229"></a>
                                                 <MadCap:concept term="knox-asset-intelligence" />Wi-Fi connectivity</h1>
-                                            <h2><a name="How"></a>How it works</h2>
+                                            <h2 id="How">How it works</h2>
                                             <p>On Samsung devices, a Wi-Fi module runs at system-level to detect issues. Abnormal Wi-Fi disconnection events are broadcast to the Knox Asset Intelligence agent in real-time, which are then periodically uploaded to the server.&#160; Use these insights to identify exactly why your devices are disconnected, and conduct a root cause analysis with the historical trends that Knox Asset Intelligence provides.</p>
                                             <p>The categories of Wi-Fi disconnection events are defined below:</p>
                                             <table width="100%">
                                                 <tbody>
                                                     <tr>
-                                                        <td><b>Category</b>
+                                                        <td style="text-align: center;">
+                                                            <p><b>Disconnection category</b>
+                                                            </p>
                                                         </td>
-                                                        <td><b>Event</b>
+                                                        <td style="text-align: center;">
+                                                            <p><b>Event</b>
+                                                            </p>
+                                                        </td>
+                                                        <td style="text-align: center;">
+                                                            <p><b>Troubleshooting action</b>
+                                                            </p>
                                                         </td>
                                                     </tr>
                                                     <tr>
-                                                        <td>Device internal fail</td>
-                                                        <td>The disconnection was caused by one of the following:
-                        <ul><li value="1">An abnormal disconnection from the conventional field, with the LCD on.</li><li value="2">An abnormal disconnection with the LCD off.</li><li value="3">An authentication error occurred due to an invalid password. As a device user, if you’re connecting to a PSK (pre-shared key)-secured access point using WPA or WPA2, verify with your IT admin whether you’re using the correct password.</li><li value="4">An access point Association Reject event occurred. This error can occur if MAC security is set up for the access point, but it attempts to connect to a device that isn’t MAC-registered.<br />
-                            If the device user enters an incorrect password on a personal security access point with WPA3, this event occurs to enhance security. To resolve the error, enter the correct password.  </li><li value="5">The network scan failed more than 3 times over 3 minutes.</li><li value="6">A driver hang occurred.</li><li value="7">An HIDL communication problem occurred.</li></ul></td>
+                                                        <td rowspan="7">
+                                                            <p>Device internal fail</p>
+                                                        </td>
+                                                        <td>
+                                                            <p>Abnormal disconnect from conventional field (LCD on)</p>
+                                                        </td>
+                                                        <td>
+                                                            <p>The root cause is difficult to determine through the device. If this event occurs repeatedly, please check the access point.</p>
+                                                        </td>
                                                     </tr>
                                                     <tr>
-                                                        <td>DHCP</td>
-                                                        <td><b>Wrong IP address given by AP</b> – The wrong IP address was given by the access point.<br /><b>DHCP fail (Need to check air log)</b> – The device was disconnected by the Dynamic Host Configuration Protocol (DHCP) server.</td>
+                                                        <td>
+                                                            <p>Abnormal disconnect with LCD off</p>
+                                                        </td>
+                                                        <td>
+                                                            <p>The root cause is difficult to determine through the device. If this event occurs repeatedly, please check the access point.</p>
+                                                        </td>
                                                     </tr>
                                                     <tr>
-                                                        <td>AP</td>
-                                                        <td><b>Abnormal cause message sent by AP</b> – The disconnection was due to a predefined value.<br /><b>Unreceivable packets sent by AP</b> –&#160; Packets sent by the access point could not be received by the device.</td>
+                                                        <td>
+                                                            <p>Disabled by an AP Association Reject event</p>
+                                                        </td>
+                                                        <td>
+                                                            <p>An additional review of device logs and the access point is required to determine the exact cause of an Association Reject event. One potential cause may be the MAC security configuration—ensure you either set the MAC security category of the access point or disable MAC security.</p>
+                                                        </td>
                                                     </tr>
                                                     <tr>
-                                                        <td>Indistinct AP event</td>
-                                                        <td>A general access point failure, caused by one of the following:
-                        <ul><li value="1">An abnormal disconnection from the conventional field, with the LCD on.</li><li value="2">An abnormal disconnection with the LCD off.</li><li value="3">An authentication error occurred due to an invalid password. As a device user, if you’re connecting to a PSK (pre-shared key)-secured access point using WPA or WPA2, verify with your IT admin whether you’re using the correct password.</li><li value="4">An Association Reject event occurred.</li></ul></td>
+                                                        <td>
+                                                            <p>Disabled due to an authentication (Wrong Password)</p>
+                                                        </td>
+                                                        <td>
+                                                            <p>Make sure you enter the correct password. Passwords are case-sensitive and may include letters, numbers, symbols, or spaces.</p>
+                                                        </td>
                                                     </tr>
                                                     <tr>
-                                                        <td>WIPS action</td>
-                                                        <td><b>Caused by control system (MDM, EMM)</b> – The device is managed by an EMM policy that caused the disconnection.<br />
-                    A WIPS (Wireless Intrusion Prevention System) guards against Wi-Fi threats that could potentially cause security breaches, such as unauthorized access points. </td>
+                                                        <td>
+                                                            <p>Scan fails more than 3 times in 3 minutes</p>
+                                                        </td>
+                                                        <td>
+                                                            <p>If this event occurs repeatedly, there may be internal issues in the device. Device logs are required for further troubleshooting.</p>
+                                                        </td>
                                                     </tr>
                                                     <tr>
-                                                        <td>Third-party app</td>
-                                                        <td><b>Wi-Fi status has not changed</b> – A third party app caused the network to disconnect, or Wi-Fi was enabled and quickly disabled before a network connection was established.</td>
+                                                        <td>
+                                                            <p>Driver HANG occurs</p>
+                                                        </td>
+                                                        <td>
+                                                            <p>If this event occurs repeatedly, there may be internal device driver issues. Device logs are required for further troubleshooting.</p>
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>
+                                                            <p>HIDL communication problem occurred</p>
+                                                        </td>
+                                                        <td>
+                                                            <p>If this event occurs repeatedly, there may be internal device driver issues. Device logs are required for further troubleshooting.</p>
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td rowspan="4">
+                                                            <p>Indistinct AP event</p>
+                                                        </td>
+                                                        <td>
+                                                            <p>Abnormal disconnect from conventional field (LCD on)</p>
+                                                        </td>
+                                                        <td>
+                                                            <p>The root cause is difficult to determine through the device. If this event occurs repeatedly, please check the access point.</p>
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>
+                                                            <p>Abnormal disconnect with LCD off</p>
+                                                        </td>
+                                                        <td>
+                                                            <p>The root cause is difficult to determine through the device. If this event occurs repeatedly, please check the access point.</p>
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>
+                                                            <p>Disabled by an AP Association Reject event</p>
+                                                        </td>
+                                                        <td>
+                                                            <p>An additional review of the device logs and access point is required to determine the exact cause of an Association Reject event. One potential cause may be the MAC security configuration—ensure you either set the MAC security category of the access point or disable MAC security.</p>
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>
+                                                            <p>Disabled due to an authentication (Wrong Password)</p>
+                                                        </td>
+                                                        <td>
+                                                            <p>Make sure you enter the correct password. Passwords are case-sensitive and may include letters, numbers, symbols, or spaces.</p>
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td rowspan="2">
+                                                            <p>DHCP</p>
+                                                        </td>
+                                                        <td>
+                                                            <p>Wrong IP address given by AP</p>
+                                                        </td>
+                                                        <td>
+                                                            <p>The dynamic host configuration protocol (DHCP) failure may be caused by a problem in the access point's DHCP server configuration, or by a wide area network (WAN) port problem or another DHCP server. For example, another port may be connected instead of the WAN port. To determine the exact cause, an additional review of the device logs and access point is required.</p>
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>
+                                                            <p>DHCP fail (Need to check air log)</p>
+                                                        </td>
+                                                        <td>
+                                                            <p>Check whether the DHCP server is configured in the access point, and if the IP is properly allocated.</p>
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td rowspan="2">
+                                                            <p>AP</p>
+                                                        </td>
+                                                        <td>
+                                                            <p>Abnormal cause message sent by AP</p>
+                                                        </td>
+                                                        <td>
+                                                            <p>There was a general disconnection from the access point. If this event occurs repeatedly, please check the access point.</p>
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>
+                                                            <p>Unreceivable packets sent by AP</p>
+                                                        </td>
+                                                        <td>
+                                                            <p>There was a general disconnection from the access point. If this event occurs repeatedly, please check the access point.</p>
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>
+                                                            <p>WIPS action</p>
+                                                        </td>
+                                                        <td>
+                                                            <p>Caused by control system (MDM, EMM)</p>
+                                                        </td>
+                                                        <td>
+                                                            <p>Wireless network connections may be blocked by a control system, such as an EMM. Contact your network administrator for assistance.</p>
+                                                            <p>A WIPS (Wireless Intrusion Prevention System) guards against Wi-Fi threats that could potentially cause security breaches, such as unauthorized access points.</p>
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td rowspan="2">
+                                                            <p>3rd Party App</p>
+                                                        </td>
+                                                        <td>
+                                                            <p>Caused by 3rd Party App</p>
+                                                        </td>
+                                                        <td>
+                                                            <p>A third-party app may be interfering with Wi-Fi operation. Device logs are required for further troubleshooting.</p>
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>
+                                                            <p>WIFI status has not changed</p>
+                                                        </td>
+                                                        <td>
+                                                            <p>A third-party app may be interfering with Wi-Fi operation. Device logs are required for further troubleshooting.</p>
+                                                        </td>
                                                     </tr>
                                                 </tbody>
                                             </table>
                                             <p>By default, event logs are uploaded to the server once every three hours. You can configure this time interval through your <a href="../tutorial/configure-dashboard.htm#Settings">Dashboard settings</a>.</p>
-                                            <h2>Module views</h2>
+                                            <h2 id="module-views">Module views</h2>
                                             <p>For a description of the cascading chart structure, refer to <a href="module-overview.htm#Common">Common module views</a>.</p>
-                                            <h3>Dashboard widget</h3>
+                                            <h3 id="dashboard-widget">Dashboard widget</h3>
                                             <p>
-                                                <img src="../../../assets/merge/images/knox-asset-intelligence/wifi-connectivity-widget.png" width="400" class="center" alt="Wi-Fi connectivity dashboard widget" />
+                                                <img src="../../../assets/merge/images/knox-asset-intelligence/wifi-connectivity-dashboard-widget-2201.png" class="center" alt="Wi-Fi connectivity dashboard widget" />
                                             </p>
-                                            <p>The <b>WI-FI CONNECTIVITY</b> widget shows a chart with all Wi-Fi disconnection events logged over the configured amount of time, which can be changed in the <b>Display</b> dropdown. The categories in the chart legend are as follows:</p>
-                                            <ul>
-                                                <li value="1">System on device</li>
-                                                <li value="2">DHCP</li>
-                                                <li value="3">AP</li>
-                                                <li value="4">Indistinct event</li>
-                                                <li value="5">WIPS action</li>
-                                                <li value="6">3rd party app</li>
-                                            </ul>
-                                            <p>For event descriptions associated with the above categories, refer to <a href="wifi-connectivity.htm#How" class="selected">How it works</a>. You can also hover over a bar in the chart to see the distribution of events within that category.&#160;</p>
-                                            <p>At the bottom, the category with the highest number of logged events is shown. Click <b>View</b> to open the expanded view and see data filtered by that category.</p>
-                                            <h3>Expanded view</h3>
+                                            <p>The left side of the <b>WI-FI CONNECTIVITY</b> widget shows a chart of all abnormal Wi-Fi disconnection events associated with a BSSID, arranged by the number of events in descending order. The five BSSIDs with the highest number of abnormal disconnections are shown, with all other BSSIDs grouped into the last category. The time range can be changed in the <b>Display</b> list.</p>
+                                            <p>For event descriptions associated with the above categories, refer to <a href="wifi-connectivity.htm#How" class="selected">How it works</a>. You can also hover over a bar in the chart to see the distribution of events within that category.</p>
+                                            <p>On the right, a list of Wi-Fi disconnection insights is displayed. Here, you can see how many access points and devices have exceeded the issue threshold. Click one of the insights to move to a <a href="wifi-connectivity.htm#drill-down-list" class="selected">drill down list</a> of all affected assets of that type.</p>
+                                            <p>Click <b>VIEW ALL </b>to see a list of all access points that recorded Wi-Fi disconnection events over the configured time range.</p>
+                                            <h2 id="expanded-view">Expanded view</h2>
                                             <p>
-                                                <img src="../../../assets/merge/images/knox-asset-intelligence/wifi-connectivity-expanded.png" width="100%" alt="Wi-Fi connectivity expanded view" />
+                                                <img src="../../../assets/merge/images/knox-asset-intelligence/wifi-connectivity-expanded-view-2201.png" class="center" alt="Wi-Fi connectivity expanded view" />
                                             </p>
-                                            <p>The expanded view provides a visualization of the Wi-Fi disconnection events over a set amount of time. The default time range is set to the last 7 days. You can also choose to filter the data by <b>Disconnection category</b>, <b>Country</b>, and <b>SSID</b>. These values are set to <b>All</b> by default.</p>
-                                            <p>The detailed table contains the following data:</p>
+                                            <p>The expanded view provides a list of access points and their associated Wi-Fi disconnection events. The default time range is set to the last 7 days—any events occurring outside of this range are not displayed.</p>
+                                            <p>The total number of BSSIDs, SSIDs, disconnection events, and impacted devices are also listed in the page description below the title. Next to the number of impacted devices, click <b>View all</b> to jump to <a href="wifi-connectivity.htm#list-of-devices-impacted-by-wifi-connectivity-issues" class="selected">a list of devices that reported abnormal disconnection events</a>.</p>
+                                            <p>The following information is available in the list:</p>
                                             <ul>
-                                                <li value="1"><b>DISCONNECTION CATEGORY</b> – The category the event belongs to.</li>
-                                                <li value="2"><b>EVENT</b> – A brief description of the disconnection cause. See <a href="wifi-connectivity.htm#How" class="selected">How it works</a> for additional information on each event.</li>
-                                                <li value="3"><b>EVENT COUNT</b> – The number of reported disconnection events.</li>
-                                                <li value="4"><b>ASSOCIATED AP COUNT</b> – The number of access points that experienced the disconnection event.</li>
-                                                <li value="5"><b>DEVICE COUNT</b> – The number of devices impacted by the disconnection event.</li>
+                                                <li value="1"><b>AP (BSSID)</b> — The access point's basic service set identifier, used to uniquely identify it.</li>
+                                                <li value="2"><b>EVENT COUNT</b> — A brief description of the disconnection cause. Click the event count number to view a list of affected devices.</li>
+                                                <li value="3"><b>SSID</b> — The name of the access point.</li>
+                                                <li value="4"><b>AP VENDOR</b> — The name of the access point provider.</li>
+                                                <li value="5"><b>AP TYPE</b> — The type of access point. For example, a Passpoint or carrier-supported network.</li>
+                                                <li value="6"><b>BANDS</b> — The frequency band associated with the Wi-Fi channel.</li>
                                             </ul>
-                                            <p>You can also add and remove SSIDs by clicking <b>MANAGE SSID ALLOWLIST</b>. A popup appears, prompting you to select whether you want to capture data for all SSIDs or only for select SSIDs.</p>
+                                            <p>Above the list, use the search bar to filter by BSSID. By default, the results are sorted in descending order by event count.</p>
+                                            <p>If you want Knox Asset Intelligence to only collect data from certain SSIDs, click <b>MANAGE SSID ALLOWLIST </b>to <a href="wifi-connectivity.htm#manage-ssid-allowlist" class="selected">add or remove</a> SSIDs from a list.</p>
+                                            <h3 id="manage-ssid-allowlist">Manage SSID allowlist</h3>
+                                            <p>
+                                                <img src="../../../assets/merge/images/knox-asset-intelligence/ssid-allowlist-popup.png" width="400" class="center" alt="SSID allowlist popup" />
+                                            </p>
+                                            <p>When you click <b>MANAGE SSID ALLOWLIST, </b>a popup prompts you to select whether you want to capture data for all SSIDs or only for select SSIDs.</p>
                                             <p>If you choose to capture data only for allowlisted SSIDs, enter an SSID in the provided field. Click <b>ADD SSID</b> to add more, up to a maximum of 10. When you're finished, click <b>SAVE</b>.</p>
-                                            <div class="callout alert"><b>WARNING</b> – Make sure your SSID names don't contain spaces, otherwise you may experience data collection issues.</div>
+                                            <div class="callout warning"><b>IMPORTANT</b> — Make sure your SSID names don't contain spaces, otherwise you may experience data collection issues.</div>
                                             <p>Your Wi-Fi connectivity events are then captured based on the option you selected.</p>
-                                            <p>Click <img class="no-border" src="../../../assets/merge/images/knox-asset-intelligence/sort-icon.png" alt="Sort icon" />next to one of the column names to sort the data. By default, the data is sorted in descending order by event count. You can also select an item under <b>DISCONNECTION CATEGORY</b> to see further insights for that category.</p>
-                                            <h3>Drill down view</h3>
+                                            <h3 id="list-of-devices-impacted-by-wifi-connectivity-issues">List of devices impacted by Wi-Fi connectivity issues</h3>
                                             <p>
-                                                <img src="../../../assets/merge/images/knox-asset-intelligence/wifi-connectivity-drilldown.png" width="100%" alt="Wi-Fi connectivity drill down view" />
+                                                <img src="../../../assets/merge/images/knox-asset-intelligence/list-of-devices-wifi-connectivity-issue.png" class="center" alt="List of devices impacted by Wi-Fi connectivity issues" />
                                             </p>
-                                            <p>The top ribbon displays disconnection events, total devices, and total access points. Underneath it, the graph shows the event count distributed over the access point providers and time range.</p>
-                                            <p>Access point configuration details are listed in the detailed table, providing additional information to troubleshoot with. This data includes:</p>
+                                            <p>From the main <b>APs with Wi-Fi connectivity issue</b> page, click <b>View all </b>next to the total number of impacted devices to see a full list of devices that logged abnormal Wi-Fi disconnection events. Click a device ID to see the details for that device, or click the event count number to see a <a href="wifi-connectivity.htm#drill-down-view" class="selected">drill down view</a> of the disconnection event info.</p>
+                                            <p>Above the list, an <b>ACTIONS </b>menu is available with the following actions:</p>
                                             <ul>
-                                                <li value="1"><b>EVENT</b> – A brief description of the disconnection cause. See <a href="wifi-connectivity.htm#How" class="selected">How it works</a> for additional information on each event.</li>
-                                                <li value="2"><b>AP VENDOR</b> – The name of the access point provider.</li>
-                                                <li value="3"><b>11 REASON</b> – The error description corresponding to an 802.11 reason code.</li>
-                                                <li value="4"><b>AP TYPE</b> – The type of access point. For example, a Passpoint or carrier-supported network.</li>
-                                                <li value="5"><b>BSSID</b> – The basic service set identifier, used to uniquely identify an individual access point.</li>
-                                                <li value="6"><b>CHANNEL</b> – The frequency band associated with the Wi-Fi channel.</li>
-                                                <li value="7"><b>POWER SAVING MODE OF AP</b> – The Wi-Fi Power Saving mode status on the device, either on or off, when the disconnection occurred.</li>
-                                                <li value="8"><b>DEVICE SCREEN STATE</b> – The state of the device screen, either on or off, when the disconnection event occurred.</li>
-                                                <li value="9"><b>DEVICE COUNT</b> – The number of devices impacted by the event.</li>
+                                                <li value="1"><b>Request device debug log</b> — Select one or multiple devices in the list, then select this action to request debug logs from them. See <a href="device-debug-log.htm">Device debug log</a> for more details.</li>
+                                                <li value="2"><b>Download devices as CSV</b> — Select one or multiple devices in the list, then select this action to download their details as a CSV file. If you don't select any devices, the full list is exported.</li>
                                             </ul>
-                                            <p>To the right of the table column headers, click the three dots to open the <b>CUSTOMIZE TABLE</b> panel. Here, you can select the columns you’d like to include in the table, up to a maximum of 7. When you’re done, click <b>SAVE CHANGES</b> to see the refreshed table format. The customized table settings are then saved for all subsequent login sessions.</p>
-                                            <div class="callout warning"><b>NOTE</b>—You cannot hide some columns, such as <b>EVENT</b>.</div>
+                                            <h2 id="drill-down-view">Drill down view</h2>
+                                            <p>
+                                                <img src="../../../assets/merge/images/knox-asset-intelligence/ap-wifi-events.png" width="50%" alt="List of abnormal Wi-Fi disconnection events associated with access points" />
+                                            </p>
+                                            <p>
+                                                <img src="../../../assets/merge/images/knox-asset-intelligence/device-wifi-events.png" width="50%" alt="List of abnormal Wi-Fi disconnection events associated with devices" />
+                                            </p>
+                                            <p>Knox Asset Intelligence provides two drill down views to show additional information about abnormal disconnection events for troubleshooting. Depending on whether you choose to view events associated with an access point or with individual devices, the list view differs slightly.</p>
+                                            <p>The available list data includes the following:</p>
+                                            <ul>
+                                                <li value="1"><b>AP (BSSID)</b> — The access point's basic service set identifier, used to uniquely identify it. This info is only shown when viewing events by device ID.</li>
+                                                <li value="2"><b>SSID</b> — The name of the access point. This info is only shown when viewing events by device ID.</li>
+                                                <li value="3"><b>DEVICE ID</b> — The IMEI/MEID or serial number of the device. This info is only shown when viewing events by access point.</li>
+                                                <li value="4"><b>DISCONNECTION CATEGORY</b> — The Wi-Fi disconnection category the event belongs to. See <a href="wifi-connectivity.htm#How" class="selected">How it works</a>for a list of disconnection categories.</li>
+                                                <li value="5"><b>EVENT</b> — A brief description of the disconnection cause. See <a href="wifi-connectivity.htm#How" class="selected">How it works</a>for additional information on each event.</li>
+                                                <li value="6"><b>802.11 REASON</b> — The error description corresponding to an IEEE 802.11 code. Refer to <a href="wifi-connectivity.htm#ieee-802-11-codes" class="selected">IEEE 802.11 codes</a> for more information.</li>
+                                                <li value="7"><b>EVENT TIME </b> — The time the event occurred, in the format <em>DD/MM/YYYY 00:00</em>.</li>
+                                            </ul>
+                                            <p>You can also use the search bar above the list to search for a specific device ID or BSSID, or click the filter icon to filter by disconnection category or event.</p>
+                                            <p>For details about Wi-Fi disconnection events and suggested actions to resolve them, see <a href="wifi-connectivity.htm#How" class="selected">How it works</a> and <a href="wifi-connectivity.htm#ieee-802-11-codes" class="selected">IEEE 802.11 codes</a>.</p>
+                                            <h3 id="ieee-802-11-codes">IEEE 802.11 codes</h3>
+                                            <p>IEEE 802.11 provides the technical standard for devices communicating across wireless networks. The standard provides a type of error code called a <em>reason code</em>, which describes why a device failed to connect to an access point. When a connectivity issue is logged, the Knox Asset Intelligence console may display a reason code to help you troubleshoot the problem.</p>
+                                            <p>The following table lists all possible reason codes you may encounter.</p>
+                                            <table width="100%">
+                                                <tbody>
+                                                    <tr>
+                                                        <td>
+                                                            <p><b>Reason code</b>
+                                                            </p>
+                                                        </td>
+                                                        <td>
+                                                            <p><b>802.11 reason</b>
+                                                            </p>
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>
+                                                            <p>0</p>
+                                                        </td>
+                                                        <td>
+                                                            <p>Unknown</p>
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>
+                                                            <p>1</p>
+                                                        </td>
+                                                        <td>
+                                                            <p>Unspecified reason</p>
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>
+                                                            <p>2</p>
+                                                        </td>
+                                                        <td>
+                                                            <p>Previous authentication no longer valid</p>
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>
+                                                            <p>3</p>
+                                                        </td>
+                                                        <td>
+                                                            <p>Station is leaving (or has left) IBSS or ESS</p>
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>
+                                                            <p>4</p>
+                                                        </td>
+                                                        <td>
+                                                            <p>Disassociated due to inactivity</p>
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>
+                                                            <p>5</p>
+                                                        </td>
+                                                        <td>
+                                                            <p>Disassociated because AP is unable to handle all currently associated stations</p>
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>
+                                                            <p>6</p>
+                                                        </td>
+                                                        <td>
+                                                            <p>Class 2 frame received from nonauthenticated station</p>
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>
+                                                            <p>7</p>
+                                                        </td>
+                                                        <td>
+                                                            <p>Class 3 frame received from nonassociated station</p>
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>
+                                                            <p>8</p>
+                                                        </td>
+                                                        <td>
+                                                            <p>Disassociated because sending station is leaving (or has left) BSS</p>
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>
+                                                            <p>9</p>
+                                                        </td>
+                                                        <td>
+                                                            <p>Station requesting (re)association is not authenticated with responding station</p>
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>
+                                                            <p>10</p>
+                                                        </td>
+                                                        <td>
+                                                            <p>Disassociated because the information in the Power Capability element is unacceptable</p>
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>
+                                                            <p>11</p>
+                                                        </td>
+                                                        <td>
+                                                            <p>Disassociated because the information in the Supported Channels element is unacceptable</p>
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>
+                                                            <p>12</p>
+                                                        </td>
+                                                        <td>
+                                                            <p>Disassociated due to BSS transition management</p>
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>
+                                                            <p>13</p>
+                                                        </td>
+                                                        <td>
+                                                            <p>Invalid information element, i.e., an information element defined in this standard for which the content does not meet the specifications in Clause 9</p>
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>
+                                                            <p>14</p>
+                                                        </td>
+                                                        <td>
+                                                            <p>Message integrity code (MIC) failure</p>
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>
+                                                            <p>15</p>
+                                                        </td>
+                                                        <td>
+                                                            <p>4-Way Handshake timeout</p>
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>
+                                                            <p>16</p>
+                                                        </td>
+                                                        <td>
+                                                            <p>Group Key Handshake timeout</p>
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>
+                                                            <p>17</p>
+                                                        </td>
+                                                        <td>
+                                                            <p>Information element in 4-Way Handshake different from (Re)Association Request/Probe Response/Beacon frame</p>
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>
+                                                            <p>18</p>
+                                                        </td>
+                                                        <td>
+                                                            <p>Invalid group cipher</p>
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>
+                                                            <p>19</p>
+                                                        </td>
+                                                        <td>
+                                                            <p>Invalid pairwise cipher</p>
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>
+                                                            <p>20</p>
+                                                        </td>
+                                                        <td>
+                                                            <p>Invalid AKMP</p>
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>
+                                                            <p>21</p>
+                                                        </td>
+                                                        <td>
+                                                            <p>Unsupported RSN information element version</p>
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>
+                                                            <p>22</p>
+                                                        </td>
+                                                        <td>
+                                                            <p>Invalid RSN information element capabilities</p>
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>
+                                                            <p>23</p>
+                                                        </td>
+                                                        <td>
+                                                            <p>IEEE 802.1X authentication failed</p>
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>
+                                                            <p>24</p>
+                                                        </td>
+                                                        <td>
+                                                            <p>Cipher suite rejected because of the security policy</p>
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>
+                                                            <p>25</p>
+                                                        </td>
+                                                        <td>
+                                                            <p>TDLS direct-link teardown due to TDLS peer STA unreachable via the TDLS direct link</p>
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>
+                                                            <p>26</p>
+                                                        </td>
+                                                        <td>
+                                                            <p>TDLS direct-link teardown for unspecified reason</p>
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>
+                                                            <p>27</p>
+                                                        </td>
+                                                        <td>
+                                                            <p>Disassociated because session terminated by SSP request</p>
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>
+                                                            <p>28</p>
+                                                        </td>
+                                                        <td>
+                                                            <p>Disassociated because of lack of SSP roaming agreement</p>
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>
+                                                            <p>29</p>
+                                                        </td>
+                                                        <td>
+                                                            <p>Requested service rejected because of SSP cipher suite or AKM requirement</p>
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>
+                                                            <p>30</p>
+                                                        </td>
+                                                        <td>
+                                                            <p>Requested service not authorized in this location</p>
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>
+                                                            <p>31</p>
+                                                        </td>
+                                                        <td>
+                                                            <p>TS deleted because QoS AP lacks sufficient bandwidth for this QoS STA due to a change in BSS service characteristics or operational mode</p>
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>
+                                                            <p>32</p>
+                                                        </td>
+                                                        <td>
+                                                            <p>Disassociated for unspecified, QoS-related reason</p>
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>
+                                                            <p>33</p>
+                                                        </td>
+                                                        <td>
+                                                            <p>Disassociated because QAP lacks sufficient bandwidth for this QSTA</p>
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>
+                                                            <p>34</p>
+                                                        </td>
+                                                        <td>
+                                                            <p>Disassociated because excessive number of frames need to be acknowledged, but are not acknowledged due to AP transmissions and/or poor channel conditions</p>
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>
+                                                            <p>35</p>
+                                                        </td>
+                                                        <td>
+                                                            <p>Disassociated because QSTA is transmitting outside the limits of its TXOPs</p>
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>
+                                                            <p>36</p>
+                                                        </td>
+                                                        <td>
+                                                            <p>Requesting STA is leaving the BSS (or resetting)</p>
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>
+                                                            <p>37</p>
+                                                        </td>
+                                                        <td>
+                                                            <p>Requesting STA is no longer using the stream or session</p>
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>
+                                                            <p>38</p>
+                                                        </td>
+                                                        <td>
+                                                            <p>Requesting STA received frames using a mechanism for which a setup has not been completed</p>
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>
+                                                            <p>39</p>
+                                                        </td>
+                                                        <td>
+                                                            <p>Requested from peer STA due to timeout</p>
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>
+                                                            <p>45</p>
+                                                        </td>
+                                                        <td>
+                                                            <p>Peer STA does not support the requested cipher suite</p>
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>
+                                                            <p>46</p>
+                                                        </td>
+                                                        <td>
+                                                            <p>In a DLS Teardown frame: The teardown was initiated by the DLS peer / In a Disassociation frame: Disassociated because authorized access limit reached</p>
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>
+                                                            <p>47</p>
+                                                        </td>
+                                                        <td>
+                                                            <p>In a DLS Teardown frame: The teardown was initiated by the AP / In a Disassociation frame: Disassociated due to external service requirements</p>
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>
+                                                            <p>48</p>
+                                                        </td>
+                                                        <td>
+                                                            <p>Invalid FT Action frame count</p>
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>
+                                                            <p>49</p>
+                                                        </td>
+                                                        <td>
+                                                            <p>Invalid pairwise master key identifier (PMKID)</p>
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>
+                                                            <p>50</p>
+                                                        </td>
+                                                        <td>
+                                                            <p>Invalid MDE</p>
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>
+                                                            <p>51</p>
+                                                        </td>
+                                                        <td>
+                                                            <p>Invalid FTE</p>
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>
+                                                            <p>52</p>
+                                                        </td>
+                                                        <td>
+                                                            <p>Mesh peering canceled for unknown reasons</p>
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>
+                                                            <p>53</p>
+                                                        </td>
+                                                        <td>
+                                                            <p>The mesh STA has reached the supported maximum number of peer mesh STAs</p>
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>
+                                                            <p>54</p>
+                                                        </td>
+                                                        <td>
+                                                            <p>The received information violates the Mesh Configuration policy configured in the mesh STA profile</p>
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>
+                                                            <p>55</p>
+                                                        </td>
+                                                        <td>
+                                                            <p>The mesh STA has received a Mesh Peering Close frame requesting to close the mesh peering.</p>
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>
+                                                            <p>56</p>
+                                                        </td>
+                                                        <td>
+                                                            <p>The mesh STA has resent dot11MeshMaxRetries Mesh Peering Open frames, without receiving a Mesh Peering Confirm frame.</p>
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>
+                                                            <p>57</p>
+                                                        </td>
+                                                        <td>
+                                                            <p>The confirmTimer for the mesh peering instance times out.</p>
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>
+                                                            <p>58</p>
+                                                        </td>
+                                                        <td>
+                                                            <p>The mesh STA fails to unwrap the GTK or the values in the wrapped contents do not match</p>
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>
+                                                            <p>59</p>
+                                                        </td>
+                                                        <td>
+                                                            <p>The mesh STA receives inconsistent information about the mesh parameters between mesh peering Management frames</p>
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>
+                                                            <p>60</p>
+                                                        </td>
+                                                        <td>
+                                                            <p>The mesh STA fails the authenticated mesh peering exchange because due to failure in selecting either the pairwise cipher suite or group cipher suite</p>
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>
+                                                            <p>61</p>
+                                                        </td>
+                                                        <td>
+                                                            <p>The mesh STA does not have proxy information for this external destination.</p>
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>
+                                                            <p>62</p>
+                                                        </td>
+                                                        <td>
+                                                            <p>The mesh STA does not have forwarding information for this destination.</p>
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>
+                                                            <p>63</p>
+                                                        </td>
+                                                        <td>
+                                                            <p>The mesh STA determines that the link to the next hop of an active path in its forwarding information is no longer usable.</p>
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>
+                                                            <p>64</p>
+                                                        </td>
+                                                        <td>
+                                                            <p>The Deauthentication frame was sent because the MAC address of the STA already exists in the mesh BSS. See 11.3.6.</p>
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>
+                                                            <p>65</p>
+                                                        </td>
+                                                        <td>
+                                                            <p>The mesh STA performs channel switch to meet regulatory requirements.</p>
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>
+                                                            <p>66</p>
+                                                        </td>
+                                                        <td>
+                                                            <p>The mesh STA performs channel switching with unspecified reason.</p>
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>
+                                                            <p>66-65535</p>
+                                                        </td>
+                                                        <td>
+                                                            <p>Unknown</p>
+                                                        </td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
                                         </div>
                                         <!-- Inserts feedback module here -->
                                         <div id="feedback">

@@ -2304,7 +2304,7 @@
                                                     <ul class="sub-menu">
                                                         <li><a href="../../efota-one/features-overview.htm">Features overview</a>
                                                         </li>
-                                                        <li><a href="../../efota-one/navigate-portal.htm">About the Knox Admin portal</a>
+                                                        <li><a href="../../efota-one/navigate-portal.htm">About the Knox Admin Portal</a>
                                                         </li>
                                                         <li class="has-children"><a href="configure-devices.htm#">Create a campaign</a>
                                                             <ul class="sub-menu">
@@ -2784,47 +2784,44 @@
                                             <ul>
                                                 <li value="1"><a href="https://play.google.com/store/apps/details?id=com.samsung.android.knox.dai" target="_blank">Download through the Google Play Store</a>
                                                 </li>
-                                                <li value="2"><a href="configure-devices.htm#Policy" class="selected">Enroll using EMM policy</a>
+                                                <li value="2"><a href="configure-devices.htm#Policy" class="selected">Enroll with an EMM</a>
                                                 </li>
                                                 <li value="3"><a href="configure-devices.htm#Direct" class="selected">Use direct download</a>
                                                 </li>
                                             </ul>
-                                            <h3 id="Policy">Enroll using EMM policy</h3>
+                                            <h3 id="Policy">Enroll with an EMM</h3>
                                             <div class="callout warning"><b>NOTE</b>—For WP-C deployments, ensure the <a href="../../knox-service-plugin/welcome.htm">Knox Service Plugin</a> is enabled for your EMM first.</div>
-                                            <p>You can easily deploy the Knox Asset Intelligence app to your devices through your EMM and the Google Play Store. The following steps are general EMM guidelines—refer to your EMM’s documentation for specific instructions.</p>
+                                            <p>You can easily deploy the Knox Asset Intelligence app to your devices through your EMM and the Google Play Store. The following steps are general EMM guidelines—refer to your EMM's documentation for specific instructions.</p>
                                             <ol>
                                                 <li value="1">Log in to your EMM console.</li>
                                                 <li value="2">In an Android Enterprise profile, add the <b>Knox Asset Intelligence</b> public app from the Google Play Store.</li>
-                                                <li value="3">Configure the app permission policy to <b>Grant</b> to ensure Knox Asset Intelligence can properly collect data. By default, the location and phone permissions are granted during enrollment.</li>
+                                                <li value="3">Configure the app permission policy to <b>Grant</b> to ensure Knox Asset Intelligence can properly collect data. If your devices are running Android 12 or higher, permissions are granted differently based on your device management mode.</li>
+                                                <ul>
+                                                    <li value="1">For device owner (DO) deployments, the location and phone permissions are granted by default during enrollment.</li>
+                                                    <li value="2">For work profile on company-owned device (WP-C) deployments, EMMs can only pre-grant call permissions. Device users must manually grant location permissions through an alert in the notification panel before Knox Asset Intelligence can collect location and Wi-Fi data from the device.</li>
+                                                </ul>
                                                 <li value="4">Assign the application to your profile. Ensure you set the Knox Asset Intelligence app to <b>auto-launch</b> after installation.</li>
-                                                <li value="5">Save your profile and assign it to your devices.</li>
+                                                <li value="5">Save the profile and assign it to your devices.</li>
                                             </ol>
-                                            <p>After the Knox Asset Intelligence app is launched on the device for the first time, the agent automatically begins collecting data and reporting it to the server.</p>
-                                            <div class="callout alert"><b>NOTE</b>—If the Knox Asset Intelligence app is not launched on the device first, either by the user or through auto-launch, the agent cannot collect device data.</div>
-                                            <h4 id="km">If your organization uses Knox Manage:</h4>
+                                            <p>To enroll a device in Knox Asset Intelligence with Knox Manage (KM):</p>
                                             <ol>
-                                                <li value="1">Log in to your Knox Manage console.</li>
-                                                <li value="2">Follow the Knox Manage steps to <a href="../../knox-manage/add-public-applications-using-google-play-store.htm">Add public applications using Google Play Store</a>.
-      <ul><li value="1">In <b>Step 4</b>, enter <b>Knox Asset Intelligence</b> as the application to add.</li><li value="2">On the <b>Assign Application</b> screen, select <b>Yes</b> next to <b>Auto-run after installation</b>.</li></ul></li>
-                                                <li value="3">In the left sidebar, click <b>Profile</b>.</li>
-                                                <li value="4">Add a new Android Enterprise profile, or edit an existing one.</li>
-                                                <li value="5">On the <b>Set Policy</b> screen, navigate to <b>Application</b>.</li>
-                                                <li value="6">Next to <b>App Permission</b>, under <b>Device Controls </b>and <b>Work Profile Controls</b>, select <b>Grant</b>.</li>
-                                                <li value="7">Click <b>Save &amp; Assign</b> to assign the policy to your devices.</li>
+                                                <li value="1">Log in to the KM console.</li>
+                                                <li value="2">Follow the KM steps to <a href="../../knox-manage/add-public-applications-using-google-play-store.htm">Add public applications using Google Play Store</a>.</li>
+                                                <ul>
+                                                    <li value="1">In <b>Step 4</b>, enter <b>Knox Asset Intelligence</b> as the app to add.</li>
+                                                    <li value="2">On the <b>Assign Application</b> page, select <b>Yes</b> next to <b>Auto-run after installation</b>.</li>
+                                                </ul>
+                                                <li value="3">Go to <b>Profile</b>.</li>
+                                                <li value="4">Create a new Android Enterprise profile, or edit an existing one.</li>
+                                                <li value="5">On the <b>Set Policy</b> page, go to <b>Application</b>.</li>
+                                                <li value="6">For the <b>App Permission</b> policy, set the <b>Device Controls </b>and <b>Work Profile Controls</b> to <b>Grant</b>. Based on the device management mode, your EMM grants permissions differently.</li>
+                                                <ul>
+                                                    <li value="1">For device owner (DO) or work profile on company-owned device (WP-C) deployments on Android 11 or lower, the location and phone permissions are granted by default during enrollment.</li>
+                                                    <li value="2">For work profile on company-owned device (WP-C) deployments on Android 12 or higher, KM can only pre-grant phone permissions. Device users must manually grant location permissions through a notification from the Knox Asset Intelligence agent before it can collect location and Wi-Fi data from the device.</li>
+                                                </ul>
+                                                <li value="7">Click <b>Save &amp; Assign</b>. The <b>Assign Profile</b> page opens.</li>
+                                                <li value="8">Select the group or organization to assign the app to, then click <b>Assign &amp; Apply</b>.</li>
                                             </ol>
-                                            <p>After the Knox Asset Intelligence app is launched on the device for the first time, the agent automatically begins collecting data and reporting it to the server.</p>
-                                            <div class="callout alert"><b>NOTE</b>—If the Knox Asset Intelligence app is not launched on the device first, either by the user or through auto-launch, the agent cannot collect device data.</div>
-                                            <h3 id="direct">Use direct download</h3>
-                                            <ol>
-                                                <li value="1">In the left sidebar of your Knox Asset Intelligence dashboard, click <b>Devices</b>.</li>
-                                                <li value="2">You’ll see an info block asking if you want to enroll your devices. In the block, click <b>DIRECT DOWNLOAD</b>.<br /><img src="../../../assets/merge/images/knox-asset-intelligence/direct-download.png" class="center" alt="Direct download button on Devices screen" /></li>
-                                                <li value="3">A popup appears with details on the agent app version, including a download link. You can share this link with your devices directly, or copy a message to send through email.<br /><img src="../../../assets/merge/images/knox-asset-intelligence/direct-download-popup.png" alt="Direct download popup" /></li>
-                                                <li value="4">On the device, tap the URL to download the agent APK file.</li>
-                                                <li value="5">To access the download, open the <b>My Files </b>app, then navigate to the downloaded APK. Tap the APK to install it.<br /><div class="callout warning"><b>NOTE—</b>You may need to allow installation of unknown apps first. To do this, navigate to the device settings &gt; <b>Biometrics and security</b> &gt; <b>Install unknown apps</b>. Then, select <b>My Files</b> &gt; enable <b>Allow from this source</b>.</div></li>
-                                                <li value="6">From either the device home screen or the app tray, tap the Knox Asset Intelligence app icon to launch it.</li>
-                                                <li value="7">On launch, several dialogs appear that request location, phone, and settings modification access. Tap <b>Allow</b> for all dialogs to grant Knox Asset Intelligence the required permissions.</li>
-                                            </ol>
-                                            <p>After you grant the permissions, the Knox Asset Intelligence agent is set up to start capturing data insights from your device.</p>
                                             <div id="tutorial-progress">
                                                 <h2>Tutorial progress</h2>
                                                 <div class="progress" role="progressbar" tabindex="0" aria-valuenow="66" aria-valuemin="0" aria-valuetext="66 percent" aria-valuemax="100">

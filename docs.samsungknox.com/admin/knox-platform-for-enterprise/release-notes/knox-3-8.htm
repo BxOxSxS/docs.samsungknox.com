@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="utf-8"?>
+<html MadCap:lastBlockDepth="8" MadCap:lastHeight="1038" MadCap:lastWidth="2189" MadCap:conditions="Default.kpe,Default.kpe-build" xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd">
+    <head><title></title>
+    </head>
+    <body>
+        <h1>
+            <MadCap:concept term="knox-platform-for-enterprise" />KPE feature update — Knox 3.8</h1>
+    <h2>Additional Advanced Access Control enhancements</h2>
+    <p>For device users who need security features over and above the standard features of Knox enterprise, this release provides additional Advanced Access Control (AAC) enhancements. These enhancements add additional KPE features and use Continuous Multi-Factor Authentication (CMFA) to automatically log users in to their phone and applications without needing their credentials at each log in.</p>
+    <p>The framework uses the following factors to test the device's trust score:</p>
+    <ul>
+    <li><b>Face recognition factor</b>that authenticates the user with facial recognition using the front facing camera.</li>
+    <li><b>Device integrity factor</b>that calls the keystore attestation API to obtain integrity information from ICCC TA.</li>
+    <li><b>Touch Dynamics factor</b>that uses commonly used keystroke pattern data to verify that the current user is authorized user of the device and the work profile.</li>
+    </ul>
+    <p>This release focuses on adding the previously mentioned touch dynamics factor. This factor analyzes the digital signatures generated when a human interacts with a device, commonly known as keystroke or typing patterns, to verify that the user typing on the device is the authorized primary user of the device. In cases where the user is determined not to be the primary, authorized user, the Work profile on the device is locked and access to sensitive data is immediately revoked.</p>
+    <p>For more information on AAC, see&nbsp;<a href="../../../dev/knox-sdk/additional-aac-enhancements.htm">Additional Advanced Access Control enhancements</a>.</p>
+    <h2>Peripheral device management</h2>
+    <p>This release provides the partners a new SDK to develop applications for peripheral devices such as barcode scanners. Currently, the SDK supports KOAMTAK USB scanner and BT scanner.</p>
+    <p>For details, see:&nbsp;<a href="../../../dev/knox-sdk/peripherals.htm">Peripherals Overview</a>,&nbsp;<a href="../../../dev/knox-sdk/peripherals-how-it-works.htm">How it works</a>,&nbsp;<a href="../../../dev/knox-sdk/peripherals-tutorial.htm">Tutorial</a>.</p>
+    <h2>Deep Settings Customization enhancements</h2>
+    <div class="callout alert"><b>IMPORTANT</b>&nbsp;&mdash; This feature is made available using&nbsp;<a href="../../knox-service-plugin/welcome.htm">Knox Service Plugin (KSP)</a>. Third-party apps cannot use Deep Settings Customization (DSC) directly.</div>
+    <p>The Deep Settings Customization (DSC) enhancements made with this release close some UI vulnerabilities of device security controls as follows:</p>
+    <ul>
+    <li><b>Block gesture options in Kiosk mode</b>&mdash; In some use cases, in spite of IT admins blocking the Home key in Kiosk mode, device users could use the Gesture event to exit the Kiosk mode and potentially access sensitive data. With this release, IT admins can enable Kiosk mode as well as disable the Gesture option in Advanced features. The IT admin can now restrict the device user from using the following gestures to exit the Kiosk mode:
+    <ul>
+    <li>Short press the Home button.</li>
+    <li>Swipe down from the center of the bottom edge of the screen.</li>
+    </ul>
+    </li>
+    <li>Support additional sound settings &mdash; IT admin can now use KSP to configure the sound options:
+    <ul>
+    <li>Enable or disable system sound</li>
+    <li>Make system sounds silent</li>
+    <li>Hide settings menu using</li>
+    </ul>
+    </li>
+    <li><b>Disable third-party content menu setting</b>&mdash; The in-built Samsung keyboard allowed device users to select the Third-party content menu item on the Samsung keyboard to bypass restrictions on using the Internet on their devices. This release allows IT admins to disable the use of this menu from the&nbsp;<b>Settings &gt; Language and input &gt; On-screen keyboard &gt; Default keyboard &gt; Samsung Keyboard settings &gt; Third-party content</b></li>
+    </ul>
+    <p><div class="callout alert"><b>IMPORTANT</b>&nbsp;&mdash; If the third-party app is already installed on the device, blocking this option does not disable the current keyboard deep settings. Users can still continue to access the Internet from this option.</div>
+    <ul>
+    <li><b>Disable Wi-Fi proxy settings menu</b>&mdash; IT admins can now disable the use of the Wi-Fi proxy settings menu to ensure that a blacklisted domain is never accessible once the blacklisting policy is set.</li>
+    <li><b>Restrict sharing of Wi-Fi profiles using QR codes</b>&mdash; IT admins can now use KSP to restrict users from sharing Wi-Fi profiles, including login credentials and passwords, with other devices using QR codes.</li>
+    <li><b>Change password settings</b>&mdash; IT admins can now use KSP to hide or disable screen lock type menu item. IT admins can also set the screen lock type to None.</li>
+    <li><b>Hide virtual keyboard when an external keyboard is connected</b>&mdash; With this release, IT admins can now hide the virtual keyboard that shows up on the device&rsquo;s screen even when an external keyboard or input device (such as a scanner) is connected to the device.</li>
+    </ul>
+    <p>Each KSP release introduces additional deep settings so you are encouraged to browse the&nbsp;<a href="../../knox-service-plugin/release-notes.htm">KSP release notes</a>&nbsp;or&nbsp;<a href="../../knox-service-plugin/policies.html">KSP policy schema</a>&nbsp;for all the latest capabilities.</p>
+    <p>&nbsp;</p>
+    <h2>Optimize SUW for AER for managed devices</h2>
+    <p>Currently, the setup wizard (SUW) for Android Enterprise Recommended (AER) devices includes options that allow device users to consent to collection of marketing and other data. The collection of these items is not recommended or appropriate for managed devices. To close this gap, the SUW should be changed to disallow data collection. To implement this change, the SUW now includes options that allow the user to consent to data collection, but in case of managed devices, data collection is automatically disabled for the device.</p>
+    <p><div class="callout note"><b>NOTE</b>&nbsp;&mdash; Device users can further modify these options from the Device Settings &gt; Privacy menu.</div>
+    <p>For more information on this feature, see&nbsp;<a href="../../../dev/knox-sdk/optimized-setup-wizard-aer-devices.htm">Optimized Setup Wizard for AER (Android Enterprise Recommended)</a>.</p>
+    <p>&nbsp;</p>
+    <h2>Separated Apps v2</h2>
+    <p>This release adds additional functionality to the features available with Separated Apps V1. Separated Apps V2 features include items that were either not released with V1 or identified as needing enhancements after V1 was released. V2 includes the following features:</p>
+    <ul>
+    <li><b>Improve the Separated Apps user experience</b>&mdash; The Separated Apps user experience sees the improvements allowing device users to:
+    <ul>
+    <li>Change folder names and color for Separated Apps</li>
+    <li>Select multiple Separated Apps for uninstallation</li>
+    <li>Long-press the Separated Apps app icon to bring up a quick option menu, similar to other apps</li>
+    </ul>
+    </li>
+    <li><b>Allow use of biometric methods for Separated Apps</b>&mdash; For devices where biometric authentication methods are set up in User0 or for other apps, Separated Apps can now use these registered biometric methods as well.
+  </br><div class="callout note"><b>NOTE</b>&mdash; Currently, biometric settings for Separated Apps are also controlled by the common Device Settings menu.</div></li>
+    <li><b>Set remote control and screen capture behavior</b>&mdash; IT admins can now control the remote control and screen capture features not only for User0 but also for Separated Apps. Depending upon whether the screen capture and remote control features are activated from within User0 or Separated Apps, the resulting image or media is stored in User0 or Separated Apps storage space.</li>
+    <li><b>Control access to network connections</b>&mdash; IT admins can now control the network connection that is used by apps within Separated Apps. For example, IT admins can mandate that Separated Apps only connect using Wi-Fi when the device connects to a Home Wi-Fi network, or that Separated Apps only connect using the cellular connection when in range of an Enterprise Wi-Fi network.</li>
+    </ul>
+    <p>&nbsp;</p>
+    <h2>VPN platform enhancements - Auto Recreation of profile</h2>
+    <p>This release includes VPN enhancements to improve the security of managed devices. For managed devices, the VPN framework tries to recreate the VPN profile configuration and reconnect the VPN connection automatically for any VPN clients installed on managed devices. This automatic reconnection happens in the following two cases:</p>
+    <ul>
+    <li>A device user clears data intentionally or accidentally</li>
+    <li>There is an issue with the VPN client during the create connection process, and the database saving process is not complete, such as during device reboot or VPN client restart</li>
+    </ul>
+    <p>This automatic reconnection feature ensures there is no data leakage for apps that are configured to connect using the VPN profile. In cases where the reconnection effort fails, the VPN framework notifies the EMM client, allowing it to apply security policies such as locking the Work container or the entire device, as well as apply firewall rules and recreate VPN policies.</p>
+    <p>To read more about this feature, see&nbsp;<a href="../../../dev/knox-sdk/vpn-platform-enhancement.htm">VPN Platform Enhancement</a>.</p>
+    <h2>Android 12 OS changes</h2>
+    <ul>
+    <li><b>Password policy modifications</b>&mdash; This release improves the password complexity feature to reduce the risk of users forgetting their passwords and needing to factory reset their devices to reset the password. This feature sets device-wide password requirements in the form of predefined complexity buckets, such as High, Medium, Low, and None. If necessary, IT admins can then set stricter password requirements on the work profile&rsquo;s security challenge.</li>
+    <li><b>Sensor permission restrictions</b>&mdash;IT admins can no longer silently grant the permissions to use the location, camera, microphone, body, or physical activity sensor.</li>
+    <li><b>Managed device control enhancements</b>&mdash; The following new features are available for company-owned devices:
+    <ul>
+    <li>An IT administrator can disable USB, except for charging functions, on company-owned devices. This feature includes the capability to check if this feature is supported on the device and if it is currently enabled.</li>
+    <li>Company-owned devices with a work profile can limit the input methods used in the personal profile to allow only system input methods.</li>
+    </ul>
+    </li>
+    </ul>
+    </body>
+</html>
