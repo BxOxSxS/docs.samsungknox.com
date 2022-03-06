@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" lang="en-US" xml:lang="en-US" data-mc-search-type="Stem" data-mc-help-system-file-name="Default.xml" data-mc-path-to-help-system="../../" data-mc-conditions="Default.km-build" data-mc-target-type="WebHelp2" data-mc-runtime-file-type="Topic;Default" data-mc-preload-images="false" data-mc-in-preview-mode="false" data-mc-toc-path="">
     <head>
@@ -17,6 +18,7 @@
         <meta charset="utf-8" />
         <meta http-equiv="x-ua-compatible" content="ie=edge" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<meta name="robots" content="noindex,nofollow,nosnippet">
         <!-- meta name="description" content="Learn how to use Samsung Knox to secure, deploy, and manage enterprise mobile devices." /-->
         <!-- meta property="og:type" content="website" /-->
         <!-- meta property="og:url" content="https://docs.samsungknox.com" /-->
@@ -50,6 +52,7 @@
 			url(https://cdn.Samsung.com/etc/designs/smg/global/fonts/SamsungOne-400.ttf) format("truetype");
 			}
 		</style>
+		
         <link href="https://use.fontawesome.com/releases/v5.14.0/css/all.css?ver=5.5.1" rel="stylesheet" />
         <link href="../../../assets/merge/kp-bootstrap.css" rel="stylesheet" />
         <link href="../../../assets/merge/kp-foundation.css" rel="stylesheet" />
@@ -2770,7 +2773,7 @@
                                                 <h2>Overview </h2>
                                                 <p>There are instances when you might run into an error when trying to enroll more devices, despite having the number of seats needed available:</p><pre class="prettyprint" xml:space="preserve">Failed to Knox License Activation [Enrollment – Update License Request (License Quantity Exhausted)]</pre>
                                                 <p />
-                                                <p>The error is occurs due to Knox License Manager (KLM) and Samsung License Manager (SLM) license consumption mismatch. The issue happens when devices are improperly enrolled, such as deleting the device from the console or forcing a factory reset. The only way to ensure both KLM and SLM are synced is by unenrolling devices using the unenroll button. When a device gets unenrolled improperly or deleted from the console, Knox Manage acknowledges this change and releases a seat within its licensing system. However, SLM does not check with KM's system, therefore, it will not update to release the same seat(s). During the next enrollment, the system tries to use the key, even though it's still considered full by the other system, resulting in an error. </p>
+                                                <p>The error occurs due to a Knox License Manager (KLM) and Samsung License Manager (SLM) license consumption mismatch. The issue happens when devices are improperly enrolled, such as deleting the device from the console or forcing a factory reset. The only way to ensure both KLM and SLM are synced is by unenrolling devices using the unenroll button. When a device gets unenrolled improperly or deleted from the console, Knox Manage acknowledges this change and releases a seat within its licensing system. However, SLM does not check with KM's system, therefore, it will not update to release the same seat(s). During the next enrollment, the system tries to use the key, even though it's still considered full by the other system, resulting in an error. </p>
                                                 <h2>An example of license seat discrepancy within KLM and SLM</h2>
                                                 <p>The number of seats available shown in Knox Manage may look different from the license key page on the Samsung Knox portal, shown in the example below. The Knox Manage portal shows the activated device are 942 out of 1000. However, on the Samsung Knox portal, it shows that there are 1100 activated devices. This causes the user to run into the License Quantity Exhausted error.</p>
                                                 <p><b>Knox Manage</b>
