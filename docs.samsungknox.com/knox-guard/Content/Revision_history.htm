@@ -252,6 +252,41 @@
                                 <ul>
                                     <aside />
                                 </ul>
+                                <h2 id="march-26-2022-knox-guard-feature-updates">March 26th 2022 Knox Guard feature updates</h2>
+                                <h3 id="improvements-device-lock-based-imsi-change">Improvements to device lock based on IMSI change</h3>
+                                <p>A new <b>IMSI Lock</b> menu is available under the <b>SIM control</b> page. This feature allows customers to enable or disable IMSI policies regardless of whether MCC/MNC information is provided.  This feature is implemented in the case where the IMSI is changed after a different SIM card is inserted into the device.</p>
+                                <p>
+                                    <img src="Resources/Images/imsi-improvement.png" style="border-left-style: solid;border-left-width: 1px;border-left-color: ;border-right-style: solid;border-right-width: 1px;border-right-color: ;border-top-style: solid;border-top-width: 1px;border-top-color: ;border-bottom-style: solid;border-bottom-width: 1px;border-bottom-color: ;" alt="The new IMSI Lock menu and how to use it" />
+                                </p>
+                                <h3 id="knox-guard-console-dashboard-improvements">Knox Guard console dashboard improvements</h3>
+                                <p>The Knox Guard dashboard now includes more granular device state information to provide device details at a glance.</p>
+                                <p>For <b>Normal</b> devices:</p>
+                                <ol>
+                                    <li value="1">A new <b>Offline locked</b> device state is available in the <b>Attention</b> section.</li>
+                                    <li value="2">Click <b>Offline locked</b> from the dashboard to see a list of devices with that status.</li>
+                                </ol>
+                                <p>For <b>Pay-as-you-go (PAYG)</b> devices:</p>
+                                <ol>
+                                    <li value="1">The following statuses are listed for each device:
+                <ul><li value="1">Attention — <b>Active | Locked</b></li><li value="2">In progress — <b>Activating</b>, <b>Resetting</b>, <b>Completing</b></li></ul></li>
+                                    <li value="2">Next to each status, the number of devices with that status is displayed.</li>
+                                </ol>
+                                <p>
+                                    <img src="Resources/Images/device-status.png" style="border-left-style: solid;border-left-width: 1px;border-left-color: ;border-right-style: solid;border-right-width: 1px;border-right-color: ;border-top-style: solid;border-top-width: 1px;border-top-color: ;border-bottom-style: solid;border-bottom-width: 1px;border-bottom-color: ;" alt="The DEVICE STATUS view on the Knox Guard dashboard, with the new statuses" />
+                                </p>
+                                <p>
+                                    <img src="Resources/Images/device-status-2.png" style="border-left-style: solid;border-left-width: 1px;border-left-color: ;border-right-style: solid;border-right-width: 1px;border-right-color: ;border-top-style: solid;border-top-width: 1px;border-top-color: ;border-bottom-style: solid;border-bottom-width: 1px;border-bottom-color: ;" alt="The device list with a device and its status" />
+                                </p>
+                                <h3 id="updates-knox-guard-menu-labels">Updates to Knox Guard menu labels</h3>
+                                <p>To support more use cases, the menu labels on the Knox Guard portal now use more general terms. For example, <b>Default lock screen</b> now displays as <b>Lock screen</b>.</p>
+                                <h3 id="bulk-customization-notifications">Bulk customization notifications</h3>
+                                <p>Customers can now send messages to device users both individually and in bulk. Messages can be customized to display a different message per device. This feature is also available through an API operation — <b>/kcs/v1.1/kg/devices/customMessageAsync</b>.</p>
+                                <p>
+                                    <img src="Resources/Images/bulk-customization.png" style="border-left-style: solid;border-left-width: 1px;border-left-color: ;border-right-style: solid;border-right-width: 1px;border-right-color: ;border-top-style: solid;border-top-width: 1px;border-top-color: ;border-bottom-style: solid;border-bottom-width: 1px;border-bottom-color: ;" alt="The updated flow for sending notifications, which now includes a SEND CUSTOM MESSAGES choice" />
+                                </p>
+                                <h3 id="device-lock-wipe">Device lock and wipe</h3>
+                                <p>For missing or stolen devices, IT admins can lock and wipe the contents of the device through <b>Actions</b> &gt; <b>Wipe out</b>. The device wipes as soon as it connects to a server. This action is irreversible.</p>
+                                <div class="callout warning"><b>IMPORTANT</b> — To use this feature, the <b>Wipe devices</b> permission  is required. This feature only applies to B2B users.</div>
                                 <h2>January 19th 2022 Knox Guard feature updates</h2>
                                 <h3><b>End of support for Internet Explorer 11</b>
                                 </h3>
@@ -328,7 +363,7 @@
                                 <p>There is a new option to configure an allow-list for incoming calls for locked devices.</p>
                                 <p>This configuration is available in the Default lock screen/PAYG lock screen only, but it will also be applied for Remote, SIM, PAYG and Offline lock cases.</p>
                                 <p>
-                                    <img src="Resources/Images/default-lock-screen.PNG" style="border-left-style: solid;border-left-width: 5px;border-right-style: solid;border-right-width: 5px;border-top-style: solid;border-top-width: 5px;border-bottom-style: solid;border-bottom-width: 5px;width: 557px;height: 401px;" />
+                                    <img src="Resources/Images/default-lock-screen.png" style="border-left-style: solid;border-left-width: 5px;border-right-style: solid;border-right-width: 5px;border-top-style: solid;border-top-width: 5px;border-bottom-style: solid;border-bottom-width: 5px;width: 557px;height: 401px;" />
                                 </p>
                                 <p>This feature allows end users to receive incoming calls from allow-listed numbers even if the device is locked (Customers can add their Customer Support numbers to the allow-list and give guidance/request overdue payment when the device is locked).</p>
                                 <h3>Per-device auto-lock</h3>
@@ -338,7 +373,7 @@
                                 <p>With the KG 1.38 release, customers can update the lock message per device without changing the device state.</p>
                                 <p>For normal/AntiTheft tenants, go to Action &gt; Update Lock message</p>
                                 <p>
-                                    <img src="Resources/Images/update-lock-message.PNG" style="border-left-style: solid;border-left-width: 5px;border-left-color: ;border-right-style: solid;border-right-width: 5px;border-right-color: ;border-top-style: solid;border-top-width: 5px;border-top-color: ;border-bottom-style: solid;border-bottom-width: 5px;border-bottom-color: ;width: 672px;height: 287px;" />
+                                    <img src="Resources/Images/update-lock-message.png" style="border-left-style: solid;border-left-width: 5px;border-left-color: ;border-right-style: solid;border-right-width: 5px;border-right-color: ;border-top-style: solid;border-top-width: 5px;border-top-color: ;border-bottom-style: solid;border-bottom-width: 5px;border-bottom-color: ;width: 672px;height: 287px;" />
                                 </p>
                                 <p>For PAYG tenant, go to Action &gt;&#160;Send Relock timestamp</p>
                                 <p>
@@ -753,7 +788,7 @@ Going forward, only a welcome and enrollment Message is required, and a phone nu
                                 <h3>New Knox Guard UX</h3>
                                 <p>The Samsung Knox team is introducing a new version of Knox Guard console to provide optimal uniformity amongst our growing family of enrollment and configuration solutions. Knox customers will find the updated version of Knox Guard easier to navigate, as user interface elements have been logically combined to reduce the number of steps required to complete key management tasks. </p>
                                 <p>
-                                    <img src="Resources/Images/dashboard.PNG" />
+                                    <img src="Resources/Images/dashboard.png" />
                                 </p>
                                 <p>The central update is the introduction of a collapsible left-hand navigation menu, replacing the previous horizontal menu bar. This provides a visual hierarchy of  key Knox Guard payment management activities and administrator "call-to-actions." </p>
                                 <p>The new Knox Guard console is personalized, with improved status updates from each user's previous login. Colorized status indicators optimally display "at-a-glance" event severity to administrate with best in class efficiency. </p>
