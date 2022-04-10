@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" lang="en-US" xml:lang="en-US" data-mc-search-type="Stem" data-mc-help-system-file-name="Default.xml" data-mc-path-to-help-system="../../" data-mc-conditions="Default.ksp-build" data-mc-target-type="WebHelp2" data-mc-runtime-file-type="Topic;Default" data-mc-preload-images="false" data-mc-in-preview-mode="false" data-mc-toc-path="">
     <head>
@@ -2836,9 +2837,36 @@
 								Galaxy S10+ (Spring 2021)
 					</td>
                                                     </tr>
+													<tr>
+														<td>Android 12</td>
+														<td>
+						Galaxy S22 (Spring 2022) in DO and WP-C PO mode<br />
+							Tab S8 (Spring 2022) in DO and WP-C PO mode
+					</td>
+														<td>
+						Galaxy S22 (Spring 2022) in DO and WP-C PO mode<br />
+							Tab S8 (Spring 2022) in DO and WP-C PO mode
+					</td>
+													</tr>
                                                 </tbody>
                                             </table>
-                                            <h2>How to Enable Dual DAR</h2>
+                                            <h2>How to Enable Dual DAR in DO</h2>
+                                            <div class="callout warning"><b>NOTE</b> – Ensure you have enabled DualDAR in Knox Mobile Enrollment configuration in order to successfully deploy and activate DualDAR feature through Knox Service Plugin.
+        </div>
+                                            <ol>
+                                                <li value="1">Through your MDM/UEM of choice, go to the <b>KSP Configuration</b></li>
+                                                <li value="2">
+                Under the initial KPE Screen
+                <ol style="list-style-type: lower-alpha;"><li value="1">Enter profile name if applicable (some MDM/UEM don’t require this)</li><li value="2">Enter the <b>KPE Premium key</b></li></ol><img src="../../../assets/merge/images/ksp/dualdar-kpekey.png" alt="kpe key" /></li>
+                                                <li value="3">Click on <b>Device-wide policies (Selectively applicable to Fully Manage Device (DO) or Work Profile-on company owned devices (WP-C) mode as noted)</b>(which drops down additional configurations) under <b>Enable device policy controls</b> set to <b>True</b><br/><img src="../../../assets/merge/images/ksp/dualdar-dopolicies.PNG" alt="DO policies" /></li>
+                                                <li value="4">Click on Passcode Policy (which drops down additional configurations) under <b>Enable password policy controls with KSP</b> set to <b>true</b></li>
+                                                <li value="5">
+                Click on <b>Dual Data-at-Rest (DAR) Encryption</b> (which drops down additional configurations)
+                <ol style="list-style-type: lower-alpha;"><li value="1"><b>Enable Dual DAR Controls</b> set to <b>True</b></li><li value="2"><b>Data lock timoeout type</b> set to any option in the drop down
+                            <ul><li value="1">Use this control to set a data lock type. This locks the credential encrypted (CE) storage and flushes the key from memory. Once locked, apps can’t use the CE until user provides the credential again</li></ul></li><li value="3"><b>Data lock timeout value (in mimutes)</b> set to any value above 5
+                            <ul><li value="1">Use this control to specify the data lock timeout value in minutes. To use this feature, you must set the data lock timeout type to specified value.</li></ul></li><li value="4"><b>Restrict access to device encrypted (DE) storage</b></li><li value="5"><b>List of apps approved to access DE storage</b><ul><li value="1">List application’s package name (example com.android.messages)</li></ul></li><li v><b>Set password minimum length for inner layer</b><ul><li>Use this control to set the password minimum length for inner layer password at DualDAR for fully managed device use cases.</li></ul></li><li><b>Set a new password for inner layer</b><ul><li>Use this control to set a new password for the inner layer at DualDAR for fully managed device use cases. Note that the password must be stronger than the requested quality, for example, a password containing alphanumeric characters when the requested quality is only numeric.</li></ul></li></ol><img src="../../../assets/merge/images/ksp/dualdar-doconfig.PNG" alt="DO config" /></li>
+                                            </ol>
+											<h2>How to Enable Dual DAR in Work Profile</h2>
                                             <div class="callout warning"><b>NOTE</b> – Ensure you have enabled DualDAR in Knox Mobile Enrollment configuration in order to successfully deploy and activate DualDAR feature through Knox Service Plugin.
         </div>
                                             <ol>
@@ -2847,9 +2875,10 @@
                 Under the initial KPE Screen
                 <ol style="list-style-type: lower-alpha;"><li value="1">Enter profile name if applicable (some MDM/UEM don’t require this)</li><li value="2">Enter the <b>KPE Premium key</b></li></ol><img src="../../../assets/merge/images/ksp/dualdar-kpekey.png" alt="kpe key" /></li>
                                                 <li value="3">Click on <b>Work Profile Policies</b>(which drops down additional configurations) under <b>Enable Work Profiles</b> set to <b>True</b><img src="../../../assets/merge/images/ksp/dualdar-workprofilepolicies.png" alt="work profile policies" /></li>
-                                                <li value="4">Click on <b>Work Profile Configuration</b> (which drops down additional configurations) and set <b>Enable Work Profile Configuration Controls</b> to true
+                                                <li value="4">Click on Passcode Policy (which drops down additional configurations) under <b>Enable password policy controls with KSP</b> set to <b>True</b></li>
+												<li value="5">Click on <b>Work Profile Configuration</b> (which drops down additional configurations) and set <b>Enable Work Profile Configuration Controls</b> to true
               <img src="../../../assets/merge/images/ksp/dualdar-workprofileconfig.png" alt="work profile config" /></li>
-                                                <li value="5">
+                                                <li value="6">
                 Click on <b>Dual Data-at-Rest (DAR) Encryption</b> (which drops down additional configurations)
                 <ol style="list-style-type: lower-alpha;"><li value="1"><b>Enable Dual DAR Controls</b> set to <b>True</b></li><li value="2"><b>Data lock timoeout type</b> set to any option in the drop down
                             <ul><li value="1">Use this control to set a data lock type. This locks the credential encrypted (CE) storage and flushes the key from memory. Once locked, apps can’t use the CE until user provides the credential again</li></ul></li><li value="3"><b>Data lock timeout value (in mimutes)</b> set to any value above 1
