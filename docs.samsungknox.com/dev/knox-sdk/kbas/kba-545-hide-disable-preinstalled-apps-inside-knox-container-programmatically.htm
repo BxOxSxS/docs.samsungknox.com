@@ -1,7 +1,7 @@
 <!DOCTYPE html>
-<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" lang="en-US" xml:lang="en-US" data-mc-search-type="Stem" data-mc-help-system-file-name="Default.xml" data-mc-path-to-help-system="../../" data-mc-conditions="Default.knox-sdk-build" data-mc-target-type="WebHelp2" data-mc-runtime-file-type="Topic;Default" data-mc-preload-images="false" data-mc-in-preview-mode="false" data-mc-toc-path="">
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" lang="en-US" xml:lang="en-US" data-mc-search-type="Stem" data-mc-help-system-file-name="Default.xml" data-mc-path-to-help-system="../../" data-mc-conditions="Builds.knox-sdk-build" data-mc-target-type="WebHelp2" data-mc-runtime-file-type="Topic;Default" data-mc-preload-images="false" data-mc-in-preview-mode="false" data-mc-toc-path="">
     <head>
-        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" /><title>How to disable/hide pre-installed apps inside Knox container programmatically</title>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" /><title>How to programatically disable or hide pre-installed apps inside a Knox Workspace container</title>
         <meta charset="utf-8" />
         <meta http-equiv="x-ua-compatible" content="ie=edge" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -50,6 +50,10 @@
         <link href="../../../assets/merge/kp-bootstrap.css" rel="stylesheet" />
         <link href="../../../assets/merge/kp-foundation.css" rel="stylesheet" />
         <link href="../../../assets/merge/kpp-madcap.css" rel="stylesheet" />
+        <style>h1 {font-size:2rem;} </style>
+        <style>h2 {font-weight:bold; font-size:1.55rem;} </style>
+        <style>h5 {margin-left:-17px;} </style>
+        <style>pre {white-space: pre-wrap;} </style>
         <script src="../../Resources/Scripts/custom.modernizr.js">
         </script>
         <script src="../../Resources/Scripts/jquery.min.js">
@@ -1482,6 +1486,24 @@
                                                         </li>
                                                     </ul>
                                                 </li>
+                                                <li class="has-children"><a href="kba-545-hide-disable-preinstalled-apps-inside-knox-container-programmatically.htm#">Knox Guard</a>
+                                                    <ul class="sub-menu">
+                                                        <li><a href="../../knox-guard/index.htm">Overview</a>
+                                                        </li>
+                                                        <li><a href="../../knox-guard/whats-new.htm">What's new</a>
+                                                        </li>
+                                                        <li><a href="../../knox-guard/how-it-works.htm">How it works</a>
+                                                        </li>
+                                                        <li><a href="../../knox-guard/tutorial.htm">Tutorial</a>
+                                                        </li>
+                                                        <li><a href="../../../devref/knox-guard/index.htm" target="_blank">API Reference</a>
+                                                        </li>
+                                                        <li><a href="../../knox-guard/migration.htm">Migration</a>
+                                                        </li>
+                                                        <li><a href="../../knox-guard/error-codes.htm">Error codes</a>
+                                                        </li>
+                                                    </ul>
+                                                </li>
                                             </ul>
                                         </li>
                                         <li class="has-children"><a href="../../assets/navheads/configurations.htm">Managed configurations</a>
@@ -1536,17 +1558,16 @@
                                 <!-- body content HTML box -->
                                 <div class="small-12 medium-8 medium-centered large-9 large-centered columns" id="topic-content">
                                     <!-- topic -->
-                                    <div id="sec2" class="small-12 medium-8 large-9 columns"><a name="aanchor21"></a>
-                                        <MadCap:concept term="Knox SDK" />
-                                        <h1>How to disable/hide pre-installed apps inside Knox container programmatically</h1>
+                                    <div id="sec2" class="small-12 medium-8 large-9 columns">
+                                        <h1><a name="aanchor22"></a>
+                                            <MadCap:concept term="Knox SDK; KBAs and FAQs" />How to programatically disable or hide pre-installed apps inside a Knox Workspace container</h1>
                                         <div class="callout primary">
-                                            <p>The KNOX Workspace may contain different 3rd party apps based on the region the device originates. If you would like to hide/disable these apps please use the following API from the Application Policy class.</p>
-											<p>public boolean setDisableApplication (<a href="http://developer.android.com/reference/java/lang/String.html" rel="noreferrer">String</a> packageName)</p>
-											<p>If you are using a EMM to manage your devices please check with them to see if they have implemented the above API.</p>
-											<div class="note"><b>NOTE—</b> Google services by default are disabled inside the KNOX container. If you see Google apps inside the container, please check the EMM console if any related policies are enabled.</div>
-											<p>If you need further assistance please log into <a href="http://www.samsungknox.com/" rel="noreferrer">www.samsungknox.com</a> and create a ticket.</p>
-										</div>
-                                        <div class="back"><a href="sdk-kbas.htm">Back to KBAs </a>
+                                            <p>The Knox Workspace container might contain different 3rd-party apps based on the region the device is associated with. If you would like to hide or disable these apps, call the <code>setDisableApplication()</code> method of the <code>ApplicationPolicy</code> class.</p><pre class="prettyprint" xml:space="preserve">public boolean setDisableApplication (String packageName)</pre>
+                                            <p>If you are using an EMM to manage your devices, please contact your EMM representative for guidance on whether <code>setDisableApplication()</code> is implemented.</p>
+                                            <p>By default, Google services are disabled inside the Knox Workspace container. If you see Google apps inside the container, you should check whether any Google-related policies are enabled by the EMM.</p>
+                                            <p>If you need further assistance, you can sign in to your <a href="http://www.samsungknox.com/" target="_blank">Knox dashboard</a> and create a support ticket.</p>
+                                        </div>
+                                        <div class="back"><a href="sdk-kbas.htm">Back to KBAs</a>
                                         </div>
                                         <!-- Inserts feedback module here -->
                                         <div id="feedback">

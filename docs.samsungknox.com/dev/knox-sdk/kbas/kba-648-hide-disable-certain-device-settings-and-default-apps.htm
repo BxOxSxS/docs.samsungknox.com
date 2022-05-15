@@ -1,7 +1,7 @@
 <!DOCTYPE html>
-<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" lang="en-US" xml:lang="en-US" data-mc-search-type="Stem" data-mc-help-system-file-name="Default.xml" data-mc-path-to-help-system="../../" data-mc-conditions="Default.knox-sdk-build" data-mc-target-type="WebHelp2" data-mc-runtime-file-type="Topic;Default" data-mc-preload-images="false" data-mc-in-preview-mode="false" data-mc-toc-path="">
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" lang="en-US" xml:lang="en-US" data-mc-search-type="Stem" data-mc-help-system-file-name="Default.xml" data-mc-path-to-help-system="../../" data-mc-conditions="Builds.knox-sdk-build" data-mc-target-type="WebHelp2" data-mc-runtime-file-type="Topic;Default" data-mc-preload-images="false" data-mc-in-preview-mode="false" data-mc-toc-path="">
     <head>
-        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" /><title>How to hide/disable certain device settings and default apps to create a more restricted UI</title>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" /><title>How to hide or disable device settings and default apps to create a restricted UI</title>
         <meta charset="utf-8" />
         <meta http-equiv="x-ua-compatible" content="ie=edge" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -50,6 +50,10 @@
         <link href="../../../assets/merge/kp-bootstrap.css" rel="stylesheet" />
         <link href="../../../assets/merge/kp-foundation.css" rel="stylesheet" />
         <link href="../../../assets/merge/kpp-madcap.css" rel="stylesheet" />
+        <style>h1 {font-size:2rem;} </style>
+        <style>h2 {font-weight:bold; font-size:1.55rem;} </style>
+        <style>h5 {margin-left:-17px;} </style>
+        <style>pre {white-space: pre-wrap;} </style>
         <script src="../../Resources/Scripts/custom.modernizr.js">
         </script>
         <script src="../../Resources/Scripts/jquery.min.js">
@@ -1482,6 +1486,24 @@
                                                         </li>
                                                     </ul>
                                                 </li>
+                                                <li class="has-children"><a href="kba-648-hide-disable-certain-device-settings-and-default-apps.htm#">Knox Guard</a>
+                                                    <ul class="sub-menu">
+                                                        <li><a href="../../knox-guard/index.htm">Overview</a>
+                                                        </li>
+                                                        <li><a href="../../knox-guard/whats-new.htm">What's new</a>
+                                                        </li>
+                                                        <li><a href="../../knox-guard/how-it-works.htm">How it works</a>
+                                                        </li>
+                                                        <li><a href="../../knox-guard/tutorial.htm">Tutorial</a>
+                                                        </li>
+                                                        <li><a href="../../../devref/knox-guard/index.htm" target="_blank">API Reference</a>
+                                                        </li>
+                                                        <li><a href="../../knox-guard/migration.htm">Migration</a>
+                                                        </li>
+                                                        <li><a href="../../knox-guard/error-codes.htm">Error codes</a>
+                                                        </li>
+                                                    </ul>
+                                                </li>
                                             </ul>
                                         </li>
                                         <li class="has-children"><a href="../../assets/navheads/configurations.htm">Managed configurations</a>
@@ -1536,30 +1558,43 @@
                                 <!-- body content HTML box -->
                                 <div class="small-12 medium-8 medium-centered large-9 large-centered columns" id="topic-content">
                                     <!-- topic -->
-                                    <div id="sec2" class="small-12 medium-8 large-9 columns"><a name="aanchor21"></a>
-                                        <MadCap:concept term="Knox SDK" />
-                                        <h1>How to hide/disable certain device settings and default apps to create a more restricted UI</h1>
+                                    <div id="sec2" class="small-12 medium-8 large-9 columns">
+                                        <h1><a name="aanchor25"></a>
+                                            <MadCap:concept term="Knox SDK; KBAs and FAQs" />How to hide or disable device settings and default apps to create a restricted UI</h1>
                                         <div class="callout primary">
-                                            <h2>Environment </h2>
+                                            <h2 id="environment">Environment </h2>
                                             <ul>
                                                 <li value="1">Knox SDK</li>
                                             </ul>
-                                            <h2>Overview </h2>
-                                            <p>This KBA specifies useful APIs that help hide or disable certain device settings and default apps if you are trying to create a more restricted UI.</p>
-                                            <div class="callout"><b>NOTE</b>—This provides you with some common APIs to help you get started.</div>
-											<h2>How to hide elements in device settings</h2>
-                                            <p>To hide elements in the Settings app on the device, you can use the Knox SDK API: <a href="../../../devref/knox-sdk/reference/com/samsung/android/knox/custom/SettingsManager.html#setSettingsHiddenState(boolean,%20int)">SettingsManager.setSettingsHiddenState</a></p>
-											<p>The elements that can be hidden are Applications, Backup, Backup and reset, Bluetooth, Developer, Flight mode, Language, Location, Lock screen, Reset, Users, and Wi-Fi.</p>
-                                            <h2>How to hide biometric authentication option</h2>
-                                            <p>To hide the biometric authentication option, you can use the Knox SDK API: <a href="../../../devref/knox-sdk/reference/com/samsung/android/knox/devicesecurity/PasswordPolicy.html#setBiometricAuthenticationEnabled(int,%20boolean)">PasswordPolicy.setBiometricAuthenticationEnabled</a></p>
-                                            <h2>How to disable an application</h2>
-											<p>To disable an application without uninstallation, you can use the Knox SDK API: <a href="../../../devref/knox-sdk/reference/com/samsung/android/knox/application/ApplicationPolicy.html#setDisableApplication(java.lang.String)">ApplicationPolicy.setDisableApplication</a></p>
-											<p>Another option is to disable an application component. You can use the Knox SDK API: <a href="../../../devref/knox-sdk/reference/com/samsung/android/knox/application/ApplicationPolicy.html#setApplicationComponentState(android.content.ComponentName,%20boolean)">ApplicationPolicy.setApplicationComponentState</a></p>
-											<h2>Additional information</h2>
-                                            <p>Please see the above API reference guide on the API's specifications and refer to the <a href="../../../devref/knox-sdk/reference/packages.html">full API guide</a>.</p>
-											<p>To learn more about how to use Knox SDKs, refer to the <a href="../tutorial-get-started.htm">getting started guide</a>.</p>
-										</div>
-                                        <div class="back"><a href="sdk-kbas.htm">Back to KBAs </a>
+                                            <h2 id="overview">Overview</h2>
+                                            <p>This article specifies useful API methods that help hide or disable certain device settings and default apps when creating a restricted UI.</p>
+                                            <h2 id="how-to-hide-elements-in-device-settings">How to hide elements in device settings</h2>
+                                            <p>To hide elements in the device's settings, call <code><a href="../../../devref/knox-sdk/reference/com/samsung/android/knox/custom/SettingsManager.html#setSettingsHiddenState(boolean,%20int)" target="_blank">SettingsManager.setSettingsHiddenState()</a></code>.</p>
+                                            <p>The elements that can be hidden include:</p>
+                                            <ul>
+                                                <li value="1">Applications</li>
+                                                <li value="2">Backup</li>
+                                                <li value="3">Backup and reset</li>
+                                                <li value="4">Bluetooth</li>
+                                                <li value="5">Developer</li>
+                                                <li value="6">Flight mode</li>
+                                                <li value="7">Language</li>
+                                                <li value="8">Location</li>
+                                                <li value="9">Lock screen</li>
+                                                <li value="10">Reset</li>
+                                                <li value="11">Users</li>
+                                                <li value="12">Wi-Fi</li>
+                                            </ul>
+                                            <h2 id="how-to-hide-biometric-authentication-option">How to hide the biometric authentication option</h2>
+                                            <p>To hide the biometric authentication option, call <code><a href="../../../devref/knox-sdk/reference/com/samsung/android/knox/devicesecurity/PasswordPolicy.html#setBiometricAuthenticationEnabled(int,%20boolean)" target="_blank">PasswordPolicy.setBiometricAuthenticationEnabled()</a></code>.</p>
+                                            <h2 id="how-to-disable-application">How to disable an application</h2>
+                                            <p>To disable an application without uninstalling it, call <code><a href="../../../devref/knox-sdk/reference/com/samsung/android/knox/application/ApplicationPolicy.html#setDisableApplication(java.lang.String)" target="_blank">ApplicationPolicy.setDisableApplication()</a></code>.</p>
+                                            <p>You can also disable an app component using <code><a href="../../../devref/knox-sdk/reference/com/samsung/android/knox/application/ApplicationPolicy.html#setApplicationComponentState(android.content.ComponentName,%20boolean)" target="_blank">ApplicationPolicy.setApplicationComponentState()</a></code>.</p>
+                                            <h2 id="additional-information">Additional information</h2>
+                                            <p>Refer to the <a href="../../../devref/knox-sdk/reference/packages.html">Knox SDK API reference</a>for further details.</p>
+                                            <p>To learn more about Knox SDK, refer to <a href="../about-the-sdk.htm">About the Knox SDK</a>.</p>
+                                        </div>
+                                        <div class="back"><a href="sdk-kbas.htm">Back to KBAs</a>
                                         </div>
                                         <!-- Inserts feedback module here -->
                                         <div id="feedback">
