@@ -55,6 +55,21 @@
         <link href="../../assets/merge/kp-foundation.css" rel="stylesheet" />
         <link href="../Resources/kp-madcap.css" rel="stylesheet" />
         <link href="../Resources/print.css" rel="stylesheet" />
+        <style>
+            .diagram:hover {
+                position: relative;
+                transform: scale(1.5);
+                z-index: 999;
+                transition-property: all;
+                transition-duration: 0.3s;
+                transition-timing-function: ease;
+            }
+            .diagram {
+                position: relative;
+                z-index: 999;
+                transition: 0.1s;
+            }
+        </style>
         <script src="../Resources/Scripts/custom.modernizr.js">
         </script>
         <script src="../Resources/Scripts/jquery.min.js">
@@ -1767,6 +1782,8 @@
                                                                         </li>
                                                                         <li><a href="../knox-manage/add-public-applications-using-ios-app-store.htm">Add public applications using iOS App Store</a>
                                                                         </li>
+                                                                        <li><a href="../knox-manage/add-public-applications-using-managed-google-play.htm">Add public applications using Managed Google Play</a>
+                                                                        </li>
                                                                         <li><a href="../knox-manage/add-public-applications-using-managed-google-play-private.htm">Add public applications using Managed Google Play Private</a>
                                                                         </li>
                                                                         <li><a href="../knox-manage/add-public-applications-using-managed-google-play-store.htm">Add public applications using Managed Google Play Store Private Web</a>
@@ -1783,15 +1800,15 @@
                                                                         </li>
                                                                         <li><a href="../knox-manage/assign-internal-applications.htm">Assign internal Android and iOS apps</a>
                                                                         </li>
-                                                                        <li><a href="../knox-manage/assign-ios-app-store-applications.htm">Assign iOS App Store applications </a>
+                                                                        <li><a href="../knox-manage/assign-ios-app-store-applications.htm">Assign iOS App Store applications</a>
                                                                         </li>
-                                                                        <li><a href="../knox-manage/assign-google-play-applications.htm">Assign Google Play applications </a>
+                                                                        <li><a href="../knox-manage/assign-google-play-applications.htm">Assign Google Play applications</a>
                                                                         </li>
-                                                                        <li><a href="../knox-manage/assign-managed-google-play-applications.htm">Assign Managed Google Play applications </a>
+                                                                        <li><a href="../knox-manage/assign-managed-google-play-applications.htm">Assign Managed Google Play applications</a>
                                                                         </li>
-                                                                        <li><a href="../knox-manage/assign-managed-google-play-private-applications.htm">Assign Managed Google Play Private applications </a>
+                                                                        <li><a href="../knox-manage/assign-managed-google-play-private-applications.htm">Assign Managed Google Play Private applications</a>
                                                                         </li>
-                                                                        <li><a href="../knox-manage/add-public-applications-using-managed-google-play-store-web-app.htm">Assigned Managed Google Play public web apps</a>
+                                                                        <li><a href="../knox-manage/add-public-applications-using-managed-google-play-store-web-app.htm">Assign Managed Google Play public web apps</a>
                                                                         </li>
                                                                         <li><a href="../knox-manage/assign-windows-apps.htm">Assign Windows applications</a>
                                                                         </li>
@@ -2911,7 +2928,7 @@
                                             <h1>Enable and Disable SIM control</h1>
                                             <p> Knox Guard devices in any state except 'rejected' state can be controlled for their SIM operation individually,  collectively, or in bulk. The solution provides features like locking a device when needed, applying usability restrictions for voice, text and data usage, and applying International roaming restrictions.
 </p>
-                                            <p>For information on setting SIM control default values, go to: <a href="default-lock-screen.htm">Manage defaults</a>. </p>
+                                            <p>For information on setting SIM control default values, go to: <a href="sim-control.htm">Manage defaults</a>. </p>
                                             <div class="callout warning"><b>NOTE</b> - When an approved SIM is removed from a device a message displays indicating their device SIM cannot be detected or is from an unsupported service provider and requires replacement with an approved SIM.</div>
                                             <h2>Enable SIM control</h2>
                                             <p>Devices with a dual SIM card configuration can use restricted features as long as one of the SIM cards is allowed. To enable this behavior, use the <b>Minimum restriction</b> setting in the SIM control policy. If both SIM cards are blocked, they are restricted according to the control policy, as before.</p>
@@ -2921,19 +2938,19 @@
                                                 <li value="1">Select one or more device checkboxes from the left-hand side of the <b>Devices</b> screen. </li>
                                                 <li value="2">Invoke the <b>ACTIONS</b> drop-down menu from the top, right-hand side, of the Devices screen and select <b>Manage policy</b> &gt;&#160;<b>Enable SIM control</b>. </li>
                                                 <p>
-                                                    <img alt="Actions dropdown menu" src="../../assets/merge/images/knox-guard/actions.PNG" style="border-left-style: solid;border-left-width: 1px;border-right-style: solid;border-right-width: 1px;border-top-style: solid;border-top-width: 1px;border-bottom-style: solid;border-bottom-width: 1px;" />
+                                                    <img class="diagram" alt="Actions dropdown menu" src="../../assets/merge/images/knox-guard/actions.PNG" />
                                                 </p>
                                                 <li value="3">
                                                     <p>Settings which are applied in 'Policies' will show here. To edit these settings, go to <b>Policies</b> &gt; <b>SIM CONTROL</b>.</p>
                                                     <p>If the 'Lock device' checkbox is selected, 'Locked devices' messaging is shown. If voice calls, SMS/MMS/RCS, or data usage is disabled, 'Restricted actions notification' messaging is shown. This information is read-only; messaging must be edited within <b>Policies</b>.</p>
-                                                    <p>Refer to the <b>MCC</b> and <b>MNC</b> fields to assess if a default <i>Mobility Country Code</i> (MCC) and <i>Mobile Network Code</i> (MNC) has been applied to uniquely identify the selected device's mobile network carrier for SIM control restriction exclusion. Each mobile device carrier has their own unique MCC and MNC pair. To revise the default MCC/MNC code assignment, go to: <a href="default-lock-screen.htm">Manage defaults</a>.</p>
+                                                    <p>Refer to the <b>MCC</b> and <b>MNC</b> fields to assess if a default <i>Mobility Country Code</i> (MCC) and <i>Mobile Network Code</i> (MNC) has been applied to uniquely identify the selected device's mobile network carrier for SIM control restriction exclusion. Each mobile device carrier has their own unique MCC and MNC pair. To revise the default MCC/MNC code assignment, go to: <a href="sim-control.htm">Manage defaults</a>.</p>
                                                 </li>
-                                                <div class="callout warning"><b>NOTE</b>— As of KCS 22.03, A new <b>IMSI Lock</b> menu is available under the <b>SIM control</b> page. This feature allows customers to enable or disable IMSI policies regardless of whether MCC/MNC information is provided</div>
+                                                <div class="callout warning"><b>NOTE</b>— As of KCS 22.03, a new <b>Mobile Number Lock</b> menu is available under the <b>SIM control</b> page. This feature allows customers to enable or disable IMSI policies regardless of whether MCC/MNC information is provided.</div>
                                                 <p>
-                                                    <img alt="SIM control screen showing policy options" src="../../assets/merge/images/knox-guard/sim-control.PNG" style="border-left-style: solid;border-left-width: 1px;border-right-style: solid;border-right-width: 1px;border-top-style: solid;border-top-width: 1px;border-bottom-style: solid;border-bottom-width: 1px;width: 917px;height: 929px;" />
+                                                    <img class="diagram" alt="SIM control screen showing policy options" src="../../assets/merge/images/knox-guard/sim-control.PNG" />
                                                 </p>
                                                 <li value="4">Hit the <b>CONFIRM</b> button to proceed with SIM control. A message displays near the top of the screen stating 'SIM control will be enabled on 1 device(s)'. This may take some time depending on the device's network.</li>
-                                                <li value="5">Once applied, a SIM control icon <img alt="Rectangular SIM card logo, tapered on one corner with a lock inside" src="../../assets/merge/images/knox-guard/sim_control_logo.png" /> is shown next to the device's Device ID. Devices can also be filtered for this setting from the drop-down. Clicking this icon will show a pop-up with all the SIM&#160;control policies applied to the respective device.</li>
+                                                <li value="5">Once applied, a SIM control icon <img class="diagram" alt="Rectangular SIM card logo, tapered on one corner with a lock inside" src="../../assets/merge/images/knox-guard/sim_control_logo.png" /> is shown next to the device's Device ID. Devices can also be filtered for this setting from the drop-down. Clicking this icon will show a pop-up with all the SIM&#160;control policies applied to the respective device.</li>
                                             </ol>
                                             <h2>Disable SIM control</h2>
                                             <p>SIM control can be disabled with Knox Guard when needed as mobile device ownership is changed or a new subscription plan applied.
@@ -2943,7 +2960,7 @@ SIM control can be disabled either individually,  collectively, or in bulk. </p>
                                             </ol>
                                             <blockquote>
                                                 <p>
-                                                    <img alt="Disable SIM control popup showing Cancel or Confirm options" src="../../assets/merge/images/knox-guard/sim_control_disable.png" />
+                                                    <img class="diagram" alt="Disable SIM control popup showing Cancel or Confirm options" src="../../assets/merge/images/knox-guard/sim_control_disable.png" />
                                                 </p>
                                             </blockquote>
                                             <ol start="1" data-mc-continue="true">
@@ -2962,7 +2979,7 @@ SIM control can be disabled either individually,  collectively, or in bulk. </p>
                                             </ol>
                                             <blockquote>
                                                 <p>
-                                                    <img alt="Enable SIM control screen showing option to upload a CSV, XLS or XLSX file" src="../../assets/merge/images/knox-guard/enable-sim-control-bulk.PNG" style="width: 948px;height: 576px;border-left-style: solid;border-left-width: 1px;border-right-style: solid;border-right-width: 1px;border-top-style: solid;border-top-width: 1px;border-bottom-style: solid;border-bottom-width: 1px;" />
+                                                    <img class="diagram" alt="Enable SIM control screen showing option to upload a CSV, XLS or XLSX file" src="../../assets/merge/images/knox-guard/enable-sim-control-bulk.PNG" style="width: 948px;height: 576px;border-left-style: solid;border-left-width: 1px;border-right-style: solid;border-right-width: 1px;border-top-style: solid;border-top-width: 1px;border-bottom-style: solid;border-bottom-width: 1px;" />
                                                 </p>
                                             </blockquote>
                                             <ol start="1" data-mc-continue="true">
@@ -2981,7 +2998,7 @@ SIM control can be disabled either individually,  collectively, or in bulk. </p>
                                             </ol>
                                             <blockquote>
                                                 <p>
-                                                    <img alt="Disable SIM control screen showing option to upload a CSV, XLS or XLSX file" src="../../assets/merge/images/knox-guard/sim-control-disable-bulk.png" />
+                                                    <img class="diagram" alt="Disable SIM control screen showing option to upload a CSV, XLS or XLSX file" src="../../assets/merge/images/knox-guard/sim-control-disable-bulk.png" />
                                                 </p>
                                             </blockquote>
                                             <ol start="1" data-mc-continue="true">

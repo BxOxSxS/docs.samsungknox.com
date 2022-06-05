@@ -55,10 +55,17 @@
         <link href="../../../assets/merge/kp-foundation.css" rel="stylesheet" />
         <link href="../../Resources/kp-madcap.css" rel="stylesheet" />
         <link href="../../Resources/print.css" rel="stylesheet" />
-        <style>h1 {font-size:2rem;} </style>
-        <style>h2 {font-weight:bold; font-size:1.55rem;} </style>
-        <style>h5 {margin-left:-17px;} </style>
-        <style>pre {white-space: pre-wrap;} </style>
+        <style>
+            h1 {
+                font-size: 2rem;
+            }
+            h2 {
+                font-size: 1.55rem;
+            }
+            td {
+                vertical-align: top;
+            }
+        </style>
         <script src="../../Resources/Scripts/custom.modernizr.js">
         </script>
         <script src="../../Resources/Scripts/jquery.min.js">
@@ -1771,6 +1778,8 @@
                                                                         </li>
                                                                         <li><a href="../add-public-applications-using-ios-app-store.htm">Add public applications using iOS App Store</a>
                                                                         </li>
+                                                                        <li><a href="../add-public-applications-using-managed-google-play.htm">Add public applications using Managed Google Play</a>
+                                                                        </li>
                                                                         <li><a href="../add-public-applications-using-managed-google-play-private.htm">Add public applications using Managed Google Play Private</a>
                                                                         </li>
                                                                         <li><a href="../add-public-applications-using-managed-google-play-store.htm">Add public applications using Managed Google Play Store Private Web</a>
@@ -1787,15 +1796,15 @@
                                                                         </li>
                                                                         <li><a href="../assign-internal-applications.htm">Assign internal Android and iOS apps</a>
                                                                         </li>
-                                                                        <li><a href="../assign-ios-app-store-applications.htm">Assign iOS App Store applications </a>
+                                                                        <li><a href="../assign-ios-app-store-applications.htm">Assign iOS App Store applications</a>
                                                                         </li>
-                                                                        <li><a href="../assign-google-play-applications.htm">Assign Google Play applications </a>
+                                                                        <li><a href="../assign-google-play-applications.htm">Assign Google Play applications</a>
                                                                         </li>
-                                                                        <li><a href="../assign-managed-google-play-applications.htm">Assign Managed Google Play applications </a>
+                                                                        <li><a href="../assign-managed-google-play-applications.htm">Assign Managed Google Play applications</a>
                                                                         </li>
-                                                                        <li><a href="../assign-managed-google-play-private-applications.htm">Assign Managed Google Play Private applications </a>
+                                                                        <li><a href="../assign-managed-google-play-private-applications.htm">Assign Managed Google Play Private applications</a>
                                                                         </li>
-                                                                        <li><a href="../add-public-applications-using-managed-google-play-store-web-app.htm">Assigned Managed Google Play public web apps</a>
+                                                                        <li><a href="../add-public-applications-using-managed-google-play-store-web-app.htm">Assign Managed Google Play public web apps</a>
                                                                         </li>
                                                                         <li><a href="../assign-windows-apps.htm">Assign Windows applications</a>
                                                                         </li>
@@ -2911,23 +2920,23 @@
 									</div>
 									-->
                                     <div id="sec2" class="small-12 medium-8 large-9 columns">
-                                        <div itemscope="itemscope" itemtype="http://schema.org/Guide"><a name="aanchor1219"></a>
-                                            <MadCap:concept term="knox-manage" />
-                                            <h1><a name="aanchor1220"></a>
-                                                <MadCap:concept term="KBAs and FAQs" />What are the firewall exceptions that I need to configure in order to use Knox Manage?</h1>
+                                        <div itemscope="itemscope" itemtype="http://schema.org/Guide">
+                                            <h1><a name="aanchor1221"></a>
+                                                <MadCap:concept term="Knox Manage;KBAs and FAQs" />What are the firewall exceptions that I need to configure in order to use Knox Manage?</h1>
                                             <div class="callout primary">
-                                                <p>The following table lists the URLs and port numbers that you must add as trusted sites for enterprises attempting to use the Knox Manage service.</p>
-                                                <p><strong>1. EMM service:</strong>
-                                                </p>
-                                                <table style="width: 500px;" border="1" cellpadding="5">
+                                                <p>In order to implement Knox Manage and Knox Remote Support in your enterprise deployment, you must configure the following URLs and port exceptions for the network of your device fleet.</p>
+                                                <h2 id="knox-manage-exceptions">Knox Manage exceptions</h2>
+                                                <table class="no-stripes">
                                                     <tbody>
                                                         <tr>
+                                                            <th style="width: 20%">Device fleet contains</th>
                                                             <th>URL</th>
-                                                            <th>Port</th>
+                                                            <th>Ports</th>
                                                         </tr>
                                                         <tr>
+                                                            <td rowspan="4">All</td>
                                                             <td>*.samsungknox.com</td>
-                                                            <td rowspan="4">443/80</td>
+                                                            <td rowspan="4">443 or 80</td>
                                                         </tr>
                                                         <tr>
                                                             <td>*.secb2b.com</td>
@@ -2939,69 +2948,102 @@
                                                             <td>*.gstatic.com</td>
                                                         </tr>
                                                         <tr>
-                                                            <td>
-                                                                <p>(Android device)<br /> android.googleapis.com</p>
-                                                            </td>
-                                                            <td>
-                                                                <br />
-                                                                <p>443, 5228, 5229, 5230</p>
-                                                            </td>
+                                                            <td>Android devices</td>
+                                                            <td>android.googleapis.com</td>
+                                                            <td>443, 5228, 5229, 5230</td>
                                                         </tr>
                                                         <tr>
-                                                            <td>
-                                                                <p>(iOS device)<br /> gateway.push.apple.com<br /> feedback.push.apple.com</p>
-                                                            </td>
-                                                            <td>
-                                                                <br />
-                                                                <p>2195<br /> 2196</p>
-                                                            </td>
+                                                            <td rowspan="3">Android devices on isolated network<sup>1</sup></td>
+                                                            <td>play.google.com</td>
+                                                            <td rowspan="3">443 or 80</td>
                                                         </tr>
-                                                    </tbody>
-                                                </table>
-                                                <p>*If the device runs in a different network environment with firewall configuration, then additional URLs and ports also need to be added to the allowlist.</p>
-                                                <table style="width: 350px;" border="1" cellpadding="5">
-                                                    <tbody>
-                                                        <tr style="height: 20px;">
-                                                            <th style="height: 20px;">URL</th>
-                                                            <th style="height: 20px;">Port</th>
-                                                        </tr>
-                                                        <tr style="height: 20px;">
-                                                            <td style="height: 20px;">play.google.com</td>
-                                                            <td style="height: 16.4px;" rowspan="3">443/80&#160;&#160;</td>
-                                                        </tr>
-                                                        <tr style="height: 20px;">
-                                                            <td style="height: 20px;">android.clients.google.com</td>
+                                                        <tr>
+                                                            <td>android.clients.google.com</td>
                                                         </tr>
                                                         <tr>
                                                             <td>accounts.google.com</td>
                                                         </tr>
+                                                        <tr>
+                                                            <td rowspan="2">iOS devices</td>
+                                                            <td>gateway.push.apple.com</td>
+                                                            <td>2195</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>feedback.push.apple.com</td>
+                                                            <td>2196</td>
+                                                        </tr>
                                                     </tbody>
                                                 </table>
-                                                <p><strong>2. Knox Remote Support Web Viewer:</strong>
-                                                </p>
-                                                <table style="width: 350px;" border="1" cellpadding="5">
+                                                <p><sup>1</sup> An isolated network is a network that is separate from your enterprise IT network.</p>
+                                                <h2 id="knox-remote-support-exceptions">Knox Remote Support exceptions</h2>
+                                                <table class="no-stripes">
                                                     <tbody>
                                                         <tr>
-                                                            <th>URL/IP</th>
+                                                            <th>Region</th>
+                                                            <th>Server</th>
+                                                            <th>Domain</th>
+                                                            <th style="width: 25%">IP address</th>
                                                             <th>Port</th>
+                                                            <th>Connection</th>
                                                         </tr>
                                                         <tr>
-                                                            <td>*.samsungknox.com</td>
-                                                            <td rowspan="4">8118&#160;&#160;&#160;</td>
+                                                            <td rowspan="3">Asia</td>
+                                                            <td rowspan="2">Relay</td>
+                                                            <td rowspan="2">ap&#8209;rs&#8209;relay.manage.samsungknox.com</td>
+                                                            <td>18.141.250.233</td>
+                                                            <td rowspan="2">45001</td>
+                                                            <td rowspan="2">Mobile</td>
                                                         </tr>
                                                         <tr>
-                                                            <td>[Asia] 52.76.170.118</td>
+                                                            <td>13.213.198.62</td>
                                                         </tr>
                                                         <tr>
-                                                            <td>[US] 34.213.113.19</td>
+                                                            <td>WAS</td>
+                                                            <td>ap&#8209;rs&#8209;web.manage.samsungknox.com</td>
+                                                            <td>-</td>
+                                                            <td>443</td>
+                                                            <td>Desktop</td>
                                                         </tr>
                                                         <tr>
-                                                            <td>[EU] 52.50.15.50</td>
+                                                            <td rowspan="3">US</td>
+                                                            <td rowspan="2">Relay</td>
+                                                            <td rowspan="2">us&#8209;rs&#8209;relay.manage.samsungknox.com</td>
+                                                            <td>35.83.188.168</td>
+                                                            <td rowspan="2">45001</td>
+                                                            <td rowspan="2">Mobile</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>52.36.230.249</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>WAS</td>
+                                                            <td>us&#8209;rs&#8209;web.manage.samsungknox.com</td>
+                                                            <td>-</td>
+                                                            <td>443</td>
+                                                            <td>Desktop</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td rowspan="3">EU</td>
+                                                            <td rowspan="2">Relay</td>
+                                                            <td rowspan="2">eu&#8209;rs&#8209;relay.manage.samsungknox.com</td>
+                                                            <td>54.155.132.151</td>
+                                                            <td rowspan="2">45001</td>
+                                                            <td rowspan="2">Mobile</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>63.34.35.115</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>WAS</td>
+                                                            <td>eu&#8209;rs&#8209;web.manage.samsungknox.com</td>
+                                                            <td>-</td>
+                                                            <td>443</td>
+                                                            <td>Desktop</td>
                                                         </tr>
                                                     </tbody>
                                                 </table>
                                             </div>
-                                            <p>For more information see <a href="../minimum-requirements-remote.htm">Minimum Requirements</a>.</p>
+                                            <p>For more information on the requirements for Knox Remote Support, see <a href="../../knox-remote-support/minimum-requirements.htm"> Knox Remote Support minimum requirements</a>.</p>
                                             <div class="back"><a href="index.htm">Back to KBAs </a>
                                             </div>
                                         </div>

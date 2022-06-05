@@ -55,6 +55,21 @@
         <link href="../../assets/merge/kp-foundation.css" rel="stylesheet" />
         <link href="../Resources/kp-madcap.css" rel="stylesheet" />
         <link href="../Resources/print.css" rel="stylesheet" />
+        <style>
+            .diagram:hover {
+                position: relative;
+                transform: scale(1.5);
+                z-index: 999;
+                transition-property: all;
+                transition-duration: 0.3s;
+                transition-timing-function: ease;
+            }
+            .diagram {
+                position: relative;
+                z-index: 999;
+                transition: 0.1s;
+            }
+        </style>
         <script src="../Resources/Scripts/custom.modernizr.js">
         </script>
         <script src="../Resources/Scripts/jquery.min.js">
@@ -1767,6 +1782,8 @@
                                                                         </li>
                                                                         <li><a href="../knox-manage/add-public-applications-using-ios-app-store.htm">Add public applications using iOS App Store</a>
                                                                         </li>
+                                                                        <li><a href="../knox-manage/add-public-applications-using-managed-google-play.htm">Add public applications using Managed Google Play</a>
+                                                                        </li>
                                                                         <li><a href="../knox-manage/add-public-applications-using-managed-google-play-private.htm">Add public applications using Managed Google Play Private</a>
                                                                         </li>
                                                                         <li><a href="../knox-manage/add-public-applications-using-managed-google-play-store.htm">Add public applications using Managed Google Play Store Private Web</a>
@@ -1783,15 +1800,15 @@
                                                                         </li>
                                                                         <li><a href="../knox-manage/assign-internal-applications.htm">Assign internal Android and iOS apps</a>
                                                                         </li>
-                                                                        <li><a href="../knox-manage/assign-ios-app-store-applications.htm">Assign iOS App Store applications </a>
+                                                                        <li><a href="../knox-manage/assign-ios-app-store-applications.htm">Assign iOS App Store applications</a>
                                                                         </li>
-                                                                        <li><a href="../knox-manage/assign-google-play-applications.htm">Assign Google Play applications </a>
+                                                                        <li><a href="../knox-manage/assign-google-play-applications.htm">Assign Google Play applications</a>
                                                                         </li>
-                                                                        <li><a href="../knox-manage/assign-managed-google-play-applications.htm">Assign Managed Google Play applications </a>
+                                                                        <li><a href="../knox-manage/assign-managed-google-play-applications.htm">Assign Managed Google Play applications</a>
                                                                         </li>
-                                                                        <li><a href="../knox-manage/assign-managed-google-play-private-applications.htm">Assign Managed Google Play Private applications </a>
+                                                                        <li><a href="../knox-manage/assign-managed-google-play-private-applications.htm">Assign Managed Google Play Private applications</a>
                                                                         </li>
-                                                                        <li><a href="../knox-manage/add-public-applications-using-managed-google-play-store-web-app.htm">Assigned Managed Google Play public web apps</a>
+                                                                        <li><a href="../knox-manage/add-public-applications-using-managed-google-play-store-web-app.htm">Assign Managed Google Play public web apps</a>
                                                                         </li>
                                                                         <li><a href="../knox-manage/assign-windows-apps.htm">Assign Windows applications</a>
                                                                         </li>
@@ -2911,7 +2928,7 @@
                                             <h1>SIM control</h1>
                                             <h3>Set a default SIM control configuration</h3>
                                             <div class="callout warning"><b>NOTE</b>— This functionality is only available upon request. Please contact your Knox Guard administrator to enable this feature.</div>
-                                            <div class="callout warning"><b>NOTE</b>— For step-by-step instructions to apply this policy to selected user devices, go to: <a href="sim-control.htm#">SIM control</a>.</div>
+                                            <div class="callout warning"><b>NOTE</b>— For step-by-step instructions to apply this policy to selected user devices, go to: <a href="enable-sim-control.htm">SIM control</a>.</div>
                                             <p>Create a default SIM control configuration to restrict default SIM functionality or lock the device. The default SIM configuration can be used consistently across deployments until specific modifications are needed for specific deployment objectives.
 
 </p>
@@ -2922,18 +2939,18 @@
                                                 <li value="1">Select <b>Policies</b> from the left-hand navigation menu.</li>
                                                 <li value="2">Select <b>SIM CONTROL</b>. </li>
                                                 <p>
-                                                    <img alt="SIM control screen showing policy options" src="../../assets/merge/images/knox-guard/sim-control.PNG" style="width: 948px;height: 961px;" />
+                                                    <img class="diagram" alt="SIM control screen showing policy options" src="../../assets/merge/images/knox-guard/sim-control.PNG" />
                                                 </p>
                                                 <div class="callout warning"><b>NOTE</b>— A maximum of 5 SIM control policies can be added.</div>
-                                                <div class="callout warning"><b>NOTE</b>— As of KCS 22.03, A new <b>IMSI Lock</b> menu is available under the <b>SIM control</b> page. This feature allows customers to enable or disable IMSI policies regardless of whether MCC/MNC information is provided</div>
+                                                <div class="callout warning"><b>NOTE</b>— As of KCS 22.03, a new <b>Mobile Number Lock</b> menu is available under the <b>SIM control</b> page. This feature allows customers to enable or disable IMSI policies regardless of whether MCC/MNC information is provided</div>
                                                 <li value="3">Refer to the <b>MCC</b> and <b>MNC</b> fields to assess if a default <i>Mobility Country Code (MCC)</i> and <i>Mobile Network Code (MNC)</i> has been applied to uniquely identify the selected device’s mobile network carrier for SIM control restriction exclusion. Each mobile device carrier has their own unique MCC and MNC pair.
             </li>
                                                 <li value="4">Set the following restrictions for an unlisted MCC/MNC:<ul><li value="1"><i>Make outgoing calls/Receive incoming calls</i> — Select this option to restrict a selected device's ability to make/recieve a voice call.
 </li><li value="2"><i>Send or receive SMS/MMS/RCS</i> — Select this option to restrict a selected device's texting capability.
-</li><li value="3"><i>Data usage</i> — Select this option to restrict a selected device's ability to use data consumptive applications. </li><li value="4"><i>Check the insert allowed SIM (Apply when the allowed SIM is inserted)</i> — In case of dual or multi-SIM phones, if one of the inserted SIM cards is allowed, selecting this option allows the other SIM to use restricted features. You can then select which features you want to allow for the other SIM.</li><li value="5"><i>Apply the above restrictions when international roaming is in use</i> — Select this option to restrict device voice, text and data usage when connecting to a mobile network in a country other than the device's original deployment country. This option is applicable to non-whitelisted SIMs in a dual SIM device only.</li><li value="6"><i>Lock device</i> — Select this option to lock a device's SIM functionality. This helps prevent using unlisted SIM cards. If you select 'Turn on network registration verification', it further validates that a deactivated SIM card is not being misused by comparing the defined MCC/MNC of the network operator.
-</li><li style="font-style: normal;" value="7"><i>Turn on mobile number (IMSI) lock</i> — Select this option to turn on the device's IMSI lock.</li><li value="8"><i>Turn on network registration verification</i> — Select this option to turn on verified networks on the device.</li></ul></li>
-                                                <li value="5">Advanced support methods menu is also displayed on SIM lock screen but it is centrally configured in Default lock screen.</li>
-                                                <li value="6"><b>Primary support option</b> is selectable. Choose from the drop-down menu to select a support option.</li>
+</li><li value="3"><i>Data usage</i> — Select this option to restrict a selected device's ability to use data consumptive applications. </li><li value="4"><i>Check the insert allowed SIM (Apply when the allowed SIM is inserted)</i> — In case of dual or multi-SIM phones, if one of the inserted SIM cards is allowed, selecting this option allows the other SIM to use restricted features. You can then select which features you want to allow for the other SIM.</li><li value="5"><i>Apply the above restrictions when international roaming is in use</i> — Select this option to restrict device voice, text and data usage when connecting to a mobile network in a country other than the device's original deployment country. This option is applicable to non-whitelisted SIMs in a dual SIM device only.</li><li value="6"><i>Lock device</i> — Select this option to lock a device in order to prevent the usage of unlisted SIM card on that device.
+</li><li value="7"><i>Turn on mobile number (IMSI) lock</i> — Select this option to turn on the device's IMSI lock.</li><li value="8"><i>Turn on network registration verification</i> — It further validates that a deactivated SIM card is not being misused by comparing the defined MCC/MNC of the network operator.</li></ul></li>
+                                                <li value="5">Advanced support methods menu is also displayed on SIM lock screen but it is centrally configured in <b>Default lock screen</b>.</li>
+                                                <li value="6"><b>Primary support option</b> is selectable. It is centrally configured in <b>Default lock screen</b>.</li>
                                                 <li value="7">Select <b>SAVE</b> to commit the default SIM control settings.</li>
                                             </ol>
                                         </div>
