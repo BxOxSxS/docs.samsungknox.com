@@ -2899,7 +2899,7 @@
 									-->
                                     <div id="sec2" class="small-12 medium-8 large-9 columns">
                                         <div itemscope="itemscope" itemtype="http://schema.org/Guide">
-                                            <h1><a name="aanchor45"></a>
+                                            <h1><a name="aanchor1"></a>
                                                 <MadCap:concept term="knox-admin-portal" />Knox Remote Support minimum requirements</h1>
                                             <p>Check the supported platform and firewall settings before using Knox Remote Support.</p>
                                             <h2 id="supported-platforms">Supported platforms</h2>
@@ -2928,6 +2928,54 @@
                                                 </tbody>
                                             </table>
                                             <div class="callout note"><b>NOTE</b> — For non-Samsung devices, several features, such as the Home, left/right controls, screen rotation buttons, and touch controls, are not available while using Knox Remote Support. These devices should be controlled by the user.</div>
+                                            <h2 id="install-enable-knox-remote-support-agent">Install and enable the Knox Remote Support agent</h2>
+                                            <p>In order to function correctly, the Knox Remote Support agent must be installed in the personal profile of the device for all Android management modes.</p>
+                                            <p>For non-Samsung devices, several features, such as the Home, left/right controls, screen rotation buttons, and touch controls, are not available while using Knox Remote Support. Devices should be controlled by the user.</p>
+                                            <h3 id="fully-enable-knox-remote-support-knox-manage">Fully enable Knox Remote Support for Knox Manage</h3>
+                                            <p>If the device is enrolled in Knox Manage, you must also enable the appropriate Knox Service Plugin policy in the device's profile. Without this policy, some essential Knox Manage features, like the Force Run feature, won't function when applied to Knox Remote Support.</p>
+                                            <p>To fully enable Knox Remote Support on devices enrolled in Knox Manage:</p>
+                                            <ol>
+                                                <li value="1">On the Knox Manage console, go to <b>Profile</b>, then click the name of the device's profile.</li>
+                                                <li value="2">Click <b>Modify Policy</b>.</li>
+                                                <li value="3">
+                                                    <p>Set the following policies depending on the device's platform and enrollment type:</p>
+                                                    <ul>
+                                                        <li value="1">
+                                                            <p>Personally-owned Android Enterprise device:</p>
+                                                            <ul>
+                                                                <li value="1"><b>Samsung Knox</b> &gt; <b>Knox Service Plugin</b> &gt; <b>Work Profile Policies (Profile Owner)</b> &gt; <b>Enable work profile Policies</b> — <b>True</b></li>
+                                                                <li value="2"><b>Samsung Knox</b> &gt; <b>Knox Service Plugin</b> &gt; <b>Work Profile Policies (Profile Owner)</b> &gt; <b>Advanced Restriction Policies in work profile (Premium)</b> &gt; <b>Allow remote control</b> — <b>True</b></li>
+                                                            </ul>
+                                                        </li>
+                                                        <li value="2">
+                                                            <p>Fully managed or company-owned Android Enterprise device:</p>
+                                                            <ul>
+                                                                <li value="1"><b>Samsung Knox</b> &gt; <b>Knox Service Plugin</b> &gt; <b>Device-wide policies...</b> &gt; <b>Enable device policy controls</b> — <b>True</b></li>
+                                                                <li value="2"><b>Samsung Knox</b> &gt; <b>Knox Service Plugin</b> &gt; <b>Device-wide policies...</b> &gt; <b>Advanced Restriction policies (Premium)</b> &gt; <b>Allow remote control</b> — <b>True</b></li>
+                                                            </ul>
+                                                        </li>
+                                                        <li value="3">
+                                                            <p>Android Legacy device with Knox Workspace:</p>
+                                                            <ul>
+                                                                <li value="1"><b>Knox Workspace</b> &gt; <b>System</b> &gt; <b>Remote Control</b> — <b>Allow</b></li>
+                                                            </ul>
+                                                        </li>
+                                                    </ul>
+                                                </li>
+                                            </ol>
+                                            <h4 id="resolve-device-admin-errors-android-enterprise">Resolve device admin errors with Android Enterprise</h4>
+                                            <p>In some cases, Android Enterprise devices might display error notifications related to device admin toasting, and Knox Remote Support might fail to launch. If this behavior occurs after setting the KSP policies in the previous section, then you should enable the following additional KSP policy to resolve the issue:</p>
+                                            <ol>
+                                                <li value="1">On the Knox Manage console, go to <b>Profile</b>, then click the name of the device's profile.</li>
+                                                <li value="2">Click <b>Modify Policy</b>.</li>
+                                                <li value="3">
+                                                    <p>Under <b>Samsung Knox</b> &gt; <b>Knox Service Plugin</b> &gt; <b>Device-wide policies...</b> &gt; <b>Device Admin allowlisting</b>, set the following policies:</p>
+                                                    <ul>
+                                                        <li value="1"><b>Enable device admin controls</b> — <b>True</b></li>
+                                                        <li value="2"><b>Allowlisted DAs</b> — Add an admin named <b>Knox Remote Support</b></li>
+                                                    </ul>
+                                                </li>
+                                            </ol>
                                             <h2 id="disable-firewall">Disable the firewall</h2>
                                             <p>You may need to open certain domains and ports in your firewall to ensure Knox Remote Support can extend beyond your local and protected network domains and connect to the Knox server and its supporting resources.</p>
                                             <p>Refer to the following table for regional firewall information.</p>
