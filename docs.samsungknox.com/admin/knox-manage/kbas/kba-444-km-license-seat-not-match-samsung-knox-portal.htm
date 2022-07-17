@@ -1304,6 +1304,8 @@
                                                 </li>
                                                 <li><a href="../../knox-capture/faq.htm">FAQ</a>
                                                 </li>
+                                                <li><a href="../../knox-capture/kbas/index.htm">KBAs</a>
+                                                </li>
                                                 <li><a href="../../knox-capture/troubleshoot.htm">Troubleshoot</a>
                                                 </li>
                                             </ul>
@@ -1328,7 +1330,9 @@
                                                         </li>
                                                         <li><a href="../../knox-asset-intelligence/tutorial/get-license.htm">Get a license</a>
                                                         </li>
-                                                        <li><a href="../../knox-asset-intelligence/tutorial/configure-devices.htm">Configure devices</a>
+                                                        <li><a href="../../knox-asset-intelligence/tutorial/add-devices.htm">Add devices</a>
+                                                        </li>
+                                                        <li><a href="../../knox-asset-intelligence/tutorial/enroll-devices.htm">Enroll devices</a>
                                                         </li>
                                                         <li><a href="../../knox-asset-intelligence/tutorial/configure-dashboard.htm">Configure your dashboard</a>
                                                         </li>
@@ -2742,7 +2746,7 @@
                                                 </li>
                                                 <li><a href="../../knox-guard/faq.htm">FAQ</a>
                                                 </li>
-                                                <li><a href="../../knox-guard/kbas.htm">KBAs</a>
+                                                <li><a href="../../knox-guard/kbas/index.htm">KBAs</a>
                                                 </li>
                                                 <li><a href="../../knox-guard/get-support.htm">Support</a>
                                                 </li>
@@ -2783,6 +2787,8 @@
                                                 <li><a href="../../care-plus/release-notes.htm">Release notes</a>
                                                 </li>
                                                 <li><a href="../../care-plus/faq.htm">FAQ</a>
+                                                </li>
+                                                <li><a href="../../care-plus/kbas/index.htm">KBAs</a>
                                                 </li>
                                             </ul>
                                         </li>
@@ -2896,10 +2902,49 @@
 									</div>
 									-->
                                     <div id="sec2" class="small-12 medium-8 large-9 columns">
-                                        <div itemscope="itemscope" itemtype="http://schema.org/Guide"><a name="aanchor1300"></a>
-                                            <MadCap:concept term="knox-manage" />"/&gt;
-            <h1>License seat consumption in Knox Manage does not match Samsung Knox License portal </h1><div class="callout primary"><h2>Environment </h2><ul><li value="1">Knox Manage (KM)</li></ul><h2>Overview </h2><p>There are instances when you might run into an error when trying to enroll more devices, despite having the number of seats needed available:</p><pre class="prettyprint" xml:space="preserve">Failed to Knox License Activation [Enrollment – Update License Request (License Quantity Exhausted)]</pre><p /><p>The error is occurs due to Knox License Manager (KLM) and Samsung License Manager (SLM) license consumption mismatch. The issue happens when devices are improperly enrolled, such as deleting the device from the console or forcing a factory reset. The only way to ensure both KLM and SLM are synced is by unenrolling devices using the unenroll button. When a device gets unenrolled improperly or deleted from the console, Knox Manage acknowledges this change and releases a seat within its licensing system. However, SLM does not check with KM's system, therefore, it will not update to release the same seat(s). During the next enrollment, the system tries to use the key, even though it's still considered full by the other system, resulting in an error. </p><h2>An example of license seat discrepancy within KLM and SLM</h2><p>The number of seats available shown in Knox Manage may look different from the license key page on the Samsung Knox portal, shown in the example below. The Knox Manage portal shows the activated device are 942 out of 1000. However, on the Samsung Knox portal, it shows that there are 1100 activated devices. This causes the user to run into the License Quantity Exhausted error.</p><p><b>Knox Manage</b></p><img alt="" src="../../../assets/merge/images/knox-manage/kba-444/pastedImage.jpg" /><p><b>Samsung Knox Portal</b></p><img alt="" src="../../../assets/merge/images/knox-manage/kba-444/pastedImage_dupe_2.jpg" /><h2>How do I fix the license seat discrepancy?</h2><ol><li value="1">Get the list of IMEIs which are activated with the license and create a csv file with one IMEI per line.</li><li value="2">Visit the <a href="https://www2.samsungknox.com/en/dashboard/keep-remove-devices">Keep or Remove Devices</a> page on your samsungknox.com dashboard, where it will ask for the following details:
-            <ol><li value="1">License Key: Copy and paste the license key into the text box.</li><li value="2">Select <b>Keep</b> between the remove or keep options.</li><li value="3">Upload the CSV file which you have created in Step 1 and click <b>Submit</b>.</li></ol></li></ol><p>These steps will remove all the IMEIs which shouldn't be in the system and vacate the license seats for further use.</p><h2>What if I can't access the "Keep or Remove Devices" page?</h2><p>If you can't access the page noted in step 2 above, please follow the below steps:</p><ol><li value="1">Log in to your SamsungKnox.com account. </li><li value="2">Go to <b>Support</b>.</li><li value="3">Click <b>Upgrade your Knox Account</b> and enter your Knox Manage commercial key to activate the tool.</li></ol><h2>Additional information </h2><ul><li value="1">To learn more about KPE license keys and how they work, head to the <a href="../../../dev/common/knox-licenses.htm">About License Keys</a> page.</li><li value="2">To read more about Knox Manage, please refer to the <a href="../welcome.htm">Knox Manage guide</a>.</li></ul></div><div class="back"><a href="index.htm">Back to KBAs </a></div></div>
+                                        <div itemscope="itemscope" itemtype="http://schema.org/Guide"><a name="aanchor1339"></a>
+                                            <MadCap:concept term="knox-manage" />
+                                            <h1>License seat consumption in Knox Manage does not match Samsung Knox License portal </h1>
+                                            <div class="callout primary">
+                                                <h2>Environment </h2>
+                                                <ul>
+                                                    <li value="1">Knox Manage (KM)</li>
+                                                </ul>
+                                                <h2>Overview </h2>
+                                                <p>There are instances when you might run into an error when trying to enroll more devices, despite having the number of seats needed available:</p><pre class="prettyprint" xml:space="preserve">Failed to Knox License Activation [Enrollment – Update License Request (License Quantity Exhausted)]</pre>
+                                                <p />
+                                                <p>The error is occurs due to Knox License Manager (KLM) and Samsung License Manager (SLM) license consumption mismatch. The issue happens when devices are improperly enrolled, such as deleting the device from the console or forcing a factory reset. The only way to ensure both KLM and SLM are synced is by unenrolling devices using the unenroll button. When a device gets unenrolled improperly or deleted from the console, Knox Manage acknowledges this change and releases a seat within its licensing system. However, SLM does not check with KM's system, therefore, it will not update to release the same seat(s). During the next enrollment, the system tries to use the key, even though it's still considered full by the other system, resulting in an error. </p>
+                                                <h2>An example of license seat discrepancy within KLM and SLM</h2>
+                                                <p>The number of seats available shown in Knox Manage may look different from the license key page on the Samsung Knox portal, shown in the example below. The Knox Manage portal shows the activated device are 942 out of 1000. However, on the Samsung Knox portal, it shows that there are 1100 activated devices. This causes the user to run into the License Quantity Exhausted error.</p>
+                                                <p><b>Knox Manage</b>
+                                                </p>
+                                                <img alt="" src="../../../assets/merge/images/knox-manage/kba-444/pastedImage.jpg" />
+                                                <p><b>Samsung Knox Portal</b>
+                                                </p>
+                                                <img alt="" src="../../../assets/merge/images/knox-manage/kba-444/pastedImage_dupe_2.jpg" />
+                                                <h2>How do I fix the license seat discrepancy?</h2>
+                                                <ol>
+                                                    <li value="1">Get the list of IMEIs which are activated with the license and create a csv file with one IMEI per line.</li>
+                                                    <li value="2">Visit the <a href="https://www2.samsungknox.com/en/dashboard/keep-remove-devices">Keep or Remove Devices</a> page on your samsungknox.com dashboard, where it will ask for the following details:
+            <ol><li value="1">License Key: Copy and paste the license key into the text box.</li><li value="2">Select <b>Keep</b> between the remove or keep options.</li><li value="3">Upload the CSV file which you have created in Step 1 and click <b>Submit</b>.</li></ol></li>
+                                                </ol>
+                                                <p>These steps will remove all the IMEIs which shouldn't be in the system and vacate the license seats for further use.</p>
+                                                <h2>What if I can't access the "Keep or Remove Devices" page?</h2>
+                                                <p>If you can't access the page noted in step 2 above, please follow the below steps:</p>
+                                                <ol>
+                                                    <li value="1">Log in to your SamsungKnox.com account. </li>
+                                                    <li value="2">Go to <b>Support</b>.</li>
+                                                    <li value="3">Click <b>Upgrade your Knox Account</b> and enter your Knox Manage commercial key to activate the tool.</li>
+                                                </ol>
+                                                <h2>Additional information </h2>
+                                                <ul>
+                                                    <li value="1">To learn more about KPE license keys and how they work, head to the <a href="../../../dev/common/knox-licenses.htm">About License Keys</a> page.</li>
+                                                    <li value="2">To read more about Knox Manage, please refer to the <a href="../welcome.htm">Knox Manage guide</a>.</li>
+                                                </ul>
+                                            </div>
+                                            <div class="back"><a href="index.htm">Back to KBAs </a>
+                                            </div>
+                                        </div>
                                         <!-- Inserts feedback module here -->
                                         <div id="feedback">
                                         </div>
