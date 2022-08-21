@@ -55,6 +55,23 @@
         <link href="../../assets/merge/kp-foundation.css" rel="stylesheet" />
         <link href="../Resources/kp-madcap.css" rel="stylesheet" />
         <link href="../Resources/print.css" rel="stylesheet" />
+        <style>
+            table h4 {
+                font-size: 1em;
+                font-family: inherit;
+                font-weight: bold;
+            }
+            table.no-stripes tbody tr {
+                vertical-align: top;
+                border-bottom: 1px solid #dfdfdf;
+            }
+            table.no-stripes tbody tr:last-of-type {
+                border-bottom: none;
+            }
+            table.no-stripes tbody tr td {
+                border: initial;
+            }
+        </style>
         <script src="../Resources/Scripts/custom.modernizr.js">
         </script>
         <script src="../Resources/Scripts/jquery.min.js">
@@ -384,7 +401,7 @@
                                                                 </li>
                                                                 <li class="has-children"><a href="android-legacy-policies.htm#">Configure Knox Service Plugin</a>
                                                                     <ul class="sub-menu">
-                                                                        <li><a href="../knox-service-plugin/blackberry-add.htm">Add to UEM console</a>
+                                                                        <li><a href="../knox-service-plugin/blackberry-add.htm">Approve Knox Service Plugin agent for Managed Google Play</a>
                                                                         </li>
                                                                         <li><a href="../knox-service-plugin/blackberry-edit.htm">Configure policies</a>
                                                                         </li>
@@ -1282,6 +1299,8 @@
                                                         </li>
                                                         <li><a href="../knox-asset-intelligence/modules/device-debug-log.htm">Device debug log</a>
                                                         </li>
+                                                        <li><a href="../knox-asset-intelligence/modules/knox-service-plugin.htm">Knox Service Plugin status</a>
+                                                        </li>
                                                     </ul>
                                                 </li>
                                                 <li class="has-children"><a href="android-legacy-policies.htm#">Features</a>
@@ -1362,7 +1381,7 @@
                                                                 </li>
                                                                 <li><a href="set-authentication-method.htm">Set the user authentication method</a>
                                                                 </li>
-                                                                <li><a href="configure-android-enterprise-environments.htm">Configure Android Enterprise environments</a>
+                                                                <li><a href="configure-android-enterprise-environments.htm">Configure the Android Enterprise environment</a>
                                                                 </li>
                                                                 <li><a href="set-apn-certificate.htm">Set the APN certificate (iOS only)</a>
                                                                 </li>
@@ -1460,7 +1479,7 @@
                                                             <ul class="sub-menu">
                                                                 <li><a href="view-organisation-list.htm">View organization list</a>
                                                                 </li>
-                                                                <li><a href="view-organisation-details.htm">View organization details</a>
+                                                                <li><a href="view-organization-details.htm">View organization details</a>
                                                                 </li>
                                                                 <li><a href="modify-organization-details.htm">Modify organization details</a>
                                                                 </li>
@@ -1528,7 +1547,7 @@
                                                         </li>
                                                         <li class="has-children"><a href="android-legacy-policies.htm#">Groups</a>
                                                             <ul class="sub-menu">
-                                                                <li><a href="view-details-of-group.htm">View details of a group</a>
+                                                                <li><a href="view-details-of-group.htm">View group details</a>
                                                                 </li>
                                                                 <li class="has-children"><a href="android-legacy-policies.htm#">Manage groups</a>
                                                                     <ul class="sub-menu">
@@ -1585,6 +1604,8 @@
                                                                         <li><a href="enroll-a-single-device.htm">Enroll a single device</a>
                                                                         </li>
                                                                         <li><a href="enroll-chromebook.htm">Enroll a Chromebook</a>
+                                                                        </li>
+                                                                        <li><a href="enroll-windows-device-azure-ad.htm">Enroll a Windows device with Azure AD</a>
                                                                         </li>
                                                                         <li class="has-children"><a href="android-legacy-policies.htm#">Enroll devices in bulk</a>
                                                                             <ul class="sub-menu">
@@ -1670,13 +1691,9 @@
                                                                         </li>
                                                                         <li><a href="add-public-applications-using-google-play-store.htm">Add public applications using Google Play Store</a>
                                                                         </li>
+                                                                        <li><a href="add-applications-using-managed-google-play.htm">Add applications using Managed Google Play</a>
+                                                                        </li>
                                                                         <li><a href="add-public-applications-using-ios-app-store.htm">Add public applications using iOS App Store</a>
-                                                                        </li>
-                                                                        <li><a href="add-public-applications-using-managed-google-play.htm">Add public applications using Managed Google Play</a>
-                                                                        </li>
-                                                                        <li><a href="add-public-applications-using-managed-google-play-private.htm">Add public applications using Managed Google Play Private</a>
-                                                                        </li>
-                                                                        <li><a href="add-public-applications-using-managed-google-play-store.htm">Add public applications using Managed Google Play Store Private Web</a>
                                                                         </li>
                                                                         <li><a href="add-public-apps-using-microsoft-store.htm">Add public applications using Microsoft Store</a>
                                                                         </li>
@@ -1696,10 +1713,6 @@
                                                                         </li>
                                                                         <li><a href="assign-managed-google-play-applications.htm">Assign Managed Google Play applications</a>
                                                                         </li>
-                                                                        <li><a href="assign-managed-google-play-private-applications.htm">Assign Managed Google Play Private applications</a>
-                                                                        </li>
-                                                                        <li><a href="assign-managed-google-play-private-web-apps.htm">Assign Managed Google Play private web apps</a>
-                                                                        </li>
                                                                         <li><a href="assign-windows-apps.htm">Assign Windows applications</a>
                                                                         </li>
                                                                         <li><a href="assign-chrome-os-apps.htm">Assign Chrome OS applications</a>
@@ -1717,8 +1730,6 @@
                                                                         <li><a href="export-application-information-to-csv.htm">Export Application detail to CSV</a>
                                                                         </li>
                                                                         <li><a href="connect-apps-in-profiles.htm">Connect apps across profiles</a>
-                                                                        </li>
-                                                                        <li><a href="push-mgp-app-update.htm">Force Managed Google Play app updates</a>
                                                                         </li>
                                                                     </ul>
                                                                 </li>
@@ -2116,7 +2127,7 @@
                                                                 </li>
                                                                 <li><a href="overview-cloud-connector.htm">Overview</a>
                                                                 </li>
-                                                                <li><a href="prepare-for-installation.htm">Prepare for installation</a>
+                                                                <li><a href="prepare-for-installation.htm">Prepare to install the SCC client</a>
                                                                 </li>
                                                                 <li><a href="install-the-scc-client.htm">Install the SCC client</a>
                                                                 </li>
@@ -2196,7 +2207,7 @@
                                                             <ul class="sub-menu">
                                                                 <li><a href="client-error-codes.htm">Client error codes</a>
                                                                 </li>
-                                                                <li><a href="admin-portal-access-error-codes.htm">Admin Portal access error codes</a>
+                                                                <li><a href="admin-portal-access-error-codes.htm">Console error codes</a>
                                                                 </li>
                                                                 <li><a href="appwrapper-error-codes.htm">AppWrapper error codes</a>
                                                                 </li>
@@ -2817,13 +2828,13 @@
 									-->
                                     <div id="sec2" class="small-12 medium-8 large-9 columns">
                                         <div itemscope="itemscope" itemtype="http://schema.org/Guide">
-                                            <h1><a name="aanchor401"></a>
+                                            <h1><a name="aanchor385"></a>
                                                 <MadCap:concept term="knox-manage" />Android Legacy policies</h1>
                                             <p>This section describes the policies you can <a href="configure-profile-policies-by-device-platform.htm">configure</a> for Android Legacy devices.</p>
                                             <p>The availability of each policy varies depending on the OS version.</p>
                                             <h2 id="system">System</h2>
                                             <p>Provides backup and restore settings, developer options, and other features. Updates the operating system on a device.</p>
-                                            <table>
+                                            <table class="no-stripes">
                                                 <tbody>
                                                     <tr>
                                                         <th style="width: 20%">Policy</th>
@@ -3184,7 +3195,7 @@
                                             </table>
                                             <h2 id="interface">Interface</h2>
                                             <p>Controls the network settings, such as Bluetooth, Wi-Fi Direct, and tethering.</p>
-                                            <table>
+                                            <table class="no-stripes">
                                                 <tbody>
                                                     <tr>
                                                         <th style="width: 20%">Policy</th>
@@ -3429,7 +3440,7 @@
                                             </table>
                                             <h2 id="security">Security</h2>
                                             <p>Configures the security settings, such as the password and lock screen.</p>
-                                            <table>
+                                            <table class="no-stripes">
                                                 <tbody>
                                                     <tr>
                                                         <th style="width: 20%">Policy</th>
@@ -3656,7 +3667,7 @@
                                             </table>
                                             <h2 id="kiosk">Kiosk</h2>
                                             <p>Configures Kiosk applications on a Kiosk device and controls the device settings.</p>
-                                            <table>
+                                            <table class="no-stripes">
                                                 <tbody>
                                                     <tr>
                                                         <th style="width: 20%">Policy</th>
@@ -3859,7 +3870,7 @@
                                             </table>
                                             <h2 id="application">Application</h2>
                                             <p>Configures options for application controls such as installation, verification, and permission.</p>
-                                            <table>
+                                            <table class="no-stripes">
                                                 <tbody>
                                                     <tr>
                                                         <th style="width: 20%">Policy</th>
@@ -4015,7 +4026,10 @@
                                                     </tr>
                                                     <tr>
                                                         <td id="application-show-progressbar-when-installing-apps">Show ProgressBar when installing apps</td>
-                                                        <td>Set to display the ProgressBar, which displays the progress of the application downloads made in Knox Manage.</td>
+                                                        <td>
+                                                            <p>Set to display the ProgressBar, which displays the progress of the application downloads made in Knox Manage.</p>
+                                                            <div class="callout note"><b>NOTE</b> — This policy is slated for deprecation in Knox Manage 22.11.</div>
+                                                        </td>
                                                         <td>Samsung Knox 1.0 and higher, Android 1 and higher</td>
                                                     </tr>
                                                     <tr>
@@ -4035,7 +4049,7 @@
                                             </table>
                                             <h2 id="location">Location</h2>
                                             <p>Allows the use of GPS or collecting location data from a device.</p>
-                                            <table>
+                                            <table class="no-stripes">
                                                 <tbody>
                                                     <tr>
                                                         <th style="width: 20%">Policy</th>
@@ -4070,7 +4084,7 @@
                                             <h2 id="browser">Browser</h2>
                                             <p>Allows the use of the default web browser and configures the settings for it.</p>
                                             <p>Browsers must restart before the changes are applied.</p>
-                                            <table>
+                                            <table class="no-stripes">
                                                 <tbody>
                                                     <tr>
                                                         <th style="width: 20%">Policy</th>
@@ -4122,7 +4136,7 @@
                                             </table>
                                             <h2 id="phone">Phone</h2>
                                             <p>Configures the phone settings, such as airplane mode, the microphone, and the cellular network settings.</p>
-                                            <table>
+                                            <table class="no-stripes">
                                                 <tbody>
                                                     <tr>
                                                         <th style="width: 20%">Policy</th>
@@ -4282,7 +4296,7 @@
                                             <p>The firewall supports IPv6 for SDK 2.6 or above. Even if the IPv4 and the IPv6 indicate the same address, a separate configuration is required.</p>
                                             <div class="callout note"><b>NOTE</b> —
             <ul><li value="1">If there are multiple firewalls, restricted firewalls have a higher priority.</li><li value="2">If a firewall is configured to all applications as well as in specific applications, the policy for each application has a higher priority.</li></ul></div>
-                                            <table>
+                                            <table class="no-stripes">
                                                 <tbody>
                                                     <tr>
                                                         <th style="width: 20%">Policy</th>
@@ -4376,7 +4390,7 @@
                                             </table>
                                             <h2 id="logging">Logging</h2>
                                             <p>Allows performing logging and configuring the settings.</p>
-                                            <table>
+                                            <table class="no-stripes">
                                                 <tbody>
                                                     <tr>
                                                         <th style="width: 20%">Policy</th>
@@ -4429,7 +4443,7 @@
                                             <p>Allows the use of DeX mode, an interface to use a mobile device like a desktop.</p>
                                             <p>Samsung DeX is an accessory that extends the functionality of a mobile device. By connecting a monitor, keyboard, and mouse to a DeX docking station, the mobile device can function as a desktop computer.</p>
                                             <p>In Knox Manage, you can allow the use of DeX mode and control applications according to the Application execution blocklist setting.</p>
-                                            <table>
+                                            <table class="no-stripes">
                                                 <tbody>
                                                     <tr>
                                                         <th style="width: 20%">Policy</th>
@@ -4473,8 +4487,9 @@
                                             </table>
                                             <h2 id="wifi">Wi-Fi</h2>
                                             <p>Configures the Wi-Fi settings, such as SSID, security type, and proxy.</p>
-                                            <p>You can add more Wi-Fi policy sets by clicking <img class="no-border" src="../../assets/merge/images/B-add.png" alt="add" style="width: 15.56px;height: 14px;" />.</p>
-                                            <table>
+                                            <p>Click <img class="no-border" src="../../assets/merge/images/B-add.png" alt="add" style="width: 15.56px;height: 14px;" /> to add a configuration.</p>
+                                            <p>You can add or edit up to 50 configurations when you save the profile.</p>
+                                            <table class="no-stripes">
                                                 <tbody>
                                                     <tr>
                                                         <th style="width: 20%">Policy</th>
@@ -4561,7 +4576,7 @@
                                             <h2 id="exchange">Exchange</h2>
                                             <p>Configures the settings of Microsoft Exchange ActiveSync accounts to synchronize data with it.</p>
                                             <p>You can add more Exchange policy sets by clicking <img class="no-border" src="../../assets/merge/images/B-add.png" alt="add" style="width: 15.56px;height: 14px;" />.</p>
-                                            <table>
+                                            <table class="no-stripes">
                                                 <tbody>
                                                     <tr>
                                                         <th style="width: 20%">Policy</th>
@@ -4718,8 +4733,9 @@
                                             </table>
                                             <h2 id="email-account">Email Account</h2>
                                             <p>Configures the settings of a POP or IMAP email account.</p>
-                                            <p>You can add more email account policy sets by clicking <img class="no-border" src="../../assets/merge/images/B-add.png" alt="add" style="width: 15.56px;height: 14px;" />.</p>
-                                            <table>
+                                            <p>Click <img class="no-border" src="../../assets/merge/images/B-add.png" alt="add" style="width: 15.56px;height: 14px;" /> to add a configuration.</p>
+                                            <p>You can add or edit up to 50 configurations when you save the profile.</p>
+                                            <table class="no-stripes">
                                                 <tbody>
                                                     <tr>
                                                         <th style="width: 20%">Policy</th>
@@ -4857,10 +4873,11 @@
                                             </table>
                                             <h2 id="bookmark">Bookmark</h2>
                                             <p>Configures the bookmark settings, such as the configuration ID and installation area.</p>
-                                            <p>You can add, modify, or delete the bookmarks in the Samsung S browser, the default browser on Samsung Galaxy devices. You can add more bookmark policy sets by clicking <img class="no-border" src="../../assets/merge/images/B-add.png" alt="add" style="width: 15.56px;height: 14px;" />.</p>
+                                            <p>You can add, modify, or delete the bookmarks in the Samsung S browser, the default browser on Samsung Galaxy devices. Click <img class="no-border" src="../../assets/merge/images/B-add.png" alt="add" style="width: 15.56px;height: 14px;" /> to add a configuration.</p>
+                                            <p>You can add or edit up to 100 configurations when you save the profile.</p>
                                             <div class="callout note"><b>NOTE</b> —
             <ul><li value="1">Browsers must be closed and opened again to apply the changes.</li><li value="2">Even if a user modifies a registered bookmark or registers a bookmark with the same URL and name, it is not deleted when the bookmark setting is deleted.</li><li value="3">Even if a user manually deletes the set bookmark, due to the limitations of Samsung devices, the application may still appear to be installed. In this case, you have to delete the bookmark in the profile, and then recreate the bookmark.</li><li value="4">The auto-installation of Bookmark settings is supported on devices running Android 6 Marshmallow or Android 7 Nougat, and only when <b>BookMark</b> is chosen in the Installation area.</li></ul></div>
-                                            <table>
+                                            <table class="no-stripes">
                                                 <tbody>
                                                     <tr>
                                                         <th style="width: 20%">Policy</th>
@@ -4900,8 +4917,9 @@
                                             </table>
                                             <h2 id="apn">APN</h2>
                                             <p>Configures the APN (Access Point Name) settings.</p>
-                                            <p>You can add more APN policy sets by clicking <img class="no-border" src="../../assets/merge/images/B-add.png" alt="add" style="width: 15.56px;height: 14px;" />.</p>
-                                            <table>
+                                            <p>Click <img class="no-border" src="../../assets/merge/images/B-add.png" alt="add" style="width: 15.56px;height: 14px;" /> to add a configuration.</p>
+                                            <p>You can add or edit up to 20 configurations when you save the profile.</p>
+                                            <table class="no-stripes">
                                                 <tbody>
                                                     <tr>
                                                         <th style="width: 20%">Policy</th>
@@ -4998,9 +5016,10 @@
                                             </table>
                                             <h2 id="knox-vpn">Knox VPN</h2>
                                             <p>Configures a VPN (Virtual Private Network) on Samsung Galaxy devices.</p>
-                                            <p>Knox VPN settings are provided to help you set up a VPN on a Samsung Galaxy device more easily. You can add more Knox VPN policy sets by clicking <img class="no-border" src="../../assets/merge/images/B-add.png" alt="add" style="width: 15.56px;height: 14px;" />.</p>
+                                            <p>Knox VPN settings are provided to help you set up a VPN on a Samsung Galaxy device more easily. Click <img class="no-border" src="../../assets/merge/images/B-add.png" alt="add" style="width: 15.56px;height: 14px;" /> to add a configuration.</p>
+                                            <p>You can add or edit up to 20 configurations when you save the profile.</p>
                                             <div class="callout note"><b>NOTE</b> — When Knox Workspace is used on an Android Legacy device, only one Knox VPN can be set on a device regardless of the Knox Workspace area or general area. If the Knox VPN vendor is Cisco, then it can be installed in both areas. To use a Knox VPN on both areas, you need to install the vendor's VPN Client application in each area.</div>
-                                            <table>
+                                            <table class="no-stripes">
                                                 <tbody>
                                                     <tr>
                                                         <th style="width: 20%">Policy</th>
@@ -5108,7 +5127,7 @@
                                                 <li value="2">Set <b>VPN type</b> to <b>SSL</b>.</li>
                                                 <li value="3">Click <b>Add</b> next to <b>Upload Knox VPN profile</b> and upload a configuration file with the Sectra Mobile VPN configuration parameters set.<ul><li value="1">Upload a file in the JSON format to fully integrate the Sectra Mobile VPN in the Knox Manage portal.</li><li value="2">Set the parameters as shown in the example below.</li></ul></li>
                                             </ol>
-                                            <table>
+                                            <table class="no-stripes">
                                                 <tbody>
                                                     <tr>
                                                         <th style="width: 20%">Parameter</th>
@@ -5351,8 +5370,9 @@
      --></pre>
                                             <h2 id="vpn">VPN</h2>
                                             <p>Configures a VPN (Virtual Private Network) on Android devices.</p>
-                                            <p>You can configure the VPN settings to connect to a private network through a public network. You can add more VPN policy sets by clicking <img class="no-border" src="../../assets/merge/images/B-add.png" alt="add" style="width: 15.56px;height: 14px;" />.</p>
-                                            <table>
+                                            <p>You can configure the VPN settings to connect to a private network through a public network. Click <img class="no-border" src="../../assets/merge/images/B-add.png" alt="add" style="width: 15.56px;height: 14px;" /> to add a configuration.</p>
+                                            <p>You can add or edit up to 20 configurations when you save the profile.</p>
+                                            <table class="no-stripes">
                                                 <tbody>
                                                     <tr>
                                                         <th style="width: 20%">Policy</th>
@@ -5425,8 +5445,9 @@
                                             </table>
                                             <h2 id="certificate">Certificate</h2>
                                             <p>Allows using new certificate authority (CA) certificates and configuring the certificate settings.</p>
-                                            <p>You can install a user certificate on a device and use the certificate through Wi-Fi or on websites. You can add more certificate policy sets by clicking <img class="no-border" src="../../assets/merge/images/B-add.png" alt="add" style="width: 15.56px;height: 14px;" />.</p>
-                                            <table>
+                                            <p>You can install a user certificate on a device and use the certificate through Wi-Fi or on websites. Click <img class="no-border" src="../../assets/merge/images/B-add.png" alt="add" style="width: 15.56px;height: 14px;" /> to add a configuration.</p>
+                                            <p>You can add or edit up to 20 configurations when you save the profile.</p>
+                                            <table class="no-stripes">
                                                 <tbody>
                                                     <tr>
                                                         <th style="width: 20%">Policy</th>

@@ -56,11 +56,20 @@
         <link href="../Resources/kp-madcap.css" rel="stylesheet" />
         <link href="../Resources/print.css" rel="stylesheet" />
         <style>
-            td.windows-compatibility {
-                font-size: 0.85714em;
+            table h4 {
+                font-size: 1em;
+                font-family: inherit;
+                font-weight: bold;
             }
-            td.windows-compatibility p:nth-of-type(2n+1) {
-                margin-bottom: 0;
+            table.no-stripes tbody tr {
+                vertical-align: top;
+                border-bottom: 1px solid #dfdfdf;
+            }
+            table.no-stripes tbody tr:last-of-type {
+                border-bottom: none;
+            }
+            table.no-stripes tbody tr td {
+                border: initial;
             }
         </style>
         <script src="../Resources/Scripts/custom.modernizr.js">
@@ -392,7 +401,7 @@
                                                                 </li>
                                                                 <li class="has-children"><a href="windows-policies.htm#">Configure Knox Service Plugin</a>
                                                                     <ul class="sub-menu">
-                                                                        <li><a href="../knox-service-plugin/blackberry-add.htm">Add to UEM console</a>
+                                                                        <li><a href="../knox-service-plugin/blackberry-add.htm">Approve Knox Service Plugin agent for Managed Google Play</a>
                                                                         </li>
                                                                         <li><a href="../knox-service-plugin/blackberry-edit.htm">Configure policies</a>
                                                                         </li>
@@ -1290,6 +1299,8 @@
                                                         </li>
                                                         <li><a href="../knox-asset-intelligence/modules/device-debug-log.htm">Device debug log</a>
                                                         </li>
+                                                        <li><a href="../knox-asset-intelligence/modules/knox-service-plugin.htm">Knox Service Plugin status</a>
+                                                        </li>
                                                     </ul>
                                                 </li>
                                                 <li class="has-children"><a href="windows-policies.htm#">Features</a>
@@ -1370,7 +1381,7 @@
                                                                 </li>
                                                                 <li><a href="set-authentication-method.htm">Set the user authentication method</a>
                                                                 </li>
-                                                                <li><a href="configure-android-enterprise-environments.htm">Configure Android Enterprise environments</a>
+                                                                <li><a href="configure-android-enterprise-environments.htm">Configure the Android Enterprise environment</a>
                                                                 </li>
                                                                 <li><a href="set-apn-certificate.htm">Set the APN certificate (iOS only)</a>
                                                                 </li>
@@ -1468,7 +1479,7 @@
                                                             <ul class="sub-menu">
                                                                 <li><a href="view-organisation-list.htm">View organization list</a>
                                                                 </li>
-                                                                <li><a href="view-organisation-details.htm">View organization details</a>
+                                                                <li><a href="view-organization-details.htm">View organization details</a>
                                                                 </li>
                                                                 <li><a href="modify-organization-details.htm">Modify organization details</a>
                                                                 </li>
@@ -1536,7 +1547,7 @@
                                                         </li>
                                                         <li class="has-children"><a href="windows-policies.htm#">Groups</a>
                                                             <ul class="sub-menu">
-                                                                <li><a href="view-details-of-group.htm">View details of a group</a>
+                                                                <li><a href="view-details-of-group.htm">View group details</a>
                                                                 </li>
                                                                 <li class="has-children"><a href="windows-policies.htm#">Manage groups</a>
                                                                     <ul class="sub-menu">
@@ -1593,6 +1604,8 @@
                                                                         <li><a href="enroll-a-single-device.htm">Enroll a single device</a>
                                                                         </li>
                                                                         <li><a href="enroll-chromebook.htm">Enroll a Chromebook</a>
+                                                                        </li>
+                                                                        <li><a href="enroll-windows-device-azure-ad.htm">Enroll a Windows device with Azure AD</a>
                                                                         </li>
                                                                         <li class="has-children"><a href="windows-policies.htm#">Enroll devices in bulk</a>
                                                                             <ul class="sub-menu">
@@ -1678,13 +1691,9 @@
                                                                         </li>
                                                                         <li><a href="add-public-applications-using-google-play-store.htm">Add public applications using Google Play Store</a>
                                                                         </li>
+                                                                        <li><a href="add-applications-using-managed-google-play.htm">Add applications using Managed Google Play</a>
+                                                                        </li>
                                                                         <li><a href="add-public-applications-using-ios-app-store.htm">Add public applications using iOS App Store</a>
-                                                                        </li>
-                                                                        <li><a href="add-public-applications-using-managed-google-play.htm">Add public applications using Managed Google Play</a>
-                                                                        </li>
-                                                                        <li><a href="add-public-applications-using-managed-google-play-private.htm">Add public applications using Managed Google Play Private</a>
-                                                                        </li>
-                                                                        <li><a href="add-public-applications-using-managed-google-play-store.htm">Add public applications using Managed Google Play Store Private Web</a>
                                                                         </li>
                                                                         <li><a href="add-public-apps-using-microsoft-store.htm">Add public applications using Microsoft Store</a>
                                                                         </li>
@@ -1704,10 +1713,6 @@
                                                                         </li>
                                                                         <li><a href="assign-managed-google-play-applications.htm">Assign Managed Google Play applications</a>
                                                                         </li>
-                                                                        <li><a href="assign-managed-google-play-private-applications.htm">Assign Managed Google Play Private applications</a>
-                                                                        </li>
-                                                                        <li><a href="assign-managed-google-play-private-web-apps.htm">Assign Managed Google Play private web apps</a>
-                                                                        </li>
                                                                         <li><a href="assign-windows-apps.htm">Assign Windows applications</a>
                                                                         </li>
                                                                         <li><a href="assign-chrome-os-apps.htm">Assign Chrome OS applications</a>
@@ -1725,8 +1730,6 @@
                                                                         <li><a href="export-application-information-to-csv.htm">Export Application detail to CSV</a>
                                                                         </li>
                                                                         <li><a href="connect-apps-in-profiles.htm">Connect apps across profiles</a>
-                                                                        </li>
-                                                                        <li><a href="push-mgp-app-update.htm">Force Managed Google Play app updates</a>
                                                                         </li>
                                                                     </ul>
                                                                 </li>
@@ -2124,7 +2127,7 @@
                                                                 </li>
                                                                 <li><a href="overview-cloud-connector.htm">Overview</a>
                                                                 </li>
-                                                                <li><a href="prepare-for-installation.htm">Prepare for installation</a>
+                                                                <li><a href="prepare-for-installation.htm">Prepare to install the SCC client</a>
                                                                 </li>
                                                                 <li><a href="install-the-scc-client.htm">Install the SCC client</a>
                                                                 </li>
@@ -2204,7 +2207,7 @@
                                                             <ul class="sub-menu">
                                                                 <li><a href="client-error-codes.htm">Client error codes</a>
                                                                 </li>
-                                                                <li><a href="admin-portal-access-error-codes.htm">Admin Portal access error codes</a>
+                                                                <li><a href="admin-portal-access-error-codes.htm">Console error codes</a>
                                                                 </li>
                                                                 <li><a href="appwrapper-error-codes.htm">AppWrapper error codes</a>
                                                                 </li>
@@ -2825,13 +2828,12 @@
 									-->
                                     <div id="sec2" class="small-12 medium-8 large-9 columns">
                                         <div itemscope="itemscope" itemtype="http://schema.org/Guide">
-                                            <h1><a name="aanchor404"></a>
-                                                <MadCap:concept term="knox-manage" />Windows policies</h1>
+                                            <h1>Windows policies</h1>
                                             <p>This section describes the policies you can <a href="configure-profile-policies-by-device-platform.htm">configure</a> for Windows devices.</p>
                                             <p>The availability of each policy varies depending on the OS version.</p>
                                             <h2 id="system">System</h2>
                                             <p>Allows the use of features such as factory reset, camera, screen capture and VPN.</p>
-                                            <table>
+                                            <table class="no-stripes">
                                                 <tbody>
                                                     <tr>
                                                         <th style="width: 20%">Policy</th>
@@ -2842,14 +2844,10 @@
                                                         <td id="system-factory-reset">Factory reset</td>
                                                         <td>Allows a device factory reset.</td>
                                                         <td class="windows-compatibility">
-                                                            <p>Windows 10 Pro</p>
-                                                            <p>Windows 11 Pro</p>
-                                                            <p>Windows 10 Business</p>
-                                                            <p>Windows 11 Business</p>
-                                                            <p>Windows 10 Enterprise</p>
-                                                            <p>Windows 11 Enterprise</p>
-                                                            <p>Windows 10 Education</p>
-                                                            <p>Windows 11 Education</p>
+                                                            <p>Windows 10/11 Pro</p>
+                                                            <p>Windows 10/11 Business</p>
+                                                            <p>Windows 10/11 Enterprise</p>
+                                                            <p>Windows 10/11 Education</p>
                                                             <p>Windows 10 Mobile</p>
                                                         </td>
                                                     </tr>
@@ -2857,14 +2855,10 @@
                                                         <td id="system-camera">Camera</td>
                                                         <td>Allows using the camera.</td>
                                                         <td class="windows-compatibility">
-                                                            <p>Windows 10 Pro</p>
-                                                            <p>Windows 11 Pro</p>
-                                                            <p>Windows 10 Business</p>
-                                                            <p>Windows 11 Business</p>
-                                                            <p>Windows 10 Enterprise</p>
-                                                            <p>Windows 11 Enterprise</p>
-                                                            <p>Windows 10 Education</p>
-                                                            <p>Windows 11 Education</p>
+                                                            <p>Windows 10/11 Pro</p>
+                                                            <p>Windows 10/11 Business</p>
+                                                            <p>Windows 10/11 Enterprise</p>
+                                                            <p>Windows 10/11 Education</p>
                                                             <p>Windows 10 Mobile</p>
                                                         </td>
                                                     </tr>
@@ -2877,14 +2871,10 @@
                                                         <td id="system-vpn">VPN</td>
                                                         <td>Allows modifications to the VPN settings.</td>
                                                         <td class="windows-compatibility">
-                                                            <p>Windows 10 Pro</p>
-                                                            <p>Windows 11 Pro</p>
-                                                            <p>Windows 10 Business</p>
-                                                            <p>Windows 11 Business</p>
-                                                            <p>Windows 10 Enterprise</p>
-                                                            <p>Windows 11 Enterprise</p>
-                                                            <p>Windows 10 Education</p>
-                                                            <p>Windows 11 Education</p>
+                                                            <p>Windows 10/11 Pro</p>
+                                                            <p>Windows 10/11 Business</p>
+                                                            <p>Windows 10/11 Enterprise</p>
+                                                            <p>Windows 10/11 Education</p>
                                                             <p>Windows 10 Mobile</p>
                                                         </td>
                                                     </tr>
@@ -2899,14 +2889,156 @@
                                                             </ul>
                                                         </td>
                                                         <td class="windows-compatibility">
-                                                            <p>Windows 10 Pro</p>
-                                                            <p>Windows 11 Pro</p>
-                                                            <p>Windows 10 Business</p>
-                                                            <p>Windows 11 Business</p>
-                                                            <p>Windows 10 Enterprise</p>
-                                                            <p>Windows 11 Enterprise</p>
-                                                            <p>Windows 10 Education</p>
-                                                            <p>Windows 11 Education</p>
+                                                            <p>Windows 10/11 Pro</p>
+                                                            <p>Windows 10/11 Business</p>
+                                                            <p>Windows 10/11 Enterprise</p>
+                                                            <p>Windows 10/11 Education</p>
+                                                            <p>Windows 10 Mobile</p>
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td id="system-date-time">Date and Time</td>
+                                                        <td>
+                                                            <p>Allows the device user to change the Date &amp; time settings.</p>
+                                                            <h4>Values</h4>
+                                                            <ul>
+                                                                <li value="1"><b>Allow</b> (default)</li>
+                                                                <li value="2"><b>Disallow</b>
+                                                                </li>
+                                                            </ul>
+                                                        </td>
+                                                        <td class="windows-compatibility">
+                                                            <p>Windows 10/11 Pro</p>
+                                                            <p>Windows 10/11 Business</p>
+                                                            <p>Windows 10/11 Enterprise</p>
+                                                            <p>Windows 10/11 Education</p>
+                                                            <p>Windows 10 Mobile</p>
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td id="system-language">Language</td>
+                                                        <td>
+                                                            <p>Allows the device user to change the Language settings.</p>
+                                                            <h4>Values</h4>
+                                                            <ul>
+                                                                <li value="1"><b>Allow</b> (default)</li>
+                                                                <li value="2"><b>Disallow</b>
+                                                                </li>
+                                                            </ul>
+                                                        </td>
+                                                        <td class="windows-compatibility">
+                                                            <p>Windows 10/11 Pro</p>
+                                                            <p>Windows 10/11 Business</p>
+                                                            <p>Windows 10/11 Enterprise</p>
+                                                            <p>Windows 10/11 Education</p>
+                                                            <p>Windows 10 Mobile</p>
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td id="system-power-sleep">Power and Sleep</td>
+                                                        <td>
+                                                            <p>Allows the device user to change the Power &amp; sleep settings.</p>
+                                                            <h4>Values</h4>
+                                                            <ul>
+                                                                <li value="1"><b>Allow</b> (default)</li>
+                                                                <li value="2"><b>Disallow</b>
+                                                                </li>
+                                                            </ul>
+                                                        </td>
+                                                        <td class="windows-compatibility">
+                                                            <p>Windows 10/11 Pro</p>
+                                                            <p>Windows 10/11 Business</p>
+                                                            <p>Windows 10/11 Enterprise</p>
+                                                            <p>Windows 10/11 Education</p>
+                                                            <p>Windows 10 Mobile</p>
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td id="system-region">Region</td>
+                                                        <td>
+                                                            <p>Allows the device user to change the Region settings.</p>
+                                                            <h4>Values</h4>
+                                                            <ul>
+                                                                <li value="1"><b>Allow</b> (default)</li>
+                                                                <li value="2"><b>Disallow</b>
+                                                                </li>
+                                                            </ul>
+                                                        </td>
+                                                        <td class="windows-compatibility">
+                                                            <p>Windows 10/11 Pro</p>
+                                                            <p>Windows 10/11 Business</p>
+                                                            <p>Windows 10/11 Enterprise</p>
+                                                            <p>Windows 10/11 Education</p>
+                                                            <p>Windows 10 Mobile</p>
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td id="system-workplace">Workplace</td>
+                                                        <td>
+                                                            <p>Allows the device user to change the Workplace settings, also known as the Access work or school settings, and change EMM account credentials on the device.</p>
+                                                            <h4>Values</h4>
+                                                            <ul>
+                                                                <li value="1"><b>Allow</b> (default)</li>
+                                                                <li value="2"><b>Disallow</b>
+                                                                </li>
+                                                            </ul>
+                                                        </td>
+                                                        <td class="windows-compatibility">
+                                                            <p>Windows 10/11 Pro</p>
+                                                            <p>Windows 10/11 Business</p>
+                                                            <p>Windows 10/11 Enterprise</p>
+                                                            <p>Windows 10/11 Education</p>
+                                                            <p>Windows 10 Mobile</p>
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td id="system-account">Account</td>
+                                                        <td>
+                                                            <p>Allows the device user to change the account settings, including adding and removing other users.</p>
+                                                            <h4>Values</h4>
+                                                            <ul>
+                                                                <li value="1"><b>Allow</b> (default)</li>
+                                                                <li value="2"><b>Disallow</b>
+                                                                </li>
+                                                            </ul>
+                                                        </td>
+                                                        <td class="windows-compatibility">
+                                                            <p>Windows 10/11 Pro</p>
+                                                            <p>Windows 10/11 Business</p>
+                                                            <p>Windows 10/11 Enterprise</p>
+                                                            <p>Windows 10/11 Education</p>
+                                                            <p>Windows 10 Mobile</p>
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td id="system-windows-sync">Windows Sync</td>
+                                                        <td>
+                                                            <p>Allows the device user to sync their Windows settings across devices.</p>
+                                                            <h4>Values</h4>
+                                                            <ul>
+                                                                <li value="1"><b>Allow</b> (default)</li>
+                                                                <li value="2"><b>Disallow</b>
+                                                                </li>
+                                                            </ul>
+                                                        </td>
+                                                        <td />
+                                                    </tr>
+                                                    <tr>
+                                                        <td id="system-windows-tips">Windows Tips</td>
+                                                        <td>
+                                                            <p>Allows the device user to use Windows Tips.</p>
+                                                            <h4>Values</h4>
+                                                            <ul>
+                                                                <li value="1"><b>Allow</b> (default)</li>
+                                                                <li value="2"><b>Disallow</b>
+                                                                </li>
+                                                            </ul>
+                                                        </td>
+                                                        <td class="windows-compatibility">
+                                                            <p>Windows 10/11 Pro</p>
+                                                            <p>Windows 10/11 Business</p>
+                                                            <p>Windows 10/11 Enterprise</p>
+                                                            <p>Windows 10/11 Education</p>
                                                             <p>Windows 10 Mobile</p>
                                                         </td>
                                                     </tr>
@@ -2914,7 +3046,7 @@
                                             </table>
                                             <h2 id="interface">Interface</h2>
                                             <p>Controls the network settings, such as Bluetooth, Wi-Fi tethering, and NFC.</p>
-                                            <table>
+                                            <table class="no-stripes">
                                                 <tbody>
                                                     <tr>
                                                         <th style="width: 20%">Policy</th>
@@ -2925,14 +3057,10 @@
                                                         <td id="interface-wifi">Wi-Fi</td>
                                                         <td>Allows the use of Wi-Fi.</td>
                                                         <td class="windows-compatibility">
-                                                            <p>Windows 10 Pro</p>
-                                                            <p>Windows 11 Pro</p>
-                                                            <p>Windows 10 Business</p>
-                                                            <p>Windows 11 Business</p>
-                                                            <p>Windows 10 Enterprise</p>
-                                                            <p>Windows 11 Enterprise</p>
-                                                            <p>Windows 10 Education</p>
-                                                            <p>Windows 11 Education</p>
+                                                            <p>Windows 10/11 Pro</p>
+                                                            <p>Windows 10/11 Business</p>
+                                                            <p>Windows 10/11 Enterprise</p>
+                                                            <p>Windows 10/11 Education</p>
                                                             <p>Windows 10 Mobile</p>
                                                         </td>
                                                     </tr>
@@ -2940,14 +3068,10 @@
                                                         <td id="interface-wifi-tethering">&gt; Wi-Fi Tethering</td>
                                                         <td>Allows tethering the Wi-Fi connection.</td>
                                                         <td class="windows-compatibility">
-                                                            <p>Windows 10 Pro</p>
-                                                            <p>Windows 11 Pro</p>
-                                                            <p>Windows 10 Business</p>
-                                                            <p>Windows 11 Business</p>
-                                                            <p>Windows 10 Enterprise</p>
-                                                            <p>Windows 11 Enterprise</p>
-                                                            <p>Windows 10 Education</p>
-                                                            <p>Windows 11 Education</p>
+                                                            <p>Windows 10/11 Pro</p>
+                                                            <p>Windows 10/11 Business</p>
+                                                            <p>Windows 10/11 Enterprise</p>
+                                                            <p>Windows 10/11 Education</p>
                                                             <p>Windows 10 Mobile</p>
                                                         </td>
                                                     </tr>
@@ -2955,14 +3079,29 @@
                                                         <td id="interface-bluetooth">Bluetooth</td>
                                                         <td>Allows the use of Bluetooth.</td>
                                                         <td class="windows-compatibility">
-                                                            <p>Windows 10 Pro</p>
-                                                            <p>Windows 11 Pro</p>
-                                                            <p>Windows 10 Business</p>
-                                                            <p>Windows 11 Business</p>
-                                                            <p>Windows 10 Enterprise</p>
-                                                            <p>Windows 11 Enterprise</p>
-                                                            <p>Windows 10 Education</p>
-                                                            <p>Windows 11 Education</p>
+                                                            <p>Windows 10/11 Pro</p>
+                                                            <p>Windows 10/11 Business</p>
+                                                            <p>Windows 10/11 Enterprise</p>
+                                                            <p>Windows 10/11 Education</p>
+                                                            <p>Windows 10 Mobile</p>
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td id="interface-bluetooth-advertisement">Bluetooth Advertisement</td>
+                                                        <td>
+                                                            <p>Enables broadcasting the device's presence over Bluetooth.</p>
+                                                            <h4>Values</h4>
+                                                            <ul>
+                                                                <li value="1"><b>Allow</b> (default)</li>
+                                                                <li value="2"><b>Disallow</b>
+                                                                </li>
+                                                            </ul>
+                                                        </td>
+                                                        <td class="windows-compatibility">
+                                                            <p>Windows 10/11 Pro</p>
+                                                            <p>Windows 10/11 Business</p>
+                                                            <p>Windows 10/11 Enterprise</p>
+                                                            <p>Windows 10/11 Education</p>
                                                             <p>Windows 10 Mobile</p>
                                                         </td>
                                                     </tr>
@@ -2970,14 +3109,10 @@
                                                         <td id="interface-search-mode">&gt; Search Mode</td>
                                                         <td>Allows using device search via Bluetooth.</td>
                                                         <td class="windows-compatibility">
-                                                            <p>Windows 10 Pro</p>
-                                                            <p>Windows 11 Pro</p>
-                                                            <p>Windows 10 Business</p>
-                                                            <p>Windows 11 Business</p>
-                                                            <p>Windows 10 Enterprise</p>
-                                                            <p>Windows 11 Enterprise</p>
-                                                            <p>Windows 10 Education</p>
-                                                            <p>Windows 11 Education</p>
+                                                            <p>Windows 10/11 Pro</p>
+                                                            <p>Windows 10/11 Business</p>
+                                                            <p>Windows 10/11 Enterprise</p>
+                                                            <p>Windows 10/11 Education</p>
                                                             <p>Windows 10 Mobile</p>
                                                         </td>
                                                     </tr>
@@ -2995,14 +3130,67 @@
                                                         <td id="interface-removable-storage">Removable Storage</td>
                                                         <td>Allows or blocks the usage of removable storage devices. Default:Allow.</td>
                                                         <td class="windows-compatibility">
-                                                            <p>Windows 10 Pro</p>
-                                                            <p>Windows 11 Pro</p>
-                                                            <p>Windows 10 Business</p>
-                                                            <p>Windows 11 Business</p>
-                                                            <p>Windows 10 Enterprise</p>
-                                                            <p>Windows 11 Enterprise</p>
-                                                            <p>Windows 10 Education</p>
-                                                            <p>Windows 11 Education</p>
+                                                            <p>Windows 10/11 Pro</p>
+                                                            <p>Windows 10/11 Business</p>
+                                                            <p>Windows 10/11 Enterprise</p>
+                                                            <p>Windows 10/11 Education</p>
+                                                            <p>Windows 10 Mobile</p>
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td id="interface-cortana">Cortana</td>
+                                                        <td>
+                                                            <p>Allows the device user to access Cortana features. This policy doesn't affect text search.</p>
+                                                            <h4>Values</h4>
+                                                            <ul>
+                                                                <li value="1"><b>Allow</b> (default)</li>
+                                                                <li value="2"><b>Disallow</b>
+                                                                </li>
+                                                            </ul>
+                                                        </td>
+                                                        <td class="windows-compatibility">
+                                                            <p>Windows 10/11 Pro</p>
+                                                            <p>Windows 10/11 Business</p>
+                                                            <p>Windows 10/11 Enterprise</p>
+                                                            <p>Windows 10/11 Education</p>
+                                                            <p>Windows 10 Mobile</p>
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td id="interface-ime-logging">IME Logging</td>
+                                                        <td>
+                                                            <p>Allows the device user to turn on history for <a href="https://docs.microsoft.com/en-us/windows/apps/design/input/input-method-editors" target="_blank">Windows IME</a> (input method editor), which builds a dataset for predictive character input.</p>
+                                                            <h4>Values</h4>
+                                                            <ul>
+                                                                <li value="1"><b>Allow</b> (default)</li>
+                                                                <li value="2"><b>Disallow</b>
+                                                                </li>
+                                                            </ul>
+                                                        </td>
+                                                        <td class="windows-compatibility">
+                                                            <p>Windows 10/11 Pro</p>
+                                                            <p>Windows 10/11 Business</p>
+                                                            <p>Windows 10/11 Enterprise</p>
+                                                            <p>Windows 10/11 Education</p>
+                                                            <p>Windows 10 Mobile</p>
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td id="interface-ime-network-access">IME Network Access</td>
+                                                        <td>
+                                                            <p>Allows the device user to turn on Open Extended Dictionary, Internet search integration, or cloud candidate features to provide input suggestions for Windows IME that don't exist in the local dictionary.</p>
+                                                            <h4>Values</h4>
+                                                            <ul>
+                                                                <li value="1"><b>Allow</b> (default)</li>
+                                                                <li value="2"><b>Disallow</b>
+                                                                </li>
+                                                            </ul>
+                                                        </td>
+                                                        <td class="windows-compatibility">
+                                                            <p>Windows 10/11 Pro</p>
+                                                            <p>Windows 10/11 Business</p>
+                                                            <p>Windows 10/11 Enterprise</p>
+                                                            <p>Windows 10/11 Education</p>
                                                             <p>Windows 10 Mobile</p>
                                                         </td>
                                                     </tr>
@@ -3010,7 +3198,7 @@
                                             </table>
                                             <h2 id="security">Security</h2>
                                             <p>Configures the password settings.</p>
-                                            <table>
+                                            <table class="no-stripes">
                                                 <tbody>
                                                     <tr>
                                                         <th style="width: 20%">Policy</th>
@@ -3024,16 +3212,11 @@
                                                             <div class="callout note"><b>NOTE</b> — If you have enabled Samsung Knox Manage for a device with no password, certificates registered in the device will be deleted.</div>
                                                         </td>
                                                         <td class="windows-compatibility">
-                                                            <p>Windows 10 Home</p>
-                                                            <p>Windows 11 Home</p>
-                                                            <p>Windows 10 Pro</p>
-                                                            <p>Windows 11 Pro</p>
-                                                            <p>Windows 10 Business</p>
-                                                            <p>Windows 11 Business</p>
-                                                            <p>Windows 10 Enterprise</p>
-                                                            <p>Windows 11 Enterprise</p>
-                                                            <p>Windows 10 Education</p>
-                                                            <p>Windows 11 Education</p>
+                                                            <p>Windows 10/11 Home</p>
+                                                            <p>Windows 10/11 Pro</p>
+                                                            <p>Windows 10/11 Business</p>
+                                                            <p>Windows 10/11 Enterprise</p>
+                                                            <p>Windows 10/11 Education</p>
                                                             <p>Windows 10 Mobile</p>
                                                         </td>
                                                     </tr>
@@ -3045,16 +3228,11 @@
                                                             <div class="callout note"><b>NOTE</b> — If you enter the wrong password more than the allowed number of times, a challenge phrase appears, and then the system begins the factory reset operation. A challenge phrase is a particular phrase that is presented to you to disable the autofill feature and protect your information. You need to enter the case sensitive challenge phrase exactly.</div>
                                                         </td>
                                                         <td class="windows-compatibility">
-                                                            <p>Windows 10 Home</p>
-                                                            <p>Windows 11 Home</p>
-                                                            <p>Windows 10 Pro</p>
-                                                            <p>Windows 11 Pro</p>
-                                                            <p>Windows 10 Business</p>
-                                                            <p>Windows 11 Business</p>
-                                                            <p>Windows 10 Enterprise</p>
-                                                            <p>Windows 11 Enterprise</p>
-                                                            <p>Windows 10 Education</p>
-                                                            <p>Windows 11 Education</p>
+                                                            <p>Windows 10/11 Home</p>
+                                                            <p>Windows 10/11 Pro</p>
+                                                            <p>Windows 10/11 Business</p>
+                                                            <p>Windows 10/11 Enterprise</p>
+                                                            <p>Windows 10/11 Education</p>
                                                             <p>Windows 10 Mobile</p>
                                                         </td>
                                                     </tr>
@@ -3065,16 +3243,11 @@
                                                             <p>The value can be between 4 - 16 words.</p>
                                                         </td>
                                                         <td class="windows-compatibility">
-                                                            <p>Windows 10 Home</p>
-                                                            <p>Windows 11 Home</p>
-                                                            <p>Windows 10 Pro</p>
-                                                            <p>Windows 11 Pro</p>
-                                                            <p>Windows 10 Business</p>
-                                                            <p>Windows 11 Business</p>
-                                                            <p>Windows 10 Enterprise</p>
-                                                            <p>Windows 11 Enterprise</p>
-                                                            <p>Windows 10 Education</p>
-                                                            <p>Windows 11 Education</p>
+                                                            <p>Windows 10/11 Home</p>
+                                                            <p>Windows 10/11 Pro</p>
+                                                            <p>Windows 10/11 Business</p>
+                                                            <p>Windows 10/11 Enterprise</p>
+                                                            <p>Windows 10/11 Education</p>
                                                             <p>Windows 10 Mobile</p>
                                                         </td>
                                                     </tr>
@@ -3085,16 +3258,11 @@
                                                             <p>The value can be between 0–999 minutes.</p>
                                                         </td>
                                                         <td class="windows-compatibility">
-                                                            <p>Windows 10 Home</p>
-                                                            <p>Windows 11 Home</p>
-                                                            <p>Windows 10 Pro</p>
-                                                            <p>Windows 11 Pro</p>
-                                                            <p>Windows 10 Business</p>
-                                                            <p>Windows 11 Business</p>
-                                                            <p>Windows 10 Enterprise</p>
-                                                            <p>Windows 11 Enterprise</p>
-                                                            <p>Windows 10 Education</p>
-                                                            <p>Windows 11 Education</p>
+                                                            <p>Windows 10/11 Home</p>
+                                                            <p>Windows 10/11 Pro</p>
+                                                            <p>Windows 10/11 Business</p>
+                                                            <p>Windows 10/11 Enterprise</p>
+                                                            <p>Windows 10/11 Education</p>
                                                             <p>Windows 10 Mobile</p>
                                                         </td>
                                                     </tr>
@@ -3106,16 +3274,11 @@
                                                             <div class="callout note"><b>NOTE</b> — Set the number to 0 for an indefinite period.</div>
                                                         </td>
                                                         <td class="windows-compatibility">
-                                                            <p>Windows 10 Home</p>
-                                                            <p>Windows 11 Home</p>
-                                                            <p>Windows 10 Pro</p>
-                                                            <p>Windows 11 Pro</p>
-                                                            <p>Windows 10 Business</p>
-                                                            <p>Windows 11 Business</p>
-                                                            <p>Windows 10 Enterprise</p>
-                                                            <p>Windows 11 Enterprise</p>
-                                                            <p>Windows 10 Education</p>
-                                                            <p>Windows 11 Education</p>
+                                                            <p>Windows 10/11 Home</p>
+                                                            <p>Windows 10/11 Pro</p>
+                                                            <p>Windows 10/11 Business</p>
+                                                            <p>Windows 10/11 Enterprise</p>
+                                                            <p>Windows 10/11 Education</p>
                                                             <p>Windows 10 Mobile</p>
                                                         </td>
                                                     </tr>
@@ -3126,16 +3289,11 @@
                                                             <p>The value can be between 2 - 50 times.</p>
                                                         </td>
                                                         <td class="windows-compatibility">
-                                                            <p>Windows 10 Home</p>
-                                                            <p>Windows 11 Home</p>
-                                                            <p>Windows 10 Pro</p>
-                                                            <p>Windows 11 Pro</p>
-                                                            <p>Windows 10 Business</p>
-                                                            <p>Windows 11 Business</p>
-                                                            <p>Windows 10 Enterprise</p>
-                                                            <p>Windows 11 Enterprise</p>
-                                                            <p>Windows 10 Education</p>
-                                                            <p>Windows 11 Education</p>
+                                                            <p>Windows 10/11 Home</p>
+                                                            <p>Windows 10/11 Pro</p>
+                                                            <p>Windows 10/11 Business</p>
+                                                            <p>Windows 10/11 Enterprise</p>
+                                                            <p>Windows 10/11 Education</p>
                                                             <p>Windows 10 Mobile</p>
                                                         </td>
                                                     </tr>
@@ -3143,7 +3301,7 @@
                                             </table>
                                             <h2 id="application">Application</h2>
                                             <p>Allows using the Windows App Store and configuring options for application controls, such as installation and blocklist/allowlist.</p>
-                                            <table>
+                                            <table class="no-stripes">
                                                 <tbody>
                                                     <tr>
                                                         <th style="width: 20%">Policy</th>
@@ -3159,16 +3317,11 @@
                                                         <td id="application-app-installation-block-allowlist">App Installation Block/Allowlist</td>
                                                         <td>Set the Windows app policies based on the blocklist or the allowlist.</td>
                                                         <td class="windows-compatibility">
-                                                            <p>Windows 10 Home</p>
-                                                            <p>Windows 11 Home</p>
-                                                            <p>Windows 10 Pro</p>
-                                                            <p>Windows 11 Pro</p>
-                                                            <p>Windows 10 Business</p>
-                                                            <p>Windows 11 Business</p>
-                                                            <p>Windows 10 Enterprise</p>
-                                                            <p>Windows 11 Enterprise</p>
-                                                            <p>Windows 10 Education</p>
-                                                            <p>Windows 11 Education</p>
+                                                            <p>Windows 10/11 Home</p>
+                                                            <p>Windows 10/11 Pro</p>
+                                                            <p>Windows 10/11 Business</p>
+                                                            <p>Windows 10/11 Enterprise</p>
+                                                            <p>Windows 10/11 Education</p>
                                                             <p>Windows 10 Mobile</p>
                                                         </td>
                                                     </tr>
@@ -3176,16 +3329,11 @@
                                                         <td id="application-preloaded-app-automatic-addition">&gt; Preloaded App Automatic Addition</td>
                                                         <td>Set to automatically add preloaded apps.</td>
                                                         <td class="windows-compatibility">
-                                                            <p>Windows 10 Home</p>
-                                                            <p>Windows 11 Home</p>
-                                                            <p>Windows 10 Pro</p>
-                                                            <p>Windows 11 Pro</p>
-                                                            <p>Windows 10 Business</p>
-                                                            <p>Windows 11 Business</p>
-                                                            <p>Windows 10 Enterprise</p>
-                                                            <p>Windows 11 Enterprise</p>
-                                                            <p>Windows 10 Education</p>
-                                                            <p>Windows 11 Education</p>
+                                                            <p>Windows 10/11 Home</p>
+                                                            <p>Windows 10/11 Pro</p>
+                                                            <p>Windows 10/11 Business</p>
+                                                            <p>Windows 10/11 Enterprise</p>
+                                                            <p>Windows 10/11 Education</p>
                                                             <p>Windows 10 Mobile</p>
                                                         </td>
                                                     </tr>
@@ -3200,16 +3348,11 @@
                                                             <div class="callout note"><b>NOTE</b> — Knox Manage agent is automatically registered on the list.</div>
                                                         </td>
                                                         <td class="windows-compatibility">
-                                                            <p>Windows 10 Home</p>
-                                                            <p>Windows 11 Home</p>
-                                                            <p>Windows 10 Pro</p>
-                                                            <p>Windows 11 Pro</p>
-                                                            <p>Windows 10 Business</p>
-                                                            <p>Windows 11 Business</p>
-                                                            <p>Windows 10 Enterprise</p>
-                                                            <p>Windows 11 Enterprise</p>
-                                                            <p>Windows 10 Education</p>
-                                                            <p>Windows 11 Education</p>
+                                                            <p>Windows 10/11 Home</p>
+                                                            <p>Windows 10/11 Pro</p>
+                                                            <p>Windows 10/11 Business</p>
+                                                            <p>Windows 10/11 Enterprise</p>
+                                                            <p>Windows 10/11 Education</p>
                                                             <p>Windows 10 Mobile</p>
                                                         </td>
                                                     </tr>
@@ -3224,16 +3367,42 @@
                                                             <div class="callout note"><b>NOTE</b> — An application that was added on the <b>App Install/Run Allowlist</b> cannot be added.</div>
                                                         </td>
                                                         <td class="windows-compatibility">
-                                                            <p>Windows 10 Home</p>
-                                                            <p>Windows 11 Home</p>
-                                                            <p>Windows 10 Pro</p>
-                                                            <p>Windows 11 Pro</p>
-                                                            <p>Windows 10 Business</p>
-                                                            <p>Windows 11 Business</p>
-                                                            <p>Windows 10 Enterprise</p>
-                                                            <p>Windows 11 Enterprise</p>
-                                                            <p>Windows 10 Education</p>
-                                                            <p>Windows 11 Education</p>
+                                                            <p>Windows 10/11 Home</p>
+                                                            <p>Windows 10/11 Pro</p>
+                                                            <p>Windows 10/11 Business</p>
+                                                            <p>Windows 10/11 Enterprise</p>
+                                                            <p>Windows 10/11 Education</p>
+                                                            <p>Windows 10 Mobile</p>
+                                                        </td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                            <h2 id="location">Location</h2>
+                                            <p>Configures policies related to location services and data.</p>
+                                            <table class="no-stripes">
+                                                <tbody>
+                                                    <tr>
+                                                        <th style="width: 20%">Policy</th>
+                                                        <th>Description</th>
+                                                        <th style="width: 20%">Supported system</th>
+                                                    </tr>
+                                                    <tr>
+                                                        <td id="location-location">Location</td>
+                                                        <td>
+                                                            <p>Controls location services on the device.</p>
+                                                            <h4>Values</h4>
+                                                            <ul>
+                                                                <li value="1"><b>Force location off</b> — Disables location services, and the device user can't change the setting.</li>
+                                                                <li value="2"><b>Allow location service</b> (default) — The device user chooses whether to enable location services.</li>
+                                                                <li value="3"><b>Force location on</b> — Enables location services, and the device user can't change the setting.</li>
+                                                            </ul>
+                                                        </td>
+                                                        <td class="windows-compatibility">
+                                                            <p>Windows 10/11 Home</p>
+                                                            <p>Windows 10/11 Pro</p>
+                                                            <p>Windows 10/11 Business</p>
+                                                            <p>Windows 10/11 Enterprise</p>
+                                                            <p>Windows 10/11 Education</p>
                                                             <p>Windows 10 Mobile</p>
                                                         </td>
                                                     </tr>
@@ -3241,7 +3410,7 @@
                                             </table>
                                             <h2 id="phone">Phone</h2>
                                             <p>Allows overseas data roaming.</p>
-                                            <table>
+                                            <table class="no-stripes">
                                                 <tbody>
                                                     <tr>
                                                         <th style="width: 20%">Policy</th>
@@ -3252,14 +3421,10 @@
                                                         <td id="phone-data-connection-during-roaming">Data connection during roaming</td>
                                                         <td>Allows overseas data roaming</td>
                                                         <td class="windows-compatibility">
-                                                            <p>Windows 10 Pro</p>
-                                                            <p>Windows 11 Pro</p>
-                                                            <p>Windows 10 Business</p>
-                                                            <p>Windows 11 Business</p>
-                                                            <p>Windows 10 Enterprise</p>
-                                                            <p>Windows 11 Enterprise</p>
-                                                            <p>Windows 10 Education</p>
-                                                            <p>Windows 11 Education</p>
+                                                            <p>Windows 10/11 Pro</p>
+                                                            <p>Windows 10/11 Business</p>
+                                                            <p>Windows 10/11 Enterprise</p>
+                                                            <p>Windows 10/11 Education</p>
                                                             <p>Windows 10 Mobile</p>
                                                         </td>
                                                     </tr>
@@ -3267,7 +3432,7 @@
                                             </table>
                                             <h2 id="etc">Etc</h2>
                                             <p>Allows deleting provisioning package (PPKG) files or MDM profiles while using them.</p>
-                                            <table>
+                                            <table class="no-stripes">
                                                 <tbody>
                                                     <tr>
                                                         <th style="width: 20%">Policy</th>
@@ -3278,14 +3443,10 @@
                                                         <td id="etc-delete-ppkg">Delete PPKG</td>
                                                         <td>Allows users to delete provisioning package (PPKG) files while using them.</td>
                                                         <td class="windows-compatibility">
-                                                            <p>Windows 10 Pro</p>
-                                                            <p>Windows 11 Pro</p>
-                                                            <p>Windows 10 Business</p>
-                                                            <p>Windows 11 Business</p>
-                                                            <p>Windows 10 Enterprise</p>
-                                                            <p>Windows 11 Enterprise</p>
-                                                            <p>Windows 10 Education</p>
-                                                            <p>Windows 11 Education</p>
+                                                            <p>Windows 10/11 Pro</p>
+                                                            <p>Windows 10/11 Business</p>
+                                                            <p>Windows 10/11 Enterprise</p>
+                                                            <p>Windows 10/11 Education</p>
                                                             <p>Windows 10 Mobile</p>
                                                         </td>
                                                     </tr>
@@ -3293,14 +3454,10 @@
                                                         <td id="etc-mdm-client-unenrollment">MDM Client Unenrollment</td>
                                                         <td>Allows users to delete MDM profiles while using them.</td>
                                                         <td class="windows-compatibility">
-                                                            <p>Windows 10 Pro</p>
-                                                            <p>Windows 11 Pro</p>
-                                                            <p>Windows 10 Business</p>
-                                                            <p>Windows 11 Business</p>
-                                                            <p>Windows 10 Enterprise</p>
-                                                            <p>Windows 11 Enterprise</p>
-                                                            <p>Windows 10 Education</p>
-                                                            <p>Windows 11 Education</p>
+                                                            <p>Windows 10/11 Pro</p>
+                                                            <p>Windows 10/11 Business</p>
+                                                            <p>Windows 10/11 Enterprise</p>
+                                                            <p>Windows 10/11 Education</p>
                                                             <p>Windows 10 Mobile</p>
                                                         </td>
                                                     </tr>
@@ -3308,8 +3465,9 @@
                                             </table>
                                             <h2 id="wi-fi">Wi-Fi</h2>
                                             <p>Configures the Wi-Fi settings, such as SSID, security type, and proxy.</p>
-                                            <p>You can add more Wi-Fi policy sets by clicking <img class="no-border" src="../../assets/merge/images/B-add.png" alt="add" style="width: 15.56px;height: 14px;" />.</p>
-                                            <table>
+                                            <p>Click <img class="no-border" src="../../assets/merge/images/B-add.png" alt="add" style="width: 15.56px;height: 14px;" /> to add a configuration.</p>
+                                            <p>You can add or edit up to 20 configurations when you save the profile.</p>
+                                            <table class="no-stripes">
                                                 <tbody>
                                                     <tr>
                                                         <th style="width: 20%">Policy</th>
@@ -3320,16 +3478,11 @@
                                                         <td id="wifi-configuration-id">Configuration ID</td>
                                                         <td>Assign a unique ID for each Wi-Fi setting.</td>
                                                         <td class="windows-compatibility">
-                                                            <p>Windows 10 Home</p>
-                                                            <p>Windows 11 Home</p>
-                                                            <p>Windows 10 Pro</p>
-                                                            <p>Windows 11 Pro</p>
-                                                            <p>Windows 10 Business</p>
-                                                            <p>Windows 11 Business</p>
-                                                            <p>Windows 10 Enterprise</p>
-                                                            <p>Windows 11 Enterprise</p>
-                                                            <p>Windows 10 Education</p>
-                                                            <p>Windows 11 Education</p>
+                                                            <p>Windows 10/11 Home</p>
+                                                            <p>Windows 10/11 Pro</p>
+                                                            <p>Windows 10/11 Business</p>
+                                                            <p>Windows 10/11 Enterprise</p>
+                                                            <p>Windows 10/11 Education</p>
                                                             <p>Windows 10 Mobile</p>
                                                         </td>
                                                     </tr>
@@ -3344,16 +3497,11 @@
                                                             <p>You can also click <b>Lookup</b> to open the reference items list and select an item from it. The reference value will be automatically entered.</p>
                                                         </td>
                                                         <td class="windows-compatibility">
-                                                            <p>Windows 10 Home</p>
-                                                            <p>Windows 11 Home</p>
-                                                            <p>Windows 10 Pro</p>
-                                                            <p>Windows 11 Pro</p>
-                                                            <p>Windows 10 Business</p>
-                                                            <p>Windows 11 Business</p>
-                                                            <p>Windows 10 Enterprise</p>
-                                                            <p>Windows 11 Enterprise</p>
-                                                            <p>Windows 10 Education</p>
-                                                            <p>Windows 11 Education</p>
+                                                            <p>Windows 10/11 Home</p>
+                                                            <p>Windows 10/11 Pro</p>
+                                                            <p>Windows 10/11 Business</p>
+                                                            <p>Windows 10/11 Enterprise</p>
+                                                            <p>Windows 10/11 Education</p>
                                                             <p>Windows 10 Mobile</p>
                                                         </td>
                                                     </tr>
@@ -3361,16 +3509,11 @@
                                                         <td id="wifi-security-type">Security type</td>
                                                         <td>Specifies the access protocol used.</td>
                                                         <td class="windows-compatibility">
-                                                            <p>Windows 10 Home</p>
-                                                            <p>Windows 11 Home</p>
-                                                            <p>Windows 10 Pro</p>
-                                                            <p>Windows 11 Pro</p>
-                                                            <p>Windows 10 Business</p>
-                                                            <p>Windows 11 Business</p>
-                                                            <p>Windows 10 Enterprise</p>
-                                                            <p>Windows 11 Enterprise</p>
-                                                            <p>Windows 10 Education</p>
-                                                            <p>Windows 11 Education</p>
+                                                            <p>Windows 10/11 Home</p>
+                                                            <p>Windows 10/11 Pro</p>
+                                                            <p>Windows 10/11 Business</p>
+                                                            <p>Windows 10/11 Enterprise</p>
+                                                            <p>Windows 10/11 Education</p>
                                                             <p>Windows 10 Mobile</p>
                                                         </td>
                                                     </tr>
@@ -3378,16 +3521,11 @@
                                                         <td id="wifi-open">&gt; Open</td>
                                                         <td>Allows a Wi-Fi connection without a password.</td>
                                                         <td class="windows-compatibility">
-                                                            <p>Windows 10 Home</p>
-                                                            <p>Windows 11 Home</p>
-                                                            <p>Windows 10 Pro</p>
-                                                            <p>Windows 11 Pro</p>
-                                                            <p>Windows 10 Business</p>
-                                                            <p>Windows 11 Business</p>
-                                                            <p>Windows 10 Enterprise</p>
-                                                            <p>Windows 11 Enterprise</p>
-                                                            <p>Windows 10 Education</p>
-                                                            <p>Windows 11 Education</p>
+                                                            <p>Windows 10/11 Home</p>
+                                                            <p>Windows 10/11 Pro</p>
+                                                            <p>Windows 10/11 Business</p>
+                                                            <p>Windows 10/11 Enterprise</p>
+                                                            <p>Windows 10/11 Education</p>
                                                             <p>Windows 10 Mobile</p>
                                                         </td>
                                                     </tr>
@@ -3395,16 +3533,11 @@
                                                         <td id="wifi-wep">&gt; WEP</td>
                                                         <td>Set a password in the <b>Password</b> field.</td>
                                                         <td class="windows-compatibility">
-                                                            <p>Windows 10 Home</p>
-                                                            <p>Windows 11 Home</p>
-                                                            <p>Windows 10 Pro</p>
-                                                            <p>Windows 11 Pro</p>
-                                                            <p>Windows 10 Business</p>
-                                                            <p>Windows 11 Business</p>
-                                                            <p>Windows 10 Enterprise</p>
-                                                            <p>Windows 11 Enterprise</p>
-                                                            <p>Windows 10 Education</p>
-                                                            <p>Windows 11 Education</p>
+                                                            <p>Windows 10/11 Home</p>
+                                                            <p>Windows 10/11 Pro</p>
+                                                            <p>Windows 10/11 Business</p>
+                                                            <p>Windows 10/11 Enterprise</p>
+                                                            <p>Windows 10/11 Education</p>
                                                             <p>Windows 10 Mobile</p>
                                                         </td>
                                                     </tr>
@@ -3412,16 +3545,11 @@
                                                         <td id="wifi-wpa2-personal">&gt; WPA2 Personal</td>
                                                         <td>Set a password in the <b>Password</b> field.</td>
                                                         <td class="windows-compatibility">
-                                                            <p>Windows 10 Home</p>
-                                                            <p>Windows 11 Home</p>
-                                                            <p>Windows 10 Pro</p>
-                                                            <p>Windows 11 Pro</p>
-                                                            <p>Windows 10 Business</p>
-                                                            <p>Windows 11 Business</p>
-                                                            <p>Windows 10 Enterprise</p>
-                                                            <p>Windows 11 Enterprise</p>
-                                                            <p>Windows 10 Education</p>
-                                                            <p>Windows 11 Education</p>
+                                                            <p>Windows 10/11 Home</p>
+                                                            <p>Windows 10/11 Pro</p>
+                                                            <p>Windows 10/11 Business</p>
+                                                            <p>Windows 10/11 Enterprise</p>
+                                                            <p>Windows 10/11 Education</p>
                                                             <p>Windows 10 Mobile</p>
                                                         </td>
                                                     </tr>
@@ -3432,16 +3560,11 @@
                                                             <div class="callout note"><b>NOTE</b> — The EAP XML tab is enabled only when EAP is selected for the Security type.</div>
                                                         </td>
                                                         <td class="windows-compatibility">
-                                                            <p>Windows 10 Home</p>
-                                                            <p>Windows 11 Home</p>
-                                                            <p>Windows 10 Pro</p>
-                                                            <p>Windows 11 Pro</p>
-                                                            <p>Windows 10 Business</p>
-                                                            <p>Windows 11 Business</p>
-                                                            <p>Windows 10 Enterprise</p>
-                                                            <p>Windows 11 Enterprise</p>
-                                                            <p>Windows 10 Education</p>
-                                                            <p>Windows 11 Education</p>
+                                                            <p>Windows 10/11 Home</p>
+                                                            <p>Windows 10/11 Pro</p>
+                                                            <p>Windows 10/11 Business</p>
+                                                            <p>Windows 10/11 Enterprise</p>
+                                                            <p>Windows 10/11 Education</p>
                                                             <p>Windows 10 Mobile</p>
                                                         </td>
                                                     </tr>
@@ -3449,16 +3572,11 @@
                                                         <td id="wifi-auto-connection">Auto connection</td>
                                                         <td>Check to use an automatic Wi-Fi connection.</td>
                                                         <td class="windows-compatibility">
-                                                            <p>Windows 10 Home</p>
-                                                            <p>Windows 11 Home</p>
-                                                            <p>Windows 10 Pro</p>
-                                                            <p>Windows 11 Pro</p>
-                                                            <p>Windows 10 Business</p>
-                                                            <p>Windows 11 Business</p>
-                                                            <p>Windows 10 Enterprise</p>
-                                                            <p>Windows 11 Enterprise</p>
-                                                            <p>Windows 10 Education</p>
-                                                            <p>Windows 11 Education</p>
+                                                            <p>Windows 10/11 Home</p>
+                                                            <p>Windows 10/11 Pro</p>
+                                                            <p>Windows 10/11 Business</p>
+                                                            <p>Windows 10/11 Enterprise</p>
+                                                            <p>Windows 10/11 Education</p>
                                                             <p>Windows 10 Mobile</p>
                                                         </td>
                                                     </tr>
@@ -3466,16 +3584,11 @@
                                                         <td id="wifi-hide-network">Hide Network</td>
                                                         <td>Check the check box to hide the network from the list of available networks on the device. The SSID does not broadcast.</td>
                                                         <td class="windows-compatibility">
-                                                            <p>Windows 10 Home</p>
-                                                            <p>Windows 11 Home</p>
-                                                            <p>Windows 10 Pro</p>
-                                                            <p>Windows 11 Pro</p>
-                                                            <p>Windows 10 Business</p>
-                                                            <p>Windows 11 Business</p>
-                                                            <p>Windows 10 Enterprise</p>
-                                                            <p>Windows 11 Enterprise</p>
-                                                            <p>Windows 10 Education</p>
-                                                            <p>Windows 11 Education</p>
+                                                            <p>Windows 10/11 Home</p>
+                                                            <p>Windows 10/11 Pro</p>
+                                                            <p>Windows 10/11 Business</p>
+                                                            <p>Windows 10/11 Enterprise</p>
+                                                            <p>Windows 10/11 Education</p>
                                                             <p>Windows 10 Mobile</p>
                                                         </td>
                                                     </tr>
@@ -3483,16 +3596,11 @@
                                                         <td id="wifi-proxy-server-port">Proxy Server and Port</td>
                                                         <td>Enter the IP address of a proxy server and the port number of the proxy server.</td>
                                                         <td class="windows-compatibility">
-                                                            <p>Windows 10 Home</p>
-                                                            <p>Windows 11 Home</p>
-                                                            <p>Windows 10 Pro</p>
-                                                            <p>Windows 11 Pro</p>
-                                                            <p>Windows 10 Business</p>
-                                                            <p>Windows 11 Business</p>
-                                                            <p>Windows 10 Enterprise</p>
-                                                            <p>Windows 11 Enterprise</p>
-                                                            <p>Windows 10 Education</p>
-                                                            <p>Windows 11 Education</p>
+                                                            <p>Windows 10/11 Home</p>
+                                                            <p>Windows 10/11 Pro</p>
+                                                            <p>Windows 10/11 Business</p>
+                                                            <p>Windows 10/11 Enterprise</p>
+                                                            <p>Windows 10/11 Education</p>
                                                             <p>Windows 10 Mobile</p>
                                                         </td>
                                                     </tr>
@@ -3501,7 +3609,7 @@
                                             <h2 id="exchange">Exchange</h2>
                                             <p>Configures the settings of a Microsoft Exchange ActiveSync account to synchronize data with it.</p>
                                             <p>You can add more Exchange policy sets by clicking <img class="no-border" src="../../assets/merge/images/B-add.png" alt="add" style="width: 15.56px;height: 14px;" />.</p>
-                                            <table>
+                                            <table class="no-stripes">
                                                 <tbody>
                                                     <tr>
                                                         <th style="width: 20%">Policy</th>
@@ -3512,16 +3620,11 @@
                                                         <td id="exchange-configuration-id">Configuration ID</td>
                                                         <td>Assign a unique ID for each Exchange setting.</td>
                                                         <td class="windows-compatibility">
-                                                            <p>Windows 10 Home</p>
-                                                            <p>Windows 11 Home</p>
-                                                            <p>Windows 10 Pro</p>
-                                                            <p>Windows 11 Pro</p>
-                                                            <p>Windows 10 Business</p>
-                                                            <p>Windows 11 Business</p>
-                                                            <p>Windows 10 Enterprise</p>
-                                                            <p>Windows 11 Enterprise</p>
-                                                            <p>Windows 10 Education</p>
-                                                            <p>Windows 11 Education</p>
+                                                            <p>Windows 10/11 Home</p>
+                                                            <p>Windows 10/11 Pro</p>
+                                                            <p>Windows 10/11 Business</p>
+                                                            <p>Windows 10/11 Enterprise</p>
+                                                            <p>Windows 10/11 Education</p>
                                                             <p>Windows 10 Mobile</p>
                                                         </td>
                                                     </tr>
@@ -3529,16 +3632,11 @@
                                                         <td id="exchange-description">Description</td>
                                                         <td>Enter a description for each Exchange setting.</td>
                                                         <td class="windows-compatibility">
-                                                            <p>Windows 10 Home</p>
-                                                            <p>Windows 11 Home</p>
-                                                            <p>Windows 10 Pro</p>
-                                                            <p>Windows 11 Pro</p>
-                                                            <p>Windows 10 Business</p>
-                                                            <p>Windows 11 Business</p>
-                                                            <p>Windows 10 Enterprise</p>
-                                                            <p>Windows 11 Enterprise</p>
-                                                            <p>Windows 10 Education</p>
-                                                            <p>Windows 11 Education</p>
+                                                            <p>Windows 10/11 Home</p>
+                                                            <p>Windows 10/11 Pro</p>
+                                                            <p>Windows 10/11 Business</p>
+                                                            <p>Windows 10/11 Enterprise</p>
+                                                            <p>Windows 10/11 Education</p>
                                                             <p>Windows 10 Mobile</p>
                                                         </td>
                                                     </tr>
@@ -3546,16 +3644,11 @@
                                                         <td id="exchange-user-information-input-method">User information input method</td>
                                                         <td>Select an input method for entering user information.</td>
                                                         <td class="windows-compatibility">
-                                                            <p>Windows 10 Home</p>
-                                                            <p>Windows 11 Home</p>
-                                                            <p>Windows 10 Pro</p>
-                                                            <p>Windows 11 Pro</p>
-                                                            <p>Windows 10 Business</p>
-                                                            <p>Windows 11 Business</p>
-                                                            <p>Windows 10 Enterprise</p>
-                                                            <p>Windows 11 Enterprise</p>
-                                                            <p>Windows 10 Education</p>
-                                                            <p>Windows 11 Education</p>
+                                                            <p>Windows 10/11 Home</p>
+                                                            <p>Windows 10/11 Pro</p>
+                                                            <p>Windows 10/11 Business</p>
+                                                            <p>Windows 10/11 Enterprise</p>
+                                                            <p>Windows 10/11 Education</p>
                                                             <p>Windows 10 Mobile</p>
                                                         </td>
                                                     </tr>
@@ -3566,16 +3659,11 @@
                                                             <p>You can also click Lookup to open the reference items list and select an item from it. The reference value will be automatically entered.</p>
                                                         </td>
                                                         <td class="windows-compatibility">
-                                                            <p>Windows 10 Home</p>
-                                                            <p>Windows 11 Home</p>
-                                                            <p>Windows 10 Pro</p>
-                                                            <p>Windows 11 Pro</p>
-                                                            <p>Windows 10 Business</p>
-                                                            <p>Windows 11 Business</p>
-                                                            <p>Windows 10 Enterprise</p>
-                                                            <p>Windows 11 Enterprise</p>
-                                                            <p>Windows 10 Education</p>
-                                                            <p>Windows 11 Education</p>
+                                                            <p>Windows 10/11 Home</p>
+                                                            <p>Windows 10/11 Pro</p>
+                                                            <p>Windows 10/11 Business</p>
+                                                            <p>Windows 10/11 Enterprise</p>
+                                                            <p>Windows 10/11 Education</p>
                                                             <p>Windows 10 Mobile</p>
                                                         </td>
                                                     </tr>
@@ -3586,16 +3674,11 @@
                                                             <div class="callout note"><b>NOTE</b> — All the connectors are listed in <b>Advanced &gt; System Integration &gt; Directory Connector</b>. The email account that is registered is the one registered in the connected directory's information.</div>
                                                         </td>
                                                         <td class="windows-compatibility">
-                                                            <p>Windows 10 Home</p>
-                                                            <p>Windows 11 Home</p>
-                                                            <p>Windows 10 Pro</p>
-                                                            <p>Windows 11 Pro</p>
-                                                            <p>Windows 10 Business</p>
-                                                            <p>Windows 11 Business</p>
-                                                            <p>Windows 10 Enterprise</p>
-                                                            <p>Windows 11 Enterprise</p>
-                                                            <p>Windows 10 Education</p>
-                                                            <p>Windows 11 Education</p>
+                                                            <p>Windows 10/11 Home</p>
+                                                            <p>Windows 10/11 Pro</p>
+                                                            <p>Windows 10/11 Business</p>
+                                                            <p>Windows 10/11 Enterprise</p>
+                                                            <p>Windows 10/11 Education</p>
                                                             <p>Windows 10 Mobile</p>
                                                         </td>
                                                     </tr>
@@ -3603,16 +3686,11 @@
                                                         <td id="exchange-user-information">&gt; User Information</td>
                                                         <td>Select to access the exchange server using the registered Knox Manage email and ID. The password must be entered from the user's device.</td>
                                                         <td class="windows-compatibility">
-                                                            <p>Windows 10 Home</p>
-                                                            <p>Windows 11 Home</p>
-                                                            <p>Windows 10 Pro</p>
-                                                            <p>Windows 11 Pro</p>
-                                                            <p>Windows 10 Business</p>
-                                                            <p>Windows 11 Business</p>
-                                                            <p>Windows 10 Enterprise</p>
-                                                            <p>Windows 11 Enterprise</p>
-                                                            <p>Windows 10 Education</p>
-                                                            <p>Windows 11 Education</p>
+                                                            <p>Windows 10/11 Home</p>
+                                                            <p>Windows 10/11 Pro</p>
+                                                            <p>Windows 10/11 Business</p>
+                                                            <p>Windows 10/11 Enterprise</p>
+                                                            <p>Windows 10/11 Education</p>
                                                             <p>Windows 10 Mobile</p>
                                                         </td>
                                                     </tr>
@@ -3623,16 +3701,11 @@
                                                             <p>You can also click <b>Lookup</b> to open the reference items list and select an item from it. The reference value will be automatically entered.</p>
                                                         </td>
                                                         <td class="windows-compatibility">
-                                                            <p>Windows 10 Home</p>
-                                                            <p>Windows 11 Home</p>
-                                                            <p>Windows 10 Pro</p>
-                                                            <p>Windows 11 Pro</p>
-                                                            <p>Windows 10 Business</p>
-                                                            <p>Windows 11 Business</p>
-                                                            <p>Windows 10 Enterprise</p>
-                                                            <p>Windows 11 Enterprise</p>
-                                                            <p>Windows 10 Education</p>
-                                                            <p>Windows 11 Education</p>
+                                                            <p>Windows 10/11 Home</p>
+                                                            <p>Windows 10/11 Pro</p>
+                                                            <p>Windows 10/11 Business</p>
+                                                            <p>Windows 10/11 Enterprise</p>
+                                                            <p>Windows 10/11 Education</p>
                                                             <p>Windows 10 Mobile</p>
                                                         </td>
                                                     </tr>
@@ -3640,16 +3713,11 @@
                                                         <td id="exchange-server-name">Server Name</td>
                                                         <td>Assign an Exchange server name.</td>
                                                         <td class="windows-compatibility">
-                                                            <p>Windows 10 Home</p>
-                                                            <p>Windows 11 Home</p>
-                                                            <p>Windows 10 Pro</p>
-                                                            <p>Windows 11 Pro</p>
-                                                            <p>Windows 10 Business</p>
-                                                            <p>Windows 11 Business</p>
-                                                            <p>Windows 10 Enterprise</p>
-                                                            <p>Windows 11 Enterprise</p>
-                                                            <p>Windows 10 Education</p>
-                                                            <p>Windows 11 Education</p>
+                                                            <p>Windows 10/11 Home</p>
+                                                            <p>Windows 10/11 Pro</p>
+                                                            <p>Windows 10/11 Business</p>
+                                                            <p>Windows 10/11 Enterprise</p>
+                                                            <p>Windows 10/11 Education</p>
                                                             <p>Windows 10 Mobile</p>
                                                         </td>
                                                     </tr>
@@ -3664,16 +3732,11 @@
                                                             </ul>
                                                         </td>
                                                         <td class="windows-compatibility">
-                                                            <p>Windows 10 Home</p>
-                                                            <p>Windows 11 Home</p>
-                                                            <p>Windows 10 Pro</p>
-                                                            <p>Windows 11 Pro</p>
-                                                            <p>Windows 10 Business</p>
-                                                            <p>Windows 11 Business</p>
-                                                            <p>Windows 10 Enterprise</p>
-                                                            <p>Windows 11 Enterprise</p>
-                                                            <p>Windows 10 Education</p>
-                                                            <p>Windows 11 Education</p>
+                                                            <p>Windows 10/11 Home</p>
+                                                            <p>Windows 10/11 Pro</p>
+                                                            <p>Windows 10/11 Business</p>
+                                                            <p>Windows 10/11 Enterprise</p>
+                                                            <p>Windows 10/11 Education</p>
                                                             <p>Windows 10 Mobile</p>
                                                         </td>
                                                     </tr>
@@ -3681,16 +3744,11 @@
                                                         <td id="exchange-sync-schedule">Sync Schedule</td>
                                                         <td>Select the interval period to sync the incoming emails.</td>
                                                         <td class="windows-compatibility">
-                                                            <p>Windows 10 Home</p>
-                                                            <p>Windows 11 Home</p>
-                                                            <p>Windows 10 Pro</p>
-                                                            <p>Windows 11 Pro</p>
-                                                            <p>Windows 10 Business</p>
-                                                            <p>Windows 11 Business</p>
-                                                            <p>Windows 10 Enterprise</p>
-                                                            <p>Windows 11 Enterprise</p>
-                                                            <p>Windows 10 Education</p>
-                                                            <p>Windows 11 Education</p>
+                                                            <p>Windows 10/11 Home</p>
+                                                            <p>Windows 10/11 Pro</p>
+                                                            <p>Windows 10/11 Business</p>
+                                                            <p>Windows 10/11 Enterprise</p>
+                                                            <p>Windows 10/11 Education</p>
                                                             <p>Windows 10 Mobile</p>
                                                         </td>
                                                     </tr>
@@ -3698,16 +3756,11 @@
                                                         <td id="exchange-sync-measure-early-data">Sync measure for the early data</td>
                                                         <td>Select the interval period to sync the past emails.</td>
                                                         <td class="windows-compatibility">
-                                                            <p>Windows 10 Home</p>
-                                                            <p>Windows 11 Home</p>
-                                                            <p>Windows 10 Pro</p>
-                                                            <p>Windows 11 Pro</p>
-                                                            <p>Windows 10 Business</p>
-                                                            <p>Windows 11 Business</p>
-                                                            <p>Windows 10 Enterprise</p>
-                                                            <p>Windows 11 Enterprise</p>
-                                                            <p>Windows 10 Education</p>
-                                                            <p>Windows 11 Education</p>
+                                                            <p>Windows 10/11 Home</p>
+                                                            <p>Windows 10/11 Pro</p>
+                                                            <p>Windows 10/11 Business</p>
+                                                            <p>Windows 10/11 Enterprise</p>
+                                                            <p>Windows 10/11 Education</p>
                                                             <p>Windows 10 Mobile</p>
                                                         </td>
                                                     </tr>
@@ -3715,16 +3768,11 @@
                                                         <td id="exchange-sync-calendar">Sync calendar</td>
                                                         <td>Syncs schedules on a calendar from a server to a device.</td>
                                                         <td class="windows-compatibility">
-                                                            <p>Windows 10 Home</p>
-                                                            <p>Windows 11 Home</p>
-                                                            <p>Windows 10 Pro</p>
-                                                            <p>Windows 11 Pro</p>
-                                                            <p>Windows 10 Business</p>
-                                                            <p>Windows 11 Business</p>
-                                                            <p>Windows 10 Enterprise</p>
-                                                            <p>Windows 11 Enterprise</p>
-                                                            <p>Windows 10 Education</p>
-                                                            <p>Windows 11 Education</p>
+                                                            <p>Windows 10/11 Home</p>
+                                                            <p>Windows 10/11 Pro</p>
+                                                            <p>Windows 10/11 Business</p>
+                                                            <p>Windows 10/11 Enterprise</p>
+                                                            <p>Windows 10/11 Education</p>
                                                             <p>Windows 10 Mobile</p>
                                                         </td>
                                                     </tr>
@@ -3732,16 +3780,11 @@
                                                         <td id="exchange-sync-contacts">Sync contacts</td>
                                                         <td>Syncs contact information in a phone book from an Exchange to a device.</td>
                                                         <td class="windows-compatibility">
-                                                            <p>Windows 10 Home</p>
-                                                            <p>Windows 11 Home</p>
-                                                            <p>Windows 10 Pro</p>
-                                                            <p>Windows 11 Pro</p>
-                                                            <p>Windows 10 Business</p>
-                                                            <p>Windows 11 Business</p>
-                                                            <p>Windows 10 Enterprise</p>
-                                                            <p>Windows 11 Enterprise</p>
-                                                            <p>Windows 10 Education</p>
-                                                            <p>Windows 11 Education</p>
+                                                            <p>Windows 10/11 Home</p>
+                                                            <p>Windows 10/11 Pro</p>
+                                                            <p>Windows 10/11 Business</p>
+                                                            <p>Windows 10/11 Enterprise</p>
+                                                            <p>Windows 10/11 Education</p>
                                                             <p>Windows 10 Mobile</p>
                                                         </td>
                                                     </tr>
@@ -3749,16 +3792,11 @@
                                                         <td id="exchange-sync-email">Sync Email</td>
                                                         <td>Syncs emails from an Exchange to a device.</td>
                                                         <td class="windows-compatibility">
-                                                            <p>Windows 10 Home</p>
-                                                            <p>Windows 11 Home</p>
-                                                            <p>Windows 10 Pro</p>
-                                                            <p>Windows 11 Pro</p>
-                                                            <p>Windows 10 Business</p>
-                                                            <p>Windows 11 Business</p>
-                                                            <p>Windows 10 Enterprise</p>
-                                                            <p>Windows 11 Enterprise</p>
-                                                            <p>Windows 10 Education</p>
-                                                            <p>Windows 11 Education</p>
+                                                            <p>Windows 10/11 Home</p>
+                                                            <p>Windows 10/11 Pro</p>
+                                                            <p>Windows 10/11 Business</p>
+                                                            <p>Windows 10/11 Enterprise</p>
+                                                            <p>Windows 10/11 Education</p>
                                                             <p>Windows 10 Mobile</p>
                                                         </td>
                                                     </tr>
@@ -3766,16 +3804,11 @@
                                                         <td id="exchange-sync-task">Sync task</td>
                                                         <td>Syncs tasks from an Exchange to a device.</td>
                                                         <td class="windows-compatibility">
-                                                            <p>Windows 10 Home</p>
-                                                            <p>Windows 11 Home</p>
-                                                            <p>Windows 10 Pro</p>
-                                                            <p>Windows 11 Pro</p>
-                                                            <p>Windows 10 Business</p>
-                                                            <p>Windows 11 Business</p>
-                                                            <p>Windows 10 Enterprise</p>
-                                                            <p>Windows 11 Enterprise</p>
-                                                            <p>Windows 10 Education</p>
-                                                            <p>Windows 11 Education</p>
+                                                            <p>Windows 10/11 Home</p>
+                                                            <p>Windows 10/11 Pro</p>
+                                                            <p>Windows 10/11 Business</p>
+                                                            <p>Windows 10/11 Enterprise</p>
+                                                            <p>Windows 10/11 Education</p>
                                                             <p>Windows 10 Mobile</p>
                                                         </td>
                                                     </tr>
@@ -3783,16 +3816,11 @@
                                                         <td id="exchange-ssl">SSL</td>
                                                         <td>Set to use SSL for email encryption.</td>
                                                         <td class="windows-compatibility">
-                                                            <p>Windows 10 Home</p>
-                                                            <p>Windows 11 Home</p>
-                                                            <p>Windows 10 Pro</p>
-                                                            <p>Windows 11 Pro</p>
-                                                            <p>Windows 10 Business</p>
-                                                            <p>Windows 11 Business</p>
-                                                            <p>Windows 10 Enterprise</p>
-                                                            <p>Windows 11 Enterprise</p>
-                                                            <p>Windows 10 Education</p>
-                                                            <p>Windows 11 Education</p>
+                                                            <p>Windows 10/11 Home</p>
+                                                            <p>Windows 10/11 Pro</p>
+                                                            <p>Windows 10/11 Business</p>
+                                                            <p>Windows 10/11 Enterprise</p>
+                                                            <p>Windows 10/11 Education</p>
                                                             <p>Windows 10 Mobile</p>
                                                         </td>
                                                     </tr>
@@ -3801,7 +3829,7 @@
                                             <h2 id="vpn">VPN</h2>
                                             <p>Configures VPNs (Virtual Private Network) on Windows devices.</p>
                                             <p>You can add more VPN policy sets by clicking <img class="no-border" src="../../assets/merge/images/B-add.png" alt="add" style="width: 15.56px;height: 14px;" />.</p>
-                                            <table>
+                                            <table class="no-stripes">
                                                 <tbody>
                                                     <tr>
                                                         <th style="width: 20%">Policy</th>
@@ -3812,16 +3840,11 @@
                                                         <td id="vpn-configuration-id">Configuration ID</td>
                                                         <td>Assign a unique ID for the VPN setting.</td>
                                                         <td class="windows-compatibility">
-                                                            <p>Windows 10 Home</p>
-                                                            <p>Windows 11 Home</p>
-                                                            <p>Windows 10 Pro</p>
-                                                            <p>Windows 11 Pro</p>
-                                                            <p>Windows 10 Business</p>
-                                                            <p>Windows 11 Business</p>
-                                                            <p>Windows 10 Enterprise</p>
-                                                            <p>Windows 11 Enterprise</p>
-                                                            <p>Windows 10 Education</p>
-                                                            <p>Windows 11 Education</p>
+                                                            <p>Windows 10/11 Home</p>
+                                                            <p>Windows 10/11 Pro</p>
+                                                            <p>Windows 10/11 Business</p>
+                                                            <p>Windows 10/11 Enterprise</p>
+                                                            <p>Windows 10/11 Education</p>
                                                             <p>Windows 10 Mobile</p>
                                                         </td>
                                                     </tr>
@@ -3829,16 +3852,11 @@
                                                         <td id="vpn-description">Description</td>
                                                         <td>Enter a description for the VPN setting.</td>
                                                         <td class="windows-compatibility">
-                                                            <p>Windows 10 Home</p>
-                                                            <p>Windows 11 Home</p>
-                                                            <p>Windows 10 Pro</p>
-                                                            <p>Windows 11 Pro</p>
-                                                            <p>Windows 10 Business</p>
-                                                            <p>Windows 11 Business</p>
-                                                            <p>Windows 10 Enterprise</p>
-                                                            <p>Windows 11 Enterprise</p>
-                                                            <p>Windows 10 Education</p>
-                                                            <p>Windows 11 Education</p>
+                                                            <p>Windows 10/11 Home</p>
+                                                            <p>Windows 10/11 Pro</p>
+                                                            <p>Windows 10/11 Business</p>
+                                                            <p>Windows 10/11 Enterprise</p>
+                                                            <p>Windows 10/11 Education</p>
                                                             <p>Windows 10 Mobile</p>
                                                         </td>
                                                     </tr>
@@ -3855,16 +3873,11 @@
                                                             </ul>
                                                         </td>
                                                         <td class="windows-compatibility">
-                                                            <p>Windows 10 Home</p>
-                                                            <p>Windows 11 Home</p>
-                                                            <p>Windows 10 Pro</p>
-                                                            <p>Windows 11 Pro</p>
-                                                            <p>Windows 10 Business</p>
-                                                            <p>Windows 11 Business</p>
-                                                            <p>Windows 10 Enterprise</p>
-                                                            <p>Windows 11 Enterprise</p>
-                                                            <p>Windows 10 Education</p>
-                                                            <p>Windows 11 Education</p>
+                                                            <p>Windows 10/11 Home</p>
+                                                            <p>Windows 10/11 Pro</p>
+                                                            <p>Windows 10/11 Business</p>
+                                                            <p>Windows 10/11 Enterprise</p>
+                                                            <p>Windows 10/11 Education</p>
                                                             <p>Windows 10 Mobile</p>
                                                         </td>
                                                     </tr>
@@ -3872,16 +3885,11 @@
                                                         <td id="vpn-server-address">Server address</td>
                                                         <td>Enter the IP address, host name, or URL of the VPN server that the device needs to access.</td>
                                                         <td class="windows-compatibility">
-                                                            <p>Windows 10 Home</p>
-                                                            <p>Windows 11 Home</p>
-                                                            <p>Windows 10 Pro</p>
-                                                            <p>Windows 11 Pro</p>
-                                                            <p>Windows 10 Business</p>
-                                                            <p>Windows 11 Business</p>
-                                                            <p>Windows 10 Enterprise</p>
-                                                            <p>Windows 11 Enterprise</p>
-                                                            <p>Windows 10 Education</p>
-                                                            <p>Windows 11 Education</p>
+                                                            <p>Windows 10/11 Home</p>
+                                                            <p>Windows 10/11 Pro</p>
+                                                            <p>Windows 10/11 Business</p>
+                                                            <p>Windows 10/11 Enterprise</p>
+                                                            <p>Windows 10/11 Education</p>
                                                             <p>Windows 10 Mobile</p>
                                                         </td>
                                                     </tr>
@@ -3889,16 +3897,11 @@
                                                         <td id="vpn-customer-configuration">Customer Configuration</td>
                                                         <td>Enter the VPN vendor-specific settings in the XML format and click <b>Save</b>.</td>
                                                         <td class="windows-compatibility">
-                                                            <p>Windows 10 Home</p>
-                                                            <p>Windows 11 Home</p>
-                                                            <p>Windows 10 Pro</p>
-                                                            <p>Windows 11 Pro</p>
-                                                            <p>Windows 10 Business</p>
-                                                            <p>Windows 11 Business</p>
-                                                            <p>Windows 10 Enterprise</p>
-                                                            <p>Windows 11 Enterprise</p>
-                                                            <p>Windows 10 Education</p>
-                                                            <p>Windows 11 Education</p>
+                                                            <p>Windows 10/11 Home</p>
+                                                            <p>Windows 10/11 Pro</p>
+                                                            <p>Windows 10/11 Business</p>
+                                                            <p>Windows 10/11 Enterprise</p>
+                                                            <p>Windows 10/11 Education</p>
                                                             <p>Windows 10 Mobile</p>
                                                         </td>
                                                     </tr>
@@ -3906,16 +3909,11 @@
                                                         <td id="vpn-remember-credentials">Remember Credentials</td>
                                                         <td>Check to use remember credentials.</td>
                                                         <td class="windows-compatibility">
-                                                            <p>Windows 10 Home</p>
-                                                            <p>Windows 11 Home</p>
-                                                            <p>Windows 10 Pro</p>
-                                                            <p>Windows 11 Pro</p>
-                                                            <p>Windows 10 Business</p>
-                                                            <p>Windows 11 Business</p>
-                                                            <p>Windows 10 Enterprise</p>
-                                                            <p>Windows 11 Enterprise</p>
-                                                            <p>Windows 10 Education</p>
-                                                            <p>Windows 11 Education</p>
+                                                            <p>Windows 10/11 Home</p>
+                                                            <p>Windows 10/11 Pro</p>
+                                                            <p>Windows 10/11 Business</p>
+                                                            <p>Windows 10/11 Enterprise</p>
+                                                            <p>Windows 10/11 Education</p>
                                                             <p>Windows 10 Mobile</p>
                                                         </td>
                                                     </tr>
@@ -3923,16 +3921,11 @@
                                                         <td id="vpn-always-on">Always On</td>
                                                         <td>Check to use always on mode.</td>
                                                         <td class="windows-compatibility">
-                                                            <p>Windows 10 Home</p>
-                                                            <p>Windows 11 Home</p>
-                                                            <p>Windows 10 Pro</p>
-                                                            <p>Windows 11 Pro</p>
-                                                            <p>Windows 10 Business</p>
-                                                            <p>Windows 11 Business</p>
-                                                            <p>Windows 10 Enterprise</p>
-                                                            <p>Windows 11 Enterprise</p>
-                                                            <p>Windows 10 Education</p>
-                                                            <p>Windows 11 Education</p>
+                                                            <p>Windows 10/11 Home</p>
+                                                            <p>Windows 10/11 Pro</p>
+                                                            <p>Windows 10/11 Business</p>
+                                                            <p>Windows 10/11 Enterprise</p>
+                                                            <p>Windows 10/11 Education</p>
                                                             <p>Windows 10 Mobile</p>
                                                         </td>
                                                     </tr>
@@ -3940,16 +3933,11 @@
                                                         <td id="vpn-lock-down">Lock Down</td>
                                                         <td>Check to use lock down mode.</td>
                                                         <td class="windows-compatibility">
-                                                            <p>Windows 10 Home</p>
-                                                            <p>Windows 11 Home</p>
-                                                            <p>Windows 10 Pro</p>
-                                                            <p>Windows 11 Pro</p>
-                                                            <p>Windows 10 Business</p>
-                                                            <p>Windows 11 Business</p>
-                                                            <p>Windows 10 Enterprise</p>
-                                                            <p>Windows 11 Enterprise</p>
-                                                            <p>Windows 10 Education</p>
-                                                            <p>Windows 11 Education</p>
+                                                            <p>Windows 10/11 Home</p>
+                                                            <p>Windows 10/11 Pro</p>
+                                                            <p>Windows 10/11 Business</p>
+                                                            <p>Windows 10/11 Enterprise</p>
+                                                            <p>Windows 10/11 Education</p>
                                                             <p>Windows 10 Mobile</p>
                                                         </td>
                                                     </tr>
@@ -3957,16 +3945,11 @@
                                                         <td id="vpn-dns-suffix">DNS Suffix</td>
                                                         <td>Enter a DNS Suffix.</td>
                                                         <td class="windows-compatibility">
-                                                            <p>Windows 10 Home</p>
-                                                            <p>Windows 11 Home</p>
-                                                            <p>Windows 10 Pro</p>
-                                                            <p>Windows 11 Pro</p>
-                                                            <p>Windows 10 Business</p>
-                                                            <p>Windows 11 Business</p>
-                                                            <p>Windows 10 Enterprise</p>
-                                                            <p>Windows 11 Enterprise</p>
-                                                            <p>Windows 10 Education</p>
-                                                            <p>Windows 11 Education</p>
+                                                            <p>Windows 10/11 Home</p>
+                                                            <p>Windows 10/11 Pro</p>
+                                                            <p>Windows 10/11 Business</p>
+                                                            <p>Windows 10/11 Enterprise</p>
+                                                            <p>Windows 10/11 Education</p>
                                                             <p>Windows 10 Mobile</p>
                                                         </td>
                                                     </tr>
@@ -3974,16 +3957,11 @@
                                                         <td id="vpn-trusted-network">Trusted Network</td>
                                                         <td>Enter the IP address, host name, or URL.</td>
                                                         <td class="windows-compatibility">
-                                                            <p>Windows 10 Home</p>
-                                                            <p>Windows 11 Home</p>
-                                                            <p>Windows 10 Pro</p>
-                                                            <p>Windows 11 Pro</p>
-                                                            <p>Windows 10 Business</p>
-                                                            <p>Windows 11 Business</p>
-                                                            <p>Windows 10 Enterprise</p>
-                                                            <p>Windows 11 Enterprise</p>
-                                                            <p>Windows 10 Education</p>
-                                                            <p>Windows 11 Education</p>
+                                                            <p>Windows 10/11 Home</p>
+                                                            <p>Windows 10/11 Pro</p>
+                                                            <p>Windows 10/11 Business</p>
+                                                            <p>Windows 10/11 Enterprise</p>
+                                                            <p>Windows 10/11 Education</p>
                                                             <p>Windows 10 Mobile</p>
                                                         </td>
                                                     </tr>
@@ -3997,16 +3975,11 @@
                                                             </ul>
                                                         </td>
                                                         <td class="windows-compatibility">
-                                                            <p>Windows 10 Home</p>
-                                                            <p>Windows 11 Home</p>
-                                                            <p>Windows 10 Pro</p>
-                                                            <p>Windows 11 Pro</p>
-                                                            <p>Windows 10 Business</p>
-                                                            <p>Windows 11 Business</p>
-                                                            <p>Windows 10 Enterprise</p>
-                                                            <p>Windows 11 Enterprise</p>
-                                                            <p>Windows 10 Education</p>
-                                                            <p>Windows 11 Education</p>
+                                                            <p>Windows 10/11 Home</p>
+                                                            <p>Windows 10/11 Pro</p>
+                                                            <p>Windows 10/11 Business</p>
+                                                            <p>Windows 10/11 Enterprise</p>
+                                                            <p>Windows 10/11 Education</p>
                                                             <p>Windows 10 Mobile</p>
                                                         </td>
                                                     </tr>
@@ -4015,7 +3988,7 @@
                                             <h2 id="certificate">Certificate</h2>
                                             <p>Configures the Knox Manage agent Root, user certificates, and server certificates for use on the device.</p>
                                             <p>You can add more certificate policy sets by clicking <img class="no-border" src="../../assets/merge/images/B-add.png" alt="add" style="width: 15.56px;height: 14px;" />.</p>
-                                            <table>
+                                            <table class="no-stripes">
                                                 <tbody>
                                                     <tr>
                                                         <th style="width: 20%">Policy</th>
@@ -4026,16 +3999,11 @@
                                                         <td id="certificate-configuration-id">Configuration ID</td>
                                                         <td>Assign a unique ID for each certificate setting.</td>
                                                         <td class="windows-compatibility">
-                                                            <p>Windows 10 Home</p>
-                                                            <p>Windows 11 Home</p>
-                                                            <p>Windows 10 Pro</p>
-                                                            <p>Windows 11 Pro</p>
-                                                            <p>Windows 10 Business</p>
-                                                            <p>Windows 11 Business</p>
-                                                            <p>Windows 10 Enterprise</p>
-                                                            <p>Windows 11 Enterprise</p>
-                                                            <p>Windows 10 Education</p>
-                                                            <p>Windows 11 Education</p>
+                                                            <p>Windows 10/11 Home</p>
+                                                            <p>Windows 10/11 Pro</p>
+                                                            <p>Windows 10/11 Business</p>
+                                                            <p>Windows 10/11 Enterprise</p>
+                                                            <p>Windows 10/11 Education</p>
                                                             <p>Windows 10 Mobile</p>
                                                         </td>
                                                     </tr>
@@ -4043,16 +4011,11 @@
                                                         <td id="certificate-description">Description</td>
                                                         <td>Enter a description for each certificate setting.</td>
                                                         <td class="windows-compatibility">
-                                                            <p>Windows 10 Home</p>
-                                                            <p>Windows 11 Home</p>
-                                                            <p>Windows 10 Pro</p>
-                                                            <p>Windows 11 Pro</p>
-                                                            <p>Windows 10 Business</p>
-                                                            <p>Windows 11 Business</p>
-                                                            <p>Windows 10 Enterprise</p>
-                                                            <p>Windows 11 Enterprise</p>
-                                                            <p>Windows 10 Education</p>
-                                                            <p>Windows 11 Education</p>
+                                                            <p>Windows 10/11 Home</p>
+                                                            <p>Windows 10/11 Pro</p>
+                                                            <p>Windows 10/11 Business</p>
+                                                            <p>Windows 10/11 Enterprise</p>
+                                                            <p>Windows 10/11 Education</p>
                                                             <p>Windows 10 Mobile</p>
                                                         </td>
                                                     </tr>
@@ -4067,16 +4030,11 @@
                                                             </ul>
                                                         </td>
                                                         <td class="windows-compatibility">
-                                                            <p>Windows 10 Home</p>
-                                                            <p>Windows 11 Home</p>
-                                                            <p>Windows 10 Pro</p>
-                                                            <p>Windows 11 Pro</p>
-                                                            <p>Windows 10 Business</p>
-                                                            <p>Windows 11 Business</p>
-                                                            <p>Windows 10 Enterprise</p>
-                                                            <p>Windows 11 Enterprise</p>
-                                                            <p>Windows 10 Education</p>
-                                                            <p>Windows 11 Education</p>
+                                                            <p>Windows 10/11 Home</p>
+                                                            <p>Windows 10/11 Pro</p>
+                                                            <p>Windows 10/11 Business</p>
+                                                            <p>Windows 10/11 Enterprise</p>
+                                                            <p>Windows 10/11 Education</p>
                                                             <p>Windows 10 Mobile</p>
                                                         </td>
                                                     </tr>
@@ -4085,7 +4043,7 @@
                                             <h2 id="applocker">AppLocker</h2>
                                             <p>Configures the Applocker settings.</p>
                                             <p>AppLocker is a built-in Windows 10 app that you can use to control a variety of executable file formats, such as exe, Windows Installers, Scripts, Packaged apps, and DLL. For more information, see <a href="https://docs.microsoft.com/en-us/windows/security/threat-protection/windows-defender-application-control/applocker/applocker-overview">The Microsoft AppLocker Guide</a>. Before you can change AppLocker settings you must <a href="windows-policies.htm#set" class="selected">set up AppLocker</a>.</p>
-                                            <table>
+                                            <table class="no-stripes">
                                                 <tbody>
                                                     <tr>
                                                         <th style="width: 20%">Policy</th>
@@ -4096,16 +4054,11 @@
                                                         <td id="applocker-configuration-id">Configuration ID</td>
                                                         <td>Assign a unique ID for each AppLocker setting.</td>
                                                         <td class="windows-compatibility">
-                                                            <p>Windows 10 Home</p>
-                                                            <p>Windows 11 Home</p>
-                                                            <p>Windows 10 Pro</p>
-                                                            <p>Windows 11 Pro</p>
-                                                            <p>Windows 10 Business</p>
-                                                            <p>Windows 11 Business</p>
-                                                            <p>Windows 10 Enterprise</p>
-                                                            <p>Windows 11 Enterprise</p>
-                                                            <p>Windows 10 Education</p>
-                                                            <p>Windows 11 Education</p>
+                                                            <p>Windows 10/11 Home</p>
+                                                            <p>Windows 10/11 Pro</p>
+                                                            <p>Windows 10/11 Business</p>
+                                                            <p>Windows 10/11 Enterprise</p>
+                                                            <p>Windows 10/11 Education</p>
                                                             <p>Windows 10 Mobile</p>
                                                         </td>
                                                     </tr>
@@ -4113,16 +4066,11 @@
                                                         <td id="applocker-description">Description</td>
                                                         <td>Enter a description for each AppLocker setting.</td>
                                                         <td class="windows-compatibility">
-                                                            <p>Windows 10 Home</p>
-                                                            <p>Windows 11 Home</p>
-                                                            <p>Windows 10 Pro</p>
-                                                            <p>Windows 11 Pro</p>
-                                                            <p>Windows 10 Business</p>
-                                                            <p>Windows 11 Business</p>
-                                                            <p>Windows 10 Enterprise</p>
-                                                            <p>Windows 11 Enterprise</p>
-                                                            <p>Windows 10 Education</p>
-                                                            <p>Windows 11 Education</p>
+                                                            <p>Windows 10/11 Home</p>
+                                                            <p>Windows 10/11 Pro</p>
+                                                            <p>Windows 10/11 Business</p>
+                                                            <p>Windows 10/11 Enterprise</p>
+                                                            <p>Windows 10/11 Education</p>
                                                             <p>Windows 10 Mobile</p>
                                                         </td>
                                                     </tr>
@@ -4130,16 +4078,11 @@
                                                         <td id="applocker-executable-rules">Executable Rules</td>
                                                         <td />
                                                         <td class="windows-compatibility">
-                                                            <p>Windows 10 Home</p>
-                                                            <p>Windows 11 Home</p>
-                                                            <p>Windows 10 Pro</p>
-                                                            <p>Windows 11 Pro</p>
-                                                            <p>Windows 10 Business</p>
-                                                            <p>Windows 11 Business</p>
-                                                            <p>Windows 10 Enterprise</p>
-                                                            <p>Windows 11 Enterprise</p>
-                                                            <p>Windows 10 Education</p>
-                                                            <p>Windows 11 Education</p>
+                                                            <p>Windows 10/11 Home</p>
+                                                            <p>Windows 10/11 Pro</p>
+                                                            <p>Windows 10/11 Business</p>
+                                                            <p>Windows 10/11 Enterprise</p>
+                                                            <p>Windows 10/11 Education</p>
                                                             <p>Windows 10 Mobile</p>
                                                         </td>
                                                     </tr>
@@ -4147,16 +4090,11 @@
                                                         <td id="applocker-windows-installer-rules">Windows Installer Rules</td>
                                                         <td />
                                                         <td class="windows-compatibility">
-                                                            <p>Windows 10 Home</p>
-                                                            <p>Windows 11 Home</p>
-                                                            <p>Windows 10 Pro</p>
-                                                            <p>Windows 11 Pro</p>
-                                                            <p>Windows 10 Business</p>
-                                                            <p>Windows 11 Business</p>
-                                                            <p>Windows 10 Enterprise</p>
-                                                            <p>Windows 11 Enterprise</p>
-                                                            <p>Windows 10 Education</p>
-                                                            <p>Windows 11 Education</p>
+                                                            <p>Windows 10/11 Home</p>
+                                                            <p>Windows 10/11 Pro</p>
+                                                            <p>Windows 10/11 Business</p>
+                                                            <p>Windows 10/11 Enterprise</p>
+                                                            <p>Windows 10/11 Education</p>
                                                             <p>Windows 10 Mobile</p>
                                                         </td>
                                                     </tr>
@@ -4164,16 +4102,11 @@
                                                         <td id="applocker-script-rules">Script Rules</td>
                                                         <td />
                                                         <td class="windows-compatibility">
-                                                            <p>Windows 10 Home</p>
-                                                            <p>Windows 11 Home</p>
-                                                            <p>Windows 10 Pro</p>
-                                                            <p>Windows 11 Pro</p>
-                                                            <p>Windows 10 Business</p>
-                                                            <p>Windows 11 Business</p>
-                                                            <p>Windows 10 Enterprise</p>
-                                                            <p>Windows 11 Enterprise</p>
-                                                            <p>Windows 10 Education</p>
-                                                            <p>Windows 11 Education</p>
+                                                            <p>Windows 10/11 Home</p>
+                                                            <p>Windows 10/11 Pro</p>
+                                                            <p>Windows 10/11 Business</p>
+                                                            <p>Windows 10/11 Enterprise</p>
+                                                            <p>Windows 10/11 Education</p>
                                                             <p>Windows 10 Mobile</p>
                                                         </td>
                                                     </tr>
@@ -4181,16 +4114,11 @@
                                                         <td id="applocker-packaged-app-rules">Packaged App Rules</td>
                                                         <td />
                                                         <td class="windows-compatibility">
-                                                            <p>Windows 10 Home</p>
-                                                            <p>Windows 11 Home</p>
-                                                            <p>Windows 10 Pro</p>
-                                                            <p>Windows 11 Pro</p>
-                                                            <p>Windows 10 Business</p>
-                                                            <p>Windows 11 Business</p>
-                                                            <p>Windows 10 Enterprise</p>
-                                                            <p>Windows 11 Enterprise</p>
-                                                            <p>Windows 10 Education</p>
-                                                            <p>Windows 11 Education</p>
+                                                            <p>Windows 10/11 Home</p>
+                                                            <p>Windows 10/11 Pro</p>
+                                                            <p>Windows 10/11 Business</p>
+                                                            <p>Windows 10/11 Enterprise</p>
+                                                            <p>Windows 10/11 Education</p>
                                                             <p>Windows 10 Mobile</p>
                                                         </td>
                                                     </tr>
@@ -4198,16 +4126,11 @@
                                                         <td id="applocker-dll-rules">DLL Rules</td>
                                                         <td />
                                                         <td class="windows-compatibility">
-                                                            <p>Windows 10 Home</p>
-                                                            <p>Windows 11 Home</p>
-                                                            <p>Windows 10 Pro</p>
-                                                            <p>Windows 11 Pro</p>
-                                                            <p>Windows 10 Business</p>
-                                                            <p>Windows 11 Business</p>
-                                                            <p>Windows 10 Enterprise</p>
-                                                            <p>Windows 11 Enterprise</p>
-                                                            <p>Windows 10 Education</p>
-                                                            <p>Windows 11 Education</p>
+                                                            <p>Windows 10/11 Home</p>
+                                                            <p>Windows 10/11 Pro</p>
+                                                            <p>Windows 10/11 Business</p>
+                                                            <p>Windows 10/11 Enterprise</p>
+                                                            <p>Windows 10/11 Education</p>
                                                             <p>Windows 10 Mobile</p>
                                                         </td>
                                                     </tr>

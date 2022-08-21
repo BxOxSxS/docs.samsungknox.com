@@ -55,6 +55,23 @@
         <link href="../../assets/merge/kp-foundation.css" rel="stylesheet" />
         <link href="../Resources/kp-madcap.css" rel="stylesheet" />
         <link href="../Resources/print.css" rel="stylesheet" />
+        <style>
+            table h4 {
+                font-size: 1em;
+                font-family: inherit;
+                font-weight: bold;
+            }
+            table.no-stripes tbody tr {
+                vertical-align: top;
+                border-bottom: 1px solid #dfdfdf;
+            }
+            table.no-stripes tbody tr:last-of-type {
+                border-bottom: none;
+            }
+            table.no-stripes tbody tr td {
+                border: initial;
+            }
+        </style>
         <script src="../Resources/Scripts/custom.modernizr.js">
         </script>
         <script src="../Resources/Scripts/jquery.min.js">
@@ -384,7 +401,7 @@
                                                                 </li>
                                                                 <li class="has-children"><a href="ios-device-commands.htm#">Configure Knox Service Plugin</a>
                                                                     <ul class="sub-menu">
-                                                                        <li><a href="../knox-service-plugin/blackberry-add.htm">Add to UEM console</a>
+                                                                        <li><a href="../knox-service-plugin/blackberry-add.htm">Approve Knox Service Plugin agent for Managed Google Play</a>
                                                                         </li>
                                                                         <li><a href="../knox-service-plugin/blackberry-edit.htm">Configure policies</a>
                                                                         </li>
@@ -1282,6 +1299,8 @@
                                                         </li>
                                                         <li><a href="../knox-asset-intelligence/modules/device-debug-log.htm">Device debug log</a>
                                                         </li>
+                                                        <li><a href="../knox-asset-intelligence/modules/knox-service-plugin.htm">Knox Service Plugin status</a>
+                                                        </li>
                                                     </ul>
                                                 </li>
                                                 <li class="has-children"><a href="ios-device-commands.htm#">Features</a>
@@ -1362,7 +1381,7 @@
                                                                 </li>
                                                                 <li><a href="set-authentication-method.htm">Set the user authentication method</a>
                                                                 </li>
-                                                                <li><a href="configure-android-enterprise-environments.htm">Configure Android Enterprise environments</a>
+                                                                <li><a href="configure-android-enterprise-environments.htm">Configure the Android Enterprise environment</a>
                                                                 </li>
                                                                 <li><a href="set-apn-certificate.htm">Set the APN certificate (iOS only)</a>
                                                                 </li>
@@ -1460,7 +1479,7 @@
                                                             <ul class="sub-menu">
                                                                 <li><a href="view-organisation-list.htm">View organization list</a>
                                                                 </li>
-                                                                <li><a href="view-organisation-details.htm">View organization details</a>
+                                                                <li><a href="view-organization-details.htm">View organization details</a>
                                                                 </li>
                                                                 <li><a href="modify-organization-details.htm">Modify organization details</a>
                                                                 </li>
@@ -1528,7 +1547,7 @@
                                                         </li>
                                                         <li class="has-children"><a href="ios-device-commands.htm#">Groups</a>
                                                             <ul class="sub-menu">
-                                                                <li><a href="view-details-of-group.htm">View details of a group</a>
+                                                                <li><a href="view-details-of-group.htm">View group details</a>
                                                                 </li>
                                                                 <li class="has-children"><a href="ios-device-commands.htm#">Manage groups</a>
                                                                     <ul class="sub-menu">
@@ -1585,6 +1604,8 @@
                                                                         <li><a href="enroll-a-single-device.htm">Enroll a single device</a>
                                                                         </li>
                                                                         <li><a href="enroll-chromebook.htm">Enroll a Chromebook</a>
+                                                                        </li>
+                                                                        <li><a href="enroll-windows-device-azure-ad.htm">Enroll a Windows device with Azure AD</a>
                                                                         </li>
                                                                         <li class="has-children"><a href="ios-device-commands.htm#">Enroll devices in bulk</a>
                                                                             <ul class="sub-menu">
@@ -1670,13 +1691,9 @@
                                                                         </li>
                                                                         <li><a href="add-public-applications-using-google-play-store.htm">Add public applications using Google Play Store</a>
                                                                         </li>
+                                                                        <li><a href="add-applications-using-managed-google-play.htm">Add applications using Managed Google Play</a>
+                                                                        </li>
                                                                         <li><a href="add-public-applications-using-ios-app-store.htm">Add public applications using iOS App Store</a>
-                                                                        </li>
-                                                                        <li><a href="add-public-applications-using-managed-google-play.htm">Add public applications using Managed Google Play</a>
-                                                                        </li>
-                                                                        <li><a href="add-public-applications-using-managed-google-play-private.htm">Add public applications using Managed Google Play Private</a>
-                                                                        </li>
-                                                                        <li><a href="add-public-applications-using-managed-google-play-store.htm">Add public applications using Managed Google Play Store Private Web</a>
                                                                         </li>
                                                                         <li><a href="add-public-apps-using-microsoft-store.htm">Add public applications using Microsoft Store</a>
                                                                         </li>
@@ -1696,10 +1713,6 @@
                                                                         </li>
                                                                         <li><a href="assign-managed-google-play-applications.htm">Assign Managed Google Play applications</a>
                                                                         </li>
-                                                                        <li><a href="assign-managed-google-play-private-applications.htm">Assign Managed Google Play Private applications</a>
-                                                                        </li>
-                                                                        <li><a href="assign-managed-google-play-private-web-apps.htm">Assign Managed Google Play private web apps</a>
-                                                                        </li>
                                                                         <li><a href="assign-windows-apps.htm">Assign Windows applications</a>
                                                                         </li>
                                                                         <li><a href="assign-chrome-os-apps.htm">Assign Chrome OS applications</a>
@@ -1717,8 +1730,6 @@
                                                                         <li><a href="export-application-information-to-csv.htm">Export Application detail to CSV</a>
                                                                         </li>
                                                                         <li><a href="connect-apps-in-profiles.htm">Connect apps across profiles</a>
-                                                                        </li>
-                                                                        <li><a href="push-mgp-app-update.htm">Force Managed Google Play app updates</a>
                                                                         </li>
                                                                     </ul>
                                                                 </li>
@@ -2116,7 +2127,7 @@
                                                                 </li>
                                                                 <li><a href="overview-cloud-connector.htm">Overview</a>
                                                                 </li>
-                                                                <li><a href="prepare-for-installation.htm">Prepare for installation</a>
+                                                                <li><a href="prepare-for-installation.htm">Prepare to install the SCC client</a>
                                                                 </li>
                                                                 <li><a href="install-the-scc-client.htm">Install the SCC client</a>
                                                                 </li>
@@ -2196,7 +2207,7 @@
                                                             <ul class="sub-menu">
                                                                 <li><a href="client-error-codes.htm">Client error codes</a>
                                                                 </li>
-                                                                <li><a href="admin-portal-access-error-codes.htm">Admin Portal access error codes</a>
+                                                                <li><a href="admin-portal-access-error-codes.htm">Console error codes</a>
                                                                 </li>
                                                                 <li><a href="appwrapper-error-codes.htm">AppWrapper error codes</a>
                                                                 </li>
@@ -2817,49 +2828,88 @@
 									-->
                                     <div id="sec2" class="small-12 medium-8 large-9 columns">
                                         <div itemscope="itemscope" itemtype="http://schema.org/Guide">
-                                            <h1><a name="aanchor347"></a>
-                                                <MadCap:concept term="knox-manage" />iOS device commands</h1>
+                                            <h1>iOS device commands</h1>
                                             <p>The available commands for a device vary based on its management mode.</p>
+                                            <div class="callout warning"><b>IMPORTANT</b> — For Shared iPads, certain device commands require the Knox Manage agent to be installed and running on the device. To identify which, see the <b>Supported system</b> column in the command tables on this page. For details on how to install the agent, see <a href="manage-shared-ipad.htm#deploy-knox-manage-agent">Manage Shared iPads</a>.</div>
                                             <h2 id="device">Device</h2>
-                                            <table>
+                                            <table class="no-stripes">
                                                 <tbody>
                                                     <tr>
                                                         <th style="width: 20%">Device command</th>
                                                         <th>Description</th>
+                                                        <th style="width: 15%">Supported system</th>
                                                     </tr>
                                                     <tr>
                                                         <td id="device-apply-latest-profiles">Apply Latest Profiles</td>
-                                                        <td>Pushes and applies the latest profile and app information to the device.</td>
+                                                        <td>
+                                                            <p>Pushes and applies the latest profile and app information to the device.</p>
+                                                            <p>Shared iPads with an active Managed Apple ID user session require the KM agent to be installed and running for this device command to function.</p>
+                                                        </td>
+                                                        <td>
+                                                            <p>iOS</p>
+                                                            <p>iPadOS</p>
+                                                        </td>
                                                     </tr>
                                                     <tr>
                                                         <td id="device-lock-device">Lock Device</td>
                                                         <td>Blocks some functions of the device without locking the device.</td>
+                                                        <td>
+                                                            <p>iOS</p>
+                                                            <p>iPadOS</p>
+                                                        </td>
                                                     </tr>
                                                     <tr>
                                                         <td id="device-unlock-device">Unlock Device</td>
                                                         <td>Unlocks the device.</td>
+                                                        <td>
+                                                            <p>iOS</p>
+                                                            <p>iPadOS</p>
+                                                        </td>
                                                     </tr>
                                                     <tr>
                                                         <td id="device-factory-reset">Factory Reset</td>
                                                         <td>Performs a factory reset and changes the device status to Unenrolled.</td>
+                                                        <td>
+                                                            <p>iOS</p>
+                                                            <p>iPadOS</p>
+                                                        </td>
                                                     </tr>
                                                     <tr>
                                                         <td id="device-power-off-device-supervised">Power Off Device (Supervised)</td>
                                                         <td>Turns off the device.</td>
+                                                        <td>
+                                                            <p>iOS</p>
+                                                            <p>iPadOS</p>
+                                                            <p>Supervised</p>
+                                                        </td>
                                                     </tr>
                                                     <tr>
                                                         <td id="device-reboot-device-supervised">Reboot Device (Supervised)</td>
                                                         <td>Restarts the device.</td>
+                                                        <td>
+                                                            <p>iOS</p>
+                                                            <p>iPadOS</p>
+                                                            <p>Supervised</p>
+                                                        </td>
                                                     </tr>
                                                     <tr>
                                                         <td id="device-reset-screen-password">Reset Screen Password</td>
                                                         <td>Resets the device's screen lock password.</td>
+                                                        <td>
+                                                            <p>iOS</p>
+                                                            <p>iPadOS</p>
+                                                        </td>
                                                     </tr>
                                                     <tr>
                                                         <td id="device-initialize-blocked-information-supervised">Initialize Blocked Information (Supervised)</td>
                                                         <td>
                                                             <p>Initializes the block settings of the device.</p>
                                                             <div class="callout note"><b>NOTE</b> — Only iOS Supervised devices are supported.</div>
+                                                        </td>
+                                                        <td>
+                                                            <p>iOS</p>
+                                                            <p>iPadOS</p>
+                                                            <p>Supervised</p>
                                                         </td>
                                                     </tr>
                                                     <tr>
@@ -2873,6 +2923,11 @@
                                                                 <li value="3"><b>Install Only</b>
                                                                 </li>
                                                             </ul>
+                                                        </td>
+                                                        <td>
+                                                            <p>iOS</p>
+                                                            <p>iPadOS</p>
+                                                            <p>Supervised</p>
                                                         </td>
                                                     </tr>
                                                     <tr>
@@ -2890,27 +2945,46 @@
                                                             </ul>
                                                             <div class="callout warning"><b>IMPORTANT</b> — Devices in Lost Mode cannot be unenrolled from KM. You must disable Lost Mode to allow the device user to use the device again.</div>
                                                         </td>
+                                                        <td>
+                                                            <p>iOS</p>
+                                                            <p>iPadOS</p>
+                                                            <p>Supervised</p>
+                                                        </td>
                                                     </tr>
                                                     <tr>
                                                         <td id="device-disable-lost-mode-supervised">Disable Lost Mode (Supervised)</td>
                                                         <td>Disables Lost Mode on the device.</td>
+                                                        <td>
+                                                            <p>iOS</p>
+                                                            <p>iPadOS</p>
+                                                            <p>Supervised</p>
+                                                        </td>
                                                     </tr>
                                                     <tr>
                                                         <td id="device-save-user-information">Save User Information</td>
                                                         <td>Logs the sign-in information of the current user. For Shared iPads only.</td>
+                                                        <td>
+                                                            <p>iOS</p>
+                                                            <p>iPadOS</p>
+                                                        </td>
                                                     </tr>
                                                     <tr>
                                                         <td id="device-check-user-out">Check User Out</td>
                                                         <td>Signs the current user out. For Shared iPads only.</td>
+                                                        <td>
+                                                            <p>iOS</p>
+                                                            <p>iPadOS</p>
+                                                        </td>
                                                     </tr>
                                                 </tbody>
                                             </table>
                                             <h2 id="application">Application</h2>
-                                            <table>
+                                            <table class="no-stripes">
                                                 <tbody>
                                                     <tr>
                                                         <th style="width: 20%">Device command</th>
                                                         <th>Description</th>
+                                                        <th style="width: 15%">Supported system</th>
                                                     </tr>
                                                     <tr>
                                                         <td id="application-install-app">Install App</td>
@@ -2918,6 +2992,10 @@
                                                             <p>Installs an app on the device.</p>
                                                             <p>On the <b>Request Command</b> screen, select the app that you want to install.</p>
                                                             <div class="callout warning"><b>IMPORTANT</b> — The app installation allowlist and blocklist policy take precedence over this command. If an app is blocked, then this command can't install it.</div>
+                                                        </td>
+                                                        <td>
+                                                            <p>iOS</p>
+                                                            <p>iPadOS</p>
                                                         </td>
                                                     </tr>
                                                     <tr>
@@ -2927,37 +3005,69 @@
                                                             <p>On the <b>Request Command</b> screen, select the app you want to uninstall.</p>
                                                             <div class="callout warning"><b>IMPORTANT</b> — The app installation allowlist and blocklist policy take precedence over this command. If an app is explicitly allowed, then this command can't uninstall it.</div>
                                                         </td>
+                                                        <td>
+                                                            <p>iOS</p>
+                                                            <p>iPadOS</p>
+                                                        </td>
                                                     </tr>
                                                     <tr>
                                                         <td id="application-apply-latest-internal-app-information">Apply Latest Internal App Information</td>
-                                                        <td>Sends the latest internal app information and updates the device according to the information.</td>
+                                                        <td>
+                                                            <p>Sends the latest internal app information and updates the device according to the information.</p>
+                                                            <p>Shared iPads with an active Managed Apple ID user session require the KM agent to be installed and running for this device command to function.</p>
+                                                        </td>
+                                                        <td>
+                                                            <p>iOS</p>
+                                                            <p>iPadOS</p>
+                                                        </td>
                                                     </tr>
                                                 </tbody>
                                             </table>
                                             <h2 id="knox-manage">Knox Manage</h2>
-                                            <table>
+                                            <table class="no-stripes">
                                                 <tbody>
                                                     <tr>
                                                         <th style="width: 20%">Device command</th>
                                                         <th>Description</th>
+                                                        <th style="width: 15%">Supported system</th>
                                                     </tr>
                                                     <tr>
                                                         <td id="km-push-notification">Push Notification</td>
-                                                        <td>Sends an emergency message to the device. You can add a push notification message of up to 80 characters. The message icon shows on the status bar of the device. When prompted on the Push Notification screen, enter the title and content of the message.</td>
+                                                        <td>
+                                                            <p>Sends an emergency message to the device. You can add a push notification message of up to 80 characters. The message icon shows on the status bar of the device. When prompted on the Push Notification screen, enter the title and content of the message.</p>
+                                                            <p>Shared iPads with an active Managed Apple ID user session require the KM agent to be installed and running for this device command to function.</p>
+                                                        </td>
+                                                        <td>
+                                                            <p>iOS</p>
+                                                            <p>iPadOS</p>
+                                                        </td>
                                                     </tr>
                                                     <tr>
                                                         <td id="km-unenroll-device">Unenroll Device</td>
                                                         <td>Unenrolls a selected device on the device list.</td>
+                                                        <td>
+                                                            <p>iOS</p>
+                                                            <p>iPadOS</p>
+                                                        </td>
                                                     </tr>
                                                     <tr>
                                                         <td id="km-update-knox-manage-agent">Update Knox Manage Agent</td>
                                                         <td>Updates the Knox Manage agent on the device for a new patch or version.</td>
+                                                        <td>
+                                                            <p>iOS</p>
+                                                            <p>iPadOS</p>
+                                                        </td>
                                                     </tr>
                                                     <tr>
                                                         <td id="km-update-user-information">Update User Information</td>
                                                         <td>
                                                             <p>Updates the device user information such as the user activation status, username, user settings—such as Secure Browser website URL information and bookmark information—as well as license information.</p>
                                                             <p>If the user is logged out from the enrolled device, you can send this command to enable the user to log in to Knox Manage automatically.</p>
+                                                            <p>Shared iPads with an active Managed Apple ID user session require the KM agent to be installed and running for this device command to function.</p>
+                                                        </td>
+                                                        <td>
+                                                            <p>iOS</p>
+                                                            <p>iPadOS</p>
                                                         </td>
                                                     </tr>
                                                     <tr>
@@ -2965,43 +3075,83 @@
                                                         <td>
                                                             <p>Locks the Knox Manage agent.</p>
                                                             <p>When the agent is locked, the device user must enter the agent's password that was configured during enrollment. If the user forgets the password, you can send the <a href="ios-device-commands.htm#km-delete-account" class="selected">Delete Account</a> command to sign out the user. Then, they can reset the password upon sign in.</p>
+                                                            <p>Shared iPads with an active Managed Apple ID user session require the KM agent to be installed and running for this device command to function.</p>
+                                                        </td>
+                                                        <td>
+                                                            <p>iOS</p>
+                                                            <p>iPadOS</p>
                                                         </td>
                                                     </tr>
                                                     <tr>
                                                         <td id="km-unlock-knox-manage-agent">Unlock Knox Manage agent</td>
-                                                        <td>Unlocks the Knox Manage agent.</td>
+                                                        <td>
+                                                            <p>Unlocks the Knox Manage agent.</p>
+                                                            <p>Shared iPads with an active Managed Apple ID user session require the KM agent to be installed and running for this device command to function.</p>
+                                                        </td>
+                                                        <td>
+                                                            <p>iOS</p>
+                                                            <p>iPadOS</p>
+                                                        </td>
                                                     </tr>
                                                     <tr>
                                                         <td id="km-delete-account">Delete Account</td>
                                                         <td>Deletes the account registered in the Knox Manage agent.</td>
+                                                        <td>
+                                                            <p>iOS</p>
+                                                            <p>iPadOS</p>
+                                                        </td>
                                                     </tr>
                                                     <tr>
                                                         <td id="km-collect-audit-log">Collect Audit Log</td>
-                                                        <td>Collects the Knox Manage audit logs of the device. When the log size exceeds the maximum size, logs are automatically sent to the server, but the log file may be lost. For more detailed information, see <a href="view-audit-logs.htm">Viewing audits</a>.</td>
+                                                        <td>
+                                                            <p>Collects the Knox Manage audit logs of the device. When the log size exceeds the maximum size, logs are automatically sent to the server, but the log file may be lost. For more detailed information, see <a href="view-audit-logs.htm">Viewing audits</a>.</p>
+                                                            <p>Shared iPads with an active Managed Apple ID user session require the KM agent to be installed and running for this device command to function.</p>
+                                                        </td>
+                                                        <td>
+                                                            <p>iOS</p>
+                                                            <p>iPadOS</p>
+                                                        </td>
                                                     </tr>
                                                     <tr>
                                                         <td id="km-collect-device-log">Collect Device Log</td>
-                                                        <td>Collects the logs of devices.</td>
+                                                        <td>
+                                                            <p>Collects the logs of devices.</p>
+                                                            <p>Shared iPads with an active Managed Apple ID user session require the KM agent to be installed and running for this device command to function.</p>
+                                                        </td>
+                                                        <td>
+                                                            <p>iOS</p>
+                                                            <p>iPadOS</p>
+                                                        </td>
                                                     </tr>
                                                     <tr>
                                                         <td id="km-collect-diagnosis-information">Collect Diagnosis Information</td>
                                                         <td>
                                                             <p>Collects the device log to diagnose the cause of device lock.</p>
                                                             <div class="callout note"><b>NOTE</b> — Personally identifiable or sensitive information is masked.</div>
+                                                            <p>Shared iPads with an active Managed Apple ID user session require the KM agent to be installed and running for this device command to function.</p>
+                                                        </td>
+                                                        <td>
+                                                            <p>iOS</p>
+                                                            <p>iPadOS</p>
                                                         </td>
                                                     </tr>
                                                     <tr>
                                                         <td id="km-sync-app-auto-removal-property-when-service-deactivated">Sync App Auto-removal Property (When service is deactivated)</td>
                                                         <td>If the value of <b>Delete app during Unenrollment process</b> has changed in the server configuration, this option syncs the app auto-deletion property when managed apps are deactivated.</td>
+                                                        <td>
+                                                            <p>iOS</p>
+                                                            <p>iPadOS</p>
+                                                        </td>
                                                     </tr>
                                                 </tbody>
                                             </table>
                                             <h2 id="device-info">Device Info.</h2>
-                                            <table>
+                                            <table class="no-stripes">
                                                 <tbody>
                                                     <tr>
                                                         <th style="width: 20%">Device command</th>
                                                         <th>Description</th>
+                                                        <th style="width: 15%">Supported system</th>
                                                     </tr>
                                                     <tr>
                                                         <td id="device-info-collect-current-location">Collect current location</td>
@@ -3014,6 +3164,11 @@
                                                                 <li value="2"><b>User consent</b> — When the device prompts the user to allow collection of location data by the KM agent, the device user must select <b>Always Allow</b>.</li>
                                                             </ul>
                                                             <p>After these prerequisites are met, the device's location data is collected whenever the device moves 500 meters or more, and this device command is functional. Location history for iOS devices is stored for 30 days from the last collection date.</p>
+                                                            <p>Shared iPads with an active Managed Apple ID user session require the KM agent to be installed and running for this device command to function.</p>
+                                                        </td>
+                                                        <td>
+                                                            <p>iOS</p>
+                                                            <p>iPadOS</p>
                                                         </td>
                                                     </tr>
                                                     <tr>
@@ -3022,12 +3177,20 @@
                                                             <p>Updates the inventory and app information on the device.</p>
                                                             <div class="callout note"><b>NOTE</b> — For iOS devices, only the hardware status is updated.</div>
                                                         </td>
+                                                        <td>
+                                                            <p>iOS</p>
+                                                            <p>iPadOS</p>
+                                                        </td>
                                                     </tr>
                                                     <tr>
                                                         <td id="device-info-sync-installed-app-list">Sync Installed App List</td>
                                                         <td>
                                                             <p>Pulls the device's app list.</p>
                                                             <p>You have the option to delete app feedback when sending this device command.</p>
+                                                        </td>
+                                                        <td>
+                                                            <p>iOS</p>
+                                                            <p>iPadOS</p>
                                                         </td>
                                                     </tr>
                                                     <tr>
@@ -3037,12 +3200,20 @@
                                                             <p>To check the status of the device after sending this command, navigate to <b>Device</b>, click the device name or tag, click the <b>Security</b> tab, and view the connection status below the device name.</p>
                                                             <p>For information on the different connection statuses, see <a href="device-connection-statuses.htm">Device connection statuses</a>.</p>
                                                         </td>
+                                                        <td>
+                                                            <p>iOS</p>
+                                                            <p>iPadOS</p>
+                                                        </td>
                                                     </tr>
                                                     <tr>
                                                         <td id="device-info-collect-profile-id">Collect Profile ID</td>
                                                         <td>
                                                             <p>Collects the ID of the profile applied to the device.</p>
                                                             <p>If the device was enrolled, then the ID is automatically collected from the device's inventory information without sending the device command.</p>
+                                                        </td>
+                                                        <td>
+                                                            <p>iOS</p>
+                                                            <p>iPadOS</p>
                                                         </td>
                                                     </tr>
                                                 </tbody>
