@@ -840,6 +840,8 @@
                                                         </li>
                                                         <li><a href="../knox-service-plugin/ksp-faqs.htm">FAQs</a>
                                                         </li>
+                                                        <li><a href="../knox-service-plugin/kbas/index.htm">KBAs</a>
+                                                        </li>
                                                         <li class="has-children"><a href="enroll-windows-device-azure-ad.htm#">Troubleshoot</a>
                                                             <ul class="sub-menu">
                                                                 <li><a href="../knox-service-plugin/debug-mode.htm">Debug mode</a>
@@ -2174,7 +2176,7 @@
                                                                 </li>
                                                             </ul>
                                                         </li>
-                                                        <li><a href="../../devref/knox-manage/index.html">Open API reference</a>
+                                                        <li><a href="../../devref/knox-manage/index.htm">Open API reference</a>
                                                         </li>
                                                         <li class="has-children"><a href="lists-of-audit-events.htm">List of audit events</a>
                                                             <ul class="sub-menu">
@@ -2204,13 +2206,15 @@
                                                         </li>
                                                         <li><a href="harmony-mobile-integration-guide.htm">Harmony Mobile integration guide</a>
                                                         </li>
+                                                        <li><a href="pradeo-security-mobile-threat-defence-integration-guide.htm">Pradeo Security Mobile Threat Defence integration guide</a>
+                                                        </li>
                                                     </ul>
                                                 </li>
                                                 <li><a href="release-notes.htm">Release notes</a>
                                                 </li>
                                                 <li><a href="km-feature-list.htm">Features</a>
                                                 </li>
-                                                <li><a href="faqs/index.htm">FAQs</a>
+                                                <li><a href="faq.htm">FAQ</a>
                                                 </li>
                                                 <li><a href="kbas/index.htm">KBAs</a>
                                                 </li>
@@ -2812,11 +2816,11 @@
                                     <div id="sec2" class="small-12 medium-8 large-9 columns">
                                         <div itemscope="itemscope" itemtype="http://schema.org/Guide">
                                             <h1>Enroll a Windows device with Azure AD</h1>
-                                            <p>If your Knox Manage tenant syncs Active Directory resources from your <a href="sync-user-info-with-azure-ad-microsoft-graph-api.htm">Azure AD tenant</a>, you can enroll and provision Windows devices in your fleet with your user's Azure AD accounts. Enrolling with Azure AD offers the benefits of rapid cloud-based provisioning technology like Windows Out of Box Experience and Windows Autopilot.</p>
+                                            <p>If your Knox Manage tenant syncs Active Directory resources from your Azure AD tenant, you can enroll and provision Windows devices in your fleet with your user's Azure AD accounts. Enrolling with Azure AD offers the benefits of rapid cloud-based provisioning technology like Windows Out of Box Experience and Windows Autopilot.</p>
                                             <p>In the Azure AD ecosystem, there are two types of managed devices:</p>
                                             <ul>
                                                 <li value="1"><i>Registered</i> devices — BYOD devices such as employee-owned laptops, 2-in-1 computers, tablets, and phones. For a full description of this type, see <a href="https://docs.microsoft.com/en-us/azure/active-directory/devices/concept-azure-ad-register" target="_blank">Azure AD registered devices</a> in the Microsoft docs.</li>
-                                                <li value="2"><i>Joined</i> devices — Company-owned devices such as workstations, laptops, 2-in-1 computers, tablets, and kiosks. For a full description of this type, see <a href="https://docs.microsoft.com/en-us/azure/active-directory/devices/concept-azure-ad-join" target="_blank">Azure AD joined devices</a>.</li>
+                                                <li value="2"><i>Joined</i> devices — Company-owned devices such as workstations, laptops, 2-in-1 computers, tablets, and kiosks. For a full description of this type, see <a href="https://docs.microsoft.com/en-us/azure/active-directory/devices/concept-azure-ad-join" target="_blank">Azure AD joined devices</a> in the Microsoft docs.</li>
                                             </ul>
                                             <p>Depending on your enterprise needs and deployment strategy, there are four available methods for enrolling and provisioning devices in Knox Manage through Azure AD:</p>
                                             <ul>
@@ -2825,6 +2829,7 @@
                                                 <li value="3"><a href="enroll-windows-device-azure-ad.htm#register-device-windows-autopilot" class="selected">Windows Autopilot</a> — Enrolling a device with a customized OOBE profile. Available for joined devices.</li>
                                                 <li value="4"><a href="enroll-windows-device-azure-ad.htm#enroll-device-provisioning-package-azure-ad" class="selected">Provisioning package (PPKG)</a> — Enrolling a device with a configuration file. Available for joined devices.</li>
                                             </ul>
+                                            <p>Before you can begin enrolling Windows devices using these methods, you must configure your Knox Manage tenant to sync information with your Azure AD tenant. Refer to <a href="sync-user-info-with-azure-ad-microsoft-graph-api.htm">Sync user information with Azure AD through Microsoft Graph API</a> for a full explanation and details.</p>
                                             <h2 id="supported-platforms">Supported platforms</h2>
                                             <p>The following Windows editions support enrollment in Knox Manage through Azure AD:</p>
                                             <ul>
@@ -2843,49 +2848,54 @@
                                                 <li value="2">Click <b>+ Connect</b>. A dialog for setting up a work or school account opens.</li>
                                                 <li value="3">
                                                     <p>Authenticate with the Azure AD account:</p>
-                                                    <ul>
+                                                    <ol style="list-style-type: lower-alpha">
                                                         <li value="1">
-                                                            <p>Joined device — Enter the Azure AD account name, then click <b>Next</b>.</p>
-                                                            <p>
-                                                                <img src="../../assets/merge/images/knox-manage/km-enroll-windows-device-azure-ad-enroll-windows-settings-01-22-08.jpg" alt="Entering the Azure AD account name when enrolling a joined device with Windows Settings" />
-                                                            </p>
+                                                            <p>Enter the account name:</p>
+                                                            <ul>
+                                                                <li value="1">
+                                                                    <p>For a <b>registered</b> device, enter the Azure AD account name, then click <b>Next</b>.</p>
+                                                                    <p>
+                                                                        <img src="../../assets/merge/images/knox-manage/km-enroll-windows-device-azure-ad-enroll-windows-settings-01-22-08.jpg" alt="Entering the Azure AD account name when enrolling a joined device with Windows Settings" />
+                                                                    </p>
+                                                                </li>
+                                                                <li value="2">
+                                                                    <p>For a <b>joined</b> device, click <b>Join this device to Azure Active Directory</b>. In the Microsoft account dialog, enter the Azure AD account name, then click <b>Next</b>.</p>
+                                                                    <p>
+                                                                        <img class="no-border" src="../../assets/merge/images/knox-manage/km-enroll-windows-device-azure-ad-enroll-windows-settings-02-22-08.jpg" alt="Joining to an Azure AD when enrolling a registered device with Windows Settings" />
+                                                                    </p>
+                                                                    <p>
+                                                                        <img class="no-border" src="../../assets/merge/images/knox-manage/km-enroll-windows-device-azure-ad-enroll-windows-settings-03-22-08.jpg" alt="Entering the Azure AD account name when enrolling a registered device with Windows Settings" />
+                                                                    </p>
+                                                                </li>
+                                                            </ul>
                                                         </li>
                                                         <li value="2">
-                                                            <p>Registered device — Click <b>Join this device to Azure Active Directory</b>. In the Microsoft account dialog, enter the Azure AD account name, then click <b>Next</b>.</p>
+                                                            <p>If the account is recognized, both the password prompt and the Knox Manage branding shows in the dialog. Enter the account password and click <b>Sign in</b>.</p>
                                                             <p>
-                                                                <img class="no-border" src="../../assets/merge/images/knox-manage/km-enroll-windows-device-azure-ad-enroll-windows-settings-02-22-08.jpg" alt="Joining to an Azure AD when enrolling a registered device with Windows Settings" />
-                                                            </p>
-                                                            <p>
-                                                                <img class="no-border" src="../../assets/merge/images/knox-manage/km-enroll-windows-device-azure-ad-enroll-windows-settings-03-22-08.jpg" alt="Entering the Azure AD account name when enrolling a registered device with Windows Settings" />
+                                                                <img class="no-border" src="../../assets/merge/images/knox-manage/km-enroll-windows-device-azure-ad-enroll-windows-settings-04-22-08.jpg" alt="Entering the Azure AD account password when enrolling with Windows Settings" />
                                                             </p>
                                                         </li>
-                                                    </ul>
+                                                    </ol>
                                                 </li>
                                                 <li value="4">
-                                                    <p>If the account is recognized, the Knox Manage branding shows in the dialog, and they are prompted for the account password. Enter the account password, then click <b>Sign in</b>.</p>
-                                                    <p>
-                                                        <img class="no-border" src="../../assets/merge/images/knox-manage/km-enroll-windows-device-azure-ad-enroll-windows-settings-04-22-08.jpg" alt="Entering the Azure AD account password when enrolling with Windows Settings" />
-                                                    </p>
-                                                </li>
-                                                <li value="5">
                                                     <p>If they read and agree to the terms of Knox Manage Privacy Policy and End User License Agreement, they select <b>I Agree</b> and then click <b>Accept</b>.</p>
                                                     <p>
                                                         <img class="no-border" src="../../assets/merge/images/knox-manage/km-enroll-windows-device-azure-ad-enroll-windows-settings-05-22-08.jpg" alt="Agreeing to the Knox Manage Privacy Policy and End User License Agreement when enrolling with Windows Settings" />
                                                     </p>
                                                 </li>
-                                                <li value="6">
-                                                    <p>(Registered device only) Confirm both the Azure domain and the username is correct.</p>
+                                                <li value="5">
+                                                    <p>For a <b>registered</b> device, confirm both the Azure domain and the username is correct.</p>
                                                     <p>
                                                         <img class="no-border" src="../../assets/merge/images/knox-manage/km-enroll-windows-device-azure-ad-enroll-windows-settings-06-22-08.jpg" srcset="../../assets/merge/images/knox-manage/km-enroll-windows-device-azure-ad-enroll-windows-settings-06-22-08.jpg 1.5x" alt="Confirming the domain when enrolling a registered device with Windows Settings" />
                                                     </p>
                                                 </li>
-                                                <li value="7">
+                                                <li value="6">
                                                     <p>If the provisioning succeeds, the dialog reads <b>The device is connected to Samsung EMM</b>. Click <b>Done</b>. The Azure AD account is added to the device.</p>
                                                     <p>
                                                         <img class="no-border" src="../../assets/merge/images/knox-manage/km-enroll-windows-device-azure-ad-enroll-windows-settings-07-22-08.jpg" alt="The success dialog when enrolling with Windows Settings" />
                                                     </p>
                                                 </li>
-                                                <li value="8">Back in the <b>Settings</b> window, ensure the Azure AD account is in the account list.</li>
+                                                <li value="7">Back in the <b>Settings</b> window, ensure the Azure AD account is in the account list.</li>
                                             </ol>
                                             <p>After the device user adds their Azure AD account, the device is provisioned and enrolled through the Samsung Knox Management App.</p>
                                             <p>Lastly, it's best if you ensure that the device is enrolled in your Knox Manage tenant:</p>
@@ -2900,7 +2910,7 @@
                                                 </li>
                                             </ol>
                                             <h2 id="enroll-device-windows-out-of-box-experience">Enroll a device with Windows Out of Box Experience</h2>
-                                            <p>In this provisioning method for company-owned devices, the device user provisions the Azure AD account after turning on the device for the first time, also known as the standard OOBE on Windows 10 and 11. This process can only take place if the device hasn't yet been configured for work or personal use.</p>
+                                            <p>In this enrollment method for joined devices, the device user provisions the Azure AD account after turning on the device for the first time, also known as the standard OOBE on Windows 10 and 11. This process can only take place if the device hasn't yet been configured for work or personal use.</p>
                                             <p>To learn more about this technology, see <a href="https://answers.microsoft.com/en-us/windows/forum/all/how-to-complete-the-windows-10-out-of-box/47e3f943-f000-45e3-8c5c-9d85a1a0cf87" target="_blank">Windows Out of Box Experience</a> in the Microsoft docs.</p>
                                             <div class="callout note"><b>NOTE</b> — The images shown here depict the OOBE screens in Windows 11. The screens in Windows 10 consist of similar instructions and descriptions.</div>
                                             <p>To enroll a device with OOBE, the device user must:</p>
@@ -2969,7 +2979,7 @@
                                             </ol>
                                             <h2 id="register-device-windows-autopilot">Register a device in Windows Autopilot</h2>
                                             <p>For more information about this technology, see <a href="https://docs.microsoft.com/en-us/mem/autopilot/windows-autopilot" target="_blank">Windows Autopilot</a> in the Microsoft docs.</p>
-                                            <p>If you plan to enroll a company-owned device in Knox Manage with Azure AD and an Autopilot profile, you must first prepare it by registering it with the Autopilot cloud service. There are several registration methods:</p>
+                                            <p>If you plan to enroll a joined device in Knox Manage with Azure AD and an Autopilot profile, you must first prepare it by registering it with the Autopilot cloud service. There are several registration methods:</p>
                                             <ul>
                                                 <li value="1"><a href="https://docs.microsoft.com/en-us/mem/autopilot/oem-registration" target="_blank">OEM registration</a> by the device vendor</li><a href="https://docs.microsoft.com/en-us/mem/autopilot/partner-registration" target="_blank">Reseller, distributor, or partner registration</a>
                                                 <li value="2">(These instructions) Manual registration by capturing the hardware ID of the device and uploading it to the Microsoft Admin Center</li>
@@ -3009,7 +3019,7 @@
                                             </ol>
                                             <p>After the device is registered, it's ready for <a href="enroll-windows-device-azure-ad.htm#enroll-device-windows-out-of-box-experience" class="selected">OOBE enrollment</a>.</p>
                                             <h2 id="enroll-device-provisioning-package-azure-ad">Enroll a device with a provisioning package for Azure AD</h2>
-                                            <p>In this provisioning method for company-owned devices, you create a provisioning package (PPKG) that configures the enrollment, then install it to the device.</p>
+                                            <p>In this enrollment method for joined devices, you create a provisioning package (PPKG) that configures the enrollment, then install it to the device.</p>
                                             <h3 id="create-provisioning-package">Create a provisioning package</h3>
                                             <p>In order to build a PPKG, you need the <a href="https://www.microsoft.com/p/windows-configuration-designer/9nblggh4tx22" target="_blank">Windows Configuration Designer</a> app.</p>
                                             <p>To build a PPKG for Azure AD:</p>
