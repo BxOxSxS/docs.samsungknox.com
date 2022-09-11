@@ -832,6 +832,8 @@
                                                                 </li>
                                                                 <li><a href="../knox-service-plugin/advanced-policies.htm">Advanced Examples</a>
                                                                 </li>
+                                                                <li><a href="../knox-service-plugin/ksp-kai-integration.htm">Integration with Knox Asset Intelligence</a>
+                                                                </li>
                                                                 <li><a href="../knox-service-plugin/policy-descriptions.htm">Policy descriptions</a>
                                                                 </li>
                                                             </ul>
@@ -847,8 +849,6 @@
                                                                 <li><a href="../knox-service-plugin/debug-mode.htm">Debug mode</a>
                                                                 </li>
                                                                 <li><a href="../knox-service-plugin/error-messages.htm">Error messages</a>
-                                                                </li>
-                                                                <li><a href="../knox-service-plugin/knowledge-base-articles.htm">Knowledge base articles</a>
                                                                 </li>
                                                                 <li><a href="../knox-service-plugin/get-support.htm">Get support</a>
                                                                 </li>
@@ -2815,33 +2815,61 @@
 									-->
                                     <div id="sec2" class="small-12 medium-8 large-9 columns">
                                         <div itemscope="itemscope" itemtype="http://schema.org/Guide">
-                                            <h1>Enrollment notices</h1>
-                                            <h3>Set default enrollment values</h3>
-                                            <p>Enable and create the Knox Guard default  messages displayed on an end user device to communicate initial enrollment and SIM card change events.</p>
-                                            <p>To enable and set Knox Guard default enrollment and SIM card change messages:</p>
+                                            <h1 id="enrollment-notices">Enrollment notices</h1>
+                                            <h2 id="set-default-enrollment-values">Set default enrollment values</h2>
+                                            <p>Create the Knox Guard default  messages displayed on an end user device to communicate initial enrollment and SIM card change events.</p>
+                                            <p>To set the default enrollment and SIM card change messages:</p>
                                             <ol>
                                                 <li value="1">Select <b>Policies</b> from the left-hand navigation menu.</li>
                                                 <li value="2">Select <b>ENROLLMENT NOTICES</b> from the SETTINGS field. </li>
+                                                <img src="../../assets/merge/images/knox-guard/enrollment-notice.PNG" />
+                                                <li value="3">Select the <b>Enrollment notices</b> checkbox, if not already checked, to enable a message displayed on a user device.</li>
+                                                <ul>
+                                                    <li value="1">Enter a message in the <b>Customize message</b> field that devices receive upon successful enrollment in Knox Guard.</li>
+                                                    <li value="2">(Optional) Enter a <b>Phone number</b> that device users can call for information about their subscription with their carrier. Phone Number must only contain #, +, * and numeric characters.</li>
+                                                </ul>
+                                                <li value="4">Under <b>Message settings</b>, select how and when the message displays. It can be a <b>Persistent notification</b> or a <b>Dismissible notification</b>. If you select dismissible, you can also choose for the message to <b>Show after device reboot</b>. By default, the message will <b>Show after enrollment is completed on the device</b>.</li>
+                                                <li value="5">Select <b>SIM card change</b> to display a default message on the device when its SIM card is changed. Optionally, enter a <b>Phone number</b> that device users can call for information about their subscription with their carrier.</li>
+                                                <li value="6">Select <b>SAVE</b> to commit the default enrollment and SIM card change settings.</li>
                                             </ol>
-                                            <blockquote>
-                                                <p>
-                                                    <img src="../../assets/merge/images/knox-guard/enrollment-notice.PNG" style="border-left-style: solid;border-left-width: 1px;border-left-color: ;border-right-style: solid;border-right-width: 1px;border-right-color: ;border-top-style: solid;border-top-width: 1px;border-top-color: ;border-bottom-style: solid;border-bottom-width: 1px;border-bottom-color: ;" />
-                                                </p>
-                                            </blockquote>
-                                            <ol data-mc-continue="true">
-                                                <li value="3">Select the <b>COMPLETION OF ENROLLMENT</b> checkbox  to create a message displayed on a user device when the enrollment setup wizard is complete. </li>
-                                            </ol>
-                                            <ul>
-                                                <li value="1">Enter a 200 character maximum <b>Customize message</b> devices receive upon enrollment completion in Knox Guard. The message should contain information on the device's payment plan and reference the phone number device users contact for information about their subscription.</li>
-                                                <li value="2">Optionally, enter a <b>Phone number</b> device users call for information about their subscription with their carrier. Special characters can be used if necessary.</li>
-                                            </ul>
-                                            <ol start="6">
-                                                <li value="6">Select <b>MESSAGE SETTINGS</b> to select the display type for the message. The message type can be 'Persistent notification' or 'Dismissible notification'. If the user selects the 'Dismissible notification' type, the user can also select the <i>Show after device reboot</i> option. <i>Show after enrollment is completed on the device</i> is the default setting.</li>
-                                                <li value="7">Select the <b>SIM CARD CHANGE</b> checkbox to display a default message on an end user device when the device's SIM card is changed. Optionally, enter a <b>Phone number</b> device users call for information about their subscription with their carrier. </li>
-                                            </ol>
-                                            <ol start="6" data-mc-continue="true">
-                                                <li value="8">Select <b>SAVE</b> to commit   the default enrollment and SIM card change settings. </li>
-                                            </ol>
+                                            <!-- START - Commenting out enrollment message for now as requested by HQ
+        <h2 id="set-custom-enrollment-messages-for-selected-few-devices">Set custom enrollment messages for selected few devices</h2>
+        <p>To enable and set Knox Guard custom enrollment and SIM card change messages for selected few devices:</p>
+        <ol>
+          <li>Select <b>Devices</b> in the left-hand navigation menu.</li>
+          <li>Select the devices for which you want to set the custom message by checking the box in front of each row.</li>
+          <li>Select the <b>ACTIONS</b> drop-down menu and select <b>Enable enrolment message</b>.</li>
+          <li>In the <b>Enable enrolment message</b> screen, enter the custom message and contact fields as required and select <b>NEXT</b>.</li>
+          <li>In the <b>Enable enrolment message</b> pop-up, confirm the changes by selecting <b>CONFIRM</b>.</li>
+        </ol>
+        <h2 id="disable-custom-enrollment-messages-for-selected-few-devices">Disable custom enrollment messages for selected few devices</h2>
+          <p>To disable the Knox Guard custom enrollment and SIM card change messages for selected few devices:</p>
+          <ol>
+            <li>Select <b>Devices</b> in the left-hand navigation menu.</li>
+            <li>Select the devices for which you want to disable the custom message by checking the box in front of each row.</li>
+            <li>Select the <b>ACTIONS</b> drop-down menu and select <b>Disable enrolment message</b>.</li>
+            <li>In the <b>Disable enrolment message</b> pop-up, confirm the changes by selecting <b>CONFIRM</b>.</li>
+          </ol>
+          <h2 id="set-custom-enrollment-message-for-device-selected-in-bulk">Set custom enrollment message for device selected in bulk</h2>
+            <p>To enable and set Knox Guard custom enrollment and SIM card change messages for selected devices in bulk:</p>
+            <ol>
+              <li>Click <b>BULK ACTIONS </b>from the left-hand navigation menu.</li>
+              <li>(Optional) Click <a href="https://s3.amazonaws.com/kccrepo/kfg-template/Bulk_Standard.csv">Download CSV template</a>.</li>
+              <li>(Optional) Click <b>Instructions for all bulk actions</b> to see the instructions on how to fill the CSV file. Click <b>GOT IT</b> when done reading.</li>
+              <li>Select <b>ENABLE ENROLMENT MESSAGE </b>from the MESSAGING section.</li>
+              <li>In the <b>Enable enrolment message</b> screen, upload the list of devices which you want to set the custom message for.</li>
+              <li>Enter the custom message and contact fields as required and click <b>CONFIRM</b>.</li>
+            </ol>
+          <h2 id="disable-custom-enrollment-message-for-device-selected-in-bulk">Disable custom enrollment message for device selected in bulk</h2>
+            <p>To disable the Knox Guard custom enrollment and SIM card change messages for selected devices in bulk:</p>
+            <ol>
+              <li>Click <b>BULK ACTIONS </b>from the left-hand navigation menu.</li>
+              <li>(Optional) Click <a href="https://s3.amazonaws.com/kccrepo/kfg-template/Bulk_Standard.csv">Download CSV template</a>.</li>
+              <li>(Optional) Click <b>Instructions for all bulk actions</b> to see the instructions on how to fill the CSV file. Click <b>GOT IT</b> when done reading.</li>
+              <li>Select <b>DISABLE ENROLMENT MESSAGE </b>from the MESSAGING section.</li>
+              <li>In the <b>Disable enrolment message</b> screen, upload the list of devices which you want to disable the custom message for and click <b>CONFIRM</b>.</li>
+            </ol>
+          END - Commenting out enrollment message for now as requested by HQ -->
                                         </div>
                                         <!-- Inserts feedback module here -->
                                         <div id="feedback">

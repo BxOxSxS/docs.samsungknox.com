@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" lang="en-US" xml:lang="en-US" data-mc-search-type="Stem" data-mc-help-system-file-name="Default.xml" data-mc-path-to-help-system="../../" data-mc-conditions="Default.knox-asset-intelligence" data-mc-target-type="WebHelp2" data-mc-runtime-file-type="Topic;Default" data-mc-preload-images="false" data-mc-in-preview-mode="false" data-mc-toc-path="Knox Asset Intelligence|Features">
     <head>
@@ -833,6 +832,8 @@
                                                                 </li>
                                                                 <li><a href="../../knox-service-plugin/advanced-policies.htm">Advanced Examples</a>
                                                                 </li>
+                                                                <li><a href="../../knox-service-plugin/ksp-kai-integration.htm">Integration with Knox Asset Intelligence</a>
+                                                                </li>
                                                                 <li><a href="../../knox-service-plugin/policy-descriptions.htm">Policy descriptions</a>
                                                                 </li>
                                                             </ul>
@@ -848,8 +849,6 @@
                                                                 <li><a href="../../knox-service-plugin/debug-mode.htm">Debug mode</a>
                                                                 </li>
                                                                 <li><a href="../../knox-service-plugin/error-messages.htm">Error messages</a>
-                                                                </li>
-                                                                <li><a href="../../knox-service-plugin/knowledge-base-articles.htm">Knowledge base articles</a>
                                                                 </li>
                                                                 <li><a href="../../knox-service-plugin/get-support.htm">Get support</a>
                                                                 </li>
@@ -2816,105 +2815,100 @@
 									-->
                                     <div id="sec2" class="small-12 medium-8 large-9 columns">
                                         <div itemscope="itemscope" itemtype="http://schema.org/Guide">
-										<h1>
-										  <MadCap:concept term="knox-asset-intelligence" />Use the Knox Asset Intelligence agent</h1>
-										  <p>The Knox Asset Intelligence agent runs on the device and is responsible for collecting device information to send to the Knox cloud server.</p>
-										  <p>When a device user launches the agent, the main screen displays the agent version, name of the group the device belongs to, and enrollment status.</p>
-										  <p><img src="../../../assets/merge/images/knox-asset-intelligence/22.08-kai-agent.jpg" width="30%" alt="Knox Asset Intelligence agent main screen" /></p>
-										  <p>The following actions are available:</p>
-										  <ul>
-											  <li><b><a href="use-agent-app.htm#device-status">Device status</a></b> – Displays device information, including the IMEI and firmware version.</li>
-											  <li><b><a href="use-agent-app.htm#error-reports">Error reports</a></b> – Generates system logs to submit to the Knox Asset Intelligence console. The device user is prompted to enter a category and description before submission.</li>
-											  <li><b><a href="use-agent-app.htm#diagnostics">Diagnostics</a></b> – Displays Wi-Fi and battery information related to the device.</li>
-											  <li><b>Legal information</b> – Displays legal disclaimers pertaining to the use of Knox Asset Intelligence.</li>
-											  <li><b>Open source licenses</b> – Displays the open source licenses used by Knox Asset Intelligence.</li>
-										  </ul>
-										  <div class="callout note"><b>NOTE</b> — Per Google's design, whenever the Knox Asset Intelligence agent is active, a <b>Knox Asset Intelligence is running</b> notification displays in the notification drawer. You can hide it through the device's notification settings.</div>
-
-										  <h3 id="device-status">Device status</h3>
-										  <p>When the device user selects <b>Device status</b> from the agent's main screen, the device's information is shown. As an IT admin, you can use this information to quickly verify and troubleshoot issues without requesting device logs every time.</p>
-										  <p>The device information includes the following:</p>
-										  <ul>
-											  <li>Model name</li>
-											  <li>Model number</li>
-											  <li>IMEI</li>
-											  <li>Serial number</li>
-											  <li>Android OS version</li>
-											  <li>Firmware version</li>
-											  <li>Android security patch level</li>
-											  <li>Knox version</li>
-											  <li>Display resolution</li>
-											  <li>Display density</li>
-											  <li>Wi-Fi MAC address</li>
-											  <li>Bluetooth address</li>
-											  <li>Storage</li>
-											  <li>RAM</li>
-										  </ul>
-
-										  <h3 id="error-reports">Error reports</h3>
-										  <p>When the device user selects <b>Error reports</b>, system debug logs are generated that can be uploaded to your Knox Asset Intelligence console. The debug logs contain system diagnostics information (<a href="https://developer.android.com/studio/command-line/dumpsys" target="_blank">dumpsys</a>) and system message logs (<a href="https://developer.android.com/studio/debug/am-logcat" target="_blank">Logcat</a>) that can help you identify the root cause of an issue. Any uploaded device debug logs are deleted from the Knox Asset Intelligence servers after 30 days.</p>
-										  <p>Before submission, the device user must first select one of the following categories for the error report:</p>
-										  <ul>
-											  <li>All</li>
-											  <li>Battery</li>
-											  <li>App</li>
-											  <li>Wi-Fi</li>
-											  <li>Device operation</li>
-											  <li>ETC</li>
-										  </ul>
-										  <p>Then, they're prompted to enter a detailed description for the issue. The description is limited to 500 characters.</p>
-										  <p>Once the two fields are filled, the device user can then send the logs to the Knox cloud server. The logs can't be submitted if either one of the fields is empty. After the device user successfully sends the debug log file, you can view it in the <a href="view-debug-log.htm">Device debug log</a> menu on the Knox Asset Intelligence console.</p>
-
-										  <h3 id="diagnostics">Diagnostics</h3>
-										  <p>The device user can select <b>Diagnostics</b> to view Wi-Fi and battery-related information about the device, as well as take a number of troubleshooting actions.</p>
-										  <p><img src="../../../assets/merge/images/knox-asset-intelligence/22.08-diagnostics-menu.jpg" width="30%" alt="Diagnostics options menu" /></p>
-
-										  <h4 id="wi-fi">Wi-Fi</h4>
-										  <p>After selecting <b>Wi-Fi</b>, two tabs are available at the bottom of the screen.</p>
-										  <ul>
-											  <li><b>Status</b> — Displays the signal strength, band, SSID, signal, IP, device MAC address, and access point MAC address of device's current Wi-Fi connection. If Wi-Fi roaming is detected, additional roaming information is displayed. The signal strength is shown in real-time as a graph, with three statuses indicating the network latency. The status ranges are as follows:
-												  <ul>
-													  <li><b>Excellent</b> — -65 dBm or higher</li>
-													  <li><b>Good</b> — -66 dBm to -77 dBm</li>
-													  <li><b>Poor</b> — -78 dBm or lower</li>
-												  </ul>
-											  </li>
-											  <li><b>Test</b> — Allows the device user to send various commands to the Wi-Fi network to test for connectivity issues. The results of these tests can be shared with you for troubleshooting purposes.
-												<p><img src="../../../assets/merge/images/knox-asset-intelligence/22.08-ping-test.png" width="30%" alt="Wi-Fi ping test screen" /></p>
-												  <ul>
-													  <li><b>Single Ping</b> — Sends a single ICMP (Internet Control Message Protocol) echo request to the network host. After the device user enters a DNS or IP address, the ping result is returned. For example, if <b>com</b> is entered as the DNS, it tries to request three packets at once. Assuming samsungknox.com receives three packets, the ping result shows <b>3 packets transmitted, 3 received, 0% packet loss</b>. No packet loss indicates that data is reaching its destination properly. There may be a slight delay before the results are returned.
-													  </li>
-													  <li><b>Continual Ping</b> — Sends a looping ICMP echo request to the network host. After the device user enters a DNS or IP address, the ping result is returned. For example, if <b>com</b> is entered as the DNS, it continuously requests one packet at a time. The packet requests only stop when you navigate to another page. Assuming samsungknox.com receives six packets, the ping result shows <b>Sent: 6, Received: 6, Missed: 0</b>. No packet loss indicates that data is reaching its destination properly. There may be a slight delay before the results are returned.
-													  </li>
-													  <li><b>NSLookup</b> — Queries the DNS servers for the domain mapping to the IP address. After the device user enters a DNS or IP address, the DNS records for the domain name are returned. For example, if <b>com</b> is entered as the DNS, its host name, canonical name, IP address, and network latency are shown.
-													  </li>
-													  <li><b>Network status</b> — Displays the details of the device's connected network, including the host name, domain, IP address, mask, broadcast, gateway, DHCP info, WLAN DNS, and lease time. If the device is using a proxy, that information is also displayed.</li>
-													  <li><b>Scan SSID</b> — Displays the signal strength, access point MAC address, and band of the SSID the device is currently connected to.</li>
-													  <li><b>Known network</b> — Displays a list of all Wi-Fi networks the device has previously connected to.</li>
-												  </ul>
-											  </li>
-										  </ul>
-										  <p>The device user can also generate and send debug logs to you by selecting <b>ERROR REPORT</b> in the top-right corner of the screen.</p>
-
-										  <h4 id="battery">Battery</h4>
-										  <p>If the device user selects <b>Battery</b> from the <b>Diagnostics</b> menu, the following battery-related data points are displayed:</p>
-										  <ul>
-											  <li><b>Battery status</b> — Indicates whether the device is connected to a charger or not.</li>
-											  <li><b>Battery level</b></li>
-											  <li><b>State of health</b> — The overall health of the device's battery, defined as <b>Good</b>, <b>Normal</b>, or <b>Bad</b>.</li>
-											  <li><b>Battery voltage</b></li>
-											  <li><b>Charger type</b></li>
-											  <li><b>Charger plug</b></li>
-											  <li><b>Battery's rated capacity</b></li>
-											  <li><b>Battery health</b> — The percentage of the battery's original charge it can currently hold.</li>
-											  <li><b>Time until battery fully drained/Time until battery fully charged</b> — When the device is not charging, the first option is shown. Otherwise, the second option is shown.</li>
-											  <li><b>Current battery charge</b></li>
-											  <li><b>Current battery capacity</b></li>
-											  <li><b>Average current</b></li>
-											  <li><b>Current right now</b> — When the device is charging, displays the charging current in microamperes (&#x03bc;).</li>
-										  </ul>
-										  <p><img src="../../../assets/merge/images/knox-asset-intelligence/22.08-battery-agent.jpg" width="30%" alt="Battery data screen" /></p>
-										  <p>Device users can also generate and send debug logs to you by tapping <b>ERROR REPORT</b> in the top-right corner of the screen.</p>
+                                            <h1><a name="aanchor227"></a>
+                                                <MadCap:concept term="knox-asset-intelligence" />Use the Knox Asset Intelligence agent</h1>
+                                            <p>The Knox Asset Intelligence agent runs on the device and is responsible for collecting device information to send to the Knox cloud server.</p>
+                                            <p>When a device user launches the agent, the main screen displays the agent version, name of the group the device belongs to, and enrollment status.</p>
+                                            <p>
+                                                <img src="../../../assets/merge/images/knox-asset-intelligence/22.08-kai-agent.jpg" width="30%" alt="Knox Asset Intelligence agent main screen" />
+                                            </p>
+                                            <p>The following actions are available:</p>
+                                            <ul>
+                                                <li value="1"><b><a href="use-agent-app.htm#device-status" class="selected">Device status</a></b> – Displays device information, including the IMEI and firmware version.</li>
+                                                <li value="2"><b><a href="use-agent-app.htm#error-reports" class="selected">Error reports</a></b> – Generates system logs to submit to the Knox Asset Intelligence console. The device user is prompted to enter a category and description before submission.</li>
+                                                <li value="3"><b><a href="use-agent-app.htm#diagnostics" class="selected">Diagnostics</a></b> – Displays Wi-Fi and battery information related to the device.</li>
+                                                <li value="4"><b>Legal information</b> – Displays legal disclaimers pertaining to the use of Knox Asset Intelligence.</li>
+                                                <li value="5"><b>Open source licenses</b> – Displays the open source licenses used by Knox Asset Intelligence.</li>
+                                            </ul>
+                                            <div class="callout note"><b>NOTE</b> — Per Google's design, whenever the Knox Asset Intelligence agent is active, a <b>Knox Asset Intelligence is running</b> notification displays in the notification drawer. You can hide it through the device's notification settings.</div>
+                                            <h3 id="device-status">Device status</h3>
+                                            <p>When the device user selects <b>Device status</b> from the agent's main screen, the device's information is shown. As an IT admin, you can use this information to quickly verify and troubleshoot issues without requesting device logs every time.</p>
+                                            <p>The device information includes the following:</p>
+                                            <ul>
+                                                <li value="1">Model name</li>
+                                                <li value="2">Model number</li>
+                                                <li value="3">IMEI</li>
+                                                <li value="4">Serial number</li>
+                                                <li value="5">Android OS version</li>
+                                                <li value="6">Firmware version</li>
+                                                <li value="7">Android security patch level</li>
+                                                <li value="8">Knox version</li>
+                                                <li value="9">Display resolution</li>
+                                                <li value="10">Display density</li>
+                                                <li value="11">Wi-Fi MAC address</li>
+                                                <li value="12">Bluetooth address</li>
+                                                <li value="13">Storage</li>
+                                                <li value="14">RAM</li>
+                                            </ul>
+                                            <h3 id="error-reports">Error reports</h3>
+                                            <p>When the device user selects <b>Error reports</b>, system debug logs are generated that can be uploaded to your Knox Asset Intelligence console. The debug logs contain system diagnostics information (<a href="https://developer.android.com/studio/command-line/dumpsys" target="_blank">dumpsys</a>) and system message logs (<a href="https://developer.android.com/studio/debug/am-logcat" target="_blank">Logcat</a>) that can help you identify the root cause of an issue. Any uploaded device debug logs are deleted from the Knox Asset Intelligence servers after 30 days.</p>
+                                            <p>Before submission, the device user must first select one of the following categories for the error report:</p>
+                                            <ul>
+                                                <li value="1">All</li>
+                                                <li value="2">Battery</li>
+                                                <li value="3">App</li>
+                                                <li value="4">Wi-Fi</li>
+                                                <li value="5">Device operation</li>
+                                                <li value="6">ETC</li>
+                                            </ul>
+                                            <p>Then, they're prompted to enter a detailed description for the issue. The description is limited to 500 characters.</p>
+                                            <p>Once the two fields are filled, the device user can then send the logs to the Knox cloud server. The logs can't be submitted if either one of the fields is empty. After the device user successfully sends the debug log file, you can view it in the <a href="view-debug-log.htm">Device debug log</a> menu on the Knox Asset Intelligence console.</p>
+                                            <h3 id="diagnostics">Diagnostics</h3>
+                                            <p>The device user can select <b>Diagnostics</b> to view Wi-Fi and battery-related information about the device, as well as take a number of troubleshooting actions.</p>
+                                            <p>
+                                                <img src="../../../assets/merge/images/knox-asset-intelligence/22.08-diagnostics-menu.jpg" width="30%" alt="Diagnostics options menu" />
+                                            </p>
+                                            <h4 id="wi-fi">Wi-Fi</h4>
+                                            <p>After selecting <b>Wi-Fi</b>, two tabs are available at the bottom of the screen.</p>
+                                            <ul>
+                                                <li value="1"><b>Status</b> — Displays the signal strength, band, SSID, signal, IP, device MAC address, and access point MAC address of device's current Wi-Fi connection. If Wi-Fi roaming is detected, additional roaming information is displayed. The signal strength is shown in real-time as a graph, with three statuses indicating the network latency. The status ranges are as follows:
+              <ul><li value="1"><b>Excellent</b> — -65 dBm or higher</li><li value="2"><b>Good</b> — -66 dBm to -77 dBm</li><li value="3"><b>Poor</b> — -78 dBm or lower</li></ul></li>
+                                                <li value="2"><b>Test</b> — Allows the device user to send various commands to the Wi-Fi network to test for connectivity issues. The results of these tests can be shared with you for troubleshooting purposes.
+            <p><img src="../../../assets/merge/images/knox-asset-intelligence/22.08-ping-test.png" width="30%" alt="Wi-Fi ping test screen" /></p><ul><li value="1"><b>Single Ping</b> — Sends a single ICMP (Internet Control Message Protocol) echo request to the network host. After the device user enters a DNS or IP address, the ping result is returned. For example, if <b>com</b> is entered as the DNS, it tries to request three packets at once. Assuming samsungknox.com receives three packets, the ping result shows <b>3 packets transmitted, 3 received, 0% packet loss</b>. No packet loss indicates that data is reaching its destination properly. There may be a slight delay before the results are returned.
+                  </li><li value="2"><b>Continual Ping</b> — Sends a looping ICMP echo request to the network host. After the device user enters a DNS or IP address, the ping result is returned. For example, if <b>com</b> is entered as the DNS, it continuously requests one packet at a time. The packet requests only stop when you navigate to another page. Assuming samsungknox.com receives six packets, the ping result shows <b>Sent: 6, Received: 6, Missed: 0</b>. No packet loss indicates that data is reaching its destination properly. There may be a slight delay before the results are returned.
+                  </li><li value="3"><b>NSLookup</b> — Queries the DNS servers for the domain mapping to the IP address. After the device user enters a DNS or IP address, the DNS records for the domain name are returned. For example, if <b>com</b> is entered as the DNS, its host name, canonical name, IP address, and network latency are shown.
+                  </li><li value="4"><b>Network status</b> — Displays the details of the device's connected network, including the host name, domain, IP address, mask, broadcast, gateway, DHCP info, WLAN DNS, and lease time. If the device is using a proxy, that information is also displayed.</li><li value="5"><b>Scan SSID</b> — Displays the signal strength, access point MAC address, and band of the SSID the device is currently connected to.</li><li value="6"><b>Known network</b> — Displays a list of all Wi-Fi networks the device has previously connected to.</li></ul></li>
+                                            </ul>
+                                            <p>The device user can also generate and send debug logs to you by selecting <b>ERROR REPORT</b> in the top-right corner of the screen.</p>
+                                            <h4 id="battery">Battery</h4>
+                                            <p>If the device user selects <b>Battery</b> from the <b>Diagnostics</b> menu, the following battery-related data points are displayed:</p>
+                                            <ul>
+                                                <li value="1"><b>Battery status</b> — Indicates whether the device is connected to a charger or not.</li>
+                                                <li value="2"><b>Battery level</b>
+                                                </li>
+                                                <li value="3"><b>State of health</b> — The overall health of the device's battery, defined as <b>Good</b>, <b>Normal</b>, or <b>Bad</b>.</li>
+                                                <li value="4"><b>Battery voltage</b>
+                                                </li>
+                                                <li value="5"><b>Charger type</b>
+                                                </li>
+                                                <li value="6"><b>Charger plug</b>
+                                                </li>
+                                                <li value="7"><b>Battery's rated capacity</b>
+                                                </li>
+                                                <li value="8"><b>Battery health</b> — The percentage of the battery's original charge it can currently hold.</li>
+                                                <li value="9"><b>Time until battery fully drained/Time until battery fully charged</b> — When the device is not charging, the first option is shown. Otherwise, the second option is shown.</li>
+                                                <li value="10"><b>Current battery charge</b>
+                                                </li>
+                                                <li value="11"><b>Current battery capacity</b>
+                                                </li>
+                                                <li value="12"><b>Average current</b>
+                                                </li>
+                                                <li value="13"><b>Current right now</b> — When the device is charging, displays the charging current in microamperes (μ).</li>
+                                            </ul>
+                                            <p>
+                                                <img src="../../../assets/merge/images/knox-asset-intelligence/22.08-battery-agent.jpg" width="30%" alt="Battery data screen" />
+                                            </p>
+                                            <p>Device users can also generate and send debug logs to you by tapping <b>ERROR REPORT</b> in the top-right corner of the screen.</p>
                                         </div>
                                         <!-- Inserts feedback module here -->
                                         <div id="feedback">

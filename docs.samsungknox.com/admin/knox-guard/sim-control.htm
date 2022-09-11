@@ -847,6 +847,8 @@
                                                                 </li>
                                                                 <li><a href="../knox-service-plugin/advanced-policies.htm">Advanced Examples</a>
                                                                 </li>
+                                                                <li><a href="../knox-service-plugin/ksp-kai-integration.htm">Integration with Knox Asset Intelligence</a>
+                                                                </li>
                                                                 <li><a href="../knox-service-plugin/policy-descriptions.htm">Policy descriptions</a>
                                                                 </li>
                                                             </ul>
@@ -862,8 +864,6 @@
                                                                 <li><a href="../knox-service-plugin/debug-mode.htm">Debug mode</a>
                                                                 </li>
                                                                 <li><a href="../knox-service-plugin/error-messages.htm">Error messages</a>
-                                                                </li>
-                                                                <li><a href="../knox-service-plugin/knowledge-base-articles.htm">Knowledge base articles</a>
                                                                 </li>
                                                                 <li><a href="../knox-service-plugin/get-support.htm">Get support</a>
                                                                 </li>
@@ -2830,34 +2830,34 @@
 									-->
                                     <div id="sec2" class="small-12 medium-8 large-9 columns">
                                         <div itemscope="itemscope" itemtype="http://schema.org/Guide">
-                                            <h1>SIM control</h1>
-                                            <h3>Set a default SIM control configuration</h3>
-                                            <div class="callout warning"><b>NOTE</b>— This functionality is only available upon request. Please contact your Knox Guard administrator to enable this feature.</div>
-                                            <div class="callout warning"><b>NOTE</b>— For step-by-step instructions to apply this policy to selected user devices, go to: <a href="enable-sim-control.htm">SIM control</a>.</div>
-                                            <p>Create a default SIM control configuration to restrict default SIM functionality or lock the device. The default SIM configuration can be used consistently across deployments until specific modifications are needed for specific deployment objectives.
-
-</p>
-                                            <p>To set a default SIM control configuration for Knox Guard managed devices:
-
-</p>
+                                            <h1 id="sim-control">SIM control</h1>
+                                            <h2 id="set-default-sim-control-configuration">Set a default SIM control configuration</h2>
+                                            <div class="callout note"><b>NOTE</b> — This functionality is only available upon request. Please contact your Knox Guard administrator to enable this feature. Only certain device models support SIM control.</div>
+                                            <p>Configure a default bundle of settings that restrict SIM functionality or lock the device. This default policy can be used consistently across deployments until more granular modifications are needed for specific deployment objectives. A maximum of five SIM control policies can be added. SIM cards that match the MCC/MNC codes entered in a SIM control policy can be used without restriction on devices that receive SIM control policies in the <a href="enable-sim-control.htm">Devices menu</a>. Any unlisted SIM cards can be configured to restrict some functionality as well as lock the device. For dual-SIM devices, restrictions only apply to the unlisted SIM card. Each mobile device carrier has their own unique MCC and MNC pair. You can list a maximum of 50 MCC/MNC pairs. For step-by-step instructions to apply this policy to selected user devices, see <a href="enable-sim-control.htm">SIM control</a>.</p>
+                                            <div class="callout warning"><b>NOTE</b> — As of KCS 22.03, a new <b>Mobile Number Lock</b> menu is available under the <b>SIM control</b> page. This feature allows customers to enable or disable IMSI policies regardless of whether MCC/MNC information is provided</div>
+                                            <p>To set a default SIM control configuration for Knox Guard managed devices:</p>
                                             <ol>
                                                 <li value="1">Select <b>Policies</b> from the left-hand navigation menu.</li>
-                                                <li value="2">Select <b>SIM CONTROL</b>. </li>
-                                                <p>
-                                                    <img class="diagram" alt="SIM control screen showing policy options" src="../../assets/merge/images/knox-guard/sim-control.PNG" />
-                                                </p>
-                                                <div class="callout warning"><b>NOTE</b>— A maximum of 5 SIM control policies can be added.</div>
-                                                <div class="callout warning"><b>NOTE</b>— As of KCS 22.03, a new <b>Mobile Number Lock</b> menu is available under the <b>SIM control</b> page. This feature allows customers to enable or disable IMSI policies regardless of whether MCC/MNC information is provided</div>
-                                                <li value="3">Refer to the <b>MCC</b> and <b>MNC</b> fields to assess if a default <i>Mobility Country Code (MCC)</i> and <i>Mobile Network Code (MNC)</i> has been applied to uniquely identify the selected device’s mobile network carrier for SIM control restriction exclusion. Each mobile device carrier has their own unique MCC and MNC pair.
-            </li>
-                                                <li value="4">Set the following restrictions for an unlisted MCC/MNC:<ul><li value="1"><i>Make outgoing calls/Receive incoming calls</i> — Select this option to restrict a selected device's ability to make/recieve a voice call.
-</li><li value="2"><i>Send or receive SMS/MMS/RCS</i> — Select this option to restrict a selected device's texting capability.
-</li><li value="3"><i>Data usage</i> — Select this option to restrict a selected device's ability to use data consumptive applications. </li><li value="4"><i>Check the insert allowed SIM (Apply when the allowed SIM is inserted)</i> — In case of dual or multi-SIM phones, if one of the inserted SIM cards is allowed, selecting this option allows the other SIM to use restricted features. You can then select which features you want to allow for the other SIM.</li><li value="5"><i>Apply the above restrictions when international roaming is in use</i> — Select this option to restrict device voice, text and data usage when connecting to a mobile network in a country other than the device's original deployment country. This option is applicable to non-whitelisted SIMs in a dual SIM device only.</li><li value="6"><i>Lock device</i> — Select this option to lock a device in order to prevent the usage of unlisted SIM card on that device.
-</li><li value="7"><i>Turn on mobile number (IMSI) lock</i> — Select this option to turn on the device's IMSI lock.</li><li value="8"><i>Turn on network registration verification</i> — It further validates that a deactivated SIM card is not being misused by comparing the defined MCC/MNC of the network operator.</li></ul></li>
-                                                <li value="5">Advanced support methods menu is also displayed on SIM lock screen but it is centrally configured in <b>Default lock screen</b>.</li>
-                                                <li value="6"><b>Primary support option</b> is selectable. It is centrally configured in <b>Default lock screen</b>.</li>
-                                                <li value="7">Select <b>SAVE</b> to commit the default SIM control settings.</li>
+                                                <li value="2">Select <b>SIM CONTROL</b> under the <b>ADVANCED CONTROLS</b> field.</li>
+                                                <img class="diagram" alt="SIM control screen showing policy options" src="../../assets/merge/images/knox-guard/sim-control.PNG" />
+                                                <li value="3">Enter the <b>Policy name</b>. It can't match an existing policy name.</li>
+                                                <li value="4">Fill the <b>MCC</b> and <b>MNC</b> fields for SIM control restriction exclusion.</li>
+                                                <li value="5">Set the following restrictions for the unlisted MCC/MNC:
+              <ul><li value="1"><b>Make outgoing calls</b> — Restricts the device's ability to make phone calls.</li><li value="2"><b>Receive incoming calls</b> — Restrcits the device's ability to recieve phone calls.</li><li value="3"><b>Send or receive SMS/MMS/RCS</b> — Restricts the device's ability to send and receive text messages.</li><li value="4"><b>Data usage</b> — Prevents apps on the device from consuming mobile data.</li><li value="5"><b>Check the insert allowed SIM (Apply when the allowed SIM is inserted)</b> — If the device is dual-SIM and an allowed SIM card is present, allows the other SIM to use restricted features. If this setting is selected, you can choose which features to allow for the other SIM.</li><li value="6"><b>Apply the above restrictions when international roaming is in use</b> — Restricts the device's phone, text and data usage when connecting to a mobile network in a country other than the device's original country of deployment. This setting applies to restricted SIMs in a dual-SIM device only.</li><li value="7"><b>Lock device</b> — Locks the device in order to prevent the usage of unlisted SIM cards.</li><li value="8"><b>Turn on network registration verification</b> — Validates that a deactivated SIM card is not being misused by comparing it to the MCC/MNC of the allowed network operators.</li></ul></li>
+                                                <li value="6">Enter the contact information for your support services in the <b>CUSTOMER SUPPORT OPTIONS</b> section.</li>
+                                                <li value="7">The <b>Advanced support methods</b> section is also displayed on the SIM lock page but is centrally configured in <a href="default-lock-screen.htm"><b>Lock screen</b></a>.</li>
+                                                <li value="8">(Optional) Click <b>Primary support option</b> to select the main support contact information. It is centrally configured in <a href="default-lock-screen.htm"><b>Lock screen</b></a>.</li>
+                                                <li value="9">Select <b>SAVE</b> to commit the default SIM control settings.</li>
                                             </ol>
+                                            <h2 id="delete-sim-control-policy">Delete SIM control policy</h2>
+                                            <div class="callout warning"><b>IMPORTANT</b> — You can only delete a policy if it isn't currently applied to any device.</div>
+                                            <p>To delete a SIM control policy:</p>
+                                            <ol>
+                                                <li value="1">Go to <b>Policies</b>.</li>
+                                                <li value="2">Select <b>SIM CONTROL</b> in the <b>ADVANCED CONTROLS</b> section.</li>
+                                                <li value="3">Click the <b>X</b> next to the SIM control policy you want to delete.</li>
+                                            </ol>
+                                            <img class="diagram" alt="SIM control screen showing policy delete buttons" src="../../assets/merge/images/knox-guard/delete-sim-policy.png" />
                                         </div>
                                         <!-- Inserts feedback module here -->
                                         <div id="feedback">
