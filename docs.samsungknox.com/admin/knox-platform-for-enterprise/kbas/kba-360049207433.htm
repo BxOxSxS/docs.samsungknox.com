@@ -1,7 +1,9 @@
 <!DOCTYPE html>
 <html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" lang="en-US" xml:lang="en-US" data-mc-search-type="Stem" data-mc-help-system-file-name="Default.xml" data-mc-path-to-help-system="../../" data-mc-conditions="Default.knox-platform-enterprise" data-mc-target-type="WebHelp2" data-mc-runtime-file-type="Topic;Default" data-mc-preload-images="false" data-mc-in-preview-mode="false" data-mc-toc-path="">
     <head>
-        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" /><title>Cannot reset device password from UEM console</title>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <meta name="robots" content="noindex, follow, noarchive, nosnippet, noimageindex, nocache" />
+        <meta http-equiv="refresh" content="0; index.htm" /><title>Cannot reset device password from UEM console</title>
         <!-- Google analytics tag-->
         <script>/* <![CDATA[ */
 			(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
@@ -55,10 +57,6 @@
         <link href="../../../assets/merge/kp-foundation.css" rel="stylesheet" />
         <link href="../../Resources/kp-madcap.css" rel="stylesheet" />
         <link href="../../Resources/print.css" rel="stylesheet" />
-        <style>h1 {font-size:2rem;} </style>
-        <style>h2 {font-weight:bold; font-size:1.55rem;} </style>
-        <style>h5 {margin-left:-17px;} </style>
-        <style>pre {white-space: pre-wrap;} </style>
         <script src="../../Resources/Scripts/custom.modernizr.js">
         </script>
         <script src="../../Resources/Scripts/jquery.min.js">
@@ -2818,152 +2816,8 @@
 									</div>
 									-->
                                     <div id="sec2" class="small-12 medium-8 large-9 columns">
-                                        <div itemscope="itemscope" itemtype="http://schema.org/Guide"><a name="aanchor1813"></a>
-                                            <MadCap:concept term="Knox Platform for Enterprise" />
-                                            <h1><a name="aanchor1814"></a>
-                                                <MadCap:concept term="KBAs and FAQs" />Cannot reset device password from UEM console</h1>
-                                            <div class="callout primary">
-                                                <h2>Environment&#160;</h2>
-                                                <ul>
-                                                    <li value="1">Knox Platform for Enterprise (KPE)</li>
-                                                    <li value="2">
-                                                        <p>Device administrator (DA)-based devices running Android O and later</p>
-                                                    </li>
-                                                </ul>
-                                                <h2>Overview</h2>
-                                                <p>Due to some changes to how password implementation is handled in Android O, IT administrators may be prevented from resetting device passwords from the UEM console. A factory reset may be required for previously activated devices to restore this functionality.</p>
-                                                <div class="note"><strong>NOTE—</strong>Please contact your UEM provider to confirm they have followed the guidance in this article, as it can impact live enterprise deployments.</div>
-                                                <h2>Cause</h2>
-                                                <p>The<span>&#160;</span><a href="https://developer.android.com/reference/android/app/admin/DevicePolicyManager.html#resetPasswordWithToken(android.content.ComponentName,%20java.lang.String,%20byte%5B%5D,%20int)">DevicePolicyManager.resetPassword</a><span>&#160;</span>API was deprecated in Android O, preventing apps running as a DA from resetting the lock screen password. If a user forgets the password after upgrading to Android P, an app using the deprecated DA management model cannot activate the token, requiring a factory reset of the device.</p>
-                                                <p>As a workaround, the Knox SDK provides the wrapper<span>&#160;</span><a href="../../../devref/knox-sdk/reference/com/samsung/android/knox/container/BasePasswordPolicy.html#resetPasswordWithToken(android.content.ComponentName,%20java.lang.String,%20byte[],%20int)">BasePasswordPolicy.resetPasswordWithToken()</a>. MDM providers must implement this API method call to ensure that the reset password token is set correctly.</p>
-                                                <h2>Resolution</h2>
-                                                <p>The fix for the password implementation issue requires both a device firmware update and support from the UEM:</p>
-                                                <h4><u>Device firmware update</u>
-                                                </h4>
-                                                <p>Firmware updates have been released for the following device models:</p>
-                                                <table class="table" border="1" cellspacing="0" cellpadding="0">
-                                                    <tbody>
-                                                        <tr>
-                                                            <td>
-                                                                <p align="center"><strong>Model</strong>
-                                                                </p>
-                                                            </td>
-                                                            <td>
-                                                                <p align="center"><strong>Region</strong>
-                                                                </p>
-                                                            </td>
-                                                            <td>
-                                                                <p align="center"><strong>Firmware version</strong>
-                                                                </p>
-                                                            </td>
-                                                        </tr>
-                                                        <tr>
-                                                            <td class="wysiwyg-text-align-center">
-                                                                <p>S8</p>
-                                                            </td>
-                                                            <td class="wysiwyg-text-align-center">
-                                                                <p>US - AT&amp;T</p>
-                                                            </td>
-                                                            <td class="wysiwyg-text-align-center">
-                                                                <p>G950USQU7DTA5 or higher</p>
-                                                            </td>
-                                                        </tr>
-                                                        <tr>
-                                                            <td class="wysiwyg-text-align-center">S8</td>
-                                                            <td class="wysiwyg-text-align-center">US - Verizon</td>
-                                                            <td class="wysiwyg-text-align-center">G950USQU5DSC1 or higher</td>
-                                                        </tr>
-                                                        <tr>
-                                                            <td class="wysiwyg-text-align-center">S8</td>
-                                                            <td class="wysiwyg-text-align-center">Europe</td>
-                                                            <td class="wysiwyg-text-align-center">G950FXXU4DSDA&#160;or higher</td>
-                                                        </tr>
-                                                        <tr>
-                                                            <td class="wysiwyg-text-align-center">Note 8</td>
-                                                            <td class="wysiwyg-text-align-center">US - AT&amp;T</td>
-                                                            <td class="wysiwyg-text-align-center">N950USQU7DTA3&#160;or higher</td>
-                                                        </tr>
-                                                        <tr>
-                                                            <td class="wysiwyg-text-align-center">Note 8</td>
-                                                            <td class="wysiwyg-text-align-center">US - Verizon</td>
-                                                            <td class="wysiwyg-text-align-center">N950USQU7DSL5 or higher</td>
-                                                        </tr>
-                                                        <tr>
-                                                            <td class="wysiwyg-text-align-center">
-                                                                <p align="center">Note 8</p>
-                                                            </td>
-                                                            <td class="wysiwyg-text-align-center">
-                                                                <p align="center">Europe</p>
-                                                            </td>
-                                                            <td class="wysiwyg-text-align-center">
-                                                                <p align="center">N950FXXU6DSF6 or higher</p>
-                                                            </td>
-                                                        </tr>
-                                                        <tr>
-                                                            <td class="wysiwyg-text-align-center">S9</td>
-                                                            <td class="wysiwyg-text-align-center">US - AT&amp;T</td>
-                                                            <td class="wysiwyg-text-align-center">G960USQU6CSH9 or higher</td>
-                                                        </tr>
-                                                        <tr>
-                                                            <td class="wysiwyg-text-align-center">S9</td>
-                                                            <td class="wysiwyg-text-align-center">US - Verizon</td>
-                                                            <td class="wysiwyg-text-align-center">G960USQU5CSE6 or higher</td>
-                                                        </tr>
-                                                        <tr>
-                                                            <td class="wysiwyg-text-align-center">
-                                                                <p>S9</p>
-                                                            </td>
-                                                            <td class="wysiwyg-text-align-center">
-                                                                <p>Europe</p>
-                                                            </td>
-                                                            <td class="wysiwyg-text-align-center">
-                                                                <p>G960FXXU2CSC8 or higher</p>
-                                                            </td>
-                                                        </tr>
-                                                        <tr>
-                                                            <td class="wysiwyg-text-align-center">Note 9</td>
-                                                            <td class="wysiwyg-text-align-center">US - AT&amp;T</td>
-                                                            <td class="wysiwyg-text-align-center">N960USQU2CSI1 or higher</td>
-                                                        </tr>
-                                                        <tr>
-                                                            <td class="wysiwyg-text-align-center">Note 9</td>
-                                                            <td class="wysiwyg-text-align-center">US - Verizon</td>
-                                                            <td class="wysiwyg-text-align-center">N960USQU1CSE5 or higher</td>
-                                                        </tr>
-                                                        <tr>
-                                                            <td class="wysiwyg-text-align-center">
-                                                                <p>Note 9</p>
-                                                            </td>
-                                                            <td class="wysiwyg-text-align-center">
-                                                                <p>Europe</p>
-                                                            </td>
-                                                            <td class="wysiwyg-text-align-center">N960FXXU2CSDE or higher</td>
-                                                        </tr>
-                                                        <tr>
-                                                            <td class="wysiwyg-text-align-center">S10</td>
-                                                            <td class="wysiwyg-text-align-center">US</td>
-                                                            <td class="wysiwyg-text-align-center">G970USQU1ASD3 or higher</td>
-                                                        </tr>
-                                                        <tr>
-                                                            <td class="wysiwyg-text-align-center">
-                                                                <p>S10</p>
-                                                            </td>
-                                                            <td class="wysiwyg-text-align-center">
-                                                                <p>Europe</p>
-                                                            </td>
-                                                            <td class="wysiwyg-text-align-center">G970FXXU1ASCA or higher</td>
-                                                        </tr>
-                                                    </tbody>
-                                                </table>
-                                                <p>If your impacted device is with another carrier&#160;not mentioned in the above table, please<span>&#160;</span><a href="https://www.samsungknox.com/en">log in to Samsung Knox</a><span>&#160;</span>to create a support ticket from your dashboard, referencing this article ID.</p>
-                                                <h4><u>UEM support</u>
-                                                </h4>
-                                                <p>Please consult with your UEM provider to confirm that the appropriate changes were made as per the<span>&#160;</span><a href="../../../dev/knox-sdk/password.htm">Knox SDK</a>&#160;guidelines.</p>
-                                                <p>To restore password reset functionality for previously activated devices, a factory reset may be required if the user previously set a screen lock password, then locked and unlocked the device before device enrollment. The unlocking process causes a loss of escrow data, which cannot be recovered upon enrollment into a UEM.</p>
-                                                <div class="note"><strong>NOTE—</strong>If a lock screen was not set prior to enrollment, a factory reset is not required.</div>
-                                            </div>
-                                            <div class="back"><a href="index.htm">Back to KBAs </a>
-                                            </div>
+                                        <div itemscope="itemscope" itemtype="http://schema.org/Guide">
+                                            <p>This page has been deprecated. Go to <a href="index.htm">KPE KBA index page</a>.</p>
                                         </div>
                                         <!-- Inserts feedback module here -->
                                         <div id="feedback">
