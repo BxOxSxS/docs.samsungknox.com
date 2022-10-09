@@ -406,6 +406,8 @@
                                                                     <ul class="sub-menu">
                                                                         <li><a href="independent-software-vendors.htm">Overview</a>
                                                                         </li>
+                                                                        <li><a href="activate-isv-license.htm">Activate ISV License</a>
+                                                                        </li>
                                                                         <li><a href="use-content-providers.htm">Use content providers</a>
                                                                         </li>
                                                                         <li class="has-children"><a href="tutorial-activate-license.htm#">Device management</a>
@@ -1610,61 +1612,71 @@
                                         <h1>Activate your Knox License</h1>
                                         <p>Your app activates your Knox license to authenticate API access. For more, see <a href="../common/knox-licenses.htm">Knox licenses</a>.</p>
                                         <ul class="tabs" data-tabs="" id="example-tabs">
-                                            <li class="tabs-title is-active" value="1"><a href="tutorial-activate-license.htm#panel371" aria-selected="true" class="selected">Knox 3.7.1 and higher</a>
+                                            <li class="tabs-title is-active" value="1"><a href="tutorial-activate-license.htm#panel38" aria-selected="true" class="selected">Knox 3.8 and higher</a>
                                             </li>
-                                            <li class="tabs-title" value="2"><a data-tabs-target="panel28" href="tutorial-activate-license.htm#panel28" class="selected">Knox 2.8 to Knox 3.7</a>
+                                            <li class="tabs-title" value="2"><a data-tabs-target="panel28" href="tutorial-activate-license.htm#panel28" class="selected">Knox 2.8 to Knox 3.7.1</a>
                                             </li>
                                             <li class="tabs-title" value="3"><a data-tabs-target="panel27" href="tutorial-activate-license.htm#panel27" class="selected">Knox 2.7 and lower</a>
                                             </li>
                                         </ul>
                                         <div class="tabs-content" data-tabs-content="example-tabs">
-                                            <!-- Panel Knox 3.7.1 -->
-                                            <div class="tabs-panel is-active" id="panel371">
-                                                <h3><a name="Create"></a>Use a key-value pair to define your license</h3>
-                                                <p>With Knox 3.7.1, <a href="independent-software-vendors.htm">Independent Software Vendors</a>&#160;(ISVs)  no longer need to activate a Knox license on company-owned devices. License activation is needed only on <a href="../../admin/knox-platform-for-enterprise/device-management-modes.htm">BYOD deployments</a>. </p>
-                                                <p>To activate a Knox license in Knox 3.7.1, use <a href="use-content-providers.htm">Android content providers</a> as follows:</p>
-                                                <table>
-                                                    <col style="width: 397px;" />
-                                                    <col />
-                                                    <thead>
-                                                        <tr>
-                                                            <th>Item</th>
-                                                            <th>Description</th>
-                                                        </tr>
-                                                    </thead>
-                                                    <tbody>
-                                                        <tr>
-                                                            <td><a href="https://developer.android.com/reference/android/net/Uri">Uri</a>
-                                                            </td>
-                                                            <td>content://com.samsung.android.knox.sdk/license</td>
-                                                        </tr>
-                                                        <tr>
-                                                            <td><a href="https://developer.android.com/reference/android/content/ContentValues">ContentValues</a>
-                                                            </td>
-                                                            <td>Stores values that ContentResolver can process.</td>
-                                                        </tr>
-                                                        <tr>
-                                                            <td><a href="https://developer.android.com/reference/android/content/ContentValues#put(java.lang.String, java.lang.Short)">put</a>
-                                                            </td>
-                                                            <td>Adds a key-value pair to a data set.</td>
-                                                        </tr>
-                                                        <tr>
-                                                            <td>key</td>
-                                                            <td>key</td>
-                                                        </tr>
-                                                        <tr>
-                                                            <td>value</td>
-                                                            <td>(your Knox license)</td>
-                                                        </tr>
-                                                    </tbody>
-                                                </table>
-                                                <p>Use the URI to identify the Knox license setting, define the key-value pair, and use the put method to invoke the license: </p><pre class="prettyprint" xml:space="preserve">Uri uri = Uri.parse("content://com.samsung.android.knox.sdk/license");
-ContentValues contentValues = new ContentValues();
-contentValues.put("key", "YOUR_KNOX_LICENSE");
-String selection = "key=?";
-String[] selectionArgs = new String[] {""};
-mContext.getContentResolver().update(uri, contentValues, selection, selectionArgs);</pre>
-                                                <p>For more examples, see the Knox API class <a href="../../devref/knox-sdk/reference/com/samsung/android/knox/ex/KnoxContract.License.html">KnoxContract.License</a>.</p>
+                                            <!-- Panel Knox 3.8 -->
+                                            <div class="tabs-panel is-active" id="panel38">
+                                                <h3 id="activate-the-license">Activate the license</h3>
+                                                <p>Use the following method in your <code>MainActivity</code> to activate the license:</p><pre class="prettyprint">
+//Use this method in your MainActivity to activate the license.
+private void activateLicense(final Context context) {
+    // Instantiate the KnoxEnterpriseLicenseManager class to use the activateLicense method
+    KnoxEnterpriseLicenseManager licenseManager = KnoxEnterpriseLicenseManager.getInstance(this);
+    // License Activation TODO Add license key to Constants.java
+    licenseManager.activateLicense(Constants.KPE_LICENSE_KEY, context.getPackageName(), new LicenseResultCallback() {
+        //Below is the block of code that receives the callback from license activation or deactivation:
+        @Override
+        public void onLicenseResult(LicenseResult licenseResult) {
+            switch (licenseResult.getType()) {
+                case ELM_ACTIVATION:
+                    showToast(context, "ELM license activation.");
+                    handleLicenseCallbackResponse(context, licenseResult);
+                    break;
+                case KLM_ACTIVATION:
+                    showToast(context, "KPE license activation.");
+                    handleLicenseCallbackResponse(context, licenseResult);
+                    break;
+                case KLM_DEACTIVATION:
+                    showToast(context, "KPE license deactivation.");
+                    handleLicenseCallbackResponse(context, licenseResult);
+                    break;
+                case UNDEFINED:
+                default:
+                    showToast(context, "Internal error");
+                    break;
+
+            }
+        }
+    });
+    mUtils.log(getResources().getString(R.string.license_progress));
+}
+              </pre>
+                                                <p>When you launch the app for the first time and activate the license, you will see a Samsung confirmation dialog. This only appears once per license activation. Agree to the terms and conditions and click <b>CONFIRM</b>.</p>
+                                                <img src="../../assets/merge/images/knox-sdk/klms-agent-tnc.png" alt="KLMS agent screen showing the terms and conditions screen" />
+                                                <p>The following code handles the activation and deactivation calls:</p><pre class="prettyprint" xml:space="preserve">
+private void handleLicenseCallbackResponse(Context context, LicenseResult licenseResult) {
+    if (licenseResult.isSuccess()) {
+        // activation or deactivation with success
+        if(licenseResult.isActivation()) {
+            // if activation case, permissions granted can be check using below code
+            List&lt;String&gt; permissionsGranted = licenseResult.getGrantedPermissions();
+            for (String permission : permissionsGranted) {
+                Log.i(TAG, permission);
+            }
+        }
+    } else {
+        // error during activation or deactivation
+        String errorMessage = getKPEErrorMessage(context, licenseResult);
+        showToast(context, errorMessage);
+    }
+}
+              </pre>
                                             </div>
                                             <!-- Panel Knox 2.8 -->
                                             <div class="tabs-panel" id="panel28">
