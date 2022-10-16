@@ -2815,8 +2815,7 @@
 									-->
                                     <div id="sec2" class="small-12 medium-8 large-9 columns">
                                         <div itemscope="itemscope" itemtype="http://schema.org/Guide">
-                                            <h1><a name="aanchor294"></a>
-                                                <MadCap:concept term="knox-manage" />Android Enterprise device commands</h1>
+                                            <h1>Android Enterprise device commands</h1>
                                             <p>The available commands for a device vary based on its management mode. For Fully Managed with Work Profile devices, you can select either the whole device or just the Work Profile as the recipient of the command.</p>
                                             <h2 id="device">Device</h2>
                                             <table>
@@ -2872,8 +2871,8 @@
                                                     <tr>
                                                         <td id="device-factory-reset">Factory Reset</td>
                                                         <td>
-                                                            <p>Performs factory reset and changes the device status to Unenrolled.</p>
-                                                            <p><b>Initialize SD Card when factory reset</b> — Click the check box to initialize the SD card during a factory reset.</p>
+                                                            <p>Performs a factory reset on the device and changes the device status to Unenrolled.</p>
+                                                            <p><b>Initialize SD Card when factory reset</b> — Select to initialize the SD card during the factory reset.</p>
                                                             <p><b>Deactivate Factory Reset Protection</b> — This option is only available when the profile is applied with the Factory Reset Protection policy or when you send the command to multiple devices. Click the check box to perform a factory reset without the Factory Reset Protection policy.</p>
                                                         </td>
                                                     </tr>
@@ -2979,6 +2978,23 @@
                                                     </tr>
                                                 </tbody>
                                             </table>
+                                            <h2 id="work-profile-controls">Work Profile Controls</h2>
+                                            <table>
+                                                <tbody>
+                                                    <tr>
+                                                        <th style="width: 20%">Device command</th>
+                                                        <th>Description</th>
+                                                    </tr>
+                                                    <tr>
+                                                        <td id="reset-work-profile-password">Reset Work Profile Password</td>
+                                                        <td>Initializes the work profile lock, if available. The device user must set a new lock before they can access work profile apps.</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td id="lock-screen">Lock Screen</td>
+                                                        <td>If the work profile has a lock separate from the personal profile, it locks. The next time the device user accesses a work profile app, they must unlock the work profile before they can continue.</td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
                                             <h2 id="knox-manage">Knox Manage</h2>
                                             <table>
                                                 <tbody>
@@ -2991,8 +3007,13 @@
                                                         <td>
                                                             <p>Sends an emergency message to the device. The message icon shows on the status bar of the device. You can set a push notification message of up to 80 characters.</p>
                                                             <p>On the <b>Push Notification</b> page, enter the title and content of the message. You can also select between <b>Notification</b> and <b>Pop up</b> for the send type.</p>
-                                                            <div class="callout note"><b>NOTE</b> —
-                            <ul><li value="1">If the device is locked, you must unlock it to view popup pages.</li><li value="2">Popup pages may not show on Work Profile devices running Android 10 and higher.</li></ul></div>
+                                                            <div class="callout note">
+                                                                <p><b>NOTE</b> —</p>
+                                                                <ul>
+                                                                    <li value="1">If the device is locked, you must unlock it to view popup pages.</li>
+                                                                    <li value="2">Popup pages may not show on Work Profile devices running Android 10 and higher.</li>
+                                                                </ul>
+                                                            </div>
                                                         </td>
                                                     </tr>
                                                     <tr>
@@ -3004,7 +3025,7 @@
                                                         <td>Updates the license of a selected device on the device list.</td>
                                                     </tr>
                                                     <tr>
-                                                        <td id="km-update-knox-manage">Update Knox Manage</td>
+                                                        <td id="km-update-knox-manage-agent">Update Knox Manage Agent</td>
                                                         <td>
                                                             <p>Updates the Knox Manage agent on the device for a new patch or version.</p>
                                                             <p>The agent information registered in the KM server is sent to the device, which then selects the appropriate agent to request installation files from the server.</p>
@@ -3018,14 +3039,14 @@
                                                         </td>
                                                     </tr>
                                                     <tr>
-                                                        <td id="km-lock-screen-knox-manage-agent">Lock Screen of Knox Manage agent</td>
+                                                        <td id="km-lock-screen-knox-manage-agent">Lock Screen of Knox Manage Agent</td>
                                                         <td>
                                                             <p>Locks the Knox Manage agent.</p>
                                                             <p>When the agent is locked, the device user must enter the agent's password that was configured during enrollment. If the user forgets the password, you can send the <a href="android-enterprise-device-commands.htm#km-delete-account" class="selected">Delete Account</a> command to sign the user out. Then, they can reset the password upon sign in.</p>
                                                         </td>
                                                     </tr>
                                                     <tr>
-                                                        <td id="km-unlock-knox-manage-agent">Unlock Knox Manage agent</td>
+                                                        <td id="km-unlock-knox-manage-agent">Unlock Knox Manage Agent</td>
                                                         <td>Unlocks the Knox Manage agent.</td>
                                                     </tr>
                                                     <tr>
@@ -3078,6 +3099,10 @@
                                                     <tr>
                                                         <td id="km-play-alarm-sound">Play Alarm Sound</td>
                                                         <td>Sounds an alarm on the device until the device user takes action. On non-kiosk devices, the alarm is accompanied by a push notification from the KM agent, and on kiosk devices it is accompanied by a pop-up. The alarm sounds regardless of the device's mute and vibration settings.</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td id="km-reapply-ksp-wifi-configurations">Reapply KSP Wi-Fi Configurations</td>
+                                                        <td>Syncs all Wi-Fi configurations defined by <a href="knox-workspace-policies.htm#interface">Knox Service Plugin policies</a>. This command is helpful in situations where the device user has removed a configured Wi-Fi network from the network settings.</td>
                                                     </tr>
                                                 </tbody>
                                             </table>
