@@ -153,85 +153,50 @@ Static Public Member Functions</h2></td></tr>
 </p>
 <ul>
 <li>Access to screen content through shared memory from Surface Flinger. <br/>
+ (Note: Surface Flinger is android's composition engine that composes the UI content and updates to the display<br/>
 </li>
-</ul>
-<p>(Note: Surface Flinger is android's composition engine that composes the</p>
-<p>UI content and updates to the display<br/>
-</p>
-<ul>
 <li>or Access to screen content through Read-only access to the framebuffer device.<br/>
 </li>
-</ul>
-<ul>
 <li>Screen Changed Notifications<br/>
+ ( This prevents the EDM client from having to poll the screen content continuously to check for changes. The notifications shall be received for both approaches fb0 and surface flinger.)<br/>
 </li>
-</ul>
-<p>( This prevents the EDM client from having to poll the screen content continuously</p>
-<p>to check for changes. The notifications shall be received for both approaches fb0</p>
-<p>and surface flinger.)<br/>
-</p>
-<ul>
 <li>Dirty Region feedback after capture<br/>
-</li>
+ </li>
 </ul>
-<p>The decision to use framebuffer device (fb0) or Surface Flinger mechanism is made based on the</p>
-<p>following aspects<br/>
+<p>The decision to use framebuffer device (fb0) or Surface Flinger mechanism is made based on the following aspects<br/>
 </p>
 <ul>
 <li>Availability of the approach <br/>
+ (Eg: - Only Surface Flinger approach works in some devices as the frame buffer device is not accessible/available),<br/>
 </li>
-</ul>
-<p>(Eg: - Only Surface Flinger approach works in some devices as the frame buffer</p>
-<p>device is not accessible/available),<br/>
-</p>
-<ul>
 <li>Frame rate yielded by individual approach and <br/>
 </li>
-</ul>
-<ul>
 <li>Accuracy of the screen content <br/>
-</li>
+ (Eg: - FB0 misses some overlay content. Lets say, Wallpaper is present in one layer, Status Bar present in one layer, remaining UIs present in another layer). <br/>
+ Note: This decision is done for every device at build time.<br/>
+ </li>
 </ul>
-<p>(Eg: - FB0 misses some overlay content. Lets say, Wallpaper is present in one</p>
-<p>layer, Status Bar present in one layer, remaining UIs present in another layer). <br/>
-</p>
-<p>Note: This decision is done for every device at build time.<br/>
-</p>
-<p>The EDM client can register a listener to receive notifications when the screen changes.</p>
-<p>On occurrence of screen change, the Remote Desktop module sends a screenChanged callback and</p>
-<p>waits for the capture request from the client.</p>
-<p>(Note: Subsequent screen changes are detected, but they are not notified to the client until</p>
-<p>the capture request for the outstanding callback is received.)<br/>
-</p>
-<p><br/>
-</p>
-<p>In case of Remote Desktop session<br/>
-</p>
-<p>&#160;&#160;1) If Remote Desktop Session is started at owner space<br/>
-</p>
-<p>&#160;&#160;&#160;&#160;&#160;&#160;a) It can capture owner space screens<br/>
-</p>
-<p>&#160;&#160;&#160;&#160;&#160;&#160;b) It can capture Android guest user's screens<br/>
+<p>The EDM client can register a listener to receive notifications when the screen changes. On occurrence of screen change, the Remote Desktop module sends a screenChanged callback and waits for the capture request from the client. (Note: Subsequent screen changes are detected, but they are not notified to the client until the capture request for the outstanding callback is received.)<br/>
+ <br/>
+ In case of Remote Desktop session<br/>
+ &#160;&#160;1) If Remote Desktop Session is started at owner space<br/>
+ &#160;&#160;&#160;&#160;&#160;&#160;a) It can capture owner space screens<br/>
+ &#160;&#160;&#160;&#160;&#160;&#160;b) It can capture Android guest user's screens<br/>
 </p>
 <p>&#160;&#160;2) If Remote Desktop Session is started at Android guest user<br/>
+ &#160;&#160;&#160;&#160;&#160;&#160;a) It can't capture owner space screens<br/>
+ &#160;&#160;&#160;&#160;&#160;&#160;b) It can capture its own user space screens<br/>
 </p>
-<p>&#160;&#160;&#160;&#160;&#160;&#160;a) It can't capture owner space screens<br/>
-</p>
-<p>&#160;&#160;&#160;&#160;&#160;&#160;b) It can capture its own user space screens<br/>
-</p>
-<p>Events injected by Remote Injection are not injected into user space where Remote Desktop</p>
-<p>is disabled.</p>
-<p><br/>
-</p>
-<dl class="user"><dt><b>PolicyGroupID: </b></dt><dd>Remote Control</dd></dl>
-<dl class="since"><dt><b>Since:</b></dt><dd>API level 3</dd>
+<p>Events injected by Remote Injection are not injected into user space where Remote Desktop is disabled. <br/>
+ </p>
+<dl class="user"><dt><b>PolicyGroupID: </b></dt><dd>Remote Control </dd></dl>
+<dl class="since"><dt><b>Since:</b></dt><dd>API level 3 </dd>
 <dd>
-MDM 2.1</dd></dl>
-<dl class="deprecated"><dt><b><a class="el" href="deprecated.html#_deprecated000013">Deprecated:</a></b></dt><dd>API level 35</dd></dl>
-<dl class="deprecated"><dt><b><a class="el" href="deprecated.html#_deprecated000014">Deprecated:</a></b></dt><dd>Knox 3.8</dd></dl>
-<dl class="user"><dt><b>Permission: </b></dt><dd>This policy requires the caller to have the</dd></dl>
-<p>"com.samsung.android.knox.permission.KNOX_REMOTE_CONTROL" permission</p>
-<p>which has a protection level of signature. </p>
+MDM 2.1 </dd></dl>
+<dl class="deprecated"><dt><b><a class="el" href="deprecated.html#_deprecated000007">Deprecated:</a></b></dt><dd><p class="startdd">API level 35 </p>
+<p class="enddd">Knox 3.8 </p>
+</dd></dl>
+<dl class="user"><dt><b>Permission: </b></dt><dd>This policy requires the caller to have the "com.samsung.android.knox.permission.KNOX_REMOTE_CONTROL" permission which has a protection level of signature. </dd></dl>
 </div><hr/><h2>Member Function Documentation</h2>
 <a class="anchor" id="a0ab5a0cf162a91c5e69abeed90f8ba09"></a><!-- doxytag: member="knoxremotedesktop::IRemoteDesktop::captureScreen" ref="a0ab5a0cf162a91c5e69abeed90f8ba09" args="(DirtyRegion &amp;region)=0" -->
 <div class="memitem">
@@ -249,51 +214,80 @@ MDM 2.1</dd></dl>
 <div class="memdoc">
 
 <p>API to capture the screen. </p>
-<p>Admin can use this API to capture the screen. Remote Desktop</p>
-<p>module returns the changed region or dirty region in response</p>
-<p>to this request. (This API updates the screen contents to shared memory</p>
-<p>if fdType == FD_SHARED_MEM.)<br/>
-</p>
-<p>[NOTE] It is recommended to follow the following sequence:<br/>
-</p>
-<p>Step 1 : Call <a class="el" href="classknoxremotedesktop_1_1IRemoteDesktop.html#a86eefbec946d605470af069999763f74" title="Returns an instance of a RemoteDesktop client.">IRemoteDesktop::getInstance()</a> to get an instance of <a class="el" href="classknoxremotedesktop_1_1IRemoteDesktop.html" title="Remote Desktop Module provides means by which the admin capture the device screen content...">IRemoteDesktop</a><br/>
+<p>Admin can use this API to capture the screen. Remote Desktop module returns the changed region or dirty region in response to this request. (This API updates the screen contents to shared memory if fdType == FD_SHARED_MEM.)<br/>
+ [NOTE] It is recommended to follow the following sequence:<br/>
+ Step 1 : Call <a class="el" href="classknoxremotedesktop_1_1IRemoteDesktop.html#a86eefbec946d605470af069999763f74" title="Returns an instance of a RemoteDesktop client.">IRemoteDesktop::getInstance()</a> to get an instance of <a class="el" href="classknoxremotedesktop_1_1IRemoteDesktop.html" title="Remote Desktop Module provides means by which the admin capture the device screen content...">IRemoteDesktop</a><br/>
 </p>
 <p>Step 2 : Call IRemoteDesktop::getDefaultScreenInfo(&amp;hwwidth,&amp;hwheight,&amp;hwbytesPerPixel,&amp;hwpixelFormat) to get the hardware width,height,pixel size and format<br/>
-</p>
-<p>Step 3 : Call <a class="el" href="classknoxremotedesktop_1_1IRemoteDesktop.html#aeb13652779ac87ce9de9a8155f6dc60b" title="API to set the framebuffer&#39;s width, height and format preferred by the admin.">IRemoteDesktop::setScreenInfo</a> (prefW, prefH, prefFormat) to set the desired screen width,height and pixel format<br/>
-</p>
-<p>Step 4 : Call <a class="el" href="classknoxremotedesktop_1_1IRemoteDesktop.html#a7bed40d98c61713a69cf1dad8b37beae" title="API to initialize remote desktop session.">IRemoteDesktop::init()</a><br/>
-</p>
-<p>Step 5 : Call <a class="el" href="classknoxremotedesktop_1_1IRemoteDesktop.html#a57d5432823adfd7cfb72441469ccc98e" title="API to get Frame Buffer Information.">IRemoteDesktop::getFrameBufInfo()</a> to get file descriptor and type of it<br/>
-</p>
-<p>Step 6 : Call mmap() to map file descriptor to memory<br/>
-</p>
-<p>Step 7 : Set screen update listener<br/>
-</p>
-<p>Step 8 : Call <a class="el" href="classknoxremotedesktop_1_1IRemoteDesktop.html#a0ab5a0cf162a91c5e69abeed90f8ba09" title="API to capture the screen.">IRemoteDesktop::captureScreen()</a> to get dirty regions after screenChanged() callback is called<br/>
-</p>
+ Step 3 : Call <a class="el" href="classknoxremotedesktop_1_1IRemoteDesktop.html#aeb13652779ac87ce9de9a8155f6dc60b" title="API to set the framebuffer&#39;s width, height and format preferred by the admin.">IRemoteDesktop::setScreenInfo</a> (prefW, prefH, prefFormat) to set the desired screen width,height and pixel format<br/>
+ Step 4 : Call <a class="el" href="classknoxremotedesktop_1_1IRemoteDesktop.html#a7bed40d98c61713a69cf1dad8b37beae" title="API to initialize remote desktop session.">IRemoteDesktop::init()</a><br/>
+ Step 5 : Call <a class="el" href="classknoxremotedesktop_1_1IRemoteDesktop.html#a57d5432823adfd7cfb72441469ccc98e" title="API to get Frame Buffer Information.">IRemoteDesktop::getFrameBufInfo()</a> to get file descriptor and type of it<br/>
+ Step 6 : Call mmap() to map file descriptor to memory<br/>
+ Step 7 : Set screen update listener<br/>
+ Step 8 : Call <a class="el" href="classknoxremotedesktop_1_1IRemoteDesktop.html#a0ab5a0cf162a91c5e69abeed90f8ba09" title="API to capture the screen.">IRemoteDesktop::captureScreen()</a> to get dirty regions after screenChanged() callback is called<br/>
+ </p>
 <p>Example client call:</p>
-<pre></pre><pre> class RemoteDesktopListener : public <a class="el" href="classknoxremotedesktop_1_1IRemoteDesktopListener.html" title="This class provides the interface to get notified when the screen changes.">IRemoteDesktopListener</a> {</pre><pre> 	 RemoteDesktopListener() {}</pre><pre> 	 virtual void screenChanged() {</pre><pre> 		 LOGI("RemoteDesktopListener :: screenChanged()");</pre><pre>		   	 // Capture Screen Request code</pre><pre>			 <a class="el" href="classknoxremotedesktop_1_1DirtyRegion.html" title="This structure provides the Dirty Region Information.">DirtyRegion</a> dirtyRegion;</pre><pre>			 bool err = remoteDesktop-&gt;captureScreen(dirtyRegion);</pre><pre>			 if(err == false)  {</pre><pre>				 // failure code</pre><pre>			} else {</pre><pre>				 // success code</pre><pre>			}</pre><pre>		  }</pre><pre>	   }</pre><pre>	 ....</pre><pre>	 <a class="el" href="classknoxremotedesktop_1_1IRemoteDesktop.html" title="Remote Desktop Module provides means by which the admin capture the device screen content...">IRemoteDesktop</a> *remoteDesktop = RemoteDesktop::getInstance();</pre><pre>	 int w = 360, h = 640, format = PF_RGBA_8888;</pre><pre>	 //Only in case, when user is in Landscape mode and facing problem in starting the Remote Session in Android 10 device
-	 int w = 640, h = 360, format = PF_RGBA_8888;</pre><pre>	 int	  mFD;</pre><pre>	 FDType   mFDType;</pre><pre>	 bool ret;</pre><pre>	 int	hwwidth, hwheight, hwpixelFormat, hwbytesPerPixel;</pre><pre>	 remotedesktop-&gt;getDefaultScreenInfo(&amp;hwwidth, &amp;hwheight, &amp;hwbytesPerPixel, &amp;hwpixelFormat);</pre><pre>	 ret = remoteDesktop-&gt;setScreenInfo(w,h,format);</pre><pre>	 if(ret == false){</pre><pre>		 // failure code</pre><pre>	 }</pre><pre>	 ret = remoteDesktop-&gt;<a class="el" href="classknoxremotedesktop_1_1IRemoteDesktop.html#a7bed40d98c61713a69cf1dad8b37beae" title="API to initialize remote desktop session.">init()</a>;</pre><pre>	 if(ret == false){</pre><pre>		 // failure code</pre><pre>	 }</pre><pre>	 ret = remoteDesktop-&gt;getFrameBufInfo(&amp;mFD, &amp;mFDType);</pre><pre>	 if(ret == false){</pre><pre>		 // failure code</pre><pre>	 }</pre><pre>	 if (mFDType == FD_DEV_FB0) {</pre><pre>		 struct fb_var_screeninfo vinfo;</pre><pre>		 if(ioctl(mFD, FBIOGET_VSCREENINFO, &amp;vinfo) &lt; 0) return false;</pre><pre>		 int offset = vinfo.xoffset * mBytesPerPixel + vinfo.xres * vinfo.yoffset * mBytesPerPixel;</pre><pre>		 mFrame = (unsigned short *) mmap(0, mFrameBufferSize, PROT_READ, MAP_PRIVATE, mFD, offset);</pre><pre>	 } else if (mFDType == FD_SHARED_MEM) {</pre><pre>		 mFrame = (unsigned short *) mmap(0, mFrameBufferSize, PROT_READ, MAP_SHARED, mFD, 0);</pre><pre>	 } else {</pre><pre>		 LOGE("mapFrameBuffer Failed");</pre><pre>		 return false;</pre><pre>	 }</pre><pre>	 <a class="el" href="classknoxremotedesktop_1_1IRemoteDesktopListener.html" title="This class provides the interface to get notified when the screen changes.">IRemoteDesktopListener</a> *remoteDesktoplistener = new RemoteDesktopListener();</pre><pre>	 remoteDesktop-&gt;setListener(remoteDesktoplistener);</pre><pre> </pre><dl class="user"><dt><b>Permission: </b></dt><dd>The use of this API requires the caller to have the</dd></dl>
-<p>"com.samsung.android.knox.permission.KNOX_REMOTE_CONTROL" permission which has a protection level</p>
-<p>of signature.</p>
+<pre>
+ class RemoteDesktopListener : public <a class="el" href="classknoxremotedesktop_1_1IRemoteDesktopListener.html" title="This class provides the interface to get notified when the screen changes.">IRemoteDesktopListener</a> {
+ 	 RemoteDesktopListener() {}
+ 	 virtual void screenChanged() {
+ 		 LOGI("RemoteDesktopListener :: screenChanged()");
+		   	 // Capture Screen Request code
+			 <a class="el" href="classknoxremotedesktop_1_1DirtyRegion.html" title="This structure provides the Dirty Region Information.">DirtyRegion</a> dirtyRegion;
+			 bool err = remoteDesktop-&gt;captureScreen(dirtyRegion);
+			 if(err == false)  {
+				 // failure code
+			} else {
+				 // success code
+			}
+		  }
+	   }
+	 ....</pre><pre>	 <a class="el" href="classknoxremotedesktop_1_1IRemoteDesktop.html" title="Remote Desktop Module provides means by which the admin capture the device screen content...">IRemoteDesktop</a> *remoteDesktop = RemoteDesktop::getInstance();
+	 int w = 360, h = 640, format = PF_RGBA_8888;</pre><pre>	 //Only in case, when user is in Landscape mode and facing problem in starting the Remote Session in Android 10 device
+	 int w = 640, h = 360, format = PF_RGBA_8888;</pre><pre>	 int	  mFD;
+	 FDType   mFDType;
+	 bool ret;
+	 int	hwwidth, hwheight, hwpixelFormat, hwbytesPerPixel;</pre><pre>	 remotedesktop-&gt;getDefaultScreenInfo(&amp;hwwidth, &amp;hwheight, &amp;hwbytesPerPixel, &amp;hwpixelFormat);
+	 ret = remoteDesktop-&gt;setScreenInfo(w,h,format);
+	 if(ret == false){
+		 // failure code
+	 }</pre><pre>	 ret = remoteDesktop-&gt;<a class="el" href="classknoxremotedesktop_1_1IRemoteDesktop.html#a7bed40d98c61713a69cf1dad8b37beae" title="API to initialize remote desktop session.">init()</a>;
+	 if(ret == false){
+		 // failure code
+	 }</pre><pre>	 ret = remoteDesktop-&gt;getFrameBufInfo(&amp;mFD, &amp;mFDType);
+	 if(ret == false){
+		 // failure code
+	 }</pre><pre>	 if (mFDType == FD_DEV_FB0) {
+		 struct fb_var_screeninfo vinfo;
+		 if(ioctl(mFD, FBIOGET_VSCREENINFO, &amp;vinfo) &lt; 0) return false;
+		 int offset = vinfo.xoffset * mBytesPerPixel + vinfo.xres * vinfo.yoffset * mBytesPerPixel;
+		 mFrame = (unsigned short *) mmap(0, mFrameBufferSize, PROT_READ, MAP_PRIVATE, mFD, offset);
+	 } else if (mFDType == FD_SHARED_MEM) {
+		 mFrame = (unsigned short *) mmap(0, mFrameBufferSize, PROT_READ, MAP_SHARED, mFD, 0);
+	 } else {
+		 LOGE("mapFrameBuffer Failed");
+		 return false;
+	 }</pre><pre>	 <a class="el" href="classknoxremotedesktop_1_1IRemoteDesktopListener.html" title="This class provides the interface to get notified when the screen changes.">IRemoteDesktopListener</a> *remoteDesktoplistener = new RemoteDesktopListener();
+	 remoteDesktop-&gt;setListener(remoteDesktoplistener);
+ </pre><dl class="user"><dt><b>Permission: </b></dt><dd>The use of this API requires the caller to have the "com.samsung.android.knox.permission.KNOX_REMOTE_CONTROL" permission which has a protection level of signature.</dd></dl>
 <dl class="params"><dt><b>Parameters:</b></dt><dd>
   <table class="params">
-    <tr><td class="paramname">region</td><td>Dirty Region Information</td></tr>
+    <tr><td class="paramname">region</td><td>Dirty Region Information </td></tr>
   </table>
   </dd>
 </dl>
-<dl class="return"><dt><b>Returns:</b></dt><dd><code>true</code> if captured successfully, else <code>false</code>.</dd></dl>
-<dl class="since"><dt><b>Since:</b></dt><dd>API level 3</dd>
+<dl class="return"><dt><b>Returns:</b></dt><dd><code>true</code> if captured successfully, else <code>false</code>. </dd></dl>
+<dl class="since"><dt><b>Since:</b></dt><dd>API level 3 </dd>
 <dd>
-MDM 2.1</dd></dl>
-<dl class="deprecated"><dt><b><a class="el" href="deprecated.html#_deprecated000028">Deprecated:</a></b></dt><dd>API level 35</dd></dl>
-<dl class="deprecated"><dt><b><a class="el" href="deprecated.html#_deprecated000029">Deprecated:</a></b></dt><dd>Knox 3.8</dd></dl>
-<dl class="see"><dt><b>See also:</b></dt><dd><a class="el" href="classknoxremotedesktop_1_1IRemoteDesktop.html#a86eefbec946d605470af069999763f74" title="Returns an instance of a RemoteDesktop client.">getInstance()</a></dd>
+MDM 2.1 </dd></dl>
+<dl class="deprecated"><dt><b><a class="el" href="deprecated.html#_deprecated000015">Deprecated:</a></b></dt><dd><p class="startdd">API level 35 </p>
+<p class="enddd">Knox 3.8 </p>
+</dd></dl>
+<dl class="see"><dt><b>See also:</b></dt><dd><a class="el" href="classknoxremotedesktop_1_1IRemoteDesktop.html#a86eefbec946d605470af069999763f74" title="Returns an instance of a RemoteDesktop client.">getInstance()</a> </dd>
 <dd>
-<a class="el" href="classknoxremotedesktop_1_1IRemoteDesktop.html#a7bed40d98c61713a69cf1dad8b37beae" title="API to initialize remote desktop session.">init()</a></dd>
+<a class="el" href="classknoxremotedesktop_1_1IRemoteDesktop.html#a7bed40d98c61713a69cf1dad8b37beae" title="API to initialize remote desktop session.">init()</a> </dd>
 <dd>
-<a class="el" href="classknoxremotedesktop_1_1IRemoteDesktop.html#ae9a1e6863bfc2affad4462bc0a29914a" title="API to get Frame Buffer&#39;s Resolution/PixelFormat information.">getScreenInfo(int*, int*, int*, int*)</a></dd>
+<a class="el" href="classknoxremotedesktop_1_1IRemoteDesktop.html#ae9a1e6863bfc2affad4462bc0a29914a" title="API to get Frame Buffer&#39;s Resolution/PixelFormat information.">getScreenInfo(int*, int*, int*, int*)</a> </dd>
 <dd>
 <a class="el" href="classknoxremotedesktop_1_1IRemoteDesktop.html#a57d5432823adfd7cfb72441469ccc98e" title="API to get Frame Buffer Information.">getFrameBufInfo(int *, FDType *)</a> </dd></dl>
 
@@ -363,7 +357,7 @@ Integer value 2 Due to some unknown error. </dd></dl>
 <dl class="since"><dt><b>Since:</b></dt><dd>API level 30 </dd>
 <dd>
 KNOX 3.4.1 </dd></dl>
-<dl class="deprecated"><dt><b><a class="el" href="deprecated.html#_deprecated000036">Deprecated:</a></b></dt><dd><p class="startdd">API level 35 </p>
+<dl class="deprecated"><dt><b><a class="el" href="deprecated.html#_deprecated000019">Deprecated:</a></b></dt><dd><p class="startdd">API level 35 </p>
 <p class="enddd">Knox 3.8 </p>
 </dd></dl>
 <dl class="see"><dt><b>See also:</b></dt><dd><a class="el" href="classknoxremotedesktop_1_1IRemoteDesktop.html#a832ccdcdd8a6d30121d7c5298df08708" title="API to set Dex screen framebuffer&#39;s width and height by the admin.">setDexScreenInfo(int prefW, int prefH)</a> </dd>
@@ -412,36 +406,42 @@ KNOX 3.4.1 </dd></dl>
 <div class="memdoc">
 
 <p>API to get the default screen information. </p>
-<p>Admin can use this API to get the default hardware screen dimensions, pixel formats and</p>
-<p>pixel byte size. This new API is introduced as getScreenInfo need not return the default screen</p>
-<p>information as it returns the selected framebuffer information based on the preferences</p>
-<p>set by the admin</p>
+<p>Admin can use this API to get the default hardware screen dimensions, pixel formats and pixel byte size. This new API is introduced as getScreenInfo need not return the default screen information as it returns the selected framebuffer information based on the preferences set by the admin</p>
 <p>Example client call:</p>
-<pre></pre><pre>  <a class="el" href="classknoxremotedesktop_1_1IRemoteDesktop.html" title="Remote Desktop Module provides means by which the admin capture the device screen content...">IRemoteDesktop</a> *remoteDesktop = RemoteDesktop::getInstance();</pre><pre>  bool ret = remoteDesktop-&gt;<a class="el" href="classknoxremotedesktop_1_1IRemoteDesktop.html#a7bed40d98c61713a69cf1dad8b37beae" title="API to initialize remote desktop session.">init()</a>;</pre><pre>  if(ret == false)  {</pre><pre>     // failure code</pre><pre>  } else {</pre><pre>     // success code</pre><pre>     int	hwwidth, hwheight, hwpixelFormat, hwbytesPerPixel;</pre><pre>     remotedesktop-&gt;getDefaultScreenInfo(&amp;hwwidth, &amp;hwheight, &amp;hwbytesPerPixel, &amp;hwpixelFormat);</pre><pre>  }</pre><pre> </pre><dl class="user"><dt><b>Permission: </b></dt><dd>The use of this API requires the caller to have the</dd></dl>
-<p>"com.samsung.android.knox.permission.KNOX_REMOTE_CONTROL" permission which has a protection level</p>
-<p>of signature.</p>
+<pre>
+  <a class="el" href="classknoxremotedesktop_1_1IRemoteDesktop.html" title="Remote Desktop Module provides means by which the admin capture the device screen content...">IRemoteDesktop</a> *remoteDesktop = RemoteDesktop::getInstance();
+  bool ret = remoteDesktop-&gt;<a class="el" href="classknoxremotedesktop_1_1IRemoteDesktop.html#a7bed40d98c61713a69cf1dad8b37beae" title="API to initialize remote desktop session.">init()</a>;
+  if(ret == false)  {
+     // failure code
+  } else {
+     // success code	 
+     int	hwwidth, hwheight, hwpixelFormat, hwbytesPerPixel;	
+     remotedesktop-&gt;getDefaultScreenInfo(&amp;hwwidth, &amp;hwheight, &amp;hwbytesPerPixel, &amp;hwpixelFormat);
+  }
+ </pre><dl class="user"><dt><b>Permission: </b></dt><dd>The use of this API requires the caller to have the "com.samsung.android.knox.permission.KNOX_REMOTE_CONTROL" permission which has a protection level of signature.</dd></dl>
 <dl class="params"><dt><b>Parameters:</b></dt><dd>
   <table class="params">
-    <tr><td class="paramname">hwwidth</td><td>Hardware Screen Width</td></tr>
-    <tr><td class="paramname">hwHeight</td><td>Hardware Screen Height</td></tr>
-    <tr><td class="paramname">hwbytesPerPixel</td><td>Hardware Pixel Size in Bytes</td></tr>
-    <tr><td class="paramname">hwpixelFormat</td><td>Hardware Pixel Format.</td></tr>
+    <tr><td class="paramname">hwwidth</td><td>Hardware Screen Width </td></tr>
+    <tr><td class="paramname">hwHeight</td><td>Hardware Screen Height </td></tr>
+    <tr><td class="paramname">hwbytesPerPixel</td><td>Hardware Pixel Size in Bytes </td></tr>
+    <tr><td class="paramname">hwpixelFormat</td><td>Hardware Pixel Format. </td></tr>
   </table>
   </dd>
 </dl>
-<dl class="return"><dt><b>Returns:</b></dt><dd>nothing</dd></dl>
-<dl class="since"><dt><b>Since:</b></dt><dd>API level 3</dd>
+<dl class="return"><dt><b>Returns:</b></dt><dd>nothing </dd></dl>
+<dl class="since"><dt><b>Since:</b></dt><dd>API level 3 </dd>
 <dd>
-MDM 2.1</dd></dl>
-<dl class="deprecated"><dt><b><a class="el" href="deprecated.html#_deprecated000034">Deprecated:</a></b></dt><dd>API level 35</dd></dl>
-<dl class="deprecated"><dt><b><a class="el" href="deprecated.html#_deprecated000035">Deprecated:</a></b></dt><dd>Knox 3.8</dd></dl>
-<dl class="see"><dt><b>See also:</b></dt><dd><a class="el" href="classknoxremotedesktop_1_1IRemoteDesktop.html#a86eefbec946d605470af069999763f74" title="Returns an instance of a RemoteDesktop client.">getInstance()</a></dd>
+MDM 2.1 </dd></dl>
+<dl class="deprecated"><dt><b><a class="el" href="deprecated.html#_deprecated000018">Deprecated:</a></b></dt><dd><p class="startdd">API level 35 </p>
+<p class="enddd">Knox 3.8 </p>
+</dd></dl>
+<dl class="see"><dt><b>See also:</b></dt><dd><a class="el" href="classknoxremotedesktop_1_1IRemoteDesktop.html#a86eefbec946d605470af069999763f74" title="Returns an instance of a RemoteDesktop client.">getInstance()</a> </dd>
 <dd>
-<a class="el" href="classknoxremotedesktop_1_1IRemoteDesktop.html#a7bed40d98c61713a69cf1dad8b37beae" title="API to initialize remote desktop session.">init()</a></dd>
+<a class="el" href="classknoxremotedesktop_1_1IRemoteDesktop.html#a7bed40d98c61713a69cf1dad8b37beae" title="API to initialize remote desktop session.">init()</a> </dd>
 <dd>
-<a class="el" href="classknoxremotedesktop_1_1IRemoteDesktop.html#a57d5432823adfd7cfb72441469ccc98e" title="API to get Frame Buffer Information.">getFrameBufInfo(int *, FDType *)</a></dd>
+<a class="el" href="classknoxremotedesktop_1_1IRemoteDesktop.html#a57d5432823adfd7cfb72441469ccc98e" title="API to get Frame Buffer Information.">getFrameBufInfo(int *, FDType *)</a> </dd>
 <dd>
-<a class="el" href="classknoxremotedesktop_1_1IRemoteDesktop.html#af22e75002f52d837cfc9d9589647ddb9" title="API to register Screen Event listener.">setListener(IRemoteDesktopListener*)</a></dd>
+<a class="el" href="classknoxremotedesktop_1_1IRemoteDesktop.html#af22e75002f52d837cfc9d9589647ddb9" title="API to register Screen Event listener.">setListener(IRemoteDesktopListener*)</a> </dd>
 <dd>
 <a class="el" href="classknoxremotedesktop_1_1IRemoteDesktop.html#a0ab5a0cf162a91c5e69abeed90f8ba09" title="API to capture the screen.">captureScreen(DirtyRegion&amp;)</a> </dd></dl>
 
@@ -495,7 +495,7 @@ MDM 2.1</dd></dl>
 <dl class="since"><dt><b>Since:</b></dt><dd>API level 30 </dd>
 <dd>
 KNOX 3.4.1 </dd></dl>
-<dl class="deprecated"><dt><b><a class="el" href="deprecated.html#_deprecated000038">Deprecated:</a></b></dt><dd><p class="startdd">API level 35 </p>
+<dl class="deprecated"><dt><b><a class="el" href="deprecated.html#_deprecated000021">Deprecated:</a></b></dt><dd><p class="startdd">API level 35 </p>
 <p class="enddd">Knox 3.8 </p>
 </dd></dl>
 <dl class="see"><dt><b>See also:</b></dt><dd><a class="el" href="classknoxremotedesktop_1_1IRemoteDesktop.html#afd74363dbd7affbbdae3f5118ff5c17c" title="API to get the default Dex screen information.">getDefaultDexScreenInfo(int *hwwidth, int *hwheight, int *hwbytesPerPixel)</a> </dd>
@@ -567,7 +567,7 @@ KNOX 3.4.1 </dd></dl>
 <dl class="since"><dt><b>Since:</b></dt><dd>API level 30 </dd>
 <dd>
 KNOX 3.4.1 </dd></dl>
-<dl class="deprecated"><dt><b><a class="el" href="deprecated.html#_deprecated000039">Deprecated:</a></b></dt><dd><p class="startdd">API level 35 </p>
+<dl class="deprecated"><dt><b><a class="el" href="deprecated.html#_deprecated000022">Deprecated:</a></b></dt><dd><p class="startdd">API level 35 </p>
 <p class="enddd">Knox 3.8 </p>
 </dd></dl>
 <dl class="see"><dt><b>See also:</b></dt><dd><a class="el" href="classknoxremotedesktop_1_1IRemoteDesktop.html#afd74363dbd7affbbdae3f5118ff5c17c" title="API to get the default Dex screen information.">getDefaultDexScreenInfo(int *hwwidth, int *hwheight, int *hwbytesPerPixel)</a> </dd>
@@ -604,32 +604,46 @@ KNOX 3.4.1 </dd></dl>
 <div class="memdoc">
 
 <p>API to get Frame Buffer Information. </p>
-<p>Admin can use this API to get File Descriptor to</p>
-<p>framebuffer device or Shared memory.</p>
+<p>Admin can use this API to get File Descriptor to framebuffer device or Shared memory. </p>
 <p>Example client call:</p>
-<pre></pre><pre>  <a class="el" href="classknoxremotedesktop_1_1IRemoteDesktop.html" title="Remote Desktop Module provides means by which the admin capture the device screen content...">IRemoteDesktop</a> *remoteDesktop = RemoteDesktop::getInstance();</pre><pre>  bool ret = remoteDesktop-&gt;<a class="el" href="classknoxremotedesktop_1_1IRemoteDesktop.html#a7bed40d98c61713a69cf1dad8b37beae" title="API to initialize remote desktop session.">init()</a>;</pre><pre>  if(ret == false)  {</pre><pre>     // failure code</pre><pre>  } else {</pre><pre>     // success code</pre><pre>     int	     mFD;</pre><pre>     FDType 	 mFDType;</pre><pre>     bool err = remoteDesktop-&gt;getFrameBufInfo(&amp;mFD, &amp;mFDType);</pre><pre>     if(err == false)  {</pre><pre>         // failure code</pre><pre>     } else {</pre><pre>         // success code</pre><pre>     }</pre><pre>  }</pre><pre> </pre><dl class="user"><dt><b>Permission: </b></dt><dd>The use of this API requires the caller to have the</dd></dl>
-<p>"com.samsung.android.knox.permission.KNOX_REMOTE_CONTROL" permission which has a protection level</p>
-<p>of signature.</p>
+<pre>
+  <a class="el" href="classknoxremotedesktop_1_1IRemoteDesktop.html" title="Remote Desktop Module provides means by which the admin capture the device screen content...">IRemoteDesktop</a> *remoteDesktop = RemoteDesktop::getInstance();
+  bool ret = remoteDesktop-&gt;<a class="el" href="classknoxremotedesktop_1_1IRemoteDesktop.html#a7bed40d98c61713a69cf1dad8b37beae" title="API to initialize remote desktop session.">init()</a>;
+  if(ret == false)  {
+     // failure code
+  } else {
+     // success code	 
+     int	     mFD;
+     FDType 	 mFDType;
+     bool err = remoteDesktop-&gt;getFrameBufInfo(&amp;mFD, &amp;mFDType);
+     if(err == false)  {
+         // failure code
+     } else {
+         // success code	 
+     }
+  }
+ </pre><dl class="user"><dt><b>Permission: </b></dt><dd>The use of this API requires the caller to have the "com.samsung.android.knox.permission.KNOX_REMOTE_CONTROL" permission which has a protection level of signature.</dd></dl>
 <dl class="params"><dt><b>Parameters:</b></dt><dd>
   <table class="params">
-    <tr><td class="paramname">fd</td><td>File Descriptor</td></tr>
-    <tr><td class="paramname">fdType</td><td>File Descriptor Type (Shared Memory or Frame Buffer)</td></tr>
+    <tr><td class="paramname">fd</td><td>File Descriptor </td></tr>
+    <tr><td class="paramname">fdType</td><td>File Descriptor Type (Shared Memory or Frame Buffer) </td></tr>
   </table>
   </dd>
 </dl>
-<dl class="return"><dt><b>Returns:</b></dt><dd><code>true</code> if frame buffer information successfully retrieved, else <code>false</code>.</dd></dl>
-<dl class="since"><dt><b>Since:</b></dt><dd>API level 3</dd>
+<dl class="return"><dt><b>Returns:</b></dt><dd><code>true</code> if frame buffer information successfully retrieved, else <code>false</code>. </dd></dl>
+<dl class="since"><dt><b>Since:</b></dt><dd>API level 3 </dd>
 <dd>
-MDM 2.1</dd></dl>
-<dl class="deprecated"><dt><b><a class="el" href="deprecated.html#_deprecated000024">Deprecated:</a></b></dt><dd>API level 35</dd></dl>
-<dl class="deprecated"><dt><b><a class="el" href="deprecated.html#_deprecated000025">Deprecated:</a></b></dt><dd>Knox 3.8</dd></dl>
-<dl class="see"><dt><b>See also:</b></dt><dd><a class="el" href="classknoxremotedesktop_1_1IRemoteDesktop.html#a86eefbec946d605470af069999763f74" title="Returns an instance of a RemoteDesktop client.">getInstance()</a></dd>
+MDM 2.1 </dd></dl>
+<dl class="deprecated"><dt><b><a class="el" href="deprecated.html#_deprecated000013">Deprecated:</a></b></dt><dd><p class="startdd">API level 35 </p>
+<p class="enddd">Knox 3.8 </p>
+</dd></dl>
+<dl class="see"><dt><b>See also:</b></dt><dd><a class="el" href="classknoxremotedesktop_1_1IRemoteDesktop.html#a86eefbec946d605470af069999763f74" title="Returns an instance of a RemoteDesktop client.">getInstance()</a> </dd>
 <dd>
-<a class="el" href="classknoxremotedesktop_1_1IRemoteDesktop.html#a7bed40d98c61713a69cf1dad8b37beae" title="API to initialize remote desktop session.">init()</a></dd>
+<a class="el" href="classknoxremotedesktop_1_1IRemoteDesktop.html#a7bed40d98c61713a69cf1dad8b37beae" title="API to initialize remote desktop session.">init()</a> </dd>
 <dd>
-<a class="el" href="classknoxremotedesktop_1_1IRemoteDesktop.html#ae9a1e6863bfc2affad4462bc0a29914a" title="API to get Frame Buffer&#39;s Resolution/PixelFormat information.">getScreenInfo(int*, int*, int*, int*)</a></dd>
+<a class="el" href="classknoxremotedesktop_1_1IRemoteDesktop.html#ae9a1e6863bfc2affad4462bc0a29914a" title="API to get Frame Buffer&#39;s Resolution/PixelFormat information.">getScreenInfo(int*, int*, int*, int*)</a> </dd>
 <dd>
-<a class="el" href="classknoxremotedesktop_1_1IRemoteDesktop.html#af22e75002f52d837cfc9d9589647ddb9" title="API to register Screen Event listener.">setListener(IRemoteDesktopListener*)</a></dd>
+<a class="el" href="classknoxremotedesktop_1_1IRemoteDesktop.html#af22e75002f52d837cfc9d9589647ddb9" title="API to register Screen Event listener.">setListener(IRemoteDesktopListener*)</a> </dd>
 <dd>
 <a class="el" href="classknoxremotedesktop_1_1IRemoteDesktop.html#a0ab5a0cf162a91c5e69abeed90f8ba09" title="API to capture the screen.">captureScreen(DirtyRegion&amp;)</a> </dd></dl>
 
@@ -650,15 +664,24 @@ MDM 2.1</dd></dl>
 <div class="memdoc">
 
 <p>Returns an instance of a RemoteDesktop client. </p>
-<p>Admin can use this API to initialize the remote desktop session</p>
-<p>establishing the connection to the underneath capture mechanism.</p>
+<p>Admin can use this API to initialize the remote desktop session establishing the connection to the underneath capture mechanism. </p>
 <p>Example client call:</p>
-<pre></pre><pre>  <a class="el" href="classknoxremotedesktop_1_1IRemoteDesktop.html" title="Remote Desktop Module provides means by which the admin capture the device screen content...">IRemoteDesktop</a> *remoteDesktop = RemoteDesktop::getInstance();</pre><pre>  bool ret = remoteDesktop-&gt;<a class="el" href="classknoxremotedesktop_1_1IRemoteDesktop.html#a7bed40d98c61713a69cf1dad8b37beae" title="API to initialize remote desktop session.">init()</a>;</pre><pre>  if(ret == false)  { // failure due to either permission</pre><pre>                      // denied or other initialization failures</pre><pre>     // failure code</pre><pre>  } else {</pre><pre>     // success code</pre><pre>  }</pre><pre> </pre><dl class="return"><dt><b>Returns:</b></dt><dd>A remote desktop instance if successful, else <code>null</code>.</dd></dl>
-<dl class="since"><dt><b>Since:</b></dt><dd>API level 3</dd>
+<pre>
+  <a class="el" href="classknoxremotedesktop_1_1IRemoteDesktop.html" title="Remote Desktop Module provides means by which the admin capture the device screen content...">IRemoteDesktop</a> *remoteDesktop = RemoteDesktop::getInstance();
+  bool ret = remoteDesktop-&gt;<a class="el" href="classknoxremotedesktop_1_1IRemoteDesktop.html#a7bed40d98c61713a69cf1dad8b37beae" title="API to initialize remote desktop session.">init()</a>;
+  if(ret == false)  { // failure due to either permission
+                      // denied or other initialization failures
+     // failure code
+  } else {
+     // success code
+  }
+ </pre> <dl class="return"><dt><b>Returns:</b></dt><dd>A remote desktop instance if successful, else <code>null</code>. </dd></dl>
+<dl class="since"><dt><b>Since:</b></dt><dd>API level 3 </dd>
 <dd>
-MDM 2.1</dd></dl>
-<dl class="deprecated"><dt><b><a class="el" href="deprecated.html#_deprecated000018">Deprecated:</a></b></dt><dd>API level 35</dd></dl>
-<dl class="deprecated"><dt><b><a class="el" href="deprecated.html#_deprecated000019">Deprecated:</a></b></dt><dd>Knox 3.8</dd></dl>
+MDM 2.1 </dd></dl>
+<dl class="deprecated"><dt><b><a class="el" href="deprecated.html#_deprecated000010">Deprecated:</a></b></dt><dd><p class="startdd">API level 35 </p>
+<p class="enddd">Knox 3.8 </p>
+</dd></dl>
 
 </div>
 </div>
@@ -700,37 +723,43 @@ MDM 2.1</dd></dl>
 <div class="memdoc">
 
 <p>API to get Frame Buffer's Resolution/PixelFormat information. </p>
-<p>Admin can use this API to get the framebuffer dimensions, pixel formats and</p>
-<p>pixel byte size.</p>
-<p>Note: PixelFormat returned by this API is not reliable. It will not give accurate information</p>
-<p>on the exact position details of each pixel. Also for FB0 FDType, the pixel format may also be returned</p>
-<p>as PF_UNKNOWN. It is recommended that client always rely on the API <a class="el" href="classknoxremotedesktop_1_1IRemoteDesktop.html#a700dee2f575609a933a53d7ab10480e4" title="API to get screen pixel format information.">getScreenPixelFormatInfo()</a>.</p>
+<p>Admin can use this API to get the framebuffer dimensions, pixel formats and pixel byte size.</p>
+<p>Note: PixelFormat returned by this API is not reliable. It will not give accurate information on the exact position details of each pixel. Also for FB0 FDType, the pixel format may also be returned as PF_UNKNOWN. It is recommended that client always rely on the API <a class="el" href="classknoxremotedesktop_1_1IRemoteDesktop.html#a700dee2f575609a933a53d7ab10480e4" title="API to get screen pixel format information.">getScreenPixelFormatInfo()</a>.</p>
 <p>Example client call:</p>
-<pre></pre><pre>  <a class="el" href="classknoxremotedesktop_1_1IRemoteDesktop.html" title="Remote Desktop Module provides means by which the admin capture the device screen content...">IRemoteDesktop</a> *remoteDesktop = RemoteDesktop::getInstance();</pre><pre>  bool ret = remoteDesktop-&gt;<a class="el" href="classknoxremotedesktop_1_1IRemoteDesktop.html#a7bed40d98c61713a69cf1dad8b37beae" title="API to initialize remote desktop session.">init()</a>;</pre><pre>  if(ret == false)  {</pre><pre>     // failure code</pre><pre>  } else {</pre><pre>     // success code</pre><pre>     int	width, height, pixelFormat, bytesPerPixel;</pre><pre>     remoteDesktop-&gt;getScreenInfo(&amp;width, &amp;height, &amp;bytesPerPixel, &amp;pixelFormat);</pre><pre>  }</pre><pre> </pre><dl class="user"><dt><b>Permission: </b></dt><dd>The use of this API requires the caller to have the</dd></dl>
-<p>"com.samsung.android.knox.permission.KNOX_REMOTE_CONTROL" permission which has a protection level</p>
-<p>of signature.</p>
+<pre>
+  <a class="el" href="classknoxremotedesktop_1_1IRemoteDesktop.html" title="Remote Desktop Module provides means by which the admin capture the device screen content...">IRemoteDesktop</a> *remoteDesktop = RemoteDesktop::getInstance();
+  bool ret = remoteDesktop-&gt;<a class="el" href="classknoxremotedesktop_1_1IRemoteDesktop.html#a7bed40d98c61713a69cf1dad8b37beae" title="API to initialize remote desktop session.">init()</a>;
+  if(ret == false)  {
+     // failure code
+  } else {
+     // success code	 
+     int	width, height, pixelFormat, bytesPerPixel;	 
+     remoteDesktop-&gt;getScreenInfo(&amp;width, &amp;height, &amp;bytesPerPixel, &amp;pixelFormat);
+  }
+ </pre><dl class="user"><dt><b>Permission: </b></dt><dd>The use of this API requires the caller to have the "com.samsung.android.knox.permission.KNOX_REMOTE_CONTROL" permission which has a protection level of signature.</dd></dl>
 <dl class="params"><dt><b>Parameters:</b></dt><dd>
   <table class="params">
-    <tr><td class="paramname">width</td><td>Screen Width</td></tr>
-    <tr><td class="paramname">height</td><td>Screen Height</td></tr>
-    <tr><td class="paramname">bytesPerPixel</td><td>Pixel Size in Bytes</td></tr>
-    <tr><td class="paramname">pixelFormat</td><td>Pixel Format.</td></tr>
+    <tr><td class="paramname">width</td><td>Screen Width </td></tr>
+    <tr><td class="paramname">height</td><td>Screen Height </td></tr>
+    <tr><td class="paramname">bytesPerPixel</td><td>Pixel Size in Bytes </td></tr>
+    <tr><td class="paramname">pixelFormat</td><td>Pixel Format. </td></tr>
   </table>
   </dd>
 </dl>
-<dl class="return"><dt><b>Returns:</b></dt><dd><code>true</code> if screen information successfully retrieved, else <code>false</code>.</dd></dl>
-<dl class="since"><dt><b>Since:</b></dt><dd>API level 3</dd>
+<dl class="return"><dt><b>Returns:</b></dt><dd><code>true</code> if screen information successfully retrieved, else <code>false</code>. </dd></dl>
+<dl class="since"><dt><b>Since:</b></dt><dd>API level 3 </dd>
 <dd>
-MDM 2.1</dd></dl>
-<dl class="deprecated"><dt><b><a class="el" href="deprecated.html#_deprecated000022">Deprecated:</a></b></dt><dd>API level 35</dd></dl>
-<dl class="deprecated"><dt><b><a class="el" href="deprecated.html#_deprecated000023">Deprecated:</a></b></dt><dd>Knox 3.8</dd></dl>
-<dl class="see"><dt><b>See also:</b></dt><dd><a class="el" href="classknoxremotedesktop_1_1IRemoteDesktop.html#a86eefbec946d605470af069999763f74" title="Returns an instance of a RemoteDesktop client.">getInstance()</a></dd>
+MDM 2.1 </dd></dl>
+<dl class="deprecated"><dt><b><a class="el" href="deprecated.html#_deprecated000012">Deprecated:</a></b></dt><dd><p class="startdd">API level 35 </p>
+<p class="enddd">Knox 3.8 </p>
+</dd></dl>
+<dl class="see"><dt><b>See also:</b></dt><dd><a class="el" href="classknoxremotedesktop_1_1IRemoteDesktop.html#a86eefbec946d605470af069999763f74" title="Returns an instance of a RemoteDesktop client.">getInstance()</a> </dd>
 <dd>
-<a class="el" href="classknoxremotedesktop_1_1IRemoteDesktop.html#a7bed40d98c61713a69cf1dad8b37beae" title="API to initialize remote desktop session.">init()</a></dd>
+<a class="el" href="classknoxremotedesktop_1_1IRemoteDesktop.html#a7bed40d98c61713a69cf1dad8b37beae" title="API to initialize remote desktop session.">init()</a> </dd>
 <dd>
-<a class="el" href="classknoxremotedesktop_1_1IRemoteDesktop.html#a57d5432823adfd7cfb72441469ccc98e" title="API to get Frame Buffer Information.">getFrameBufInfo(int *, FDType *)</a></dd>
+<a class="el" href="classknoxremotedesktop_1_1IRemoteDesktop.html#a57d5432823adfd7cfb72441469ccc98e" title="API to get Frame Buffer Information.">getFrameBufInfo(int *, FDType *)</a> </dd>
 <dd>
-<a class="el" href="classknoxremotedesktop_1_1IRemoteDesktop.html#af22e75002f52d837cfc9d9589647ddb9" title="API to register Screen Event listener.">setListener(IRemoteDesktopListener*)</a></dd>
+<a class="el" href="classknoxremotedesktop_1_1IRemoteDesktop.html#af22e75002f52d837cfc9d9589647ddb9" title="API to register Screen Event listener.">setListener(IRemoteDesktopListener*)</a> </dd>
 <dd>
 <a class="el" href="classknoxremotedesktop_1_1IRemoteDesktop.html#a0ab5a0cf162a91c5e69abeed90f8ba09" title="API to capture the screen.">captureScreen(DirtyRegion&amp;)</a> </dd></dl>
 
@@ -752,30 +781,39 @@ MDM 2.1</dd></dl>
 <div class="memdoc">
 
 <p>API to get screen pixel format information. </p>
-<p>Admin can use this API to get the pixel format detailed information.</p>
+<p>Admin can use this API to get the pixel format detailed information. </p>
 <p>Example client call:</p>
-<pre></pre><pre>  <a class="el" href="classknoxremotedesktop_1_1IRemoteDesktop.html" title="Remote Desktop Module provides means by which the admin capture the device screen content...">IRemoteDesktop</a> *remoteDesktop = RemoteDesktop::getInstance();</pre><pre>  bool ret = remoteDesktop-&gt;<a class="el" href="classknoxremotedesktop_1_1IRemoteDesktop.html#a7bed40d98c61713a69cf1dad8b37beae" title="API to initialize remote desktop session.">init()</a>;</pre><pre>  if(ret == false)  {</pre><pre>     // failure code</pre><pre>  } else {</pre><pre>     // success code</pre><pre>     <a class="el" href="structknoxremotedesktop_1_1PixelFormatDetail.html" title="This structure provides the pixel format information in terms of actual component offsets...">PixelFormatDetail</a> formatDetail;</pre><pre>     remoteDesktop-&gt;getScreenPixelFormatInfo(formatDetail);</pre><pre>  }</pre><pre> </pre><dl class="user"><dt><b>Permission: </b></dt><dd>The use of this API requires the caller to have the</dd></dl>
-<p>"com.samsung.android.knox.permission.KNOX_REMOTE_CONTROL" permission which has a protection level</p>
-<p>of signature.</p>
+<pre>
+  <a class="el" href="classknoxremotedesktop_1_1IRemoteDesktop.html" title="Remote Desktop Module provides means by which the admin capture the device screen content...">IRemoteDesktop</a> *remoteDesktop = RemoteDesktop::getInstance();
+  bool ret = remoteDesktop-&gt;<a class="el" href="classknoxremotedesktop_1_1IRemoteDesktop.html#a7bed40d98c61713a69cf1dad8b37beae" title="API to initialize remote desktop session.">init()</a>;
+  if(ret == false)  {
+     // failure code
+  } else {
+     // success code
+     <a class="el" href="structknoxremotedesktop_1_1PixelFormatDetail.html" title="This structure provides the pixel format information in terms of actual component offsets...">PixelFormatDetail</a> formatDetail;
+     remoteDesktop-&gt;getScreenPixelFormatInfo(formatDetail);
+  }
+ </pre><dl class="user"><dt><b>Permission: </b></dt><dd>The use of this API requires the caller to have the "com.samsung.android.knox.permission.KNOX_REMOTE_CONTROL" permission which has a protection level of signature.</dd></dl>
 <dl class="params"><dt><b>Parameters:</b></dt><dd>
   <table class="params">
-    <tr><td class="paramname">formatDetail</td><td>Pixel Format Detail</td></tr>
+    <tr><td class="paramname">formatDetail</td><td>Pixel Format Detail </td></tr>
   </table>
   </dd>
 </dl>
-<dl class="return"><dt><b>Returns:</b></dt><dd>nothing</dd></dl>
-<dl class="since"><dt><b>Since:</b></dt><dd>API level 3</dd>
+<dl class="return"><dt><b>Returns:</b></dt><dd>nothing </dd></dl>
+<dl class="since"><dt><b>Since:</b></dt><dd>API level 3 </dd>
 <dd>
-MDM 2.1</dd></dl>
-<dl class="deprecated"><dt><b><a class="el" href="deprecated.html#_deprecated000030">Deprecated:</a></b></dt><dd>API level 35</dd></dl>
-<dl class="deprecated"><dt><b><a class="el" href="deprecated.html#_deprecated000031">Deprecated:</a></b></dt><dd>Knox 3.8</dd></dl>
-<dl class="see"><dt><b>See also:</b></dt><dd><a class="el" href="classknoxremotedesktop_1_1IRemoteDesktop.html#a86eefbec946d605470af069999763f74" title="Returns an instance of a RemoteDesktop client.">getInstance()</a></dd>
+MDM 2.1 </dd></dl>
+<dl class="deprecated"><dt><b><a class="el" href="deprecated.html#_deprecated000016">Deprecated:</a></b></dt><dd><p class="startdd">API level 35 </p>
+<p class="enddd">Knox 3.8 </p>
+</dd></dl>
+<dl class="see"><dt><b>See also:</b></dt><dd><a class="el" href="classknoxremotedesktop_1_1IRemoteDesktop.html#a86eefbec946d605470af069999763f74" title="Returns an instance of a RemoteDesktop client.">getInstance()</a> </dd>
 <dd>
-<a class="el" href="classknoxremotedesktop_1_1IRemoteDesktop.html#a7bed40d98c61713a69cf1dad8b37beae" title="API to initialize remote desktop session.">init()</a></dd>
+<a class="el" href="classknoxremotedesktop_1_1IRemoteDesktop.html#a7bed40d98c61713a69cf1dad8b37beae" title="API to initialize remote desktop session.">init()</a> </dd>
 <dd>
-<a class="el" href="classknoxremotedesktop_1_1IRemoteDesktop.html#a57d5432823adfd7cfb72441469ccc98e" title="API to get Frame Buffer Information.">getFrameBufInfo(int *, FDType *)</a></dd>
+<a class="el" href="classknoxremotedesktop_1_1IRemoteDesktop.html#a57d5432823adfd7cfb72441469ccc98e" title="API to get Frame Buffer Information.">getFrameBufInfo(int *, FDType *)</a> </dd>
 <dd>
-<a class="el" href="classknoxremotedesktop_1_1IRemoteDesktop.html#af22e75002f52d837cfc9d9589647ddb9" title="API to register Screen Event listener.">setListener(IRemoteDesktopListener*)</a></dd>
+<a class="el" href="classknoxremotedesktop_1_1IRemoteDesktop.html#af22e75002f52d837cfc9d9589647ddb9" title="API to register Screen Event listener.">setListener(IRemoteDesktopListener*)</a> </dd>
 <dd>
 <a class="el" href="classknoxremotedesktop_1_1IRemoteDesktop.html#a0ab5a0cf162a91c5e69abeed90f8ba09" title="API to capture the screen.">captureScreen(DirtyRegion&amp;)</a> </dd></dl>
 
@@ -796,25 +834,32 @@ MDM 2.1</dd></dl>
 <div class="memdoc">
 
 <p>API to initialize remote desktop session. </p>
-<p>Admin can use this API to initialize the remote desktop session</p>
-<p>establishing the connection to the underneath capture mechanism.</p>
+<p>Admin can use this API to initialize the remote desktop session establishing the connection to the underneath capture mechanism. </p>
 <p>Example client call:</p>
-<pre></pre><pre>  <a class="el" href="classknoxremotedesktop_1_1IRemoteDesktop.html" title="Remote Desktop Module provides means by which the admin capture the device screen content...">IRemoteDesktop</a> *remoteDesktop = RemoteDesktop::getInstance();</pre><pre>  bool ret = remoteDesktop-&gt;<a class="el" href="classknoxremotedesktop_1_1IRemoteDesktop.html#a7bed40d98c61713a69cf1dad8b37beae" title="API to initialize remote desktop session.">init()</a>;</pre><pre>  if(ret == false)  { // failure due to either permission</pre><pre>                      // denied or other initialization failures</pre><pre>     // failure code</pre><pre>  } else {</pre><pre>     // success code</pre><pre>  }</pre><pre> </pre><dl class="user"><dt><b>Permission: </b></dt><dd>The use of this API requires the caller to have the</dd></dl>
-<p>"com.samsung.android.knox.permission.KNOX_REMOTE_CONTROL" permission which has a protection level</p>
-<p>of signature.</p>
-<dl class="return"><dt><b>Returns:</b></dt><dd><code>true</code> if successfully initialised, else <code>false</code>.</dd></dl>
-<dl class="since"><dt><b>Since:</b></dt><dd>API level 3</dd>
+<pre>
+  <a class="el" href="classknoxremotedesktop_1_1IRemoteDesktop.html" title="Remote Desktop Module provides means by which the admin capture the device screen content...">IRemoteDesktop</a> *remoteDesktop = RemoteDesktop::getInstance();
+  bool ret = remoteDesktop-&gt;<a class="el" href="classknoxremotedesktop_1_1IRemoteDesktop.html#a7bed40d98c61713a69cf1dad8b37beae" title="API to initialize remote desktop session.">init()</a>;
+  if(ret == false)  { // failure due to either permission 
+                      // denied or other initialization failures
+     // failure code
+  } else {
+     // success code
+  }
+ </pre><dl class="user"><dt><b>Permission: </b></dt><dd>The use of this API requires the caller to have the "com.samsung.android.knox.permission.KNOX_REMOTE_CONTROL" permission which has a protection level of signature.</dd></dl>
+<dl class="return"><dt><b>Returns:</b></dt><dd><code>true</code> if successfully initialised, else <code>false</code>. </dd></dl>
+<dl class="since"><dt><b>Since:</b></dt><dd>API level 3 </dd>
 <dd>
-MDM 2.1</dd></dl>
-<dl class="deprecated"><dt><b><a class="el" href="deprecated.html#_deprecated000020">Deprecated:</a></b></dt><dd>API level 35</dd></dl>
-<dl class="deprecated"><dt><b><a class="el" href="deprecated.html#_deprecated000021">Deprecated:</a></b></dt><dd>Knox 3.8</dd></dl>
-<dl class="see"><dt><b>See also:</b></dt><dd><a class="el" href="classknoxremotedesktop_1_1IRemoteDesktop.html#a86eefbec946d605470af069999763f74" title="Returns an instance of a RemoteDesktop client.">getInstance()</a></dd>
+MDM 2.1 </dd></dl>
+<dl class="deprecated"><dt><b><a class="el" href="deprecated.html#_deprecated000011">Deprecated:</a></b></dt><dd><p class="startdd">API level 35 </p>
+<p class="enddd">Knox 3.8 </p>
+</dd></dl>
+<dl class="see"><dt><b>See also:</b></dt><dd><a class="el" href="classknoxremotedesktop_1_1IRemoteDesktop.html#a86eefbec946d605470af069999763f74" title="Returns an instance of a RemoteDesktop client.">getInstance()</a> </dd>
 <dd>
-<a class="el" href="classknoxremotedesktop_1_1IRemoteDesktop.html#ae9a1e6863bfc2affad4462bc0a29914a" title="API to get Frame Buffer&#39;s Resolution/PixelFormat information.">getScreenInfo(int*, int*, int*, int*)</a></dd>
+<a class="el" href="classknoxremotedesktop_1_1IRemoteDesktop.html#ae9a1e6863bfc2affad4462bc0a29914a" title="API to get Frame Buffer&#39;s Resolution/PixelFormat information.">getScreenInfo(int*, int*, int*, int*)</a> </dd>
 <dd>
-<a class="el" href="classknoxremotedesktop_1_1IRemoteDesktop.html#a57d5432823adfd7cfb72441469ccc98e" title="API to get Frame Buffer Information.">getFrameBufInfo(int *, FDType *)</a></dd>
+<a class="el" href="classknoxremotedesktop_1_1IRemoteDesktop.html#a57d5432823adfd7cfb72441469ccc98e" title="API to get Frame Buffer Information.">getFrameBufInfo(int *, FDType *)</a> </dd>
 <dd>
-<a class="el" href="classknoxremotedesktop_1_1IRemoteDesktop.html#af22e75002f52d837cfc9d9589647ddb9" title="API to register Screen Event listener.">setListener(IRemoteDesktopListener*)</a></dd>
+<a class="el" href="classknoxremotedesktop_1_1IRemoteDesktop.html#af22e75002f52d837cfc9d9589647ddb9" title="API to register Screen Event listener.">setListener(IRemoteDesktopListener*)</a> </dd>
 <dd>
 <a class="el" href="classknoxremotedesktop_1_1IRemoteDesktop.html#a0ab5a0cf162a91c5e69abeed90f8ba09" title="API to capture the screen.">captureScreen(DirtyRegion&amp;)</a> </dd></dl>
 
@@ -870,7 +915,7 @@ MDM 2.1</dd></dl>
 <dl class="since"><dt><b>Since:</b></dt><dd>API level 30 </dd>
 <dd>
 KNOX 3.4.1 </dd></dl>
-<dl class="deprecated"><dt><b><a class="el" href="deprecated.html#_deprecated000037">Deprecated:</a></b></dt><dd><p class="startdd">API level 35 </p>
+<dl class="deprecated"><dt><b><a class="el" href="deprecated.html#_deprecated000020">Deprecated:</a></b></dt><dd><p class="startdd">API level 35 </p>
 <p class="enddd">Knox 3.8 </p>
 </dd></dl>
 <dl class="see"><dt><b>See also:</b></dt><dd><a class="el" href="classknoxremotedesktop_1_1IRemoteDesktop.html#afd74363dbd7affbbdae3f5118ff5c17c" title="API to get the default Dex screen information.">getDefaultDexScreenInfo(int *hwwidth, int *hwheight, int *hwbytesPerPixel)</a> </dd>
@@ -897,31 +942,50 @@ KNOX 3.4.1 </dd></dl>
 <div class="memdoc">
 
 <p>API to register Screen Event listener. </p>
-<p>Admin can use this API to get Screen Changed Event Callbacks</p>
-<p>from remote desktop module.</p>
+<p>Admin can use this API to get Screen Changed Event Callbacks from remote desktop module. </p>
 <p>Example client call:</p>
-<pre></pre><pre>  class RemoteDesktopListener : public <a class="el" href="classknoxremotedesktop_1_1IRemoteDesktopListener.html" title="This class provides the interface to get notified when the screen changes.">IRemoteDesktopListener</a> {</pre><pre>      RemoteDesktopListener() {}</pre><pre>      virtual void screenChanged() {</pre><pre>	        LOGI("RemoteDesktopListener :: screenChanged()");</pre><pre>          // Capture Screen Request code</pre><pre>      }</pre><pre>  }</pre><pre>  ....</pre><pre>  <a class="el" href="classknoxremotedesktop_1_1IRemoteDesktop.html" title="Remote Desktop Module provides means by which the admin capture the device screen content...">IRemoteDesktop</a> *remoteDesktop = RemoteDesktop::getInstance();</pre><pre>  bool ret = remoteDesktop-&gt;<a class="el" href="classknoxremotedesktop_1_1IRemoteDesktop.html#a7bed40d98c61713a69cf1dad8b37beae" title="API to initialize remote desktop session.">init()</a>;</pre><pre>  if(ret == false)  {</pre><pre>     // failure code</pre><pre>  } else {</pre><pre>     // success code</pre><pre>     <a class="el" href="classknoxremotedesktop_1_1IRemoteDesktopListener.html" title="This class provides the interface to get notified when the screen changes.">IRemoteDesktopListener</a> *remoteDesktoplistener = new RemoteDesktopListener();</pre><pre>     bool err = remoteDesktop-&gt;setListener(remoteDesktoplistener);</pre><pre>     if(err == false)  {</pre><pre>         // failure code</pre><pre>     } else {</pre><pre>         // success code</pre><pre>     }</pre><pre>  }</pre><pre> </pre><dl class="user"><dt><b>Permission: </b></dt><dd>The use of this API requires the caller to have the</dd></dl>
-<p>"com.samsung.android.knox.permission.KNOX_REMOTE_CONTROL" permission which has a protection level</p>
-<p>of signature.</p>
+<pre>
+  class RemoteDesktopListener : public <a class="el" href="classknoxremotedesktop_1_1IRemoteDesktopListener.html" title="This class provides the interface to get notified when the screen changes.">IRemoteDesktopListener</a> {
+      RemoteDesktopListener() {}
+      virtual void screenChanged() {
+	        LOGI("RemoteDesktopListener :: screenChanged()");
+          // Capture Screen Request code
+      }
+  }</pre><pre>  ....</pre><pre>  <a class="el" href="classknoxremotedesktop_1_1IRemoteDesktop.html" title="Remote Desktop Module provides means by which the admin capture the device screen content...">IRemoteDesktop</a> *remoteDesktop = RemoteDesktop::getInstance();
+  bool ret = remoteDesktop-&gt;<a class="el" href="classknoxremotedesktop_1_1IRemoteDesktop.html#a7bed40d98c61713a69cf1dad8b37beae" title="API to initialize remote desktop session.">init()</a>;
+  if(ret == false)  {
+     // failure code
+  } else {
+     // success code	 
+     <a class="el" href="classknoxremotedesktop_1_1IRemoteDesktopListener.html" title="This class provides the interface to get notified when the screen changes.">IRemoteDesktopListener</a> *remoteDesktoplistener = new RemoteDesktopListener();
+     bool err = remoteDesktop-&gt;setListener(remoteDesktoplistener);
+     if(err == false)  {
+         // failure code
+     } else {
+         // success code
+     }
+  }
+ </pre><dl class="user"><dt><b>Permission: </b></dt><dd>The use of this API requires the caller to have the "com.samsung.android.knox.permission.KNOX_REMOTE_CONTROL" permission which has a protection level of signature.</dd></dl>
 <dl class="params"><dt><b>Parameters:</b></dt><dd>
   <table class="params">
-    <tr><td class="paramname">listener</td><td>Screen Change Event Listener</td></tr>
+    <tr><td class="paramname">listener</td><td>Screen Change Event Listener </td></tr>
   </table>
   </dd>
 </dl>
-<dl class="return"><dt><b>Returns:</b></dt><dd><code>true</code> if listener is successfully set, else <code>false</code>.</dd></dl>
-<dl class="since"><dt><b>Since:</b></dt><dd>API level 3</dd>
+<dl class="return"><dt><b>Returns:</b></dt><dd><code>true</code> if listener is successfully set, else <code>false</code>. </dd></dl>
+<dl class="since"><dt><b>Since:</b></dt><dd>API level 3 </dd>
 <dd>
-MDM 2.1</dd></dl>
-<dl class="deprecated"><dt><b><a class="el" href="deprecated.html#_deprecated000026">Deprecated:</a></b></dt><dd>API level 35</dd></dl>
-<dl class="deprecated"><dt><b><a class="el" href="deprecated.html#_deprecated000027">Deprecated:</a></b></dt><dd>Knox 3.8</dd></dl>
-<dl class="see"><dt><b>See also:</b></dt><dd><a class="el" href="classknoxremotedesktop_1_1IRemoteDesktop.html#a86eefbec946d605470af069999763f74" title="Returns an instance of a RemoteDesktop client.">getInstance()</a></dd>
+MDM 2.1 </dd></dl>
+<dl class="deprecated"><dt><b><a class="el" href="deprecated.html#_deprecated000014">Deprecated:</a></b></dt><dd><p class="startdd">API level 35 </p>
+<p class="enddd">Knox 3.8 </p>
+</dd></dl>
+<dl class="see"><dt><b>See also:</b></dt><dd><a class="el" href="classknoxremotedesktop_1_1IRemoteDesktop.html#a86eefbec946d605470af069999763f74" title="Returns an instance of a RemoteDesktop client.">getInstance()</a> </dd>
 <dd>
-<a class="el" href="classknoxremotedesktop_1_1IRemoteDesktop.html#a7bed40d98c61713a69cf1dad8b37beae" title="API to initialize remote desktop session.">init()</a></dd>
+<a class="el" href="classknoxremotedesktop_1_1IRemoteDesktop.html#a7bed40d98c61713a69cf1dad8b37beae" title="API to initialize remote desktop session.">init()</a> </dd>
 <dd>
-<a class="el" href="classknoxremotedesktop_1_1IRemoteDesktop.html#ae9a1e6863bfc2affad4462bc0a29914a" title="API to get Frame Buffer&#39;s Resolution/PixelFormat information.">getScreenInfo(int*, int*, int*, int*)</a></dd>
+<a class="el" href="classknoxremotedesktop_1_1IRemoteDesktop.html#ae9a1e6863bfc2affad4462bc0a29914a" title="API to get Frame Buffer&#39;s Resolution/PixelFormat information.">getScreenInfo(int*, int*, int*, int*)</a> </dd>
 <dd>
-<a class="el" href="classknoxremotedesktop_1_1IRemoteDesktop.html#a57d5432823adfd7cfb72441469ccc98e" title="API to get Frame Buffer Information.">getFrameBufInfo(int *, FDType *)</a></dd>
+<a class="el" href="classknoxremotedesktop_1_1IRemoteDesktop.html#a57d5432823adfd7cfb72441469ccc98e" title="API to get Frame Buffer Information.">getFrameBufInfo(int *, FDType *)</a> </dd>
 <dd>
 <a class="el" href="classknoxremotedesktop_1_1IRemoteDesktop.html#a0ab5a0cf162a91c5e69abeed90f8ba09" title="API to capture the screen.">captureScreen(DirtyRegion&amp;)</a> </dd></dl>
 
@@ -959,37 +1023,43 @@ MDM 2.1</dd></dl>
 <div class="memdoc">
 
 <p>API to set the framebuffer's width, height and format preferred by the admin. </p>
-<p>Admin can use this API to set the preference for the remote screen dimensions considering the</p>
-<p>different factors like network bandwidth usage and performance. This may or may not be honoured based</p>
-<p>on the platform support. Mostly in case of FB0, this will not be honoured.</p>
+<p>Admin can use this API to set the preference for the remote screen dimensions considering the different factors like network bandwidth usage and performance. This may or may not be honoured based on the platform support. Mostly in case of FB0, this will not be honoured.</p>
 <p>Example client call:</p>
 <pre></pre><pre>  Note: If user faces problem in starting Remote Session in Landscape mode, then he/she should call 
   and refer getDefaultScreenInfo(&amp;hwwidth,&amp;hwheight,&amp;hwbytesPerPixel,&amp;hwpixelFormat) API about
   hardware width and hardware height before calling setScreenInfo(prefW, prefH, prefFormat) API.</pre><pre>  int w = 360, h = 640, format = PF_RGB_565;</pre><pre>  //Only in case, when user is in Landscape mode and facing problem in starting the Remote Session in Android 10 device
-  int w = 640, h = 360, format = PF_RGB_565;</pre><pre>  <a class="el" href="classknoxremotedesktop_1_1IRemoteDesktop.html" title="Remote Desktop Module provides means by which the admin capture the device screen content...">IRemoteDesktop</a> *remoteDesktop = RemoteDesktop::getInstance();</pre><pre>  int 	 hwwidth, hwheight, hwpixelFormat, hwbytesPerPixel;</pre><pre>  remotedesktop-&gt;getDefaultScreenInfo(&amp;hwwidth, &amp;hwheight, &amp;hwbytesPerPixel, &amp;hwpixelFormat);</pre><pre>  bool ret = remoteDesktop-&gt;setScreenInfo(w,h,format);</pre><pre>  if(ret == false)  { // failure due to either permission</pre><pre>                      // denied or other initialization failures</pre><pre>     // failure code</pre><pre>  } else {</pre><pre>     // success code</pre><pre>  }</pre><pre> </pre><dl class="user"><dt><b>Permission: </b></dt><dd>The use of this API requires the caller to have the</dd></dl>
-<p>"com.samsung.android.knox.permission.KNOX_REMOTE_CONTROL" permission which has a protection level</p>
-<p>of signature.</p>
+  int w = 640, h = 360, format = PF_RGB_565;
+  <a class="el" href="classknoxremotedesktop_1_1IRemoteDesktop.html" title="Remote Desktop Module provides means by which the admin capture the device screen content...">IRemoteDesktop</a> *remoteDesktop = RemoteDesktop::getInstance();</pre><pre>  int 	 hwwidth, hwheight, hwpixelFormat, hwbytesPerPixel;</pre><pre>  remotedesktop-&gt;getDefaultScreenInfo(&amp;hwwidth, &amp;hwheight, &amp;hwbytesPerPixel, &amp;hwpixelFormat);
+  bool ret = remoteDesktop-&gt;setScreenInfo(w,h,format);
+  if(ret == false)  { // failure due to either permission 
+                      // denied or other initialization failures
+     // failure code
+  } else {
+     // success code
+  }
+ </pre><dl class="user"><dt><b>Permission: </b></dt><dd>The use of this API requires the caller to have the "com.samsung.android.knox.permission.KNOX_REMOTE_CONTROL" permission which has a protection level of signature.</dd></dl>
 <dl class="params"><dt><b>Parameters:</b></dt><dd>
   <table class="params">
-    <tr><td class="paramname">prefW</td><td>Preferred Screen Width</td></tr>
-    <tr><td class="paramname">prefH</td><td>Preferred Screen Height</td></tr>
+    <tr><td class="paramname">prefW</td><td>Preferred Screen Width </td></tr>
+    <tr><td class="paramname">prefH</td><td>Preferred Screen Height </td></tr>
     <tr><td class="paramname">prefFormat</td><td>Preferred Pixel Format</td></tr>
   </table>
   </dd>
 </dl>
-<dl class="return"><dt><b>Returns:</b></dt><dd><code>true</code> if success, else <code>false</code>.</dd></dl>
-<dl class="since"><dt><b>Since:</b></dt><dd>API level 3</dd>
+<dl class="return"><dt><b>Returns:</b></dt><dd><code>true</code> if success, else <code>false</code>. </dd></dl>
+<dl class="since"><dt><b>Since:</b></dt><dd>API level 3 </dd>
 <dd>
-MDM 2.1</dd></dl>
-<dl class="deprecated"><dt><b><a class="el" href="deprecated.html#_deprecated000032">Deprecated:</a></b></dt><dd>API level 35</dd></dl>
-<dl class="deprecated"><dt><b><a class="el" href="deprecated.html#_deprecated000033">Deprecated:</a></b></dt><dd>Knox 3.8</dd></dl>
-<dl class="see"><dt><b>See also:</b></dt><dd><a class="el" href="classknoxremotedesktop_1_1IRemoteDesktop.html#a86eefbec946d605470af069999763f74" title="Returns an instance of a RemoteDesktop client.">getInstance()</a></dd>
+MDM 2.1 </dd></dl>
+<dl class="deprecated"><dt><b><a class="el" href="deprecated.html#_deprecated000017">Deprecated:</a></b></dt><dd><p class="startdd">API level 35 </p>
+<p class="enddd">Knox 3.8 </p>
+</dd></dl>
+<dl class="see"><dt><b>See also:</b></dt><dd><a class="el" href="classknoxremotedesktop_1_1IRemoteDesktop.html#a86eefbec946d605470af069999763f74" title="Returns an instance of a RemoteDesktop client.">getInstance()</a> </dd>
 <dd>
-<a class="el" href="classknoxremotedesktop_1_1IRemoteDesktop.html#ae9a1e6863bfc2affad4462bc0a29914a" title="API to get Frame Buffer&#39;s Resolution/PixelFormat information.">getScreenInfo(int*, int*, int*, int*)</a></dd>
+<a class="el" href="classknoxremotedesktop_1_1IRemoteDesktop.html#ae9a1e6863bfc2affad4462bc0a29914a" title="API to get Frame Buffer&#39;s Resolution/PixelFormat information.">getScreenInfo(int*, int*, int*, int*)</a> </dd>
 <dd>
-<a class="el" href="classknoxremotedesktop_1_1IRemoteDesktop.html#a57d5432823adfd7cfb72441469ccc98e" title="API to get Frame Buffer Information.">getFrameBufInfo(int *, FDType *)</a></dd>
+<a class="el" href="classknoxremotedesktop_1_1IRemoteDesktop.html#a57d5432823adfd7cfb72441469ccc98e" title="API to get Frame Buffer Information.">getFrameBufInfo(int *, FDType *)</a> </dd>
 <dd>
-<a class="el" href="classknoxremotedesktop_1_1IRemoteDesktop.html#af22e75002f52d837cfc9d9589647ddb9" title="API to register Screen Event listener.">setListener(IRemoteDesktopListener*)</a></dd>
+<a class="el" href="classknoxremotedesktop_1_1IRemoteDesktop.html#af22e75002f52d837cfc9d9589647ddb9" title="API to register Screen Event listener.">setListener(IRemoteDesktopListener*)</a> </dd>
 <dd>
 <a class="el" href="classknoxremotedesktop_1_1IRemoteDesktop.html#a0ab5a0cf162a91c5e69abeed90f8ba09" title="API to capture the screen.">captureScreen(DirtyRegion&amp;)</a> </dd></dl>
 
@@ -1016,7 +1086,7 @@ MDM 2.1</dd></dl>
 
 
 <hr class="footer"/><address class="footer"><small>
-Samsung Electronics. SDK @MDM_VERSION@ - Fri Feb 4 2022 </small></address>
+Samsung Electronics. SDK @MDM_VERSION@ - Thu Nov 3 2022 </small></address>
 
 </body>
 </html>

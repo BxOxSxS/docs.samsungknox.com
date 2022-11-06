@@ -446,7 +446,6 @@ Summary:
         </tr>  
         <tr>
             <td>MDM 2.0
-
 </td>
         </tr>
       </table>
@@ -930,9 +929,7 @@ From class
       <table class="jd-tagtable">  
         <tr>
             <td><a href="../../../../../../multiuser/multiuser.html">Global Scope</a>
-
  
-
 </td>
         </tr>
       </table>
@@ -1007,9 +1004,7 @@ From class
       <table class="jd-tagtable">  
         <tr>
             <td><a href="../../../../../../multiuser/multiuser.html">Global Scope</a>
-
  
-
 </td>
         </tr>
       </table>
@@ -1065,31 +1060,18 @@ From class
       <table class="jd-tagtable">  
         <tr>
             <td>An administrator can use this API to retrieve the supported font sizes from the
-
         device.
-
         <p>
-
  
-
         <pre>
-
  EnterpriseDeviceManager edm = EnterpriseDeviceManager.getInstance(context);
-
  Font font = edm.getFont();
-
  // get all font sizes from device
-
  float[] sysFontSizes = font.getSystemFontSizes();
-
  for (int i = 0; i &lt; sysFontSizes.length; i++) {
-
      Log.d(TAG, &quot;Available font sizes :&quot; + sysFontSizes[i]);
-
  }
-
  
-
  </pre></td>
         </tr>
       </table>
@@ -1110,9 +1092,7 @@ From class
       <table class="jd-tagtable">  
         <tr>
             <td><a href="../../../../../../multiuser/multiuser.html">Global Scope</a>
-
  
-
 </td>
         </tr>
       </table>
@@ -1168,29 +1148,17 @@ From class
       <table class="jd-tagtable">  
         <tr>
             <td>An administrator can use this API to retrieve all available fonts from the device.
-
  <p> 
-
  <pre>
-
   EnterpriseDeviceManager edm = EnterpriseDeviceManager.getInstance(context);
-
   Font font = edm.getFont();
-
   //get all fonts from device
-
   String[] sysFonts = font.getSystemFonts();
-
   for(int i=0; i < sysFonts.length; i++){
-
       Log.d(TAG, " System available fonts :"+sysFonts[i]);
-
   }
 
-
-
   //OUTPUT:"Arial","verdina"
-
  </pre></td>
         </tr>
       </table>
@@ -1211,9 +1179,7 @@ From class
       <table class="jd-tagtable">  
         <tr>
             <td><a href="../../../../../../multiuser/multiuser.html">Global Scope</a>
-
  
-
 </td>
         </tr>
       </table>
@@ -1270,9 +1236,7 @@ From class
         <tr>
           <th>apkPath</td>
           <td>path of the file that has new font data. This path is needed only if
-
          the administrator want to set a font to be the active font that is not available in the device.
-
          From Android 4.2, pass "<code>null</code>" as custom font is not supported.</td>
         </tr>
       </table>
@@ -1295,82 +1259,43 @@ From class
       <table class="jd-tagtable">  
         <tr>
             <td>An administrator can use this API to change device's font. This setting
-
  overrides the current font.
-
  <p>
-
  Note: The font set by this API gets erased after a factory reset, and the original 
-
  default font becomes the currently active font.
-
  <p><p>
-
  <p><b>Form Android version 4.2 onwards, this API will not support font apk installation.
-
  Administrator needs to pass "<code>null</code>" for apk path otherwise call will return failure.
-
  Only preloaded fonts in device can be set and administrator can use 
-
  <code><a href="Font.html#getSystemFonts()">getSystemFonts()</a></code> to get font name and pass that value for fontname. </b>
-
  <p> 
-
  
-
  <pre>
-
   //sample code to change device font from existing list of device fonts
-
   EnterpriseDeviceManager edm = EnterpriseDeviceManager.getInstance(context);
-
   Font font = edm.getFont();
-
   try {
-
       //get Active font
-
       String  activeFont = font.getSystemActiveFont();
-
       //get all fonts from device
-
       String[] sysFonts = font.getSystemFonts();
-
       for (i=0; i < sysFonts.length; i++){
-
           Log.d(TAG," SystemFont: " + sysFonts[i] );
-
           if (!activeFont.equalsIgnoreCase(sysFonts[i])){
-
             Log.d(TAG," set as active font  " + sysFonts[i] );
-
           break;
-
           }
-
       }
-
-
 
       boolean result = font.setSystemActiveFont(sysFonts[i], null);
-
       if(result == true){
-
       Log.d(TAG, "setSystemActiveFont has succeeded!");
-
       }else {
-
           Log.d(TAG, "setSystemActiveFont has failed.");
-
       }
-
   }catch(SecurityException e) {
-
       Log.w(TAG,"SecurityException: "+e);
-
   }</pre>
-
-
 
  <p> </td>
         </tr>
@@ -1381,9 +1306,7 @@ From class
       <table class="jd-tagtable">  
         <tr>
             <td>The use of this API requires the caller to have the
-
  "com.samsung.android.knox.permission.KNOX_SECURITY" permission which has a protection
-
  level of signature.</td>
         </tr>
       </table>
@@ -1404,9 +1327,7 @@ From class
       <table class="jd-tagtable">  
         <tr>
             <td><a href="../../../../../../multiuser/multiuser.html">Global Scope</a>
-
  
-
 </td>
         </tr>
       </table>
@@ -1480,81 +1401,43 @@ From class
       <table class="jd-tagtable">  
         <tr>
             <td><p>An administrator can use this API to change the device's font size. This new font size
-
         overrides the currently active font size.
-
         <p>
-
         Note: The font size set by this API is erased after a factory
-
         reset, and the original default font size becomes the active font size.
-
         <p>
-
         <b> Supported font sizes on Android 4.0 device: </b>
-
         <ul>
-
         <li>Tiny -> 0.85</li>
-
         <li>Small -> 0.93</li>
-
         <li>Normal -> 1.0</li>
-
         <li>Large -> 1.30</li>
-
         <li>Huge -> 1.80 (Only for specific applications. Large font size
-
         is applied in all other applications)</li>
-
         </ul>
-
         If an administrator attempts to set the font size to any other value than the system-supported font
-
         sizes, the device font size is set to the closest supported font size.
-
         <p>
-
  
-
         <pre>
-
  // sample code to change device font size
-
  EnterpriseDeviceManager edm = EnterpriseDeviceManager.getInstance(context);
-
  Font font = edm.getFont();
-
  try {
-
      // administrator can check system-supported font sizes with
-
      // getSystemFontSizes() before setting new font size.
-
  
-
      float activeFontSize = 1.0;
-
      boolean result = font.setSystemActiveFontSize(activeFontSize);
-
      if (result == true) {
-
          Log.d(TAG, &quot;setSystemActiveFontSize() success !!!&quot;);
-
      } else {
-
          Log.d(TAG, &quot;setSystemActiveFontSize() failure !!!&quot;);
-
      }
-
  } catch (SecurityException e) {
-
      Log.w(TAG, &quot;SecurityException: &quot; + e);
-
  }
-
  </pre>
-
         <p></td>
         </tr>
       </table>
@@ -1564,9 +1447,7 @@ From class
       <table class="jd-tagtable">  
         <tr>
             <td>The use of this API requires the caller to have the
-
              "com.samsung.android.knox.permission.KNOX_SECURITY" permission which has a
-
              protection level of signature.</td>
         </tr>
       </table>
@@ -1587,9 +1468,7 @@ From class
       <table class="jd-tagtable">  
         <tr>
             <td><a href="../../../../../../multiuser/multiuser.html">Global Scope</a>
-
  
-
 </td>
         </tr>
       </table>
@@ -1618,7 +1497,7 @@ From class
 <A NAME="navbar_top"></A>
 
 <div id="footer">
-<a href="http://www.samsung.com">Samsung Electronics</a>.<br/>SDK API level 36 - February 4 2022
+<a href="http://www.samsung.com">Samsung Electronics</a>.<br/>SDK API level 36 - November 3 2022
 </div> <!-- end footer -->
 
 </div> <!-- jd-content -->

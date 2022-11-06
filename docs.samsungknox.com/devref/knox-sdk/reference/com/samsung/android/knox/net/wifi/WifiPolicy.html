@@ -899,7 +899,7 @@ Summary:
         <div class="jd-descrdiv">
       <em>
   Deprecated
-      in API level 33
+      in API level 33 <br> NOTE: This API is not available since Android 13.
  
 </em></div>
   
@@ -1380,7 +1380,7 @@ Summary:
         <div class="jd-descrdiv">
       <em>
   Deprecated
-      in API level 35
+      in API level 35 <br> NOTE: This API is not available since Android 13.
  
 </em></div>
   
@@ -4252,7 +4252,16 @@ From class
             <td><p>
  An administrator can use this API to activate the SSID-based Wi-Fi network blacklist and
  whitelist policies. The SSID-based Wi-Fi network whitelist and blacklist policies are not
- applied until activated using this API.</td>
+ applied until activated using this API.
+ <br/><br/>
+ <b>NOTE 1:</b> From Knox 3.9 onwards, the following rules will apply:<br/><br/>
+     <b>Allowlist</b> - Only the SSIDs in the allowlist are allowed and all others are blocked. 
+                        The blocklist doesn't have any effect.<br/>
+     <b>Blocklist</b> - Only the SSIDs in the blocklist are blocked and all others are allowed.
+                        Blocklist only takes effect if the allowlist is empty.
+ <br/><br/>
+ <b>NOTE 2:</b> From Knox 3.9 onwards, the networks previously configured using
+ <code><a href="WifiPolicy.html#addBlockedNetwork(java.lang.String)">addBlockedNetwork(String)</a></code> will also be included in block list.</td>
         </tr>
       </table>
   </div>      
@@ -4328,7 +4337,7 @@ From class
   <p class="caution-deprecated">
       
   Deprecated 
-      in API level 33
+      in API level 33 <br> NOTE: This API is not available since Android 13.
  
 
   </p>
@@ -4525,11 +4534,17 @@ From class
  Wi-Fi network currently being connected matches an SSID in both the blacklist and the
  whitelist of the same administrator, the whitelist takes priority over the blacklist, and the
  user is allowed to connect to that Wi-Fi network.
- <p>
+ <br/><br/>
  After configuring the blacklist, make sure the policy is activated using
  <code><a href="WifiPolicy.html#isWifiSsidRestrictionActive()">isWifiSsidRestrictionActive()</a></code>; if not activated, use
  <code><a href="WifiPolicy.html#activateWifiSsidRestriction(boolean)">activateWifiSsidRestriction(boolean)</a></code> to activate the blacklist. Unless this step is
- performed, the blacklist policy is not activated.</td>
+ performed, the blacklist policy is not activated.
+ <br/><br/>
+ <b>NOTE:</b> From Knox 3.9 onwards, the following rules will apply:<br/><br/>
+     <b>Allowlist</b> - Only the SSIDs in the allowlist are allowed and all others are blocked. 
+                        The blocklist doesn't have any effect.<br/>
+     <b>Blocklist</b> - Only the SSIDs in the blocklist are blocked and all others are allowed.
+                        Blocklist only takes effect if the allowlist is empty.</td>
         </tr>
       </table>
   </div>      
@@ -4675,11 +4690,17 @@ From class
  <code><a href="WifiPolicy.html#addWifiSsidsToBlackList(java.util.List<java.lang.String>)">addWifiSsidsToBlackList(List)</a></code>. If the SSID of the wifi network matches the SSID in
  both the blacklist and whitelist of the same admin, the whitelist being an exception to the
  blacklist will take priority and the wifi network will be allowed to connect.
- <p>
+ <br/><br/>
  After configuring the whitelist make sure the policy is activated using
  <code><a href="WifiPolicy.html#isWifiSsidRestrictionActive()">isWifiSsidRestrictionActive()</a></code> if not activated, use
  <code><a href="WifiPolicy.html#activateWifiSsidRestriction(boolean)">activateWifiSsidRestriction(boolean)</a></code> to activate the whitelist. Unless this is done
- whitelist policy will not be activated.</td>
+ whitelist policy will not be activated.
+ <br/><br/>
+ <b>NOTE:</b> From Knox 3.9 onwards, the following rules will apply:<br/><br/>
+     <b>Allowlist</b> - Only the SSIDs in the allowlist are allowed and all others are blocked. 
+                        The blocklist doesn't have any effect.<br/>
+     <b>Blocklist</b> - Only the SSIDs in the blocklist are blocked and all others are allowed.
+                        Blocklist only takes effect if the allowlist is empty.</td>
         </tr>
       </table>
   </div>      
@@ -4815,11 +4836,17 @@ From class
  <code><a href="WifiPolicy.html#addWifiSsidsToBlackList(java.util.List<java.lang.String>)">addWifiSsidsToBlackList(List)</a></code>. If the SSID of the Wi-Fi network matches the SSID in
  both the blacklist and whitelist of the same administrator, the whitelist takes priority as
  an exception to the blacklist, and the device is allowed to connect to the Wi-Fi network.
- <p>
+ <br/><br/>
  After configuring the whitelist, make sure the policy is activated using
  <code><a href="WifiPolicy.html#isWifiSsidRestrictionActive()">isWifiSsidRestrictionActive()</a></code>; if not activated, use
  <code><a href="WifiPolicy.html#activateWifiSsidRestriction(boolean)">activateWifiSsidRestriction(boolean)</a></code> to activate the whitelist. Unless this step is
- performed, the whitelist policy is not activated.</td>
+ performed, the whitelist policy is not activated.
+ <br/><br/>
+ <b>NOTE:</b> From Knox 3.9 onwards, the following rules will apply:<br/><br/>
+     <b>Allowlist</b> - Only the SSIDs in the allowlist are allowed and all others are blocked. 
+                        The blocklist doesn't have any effect.<br/>
+     <b>Blocklist</b> - Only the SSIDs in the blocklist are blocked and all others are allowed.
+                        Blocklist only takes effect if the allowlist is empty.</td>
         </tr>
       </table>
   </div>      
@@ -5154,6 +5181,12 @@ From class
             <td>An administrator can use this API to remove all Wi-Fi network SSIDs from blacklist.
  Even though the SSIDs are removed from the blacklist, the user must enable the networks
  manually from the Settings application to make a connection.
+ <br/><br/>
+ <b>NOTE:</b> From Knox 3.9 onwards, the following rules will apply:<br/><br/>
+     <b>Allowlist</b> - Only the SSIDs in the allowlist are allowed and all others are blocked. 
+                        The blocklist doesn't have any effect.<br/>
+     <b>Blocklist</b> - Only the SSIDs in the blocklist are blocked and all others are allowed.
+                        Blocklist only takes effect if the allowlist is empty.
  <p>
  
  <pre>
@@ -5271,6 +5304,12 @@ From class
             <td>Administrator can use this API to remove all wifi network SSIDs from blacklist and
  whitelist. Even though SSIDs will be removed form whitelist and blacklist, the user will have
  to enable it manually from Settings Application, to make a connection.
+ <br/><br/>
+ <b>NOTE:</b> From Knox 3.9 onwards, the following rules will apply:<br/><br/>
+     <b>Allowlist</b> - Only the SSIDs in the allowlist are allowed and all others are blocked. 
+                        The blocklist doesn't have any effect.<br/>
+     <b>Blocklist</b> - Only the SSIDs in the blocklist are blocked and all others are allowed.
+                        Blocklist only takes effect if the allowlist is empty.
  <p>
  
  <pre>
@@ -5389,6 +5428,12 @@ From class
             <td>An administrator can use this API to remove all Wi-Fi network SSIDs from the Wi-Fi
  network whitelist. If an SSID is removed from the whitelist and the same SSID occurs in the
  Wi-Fi network blacklist, the connection to that Wi-Fi network is blocked.
+ <br/><br/>
+ <b>NOTE:</b> From Knox 3.9 onwards, the following rules will apply:<br/><br/>
+     <b>Allowlist</b> - Only the SSIDs in the allowlist are allowed and all others are blocked. 
+                        The blocklist doesn't have any effect.<br/>
+     <b>Blocklist</b> - Only the SSIDs in the blocklist are blocked and all others are allowed.
+                        Blocklist only takes effect if the allowlist is empty.
  <p>
  
  <pre>
@@ -5934,7 +5979,24 @@ From class
  <a href="WifiPolicy.html#SECURITY_LEVEL_EAP_TTLS">TTLS</a>,
  <a href="WifiPolicy.html#SECURITY_LEVEL_EAP_SIM">SIM</a>,
  <a href="WifiPolicy.html#SECURITY_LEVEL_EAP_AKA">AKA</a>,
- <a href="WifiPolicy.html#SECURITY_LEVEL_EAP_AKA_PRIME">AKA'</a> <br></td>
+ <a href="WifiPolicy.html#SECURITY_LEVEL_EAP_AKA_PRIME">AKA'</a> <br>
+ <br>
+ <b>NOTE:</b> From Knox 3.9 onwards, the security types will be grouped in the 
+              following security levels:<br>
+ <br>
+ 1) <a href="WifiPolicy.html#SECURITY_LEVEL_OPEN">OPEN</a> <br>
+ 2) <a href="WifiPolicy.html#SECURITY_LEVEL_WEP">WEP</a>,
+    <a href="WifiPolicy.html#SECURITY_LEVEL_WPA">WPA</a>,
+    <a href="WifiPolicy.html#SECURITY_LEVEL_SAE">SAE</a> <br>
+ 3) <a href="WifiPolicy.html#SECURITY_LEVEL_EAP_LEAP">LEAP</a>,
+    <a href="WifiPolicy.html#SECURITY_LEVEL_EAP_PWD">PWD</a>,
+    <a href="WifiPolicy.html#SECURITY_LEVEL_EAP_FAST">FAST</a>,
+    <a href="WifiPolicy.html#SECURITY_LEVEL_EAP_PEAP">PEAP</a>,
+    <a href="WifiPolicy.html#SECURITY_LEVEL_EAP_TLS">TLS</a>,
+    <a href="WifiPolicy.html#SECURITY_LEVEL_EAP_TTLS">TTLS</a>,
+    <a href="WifiPolicy.html#SECURITY_LEVEL_EAP_SIM">SIM</a>,
+    <a href="WifiPolicy.html#SECURITY_LEVEL_EAP_AKA">AKA</a>,
+    <a href="WifiPolicy.html#SECURITY_LEVEL_EAP_AKA_PRIME">AKA'</a></td>
         </tr>
       </table>
   </div>      
@@ -6530,6 +6592,12 @@ From class
             <td><p>
  An administrator can use this API to retrieve the list of all blacklisted Wi-Fi network
  SSIDs. The device cannot connect to Wi-Fi networks with matching SSIDs.
+ <br/><br/>
+ <b>NOTE:</b> From Knox 3.9 onwards, the following rules will apply:<br/><br/>
+     <b>Allowlist</b> - Only the SSIDs in the allowlist are allowed and all others are blocked. 
+                        The blocklist doesn't have any effect.<br/>
+     <b>Blocklist</b> - Only the SSIDs in the blocklist are blocked and all others are allowed.
+                        Blocklist only takes effect if the allowlist is empty.
  <p>
  
  <pre>
@@ -6646,6 +6714,12 @@ From class
  An administrators can use this API to retrieve a list of whitelisted Wi-Fi network SSIDs.
  Wi-Fi networks with a matching SSID are excepted from the blacklist, and the device can
  connect to these networks.
+ <br/><br/>
+ <b>NOTE:</b> From Knox 3.9 onwards, the following rules will apply:<br/><br/>
+     <b>Allowlist</b> - Only the SSIDs in the allowlist are allowed and all others are blocked. 
+                        The blocklist doesn't have any effect.<br/>
+     <b>Blocklist</b> - Only the SSIDs in the blocklist are blocked and all others are allowed.
+                        Blocklist only takes effect if the allowlist is empty.
  <p>
  
  <pre>
@@ -6733,7 +6807,7 @@ From class
   <p class="caution-deprecated">
       
   Deprecated 
-      in API level 35
+      in API level 35 <br> NOTE: This API is not available since Android 13.
  
 
   </p>
@@ -7050,7 +7124,16 @@ From class
  An administrator can use this API to check whether the SSID-based Wi-Fi network blacklist and
  whitelist policy is activated for an administrator. The SSID-based Wi-Fi network whitelist
  and blacklist policies are not applied unless activated using
- <code><a href="WifiPolicy.html#activateWifiSsidRestriction(boolean)">activateWifiSsidRestriction(boolean)</a></code>.</td>
+ <code><a href="WifiPolicy.html#activateWifiSsidRestriction(boolean)">activateWifiSsidRestriction(boolean)</a></code>.
+ <br/><br/>
+ <b>NOTE 1:</b> From Knox 3.9 onwards, the following rules will apply:<br/><br/>
+     <b>Allowlist</b> - Only the SSIDs in the allowlist are allowed and all others are blocked.
+                        The blocklist doesn't have any effect.<br/>
+     <b>Blocklist</b> - Only the SSIDs in the blocklist are blocked and all others are allowed.
+                        Blocklist only takes effect if the allowlist is empty.
+ <br/><br/>
+ <b>NOTE 2:</b> From Knox 3.9 onwards, the networks previously configured using
+ <code><a href="WifiPolicy.html#addBlockedNetwork(java.lang.String)">addBlockedNetwork(String)</a></code> will also be included in block list.</td>
         </tr>
       </table>
   </div>      
@@ -7490,6 +7573,12 @@ From class
  Wi-Fi networks removed from blacklist with matching SSIDs are allowed to connect to the
  device. Even though the SSIDs are removed from blacklist, the user must enable them manually
  from Settings application to make a connection.
+ <br/><br/>
+ <b>NOTE:</b> From Knox 3.9 onwards, the following rules will apply:<br/><br/>
+     <b>Allowlist</b> - Only the SSIDs in the allowlist are allowed and all others are blocked. 
+                        The blocklist doesn't have any effect.<br/>
+     <b>Blocklist</b> - Only the SSIDs in the blocklist are blocked and all others are allowed.
+                        Blocklist only takes effect if the allowlist is empty.
  <p>
  
  <pre>
@@ -7619,6 +7708,12 @@ From class
             <td>An administrator can use this API to remove Wi-Fi network SSIDs from Wi-Fi network
  whitelist. If a SSID is removed from the whitelist and the same SSID occurs in the Wi-Fi
  network blacklist, the connection to that Wi-Fi network is blocked.
+ <br/><br/>
+ <b>NOTE:</b> From Knox 3.9 onwards, the following rules will apply:<br/><br/>
+     <b>Allowlist</b> - Only the SSIDs in the allowlist are allowed and all others are blocked. 
+                        The blocklist doesn't have any effect.<br/>
+     <b>Blocklist</b> - Only the SSIDs in the blocklist are blocked and all others are allowed.
+                        Blocklist only takes effect if the allowlist is empty.
  <p>
  
  <pre>
@@ -8121,7 +8216,24 @@ From class
  <a href="WifiPolicy.html#SECURITY_LEVEL_EAP_TTLS">TTLS</a>,
  <a href="WifiPolicy.html#SECURITY_LEVEL_EAP_SIM">SIM</a>,
  <a href="WifiPolicy.html#SECURITY_LEVEL_EAP_AKA">AKA</a>,
- <a href="WifiPolicy.html#SECURITY_LEVEL_EAP_AKA_PRIME">AKA'</a> <br></td>
+ <a href="WifiPolicy.html#SECURITY_LEVEL_EAP_AKA_PRIME">AKA'</a> <br>
+ <br>
+ <b>NOTE:</b> From Knox 3.9 onwards, the security types will be grouped in the 
+              following security levels:<br>
+ <br>
+ 1) <a href="WifiPolicy.html#SECURITY_LEVEL_OPEN">OPEN</a> <br>
+ 2) <a href="WifiPolicy.html#SECURITY_LEVEL_WEP">WEP</a>,
+    <a href="WifiPolicy.html#SECURITY_LEVEL_WPA">WPA</a>,
+    <a href="WifiPolicy.html#SECURITY_LEVEL_SAE">SAE</a> <br>
+ 3) <a href="WifiPolicy.html#SECURITY_LEVEL_EAP_LEAP">LEAP</a>,
+    <a href="WifiPolicy.html#SECURITY_LEVEL_EAP_PWD">PWD</a>,
+    <a href="WifiPolicy.html#SECURITY_LEVEL_EAP_FAST">FAST</a>,
+    <a href="WifiPolicy.html#SECURITY_LEVEL_EAP_PEAP">PEAP</a>,
+    <a href="WifiPolicy.html#SECURITY_LEVEL_EAP_TLS">TLS</a>,
+    <a href="WifiPolicy.html#SECURITY_LEVEL_EAP_TTLS">TTLS</a>,
+    <a href="WifiPolicy.html#SECURITY_LEVEL_EAP_SIM">SIM</a>,
+    <a href="WifiPolicy.html#SECURITY_LEVEL_EAP_AKA">AKA</a>,
+    <a href="WifiPolicy.html#SECURITY_LEVEL_EAP_AKA_PRIME">AKA'</a></td>
         </tr>
       </table>
   </div>      
@@ -8834,7 +8946,7 @@ From class
 <A NAME="navbar_top"></A>
 
 <div id="footer">
-<a href="http://www.samsung.com">Samsung Electronics</a>.<br/>SDK API level 36 - February 4 2022
+<a href="http://www.samsung.com">Samsung Electronics</a>.<br/>SDK API level 36 - November 3 2022
 </div> <!-- end footer -->
 
 </div> <!-- jd-content -->

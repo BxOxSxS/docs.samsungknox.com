@@ -437,9 +437,7 @@ Summary:
 
 <h2>Class Overview</h2>
 <p>This class provides APIs to create, update, and remove Access Point Name (APN) settings on the
-
  device. Use the <code><a href="ApnSettings.html">ApnSettings</a></code> class to fill up the relevant APN setting
-
  details.</p>
 
       
@@ -451,7 +449,6 @@ Summary:
         </tr>  
         <tr>
             <td>MDM 2.0
-
 </td>
         </tr>
       </table>
@@ -529,9 +526,7 @@ Summary:
       <em>
   Deprecated
       in API level 35
-
  
-
 </em></div>
   
   </td></tr>
@@ -554,11 +549,8 @@ Summary:
       <em>
   Deprecated
       in API level 35
-
  
-
  
-
 </em></div>
   
   </td></tr>
@@ -581,11 +573,8 @@ Summary:
       <em>
   Deprecated
       in API level 35
-
  
-
  
-
 </em></div>
   
   </td></tr>
@@ -608,11 +597,8 @@ Summary:
       <em>
   Deprecated
       in API level 35
-
  
-
  
-
 </em></div>
   
   </td></tr>
@@ -635,11 +621,8 @@ Summary:
       <em>
   Deprecated
       in API level 35
-
  
-
  
-
 </em></div>
   
   </td></tr>
@@ -662,11 +645,8 @@ Summary:
       <em>
   Deprecated
       in API level 35
-
  
-
  
-
 </em></div>
   
   </td></tr>
@@ -689,11 +669,8 @@ Summary:
       <em>
   Deprecated
       in API level 35
-
  
-
  
-
 </em></div>
   
   </td></tr>
@@ -988,14 +965,11 @@ From class
       
   Deprecated 
       in API level 35
-
  
-
 
   </p>
 
   <div class="jd-tagdata jd-tagdescr"><p>API to create APN settings.
-
  <p></p></div>
   <div class="jd-tagdata">
       <h5 class="jd-tagtitle">Parameters</h5>
@@ -1009,7 +983,6 @@ From class
   <div class="jd-tagdata">
       <h5 class="jd-tagtitle">Returns</h5>
       <ul class="nolist"><li>Unique Id if the APN setting creation is successful, else -1.
-
          Use this Id for future reference to this APN setting.</li></ul>
   </div>
   <div class="jd-tagdata">
@@ -1026,65 +999,35 @@ From class
       <table class="jd-tagtable">  
         <tr>
             <td>Access Point Name (APN) is a computer protocol that 
-
  allows a user's computer to access the Internet using the mobile phone network. 
-
  An administrator can use this API to complete APN information
-
  for accessing the data network of a carrier and, using this API,
-
  add this item on the device APN list without user interaction.
-
  <p>
-
  <pre>
-
   EnterpriseDeviceManager edm = EnterpriseDeviceManager.getInstance(context);
-
   ApnSettingsPolicy apnSettingsPolicy = edm.getApnSettingsPolicy();
-
   ApnSettings apnSettings = new ApnSettings();
-
   
-
   apnSettings.user = "ApnUser";
-
   apnSettings.password = "1234";
-
   apnSettings.server = "ApnServer";
-
   apnSettings.mmsc = "http://mms.msg.eg.t-mobile.com/mms/wapenc";
-
   apnSettings.mmsProxy = "127.0.0.0";
-
   apnSettings.mmsPort = "80";
-
   apnSettings.mcc = "310";
-
   apnSettings.mnc = "260";
-
   apnSettings.type = "default";
-
   try {
-
        long ret= apnSettingsPolicy.createApnSettings(apnSettings);
-
        if (ret != -1) {
-
            Log.w("APN", "APN created");
-
        } else {
-
            Log.w("APN", "APN creation failed");
-
        }
-
   } catch (SecurityException e) {
-
      Log.w(TAG, "SecurityException: " + e);
-
   }</pre>
-
   <p></td>
         </tr>
       </table>
@@ -1094,11 +1037,8 @@ From class
       <table class="jd-tagtable">  
         <tr>
             <td>The use of this API requires the caller to have the
-
  "com.samsung.android.knox.permission.KNOX_APN" permission which has a
-
  protection level of signature.
-
  <p></td>
         </tr>
       </table>
@@ -1166,16 +1106,12 @@ From class
       
   Deprecated 
       in API level 35
-
  
-
  
-
 
   </p>
 
   <div class="jd-tagdata jd-tagdescr"><p>API to delete particular APN settings.
-
  <p></p></div>
   <div class="jd-tagdata">
       <h5 class="jd-tagtitle">Parameters</h5>
@@ -1204,39 +1140,22 @@ From class
       <table class="jd-tagtable">  
         <tr>
             <td>An administrator can use this API to delete an APN from the device without
-
  user interaction. Use the unique Id obtained when the APN settings
-
  were created to delete the APN settings.
-
  <p>
-
  <pre>
-
   EnterpriseDeviceManager edm = EnterpriseDeviceManager.getInstance(context);
-
   ApnSettingsPolicy apnSettingsPolicy = edm.getApnSettingsPolicy();
-
  
-
   try {
-
       boolean result = apnSettingsPolicy.deleteApn(1);
-
       if (result == true){
-
           //APN deletion succeeded
-
       } else {
-
          //APN deletion failed.
-
       }
-
   } catch(SecurityException e) {
-
     Log.w(TAG,"SecurityException: " + e);
-
   } </td>
         </tr>
       </table>
@@ -1246,11 +1165,8 @@ From class
       <table class="jd-tagtable">  
         <tr>
             <td>The use of this API requires the caller to have the
-
  "com.samsung.android.knox.permission.KNOX_APN" permission which has a
-
  protection level of signature.
-
  <p></td>
         </tr>
       </table>
@@ -1326,21 +1242,16 @@ From class
       
   Deprecated 
       in API level 35
-
  
-
  
-
 
   </p>
 
   <div class="jd-tagdata jd-tagdescr"><p>API to get all APN settings from the device.
-
  <p></p></div>
   <div class="jd-tagdata">
       <h5 class="jd-tagtitle">Returns</h5>
       <ul class="nolist"><li>If successful, a list of all the APN settings present on the device 
-
  or an empty list if none are found, else <code>null</code>.</li></ul>
   </div>
   <div class="jd-tagdata">
@@ -1357,113 +1268,59 @@ From class
       <table class="jd-tagtable">  
         <tr>
             <td>An administrator can use this API to get a list of APNs already provisioned
-
  on the device and use the ApnSettings object returned to
-
  manipulate them. If this API is called and the device does not have a valid SIM card 
-
  inserted, the API returns all the available APNs on the device. Otherwise, the API
-
  return APNs that are specific to the inserted SIM card.
-
  <p>
-
  <pre>
-
   EnterpriseDeviceManager edm = EnterpriseDeviceManager.getInstance(context);
-
   ApnSettingsPolicy apnSettingsPolicy = edm.getApnSettingsPolicy();
-
   
-
   try {
-
       List<ApnSettings> apnList = apnSettingsPolicy.getApnList();
-
       if (apnList != null){
-
            Iterator<ApnSettings> iApnList = apnList.iterator();
-
            List<String> infoList = new ArrayList<String>();
-
            while(iApnList.hasNext()) {
-
                ApnSettings apnSettings = iApnList.next();
-
                String tmp = "Id: " + apnSettings.id + "\n" +
-
                             "Name: " + apnSettings.name + "\n" +
-
                             "Apn: " + apnSettings.apn + "\n" +
-
                             "MCC: " + apnSettings.mcc + "\n" +
-
                             "MNC: " + apnSettings.mnc + "\n" +
-
                             "User: " + apnSettings.user + "\n" +
-
                             "Server: " + apnSettings.server + "\n" +
-
                             "Password: " + apnSettings.password + "\n" +
-
                             "Proxy: " + apnSettings.proxy + "\n" +
-
                             "Port: " + apnSettings.port + "\n" +
-
                             "MmsProxy: " + apnSettings.mmsProxy + "\n" +
-
                             "MMSC: " + apnSettings.mmsc + "\n" +
-
                             "Type: " + apnSettings.type + "\n" +
-
                             "AuthType: " + apnSettings.authType;
-
                infoList.add(tmp);
-
            }
-
            // Log the retrieved APN settings
-
        }   
-
   } catch(SecurityException e) {
-
     Log.w(TAG,"SecurityException: "+e);
-
   } 
-
   //Sample Output
-
   // Id: 2
-
   // Name: KT
-
   // Apn: lte.ktfwing.com
-
   // MCC: 450 
-
   // MNC: 08 
-
   // User:  
-
   // Server: * 
-
   // Password:  
-
   // Proxy:
-
   // Port: -1
-
   // MmsProxy: 
-
   // MMSC: http://mmsc.ktwing.com:9082 
-
   // Type: *
-
   // AuthType: 1
-
 </pre>
-
   <p></td>
         </tr>
       </table>
@@ -1473,11 +1330,8 @@ From class
       <table class="jd-tagtable">  
         <tr>
             <td>The use of this API requires the caller to have the
-
  "com.samsung.android.knox.permission.KNOX_APN" permission which has a
-
  protection level of signature.
-
  <p></td>
         </tr>
       </table>
@@ -1545,16 +1399,12 @@ From class
       
   Deprecated 
       in API level 35
-
  
-
  
-
 
   </p>
 
   <div class="jd-tagdata jd-tagdescr"><p>API to get particular APN settings.
-
  <p></p></div>
   <div class="jd-tagdata">
       <h5 class="jd-tagtitle">Parameters</h5>
@@ -1583,100 +1433,54 @@ From class
       <table class="jd-tagtable">  
         <tr>
             <td>An administrator can use this API to get the APN settings configured on the device.
-
  <p>
-
  <pre>
-
   EnterpriseDeviceManager edm = EnterpriseDeviceManager.getInstance(context);
-
   ApnSettingsPolicy apnSettingsPolicy = edm.getApnSettingsPolicy();
-
   
-
   long apnId = 1;
-
   try {
-
       ApnSettings apnSettings = apnSettingsPolicy.getApnSettings(apnId);
-
       if(apnSettings != null){
-
           String tmp = "Id: " + apnSettings.id + "\n" +
-
           "Name: " + apnSettings.name + "\n" +
-
           "Apn: " + apnSettings.apn + "\n" +
-
           "MCC: " + apnSettings.mcc + "\n" +
-
           "MNC: " + apnSettings.mnc + "\n" +
-
           "User: " + apnSettings.user + "\n" +
-
           "Server: " + apnSettings.server + "\n" +
-
           "Password: " + apnSettings.password + "\n" +
-
           "Proxy: " + apnSettings.proxy + "\n" +
-
           "Port: " + apnSettings.port + "\n" +
-
           "MmsProxy: " + apnSettings.mmsProxy + "\n" +
-
           "MMSC: " + apnSettings.mmsc + "\n" +
-
           "Type: " + apnSettings.type + "\n" +
-
           "AuthType: " + apnSettings.authType;
-
           // Log the retrieved APN settings
-
   } catch(SecurityException e) {
-
     Log.w(TAG,"SecurityException: "+ e);
-
   } 
-
   //Sample Output
-
   // Id: 2
-
   // Name: KT
-
   // Apn: lte.ktfwing.com
-
   // MCC: 450 
-
   // MNC: 08 
-
   // User:  
-
   // Server: * 
-
   // Password:  
-
   // Proxy:
-
   // Port: -1
-
   // MmsProxy: 
-
   // MMSC: http://mmsc.ktwing.com:9082 
-
   // Type: *
-
   // AuthType: 1
-
  </pre>
-
   <p></td>
         </tr>  
         <tr>
             <td>The administrator can use this API to get the APNs already provisioned on the
-
  device and use the <code><a href="ApnSettings.html">ApnSettings</a></code> object returned to manipulate them.
-
  <p></td>
         </tr>
       </table>
@@ -1686,9 +1490,7 @@ From class
       <table class="jd-tagtable">  
         <tr>
             <td>The use of this API requires the caller to have the
-
  "com.samsung.android.knox.permission.KNOX_APN" permission which has a
-
  protection level of signature.</td>
         </tr>
       </table>
@@ -1756,16 +1558,12 @@ From class
       
   Deprecated 
       in API level 35
-
  
-
  
-
 
   </p>
 
   <div class="jd-tagdata jd-tagdescr"><p>API to get preferred APN settings.
-
  <p></p></div>
   <div class="jd-tagdata">
       <h5 class="jd-tagtitle">Returns</h5>
@@ -1785,61 +1583,33 @@ From class
       <table class="jd-tagtable">  
         <tr>
             <td>An administrator can use this API to get the preferred (active) APN on the device
-
  and use the <code><a href="ApnSettings.html">ApnSettings</a></code> object returned to manipulate the APN.
-
  <p>
-
  <pre>
-
   EnterpriseDeviceManager edm = EnterpriseDeviceManager.getInstance(context);
-
   ApnSettingsPolicy apnSettingsPolicy = edm.getApnSettingsPolicy();
-
   
-
   try {
-
       ApnSettings apnSettings = apnSettingsPolicy.getPreferredApnSettings();
-
       if(apnSettings != null){
-
           String tmp = "Id: " + apnSettings.id + "\n" +
-
           "Name: " + apnSettings.name + "\n" +
-
           "Apn: " + apnSettings.apn + "\n" +
-
           "MCC: " + apnSettings.mcc + "\n" +
-
           "MNC: " + apnSettings.mnc + "\n" +
-
           "User: " + apnSettings.user + "\n" +
-
           "Server: " + apnSettings.server + "\n" +
-
           "Password: " + apnSettings.password + "\n" +
-
           "Proxy: " + apnSettings.proxy + "\n" +
-
           "Port: " + apnSettings.port + "\n" +
-
           "MmsProxy: " + apnSettings.mmsProxy + "\n" +
-
           "MMSC: " + apnSettings.mmsc + "\n" +
-
           "Type: " + apnSettings.type + "\n" +
-
           "AuthType: " + apnSettings.authType;
-
           // Log the retrieved APN settings
-
   } catch(SecurityException e) {
-
     Log.w(TAG,"SecurityException: "+ e);
-
   } </pre>
-
   <p></td>
         </tr>
       </table>
@@ -1849,9 +1619,7 @@ From class
       <table class="jd-tagtable">  
         <tr>
             <td>The use of this API requires the caller to have the
-
  "com.samsung.android.knox.permission.KNOX_APN" permission which has a
-
  protection level of signature.</td>
         </tr>
       </table>
@@ -1919,16 +1687,12 @@ From class
       
   Deprecated 
       in API level 35
-
  
-
  
-
 
   </p>
 
   <div class="jd-tagdata jd-tagdescr"><p>API to set a preferred APN.
-
  <p></p></div>
   <div class="jd-tagdata">
       <h5 class="jd-tagtitle">Parameters</h5>
@@ -1957,37 +1721,21 @@ From class
       <table class="jd-tagtable">  
         <tr>
             <td>The specified APN is preferred when a connection to an APN
-
  is requested. If a connection to the preferred APN is not possible,
-
  another APN is chosen from the available list. Use the
-
  unique Id obtained when the APN settings were created to set the
-
  preferred APN.
-
  <p>
-
  <pre>
-
   EnterpriseDeviceManager edm = EnterpriseDeviceManager.getInstance(context);
-
   ApnSettingsPolicy apnSettingsPolicy = edm.getApnSettingsPolicy();
-
   
-
   long apnId = 2;
-
   try {
-
       boolean result = apnSettingsPolicy.setPreferredApn(apnId);
-
   } catch (SecurityException e) {
-
      Log.w(TAG, "SecurityException: " + e);
-
   } </pre>
-
   <p></td>
         </tr>
       </table>
@@ -1997,11 +1745,8 @@ From class
       <table class="jd-tagtable">  
         <tr>
             <td>The use of this API requires the caller to have the
-
  "com.samsung.android.knox.permission.KNOX_APN" permission which has a
-
  protection level of signature.
-
  <p></td>
         </tr>
       </table>
@@ -2018,12 +1763,13 @@ From class
       </table>
   </div>      
   <div class="jd-tagdata">
-      <h5 class="jd-tagtitle">Dependency</h5>
+      <h5 class="jd-tagtitle">Precondition</h5>
       <table class="jd-tagtable">  
         <tr>
-            <td>The APN must have the MCC and MNC set to the same values of the current carrier and
-
- Internet type so it can be set as preferred.</td>
+            <td>1. The APN must have the MCC and MNC set to the same values from the current SIM Card configured as default mobile data.</td>
+        </tr>  
+        <tr>
+            <td>2. The APN to be set as preferred must have a non-null value <code><a href="ApnSettings.html#type">type</a></code> different from "mms" or "dun".</td>
         </tr>
       </table>
   </div>      
@@ -2079,16 +1825,12 @@ From class
       
   Deprecated 
       in API level 35
-
  
-
  
-
 
   </p>
 
   <div class="jd-tagdata jd-tagdescr"><p>API to update existing APN settings.
-
  <p></p></div>
   <div class="jd-tagdata">
       <h5 class="jd-tagtitle">Parameters</h5>
@@ -2117,71 +1859,38 @@ From class
       <table class="jd-tagtable">  
         <tr>
             <td>An administrator can use this API to complete APN information
-
  for accessing the data network of a carrier and, using this API,
-
  update this item on the device APN list without user interaction. Use
-
  the unique Id obtained when the APN settings were created
-
  to fill the <code><a href="ApnSettings.html#id">id</a></code> field when updating a
-
  particular APN.
-
  <p>
-
  <pre>
-
   EnterpriseDeviceManager edm = EnterpriseDeviceManager.getInstance(context);
-
   ApnSettingsPolicy apnSettingsPolicy = edm.getApnSettingsPolicy();
-
   
-
   long apnId = 2;
-
   ApnSettings apnSettings = apnSettingsPolicy.getApnSettings(apnId);  
-
   apnSettings.user = "ApnUser";
-
   apnSettings.password = "1234";
-
   apnSettings.server = "ApnServer";
-
   apnSettings.mmsc = "http://mms.msg.eg.t-mobile.com/mms/wapenc";
-
   apnSettings.mmsProxy = "127.0.0.0";
-
   apnSettings.mmsPort = "80";
-
   apnSettings.mcc = "310";
-
   apnSettings.mnc = "260";
-
   apnSettings.type = "default";
-
   try {
-
    if(apnSettings.id != -1){
-
        if(apnSettingsPolicy.updateApnSettings(apnSettings)) {
-
            Log.w("APN", "APN settings updated");
-
        } else {
-
            Log.w("APN", "FAILED: APN settings not updated");
-
       }
-
     } 
-
   } catch (SecurityException e) {
-
      Log.w(TAG, "SecurityException: " + e);
-
   } </pre>
-
   <p></td>
         </tr>
       </table>
@@ -2191,11 +1900,8 @@ From class
       <table class="jd-tagtable">  
         <tr>
             <td>The use of this API requires the caller to have the
-
  "com.samsung.android.knox.permission.KNOX_APN" permission which has a
-
  protection level of signature.
-
  <p></td>
         </tr>
       </table>
@@ -2216,7 +1922,6 @@ From class
       <table class="jd-tagtable">  
         <tr>
             <td>ApnSettings object must have an existing
-
  <code><a href="ApnSettings.html#id">id</a></code> value because this is an update operation.</td>
         </tr>
       </table>
@@ -2253,7 +1958,7 @@ From class
 <A NAME="navbar_top"></A>
 
 <div id="footer">
-<a href="http://www.samsung.com">Samsung Electronics</a>.<br/>SDK API level 36 - February 4 2022
+<a href="http://www.samsung.com">Samsung Electronics</a>.<br/>SDK API level 36 - November 3 2022
 </div> <!-- end footer -->
 
 </div> <!-- jd-content -->
