@@ -55,6 +55,21 @@
         <link href="../../assets/merge/kp-foundation.css" rel="stylesheet" />
         <link href="../Resources/kp-madcap.css" rel="stylesheet" />
         <link href="../Resources/print.css" rel="stylesheet" />
+        <style>
+            table.no-stripes tbody tr {
+                vertical-align: top;
+                border-bottom: 1px solid #dfdfdf;
+            }
+            table.no-stripes tbody tr:last-of-type {
+                border-bottom: none;
+            }
+            table.no-stripes tbody tr td {
+                border: initial;
+            }
+            table.no-stripes td p {
+                margin-top: initial !important;
+            }
+        </style>
         <script src="../Resources/Scripts/custom.modernizr.js">
         </script>
         <script src="../Resources/Scripts/jquery.min.js">
@@ -118,7 +133,7 @@
                                     <!--REMOVED FROM TOC, UNCOMMENT TO ADD BACK: <MadCap:searchBarProxy />-->
                                     <!--Inserts the madcap TOC-->
                                     <ul class="menu _Skins_Menu mc-component">
-                                        <li><a href="../welcome-header.htm">*BASICS*</a>
+                                        <li><a href="../toc-product-name.htm">Basics</a>
                                         </li>
                                         <li><a href="../fundamentals/welcome.htm">The Knox Ecosystem</a>
                                         </li>
@@ -252,7 +267,7 @@
                                         </li>
                                         <li><a href="../fundamentals/license-knox-products.htm">Knox Licenses</a>
                                         </li>
-                                        <li><a href="../for-it-admins-header.htm">*FOR IT ADMINS*</a>
+                                        <li><a href="../toc-product-name.htm">For IT admins</a>
                                         </li>
                                         <li class="has-children"><a href="add-modify-delete-control-apps.htm#">Knox Admin Portal</a>
                                             <ul class="sub-menu">
@@ -831,6 +846,10 @@
                                                                 <li><a href="../knox-service-plugin/advanced-policies.htm">Advanced Examples</a>
                                                                 </li>
                                                                 <li><a href="../knox-service-plugin/ksp-kai-integration.htm">Integration with Knox Asset Intelligence</a>
+                                                                </li>
+                                                                <li><a href="../knox-service-plugin/device-power.htm">Device power setting based on power source connection</a>
+                                                                </li>
+                                                                <li><a href="../knox-service-plugin/screen-brightness.htm">Set screen brightness</a>
                                                                 </li>
                                                                 <li><a href="../knox-service-plugin/policy-descriptions.htm">Policy descriptions</a>
                                                                 </li>
@@ -2722,7 +2741,7 @@
                                                 </li>
                                             </ul>
                                         </li>
-                                        <li><a href="../partner-header.htm">*FOR PARTNERS*</a>
+                                        <li><a href="../toc-product-name.htm">For Knox Partners</a>
                                         </li>
                                         <li><a href="../../partner/knox-deployment-program/welcome.htm">Knox Deployment Program</a>
                                         </li>
@@ -2753,31 +2772,99 @@
 									-->
                                     <div id="sec2" class="small-12 medium-8 large-9 columns">
                                         <div itemscope="itemscope" itemtype="http://schema.org/Guide">
-                                            <h1><a name="aanchor312"></a>
-                                                <MadCap:concept term="knox-manage" />Add, modify, and delete control apps</h1>
-                                            <p>You can add applications by package name to control them in a blocklist or allowlist.</p>
-                                            <h2>Add control apps</h2>
+                                            <h1>Add, modify, and delete control apps</h1>
+                                            <p>You can add apps by package name to control them in a blocklist or allowlist.</p>
+                                            <h2 id="add-control-app">Add a control app</h2>
                                             <ol>
-                                                <li value="1">Navigate to <b>Profile</b>.</li>
-                                                <li value="2">Click <b>Manage Control App</b>.</li>
-                                                <li value="3">On the <b>Manage Control App</b> screen, click <b>Add</b>.</li>
-                                                <li value="4">On the <b>Add Control App</b>screen, enter the following information. Available items vary depending on the platform.<ul><li value="1"><b>Platform</b>—Select a platform.</li><li value="2"><b>Package Name</b>—Enter the application package name.</li><li value="3"><b>Bundle ID</b>—The retrieved bundle ID for the application is displayed.</li><li value="4"><b>Bundle Name</b>—The retrieved bundle name is shown. If there is no value, <b>-</b> is shown.</li><li value="5"><b>Publisher</b>—Enter the application publisher.</li><li value="6"><b>Application Name</b>—Enter the application name.</li><li value="7"><b>Preload App</b>—Select whether to set the application as a preloaded application.</li></ul></li>
-                                                <li value="5">Click <b>Save</b>.</li>
+                                                <li value="1">Go to <b>Profile</b>, then click <b>Manage Control App</b>. A dialog opens in which you can configure your tenant's control apps.</li>
+                                                <li value="2">Click <b>Add</b>. A configuration dialog opens.</li>
+                                                <li value="3">
+                                                    <p>Define the app's details. Available information varies depending on the platform.</p>
+                                                    <table class="no-stripes">
+                                                        <tbody>
+                                                            <tr>
+                                                                <th style="width: 25%">Setting</th>
+                                                                <th style="width: 25%">Available platforms</th>
+                                                                <th>Description</th>
+                                                            </tr>
+                                                            <tr>
+                                                                <td>Platform</td>
+                                                                <td>All</td>
+                                                                <td>Select the platform that the app is built for.</td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td>Application Name</td>
+                                                                <td>All</td>
+                                                                <td>Enter the app's name as it will appear on the console. This name is alias in Knox Manage and doesn't have to match its actual name.</td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td>Package Name</td>
+                                                                <td>
+                                                                    <p>Android</p>
+                                                                    <p>Wear OS</p>
+                                                                    <p>Windows (APPX file)</p>
+                                                                </td>
+                                                                <td>Enter the app's package name. Package names follow different naming conventions depending on the platform.</td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td>Bundle ID</td>
+                                                                <td>
+                                                                    <p>iOS</p>
+                                                                    <p>iPadOS</p>
+                                                                </td>
+                                                                <td>Enter the app's bundle ID. This identifier is equivalent to the package name in other platforms. For a list of bundle IDs for common native apps for Apple platforms, see <a href="https://support.apple.com/guide/deployment/bundle-ids-for-native-iphone-and-ipad-apps-depece748c41/web" target="_blank">Bundle IDs for native iPhone and iPad apps</a> in the Apple Platform Development docs.</td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td>Bundle Name</td>
+                                                                <td>
+                                                                    <p>iOS</p>
+                                                                    <p>iPadOS</p>
+                                                                </td>
+                                                                <td>Enter the app's name as it appears on the device.</td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td>App Type</td>
+                                                                <td>Windows</td>
+                                                                <td>Select whether the app is an APPX (UWP) or EXE (Win32) file.</td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td>Binary Name</td>
+                                                                <td>Windows (EXE file)</td>
+                                                                <td>Enter the name of the app's executable file.</td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td>Product Name</td>
+                                                                <td>Windows (EXE file)</td>
+                                                                <td>Enter the app's name as it appears on the device. For more information, see <a href="https://learn.microsoft.com/en-us/windows/win32/msi/productname" target="_blank">ProductName property</a> in the Windows App Development docs.</td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td>Publisher</td>
+                                                                <td>Windows</td>
+                                                                <td>Enter the app's publisher name as it appears on the device. For more information, see <a href="https://learn.microsoft.com/en-us/windows/win32/cossdk/publisherproperties#name" target="_blank">PublisherProperties collection</a> in the Windows App Development docs.</td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td>Preload App</td>
+                                                                <td>Windows</td>
+                                                                <td>Select whether to preinstall the app during enrollment. For more details, see <a href="https://learn.microsoft.com/en-us/windows-hardware/customize/preinstall/preinstallable-apps-for-windows-10-desktop" target="_blank">Preinstallable apps for desktop devices</a> in the Windows Hardware Developer docs.</td>
+                                                            </tr>
+                                                        </tbody>
+                                                    </table>
+                                                </li>
+                                                <li value="4"><b>Save</b> the new control app.</li>
                                             </ol>
-                                            <h2>Modify control apps</h2>
+                                            <h2 id="modify-control-app">Modify a control app</h2>
+                                            <p>To modify the details of an existing control app:</p>
                                             <ol>
-                                                <li value="1">Navigate to <b>Profile</b>.</li>
-                                                <li value="2">Click <b>Manage Control App</b>.</li>
-                                                <li value="3">On the <b>Manage Control App</b> screen, select an application name to modify, and then click <b>Modify</b>.</li>
-                                                <li value="4">On the <b>Modify Control App</b> screen, modify the information.</li>
-                                                <li value="5">Click <b>Save</b>.</li>
+                                                <li value="1">Go to <b>Profile</b>, then click <b>Manage Control App</b>. A dialog opens in which you can configure your tenant's control apps.</li>
+                                                <li value="2">Select an app to modify, and then click <b>Modify</b>. A configuration dialog opens.</li>
+                                                <li value="3">Change the app's information as needed.</li>
+                                                <li value="4">Click <b>Save</b>.</li>
                                             </ol>
-                                            <h2>Delete control apps</h2>
+                                            <h2 id="delete-control-app">Delete a control app</h2>
+                                            <p>To delete an existing control app:</p>
                                             <ol>
-                                                <li value="1">Navigate to <b>Profile</b>.</li>
-                                                <li value="2">Click <b>Manage Control App</b>.</li>
-                                                <li value="3">On the <b>Manage Control App</b> screen, select an application name to delete, and then click <b>Delete</b>.</li>
-                                                <li value="4">On the <b>Delete Application</b> screen, click <b>Save</b>.</li>
+                                                <li value="1">Go to <b>Profile</b>, then click <b>Manage Control App</b>. A dialog opens in which you can configure your tenant's control apps.</li>
+                                                <li value="2">Select an app to delete, and then click <b>Delete</b>.</li>
                                             </ol>
                                         </div>
                                         <!-- Inserts feedback module here -->
@@ -2831,55 +2918,8 @@
         </script>
         <script type="text/javascript" src="../../assets/merge/madcap.js">
         </script>
-        <!--end scripts -->
-        <!--Header scripts, needs to be in master page or search results page will break -->
-        <script>/* <![CDATA[ */
-			($("a[href='welcome-header.htm']").replaceWith("<p style='padding-top:20px;text-transform:uppercase;'><b>Basics</b></p>"))
-		/* ]]> */</script>
-        <script>/* <![CDATA[ */
-			($("a[href='for-it-admins-header.htm']").replaceWith("<p style='padding-top:20px;text-transform:uppercase;'><b>For IT Admins</b></p>"))
-		/* ]]> */</script>
-        <script>/* <![CDATA[ */
-			($("a[href='reseller-header.htm']").replaceWith("<p style='padding-top:20px;text-transform:uppercase;'><b>For Resellers</b></p>"))
-		/* ]]> */</script>
-        <script>/* <![CDATA[ */
-			($("a[href='msp-header.htm']").replaceWith("<p style='padding-top:20px;text-transform:uppercase;'><b>For Managed Service Providers</b></p>"))
-		/* ]]> */</script>
-        <!--end scripts -->
-        <script>/* <![CDATA[ */
-			($("a[href='../welcome-header.htm']").replaceWith("<p style='padding-top:20px;text-transform:uppercase;'><b>Basics</b></p>"))	
-		/* ]]> */</script>
-        <script>/* <![CDATA[ */
-			($("a[href='../for-it-admins-header.htm']").replaceWith("<p style='padding-top:20px;text-transform:uppercase;'><b>For IT Admins</b></p>"))
-		/* ]]> */</script>
-        <script>/* <![CDATA[ */
-			($("a[href='../partner-header.htm']").replaceWith("<p style='padding-top:20px;text-transform:uppercase;'><b>For Partners</b></p>"))
-		/* ]]> */</script>
-        <script>/* <![CDATA[ */
-			($("a[href='http://docs.samsungknox.com/partner/knox-deployment-program/welcome.htm']").replaceWith("<a href='../../partner/knox-deployment-program/welcome.htm' target='_blank'>Knox Deployment Program <img class='no-border' src='../../assets/merge/images/external-link.svg' style='width: 12px; height: 12px; margin: 0'></a>"))
-		/* ]]> */</script>
-        <script>/* <![CDATA[ */
-			($("a[href='http://docs.samsungknox.com/partner/knox-managed-service-provider/welcome.htm']").replaceWith("<a href='../../partner/knox-managed-service-provider/welcome.htm' target='_blank'>Knox MSP Program <img class='no-border' src='../../assets/merge/images/external-link.svg' style='width: 12px; height: 12px; margin: 0'></a>"))
-		/* ]]> */</script>
-        <!-- finds the h1 on each page and inserts it into the breadcrumb in the header. Only have 1 h1 on each page. -->
-        <script>/* <![CDATA[ */
-			var pageTitle = document.getElementsByTagName('h1');
-			document.getElementById("demo").innerHTML = pageTitle[0].innerHTML;									
-		/* ]]> */</script>
-        <!-- Finds all h2's and inserts a hr line below it -->
-        <script type="text/javascript">/*<![CDATA[*/var articles = document.getElementsByTagName('h2')
-			for (var i = 0; i < articles.length; i ++) {
-			articles[i].parentNode.insertBefore(document.createElement('hr'), articles[i].nextSibling)
-		}/*]]>*/</script>
-        <script>/* <![CDATA[ */
-			($("a[href='../../welcome-header.htm']").replaceWith("<p style='padding-top:20px;text-transform:uppercase;'><b>Basics</b></p>"))	
-		/* ]]> */</script>
-        <script>/* <![CDATA[ */
-			($("a[href='../../for-it-admins-header.htm']").replaceWith("<p style='padding-top:20px;text-transform:uppercase;'><b>For IT Admins</b></p>"))
-		/* ]]> */</script>
-        <script>/* <![CDATA[ */
-			($("a[href='../../partner-header.htm']").replaceWith("<p style='padding-top:20px;text-transform:uppercase;'><b>For Partners</b></p>"))
-		/* ]]> */</script>
+        <script src="../Resources/MasterPages/Scripts/build-scripts.js">
+        </script>
         <!-- Prettify code snippets -->
         <script type="text/javascript" src="../Resources/MasterPages/Scripts/prettify/prettify.js">
         </script>
