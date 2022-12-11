@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" lang="en-US" xml:lang="en-US" data-mc-search-type="Stem" data-mc-help-system-file-name="Default.xml" data-mc-path-to-help-system="../" data-mc-conditions="Builds.knox-sdk-build" data-mc-target-type="WebHelp2" data-mc-runtime-file-type="Topic;Default" data-mc-preload-images="false" data-mc-in-preview-mode="false" data-mc-toc-path="Device apps|Knox SDK|Features|VPN Providers">
     <head>
@@ -1609,193 +1610,196 @@
                                                 </ul>
                                             </div>
                                         </nav>
-                                        <h1><a name="top"></a>VPN&#160;namespace changes</h1>
-                                        <h2>Overview</h2>
-                                        <p>The Knox v3.4 release merged the Knox VPN SDK into the Knox SDK. All packages, intents, and permission names in the Knox VPN SDK migrated:</p>
-                                        <ul>
-                                            <li value="1">from the old namespace <code>com.sec.vpn</code></li>
-                                            <li value="2">to the new namespace <code>com.samsung.android.knox</code></li>
-                                        </ul>
-                                        <p>Knox v3.0 first introduced the consolidated Knox SDK&#160;with this new namespace, and introduced the <code>supportlib.jar</code> library to help older devices translate the old namespace to the new namespace. For details about how to update apps to use the new namespace, see the <a href="migration-intro.htm">Migration Tutorial</a>.</p>
-                                        <p><b>Caution</b>:&#160;All the old namespaces used by the deprecated SDKs (Knox Standard, Premium, Customization, ISV, UCM, VPN)&#160;will no longer be supported in the Android 10 (Q)&#160;release. Older devices however will continue to support the old namespaces.</p>
-                                        <p>If your app used the deprecated Knox VPN&#160;SDK, you must migrate to the Knox SDK&#160;and its new namespace. Not migrating to the new namespace will cause your VPN app to malfunction in Android 10, leaving your users without VPN access. To prevent this malfunction, we highly recommend updating your VPN apps to use the new namespace.</p>
-                                        <h3>Namespace architecture</h3>
-                                        <p>VPN clients developed using the deprecated Knox VPN&#160;SDK used the old namespace. </p>
-                                        <p>
-                                            <img src="../Resources/Images/knox-vpn-old-namespace.png" />
-                                        </p>
-                                        <p>When the Knox VPN&#160;SDK&#160;merged into the Knox SDK&#160;v3.4, a new namespace was introduced. Now, the Knox SDK framework uses the <code>knoxvpn_support.aar</code> library to act as a proxy and forward any new namespace API requests from VPN clients compatible with Knox SDK v3.0 or lower. All VPN clients must move to the new namespace in Knox v3.4 and above. With this change, old namespace calls from the Knox VPN framework are converted to new namespace APIs on the updated VPN clients. All VPN clients must include the <code>knoxvpn_support.aar</code> library to provide backward compatibility with old frameworks. The new namespace architecture is as follows. </p>
-                                        <p style="text-align: center;">
-                                            <img src="../../images/knox-sdk/knox-vpn-new-namespace.png" />
-                                            <br />
-                                        </p>
-                                        <h2>Update VPN client app in Android Studio</h2>
-                                        <p>Follow the instructions in this section to update your VPN client to use the new namespaces.</p>
-                                        <ol>
-                                            <li value="1">
-                                                <p>In the AndroidManifest.xml file, add a new service declaration as follows:</p><pre class="prettyprint"><p>&lt;service android:name="com.samsung.android.knox.net.vpn.KnoxONSVpnService" android:exported="false" &gt;
+                                        <h1><a name="top"></a>VPN namespace changes</h1>
+        <h2>Overview</h2>
+        <p>The Knox v3.4 release merged the Knox VPN SDK into the Knox SDK. All packages, intents, and permission names in the Knox VPN SDK migrated:</p>
+        <ul>
+            <li>from the old namespace <code>com.sec.vpn</code></li>
+            <li>to the new namespace <code>com.samsung.android.knox</code></li>
+        </ul>
+        <p>Knox v3.0 first introduced the consolidated Knox SDK with this new namespace, and introduced the <code>supportlib.jar</code> library to help older devices translate the old namespace to the new namespace. For details about how to update apps to use the new namespace, see the <a href="migration-intro.htm">Migration Tutorial</a>.</p>
+        <p><b>Caution</b>: All the old namespaces used by the deprecated SDKs (Knox Standard, Premium, Customization, ISV, UCM, VPN) will no longer be supported in the Android 10 (Q) release. Older devices however will continue to support the old namespaces.</p>
+        <p>If your app used the deprecated Knox VPN SDK, you must migrate to the Knox SDK and its new namespace. Not migrating to the new namespace will cause your VPN app to malfunction in Android 10, leaving your users without VPN access. To prevent this malfunction, we highly recommend updating your VPN apps to use the new namespace.</p>
+        <h3>Namespace architecture</h3>
+        <p>VPN clients developed using the deprecated Knox VPN SDK used the old namespace. </p>
+        <p>
+            <img src="../Resources/Images/knox-vpn-old-namespace.png" />
+        </p>
+        <p>When the Knox VPN SDK merged into the Knox SDK v3.4, a new namespace was introduced. Now, the Knox SDK framework uses the <b>Knox VPN SDK Support Library for Old Namespace Translation</b> (knoxvpn_support.aar) library to act as a proxy and forward any new namespace API requests from VPN clients compatible with Knox SDK v3.0 or lower. All VPN clients must move to the new namespace in Knox v3.4 and above. With this change, old namespace calls from the Knox VPN framework are converted to new namespace APIs on the updated VPN clients. All VPN clients must include the  <b>Knox VPN SDK Support Library for Old Namespace Translation</b> (knoxvpn_support.aar) library to provide backward compatibility with old frameworks. The new namespace architecture is as follows. </p>
+
+        <p style="text-align: center;">
+            <img src="../../images/knox-sdk/knox-vpn-new-namespace.png" />
+            <br />
+        </p>
+        <h2>Update VPN client app in Android Studio</h2>
+        <p>Follow the instructions in this section to update your VPN client to use the new namespaces.</p>
+        <ol>
+            <li>
+                <p>In the AndroidManifest.xml file, add a new service declaration as follows:</p><pre class="prettyprint"><p>&lt;service android:name="com.samsung.android.knox.net.vpn.KnoxONSVpnService" android:exported="false" &gt;
   &lt;intent-filter&gt;
-    &lt;action android:name="{packageName}.BIND_SERVICE" /&gt; 
-  &lt;/intent-filter&gt; 
-&lt;/service&gt;</p></pre>
-                                            </li>
-                                            <li value="2">
-                                                <p>Change the action name to update existing the Knox VPN service, as highlighted in red:</p><pre class="prettyprint"><p>&lt;service android:name="{packageName}.KnoxVpnServiceImpl"android:exported="false" &gt;
-  &lt;intent-filter&gt;
-   &lt;action android:name="{packageName}.BIND_SERVICE<span style="color: #ff0000;">_NEW</span>" /&gt; 
+    &lt;action android:name="{packageName}.BIND_SERVICE" /&gt;
   &lt;/intent-filter&gt;
 &lt;/service&gt;</p></pre>
-                                            </li>
-                                            <li value="3">In the build.gradle file (root directory), include the flatDir attribute as follows:<br /></li><pre class="prettyprint"><p>allprojects {
+            </li>
+            <li>
+                <p>Change the action name to update existing the Knox VPN service, as highlighted in red:</p><pre class="prettyprint"><p>&lt;service android:name="{packageName}.KnoxVpnServiceImpl"android:exported="false" &gt;
+  &lt;intent-filter&gt;
+   &lt;action android:name="{packageName}.BIND_SERVICE<span style="color: #ff0000;">_NEW</span>" /&gt;
+  &lt;/intent-filter&gt;
+&lt;/service&gt;</p></pre>
+            </li>
+            <li>In the build.gradle file (root directory), include the flatDir attribute as follows:<br /></li><pre class="prettyprint"><p>allprojects {
   repositories {
     jcenter()
     flatDir {
       dirs 'libs'
     }
-  } 
+  }
 }
 			</p></pre>
-                                        </ol>
-                                        <ol data-mc-continue="true">
-                                            <li value="4">In the client's project, under apps/libs/, add the latest Knox SDK&#160;(knoxsdk.jar) and supportlib.jar  libraries. You can download both from the <a href="https://partner.samsungknox.com/dashboard/download">Knox Partner Portal dashboard &gt;&#160;Download page</a>.<br /></li>
-                                            <li value="5">
-                                                <p style="font-weight: normal;">If your gradle version is 3.0 or below, add an entry for multiDexEnabled as follows. If your gradle plugin is above 3.0, you can skip this step. </p><pre class="prettyprint"><p>defaultConfig {
+        </ol>
+        <ol MadCap:continue="true">
+            <li>In the client's project, under apps/libs/, add the latest Knox SDK (knoxsdk.jar) and supportlib.jar  libraries. You can download both from the <a href="https://developer.samsungknox.com/dashboard/download">Knox developer dashboard &gt; Download page</a>.<br /></li>
+
+            <li>
+                <p style="font-weight: normal;">If your gradle version is 3.0 or below, add an entry for multiDexEnabled as follows. If your gradle plugin is above 3.0, you can skip this step. </p><pre class="prettyprint"><p>defaultConfig {
   ...
   multiDexEnabled = true
 }</p></pre>
-                                            </li>
-                                            <li value="6">
-                                                <p>In the client's project, under apps/libs/, add the knoxvpn_support.aar artifact.&#160;You can download knoxvpn_support.aar from the <a href="https://partner.samsungknox.com/dashboard/download">Knox Partner Portal dashboard &gt;&#160;Download page</a>.</p>
-                                            </li>
-                                            <li value="7">
-                                                <p>Update your gradle dependencies. <br /><br style="font-weight: bold;" /><b>If your gradle plugin version is 3.0 or below</b><br /><br />In the build.gradle app directory, under the dependencies entry, include the following compile entry:</p><pre class="prettyprint"><p>dependencies {<br />  apk files('libs/supportlib.jar')
+            </li>
+            <li>
+                <p>In the client's project, under apps/libs/, add the  <b>Knox VPN SDK Support Library for Old Namespace Translation</b> (knoxvpn_support.aar) artifact, you can download the file from the <a href="https://developer.samsungknox.com/dashboard/download">Knox developer dashboard &gt; Download page</a>.</p>
+
+            </li>
+            <li>
+                <p>Update your gradle dependencies. <br /><br style="font-weight: bold;" /><b>If your gradle plugin version is 3.0 or below</b><br /><br />In the build.gradle app directory, under the dependencies entry, include the following compile entry:</p><pre class="prettyprint"><p>dependencies {<br />  apk files('libs/supportlib.jar')
   provided files('libs/knoxsdk.jar')<br />  compile(name:'knoxvpn_support', ext:'aar')<br />}</p></pre>
-                                                <p><b>If your gradle plugin version is above 3.0</b> <br /><br />In the build.gradle app directory, under the dependencies entry, include the following compile entry:<br /></p><pre class="prettyprint"><p>dependencies {
+                <p><b>If your gradle plugin version is above 3.0</b> <br /><br />In the build.gradle app directory, under the dependencies entry, include the following compile entry:<br /></p><pre class="prettyprint"><p>dependencies {
   runtimeOnly files('libs/supportlib.jar')
   compileOnly files('libs/knoxsdk.jar')
   compileOnly files('libs/knoxvpn_support.aar')
 }</p></pre>
-                                                <p>Make sure that your gradle file does <b>not</b> include the default line below, which adds all .jars inside <code>apps/libs/</code>:</p><pre class="prettyprint"><p>implementation fileTree(dir: 'libs', include: ['*.jar'])</p></pre>
-                                            </li>
-                                            <li value="8">
-                                                <p>Update old namespace references to use new namespace—com.samsung.android.knox—as follows: </p>
-                                                <table style="margin-left: 0;margin-right: auto;width: 100%;">
-                                                    <col />
-                                                    <col />
-                                                    <thead>
-                                                        <tr>
-                                                            <th>Existing reference<br />(old namespace)</th>
-                                                            <th>Change to<br />(new namespace)</th>
-                                                        </tr>
-                                                    </thead>
-                                                    <tbody>
-                                                        <tr>
-                                                            <td>import android.app.enterprise.CertificateInfo;</td>
-                                                            <td>import com.samsung.android.knox.keystore.CertificateInfo;</td>
-                                                        </tr>
-                                                        <tr>
-                                                            <td>import com.sec.enterprise.mdm.services.vpn.knoxvpn.IKnoxVpnService;</td>
-                                                            <td>import com.samsung.android.knox.net.vpn.serviceprovider.IKnoxVpnService;</td>
-                                                        </tr>
-                                                        <tr>
-                                                            <td>import com.sec.vpn.knox.GenericVpnContext;  <![CDATA[
+                <p>Make sure that your gradle file does <b>not</b> include the default line below, which adds all .jars inside <code>apps/libs/</code>:</p><pre class="prettyprint"><p>implementation fileTree(dir: 'libs', include: ['*.jar'])</p></pre>
+            </li>
+            <li>
+                <p>Update old namespace references to use new namespace—com.samsung.android.knox—as follows: </p>
+                <table style="margin-left: 0;margin-right: auto;width: 100%;">
+                    <col />
+                    <col />
+                    <thead>
+                        <tr>
+                            <th>Existing reference<br />(old namespace)</th>
+                            <th>Change to<br />(new namespace)</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>import android.app.enterprise.CertificateInfo;</td>
+                            <td>import com.samsung.android.knox.keystore.CertificateInfo;</td>
+                        </tr>
+                        <tr>
+                            <td>import com.sec.enterprise.mdm.services.vpn.knoxvpn.IKnoxVpnService;</td>
+                            <td>import com.samsung.android.knox.net.vpn.serviceprovider.IKnoxVpnService;</td>
+                        </tr>
+                        <tr>
+                            <td>import com.sec.vpn.knox.GenericVpnContext;  <![CDATA[
 							]]></td>
-                                                            <td> import com.samsung.android.knox.net.vpn.serviceprovider.GenericVpnContext;</td>
-                                                        </tr>
-                                                        <tr>
-                                                            <td>
+                            <td> import com.samsung.android.knox.net.vpn.serviceprovider.GenericVpnContext;</td>
+                        </tr>
+                        <tr>
+                            <td>
 
 							import com.sec.vpn.knox.GenericVpnService;</td>
-                                                            <td>import com.samsung.android.knox.net.vpn.serviceprovider.GenericVpnService;</td>
-                                                        </tr>
-                                                    </tbody>
-                                                </table>
-                                            </li>
-                                            <li value="9">From the VPN&#160;client's project folder, remove all old namespace files, such as: 
-			<ul><li value="1">Under src/main/aidl/android/app/enterprise, remove CertificateInfo.aidl</li><li value="2">Under src/main/java/android/app/enterprise, remove CertificateInfo.java</li><li value="3">Under src/main/aidl/com/sec/enterprise/mdm/services/vpn/knoxvpn, remove IKnoxVpnService.aidl</li></ul></li>
-                                        </ol>
-                                        <p>&#160;</p>
-                                        <!-- Inserts feedback module here -->
-                                        <div id="feedback">
-                                        </div>
-                                        <!-- Commented out until the Rebrandly service is approved, contact Kevin for status-->
-                                        <!-- Link sharing -->
-                                        <!--<div style="text-align: center; font-size: 1.8em "><span style="font-size: 0.8em; text-transform: uppercase;font-weight: 700;">Share it:</span><a rel="external nofollow" style="width:40px;height:40px; display:inline-block" onclick="tweetFunction();" target="_blank" title="Share on Twitter"><i class="fab fa-twitter"></i></a><a rel="external nofollow" style="width:40px;height:40px; display:inline-block" onclick="linkedinFunction();" target="_blank" title="Share on LinkedIn"><i class="fab fa-linkedin-in"></i></a><a rel="external nofollow" style="width:40px;height:40px; display:inline-block" onclick="emailFunction();" target="_blank" title="Share via email"><i class="fas fa-envelope"></i></a><a rel="external nofollow" style="width:40px;height:40px; display:inline-block" onclick="copyFunction(this);" target="_blank" title="Copy to clipboard"><i class="fas fa-copy"></i></a><i style="text-align: center; font-size: 0.5em; position:absolute; "></i>
-										</div>
-										<script src="https://docs.samsungknox.com/assets/merge/share/share-twitter.js">
-										</script>
-										<script src="https://docs.samsungknox.com/assets/merge/share/share-linkedin.js">
-										</script>
-										<script src="https://docs.samsungknox.com/assets/merge/share/share-email.js">
-										</script>
-										<script src="https://docs.samsungknox.com/assets/merge/share/share-copy.js">
-										</script>-->
+                            <td>import com.samsung.android.knox.net.vpn.serviceprovider.GenericVpnService;</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </li>
+            <li>From the VPN client's project folder, remove all old namespace files, such as:
+			<ul><li>Under src/main/aidl/android/app/enterprise, remove CertificateInfo.aidl</li><li>Under src/main/java/android/app/enterprise, remove CertificateInfo.java</li><li>Under src/main/aidl/com/sec/enterprise/mdm/services/vpn/knoxvpn, remove IKnoxVpnService.aidl</li></ul></li>
+    </ol>
+                                    <p>&#160;</p>
+                                    <!-- Inserts feedback module here -->
+                                    <div id="feedback">
                                     </div>
-                                    <div class="medium-3 large-3 hide-for-small-only columns sticky-container" data-sticky-container="" data-magellan="">
-                                        <!-- hide for side bar -->
-                                        <div class="sticky" data-sticky="" data-anchor="sec2">
-                                            <br />
-                                            <br />
-                                            <br />
-                                            <h7 />
-                                            <ul>
-                                                <aside />
-                                            </ul>
-                                        </div>
+                                    <!-- Commented out until the Rebrandly service is approved, contact Kevin for status-->
+                                    <!-- Link sharing -->
+                                    <!--<div style="text-align: center; font-size: 1.8em "><span style="font-size: 0.8em; text-transform: uppercase;font-weight: 700;">Share it:</span><a rel="external nofollow" style="width:40px;height:40px; display:inline-block" onclick="tweetFunction();" target="_blank" title="Share on Twitter"><i class="fab fa-twitter"></i></a><a rel="external nofollow" style="width:40px;height:40px; display:inline-block" onclick="linkedinFunction();" target="_blank" title="Share on LinkedIn"><i class="fab fa-linkedin-in"></i></a><a rel="external nofollow" style="width:40px;height:40px; display:inline-block" onclick="emailFunction();" target="_blank" title="Share via email"><i class="fas fa-envelope"></i></a><a rel="external nofollow" style="width:40px;height:40px; display:inline-block" onclick="copyFunction(this);" target="_blank" title="Copy to clipboard"><i class="fas fa-copy"></i></a><i style="text-align: center; font-size: 0.5em; position:absolute; "></i>
+                </div>
+                <script src="https://docs.samsungknox.com/assets/merge/share/share-twitter.js">
+                </script>
+                <script src="https://docs.samsungknox.com/assets/merge/share/share-linkedin.js">
+                </script>
+                <script src="https://docs.samsungknox.com/assets/merge/share/share-email.js">
+                </script>
+                <script src="https://docs.samsungknox.com/assets/merge/share/share-copy.js">
+                </script>-->
+                                </div>
+                                <div class="medium-3 large-3 hide-for-small-only columns sticky-container" data-sticky-container="" data-magellan="">
+                                    <!-- hide for side bar -->
+                                    <div class="sticky" data-sticky="" data-anchor="sec2">
+                                        <br />
+                                        <br />
+                                        <br />
+                                        <h7 />
+                                        <ul>
+                                            <aside />
+                                        </ul>
                                     </div>
                                 </div>
                             </div>
-                        </section>
-                    </div>
+                        </div>
+                    </section>
                 </div>
             </div>
         </div>
-        <div class="off-canvas-wrapper">
-        </div>
-        <!-- MadCap scripts -->
-        <script type="text/javascript" src="../../assets/merge/what-input.js">
-        </script>
-        <script type="text/javascript" src="../../assets/merge/foundation.js">
-        </script>
-        <script type="text/javascript" src="../../assets/merge/foundation-menu-off-canvas-initialisation.js">
-        </script>
-        <script type="text/javascript" src="../../assets/merge/madcap.js">
-        </script>
-        <script type="text/javascript" src="../../assets/merge/openTab.js">
-        </script>
-        <!-- Format left ToC headings  -->
-        <script>/* <![CDATA[ */
-			($("a[href='http://docs.samsungknox.com/dev/assets/navheads/welcome.htm']").replaceWith("<p style='padding-top:20px;text-transform:uppercase;'><b>Basics</b></p>"))
-		/* ]]> */</script>
-        <script>/* <![CDATA[ */
-			($("a[href='http://docs.samsungknox.com/dev/assets/navheads/device-apps.htm']").replaceWith("<p style='padding-top:20px;text-transform:uppercase;'><b>Device Apps</b></p>"))
-		/* ]]> */</script>
-        <script>/* <![CDATA[ */
-			($("a[href='http://docs.samsungknox.com/dev/assets/navheads/web-services.htm']").replaceWith("<p style='padding-top:20px;text-transform:uppercase;'><b>Web Services</b></p>"))
-		/* ]]> */</script>
-        <script>/* <![CDATA[ */
-			($("a[href='http://docs.samsungknox.com/dev/assets/navheads/configurations.htm']").replaceWith("<p style='padding-top:20px;text-transform:uppercase;'><b>Managed Configurations</b></p>"))
-		/* ]]> */</script>
-        <!-- Prettify code snippets -->
-        <script type="text/javascript" src="../Resources/MasterPages/Scripts/prettify/prettify.js">
-        </script>
-        <img src="../Resources/MasterPages/Scripts/prettify/onLoad.png" onload="prettyPrint()" class="fix" style="display: none;" />
-        <!-- Back-to-top-button-JS -->
-        <script src="../Resources/MasterPages/Scripts/Back-to-top-button.js">
-        </script>
-        <!-- Back-to-top-button -->
-        <div id="back-to-top">
-        </div>
-        <!-- Feedback module -->
-        <script src="../../assets/merge/feedback-module.js">
-        </script>
-        <script src="../../assets/merge/google-analytics-event-script.js">
-        </script>
-        <!-- Footer -->
-        <script src="../../assets/kpp/kpp-footer.js">
-        </script>
-        <!-- dynamic meta tags -->
-        <script type="text/javascript" src="../../assets/merge/og-meta-tags-dev.js">
-        </script>
-    </body>
+    </div>
+    <div class="off-canvas-wrapper">
+    </div>
+    <!-- MadCap scripts -->
+    <script type="text/javascript" src="../../assets/merge/what-input.js">
+    </script>
+    <script type="text/javascript" src="../../assets/merge/foundation.js">
+    </script>
+    <script type="text/javascript" src="../../assets/merge/foundation-menu-off-canvas-initialisation.js">
+    </script>
+    <script type="text/javascript" src="../../assets/merge/madcap.js">
+    </script>
+    <script type="text/javascript" src="../../assets/merge/openTab.js">
+    </script>
+    <!-- Format left ToC headings  -->
+    <script>/* <![CDATA[ */
+  ($("a[href='http://docs.samsungknox.com/dev/assets/navheads/welcome.htm']").replaceWith("<p style='padding-top:20px;text-transform:uppercase;'><b>Basics</b></p>"))
+/* ]]> */</script>
+    <script>/* <![CDATA[ */
+  ($("a[href='http://docs.samsungknox.com/dev/assets/navheads/device-apps.htm']").replaceWith("<p style='padding-top:20px;text-transform:uppercase;'><b>Device Apps</b></p>"))
+/* ]]> */</script>
+    <script>/* <![CDATA[ */
+  ($("a[href='http://docs.samsungknox.com/dev/assets/navheads/web-services.htm']").replaceWith("<p style='padding-top:20px;text-transform:uppercase;'><b>Web Services</b></p>"))
+/* ]]> */</script>
+    <script>/* <![CDATA[ */
+  ($("a[href='http://docs.samsungknox.com/dev/assets/navheads/configurations.htm']").replaceWith("<p style='padding-top:20px;text-transform:uppercase;'><b>Managed Configurations</b></p>"))
+/* ]]> */</script>
+    <!-- Prettify code snippets -->
+    <script type="text/javascript" src="../Resources/MasterPages/Scripts/prettify/prettify.js">
+    </script>
+    <img src="../Resources/MasterPages/Scripts/prettify/onLoad.png" onload="prettyPrint()" class="fix" style="display: none;" />
+    <!-- Back-to-top-button-JS -->
+    <script src="../Resources/MasterPages/Scripts/Back-to-top-button.js">
+    </script>
+    <!-- Back-to-top-button -->
+    <div id="back-to-top">
+    </div>
+    <!-- Feedback module -->
+    <script src="../../assets/merge/feedback-module.js">
+    </script>
+    <script src="../../assets/merge/google-analytics-event-script.js">
+    </script>
+    <!-- Footer -->
+    <script src="../../assets/kpp/kpp-footer.js">
+    </script>
+    <!-- dynamic meta tags -->
+    <script type="text/javascript" src="../../assets/merge/og-meta-tags-dev.js">
+    </script>
+</body>
 </html>
