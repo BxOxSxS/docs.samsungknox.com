@@ -1008,7 +1008,7 @@
                                                                         </li>
                                                                         <li><a href="../../knox-configure/normal-mode.htm">Dynamic edition: Normal mode</a>
                                                                         </li>
-                                                                        <li><a href="../../knox-configure/kiosk-Mode.htm">Dynamic editon: ProKiosk mode</a>
+                                                                        <li><a href="../../knox-configure/kiosk-Mode.htm">Dynamic edition: ProKiosk mode</a>
                                                                         </li>
                                                                         <li><a href="../../knox-configure/kids-mode.htm">Samsung Kids mode</a>
                                                                         </li>
@@ -2238,7 +2238,7 @@
                                                         </li>
                                                     </ul>
                                                 </li>
-                                                <li><a href="../release-notes.htm">Release notes</a>
+                                                <li><a href="index.htm">Release notes</a>
                                                 </li>
                                                 <li><a href="../km-feature-list.htm">Features</a>
                                                 </li>
@@ -2720,7 +2720,7 @@
                                                         </li>
                                                     </ul>
                                                 </li>
-                                                <li><a href="../../care-plus/release-notes.htm">Release notes</a>
+                                                <li><a href="../../care-plus/release-notes/index.htm">Release notes</a>
                                                 </li>
                                                 <li><a href="../../care-plus/faq.htm">FAQ</a>
                                                 </li>
@@ -2759,8 +2759,7 @@
 									-->
                                     <div id="sec2" class="small-12 medium-8 large-9 columns">
                                         <div itemscope="itemscope" itemtype="http://schema.org/Guide">
-                                            <h1><a name="aanchor1225"></a>
-                                                <MadCap:concept term="knox-manage" />Knox Manage 21.11 release notes — November 18, 2021</h1>
+                                            <h1>Knox Manage 21.11 release notes</h1>
                                             <p>Knox Manage 21.11 is scheduled for release on November 18, 2021. This update includes new features and platform support, as well as many improvements and enhancements to existing features and functionality.</p>
                                             <h2 id="highlights">Highlights</h2>
                                             <ul>
@@ -2787,21 +2786,25 @@
                                             </ul>
                                             <h2 id="android-enterprise">Android Enterprise</h2>
                                             <p>The following changes apply to Android Enterprise device management.</p>
-                                            <h3>Android 12 changes</h3>
+                                            <h3 id="android-12-changes">Android 12 changes</h3>
                                             <p>The following changes apply to devices running Android 12.</p>
                                             <h4 id="location-access">Location access</h4>
                                             <p>With Android 12 and higher, device users can decide whether to allow apps access to <i>approximate</i> or <i>precise</i> location data. Starting with KM 21.11, this affects location tracking on the following types of Android 12 deployments:</p>
                                             <ul>
                                                 <li value="1">Shared devices with a secondary account</li>
-                                                <li value="2">Employee-owned devices with a Work Profile</li>
+                                                <li value="2">Employee-owned devices with a work profile</li>
                                             </ul>
                                             <p>In order for the KM agent to properly report device location data on these devices, you must:</p>
                                             <ul>
-                                                <li value="1">Ask device users to grant <b>Precise</b> location data and select <b>While using the app</b> when the KM agent prompts them:
-            <p><img src="../../../assets/merge/images/knox-manage/km-21-11-rn-android-precise-location.png" srcset="../../../assets/merge/images/knox-manage/km-21-11-rn-android-precise-location.png 1.25x" alt="The Precise setting in KM" /></p></li>
+                                                <li value="1">
+                                                    <p>Ask device users to grant <b>Precise</b> location data and select <b>While using the app</b> when the KM agent prompts them:</p>
+                                                    <p>
+                                                        <img src="../../../assets/merge/images/knox-manage/km-21-11-rn-android-precise-location.png" srcset="../../../assets/merge/images/knox-manage/km-21-11-rn-android-precise-location.png 1.25x" alt="The Precise setting in KM" />
+                                                    </p>
+                                                </li>
                                             </ul>
-                                            <p>Fully Managed devices are unaffected.</p>
-                                            <h4>Enrollment identifiers</h4>
+                                            <p>Fully managed devices are unaffected.</p>
+                                            <h4 id="enrollment-identifiers">Enrollment identifiers</h4>
                                             <p>To protect the hardware identity of employee-owned devices, Android 12 and higher doesn't share identifiers such as the serial number, IMEI, or MEID. As a result, KM 21.11 and higher can no longer read these identifiers from employee-owned devices. Devices previously enrolled through KM are unaffected, as their hardware identifiers have already been obtained. Going forward, KM associates a newly enrolled employee-owned device with a unique <i>enrollment identifier</i> that persists across factory resets. Devices enrolled with the limited enrollment method also use an enrollment identifier.</p>
                                             <p>To view an employee-owned device's enrollment identifier on the KM console, go to <b>Device</b> &gt; <b>Device Detail</b> &gt; <b>Device Information</b> &gt; <b>Detail</b> &gt; <b>Enrollment Specific ID</b>.</p>
                                             <p>
@@ -2819,14 +2822,14 @@
                                             <p>
                                                 <img class="no-border" src="../../../assets/merge/images/knox-manage/km-21-11-rn-android-password-policy.png" alt="The three Password policy settings." />
                                             </p>
-                                            <h4>Screen capture</h4>
+                                            <h4 id="screen-capture">Screen capture</h4>
                                             <p>Starting with Android 12 and higher, system apps built with certain API permissions can capture the screen even if the device has screen capturing disabled by an EMM (such as the <b>System</b> &gt; <b>Screen Capture</b> policy on KM). This mostly affects preloaded system apps developed by device manufacturers. If you are unsure whether the preloaded apps on a deployed device have these permissions, you should verify with the device manufacturer.</p>
-                                            <h4>Work Profile and token-based device enrollment</h4>
-                                            <p>Previously, token-based enrollment could only set up Fully Managed devices. With KM 21.11 and higher, the KM token can also set up a Work Profile. Before signing in to the KM agent for the first time, the device user is now prompted to choose <b>Fully managed device</b> or <b>Work profile on company-owned device</b>.</p>
+                                            <h4 id="work-profile-token-based-device-enrollment">Work profile and token-based device enrollment</h4>
+                                            <p>Previously, token-based enrollment could only set up fully managed devices. With KM 21.11 and higher, the KM token can also set up a work profile. Before signing in to the KM agent for the first time, the device user is now prompted to choose <b>Fully managed device</b> or <b>Work profile on company-owned device</b>.</p>
                                             <p>
-                                                <img class="no-border" src="../../../assets/merge/images/knox-manage/km-21-11-rn-android-token-enrollment-flow.png" alt="The token enrollment flow with the option to choose a Work Profile." />
+                                                <img class="no-border" src="../../../assets/merge/images/knox-manage/km-21-11-rn-android-token-enrollment-flow.png" alt="The token enrollment flow with the option to choose a work profile." />
                                             </p>
-                                            <h3 id="zero-touch">Zero-touch page</h3>
+                                            <h3 id="zero-touch-page">Zero-touch page</h3>
                                             <p>KM 21.11 adds a dedicated page for a linked zero-touch enrollment account, under <b>Device Enrollment</b> &gt; <b>Zero Touch</b>. The page is a frame for Google's zero-touch portal, through which you can add and manage your account from within the KM console. This addition makes zero-touch management more convenient, as you no longer need to manage the link between a zero-touch account and KM outside of the KM console.</p>
                                             <div class="callout note"><b>NOTE</b> — You can only register devices to zero-touch on the actual zero-touch portal. To navigate to the portal from the KM console, under <b>Zero Touch</b> click <b>View devices in the zero-touch portal</b>.</div>
                                             <p>To link a zero-touch account to your KM tenant:</p>
@@ -2856,19 +2859,21 @@
                                                 <li value="4">Finish assigning the app.</li>
                                             </ol>
                                             <img class="no-border" src="../../../assets/merge/images/knox-manage/km-21-11-rn-android-mgp-import-configuration.png" alt="Importing a MGP app's managed configuration." />
-                                            <h3>Hardware-backed SafetyNet Attestation service</h3>
+                                            <h3 id="hardware-backed-safetynet-attestation-service">Hardware-backed SafetyNet Attestation service</h3>
                                             <p>For Android 8.0 and higher, the SafetyNet Attestation service provides additional hardware-backed security on the KM agent with key attestation. Support for these hardware-backed security features depends on the device's Android version. The KM console reports the status using these terms:</p>
                                             <ul>
                                                 <li value="1">Android 8.0 and higher — <b>Basic, Hardware_Backed</b></li>
                                                 <li value="2">Android 7.1 and lower — <b>Basic</b></li>
-                                            </ul><b>For enrolled Android devices, you can view the SafetyNet Attestation status under <b>Device Detail</b> &gt; <b>Security</b>:</b>
+                                            </ul>
+                                            <p>For enrolled Android devices, you can view the SafetyNet Attestation status under <b>Device Detail</b> &gt; <b>Security</b>:</p>
                                             <p>
                                                 <img src="../../../assets/merge/images/knox-manage/km-21-11-rn-android-safetynet-status-device-detail.png" srcset="../../../assets/merge/images/knox-manage/km-21-11-rn-android-safetynet-status-device-detail.png 2x" alt="A device's SafetyNet Attestation status on the Device Detail page." />
-                                            </p><b>In the log, a SafetyNet Attestation Verification Request provides the device's SafetyNet status in its <b>Log Data</b> field:</b>
+                                            </p>
+                                            <p>In the log, a SafetyNet Attestation Verification Request provides the device's SafetyNet status in its <b>Log Data</b> field:</p>
                                             <p>
                                                 <img src="../../../assets/merge/images/knox-manage/km-21-11-rn-android-safetynet-status-audit-log.png" srcset="../../../assets/merge/images/knox-manage/km-21-11-rn-android-safetynet-status-audit-log.png 2x" alt="A device's SafetyNet Attestation status in the audit log." />
                                             </p>
-                                            <h3>Lock screen message policy addition</h3>
+                                            <h3 id="lock-screen-message-policy-addition">Lock screen message policy addition</h3>
                                             <p>KM has a new policy that sets a custom message on the device's lock screen. You can add <i>lookup items</i> to the message, which substitute for device and user information like username and phone number in the Android environment.</p>
                                             <p>Configure the lock screen message policy under <b>Android Enterprise</b> &gt; <b>System</b> &gt; <b>Set Message for Lock Screen</b>:</p>
                                             <ul>
@@ -2883,8 +2888,8 @@
                                             <p>
                                                 <img class="no-border" src="../../../assets/merge/images/knox-manage/km-21-11-rn-android-setting-lock-screen-message-policy.png" alt="The lock screen message policy, and the list of lookup items." />
                                             </p>
-                                            <h3>Google Play account sub-policy addition</h3>
-                                            <p>With KM 21.11 and higher, on company-owned devices with a Work Profile, you can now allow or block access to Google Play based on a Google account allowlist. This feature is a new sub-policy of the <b>Account Modification</b> policy, and it lets you control which personal and managed accounts can make changes through Google Play.</p>
+                                            <h3 id="google-play-account-sub-policy-addition">Google Play account sub-policy addition</h3>
+                                            <p>With KM 21.11 and higher, on company-owned devices with a work profile, you can now allow or block access to Google Play based on a Google account allowlist. This feature is a new sub-policy of the <b>Account Modification</b> policy, and it lets you control which personal and managed accounts can make changes through Google Play.</p>
                                             <p>Configure the policy for account-based Google Play access under <b>Android Enterprise</b> &gt; <b>System</b> &gt; <b>Account Modification</b>:</p>
                                             <ul>
                                                 <li value="1">Set <b>Account Modification</b> to <b>Allow</b>. Choose an appropriate option for the <b>Allow Account in Google Play</b> sub-policy:
@@ -2893,8 +2898,8 @@
                                             <p>
                                                 <img src="../../../assets/merge/images/knox-manage/km-21-11-rn-android-google-play-access-policy.png" srcset="../../../assets/merge/images/knox-manage/km-21-11-rn-android-google-play-access-policy.png 2x" alt="The Google Play access sub-policy." />
                                             </p>
-                                            <h3>Time zone policy enhancement</h3>
-                                            <p>Starting with KM 21.11, you now have more control over the time settings on company-owned devices with a Work Profile. Under <b>Android Enterprise</b> &gt; <b>System</b>, the <b>Select Time Zone</b> policy is merged with the <b>Automatic Date and Time</b> policy, and a new <b>Enforce Time Zone</b> option prevents the device user from changing the time or time zone on the device.</p>
+                                            <h3 id="time-zone-policy-enhancement">Time zone policy enhancement</h3>
+                                            <p>Starting with KM 21.11, you now have more control over the time settings on company-owned devices with a work profile. Under <b>Android Enterprise</b> &gt; <b>System</b>, the <b>Select Time Zone</b> policy is merged with the <b>Automatic Date and Time</b> policy, and a new <b>Enforce Time Zone</b> option prevents the device user from changing the time or time zone on the device.</p>
                                             <p>
                                                 <img src="../../../assets/merge/images/knox-manage/km-21-11-rn-android-date-time-policy-old.png" srcset="../../../assets/merge/images/knox-manage/km-21-11-rn-android-date-time-policy-old.png 2x" alt="The previous Automatic Date and Time and Select Time Zone policies on KM v21.9." />
                                             </p>
@@ -2904,7 +2909,8 @@
                                             <p>
                                                 <img class="no-border" src="../../../assets/merge/images/knox-manage/km-21-11-rn-android-data-time-policy-device.png" srcset="../../../assets/merge/images/knox-manage/km-21-11-rn-android-data-time-policy-device.png 2x" alt="An Android device with the enforced time zone policy. The device user cannot manually change the time nor the time zone." />
                                             </p>
-                                            <h3>Remote alarm command</h3><b>With KM 21.11 and higher, you can send a <b>Play Alarm Sound</b> command, which sounds an alarm on the device until the user takes action. The alarm sounds regardless of the device's mute and vibration settings.</b>
+                                            <h3 id="remote-alarm-command">Remote alarm command</h3>
+                                            <p>With KM 21.11 and higher, you can send a <b>Play Alarm Sound</b> command, which sounds an alarm on the device until the user takes action. The alarm sounds regardless of the device's mute and vibration settings.</p>
                                             <p>
                                                 <img src="../../../assets/merge/images/knox-manage/km-21-11-rn-android-alarm-command-console.png" srcset="../../../assets/merge/images/knox-manage/km-21-11-rn-android-alarm-command-console.png 2x" alt="The Play Alarm Sound command on the KM console." />
                                             </p>
@@ -2941,7 +2947,7 @@
                                                 <li value="2"><b>Public</b> — For public apps available on the Microsoft Store:
                 <ul><li value="1">Link to the app's page on the Microsoft Store.</li></ul></li>
                                             </ul>
-                                            <h3>Application Store on KM agent</h3>
+                                            <h3 id="application-store-km-agent">Application Store on KM agent</h3>
                                             <p>With the introduction of Windows app management, we have updated the KM agent to allow for Windows app installation. The new <b>Application Store</b> section in the interface contains three new pages that allow device users to download, install, and remove managed apps:</p>
                                             <ul>
                                                 <li value="1"><b>All</b> — Browse all managed apps.</li>
@@ -2953,20 +2959,44 @@
                                             <p>With Knox Manage 21.11, Chrome OS and Chromebook management is in early access for pre-approved users. Contact <a href="mailto:knoxmanage@samsung.com">knoxmanage@samsung.com</a> for approval. General availability will be announced separately in the near future.</p>
                                             <p>For approved users, the KM console can now manage and enroll Chromebooks and Chrome OS apps. Like with Android devices, the KM agent for Chromebooks is available on Google Play.</p>
                                             <p>The following changes apply to Chromebook management.</p>
-                                            <h3>Set up Chromebook management</h3>
+                                            <h3 id="set-up-chromebook-management">Set up Chromebook management</h3>
                                             <p>Before you can begin managing Chromebooks, you must set up your Google Admin Console and KM:</p>
                                             <ol>
-                                                <li value="1">First, you need to upgrade your Chrome license:
-                <ol><li value="1">Depending on which license you have, purchase the <a href="https://chromeenterprise.google/os/upgrade/">Chrome Enterprise Upgrade</a> or <a href="https://chromeenterprise.google/os/upgrade/">Chrome Education Upgrade</a> from your Knox reseller or the Google Admin Console.</li></ol></li>
-                                                <li value="2">Next, you need to set up an organization and users:
-                <ol><li value="1">On the Google Admin console, create an organization and users.</li><li value="2">Register at least one Chromebook with the organization.</li></ol></li>
-                                                <li value="3">Lastly, register the Google admin account with KM:
-                <ol><li value="1">On the KM console, go to <b>Setting</b> &gt; <b>Chrome OS</b> &gt; <b>Sign in with Google</b>. The Google accounts page opens.</li><li value="2">Log in to the Google account.</li><li value="3">Select all permissions, then click <b>Continue</b>. The browser returns you to the KM console. The <b>Google Authorization Code</b> field is now filled in.
-                        <p><img src="../../../assets/merge/images/knox-manage/km-21-11-rn-chromeos-register-google-account-01.png" srcset="../../../assets/merge/images/knox-manage/km-21-11-rn-chromeos-register-google-account-01.png 4x" alt="Granting Google account permissions on GSuite." /></p></li><li value="4">Enter the same account for the <b>Google Admin Email Address</b>, then click <b>Authorize</b>.
-                        <p><img src="../../../assets/merge/images/knox-manage/km-21-11-rn-chromeos-register-google-account-02.png" alt="Registering the Google account on the KM console." /></p></li></ol></li>
+                                                <li value="1">
+                                                    <p>First, you need to upgrade your Chrome license:</p>
+                                                    <ol>
+                                                        <li value="1">Depending on which license you have, purchase the <a href="https://chromeenterprise.google/os/upgrade/" target="_blank">Chrome Enterprise Upgrade</a> or <a href="https://chromeenterprise.google/os/upgrade/" target="_blank">Chrome Education Upgrade</a> from your Knox reseller or the Google Admin Console.</li>
+                                                    </ol>
+                                                </li>
+                                                <li value="2">
+                                                    <p>Next, you need to set up an organization and users:</p>
+                                                    <ol>
+                                                        <li value="1">On the Google Admin console, create an organization and users.</li>
+                                                        <li value="2">Register at least one Chromebook with the organization.</li>
+                                                    </ol>
+                                                </li>
+                                                <li value="3">
+                                                    <p>Lastly, register the Google admin account with KM:</p>
+                                                    <ol>
+                                                        <li value="1">On the KM console, go to <b>Setting</b> &gt; <b>Chrome OS</b> &gt; <b>Sign in with Google</b>. The Google accounts page opens.</li>
+                                                        <li value="2">Log in to the Google account.</li>
+                                                        <li value="3">
+                                                            <p>Select all permissions, then click <b>Continue</b>. The browser returns you to the KM console. The <b>Google Authorization Code</b> field is now filled in.</p>
+                                                            <p>
+                                                                <img src="../../../assets/merge/images/knox-manage/km-21-11-rn-chromeos-register-google-account-01.png" srcset="../../../assets/merge/images/knox-manage/km-21-11-rn-chromeos-register-google-account-01.png 4x" alt="Granting Google account permissions on GSuite." />
+                                                            </p>
+                                                        </li>
+                                                        <li value="4">
+                                                            <p>Enter the same account for the <b>Google Admin Email Address</b>, then click <b>Authorize</b>.</p>
+                                                            <p>
+                                                                <img src="../../../assets/merge/images/knox-manage/km-21-11-rn-chromeos-register-google-account-02.png" alt="Registering the Google account on the KM console." />
+                                                            </p>
+                                                        </li>
+                                                    </ol>
+                                                </li>
                                             </ol>
                                             <p>Once set up, all the users, Chromebooks, and policies for each organization synchronize with KM.</p>
-                                            <h3>Chrome OS management overview</h3>
+                                            <h3 id="chrome-os-management-overview">Chrome OS management overview</h3>
                                             <p>Chrome OS and Chromebook management on KM relies on a link between the managed services on the Google Admin console and the KM console. Due to this fact, there are some important differences you should keep in mind when managing Chrome OS and Chromebooks compared to the other supported OSs on KM:</p>
                                             <ul>
                                                 <li value="1">Automatic syncing — Organizations, users, and devices are synced from the Google Admin console. You cannot create new organizations or users from the KM console.</li>
@@ -3008,8 +3038,12 @@
                                                         <li value="2">Unenroll devices</li>
                                                         <li value="3">Send lock or unlock device commands</li>
                                                         <li value="4">Clear user profiles</li>
-                                                        <li value="5">Click a device to view its details:
-                        <p><img src="../../../assets/merge/images/knox-manage/km-21-11-rn-chromeos-chromebook-details.png" srcset="../../../assets/merge/images/knox-manage/km-21-11-rn-chromeos-chromebook-details.png 2x" alt="The details of a Chromebook." /></p></li>
+                                                        <li value="5">
+                                                            <p>Click a device to view its details:</p>
+                                                            <p>
+                                                                <img src="../../../assets/merge/images/knox-manage/km-21-11-rn-chromeos-chromebook-details.png" srcset="../../../assets/merge/images/knox-manage/km-21-11-rn-chromeos-chromebook-details.png 2x" alt="The details of a Chromebook." />
+                                                            </p>
+                                                        </li>
                                                     </ul>
                                                 </li>
                                                 <li value="4">
@@ -3023,18 +3057,18 @@
                                                     </p>
                                                 </li>
                                             </ul>
-                                            <h3>Manage Chrome OS apps</h3>
+                                            <h3 id="manage-chrome-os-apps">Manage Chrome OS apps</h3>
                                             <p>KM can now manage Chrome OS apps and Chrome extensions. Like with other supported OSs, managed apps are divided between public and internal sources. There are three app types, each with different methods for adding them:</p>
                                             <ul>
                                                 <li value="1"><b>Managed Google Play</b> — Add an app through an iframe of Google Play on the KM console, the same way you add managed apps in Android. Even though both Android and Chrome OS use the same app store, you can't create one app configuration and assign it to both types of devices—you'll need to manage a separate app configuration for each.</li>
-                                                <li value="2"><b>ID</b> — Add an app or a Chrome browser extension by entering a valid identifier from Google Play or the Chrome Web store. To obtain an identifier, see <a href="https://support.google.com/chrome/a/answer/7532015%23getid">Get Chrome app or extension IDs</a>.</li>
+                                                <li value="2"><b>ID</b> — Add an app or a Chrome browser extension by entering a valid identifier from Google Play or the Chrome Web store. To obtain an identifier, see <a href="https://support.google.com/chrome/a/answer/7532015%23getid" target="_blank">Get Chrome app or extension IDs</a>.</li>
                                                 <li value="3"><b>URL</b> — Add an app by entering its URL.</li>
                                             </ul>
                                             <div class="callout note"><b>NOTE</b> — Adding a managed app in the KM console does not add it to the Google Admin console.</div>
                                             <p>
                                                 <img src="../../../assets/merge/images/knox-manage/km-21-11-rn-chromeos-app-add.png" srcset="../../../assets/merge/images/knox-manage/km-21-11-rn-chromeos-app-add.png 2x" alt="Adding a Chrome OS app." />
                                             </p>
-                                            <h3>Assign apps</h3>
+                                            <h3 id="assign-apps">Assign apps</h3>
                                             <p>Unlike other supported OSs, you can only assign Chrome OS apps to organizations. Group assignment is not supported.</p>
                                             <p>To assign an app to an organization:</p>
                                             <ol>
@@ -3048,7 +3082,7 @@
                                             <p>
                                                 <img src="../../../assets/merge/images/knox-manage/km-21-11-rn-chromeos-app-assign-02.png" srcset="../../../assets/merge/images/knox-manage/km-21-11-rn-chromeos-app-assign-02.png 2x" alt="Assigning Chrome OS apps to target organizations." />
                                             </p>
-                                            <h3>Set profiles and policies</h3>
+                                            <h3 id="set-profiles-policies">Set profiles and policies</h3>
                                             <p>Like with other supported OSs, a Chrome OS profile and its policies control the settings and behavior of enrolled Chromebooks.</p>
                                             <p>Access an organization's profile by clicking it on the <b>Profile</b> page. Then, click <b>Modify Policy</b>:</p>
                                             <p>
@@ -3068,12 +3102,12 @@
                                             <p>The following changes apply to iOS device management.</p>
                                             <h3 id="ios-15">iOS 15 support</h3>
                                             <p>KM 21.11 and higher supports devices running iOS 15.</p>
-                                            <h3>Allowed Wi-Fi networks policy addition</h3>
+                                            <h3 id="allowed-wifi-network-policy-addition">Allowed Wi-Fi networks policy addition</h3>
                                             <p>With iOS 14.5 and higher, a supervised device can have its Wi-Fi restricted to an SSID allowlist. You can use this feature to better provision and control the network access of enrolled devices. With KM 21.11 and higher you can enable this feature as a policy under <b>Interface</b> &gt; <b>Connect Wi-Fi To Allowed Networks Only</b>:</p>
                                             <p>
                                                 <img src="../../../assets/merge/images/knox-manage/km-21-11-rn-ios-allowed-wifi-networks-policy.png" srcset="../../../assets/merge/images/knox-manage/km-21-11-rn-ios-allowed-wifi-networks-policy.png 2x" alt="The allowed Wi-Fi networks policy." />
                                             </p>
-                                            <h3>App contact sharing policy additions</h3>
+                                            <h3 id="app-contact-sharing-policy-additions">App contact sharing policy additions</h3>
                                             <p>In iOS, by default, managed and unmanaged apps can't share contact data, so sensitive or private contact information isn't exposed to potentially insecure apps. With iOS 12 and higher, exceptions can be granted so that managed and unmanaged apps can share contacts. KM 21.11 adds two policies that provide for these exceptions:</p>
                                             <ul>
                                                 <li value="1"><b>Application</b> &gt; <b>Managed Apps to Write Contacts to Unmanaged Contacts Accounts</b> — Managed apps can save contact data to the unmanaged Contacts app.</li>
@@ -3082,13 +3116,21 @@
                                             <p>
                                                 <img src="../../../assets/merge/images/knox-manage/km-21-11-rn-ios-managed-app-contacts-policy.png" srcset="../../../assets/merge/images/knox-manage/km-21-11-rn-ios-managed-app-contacts-policy.png 2x" alt="The managed and unmanaged app contact sharing policies." />
                                             </p>
-                                            <h3>Device restriction policy additions</h3>
+                                            <h3 id="device-restriction-policy-additoins">Device restriction policy additions</h3>
                                             <p>The following device restriction policies, which provide additional security and access control, are new with KM 21.11:</p>
                                             <ul>
                                                 <li value="1"><b>Exchange</b> &gt; <b>Override Previous Password</b> — Overrides the previous user and EAS password with the new EAS password. Supported on iOS 14 and higher devices.</li>
-                                                <li value="2"><b>Exchange</b> &gt; <b>Control Calendar/Contacts/Mail/Reminder App</b>:
-                <ul><li value="1"><b>Enable App</b> — Automatically configure the Calendar, Control, Mail, and Reminder apps to use the Exchange user account for the Calendar, Control, Mail, and Reminder apps, respectively. At least one app must be enabled.</li><li value="2"><b>Allow User to Change</b> — Lets the device user configure the app's user account.
-                    </li></ul><p><img src="../../../assets/merge/images/knox-manage/km-21-11-rn-ios-exchange-app-control-policy.png" srcset="../../../assets/merge/images/knox-manage/km-21-11-rn-ios-exchange-app-control-policy.png 2x" alt="The Exchange app control policy." /></p></li>
+                                                <li value="2">
+                                                    <p><b>Exchange</b> &gt; <b>Control Calendar/Contacts/Mail/Reminder App</b>:</p>
+                                                    <ul>
+                                                        <li value="1"><b>Enable App</b> — Automatically configure the Calendar, Control, Mail, and Reminder apps to use the Exchange user account for the Calendar, Control, Mail, and Reminder apps, respectively. At least one app must be enabled.</li>
+                                                        <li value="2"><b>Allow User to Change</b> — Lets the device user configure the app's user account.
+                    </li>
+                                                    </ul>
+                                                    <p>
+                                                        <img src="../../../assets/merge/images/knox-manage/km-21-11-rn-ios-exchange-app-control-policy.png" srcset="../../../assets/merge/images/knox-manage/km-21-11-rn-ios-exchange-app-control-policy.png 2x" alt="The Exchange app control policy." />
+                                                    </p>
+                                                </li>
                                                 <li value="3"><b>Network Usage Rules</b> &gt; <b>Sim Network Settings</b> — Enables Wi-Fi Assist based on the SIM card identifier (ICCID). You can add multiple SIMs as needed. <b>Use Default System</b> enables Wi-Fi Assist, letting OS switch to using cellular data when Wi-Fi signal strength is poor. <b>Use Cellular Data</b> forces cellular data use at all times. Supported on iOS 13 and higher devices.</li>
                                                 <li value="4"><b>Wi-Fi</b> &gt; <b>MAC Randomization</b> — Randomizes the device's MAC address when connected to the Wi-Fi network. Supported on iOS 14 and higher devices.</li>
                                                 <li value="5"><b>WebClip</b> &gt; <b>Full Screen</b> — Opens the Web Clip as a web app without browser features—no navigation buttons, address bar, search bar, or bookmark features. This option is similar to full-screen mode in a web browser.</li>
@@ -3096,7 +3138,7 @@
                                             </ul>
                                             <h2 id="knox-services">Knox services</h2>
                                             <p>The following changes integrate recent enhancements to other Knox services.</p>
-                                            <h3>Sub-admin self-registration</h3>
+                                            <h3 id="sub-admin-self-registration">Sub-admin self-registration</h3>
                                             <p>As part of our effort to unify the Knox platform, sub-admins from other Knox cloud services in your organization can now register themselves as KM sub-admins with one click. On the Knox Portal, sub-admins will see <b>Join</b> on the <b>Discover more</b> &gt; <b>Knox Manage</b> card. Clicking the card will register them as a KM sub-admin.</p>
                                             <p>
                                                 <img src="../../../assets/merge/images/knox-manage/km-21-11-rn-knox-sub-admin-register.png" srcset="../../../assets/merge/images/knox-manage/km-21-11-rn-knox-sub-admin-register.png 2x" alt="The Knox Manage card with the Join text." />
@@ -3105,7 +3147,7 @@
                                             <p>
                                                 <img src="../../../assets/merge/images/knox-manage/km-21-11-rn-knox-sub-admin-details.png" srcset="../../../assets/merge/images/knox-manage/km-21-11-rn-knox-sub-admin-details.png 2x" alt="The account details of an automatically-registered sub-admin." />
                                             </p>
-                                            <h3>MSP-related audit log additions</h3>
+                                            <h3 id="msp-related-audit-log-additions">MSP-related audit log additions</h3>
                                             <p>Starting with 21.11, KM logs the following new types of events in the MSP category:</p>
                                             <table class="no-stripes">
                                                 <tbody>
@@ -3154,7 +3196,7 @@
                                                 <img src="../../../assets/merge/images/knox-manage/km-21-11-rn-audit-log-msp-category.png" srcset="../../../assets/merge/images/knox-manage/km-21-11-rn-audit-log-msp-category.png 2x" alt="The MSP category on the Audit Log page." />
                                             </p>
                                             <h2 id="knox-remote-support">Knox Remote Support</h2>
-                                            <h3>Knox Remote Support name change</h3>
+                                            <h3 id="knox-remote-support-name-change">Knox Remote Support name change</h3>
                                             <p>To improve naming consistency with other Knox services, all instances of the term "Remote Support" have been changed in the console, Web Viewer, and Agent:</p>
                                             <table>
                                                 <tbody>
@@ -3182,7 +3224,7 @@
                                             <p>
                                                 <img src="../../../assets/merge/images/knox-manage/km-21-11-rn-remote-support-rename-agent.png" srcset="../../../assets/merge/images/knox-manage/km-21-11-rn-remote-support-rename-agent.png 2x" alt="The renamed remote support elements on the agent." />
                                             </p>
-                                            <h3>Staging users on shared devices</h3>
+                                            <h3 id="staging-users-shared-devices">Staging users on shared devices</h3>
                                             <p>Knox Remote Support is now available for staging users on shared devices. It is unavailable for secondary users.</p>
                                             <p>To install the Knox Remote Support Agent as a staging user:</p>
                                             <ol>
@@ -3192,7 +3234,7 @@
                                             <p>
                                                 <img class="no-border" src="../../../assets/merge/images/knox-manage/km-21-11-rn-remote-support-staging-user-install.png" alt="A staging user installing the Knox Remote Support app." />
                                             </p>
-                                            <h3>File browser</h3>
+                                            <h3 id="file-browser">File browser</h3>
                                             <p>The following enhancements and changes were made to the file browser:</p>
                                             <ul>
                                                 <li value="1">The session's downloads now appear in the download manager at the bottom of the browser, instead of the File Download Progress bar.</li>
@@ -3202,23 +3244,23 @@
                                             <p>
                                                 <img class="no-border" src="../../../assets/merge/images/knox-manage/km-21-11-rn-remote-support-files-update.png" srcset="../../../assets/merge/images/knox-manage/km-21-11-rn-remote-support-files-update.png 2x" alt="The updated download and file browser behaviour of Knox Remote Support." />
                                             </p>
-                                            <h3>Other changes</h3>
+                                            <h3 id="knox-remote-support-other-changes">Other changes</h3>
                                             <ul>
                                                 <li value="1">Removed support for the PC Viewer app. Instead, the Web Viewer service should be used on a web browser.</li>
                                                 <li value="2">When recording a screen capture session, the file name uses the browser's date and time, rather than the KM server's.</li>
                                             </ul>
                                             <h2 id="knox-browser">Knox Browser</h2>
                                             <p>The following changes apply to Knox Browser.</p>
-                                            <h3>Galaxy Tab Book Cover keyboard support</h3><b>On Galaxy Tab series devices, the Knox Browser now recognizes input from a paired Book Cover keyboard.</b>
+                                            <h3 id="galaxy-tab-book-cover-keyboard-support">Galaxy Tab Book Cover keyboard support</h3><b>On Galaxy Tab series devices, the Knox Browser now recognizes input from a paired Book Cover keyboard.</b>
                                             <p>
                                                 <img src="../../../assets/merge/images/knox-manage/km-21-11-rn-knox-browser-galaxy-tab-book-cover.png" alt="A Galaxy Tab with a Book Cover keyboard." />
                                             </p>
-                                            <h3>Navigation button location</h3>
+                                            <h3 id="navigation-button-location">Navigation button location</h3>
                                             <p>The Knox Browser navigation buttons now sit on either side of the address bar. This resolves an issue where the home button could become hidden.</p>
                                             <p>
                                                 <img src="../../../assets/merge/images/knox-manage/km-21-11-rn-knox-browser-navigation-bar.png" alt="The updated navigation bar on the Knox Browser." />
                                             </p>
-                                            <h3>Page scroll with active keyboard</h3>
+                                            <h3 id="page-scroll-active-keyboard">Page scroll with active keyboard</h3>
                                             <p>When the device user brings up the keyboard on the Knox Browser, they can now scroll the page by swiping above the keyboard. This resolves an issue where the keyboard blocked the page from scrolling.</p>
                                             <p>
                                                 <img src="../../../assets/merge/images/knox-manage/km-21-11-rn-knox-browser-scrolling.png" srcset="../../../assets/merge/images/knox-manage/km-21-11-rn-knox-browser-scrolling.png 2x" alt="Scrolling the page on the Knox Browser while the keyboard is active." />
@@ -3234,11 +3276,11 @@
                                             </p>
                                             <h2 id="mcm">Mobile content management</h2>
                                             <p>The following changes apply to the Mobile Content Management (MCM) feature of KM.</p>
-                                            <h3>Automatic content reassignment</h3>
+                                            <h3 id="automatic-content-reassignment">Automatic content reassignment</h3>
                                             <p>Previously, assigned content on a device would not update if the device itself was reassigned. As of KM 21.11, when you transfer a user to another group or organization, or you transfer a device to another group, any differences in assigned content are synced. Content assigned to the previous group/organization is deleted from the device, and content assigned to the new group/organization is downloaded.</p>
                                             <h2 id="kiosk">Kiosk</h2>
                                             <p>The following changes apply to kiosk device management.</p>
-                                            <h3>Language and Time Zone device settings</h3>
+                                            <h3 id="language-time-zone-device-settings">Language and time zone device settings</h3>
                                             <p>For Kiosk mode, KM 21.11 adds settings to control whether device users can modify the device's time zone and language. Enable these settings under:</p>
                                             <ul>
                                                 <li value="1">Multi-app Kiosk — <b>Advanced Setting</b> &gt; <b>Device Setting</b> &gt; <b>Time Zone and Language</b></li>
@@ -3266,7 +3308,7 @@
                                             <p>
                                                 <img class="no-border" src="../../../assets/merge/images/knox-manage/km-21-11-rn-report-mailing-download.png" srcset="../../../assets/merge/images/knox-manage/km-21-11-rn-report-mailing-download.png 2x" alt="An emailed report and the download prompt." />
                                             </p>
-                                            <h3>Parent organization name in report queries</h3>
+                                            <h3 id="parent-organizzation-name-report-queries">Parent organization name in report queries</h3>
                                             <p>Report queries that contain organization information now include the parent organization name in the <b>Organization Path</b> field. This helps you identify the hierarchy of organizations in reports. The following query types support this field:</p>
                                             <ul>
                                                 <li value="1"><b>User Basic Information</b>
@@ -3282,7 +3324,7 @@
                                             <h2 id="other-changes">Other changes</h2>
                                             <h3 id="eos-internet-explorer-11">End of support for Internet Explorer 11</h3>
                                             <p>Microsoft announced that they will end support for Internet Explorer 11 (IE11) on June 15, 2022. In preparation for this, as of 21.11 (November 18, 2021), the KM console should no longer be accessed on IE11. The KM console is best viewed in Edge, Chrome, or Firefox.</p>
-                                            <h3>New information on device maps</h3>
+                                            <h3 id="new-information-device-maps">New information on device maps</h3>
                                             <p>KM has enhanced information presented in the device map on device location pages. Hovering over a device shows the following new details:</p>
                                             <ul>
                                                 <li value="1"><b>User Name</b>
@@ -3300,7 +3342,7 @@
                                             <p>
                                                 <img src="../../../assets/merge/images/knox-manage/km-21-11-rn-device-map-update.png" srcset="../../../assets/merge/images/knox-manage/km-21-11-rn-device-map-update.png 2x" alt="A device's details on a device map." />
                                             </p>
-                                            <h3>GPX export for multiple devices</h3>
+                                            <h3 id="gpx-export-multiple-devices">GPX export for multiple devices</h3>
                                             <p>The GPX export feature now supports exporting multiple devices at once. A separate GPX file exports per device.</p><b>To export GPX files for multiple devices:</b>
                                             <ol>
                                                 <li value="1">Go to <b>Device</b>, then select multiple devices.</li>
@@ -3309,7 +3351,7 @@
                                             <p>
                                                 <img class="no-border" src="../../../assets/merge/images/knox-manage/km-21-11-rn-device-map-gpx-export.png" alt="Exporting GPX files for multiple devices." />
                                             </p>
-                                            <h3>New service admin permissions</h3>
+                                            <h3 id="new-service-admin-permissions">New service admin permissions</h3>
                                             <p>To enable greater admin flexibility, you can now grant service admins the following permissions:</p>
                                             <ol>
                                                 <li value="1">Unenroll &amp; Force Unenroll Device</li>
@@ -3318,39 +3360,47 @@
                                             <p>
                                                 <img src="../../../assets/merge/images/knox-manage/km-21-11-rn-service-admin-permissions.png" srcset="../../../assets/merge/images/knox-manage/km-21-11-rn-service-admin-permissions.png 2x" alt="The updated default permissions of service admins." />
                                             </p>
-                                            <h3>Add license name field</h3>
+                                            <h3 id="add-license-name-field">Add license name field</h3>
                                             <p>To account for scenarios where the name of an MSP license changes, the KM console now supports changing the <b>License Name</b> field. This field is now required.</p>
                                             <p>
                                                 <img class="no-border" src="../../../assets/merge/images/knox-manage/km-21-11-rn-license-name-field.png" alt="The License Name field on the KM console." />
                                             </p>
-                                            <h3>Apply latest profile and sub-organizations</h3>
+                                            <h3 id="apply-latest-profile-sub-organizations">Apply latest profile and sub-organizations</h3>
                                             <p>When you apply the latest profile (<b>Organization</b> &gt; <b>Apply Latest Profile</b>), the profile now applies to any sub-organizations that are children of the organization.</p>
                                             <p>
                                                 <img src="../../../assets/merge/images/knox-manage/km-21-11-rn-sub-organization-profile.png" srcset="../../../assets/merge/images/knox-manage/km-21-11-rn-sub-organization-profile.png 2x" alt="Applying a profile to a sub-organization." />
                                             </p>
-                                            <h3>Bulk user registration enhancements</h3>
+                                            <h3 id="bulk-user-registration-enhancements">Bulk user registration enhancements</h3>
                                             <ul>
                                                 <li value="1">The bulk user spreadsheet template has been updated to include a <b>Group Name</b> column. It is not a required field.</li>
                                                 <li value="2">If you submit a bulk user spreadsheet with invalid <b>Group Name</b> or <b>Organization Code</b> fields, the KM console throws an error message. It no longer registers the affected users into an undefined group.</li>
                                             </ul>
-                                            <h3>Miscellaneous enhancements</h3>
+                                            <h3 id="miscellaneous-enhancements">Miscellaneous enhancements</h3>
                                             <p>Finally, with 21.11, KM has received the following simple enhancements.</p>
                                             <ul>
-                                                <li value="1">KM console — Added <b>Mac Address</b> as a search field on the <b>Device</b> page.
-                <p><img src="../../../assets/merge/images/knox-manage/km-21-11-rn-device-search-mac-address.png" alt="The Mac Address field on the Device page." /></p></li>
+                                                <li value="1">
+                                                    <p>KM console — Added <b>Mac Address</b> as a search field on the <b>Device</b> page.</p>
+                                                    <p>
+                                                        <img src="../../../assets/merge/images/knox-manage/km-21-11-rn-device-search-mac-address.png" alt="The Mac Address field on the Device page." />
+                                                    </p>
+                                                </li>
                                                 <li value="2">Android Enterprise profiles — Increased the maximum number of apps that you can assign to a profile at a time to 20.</li>
-                                                <li value="3">Windows devices — Added the option to force unenroll a device.
-                <p><img src="../../../assets/merge/images/knox-manage/km-21-11-rn-windows-force-unenroll.png" srcset="../../../assets/merge/images/knox-manage/km-21-11-rn-windows-force-unenroll.png 2x" alt="The Force Unenroll button." /></p></li>
+                                                <li value="3">
+                                                    <p>Windows devices — Added the option to force unenroll a device.</p>
+                                                    <p>
+                                                        <img src="../../../assets/merge/images/knox-manage/km-21-11-rn-windows-force-unenroll.png" srcset="../../../assets/merge/images/knox-manage/km-21-11-rn-windows-force-unenroll.png 2x" alt="The Force Unenroll button." />
+                                                    </p>
+                                                </li>
                                             </ul>
                                             <h2 id="resolved-issues">Resolved issues and improvements</h2>
                                             <p>The following reported issues were fixed with KM 21.11.</p>
-                                            <h3>Hotfixes</h3>
+                                            <h3 id="resolved-issues-hotfixes">Hotfixes</h3>
                                             <ul>
                                                 <li value="1">[EMMTECH-213, 00224920] SSO is not working for client</li>
                                                 <li value="2">[EMMVOC-10945, 00223360] edit Tenant company name on TMS Admin</li>
                                                 <li value="3">[EMMVOC-10938, 00223230] Unable to download report with read-only access to KM</li>
                                             </ul>
-                                            <h3>Android</h3>
+                                            <h3 id="resolved-issues-android">Android</h3>
                                             <ul>
                                                 <li value="1">[EMMTECH-185, 00225636] Account Modification policy is not working in Personal area with WPCOD Mode</li>
                                                 <li value="2">[EMMTECH-208, 00222870] Problem with Gallery App</li>
@@ -3368,11 +3418,11 @@
                                                 <li value="14">[EMMVOC-10909, 00222254] Customer can't exit kiosk</li>
                                                 <li value="15">[EMMVOC-10853, 00221416] Unattended Remote Support is not working via KM</li>
                                             </ul>
-                                            <h3>iOS</h3>
+                                            <h3 id="resolved-issues-ios">iOS</h3>
                                             <ul>
                                                 <li value="1">[00222988] WiFi profile for iOS Missing</li>
                                             </ul>
-                                            <div class="back"><a href="../release-notes.htm">Back to release notes</a>
+                                            <div class="back"><a href="index.htm">Back to release notes</a>
                                             </div>
                                         </div>
                                         <!-- Inserts feedback module here -->

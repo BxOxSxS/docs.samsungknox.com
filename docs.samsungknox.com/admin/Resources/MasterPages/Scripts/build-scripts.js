@@ -7,10 +7,10 @@ document.getElementById("demo").innerHTML = pageTitle[0].innerHTML;
 /**
  Find all h2's and inserts a hr line below it
  */
-var articles = document.getElementsByTagName('h2')
+/* var articles = document.getElementsByTagName('h2')
 for (var i = 0; i < articles.length; i ++) {
     articles[i].parentNode.insertBefore(document.createElement('hr'), articles[i].nextSibling)
-}
+} */
 
 /**
  * Replace all the product name anchors in the TOC with paragraphs
