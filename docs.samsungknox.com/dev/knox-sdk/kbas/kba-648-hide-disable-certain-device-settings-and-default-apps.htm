@@ -1634,8 +1634,35 @@
                                             <h2 id="how-to-disable-application">How to disable an application</h2>
                                             <p>To disable an application without uninstalling it, call <code><a href="../../../devref/knox-sdk/reference/com/samsung/android/knox/application/ApplicationPolicy.html#setDisableApplication(java.lang.String)" target="_blank">ApplicationPolicy.setDisableApplication()</a></code>.</p>
                                             <p>You can also disable an app component using <code><a href="../../../devref/knox-sdk/reference/com/samsung/android/knox/application/ApplicationPolicy.html#setApplicationComponentState(android.content.ComponentName,%20boolean)" target="_blank">ApplicationPolicy.setApplicationComponentState()</a></code>.</p>
-                                            <h2 id="additional-information">Additional information</h2>
-                                            <p>Refer to the <a href="../../../devref/knox-sdk/reference/packages.html">Knox SDK API reference</a>for further details.</p>
+                                                        <h2 id="how-to-block-power-volume-buttons-accessing-settings">How to block the power and volume buttons from accessing the settings</h2>
+            <p>The device settings menu can be accessed in the following situations:</p>
+            <ul>
+                <li>The device user holds the power button, then taps <b>Side key settings</b>.</li>
+                <li>The device user presses the volume button, then opens the volume settings.</li>
+            </ul>
+            <p>To prevent device users from accessing device settings through the power and volume buttons, call <a href="../../../devref/knox-sdk/reference/com/samsung/android/knox/application/ApplicationPolicy.html#setApplicationComponentState(android.content.ComponentName,%20boolean)" target="_blank">ApplicationPolicy.setApplicationComponentState()</a> using the following component names:</p>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Component</th>
+                        <th>ComponentName</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Volume</td>
+                        <td>"com.android.settings", "com.android.settings.Settings$SecVolumeSettingsActivity"</td>
+                    </tr>
+                    <tr>
+                        <td>Power</td>
+                        <td>"com.android.settings", "com.android.settings.Settings$FunctionKeySettingsActivity"</td>
+                    </tr>
+                </tbody>
+            </table>
+
+											
+											<h2 id="additional-information">Additional information</h2>
+                                            <p>Refer to the <a href="../../../devref/knox-sdk/reference/packages.html">Knox SDK API reference</a> for further details.</p>
                                             <p>To learn more about Knox SDK, refer to <a href="../about-the-sdk.htm">About the Knox SDK</a>.</p>
                                         </div>
                                         <div class="back"><a href="sdk-kbas.htm">Back to KBAs</a>
