@@ -1,6 +1,3 @@
-
-
-
 <!DOCTYPE html>
 <html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" lang="en-US" xml:lang="en-US" data-mc-search-type="Stem" data-mc-help-system-file-name="Default.xml" data-mc-path-to-help-system="../" data-mc-conditions="Builds.common-build" data-mc-target-type="WebHelp2" data-mc-runtime-file-type="Topic;Default" data-mc-preload-images="false" data-mc-in-preview-mode="false" data-mc-toc-path="Device apps|Knox POS SDK|Get started">
     <head>
@@ -49,16 +46,16 @@
 			url(https://cdn.Samsung.com/etc/designs/smg/global/fonts/SamsungOne-400.ttf) format("truetype");
 			}
 		</style>
-    <style>
-              th {
-              border: 1px solid black;
-              border-collapse: collapse;
-              }
-    </style>
         <link href="https://use.fontawesome.com/releases/v5.14.0/css/all.css?ver=5.5.1" rel="stylesheet" />
         <link href="../../assets/merge/kp-bootstrap.css" rel="stylesheet" />
         <link href="../../assets/merge/kp-foundation.css" rel="stylesheet" />
         <link href="../../assets/merge/kpp-madcap.css" rel="stylesheet" />
+        <style>
+                th {
+                border: 1px solid black;
+                border-collapse: collapse;
+                }
+      </style>
         <script src="../Resources/Scripts/custom.modernizr.js">
         </script>
         <script src="../Resources/Scripts/jquery.min.js">
@@ -1620,24 +1617,24 @@
                                                 </ul>
                                             </div>
                                         </nav>
-        <h1>Activate your Knox License</h1>
-        <p>Your app activates your Knox license to authenticate API access. For more, see <a href="../common/knox-licenses.htm">Knox licenses</a>. The <b>Any Knox version</b> tab below describes a common method applicable to all the Knox versions. If your solution covers all the Knox versions, follow the instructions under this tab. However, if your solution is only for devices with Knox 3.8 or higher, follow the instructions under the <b>Knox 3.8 or higher versions only</b> tab as that code provides better performance compared to the generic code.</p>
-        <ul class="tabs" data-tabs="" id="example-tabs">
-            <li class="tabs-title is-active" value="1"><a data-tabs-target="panel27" href="tutorial-activate-license.htm#panel27" class="selected">Any Knox version</a>
-            </li>
-            <!-- START Removing per Seungnam.Jin's request via B2BTECHPUB-1670
+                                        <h1>Activate your Knox License</h1>
+                                        <p>Your app activates your Knox license to authenticate API access. For more, see <a href="../common/knox-licenses.htm">Knox licenses</a>. The <b>Any Knox version</b> tab below describes a common method applicable to all the Knox versions. If your solution covers all the Knox versions, follow the instructions under this tab. However, if your solution is only for devices with Knox 3.8 or higher, follow the instructions under the <b>Knox 3.8 or higher versions only</b> tab as that code provides better performance compared to the generic code.</p>
+                                        <ul class="tabs" data-tabs="" id="example-tabs">
+                                            <li class="tabs-title is-active" value="1"><a data-tabs-target="panel27" href="tutorial-activate-license.htm#panel27" class="selected">Any Knox version</a>
+                                            </li>
+                                            <!-- START Removing per Seungnam.Jin's request via B2BTECHPUB-1670
             <li class="tabs-title" value="2"><a data-tabs-target="panel28" href="#panel28" class="selected">Knox 2.8 to Knox 3.7.1</a>
             </li>
             END Removing per Seungnam.Jin's request via B2BTECHPUB-1670-->
-            <li class="tabs-title" value="2"><a href="tutorial-activate-license.htm#panel38" aria-selected="true" class="selected">Knox 3.8 or higher versions only</a>
-            </li>
-        </ul>
-        <div class="tabs-content" data-tabs-content="example-tabs">
-          <!-- Panel Knox 2.7 -->
-          <div class="tabs-panel is-active" id="panel27">
-              <h3><a name="Create"></a>Create the License Receiver class</h3>
-              <p>In your app, create a new class called <code>SampleLicenseReceiver.java</code>, which contains a license receiver for your KPE and backwards compatible keys.</p>
-              <p>The <code>KnoxEnterpriseLicenseManager</code> class is used to receive the KPE key, while the <code>EnterpriseLicenseManager</code> class is used to receive the backwards compatible key.</p><pre class="prettyprint">
+                                            <li class="tabs-title" value="2"><a href="tutorial-activate-license.htm#panel38" aria-selected="true" class="selected">Knox 3.8 or higher versions only</a>
+                                            </li>
+                                        </ul>
+                                        <div class="tabs-content" data-tabs-content="example-tabs">
+                                            <!-- Panel Knox 2.7 -->
+                                            <div class="tabs-panel is-active" id="panel27">
+                                                <h3><a name="Create"></a>Create the License Receiver class</h3>
+                                                <p>In your app, create a new class called <code>SampleLicenseReceiver.java</code>, which contains a license receiver for your KPE and backwards compatible keys.</p>
+                                                <p>The <code>KnoxEnterpriseLicenseManager</code> class is used to receive the KPE key, while the <code>EnterpriseLicenseManager</code> class is used to receive the backwards compatible key.</p><pre class="prettyprint">
 package com.samsung.knox.example.gettingstarted;
 
 import android.content.BroadcastReceiver;
@@ -1820,8 +1817,8 @@ public class SampleLicenseReceiver extends BroadcastReceiver {
   }
 }
               </pre>
-              <h3><a name="Register"></a>Register the License Receiver class</h3>
-              <p>When the KPE license is activated, the <code>com.samsung.android.knox.intent.action.KNOX_LICENSE_STATUS</code> intent is emitted. Upon activation of the Backwards Compatible Key, the <code>com.samsung.android.knox.intent.action.LICENSE_STATUS</code> intent is emitted. The app uses the <code>SampleLicenseReceiver</code> class to intercept this intent.
+                                                <h3><a name="Register"></a>Register the License Receiver class</h3>
+                                                <p>When the KPE license is activated, the <code>com.samsung.android.knox.intent.action.KNOX_LICENSE_STATUS</code> intent is emitted. Upon activation of the Backwards Compatible Key, the <code>com.samsung.android.knox.intent.action.LICENSE_STATUS</code> intent is emitted. The app uses the <code>SampleLicenseReceiver</code> class to intercept this intent.
 Paste this code in <i>AndroidManifest.xml</i> to define the receiver that will handle Knox license status broadcasts.</p><pre class="prettyprint">
 &lt;receiver android:name=".SampleLicenseReceiver" &gt;
   &lt;intent-filter&gt;
@@ -1830,12 +1827,12 @@ Paste this code in <i>AndroidManifest.xml</i> to define the receiver that will h
   &lt;/intent-filter&gt;
 &lt;/receiver&gt;
               </pre>
-              <p>
+                                                <p>
                   When your app receives the <code>com.samsung.android.knox.intent.action.KNOX_LICENSE_STATUS</code> and the <code>com.samsung.android.knox.intent.action.LICENSE_STATUS</code> intents, it passes the intents to
                   <code>SampleLicenseReceiver.onReceive()</code>. Use this method to have your app respond to the license activation.
               </p>
-              <h3><a name="Activate"></a>Activate the license</h3>
-              <p style="font-weight: normal;">Use this method in your <b>MainActivity</b> to activate the license.</p><pre class="prettyprint" xml:space="preserve" style="font-weight: normal;">
+                                                <h3><a name="Activate"></a>Activate the license</h3>
+                                                <p style="font-weight: normal;">Use this method in your <b>MainActivity</b> to activate the license.</p><pre class="prettyprint" xml:space="preserve" style="font-weight: normal;">
 private void activateLicense() {
   // Instantiate the KnoxEnterpriseLicenseManager class to use the activateLicense method
   KnoxEnterpriseLicenseManager licenseManager = KnoxEnterpriseLicenseManager.getInstance(this);
@@ -1854,16 +1851,16 @@ private void activateBackwardsCompatibleKey() {
   mUtils.log(getResources().getString(R.string.backwards_compatible_key_activation));
 }
               </pre>
-              <p>When license activation is performed, a pop-up for a consent to use personal information might appear. This is displayed depending on the policy, and the license is activated only when confirmed. Please refer to the <a href="../../admin/knox-platform-for-enterprise/user-agreements-android-device-management.htm" target="_blank">User agreements for Android device management</a> page to find the conditions under which Konx license privacy policy pop-up is displayed.</p>
-              <p>For KLM, there are three terms that are important when it comes to licenses that you can receive in the <code>KnoxEnterpriseLicenseManager.ACTION_LICENSE_STATUS</code> broadcast:</p>
-              <ol>
-                  <li><b>Activation</b> - Initial license activation (Constant is integer 800)</li>
-                  <li><b>Deactivation -</b> License deactivation (Constant is integer 802)</li>
-                  <li><b>Validation -</b> Once or twice a day, the license agent checks to see if the license is still valid. For example, if it expires before a validation check is made, the license agent returns a value that indicates
+                                                <p>When license activation is performed, a pop-up for a consent to use personal information might appear. This is displayed depending on the policy, and the license is activated only when confirmed. Please refer to the <a href="../../admin/knox-platform-for-enterprise/user-agreements-android-device-management.htm" target="_blank">User agreements for Android device management</a> page to find the conditions under which Konx license privacy policy pop-up is displayed.</p>
+                                                <p>For KLM, there are three terms that are important when it comes to licenses that you can receive in the <code>KnoxEnterpriseLicenseManager.ACTION_LICENSE_STATUS</code> broadcast:</p>
+                                                <ol>
+                                                    <li value="1"><b>Activation</b> - Initial license activation (Constant is integer 800)</li>
+                                                    <li value="2"><b>Deactivation -</b> License deactivation (Constant is integer 802)</li>
+                                                    <li value="3"><b>Validation -</b> Once or twice a day, the license agent checks to see if the license is still valid. For example, if it expires before a validation check is made, the license agent returns a value that indicates
                       license expiration. (Constant is integer 801)
                   </li>
-              </ol>
-              <p>Following is the code from the broadcast receiver that catches the license activation:</p><pre class="prettyprint">
+                                                </ol>
+                                                <p>Following is the code from the broadcast receiver that catches the license activation:</p><pre class="prettyprint">
 if (action.equals(KnoxEnterpriseLicenseManager.ACTION_LICENSE_STATUS)) {
   String status = intent.getStringExtra(KnoxEnterpriseLicenseManager.EXTRA_LICENSE_STATUS);
   int errorCode = intent.getIntExtra(KnoxEnterpriseLicenseManager.EXTRA_LICENSE_ERROR_CODE, 1);
@@ -1873,16 +1870,15 @@ if (action.equals(KnoxEnterpriseLicenseManager.ACTION_LICENSE_STATUS)) {
   Log.d(TAG, "KLM Status = " + status + ",  " + "Error Code= " + errorCode + ",  " + "Extra Result Type= " + extraResult);
 }
               </pre>
-              <p>For example, if a validation request is made and is successful, the following toast appears:</p>
-              <p><code>KLM Status = Success, Error Code = 0, Extra Result Type = 801</code>
-              </p>
-              <p>For BCK, there are two terms that are important when it comes to licenses that you can receive in the <code>EnterpriseLicenseManager.ACTION_LICENSE_STATUS</code> broadcast:</p>
-              <ol>
-                  <li><b>Activation</b> — Initial license activation (Constant is integer 800)</li>
-                  <li><b>Validation</b> — Once a week, the license agent checks to see if the license is still valid. For example, if it expires before a validation check is made, the license agent returns a value that indicates license expiration. (Constant is integer 801)</li>
-                  <li>Following is the code from the broadcast receiver that catches the license activation:</li>
-              </ol>
-              <pre class="prettyprint">
+                                                <p>For example, if a validation request is made and is successful, the following toast appears:</p>
+                                                <p><code>KLM Status = Success, Error Code = 0, Extra Result Type = 801</code>
+                                                </p>
+                                                <p>For BCK, there are two terms that are important when it comes to licenses that you can receive in the <code>EnterpriseLicenseManager.ACTION_LICENSE_STATUS</code> broadcast:</p>
+                                                <ol>
+                                                    <li value="1"><b>Activation</b> — Initial license activation (Constant is integer 800)</li>
+                                                    <li value="2"><b>Validation</b> — Once a week, the license agent checks to see if the license is still valid. For example, if it expires before a validation check is made, the license agent returns a value that indicates license expiration. (Constant is integer 801)</li>
+                                                    <li value="3">Following is the code from the broadcast receiver that catches the license activation:</li>
+                                                </ol><pre class="prettyprint">
 if (action.equals(EnterpriseLicenseManager.ACTION_LICENSE_STATUS)) {
   String status = intent.getStringExtra(EnterpriseLicenseManager.EXTRA_LICENSE_STATUS);
   int errorCode = intent.getIntExtra(EnterpriseLicenseManager.EXTRA_LICENSE_ERROR_CODE, EnterpriseLicenseManager.ERROR_NONE);
@@ -1892,11 +1888,12 @@ if (action.equals(EnterpriseLicenseManager.ACTION_LICENSE_STATUS)) {
   Log.d(TAG, "BCK Status = " + status + ",  " + "Error Code= " + errorCode + ",  " + "Result Type= " + resultType);
 }
               </pre>
-              <p>For example, After a successful activation of a BCK key, the following toast appears:</p>
-              <p><code>BCK Status = success, Error Code = 0, Extra Result Type = 800</code></p>
-          </div>
-            <!-- START Removing per Seungnam.Jin's request via B2BTECHPUB-1670 -->
-            <!-- Panel Knox 2.8
+                                                <p>For example, After a successful activation of a BCK key, the following toast appears:</p>
+                                                <p><code>BCK Status = success, Error Code = 0, Extra Result Type = 800</code>
+                                                </p>
+                                            </div>
+                                            <!-- START Removing per Seungnam.Jin's request via B2BTECHPUB-1670 -->
+                                            <!-- Panel Knox 2.8
             <div class="tabs-panel" id="panel28">
                 <h3><a name="Create"></a>Create the License Receiver class</h3>
                 <p>In your app, create a new class called <code>SampleLicenseReceiver.java</code> that contains a license receiver for your KPE key.</p><pre class="prettyprint">
@@ -2068,15 +2065,15 @@ if (action.equals(KnoxEnterpriseLicenseManager.ACTION_LICENSE_STATUS)) {
                 </p>
             </div>
             END Removing per Seungnam.Jin's request via B2BTECHPUB-1670 -->
-            <!-- Panel Knox 3.8 -->
-            <div class="tabs-panel" id="panel38">
-                <p>
+                                            <!-- Panel Knox 3.8 -->
+                                            <div class="tabs-panel" id="panel38">
+                                                <p>
                     Until Knox 3.7, the only way to identify if a Knox license was activated/deactivated was through the use of Android Broadcast Receivers. However, due to platform system limitations this broadcast was time consuming to
                     receive in some situations (like a phone reboot) as each broadcast was put in a queue. &#160; So, from Knox SDK 3.8 onwards, a new API was included to activate/deactivate licenses in a faster way. The only difference from the current API's is the possibility of caller applications to specify a callback that will receive the result as soon as the activation/deactivation is completed.
                 </p>
-                <div class="callout note"><b>Note</b> — In the new APIs using callback, broadcasts with activation result are no longer sent. However, activation/deactivation APIs are still supported without a callback parameter.</div>
-                <h3 id="activate-the-license">Activate the license</h3>
-                <p>Use the following methods in your <code>MainActivity</code> to activate a KPE/BCK license and to deactivate a KPE license:</p><pre class="prettyprint">
+                                                <div class="callout note"><b>Note</b> — In the new APIs using callback, broadcasts with activation result are no longer sent. However, activation/deactivation APIs are still supported without a callback parameter.</div>
+                                                <h3 id="activate-the-license">Activate the license</h3>
+                                                <p>Use the following methods in your <code>MainActivity</code> to activate a KPE/BCK license and to deactivate a KPE license:</p><pre class="prettyprint">
 //Use this method in your MainActivity to activate any KPE key.
 private void activateKPELicense() {
     Log.i(TAG, "activateKPELicense");
@@ -2172,66 +2169,66 @@ private void handleLicenseCallbackResponse(LicenseResult licenseResult) {
     }
 }
                 </pre>
-                <p>When license activation is performed, a pop-up for a consent to use personal information might appear. This is displayed depending on the policy, and the license is activated only when confirmed. Please refer to the <a href="../../admin/knox-platform-for-enterprise/user-agreements-android-device-management.htm" target="_blank">User agreements for Android device management</a> page to find the conditions under which Konx license privacy policy pop-up is displayed.</p>
-            </div>
-            <!-- end of panel content -->
-        </div>
-        <!-- Start of page content -->
-        <h3 id="backwards compatible-key">Backwards Compatible Key (BCK)</h3>
-        <p>In the following cases, you need to activate a backwards compatible key:</p>
-        <table>
-            <thead>
-                <tr>
-                  <th rowspan="2">KLM Type</th>
-                  <th colspan="2">BCK</th>
-                </tr>
-                <tr>
-                    <th>Knox 2.8 or higher</th>
-                    <th>Knox 2.7.1 or lower</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <td>KPE Standard (KLM09)</td>
-                    <td>BCK not required</td>
-                    <td>BCK required</td>
-                </tr>
-                <tr>
-                    <td>Legacy KPE Premium (KLM03, KLM06)</td>
-                    <td>BCK required</td>
-                    <td>BCK required</td>
-                </tr>
-                <tr>
-                    <td>KPE Premium (KLM09)</td>
-                    <td>BCK not required</td>
-                    <td>BCK required</td>
-                </tr>
-            </tbody>
-        </table>
-        <div class="callout note"><b>Note 1</b> — If EMM server activates both KPE Standard key and BCK key , It works well for all version devices even IT Admin inserts any KPE premium KLM09 key or KLM03. To get more information about the backwards compatible
+                                                <p>When license activation is performed, a pop-up for a consent to use personal information might appear. This is displayed depending on the policy, and the license is activated only when confirmed. Please refer to the <a href="../../admin/knox-platform-for-enterprise/user-agreements-android-device-management.htm" target="_blank">User agreements for Android device management</a> page to find the conditions under which Konx license privacy policy pop-up is displayed.</p>
+                                            </div>
+                                            <!-- end of panel content -->
+                                        </div>
+                                        <!-- Start of page content -->
+                                        <h3 id="backwards compatible-key">Backwards Compatible Key (BCK)</h3>
+                                        <p>In the following cases, you need to activate a backwards compatible key:</p>
+                                        <table>
+                                            <thead>
+                                                <tr>
+                                                    <th rowspan="2">KLM Type</th>
+                                                    <th colspan="2">BCK</th>
+                                                </tr>
+                                                <tr>
+                                                    <th>Knox 2.8 or higher</th>
+                                                    <th>Knox 2.7.1 or lower</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr>
+                                                    <td>KPE Standard (KLM09)</td>
+                                                    <td>BCK not required</td>
+                                                    <td>BCK required</td>
+                                                </tr>
+                                                <tr>
+                                                    <td>Legacy KPE Premium (KLM03, KLM06)</td>
+                                                    <td>BCK required</td>
+                                                    <td>BCK required</td>
+                                                </tr>
+                                                <tr>
+                                                    <td>KPE Premium (KLM09)</td>
+                                                    <td>BCK not required</td>
+                                                    <td>BCK required</td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                        <div class="callout note"><b>Note 1</b> — If EMM server activates both KPE Standard key and BCK key , It works well for all version devices even IT Admin inserts any KPE premium KLM09 key or KLM03. To get more information about the backwards compatible
             key, see
-                <a href="https://docs.samsungknox.com/dev/knox-sdk/faqs/licensing/what-backwards&#32;compatible-key.htm">What is the backwards compatible key?</a>, <a href="https://docs.samsungknox.com/dev/knox-sdk/faqs/licensing/licensing/do-i-need-associate-my-app-backwards&#32;compatible-key.htm">Do I need to associate my app with a backwards compatible key?</a>, <a href="https://docs.samsungknox.com/dev/knox-sdk/faqs/licensing/licensing/when-do-i-need-use-backwards&#32;compatible-key.htm">When do I need to use the backwards compatible key?</a>, and <a href="faqs/index.htm#mag_3:~:text=on%20my%20device%3F-,Licensing,-How%20do%20I">Licensing</a> FAQ section.
+                <a href="faqs/licensing/what-backwards-compatible-key.htm">What is the backwards compatible key?</a>, <a href="faqs/licensing/do-i-need-associate-my-app-backwards-compatible-key.htm">Do I need to associate my app with a backwards compatible key?</a>, <a href="faqs/licensing/when-do-i-need-use-backwards-compatible-key.htm">When do I need to use the backwards compatible key?</a>, and <a href="faqs/index.htm#licensing">Licensing</a> FAQ section.
         </div>
-        <div class="callout note"><b>Note 2</b> — Apps can no longer activate ELM licenses on devices to call Knox APIs. Existing ELM key activated devices will remain activated, even after a factory reset. For more information on ELM see <a href="https://docs.samsungknox.com/faqs/index.htm#mag_4">ELM License End of Service
+                                        <div class="callout note"><b>Note 2</b> — Apps can no longer activate ELM licenses on devices to call Knox APIs. Existing ELM key activated devices will remain activated, even after a factory reset. For more information on ELM see <a href="https://docs.samsungknox.com/faqs/index.htm#elm-license">ELM License End of Service
 </a> FAQ section.
         </div>
-        <div class="callout note"><b>Note 3</b> — Backwards Compatible Key must be activated after KPE key activation.
+                                        <div class="callout note"><b>Note 3</b> — Backwards Compatible Key must be activated after KPE key activation.
         </div>
-        <p>See also:</p>
-        <ul>
-            <li value="1"><a href="../common/knox-licenses.htm">Knox licenses</a>
-            </li>
-            <li value="2"><a href="../common/how-licenses-work.htm">How licenses work</a>
-            </li>
-            <li value="3"><a href="../common/tutorial-get-a-license.htm">Get a license</a>
-            </li>
-            <li value="4"><a href="../common/isv-permissions.htm">ISV permissions</a>
-            </li>
-            <li value="5"><a href="../common/license-permissions.htm">License permissions</a>
-            </li>
-            <li value="6"><a href="tutorial-knox-permissions.htm">Declare permissions</a>
-            </li>
-        </ul>
+                                        <p>See also:</p>
+                                        <ul>
+                                            <li value="1"><a href="../common/knox-licenses.htm">Knox licenses</a>
+                                            </li>
+                                            <li value="2"><a href="../common/how-licenses-work.htm">How licenses work</a>
+                                            </li>
+                                            <li value="3"><a href="../common/tutorial-get-a-license.htm">Get a license</a>
+                                            </li>
+                                            <li value="4"><a href="../common/isv-permissions.htm">ISV permissions</a>
+                                            </li>
+                                            <li value="5"><a href="../common/license-permissions.htm">License permissions</a>
+                                            </li>
+                                            <li value="6"><a href="tutorial-knox-permissions.htm">Declare permissions</a>
+                                            </li>
+                                        </ul>
                                         <!-- Inserts feedback module here -->
                                         <div id="feedback">
                                         </div>

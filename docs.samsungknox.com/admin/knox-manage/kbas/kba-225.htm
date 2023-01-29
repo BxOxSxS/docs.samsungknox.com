@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" lang="en-US" xml:lang="en-US" data-mc-search-type="Stem" data-mc-help-system-file-name="Default.xml" data-mc-path-to-help-system="../../" data-mc-conditions="Default.knox-manage" data-mc-target-type="WebHelp2" data-mc-runtime-file-type="Topic;Default" data-mc-preload-images="false" data-mc-in-preview-mode="false" data-mc-toc-path="">
     <head>
-        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" /><title>How to use Knox Manage to keep screen on&#160;when device is plugged in</title>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" /><title>How to prevent a plugged-in Android device's screen from turning off</title>
         <!-- Google analytics tag-->
         <script>/* <![CDATA[ */
 			(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
@@ -55,10 +55,6 @@
         <link href="../../../assets/merge/kp-foundation.css" rel="stylesheet" />
         <link href="../../Resources/kp-madcap.css" rel="stylesheet" />
         <link href="../../Resources/print.css" rel="stylesheet" />
-        <style>h1 {font-size:2rem;} </style>
-        <style>h2 {font-weight:bold; font-size:1.55rem;} </style>
-        <style>h5 {margin-left:-17px;} </style>
-        <style>pre {white-space: pre-wrap;} </style>
         <script src="../../Resources/Scripts/custom.modernizr.js">
         </script>
         <script src="../../Resources/Scripts/jquery.min.js">
@@ -1028,7 +1024,7 @@
                                                         </li>
                                                         <li class="has-children"><a href="kba-225.htm#">Features</a>
                                                             <ul class="sub-menu">
-                                                                <li><a href="../../updating-an-existing-device-profile.htm">Update an existing device profile</a>
+                                                                <li><a href="../../knox-configure/updating-an-existing-device-profile.htm">Update an existing device profile</a>
                                                                 </li>
                                                                 <li><a href="../../knox-configure/bulk-device-operations.htm">Bulk device operations</a>
                                                                 </li>
@@ -2762,32 +2758,37 @@
 									</div>
 									-->
                                     <div id="sec2" class="small-12 medium-8 large-9 columns">
-                                        <div itemscope="itemscope" itemtype="http://schema.org/Guide"><a name="aanchor998"></a>
-                                            <MadCap:concept term="knox-manage" />
-                                            <h1><a name="aanchor999"></a>
-                                                <MadCap:concept term="KBAs and FAQs" />How to use Knox Manage to keep screen on&#160;when device is plugged in</h1>
+                                        <div itemscope="itemscope" itemtype="http://schema.org/Guide">
+                                            <h1>How to prevent a plugged-in Android device's screen from turning off</h1>
                                             <div class="callout primary">
-                                                <h2>Environment</h2>
+                                                <h2 id="environment">Environment</h2>
                                                 <ul>
-                                                    <li value="1">Knox Manage (KM) Kiosk mode</li>
+                                                    <li value="1">Knox Manage Kiosk mode</li>
                                                     <li value="2">Android Enterprise enrollment type</li>
                                                     <li value="3">Devices running Android 6.0 and above</li>
                                                 </ul>
-                                                <h2>Overview</h2>
+                                                <h2 id="overview">Overview</h2>
                                                 <p>For deployments where devices may be permanently plugged in and charging, you may want to force the device screen to stay on. </p>
-                                                <p>Previously only available in Knox Configure, this knowledge base article shows you how to configure the <strong>Setting Plugged in Screen On</strong> policy to keep device screens on with Knox Manage (KM).</p>
-                                                <p><strong>NOTE—</strong>This policy is only available for devices running Kiosk mode.</p>
-                                                <h2>How do I keep my device's screen on when it's plugged in and charging?</h2>
+                                                <p>Previously only available in Knox Configure, this knowledge base article shows you how to configure the <b><a href="../android-enterprise-policies.htm#system-always-on-display">Always on Display</a></b> and <b><a href="../android-enterprise-policies.htm#kiosk-screen-plugged-in">Screen on when Plugged in</a></b> policies to keep device screens on with Knox Manage.</p>
+                                                <div class="callout note"><b>NOTE</b> — The <b>Screen on when Plugged in</b> policy is only available for devices running Kiosk mode.</div>
+                                                <h2 id="how-to-keep-device-screen-on-when-plugged-in-and-charging">How to keep the device screen on when plugged in and charging</h2>
+                                                <p>To configure a profile to keep the device screen on:</p>
                                                 <ol>
-                                                    <li value="1">In your KM console, click <strong>Profile</strong>.</li>
-                                                    <li value="2">Create or modify a profile with <strong>Android Enterprise</strong> set as the enrollment type.</li>
-                                                    <li value="3">Under <strong>Android Enterprise</strong>, select <strong>Kiosk.</strong></li>
-                                                    <li value="4">Navigate to the <strong>Setting Plugged in Screen</strong> policy, select <strong>Apply</strong>, then select a charging type.<br /><img src="../../../assets/merge/images/knox-manage/image225-1.jpg" alt="" width="400" height="164" /></li>
-                                                    <li value="5">Click <strong>Save &amp; Assign </strong>to assign the profile to a group or organization.</li>
+                                                    <li value="1">In your Knox Manage console, click <b>Profile</b>.</li>
+                                                    <li value="2">Create or modify a profile with <b>Android Enterprise</b> set as the enrollment type.</li>
+                                                    <li value="3">
+                                                        <p>Set the following policies in the <b>Android Enterprise</b> policy drawer:</p>
+                                                        <ul>
+                                                            <li value="1"><b>System</b> &gt; <b>Always on Display</b> — <b>Allow</b></li>
+                                                            <li value="2"><b>Kiosk</b> &gt; <b>Screen on when Plugged in</b> — <b>Apply</b></li>
+                                                            <li value="3"><b>Kiosk</b> &gt; <b>Screen on when Plugged in</b> &gt; <b>Screen On when Plugged into Charger</b> — Select the desired charging methods.</li>
+                                                        </ul>
+                                                    </li>
+                                                    <li value="4">Click <b>Save &amp; Assign</b> to assign the profile to a group or organization.</li>
                                                 </ol>
                                                 <p>After the policy is enabled and the device is connected to a charger, the screen stays on until it is disconnected.</p>
                                             </div>
-                                            <div class="back"><a href="index.htm">Back to KBAs </a>
+                                            <div class="back"><a href="index.htm">Back to KBAs</a>
                                             </div>
                                         </div>
                                         <!-- Inserts feedback module here -->

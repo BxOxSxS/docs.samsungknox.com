@@ -1024,7 +1024,7 @@
                                                         </li>
                                                         <li class="has-children"><a href="license-management.htm#">Features</a>
                                                             <ul class="sub-menu">
-                                                                <li><a href="../updating-an-existing-device-profile.htm">Update an existing device profile</a>
+                                                                <li><a href="updating-an-existing-device-profile.htm">Update an existing device profile</a>
                                                                 </li>
                                                                 <li><a href="bulk-device-operations.htm">Bulk device operations</a>
                                                                 </li>
@@ -2769,13 +2769,67 @@
                                                 <li value="1"><i>Trial license</i> — Trial licenses are intended for development and testing before going live with your deployment. Trial licenses are valid for 3 months and cannot exceed 30 devices for either Setup or Dynamic edition Knox Configure profile usage. Trial licenses can be migrated to commercial licenses upon expiration by contacting your reseller.</li>
                                                 <li value="2"><i>Commercial license</i> — Use a commercial license when deploying devices for commercial use with either a Setup or Dynamic Knox Configure profile. Commercial licenses must be purchased from a Knox reseller supporting your geographic deployment region. </li>
                                             </ul>
-                                            <p>A Dynamic edition <i>Per seat</i> license enable customers to revoke a license on one device to use the license, “per seat,” on another device with the same dynamic edition profile. For example, an IT admin may want to revoke an ex-employee’s license so they can utilize that revoked license on a different device using that same Dynamic edition profile. Utilizing the revoked license increases the available license count and improves license provisioning efficiency with the Dynamic edition profile.</p>
-                                            <p>A Setup edition <i>Per Device Staggered</i> license enables customers to utilize licenses more efficiently, since a customer may not initially use Knox Configure after it is purchased, or deploy devices at the same time. Using a Per Device Staggered license type, a customer creates a Setup edition profile and assigns devices per usual. They then however select the Per Device Staggered license type and ensure each activated device has a different expiration date based on the device's activation date.</p>
+                                            <p>A <i>Per Device</i> license is the standard license type for the Setup and Dynamic editions of Knox Configure. Per Device licenses include a finite number of non-transferable seats, which means that once a device has been assigned with this license type, the seat can't be reassigned. Per device licenses also have uniform scheduling, so all devices assigned with this license type expire on the same date.</p>
+                                            <p>A Setup edition <i>Per Device (Staggered)</i> license enables customers to utilize licenses more efficiently, since a customer might not initially use Knox Configure after it's purchased, or deploy devices at the same time. Using a Per Device (Staggered) license type, a customer creates a Setup edition profile and assigns devices per usual. They then however select the Per Device (Staggered) license type and ensure each activated device has a different expiration date based on the device's activation date.</p>
+                                            <p>A Dynamic edition <i>Per Seat</i> license enable customers to revoke a license on one device to use the license, per seat, on another device with the same dynamic edition profile. For example, an IT admin may want to revoke an ex-employee's license so they can utilize that revoked license on a different device using that same Dynamic edition profile. Utilizing the revoked license increases the available license count and improves license provisioning efficiency with the Dynamic edition profile.</p>
+                                            <p><i>Per Device</i>, <i>Per Device (Staggered)</i>, and <i>Per Seat</i> licenses all include a 30-day grace period to accommodate license renewal delays. During the grace period, you can't reboot, factory reset, or push profile updates and lock/unlock commands to associated devices. Any previously scheduled pushes will also fail.</p>
+                                            <p>After the 30-day grace period, device behavior depends on the license the device was set up with:</p>
+                                            <ul>
+                                                <li value="1"><i>Per Device</i> and <i>Per Device (Staggered)</i> — The device is automatically unassigned, but all policies added to the device remain on the device. Device policies remain active until the device undergoes a factory reset or its profile is synced.</li>
+                                                <li value="2"><i>Per Seat</i> — The device is automatically unassigned and all policies are revoked, which removes all restrictions from the device. All content, apps, and non-restrictive configurations such as boot animations and hardware key remaps remain on the device after the device is unassigned.</li>
+                                            </ul>
                                             <div class="callout note"><b>NOTE</b> — A device can be unassigned from its assigned profile when the device is using a staggered license, and the service period has ended, or when the device is using a non-staggered license, and the 30-day license expiration grace period has ended.</div>
-                                            <p>Refer to the following to assess the activation period, transfer capability, extension ability, and quantity upgrade capability of supported KC license types:</p>
-                                            <p>
-                                                <img src="../../assets/merge/images/knox-configure/license_support_matrix.png" alt="Support matrix" />
-                                            </p>
+                                            <p>The following chart compares the different license types for each edition of Knox Configure:</p>
+                                            <table>
+                                                <thead>
+                                                    <tr>
+                                                        <th rowspan="2">Product</th>
+                                                        <th colspan="4">Knox Configure</th>
+                                                    </tr>
+                                                    <tr>
+                                                        <th colspan="2">Setup Edition</th>
+                                                        <th colspan="2">Dynamic Edition</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    <tr>
+                                                        <td>License name</td>
+                                                        <td>KC Setup Edition</td>
+                                                        <td>KC Setup Edition (Staggered)</td>
+                                                        <td>KC Dynamic Edition</td>
+                                                        <td>KC Dynamic Edition (Per Seat)</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>License type</td>
+                                                        <td>Per Device</td>
+                                                        <td>Per Device (Staggered)</td>
+                                                        <td>Per Device</td>
+                                                        <td>Per Seat</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>Valid license period</td>
+                                                        <td>All device licenses expire at the same time</td>
+                                                        <td>License period guaranteed per each device</td>
+                                                        <td colspan="2">All device licenses expire at the same time</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>Transferable?</td>
+                                                        <td colspan="3">No</td>
+                                                        <td>Yes</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>License extension</td>
+                                                        <td>Available</td>
+                                                        <td>Not available</td>
+                                                        <td colspan="2">Available</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>Increase/decrease number of devices during license period</td>
+                                                        <td colspan="3">Increase only</td>
+                                                        <td>Increase and decrease</td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
                                             <div class="callout note"><b>NOTE</b> — A profile and an assigned license are now no longer linked, and each device follows the behavior of the license types they belong to. Legacy SKUs and new license SKUs can now be used together in the same profile. If necessary, a profile can be created and saved without a license assignment.</div>
                                             <p>To review existing licenses:</p>
                                             <ol>

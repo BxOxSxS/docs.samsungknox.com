@@ -1,8 +1,7 @@
-
 <!DOCTYPE html>
-<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" lang="en-US" xml:lang="en-US" data-mc-search-type="Stem" data-mc-help-system-file-name="Default.xml" data-mc-path-to-help-system="../../" data-mc-conditions="Default.knox-sdk" data-mc-target-type="WebHelp2" data-mc-runtime-file-type="Topic;Default" data-mc-preload-images="false" data-mc-in-preview-mode="false" data-mc-toc-path="">
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" lang="en-US" xml:lang="en-US" data-mc-search-type="Stem" data-mc-help-system-file-name="Default.xml" data-mc-path-to-help-system="../../" data-mc-conditions="Default.knox-platform-enterprise" data-mc-target-type="WebHelp2" data-mc-runtime-file-type="Topic;Default" data-mc-preload-images="false" data-mc-in-preview-mode="false" data-mc-toc-path="">
     <head>
-        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" /><title>How to enable and change the SIM card PINs on a dual SIM device</title>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" /><title>ISV VPN client app requirements for communicating with Knox SDK</title>
         <meta charset="utf-8" />
         <meta http-equiv="x-ua-compatible" content="ie=edge" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -1600,136 +1599,135 @@
                                 <div class="small-12 medium-8 medium-centered large-9 large-centered columns" id="topic-content">
                                     <!-- topic -->
                                     <div id="sec2" class="small-12 medium-8 large-9 columns">
-                                        <h1><a name="aanchor27"></a>
-                                            <MadCap:concept term="Knox SDK; KBAs and FAQs" />ISV VPN client app requirements for communicating with the Knox SDK</h1>
+                                        <h1>ISV VPN client app requirements for communicating with the Knox SDK</h1>
                                         <p>Last updated: December 21, 2022</p>
-										<div class="callout primary">
-											<h2 id="environment">Environment</h2>
-											<ul>
-												<li>Knox Platform for Enterprise</li>
-												<li>Knox VPN framework in the Knox SDK</li>
-												<li>Samsung Knox Developer access</li>
-												<li>VPN client developed by an independent software vendor (ISV)</li>
-											</ul>
-											<h2 id="overview">Overview</h2>
-											<p>With Knox Platform for Enterprise, ISVs can implement the Knox VPN Framework by connecting their VPN client app to the Knox SDK. This article provides information on how to achieve such an implementation and thus ensure a successful connection.</p>
-											<h2 id="how-to-configure-vpn-client-to-communicate-knox-sdk">How to configure a VPN client app to communicate with Knox SDK</h2>
-											<p>In the implementation of your VPN client app, it's important to follow the proper configuration for establishing communication between a VPN client and MDM application.</p>
-											<p>In the following code samples we provide:</p>
-											<ol>
-												<li>
-													<p>Insert an intent filter for the Knox VPN into your app's <code>AppManifest.xml</code> file:</p><pre class="prettyprint" xml:space="preserve">
+                                        <div class="callout primary">
+                                            <h2 id="environment">Environment</h2>
+                                            <ul>
+                                                <li value="1">Knox Platform for Enterprise</li>
+                                                <li value="2">Knox VPN framework in the Knox SDK</li>
+                                                <li value="3">Samsung Knox Developer access</li>
+                                                <li value="4">VPN client developed by an independent software vendor (ISV)</li>
+                                            </ul>
+                                            <h2 id="overview">Overview</h2>
+                                            <p>With Knox Platform for Enterprise, ISVs can implement the Knox VPN Framework by connecting their VPN client app to the Knox SDK. This article provides information on how to achieve such an implementation and thus ensure a successful connection.</p>
+                                            <h2 id="how-to-configure-vpn-client-to-communicate-knox-sdk">How to configure a VPN client app to communicate with Knox SDK</h2>
+                                            <p>In the implementation of your VPN client app, it's important to follow the proper configuration for establishing communication between a VPN client and MDM application.</p>
+                                            <p>In the following code samples we provide:</p>
+                                            <ol>
+                                                <li value="1">
+                                                    <p>Insert an intent filter for the Knox VPN into your app's <code>AppManifest.xml</code> file:</p><pre class="prettyprint" xml:space="preserve">
 &lt;service
-	android:name="BaseKnoxSettingsVpnService"
-	android:exported="false"&gt;
-	&lt;intent-filter&gt;
-		&lt;action android:name="com.samsung.myapplication.BIND_SERVICE_NEW" /&gt;
-	&lt;/intent-filter&gt;
+    android:name="BaseKnoxSettingsVpnService"
+    android:exported="false"&gt;
+    &lt;intent-filter&gt;
+        &lt;action android:name="com.samsung.myapplication.BIND_SERVICE_NEW" /&gt;
+    &lt;/intent-filter&gt;
 &lt;/service&gt;</pre>
-												</li>
-												<li>
-													<p>In the app itself, create a VPN service for Knox based on the <code>Service</code> class and bind the intent. Provided is a generic implementation with connection and certificate methods:</p><pre class="prettyprint" xml:space="preserve">
+                                                </li>
+                                                <li value="2">
+                                                    <p>In the app itself, create a VPN service for Knox based on the <code>Service</code> class and bind the intent. Provided is a generic implementation with connection and certificate methods:</p><pre class="prettyprint" xml:space="preserve">
 public class BaseKnoxSettingsVpnService extends Service {
-	public static String TAG = "BaseKnoxSettingsVpnService";
-	public BaseKnoxSettingsVpnService() {
-	}
+    public static String TAG = "BaseKnoxSettingsVpnService";
+    public BaseKnoxSettingsVpnService() {
+    }
 
-	@Override
-	public IBinder onBind(Intent intent) {
-		Log.v(TAG, "intent action value is " + intent.getAction());
-		return mIKnoxVpnService;
-	}
+    @Override
+    public IBinder onBind(Intent intent) {
+        Log.v(TAG, "intent action value is " + intent.getAction());
+        return mIKnoxVpnService;
+    }
 
-	private final IKnoxVpnService.Stub mIKnoxVpnService = new IKnoxVpnService.Stub() {
-		public int createConnection(String jsonProfile) throws RemoteException {
-			return 0;
-		}
+    private final IKnoxVpnService.Stub mIKnoxVpnService = new IKnoxVpnService.Stub() {
+        public int createConnection(String jsonProfile) throws RemoteException {
+            return 0;
+        }
 
-		public int removeConnection(String profileName) throws RemoteException {
-			return 0;
-		}
+        public int removeConnection(String profileName) throws RemoteException {
+            return 0;
+        }
 
-		public boolean setUserCertificate(String profileName, byte[] pkcs12Blob, String password) throws RemoteException {
-			return true;
-		}
+        public boolean setUserCertificate(String profileName, byte[] pkcs12Blob, String password) throws RemoteException {
+            return true;
+        }
 
-		public boolean setCACertificate(String profileName, byte[] blob) throws RemoteException {
-			return true;
-		}
+        public boolean setCACertificate(String profileName, byte[] blob) throws RemoteException {
+            return true;
+        }
 
-		public int startConnection(String profileName) throws RemoteException {
-			return 0;
-		}
+        public int startConnection(String profileName) throws RemoteException {
+            return 0;
+        }
 
-		public int stopConnection(String profileName) throws RemoteException {
-			return 0;
-		}
+        public int stopConnection(String profileName) throws RemoteException {
+            return 0;
+        }
 
-		public int getState(String profileName) throws RemoteException {
-			return 0;
-		}
+        public int getState(String profileName) throws RemoteException {
+            return 0;
+        }
 
-		public int getVpnModeOfOperation(String profileName) throws RemoteException {
-			return 0;
-		}
+        public int getVpnModeOfOperation(String profileName) throws RemoteException {
+            return 0;
+        }
 
-		@Override
-		public boolean setServerCertValidationUserAcceptanceCriteria(String profileName, boolean enableValidation, List condition, int frequency) throws RemoteException {
-			return true;
-		}
+        @Override
+        public boolean setServerCertValidationUserAcceptanceCriteria(String profileName, boolean enableValidation, List condition, int frequency) throws RemoteException {
+            return true;
+        }
 
-		public int setVpnModeOfOperation(String profileName, int vpnMode) throws RemoteException {
-			return 0;
-		}
+        public int setVpnModeOfOperation(String profileName, int vpnMode) throws RemoteException {
+            return 0;
+        }
 
-		public boolean setAutoRetryOnConnectionError(String profileName, boolean enable) throws RemoteException {
-			return true;
-		}
+        public boolean setAutoRetryOnConnectionError(String profileName, boolean enable) throws RemoteException {
+            return true;
+        }
 
-		public String getConnection(String profileName) throws RemoteException {
-			Log.v(TAG, "getConnection");
-			return null;
-		}
+        public String getConnection(String profileName) throws RemoteException {
+            Log.v(TAG, "getConnection");
+            return null;
+        }
 
-		public List&lt;String&gt; getAllConnections() throws RemoteException {
-			Log.v(TAG, "getAllConnections");
-			return null;
-		}
+        public List&lt;String&gt; getAllConnections() throws RemoteException {
+            Log.v(TAG, "getAllConnections");
+            return null;
+        }
 
-		public String getErrorString(String profileName) throws RemoteException {
-			Log.v(TAG, "getErrorString");
-			return null;
-		}
-	};
+        public String getErrorString(String profileName) throws RemoteException {
+            Log.v(TAG, "getErrorString");
+            return null;
+        }
+    };
 }</pre>
-												</li>
-												<li>
-													<p>Create a folder structure to store the IknoxVpnServiceAIDL file in <code>main/aidl/com/Samsung/android/knox/net/vpn/serviceprovider</code>.</p>
-													<p>
-														<img src="../../../assets/merge/images/knox-platform-for-enterprise/kba-733/kba-733/kba-733-IknoxVpnServiceAIDL-file-location.png" alt="IKnoxVpnServiceAIDL File Location" />
-													</p>
-												</li>
-											</ol>
-											<h2 id="how-to-test-communication-between-vpn-client-and-knox-sdk">How to test communication between your VPN client app and the Knox SDK</h2>
-											<p>After your app is deployed, to test if communication has been successfully established:</p>
-											<ol>
-												<li>On the Knox Partner Program console, click <b>Knox Developers</b>.</li>
-												<li>Under <b>SDK Tools</b>, click <b>Sample Apps</b>.</li>
-												<li>Download the <b>VPN Policy</b> sample app.</li>
-												<li>
-													<p>Change the default value of VPN_PACKAGE_NAME to the name of your application package:</p><pre class="prettyprint" xml:space="preserve">
+                                                </li>
+                                                <li value="3">
+                                                    <p>Create a folder structure to store the IknoxVpnServiceAIDL file in <code>main/aidl/com/Samsung/android/knox/net/vpn/serviceprovider</code>.</p>
+                                                    <p>
+                                                        <img src="../../../assets/merge/images/knox-platform-for-enterprise/kba-733/kba-733/kba-733-IknoxVpnServiceAIDL-file-location.png" alt="IKnoxVpnServiceAIDL File Location" />
+                                                    </p>
+                                                </li>
+                                            </ol>
+                                            <h2 id="how-to-test-communication-between-vpn-client-and-knox-sdk">How to test communication between your VPN client app and the Knox SDK</h2>
+                                            <p>After your app is deployed, to test if communication has been successfully established:</p>
+                                            <ol>
+                                                <li value="1">On the Knox Partner Program console, click <b>Knox Developers</b>.</li>
+                                                <li value="2">Under <b>SDK Tools</b>, click <b>Sample Apps</b>.</li>
+                                                <li value="3">Download the <b>VPN Policy</b> sample app.</li>
+                                                <li value="4">
+                                                    <p>Change the default value of VPN_PACKAGE_NAME to the name of your application package:</p><pre class="prettyprint" xml:space="preserve">
 [String VPN_PACKAGE_NAME = "com.example.samplevpnclient"]</pre>
-												</li>
-												<li><a href="../sample-apps/vpn-configuration.htm">Install the VPN Policy sample app on a device</a>.</li>
-												<li><a href="../sample-apps/get-started-knox-sdk.htm#mag_1">Connect your VPN client and Knox SDK</a> through the IknoxVpnService AIDL. If a connection is established between them, the VPN Policy app shows the message <b>VPN operation successful</b>.</li>
-											</ol>
-											<h2 id="additional-information">Additional information</h2>
-											<ul>
-												<li>For more information about Knox SDK, refer to the <a href="../../../devref/knox-sdk/reference/packages.html" target="_blank">Knox SDK API reference</a>.</li>
-												<li>For more information about the IKnoxVpnService AIDL and its API, refer to the <a href="../IKnoxVpnService_Description.pdf" target="_blank">IKnoxVpnService AIDL file description</a>.</li>
-											</ul>
-										</div>
-                                        <div class="back"><a href="sdk-kbas.htm">Back to KBAs</a>
+                                                </li>
+                                                <li value="5"><a href="../sample-apps/vpn-configuration.htm">Install the VPN Policy sample app on a device</a>.</li>
+                                                <li value="6"><a href="../sample-apps/get-started-knox-sdk.htm#mag_1">Connect your VPN client and Knox SDK</a> through the IknoxVpnService AIDL. If a connection is established between them, the VPN Policy app shows the message <b>VPN operation successful</b>.</li>
+                                            </ol>
+                                            <h2 id="additional-information">Additional information</h2>
+                                            <ul>
+                                                <li value="1">For more information about Knox SDK, refer to the <a href="../../../devref/knox-sdk/reference/packages.html" target="_blank">Knox SDK API reference</a>.</li>
+                                                <li value="2">For more information about the IKnoxVpnService AIDL and its API, refer to the <a href="../IKnoxVpnService_Description.pdf" target="_blank">IKnoxVpnService AIDL file description</a>.</li>
+                                            </ul>
+                                        </div>
+                                        <div class="back"><a href="https://docs.samsungknox.com/dev/knox-sdk/kbas/index.htm">Back to KBAs </a>
                                         </div>
                                         <!-- Inserts feedback module here -->
                                         <div id="feedback">

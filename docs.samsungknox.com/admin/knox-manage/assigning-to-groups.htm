@@ -1024,7 +1024,7 @@
                                                         </li>
                                                         <li class="has-children"><a href="assigning-to-groups.htm#">Features</a>
                                                             <ul class="sub-menu">
-                                                                <li><a href="../updating-an-existing-device-profile.htm">Update an existing device profile</a>
+                                                                <li><a href="../knox-configure/updating-an-existing-device-profile.htm">Update an existing device profile</a>
                                                                 </li>
                                                                 <li><a href="../knox-configure/bulk-device-operations.htm">Bulk device operations</a>
                                                                 </li>
@@ -2759,36 +2759,60 @@
 									-->
                                     <div id="sec2" class="small-12 medium-8 large-9 columns">
                                         <div itemscope="itemscope" itemtype="http://schema.org/Guide">
-                                            <h1><a name="aanchor224"></a>
-                                                <MadCap:concept term="knox-manage" />Assign profiles to groups and organizations</h1>
+                                            <h1>Assign profiles to groups and organizations</h1>
                                             <p>Assign a profile to a group or an organization. You must assign a profile before applying the policies that are configured for it.</p>
-                                            <p>When multiple profiles are assigned to the same group or organization and there is a conflict within the policies between the profiles, the latest assigned/applied profile has priority. Policies from multiple profiles are applied if they do not conflict with each other. If a device belongs to both a group and an organization at the same time, only group's profile is applied because group profile policies have priority.</p>
-                                            <p>You have to apply a profile to a group or an organization after assigning it. You must apply a profile to devices so that the profile policies can take effect. Profiles can be applied immediately or at a specific time.</p>
+                                            <p>When multiple profiles are assigned to the same group or organization and one or more policies between the profiles conflict, the policy from the profile with the highest priority will apply to the group or organization. To configure profile priority, see <a href="set-up-the-profile-priorities.htm">Set up the profile priorities</a>.</p>
+                                            <p>Policies from multiple profiles will apply if they don't conflict with each other. If a device belongs to both a group and an organization at the same time, the policies of the group's profiles will apply because they have priority.</p>
+                                            <p>You can apply profiles immediately or at a specific time.</p>
                                             <h2>Assigning to groups</h2>
-                                            <p>To assign a profile to a group, complete the following steps:</p>
+                                            <p>To assign a profile to a group:</p>
                                             <ol>
                                                 <li value="1">Navigate to <b>Profile</b>. You can also assign a profile from the group list by navigating to <b>Groups</b> and selecting a group to assign. For more information, see <a href="apply-profiles-to-groups.htm">Apply profiles to groups</a>.</li>
-                                                <li value="2">On the “Profile” page, click the check box for a profile that you want to assign.</li>
-                                                <li value="3">Click <b>Assign</b>.</li>
-                                                <li value="4">On the “Assign Profile” page, click <b>Group</b>.</li>
-                                                <li value="5">Click the check boxes for groups to be assigned with the selected profile.<ul><li value="1">You can select multiple groups.</li><li value="2">If a group has already been assigned a profile and it is assigned to another profile, you can preview the conflicting policies from the two profiles by clicking <b>Preview Policy</b>.</li></ul></li>
-                                                <li value="6">Click <b>Assign &amp; Apply</b> to assign and apply the profile to the selected groups at the same time.</li>
-                                                <ul>
-                                                    <li value="1">Click <b>Assign</b> to assign the profile to the selected groups and not to apply the profile now.</li>
-                                                </ul>
-                                                <li value="7">In the “Assign Profile” window, click <b>OK</b>.</li>
+                                                <li value="2">On the <b>Profile</b> page, select the check box for a profile that you want to assign.</li>
+                                                <li value="3">Select <b>Assign</b>.</li>
+                                                <li value="4">On the <b>Assign Profile</b> page, click <b>Group</b>.</li>
+                                                <li value="5">
+                                                    <p>Select the check boxes for groups to be assigned with the selected profile.</p>
+                                                    <ul>
+                                                        <li value="1">You can select multiple groups.</li>
+                                                        <li value="2">If a group has already been assigned a profile and it is assigned to another profile, you can preview the conflicting policies from the two profiles by clicking <b>Preview Policy</b>.</li>
+                                                    </ul>
+                                                </li>
+                                                <li value="6">
+                                                    <p>Click <b>Assign &amp; Apply</b> to assign and apply the profile to the selected groups at the same time.</p>
+                                                    <ul>
+                                                        <li value="1">Click <b>Assign</b> to assign the profile to the selected groups and not to apply the profile now.</li>
+                                                    </ul>
+                                                </li>
+                                                <li value="7">In the <b>Assign Profile</b> window, click <b>OK</b>.</li>
                                             </ol>
                                             <h2>Assigning to organizations</h2>
-                                            <p>To assign a profile to an organization, complete the following steps:</p>
+                                            <p>To assign a profile to an organization:</p>
                                             <ol>
                                                 <li value="1">Navigate to <b>Profile</b>. You can also assign a profile from the organization list by navigating to Organization and selecting an organization to assign. For more information, see <a href="assign-an-application-to-an-organization.htm">Assign applications to organizations</a>.</li>
-                                                <li value="2">On the “Profile” page, click the check box for a profile to be assigned.</li>
-                                                <li value="3">Click <b>Assign</b>.</li>
-                                                <li value="4">On the “Assign Profile” page, click <b>Organization</b>.</li>
-                                                <li value="5">Click the check boxes for organizations to be assigned with the selected profile.<ul><li value="1">You can select multiple organizations.</li><li value="2">If an organization has already been assigned a profile and it is assigned to another profile, you can preview the conflicting policies from the two profiles by clicking <b>Preview Policy</b>.</li><li value="3">When a profile is assigned to an organization that has sub-organizations, the profile is applied to all the sub-organizations.</li><li value="4">If a sub-organization was not assigned a profile, the profile of the super organization is inherited, but the inherited profile can be overwritten with a new profile.</li><li value="5">If a sub-organization was assigned its own profile, then the profile of the super-organization is not inherited.</li></ul></li>
-                                                <li value="6">Click <b>Assign &amp; Apply</b> to assign and apply the profile to the selected organizations at the same time.<ul><li value="1">Click <b>Assign</b> to assign the profile to the selected organizations and not apply the profile now.</li></ul></li>
-                                                <li value="7">In the “Assign Profile” window, click <b>OK</b>.</li>
-                                                <div class="callout note"><b>NOTE</b>—Sub-administrators who only have the Profile Managing Permission cannot assign or apply profiles to organizations. In order for sub-administrators to be able to assign or apply profiles to organizations, they need to be given both the Org and Profile Managing Permissions. For more information, see <a href="add-organization.htm">Add an organization</a>.</div>
+                                                <li value="2">On the <b>Profile</b> page, select the check box for a profile to be assigned.</li>
+                                                <li value="3">Select <b>Assign</b>.</li>
+                                                <li value="4">On the <b>Assign Profile</b> page, click <b>Organization</b>.</li>
+                                                <li value="5">
+                                                    <p>Click the check boxes for organizations to be assigned with the selected profile.</p>
+                                                    <ul>
+                                                        <li value="1">You can select multiple organizations.</li>
+                                                        <li value="2">If an organization has already been assigned a profile and it is assigned to another profile, you can preview the conflicting policies from the two profiles by clicking <b>Preview Policy</b>.</li>
+                                                        <li value="3">When a profile is assigned to an organization that has sub-organizations, the profile is applied to all the sub-organizations.</li>
+                                                        <li value="4">If a sub-organization was not assigned a profile, the profile of the super organization is inherited, but the inherited profile can be overwritten with a new profile.</li>
+                                                        <li value="5">If a sub-organization was assigned its own profile, then the profile of the super-organization is not inherited.</li>
+                                                    </ul>
+                                                </li>
+                                                <li value="6">
+                                                    <p>Click <b>Assign &amp; Apply</b> to assign and apply the profile to the selected organizations at the same time.</p>
+                                                    <ul>
+                                                        <li value="1">Click <b>Assign</b> to assign the profile to the selected organizations and not apply the profile now.</li>
+                                                    </ul>
+                                                </li>
+                                                <li value="7">
+                                                    <p>In the <b>Assign Profile</b> window, click <b>OK</b>. </p>
+                                                    <div class="callout note"><b>NOTE</b> — Sub-administrators who only have the Profile Managing Permission cannot assign or apply profiles to organizations. In order for sub-administrators to be able to assign or apply profiles to organizations, they need to be given both the Org and Profile Managing Permissions. For more information, see <a href="add-organization.htm">Add a sub-organization</a>.</div>
+                                                </li>
                                             </ol>
                                         </div>
                                         <!-- Inserts feedback module here -->
