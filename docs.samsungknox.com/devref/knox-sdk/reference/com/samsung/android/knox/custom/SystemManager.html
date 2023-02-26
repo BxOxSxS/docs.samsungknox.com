@@ -1070,11 +1070,7 @@ Summary:
         <td class="jd-linkcol" width="100%"><nobr>
         <span class="sympad"><a href="SystemManager.html#getHardKeyIntentBroadcast(int, int)">getHardKeyIntentBroadcast</a></span>(int keyCode, int reportType)</nobr>
         
-        <div class="jd-descrdiv">
-      <em>
-  Deprecated
-      in API level 35
-</em></div>
+        <div class="jd-descrdiv">This method gets the state of hard key intent broadcasting.</div>
   
   </td></tr>
 
@@ -6627,13 +6623,7 @@ From class
 
       </div>
     <div class="jd-details-descr">
-      <p>
-  <p class="caution-deprecated">
       
-  Deprecated 
-      in API level 35
-
-  </p>
 
   <div class="jd-tagdata jd-tagdescr"><p>This method gets the state of hard key intent broadcasting.</p></div>
   <div class="jd-tagdata">
@@ -14271,7 +14261,7 @@ From class
  boot loader start up behavior so that the device boots up fully when power is applied to
  USB connector instead of just booting up to the battery charging UI. The device can be powered
  down by removing power from USB connector and calling the <code><a href="SystemManager.html#powerOff()">powerOff()</a></code> method. <br>
- NOTE: This feature is compatible with Qualcomm & LSI chipset ONLY. It may not work consistently with chipsets other than ones listed. <br></p></div>
+ NOTE: For Android OS 12 and lower, this feature is compatible with Qualcomm & LSI chipset only. For Android OS 13 and higher, it works on all devices (with any chipset). <br></p></div>
   <div class="jd-tagdata">
       <h5 class="jd-tagtitle">Parameters</h5>
       <table class="jd-tagtable">
@@ -14501,8 +14491,8 @@ From class
       <table class="jd-tagtable">
         <tr>
           <th>state</td>
-          <td><code><a href="CustomDeviceManager.html#ON">ON</a></code> to broadcast intent for each keys you requests when it is pressed or released. <br>
-              <code><a href="CustomDeviceManager.html#OFF">OFF</a></code> to turn it off.</td>
+          <td><code>true</code> to broadcast intent for each keys you requests when it is pressed or released. <br>
+              <code>false</code> to turn it off.</td>
         </tr>
         <tr>
           <th>keyCode</td>
@@ -14571,7 +14561,7 @@ From class
  try {
      CustomDeviceManager cdm = CustomDeviceManager.getInstance();
      SystemManager kcsm = cdm.getSystemManager();
-     kcsm.setHardKeyIntentBroadcast(CustomDeviceManager.ON, KeyEvent.KEYCODE_HOME, CustomDeviceManager.KEY_ACTION_DOWN_UP, null, null, false);
+     kcsm.setHardKeyIntentBroadcast(true, KeyEvent.KEYCODE_HOME, CustomDeviceManager.KEY_ACTION_DOWN_UP, null, null, false);
  } catch(SecurityException e) {
      Log.w(TAG, "SecurityException:" + e);
  }
@@ -20851,7 +20841,7 @@ From class
 <A NAME="navbar_top"></A>
 
 <div id="footer">
-<a href="http://www.samsung.com">Samsung Electronics</a>.<br/>SDK API level 36 - November 3 2022
+<a href="http://www.samsung.com">Samsung Electronics</a>.<br/>SDK API level 36 - February 24 2023
 </div> <!-- end footer -->
 
 </div> <!-- jd-content -->
