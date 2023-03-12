@@ -623,6 +623,77 @@ iframe
 	padding: 15px 0px;
 }
 
+/* Styling for release tabs
+   These classes are defined standalone, but are designed to be **combined** with the base `.tab-*` classes on an element, in order to override them. It's too complicated to completely replace/recreate the `.tab-*` classes and all their properties in one go, so we add our custom classes to the element **after** the base classes and then let the cascade handle the rest. Some of these are a bit hacky, so be careful when adjusting them.
+ */
+
+.tabs-release
+{
+	border: initial;
+	border-bottom: 1px solid #cacaca;
+}
+
+.tabs-title-release
+{
+	margin: 0 0.5rem 0 0 !important;
+}
+
+.tabs-button-release
+{
+	position: relative;
+	padding: 0.75rem 1.5rem !important;
+	color: #858585 !important;
+	font-weight: bold;
+	text-decoration: none !important;
+}
+
+.tabs-button-release:focus
+{
+	background-color: initial !important;
+}
+
+.tabs-title-release.is-active > .tabs-button-release
+{
+	background-color: initial !important;
+	color: black !important;
+	border: none;
+}
+
+/* Add an underline that's narrower than the button itself. Taken+modified from UX. */
+
+.tabs-title-release.is-active > .tabs-button-release::before
+{
+	content: "";
+	position: absolute;
+	margin: auto;
+	left: 0;
+	right: 0;
+	bottom: -1px;
+	height: 2px;
+	width: 50%;
+	background: black;
+}
+
+.tabs-panel-release
+{
+	margin-top: 1rem;
+	padding: 0;
+}
+
+/* Special div for banner text in release tabs */
+
+.release-banner
+{
+	margin-bottom: 1rem;
+	padding: 1rem;
+	background: #ECF1F4;
+}
+
+.release-banner > :last-child
+{
+	margin-bottom: 0;
+}
+
 /***** Google Search Custom Styles *****/
 
 .gsc-control-cse.gsc-control-cse
