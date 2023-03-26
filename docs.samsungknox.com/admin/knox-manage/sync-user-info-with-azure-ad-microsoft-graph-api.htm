@@ -286,7 +286,7 @@
                                                     <ul class="sub-menu">
                                                         <li><a href="../knox-admin-portal/features/manage-admins-roles.htm">Manage admins and roles</a>
                                                         </li>
-                                                        <li><a href="../knox-admin-portal/features/manage-licenses.htm">Manage licenses</a>
+                                                        <li><a href="../knox-admin-portal/features/manage-licenses.htm">Manage Knox licenses</a>
                                                         </li>
                                                         <li><a href="../knox-admin-portal/features/configure-account-settings.htm">Configure your account settings</a>
                                                         </li>
@@ -926,8 +926,6 @@
                                                         </li>
                                                         <li><a href="../knox-mobile-enrollment/firewall-exceptions.htm">Firewall exceptions</a>
                                                         </li>
-                                                        <li><a href="../knox-mobile-enrollment/getting-started-wizard.htm">Get started carousel and auto tour</a>
-                                                        </li>
                                                     </ul>
                                                 </li>
                                                 <li class="has-children"><a href="sync-user-info-with-azure-ad-microsoft-graph-api.htm#">Features</a>
@@ -962,11 +960,11 @@
                                                     <ul class="sub-menu">
                                                         <li><a href="../knox-mobile-enrollment/advanced-profiles.htm">Overview</a>
                                                         </li>
-                                                        <li><a href="../knox-mobile-enrollment/create-advanced-profiles.htm">Create profiles</a>
+                                                        <li><a href="../knox-mobile-enrollment/create-advanced-profiles.htm">Create an advanced profile</a>
                                                         </li>
-                                                        <li><a href="../knox-mobile-enrollment/assign-profiles.htm">Assign profiles</a>
+                                                        <li><a href="../knox-mobile-enrollment/assign-profiles.htm">Assign an advanced profile</a>
                                                         </li>
-                                                        <li><a href="../knox-mobile-enrollment/monitor-profiles.htm">Monitor profiles</a>
+                                                        <li><a href="../knox-mobile-enrollment/monitor-profiles.htm">Monitor advanced profiles</a>
                                                         </li>
                                                     </ul>
                                                 </li>
@@ -1271,8 +1269,6 @@
                                                                 <li><a href="../knox-asset-intelligence/firewall-exceptions.htm">Firewall exceptions</a>
                                                                 </li>
                                                                 <li><a href="../knox-asset-intelligence/before-you-begin/access-console.htm">Access the Knox Asset Intelligence console</a>
-                                                                </li>
-                                                                <li><a href="../knox-asset-intelligence/before-you-begin/carousel.htm">Get started carousel</a>
                                                                 </li>
                                                             </ul>
                                                         </li>
@@ -2246,7 +2242,7 @@
                                                                 </li>
                                                             </ul>
                                                         </li>
-                                                        <li><a href="../../devref/knox-manage/index.htm">Open API reference</a>
+                                                        <li><a href="../../devref/knox-manage/index.htm" target="_blank">Open API reference</a>
                                                         </li>
                                                         <li class="has-children"><a href="lists-of-audit-events.htm">List of audit events</a>
                                                             <ul class="sub-menu">
@@ -2728,7 +2724,7 @@
                                                 </li>
                                                 <li><a href="../knox-guard/get-support.htm">Support</a>
                                                 </li>
-                                                <li><a href="../../devref/knox-guard/index.htm" target="_blank">Open API reference</a>
+                                                <li><a href="../../devref/knox-guard/index.htm" target="_blank">Knox Guard REST API</a>
                                                 </li>
                                             </ul>
                                         </li>
@@ -2739,8 +2735,6 @@
                                                 <li class="has-children"><a href="sync-user-info-with-azure-ad-microsoft-graph-api.htm#">Get started</a>
                                                     <ul class="sub-menu">
                                                         <li><a href="../care-plus/care-portal-access.htm">Get access to the portal</a>
-                                                        </li>
-                                                        <li><a href="../care-plus/carousel-and-auto-tour.htm">Get started carousel and auto tour</a>
                                                         </li>
                                                         <li><a href="../care-plus/manage-licenses.htm">Manage licenses</a>
                                                         </li>
@@ -2809,6 +2803,8 @@
                                             <div class="callout warning"><b>IMPORTANT</b> — In order to enroll Windows devices using methods based on Azure AD, consisting of Azure AD Registered, Azure AD Joined, Windows Out of Box Experience, and Windows Autopilot, you must connect your Knox Manage tenant to your Azure tenant through the Microsoft Graph API. For detailed information about these enrollment methods, see <a href="enroll-windows-device-azure-ad.htm">Enroll a Windows device with Azure AD</a>.</div>
                                             <p>Only one Azure AD service is allowed per Knox Manage tenant, so you can't concurrently sync Azure AD through both the Microsoft Graph API and the LDAP protocol.</p>
                                             <h2 id="connect-your-knox-manage-tenant-azure-ad-microsoft-graph-api">Connect your Knox Manage tenant to Azure AD through Microsoft Graph API</h2>
+                                            <div class="callout warning"><b>IMPORTANT</b> — 
+            <ul><li value="1">Follow this procedure only if you are integrating the Azure AD service through the cloud-based app after the Knox Manage 22.08 release.</li><li value="2">If you already integrated the Azure AD service through the on-premises app before the Knox Manage 22.08 release, skip to the <a href="sync-user-info-with-azure-ad-microsoft-graph-api.htm#migrate-azure-ad-sync-through-on-premise-app-cloud-based-app" class="selected">Migrate Azure AD sync through an on-premises app to a cloud-based app</a> section instead.</li></ul></div>
                                             <p>To connect Knox Manage with Azure AD through the Microsoft Graph API:</p>
                                             <ol>
                                                 <li value="1">On the Azure portal, go to <b>Azure Active Directory</b> &gt; <b>Mobility (MDM and MAM)</b> &gt; <b>Add Application</b>. The <b>Add an application</b> page opens.</li>
@@ -2819,14 +2815,18 @@
                                                 <li value="6">On the Knox Manage console, go to <b>Advanced</b> &gt; <b>Azure AD Integration</b>.</li>
                                                 <li value="7">Paste your Azure tenant ID into the <b>Directory ID</b> field.</li>
                                                 <li value="8">Click <b>Verify</b>. After a few moments, your Azure AD information shows at the top of the page.</li>
+                                                <li value="9">Click <b>Add</b> for <b>Sync Service Setting</b> at the bottom of the page.</li>
+                                                <li value="10">Click <b>Save and Sync</b> after linking the Microsoft Graph API as a sync service.</li>
                                             </ol>
-                                            <h2 id="migrate-azure-ad-sync-through-on-premise-app-cloud-based-app">Migrate Azure AD sync through an on-premise app to a cloud-based app</h2>
-                                            <p>Prior to Knox Manage 22.08, released on August 17, 2022, the Azure AD integration with Knox Manage was accomplished using an on-premise technology stack. This older method of integration is no longer supported. If you connected your Azure tenant to your Knox Manage tenant prior to Knox Manage 22.08, you must migrate to the cloud-based integration to continue syncing your Active Directory information.</p>
-                                            <p>Choose one of the following methods to migrate to Azure AD through a cloud-based app:</p>
-                                            <ul>
-                                                <li value="1">(Preferred) On the Knox Manage console, go to <b>Advanced</b> &gt; <b>Azure AD Integration</b>, click <b>Unregister</b>, then <a href="sync-user-info-with-azure-ad-microsoft-graph-api.htm#connect-your-knox-manage-tenant-azure-ad-microsoft-graph-api" class="selected">reconnect your Azure AD tenant</a>.</li>
-                                                <li value="2">On the Knox Manage console, go to <b>Advanced</b> &gt; <b>Azure AD Integration</b>, then click <b>Switch to MDM Application</b>. If asked, follow the on-screen prompts to manually grant additional Microsoft Graph API permissions to Knox Manage.</li>
-                                            </ul>
+                                            <h2 id="migrate-azure-ad-sync-through-on-premise-app-cloud-based-app">Migrate Azure AD sync through an on-premises app to a cloud-based app</h2>
+                                            <p>Prior to Knox Manage 22.08, released on August 17, 2022, the Azure AD integration with Knox Manage was accomplished using an on-premises technology stack. This older method of integration is no longer supported. If you connected your Azure tenant to your Knox Manage tenant prior to Knox Manage 22.08, you must migrate to the cloud-based integration to continue syncing your Active Directory information.</p>
+                                            <p>To migrate to Azure AD Integration from an on-premises app to a cloud-based app:</p>
+                                            <ol>
+                                                <li value="1">On the Azure portal, go to <b>Azure Active Directory</b> &gt; <b>Mobility (MDM and MAM)</b> &gt; <b>Add Application</b>. The <b>Add an application</b> page opens</li>
+                                                <li value="2">Find and click <b>Samsung Knox Manage</b>.</li>
+                                                <li value="3">Click <b>Add</b> to confirm. The app appears in the list of apps back on the <b>Mobility (MDM and MAM)</b> page.</li>
+                                                <li value="4">On the Knox Manage console, go to <b>Advanced</b> &gt; <b>Azure AD Integration</b>, then click <b>Switch to MDM Application</b>. If asked, follow the on-screen prompts to manually grant additional Microsoft Graph API permissions to Knox Manage.</li>
+                                            </ol>
                                             <h2 id="see-also">See also</h2>
                                             <ul>
                                                 <li value="1"><a href="enroll-windows-device-azure-ad.htm">Enroll a Windows device with Azure AD</a>

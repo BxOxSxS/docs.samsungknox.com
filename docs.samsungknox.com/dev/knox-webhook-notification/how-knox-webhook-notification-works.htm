@@ -50,6 +50,21 @@
         <link href="../../assets/merge/kp-bootstrap.css" rel="stylesheet" />
         <link href="../../assets/merge/kp-foundation.css" rel="stylesheet" />
         <link href="../../assets/merge/kpp-madcap.css" rel="stylesheet" />
+        <style>
+            .diagram:hover {
+                position: relative;
+                transform: scale(1.5);
+                z-index: 999;
+                -webkit-transition-property: all;
+                -webkit-transition-duration: 0.3s;
+                -webkit-transition-timing-function: ease;
+            }
+            .diagram {
+                position: relative;
+                z-index: 999;
+                transition: 0.1s
+            }
+        </style>
         <script src="../Resources/Scripts/custom.modernizr.js">
         </script>
         <script src="../Resources/Scripts/jquery.min.js">
@@ -1634,10 +1649,9 @@
                                             </div>
                                         </nav>
                                         <h1>About the Knox Webhook Notification API</h1>
-                                        <p class="callout warning"><b>IMPORTANT</b> — This document is new for Knox cloud services 23.03 UAT.</p>
-                                        <p>The Knox Webhook Notification (KWN) API is based on a webhook mechanism that allows different Knox cloud services to send change notifications to a subscribed client when a subscribed event or background process is complete.</p>
-                                        <p>Since most client requests are resource-intensive, KWN offers the advantage of asynchronous APIs that run these client events as different background processes, while freeing up resources for other client events. The asynchronous design allows a client to have multiple subscriptions for all the unique events, either using the same URL across all subscriptions or configuring each subscription URL differently. Such a resource-efficient API workflow allows multiple requests to be handled simultaneously, without any inefficient event dependencies.</p>
-                                        <p>To leverage this notification service, a client must first subscribe to the KWN Subscription API to receive change notifications whenever an event trigger occurs.</p>
+                                        <p>The Knox Webhook Notification (KWN) API allows different Knox cloud services to send change notifications to a subscribed client when a subscribed event or background process is complete.</p>
+                                        <p>Since most client requests are resource-intensive, KWN offers the advantage of asynchronous APIs. These APIs run these client events as different background processes, thus freeing up resources for other client events. The asynchronous design allows a client to have multiple subscriptions for all the unique events, either using the same URL across all subscriptions or configuring each subscription URL differently. Such a resource-efficient API workflow allows multiple requests to be handled simultaneously, without any inefficient event dependencies.</p>
+                                        <p>To leverage this notification service, a client must first subscribe to the KWN Subscription API to receive the change notifications whenever an event trigger occurs.</p>
                                         <h2 id="knox-webhook-notification-api-workflow">Knox Webhook Notification API workflow</h2>
                                         <p>The following procedure summarizes the Knox Webhook Notification API workflow:</p>
                                         <p>
@@ -1645,17 +1659,17 @@
                                         </p>
                                         <ol>
                                             <li value="1">The client downloads the Samsung Knox validation certificate for message signing and to validate the response from KWN.</li>
-                                            <li value="2">The client uses Knox Cloud Authentication API access tokens to call different Knox cloud service APIs. Within the KWN workflow, you are the API client that wants to receive change notifications.</li>
+                                            <li value="2">The client uses <a href="../knox-cloud-authentication/index.htm">Knox Cloud Authentication API</a> access tokens to call different Knox cloud service APIs. Within the KWN workflow, you are the API client that wants to receive change notifications.</li>
                                             <li value="3">The client registers to an event with the KWN Subscription API. For example, an event could be the enrollment of a device using the Knox Guard device upload operation.</li>
                                             <li value="4">The event is now subscribed. A database stores the event subscription and the associated event.</li>
-                                            <li value="5">The client makes a call to a Knox cloud services API. Currently, KWN can be used only with Knox Guard.</li>
+                                            <li value="5">The client makes a call to a Knox cloud services API. <br /><div class="callout note"><b>NOTE</b> — Currently, KWN can be used only with Knox Guard.</div></li>
                                             <li value="6">The completed Knox cloud services operation, through the Knox cloud service APIs, triggers an asynchronous event.</li>
                                             <li value="7">KWN receives the asynchronous event from the Knox cloud services API operation. Then, KWN performs a database lookup to get the configured callback URL.</li>
                                             <li value="8">The client receives the KWN callback response along with the signature for validation.</li>
                                             <li value="9">The client validates the authenticity of the callback response by comparing the signature against the public key contained in the Samsung Knox certificate.</li>
                                             <li value="10">Successful validation marks the completion of your request.</li>
                                         </ol>
-                                        <p class="callout warning"><b>NOTE</b> — Steps 1, 2, and 3 need to be completed only once. However, if your Samsung Knox validation certificate expires, you need to reperform Step 1.</p>
+                                        <p class="callout warning"><b>NOTE</b> — Steps 1, 2, and 3 need to be completed only once. However, if your Samsung Knox validation certificate expires, you need to redo Step 1.</p>
                                         <p>If you would like to learn how to use the KWN API for Knox Guard, see the <a href="tutorial-kwn-for-kg.htm">Knox Webhook Notification for Knox Guard tutorial</a>.</p>
                                         <!-- Inserts feedback module here -->
                                         <div id="feedback">

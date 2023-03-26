@@ -286,7 +286,7 @@
                                                     <ul class="sub-menu">
                                                         <li><a href="../knox-admin-portal/features/manage-admins-roles.htm">Manage admins and roles</a>
                                                         </li>
-                                                        <li><a href="../knox-admin-portal/features/manage-licenses.htm">Manage licenses</a>
+                                                        <li><a href="../knox-admin-portal/features/manage-licenses.htm">Manage Knox licenses</a>
                                                         </li>
                                                         <li><a href="../knox-admin-portal/features/configure-account-settings.htm">Configure your account settings</a>
                                                         </li>
@@ -926,8 +926,6 @@
                                                         </li>
                                                         <li><a href="../knox-mobile-enrollment/firewall-exceptions.htm">Firewall exceptions</a>
                                                         </li>
-                                                        <li><a href="../knox-mobile-enrollment/getting-started-wizard.htm">Get started carousel and auto tour</a>
-                                                        </li>
                                                     </ul>
                                                 </li>
                                                 <li class="has-children"><a href="view-the-directory-connector-status.htm#">Features</a>
@@ -962,11 +960,11 @@
                                                     <ul class="sub-menu">
                                                         <li><a href="../knox-mobile-enrollment/advanced-profiles.htm">Overview</a>
                                                         </li>
-                                                        <li><a href="../knox-mobile-enrollment/create-advanced-profiles.htm">Create profiles</a>
+                                                        <li><a href="../knox-mobile-enrollment/create-advanced-profiles.htm">Create an advanced profile</a>
                                                         </li>
-                                                        <li><a href="../knox-mobile-enrollment/assign-profiles.htm">Assign profiles</a>
+                                                        <li><a href="../knox-mobile-enrollment/assign-profiles.htm">Assign an advanced profile</a>
                                                         </li>
-                                                        <li><a href="../knox-mobile-enrollment/monitor-profiles.htm">Monitor profiles</a>
+                                                        <li><a href="../knox-mobile-enrollment/monitor-profiles.htm">Monitor advanced profiles</a>
                                                         </li>
                                                     </ul>
                                                 </li>
@@ -1271,8 +1269,6 @@
                                                                 <li><a href="../knox-asset-intelligence/firewall-exceptions.htm">Firewall exceptions</a>
                                                                 </li>
                                                                 <li><a href="../knox-asset-intelligence/before-you-begin/access-console.htm">Access the Knox Asset Intelligence console</a>
-                                                                </li>
-                                                                <li><a href="../knox-asset-intelligence/before-you-begin/carousel.htm">Get started carousel</a>
                                                                 </li>
                                                             </ul>
                                                         </li>
@@ -2246,7 +2242,7 @@
                                                                 </li>
                                                             </ul>
                                                         </li>
-                                                        <li><a href="../../devref/knox-manage/index.htm">Open API reference</a>
+                                                        <li><a href="../../devref/knox-manage/index.htm" target="_blank">Open API reference</a>
                                                         </li>
                                                         <li class="has-children"><a href="lists-of-audit-events.htm">List of audit events</a>
                                                             <ul class="sub-menu">
@@ -2728,7 +2724,7 @@
                                                 </li>
                                                 <li><a href="../knox-guard/get-support.htm">Support</a>
                                                 </li>
-                                                <li><a href="../../devref/knox-guard/index.htm" target="_blank">Open API reference</a>
+                                                <li><a href="../../devref/knox-guard/index.htm" target="_blank">Knox Guard REST API</a>
                                                 </li>
                                             </ul>
                                         </li>
@@ -2739,8 +2735,6 @@
                                                 <li class="has-children"><a href="view-the-directory-connector-status.htm#">Get started</a>
                                                     <ul class="sub-menu">
                                                         <li><a href="../care-plus/care-portal-access.htm">Get access to the portal</a>
-                                                        </li>
-                                                        <li><a href="../care-plus/carousel-and-auto-tour.htm">Get started carousel and auto tour</a>
                                                         </li>
                                                         <li><a href="../care-plus/manage-licenses.htm">Manage licenses</a>
                                                         </li>
@@ -2803,10 +2797,22 @@
 									-->
                                     <div id="sec2" class="small-12 medium-8 large-9 columns">
                                         <div itemscope="itemscope" itemtype="http://schema.org/Guide">
-                                            <h1><a name="aanchor387"></a>
+                                            <h1><a name="aanchor353"></a>
                                                 <MadCap:concept term="knox-manage" />View the directory connector status</h1>
-                                            <p>Navigate to <b>Advanced &gt; Directory Integration &gt; Directory Service</b> to view all the directory connector status information on the ”Directory Service” page.</p>
+                                            <p>Go to <b>Advanced &gt; Directory Integration &gt; Directory Service</b> to view all the directory connector status information on the <b>Directory Service</b> page.</p>
                                             <p>To view the detailed information of a specific directory server, click the service ID of the specific directory connector on the list.</p>
+                                            <h2 id="switching-sync-service">Switching to a sync service</h2>
+                                            <div class="callout warning"><b>IMPORTANT</b> — Support for the directory integration feature will begin sunsetting with Knox Manage 23.06. If you currently use directory integration, you must switch to a sync service.</div>
+                                            <p>Sync services are a suitable replacement for all directory functionality. For information about working with the service, see <a href="manage-sync-services.htm">Manage sync services</a>.</p>
+                                            <p>To switch to sync service from directory integration:</p>
+                                            <ol>
+                                                <li value="1">Add a sync service to your Knox Manage tenant. You can skip this step if it is already added. For information, see <a href="add-sync-services.htm">Add sync services</a> and <a href="sync-user-info-with-azure-ad-microsoft-graph-api.htm">Sync user information with Azure AD through Microsoft Graph API</a>.</li>
+                                                <li value="2">In the Knox Manage console, go to <b>Setting</b> &gt; <b>Configuration</b> &gt; <b>Basic Configuration</b> &gt; <b>Authentication</b>.
+                <ul><li value="1">Select <b>Manual</b> as the User Authentication Settings.</li><li value="2">In the <b>Authenticator</b> field, select <b>GlobalLdapServiceAuthenticator</b>.</li></ul></li>
+                                                <li value="3">On the <b>Set Policy</b> page, update the <b>User Information Input Method</b> and <b>User Certificate Input Method</b> fields as follows:
+                <h3 id="android-enterprise-platform">Android Enterprise platform</h3><table class="no-stripes"><tbody><tr><th style="width: 20%">Policy group</th><th>Field values</th></tr><tr><td id="wi-fi">Wi-Fi</td><td><ul><li value="1">Security Type: 802.1xEAP</li><li value="2">User Information Input Method: Connector Interworking</li><li value="3">User Certificate Input Method: Connector Interworking</li></ul></td></tr><tr><td id="certificate">Certificate</td><td><ul><li value="1">User Certificate Input Method: Connector Interworking</li></ul></td></tr></tbody></table><h3 id="amapi-platform">Android Management API (AMAPI) platform</h3><table class="no-stripes"><tbody><tr><th style="width: 20%">Policy group</th><th>Field values</th></tr><tr><td id="wi-fi">Wi-Fi</td><td><ul><li value="1">Security Type: 802.1xEAP</li><li value="2">User Information Input Method: Connector Interworking</li></ul></td></tr></tbody></table><h3 id="android-legacy-platform">Android Legacy platform</h3><table class="no-stripes"><tbody><tr><th style="width: 20%">Policy group</th><th>Field values</th></tr><tr><td id="wi-fi">Wi-Fi</td><td><ul><li value="1">Security Type: 802.1xEAP</li><li value="2">User Information Input Method: Connector Interworking</li><li value="3">User Certificate Input Method: Connector Interworking</li></ul></td></tr><tr><td id="exchange">Exchange</td><td><ul><li value="1">User Information Input Method: Connector Interworking</li><li value="2">User Certificate Input Method: Connector Interworking</li></ul></td></tr><tr><td id="knox-vpn">Knox VPN</td><td><ul><li value="1">User Information Input Method: Connector Interworking</li><li value="2">User Certificate Input Method: Connector Interworking</li></ul></td></tr><tr><td id="vpn">VPN</td><td><ul><li value="1">User Information Input Method: Connector Interworking</li></ul></td></tr><tr><td id="certificate">Certificate</td><td><ul><li value="1">User Certificate Input Method: Connector Interworking</li></ul></td></tr></tbody></table><h3 id="knox-workspace">Knox Workspace</h3><table class="no-stripes"><tbody><tr><th style="width: 20%">Policy group</th><th>Field values</th></tr><tr><td id="exchange-activesync">Exchange ActiveSync</td><td><ul><li value="1">User Information Input Method: Connector Interworking</li><li value="2">User Certificate Input Method: Connector Interworking</li></ul></td></tr><tr><td id="email-account">Email Account</td><td><ul><li value="1">User Information Input Method: Connector Interworking</li></ul></td></tr><tr><td id="knox-vpn" rowspan="2">Knox VPN</td><td><ul><li value="1">Authentication Method: Certificate-based Authentication</li><li value="2">User Information Input Method: Connector Interworking</li><li value="3">User Certificate Input Method: Connector Interworking</li></ul></td></tr><tr><td><ul><li value="1">Authentication Method: CAC-based Authentication</li><li value="2">User Information Input Method: Connector Interworking</li><li value="3">User Certificate Input Method: Connector Interworking</li></ul></td></tr><tr><td id="certificate">Certificate</td><td><ul><li value="1">User Certificate Input Method: Connector Interworking</li></ul></td></tr></tbody></table><h3 id="ios-ipados-platforms">iOS and iPadOS platforms</h3><table class="no-stripes"><tbody><tr><th style="width: 20%">Policy group</th><th>Field values</th></tr><tr><td id="wi-fi" rowspan="3">Wi-Fi</td><td><ul><li value="1">Security Type: Enterprise Wep &gt; Authentication Tap</li><li value="2">User Information Input Method: Connector Interworking</li><li value="3">User Certificate Input Method: Connector Interworking</li></ul></td></tr><tr><td><ul><li value="1">Security Type: Enterprise WPA/WPA2 &gt; Authentication Tap</li><li value="2">User Information Input Method: Connector Interworking</li><li value="3">User Certificate Input Method: Connector Interworking</li></ul></td></tr><tr><td><ul><li value="1">Security Type: For all enterprises &gt; Authentication Tap</li><li value="2">User Information Input Method: Connector Interworking</li></ul></td></tr></tbody></table><h3 id="windows-platform">Windows platform</h3><table class="no-stripes"><tbody><tr><th style="width: 20%">Policy group</th><th>Field values</th></tr><tr><td id="exchange">Exchange</td><td><ul><li value="1">User Certificate Input Method: Connector Interworking</li></ul></td></tr></tbody></table></li>
+                                                <li value="4">Go to <b>Advanced</b> &gt; <b>Directory Integration</b> &gt; <b>Directory Service</b> and delete all services listed on the <b>Directory Service</b> page.</li>
+                                            </ol>
                                         </div>
                                         <!-- Inserts feedback module here -->
                                         <div id="feedback">
