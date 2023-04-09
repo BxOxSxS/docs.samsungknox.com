@@ -228,7 +228,7 @@
                                                         </li>
                                                         <li><a href="okta.htm">Configure Okta SSO</a>
                                                         </li>
-                                                        <li><a href="sign-in-samsung-knox.htm">Sign into Samsung Knox</a>
+                                                        <li><a href="sign-in-samsung-knox.htm">Sign in to Samsung Knox</a>
                                                         </li>
                                                         <li><a href="disconnect-sso.htm">Disconnect SSO</a>
                                                         </li>
@@ -1192,7 +1192,7 @@
                                                         </li>
                                                         <li><a href="../knox-capture/how-to/scan-engine-settings.htm">Scan engine settings</a>
                                                         </li>
-                                                        <li><a href="../knox-capture/how-to/keystroke-output.htm">Keystroke output rules</a>
+                                                        <li><a href="../knox-capture/how-to/keystroke-output.htm">Keystroke output and data formatting</a>
                                                         </li>
                                                         <li><a href="../knox-capture/how-to/deploy-configuration.htm">Export configuration and deploy through EMM</a>
                                                         </li>
@@ -1201,8 +1201,6 @@
                                                         <li><a href="../knox-capture/how-to/connect-hw-scanner.htm">Connect a hardware scanner</a>
                                                         </li>
                                                         <li><a href="../knox-capture/how-to/configure-output-path.htm">Configure the output path</a>
-                                                        </li>
-                                                        <li><a href="../knox-capture/how-to/scanner-overlay.htm">Use the scanner overlay</a>
                                                         </li>
                                                         <li><a href="../knox-capture/how-to/use-test-mode.htm">Check a configuration in test mode</a>
                                                         </li>
@@ -2854,48 +2852,78 @@
                                     <div id="sec2" class="small-12 medium-8 large-9 columns">
                                         <div itemscope="itemscope" itemtype="http://schema.org/Guide">
                                             <h1>Configure Ping Identity SSO settings</h1>
-                                            <div class="callout note"><b>NOTE</b>—If you enable Ping Identity as a sign-in method, you cannot use Samsung Account to sign into Knox services.</div>
-                                            <h2>On the Samsung Knox portal</h2>
+                                            <div class="callout warning"><b>IMPORTANT</b> — If you enable Ping Identity as a sign-in method, you cannot use Samsung account to sign into Knox services.</div>
+                                            <h4>On the Knox Admin Portal</h4>
                                             <ol>
-                                                <li value="1">In the top-right corner, click your account icon &gt;  <b>My account</b>.</li>
+                                                <li value="1">In the top-right corner, click your account icon &gt; <b>My account</b>.</li>
                                                 <li value="2">On the <b>Manage your Account</b> page, click the <b>SSO SETTINGS</b> tab.</li>
                                             </ol>
-                                            <img src="../../assets/merge/images/fundamentals/kap-connect-to-sso.png" style="width: 400px;" />
-                                            <h2>On the Ping Identity portal</h2>
-                                            <ol>
-                                                <li value="1">In the left sidebar, click <b>Connections</b>, then <b>Applications</b>.<br /><img src="../../assets/merge/ad-sso/ping-identity-sidebar.png" style="width: 300px;" /></li>
-                                                <li value="2">Click <b>Add Application</b>.</li>
-                                                <li value="3">Under <b>SELECT AN APPLICATION TYPE</b>, select <b>WEB APP</b>. In the prompt that appears, next to <b>SAML</b>, click <b>Configure</b>.<br /><img src="../../assets/merge/ad-sso/ping-identity-web-app.png" style="width: 600px;" /></li>
-                                                <li value="4">On the <b>Create App Profile </b>screen, enter the following information:
-            <ul><li value="1"><b>APPLICATION NAME</b> — Samsung Knox and Business Services</li><li value="2"><b>DESCRIPTION — </b>Samsung Knox is a comprehensive suite of enterprise solutions for security, manageability, and productivity.</li></ul></li>
-                                            </ol>
-                                            <p>Then, click <b>Next</b>.</p>
-                                            <ol start="5">
-                                                <li value="5">On the <b>Configure SAML Connection </b>screen, under <b>PROVIDE APP METADATA</b>, select <b>Manually Enter</b>.</li>
-                                                <li value="6">Under <b>ACS URLS</b>, enter <code>https://central.samsungknox.com/ams/ad/saml/acs</code>.</li>
-                                                <li value="7">Under <b>ENTITY ID</b>, enter <code>https://www.samsungknox.com/</code>.<br /><img src="../../assets/merge/ad-sso/ping-identity-metadata.png" style="width: 600px;" /></li>
-                                                <li value="8">Under <b>Assertion validity duration</b>, enter <b>60 seconds</b>, then click <b>Save and Continue</b>.</li>
-                                                <li value="9">
-                                                    <p>For PingOne users — on the <b>Attribute Mapping</b> screen, under <b>SAML ATTRIBUTES</b>, click <b>ADD ATTRIBUTE </b>&gt; <b>PingOne Attribute</b>. Then, enter the following information in the new attribute:</p>
-                                                    <ul>
-                                                        <li value="1"><b>PINGONE USER ATTRIBUTE</b> — Email Address</li>
-                                                        <li value="2"><b>APPLICATION ATTRIBUTE</b> — <code>http://schemas.xmlsoap.org/ws/2005/05/identity/claims/name</code>.</li>
-                                                        <li value="3">Next to <b>Required</b>, select the checkbox.<br /><img src="../../assets/merge/ad-sso/ping-identity-saml.png" style="width: 600px;" /></li>
-                                                    </ul>
-                                                    <p>For PingFederate users — add a new attribute for <b>Email Address</b> and map it to the following application attribute: <code>http://schemas.xmlsoap.org/ws/2005/05/identity/claims/name</code></p>
-                                                </li>
-                                                <li value="10">Then, click <b>Save and Close</b>.</li>
-                                                <li value="11">On the <b>Applications </b>screen, locate the <b>Samsung Knox and Business Services</b> item and click the toggle to enable it.</li>
-                                                <li value="12">Expand the application details and click <b>Configuration</b>. Note the <b>IDP METADATA URL </b>for later.</li>
-                                            </ol>
-                                            <h2>On the Samsung Knox portal</h2>
-                                            <ol>
-                                                <li value="1">In your Samsung Knox account settings, under <b>App federation metadata URL</b>, paste the <b>IDP METADATA URL </b>value you copied in <b>Step 12</b>. <br /><img src="../../assets/merge/images/fundamentals/kap-connect-to-sso.png" width="400px" /></li>
-                                                <li value="2">Click <b>CONNECT TO SSO</b>.</li>
-                                                <li value="3">In the log in window that appears, enter your Ping Identity credentials.</li>
-                                            </ol>
-                                            <p><a style="text-decoration: none;" href="step-2-configure-sso-settings.htm" class="buttonF2 hollow">&lt;&lt; Back to Step 2</a>
+                                            <p>
+                                                <img src="../../assets/merge/images/fundamentals/kap-connect-to-sso.png" srcset="../../assets/merge/images/fundamentals/kap-connect-to-sso.png 2x" />
                                             </p>
+                                            <h4>On the Ping Identity portal</h4>
+                                            <ol>
+                                                <li value="1">
+                                                    <p>In the left sidebar, click <b>Connections</b>, then <b>Applications</b>.</p>
+                                                    <p>
+                                                        <img class="no-border" src="../../assets/merge/ad-sso/ping-identity-sidebar.png" srcset="../../assets/merge/ad-sso/ping-identity-sidebar.png 1.25x" />
+                                                    </p>
+                                                </li>
+                                                <li value="2">Click <b>Add Application</b>.</li>
+                                                <li value="3">
+                Under <b>SELECT AN APPLICATION TYPE</b>, select <b>WEB APP</b>. In the prompt that appears, next to <b>SAML</b>, click <b>Configure</b>.
+                <p><img class="no-border" src="../../assets/merge/ad-sso/ping-identity-web-app.png" srcset="../../assets/merge/ad-sso/ping-identity-web-app.png 2x" /></p></li>
+                                                <li value="4">
+                                                    <p>On the <b>Create App Profile</b> screen, enter the following information:</p>
+                                                    <ul>
+                                                        <li value="1"><b>APPLICATION NAME</b> — Samsung Knox and Business Services</li>
+                                                        <li value="2"><b>DESCRIPTION — </b>Samsung Knox is a comprehensive suite of enterprise solutions for security, manageability, and productivity.</li>
+                                                    </ul>
+                                                </li>
+                                                <li value="5">Then, click <b>Next</b>.</li>
+                                                <li value="6">On the <b>Configure SAML Connection</b> screen, under <b>PROVIDE APP METADATA</b>, select <b>Manually Enter</b>.</li>
+                                                <li value="7">Under <b>ACS URLS</b>, enter <b>https://central.samsungknox.com/ams/ad/saml/acs</b>.</li>
+                                                <li value="8">
+                                                    <p>Under <b>ENTITY ID</b>, enter <b>https://www.samsungknox.com/</b>.</p>
+                                                    <p>
+                                                        <img src="../../assets/merge/ad-sso/ping-identity-metadata.png" srcset="../../assets/merge/ad-sso/ping-identity-metadata.png 1.5x" />
+                                                    </p>
+                                                </li>
+                                                <li value="9">Under <b>Assertion validity duration</b>, enter <b>60 seconds</b>, then click <b>Save and Continue</b>.</li>
+                                                <li value="10">
+                                                    <p>Next, configure the attributes:</p>
+                                                    <ul>
+                                                        <li value="1">
+                                                            <p><b>PingOne users</b> — On the <b>Attribute Mapping</b> screen, under <b>SAML ATTRIBUTES</b>, click <b>ADD ATTRIBUTE</b> &gt; <b>PingOne Attribute</b>. Then, enter the following information in the new attribute:</p>
+                                                            <ul>
+                                                                <li value="1"><b>PINGONE USER ATTRIBUTE</b> — Email Address</li>
+                                                                <li value="2"><b>APPLICATION ATTRIBUTE</b> — <b>http://schemas.xmlsoap.org/ws/2005/05/identity/claims/name</b>.</li>
+                                                                <li value="3">
+                                                                    <p>Next to <b>Required</b>, select the checkbox.</p>
+                                                                    <p>
+                                                                        <img src="../../assets/merge/ad-sso/ping-identity-saml.png" srcset="../../assets/merge/ad-sso/ping-identity-saml.png 1.5x" />
+                                                                    </p>
+                                                                </li>
+                                                            </ul>
+                                                        </li>
+                                                        <li value="2"><b>PingFederate users</b> — add a new attribute for <b>Email Address</b> and map it to the following application attribute: <b>http://schemas.xmlsoap.org/ws/2005/05/identity/claims/name</b></li>
+                                                    </ul>
+                                                </li>
+                                                <li value="11">Then, click <b>Save and Close</b>.</li>
+                                                <li value="12">On the <b>Applications</b> screen, locate the <b>Samsung Knox and Business Services</b> item and click the toggle to enable it.</li>
+                                                <li value="13">Expand the application details and click <b>Configuration</b>. Note the <b>IDP METADATA URL</b> for later.</li>
+                                            </ol>
+                                            <h4>On the Knox Admin Portal</h4>
+                                            <ol>
+                                                <li value="1">
+                                                    <p>In your Samsung Knox account settings, under <b>App federation metadata URL</b>, paste the <b>IDP METADATA URL</b> value you copied in <b>Step 12</b>.</p>
+                                                    <p>
+                                                        <img src="../../assets/merge/images/fundamentals/kap-connect-to-sso.png" srcset="../../assets/merge/images/fundamentals/kap-connect-to-sso.png 1.5x" />
+                                                    </p>
+                                                </li>
+                                                <li value="2">Click <b>CONNECT TO SSO</b>.</li>
+                                                <li value="3">In the sign-in window that opens, enter your Ping Identity credentials.</li>
+                                            </ol>
                                         </div>
                                         <!-- Inserts feedback module here -->
                                         <div id="feedback">

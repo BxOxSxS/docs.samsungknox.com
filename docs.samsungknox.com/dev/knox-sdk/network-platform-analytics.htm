@@ -1466,6 +1466,32 @@
                                                         </li>
                                                     </ul>
                                                 </li>
+                                                <li class="has-children"><a href="network-platform-analytics.htm#">Knox Webhook Notification</a>
+                                                    <ul class="sub-menu">
+                                                        <li><a href="../knox-webhook-notification/index.htm">Overview</a>
+                                                        </li>
+                                                        <li><a href="../knox-webhook-notification/how-knox-webhook-notification-works.htm">About Knox Webhook Notification</a>
+                                                        </li>
+                                                        <li><a href="../knox-webhook-notification/whats-new.htm">What's new</a>
+                                                        </li>
+                                                        <li class="has-children"><a href="network-platform-analytics.htm#">Tutorial</a>
+                                                            <ul class="sub-menu">
+                                                                <li><a href="../knox-webhook-notification/tutorial-kwn-for-kg.htm">For Knox Guard</a>
+                                                                </li>
+                                                            </ul>
+                                                        </li>
+                                                        <li class="has-children"><a href="network-platform-analytics.htm#">API Reference</a>
+                                                            <ul class="sub-menu">
+                                                                <li><a href="../../devref/knox-webhook-notification/index.htm">Subscription API</a>
+                                                                </li>
+                                                                <li><a href="../../devref/knox-guard/index.htm">Knox Guard API</a>
+                                                                </li>
+                                                            </ul>
+                                                        </li>
+                                                        <li><a href="../knox-webhook-notification/error-codes.htm">Error codes</a>
+                                                        </li>
+                                                    </ul>
+                                                </li>
                                                 <li class="has-children"><a href="network-platform-analytics.htm#">Knox Deployment Program</a>
                                                     <ul class="sub-menu">
                                                         <li><a href="../knox-deployment-program/index.htm">Overview</a>
@@ -1640,24 +1666,25 @@
                                             </div>
                                         </nav>
                                         <h1>Network Platform Analytics</h1>
+                                        <div class="callout alert"><b>NOTE</b> — This feature was <a href="deprecated-api-methods.htm#38">deprecated</a> in API level 35 with Knox SDK v3.8.</div>
                                         <h2>What is NPA?</h2>
-                                        <p>The Knox Network Platform Analytics (NPA) framework enables insights into the misuse, misconfiguration, or threats posed by mobile devices. The framework is used by powerful networking products to increase the visibility of device health and lower the risk of undetected issues. This is all achieved without violating the privacy of data moving across mobile and enterprise networks.&#160;NPA not only helps detect network issues, but it also helps with endpoint devices and software.</p>
-                                        <h2>The NPA&#160;Ecosystem</h2>
+                                        <p>The Knox Network Platform Analytics (NPA) framework enables insights into the misuse, misconfiguration, or threats posed by mobile devices. The framework is used by powerful networking products to increase the visibility of device health and lower the risk of undetected issues. This is all achieved without violating the privacy of data moving across mobile and enterprise networks. NPA not only helps detect network issues, but it also helps with endpoint devices and software.</p>
+                                        <h2>The NPA Ecosystem</h2>
                                         <p>A successful network analytics strategy and deployment requires the following elements:</p>
                                         <ul>
                                             <li value="1"><b>Enterprise Device Administrators</b>: Manage the solution and correctly respond to events</li>
-                                            <li value="2"><b>Any Knox-compatible EMM&#160;or UEM</b>: Provide NPA&#160;support to the enterprise admin by way of a console to deploy, configure and handle event alerts</li>
-                                            <li value="3"><b>An NPA&#160;client</b>: Responsible for consuming analytics data to detect dubious behavior or patterns.</li>
-                                            <li value="4"><b>A console</b>:&#160;A purpose-built console or as an integrated feature of an EMM&#160;console. The integrated solution is preferred as a single console is preferable for device management, network visibility, and issue remediation.</li>
+                                            <li value="2"><b>Any Knox-compatible EMM or UEM</b>: Provide NPA support to the enterprise admin by way of a console to deploy, configure and handle event alerts</li>
+                                            <li value="3"><b>An NPA client</b>: Responsible for consuming analytics data to detect dubious behavior or patterns.</li>
+                                            <li value="4"><b>A console</b>: A purpose-built console or as an integrated feature of an EMM console. The integrated solution is preferred as a single console is preferable for device management, network visibility, and issue remediation.</li>
                                         </ul>
                                         <h2>The NPA interface types</h2>
-                                        <p>NPA&#160;provides both a management interface and an analytics interface. A single product can handle both roles and integrate with both sets of interfaces. The following sections provide instructions for each set of interfaces.</p>
+                                        <p>NPA provides both a management interface and an analytics interface. A single product can handle both roles and integrate with both sets of interfaces. The following sections provide instructions for each set of interfaces.</p>
                                         <ul>
                                             <li value="1">Management interface<br />This interface is for solutions that want to deploy and configure other analytics products. It requires integration with management APIs from the Knox SDK.</li>
                                             <li value="2">Analytics interface<br />This interface is for solutions which consume the analytics data. It requires methods that implement an Android Interface Definition Langauge (AIDL) reference design. This interface also requires integration with Knox APIs to start and stop data flows and to retrieve configuration details. Configuration consists of required standard NPA configuration settings along with any vendor-specific configuration settings required for the specific deployed analytics solution.</li>
                                         </ul>
                                         <h2>The Scope of Data Flow Visibility </h2>
-                                        <p>The following table describes the data flows that are available from the NPA framework based on the associated DO or PO&#160;privileges of the EMM agent and&#160;NPA client as well as whether or not a container is present.</p>
+                                        <p>The following table describes the data flows that are available from the NPA framework based on the associated DO or PO privileges of the EMM agent and NPA client as well as whether or not a container is present.</p>
                                         <table style="width: 100%;">
                                             <col style="width: 285px;" />
                                             <col style="width: 144px;" />
@@ -1670,17 +1697,17 @@
                                                 </tr>
                                                 <tr>
                                                     <td>Knox 2.8 or 2.9 container</td>
-                                                    <td>CL&#160;device</td>
-                                                    <td colspan="2">Only observe apps that are inside the container so long as the EMM&#160;agent is installed <b>outside</b> the container and the NPA&#160;client is installed <b>inside</b> the container.</td>
+                                                    <td>CL device</td>
+                                                    <td colspan="2">Only observe apps that are inside the container so long as the EMM agent is installed <b>outside</b> the container and the NPA client is installed <b>inside</b> the container.</td>
                                                 </tr>
                                                 <tr>
-                                                    <td>Android Enterprise or Knox 3.0 container as PO&#160;(user 10)</td>
+                                                    <td>Android Enterprise or Knox 3.0 container as PO (user 10)</td>
                                                     <td>BYO device</td>
-                                                    <td colspan="2">Only observe apps that are inside the container&#160;so long as the EMM agent and NPA client are both installed <b>inside</b> the container.</td>
+                                                    <td colspan="2">Only observe apps that are inside the container so long as the EMM agent and NPA client are both installed <b>inside</b> the container.</td>
                                                 </tr>
                                                 <tr>
-                                                    <td>Android Enterprise or Knox 3.0 container as DO&#160;(user 0)</td>
-                                                    <td>CL&#160;device</td>
+                                                    <td>Android Enterprise or Knox 3.0 container as DO (user 0)</td>
+                                                    <td>CL device</td>
                                                     <td colspan="2">Device-wide data observation when <b>no container</b> is present.</td>
                                                 </tr>
                                                 <tr>
@@ -1688,10 +1715,10 @@
                                                         <p>Android Enterprise* or Knox 3.0 container as both DO and PO (user 0 and user 10)</p>
                                                     </td>
                                                     <td>CL device</td>
-                                                    <td colspan="2">Device-wide data observation so long as the EMM agent and the NPA&#160;client are both <b>outside</b> the container.</td>
+                                                    <td colspan="2">Device-wide data observation so long as the EMM agent and the NPA client are both <b>outside</b> the container.</td>
                                                 </tr>
                                                 <tr>
-                                                    <td colspan="4">*&#160;Support for Android Enterprise in this configuration is available starting in the Knox 3.2 release.</td>
+                                                    <td colspan="4">* Support for Android Enterprise in this configuration is available starting in the Knox 3.2 release.</td>
                                                 </tr>
                                             </tbody>
                                         </table>

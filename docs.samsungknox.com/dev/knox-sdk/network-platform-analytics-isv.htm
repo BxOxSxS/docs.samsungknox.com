@@ -1466,6 +1466,32 @@
                                                         </li>
                                                     </ul>
                                                 </li>
+                                                <li class="has-children"><a href="network-platform-analytics-isv.htm#">Knox Webhook Notification</a>
+                                                    <ul class="sub-menu">
+                                                        <li><a href="../knox-webhook-notification/index.htm">Overview</a>
+                                                        </li>
+                                                        <li><a href="../knox-webhook-notification/how-knox-webhook-notification-works.htm">About Knox Webhook Notification</a>
+                                                        </li>
+                                                        <li><a href="../knox-webhook-notification/whats-new.htm">What's new</a>
+                                                        </li>
+                                                        <li class="has-children"><a href="network-platform-analytics-isv.htm#">Tutorial</a>
+                                                            <ul class="sub-menu">
+                                                                <li><a href="../knox-webhook-notification/tutorial-kwn-for-kg.htm">For Knox Guard</a>
+                                                                </li>
+                                                            </ul>
+                                                        </li>
+                                                        <li class="has-children"><a href="network-platform-analytics-isv.htm#">API Reference</a>
+                                                            <ul class="sub-menu">
+                                                                <li><a href="../../devref/knox-webhook-notification/index.htm">Subscription API</a>
+                                                                </li>
+                                                                <li><a href="../../devref/knox-guard/index.htm">Knox Guard API</a>
+                                                                </li>
+                                                            </ul>
+                                                        </li>
+                                                        <li><a href="../knox-webhook-notification/error-codes.htm">Error codes</a>
+                                                        </li>
+                                                    </ul>
+                                                </li>
                                                 <li class="has-children"><a href="network-platform-analytics-isv.htm#">Knox Deployment Program</a>
                                                     <ul class="sub-menu">
                                                         <li><a href="../knox-deployment-program/index.htm">Overview</a>
@@ -1639,10 +1665,11 @@
                                                 </ul>
                                             </div>
                                         </nav>
-                                        <h1>NPA ISV&#160;Integration </h1>
-                                        <fieldset>ISV&#160;developers can integrate their apps with the NPA&#160;framework by way of the NPA&#160;APIs and AIDL interfaces. Integrated apps can then work with the data flows to help identify threats. The profile provided by the EMM determines which data flows are available, but the ISV app provides the device-level interface with the NPA framework.</fieldset>
+                                        <h1>NPA ISV Integration </h1>
+                                        <div class="callout alert"><b>NOTE</b> — This feature was <a href="deprecated-api-methods.htm#38">deprecated</a> in API level 35 with Knox SDK v3.8.</div>
+                                        <fieldset>ISV developers can integrate their apps with the NPA framework by way of the NPA APIs and AIDL interfaces. Integrated apps can then work with the data flows to help identify threats. The profile provided by the EMM determines which data flows are available, but the ISV app provides the device-level interface with the NPA framework.</fieldset>
                                         <h2>Requirements</h2>
-                                        <p>The following are required for developing the NPA&#160;client:</p>
+                                        <p>The following are required for developing the NPA client:</p>
                                         <ul>
                                             <li value="1">The Samsung Knox SDK </li>
                                             <li value="2">Devices running Knox 2.8 or newer</li>
@@ -1650,22 +1677,22 @@
                                             <li value="4">The INetworkAnalyticsService.aidl file</li>
                                         </ul>
                                         <h2>Supported Use Cases</h2>
-                                        <p>The NPA&#160;client is allowed to observe data flows based on whether it is installed in user 0, in profile owner, or in a Knox container. The following use cases are supported.</p>
+                                        <p>The NPA client is allowed to observe data flows based on whether it is installed in user 0, in profile owner, or in a Knox container. The following use cases are supported.</p>
                                         <ul>
-                                            <li value="1"><b>Main-user wide data flow observation<br /></b>The NPA&#160;client can observe data flows only from user 0 as long as the NPA client is installed in main user or user 0. The set of data flows to observe is defined by the <code>flag </code>parameter of the profile defined by the EMM.</li>
-                                            <li value="2"><b>Container wide data flow observation<br /></b>The NPA client can observe data flows only from the container user as long as the NPA&#160;client is installed in the container user. The set of data flows to observe is defined by the <code>flag </code>parameter of the profile defined by the EMM.</li>
+                                            <li value="1"><b>Main-user wide data flow observation<br /></b>The NPA client can observe data flows only from user 0 as long as the NPA client is installed in main user or user 0. The set of data flows to observe is defined by the <code>flag </code>parameter of the profile defined by the EMM.</li>
+                                            <li value="2"><b>Container wide data flow observation<br /></b>The NPA client can observe data flows only from the container user as long as the NPA client is installed in the container user. The set of data flows to observe is defined by the <code>flag </code>parameter of the profile defined by the EMM.</li>
                                             <li value="3"><b>Device wide data flow observation</b>
-                                                <br />The NPA&#160;client can observe data flows from both the main user and the container user as long as the NPA&#160;client is installed in main user or user 0. The set of data flows to observe is defined by the <code>flag </code>parameter of the JSON message.</li>
+                                                <br />The NPA client can observe data flows from both the main user and the container user as long as the NPA client is installed in main user or user 0. The set of data flows to observe is defined by the <code>flag </code>parameter of the JSON message.</li>
                                         </ul>
                                         <h2>The Framework Interface</h2>
-                                        <p>This section lists the calls available to the  NPA&#160;client for working with the NPA framework on the device and controlling the flow of data.</p>
+                                        <p>This section lists the calls available to the  NPA client for working with the NPA framework on the device and controlling the flow of data.</p>
                                         <h4>getProfiles</h4>
                                         <p><code>public List&lt;profiles_list&gt; <a href="../../devref/knox-sdk/reference/com/samsung/android/knox/net/nap/NetworkAnalytics.html#getProfiles()">getProfiles()</a></code>
                                         </p>
                                         <p>Returns profile object(s) with the following getter methods to help identify the state of the profile:</p>
                                         <ul>
                                             <li value="1"><code><a href="hhttps://docs.samsungknox.com/devref/knox-sdk/reference/com/samsung/android/knox/net/nap/Profile.html#getJsonProfile()">getJsonProfile()</a></code>
-                                                <p>Provides information in JSON&#160;format for the specific named profile</p>
+                                                <p>Provides information in JSON format for the specific named profile</p>
                                             </li>
                                             <li value="2"><code><a href="../../devref/knox-sdk/reference/com/samsung/android/knox/net/nap/Profile.html#getUserId()">getUserId()</a></code>
                                                 <p>Identifies for which user the NPA data flow is being observed</p>
@@ -1677,49 +1704,49 @@
                                         <h4>start</h4>
                                         <p><code>public int <a href="../../devref/knox-sdk/reference/com/samsung/android/knox/net/nap/NetworkAnalytics.html#start(java.lang.String,%20android.os.Bundle)">start</a>(profileName);</code>
                                         </p>
-                                        <p>Begins the flow of data points to the NPA client. This is a synchronous call which validates whether or not the NPA&#160;client is authorized to observe data flows. The actual observation of data flows begins when the NPA&#160;framework calls <code>onActivateProfile()</code> for the binder object.</p>
+                                        <p>Begins the flow of data points to the NPA client. This is a synchronous call which validates whether or not the NPA client is authorized to observe data flows. The actual observation of data flows begins when the NPA framework calls <code>onActivateProfile()</code> for the binder object.</p>
                                         <h4>stop</h4>
                                         <p><code>public int <a href="../../devref/knox-sdk/reference/com/samsung/android/knox/net/nap/NetworkAnalytics.html#stop(java.lang.String)">stop</a>(String profileName)</code>
                                         </p>
-                                        <p>Stops the flow of data points to the NPA&#160;client. This is a synchronous call which validates whether or not the NPA&#160;client is authorized to stop data flows. The actual cessation of data flow observation occurs when the NPA&#160;framework calls <code>onDectivateProfile()</code>for the binder object.</p>
-                                        <p>There are two circumstances under which the NPA&#160;framework stops sending data flows to the NPA&#160;client:</p>
+                                        <p>Stops the flow of data points to the NPA client. This is a synchronous call which validates whether or not the NPA client is authorized to stop data flows. The actual cessation of data flow observation occurs when the NPA framework calls <code>onDectivateProfile()</code>for the binder object.</p>
+                                        <p>There are two circumstances under which the NPA framework stops sending data flows to the NPA client:</p>
                                         <ul>
-                                            <li value="1">The&#160;NPA&#160;client calls <code><a href="hhttps://docs.samsungknox.com/devref/knox-sdk/reference/com/samsung/android/knox/net/nap/NetworkAnalytics.html#stop(java.lang.String)">stop</a>().</code></li>
+                                            <li value="1">The NPA client calls <code><a href="hhttps://docs.samsungknox.com/devref/knox-sdk/reference/com/samsung/android/knox/net/nap/NetworkAnalytics.html#stop(java.lang.String)">stop</a>().</code></li>
                                             <li value="2">The device profile is unregistered by the EMM.</li>
                                         </ul>
                                         <h4>getInstance</h4>
                                         <p><code>public static NetworkAnalytics <a href="../../devref/knox-sdk/reference/com/samsung/android/knox/net/nap/NetworkAnalytics.html#getInstance(android.content.Context)">getInstance</a>(Context cxt)</code>
                                         </p>
-                                        <p>Returns an instance of the Network&#160;Analytics class which handles calls to NPA&#160;API&#160;such as <code><a href="../../devref/knox-sdk/reference/com/samsung/android/knox/net/nap/NetworkAnalytics.html#start(java.lang.String,%20android.os.Bundle)">start</a>()</code> and <code><code><a href="../../devref/knox-sdk/reference/com/samsung/android/knox/net/nap/NetworkAnalytics.html#stop(java.lang.String)">stop</a></code>()</code>.</p>
+                                        <p>Returns an instance of the Network Analytics class which handles calls to NPA API such as <code><a href="../../devref/knox-sdk/reference/com/samsung/android/knox/net/nap/NetworkAnalytics.html#start(java.lang.String,%20android.os.Bundle)">start</a>()</code> and <code><code><a href="../../devref/knox-sdk/reference/com/samsung/android/knox/net/nap/NetworkAnalytics.html#stop(java.lang.String)">stop</a></code>()</code>.</p>
                                         <h2>AIDL Details</h2>
-                                        <p>This section provides the details for the interface between the NPA&#160;client and the NPA&#160;framework.</p>
+                                        <p>This section provides the details for the interface between the NPA client and the NPA framework.</p>
                                         <h4>onActivateProfile</h4>
-                                        <p>The NPA&#160;framework calls <code>onActivateProfile</code>&#160;to inform clients that the client's call to <code><a href="../../devref/knox-sdk/reference/com/samsung/android/knox/net/nap/NetworkAnalytics.html#start(java.lang.String,%20android.os.Bundle)">NetworkAnalytics.start</a></code> is successful and that the NPA&#160;client will start receiving data flows.</p>
+                                        <p>The NPA framework calls <code>onActivateProfile</code> to inform clients that the client's call to <code><a href="../../devref/knox-sdk/reference/com/samsung/android/knox/net/nap/NetworkAnalytics.html#start(java.lang.String,%20android.os.Bundle)">NetworkAnalytics.start</a></code> is successful and that the NPA client will start receiving data flows.</p>
                                         <p><code>int onActivateProfile(String jsonProfile, int userId, String uniqueId);</code>
                                         </p>
                                         <p><code>jsonProfile</code>: The profile associated with the client which made the successful call<br /><code>userId</code>: The user associated with the observation of data flows<br /><code>uniqueId</code>: The unique device key</p>
                                         <h4>onDeactivateProfile</h4>
-                                        <p>The NPA&#160;framework calls <code>onDeactivateProfile</code> to inform clients that the client's call to <code>NetworkAnalytics.stop</code> was successful and that the NPA&#160;client will stop receiving data flows.</p>
+                                        <p>The NPA framework calls <code>onDeactivateProfile</code> to inform clients that the client's call to <code>NetworkAnalytics.stop</code> was successful and that the NPA client will stop receiving data flows.</p>
                                         <p><code>int onDeactivateProfile(String profileName, int userId);</code>
                                         </p>
                                         <p><code>profileName</code>: The name of the profile for which data flows are no longer observed<br /><code>userId</code>: The user associated with the observation of data flows</p>
                                         <h4>onDataAvailable</h4>
-                                        <p>The NPA&#160;framework calls <code>onDataAvailable</code> to provide the requested data flows to the NPA&#160;client.</p>
+                                        <p>The NPA framework calls <code>onDataAvailable</code> to provide the requested data flows to the NPA client.</p>
                                         <p><code>void onDataAvailable(String profileName, List&lt;string&gt; data);</code>
                                         </p>
-                                        <p><code>profileName</code>: The profile for which the data flows are observed<br /><code>data</code>: The data flows provided by the NPA&#160;framework</p>
+                                        <p><code>profileName</code>: The profile for which the data flows are observed<br /><code>data</code>: The data flows provided by the NPA framework</p>
                                         <h2>Start Collecting Data</h2>
-                                        <p>The  following steps explain how the NPA&#160;client can check whether or not the EMM agent has assigned a profile to the mobile device. A profile must be assigned to the mobile device in order to determine which data flows are available for observation.</p>
+                                        <p>The  following steps explain how the NPA client can check whether or not the EMM agent has assigned a profile to the mobile device. A profile must be assigned to the mobile device in order to determine which data flows are available for observation.</p>
                                         <ol>
-                                            <li value="1">Implement a broadcast receiver in the NPA client to listen for the action: <br /><code><a href="../../devref/knox-sdk/reference/com/samsung/android/knox/net/nap/NetworkAnalyticsConstants.BroadcastActions.html">NetworkAnalyticsConstants.BroadcastActions</a> <![CDATA[ ]]></code><br />This call is required to determine whether or not a profile is registered for the device. NPA&#160;profiles are created and authorized by EMMs and applied to enterprise devices.</li>
+                                            <li value="1">Implement a broadcast receiver in the NPA client to listen for the action: <br /><code><a href="../../devref/knox-sdk/reference/com/samsung/android/knox/net/nap/NetworkAnalyticsConstants.BroadcastActions.html">NetworkAnalyticsConstants.BroadcastActions</a> <![CDATA[ ]]></code><br />This call is required to determine whether or not a profile is registered for the device. NPA profiles are created and authorized by EMMs and applied to enterprise devices.</li>
                                             <li value="2">Upon successful registration, call <code>NetworkAnalytics.start</code><br /><pre class="prettyprint">NetworkAnalytics mNap = NetworkAnalytics.getInstance(mContext);
 					if (mNap != null){
 					mNap.start("testing");
 					}
-			</pre><p>A successful call means the NPA framework binds to a service in the NPA&#160;client using the action <code>package_name.NetworkAnalyticsConstants.VENDOR_BIND_ACTION</code>.  </p><p>For example, if the package name is <code>com.samsung.test.networkmonitor_denali</code>, then the bind action is <code>com.samsung.test.networkmonitor_denali_namonitoraction.</code></p></li>
-                                            <li value="3">The NPA&#160;client needs to return the interface <code>com.samsung.adroid.knox.net.nap.serviceprovider.INetworkAnalyticsService</code> as the Ibinder object.</li>
+			</pre><p>A successful call means the NPA framework binds to a service in the NPA client using the action <code>package_name.NetworkAnalyticsConstants.VENDOR_BIND_ACTION</code>.  </p><p>For example, if the package name is <code>com.samsung.test.networkmonitor_denali</code>, then the bind action is <code>com.samsung.test.networkmonitor_denali_namonitoraction.</code></p></li>
+                                            <li value="3">The NPA client needs to return the interface <code>com.samsung.adroid.knox.net.nap.serviceprovider.INetworkAnalyticsService</code> as the Ibinder object.</li>
                                         </ol>
-                                        <p>The NPA&#160;framework calls the<code> onActivateProfile()</code> API in the binder object and notifies the NPA&#160;client that the profile has been updated to receive data points. The framework then starts calling <code>onDataAvailable()</code> in the binder object at regular intervals depending on the data flow. The <code>onDataAvailable()</code> API contains the data-point information.</p><pre class="prettyprint">&lt;service&gt;<br />  android:name="$package_name.NPAService"<br />  android:enabled="true"<br />  android:exported="true"&gt;<br />  &lt;intent-filter&gt;<br />    &lt;action android:name="$package_name_namonitoraction" /&gt;<br />  &lt;/intent-filter&gt;<br />&lt;/service&gt;
+                                        <p>The NPA framework calls the<code> onActivateProfile()</code> API in the binder object and notifies the NPA client that the profile has been updated to receive data points. The framework then starts calling <code>onDataAvailable()</code> in the binder object at regular intervals depending on the data flow. The <code>onDataAvailable()</code> API contains the data-point information.</p><pre class="prettyprint">&lt;service&gt;<br />  android:name="$package_name.NPAService"<br />  android:enabled="true"<br />  android:exported="true"&gt;<br />  &lt;intent-filter&gt;<br />    &lt;action android:name="$package_name_namonitoraction" /&gt;<br />  &lt;/intent-filter&gt;<br />&lt;/service&gt;
 
 			public class NPAService extends Service {<br />  @Override<br />  public IBinder onBind(Intent intent) {<br />    return getBinder();<br />  } 
 			private INetworkAnalyticsService.Stub getBinder() {<br />    return new INetworkAnalyticsService.Stub() {<br />      @Override<br />         public int onDeactivateProfile(String profileName, int userId) throws RemoteException{<br />          return 0;<br />      }
@@ -1727,12 +1754,12 @@
 			public void onDataAvailable(String profileName, List&lt;String&gt; data) throws RemoteException {<br />      }
 		@Override<br />        public int onActivateProfile(String jsonProfile, int userId, String uniqueId) throws RemoteException {<br />          return 0;<br />      }<br />    };<br />  }<br />}</pre>
                                         <h2>Stop Collecting Data</h2>
-                                        <p>The following steps explain how the NPA client can detect when a profile is unregistered by the EMM. When this happens, the NPA&#160;framework responds to the change by stopping data flows to the NPA&#160;client.</p>
+                                        <p>The following steps explain how the NPA client can detect when a profile is unregistered by the EMM. When this happens, the NPA framework responds to the change by stopping data flows to the NPA client.</p>
                                         <ol>
                                             <li value="1">
                                                 <p> Implement a broadcast receiver to listen for the action:<br /><code><a href="../../devref/knox-sdk/reference/com/samsung/android/knox/net/nap/NetworkAnalyticsConstants.BroadcastActions.html">NetworkAnalyticsConstants.BroadcastActions<br /></a></code></p>
                                                 <p>The action provides information regarding whether or not an admin has registered a profile for the device. </p>
-                                                <p>Once the profile is unregistered, the client stops receiving data flows from the NPA&#160;framework.  </p>
+                                                <p>Once the profile is unregistered, the client stops receiving data flows from the NPA framework.  </p>
                                                 <p>The NPA client does not have to implement <a href="../../devref/knox-sdk/reference/com/samsung/android/knox/net/nap/NetworkAnalytics.html#stop(java.lang.String)"><code>NetworkAnalytics.stop</code></a> because the function is handled internally by the NPA framework.</p>
                                             </li>
                                             <li value="2">The NPA framework calls <code>onDeactivateProfile()</code> in the binder object to notify the NPA client that the profile has been successfully deactivated and that the client will not receive any further data flows.</li>
@@ -1746,7 +1773,7 @@ NetworkAnalytics.getInstance(mContext);
 		}</pre>
                                         <p>The NPA framework calls <code>onDeactivateProfile()</code> in the binder object to notify the NPA client that the profile has been successfully deactivated and that the client will not receive any further data flows.</p>
                                         <h2>Retrieve Profile Details Configured by the EMM</h2>
-                                        <p>The NPA&#160;client can retrieve the profile details through the <code>getJsonProfile()</code> call from the profile object. The profile object is available through a call to the <code>getProfiles()API</code> of the <code>NetworkAnalytics</code> class. </p>
+                                        <p>The NPA client can retrieve the profile details through the <code>getJsonProfile()</code> call from the profile object. The profile object is available through a call to the <code>getProfiles()API</code> of the <code>NetworkAnalytics</code> class. </p>
                                         <p>See <a href="network-platform-analytics-emm.htm">JSON format</a> for a complete description of the message format.</p>
                                         <!-- Inserts feedback module here -->
                                         <div id="feedback">

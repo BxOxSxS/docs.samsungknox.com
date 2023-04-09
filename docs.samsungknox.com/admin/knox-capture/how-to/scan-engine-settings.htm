@@ -228,7 +228,7 @@
                                                         </li>
                                                         <li><a href="../../sso/okta.htm">Configure Okta SSO</a>
                                                         </li>
-                                                        <li><a href="../../sso/sign-in-samsung-knox.htm">Sign into Samsung Knox</a>
+                                                        <li><a href="../../sso/sign-in-samsung-knox.htm">Sign in to Samsung Knox</a>
                                                         </li>
                                                         <li><a href="../../sso/disconnect-sso.htm">Disconnect SSO</a>
                                                         </li>
@@ -1192,7 +1192,7 @@
                                                         </li>
                                                         <li><a href="scan-engine-settings.htm#" class="selected">Scan engine settings</a>
                                                         </li>
-                                                        <li><a href="keystroke-output.htm">Keystroke output rules</a>
+                                                        <li><a href="keystroke-output.htm">Keystroke output and data formatting</a>
                                                         </li>
                                                         <li><a href="deploy-configuration.htm">Export configuration and deploy through EMM</a>
                                                         </li>
@@ -1201,8 +1201,6 @@
                                                         <li><a href="connect-hw-scanner.htm">Connect a hardware scanner</a>
                                                         </li>
                                                         <li><a href="configure-output-path.htm">Configure the output path</a>
-                                                        </li>
-                                                        <li><a href="scanner-overlay.htm">Use the scanner overlay</a>
                                                         </li>
                                                         <li><a href="use-test-mode.htm">Check a configuration in test mode</a>
                                                         </li>
@@ -2871,12 +2869,12 @@
                                                         <td>Currently supported 1D and 2D barcode types.</td>
                                                         <td>
                                                             <ul>
-                                                                <li value="1"><b>Numeric-only (1D)</b> — Codabar, Code 11, Code 25, Code 32, DataBar 14, DataBar Limited, EAN13, EAN8, Interleaved 2 of 5, MSI-Plessey, UPCA, UPCE</li>
-                                                                <li value="2"><b>Alpha-numeric (1D)</b> — Code 128, Code 39, Code 93, DataBar Expanded, KIX, RM4SCC</li>
-                                                                <li value="3"><b>2D</b> — Aztec, Data Matrix, DotCode, MaxiCode, MicroPDF417, Micro QR, PDF417, QR</li>
+                                                                <li value="1"><b>Numeric-only (1D)</b> — Codabar, EAN13, EAN8, Interleaved 2 of 5, UPCA, UPCE</li>
+                                                                <li value="2"><b>Alpha-numeric (1D)</b> — Code 128, Code 39, Code 93</li>
+                                                                <li value="3"><b>2D</b> — Data Matrix, PDF417, QR</li>
                                                             </ul>
                                                         </td>
-                                                        <td>Code 128, Code 39, DataMatrix, EAN8, Interleaved 2 Of 5, QR, UPCA, UPCE</td>
+                                                        <td>Code 128, Code 39, DataMatrix, PDF417, EAN8, EAN13, Interleaved 2 Of 5, QR, UPCA, UPCE</td>
                                                     </tr>
                                                 </tbody>
                                             </table>
@@ -2920,19 +2918,10 @@
                                                         <td>ON</td>
                                                     </tr>
                                                     <tr>
-                                                        <td>Remove checksum</td>
-                                                        <td>Global setting to remove checksums for barcode data for all barcode types.</td>
+                                                        <td>Vibrate after scan</td>
+                                                        <td>Provides a vibrate alert after scanning barcode data.</td>
                                                         <td>ON/OFF</td>
-                                                        <td>OFF</td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td>Parse GS1</td>
-                                                        <td>
-                                                            <p>If enabled, parses scanned barcode data based on the GS1 data format before sending it to the target business app. </p>
-                                                            <p>For more information on the GS1 standard, refer to <a href="https://www.gs1.org/docs/barcodes/GS1_General_Specifications.pdf" target="_blank">GS1 General Specifications</a>.</p>
-                                                        </td>
-                                                        <td>ON/OFF</td>
-                                                        <td>OFF</td>
+                                                        <td>ON</td>
                                                     </tr>
                                                 </tbody>
                                             </table>
@@ -2955,12 +2944,6 @@
                                                             </ul>
                                                         </td>
                                                         <td>Automatic</td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td>Continuous scanning</td>
-                                                        <td>Allows the device user to scan consecutive barcodes in the same single scan session.</td>
-                                                        <td>ON/OFF</td>
-                                                        <td>OFF</td>
                                                     </tr>
                                                 </tbody>
                                             </table>
@@ -3025,7 +3008,7 @@
                                                     </tr>
                                                 </tbody>
                                             </table>
-                                            <h3 id="highlight-barcode">Highlight barcode</h3>
+                                            <h3 id="highlight-barcode">Barcode highlighting</h3>
                                             <p>Refer to the following settings to change the camera UI overlay displaying around recognized barcodes when scanning:</p>
                                             <table class="no-stripes">
                                                 <tbody>
@@ -3109,100 +3092,6 @@ F33E91FF.</td>
                                                         <td>Height of the rectangular viewfinder specified in screen height percentage. Only active if <b>View finder selection</b> is set to <b>Rectangular</b>.</td>
                                                         <td>[0%, 100%]</td>
                                                         <td>40%</td>
-                                                    </tr>
-                                                </tbody>
-                                            </table>
-                                            <h2 id="extended-barcode-type-settings">Extended barcode type settings</h2>
-                                            <p>Use these settings to configure each barcode type used in a Knox Capture profile. Access these settings by tapping <b>Advanced settings</b> near the bottom of the scan engine settings menu, then tap <b>Extended barcode type settings</b> to display a list of all barcode types. To view the settings menu for a particular barcode type, tap  its name.</p>
-                                            <p>The following table describes the possible barcode type settings that may appear after selecting a <b>&lt;barcode name&gt; detail config</b> option. Available settings and their default values vary by barcode type. </p>
-                                            <table class="no-stripes">
-                                                <tbody>
-                                                    <tr>
-                                                        <th>Setting</th>
-                                                        <th>Description</th>
-                                                        <th>Options</th>
-                                                        <th>Default</th>
-                                                    </tr>
-                                                    <tr>
-                                                        <td>Min. length</td>
-                                                        <td>
-                                                            <p>Determines the minimum supported barcode length (active symbol count) to decode. </p>
-                                                            <p>Change this property to include lengths  not enabled by default, or to optimize decoding performance for a certain number of symbols.</p>
-                                                            <p>Character-to-symbol mapping depends on barcode type. For example, some barcodes include additional checksum characters in their symbol counts.</p>
-                                                            <p>For more information on active symbol count, refer to  <a href="https://docs.scandit.com/data-capture-sdk/android/barcode-capture/api/symbology.html#active-symbol-count" target="_blank">Configure the Active Symbol Count</a>.</p>
-                                                        </td>
-                                                        <td />
-                                                        <td>Depends on barcode type.</td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td>Max. length</td>
-                                                        <td>Determines the maximum supported barcode length (active symbol count) to decode. </td>
-                                                        <td />
-                                                        <td>Depends on barcode type.</td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td>Inverted color recognition</td>
-                                                        <td>Enables recognition of inverted barcodes that have been printed using bright ink on a dark background. </td>
-                                                        <td>ON/OFF</td>
-                                                        <td>OFF</td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td>Reduced quiet zone-size</td>
-                                                        <td>Enables scanning codes with smaller than normal quiet zones (white space before and after the code) than allowed by the barcode type specification. Use this if you experience issues when scanning codes that violate quiet zone specifications. Please note that turning on this feature may lead to false positive scans in some cases.</td>
-                                                        <td>ON/OFF</td>
-                                                        <td>OFF</td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td>Strip leading FNC1</td>
-                                                        <td>Removes the leading FNC1 character that indicates a <a href="https://www.gs1.org/docs/barcodes/GS1_General_Specifications.pdf" target="_blank">GS1 code</a>.</td>
-                                                        <td>ON/OFF</td>
-                                                        <td>OFF</td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td>Direct part marking mode</td>
-                                                        <td>Improves scan performance when reading direct part marked (DPM) Data Matrix codes. Please note that this setting increases frame processing times. Samsung recommends restricting the scanning area to a smaller portion of the screen for better performance when using direct part marking mode.</td>
-                                                        <td>ON/OFF</td>
-                                                        <td>OFF</td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td>Checksum mod <i>n</i></td>
-                                                        <td>
-                                                            <p id="checksum"><b>Barcode checksums</b> use a piece of barcode data and a checksum algorithm to ensure data transmission integrity.</p>
-                                                            <p>Some barcode types include a mandatory checksum, while others only have optional checksums. Enforcing an optional checksum helps reduce false positives and provides an extra layer of error prevention. When enabling a checksum, ensure your barcode data includes the calculated checksum, otherwise the checksum will not match and the barcode data is discarded. </p>
-                                                            <p>Uses and enforces a modulo <i>n</i> checksum algorithm.</p>
-                                                        </td>
-                                                        <td>ON/OFF</td>
-                                                        <td>OFF</td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td>Full ASCII support</td>
-                                                        <td>Interprets Code39 data using two symbols per output character to encode all ASCII characters.</td>
-                                                        <td>ON/OFF</td>
-                                                        <td>OFF</td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td>Double checksum mod <i>n</i></td>
-                                                        <td>Uses and enforces a double <a href="scan-engine-settings.htm#checksum" class="selected">checksum</a> modulo <i>n</i>.</td>
-                                                        <td>ON/OFF</td>
-                                                        <td>OFF</td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td>Remove leading zero</td>
-                                                        <td>Removes the leading zero digit from  EAN13/UCPA scanned barcode data.</td>
-                                                        <td>ON/OFF</td>
-                                                        <td>ON</td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td>Return as UPCA</td>
-                                                        <td>Transforms UPCE scanned barcode data into its UPCA representation.</td>
-                                                        <td>ON/OFF</td>
-                                                        <td>OFF</td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td>Remove leading UPCA zero</td>
-                                                        <td>Removes the leading zero digit from scanned barcode data if <b>Return as UPCA</b> is enabled.</td>
-                                                        <td>ON/OFF</td>
-                                                        <td>OFF</td>
                                                     </tr>
                                                 </tbody>
                                             </table>
