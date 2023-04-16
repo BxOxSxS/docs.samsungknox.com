@@ -138,17 +138,13 @@
                                                         </li>
                                                         <li class="has-children"><a href="tutorial-kwn-for-kg.htm#">Tutorial</a>
                                                             <ul class="sub-menu">
-                                                                <li><a href="tutorial-kwn-for-efota.htm">For Knox E-FOTA</a>
-                                                                </li>
                                                                 <li><a href="tutorial-kwn-for-kg.htm#" class="selected">For Knox Guard</a>
                                                                 </li>
                                                             </ul>
                                                         </li>
                                                         <li class="has-children"><a href="tutorial-kwn-for-kg.htm#">API Reference</a>
                                                             <ul class="sub-menu">
-                                                                <li><a href="../../devref/knox-webhook-notification/index.htm">Subscription API</a>
-                                                                </li>
-                                                                <li><a href="../../devref/knox-efota/index.htm">Knox E-FOTA API</a>
+                                                                <li><a href="../../../devref/knox-webhook-notification/index.htm">Subscription API</a>
                                                                 </li>
                                                                 <li><a href="../../../devref/knox-guard/index.htm">Knox Guard API</a>
                                                                 </li>
@@ -158,6 +154,7 @@
                                                         </li>
                                                     </ul>
                                                 </li>
+                                                
                                             </ul>
                                         </li>
                                     </ul>
@@ -183,14 +180,14 @@
                                         <ul>
                                             <li value="1"><a href="tutorial-kwn-for-kg.htm#device-enrollment" class="selected">Device enrollment</a>
                                             </li>
-                                            <li value="2"><a href="tutorial-kwn-for-kg.htm#device-relock-timestamp" class="selected">Device relock timestamping</a>
+                                            <li value="2"><a href="tutorial-kwn-for-kg.htm#device-relock-timestamping" class="selected">Device relock timestamping</a>
                                             </li>
-                                            <p class="callout note"><b>NOTE</b> — Device relock timestamping is only applicable for the Knox Guard Pay-As-You-Go plan.</p>
+                                            <p class="callout note"><b>NOTE</b> — Device relock timestamping is only applicable for the Knox Guard <b>Pay-As-You-Go (PAYG)</b> plan.</p>
                                         </ul>
                                         <p>KWN sends change notifications when these events are complete.</p>
                                         <h2 id="prerequisites">Prerequisites</h2>
                                         <h3 id="registration">Registration</h3>
-                                        <p>To successfully make calls to the Knox Guard APIs, register as a developer on <a href="https://developer.samsungknox.com/">developer.samsungknox.com</a> and download the latest Knox SDK.</p>
+                                        <p>To successfully make calls to the Knox Guard APIs, register as a developer on <a href="https://developer.samsungknox.com/" target="_blank">developer.samsungknox.com</a> and download the latest Knox SDK.</p>
                                         <h3 id="authentication">Authentication</h3>
                                         <p>To get started with using Knox Guard APIs, you need an authentication token. For more information, see <a href="../../../dev/knox-cloud-authentication/tutorial.htm" target="_blank">Knox Cloud API Authentication tutorial for customers</a>.</p>
                                         <h3 id="certificate">Certificate</h3>
@@ -198,11 +195,17 @@
                                         <h2 id="use-knox-webhook-notification-api">Use the Knox Webhook Notification API</h2>
                                         <h3 id="device-enrollment">Device enrollment</h3>
                                         <p>This tutorial demonstrates how you can use KWN to call the Knox Guard device enrollment event and register it with KWN to receive change notifications when the enrollment is complete.</p>
+                                        <h4 id="step-1-subscription">Step 1: Subscribe an event</h4>
                                         <ol>
-                                            <li value="1">Subscribe a particular event to KWN through the <b>Create Subscription</b> operation — <code> POST /kcs/kwn/v0.1/subscriptions:</code><ul><li value="1">Provide a subscription URL — known as a "callback" — that you'll register to receive asynchronous API operation results once the event is complete.</li><li value="2">Register the <code>KG_DEVICE_ENROLLED</code> event to asynchronously receive the API operation result on the device enrollment operation once it's complete.</li></ul></li>
-                                            <li value="2">Upload and enroll a device. Doing so makes an API call to the Knox Guard device enrollment operation.</li>
-                                            <li value="3">Once the device is successfully enrolled, you'll receive the following message in the body of the subscribed URL call, as the response payload:</li>
-                                            <div id="Java1" class="tabcontent1" style="display:block"><pre class="prettyprint" xml:space="preserve">
+                                            <li value="1">Subscribe a particular event to KWN through the <b>Create Subscription</b> operation — <code> POST /kcs/kwn/v0.1/subscriptions:</code></li>
+                                            <li value="2">Provide a subscription URL — known as a "callback" — that you'll register to receive asynchronous API operation results once the event is complete.</li>
+                                            <li value="3">Register the <code>KG_DEVICE_ENROLLED</code> event to asynchronously receive the API operation result on the device enrollment operation once it's complete.</li>
+                                        </ol>
+                                        <h4 id="step-2-upload-devices">Step 2: Upload a device</h4>
+                                        <p>Upload and enroll a device. Doing so makes an API call to the Knox Guard device enrollment operation.</p>
+                                        <h4 id="step-3-handle-response-message">Step 3: Handle response message</h4>
+                                        <p>Once the device is successfully enrolled, you'll receive the following message in the body of the subscribed URL call, as the response payload:</p>
+                                        <div id="Java1" class="tabcontent1" style="display:block"><pre class="prettyprint" xml:space="preserve">
 { 
   "subscriptionId" : "123456789123",
   "event" : "KG_DEVICE_ENROLLED",
@@ -216,16 +219,21 @@
   }
 }
             </pre>
-                                            </div>
-                                        </ol>
+                                        </div>
                                         <h3 id="device-relock-timestamping">Device relock timestamping</h3>
                                         <p class="callout note"><b>NOTE</b> — Device relock timestamping is only applicable for the Knox Guard Pay-As-You-Go plan.</p>
                                         <p>This tutorial demonstrates how you can use KWN to call the Knox Guard device relock timestamping event and register it with KWN to receive change notifications when the relock timestamp is applied to the device.</p>
+                                        <h4 id="relock-step-1-subscription">Step 1: Subscribe an event</h4>
                                         <ol>
-                                            <li value="1">Subscribe a particular event to KWN through the <b>Create Subscription</b> operation — <code> POST /kcs/kwn/v0.1/subscriptions:</code><ul><li value="1">Provide a subscription URL — known as "callback" — that you'll register to receive asynchronous API operation results or event triggers once the event is complete.</li><li value="2">Register the <code>KG_DEVICE_RELOCK_TIMESTAMP_APPLIED</code> event to asynchronously receive information on the timestamping operation once it's complete.</li></ul></li>
-                                            <li value="2">Update the relock timestamp to the device. Doing so makes an API call to the Knox Guard device relock timestamping operation.</li>
-                                            <li value="3">After Knox Guard finishes executing the requested operation — relock timestamping — you'll receive the following message in the body of the subscribed URL call, as the response payload:</li>
-                                            <div id="Java2" class="tabcontent1" style="display:block"><pre class="prettyprint" xml:space="preserve">
+                                            <li value="1">Subscribe a particular event to KWN through the <b>Create Subscription</b> operation — <code> POST /kcs/kwn/v0.1/subscriptions:</code></li>
+                                            <li value="2">Provide a subscription URL — known as "callback" — that you'll register to receive asynchronous API operation results or event triggers once the event is complete.</li>
+                                            <li value="3">Register the <code>KG_DEVICE_RELOCK_TIMESTAMP_APPLIED</code> event to asynchronously receive information on the timestamping operation once it's complete.</li>
+                                        </ol>
+                                        <h4 id="relock-step-2-upload-devices">Step 2: Upload a device</h4>
+                                        <p>Update the relock timestamp to the device. Doing so makes an API call to the Knox Guard device relock timestamping operation.</p>
+                                        <h4 id="relock-step-3-handle-response-message">Step 3: Handle response message</h4>
+                                        <p>After Knox Guard finishes executing the requested operation — relock timestamping — you'll receive the following message in the body of the subscribed URL call, as the response payload:</p>
+                                        <div id="Java2" class="tabcontent1" style="display:block"><pre class="prettyprint" xml:space="preserve">
 {
   "subscriptionId" : "123456789123",
   "event" : "KG_DEVICE_RELOCK_TIMESTAMP_APPLIED",  
@@ -238,8 +246,7 @@
   }
 }
             </pre>
-                                            </div>
-                                        </ol>
+                                        </div>
                                         <h2 id="verify-response">Verify the response</h2>
                                         <p>To verify the KWN callback response:</p>
                                         <ol>
@@ -294,8 +301,7 @@ if (verified) {
               </pre>
                                             </div>
                                         </ol>
-                                        <p><b>Complete code</b>
-                                        </p>
+                                        <h3 id="complete-code">Complete code</h3>
                                         <div id="Java7" class="tabcontent1" style="display:block"><pre class="prettyprint" xml:space="preserve">
 public ResponseEntity&lt;String&gt; receiveResult(HttpServletRequest request,
   @Valid @NotBlank @RequestHeader(value="X-WSM-SIGNATURE") String jwsSignature,
@@ -343,6 +349,14 @@ public ResponseEntity&lt;String&gt; receiveResult(HttpServletRequest request,
   }
             </pre>
                                         </div>
+                                        <h2 id="one-url-many-sub">One URL for multiple subscriptions</h2>
+                                        <p>As a customer, you can configure one URL to subscribe to multiple events, as follows:</p>
+                                        <ol>
+                                            <li value="1">Use <b>customerA</b> to create the subscription using the KWN Subscription API.</li>
+                                            <li value="2">Configure <code>example.com/kwn_result/customerA</code> as the callback URL.</li>
+                                            <li value="3">Make a call to one or more <a href="whats-new.htm">supported events</a> using the same callback URL.</li>
+                                        </ol>
+                                        <p>Once you successfully complete these steps, the configured URL <code>example.com/kwn_result/customerA</code> will receive the operation result.</p>
                                         <!-- Inserts feedback module here -->
                                         <div id="feedback">
                                         </div>

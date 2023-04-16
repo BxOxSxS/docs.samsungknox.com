@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" lang="en-US" xml:lang="en-US" data-mc-search-type="Stem" data-mc-help-system-file-name="Default.xml" data-mc-path-to-help-system="../" data-mc-conditions="Builds.knox-cloud-auth-build" data-mc-target-type="WebHelp2" data-mc-runtime-file-type="Topic;Default" data-mc-preload-images="false" data-mc-in-preview-mode="false" data-mc-toc-path="Web services|Knox Cloud API Authentication|Tutorial">
     <head>
@@ -1667,118 +1668,209 @@
                                         </nav>
                                         <p class="callout note"><b>NOTE</b> — If you're a third party portal provider and you'd like to make calls to Knox cloud service on behalf of your customers, see the integration guide <a href="third-party-auth/overview.htm">for EMMs</a>.</p>
                                         <h1>Generate access token</h1>
-                                        <p>Complete these steps to generate your access token using the <a href="../../devref/knox-cloud-authentication/index.htm">Knox Cloud Authentication API</a> and successfully call the Knox cloud Service APIs.</p>
-                                        <ol>
-                                            <li value="1">
-                Get access to the Knox Cloud API service
-                <ol><li value="1">Register for a <a href="https://www2.samsungknox.com/en/user/register" target="_blank">Samsung Knox</a> account.</li><li value="2">Log in to your account and apply for a <a href="../common/web-services.htm">Knox cloud service</a> on your <a href="https://www2.samsungknox.com/en/user" target="_blank">Knox Dashboard</a>. </li><li value="3">
-                        Apply for Knox Cloud API access by contacting your local Samsung representative.
-                        <ul><li value="1">If you can't get access through a Samsung Knox representative, please create a support ticket from the <a href="https://www2.samsungknox.com/en/user" target="_blank">Knox Dashboard</a> to request access.</li></ul></li></ol></li>
-                                            <li value="2">
-                Generate your key pair from the Knox API Portal
-                <ol><li value="1">Launch the <a href="https://us-kcs-api.samsungknox.com/kapi/" target="_blank">Knox API Portal</a> from the Samsung <a href="https://www2.samsungknox.com/en/user" target="_blank">Knox Dashboard</a>.</li><li value="2">
-                    From the portal, generate a public/private key pair called "keys.json" by clicking <b>Download</b>. This is a JSON file that contains the following
-                    information. It only needs to be generated once:
-                    <ul><li value="1"><strong>Public key</strong>: Key that is sent in the body of the <code>accesstoken</code> REST API
-                            and stored by Samsung Knox to validate signed requests.</li><li value="2"><strong>Private key</strong>: Key that should be stored and never revealed. This key is used for
-                            signing the Client Identifier and the Access Token returned by the REST API call. This key is not
-                            stored by Samsung Knox and we will never request it from you.</li></ul></li></ol><p> <b>*</b> Access to Knox Cloud API Portal is supported by the following browsers: Chrome, Firefox, Safari, and Microsoft Edge. In order to get the best possible Knox Cloud API experience, upgrade your preferred browser to the latest
-                version. </p></li>
-                                            <li value="3">
-                Generate your unique Client Identifier from the <a href="https://us-kcs-api.samsungknox.com/kapi/" target="_blank">Knox API Portal</a>. This unique identifier only needs to be generated once, unless either:
-                <ul><li value="1">Privileges need to be changed.</li><li value="2">The Client Identifier is lost or stolen.</li></ul><p>In both cases, re-generating the Client identifier invalidates the previous one.</p><img src="../common/images/client-identifier.PNG" alt="Knox Cloud Portal" style="border: gray 2px solid;display: inline-block;margin-left: auto;margin-right: auto;margin-top: 10px;" /></li>
-                                            <li value="4">
-                Get the support files
-                <div class="tab0"><button class="tablinks0 active" onclick="openTab(event, 'Java0', 0)">Java</button><button class="tablinks0" onclick="openTab(event, 'JavaScript0', 0)">JavaScript</button><button class="tablinks0" onclick="openTab(event, 'C#0', 0)">.NET</button></div><div id="Java0" class="tabcontent0" style="display:block"><p>This solution is designed for a Java environment (v1.6 and above). Download the .jar and READ ME file </p><a class="round-button" href="../../cloud-authentication/download/samsung-knox-cloud-jar.zip" target="_blank" style="padding-top: 2p;margin-top: 0px;margin-bottom: 21px; margin-left: 0;">Download JAR</a></div><div id="JavaScript0" class="tabcontent0" style="display:none"><pre class="prettyprint" xml:space="preserve">$ npm install knox-token-library-js</pre></div><div id="C#0" class="tabcontent0" style="display:none"><p>Get the NuGet package.</p><a class="round-button" href="https://www.nuget.org/packages/Samsung.Knox.APITokenLibrary/1.0.0" target="_blank" style="padding-top: 2p;margin-top: 0px;margin-bottom: 21px; margin-left: 0;">Download nupkg</a></div></li>
-                                            <li value="5">
-                                                <p>Sign your Client Identifier with the token utility supplied above. See the source code below on how to sign your Client Identifier. For more information on using this utility jar, refer to the included READ ME file in the .jar file download package.</p>
-                                                <div class="tab1">
-                                                    <button class="tablinks1 active" onclick="openTab(event, 'Java1', 1)">Java</button>
-                                                    <button class="tablinks1" onclick="openTab(event, 'JavaScript1', 1)">JavaScript</button>
-                                                    <button class="tablinks1" onclick="openTab(event, 'C#1', 1)">.NET</button>
-                                                </div>
-                                                <div id="Java1" class="tabcontent1" style="display:block"><pre class="prettyprint" xml:space="preserve">
-String clientId = "myClientId";
-String cert = "src/test/resources/keys.json";
-String signedClientId = KnoxTokenUtility.generateSignedClientIdentifierJWT(new FileInputStream(cert), clientId);
-                </pre>
-                                                </div>
-                                                <div id="JavaScript1" class="tabcontent1" style="display:none"><pre class="prettyprint" xml:space="preserve">
-const knoxTokenLibraryJs = require('knox-token-library-js');
-var clientId = "&lt;insert-Client-Identifier-Step-3&gt;";
-var signedClientId = knoxTokenLibraryJs.generateSignedClientIdentifierJWT("keys.json", clientId );
-                </pre>
-                                                </div>
-                                                <div id="C#1" class="tabcontent1" style="display:none"><pre class="prettyprint" xml:space="preserve">
-using knoxAPIUtility;
-var cert = "&lt;insert path to keys.json&gt;";
-var clientId = "&lt;insert-Client-Identifier-Step-3&gt;";
-var signedClientId = KnoxTokenUtility.generateSignedClientIdentifierJWT(cert, clientId );
-                </pre>
-                                                </div>
-                                            </li>
-                                            <li value="6">
-                                                <p>Generate your access token by calling the <a href="../../devref/knox-cloud-authentication/index.htm#operation/createApiAccessToken">accesstoken</a> REST API with your signed <code>clientId</code> and <code>public key</code>. The signed Client Identifier should be set as the value to <code>clientIdentifierJwt</code> in the request body of the accesstoken REST API. You can also set the token valid time between 1 — 30 minutes. The valid time is set to 30 minutes by default.</p>
-                                                <p>For example:</p>
-                                                <div class="tab3">
-                                                    <button class="tablinks3 active">CURL</button>
-                                                </div>
-                                                <div id="Curl3" class="tabcontent3" style="display:block"><pre class="prettyprint" xml:space="preserve">
-curl -X POST &lt;Knox-AccessToken-Endpoint&gt; -H 'Content-Type: application/json' -d '{"clientIdentifierJwt": "signedClientId","base64EncodedStringPublicKey": "myPublicKey"}'</pre>
-                                                </div>
-                                            </li>
-                                            <li value="7">
-                                                <p>Sign your <code>accesstoken</code> with your private key, using the utility jar file as seen below.</p>
-                                                <div class="tab4">
-                                                    <button class="tablinks4 active" onclick="openTab(event, 'Java4', 4)">Java</button>
-                                                    <button class="tablinks4" onclick="openTab(event, 'JavaScript4', 4)">JavaScript</button>
-                                                    <button class="tablinks4" onclick="openTab(event, 'C#4', 4)">.NET</button>
-                                                </div>
-                                                <div id="Java4" class="tabcontent4" style="display:block"><pre class="prettyprint" xml:space="preserve">
-String accessToken = "myAccessToken";
-String signedAccessToken = KnoxTokenUtility.generateSignedAccessTokenJWT(new FileInputStream(cert), accessToken);
-                </pre>
-                                                </div>
-                                                <div id="JavaScript4" class="tabcontent4" style="display:none"><pre class="prettyprint" xml:space="preserve">
-var accessToken  = "&lt;insert-access-token&gt;"
-var signedAccessToken = knoxTokenLibraryJs.generateSignedAccessTokenJWT("keys.json", accessToken );
-                </pre>
-                                                </div>
-                                                <div id="C#4" class="tabcontent4" style="display:none"><pre class="prettyprint" xml:space="preserve">
-var accessToken  = "&lt;insert-access-token&gt;"
-var signedAccessToken =KnoxTokenUtility.generateSignedAccessTokenJWT(cert, accessToken );
-                </pre>
-                                                </div>
-                                                <p>The signed <code>accesstoken</code> expires after its valid time runs out. Once that happens it returns the <code>403225</code> error code.</p>
-                                            </li>
-                                            <li value="8">
-                                                <p>Enter your access token in the <code>x-knox-apitoken</code> header parameter of your Knox cloud service API request. See the API reference for your Knox cloud service for details.</p>
-                                                <p>Here is an example of how to detect when the access token expires, get a fresh access token, and call a Knox Cloud Service API again.</p>
-                                                <div class="tab6">
-                                                    <button class="tablinks6 active" onclick="openTab(event, 'Java6', 6)">Java</button>
-                                                </div>
-                                                <div id="Java6" class="tabcontent6" style="display:block"><pre class="prettyprint" xml:space="preserve">
-// Expired access token error code
-static String ACCESS_TOKEN_EXPIRED = "4032251";
-try {
-    // Call Knox cloud service API
-    callKnoxCloudService(signedAccessToken);
-} catch (Exception exception) {
-    String responseBodyAsString = ((HttpClientErrorException) exception).getResponseBodyAsString();
-    // Get error code value
-    JsonNode code = new ObjectMapper().readTree(responseBodyAsString).get("code");
-    // If error code matches expired access token error code, generate another token
-    if (code.asText().equalsIgnoreCase(ACCESS_TOKEN_EXPIRED)) {
-        // Generate a new access token by calling accesstoken API (Step 6)
-        accessToken = getAccessToken(signedClientId, publicKey);
-        // Sign your new access token (Step 7)
-        signedAccessToken = KnoxTokenUtility.generateSignedAccessTokenJWT(new FileInputStream(&lt;insert path to keys.json&gt;), accessToken)
-    }
-}
+        <p>
+        Complete these steps to generate your access token using the <a href="../../devref/knox-cloud-authentication/index.htm" target="_blank">Knox cloud service</a>
+        APIs.
+    </p>
+    <ol>
+        <li>Register for a Samsung Knox account
+            <ol type="a" style="list-style-type: lower-alpha;">
+                <li>Go to the <a href="https://samsungknox.com/" target="_blank">Samsung Knox</a></li>
+                <li>In the top-right corner, click <a href="https://www2.samsungknox.com/register"
+                        target="_blank">Enroll</a>.</li>
+                <li>Under <b>Work email</b>, enter the email address you use for work.</li>
+                <li>
+                    Click <b>NEXT</b>.
+                    <ul>
+                        <li>If you already have a Samsung account, the system automatically prompts you to fill out a
+                            form with your company's details.</li>
+                        <li>
+                            If you don't have a Samsung account, the system prompts you to create one. Once you create
+                            your Samsung account, open the confirmation email you received and click the link. You're
+                            then automatically redirected to the
+                            Samsung Knox website to fill out a form with your company's details.
+                        </li>
+                    </ul>
+                </li>
+            </ol>
+        </li>
+        <li>Apply for Knox Cloud API access by contacting your local Samsung representative.
+            <p>If you can't get access through a Samsung Knox representative, please create a support ticket. To submit
+                a support ticket:</p>
+            <ol type="a" style="list-style-type: lower-alpha;">
+                <li>Log in to the <a href="https://central.samsungknox.com" target="_blank">Knox
+                        Admin Portal</a>.</li>
+                <li>Under <b>Support &amp; dev resources</b>, click <b>Submit/view tickets</b>.</li>
+                <li>In the dialog that's shown, click <b>SUBMIT A SUPPORT TICKET</b>.</li>
+            </ol>
+        </li>
+        <li>Generate your key pair from the Knox Cloud API portal
+            <ul>
+                <li>US Region:
+                    <a href="https://us-kcs-api.samsungknox.com/kapi/">https://us-kcs-api.samsungknox.com/kapi/</a>
+                </li>
+                <li>EU Region: <a
+                        href="https://eu-kcs-api.samsungknox.com/kapi/">https://eu-kcs-api.samsungknox.com/kapi/</a>
+                </li>
+            </ul>
+        </li>
+        <li> From the portal, generate a public/private key pair called "keys.json" by clicking Download. This is a JSON
+            file that contains the following information. It only needs to be generated once:
+            <ul>
+                <li><b>Public key</b>: Key that is sent in the body of the accesstoken REST API and stored by Samsung
+                    Knox to validate signed requests.</li>
+                <li><b>Private key</b>: Key that should be stored and never revealed. This key is used for signing the
+                    Client Identifier and the Access Token returned by the REST API call. This key is not stored by
+                    Samsung Knox and we
+                    will never request it from you.
+                </li>
+            </ul>
+            <p>
+                * Access to Knox Cloud API portal is supported by the following browsers: Chrome, Firefox, Safari, and
+                Microsoft Edge. In order to get the best possible Knox Cloud API experience, upgrade your preferred
+                browser to
+                the latest version.
+            </p>
+        </li>
+        <li>Generate your unique Client Identifier from the Knox Cloud API portal. This unique identifier only needs to
+            be generated once, unless either:
+            <ol type="a" style="list-style-type: lower-alpha;">
+                <li>Privileges need to be changed.</li>
+                <li>The Client Identifier is lost or stolen.</li>
+            </ol>
+            <p>In both cases, re-generating the Client identifier invalidates the previous one.</p><img
+                src="../common/images/client-identifier.PNG"
+                alt="Knox Cloud API portal client identifier"
+                style="border: gray 2px solid; display: inline-block; margin-left: auto; margin-right: auto; margin-top: 10px" />
+        </li>
+        <li>
+            Get the support files
+            <div class="tab0"><button class="tablinks0 active" onclick="openTab(event, 'Java0', 0)">Java</button><button
+                    class="tablinks0" onclick="openTab(event, 'JavaScript0', 0)">JavaScript</button><button
+                    class="tablinks0" onclick="openTab(event, 'C#0', 0)">.NET</button></div>
+            <div id="Java0" class="tabcontent0" style="display:block">
+                <p>This solution is designed for a Java environment (v1.6 and above). Download the .jar and READ ME file
+                </p><a class="round-button"
+                    href="../../cloud-authentication/download/samsung-knox-cloud-jar.zip"
+                    target="_blank"
+                    style="padding-top: 2p;margin-top: 0px;margin-bottom: 21px; margin-left: 0;">Download JAR</a>
+            </div>
+            <div id="JavaScript0" class="tabcontent0" style="display:none">
+                <pre class="prettyprint" xml:space="preserve">$ npm install knox-token-library-js</pre>
+            </div>
+            <div id="C#0" class="tabcontent0" style="display:none">
+                <p>Get the NuGet package.</p><a class="round-button"
+                    href="https://www.nuget.org/packages/Samsung.Knox.APITokenLibrary/1.0.0" target="_blank"
+                    style="padding-top: 2p;margin-top: 0px;margin-bottom: 21px; margin-left: 0;">Download nupkg</a>
+            </div>
+        </li>
+        <li>
+            <p>Sign your Client Identifier with the token utility supplied above. See the source code below on how to
+                sign your Client Identifier. For more information on using this utility jar, refer to the included READ
+                ME file in the .jar file download package.</p>
+            <div class="tab1">
+                <button class="tablinks1 active" onclick="openTab(event, 'Java1', 1)">Java</button>
+                <button class="tablinks1" onclick="openTab(event, 'JavaScript1', 1)">JavaScript</button>
+                <button class="tablinks1" onclick="openTab(event, 'C#1', 1)">.NET</button>
+            </div>
+            <div id="Java1" class="tabcontent1" style="display:block">
+                <pre class="prettyprint" xml:space="preserve">
+    String clientId = "myClientId";
+    String cert = "src/test/resources/keys.json";
+    String signedClientId = KnoxTokenUtility.generateSignedClientIdentifierJWT(new FileInputStream(cert), clientId);
                     </pre>
-                                                </div>
-                                            </li>
-                                        </ol>
+            </div>
+            <div id="JavaScript1" class="tabcontent1" style="display:none">
+                <pre class="prettyprint" xml:space="preserve">
+    const knoxTokenLibraryJs = require('knox-token-library-js');
+    var clientId = "&lt;insert-Client-Identifier-Step-3&gt;";
+    var signedClientId = knoxTokenLibraryJs.generateSignedClientIdentifierJWT("keys.json", clientId );
+                    </pre>
+            </div>
+            <div id="C#1" class="tabcontent1" style="display:none">
+                <pre class="prettyprint" xml:space="preserve">
+    using knoxAPIUtility;
+    var cert = "&lt;insert path to keys.json&gt;";
+    var clientId = "&lt;insert-Client-Identifier-Step-3&gt;";
+    var signedClientId = KnoxTokenUtility.generateSignedClientIdentifierJWT(cert, clientId );
+                    </pre>
+            </div>
+        </li>
+        <li>
+            <p>Generate your access token by calling the <a
+                    href="../../devref/knox-cloud-authentication/index.htm#operation/createApiAccessToken">accesstoken</a>
+                REST API with your signed <code>clientId</code> and <code>public key</code>. The signed Client
+                Identifier should be set as the value to <code>clientIdentifierJwt</code> in the request body of the
+                accesstoken REST API. You can also set the token valid time between 1 — 30 minutes. The valid time is
+                set to 30 minutes by default.</p>
+            <p>For example:</p>
+            <div class="tab3">
+                <button class="tablinks3 active">CURL</button>
+            </div>
+            <div id="Curl3" class="tabcontent3" style="display:block">
+                <pre class="prettyprint" xml:space="preserve">
+    curl -X POST &lt;Knox-AccessToken-Endpoint&gt; -H 'Content-Type: application/json' -d '{"clientIdentifierJwt": "signedClientId","base64EncodedStringPublicKey": "myPublicKey"}'</pre>
+            </div>
+        </li>
+        <li>
+            <p>Sign your <code>accesstoken</code> with your private key, using the utility jar file as seen below.</p>
+            <div class="tab4">
+                <button class="tablinks4 active" onclick="openTab(event, 'Java4', 4)">Java</button>
+                <button class="tablinks4" onclick="openTab(event, 'JavaScript4', 4)">JavaScript</button>
+                <button class="tablinks4" onclick="openTab(event, 'C#4', 4)">.NET</button>
+            </div>
+            <div id="Java4" class="tabcontent4" style="display:block">
+                <pre class="prettyprint" xml:space="preserve">
+    String accessToken = "myAccessToken";
+    String signedAccessToken = KnoxTokenUtility.generateSignedAccessTokenJWT(new FileInputStream(cert), accessToken);
+                    </pre>
+            </div>
+            <div id="JavaScript4" class="tabcontent4" style="display:none">
+                <pre class="prettyprint" xml:space="preserve">
+    var accessToken  = "&lt;insert-access-token&gt;"
+    var signedAccessToken = knoxTokenLibraryJs.generateSignedAccessTokenJWT("keys.json", accessToken );
+                    </pre>
+            </div>
+            <div id="C#4" class="tabcontent4" style="display:none">
+                <pre class="prettyprint" xml:space="preserve">
+    var accessToken  = "&lt;insert-access-token&gt;"
+    var signedAccessToken =KnoxTokenUtility.generateSignedAccessTokenJWT(cert, accessToken );
+                    </pre>
+            </div>
+            <p>The signed <code>accesstoken</code> expires after its valid time runs out. Once that happens it returns
+                the <code>403225</code> error code.</p>
+        </li>
+        <li>
+            <p>Enter your access token in the <code>x-knox-apitoken</code> header parameter of your Knox cloud service
+                API request. See the API reference for your Knox cloud service for details.</p>
+            <p>Here is an example of how to detect when the access token expires, get a fresh access token, and call a
+                Knox Cloud Service API again.</p>
+            <div class="tab6">
+                <button class="tablinks6 active" onclick="openTab(event, 'Java6', 6)">Java</button>
+            </div>
+            <div id="Java6" class="tabcontent6" style="display:block">
+                <pre class="prettyprint" xml:space="preserve">
+    // Expired access token error code
+    static String ACCESS_TOKEN_EXPIRED = "4032251";
+    try {
+        // Call Knox cloud service API
+        callKnoxCloudService(signedAccessToken);
+    } catch (Exception exception) {
+        String responseBodyAsString = ((HttpClientErrorException) exception).getResponseBodyAsString();
+        // Get error code value
+        JsonNode code = new ObjectMapper().readTree(responseBodyAsString).get("code");
+        // If error code matches expired access token error code, generate another token
+        if (code.asText().equalsIgnoreCase(ACCESS_TOKEN_EXPIRED)) {
+            // Generate a new access token by calling accesstoken API (Step 6)
+            accessToken = getAccessToken(signedClientId, publicKey);
+            // Sign your new access token (Step 7)
+            signedAccessToken = KnoxTokenUtility.generateSignedAccessTokenJWT(new FileInputStream(&lt;insert path to keys.json&gt;), accessToken)
+        }
+    }
+                        </pre>
+            </div>
+        </li>
+    </ol>
                                         <!-- Inserts feedback module here -->
                                         <div id="feedback">
                                         </div>

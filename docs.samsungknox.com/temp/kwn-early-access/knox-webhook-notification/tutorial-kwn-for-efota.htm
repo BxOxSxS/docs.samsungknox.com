@@ -178,7 +178,44 @@
                                             </div>
                                         </nav>
                                         <h1>Knox Webhook Notification for Knox E-FOTA</h1>
-                                        <p>The following tutorial will help you get started on using the Knox Webhook Notification (KWN) API for Knox E-FOTA. Currently, the KWN API supports the Knox E-FOTA upload devices event that allows seamless bulk upload of multiple devices, and sends change notifications when the upload is complete.</p>
+                                        <p id="">The following tutorial will help you get started on using the Knox Webhook Notification (KWN) API for Knox E-FOTA.</p>
+                                        <p>Currently, you can use KWN to call the following Knox E-FOTA events and register them with KWN to receive a change notification when the event is complete:</p>
+                                        <table style="width: 100%;">
+                                            <col />
+                                            <col />
+                                            <col />
+                                            <tbody>
+                                                <tr>
+                                                    <td style="font-weight: bold">Event</td>
+                                                    <td style="font-weight: bold">Action</td>
+                                                    <td style="font-weight: bold;text-align: center;">Description</td>
+                                                </tr>
+                                                <tr>
+                                                    <td><code>KE_DEVICE_BULK_CREATE</code>
+                                                    </td>
+                                                    <td>Bulk upload.</td>
+                                                    <td>Allows bulk upload of devices. Supports a maximum of 10,000 devices.</td>
+                                                </tr>
+                                                <tr>
+                                                    <td><code>KE_DEVICE_BULK_REFRESH</code>
+                                                    </td>
+                                                    <td>Bulk refresh.</td>
+                                                    <td>Forces the Knox E-FOTA client app to refresh on multiple devices.</td>
+                                                </tr>
+                                                <tr>
+                                                    <td><code>KE_DEVICE_BULK_DELETE</code>
+                                                    </td>
+                                                    <td>Bulk deletion.</td>
+                                                    <td>Allows bulk deletion of devices.</td>
+                                                </tr>
+                                                <tr>
+                                                    <td><code>KE_CAMPAIGN_DELETE</code>
+                                                    </td>
+                                                    <td>Campaign deletion.</td>
+                                                    <td>Deletes an existing Knox E-FOTA campaign.</td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
                                         <h2 id="prerequisites">Prerequisites</h2>
                                         <h3 id="registration">Registration</h3>
                                         <p>To successfully make calls to the Knox Guard APIs, register as a developer on <a href="https://developer.samsungknox.com/">developer.samsungknox.com</a> and download the latest Knox SDK.</p>
@@ -195,40 +232,43 @@
                                         <h2 id="use-knox-webhook-notification-api">Use the Knox Webhook Notification API</h2>
                                         <h3 id="upload-devices">Upload devices</h3>
                                         <p>This tutorial demonstrates how you can use KWN to call the Knox E-FOTA upload devices event to bulk upload 10,000 devices, and register the event with KWN to receive change notifications when the upload is complete.</p>
-                                        <ol>
-                                            <li value="1">Subscribe a particular event to KWN through the <b>Create Subscription</b> operation — <code> POST /kcs/kwn/v0.1/subscriptions:</code><ul><li value="1">Provide a subscription URL — known as a "callback" — that you'll register to receive asynchronous API operation results once the event is complete.</li><li value="2">Register the <code>KE_DEVICE_BULK_CREATE</code> event to asynchronously receive the API operation result on the device upload API operation once it's complete.</li></ul></li>
-                                            <li value="2">Upload the devices. The upload operation makes an API call to the <a href="../../devref/knox-efota/index.htm#tag/Device/paths/~1devices~1upload/post" target="_blank">Knox E-FOTA upload devices operation</a>.</li>
-                                            <li value="3">After Knox E-FOTA finishes executing the requested operation — uploading of 10,000 devices — you'll receive the following message in the body of the subscribed URL call as the response payload:</li>
-                                            <div id="Java1" class="tabcontent1" style="display:block"><pre class="prettyprint" xml:space="preserve">
+                                        <h4 id="step-1-subscription">Step 1: Subscribe an event</h4>
+                                        <p>Subscribe a particular event to KWN through the <b>Create Subscription</b> operation — <code> POST /kcs/kwn/v0.1/subscriptions:</code></p>
+                                        <ul>
+                                            <li value="1">Provide a subscription URL — known as a "callback" — that you'll register to receive asynchronous API operation results once the event is complete.</li>
+                                            <li value="2">Register the <code>KE_DEVICE_BULK_CREATE</code> event to asynchronously receive the API operation result on the device upload API operation once it's complete.</li>
+                                        </ul>
+                                        <h4 id="step-2-upload-devices">Step 2: Upload a device</h4>
+                                        <p>Upload the devices. The upload operation makes an API call to the <a href="../../devref/knox-efota/index.htm#tag/Device/paths/~1devices~1upload/post" target="_blank">Knox E-FOTA upload devices operation</a>.</p>
+                                        <h4 id="step-3-handle-response-message">Step 3: Handle response message</h4>
+                                        <p>After Knox E-FOTA finishes executing the requested operation — uploading of 10,000 devices — you'll receive the following message in the body of the subscribed URL call as the response payload:</p>
+                                        <div id="Java1" class="tabcontent1" style="display:block"><pre class="prettyprint" xml:space="preserve">
 {
   "event": "KE_DEVICE_BULK_CREATE",
+  "subscriptionId": "63689d7e4ee2721f7b50d2b1",
   "payload": {
     "successCount": 1,
-    "errorCount": 1,
+    "failureCount": 1,
     "successfulDevices": [
       {
         "imei": "354721981931820",
-        "sn": null,
-        "id": null
+        "serialNumber": null,
+        "deviceId": null
       }
     ],
     "failedDevices": [
       {
         "imei": "355745090079329",
-        "sn": null,
+        "serialNumber": null,
         "error": "This IMEI [355745090079329] already exists for different reseller and customer"
       }
     ]
-  },
-  "subscriptionId": "63689d7e4ee2721f7b50d2b1"
+  }
 }
-                            
-                </pre>
-                                            </div>
-                                        </ol>
-                                        <h3 id="multiple-uploads">Multiple Uploads</h3>
-                                        <p>You can use the same KWN subscription with multiple bulk device upload events.</p>
-                                        <p>In the case of Knox E-FOTA:</p>
+        </pre>
+                                        </div>
+                                        <h3 id="multiple-uploads">Multiple Upload Events</h3>
+                                        <p>You can use the same KWN subscription with multiple bulk device upload events, as follows:</p>
                                         <ul>
                                             <li value="1">You must set the <code>X-WSM-TXID</code> header when you call the Knox E-FOTA bulk device upload API operation.</li>
                                             <li value="2">Once the API operation is complete, Knox E-FOTA will pass the value of <code>X-WSM-TXID</code> to KWN.</li>
@@ -289,7 +329,7 @@ if (verified) {
             </pre>
                                             </div>
                                         </ol>
-                                        <p><b>Complete code</b>
+                                        <p><h3>Complete code</h3>
                                         </p>
                                         <div id="Java6" class="tabcontent1" style="display:block"><pre class="prettyprint" xml:space="preserve">
 public ResponseEntity&lt;String&gt; receiveResult(HttpServletRequest request,
@@ -338,12 +378,24 @@ public ResponseEntity&lt;String&gt; receiveResult(HttpServletRequest request,
   }
           </pre>
                                         </div>
+                                        <h2 id="one-url-many-sub">One URL for multiple subscriptions</h2>
+                                        <p>You can also configure one URL across multiple subscriptions by following the <a href="tutorial-kwn-for-efota.htm#one-url-per-sub" class="selected">steps mentioned below</a>. However, you must meet the following conditions:</p>
+                                        <ul>
+                                            <li value="1">No API calls are made to the same event more than once, that is, the events must be unique across all your subscriptions.</li>
+                                            <li value="2">The number of subscriptions you can create can at most be equal to the number of unique events you can call using KWN.</li>
+                                        </ul>
+                                        <p class="callout note"><b>NOTE</b> — As a customer, the maximum number of subscriptions you create should be equal to the number of unique events you can call using KWN. Check out <a href="whats-new.htm">What's New</a> for a list of all the events that KWN currently supports.</p>
                                         <h2 id="emms-multiple-customers">For EMMs with multiple customers</h2>
-                                        <p>KWN also supports EMMs that will make API calls to the Knox E-FOTA API on behalf of customers. You can make multiple subscriptions by configuring a URL for each subscription, since one only subscription can be returned per customer.</p>
-                                        <p>For example, while creating a subscription:
-        <ul><li value="1">if you use <b>companyA</b> to create the subscription using the KWN Subscription API,</li><li value="2">if you configure <code>example.com/kwn_result/companyA</code> as the callback URL, and</li><li value="3">if you make a call to the Knox E-FOTA bulk device upload API operation</li></ul>
-        then the configured URL <code>example.com/kwn_result/companyA</code> will receive the operation result.</p>
-                                        <p>Similarly, repeating all the aforementioned steps for <b>companyB</b>, <code>example.com/kwn_result/companyB</code> will receive the operation result for a different subscription associated with <b>companyB</b>.</p>
+                                        <p>KWN also supports EMMs that will make API calls to the Knox E-FOTA API on behalf of customers. You can make multiple subscriptions either by configuring a separate URL for each subscription or using the same URL across all subscriptions.</p>
+                                        <h3 id="one-url-per-sub">One URL per subscription</h3>
+                                        <p>You can configure one URL while creating a subscription, as follows:</p>
+                                        <ol>
+                                            <li value="1">Use <b>companyA</b> to create the subscription using the KWN Subscription API.</li>
+                                            <li value="2">Configure <code>example.com/kwn_result/companyA</code> as the callback URL.</li>
+                                            <li value="3">Make a call to one of the <a href="whats-new.htm">supported events</a>, for example, the Knox E-FOTA bulk device upload API operation.</li>
+                                        </ol>
+                                        <p>Once you successfully complete these steps, the configured URL <code>example.com/kwn_result/companyA</code> will receive the operation result.</p>
+                                        <p>Similarly, after repeating all the aforementioned steps for <b>companyB</b>, <code>example.com/kwn_result/companyB</code> will receive the operation result for a different subscription associated with <b>companyB</b>.</p>
                                         <!-- Inserts feedback module here -->
                                         <div id="feedback">
                                         </div>

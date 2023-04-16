@@ -2871,8 +2871,7 @@
                                             <h1><a name="aanchor271"></a>
                                                 <MadCap:concept term="knox-manage" />Android Enterprise Policies</h1>
                                             <p>This section describes the policies you can <a href="configure-profile-policies-by-device-platform.htm">configure</a> for Android Enterprise devices.</p>
-                                            <p>Knox Manage supports four types of Android Enterprise devices — Fully Managed, Work Profile, Fully Managed with Work Profile, and Work Profile on Company-owned Devices.</p>
-                                            <div class="callout note"><b>NOTE</b> — Until KM 20.11, KM only supported Android Enterprise policies for device management. Starting with KM 21.1, for devices running a Work Profile on a company-owned device, KM now supports Knox policies.</div>
+                                            <p>Knox Manage supports the following four types of Android Enterprise devices:</p>
                                             <table>
                                                 <tbody>
                                                     <tr>
@@ -2892,13 +2891,22 @@
                                                         <td>Controls both the personal and work areas and applies different policies to each of them. Android 10 and lower.</td>
                                                     </tr>
                                                     <tr>
-                                                        <td>Work Profile on company-owned device</td>
+                                                        <td>Work Profile on Company-owned Device</td>
                                                         <td>Controls both the personal and work areas, and applies different policies to each of them. Android 11 and higher.</td>
                                                     </tr>
                                                 </tbody>
                                             </table>
-                                            <div class="callout note"><b>NOTE</b> — Some policies support only Samsung Galaxy devices.</div>
-                                            <p>The availability of each policy varies depending on the enrollment type and the OS version. IT admins can also choose to turn on the <b>Highlight Work Profile on Company-owned Devices Profile Only</b> setting to show the available policies highlighted in blue.</p>
+                                            <p>The availability of the policies vary depending on the enrollment type and the OS version. IT admins can choose to turn on the <b>Highlight Work Profile on Company-owned Devices Profile Only</b> setting to show the available policies highlighted in blue.</p>
+                                            <div class="callout note"><b>NOTE</b> — 
+                                                <ul>
+                                                    <li>Some policies support only Samsung Galaxy devices.</li>
+                                                    <li>Until Knox Manage 20.11, Knox Manage only supported Android Enterprise policies for device management. Starting with Knox Manage 21.1, for devices running a Work Profile on a company-owned device, Knox Manage now supports Knox policies.</li>
+                                                </ul></div>
+                                            <p>Consider the following when configuring policies:</p>
+                                            <ul>
+                                                <li>By configuring the device settings for a profile, you can automatically update devices without the need for any user action.</li>
+                                                <li>After Knox Manage is activated and policies are applied, the device settings are automatically updated. After an update, device users can view the status in the notification messages.</li>
+                                            </ul>
                                             <h2 id="system">System</h2>
                                             <p>Provides backup and restore settings and other features. Updates the operating system on a device.</p>
                                             <table class="no-stripes" style="table-layout: fixed">
@@ -3507,7 +3515,7 @@
                                                                 <li value="2"><b>Work Profile Controls</b> — The lock screen settings for a device's Work Profile. After the Work Profile is set up, the device user is directed to set a lock screen.</li>
                                                             </ul>
                                                             <div class="callout warning"><b>IMPORTANT</b> —
-                            <ul><li value="1">For the Fully Managed type and the Fully Managed with Work Profile type, if the strength of the lock screen is lower than the requirements of the policy, the device is locked through the Lock Task mode. The device user can't use any other functions until they set a lock screen.</li><li value="2">If the device user creates a lock screen for the Work Profile that does not comply with the password policy's requirements, all apps on the Work Profile—except essential apps like Knox Manage—are suspended. Suspending the apps, as opposed to just hiding them, offers greater security since unauthorized users cannot gain access to any Work Profile data.</li><li value="3">If the device is using a One Lock password and the policy for the personal area and Work Profile are configured differently, the stronger password policy is applied.</li><li value="4">During enrollment of company-owned devices with a Work Profile, the KM agent prompts the device user to set locks for the personal profile and Work Profile. If the device is rebooted before the locks are set, Managed Google Play functionality might be inhibited or the device might become bricked. For more details and remedies, see <a href="kbas/kba-enforce-password-policy-during-enrollment-company-owned-device-work-profile.htm">How to enforce a password policy during enrollment for company-owned devices with a Work Profile</a>.</li></ul></div>
+                            <ul><li value="1">For the Fully Managed type and the Fully Managed with Work Profile type, if the strength of the lock screen is lower than the requirements of the policy, the device is locked through the Lock Task mode. The device user can't use any other functions until they set a lock screen.</li><li value="2">If the device user creates a lock screen for the Work Profile that does not comply with the password policy's requirements, all apps on the Work Profile—except essential apps like Knox Manage—are suspended. Suspending the apps, as opposed to just hiding them, offers greater security since unauthorized users cannot gain access to any Work Profile data.</li><li value="3">If the device is using a One Lock password and the policy for the personal area and Work Profile are configured differently, the stronger password policy is applied.</li><li value="4">During enrollment of company-owned devices with a Work Profile, the Knox Manage agent prompts the device user to set locks for the personal profile and Work Profile. If the device is rebooted before the locks are set, Managed Google Play functionality might be inhibited or the device might become bricked. For more details and remedies, see <a href="kbas/kba-enforce-password-policy-during-enrollment-company-owned-device-work-profile.htm">How to enforce a password policy during enrollment for company-owned devices with a Work Profile</a>.</li></ul></div>
                                                             <div class="callout success"><b>TIP</b> —
                             <ul><li value="1">If a user forgets their password and contacts you, you should send the device command to reset the password and guide them to enter the temporary password. For more information about this procedure, see <a href="view-device-details.htm">Viewing the device details</a>.</li></ul></div>
                                                         </td>
@@ -4039,7 +4047,7 @@
                                                         <td>
                                                             <p>Add individual application. Set different permission policies for each application.</p>
                                                             <ul>
-                                                                <li value="1">To add an application, click <b>Add</b>, and then select applications in the "Select Application" window.</li>
+                                                                <li value="1">To add an application, click <b>Add</b>, and then select applications in the <b>Select Application</b> window.</li>
                                                                 <li value="2">To delete an application, click <img class="no-border" src="../../assets/merge/images/delete.png" alt="delete" style="width: 12.45px;height: 14px;" /> next to the added application.</li>
                                                             </ul>
                                                             <div class="callout note"><b>NOTE</b>—
@@ -4057,7 +4065,7 @@
                                                         <td>
                                                             <p>Add applications to prevent their execution. Icon of the blocked application disappears and users cannot run the application.</p>
                                                             <ul>
-                                                                <li value="1">To add an application, click <b>Add</b>, and then select applications in the "Select Application" window.</li>
+                                                                <li value="1">To add an application, click <b>Add</b>, and then select applications in the <b>Select Application</b> window.</li>
                                                                 <li value="2">To delete an application, click <img class="no-border" src="../../assets/merge/images/delete.png" alt="delete" style="width: 12.45px;height: 14px;" /> next to the added application.</li>
                                                             </ul>
                                                             <div class="callout note"><b>NOTE</b> — An application that has been added on the <a href="android-enterprise-policies.htm#application-app-download-allowlist" class="selected">App download allowlist</a> policy cannot be added.</div>
@@ -4074,7 +4082,7 @@
                                                         <td>
                                                             <p>Add applications to prevent their uninstallation.</p>
                                                             <ul>
-                                                                <li value="1">To add an application, click <b>Add</b>, and then select applications in the "Select Application" window.</li>
+                                                                <li value="1">To add an application, click <b>Add</b>, and then select applications in the <b>Select Application</b> window.</li>
                                                                 <li value="2">To delete an application, click <img class="no-border" src="../../assets/merge/images/delete.png" alt="delete" style="width: 12.45px;height: 14px;" /> next to the added application.</li>
                                                             </ul>
                                                         </td>
@@ -4093,7 +4101,7 @@
                                                         <td>
                                                             <p>Add system applications to be activated.</p>
                                                             <ul>
-                                                                <li value="1">To add an application, click <b>Add</b>, and then select applications in the "Select Application" window.</li>
+                                                                <li value="1">To add an application, click <b>Add</b>, and then select applications in the <b>Select Application</b> window.</li>
                                                                 <li value="2">To delete an application, click <img class="no-border" src="../../assets/merge/images/delete.png" alt="delete" style="width: 12.45px;height: 14px;" /> next to the added application.</li>
                                                             </ul>
                                                         </td>
@@ -4114,7 +4122,7 @@
                                                     <tr>
                                                         <td id="application-app-delegation-scope">&gt; App Delegation Scope</td>
                                                         <td>
-                                                            <p>Configures delegated scopes for apps. Each configuration targets an app with a profile in the KM tenant and assigns scopes to it. You can only manage one delegation configuration per app. Only available if the <a href="android-enterprise-policies.htm#application-app-delegation-scope-management" class="selected">App Delegation Scope Management</a> policy is set to <b>Apply</b>.</p>
+                                                            <p>Configures delegated scopes for apps. Each configuration targets an app with a profile in the Knox Manage tenant and assigns scopes to it. You can only manage one delegation configuration per app. Only available if the <a href="android-enterprise-policies.htm#application-app-delegation-scope-management" class="selected">App Delegation Scope Management</a> policy is set to <b>Apply</b>.</p>
                                                             <h4>Values</h4>
                                                             <p>To assign delegated scopes to an app:</p>
                                                             <ol>
@@ -4162,7 +4170,7 @@
                                                         <td>
                                                             <p>Add applications that can use an external SD card.</p>
                                                             <ul>
-                                                                <li value="1">To add an application, click <b>Add</b>, and then select applications in the "Select Application" window.</li>
+                                                                <li value="1">To add an application, click <b>Add</b>, and then select applications in the <b>Select Application</b> window.</li>
                                                                 <li value="2">To delete an application, click <img class="no-border" src="../../assets/merge/images/delete.png" alt="delete" style="width: 12.45px;height: 14px;" /> next to the added application.</li>
                                                             </ul>
                                                         </td>
@@ -4477,8 +4485,8 @@
                                                                     </ul>
                                                                     <p>A <b>200 OK</b> message shows, which contains the account's detailed information as JSON values.</p>
                                                                 </li>
-                                                                <li value="7">Copy the value of the <b>"ID"</b> field in the message.</li>
-                                                                <li value="8">Back on the KM console, paste the copied ID value in the <b>Google User ID</b> field.</li>
+                                                                <li value="7">Copy the value of the <b>ID</b> field in the message.</li>
+                                                                <li value="8">Back on the Knox Manage console, paste the copied ID value in the <b>Google User ID</b> field.</li>
                                                                 <li value="9">Click <img class="no-border" src="../../assets/merge/images/B-add.png" alt="add" style="width: 15.56px;height: 14px;" />.</li>
                                                             </ol>
                                                         </td>
@@ -4706,12 +4714,15 @@
                                             </table>
                                             <h2 id="wifi">Wi-Fi</h2>
                                             <p>Configures the Wi-Fi settings, such as SSID, security type, and proxy.</p>
-                                            <p>Click <img class="no-border" src="../../assets/merge/images/B-add.png" alt="add" style="width: 15.56px;height: 14px;" /> to add a configuration.</p>
-                                            <p>You can add or edit up to 50 configurations when you save the profile.</p>
+                                            <p>Click <img class="no-border" src="../../assets/merge/images/B-add.png" alt="add" style="width: 15.56px;height: 14px;" /> to add a configuration. You can add or edit up to 50 configurations when you save the profile.</p>
                                             <p>Wi-Fi configuration is not applied to the Work Profile area of devices.</p>
                                             <ul>
                                                 <li value="1">For devices enrolled as Fully Managed with Work Profile, the Wi-Fi configuration is applied only to the Fully Managed area of the device.</li>
                                                 <li value="2">For device enrolled as Work Profile, the Wi-Fi configuration is not applied.</li>
+                                            </ul>
+                                            <p>In addition to the general considerations applicable to all policies, consider the following when creating a Wi-Fi configuration:</p>
+                                            <ul>
+                                                <li>If a device user deletes the initial auto-applied configuration, the deleted configuration is automatically re-applied when the device is rebooted.</li>
                                             </ul>
                                             <table class="no-stripes">
                                                 <tbody>
@@ -4794,19 +4805,19 @@
                                                                 <li value="2"><b>User certificate input method</b> — Select a user certificate confirmation method.</li>
                                                             </ul>
                                                             <ol style="list-style-type: lower-roman;">
-                                                                <li value="1"><b>EMM Management Certificate</b> — Register an external certificate on the Knox Manage server for each network setting, and then verify each network setting using that certificate. All users share this one certificate for each network setting. Navigate to Advanced &gt; Certificate &gt; External Certificate to register network settings for each purpose.</li>
+                                                                <li value="1"><b>EMM Management Certificate</b> — Register an external certificate on the Knox Manage server for each network setting, and then verify each network setting using that certificate. All users share this one certificate for each network setting. Navigate to <b>Advanced</b> &gt; <b>Certificate</b> &gt; <b>External Certificate</b> to register network settings for each purpose.</li>
                                                                 <li value="2">
-                                                                    <p><b>Connector interworking</b> — Verifies network settings using the user information obtained by applying the filter set for the connector. To verify the network settings on the device, you should set the Service <b>Type as Profile Configuration(Certification)</b> when you register a connector in <b>Advanced &gt; System Integration &gt; Directory Connector</b>. To learn more about how to add a directory connector, see <a href="add-sync-services.htm">Add sync services</a>.</p>
+                                                                    <p><b>Connector interworking</b> — Verifies network settings using the user information obtained by applying the filter set for the connector. To verify the network settings on the device, you should set the Service <b>Type as Profile Configuration(Certification)</b> when you register a connector in <b>Advanced</b> &gt; <b>System Integration</b> &gt; <b>Directory Connector</b>. To learn more about how to add a directory connector, see <a href="add-sync-services.htm">Add sync services</a>.</p>
                                                                     <p>When you search for a user using the filter set for the connector, the user certificate (.p12 or .pfx) corresponding to the obtained user information is applied along with a profile, allowing you to use this certificate to verify the user.</p>
                                                                 </li>
-                                                                <li value="3"><b>Issuing external CA</b> — Register a certificate obtained from an external certificate authority to <b>Advanced &gt; Certificate &gt; Certificate Template</b>. Then, you register a certificate template for each network setting, and verify it as a user certificate. To learn more about how to add an external certificate, see <a href="external-certificates.htm">External certificates</a>.</li>
+                                                                <li value="3"><b>Issuing external CA</b> — Register a certificate obtained from an external certificate authority to <b>Advanced</b> &gt; <b>Certificate</b> &gt; <b>Certificate Template</b>. Then, you register a certificate template for each network setting, and verify it as a user certificate. To learn more about how to add an external certificate, see <a href="external-certificates.htm">External certificates</a>.</li>
                                                             </ol>
                                                         </td>
                                                         <td />
                                                     </tr>
                                                     <tr>
                                                         <td id="wifi-ca-certificate">CA certificate</td>
-                                                        <td>Select a root certificate. Among the certificates registered <b>in Advanced &gt; Certificate &gt; External Certificate</b>, those with the Purpose set as <b>Wi-Fi</b> and the Type set as <b>Root</b> are included on the list.</td>
+                                                        <td>Select a root certificate. Among the certificates registered in <b>Advanced</b> &gt; <b>Certificate</b> &gt; <b>External Certificate</b>, those with the Purpose set as <b>Wi-Fi</b> and the Type set as <b>Root</b> are included on the list.</td>
                                                         <td />
                                                     </tr>
                                                     <tr>
@@ -4904,15 +4915,19 @@
                                                     </tr>
                                                     <tr>
                                                         <td id="vpn-apps-use-vpn-configuration">&gt; Apps to use VPN Configuration</td>
-                                                        <td>Select applications to allow or disallow from using the VPN. To add an application, click <b>Allowlist Apps</b> or <b>Blocklist Apps</b>, click <b>Add</b>, and then select applications in the "Select Application" window.</td>
+                                                        <td>Select applications to allow or disallow from using the VPN. To add an application, click <b>Allowlist Apps</b> or <b>Blocklist Apps</b>, click <b>Add</b>, and then select applications in the <b>Select Application</b> window.</td>
                                                         <td />
                                                     </tr>
                                                 </tbody>
                                             </table>
                                             <h2 id="bookmark">Bookmark</h2>
-                                            <p>Configures the bookmark settings, such as the configuration ID and installation area.</p>
-                                            <p>For Android Enterprise devices, a shortcut to the bookmarked address of a specific URL is created on the home screen of the device, not in the web browser. Click <img class="no-border" src="../../assets/merge/images/B-add.png" alt="add" style="width: 15.56px;height: 14px;" /> to add a configuration.</p>
-                                            <p>You can add or edit up to 100 configurations when you save the profile.</p>
+                                            <p>Configures the bookmark settings, such as the configuration ID and installation area. For Android Enterprise devices, a shortcut to the bookmarked address of a specific URL is created on the home screen of the device, not in the web browser.</p>
+                                            <p> Click <img class="no-border" src="../../assets/merge/images/B-add.png" alt="add" style="width: 15.56px; height: 14px" /> to add a configuration. You can add or edit up to 100 configurations when you save the profile.</p>
+                                            <p>In addition to the general considerations applicable to all policies, consider the following when configuring bookmarks:</p>
+                                            <ul>
+                                                <li>If a device user deletes the initial auto-applied configuration, the deleted configuration is automatically re-applied when the device is rebooted.</li>
+                                                <li>If you configure multiple policies under a policy group, the device user must apply the policy settings manually.</li>
+                                            </ul>
                                             <div class="callout note"><b>NOTE</b> —
             <ul><li value="1">Only the device user can delete the shortcuts manually.</li><li value="2"><p>Deleting a bookmark policy from the Knox Manage agent can render different effects based on the OS version. In both cases, manual deletion by the device user is recommended:</p><ul><li value="1">Android Pie (9.0) — Shortcuts still appear grayed out on the home screen.</li><li value="2">Android Oreo (8.0) — Shortcuts are not removed.</li></ul></li></ul></div>
                                             <table class="no-stripes">
@@ -4962,10 +4977,17 @@
                                             </table>
                                             <h2 id="apn">APN</h2>
                                             <p>Configures the device's Access Point Name (APN) settings for cellular data connectivity.</p>
-                                            <p>Click <img class="no-border" src="../../assets/merge/images/B-add.png" alt="add" style="width: 15.56px;height: 14px;" /> to add a configuration.</p>
-                                            <p>You can add or edit up to 20 configurations when you save the profile.</p>
-                                            <div class="callout warning"><b>IMPORTANT</b> — If you configure one APN, then the APN configuration automatically applies when the profile is pushed to a device. However, if you configure multiple APNs, none of them apply automatically, and the device keeps its default APN. If multiple APNs are available but a specific one is required, instruct the device user to apply it using the Knox Manage agent.</div>
-                                            <div class="callout warning"><b>IMPORTANT</b> — If you're configuring an APN for a Samsung device running Android 11 and lower, don't configure an APN for both the Android Enterprise profile and Samsung Knox profile types. Configure it for only one.</div>
+                                            <p>Click <img class="no-border" src="../../assets/merge/images/B-add.png" alt="add" style="width: 15.56px; height: 14px" /> to add a configuration. You can add or edit up to 20 configurations when you save the profile.</p>
+                                            <p>In addition to the general considerations applicable to all policies, consider the following when creating an APN configuration:</p>
+                                            <ul>
+                                                <li>If a device user deletes the initial auto-applied configuration, the deleted configuration is automatically re-applied when the device is rebooted.</li>
+                                                <li>If you configure multiple policies under a policy group, the device user must apply the policy settings manually.</li>
+                                            </ul>
+                                            <div class="callout warning"><b>IMPORTANT</b> — 
+                                                <ul>
+                                                    <li>If you configure one APN, then the APN configuration automatically applies when the profile is pushed to a device. However, if you configure multiple APNs, none of them apply automatically, and the device keeps its default APN. If multiple APNs are available but a specific one is required, instruct the device user to apply it using the Knox Manage agent.</li>
+                                                    <li>If you're configuring an APN for a Samsung device running Android 11 and lower, don't configure an APN for both the Android Enterprise profile and Samsung Knox profile types. Configure it for only one.</li>
+                                                </ul></div>
                                             <table class="no-stripes">
                                                 <tbody>
                                                     <tr>
@@ -5132,7 +5154,7 @@
                                                         <td>
                                                             <p>Specifies the account username to use when connecting to the APN.</p>
                                                             <h4>Values</h4>
-                                                            <p>Enter a username. By default, the field contains the <b>${UserName}</b> lookup item, which substitutes for the username associated with the device in KM.</p>
+                                                            <p>Enter a username. By default, the field contains the <b>${UserName}</b> lookup item, which substitutes for the username associated with the device in Knox Manage.</p>
                                                         </td>
                                                         <td>
                                                             <p>Fully Managed — Android 9 and higher</p>
@@ -5293,9 +5315,13 @@
                                                 </tbody>
                                             </table>
                                             <h2 id="certificate">Certificate</h2>
-                                            <p>Allows using new certificate authority (CA) certificates and configuring the certificate settings.</p>
-                                            <p>You can install a user certificate on a device and use the certificate through Wi-Fi or on websites. Click <img class="no-border" src="../../assets/merge/images/B-add.png" alt="add" style="width: 15.56px;height: 14px;" /> to add a configuration.</p>
-                                            <p>You can add or edit up to 20 configurations when you save the profile.</p>
+                                            <p>Allows using new certificate authority (CA) certificates and configuring the certificate settings. You can install a user certificate on a device and use the certificate through Wi-Fi or on websites.</p>
+                                            <p>Click <img class="no-border" src="../../assets/merge/images/B-add.png" alt="add" style="width: 15.56px; height: 14px" /> to add a configuration. You can add or edit up to 20 configurations when you save the profile.</p>
+                                            <p>In addition to the general considerations applicable to all policies, consider the following when configuring certificates:</p>
+                                            <ul>
+                                                <li>If a device user deletes the initial auto-applied configuration, the deleted configuration is automatically re-applied when the device is rebooted.</li>
+                                                <li>If you configure multiple policies under a policy group, the device user must apply the policy settings manually.</li>
+                                            </ul>
                                             <table class="no-stripes">
                                                 <tbody>
                                                     <tr>
@@ -5325,11 +5351,11 @@
                                                             <ul>
                                                                 <li value="1"><b>EMM Management Certificate</b> — Register an external certificate on the Knox Manage server for each network setting, and then verify each network setting using that certificate. All users share this one certificate for each network setting.</li>
                                                             </ul>
-                                                            <div class="callout note"><b>NOTE</b> — Navigate <b>to Advanced &gt; Certificate &gt; External Certificate</b> to register network settings for each purpose.</div>
+                                                            <div class="callout note"><b>NOTE</b> — Navigate to <b>Advanced</b> &gt; <b>Certificate</b> &gt; <b>External Certificate</b> to register network settings for each purpose.</div>
                                                             <ul>
-                                                                <li value="1"><b>Connector interworking</b> — Verifies network settings using the user information obtained by applying the filter set for the connector. To verify the network settings on the device, you should set the Service <b>Type as Profile Configuration(Certification)</b> when you register a connector in <b>Advanced</b> &gt; System Integration &gt; <b>Directory Connector</b>. To learn more about how to add a directory connector, see <a href="add-sync-services.htm">Adding sync services</a>.</li>
+                                                                <li value="1"><b>Connector interworking</b> — Verifies network settings using the user information obtained by applying the filter set for the connector. To verify the network settings on the device, you should set the Service <b>Type as Profile Configuration(Certification)</b> when you register a connector in <b>Advanced</b> &gt; <b>System Integration</b> &gt; <b>Directory Connector</b>. To learn more about how to add a directory connector, see <a href="add-sync-services.htm">Adding sync services</a>.</li>
                                                                 <li value="2">When you search for a user using the filter set for the connector, the user certificate (.p12 or .pfx) corresponding to the obtained user information is applied along with a profile, allowing you to use this certificate to verify the user.</li>
-                                                                <li value="3"><b>Issuing external CA</b> — Register a certificate obtained from an external certificate authority to <b>Advanced</b> &gt; Certificate &gt; <b>Certificate Template</b>.
+                                                                <li value="3"><b>Issuing external CA</b> — Register a certificate obtained from an external certificate authority to <b>Advanced</b> &gt; <b>Certificate</b> &gt; <b>Certificate Template</b>.
                                 <p>Then, you register a certificate template for each network setting, and verify it as a user certificate. To learn more about how to add an external certificate, see <a href="external-certificates.htm">Adding external certificates</a>.</p></li>
                                                             </ul>
                                                         </td>
@@ -5340,8 +5366,8 @@
                                                         <td>
                                                             <p>Select a certification category when EMM Management Certificate is selected in User certificate input method,</p>
                                                             <ul>
-                                                                <li value="1"><b>CA certificate</b> — Select a certificate to use from the CA certificate list. Among the certificates registered in <b>Advanced &gt; Certificate &gt; External Certificate</b>, those with the Purpose set as CA Cert and the Type set as Root show on the list.</li>
-                                                                <li value="2"><b>User certificate</b> — Select a certificate to use from the User Certificate list. Among the certificates registered in <b>Advanced &gt; Certificate &gt; External Certificate</b>, those with the Purpose has been set as CA Cert and the Type set as User show on the list.</li>
+                                                                <li value="1"><b>CA certificate</b> — Select a certificate to use from the CA certificate list. Among the certificates registered in <b>Advanced</b> &gt; <b>Certificate</b> &gt; <b>External Certificate</b>, those with the Purpose set as CA Cert and the Type set as Root show on the list.</li>
+                                                                <li value="2"><b>User certificate</b> — Select a certificate to use from the User Certificate list. Among the certificates registered in <b>Advanced</b> &gt; <b>Certificate</b> &gt; <b>External Certificate</b>, those with the Purpose has been set as CA Cert and the Type set as User show on the list.</li>
                                                             </ul>
                                                         </td>
                                                         <td />
