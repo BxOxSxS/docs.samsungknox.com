@@ -1938,39 +1938,7 @@
                                                                 </li>
                                                             </ul>
                                                         </li>
-                                                        <li class="has-children"><a href="step-1-install-app.htm#">Knox E-FOTA</a>
-                                                            <ul class="sub-menu">
-                                                                <li><a href="../../knox-manage/efota-intro.htm">About Knox E-FOTA</a>
-                                                                </li>
-                                                                <li class="has-children"><a href="step-1-install-app.htm#">Knox E-FOTA</a>
-                                                                    <ul class="sub-menu">
-                                                                        <li><a href="../../knox-manage/efota-one-intro.htm">About Knox E-FOTA</a>
-                                                                        </li>
-                                                                        <li><a href="../../knox-manage/log-in-to-efota.htm">Log in to Knox E-FOTA</a>
-                                                                        </li>
-                                                                    </ul>
-                                                                </li>
-                                                                <li class="has-children"><a href="step-1-install-app.htm#">Knox E-FOTA on MDM</a>
-                                                                    <ul class="sub-menu">
-                                                                        <li><a href="../../knox-manage/efota-mdm-firmware.htm">About Knox E-FOTA on MDM</a>
-                                                                        </li>
-                                                                        <li><a href="../../knox-manage/view-the-e-fota-group-list.htm">View the E-FOTA group list</a>
-                                                                        </li>
-                                                                        <li><a href="../../knox-manage/add-devices-to-an-efota-group.htm">Add devices to an E-FOTA group</a>
-                                                                        </li>
-                                                                        <li><a href="../../knox-manage/modify-firmware-update-configuration.htm">Modify firmware update configuration</a>
-                                                                        </li>
-                                                                        <li class="has-children"><a href="step-1-install-app.htm#">View status and history</a>
-                                                                            <ul class="sub-menu">
-                                                                                <li><a href="../../knox-manage/view-device-firmware-update-status.htm">View device firmware update status</a>
-                                                                                </li>
-                                                                                <li><a href="../../knox-manage/view-efota-group-change-history.htm">View E-FOTA group change history</a>
-                                                                                </li>
-                                                                            </ul>
-                                                                        </li>
-                                                                    </ul>
-                                                                </li>
-                                                            </ul>
+                                                        <li><a href="../../knox-manage/efota-one-intro.htm">Knox E-FOTA</a>
                                                         </li>
                                                         <li class="has-children"><a href="step-1-install-app.htm#">Certificates</a>
                                                             <ul class="sub-menu">
@@ -2514,6 +2482,8 @@
                                                                 </li>
                                                                 <li><a href="update-firmware-ethernet.htm">Update firmware through Ethernet</a>
                                                                 </li>
+                                                                <li><a href="use-knox-efota-firmware-downloader.htm">Use the Knox E-FOTA firmware downloader</a>
+                                                                </li>
                                                             </ul>
                                                         </li>
                                                         <li class="has-children"><a href="step-1-install-app.htm#">Settings menu</a>
@@ -2851,7 +2821,7 @@
 									-->
                                     <div id="sec2" class="small-12 medium-8 large-9 columns">
                                         <div itemscope="itemscope" itemtype="http://schema.org/Guide">
-                                            <h1><a name="aanchor429"></a>
+                                            <h1><a name="aanchor421"></a>
                                                 <MadCap:concept term="efota-on-premise" />Step 1: Download and install the agent app</h1>
                                             <p>First, obtain access to Knox E-FOTA On-Premises from a Samsung reseller. Once your account is granted access, it's time to install the Knox E-FOTA On-Premises agent app. Contact a Samsung technical support engineer to get new agent app versions.</p>
                                             <p>There are three ways to install the agent on your devices:</p>
@@ -2895,22 +2865,71 @@
                                                 <li value="3">A device secured by Samsung Knox, connected to the internet through Wi-Fi or a mobile network</li>
                                             </ul>
                                             <h3 id="create-configuration-file">Create a configuration file</h3>
-                                            <p>On your PC, you first need to create a file called <em>efota_config</em>. In a text editor of your choice, enter the URL of your on-premises server and save it. Ensure that the file is not saved with a file extension.</p>
+                                            <p>On your PC, you first need to create a file called efota_config. In a text editor of your choice, enter the URL of your on-premises server.</p>
                                             <p>The on-premises server URL is defined by your organization and is used to access the Knox E-FOTA On-Premises web console. If you're not sure what this URL is, contact the Samsung installation engineer who configured your Knox E-FOTA On-Premises instance.</p>
                                             <p>For example, the URL might be in one of the following formats:</p>
                                             <ul>
                                                 <li value="1">https://example-sec.fota.net:6443/admin/</li>
                                                 <li value="2">http://181.107.61.233:6380/admin/</li>
                                             </ul>
+                                            <p>Then, enter the server password on the line underneath and save the file. Ensure the file isn't saved with a file extension. Your efota_config file should look like the following:</p><pre xml:space="preserve">
+https://example.server.url.com/admin/
+password_of_server
+            </pre>
+                                            <p>Alternatively, you can choose to set the server URL and password through an <a href="https://developer.android.com/reference/android/content/Intent" target="_blank">Android intent</a>. To do so, refer to the following sample code:</p><pre xml:space="preserve">
+...
+// package name, action
+final String PACKAGE_NAME   = "com.samsung.android.efotaagent";
+final String ACTION_CONFIG_MODE = PACKAGE_NAME + ".CONFIG_MODE";
+final String ACTION_SERVER_URL = PACKAGE_NAME + ".SERVER_URL";
+final String ACTION_BKS_PASSWORD = PACKAGE_NAME+".BKS_INFO";
+
+// set Config mode
+final String CONFIG_MODE_EXTRA = "MODE";
+final String CONFIG_MODE_FILE = "file";
+final String CONFIG_MODE_INTENT = "intent";
+// set server URL
+final String SERVER_URL_EXTRA = "URL";
+final String SERVER_URL = "https://example.server.url.com/admin/";
+// set server password
+final String BKS_INFO_EXTRA = "BKS";
+final String BKS_PASSWORD = "password_of_server";
+...
+// set config mode to intent
+sendBroadcast(new Intent()
+        .setAction(ACTION_CONFIG_MODE)
+        .putExtra(CONFIG_MODE_EXTRA, CONFIG_MODE_INTENT)
+        .setPackage(PACKAGE_NAME)
+        );
+// set URL by intent
+sendBroadcast(new Intent()
+        .setAction(ACTION_SERVER_URL)
+        .putExtra(SERVER_URL_EXTRA, SERVER_URL)
+        .setPackage(PACKAGE_NAME)
+        );
+// set password by intent
+sendBroadcast(new Intent()
+        .setAction(ACTION_BKS_PASSWORD)
+        .putExtra(BKS_INFO_EXTRA, BKS_PASSWORD)
+        .setPackage(PACKAGE_NAME)
+        );
+...
+// set config mode to file (efota_config)
+sendBroadcast(new Intent()
+        .setAction(ACTION_CONFIG_MODE)
+        .putExtra(CONFIG_MODE_EXTRA, CONFIG_MODE_FILE)
+        .setPackage(PACKAGE_NAME)
+        );
+            </pre>
                                             <h3 id="copy-configuration-file-to-device">Copy the configuration file to the device</h3>
                                             <p>There are two ways to get the configuration file on your device:</p>
                                             <ul>
-                                                <li value="1">Use your EMM to push the file to your device's <b>Downloads</b> folder, or</li>
-                                                <li value="2">Use your PC's file explorer to manually copy the file to your device's <b>Downloads</b></li>
+                                                <li value="1">Use your EMM to push the file to your device's Downloads folder, or</li>
+                                                <li value="2">Use your PC's file explorer to manually copy the file to your device's Downloads</li>
                                             </ul>
-                                            <p>Then, connect your device to the PC through USB. In your PC's file explorer, locate the <em>efota_config </em>file and copy it to your device's <b>Downloads</b> folder. Ensure the Knox E-FOTA On-Premises APK you received from your local Samsung representative is also included in the <b>Downloads </b>folder.</p>
+                                            <p>Then, connect your device to the PC through USB. In your PC's file explorer, locate the efota_config file and copy it to your device's Downloads folder. Ensure the Knox E-FOTA On-Premises APK you received from your local Samsung representative is also included in the Downloads folder.</p>
                                             <h3 id="install-knox-efota-on-premises-app">Install the Knox E-FOTA On-Premises app</h3>
-                                            <p>On the device, navigate to your <b>Downloads </b>folder and tap the Knox E-FOTA On-Premises APK to install it. After it's installed, tap the app icon to launch it.</p>
+                                            <p>On the device, navigate to your Downloads folder and tap the Knox E-FOTA On-Premises APK to install it. After it's installed, launch the app.</p>
                                             <div id="tutorial-progress">
                                                 <h2>Tutorial progress</h2>
                                                 <div class="progress" role="progressbar" tabindex="0" aria-valuenow="25" aria-valuemin="0" aria-valuetext="33 percent" aria-valuemax="100">
