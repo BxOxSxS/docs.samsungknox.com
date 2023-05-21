@@ -1060,7 +1060,7 @@
                                                             <ul class="sub-menu">
                                                                 <li class="has-children"><a href="license-management.htm#">Profiles</a>
                                                                     <ul class="sub-menu">
-                                                                        <li><a href="../knox-configure/updating-an-existing-device-profile.htm">Update an existing device profile</a>
+                                                                        <li><a href="../knox-configure/updating-an-existing-device-profile.htm">Update an existing profile</a>
                                                                         </li>
                                                                         <li><a href="../knox-configure/change-profile-assignment.htm">Change a device's profile assignment</a>
                                                                         </li>
@@ -1082,13 +1082,13 @@
                                                                         </li>
                                                                         <li><a href="../knox-configure/device-details-and-logs.htm">Device details and logs</a>
                                                                         </li>
-                                                                        <li><a href="../knox-configure/configuration-service.htm">Using the Configuration service</a>
+                                                                        <li><a href="../knox-configure/configuration-service.htm">Use the Configuration service</a>
                                                                         </li>
                                                                     </ul>
                                                                 </li>
                                                                 <li class="has-children"><a href="license-management.htm#">Library</a>
                                                                     <ul class="sub-menu">
-                                                                        <li><a href="../knox-configure/upload-an-application.htm">Upload an application</a>
+                                                                        <li><a href="../knox-configure/upload-an-application.htm">Upload an app</a>
                                                                         </li>
                                                                         <li><a href="../knox-configure/knox-configure-routines.htm">Knox Configure Routines</a>
                                                                         </li>
@@ -2688,9 +2688,9 @@
                                                                 </li>
                                                                 <li><a href="upload-devices.htm">Upload devices</a>
                                                                 </li>
-                                                                <li><a href="delete-devices.htm">Delete devices</a>
-                                                                </li>
                                                                 <li><a href="complete-payment.htm">Complete device management</a>
+                                                                </li>
+                                                                <li><a href="delete-devices.htm">Delete devices</a>
                                                                 </li>
                                                                 <li><a href="send-payment-notification.htm">Send notifications</a>
                                                                 </li>
@@ -2700,17 +2700,11 @@
                                                                 </li>
                                                                 <li><a href="view-device-log.htm">View device log</a>
                                                                 </li>
-                                                                <li><a href="device-deletion-log.htm">View device deletion log</a>
-                                                                </li>
                                                                 <li><a href="start-stop-blinking.htm">Start and stop blinking reminder</a>
                                                                 </li>
                                                                 <li><a href="lock-and-unlock-devices.htm">Lock and unlock devices</a>
                                                                 </li>
-                                                                <li><a href="update-message.htm">Update lock message</a>
-                                                                </li>
                                                                 <li><a href="send-relock-timestamp.htm">Send relock timestamp</a>
-                                                                </li>
-                                                                <li><a href="turn-on-off-relock.htm">Turn on/off relock reminder</a>
                                                                 </li>
                                                             </ul>
                                                         </li>
@@ -2846,96 +2840,61 @@
                                     <div id="sec2" class="small-12 medium-8 large-9 columns">
                                         <div itemscope="itemscope" itemtype="http://schema.org/Guide">
                                             <h1>License management</h1>
-                                            <p>A customer must purchase a license to use Knox Guard. As with other Knox Could Service (KCS)&#160;licenses, a customer can request a Knox Guard license from the sales team in their respective country. Once purchased, the customer enters their license into the Knox Guard console. A  license is applied and activated automatically when a device is accepted into Knox Guard. When a license expires, the devices mapped to the expired license are automatically released from Knox Guard management control. Devices with an expired license cannot be registered to the Samsung Knox server.</p>
-                                            <div class="callout warning"><b>NOTE</b> - Each device has its own unique license period based on the time of its enrollment. Once a license is activated on a device, the license is irrevocable and cannot be transferred to a different device. Devices can be enrolled in Knox Guard up to 1 year after they are initially ordered. This one year enrollment window is known as the <i>activation period</i>. A license will  expire if unused during the 1 year activation period.</div>
-                                            <div class="callout warning"><b>NOTE</b> - To avoid license utilization problems between trial and commercial licenses, always delete the trial license key from the tenant before adding production devices into Knox Guard. </div>
-                                            <p>Refer to the <b>Licenses</b> screen to  enter, delete or acquire additional licenses when device activations reduce existing device license counts.</p>
+                                            <p>To use Knox Guard, you need a license. Knox Guard offers a free trial license and a paid commercial license:</p>
+                                            <ul>
+                                                <li value="1"><b>Trial license</b> — You can generate a trial license in the Knox Admin Portal from the <b>Licenses</b> page. The trial license has a three-month <b>License activation period</b> and three-year <b>License device usage period</b>. The trial license only has 30 seats, meaning you can only activate 30 devices with it.
+                <p><img src="assets/kg-trial-license.png" style="width: 947px;height: 482px;" /></p></li>
+                                                <li value="2"><b>Commercial license</b> — You can purchase a commercial license from the sales team in your country. The commercial license has a three-year <b>License activation period</b> and also a three-year <b>License device usage period</b>. Once purchased, you can enter the license key in the Knox Guard console to activate it.</li>
+                                            </ul>
+                                            <p>As mentioned above, each license has two important periods — license activation period and License device usage period:</p>
+                                            <ul>
+                                                <li value="1"><b>License activation period</b> — A commercial Knox Guard license has a one-year activation period. Devices can be activated with the license during this period. After the activation period, the license expires, meaning no additional devices can be activated using that license anymore. However, the devices themselves remain active for a period of three years. This three-year period is called the <b>License device usage period</b>. If you buy additional seats for the license, the activation period is extended for one year from the date of the purchase.</li>
+                                                <li value="2"><b>License device usage period</b> — After a device is activated using a Knox Guard license, it remains active under the license for three years from the date of its activation, even if the license itself is past the <b>License activation period</b> or expired. This period is staggered, meaning each device enjoys a full three-year usage from its activation date regardless of the license expiry date.</li>
+                                            </ul>
+                                            <div class="callout warning"><b>NOTE</b> — Once a license is activated on a device, the license is irrevocable and cannot be transferred to a different device.</div>
                                             <h2>Manage Knox Guard licenses:</h2>
                                             <ol>
-                                                <li value="1">Select <b>Licenses</b> from the left-hand navigation menu. </li>
-                                            </ol>
-                                            <blockquote>
-                                                <p>
-                                                    <img src="../../assets/merge/images/knox-guard/licenses.png" />
-                                                </p>
-                                            </blockquote>
-                                            <ol start="2">
-                                                <li value="2">Review the following Knox Guard license utilization values listed for each listed license:</li>
-                                            </ol>
-                                            <ul>
-                                                <li value="1"><i>LICENSE NAME</i> - Displays the license name as a link that can be selected to review license details and, if necessary, update the license name. For more information, go to: <a href="license-management.htm#License" class="selected">License details.</a></li>
-                                                <li value="2"><i>TYPE</i> - Lists whether a license is a <b>Trial</b>, <b>Commercial</b>, or <b>Postpaid</b> license. Trial licenses are temporary and subject to expiration on the date listed within the <b>Expiry</b> column. Commercial licenses are for actual device deployments and have a much longer expiration period. Trial licenses can be deleted from the Knox Guard console when they are no longer required for device testing, or be converted to commercial licenses using the Samsung License Management (SLM) key generator. Always delete a trial license key before adding production devices. For more information, go to: <a href="license-management.htm#Delete" class="selected">Delete a license. </a></li>
-                                                <li value="3"><i>STATUS</i> - Lists each license as either <b>Expired</b>, <b>Active</b>, or <b>Registered</b> (not yet activated). When a device is successfully enrolled into Knox Guard it moves into an Active state.</li>
-                                                <li value="4"><i>PURCHASED SEATS</i> - Displays the maximum number of devices each listed license has paid to support. A Trial license supports 30 seats by default. Commercial licenses are negotiated point-of-sale for the number of license seats included. </li>
-                                                <li value="5"><i>REMAINING&#160;SEATS</i> - Lists the total license count still available, minus assigned licenses. As devices successfully enroll and move to an Active state, the remaining license seat count decreases  by 1.</li>
-                                                <li value="6"><i>ASSIGNED SEATS</i> - Lists the number of devices assigned a license seat. The number listed also includes consumed license seats. When a device is accepted, the <b>Assigned</b> column count increases by 1.</li>
-                                                <li value="7"><i>ACTIVATED SEATS</i> - Lists the number of devices that have been activated for each listed license. Activated seats are also included within the Assigned seats total. </li>
-                                                <li value="8"><i>ACTIVATION&#160;END DATE</i> - Displays the expiration date after which licenses can no longer be assigned or activated on devices. License depletion emails are sent when the license count is down to 10% (out of total) remaining seats, then another email when at 5%, and a final email at 3%. 
- </li>
-                                            </ul>
-                                            <ol start="3">
+                                                <li value="1">Select <b>Licenses</b> from the left-hand navigation menu.
+                <p><img src="../../assets/merge/images/knox-guard/licenses.png" /></p></li>
+                                                <li value="2">Review the following Knox Guard license utilization values listed for each listed license:
+                <ul><li value="1"><i>LICENSE NAME</i> — Displays the license name as a link that can be selected to review license details and, if necessary, update the license name. For more information, go to: <a href="license-management.htm#License" class="selected">License details</a>.</li><li value="2"><i>TYPE</i> — Lists whether a license is a <b>Trial</b>, <b>Commercial</b>, or <b>Postpaid</b> license. Trial licenses are temporary and subject to expiration on the date listed within the <b>Expiry</b> column. Commercial licenses are for actual device deployments and have a much longer expiration period. Trial licenses can be deleted from the Knox Guard console when they are no longer required for device testing, or be converted to commercial licenses using the Samsung License Management (SLM) key generator. Always delete a trial license key before adding production devices. For more information, go to: <a href="license-management.htm#Delete" class="selected">Delete a license</a>.</li><li value="3"><i>STATUS</i> — Lists each license as either <b>Expired</b>, <b>Active</b>, or <b>Registered</b> (not yet activated). When a device is successfully enrolled into Knox Guard, it moves into an Active state.</li><li value="4"><i>PURCHASED SEATS</i> — Displays the maximum number of devices each listed license has paid to support. A Trial license supports 30 seats by default. Commercial licenses are negotiated point-of-sale for the number of license seats included. </li><li value="5"><i>REMAINING SEATS</i> — Lists the total license count still available, minus assigned licenses. When a device successfully enrolls and moves to an active state, the count decreases by 1.</li><li value="6"><i>ASSIGNED SEATS</i> — Lists the number of devices assigned a license seat. The number listed also includes consumed license seats. When a device is accepted, the <b>Assigned</b> column count increases by 1.</li><li value="7"><i>ACTIVATED SEATS</i> — Lists the number of devices that have been activated for each listed license. Activated seats are also included within the Assigned seats total. </li><li value="8"><i>ACTIVATION END DATE</i> — Displays the expiration date after which licenses can no longer be assigned or activated on devices. License depletion emails are sent when the license count is down to 10% (out of total) remaining seats, then another email when at 5%, and a final email at 3%.</li></ul></li>
                                                 <li value="3">Optionally use the <b>Search</b> field, to search and locate specific licenses if unable to initially locate them within the Licenses screen.</li>
                                             </ol>
                                             <h2><a name="License"></a>License details</h2>
                                             <p>To review the details of a specific selected license:</p>
                                             <ol>
                                                 <li value="1">Select <b>Licenses</b> from the left-hand navigation menu. </li>
-                                                <li value="2">Select the <b>LICENSE&#160;NAME</b> link of a specific license you wish to review in greater detail.</li>
-                                            </ol>
-                                            <blockquote>
-                                                <p>
-                                                    <img src="../../assets/merge/images/knox-guard/license-detail.png" style="border-left-style: solid;border-left-width: 1px;border-left-color: ;border-right-style: solid;border-right-width: 1px;border-right-color: ;border-top-style: solid;border-top-width: 1px;border-top-color: ;border-bottom-style: solid;border-bottom-width: 1px;border-bottom-color: ;" />
-                                                </p>
-                                            </blockquote>
-                                            <ol data-mc-continue="true">
+                                                <li value="2">Select the <b>LICENSE NAME</b> link of a specific license you wish to review in greater detail.
+                <p><img src="../../assets/merge/images/knox-guard/license-detail.png" style="border-left-style: solid;border-left-width: 1px;border-left-color: ;border-right-style: solid;border-right-width: 1px;border-right-color: ;border-top-style: solid;border-top-width: 1px;border-top-color: ;border-bottom-style: solid;border-bottom-width: 1px;border-bottom-color: ;" /></p></li>
                                                 <li value="3">The <b>License Name</b> is the only editable value within the License details screen. If needed, revise the name to something more applicable and select the <b>SAVE</b> button. </li>
-                                                <li value="4">The license <b>Seats</b> portion of the License details screen describes the following:</li>
-                                            </ol>
-                                            <ul>
-                                                <li value="1"><i>Purchased</i> - Lists the number of license seats purchased on behalf of the selected license. Trial licenses support 30 devices by default, but can be transitioned to Commercial (perpetual) licenses as needed with the assistance of your reseller.  </li>
-                                                <li value="2"><i>Remaining</i> -  Lists the total number of remaining license seats available out of the total number of license seats purchased for this selected license. </li>
-                                                <li value="3"><i>Assigned</i> - When a device is accepted (enrolled)&#160;using this license, the Assigned column count increases by 1 to demonstrate the utilization of a license seat.</li>
-                                                <li value="4"><i>Activated</i> - Lists the total number of devices that have been activated using this license. </li>
-                                            </ul>
-                                            <ol data-mc-continue="true">
-                                                <li value="5">The <b>License Key</b> is displayed and used as a unique alphanumeric code  to activate this specific license. Before you enter a Commercial key you should ensure the Trial key is deleted. </li>
+                                                <li value="4">The license <b>Seats</b> portion of the License details screen describes the following:
+                <ul><li value="1"><i>Purchased</i> — Lists the number of license seats purchased on behalf of the selected license. Trial licenses support 30 devices by default, but can be transitioned to Commercial (perpetual) licenses as needed with the assistance of your reseller. </li><li value="2"><i>Remaining</i> — Lists the total number of remaining license seats available out of the total number of license seats purchased for this selected license. </li><li value="3"><i>Assigned</i> — When a device is accepted (enrolled) using this license, the Assigned column count increases by 1 to demonstrate the utilization of a license seat.</li><li value="4"><i>Activated</i> — Lists the total number of devices that have been activated using this license. </li></ul></li>
+                                                <li value="5">The <b>License Key</b> is displayed and used as a unique alphanumeric code to activate this specific license. Before you enter a Commercial key you should ensure the Trial key is deleted. </li>
                                                 <li value="6">The <b>Owner</b> and email address of the device provider using Knox Guard to manage device subscriptions and payments using this license.</li>
                                                 <li value="7">The license type is displayed as <b>Trial</b> or <b>Commercial</b>. Trial licenses are temporary and subject to expiration upon the Activation End Date.Commercial licenses are for actual device deployments and have a much longer expiration period. Trial licenses can be deleted from the Knox Guard console when they are no longer required for device testing, or be converted to commercial licenses using the Samsung License Management (SLM) key generator.</li>
-                                                <li value="8">Lists the selected license <b>Status</b> as  either <b>Expired,</b> <b>Active</b> (successfully enrolled into Knox Guard), or <b>Registered</b> (not yet activated).</li>
-                                                <li value="9">The <b>Issue Date</b> defines when the license was originally  issued and available for allocation. </li>
+                                                <li value="8">Lists the selected license <b>Status</b> as either <b>Expired,</b> <b>Active</b> (successfully enrolled into Knox Guard), or <b>Registered</b> (not yet activated).</li>
+                                                <li value="9">The <b>Issue Date</b> defines when the license was originally issued and available for allocation. </li>
                                                 <li value="10">The <b>Activation Start Date</b> defines the beginning date and time a license can be activated for device license seat allocation. The Activation Start Date, as opposed to the Issue date, begins the expiration countdown of a trial license's activation period. </li>
                                                 <li value="11">The <b>Activation End Date</b> lists end of the license seat activation period under the terms of this selected license. After this date, this license cannot be used to assign or activate additional devices. Devices that have already been activated with this license can remain active for the remainder of the Knox Guard 3 year service period. License depletion emails are sent when the license count is down to 10% (out of total) remaining seats, then another email when at 5%, and a final email at 3%. </li>
                                                 <li value="12">If necessary, select <b>DELETE</b> to permanently remove a Trial license when no longer required for device testing.</li>
                                             </ol>
                                             <h2>Get a license</h2>
                                             <p>To obtain a Trial (temporary) or Commercial (permanent) Knox Guard license:</p>
-                                            <ol start="1">
+                                            <ol>
                                                 <li value="1">Select <b>Licenses</b> from the left-hand navigation menu.</li>
-                                                <li value="2">Select the <b>GET&#160;A&#160;LICENSE</b> button from the top, right-hand side, of the screen.</li>
-                                            </ol>
-                                            <blockquote>
-                                                <p>
-                                                    <img src="../../assets/merge/images/knox-guard/license_get.png" style="width: 444px;height: 333px;" />
-                                                </p>
-                                            </blockquote>
-                                            <ol start="1" data-mc-continue="true">
-                                                <li value="3">Select <b>GENERATE TRIAL&#160;LICENSE</b> to create a license for the purposes of development and testing. Trial licenses are subject to expiration on the date listed within the DEVICES screen.</li>
-                                                <li value="4">Select <b>CONTACT&#160;SALES</b> to search for a Knox reseller in your specific geographic region that supports your intended Knox solutions. </li>
+                                                <li value="2">Select the <b>GET A LICENSE</b> button from the top, right-hand side, of the screen.
+                <p><img src="../../assets/merge/images/knox-guard/license_get.png" style="width: 444px;height: 333px;" /></p></li>
+                                                <li value="3">Select <b>GENERATE TRIAL LICENSE</b> to create a license for the purposes of development and testing. Trial licenses are subject to expiration on the date listed within the DEVICES screen.</li>
+                                                <li value="4">Select <b>CONTACT SALES</b> to search for a Knox reseller in your specific geographic region that supports your intended Knox solutions. </li>
                                             </ol>
                                             <h2>Enter a license key</h2>
-                                            <p>To enter a  license into the Knox Guard console:</p>
-                                            <div class="callout warning"><b>NOTE</b> - When entering a Commercial license key and wanting future accepted devices to utilize this Commercial license, ensure your Trial license key is deleted if one is being utilized. Remaining Trial license seats will be consumed first, before the Commercial license seats are consumed. </div>
-                                            <ol start="1">
+                                            <p>To enter a license into the Knox Guard console:</p>
+                                            <div class="callout warning"><b>NOTE</b> — When entering a Commercial license key and wanting future accepted devices to utilize this Commercial license, ensure your Trial license key is deleted if one is being utilized. Remaining Trial license seats will be consumed first, before the Commercial license seats are consumed. </div>
+                                            <ol>
                                                 <li value="1">Select <b>Licenses</b> from the left-hand navigation menu.</li>
-                                                <li value="2">Select the <b>ENTER&#160;LICENSE&#160;KEY</b> button from the top, right-hand side, of the screen.</li>
-                                            </ol>
-                                            <blockquote>
-                                                <p>
-                                                    <img src="../../assets/merge/images/knox-guard/license_enter.png" style="width: 416px;height: 312px;" />
-                                                </p>
-                                            </blockquote>
-                                            <ol start="1" data-mc-continue="true">
-                                                <li style="text-decoration: none;" value="3">Provide a relevant <b>License name</b> that will appear as a link within the Licenses screen. When  selected, license information displays in detail. For more information, go to: <a href="license-management.htm#License" class="selected">License details.</a></li>
+                                                <li value="2">Select the <b>ENTER LICENSE KEY</b> button from the top, right-hand side, of the screen.
+                <p><img src="../../assets/merge/images/knox-guard/license_enter.png" style="width: 416px;height: 312px;" /></p></li>
+                                                <li value="3">Provide a relevant <b>License name</b> that will appear as a link within the Licenses screen. When selected, license information displays in detail. For more information, go to: <a href="license-management.htm#License" class="selected">License details.</a></li>
                                                 <li value="4">Enter the device's <b>License key</b> to include within the Device details screen. The License key is available from the device reseller as the device is enrolled in Knox. </li>
                                                 <li value="5">Select <b>ADD</b> to save the updates.</li>
                                             </ol>
@@ -2944,32 +2903,21 @@
                                             <p>To add new licenses:</p>
                                             <ol>
                                                 <li value="1">If the <b>Out of licenses</b> screen displays when accepting devices, review the text stating how many licenses remain and how many licenses are required to accept the requested number of devices.</li>
-                                                <li value="2">Select <b>Generate trial license</b> to create a license for the purposes of development and testing. Trial licenses are subject to expiration on the date listed within the DEVICES screen. Only consider this option if the  devices you are attempting to accept into Knox Guard are not for permanent commercial deployment.</li>
-                                                <li value="3">Refer to the <b>Purchase commercial license</b> portion of the screen for information on acquiring licenses for permanent commercial device deployments. Select  <b>Find your nearest reseller</b> to locate a reseller in your area, as commercial licenses must be purchased from a Samsung reseller in your region.</li>
-                                                <li value="4">When you have received the requested license and key information, refer to the <b>Enter license key</b> field and enter the following:</li>
-                                            </ol>
-                                            <ul>
-                                                <li value="1">Provide the <b>License name</b> to display as a license details link within the Licenses screen.</li>
-                                                <li value="2">Enter the pending device's <b>License key</b>. The License key is available from the device reseller as the device is enrolled into Knox.</li>
-                                            </ul>
-                                            <ol start="5">
-                                                <li value="5">Select <b>ADD</b> when completed to  proceed with device acceptance using the updated license.</li>
+                                                <li value="2">Select <b>Generate trial license</b> to create a license for the purposes of development and testing. Trial licenses are subject to expiration on the date listed within the DEVICES screen. Only consider this option if the devices you are attempting to accept into Knox Guard are not for permanent commercial deployment.</li>
+                                                <li value="3">Refer to the <b>Purchase commercial license</b> portion of the screen for information on acquiring licenses for permanent commercial device deployments. Select <b>Find your nearest reseller</b> to locate a reseller in your area, as commercial licenses must be purchased from a Samsung reseller in your region.</li>
+                                                <li value="4">When you have received the requested license and key information, refer to the <b>Enter license key</b> field and enter the following:
+                <ul><li value="1">Provide the <b>License name</b> to display as a license details link within the Licenses screen.</li><li value="2">Enter the pending device's <b>License key</b>. The License key is available from the device reseller as the device is enrolled into Knox.</li></ul></li>
+                                                <li value="5">Select <b>ADD</b> when completed to proceed with device acceptance using the updated license.</li>
                                             </ol>
                                             <h2><a name="Delete"></a>Delete a license </h2>
                                             <p>Trial licenses can be deleted and permanently removed from the Knox Guard console when they are no longer needed for device testing.</p>
-                                            <div class="callout warning"><b>NOTE</b> - To avoid license utilization problems between trial and commercial licenses, always delete the trial license key from the tenant before adding production devices. </div>
+                                            <div class="callout warning"><b>NOTE</b> — To avoid license utilization problems between trial and commercial licenses, always delete the trial license key from the tenant before adding production devices. </div>
                                             <p>To delete a trial license:</p>
                                             <ol>
                                                 <li value="1">Select a trial license from those available within the <b>Licenses</b> screen. </li>
-                                                <li value="2">Select the <b>LICENSE&#160;NAME</b> link of a listed trial license you wish to delete.</li>
-                                                <li value="3">Select the <b>DELETE</b> button from the bottom of the <b>License details</b> screen.</li>
-                                            </ol>
-                                            <blockquote>
-                                                <p>
-                                                    <img src="../../assets/merge/images/knox-guard/license_delete.png" />
-                                                </p>
-                                            </blockquote>
-                                            <ol data-mc-continue="true">
+                                                <li value="2">Select the <b>LICENSE NAME</b> link of a listed trial license you wish to delete.</li>
+                                                <li value="3">Select the <b>DELETE</b> button from the bottom of the <b>License details</b> screen.
+                <p><img src="../../assets/merge/images/knox-guard/license_delete.png" /></p></li>
                                                 <li value="4">Select <b>DELETE</b> to permanently remove the selected trial license. The deletion of the trial license is an irreversible action, so ensure the selected trial license is no longer needed for testing. </li>
                                             </ol>
                                         </div>

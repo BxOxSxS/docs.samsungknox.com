@@ -55,17 +55,6 @@
         <link href="../../../assets/merge/kp-foundation.css" rel="stylesheet" />
         <link href="../../Resources/kp-madcap.css" rel="stylesheet" />
         <link href="../../Resources/print.css" rel="stylesheet" />
-        <style>
-            h1 {
-                font-size: 2rem;
-            }
-            h2 {
-                font-size: 1.55rem;
-            }
-            td {
-                vertical-align: top;
-            }
-        </style>
         <script src="../../Resources/Scripts/custom.modernizr.js">
         </script>
         <script src="../../Resources/Scripts/jquery.min.js">
@@ -1071,7 +1060,7 @@
                                                             <ul class="sub-menu">
                                                                 <li class="has-children"><a href="kba-360001261908.htm#">Profiles</a>
                                                                     <ul class="sub-menu">
-                                                                        <li><a href="../../knox-configure/updating-an-existing-device-profile.htm">Update an existing device profile</a>
+                                                                        <li><a href="../../knox-configure/updating-an-existing-device-profile.htm">Update an existing profile</a>
                                                                         </li>
                                                                         <li><a href="../../knox-configure/change-profile-assignment.htm">Change a device's profile assignment</a>
                                                                         </li>
@@ -1093,13 +1082,13 @@
                                                                         </li>
                                                                         <li><a href="../../knox-configure/device-details-and-logs.htm">Device details and logs</a>
                                                                         </li>
-                                                                        <li><a href="../../knox-configure/configuration-service.htm">Using the Configuration service</a>
+                                                                        <li><a href="../../knox-configure/configuration-service.htm">Use the Configuration service</a>
                                                                         </li>
                                                                     </ul>
                                                                 </li>
                                                                 <li class="has-children"><a href="kba-360001261908.htm#">Library</a>
                                                                     <ul class="sub-menu">
-                                                                        <li><a href="../../knox-configure/upload-an-application.htm">Upload an application</a>
+                                                                        <li><a href="../../knox-configure/upload-an-application.htm">Upload an app</a>
                                                                         </li>
                                                                         <li><a href="../../knox-configure/knox-configure-routines.htm">Knox Configure Routines</a>
                                                                         </li>
@@ -2699,9 +2688,9 @@
                                                                 </li>
                                                                 <li><a href="../../knox-guard/upload-devices.htm">Upload devices</a>
                                                                 </li>
-                                                                <li><a href="../../knox-guard/delete-devices.htm">Delete devices</a>
-                                                                </li>
                                                                 <li><a href="../../knox-guard/complete-payment.htm">Complete device management</a>
+                                                                </li>
+                                                                <li><a href="../../knox-guard/delete-devices.htm">Delete devices</a>
                                                                 </li>
                                                                 <li><a href="../../knox-guard/send-payment-notification.htm">Send notifications</a>
                                                                 </li>
@@ -2711,17 +2700,11 @@
                                                                 </li>
                                                                 <li><a href="../../knox-guard/view-device-log.htm">View device log</a>
                                                                 </li>
-                                                                <li><a href="../../knox-guard/device-deletion-log.htm">View device deletion log</a>
-                                                                </li>
                                                                 <li><a href="../../knox-guard/start-stop-blinking.htm">Start and stop blinking reminder</a>
                                                                 </li>
                                                                 <li><a href="../../knox-guard/lock-and-unlock-devices.htm">Lock and unlock devices</a>
                                                                 </li>
-                                                                <li><a href="../../knox-guard/update-message.htm">Update lock message</a>
-                                                                </li>
                                                                 <li><a href="../../knox-guard/send-relock-timestamp.htm">Send relock timestamp</a>
-                                                                </li>
-                                                                <li><a href="../../knox-guard/turn-on-off-relock.htm">Turn on/off relock reminder</a>
                                                                 </li>
                                                             </ul>
                                                         </li>
@@ -2856,22 +2839,21 @@
 									-->
                                     <div id="sec2" class="small-12 medium-8 large-9 columns">
                                         <div itemscope="itemscope" itemtype="http://schema.org/Guide">
-                                            <h1><a name="aanchor943"></a>
-                                                <MadCap:concept term="knox-manage;KBAs and FAQs" />What are the firewall exceptions that I need to configure in order to use Knox Manage?</h1>
+                                            <h1>What are the firewall exceptions that I need to configure in order to use Knox Manage?</h1>
                                             <div class="callout primary">
                                                 <p>In order to implement Knox Manage and Knox Remote Support in your enterprise deployment, you must configure the following URLs and port exceptions for the network of your device fleet.</p>
                                                 <h2 id="knox-manage-exceptions">Knox Manage exceptions</h2>
                                                 <table class="no-stripes">
                                                     <tbody>
                                                         <tr>
-                                                            <th style="width: 20%">Device fleet contains</th>
+                                                            <th>Platform</th>
                                                             <th>URL</th>
                                                             <th>Ports</th>
                                                         </tr>
                                                         <tr>
                                                             <td rowspan="4">All</td>
                                                             <td>*.samsungknox.com</td>
-                                                            <td rowspan="4">443 or 80</td>
+                                                            <td rowspan="4">TCP/443, 80</td>
                                                         </tr>
                                                         <tr>
                                                             <td>*.secb2b.com</td>
@@ -2883,32 +2865,48 @@
                                                             <td>*.gstatic.com</td>
                                                         </tr>
                                                         <tr>
-                                                            <td>Android devices</td>
-                                                            <td>android.googleapis.com</td>
-                                                            <td>443, 5228, 5229, 5230</td>
+                                                            <td rowspan="10">Android</td>
+                                                            <td>*.google.com</td>
+                                                            <td rowspan="9">
+                                                                <p>TCP/443</p>
+                                                                <p>TCP, UDP/5228-5230</p>
+                                                            </td>
                                                         </tr>
                                                         <tr>
-                                                            <td rowspan="3">Android devices on isolated network<sup>1</sup></td>
-                                                            <td>play.google.com</td>
-                                                            <td rowspan="3">443 or 80</td>
+                                                            <td>android.com</td>
                                                         </tr>
                                                         <tr>
-                                                            <td>android.clients.google.com</td>
+                                                            <td>google-analytics.com</td>
                                                         </tr>
                                                         <tr>
-                                                            <td>accounts.google.com</td>
+                                                            <td>googleusercontent.com</td>
                                                         </tr>
                                                         <tr>
-                                                            <td rowspan="2">iOS devices</td>
-                                                            <td>gateway.push.apple.com</td>
-                                                            <td>2195</td>
+                                                            <td>*gstatic.com</td>
                                                         </tr>
                                                         <tr>
-                                                            <td>feedback.push.apple.com</td>
-                                                            <td>2196</td>
+                                                            <td>*.gvt1.com</td>
                                                         </tr>
                                                         <tr>
-                                                            <td rowspan="2">Windows devices</td>
+                                                            <td>*.ggpht.com</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>*.gvt2.com</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>*.gvt3.com</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>*.googleapis.com</td>
+                                                            <td>TCP/443, 5228-5230</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>iOS</td>
+                                                            <td>*.push.apple.com</td>
+                                                            <td>TCP/443, 5223, 2197</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td rowspan="2">Windows</td>
                                                             <td>*.wns.windows.com</td>
                                                             <td rowspan="2">443</td>
                                                         </tr>
@@ -2917,7 +2915,6 @@
                                                         </tr>
                                                     </tbody>
                                                 </table>
-                                                <p><sup>1</sup> An isolated network is a network that is separate from your enterprise IT network.</p>
                                                 <h2 id="knox-remote-support-exceptions">Knox Remote Support exceptions</h2>
                                                 <table class="no-stripes">
                                                     <tbody>
@@ -2932,7 +2929,7 @@
                                                         <tr>
                                                             <td rowspan="3">Asia</td>
                                                             <td rowspan="2">Relay</td>
-                                                            <td rowspan="2">ap&#8209;rs&#8209;relay.manage.samsungknox.com</td>
+                                                            <td rowspan="2">ap-rs-relay.manage.samsungknox.com</td>
                                                             <td>18.141.250.233</td>
                                                             <td rowspan="2">45001</td>
                                                             <td rowspan="2">Mobile</td>
@@ -2942,7 +2939,7 @@
                                                         </tr>
                                                         <tr>
                                                             <td>WAS</td>
-                                                            <td>ap&#8209;rs&#8209;web.manage.samsungknox.com</td>
+                                                            <td>ap-rs-web.manage.samsungknox.com</td>
                                                             <td>-</td>
                                                             <td>443</td>
                                                             <td>Desktop</td>
@@ -2950,7 +2947,7 @@
                                                         <tr>
                                                             <td rowspan="3">US</td>
                                                             <td rowspan="2">Relay</td>
-                                                            <td rowspan="2">us&#8209;rs&#8209;relay.manage.samsungknox.com</td>
+                                                            <td rowspan="2">us-rs-relay.manage.samsungknox.com</td>
                                                             <td>35.83.188.168</td>
                                                             <td rowspan="2">45001</td>
                                                             <td rowspan="2">Mobile</td>
@@ -2960,15 +2957,14 @@
                                                         </tr>
                                                         <tr>
                                                             <td>WAS</td>
-                                                            <td>us&#8209;rs&#8209;web.manage.samsungknox.com</td>
-                                                            <td>-</td>
+                                                            <td>us-rs-web.manage.samsungknox.com</td>
                                                             <td>443</td>
                                                             <td>Desktop</td>
                                                         </tr>
                                                         <tr>
                                                             <td rowspan="3">EU</td>
                                                             <td rowspan="2">Relay</td>
-                                                            <td rowspan="2">eu&#8209;rs&#8209;relay.manage.samsungknox.com</td>
+                                                            <td rowspan="2">eu-rs-relay.manage.samsungknox.com</td>
                                                             <td>54.155.132.151</td>
                                                             <td rowspan="2">45001</td>
                                                             <td rowspan="2">Mobile</td>
@@ -2978,16 +2974,20 @@
                                                         </tr>
                                                         <tr>
                                                             <td>WAS</td>
-                                                            <td>eu&#8209;rs&#8209;web.manage.samsungknox.com</td>
+                                                            <td>eu-rs-web.manage.samsungknox.com</td>
                                                             <td>-</td>
                                                             <td>443</td>
                                                             <td>Desktop</td>
                                                         </tr>
                                                     </tbody>
                                                 </table>
+                                                <p>For more information on the requirements for Knox Remote Support, see <a href="../../knox-remote-support/minimum-requirements.htm"> Knox Remote Support minimum requirements</a>.</p>
+                                                <h2 id="additional-information">Additional information</h2>
+                                                <p>For more information on Android network requirements, refer to <a href="https://support.google.com/work/android/answer/10513641?hl=en" target="_blank">Android Enterprise Network Requirements</a>.</p>
+                                                <p>For more information on iOS network requirements, refer to <a href="https://support.apple.com/guide/deployment/configure-your-network-for-mdm-dep2bcde692e/web" target="_blank">Configure your network for MDM</a>.</p>
+                                                <p>For more information on Windows network requirements, refer to <a href="https://learn.microsoft.com/en-us/windows/apps/design/shell/tiles-and-notifications/firewall-allowlist-config" target="_blank">Adding WNS Traffic to the Firewall Allowlist</a>.</p>
                                             </div>
-                                            <p>For more information on the requirements for Knox Remote Support, see <a href="../../knox-remote-support/minimum-requirements.htm"> Knox Remote Support minimum requirements</a>.</p>
-                                            <div class="back"><a href="index.htm">Back to KBAs </a>
+                                            <div class="back"><a href="index.htm">Back to KBAs</a>
                                             </div>
                                         </div>
                                         <!-- Inserts feedback module here -->

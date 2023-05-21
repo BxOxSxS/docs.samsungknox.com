@@ -1060,7 +1060,7 @@
                                                             <ul class="sub-menu">
                                                                 <li class="has-children"><a href="lock-and-unlock-devices.htm#">Profiles</a>
                                                                     <ul class="sub-menu">
-                                                                        <li><a href="../knox-configure/updating-an-existing-device-profile.htm">Update an existing device profile</a>
+                                                                        <li><a href="../knox-configure/updating-an-existing-device-profile.htm">Update an existing profile</a>
                                                                         </li>
                                                                         <li><a href="../knox-configure/change-profile-assignment.htm">Change a device's profile assignment</a>
                                                                         </li>
@@ -1082,13 +1082,13 @@
                                                                         </li>
                                                                         <li><a href="../knox-configure/device-details-and-logs.htm">Device details and logs</a>
                                                                         </li>
-                                                                        <li><a href="../knox-configure/configuration-service.htm">Using the Configuration service</a>
+                                                                        <li><a href="../knox-configure/configuration-service.htm">Use the Configuration service</a>
                                                                         </li>
                                                                     </ul>
                                                                 </li>
                                                                 <li class="has-children"><a href="lock-and-unlock-devices.htm#">Library</a>
                                                                     <ul class="sub-menu">
-                                                                        <li><a href="../knox-configure/upload-an-application.htm">Upload an application</a>
+                                                                        <li><a href="../knox-configure/upload-an-application.htm">Upload an app</a>
                                                                         </li>
                                                                         <li><a href="../knox-configure/knox-configure-routines.htm">Knox Configure Routines</a>
                                                                         </li>
@@ -2688,9 +2688,9 @@
                                                                 </li>
                                                                 <li><a href="upload-devices.htm">Upload devices</a>
                                                                 </li>
-                                                                <li><a href="delete-devices.htm">Delete devices</a>
-                                                                </li>
                                                                 <li><a href="complete-payment.htm">Complete device management</a>
+                                                                </li>
+                                                                <li><a href="delete-devices.htm">Delete devices</a>
                                                                 </li>
                                                                 <li><a href="send-payment-notification.htm">Send notifications</a>
                                                                 </li>
@@ -2700,17 +2700,11 @@
                                                                 </li>
                                                                 <li><a href="view-device-log.htm">View device log</a>
                                                                 </li>
-                                                                <li><a href="device-deletion-log.htm">View device deletion log</a>
-                                                                </li>
                                                                 <li><a href="start-stop-blinking.htm">Start and stop blinking reminder</a>
                                                                 </li>
                                                                 <li><a href="lock-and-unlock-devices.htm#" class="selected">Lock and unlock devices</a>
                                                                 </li>
-                                                                <li><a href="update-message.htm">Update lock message</a>
-                                                                </li>
                                                                 <li><a href="send-relock-timestamp.htm">Send relock timestamp</a>
-                                                                </li>
-                                                                <li><a href="turn-on-off-relock.htm">Turn on/off relock reminder</a>
                                                                 </li>
                                                             </ul>
                                                         </li>
@@ -2845,68 +2839,84 @@
 									-->
                                     <div id="sec2" class="small-12 medium-8 large-9 columns">
                                         <div itemscope="itemscope" itemtype="http://schema.org/Guide">
-                                            <h1>Lock and unlock devices</h1>
-                                            <p> Knox Guard managed devices that are overdue, and delinquent, in their subscription payments, can be locked until the subscriber receives payment from the delinquent device user. When subscription payments bring the device back to good standing, the device can be unlocked and its full functionality restored to the user.</p>
+                                            <h1>Lock and unlock devices and update lock message</h1>
+                                            <p>Knox Guard managed devices that have their payments overdue can be locked until you receive payment from the delinquent device user. When subscription payments bring the device back to good standing, the device can be unlocked and its full functionality restored to the user.</p>
+                                            <p>You can also set an automatic lock that engages when the device is disconnected from a network for a specified duration. This can occur when the device user purposefully keeps the device offline, resulting in a loss of device management since it's isolated from the Knox Guard servers. For more information about this topic, see <a href="offline-lock.htm">Offline lock</a>.</p>
                                             <h2><a name="Lock"></a>Lock devices</h2>
                                             <p>To lock a device:</p>
-                                            <div class="callout note"><b>NOTE</b> — You can also set an automatic lock that engages when the device is disconnected from a network for a specified duration. This can occur when the device user purposefully keeps the device offline, resulting in a loss of device management since it's isolated from the Knox Guard servers. For more information about this topic, see <a href="default-lock-screen.htm">Lock screen</a>.</div>
-                                            <ol start="1">
-                                                <li value="1">Select specific overdue device checkboxes from the left-hand side of the Devices screen. </li>
-                                                <li value="2">Invoke the <b>ACTIONS</b> drop-down menu from the top, right-hand side, of the Devices screen and select <b>Manage device</b> &gt; <b>Lock device</b>. </li>
-                                            </ol>
-                                            <blockquote>
-                                                <p>
-                                                    <img src="../../assets/merge/images/knox-guard/lock-device.PNG" />
-                                                </p>
-                                            </blockquote>
-                                            <ol data-mc-continue="true">
-                                                <li value="3">Define the 350 character maximum <b>Message</b> devices receive informing them how to remedy their delinquent subscription and unlock their device.</li>
-                                                <li value="4">Enter the <b>Phone number</b> of the subscriber contact managing the selected devices delinquent subscription. Either a phone number or E-mail address is required as a contact resource. Special characters can be used if necessary.</li>
-                                                <li value="5">Enter the <b>E-mail address</b> of the subscriber contact managing the selected devices delinquent subscription. Either a phone number or E-mail address is required as a contact resource. </li>
-                                                <li value="6">Refer to the <b>Block incoming calls when device is locked</b> checkbox to block incoming calls when the device is in any lock state (SIM Lock, Offline lock, etc.). Leave this option unselected to permit the receipt of incoming calls when the device is locked. Select <b>Edit these options in the default lockscreen policy</b> to configure this option and make available for default device assignment. For more information, go to: <a href="default-lock-screen.htm">Lock screen</a>.</li>
+                                            <ol>
+                                                <li value="1">Select overdue devices from the Devices page</li>
+                                                <li value="2">Select the <b>ACTIONS</b> drop-down menu from the Devices page and select <b>Manage device</b> &gt; <b>Lock device</b>.
+                <p><img src="../../assets/merge/images/knox-guard/lock-device.PNG" /></p></li>
+                                                <li value="3">Define the 350 character maximum <b>Message</b> devices receive informing them about their overdue payment and, if necessary, instructions on how to pay.</li>
+                                                <li value="4">Enter the <b>Phone number</b> of the contact managing the selected devices delinquent subscription. Either a phone number or E-mail address is required as a contact resource. Special characters can be used if necessary.</li>
+                                                <li value="5">Enter the <b>E-mail address</b> of the contact managing the selected devices delinquent subscription. Either a phone number or E-mail address is required as a contact resource. </li>
+                                                <li value="6">Refer to the <b>Block incoming calls when device is locked</b> checkbox to block incoming calls when the device is in any lock state (SIM Lock, Offline lock, etc.). Leave this option unselected to permit the receipt of incoming calls when the device is locked. Select <b>Edit these options in the default lockscreen policy</b> to configure this option in the policy and make it available for default device assignment. For more information, see <a href="default-lock-screen.htm">Lock screen</a>.</li>
                                                 <li value="7">Select <b>LOCK</b> to proceed with locking the selected devices. A notification message displays on the top portion of the Devices screen stating the selected devices will be locked. </li>
                                             </ol>
                                             <h2>Lock devices in bulk</h2>
                                             <p>A standardized CSV template is available to read devices into the Knox Guard console using their IMEI. The maximum number of devices that can be locked in bulk is 10,000.</p>
                                             <p>To lock devices in bulk:</p>
-                                            <ol start="1">
-                                                <li value="1">Select <b>BULK ACTIONS</b> from the lower, left-hand, side of the screen. </li>
-                                                <li value="2">Select the <b>Download CSV template</b> link from the top portion of the screen.</li>
-                                            </ol>
-                                            <div class="callout warning"><b>NOTE</b> - As an additional bulk device lock option, an Excel file (.xls or .xlsx) can an be used  if not wanting to use a CSV formatted file.</div>
-                                            <div class="callout warning"><b>NOTE</b> - If unsure of how to create a properly formatted CSV file for bulk device locks, select <b>Instructions for all bulk actions</b> from the bottom, left-hand, side of the Bulk actions screen.</div>
-                                            <ol start="1" data-mc-continue="true">
-                                                <li value="3">Select the <b>LOCK DEVICES</b> portion of the Bulk actions screen and add the CSV file into the <b>Lock devices</b> screen.</li>
-                                            </ol>
-                                            <blockquote>
-                                                <p>
-                                                    <img src="../../assets/merge/images/knox-guard/lock-device-bulk.PNG" />
-                                                </p>
-                                            </blockquote>
-                                            <ol start="1" data-mc-continue="true">
-                                                <li value="4">Define the 350 character maximum <b>Message</b> devices receive informing them how to remedy their delinquent subscription and unlock their device. </li>
-                                                <li value="5">Enter the <b>Phone number</b> of the contact managing the  subscription payment for the locked device. Either a phone number or E-mail address is required as a contact resource. Special characters can be used if necessary.</li>
-                                                <li value="6">Enter the <b>E-mail address</b> of the  contact managing the  subscription payment for the locked device. Either a phone number or E-mail address is required as a contact resource.</li>
-                                                <li value="7">The <b>Block incoming calls when device is locked</b> checkbox lets an admin know if the device has been set in the <b>Devices</b> screen to block incoming calls when the device is in any lock state (SIM Lock, Offline lock, etc.).  This option is un-selectable as a bulk action, but does display within the Bulk Configure <b>Lock devices</b> screen with a link to navigate to the default lockscreen policy screen where it can be selected as a default policy option. </li>
+                                            <ol>
+                                                <li value="1">Select <b>BULK ACTIONS</b>.</li>
+                                                <li value="2">Select the <b>Download CSV template</b> link from the top portion of the screen.
+                <div class="callout note"><b>NOTE</b> — For more information on how to create a properly formatted CSV file for bulk device acceptance, select <b>Instructions for all bulk actions</b> from the bottom, left-hand, side of the Bulk actions screen.</div></li>
+                                                <li value="3">Select the <b>LOCK DEVICES</b> portion of the Bulk actions page and add the CSV file into the <b>Lock devices</b> screen.
+                <p><img src="../../assets/merge/images/knox-guard/lock-device-bulk.PNG" /></p></li>
+                                                <li value="4">Define the 350 character maximum limit <b>Message</b> devices receive informing them how to remedy their delinquent subscription and unlock their device. </li>
+                                                <li value="5">Enter the <b>Phone number</b> of the contact managing the subscription payment for the locked device. Either a phone number or E-mail address is required as a contact resource. Special characters can be used if necessary.</li>
+                                                <li value="6">Enter the <b>E-mail address</b> of the contact managing the subscription payment for the locked device. Either a phone number or E-mail address is required as a contact resource.</li>
+                                                <li value="7">The <b>Block incoming calls when device is locked</b> checkbox lets an admin know if the device has been set in the <b>Devices</b> page to block incoming calls when the device is in any locked state (SIM Lock, Offline lock, etc.). This option is un-selectable as a bulk action, but does display within the Bulk Configure <b>Lock devices</b> screen with a link to navigate to the <a href="default-lock-screen.htm">default lockscreen policy</a> screen where it can be selected as a default policy option. </li>
                                                 <li value="8">Select <b>LOCK</b> to proceed with the bulk device locks. A notification message displays on the top portion of the Devices screen stating the devices will be locked.</li>
                                             </ol>
                                             <h2>Unlock devices</h2>
-                                            <p>When a  user  submits their delinquent payment their device can be unlocked. A device can be unlocked when the device user correctly enters the PIN on their device.</p>
+                                            <p>When a user submits their delinquent payment their device can be unlocked. A device can be unlocked when the device user correctly enters the PIN on their device.</p>
+                                            <div class="callout note"><b>NOTE</b> — On devices running version Android P or above, a device user and an IT admin must collaborate to unlock a device. The IT admin generates a PIN from the passkey displayed on the user's device, then shares it with the device user to unlock their device.</div>
                                             <p>To unlock selected devices:</p>
-                                            <div class="callout warning"><b>NOTE</b> - On devices running version Android P or above, a device user and an IT admin must collaborate to unlock a device. The IT admin generates a PIN from the passkey displayed on the user's device, then shares it with the device user to unlock their device. </div>
-                                            <ol start="1">
+                                            <ol>
                                                 <li value="1">Select specific locked device checkboxes from the left-hand side of the Devices screen to unlock. </li>
-                                                <li value="2">Invoke the <b>Actions</b> drop-down menu from the top, right-hand side, of the Devices screen and select <b>Manage device</b> &gt; <b>Unlock devices</b>. An <b>Unlock Selected Devices</b> screen displays prompting whether you are sure you want to unlock the device, since the device user will be able to access all the data on the device. The user can set the notification for unlock device.</li>
-                                            </ol>
-                                            <blockquote>
-                                                <p>
-                                                    <img src="../../assets/merge/images/knox-guard/unlock-device.PNG" />
-                                                </p>
-                                            </blockquote>
-                                            <ol start="1" data-mc-continue="true">
+                                                <li value="2">Select the <b>ACTIONS</b> drop-down menu from the Devices page and select <b>Manage device</b> &gt; <b>Unlock devices</b>. An <b>Unlock Selected Devices</b> screen displays prompting whether you are sure you want to unlock the device, since the device user will be able to access all the data on the device. The user can set the notification for unlock device.
+                <p><img src="../../assets/merge/images/knox-guard/unlock-device.PNG" /></p></li>
                                                 <li value="3">Select <b>CONFIRM</b> to proceed with the device unlock. A notification message displays on the top portion of the Devices screen stating the devices will be unlocked.</li>
                                             </ol>
-                                            <div class="callout warning"><b>NOTE</b> - Devices can also be unlocked when a Knox Guard administrator selects the PIN button within the <b>DEVICE STATUS</b> column of the Devices screen. The resulting <b>PIN to unlock device</b> screen displays the auto-generated numeric PIN the device user must enter on their device to restore functionality.</div>&#160;<h2>Unlock devices in bulk</h2><p>A standardized CSV template is available to read devices into the Knox Guard console using their IMEI. The maximum number of devices that can be bulk unlocked is 10,000. </p><p>To bulk unlock devices:</p><ol start="1"><li value="1">Select <b>BULK ACTIONS</b> from the lower, left-hand, side of the screen. </li><li value="2">Select the <b>Download CSV template</b> link from the top portion of the screen.</li></ol><div class="callout warning"><b>NOTE</b> - As an additional bulk device unlock option, an Excel file (.xls or .xlsx) can an be used  if not wanting to use a CSV formatted file.</div><div class="callout warning"><b>NOTE</b> - If unsure of how to create a properly formatted CSV file for bulk unlock devices, select <b>Instructions for all bulk actions</b> from the bottom, left-hand, side of the Bulk actions screen.</div><ol start="1" data-mc-continue="true"><li value="3">Select the <b>UNLOCK DEVICES</b> portion of the Bulk actions screen and add the CSV file into the <b>Unlock devices</b> screen. </li></ol><blockquote><p><img src="../../assets/merge/images/knox-guard/unlock-device-bulk.PNG" /></p></blockquote><ol start="4"><li value="4">Select <b>CONFIRM</b> to unlock the selected devices and restore their functionality. A  message displays on the top portion of the Devices screen stating the device unlock has started. The user can set the notification for unlock device.</li></ol></div>
+                                            <div class="callout note"><b>NOTE</b> — Devices can also be unlocked when a Knox Guard administrator selects the PIN button within the <b>DEVICE STATUS</b> column of the Devices screen. The resulting <b>PIN to unlock device</b> screen displays the auto-generated numeric PIN the device user must enter on their device to restore functionality.</div>
+                                            <h2>Unlock devices in bulk</h2>
+                                            <p>A standardized CSV template is available to read devices into the Knox Guard console using their IMEI. The maximum number of devices that can be bulk unlocked is 10,000. </p>
+                                            <p>To bulk unlock devices:</p>
+                                            <ol>
+                                                <li value="1">Select <b>BULK ACTIONS</b> from the lower, left-hand, side of the screen. </li>
+                                                <li value="2">Select the <b>Download CSV template</b> link from the top portion of the screen.
+                <div class="callout note"><b>NOTE</b> — For more information on how to create a properly formatted CSV file for bulk device acceptance, select <b>Instructions for all bulk actions</b> from the bottom, left-hand, side of the Bulk actions screen.</div></li>
+                                                <li value="3">Select the <b>UNLOCK DEVICES</b> portion of the Bulk actions screen and add the CSV file into the <b>Unlock devices</b> screen.
+                <p><img src="../../assets/merge/images/knox-guard/unlock-device-bulk.PNG" /></p></li>
+                                                <li value="4">Select <b>CONFIRM</b> to unlock the selected devices and restore their functionality. A message displays on the top portion of the Devices screen stating the device unlock has started. The user can set the notification for unlock device.</li>
+                                            </ol>
+                                            <!--START Update lock message section-->
+                                            <p>Knox Guard managed devices that are overdue, and delinquent, in their subscription payments, can be locked until the subscriber receives payment from the delinquent device user. Knox Guard can update the device message of the lock screen for further instructions to unlock the device.</p>
+                                            <h2><a name="update lock"></a>Update lock message</h2>
+                                            <p>To update the lock message</p>
+                                            <ol>
+                                                <li value="1">Select the overdue device from the checkbox on the left-hand side of the Devices screen.</li>
+                                                <li value="2">Invoke the <b>ACTIONS</b> drop-down menu from the top right-hand side of the Devices screen and select <b>Manage device</b> &gt; <b>Update lock message</b>.
+                <p><img src="../../assets/merge/images/knox-guard/update-lock-message.PNG" style="border-left-style: solid;border-left-width: 1px;border-left-color: ;border-right-style: solid;border-right-width: 1px;border-right-color: ;border-top-style: solid;border-top-width: 1px;border-top-color: ;border-bottom-style: solid;border-bottom-width: 1px;border-bottom-color: ;" /></p></li>
+                                                <li value="3">Define the 350 character maximum <b>Message</b> devices receive informing them how to remedy their delinquent subscription and unlock their device.</li>
+                                                <li value="4">Select <b>CONFIRM</b> to update the lock message of the selected devices. A notification message will display on the top portion of the device's screen.</li>
+                                            </ol>
+                                            <h2><a name="update lock bulk"></a>Update lock message in bulk</h2>
+                                            <p>A standardized CSV template is available to read devices into the Knox Guard console using their IMEIs. The maximum number of devices that can be locked in bulk is 10,000.</p>
+                                            <p>To lock devices in bulk:</p>
+                                            <ol>
+                                                <li value="1">Select <b>BULK ACTIONS</b> from the lower, left-hand, side of the screen. </li>
+                                                <li value="2">Select the <b>Download CSV template</b> link from the top portion of the screen.
+                <div class="callout note"><b>NOTE</b> — For more information on how to create a properly formatted CSV file for bulk device acceptance, select <b>Instructions for all bulk actions</b> from the bottom, left-hand, side of the Bulk actions screen.</div></li>
+                                                <li value="3">Select the <b>UPDATE LOCK MESSAGE</b> portion of the Bulk actions screen and add the CSV file into the <b>Update lock message screen</b><p><img src="../../assets/merge/images/knox-guard/update-lock-message-bulk.PNG" /></p></li>
+                                                <li value="4">
+             Define the 350 character maximum <b>Message</b> devices receive informing them how to remedy their delinquent subscription and unlock their device.
+            </li>
+                                                <li value="5">Select <b>CONFIRM</b> to proceed with the bulk lock message. A notification message will display on the top portion of the device's screen stating the devices will be locked.</li>
+                                            </ol>
+                                            <!--END Update lock message section-->
+                                        </div>
                                         <!-- Inserts feedback module here -->
                                         <div id="feedback">
                                         </div>
