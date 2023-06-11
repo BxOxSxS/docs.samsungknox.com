@@ -1679,7 +1679,7 @@
 
     String publicKey = KnoxTokenUtility.generateBase64EncodedStringPublicKey(
                                     new FileInputStream(new File(downloadedKeys))); 
-    String signedClientIDJWT = KnoxTokenUtility.generateSignedClientIdentifierJWTWithIdpAccessToken(
+    String signedClientIDJWT = KnoxTokenUtility.generateSignedclientIdentifierJwtWithIdpAccessToken(
                                     new FileInputStream(new File(downloadedKeys)),
                                     clientIdentifier, 
                                     saAccessToken);</span></pre>
@@ -1689,14 +1689,14 @@
                                         <p>Example <a href="../../../devref/knox-cloud-authentication/third-party-auth.htm#operation/sessiontoken"><code>sessiontoken</code></a> request body:</p>
                                         <div><pre class="prettyprint" xml:space="preserve">
     { 
-        "clientIdentifierJWT": &lt; signedClientIDJWT &gt;, 
+        "clientIdentifierJwt": &lt; signedClientIDJWT &gt;, 
         "base64EncodedStringPublicKey": &lt; publicKey &gt;, 
         "validityForSessionTokenInHours": 24 
     }			</pre>
                                         </div>
                                         <p>Now sign your session token with the Knox token utility:</p>
                                         <div><pre class="prettyprint" xml:space="preserve">
-    String signedSessionTokenJWT = KnoxTokenUtility.generateSignedSessionTokenJWT(	
+    String signedsessionTokenJwt = KnoxTokenUtility.generateSignedsessionTokenJwt(	
 					new FileInputStream(new File(downloadedKeys)), 
 					&lt; Your unsigned KCS session token &gt;);
 	</pre>
@@ -1706,7 +1706,7 @@
                                         <p>Example <a href="../../../devref/knox-cloud-authentication/third-party-auth.htm#operation/accesstoken"><code>accesstoken</code></a> request body:</p>
                                         <div style="display:block"><pre class="prettyprint" xml:space="preserve">
     { 
-        "sessionTokenJWT": &lt; signedSessionTokenJWT &gt;, 
+        "sessionTokenJwt": &lt; signedsessionTokenJwt &gt;, 
         "base64EncodedStringPublicKey": &lt; publicKey &gt;, 
         "validityForAccessTokenInMinutes": 30 
     }</pre>

@@ -1666,144 +1666,351 @@
                                             </div>
                                         </nav>
                                         <h1>Knox Webhook Notification for Knox Guard</h1>
-                                        <p>The following tutorials will help you get started on using the Knox Webhook Notification (KWN) API for <a href="../knox-guard/index.htm">Knox Guard</a>.</p>
-                                        <p>Currently, the KWN API supports the following Knox Guard events:</p>
-                                        <ul>
-                                            <li value="1"><a href="tutorial-kwn-for-kg.htm#device-enrollment" class="selected">Device enrollment</a>
+                                        <!-- Release tabs header with buttons -->
+                                        <ul class="tabs tabs-release" data-tabs="" id="knox-release">
+                                            <li class="tabs-title tabs-title-release is-active" value="1"><a href="tutorial-kwn-for-kg.htm#23-03" data-tabs-target="23-03" aria-selected="true" class="tabs-button-release selected">
+                  23.03
+              </a>
                                             </li>
-                                            <li value="2"><a href="tutorial-kwn-for-kg.htm#device-relock-timestamp" class="selected">Device relock timestamping</a>
+                                            <li class="tabs-title tabs-title-release" value="2"><a href="tutorial-kwn-for-kg.htm#23-06" data-tabs-target="23-06" aria-selected="false" class="tabs-button-release selected">
+                  23.06 UAT
+              </a>
                                             </li>
-                                            <p class="callout note"><b>NOTE</b> — Device relock timestamping is only applicable for the Knox Guard <b>Pay-As-You-Go (PAYG)</b> plan.</p>
                                         </ul>
-                                        <p>KWN sends change notifications when these events are complete.</p>
-                                        <h2 id="prerequisites">Prerequisites</h2>
-                                        <h3 id="registration">Registration</h3>
-                                        <p>To successfully make calls to the Knox Guard APIs, register as a developer on <a href="https://developer.samsungknox.com/" target="_blank">developer.samsungknox.com</a> and download the latest <a href="../knox-sdk/install-sdk.htm">Knox SDK</a>.</p>
-                                        <h3 id="authentication">Authentication</h3>
-                                        <p>To get started with using Knox Guard APIs, you need an authentication token. For more information, see <a href="../knox-cloud-authentication/tutorial.htm" target="_blank">Knox Cloud API Authentication tutorial for customers</a>.</p>
-                                        <h3 id="certificate">Certificate</h3>
-                                        <p>Download your Samsung Knox validation certificate. You'll need this to validate the response you'll receive from KWN.</p><a class="round-button" href="../../cloud-authentication/download/samsung-knox-validation-certificate.zip" target="_blank" style="padding-top: 2p;margin-top: 0px;margin-bottom: 21px; margin-left: 0;">DOWNLOAD CERTIFICATE</a>
-                                        <h2 id="use-knox-webhook-notification-api">Use the Knox Webhook Notification API</h2>
-                                        <h3 id="device-enrollment">Device enrollment</h3>
-                                        <p>This tutorial demonstrates how you can use KWN to call the Knox Guard device enrollment event and register it with KWN to receive change notifications when the enrollment is complete.</p>
-                                        <h4 id="step-1-subscription">Step 1: Subscribe an event</h4>
-                                        <ol>
-                                            <li value="1">Subscribe a particular event to KWN through the <b>Create Subscription</b> operation — <code> POST /kcs/kwn/v0.1/subscriptions:</code></li>
-                                            <li value="2">Provide a subscription URL — known as a "callback" — that you'll register to receive asynchronous API operation results once the event is complete.</li>
-                                            <li value="3">Register the <code>KG_DEVICE_ENROLLED</code> event to asynchronously receive the API operation result on the device enrollment operation once it's complete.</li>
-                                        </ol>
-                                        <h4 id="step-2-upload-devices">Step 2: Upload a device</h4>
-                                        <p>Upload and enroll a device. Doing so makes an API call to the Knox Guard device enrollment operation.</p>
-                                        <h4 id="step-3-handle-response-message">Step 3: Handle response message</h4>
-                                        <p>Once the device is successfully enrolled, you'll receive the following message in the body of the subscribed URL call, as the response payload:</p>
-                                        <div id="Java1" class="tabcontent1" style="display:block"><pre class="prettyprint" xml:space="preserve">
-{ 
-  "subscriptionId" : "123456789123",
-  "event" : "KG_DEVICE_ENROLLED",
-  "payload": {
-    "previousDeviceStatus": "Accepted",
-    "deviceStatus": "Enrolled",
-    "lastUpdatedAt": "1528202916996",
-    "deviceUid": "32456783948576",
-    "imei": "32456783948576",
-    "imei2": "45678898765432"
-  }
-}
-            </pre>
-                                        </div>
-                                        <h3 id="device-relock-timestamping">Device relock timestamping</h3>
-                                        <p class="callout note"><b>NOTE</b> — Device relock timestamping is only applicable for the Knox Guard Pay-As-You-Go plan.</p>
-                                        <p>This tutorial demonstrates how you can use KWN to call the Knox Guard device relock timestamping event and register it with KWN to receive change notifications when the relock timestamp is applied to the device.</p>
-                                        <h4 id="relock-step-1-subscription">Step 1: Subscribe an event</h4>
-                                        <ol>
-                                            <li value="1">Subscribe a particular event to KWN through the <b>Create Subscription</b> operation — <code> POST /kcs/kwn/v0.1/subscriptions:</code></li>
-                                            <li value="2">Provide a subscription URL — known as "callback" — that you'll register to receive asynchronous API operation results or event triggers once the event is complete.</li>
-                                            <li value="3">Register the <code>KG_DEVICE_RELOCK_TIMESTAMP_APPLIED</code> event to asynchronously receive information on the timestamping operation once it's complete.</li>
-                                        </ol>
-                                        <h4 id="relock-step-2-upload-devices">Step 2: Upload a device</h4>
-                                        <p>Update the relock timestamp to the device. Doing so makes an API call to the Knox Guard device relock timestamping operation.</p>
-                                        <h4 id="relock-step-3-handle-response-message">Step 3: Handle response message</h4>
-                                        <p>After Knox Guard finishes executing the requested operation — relock timestamping — you'll receive the following message in the body of the subscribed URL call, as the response payload:</p>
-                                        <div id="Java2" class="tabcontent1" style="display:block"><pre class="prettyprint" xml:space="preserve">
-{
-  "subscriptionId" : "123456789123",
-  "event" : "KG_DEVICE_RELOCK_TIMESTAMP_APPLIED",  
-  "payload": {
-    "relockTimestamp": "1528202916996",
-    "lastUpdatedAt": "1528202916996",
-    "deviceUid": "32456783948576",
-    "imei": "32456783948576",
-    "imei2": "45678898765432"
-  }
-}
-            </pre>
-                                        </div>
-                                        <h2 id="verify-response">Verify the response</h2>
-                                        <p>To verify the KWN callback response:</p>
-                                        <ol>
-                                            <li value="1">Get the String value of <code>HttpRequestPayload</code></li>
-                                            <div id="Java3" class="tabcontent1" style="display:block"><pre class="prettyprint" xml:space="preserve">
-byte[] inputStreamBytes = StreamUtils.copyToByteArray(request.getInputStream());
-Map jsonBody = objectMapper.readValue(inputStreamBytes, HashMap.class);
-String requestBody = objectMapper.writeValueAsString(jsonBody);            
-              </pre>
+                                        <!-- Release tabs -->
+                                        <div class="tabs-content" data-tabs-content="knox-release">
+                                            <!-- 23.03-->
+                                            <div id="23-03" class="tabs-panel tabs-panel-release is-active">
+                                                <p>The following tutorials will help you get started on using the Knox Webhook Notification (KWN) API for <a href="../knox-guard/index.htm">Knox Guard</a>.</p>
+                                                <p>Currently, the KWN API supports the following Knox Guard events:</p>
+                                                <ul>
+                                                    <li value="1"><a href="tutorial-kwn-for-kg.htm#device-enrollment" class="selected">Device enrollment</a>
+                                                    </li>
+                                                    <li value="2"><a href="tutorial-kwn-for-kg.htm#device-relock-timestamp" class="selected">Device relock timestamping</a>
+                                                    </li>
+                                                    <p class="callout note"><b>NOTE</b> — Device relock timestamping is only applicable for the Knox Guard <b>Pay-As-You-Go (PAYG)</b> plan.</p>
+                                                </ul>
+                                                <p>KWN sends change notifications when these events are complete.</p>
+                                                <h2 id="prerequisites">Prerequisites</h2>
+                                                <h3 id="registration">Registration</h3>
+                                                <p>To successfully make calls to the Knox Guard APIs, register as a developer on <a href="https://developer.samsungknox.com/" target="_blank">developer.samsungknox.com</a> and download the latest <a href="../knox-sdk/install-sdk.htm">Knox SDK</a>.</p>
+                                                <h3 id="authentication">Authentication</h3>
+                                                <p>To get started with using Knox Guard APIs, you need an authentication token. For more information, see <a href="../knox-cloud-authentication/tutorial.htm" target="_blank">Knox Cloud API Authentication tutorial for customers</a>.</p>
+                                                <h3 id="certificate">Certificate</h3>
+                                                <p>Download your Samsung Knox validation certificate. You'll need this to validate the response you'll receive from KWN.</p><a class="round-button" href="../../cloud-authentication/download/samsung-knox-validation-certificate.zip" target="_blank" style="padding-top: 2p;margin-top: 0px;margin-bottom: 21px; margin-left: 0;">DOWNLOAD CERTIFICATE</a>
+                                                <h2 id="use-knox-webhook-notification-api">Use the Knox Webhook Notification API</h2>
+                                                <h3 id="device-enrollment">Device enrollment</h3>
+                                                <p>This tutorial demonstrates how you can use KWN to call the Knox Guard device enrollment event and register it with KWN to receive change notifications when the enrollment is complete.</p>
+                                                <h4 id="step-1-subscription">Step 1: Subscribe an event</h4>
+                                                <ol>
+                                                    <li value="1">Subscribe a particular event to KWN through the <b>Create Subscription</b> operation — <code> POST /kcs/kwn/v0.1/subscriptions:</code></li>
+                                                    <li value="2">Provide a subscription URL — known as a "callback" — that you'll register to receive asynchronous API operation results once the event is complete.</li>
+                                                    <li value="3">Register the <code>KG_DEVICE_ENROLLED</code> event to asynchronously receive the API operation result on the device enrollment operation once it's complete.</li>
+                                                </ol>
+                                                <h4 id="step-2-upload-devices">Step 2: Upload a device</h4>
+                                                <p>Upload and enroll a device. Doing so makes an API call to the Knox Guard device enrollment operation.</p>
+                                                <h4 id="step-3-handle-response-message">Step 3: Handle response message</h4>
+                                                <p>Once the device is successfully enrolled, you'll receive the following message in the body of the subscribed URL call, as the response payload:</p>
+                                                <div id="Java1" class="tabcontent1" style="display:block"><pre class="prettyprint" xml:space="preserve">
+    { 
+      "subscriptionId" : "123456789123",
+      "event" : "KG_DEVICE_ENROLLED",
+      "payload": {
+        "previousDeviceStatus": "Accepted",
+        "deviceStatus": "Enrolled",
+        "lastUpdatedAt": "1528202916996",
+        "deviceUid": "32456783948576",
+        "imei": "32456783948576",
+        "imei2": "45678898765432"
+      }
+    }
+                </pre>
+                                                </div>
+                                                <h3 id="device-relock-timestamping">Device relock timestamping</h3>
+                                                <p class="callout note"><b>NOTE</b> — Device relock timestamping is only applicable for the Knox Guard Pay-As-You-Go plan.</p>
+                                                <p>This tutorial demonstrates how you can use KWN to call the Knox Guard device relock timestamping event and register it with KWN to receive change notifications when the relock timestamp is applied to the device.</p>
+                                                <h4 id="relock-step-1-subscription">Step 1: Subscribe an event</h4>
+                                                <ol>
+                                                    <li value="1">Subscribe a particular event to KWN through the <b>Create Subscription</b> operation — <code> POST /kcs/kwn/v0.1/subscriptions:</code></li>
+                                                    <li value="2">Provide a subscription URL — known as "callback" — that you'll register to receive asynchronous API operation results or event triggers once the event is complete.</li>
+                                                    <li value="3">Register the <code>KG_DEVICE_RELOCK_TIMESTAMP_APPLIED</code> event to asynchronously receive information on the timestamping operation once it's complete.</li>
+                                                </ol>
+                                                <h4 id="relock-step-2-upload-devices">Step 2: Upload a device</h4>
+                                                <p>Update the relock timestamp to the device. Doing so makes an API call to the Knox Guard device relock timestamping operation.</p>
+                                                <h4 id="relock-step-3-handle-response-message">Step 3: Handle response message</h4>
+                                                <p>After Knox Guard finishes executing the requested operation — relock timestamping — you'll receive the following message in the body of the subscribed URL call, as the response payload:</p>
+                                                <div id="Java2" class="tabcontent1" style="display:block"><pre class="prettyprint" xml:space="preserve">
+    {
+      "subscriptionId" : "123456789123",
+      "event" : "KG_DEVICE_RELOCK_TIMESTAMP_APPLIED",  
+      "payload": {
+        "relockTimestamp": "1528202916996",
+        "lastUpdatedAt": "1528202916996",
+        "deviceUid": "32456783948576",
+        "imei": "32456783948576",
+        "imei2": "45678898765432"
+      }
+    }
+                </pre>
+                                                </div>
+                                                <h2 id="verify-response">Verify the response</h2>
+                                                <p>To verify the KWN callback response:</p>
+                                                <ol>
+                                                    <li value="1">Get the String value of <code>HttpRequestPayload</code></li>
+                                                    <div id="Java3" class="tabcontent1" style="display:block"><pre class="prettyprint" xml:space="preserve">
+    byte[] inputStreamBytes = StreamUtils.copyToByteArray(request.getInputStream());
+    Map jsonBody = objectMapper.readValue(inputStreamBytes, HashMap.class);
+    String requestBody = objectMapper.writeValueAsString(jsonBody);            
+                  </pre>
+                                                    </div>
+                                                    <li value="2">Parse the encoded JoseHeader and signature from <b>X-WSM-SIGNATURE</b></li>
+                                                    <div id="Java4" class="tabcontent1" style="display:block"><pre class="prettyprint" xml:space="preserve">
+    String[] jwsParts = jwsSignature.split("\\.");
+    if (jwsParts.length != 3) {
+      // Invalid JWS signature,              
+      return new ResponseEntity&lt;&gt;("Invalid JWS signature: X-WSM-SIGNATURE=" + jwsSignature, HttpStatus.BAD_REQUEST);
+    }
+
+    String encodedHeaders = jwsParts[0];
+    String encodedRequestBody =  Base64.getUrlEncoder().encodeToString(requestBody.getBytes(StandardCharsets.UTF_8));
+    String signature = jwsParts[2];            
+                  </pre>
+                                                    </div>
+                                                    <li value="3">Prepare the data to verify: <code>DataToVerify = encodedJoseHeader.Base64UrlEncode(HttpRequestPayload)
+                </code></li>
+                                                    <div id="Java5" class="tabcontent1" style="display:block"><pre class="prettyprint" xml:space="preserve">
+    String dataToVerify = encodedHeaders + "." + encodedRequestBody;
+                  </pre>
+                                                    </div>
+                                                    <li value="4">Decode the signature with <code>Base64Url</code> decoder and verify the data above by using <code>SHA256withRSA</code></li>
+                                                    <ul>
+                                                        <li value="1">verify(DataToVerify, Base64UrlDecode(Signature))</li>
+                                                    </ul>
+                                                    <div id="Java6" class="tabcontent1" style="display:block"><pre class="prettyprint" xml:space="preserve">
+    byte[] signatureByte = Base64.getUrlDecoder().decode(signature);
+
+    Signature rsaSignature = Signature.getInstance("SHA256withRSA");
+
+    // Pre-download Samsung certificate and store it locally with your application. Load public key from locallyed stored cert file.
+
+    rsaSignature.initVerify(publicKey);  
+    rsaSignature.update(dataToVerify.getBytes(StandardCharsets.UTF_8));
+    boolean verified = rsaSignature.verify(signatureByte);
+    if (verified) {
+      // Process the result
+      // DO YOUR BUSINESS LOGIC, returns OK
+
+      return new ResponseEntity&lt;&gt; ("Result is processed successfully", HttpStatus.OK);
+    } else {
+      return new ResponseEntity&lt;&gt;("Signature validation failed: X-WSM-SIGNATURE=" + jwsSignature, HttpStatus.INTERNAL_SERVER_ERROR);
+    }
+                  </pre>
+                                                    </div>
+                                                </ol>
+                                                <h3 id="complete-code">Complete code</h3>
+                                                <div id="Java7" class="tabcontent1" style="display:block"><pre class="prettyprint" xml:space="preserve">
+    public ResponseEntity&lt;String&gt; receiveResult(HttpServletRequest request,
+      @Valid @NotBlank @RequestHeader(value="X-WSM-SIGNATURE") String jwsSignature,
+      @Valid @NotBlank @RequestHeader(value="X-WSM-TRACEID") String transId) {
+          try {
+          // 1. Get the request body
+          byte[] inputStreamBytes = StreamUtils.copyToByteArray(request.getInputStream());
+          Map jsonBody = objectMapper.readValue(inputStreamBytes, HashMap.class);
+          String requestBody = objectMapper.writeValueAsString(jsonBody);
+
+          // 2. Verify the data and signature
+          String[] jwsParts = jwsSignature.split("\\.");
+          if (jwsParts.length != 3) {
+            // Invalid JWS signature,              
+            return new ResponseEntity&lt;&gt;("Invalid JWS signature: X-WSM-SIGNATURE=" + jwsSignature, HttpStatus.BAD_REQUEST);
+          }
+
+          String encodedHeaders = jwsParts[0];
+          String encodedRequestBody =  Base64.getUrlEncoder().encodeToString(requestBody.getBytes(StandardCharsets.UTF_8));
+          String signature = jwsParts[2];
+
+          String dataToVerify = encodedHeaders + "." + encodedRequestBody;
+          byte[] signatureByte = Base64.getUrlDecoder().decode(signature);
+
+          Signature rsaSignature = Signature.getInstance("SHA256withRSA");
+
+          // Pre-download Samsung certificate and store it locally with your application. Load public key from locallyed stored cert file.
+
+          rsaSignature.initVerify(publicKey);  
+          rsaSignature.update(dataToVerify.getBytes(StandardCharsets.UTF_8));
+          boolean verified = rsaSignature.verify(signatureByte);
+          if (verified) {
+            // 3. Process the result
+            // DO YOUR BUSINESS LOGIC and returns OK
+
+            return new ResponseEntity&lt;&gt; ("Result is processed successfully", HttpStatus.OK);
+          } else {
+            return new ResponseEntity&lt;&gt;("Signature validation failed: X-WSM-SIGNATURE=" + jwsSignature, HttpStatus.INTERNAL_SERVER_ERROR);
+          }
+
+        } catch (Exception e) {
+          log.error("receiveResult: failed to verify or parse request body", e);
+          return new ResponseEntity&lt;&gt;("Internal error: " + e.getMessage(), HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+      }
+                </pre>
+                                                </div>
+                                                <h2 id="one-url-many-sub">One URL for multiple subscriptions</h2>
+                                                <p>As a customer, you can configure one URL to subscribe to multiple events, as follows:</p>
+                                                <ol>
+                                                    <li value="1">Use <b>customerA</b> to create the subscription using the KWN Subscription API.</li>
+                                                    <li value="2">Configure <code>example.com/kwn_result/customerA</code> as the callback URL.</li>
+                                                    <li value="3">Make a call to one or more <a href="whats-new.htm">supported events</a> using the same callback URL.</li>
+                                                </ol>
+                                                <p>Once you successfully complete these steps, the configured URL <code>example.com/kwn_result/customerA</code> will receive the operation result.</p>
                                             </div>
-                                            <li value="2">Parse the encoded JoseHeader and signature from <b>X-WSM-SIGNATURE</b></li>
-                                            <div id="Java4" class="tabcontent1" style="display:block"><pre class="prettyprint" xml:space="preserve">
-String[] jwsParts = jwsSignature.split("\\.");
-if (jwsParts.length != 3) {
-  // Invalid JWS signature,              
-  return new ResponseEntity&lt;&gt;("Invalid JWS signature: X-WSM-SIGNATURE=" + jwsSignature, HttpStatus.BAD_REQUEST);
-}
-
-String encodedHeaders = jwsParts[0];
-String encodedRequestBody =  Base64.getUrlEncoder().encodeToString(requestBody.getBytes(StandardCharsets.UTF_8));
-String signature = jwsParts[2];            
-              </pre>
-                                            </div>
-                                            <li value="3">Prepare the data to verify: <code>DataToVerify = encodedJoseHeader.Base64UrlEncode(HttpRequestPayload)
-            </code></li>
-                                            <div id="Java5" class="tabcontent1" style="display:block"><pre class="prettyprint" xml:space="preserve">
-String dataToVerify = encodedHeaders + "." + encodedRequestBody;
-              </pre>
-                                            </div>
-                                            <li value="4">Decode the signature with <code>Base64Url</code> decoder and verify the data above by using <code>SHA256withRSA</code></li>
-                                            <ul>
-                                                <li value="1">verify(DataToVerify, Base64UrlDecode(Signature))</li>
-                                            </ul>
-                                            <div id="Java6" class="tabcontent1" style="display:block"><pre class="prettyprint" xml:space="preserve">
-byte[] signatureByte = Base64.getUrlDecoder().decode(signature);
-
-Signature rsaSignature = Signature.getInstance("SHA256withRSA");
-
-// Pre-download Samsung certificate and store it locally with your application. Load public key from locallyed stored cert file.
-
-rsaSignature.initVerify(publicKey);  
-rsaSignature.update(dataToVerify.getBytes(StandardCharsets.UTF_8));
-boolean verified = rsaSignature.verify(signatureByte);
-if (verified) {
-  // Process the result
-  // DO YOUR BUSINESS LOGIC, returns OK
-
-  return new ResponseEntity&lt;&gt; ("Result is processed successfully", HttpStatus.OK);
-} else {
-  return new ResponseEntity&lt;&gt;("Signature validation failed: X-WSM-SIGNATURE=" + jwsSignature, HttpStatus.INTERNAL_SERVER_ERROR);
-}
-              </pre>
-                                            </div>
-                                        </ol>
-                                        <h3 id="complete-code">Complete code</h3>
-                                        <div id="Java7" class="tabcontent1" style="display:block"><pre class="prettyprint" xml:space="preserve">
-public ResponseEntity&lt;String&gt; receiveResult(HttpServletRequest request,
-  @Valid @NotBlank @RequestHeader(value="X-WSM-SIGNATURE") String jwsSignature,
-  @Valid @NotBlank @RequestHeader(value="X-WSM-TRACEID") String transId) {
-      try {
-      // 1. Get the request body
+                                            <!-- UAT 23.06 -->
+                                            <div id="23-06" class="tabs-panel tabs-panel-release">
+                                                <div class="release-banner">
+                                                    <p>This document was updated for <a href="../../admin/uat/index.htm">Knox cloud services 23.06 UAT</a>.</p>
+                                                </div>
+                                                <p>The following tutorials will help you get started on using the Knox Webhook Notification (KWN) API for <a href="../knox-guard/index.htm">Knox Guard</a>.</p>
+                                                <p>Currently, the KWN API supports the following Knox Guard events:</p>
+                                                <ul>
+                                                    <li value="1"><a href="tutorial-kwn-for-kg.htm#device-enrollment" class="selected">Device enrollment</a>
+                                                    </li>
+                                                    <li value="2"><a href="tutorial-kwn-for-kg.htm#device-relock-timestamp" class="selected">Device relock timestamping</a>
+                                                    </li>
+                                                    <li value="3"><a href="tutorial-kwn-for-kg.htm#device-lock" class="selected">Device lock</a>
+                                                    </li>
+                                                    <li value="4"><a href="tutorial-kwn-for-kg.htm#device-unlocking" class="selected">Device unlocking</a>
+                                                    </li>
+                                                    <p class="callout note"><b>NOTE</b> — Device relock timestamping is only applicable for the Knox Guard <b>Pay-As-You-Go (PAYG)</b> plan.</p>
+                                                </ul>
+                                                <p>KWN sends change notifications when these events are complete.</p>
+                                                <h2 id="prerequisites">Prerequisites</h2>
+                                                <h3 id="registration">Registration</h3>
+                                                <p>To successfully make calls to the Knox Guard APIs, register as a developer on <a href="https://developer.samsungknox.com/" target="_blank">developer.samsungknox.com</a> and download the latest <a href="../knox-sdk/install-sdk.htm">Knox SDK</a>.</p>
+                                                <h3 id="authentication">Authentication</h3>
+                                                <p>To get started with using Knox Guard APIs, you need an authentication token. For more information, see <a href="../knox-cloud-authentication/tutorial.htm" target="_blank">Knox Cloud API Authentication tutorial for customers</a>.</p>
+                                                <h3 id="certificate">Certificate</h3>
+                                                <p>Download your Samsung Knox validation certificate. You'll need this to validate the response you'll receive from KWN.</p><a class="round-button" href="../../cloud-authentication/download/samsung-knox-validation-certificate.zip" target="_blank" style="padding-top: 2p;margin-top: 0px;margin-bottom: 21px; margin-left: 0;">DOWNLOAD CERTIFICATE</a>
+                                                <h2 id="use-knox-webhook-notification-api">Use the Knox Webhook Notification API</h2>
+                                                <h3 id="device-enrollment">Device enrollment</h3>
+                                                <p>This tutorial demonstrates how you can use KWN to call the Knox Guard device enrollment event and register it with KWN to receive change notifications when the enrollment is complete.</p>
+                                                <h4 id="step-1-subscription">Step 1: Subscribe an event</h4>
+                                                <ol>
+                                                    <li value="1">Subscribe a particular event to KWN through the <b>Create Subscription</b> operation — <code> POST /kcs/kwn/v0.1/subscriptions:</code></li>
+                                                    <li value="2">Provide a subscription URL — known as a "callback" — that you'll register to receive asynchronous API operation results once the event is complete.</li>
+                                                    <li value="3">Register the <code>KG_DEVICE_ENROLLED</code> event to asynchronously receive the API operation result on the device enrollment operation once it's complete.</li>
+                                                </ol>
+                                                <h4 id="step-2-upload-devices">Step 2: Upload a device</h4>
+                                                <p>Upload and enroll a device. Doing so makes an API call to the Knox Guard device enrollment operation.</p>
+                                                <h4 id="step-3-handle-response-message">Step 3: Handle response message</h4>
+                                                <p>Once the device is successfully enrolled, you'll receive the following message in the body of the subscribed URL call, as the response payload:</p>
+                                                <div id="Java1" class="tabcontent1" style="display:block"><pre class="prettyprint" xml:space="preserve">
+      { 
+        "subscriptionId" : "123456789123",
+        "event" : "KG_DEVICE_ENROLLED",
+        "payload": {
+          "previousDeviceStatus": "Accepted",
+          "deviceStatus": "Enrolled",
+          "lastUpdatedAt": "1528202916996",
+          "deviceUid": "32456783948576",
+          "imei": "32456783948576",
+          "imei2": "45678898765432"
+        }
+      }
+                  </pre>
+                                                </div>
+                                                <h3 id="device-relock-timestamping">Device relock timestamping</h3>
+                                                <p class="callout note"><b>NOTE</b> — Device relock timestamping is only applicable for the Knox Guard Pay-As-You-Go plan.</p>
+                                                <p>This tutorial demonstrates how you can use KWN to call the Knox Guard device relock timestamping event and register it with KWN to receive change notifications when the relock timestamp is applied to the device.</p>
+                                                <h4 id="relock-step-1-subscription">Step 1: Subscribe an event</h4>
+                                                <ol>
+                                                    <li value="1">Subscribe a particular event to KWN through the <b>Create Subscription</b> operation — <code> POST /kcs/kwn/v0.1/subscriptions:</code></li>
+                                                    <li value="2">Provide a subscription URL — known as "callback" — that you'll register to receive asynchronous API operation results or event triggers once the event is complete.</li>
+                                                    <li value="3">Register the <code>KG_DEVICE_RELOCK_TIMESTAMP_APPLIED</code> event to asynchronously receive information on the timestamping operation once it's complete.</li>
+                                                </ol>
+                                                <h4 id="relock-step-2-upload-devices">Step 2: Update relock timestamp</h4>
+                                                <p>Update the relock timestamp to the device. Doing so makes an API call to the Knox Guard device relock timestamping operation.</p>
+                                                <h4 id="relock-step-3-handle-response-message">Step 3: Handle response message</h4>
+                                                <p>After Knox Guard finishes executing the requested operation — relock timestamping — you'll receive the following message in the body of the subscribed URL call, as the response payload:</p>
+                                                <div id="Java2" class="tabcontent1" style="display:block"><pre class="prettyprint" xml:space="preserve">
+      {
+        "subscriptionId" : "123456789123",
+        "event" : "KG_DEVICE_RELOCK_TIMESTAMP_APPLIED",  
+        "payload": {
+          "relockTimestamp": "1528202916996",
+          "lastUpdatedAt": "1528202916996",
+          "deviceUid": "32456783948576",
+          "imei": "32456783948576",
+          "imei2": "45678898765432"
+        }
+      }
+                  </pre>
+                                                </div>
+                                                <h3 id="device-lock">Lock a device</h3>
+                                                <p>This tutorial demonstrates how you can use KWN to call the Knox Guard device lock event and register it with KWN to receive change notifications when an enrolled device is locked.</p>
+                                                <h4 id="device-lock-step-1-subscription">Step 1: Subscribe an event</h4>
+                                                <ol>
+                                                    <li value="1">Subscribe a particular event to KWN through the <b>Create Subscription</b> operation — <code> POST /kcs/kwn/v0.1/subscriptions:</code></li>
+                                                    <li value="2">Provide a subscription URL — known as a "callback" — that you'll register to receive asynchronous API operation results once the event is complete.</li>
+                                                    <li value="3">Register the <code>KG_DEVICE_LOCKED</code> event to asynchronously receive the API operation result from the device lock operation once it's complete.</li>
+                                                </ol>
+                                                <h4 id="device-lock-step-2-upload-devices">Step 2: Lock a device</h4>
+                                                <p>Lock an enrolled device. Doing so makes an API call to the Knox Guard device lock operation.</p>
+                                                <h4 id="device-lock-step-3-handle-response-message">Step 3: Handle response message</h4>
+                                                <p>Once the enrolled device is successfully locked, you'll receive the following message in the body of the subscribed URL call, as the response payload:</p>
+                                                <div id="Java3" class="tabcontent1" style="display:block"><pre class="prettyprint" xml:space="preserve">
+      { 
+        "subscriptionId" : "123456789123",
+        "event" : "KG_DEVICE_LOCKED",
+        "payload": {
+          "previousDeviceStatus": "Locking",
+          "deviceStatus": "Locked",
+          "lastUpdatedAt": "deviceStatus",
+          "deviceUid": "32456783948576",
+          "imei": "350595220006493",
+          "imei2": "45678898765432"
+        }
+      }
+                  </pre>
+                                                </div>
+                                                <h3 id="device-unlocking">Unlock a device</h3>
+                                                <p>This tutorial demonstrates how you can use KWN to call the Knox Guard device unlock event and register it with KWN to receive change notifications when a locked device is unlocked.</p>
+                                                <h4 id="device-unlock-step-1-subscription">Step 1: Subscribe an event</h4>
+                                                <ol>
+                                                    <li value="1">Subscribe a particular event to KWN through the <b>Create Subscription</b> operation — <code> POST /kcs/kwn/v0.1/subscriptions:</code></li>
+                                                    <li value="2">Provide a subscription URL — known as a "callback" — that you'll register to receive asynchronous API operation results once the event is complete.</li>
+                                                    <li value="3">Register the <code>KG_DEVICE_UNLOCKED</code> event to asynchronously receive the API operation result from the device unlock operation once it's complete.</li>
+                                                </ol>
+                                                <h4 id="device-unlock-step-2-upload-devices">Step 2: Unlock a device</h4>
+                                                <p>Unlock a locked device. Doing so makes an API call to the Knox Guard device unlock operation, which unlocks the locked device and transitions it back to the normal state (Active).</p>
+                                                <h4 id="device-unlock-step-3-handle-response-message">Step 3: Handle response message</h4>
+                                                <p>Once the locked device is successfully unlocked, you'll receive the following message in the body of the subscribed URL call, as the response payload:</p>
+                                                <div id="Java4" class="tabcontent1" style="display:block"><pre class="prettyprint" xml:space="preserve">
+      { 
+        "subscriptionId" : "123456789123",
+        "event" : "KG_DEVICE_UNLOCKED",
+        "payload": {
+          "previousDeviceStatus": "Unlocking",
+          "deviceStatus": "Enrolled",
+          "lastUpdatedAt": "1683023236369",
+          "deviceUid": "354387110044347",
+          "imei": "350595220006493",
+          "imei2": "45678898765432"
+        }
+      }
+                  </pre>
+                                                </div>
+                                                <h2 id="verify-response">Verify the response</h2>
+                                                <p>To verify the KWN callback response:</p>
+                                                <ol>
+                                                    <li value="1">Get the String value of <code>HttpRequestPayload</code></li>
+                                                    <div id="Java5" class="tabcontent1" style="display:block"><pre class="prettyprint" xml:space="preserve">
       byte[] inputStreamBytes = StreamUtils.copyToByteArray(request.getInputStream());
       Map jsonBody = objectMapper.readValue(inputStreamBytes, HashMap.class);
-      String requestBody = objectMapper.writeValueAsString(jsonBody);
-
-      // 2. Verify the data and signature
+      String requestBody = objectMapper.writeValueAsString(jsonBody);            
+                    </pre>
+                                                    </div>
+                                                    <li value="2">Parse the encoded JoseHeader and signature from <b>X-WSM-SIGNATURE</b></li>
+                                                    <div id="Java6" class="tabcontent1" style="display:block"><pre class="prettyprint" xml:space="preserve">
       String[] jwsParts = jwsSignature.split("\\.");
       if (jwsParts.length != 3) {
         // Invalid JWS signature,              
@@ -1812,9 +2019,20 @@ public ResponseEntity&lt;String&gt; receiveResult(HttpServletRequest request,
 
       String encodedHeaders = jwsParts[0];
       String encodedRequestBody =  Base64.getUrlEncoder().encodeToString(requestBody.getBytes(StandardCharsets.UTF_8));
-      String signature = jwsParts[2];
-
+      String signature = jwsParts[2];            
+                    </pre>
+                                                    </div>
+                                                    <li value="3">Prepare the data to verify: <code>DataToVerify = encodedJoseHeader.Base64UrlEncode(HttpRequestPayload)
+                  </code></li>
+                                                    <div id="Java7" class="tabcontent1" style="display:block"><pre class="prettyprint" xml:space="preserve">
       String dataToVerify = encodedHeaders + "." + encodedRequestBody;
+                    </pre>
+                                                    </div>
+                                                    <li value="4">Decode the signature with <code>Base64Url</code> decoder and verify the data above by using <code>SHA256withRSA</code></li>
+                                                    <ul>
+                                                        <li value="1">verify(DataToVerify, Base64UrlDecode(Signature))</li>
+                                                    </ul>
+                                                    <div id="Java8" class="tabcontent1" style="display:block"><pre class="prettyprint" xml:space="preserve">
       byte[] signatureByte = Base64.getUrlDecoder().decode(signature);
 
       Signature rsaSignature = Signature.getInstance("SHA256withRSA");
@@ -1825,29 +2043,74 @@ public ResponseEntity&lt;String&gt; receiveResult(HttpServletRequest request,
       rsaSignature.update(dataToVerify.getBytes(StandardCharsets.UTF_8));
       boolean verified = rsaSignature.verify(signatureByte);
       if (verified) {
-        // 3. Process the result
-        // DO YOUR BUSINESS LOGIC and returns OK
+        // Process the result
+        // DO YOUR BUSINESS LOGIC, returns OK
 
         return new ResponseEntity&lt;&gt; ("Result is processed successfully", HttpStatus.OK);
       } else {
         return new ResponseEntity&lt;&gt;("Signature validation failed: X-WSM-SIGNATURE=" + jwsSignature, HttpStatus.INTERNAL_SERVER_ERROR);
       }
+                    </pre>
+                                                    </div>
+                                                </ol>
+                                                <h3 id="complete-code">Complete code</h3>
+                                                <div id="Java9" class="tabcontent1" style="display:block"><pre class="prettyprint" xml:space="preserve">
+      public ResponseEntity&lt;String&gt; receiveResult(HttpServletRequest request,
+        @Valid @NotBlank @RequestHeader(value="X-WSM-SIGNATURE") String jwsSignature,
+        @Valid @NotBlank @RequestHeader(value="X-WSM-TRACEID") String transId) {
+            try {
+              // 1. Get the request body
+              byte[] inputStreamBytes = StreamUtils.copyToByteArray(request.getInputStream());
+              Map jsonBody = objectMapper.readValue(inputStreamBytes, HashMap.class);
+              String requestBody = objectMapper.writeValueAsString(jsonBody);
 
-    } catch (Exception e) {
-      log.error("receiveResult: failed to verify or parse request body", e);
-      return new ResponseEntity&lt;&gt;("Internal error: " + e.getMessage(), HttpStatus.INTERNAL_SERVER_ERROR);
-    }
-  }
-            </pre>
+              // 2. Verify the data and signature
+              String[] jwsParts = jwsSignature.split("\\.");
+              if (jwsParts.length != 3) {
+                // Invalid JWS signature,              
+                return new ResponseEntity&lt;&gt;("Invalid JWS signature: X-WSM-SIGNATURE=" + jwsSignature, HttpStatus.BAD_REQUEST);
+            }
+
+            String encodedHeaders = jwsParts[0];
+            String encodedRequestBody =  Base64.getUrlEncoder().encodeToString(requestBody.getBytes(StandardCharsets.UTF_8));
+            String signature = jwsParts[2];
+
+            String dataToVerify = encodedHeaders + "." + encodedRequestBody;
+            byte[] signatureByte = Base64.getUrlDecoder().decode(signature);
+
+            Signature rsaSignature = Signature.getInstance("SHA256withRSA");
+
+            // Pre-download Samsung certificate and store it locally with your application. Load public key from locallyed stored cert file.
+
+            rsaSignature.initVerify(publicKey);  
+            rsaSignature.update(dataToVerify.getBytes(StandardCharsets.UTF_8));
+            boolean verified = rsaSignature.verify(signatureByte);
+            if (verified) {
+              // 3. Process the result
+              // DO YOUR BUSINESS LOGIC and returns OK
+
+              return new ResponseEntity&lt;&gt; ("Result is processed successfully", HttpStatus.OK);
+            } else {
+              return new ResponseEntity&lt;&gt;("Signature validation failed: X-WSM-SIGNATURE=" + jwsSignature, HttpStatus.INTERNAL_SERVER_ERROR);
+            }
+
+          } catch (Exception e) {
+            log.error("receiveResult: failed to verify or parse request body", e);
+            return new ResponseEntity&lt;&gt;("Internal error: " + e.getMessage(), HttpStatus.INTERNAL_SERVER_ERROR);
+          }
+        }
+                  </pre>
+                                                </div>
+                                                <h2 id="one-url-many-sub">One URL for multiple subscriptions</h2>
+                                                <p>As a customer, you can configure one URL to subscribe to multiple events, as follows:</p>
+                                                <ol>
+                                                    <li value="1">Use <b>customerA</b> to create the subscription using the KWN Subscription API.</li>
+                                                    <li value="2">Configure <code>example.com/kwn_result/customerA</code> as the callback URL.</li>
+                                                    <li value="3">Make a call to one or more <a href="whats-new.htm">supported events</a> using the same callback URL.</li>
+                                                </ol>
+                                                <p>Once you successfully complete these steps, the configured URL <code>example.com/kwn_result/customerA</code> will receive the operation result.</p>
+                                            </div>
                                         </div>
-                                        <h2 id="one-url-many-sub">One URL for multiple subscriptions</h2>
-                                        <p>As a customer, you can configure one URL to subscribe to multiple events, as follows:</p>
-                                        <ol>
-                                            <li value="1">Use <b>customerA</b> to create the subscription using the KWN Subscription API.</li>
-                                            <li value="2">Configure <code>example.com/kwn_result/customerA</code> as the callback URL.</li>
-                                            <li value="3">Make a call to one or more <a href="whats-new.htm">supported events</a> using the same callback URL.</li>
-                                        </ol>
-                                        <p>Once you successfully complete these steps, the configured URL <code>example.com/kwn_result/customerA</code> will receive the operation result.</p>
                                         <!-- Inserts feedback module here -->
                                         <div id="feedback">
                                         </div>
