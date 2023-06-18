@@ -159,9 +159,9 @@
     </select>
   </div>
   <script>
-   var SINCE_DATA = [ '1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12', '13', '14', '15', '16', '17', '18', '19', '20', '21', '22', '23', '24', '25', '26', '27', '28', '29', '30', '31', '32', '33', '34', '35', '36' ];
+   var SINCE_DATA = [ '1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12', '13', '14', '15', '16', '17', '18', '19', '20', '21', '22', '23', '24', '25', '26', '27', '28', '29', '30', '31', '32', '33', '34', '35', '36', '37' ];
     
-    var SINCE_LABELS = [ '1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12', '13', '14', '15', '16', '17', '18', '19', '20', '21', '22', '23', '24', '25', '26', '27', '28', '29', '30', '31', '32', '33', '34', '35', '36' ];
+    var SINCE_LABELS = [ '1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12', '13', '14', '15', '16', '17', '18', '19', '20', '21', '22', '23', '24', '25', '26', '27', '28', '29', '30', '31', '32', '33', '34', '35', '36', '37' ];
     buildApiLevelSelector();
     addLoadEvent(changeApiLevel);
   </script>
@@ -448,6 +448,7 @@ Summary:
         </tr>  
         <tr>
             <td>MDM 5.5
+
 </td>
         </tr>
       </table>
@@ -543,6 +544,8 @@ Summary:
       <em>
   Deprecated
       in API level 35
+
+
 
 </em></div>
   
@@ -836,10 +839,12 @@ From class
       
 
   <div class="jd-tagdata jd-tagdescr"><p>API to get the information about the Global proxy.
+
  <p></p></div>
   <div class="jd-tagdata">
       <h5 class="jd-tagtitle">Returns</h5>
       <ul class="nolist"><li><code><a href="ProxyProperties.html">ProxyProperties</a></code> object describing the current Global Proxy, or
+
  <code>null</code> in case there is no Global Proxy set.</li></ul>
   </div>
   <div class="jd-tagdata">
@@ -856,18 +861,31 @@ From class
       <table class="jd-tagtable">  
         <tr>
             <td>Administrator should call this API to retrieve a <code><a href="ProxyProperties.html">ProxyProperties</a></code> object
+
  containing all information about the Global Proxy current configured on the device.
+
  <p>
 
+
+
  <pre>
+
  EnterpriseDeviceManager edm = EnterpriseDeviceManager.getInstance(context);
+
  GlobalProxy globalProxy = edm.getGlobalProxy();
+
  ProxyProperties proxyProperties;
+
  try {
+
      proxyProperties = globalProxy.getGlobalProxy();
+
  } catch (SecurityException e) {
+
      Log.w(TAG, "SecurityException: " + e);
+
  }
+
  </pre></td>
         </tr>
       </table>
@@ -877,7 +895,9 @@ From class
       <table class="jd-tagtable">  
         <tr>
             <td>The use of this API requires the caller to have the
+
  "com.samsung.android.knox.permission.KNOX_GLOBALPROXY" permission which has a protection level
+
  of signature.</td>
         </tr>
       </table>
@@ -898,6 +918,8 @@ From class
       <table class="jd-tagtable">  
         <tr>
             <td><a href="../../../../../../multiuser/multiuser.html">Global Scope</a>
+
+
 
 </td>
         </tr>
@@ -949,9 +971,12 @@ From class
       in API level 35
 
 
+
+
   </p>
 
   <div class="jd-tagdata jd-tagdescr"><p>API to set a Global Proxy on the device.
+
  <p></p></div>
   <div class="jd-tagdata">
       <h5 class="jd-tagtitle">Parameters</h5>
@@ -959,6 +984,7 @@ From class
         <tr>
           <th>properties</td>
           <td><code><a href="ProxyProperties.html">ProxyProperties</a></code> object with proxy information. Use
+
  <code>null</code> to remove global proxy.</td>
         </tr>
       </table>
@@ -981,53 +1007,101 @@ From class
       <table class="jd-tagtable">  
         <tr>
             <td>Administrator will be able to set a Global Proxy on the device. Such proxy will work
+
  both for Wifi and Data connections. This proxy may not be considered by some applications
+
  (e.g. applications that directly open a socket with the final server), although it is used by
+
  most of them. Applications might retry connections without using the global proxy whenever
+
  the proxy is unreachable or the authentication fails. <br>
 
+
+
  <pre>
+
  EnterpriseDeviceManager edm = EnterpriseDeviceManager.getInstance(context);
+
  GlobalProxy globalProxy = edm.getGlobalProxy();
+
  try {
+
      // 1. static proxy configuration
+
      String hostName = &quot;128.128.128.128&quot;;
+
      int portNumber = 80;
 
+
+
      List&lt;String&gt; exclusionList = new ArrayList&lt;String&gt;();
+
      exclusionList.add(&quot;102.103.22.202&quot;);
+
      exclusionList.add(&quot;www.samsung.com&quot;);
 
+
+
      ProxyProperties staticProxy = new ProxyProperties();
+
      staticProxy.setHostname(hostName);
+
      staticProxy.setPortNumber(portNumber);
+
      staticProxy.setExclusionList(exclusionList);
 
+
+
      // optional, set up authentication for the given static proxy
+
      staticProxy.setAuthConfigList(Arrays.asList(new AuthConfig[] {
+
            new AuthConfig(&quot;user&quot;, &quot;pass&quot;)
+
      }));
+
+
 
      int resultStatic = globalProxy.setGlobalProxy(staticProxy);
 
+
+
      // 2. PAC proxy configuration
+
      String pacFileUrl = &quot;http://128.128.128.128/proxy.pac&quot;;
 
+
+
      ProxyProperties automaticProxy = new ProxyProperties();
+
      automaticProxy.setPacFileUrl(pacFileUrl);
 
+
+
      // optional, set up authentication for the multiple proxies that could be returned in PAC file
+
      automaticProxy.setAuthConfigList(Arrays.asList(new AuthConfig[] {
+
            new AuthConfig(&quot;128.128.128.128&quot;, &quot;3128&quot;, &quot;user&quot;, &quot;pass&quot;)
+
            new AuthConfig(&quot;128.128.128.128&quot;, &quot;3129&quot;, &quot;user1&quot;, &quot;pass1&quot;)
+
            new AuthConfig(&quot;128.128.128.123&quot;, &quot;3128&quot;, &quot;user2&quot;, &quot;pass2&quot;)
+
      }));
+
+
 
      int resultAutomatic = globalProxy.setGlobalProxy(automaticProxy);
 
+
+
  } catch (SecurityException e) {
+
       Log.w(TAG, "SecurityException: " + e);
+
  }
+
  </pre></td>
         </tr>
       </table>
@@ -1037,9 +1111,13 @@ From class
       <table class="jd-tagtable">  
         <tr>
             <td>The use of this API requires the caller to have the
+
  "com.samsung.android.knox.permission.KNOX_SECURITY" permission which has a protection level
+
  of signature. Moreover, this API also requires the caller to have the
+
  "com.samsung.android.knox.permission.KNOX_GLOBALPROXY" permission which has a protection level
+
  of signature.</td>
         </tr>
       </table>
@@ -1087,7 +1165,7 @@ From class
 <A NAME="navbar_top"></A>
 
 <div id="footer">
-<a href="http://www.samsung.com">Samsung Electronics</a>.<br/>SDK API level 36 - November 3 2022
+<a href="http://www.samsung.com">Samsung Electronics</a>.<br/>SDK API level 37 - June 7 2023
 </div> <!-- end footer -->
 
 </div> <!-- jd-content -->

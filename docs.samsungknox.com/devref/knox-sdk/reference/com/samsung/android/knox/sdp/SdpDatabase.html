@@ -159,9 +159,9 @@
     </select>
   </div>
   <script>
-   var SINCE_DATA = [ '1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12', '13', '14', '15', '16', '17', '18', '19', '20', '21', '22', '23', '24', '25', '26', '27', '28', '29', '30', '31', '32', '33', '34', '35', '36' ];
+   var SINCE_DATA = [ '1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12', '13', '14', '15', '16', '17', '18', '19', '20', '21', '22', '23', '24', '25', '26', '27', '28', '29', '30', '31', '32', '33', '34', '35', '36', '37' ];
     
-    var SINCE_LABELS = [ '1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12', '13', '14', '15', '16', '17', '18', '19', '20', '21', '22', '23', '24', '25', '26', '27', '28', '29', '30', '31', '32', '33', '34', '35', '36' ];
+    var SINCE_LABELS = [ '1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12', '13', '14', '15', '16', '17', '18', '19', '20', '21', '22', '23', '24', '25', '26', '27', '28', '29', '30', '31', '32', '33', '34', '35', '36', '37' ];
     buildApiLevelSelector();
     addLoadEvent(changeApiLevel);
   </script>
@@ -444,11 +444,13 @@ Summary:
   Deprecated 
       in API level 33
 
+
   </p>
 
 
 <h2>Class Overview</h2>
 <p>SdpDatabase provides convenient APIs
+
  to access a database and set its columns as sensitive.</p>
 
       
@@ -532,6 +534,7 @@ Summary:
       <em>
   Deprecated
       in API level 33
+
 </em></div>
   
   </td></tr>
@@ -567,6 +570,7 @@ Summary:
       <em>
   Deprecated
       in API level 33
+
 </em></div>
   
   </td></tr>
@@ -589,6 +593,7 @@ Summary:
       <em>
   Deprecated
       in API level 33
+
 </em></div>
   
   </td></tr>
@@ -611,6 +616,7 @@ Summary:
       <em>
   Deprecated
       in API level 33
+
 </em></div>
   
   </td></tr>
@@ -633,6 +639,7 @@ Summary:
       <em>
   Deprecated
       in API level 33
+
 </em></div>
   
   </td></tr>
@@ -920,21 +927,35 @@ From class
   Deprecated 
       in API level 33
 
+
   </p>
 
   <div class="jd-tagdata jd-tagdescr"><p>Construct a new SdpDatabase object with the given alias.
 
+
+
  <p>
+
  <b>Usage:</b><p> &nbsp &nbsp &nbsp &nbsp An application developer can use this constructor to create an instance of the object.
+
  <p>
+
  <pre>
+
      try {
+
          SdpDatabase sdpDatabase = new SdpDatabase(mEngineAlias);
+
          sdpDatabase.updateStateToDB(db, state);
+
      } catch (SdpException e) {
+
          e.printStackTrace();
+
      }
+
  </pre>
+
  <p></p></div>
   <div class="jd-tagdata">
       <h5 class="jd-tagtitle">Parameters</h5>
@@ -1033,24 +1054,41 @@ From class
   Deprecated 
       in API level 33
 
+
   </p>
 
   <div class="jd-tagdata jd-tagdescr"><p>API checks whether a column in the database is sensitive or not.
+
  
- <p>
- <b>Usage:</b><p> &nbsp &nbsp &nbsp &nbsp An application developer can use this API to check whether a column in the database is sensitive or not.
 
  <p>
+
+ <b>Usage:</b><p> &nbsp &nbsp &nbsp &nbsp An application developer can use this API to check whether a column in the database is sensitive or not.
+
+
+
+ <p>
+
  <pre>
+
      try {
+
          SdpDatabase sDb = new SdpDatabase(null);
+
          if (sDb.isSensitive(dbHandle, dbAlias, tblName, columns)) {
+
              Log.d(TAG, "Sensitive column!");
+
          }
+
      } catch (SdpException e) {
+
          e.printStackTrace();
+
      }
+
  </pre>
+
  <p></p></div>
   <div class="jd-tagdata">
       <h5 class="jd-tagtitle">Parameters</h5>
@@ -1141,24 +1179,41 @@ From class
   Deprecated 
       in API level 33
 
+
   </p>
 
   <div class="jd-tagdata jd-tagdescr"><p>API sets the column(s) in the database as sensitive.
+
  <code><a href="core/SdpEngine.html">SdpEngine</a></code> must be unlocked before trying to set a column as sensitive.
 
- <p>
- <b>Usage:</b><p> &nbsp &nbsp &nbsp &nbsp An application developer can use this API to configure the sensitiveness,
-  to determine which sensitive data to protect. Please ensure that DB Handle MUST have WRITE access to call this API.
+
 
  <p>
+
+ <b>Usage:</b><p> &nbsp &nbsp &nbsp &nbsp An application developer can use this API to configure the sensitiveness,
+
+  to determine which sensitive data to protect. Please ensure that DB Handle MUST have WRITE access to call this API.
+
+
+
+ <p>
+
  <pre>
+
      try {
+
          SdpDatabase sDb = new SdpDatabase(null);
+
          sDb.setSensitive(dbHandle, dbAlias, tblName, columns);
+
      } catch (SdpException e) {
+
          e.printStackTrace();
+
      }
+
  </pre>
+
  <p></p></div>
   <div class="jd-tagdata">
       <h5 class="jd-tagtitle">Parameters</h5>
@@ -1258,23 +1313,39 @@ From class
   Deprecated 
       in API level 33
 
+
   </p>
 
   <div class="jd-tagdata jd-tagdescr"><p>API to propagate the <code><a href="core/SdpEngine.html">SdpEngine</a></code> state to the database engine.
+
  This is required to initiate maintenance tasks that improve database performance.
+
  
- <p>
- <b>Usage:</b><p> &nbsp &nbsp &nbsp &nbsp An application developer can use this API to send the current state to database handle.
 
  <p>
+
+ <b>Usage:</b><p> &nbsp &nbsp &nbsp &nbsp An application developer can use this API to send the current state to database handle.
+
+
+
+ <p>
+
  <pre>
+
      try {
+
          SdpDatabase sDb = new SdpDatabase(null);
+
          sDb.updateStateToDB(dbHandle, dbAlias, SdpEngineConstants.State.LOCKED);
+
      } catch (SdpException e) {
+
          e.printStackTrace();
+
      }
+
  </pre>
+
  <p></p></div>
   <div class="jd-tagdata">
       <h5 class="jd-tagtitle">Parameters</h5>
@@ -1361,21 +1432,35 @@ From class
   Deprecated 
       in API level 33
 
+
   </p>
 
   <div class="jd-tagdata jd-tagdescr"><p>API to propagate the <code><a href="core/SdpEngine.html">SdpEngine</a></code> state to the database engine.
+
  This is required to initiate maintenance tasks that improve database performance.
+
  
- <p>
- <b>Usage:</b><p> &nbsp &nbsp &nbsp &nbsp Method updates the state to the database engine on state change. 
 
  <p>
+
+ <b>Usage:</b><p> &nbsp &nbsp &nbsp &nbsp Method updates the state to the database engine on state change. 
+
+
+
+ <p>
+
  <pre>
+
      public void onStateChange(int state) {
+
          super.onStateChange(state);
+
          mSdpDatabaseHelper.updateStateToDB(state);
+
      }
+
  </pre>
+
  <p></p></div>
   <div class="jd-tagdata">
       <h5 class="jd-tagtitle">Parameters</h5>
@@ -1437,7 +1522,7 @@ From class
 <A NAME="navbar_top"></A>
 
 <div id="footer">
-<a href="http://www.samsung.com">Samsung Electronics</a>.<br/>SDK API level 36 - November 3 2022
+<a href="http://www.samsung.com">Samsung Electronics</a>.<br/>SDK API level 37 - June 7 2023
 </div> <!-- end footer -->
 
 </div> <!-- jd-content -->

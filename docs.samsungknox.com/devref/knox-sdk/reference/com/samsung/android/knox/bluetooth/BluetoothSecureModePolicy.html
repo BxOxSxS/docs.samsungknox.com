@@ -159,9 +159,9 @@
     </select>
   </div>
   <script>
-   var SINCE_DATA = [ '1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12', '13', '14', '15', '16', '17', '18', '19', '20', '21', '22', '23', '24', '25', '26', '27', '28', '29', '30', '31', '32', '33', '34', '35', '36' ];
+   var SINCE_DATA = [ '1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12', '13', '14', '15', '16', '17', '18', '19', '20', '21', '22', '23', '24', '25', '26', '27', '28', '29', '30', '31', '32', '33', '34', '35', '36', '37' ];
     
-    var SINCE_LABELS = [ '1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12', '13', '14', '15', '16', '17', '18', '19', '20', '21', '22', '23', '24', '25', '26', '27', '28', '29', '30', '31', '32', '33', '34', '35', '36' ];
+    var SINCE_LABELS = [ '1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12', '13', '14', '15', '16', '17', '18', '19', '20', '21', '22', '23', '24', '25', '26', '27', '28', '29', '30', '31', '32', '33', '34', '35', '36', '37' ];
     buildApiLevelSelector();
     addLoadEvent(changeApiLevel);
   </script>
@@ -442,13 +442,21 @@ Summary:
 
 <h2>Class Overview</h2>
 <p>This class provides APIs to control Bluetooth Secure Mode Settings. The user cannot overwrite any
+
  disabled settings provided by this policy. <br>
+
  Bluetooth secure mode enables MDM administrator to <br>
+
  - Enable/disable Bluetooth profiles <br>
+
  - Limit device discoverability and device pairing <br>
+
  - Device white listing based on name, class of device and UUIDs. <br>
+
  Bluetooth secure mode configuration takes effect after secure mode is enabled and Bluetooth is
+
  turned ON the next time. All Bluetooth secure mode configurations are turned off when secure mode
+
  is disabled and Bluetooth is turned ON the next time.</p>
 
       
@@ -460,6 +468,7 @@ Summary:
         </tr>  
         <tr>
             <td>MDM 4.0
+
 </td>
         </tr>
       </table>
@@ -537,7 +546,9 @@ Summary:
       <em>
   Deprecated
       in API level 33
+
  
+
 </em></div>
   
   </td></tr>
@@ -560,7 +571,9 @@ Summary:
       <em>
   Deprecated
       in API level 30 <br> NOTE: This API is not available since Android 10.
+
  
+
 </em></div>
   
   </td></tr>
@@ -583,7 +596,9 @@ Summary:
       <em>
   Deprecated
       in API level 33
+
  
+
 </em></div>
   
   </td></tr>
@@ -606,7 +621,9 @@ Summary:
       <em>
   Deprecated
       in API level 30 <br> NOTE: This API is not available since Android 10.
+
  
+
 </em></div>
   
   </td></tr>
@@ -629,7 +646,9 @@ Summary:
       <em>
   Deprecated
       in API level 33
+
  
+
 </em></div>
   
   </td></tr>
@@ -652,7 +671,9 @@ Summary:
       <em>
   Deprecated
       in API level 30 <br> NOTE: This API is not available since Android 10.
+
  
+
 </em></div>
   
   </td></tr>
@@ -675,7 +696,9 @@ Summary:
       <em>
   Deprecated
       in API level 33
+
  
+
 </em></div>
   
   </td></tr>
@@ -698,7 +721,9 @@ Summary:
       <em>
   Deprecated
       in API level 30 <br> NOTE: This API is not available since Android 10.
+
  
+
 </em></div>
   
   </td></tr>
@@ -721,7 +746,9 @@ Summary:
       <em>
   Deprecated
       in API level 33
+
  
+
 </em></div>
   
   </td></tr>
@@ -1016,13 +1043,18 @@ From class
       
   Deprecated 
       in API level 33
+
  
+
 
   </p>
 
   <div class="jd-tagdata jd-tagdescr"><p>API to add a specific device to the list of white listed devices by specifying the device
+
  configuration through name, cod and list of UUIDs. When Bluetooth secure mode is enable and
+
  device whitelist is enabled, only devices which are present in whitelist are allowed to
+
  interact with device through Bluetooth.</p></div>
   <div class="jd-tagdata">
       <h5 class="jd-tagtitle">Returns</h5>
@@ -1042,33 +1074,62 @@ From class
       <table class="jd-tagtable">  
         <tr>
             <td>Used to add devices to whitelist by specifying device configuration through friendly
+
  name, class of device and list of UUIDs. <br>
+
  1. Administrator creates a list of
+
  <code><a href="BluetoothSecureModeWhitelistConfig.html">whitelist</a></code>
+
  objects to add to whitelist. <br>
+
  2. Administrator adds devices to whitelist. <br>
+
  3. The whitelist setting takes effect after secure mode enabled and next time Bluetooth is
+
  turned ON.
+
  <p>
+
  
+
  <pre>
+
  EnterpriseDeviceManager edm = EnterpriseDeviceManager.getInstance(context);
+
  BluetoothSecureModePolicy bluetoothSecureModePolicy = edm.getBluetoothSecureModePolicy();
+
  try {
+
      String name = "bai2ndGen";
+
      int cod = BluetoothClass.Device.Major.UNCATEGORIZED;
+
      String uuids[] = {
+
              "00001101-0000-1000-8000-00805f9b34fb", "00001200-0000-1000-8000-00805f9b34fb"
+
      };
+
      BluetoothSecureModeWhitelistConfig whiteListConfig = new BluetoothSecureModeWhitelistConfig();
+
      whiteListConfig.name = name;
+
      whiteListConfig.cod = cod;
+
      whiteListConfig.uuids = uuids;
+
      boolean result = bluetoothSecureModePolicy
+
              .addBluetoothDevicesToWhiteList(whiteListConfig);
+
  } catch (RemoteException e) {
+
      Log.w(TAG, "RemoteException: " + e);
+
  }
+
+
 
  </pre></td>
         </tr>
@@ -1079,7 +1140,9 @@ From class
       <table class="jd-tagtable">  
         <tr>
             <td>The use of this API requires the caller to have the
+
  "com.samsung.android.knox.permission.KNOX_BLUETOOTH_SECUREMODE" permission which has a
+
  protection level of signature.</td>
         </tr>
       </table>
@@ -1147,13 +1210,18 @@ From class
       
   Deprecated 
       in API level 30 <br> NOTE: This API is not available since Android 10.
+
  
+
 
   </p>
 
   <div class="jd-tagdata jd-tagdescr"><p>API to disable secure mode, if it is enabled. All profiles are reset on disabling secure mode
+
  and set to <code>false</code>. <br>
+
  If any device configurations are white listed, all whitelists are cleared on disable secure
+
  mode.</p></div>
   <div class="jd-tagdata">
       <h5 class="jd-tagtitle">Returns</h5>
@@ -1173,19 +1241,34 @@ From class
       <table class="jd-tagtable">  
         <tr>
             <td>Used to disable secure mode on device and clear all blocked Bluetooth profiles and
+
  white listed devices. <br>
+
  1. Administrator disables secure mode.<br>
+
  2. Administrator resets Bluetooth for secure mode settings to be cleared.
+
  <p>
+
  
+
  <pre>
+
  EnterpriseDeviceManager edm = EnterpriseDeviceManager.getInstance(context);
+
  BluetoothSecureModePolicy bluetoothSecureModePolicy = edm.getBluetoothSecureModePolicy();
+
  try {
+
      boolean result = bluetoothSecureModePolicy.disableSecureMode();
+
  } catch (RemoteException e) {
+
      Log.w(TAG, "RemoteException: " + e);
+
  }
+
+
 
  </pre></td>
         </tr>
@@ -1196,7 +1279,9 @@ From class
       <table class="jd-tagtable">  
         <tr>
             <td>The use of this API requires the caller to have the
+
  "com.samsung.android.knox.permission.KNOX_BLUETOOTH_SECUREMODE" permission which has a
+
  protection level of signature.</td>
         </tr>
       </table>
@@ -1264,12 +1349,16 @@ From class
       
   Deprecated 
       in API level 33
+
  
+
 
   </p>
 
   <div class="jd-tagdata jd-tagdescr"><p>API to enable or disable device whitelist to check for white listed devices when Bluetooth
+
  secure mode is enabled. If device whitelist is enabled, only devices whose configuration has
+
  been added to whitelist are allowed to interact through Bluetooth.</p></div>
   <div class="jd-tagdata">
       <h5 class="jd-tagtitle">Parameters</h5>
@@ -1298,20 +1387,36 @@ From class
       <table class="jd-tagtable">  
         <tr>
             <td>Used to enable/disable checking for white listed devices while Bluetooth secure mode
+
  is enabled. <br>
+
  1. Administrator enables/disables device white listing. <br>
+
  2. The whitelist setting takes effect after secure mode enabled and next time Bluetooth is
+
  turned ON
+
  <p>
+
  
+
  <pre>
+
  EnterpriseDeviceManager edm = EnterpriseDeviceManager.getInstance(context);
+
  BluetoothSecureModePolicy bluetoothSecureModePolicy = edm.getBluetoothSecureModePolicy();
+
  try {
+
      boolean result = bluetoothSecureModePolicy.enableDeviceWhiteList();
+
  } catch (RemoteException e) {
+
      Log.w(TAG, "RemoteException: " + e);
+
  }
+
+
 
  </pre></td>
         </tr>
@@ -1322,7 +1427,9 @@ From class
       <table class="jd-tagtable">  
         <tr>
             <td>The use of this API requires the caller to have the
+
  "com.samsung.android.knox.permission.KNOX_BLUETOOTH_SECUREMODE" permission which has a
+
  protection level of signature.</td>
         </tr>
       </table>
@@ -1390,14 +1497,20 @@ From class
       
   Deprecated 
       in API level 30 <br> NOTE: This API is not available since Android 10.
+
  
+
 
   </p>
 
   <div class="jd-tagdata jd-tagdescr"><p>API to enable secure mode, with the settings configured by administrator. Administrator can
+
  configure which Bluetooth profiles to enable/disable on enabling secure mode. Administrator
+
  can choose to enable/disable device white listed while enabling secure mode. Administrator
+
  can also create a device whitelist allowing specific device configurations which will be
+
  checked when device white listed is enabled.</p></div>
   <div class="jd-tagdata">
       <h5 class="jd-tagtitle">Parameters</h5>
@@ -1405,11 +1518,13 @@ From class
         <tr>
           <th>configObj</td>
           <td>Object specifying boolean values for every Bluetooth profile set by
+
  administrator</td>
         </tr>
         <tr>
           <th>whiteList</td>
           <td>List of device configurations to be added to whitelist while enabling secure
+
  mode</td>
         </tr>
       </table>
@@ -1432,42 +1547,80 @@ From class
       <table class="jd-tagtable">  
         <tr>
             <td>Used to enable secure mode and configure which Bluetooth profiles are allowed or
+
  disallowed and also whitelist specific device configurations which are allowed to interact
+
  through Bluetooth. <br>
+
  1. Administrator selects which profiles are to be enabled. <br>
+
  2. Administrator selects if scan mode, pairing mode, white listing is to be enabled and
+
  creates a configuration object
+
  <code><a href="BluetoothSecureModeConfig.html">config</a></code> which stores
+
  required settings. <br>
+
  3. Administrator enters devices into whitelist if needed. <br>
+
  4. Administrator enables secure mode. <br>
+
  5. Administrator resets Bluetooth for secure mode settings to take effect.<br>
+
  6. For every Bluetooth profile, the cumulative strictest value set through Bluetooth Secure
+
  Mode Policy and Bluetooth Policy will be applied and enforced on device.
+
  <p>
+
  
+
  <pre>
+
  EnterpriseDeviceManager edm = EnterpriseDeviceManager.getInstance(context);
+
  BluetoothSecureModePolicy bluetoothSecureModePolicy = edm.getBluetoothSecureModePolicy();
+
  try {
+
      BluetoothSecureModeConfig config = new BluetoothSecureModeConfig();
+
      config.scanEnable = true;
+
      config.a2dpEnable = true;
+
      config.whitelistEnable = true;
+
  
+
      BluetoothSecureModeWhitelist whitelist = new BluetoothSecureModeWhitelist();
+
      String name = "bai2ndGen";
+
      int cod = BluetoothClass.Device.Major.UNCATEGORIZED;
+
      String uuids[] = {
+
              "00001101-0000-1000-8000-00805f9b34fb", "00001200-0000-1000-8000-00805f9b34fb"
+
      };
+
      whiteListConfig.name = name;
+
      whiteListConfig.cod = cod;
+
      whiteListConfig.uuids = uuids;
+
      boolean result = bluetoothSecureModePolicy.enableSecureMode(config, whitelist);
+
  } catch (RemoteException e) {
+
      Log.w(TAG, "RemoteException: " + e);
+
  }
+
+
 
  </pre></td>
         </tr>
@@ -1478,7 +1631,9 @@ From class
       <table class="jd-tagtable">  
         <tr>
             <td>The use of this API requires the caller to have the
+
  "com.samsung.android.knox.permission.KNOX_BLUETOOTH_SECUREMODE" permission which has a
+
  protection level of signature.</td>
         </tr>
       </table>
@@ -1546,15 +1701,19 @@ From class
       
   Deprecated 
       in API level 33
+
  
+
 
   </p>
 
   <div class="jd-tagdata jd-tagdescr"><p>API to retrieve the device configuration for each device that has been added to the whitelist
+
  in Bluetooth secure mode.</p></div>
   <div class="jd-tagdata">
       <h5 class="jd-tagtitle">Returns</h5>
       <ul class="nolist"><li>List of BluetoothSecureModeWhitelistConfig objects with configuration for every
+
  device.</li></ul>
   </div>      
   <div class="jd-tagdata">
@@ -1562,18 +1721,32 @@ From class
       <table class="jd-tagtable">  
         <tr>
             <td>Used to get list of devices configurations that have been added to Bluetooth secure
+
  mode whitelist.
+
  <p>
+
  
+
  <pre>
+
  EnterpriseDeviceManager edm = EnterpriseDeviceManager.getInstance(context);
+
  BluetoothSecureModePolicy bluetoothSecureModePolicy = edm.getBluetoothSecureModePolicy();
+
  try {
+
      BluetoothSecureModeWhitelistConfig config = bluetoothSecureModePolicy
+
              .getBluetoothDeviceFromWhiteList();
+
  } catch (RemoteException e) {
+
      Log.w(TAG, "RemoteException: " + e);
+
  }
+
+
 
  </pre></td>
         </tr>
@@ -1642,7 +1815,9 @@ From class
       
   Deprecated 
       in API level 30 <br> NOTE: This API is not available since Android 10.
+
  
+
 
   </p>
 
@@ -1656,18 +1831,32 @@ From class
       <table class="jd-tagtable">  
         <tr>
             <td>Used to retrieve the current configuration set by administrator while enabling
+
  Bluetooth secure mode.
+
  <p>
+
  
+
  <pre>
+
  EnterpriseDeviceManager edm = EnterpriseDeviceManager.getInstance(context);
+
  BluetoothSecureModePolicy bluetoothSecureModePolicy = edm.getBluetoothSecureModePolicy();
+
  try {
+
      BluetoothSecureModeConfig config = bluetoothSecureModePolicy
+
              .getSecureModeConfiguration();
+
  } catch (RemoteException e) {
+
      Log.w(TAG, "RemoteException: " + e);
+
  }
+
+
 
  </pre></td>
         </tr>
@@ -1731,7 +1920,9 @@ From class
       
   Deprecated 
       in API level 33
+
  
+
 
   </p>
 
@@ -1745,16 +1936,28 @@ From class
       <table class="jd-tagtable">  
         <tr>
             <td>Used to check if device white listing is enabled in Bluetooth secure mode.
+
  <p>
+
  
+
  <pre>
+
  EnterpriseDeviceManager edm = EnterpriseDeviceManager.getInstance(context);
+
  BluetoothSecureModePolicy bluetoothSecureModePolicy = edm.getBluetoothSecureModePolicy();
+
  try {
+
      boolean result = bluetoothSecureModePolicy.isDeviceWhiteListEnabled();
+
  } catch (RemoteException e) {
+
      Log.w(TAG, "RemoteException: " + e);
+
  }
+
+
 
  </pre></td>
         </tr>
@@ -1823,7 +2026,9 @@ From class
       
   Deprecated 
       in API level 30 <br> NOTE: This API is not available since Android 10.
+
  
+
 
   </p>
 
@@ -1837,16 +2042,28 @@ From class
       <table class="jd-tagtable">  
         <tr>
             <td>Used to check if Bluetooth secure ode is currently enabled.
+
  <p>
+
  
+
  <pre>
+
  EnterpriseDeviceManager edm = EnterpriseDeviceManager.getInstance(context);
+
  BluetoothSecureModePolicy bluetoothSecureModePolicy = edm.getBluetoothSecureModePolicy();
+
  try {
+
      boolean result = bluetoothSecureModePolicy.isSecureModeEnabled();
+
  } catch (RemoteException e) {
+
      Log.w(TAG, "RemoteException: " + e);
+
  }
+
+
 
  </pre></td>
         </tr>
@@ -1915,11 +2132,14 @@ From class
       
   Deprecated 
       in API level 33
+
  
+
 
   </p>
 
   <div class="jd-tagdata jd-tagdescr"><p>API to remove a specific device from the list of white listed devices by specifying the
+
  device configuration through name, cod and list of UUIDs.</p></div>
   <div class="jd-tagdata">
       <h5 class="jd-tagtitle">Returns</h5>
@@ -1939,32 +2159,60 @@ From class
       <table class="jd-tagtable">  
         <tr>
             <td>Used to remove devices from whitelist in Bluetooth secure mode. <br>
+
  1. Administrator creates a list of
+
  <code><a href="BluetoothSecureModeWhitelistConfig.html">whitelist</a></code>
+
  objects to remove from whitelist. <br>
+
  2. Administrator removes devices from whitelist. <br>
+
  3. The whitelist setting takes effect after secure mode enabled and next time Bluetooth is
+
  turned ON.
+
  <p>
+
  
+
  <pre>
+
  EnterpriseDeviceManager edm = EnterpriseDeviceManager.getInstance(context);
+
  BluetoothSecureModePolicy bluetoothSecureModePolicy = edm.getBluetoothSecureModePolicy();
+
  try {
+
      String name = "bai2ndGen";
+
      int cod = BluetoothClass.Device.Major.UNCATEGORIZED;
+
      String uuids[] = {
+
              "00001101-0000-1000-8000-00805f9b34fb", "00001200-0000-1000-8000-00805f9b34fb"
+
      };
+
      BluetoothSecureModeWhitelistConfig whiteListConfig = new BluetoothSecureModeWhitelistConfig();
+
      whiteListConfig.name = name;
+
      whiteListConfig.cod = cod;
+
      whiteListConfig.uuids = uuids;
+
      boolean result = bluetoothSecureModePolicy
+
              .removeBluetoothDevicesFromWhiteList(whiteListConfig);
+
  } catch (RemoteException e) {
+
      Log.w(TAG, "RemoteException: " + e);
+
  }
+
+
 
  </pre></td>
         </tr>
@@ -1975,7 +2223,9 @@ From class
       <table class="jd-tagtable">  
         <tr>
             <td>The use of this API requires the caller to have the
+
  "com.samsung.android.knox.permission.KNOX_BLUETOOTH_SECUREMODE" permission which has a
+
  protection level of signature.</td>
         </tr>
       </table>
@@ -2023,7 +2273,7 @@ From class
 <A NAME="navbar_top"></A>
 
 <div id="footer">
-<a href="http://www.samsung.com">Samsung Electronics</a>.<br/>SDK API level 36 - November 3 2022
+<a href="http://www.samsung.com">Samsung Electronics</a>.<br/>SDK API level 37 - June 7 2023
 </div> <!-- end footer -->
 
 </div> <!-- jd-content -->

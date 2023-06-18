@@ -159,9 +159,9 @@
     </select>
   </div>
   <script>
-   var SINCE_DATA = [ '1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12', '13', '14', '15', '16', '17', '18', '19', '20', '21', '22', '23', '24', '25', '26', '27', '28', '29', '30', '31', '32', '33', '34', '35', '36' ];
+   var SINCE_DATA = [ '1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12', '13', '14', '15', '16', '17', '18', '19', '20', '21', '22', '23', '24', '25', '26', '27', '28', '29', '30', '31', '32', '33', '34', '35', '36', '37' ];
     
-    var SINCE_LABELS = [ '1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12', '13', '14', '15', '16', '17', '18', '19', '20', '21', '22', '23', '24', '25', '26', '27', '28', '29', '30', '31', '32', '33', '34', '35', '36' ];
+    var SINCE_LABELS = [ '1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12', '13', '14', '15', '16', '17', '18', '19', '20', '21', '22', '23', '24', '25', '26', '27', '28', '29', '30', '31', '32', '33', '34', '35', '36', '37' ];
     buildApiLevelSelector();
     addLoadEvent(changeApiLevel);
   </script>
@@ -466,6 +466,7 @@ Summary:
       
   Deprecated 
       in API level 27
+
 
   </p>
 
@@ -833,6 +834,7 @@ android.os.Parcelable
         <span class="sympad"><a href="EmailAccount.html#EmailAccount(java.lang.String, java.lang.String, java.lang.String, int, java.lang.String, java.lang.String, java.lang.String, java.lang.String, int, java.lang.String, java.lang.String)">EmailAccount</a></span>(<a href="http://developer.android.com/reference/java/lang/String.html">String</a> emailAddress, <a href="http://developer.android.com/reference/java/lang/String.html">String</a> inComingProtocol, <a href="http://developer.android.com/reference/java/lang/String.html">String</a> inComingServerAddress, int inComingServerPort, <a href="http://developer.android.com/reference/java/lang/String.html">String</a> inComingServerLogin, <a href="http://developer.android.com/reference/java/lang/String.html">String</a> inComingServerPassword, <a href="http://developer.android.com/reference/java/lang/String.html">String</a> outGoingProtocol, <a href="http://developer.android.com/reference/java/lang/String.html">String</a> outGoingServerAddress, int outGoingServerPort, <a href="http://developer.android.com/reference/java/lang/String.html">String</a> outGoingServerLogin, <a href="http://developer.android.com/reference/java/lang/String.html">String</a> outGoingServerPassword)</nobr>
         
         <div class="jd-descrdiv"><p>
+
   Struct to add a new email account.</div>
   
   </td></tr>
@@ -2059,6 +2061,7 @@ From interface
       
 
   <div class="jd-tagdata jd-tagdescr"><p><p>
+
   Struct to add a new email account.</p></p></div>
   <div class="jd-tagdata">
       <h5 class="jd-tagtitle">Parameters</h5>
@@ -2114,27 +2117,49 @@ From interface
       <table class="jd-tagtable">  
         <tr>
             <td><pre>
+
  long  accountId = -1;
+
  EnterpriseDeviceManager edm = EnterpriseDeviceManager.getInstance(context);
+
  EmailAccountPolicy  emailAccountPolicy = edm.getEmailAccountPolicy();
+
   try {
+
           accountId = emailAccountPolicy.addNewAccount(new EmailAccount(
+
              "testemail@gmail.com","pop3","pop.gmail.com", 995,
+
              "testemail@gmail.com", null,"smtp", "smtp.gmail.com",465,
+
              "testemail@gmail.com",null));
 
+
+
           if(accountId >= 0){
+
               Log.d(TAG," Adding a new email account has succeeded!");
+
               // Administrator needs to call sendAccountsChangedBroadcast() API
+
               // to notify regarding email account addition.
+
               emailAccountPolicy.sendAccountsChangedBroadcast();
 
+
+
           }else{
+
               Log.d(TAG," Adding a new email account failed.");
+
           }
+
   } catch(SecurityException e) {
+
       Log.w(TAG,"SecurityException: "+e);
+
   }
+
  </pre></td>
         </tr>
       </table>
@@ -2144,30 +2169,55 @@ From interface
       <table class="jd-tagtable">  
         <tr>
             <td><pre>
+
  long  accountId = -1;
+
  // When you create container successfully, <i>containerID</i> will be returned via intent.
+
  // Use this <i>containerID</i> in below API.
+
  EnterpriseKnoxManager ekm = EnterpriseKnoxManager.getInstance(context);
+
  KnoxContainerManager kcm = ekm.getKnoxContainerManager(containerID);
+
  EmailAccountPolicy emailAccountPolicy = kcm.getEmailAccountPolicy();
+
   try {
+
           accountId = emailAccountPolicy.addNewAccount(new EmailAccount(
+
              "testemail@gmail.com","pop3","pop.gmail.com", 995,
+
              "testemail@gmail.com", null,"smtp", "smtp.gmail.com",465,
+
              "testemail@gmail.com",null));
 
+
+
           if(accountId >= 0){
+
               Log.d(TAG," Adding a new email account has succeeded!");
+
               // Administrator needs to call sendAccountsChangedBroadcast() API
+
               // to notify regarding email account addition.
+
               emailAccountPolicy.sendAccountsChangedBroadcast();
 
+
+
           }else{
+
               Log.d(TAG," Adding a new email account failed.");
+
           }
+
   } catch(SecurityException e) {
+
       Log.w(TAG,"SecurityException: "+e);
+
   }
+
  </pre></td>
         </tr>
       </table>
@@ -2188,6 +2238,7 @@ From interface
       <table class="jd-tagtable">  
         <tr>
             <td><a href="../../../../../../multiuser/multiuser.html">User Scope</a>
+
 </td>
         </tr>
       </table>
@@ -2221,7 +2272,7 @@ From interface
 <A NAME="navbar_top"></A>
 
 <div id="footer">
-<a href="http://www.samsung.com">Samsung Electronics</a>.<br/>SDK API level 36 - November 3 2022
+<a href="http://www.samsung.com">Samsung Electronics</a>.<br/>SDK API level 37 - June 7 2023
 </div> <!-- end footer -->
 
 </div> <!-- jd-content -->

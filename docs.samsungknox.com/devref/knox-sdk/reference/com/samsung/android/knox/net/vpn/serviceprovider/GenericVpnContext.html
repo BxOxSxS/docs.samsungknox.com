@@ -159,9 +159,9 @@
     </select>
   </div>
   <script>
-   var SINCE_DATA = [ '1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12', '13', '14', '15', '16', '17', '18', '19', '20', '21', '22', '23', '24', '25', '26', '27', '28', '29', '30', '31', '32', '33', '34', '35', '36' ];
+   var SINCE_DATA = [ '1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12', '13', '14', '15', '16', '17', '18', '19', '20', '21', '22', '23', '24', '25', '26', '27', '28', '29', '30', '31', '32', '33', '34', '35', '36', '37' ];
     
-    var SINCE_LABELS = [ '1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12', '13', '14', '15', '16', '17', '18', '19', '20', '21', '22', '23', '24', '25', '26', '27', '28', '29', '30', '31', '32', '33', '34', '35', '36' ];
+    var SINCE_LABELS = [ '1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12', '13', '14', '15', '16', '17', '18', '19', '20', '21', '22', '23', '24', '25', '26', '27', '28', '29', '30', '31', '32', '33', '34', '35', '36', '37' ];
     buildApiLevelSelector();
     addLoadEvent(changeApiLevel);
   </script>
@@ -493,63 +493,121 @@ Summary:
 
 <h2>Class Overview</h2>
 <p><code>GenericVpnContext</code> is a class for applications to create custom VPN context object
+
  and achieve Knox VPN functionality.</br>
+
  <p>
+
  <code>GenericVpnContext</code> class is basically extended from <code><a href="http://developer.android.com/reference/android/content/ContextWrapper.html">ContextWrapper</a></code> class and
+
  accepts a context in its constructor. In general, this custom context creates a type matched
+
  object to pass context to Android`s <a href=
+
  "https://developer.android.com/reference/android/net/VpnService.html#prepare(android.content.Context)">prepare()</a>
+
  API. This custom context facilitates passing extra parameters to achieve per-application VPN and
+
  meta-data passing with VPN traffic.
+
  </p>
+
  <p>
+
  Please refer to Android`s
+
  <a href= "https://developer.android.com/reference/android/net/VpnService.html">VpnService</a>
+
  documentation for further details on VPN solution creation.
+
  </p>
+
  <p>
+
  Following are some key points:
+
  </p>
+
  <ul>
+
  <li>VPN clients can integrate with Knox VPN framework either by using the VPN service provided by
+
  Android (calling prepare function with <code>GenericVpnContext</code>) or by using
+
  <code><a href="GenericVpnService.html">GenericVpnService</a></code>.</li>
+
  <li>When creating Knox VPN profile using <code>GenericVpnContext</code>, APIs available in
+
  <a href=
+
  "https://developer.android.com/reference/android/net/VpnService.Builder.html">VpnService.Builder</a>
+
  class from API level 21 are not supported.</li>
+
  <li>When a VPN client needs to start a Knox VPN profile, the client can create object of
+
  <code>GenericVpnContext</code>.
+
  
+
  <pre>
+
  GenericVpnContext vpnContext = new GenericVpnContext(this);
+
  vpnContext.setGenericVpnParams(profileName, GenericVpnContext.CONNECTING);
+
  VpnService.prepare(vpnContext);
+
  </pre>
+
  
+
  </li>
+
  <li>When client needs to start a Knox VPN profile and get meta-data along with the traffic, then
+
  the client can create object of <code>GenericVpnContext</code>.
+
  
+
  <pre>
+
  GenericVpnContext vpnContext = new GenericVpnContext(this);
+
  vpnContext.setGenericVpnParams(profileName, GenericVpnContext.CONNECTING);
+
  vpnContext.enableMetaHeader(true);
+
  VpnService.prepare(vpnContext);
+
  </pre>
+
  
+
  </li>
+
  <li>When establishing the VPN connection for Knox profile, set the <a href=
+
  "https://developer.android.com/reference/android/net/VpnService.Builder.html#setSession(java.lang.String)">setSession</a>
+
  value of the <a href=
+
  "https://developer.android.com/reference/android/net/VpnService.Builder.html">VpnService.Builder</a>
+
  class to the profile name of the connection.</li>
+
  <li>When establishing the VPN connection for Knox profile, the <a href=
+
  "https://developer.android.com/reference/android/net/VpnService.Builder.html#addRoute(java.lang.String,
+
  int)">addRoute</a> value of the <a href=
+
  "https://developer.android.com/reference/android/net/VpnService.Builder.html">VpnService.Builder</a>
+
  class is set to <code>null</code> by default.</li>
+
  <li>If the VPN client plans to support multiple VPN interfaces per user, they can achieve it by
+
  using the default VpnService provided by Android along with the changes mentioned above.</p>
 
       
@@ -561,7 +619,9 @@ Summary:
         </tr>  
         <tr>
             <td>KNOX 2.2.0
+
         </ul>
+
 </td>
         </tr>
       </table>
@@ -626,6 +686,7 @@ Summary:
         <td class="jd-typecol">boolean</td>
         <td class="jd-linkcol"><a href="GenericVpnContext.html#META_DISABLED">META_DISABLED</a></td>
         <td class="jd-descrcol" width="100%">This field indicates that the meta-data (UID/PID of application generating the packet)
+
  passing is disabled.</td>
     </tr>
     
@@ -634,6 +695,7 @@ Summary:
         <td class="jd-typecol">boolean</td>
         <td class="jd-linkcol"><a href="GenericVpnContext.html#META_ENABLED">META_ENABLED</a></td>
         <td class="jd-descrcol" width="100%">This field indicates that the meta-data (UID/PID of application generating the packet)
+
  passing is enabled.</td>
     </tr>
     
@@ -1457,6 +1519,7 @@ android.content.Context
         <span class="sympad"><a href="GenericVpnContext.html#isMetaEnabled()">isMetaEnabled</a></span>()</nobr>
         
         <div class="jd-descrdiv">Function to get the status of meta-data appending for profile set in
+
  <code><a href="GenericVpnContext.html#setGenericVpnParams(java.lang.String, boolean)">setGenericVpnParams(String, boolean)</a></code>.</div>
   
   </td></tr>
@@ -5763,6 +5826,7 @@ From class
         </tr>  
         <tr>
             <td>KNOX 2.2.0
+
 </td>
         </tr>
       </table>
@@ -5817,6 +5881,7 @@ From class
         </tr>  
         <tr>
             <td>KNOX 2.2.0
+
 </td>
         </tr>
       </table>
@@ -5863,6 +5928,7 @@ From class
       
 
   <div class="jd-tagdata jd-tagdescr"><p>This field indicates that the meta-data (UID/PID of application generating the packet)
+
  passing is disabled.</p></div>      
   <div class="jd-tagdata">
       <h5 class="jd-tagtitle">Since</h5>
@@ -5872,6 +5938,7 @@ From class
         </tr>  
         <tr>
             <td>KNOX 2.2.0
+
 </td>
         </tr>
       </table>
@@ -5918,6 +5985,7 @@ From class
       
 
   <div class="jd-tagdata jd-tagdescr"><p>This field indicates that the meta-data (UID/PID of application generating the packet)
+
  passing is enabled.</p></div>      
   <div class="jd-tagdata">
       <h5 class="jd-tagtitle">Since</h5>
@@ -5927,6 +5995,7 @@ From class
         </tr>  
         <tr>
             <td>KNOX 2.2.0
+
 </td>
         </tr>
       </table>
@@ -5996,6 +6065,7 @@ From class
         </tr>  
         <tr>
             <td>KNOX 2.2.0
+
 </td>
         </tr>
       </table>
@@ -6052,7 +6122,9 @@ From class
       
 
   <div class="jd-tagdata jd-tagdescr"><p>Function used to enable/disable meta-data passing with Knox VPN traffic. If the VPN client
+
  does not have privilege in enabling meta-data along with network traffic, VPN client will
+
  receive a <code>SecurityException</code> when invoking prepare API.</p></div>
   <div class="jd-tagdata">
       <h5 class="jd-tagtitle">Parameters</h5>
@@ -6060,6 +6132,7 @@ From class
         <tr>
           <th>enable</td>
           <td>Specifies whether to enable or disable meta-data passing along with VPN
+
             traffic.</td>
         </tr>
       </table>
@@ -6172,6 +6245,7 @@ From class
   <div class="jd-tagdata">
       <h5 class="jd-tagtitle">Returns</h5>
       <ul class="nolist"><li>Knox VPN state - <code>true</code> for Connecting and <code>false</code> for
+
          Disconnecting.</li></ul>
   </div>      
   <div class="jd-tagdata">
@@ -6222,6 +6296,7 @@ From class
       
 
   <div class="jd-tagdata jd-tagdescr"><p>Function to get the status of meta-data appending for profile set in
+
  <code><a href="GenericVpnContext.html#setGenericVpnParams(java.lang.String, boolean)">setGenericVpnParams(String, boolean)</a></code>.</p></div>
   <div class="jd-tagdata">
       <h5 class="jd-tagtitle">Returns</h5>
@@ -6323,7 +6398,7 @@ From class
 <A NAME="navbar_top"></A>
 
 <div id="footer">
-<a href="http://www.samsung.com">Samsung Electronics</a>.<br/>SDK API level 36 - November 3 2022
+<a href="http://www.samsung.com">Samsung Electronics</a>.<br/>SDK API level 37 - June 7 2023
 </div> <!-- end footer -->
 
 </div> <!-- jd-content -->

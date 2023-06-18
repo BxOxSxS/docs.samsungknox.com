@@ -159,9 +159,9 @@
     </select>
   </div>
   <script>
-   var SINCE_DATA = [ '1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12', '13', '14', '15', '16', '17', '18', '19', '20', '21', '22', '23', '24', '25', '26', '27', '28', '29', '30', '31', '32', '33', '34', '35', '36' ];
+   var SINCE_DATA = [ '1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12', '13', '14', '15', '16', '17', '18', '19', '20', '21', '22', '23', '24', '25', '26', '27', '28', '29', '30', '31', '32', '33', '34', '35', '36', '37' ];
     
-    var SINCE_LABELS = [ '1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12', '13', '14', '15', '16', '17', '18', '19', '20', '21', '22', '23', '24', '25', '26', '27', '28', '29', '30', '31', '32', '33', '34', '35', '36' ];
+    var SINCE_LABELS = [ '1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12', '13', '14', '15', '16', '17', '18', '19', '20', '21', '22', '23', '24', '25', '26', '27', '28', '29', '30', '31', '32', '33', '34', '35', '36', '37' ];
     buildApiLevelSelector();
     addLoadEvent(changeApiLevel);
   </script>
@@ -513,13 +513,25 @@ Summary:
 <p>Certificate Management Protocol(CMP) Profile to enroll certificate.
 
 
+
+
+
  CMP protocol is used to enroll certificate. 
+
+
+
 
 
  Please refer to <a href= "http://tools.ietf.org/html/rfc4210">
 
 
+
+
+
  RFC 4210 - Certificate Management Protocol</a> for more information on
+
+
+
 
 
  CMP.</p>
@@ -687,6 +699,9 @@ android.os.Parcelable
           <td class="jd-descrcol" width="100%">CMP Server URL
 
 
+
+
+
 </td>
       </tr>
       
@@ -721,6 +736,9 @@ android.os.Parcelable
           <a href="http://developer.android.com/reference/java/lang/String.html">String</a></nobr></td>
           <td class="jd-linkcol"><a href="CMPProfile.html#issuerDN">issuerDN</a></td>
           <td class="jd-descrcol" width="100%">Represents an X.500 principal, which holds the distinguished
+
+
+
 
 
  name of CA server.</td>
@@ -779,6 +797,9 @@ android.os.Parcelable
           <a href="http://developer.android.com/reference/java/lang/String.html">String</a></nobr></td>
           <td class="jd-linkcol"><a href="CMPProfile.html#subjectDN">subjectDN</a></td>
           <td class="jd-descrcol" width="100%">Represents an X.500 principal, which holds the distinguished
+
+
+
 
 
  name of some network entity.</td>
@@ -869,7 +890,13 @@ android.os.Parcelable
           <td class="jd-descrcol" width="100%">Hash algorithm type through which 'caCertHash' param is computed and sent in
 
 
+
+
+
  <code><a href="EnterpriseCertEnrollPolicy.html#enrollUserCertificate(com.samsung.android.knox.keystore.EnrollmentProfile, java.util.List<java.lang.String>, java.lang.String)">enrollUserCertificate(EnrollmentProfile, List<String>, String)</a></code>
+
+
+
 
 
  In enrollUserCertificate API, if 'caCertHash' param is not sent, then do not set this field.</td>
@@ -1514,6 +1541,9 @@ From interface
             <td>KNOX 2.1
 
 
+
+
+
 </td>
         </tr>
       </table>
@@ -1569,6 +1599,9 @@ From interface
         </tr>  
         <tr>
             <td>KNOX 2.1
+
+
+
 
 
 </td>
@@ -1628,6 +1661,9 @@ From interface
             <td>KNOX 2.1
 
 
+
+
+
 </td>
         </tr>
       </table>
@@ -1685,6 +1721,9 @@ From interface
             <td>KNOX 2.1
 
 
+
+
+
 </td>
         </tr>
       </table>
@@ -1740,6 +1779,9 @@ From interface
         </tr>  
         <tr>
             <td>KNOX 2.1
+
+
+
 
 
 </td>
@@ -1801,6 +1843,9 @@ From interface
   <div class="jd-tagdata jd-tagdescr"><p>CMP Server URL
 
 
+
+
+
 </p></div>
 
     
@@ -1845,6 +1890,9 @@ From interface
             <td>KNOX 2.1
 
 
+
+
+
 </td>
         </tr>
       </table>
@@ -1884,121 +1932,241 @@ From interface
   <div class="jd-tagdata jd-tagdescr"><p>TLV encoded initial authentication key for certificate enrollment. (Optional)<br> 
 
 
+
+
+
  
+
+
+
 
 
  The format of TLV is defined here as follows: <br>
 
 
+
+
+
  1st byte - Type of data <br>
+
+
+
 
 
  2nd and 3rd byte - Length of actual data (excluding the first 3 bytes) <br>
 
 
+
+
+
  4th byte onwards - Actual data <br>
 
 
+
+
+
  
+
+
+
 
 
  The following types are defined: <br>
 
 
+
+
+
  <pre>
 
 
+
+
+
  ------------------------------------------------------------------------------------------- 
+
+
+
 
 
  |    TYPE             |    SIGNIFICANCE                                                   | 
 
 
+
+
+
  ------------------------------------------------------------------------------------------- 
+
+
+
 
 
  |    0x00             |  Clear challenge password                                         | 
 
 
+
+
+
  ------------------------------------------------------------------------------------------- 
+
+
+
 
 
  |    0x01             |  Encrypted challenge password. If this type is present, the parser| 
 
 
+
+
+
  |                     |  has to look for data of the following two types in the payload   | 
+
+
+
 
 
  |                     |  which are again TLV encoded. These are mentioned below.          | 
 
 
+
+
+
  ------------------------------------------------------------------------------------------- 
+
+
+
 
 
  |    0x02             |  Encrypted data. This is the actual challenge password which has  | 
 
 
+
+
+
  |                     |  been encrypted with a 16 byte randomly generated AES key in ECB  | 
+
+
+
 
 
  |                     |  mode.The AES key can be found in the next TLV element type.      | 
 
 
+
+
+
  ------------------------------------------------------------------------------------------- 
+
+
+
 
 
  |    0x03             |  Encrypted AES key. This key is encrypted with the device's       | 
 
 
+
+
+
  |                     |  public key. The service has to decrypt this AES key and use it to| 
+
+
+
 
 
  |                     |  decrypt the encrypted challenge password.                        | 
 
 
+
+
+
  ------------------------------------------------------------------------------------------- 
 
 
+
+
+
  
+
+
+
 
 
  General TLV diagram of Clear Challenge password 
 
 
+
+
+
  
+
+
+
 
 
   Type     Length              Value (16 byte long) 
 
 
+
+
+
  ------------------------------------------------------------------------------------------ 
+
+
+
 
 
  | 0x00 |0x00 | 0x10 |||    | ........                                                    |
 
 
+
+
+
  ------------------------------------------------------------------------------------------ 
 
 
+
+
+
  
+
+
+
 
 
  General TLV diagram of Encrypted Challenge password 
 
 
+
+
+
  
+
+
+
 
 
   Type     Length       Type    Length        Value        Type    Length        Value 
 
 
+
+
+
  ------------------------------------------------------------------------------------------ 
+
+
+
 
 
  | 0x01 | 0x08 | 0x16 | 0x02 | 0x00 |0x10  | ............ | 0x03 | 0x08 | 0x00 | .........| 
 
 
+
+
+
  ------------------------------------------------------------------------------------------ 
+
+
+
 
 
  </pre></p></div>      
@@ -2010,6 +2178,9 @@ From interface
         </tr>  
         <tr>
             <td>KNOX 2.1
+
+
+
 
 
 </td>
@@ -2051,6 +2222,9 @@ From interface
   <div class="jd-tagdata jd-tagdescr"><p>Represents an X.500 principal, which holds the distinguished
 
 
+
+
+
  name of CA server. </p></div>      
   <div class="jd-tagdata">
       <h5 class="jd-tagtitle">Since</h5>
@@ -2060,6 +2234,9 @@ From interface
         </tr>  
         <tr>
             <td>KNOX 2.1
+
+
+
 
 
 </td>
@@ -2109,6 +2286,9 @@ From interface
             <td>KNOX 2.1
 
 
+
+
+
 </td>
         </tr>
       </table>
@@ -2154,6 +2334,9 @@ From interface
         </tr>  
         <tr>
             <td>KNOX 2.1
+
+
+
 
 
 </td>
@@ -2203,6 +2386,9 @@ From interface
             <td>KNOX 2.1
 
 
+
+
+
 </td>
         </tr>
       </table>
@@ -2250,6 +2436,9 @@ From interface
             <td>KNOX 2.1
 
 
+
+
+
 </td>
         </tr>
       </table>
@@ -2289,19 +2478,37 @@ From interface
   <div class="jd-tagdata jd-tagdescr"><p>Represents an X.500 principal, which holds the distinguished
 
 
+
+
+
  name of some network entity. An example of a distinguished
+
+
+
 
 
  name is <code>"O=SomeOrg, OU=SomeOrgUnit, C=US"</code>. The class
 
 
+
+
+
  can be instantiated from a byte representation of an object
+
+
+
 
 
  identifier (OID), an ASN.1 DER-encoded version, or a simple
 
 
+
+
+
  string holding the distinguished name. The representations
+
+
+
 
 
  must follow either RFC 2253, RFC 1779, or RFC2459.</p></div>      
@@ -2313,6 +2520,9 @@ From interface
         </tr>  
         <tr>
             <td>KNOX 2.1
+
+
+
 
 
 </td>
@@ -2362,6 +2572,9 @@ From interface
             <td>KNOX 2.1
 
 
+
+
+
 </td>
         </tr>
       </table>
@@ -2401,6 +2614,9 @@ From interface
   <div class="jd-tagdata jd-tagdescr"><p>Username for enrollment authentication. This field is required only if
 
 
+
+
+
  Server mandates senderKID for authentication.</p></div>      
   <div class="jd-tagdata">
       <h5 class="jd-tagtitle">Since</h5>
@@ -2410,6 +2626,9 @@ From interface
         </tr>  
         <tr>
             <td>KNOX 2.1
+
+
+
 
 
 </td>
@@ -2469,6 +2688,9 @@ From interface
         </tr>  
         <tr>
             <td>KNOX 2.1
+
+
+
 
 
 </td>
@@ -2566,7 +2788,7 @@ From interface
 <A NAME="navbar_top"></A>
 
 <div id="footer">
-<a href="http://www.samsung.com">Samsung Electronics</a>.<br/>SDK API level 36 - November 3 2022
+<a href="http://www.samsung.com">Samsung Electronics</a>.<br/>SDK API level 37 - June 7 2023
 </div> <!-- end footer -->
 
 </div> <!-- jd-content -->
