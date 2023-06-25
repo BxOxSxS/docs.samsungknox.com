@@ -496,6 +496,8 @@
                                             <ul class="sub-menu">
                                                 <li><a href="../knox-mobile-enrollment/welcome.htm">Introduction</a>
                                                 </li>
+                                                <li><a href="../knox-mobile-enrollment/videos.htm">How-to videos</a>
+                                                </li>
                                                 <li class="has-children"><a href="certificate-authority.htm#">Get started</a>
                                                     <ul class="sub-menu">
                                                         <li><a href="../knox-mobile-enrollment/get-started.htm">Before you begin</a>
@@ -900,7 +902,7 @@
                                         </li>
                                         <li class="has-children"><a href="certificate-authority.htm#">Knox Asset Intelligence</a>
                                             <ul class="sub-menu">
-                                                <li><a href="../knox-asset-intelligence/welcome.htm">Welcome</a>
+                                                <li><a href="../knox-asset-intelligence/welcome.htm">Introduction</a>
                                                 </li>
                                                 <li><a href="../knox-asset-intelligence/videos.htm">How-to videos</a>
                                                 </li>
@@ -942,7 +944,9 @@
                                                         </li>
                                                         <li class="has-children"><a href="certificate-authority.htm#">Network insights</a>
                                                             <ul class="sub-menu">
-                                                                <li><a href="../knox-asset-intelligence/dashboard/network/network-usage-issues.htm">Network usage and issues</a>
+                                                                <li><a href="../knox-asset-intelligence/dashboard/network/network-usage.htm">Network usage</a>
+                                                                </li>
+                                                                <li><a href="../knox-asset-intelligence/dashboard/network/wifi-disconnection-events.htm">Wi-Fi disconnection events</a>
                                                                 </li>
                                                                 <li><a href="../knox-asset-intelligence/dashboard/network/network-latency.htm">Network latency</a>
                                                                 </li>
@@ -986,6 +990,8 @@
                                                     <ul class="sub-menu">
                                                         <li><a href="../knox-asset-intelligence/how-to/manage-devices.htm">Manage devices</a>
                                                         </li>
+                                                        <li><a href="../knox-asset-intelligence/how-to/enroll-devices.htm">Enroll devices</a>
+                                                        </li>
                                                         <li><a href="../knox-asset-intelligence/how-to/manage-licenses.htm">Manage licenses</a>
                                                         </li>
                                                         <li><a href="../knox-asset-intelligence/how-to/register-resellers.htm">Register a reseller</a>
@@ -1007,6 +1013,12 @@
                                                         <li><a href="../knox-asset-intelligence/device-side-errors.htm">Device-side errors</a>
                                                         </li>
                                                         <li><a href="../knox-asset-intelligence/portal-side-errors.htm">Portal-side errors</a>
+                                                        </li>
+                                                    </ul>
+                                                </li>
+                                                <li class="has-children"><a href="certificate-authority.htm#">Appendix</a>
+                                                    <ul class="sub-menu">
+                                                        <li><a href="../knox-asset-intelligence/appendix/drop-detection-supported-devices.htm">Devices supporting drop detection</a>
                                                         </li>
                                                     </ul>
                                                 </li>
@@ -2395,1173 +2407,584 @@
 									-->
                                     <div id="sec2" class="small-12 medium-8 large-9 columns">
                                         <div itemscope="itemscope" itemtype="http://schema.org/Guide">
-                                            <h1><a name="aanchor264"></a>
-                                                <MadCap:concept term="knox-manage" />Certificate authority (CA)</h1>
-                                            <!-- Release tabs header with buttons -->
-                                            <ul class="tabs tabs-release" data-tabs="" id="knox-release">
-                                                <li class="tabs-title tabs-title-release is-active" value="1"><a href="certificate-authority.htm#23-03" data-tabs-target="22-03" aria-selected="true" class="tabs-button-release selected">
-            23.03
-        </a>
+                                            <h1>Certificate authority (CA)</h1>
+                                            <p>Register the Certificate Authority (CA) to use the Knox Manage certificate services. Before adding the CA, first download the CA root certificate from a SCEP-supported CA server. This enables you to issue device certificates and external certificates. The Cloud Connector is provided between the CA server and the Knox Manage server for secure data transmission. For more information about the Cloud Connector, see the <a href="overview-cloud-connector.htm">Cloud Connector overview</a>.</p>
+                                            <h2>Add a certificate authority (CA)</h2>
+                                            <p>To add a CA, complete the following steps:</p>
+                                            <ol>
+                                                <li value="1">
+                                                    <p>Go to <b>Advanced</b> &gt; <b>Certificate</b> &gt; <b>Certificate Authority (CA)</b>.</p>
                                                 </li>
-                                                <li class="tabs-title tabs-title-release" value="2"><a href="certificate-authority.htm#23-06" data-tabs-target="23-06" aria-selected="false" class="tabs-button-release selected">
-            23.06 UAT
-        </a>
+                                                <li value="2">
+                                                    <p>On the <b>Certificate Authority (CA)</b> page, click <b>Add</b>.</p>
                                                 </li>
-                                            </ul>
-                                            <!-- Release tabs -->
-                                            <div class="tabs-content" data-tabs-content="knox-release">
-                                                <!-- 23.03 -->
-                                                <div id="23-03" class="tabs-panel tabs-panel-release is-active">
-                                                    <p>Register the Certificate Authority (CA) to use the Knox Manage certificate services. Before adding the CA, first download the CA root certificate from a SCEP-supported CA server. This enables you to issue device certificates and external certificates. The Cloud Connector is provided between the CA server and the Knox Manage server for secure data transmission. For more information about the Cloud Connector, see the <a href="overview-cloud-connector.htm">Cloud Connector overview</a>.</p>
-                                                    <h2>Add a certificate authority (CA)</h2>
-                                                    <p>To add a CA, complete the following steps:</p>
-                                                    <ol>
+                                                <li value="3">
+                                                    <p>On the <b>Add Certificate Authority</b> page, enter the following CA information.</p>
+                                                    <ul>
                                                         <li value="1">
-                                                            <p>Go to <b>Advanced</b> &gt; <b>Certificate</b> &gt; <b>Certificate Authority (CA)</b>.</p>
+                                                            <p><b>CA Name</b>—Assign a unique name for each CA.</p>
                                                         </li>
                                                         <li value="2">
-                                                            <p>On the <b>Certificate Authority (CA)</b> page, click <b>Add</b>.</p>
+                                                            <p><b>Description</b>—Enter a description for the CA.</p>
                                                         </li>
                                                         <li value="3">
-                                                            <p>On the <b>Add Certificate Authority</b> page, enter the following CA information.</p>
-                                                            <ul>
-                                                                <li value="1">
-                                                                    <p><b>CA Name</b>—Assign a unique name for each CA.</p>
-                                                                </li>
-                                                                <li value="2">
-                                                                    <p><b>Description</b>—Enter a description for the CA.</p>
-                                                                </li>
-                                                                <li value="3">
-                                                                    <p><b>CA Type</b>—Select a CA type. The input information varies depending on the selected CA type.</p>
-                                                                    <p style="font-weight: bold;">When the CA type is <b style="font-style: italic;">ADCS</b>:</p>
-                                                                    <table>
-                                                                        <colgroup>
-                                                                            <col />
-                                                                            <col />
-                                                                        </colgroup>
-                                                                        <tbody>
-                                                                            <tr>
-                                                                                <td>
-                                                                                    <div><span>Item</span>
-                                                                                    </div>
-                                                                                </td>
-                                                                                <td>
-                                                                                    <div><span>Description</span>
-                                                                                    </div>
-                                                                                </td>
-                                                                            </tr>
-                                                                            <tr>
-                                                                                <td>
-                                                                                    <div><span>Host Name</span>
-                                                                                    </div>
-                                                                                </td>
-                                                                                <td>
-                                                                                    <div><span>Enter the CA server host URL address.</span><span><br /></span><span>For example: </span><span class="C_URL"><a target="_blank" href="http://emm.smartemm.com/">http://emm.smartemm.com/</a></span>
-                                                                                    </div>
-                                                                                </td>
-                                                                            </tr>
-                                                                            <tr>
-                                                                                <td>
-                                                                                    <div><span>Request Method</span>
-                                                                                    </div>
-                                                                                </td>
-                                                                                <td>
-                                                                                    <div><span>Select a method to send the certificate validity check request to the CA.</span><span><br /></span>
-                                                                                    </div>
-                                                                                    <div>
-                                                                                        <ul>
-                                                                                            <li value="1"><span style="font-weight: bold;">CERTSRV</span><span>: Validity is checked with the CRL method when logging into the user device.</span>
-                                                                                            </li>
-                                                                                            <li value="2"><span style="font-weight: bold;">URL</span><span>: Validity is checked with the OCSP method when logging into the user device.</span>
-                                                                                            </li>
-                                                                                        </ul>
-                                                                                    </div>
-                                                                                </td>
-                                                                            </tr>
-                                                                            <tr>
-                                                                                <td>
-                                                                                    <div><span>CA Cert Chain URL</span>
-                                                                                    </div>
-                                                                                </td>
-                                                                                <td>
-                                                                                    <div><span>Enter the CA Cert Chain URL address.</span><span><br /></span>
-                                                                                    </div>
-                                                                                    <div class="callout note"><b>NOTE</b>—<span>This field is automatically entered based on the host name if the </span><span style="font-weight: bold;">CERTSRV</span><span> is selected as the request method.</span></div>
-                                                                                </td>
-                                                                            </tr>
-                                                                            <tr>
-                                                                                <td>
-                                                                                    <div><span>WSURL</span>
-                                                                                    </div>
-                                                                                </td>
-                                                                                <td>
-                                                                                    <div><span>Enter the registered Certificate Enrollment Web Service (CES) address to provide web service with the CA.</span>
-                                                                                    </div>
-                                                                                </td>
-                                                                            </tr>
-                                                                            <tr>
-                                                                                <td>
-                                                                                    <div><span>Key Algorithm</span>
-                                                                                    </div>
-                                                                                </td>
-                                                                                <td>
-                                                                                    <div><span>Select a key algorithm type between </span><span style="font-weight: bold;">EC</span><span> and </span><span style="font-weight: bold;">RSA</span><span>.</span>
-                                                                                    </div>
-                                                                                </td>
-                                                                            </tr>
-                                                                            <tr>
-                                                                                <td>
-                                                                                    <div><span>Key Length</span>
-                                                                                    </div>
-                                                                                </td>
-                                                                                <td>
-                                                                                    <div><span>Select a key length.</span><span><br /></span>
-                                                                                    </div>
-                                                                                    <div class="callout note"><b>NOTE</b>—The key length varies depending on the selected key algorithm type.</div>
-                                                                                </td>
-                                                                            </tr>
-                                                                            <tr>
-                                                                                <td>
-                                                                                    <div><span>Auth Method</span>
-                                                                                    </div>
-                                                                                </td>
-                                                                                <td>
-                                                                                    <div><span>Select an authentication method between </span><span style="font-weight: bold;">User account</span><span> and </span><span style="font-weight: bold;">Certificate</span><span>.</span>
-                                                                                    </div>
-                                                                                </td>
-                                                                            </tr>
-                                                                            <tr>
-                                                                                <td>
-                                                                                    <div><span>User ID</span>
-                                                                                    </div>
-                                                                                </td>
-                                                                                <td>
-                                                                                    <div><span>Enter the CA user ID.</span>
-                                                                                    </div>
-                                                                                </td>
-                                                                            </tr>
-                                                                            <tr>
-                                                                                <td>
-                                                                                    <div><span>Password</span>
-                                                                                    </div>
-                                                                                </td>
-                                                                                <td>
-                                                                                    <div><span>Enter the password for the user ID.</span>
-                                                                                    </div>
-                                                                                </td>
-                                                                            </tr>
-                                                                            <tr>
-                                                                                <td>
-                                                                                    <div><span>Workstation</span>
-                                                                                    </div>
-                                                                                </td>
-                                                                                <td>
-                                                                                    <div><span>Enter the workstation information.</span>
-                                                                                    </div>
-                                                                                </td>
-                                                                            </tr>
-                                                                            <tr>
-                                                                                <td>
-                                                                                    <div><span>Domain</span>
-                                                                                    </div>
-                                                                                </td>
-                                                                                <td>
-                                                                                    <div><span>Enter the domain name that is used on Knox Manage.</span>
-                                                                                    </div>
-                                                                                </td>
-                                                                            </tr>
-                                                                            <tr>
-                                                                                <td>
-                                                                                    <div><span>Certificate Type</span>
-                                                                                    </div>
-                                                                                </td>
-                                                                                <td>
-                                                                                    <div><span>Select a certificate type.</span><span><br /></span>
-                                                                                    </div>
-                                                                                    <div class="callout note"><b>NOTE</b>—This field appears only when <b>Certificate</b> is selected as the authentication method.</div>
-                                                                                </td>
-                                                                            </tr>
-                                                                            <tr>
-                                                                                <td>
-                                                                                    <div><span>Certificate KeyStore</span>
-                                                                                    </div>
-                                                                                </td>
-                                                                                <td>
-                                                                                    <div><span>Click </span><span style="font-weight: bold;">Browse</span><span> and select a certificate file in the CER, DER, PFX, or P12 format.</span><span><br /></span>
-                                                                                    </div>
-                                                                                    <div class="callout note"><b>NOTE</b>—This field appears only when <b>Certificate</b> is selected as the authentication method.</div>
-                                                                                </td>
-                                                                            </tr>
-                                                                            <tr>
-                                                                                <td>
-                                                                                    <div><span>KeyStore Password</span>
-                                                                                    </div>
-                                                                                </td>
-                                                                                <td>
-                                                                                    <div><span>Enter the password for the uploaded certificate KeyStore file.</span><span><br /></span>
-                                                                                    </div>
-                                                                                    <div class="callout note"><b>NOTE</b>—This field appears only when <b>Certificate</b> is selected as the authentication method.</div>
-                                                                                </td>
-                                                                            </tr>
-                                                                        </tbody>
-                                                                    </table>
-                                                                    <p style="font-weight: bold;">When the CA type is <b style="font-style: italic;">Generic SCEP</b> or <b style="font-style: italic;">NDES</b>:</p>
-                                                                    <table>
-                                                                        <col />
-                                                                        <col />
-                                                                        <tbody>
-                                                                            <tr>
-                                                                                <td style="font-weight: bold;text-align: center;"><span>Item</span>
-                                                                                </td>
-                                                                                <td style="text-align: center;"><span style="font-weight: bold;">Description</span>
-                                                                                </td>
-                                                                            </tr>
-                                                                            <tr>
-                                                                                <td>
-                                                                                    <div><span>SCEP URL</span>
-                                                                                    </div>
-                                                                                </td>
-                                                                                <td>
-                                                                                    <div><span>Enter the SCEP IP or URL to send the certificate validity check request to the CA.</span><span><br /></span><span>For example, </span><span class="C_URL"><a target="_blank" href="http://emm.smartemm.com/certsrv/mscep/mscep.dll">http://emm.smartemm.com/certsrv/mscep/mscep.dll</a></span>
-                                                                                    </div>
-                                                                                </td>
-                                                                            </tr>
-                                                                            <tr>
-                                                                                <td>
-                                                                                    <div><span>Key Algorithm</span>
-                                                                                    </div>
-                                                                                </td>
-                                                                                <td>
-                                                                                    <div><span>Only </span><span style="font-weight: bold;">RSA</span><span> is supported when Generic SCEP and NDES CA types are selected.</span>
-                                                                                    </div>
-                                                                                </td>
-                                                                            </tr>
-                                                                            <tr>
-                                                                                <td>
-                                                                                    <div><span>Key Length</span>
-                                                                                    </div>
-                                                                                </td>
-                                                                                <td>
-                                                                                    <div><span>Select a key length from among </span><span style="font-weight: bold;">2048</span><span>, </span><span style="font-weight: bold;">3072</span><span>, or </span><span style="font-weight: bold;">4096</span><span>.</span>
-                                                                                    </div>
-                                                                                </td>
-                                                                            </tr>
-                                                                            <tr>
-                                                                                <td>
-                                                                                    <div><span>Challenge Type</span>
-                                                                                    </div>
-                                                                                </td>
-                                                                                <td>
-                                                                                    <div><span>Select a challenge type to authenticate the selected CA type.</span><span><br /></span>
-                                                                                    </div>
-                                                                                    <div>
-                                                                                        <ul>
-                                                                                            <li value="1">
-                                                                                                <p><span style="font-weight: bold;">Dynamic</span><span>: Enter the information used on the Knox Manage server for authentication configuration.</span>
-                                                                                                </p>
-                                                                                            </li>
-                                                                                            <li value="2">
-                                                                                                <p><span style="font-weight: bold;">Static</span><span>: Enter the challenge password.</span>
-                                                                                                </p>
-                                                                                            </li>
-                                                                                            <li value="3">
-                                                                                                <p><span style="font-weight: bold;">No Challenge</span><span>: If no challenge is selected the challenge password is not required.</span>
-                                                                                                </p>
-                                                                                                <div class="callout note"><b>NOTE</b>—The Dynamic field displays only when the selected CA Type is <b>NDES</b>.</div>
-                                                                                            </li>
-                                                                                        </ul>
-                                                                                    </div>
-                                                                                </td>
-                                                                            </tr>
-                                                                            <tr>
-                                                                                <td>
-                                                                                    <div><span>User ID</span>
-                                                                                    </div>
-                                                                                </td>
-                                                                                <td>
-                                                                                    <div><span>Enter the CA user ID.</span><span><br /></span>
-                                                                                    </div>
-                                                                                    <div class="callout note"><b>NOTE</b>—This field appears only when <b>Dynamic</b> is selected as the challenge type.</div>
-                                                                                </td>
-                                                                            </tr>
-                                                                            <tr>
-                                                                                <td>
-                                                                                    <div><span>Password</span>
-                                                                                    </div>
-                                                                                </td>
-                                                                                <td>
-                                                                                    <div><span>Enter the password for the user ID.</span><span><br /></span>
-                                                                                    </div>
-                                                                                    <div class="callout note"><b>NOTE</b>—This field appears only when <b>Dynamic</b> is selected as the challenge type.</div>
-                                                                                </td>
-                                                                            </tr>
-                                                                            <tr>
-                                                                                <td>
-                                                                                    <div><span>Domain</span>
-                                                                                    </div>
-                                                                                </td>
-                                                                                <td>
-                                                                                    <div><span>Enter the domain name that is used on Knox Manage.</span><span><br /></span>
-                                                                                    </div>
-                                                                                    <div class="callout note"><b>NOTE</b>—This field appears only when <b>Dynamic</b> is selected as the challenge type.</div>
-                                                                                </td>
-                                                                            </tr>
-                                                                            <tr>
-                                                                                <td>
-                                                                                    <div><span>Challenge URL</span>
-                                                                                    </div>
-                                                                                </td>
-                                                                                <td>
-                                                                                    <div><span>Enter the challenge URL address used on Knox Manage.</span>
-                                                                                    </div>
-                                                                                    <div class="callout note"><b>NOTE</b>—This field appears only when <b>Dynamic</b> is selected as the challenge type.</div>
-                                                                                </td>
-                                                                            </tr>
-                                                                            <tr>
-                                                                                <td>
-                                                                                    <div><span>Challenge Password</span>
-                                                                                    </div>
-                                                                                </td>
-                                                                                <td>
-                                                                                    <div><span>Enter the same password used for the authentication password.</span><span><br /></span>
-                                                                                    </div>
-                                                                                    <div class="callout note"><b>NOTE</b>—This field appears only when <b>Static</b> is selected as the challenge type.</div>
-                                                                                </td>
-                                                                            </tr>
-                                                                            <tr>
-                                                                                <td>
-                                                                                    <div><span>Retry Count</span>
-                                                                                    </div>
-                                                                                </td>
-                                                                                <td>
-                                                                                    <p>
-                                       Select a maximum number of retry to issue certificates.</p>
-                                                                                    <div class="callout note"><b>NOTE</b>—Consider the following items: <br /><ul><li value="1"><span>The default value is set to 5.</span></li><li value="2"><span>The retry count value can be between 1-10 times.</span></li></ul></div>
-                                                                                </td>
-                                                                            </tr>
-                                                                        </tbody>
-                                                                    </table>
-                                                                    <p><b>When the CA type is <i>CertAgent</i></b>:</p>
-                                                                    <table>
-                                                                        <col />
-                                                                        <col />
-                                                                        <tbody>
-                                                                            <tr>
-                                                                                <td style="font-weight: bold;text-align: center;">Item</td>
-                                                                                <td style="font-weight: bold;text-align: center;">Description</td>
-                                                                            </tr>
-                                                                            <tr>
-                                                                                <td>
-                                                                                    <div><span>RAMI URL</span>
-                                                                                    </div>
-                                                                                </td>
-                                                                                <td>
-                                                                                    <div><span>Enter the RAMI IP address or URL to send the certificate validity check request to the CA.</span><span><br /></span><span>For example, </span><span class="C_URL"><a target="_blank" href="http://emm.smartemm.com/certagentadmin/ca/rami">http://emm.smartemm.com/certagentadmin/ca/rami</a></span>
-                                                                                    </div>
-                                                                                </td>
-                                                                            </tr>
-                                                                            <tr>
-                                                                                <td>
-                                                                                    <div><span>Key Algorithm</span>
-                                                                                    </div>
-                                                                                </td>
-                                                                                <td>
-                                                                                    <div><span>Select a key algorithm type between </span><span style="font-weight: bold;">EC</span><span> and </span><span style="font-weight: bold;">RSA</span><span>.</span>
-                                                                                    </div>
-                                                                                </td>
-                                                                            </tr>
-                                                                            <tr>
-                                                                                <td>
-                                                                                    <div><span>Key Length</span>
-                                                                                    </div>
-                                                                                </td>
-                                                                                <td>
-                                                                                    <div><span>Select a key length.</span><span><br /></span>
-                                                                                    </div>
-                                                                                    <div class="callout note"><b>NOTE</b>—The key length varies depending on the selected key algorithm type.</div>
-                                                                                </td>
-                                                                            </tr>
-                                                                            <tr>
-                                                                                <td>
-                                                                                    <div><span>CA Account</span>
-                                                                                    </div>
-                                                                                </td>
-                                                                                <td>
-                                                                                    <div><span>Enter the CA account ID.</span>
-                                                                                    </div>
-                                                                                </td>
-                                                                            </tr>
-                                                                            <tr>
-                                                                                <td>
-                                                                                    <div><span>Certificate KeyStore</span>
-                                                                                    </div>
-                                                                                </td>
-                                                                                <td>
-                                                                                    <div><span>Click </span><span style="font-weight: bold;">Browse</span><span> and select a certificate file in the CER, DER, PFX or P12 format.</span>
-                                                                                    </div>
-                                                                                </td>
-                                                                            </tr>
-                                                                            <tr>
-                                                                                <td>
-                                                                                    <div><span>KeyStore Password</span>
-                                                                                    </div>
-                                                                                </td>
-                                                                                <td>
-                                                                                    <div><span>Enter the password for the uploaded certificate KeyStore file.</span>
-                                                                                    </div>
-                                                                                </td>
-                                                                            </tr>
-                                                                        </tbody>
-                                                                    </table>
-                                                                    <p style="font-weight: bold;">When CA type is <i>EST</i>:</p>
-                                                                    <table>
-                                                                        <col />
-                                                                        <col />
-                                                                        <tbody>
-                                                                            <tr>
-                                                                                <td style="text-align: center;"><b>Item</b>
-                                                                                </td>
-                                                                                <td style="font-weight: bold;text-align: center;">Description</td>
-                                                                            </tr>
-                                                                            <tr>
-                                                                                <td>
-                                                                                    <div><span>Host Name</span>
-                                                                                    </div>
-                                                                                </td>
-                                                                                <td>
-                                                                                    <div><span>Enter the server host IP or domain name.</span>
-                                                                                    </div>
-                                                                                </td>
-                                                                            </tr>
-                                                                            <tr>
-                                                                                <td>
-                                                                                    <div><span>Port</span>
-                                                                                    </div>
-                                                                                </td>
-                                                                                <td>
-                                                                                    <div><span>Enter the CA server host port number.</span>
-                                                                                    </div>
-                                                                                </td>
-                                                                            </tr>
-                                                                            <tr>
-                                                                                <td>
-                                                                                    <div><span>CA Label</span>
-                                                                                    </div>
-                                                                                </td>
-                                                                                <td>
-                                                                                    <div><span>Enter the CA server label.</span><span><br /></span>
-                                                                                    </div>
-                                                                                    <div class="callout note"><b>NOTE</b>—Contact Knox Manage Technical&#160;Support for the&#160;CA&#160;label.</div>
-                                                                                </td>
-                                                                            </tr>
-                                                                            <tr>
-                                                                                <td>
-                                                                                    <div><span>Key Algorithm</span>
-                                                                                    </div>
-                                                                                </td>
-                                                                                <td>
-                                                                                    <div><span>Select a key algorithm type between </span><span style="font-weight: bold;">EC</span><span> and </span><span style="font-weight: bold;">RSA</span><span>.</span>
-                                                                                    </div>
-                                                                                </td>
-                                                                            </tr>
-                                                                            <tr>
-                                                                                <td>
-                                                                                    <div><span>Key Length</span>
-                                                                                    </div>
-                                                                                </td>
-                                                                                <td>
-                                                                                    <div><span>Select a key length.</span><span><br /></span>
-                                                                                    </div>
-                                                                                    <div class="callout note"><b>NOTE</b>—The key length varies depending on the selected key algorithm type.</div>
-                                                                                </td>
-                                                                            </tr>
-                                                                            <tr>
-                                                                                <td>
-                                                                                    <div><span>Auth Method</span>
-                                                                                    </div>
-                                                                                </td>
-                                                                                <td>
-                                                                                    <div><span>Select an authentication method between </span><span style="font-weight: bold;">User account</span><span> and </span><span style="font-weight: bold;">Certificate</span><span>.</span>
-                                                                                    </div>
-                                                                                </td>
-                                                                            </tr>
-                                                                            <tr>
-                                                                                <td>
-                                                                                    <div><span>User ID</span>
-                                                                                    </div>
-                                                                                </td>
-                                                                                <td>
-                                                                                    <div><span>Enter the CA user ID.</span>
-                                                                                    </div>
-                                                                                </td>
-                                                                            </tr>
-                                                                            <tr>
-                                                                                <td>
-                                                                                    <div><span>Password</span>
-                                                                                    </div>
-                                                                                </td>
-                                                                                <td>
-                                                                                    <div><span>Enter the password for the user ID.</span>
-                                                                                    </div>
-                                                                                </td>
-                                                                            </tr>
-                                                                            <tr>
-                                                                                <td>
-                                                                                    <div><span>Certificate KeyStore</span>
-                                                                                    </div>
-                                                                                </td>
-                                                                                <td>
-                                                                                    <div><span>Click </span><span style="font-weight: bold;">Browse</span><span> and select a certificate file in the CER, DER, PFX or P12 format.</span><span><br /></span>
-                                                                                    </div>
-                                                                                    <div class="callout note"><b>NOTE</b>—This field appears only when <b>Certificate</b> is selected as the authentication method.</div>
-                                                                                </td>
-                                                                            </tr>
-                                                                            <tr>
-                                                                                <td>
-                                                                                    <div><span>KeyStore Password</span>
-                                                                                    </div>
-                                                                                </td>
-                                                                                <td>
-                                                                                    <div><span>Enter the password for the uploaded certificate KeyStore file.</span><span><br /></span>
-                                                                                    </div>
-                                                                                    <div class="callout note"><b>NOTE</b>—This field appears only when <b>Certificate</b> is selected as the authentication method.</div>
-                                                                                </td>
-                                                                            </tr>
-                                                                        </tbody>
-                                                                    </table>
-                                                                </li>
-                                                                <li value="4">
-                                                                    <p><b>Test Connection</b>—Click to check if the entered CA information connects to the CA server successfully.</p>
-                                                                    <div class="callout note"><b>NOTE</b>—To add a CA, you must pass the connection test.</div>
-                                                                </li>
-                                                                <li value="5">
-                                                                    <p><b>Managing CA</b>—Select a CA server name from the root CA list.</p>
-                                                                </li>
-                                                            </ul>
+                                                            <p><b>CA Type</b>—Select a CA type. The input information varies depending on the selected CA type.</p>
+                                                            <p style="font-weight: bold;">When the CA type is <b style="font-style: italic;">ADCS</b>:</p>
+                                                            <table>
+                                                                <colgroup>
+                                                                    <col />
+                                                                    <col />
+                                                                </colgroup>
+                                                                <tbody>
+                                                                    <tr>
+                                                                        <td>
+                                                                            <div><span>Item</span>
+                                                                            </div>
+                                                                        </td>
+                                                                        <td>
+                                                                            <div><span>Description</span>
+                                                                            </div>
+                                                                        </td>
+                                                                    </tr>
+                                                                    <tr>
+                                                                        <td>
+                                                                            <div><span>Host Name</span>
+                                                                            </div>
+                                                                        </td>
+                                                                        <td>
+                                                                            <div><span>Enter the CA server host URL address.</span><span><br /></span><span>For example: </span><span class="C_URL"><a target="_blank" href="http://emm.smartemm.com/">http://emm.smartemm.com/</a></span>
+                                                                            </div>
+                                                                        </td>
+                                                                    </tr>
+                                                                    <tr>
+                                                                        <td>
+                                                                            <div><span>Request Method</span>
+                                                                            </div>
+                                                                        </td>
+                                                                        <td>
+                                                                            <div><span>Select a method to send the certificate validity check request to the CA.</span><span><br /></span>
+                                                                            </div>
+                                                                            <div>
+                                                                                <ul>
+                                                                                    <li value="1"><span style="font-weight: bold;">CERTSRV</span><span>: Validity is checked with the CRL method when logging into the user device.</span>
+                                                                                    </li>
+                                                                                    <li value="2"><span style="font-weight: bold;">URL</span><span>: Validity is checked with the OCSP method when logging into the user device.</span>
+                                                                                    </li>
+                                                                                </ul>
+                                                                            </div>
+                                                                        </td>
+                                                                    </tr>
+                                                                    <tr>
+                                                                        <td>
+                                                                            <div><span>CA Cert Chain URL</span>
+                                                                            </div>
+                                                                        </td>
+                                                                        <td>
+                                                                            <div><span>Enter the CA Cert Chain URL address.</span><span><br /></span>
+                                                                            </div>
+                                                                            <div class="callout note"><b>NOTE</b>—<span>This field is automatically entered based on the host name if the </span><span style="font-weight: bold;">CERTSRV</span><span> is selected as the request method.</span></div>
+                                                                        </td>
+                                                                    </tr>
+                                                                    <tr>
+                                                                        <td>
+                                                                            <div><span>WSURL</span>
+                                                                            </div>
+                                                                        </td>
+                                                                        <td>
+                                                                            <div><span>Enter the registered Certificate Enrollment Web Service (CES) address to provide web service with the CA.</span>
+                                                                            </div>
+                                                                        </td>
+                                                                    </tr>
+                                                                    <tr>
+                                                                        <td>
+                                                                            <div><span>Key Algorithm</span>
+                                                                            </div>
+                                                                        </td>
+                                                                        <td>
+                                                                            <div><span>Select a key algorithm type between </span><span style="font-weight: bold;">EC</span><span> and </span><span style="font-weight: bold;">RSA</span><span>.</span>
+                                                                            </div>
+                                                                        </td>
+                                                                    </tr>
+                                                                    <tr>
+                                                                        <td>
+                                                                            <div><span>Key Length</span>
+                                                                            </div>
+                                                                        </td>
+                                                                        <td>
+                                                                            <div><span>Select a key length.</span><span><br /></span>
+                                                                            </div>
+                                                                            <div class="callout note"><b>NOTE</b>—The key length varies depending on the selected key algorithm type.</div>
+                                                                        </td>
+                                                                    </tr>
+                                                                    <tr>
+                                                                        <td>
+                                                                            <div><span>Auth Method</span>
+                                                                            </div>
+                                                                        </td>
+                                                                        <td>
+                                                                            <div><span>Select an authentication method between </span><span style="font-weight: bold;">User account</span><span> and </span><span style="font-weight: bold;">Certificate</span><span>.</span>
+                                                                            </div>
+                                                                        </td>
+                                                                    </tr>
+                                                                    <tr>
+                                                                        <td>
+                                                                            <div><span>User ID</span>
+                                                                            </div>
+                                                                        </td>
+                                                                        <td>
+                                                                            <div><span>Enter the CA user ID.</span>
+                                                                            </div>
+                                                                        </td>
+                                                                    </tr>
+                                                                    <tr>
+                                                                        <td>
+                                                                            <div><span>Password</span>
+                                                                            </div>
+                                                                        </td>
+                                                                        <td>
+                                                                            <div><span>Enter the password for the user ID.</span>
+                                                                            </div>
+                                                                        </td>
+                                                                    </tr>
+                                                                    <tr>
+                                                                        <td>
+                                                                            <div><span>Workstation</span>
+                                                                            </div>
+                                                                        </td>
+                                                                        <td>
+                                                                            <div><span>Enter the workstation information.</span>
+                                                                            </div>
+                                                                        </td>
+                                                                    </tr>
+                                                                    <tr>
+                                                                        <td>
+                                                                            <div><span>Domain</span>
+                                                                            </div>
+                                                                        </td>
+                                                                        <td>
+                                                                            <div><span>Enter the domain name that is used on Knox Manage.</span>
+                                                                            </div>
+                                                                        </td>
+                                                                    </tr>
+                                                                    <tr>
+                                                                        <td>
+                                                                            <div><span>Certificate Type</span>
+                                                                            </div>
+                                                                        </td>
+                                                                        <td>
+                                                                            <div><span>Select a certificate type.</span><span><br /></span>
+                                                                            </div>
+                                                                            <div class="callout note"><b>NOTE</b>—This field appears only when <b>Certificate</b> is selected as the authentication method.</div>
+                                                                        </td>
+                                                                    </tr>
+                                                                    <tr>
+                                                                        <td>
+                                                                            <div><span>Certificate KeyStore</span>
+                                                                            </div>
+                                                                        </td>
+                                                                        <td>
+                                                                            <div><span>Click </span><span style="font-weight: bold;">Browse</span><span> and select a certificate file in the CER, DER, PFX, or P12 format.</span><span><br /></span>
+                                                                            </div>
+                                                                            <div class="callout note"><b>NOTE</b>—This field appears only when <b>Certificate</b> is selected as the authentication method.</div>
+                                                                        </td>
+                                                                    </tr>
+                                                                    <tr>
+                                                                        <td>
+                                                                            <div><span>KeyStore Password</span>
+                                                                            </div>
+                                                                        </td>
+                                                                        <td>
+                                                                            <div><span>Enter the password for the uploaded certificate KeyStore file.</span><span><br /></span>
+                                                                            </div>
+                                                                            <div class="callout note"><b>NOTE</b>—This field appears only when <b>Certificate</b> is selected as the authentication method.</div>
+                                                                        </td>
+                                                                    </tr>
+                                                                </tbody>
+                                                            </table>
+                                                            <p style="font-weight: bold;">When the CA type is <b style="font-style: italic;">Generic SCEP</b> or <b style="font-style: italic;">NDES</b>:</p>
+                                                            <table>
+                                                                <col />
+                                                                <col />
+                                                                <tbody>
+                                                                    <tr>
+                                                                        <td style="font-weight: bold;text-align: center;"><span>Item</span>
+                                                                        </td>
+                                                                        <td style="text-align: center;"><span style="font-weight: bold;">Description</span>
+                                                                        </td>
+                                                                    </tr>
+                                                                    <tr>
+                                                                        <td>
+                                                                            <div><span>SCEP URL</span>
+                                                                            </div>
+                                                                        </td>
+                                                                        <td>
+                                                                            <div><span>Enter the SCEP IP or URL to send the certificate validity check request to the CA.</span><span><br /></span><span>For example, </span><span class="C_URL"><a target="_blank" href="http://emm.smartemm.com/certsrv/mscep/mscep.dll">http://emm.smartemm.com/certsrv/mscep/mscep.dll</a></span>
+                                                                            </div>
+                                                                        </td>
+                                                                    </tr>
+                                                                    <tr>
+                                                                        <td>
+                                                                            <div><span>Key Algorithm</span>
+                                                                            </div>
+                                                                        </td>
+                                                                        <td>
+                                                                            <div><span>Only </span><span style="font-weight: bold;">RSA</span><span> is supported when Generic SCEP and NDES CA types are selected.</span>
+                                                                            </div>
+                                                                        </td>
+                                                                    </tr>
+                                                                    <tr>
+                                                                        <td>
+                                                                            <div><span>Key Length</span>
+                                                                            </div>
+                                                                        </td>
+                                                                        <td>
+                                                                            <div><span>Select a key length from among </span><span style="font-weight: bold;">2048</span><span>, </span><span style="font-weight: bold;">3072</span><span>, or </span><span style="font-weight: bold;">4096</span><span>.</span>
+                                                                            </div>
+                                                                        </td>
+                                                                    </tr>
+                                                                    <tr>
+                                                                        <td>
+                                                                            <div><span>Challenge Type</span>
+                                                                            </div>
+                                                                        </td>
+                                                                        <td>
+                                                                            <div><span>Select a challenge type to authenticate the selected CA type.</span><span><br /></span>
+                                                                            </div>
+                                                                            <div>
+                                                                                <ul>
+                                                                                    <li value="1">
+                                                                                        <p><span style="font-weight: bold;">Dynamic</span><span>: Enter the information used on the Knox Manage server for authentication configuration.</span>
+                                                                                        </p>
+                                                                                    </li>
+                                                                                    <li value="2">
+                                                                                        <p><span style="font-weight: bold;">Static</span><span>: Enter the challenge password.</span>
+                                                                                        </p>
+                                                                                    </li>
+                                                                                    <li value="3">
+                                                                                        <p><span style="font-weight: bold;">No Challenge</span><span>: If no challenge is selected the challenge password is not required.</span>
+                                                                                        </p>
+                                                                                        <div class="callout note"><b>NOTE</b>—The Dynamic field displays only when the selected CA Type is <b>NDES</b>.</div>
+                                                                                    </li>
+                                                                                </ul>
+                                                                            </div>
+                                                                        </td>
+                                                                    </tr>
+                                                                    <tr>
+                                                                        <td>
+                                                                            <div><span>User ID</span>
+                                                                            </div>
+                                                                        </td>
+                                                                        <td>
+                                                                            <div><span>Enter the CA user ID.</span><span><br /></span>
+                                                                            </div>
+                                                                            <div class="callout note"><b>NOTE</b>—This field appears only when <b>Dynamic</b> is selected as the challenge type.</div>
+                                                                        </td>
+                                                                    </tr>
+                                                                    <tr>
+                                                                        <td>
+                                                                            <div><span>Password</span>
+                                                                            </div>
+                                                                        </td>
+                                                                        <td>
+                                                                            <div><span>Enter the password for the user ID.</span><span><br /></span>
+                                                                            </div>
+                                                                            <div class="callout note"><b>NOTE</b>—This field appears only when <b>Dynamic</b> is selected as the challenge type.</div>
+                                                                        </td>
+                                                                    </tr>
+                                                                    <tr>
+                                                                        <td>
+                                                                            <div><span>Domain</span>
+                                                                            </div>
+                                                                        </td>
+                                                                        <td>
+                                                                            <div><span>Enter the domain name that is used on Knox Manage.</span><span><br /></span>
+                                                                            </div>
+                                                                            <div class="callout note"><b>NOTE</b>—This field appears only when <b>Dynamic</b> is selected as the challenge type.</div>
+                                                                        </td>
+                                                                    </tr>
+                                                                    <tr>
+                                                                        <td>
+                                                                            <div><span>Challenge URL</span>
+                                                                            </div>
+                                                                        </td>
+                                                                        <td>
+                                                                            <div><span>Enter the challenge URL address used on Knox Manage.</span>
+                                                                            </div>
+                                                                            <div class="callout note"><b>NOTE</b>—This field appears only when <b>Dynamic</b> is selected as the challenge type.</div>
+                                                                        </td>
+                                                                    </tr>
+                                                                    <tr>
+                                                                        <td>
+                                                                            <div><span>Challenge Password</span>
+                                                                            </div>
+                                                                        </td>
+                                                                        <td>
+                                                                            <div><span>Enter the same password used for the authentication password.</span><span><br /></span>
+                                                                            </div>
+                                                                            <div class="callout note"><b>NOTE</b>—This field appears only when <b>Static</b> is selected as the challenge type.</div>
+                                                                        </td>
+                                                                    </tr>
+                                                                    <tr>
+                                                                        <td>
+                                                                            <div><span>Retry Count</span>
+                                                                            </div>
+                                                                        </td>
+                                                                        <td>
+                                                                            <p>
+                                    Select a maximum number of retry to issue certificates.</p>
+                                                                            <div class="callout note"><b>NOTE</b>—Consider the following items: <br /><ul><li value="1"><span>The default value is set to 5.</span></li><li value="2"><span>The retry count value can be between 1-10 times.</span></li></ul></div>
+                                                                        </td>
+                                                                    </tr>
+                                                                    <tr>
+                                                                        <td>
+                                                                            <div><span>Cloud Connector</span>
+                                                                            </div>
+                                                                        </td>
+                                                                        <td>
+                                                                            <p>Select the type of cloud connection to use for CA.</p>
+                                                                            <h4>Values</h4>
+                                                                            <ul>
+                                                                                <li value="1"><b>Secure Connection via Cloud Connector</b> — This option requires installing the cloud connector.</li>
+                                                                                <li value="2"><b>Direct Connection</b> — This option supports the use of the CA of an authorized public network.</li>
+                                                                            </ul>
+                                                                        </td>
+                                                                    </tr>
+                                                                </tbody>
+                                                            </table>
+                                                            <p><b>When the CA type is <i>CertAgent</i></b>:</p>
+                                                            <table>
+                                                                <col />
+                                                                <col />
+                                                                <tbody>
+                                                                    <tr>
+                                                                        <td style="font-weight: bold;text-align: center;">Item</td>
+                                                                        <td style="font-weight: bold;text-align: center;">Description</td>
+                                                                    </tr>
+                                                                    <tr>
+                                                                        <td>
+                                                                            <div><span>RAMI URL</span>
+                                                                            </div>
+                                                                        </td>
+                                                                        <td>
+                                                                            <div><span>Enter the RAMI IP address or URL to send the certificate validity check request to the CA.</span><span><br /></span><span>For example, </span><span class="C_URL"><a target="_blank" href="http://emm.smartemm.com/certagentadmin/ca/rami">http://emm.smartemm.com/certagentadmin/ca/rami</a></span>
+                                                                            </div>
+                                                                        </td>
+                                                                    </tr>
+                                                                    <tr>
+                                                                        <td>
+                                                                            <div><span>Key Algorithm</span>
+                                                                            </div>
+                                                                        </td>
+                                                                        <td>
+                                                                            <div><span>Select a key algorithm type between </span><span style="font-weight: bold;">EC</span><span> and </span><span style="font-weight: bold;">RSA</span><span>.</span>
+                                                                            </div>
+                                                                        </td>
+                                                                    </tr>
+                                                                    <tr>
+                                                                        <td>
+                                                                            <div><span>Key Length</span>
+                                                                            </div>
+                                                                        </td>
+                                                                        <td>
+                                                                            <div><span>Select a key length.</span><span><br /></span>
+                                                                            </div>
+                                                                            <div class="callout note"><b>NOTE</b>—The key length varies depending on the selected key algorithm type.</div>
+                                                                        </td>
+                                                                    </tr>
+                                                                    <tr>
+                                                                        <td>
+                                                                            <div><span>CA Account</span>
+                                                                            </div>
+                                                                        </td>
+                                                                        <td>
+                                                                            <div><span>Enter the CA account ID.</span>
+                                                                            </div>
+                                                                        </td>
+                                                                    </tr>
+                                                                    <tr>
+                                                                        <td>
+                                                                            <div><span>Certificate KeyStore</span>
+                                                                            </div>
+                                                                        </td>
+                                                                        <td>
+                                                                            <div><span>Click </span><span style="font-weight: bold;">Browse</span><span> and select a certificate file in the CER, DER, PFX or P12 format.</span>
+                                                                            </div>
+                                                                        </td>
+                                                                    </tr>
+                                                                    <tr>
+                                                                        <td>
+                                                                            <div><span>KeyStore Password</span>
+                                                                            </div>
+                                                                        </td>
+                                                                        <td>
+                                                                            <div><span>Enter the password for the uploaded certificate KeyStore file.</span>
+                                                                            </div>
+                                                                        </td>
+                                                                    </tr>
+                                                                </tbody>
+                                                            </table>
+                                                            <p style="font-weight: bold;">When CA type is <i>EST</i>:</p>
+                                                            <table>
+                                                                <col />
+                                                                <col />
+                                                                <tbody>
+                                                                    <tr>
+                                                                        <td style="text-align: center;"><b>Item</b>
+                                                                        </td>
+                                                                        <td style="font-weight: bold;text-align: center;">Description</td>
+                                                                    </tr>
+                                                                    <tr>
+                                                                        <td>
+                                                                            <div><span>Host Name</span>
+                                                                            </div>
+                                                                        </td>
+                                                                        <td>
+                                                                            <div><span>Enter the server host IP or domain name.</span>
+                                                                            </div>
+                                                                        </td>
+                                                                    </tr>
+                                                                    <tr>
+                                                                        <td>
+                                                                            <div><span>Port</span>
+                                                                            </div>
+                                                                        </td>
+                                                                        <td>
+                                                                            <div><span>Enter the CA server host port number.</span>
+                                                                            </div>
+                                                                        </td>
+                                                                    </tr>
+                                                                    <tr>
+                                                                        <td>
+                                                                            <div><span>CA Label</span>
+                                                                            </div>
+                                                                        </td>
+                                                                        <td>
+                                                                            <div><span>Enter the CA server label.</span><span><br /></span>
+                                                                            </div>
+                                                                            <div class="callout note"><b>NOTE</b>—Contact Knox Manage Technical&#160;Support for the&#160;CA&#160;label.</div>
+                                                                        </td>
+                                                                    </tr>
+                                                                    <tr>
+                                                                        <td>
+                                                                            <div><span>Key Algorithm</span>
+                                                                            </div>
+                                                                        </td>
+                                                                        <td>
+                                                                            <div><span>Select a key algorithm type between </span><span style="font-weight: bold;">EC</span><span> and </span><span style="font-weight: bold;">RSA</span><span>.</span>
+                                                                            </div>
+                                                                        </td>
+                                                                    </tr>
+                                                                    <tr>
+                                                                        <td>
+                                                                            <div><span>Key Length</span>
+                                                                            </div>
+                                                                        </td>
+                                                                        <td>
+                                                                            <div><span>Select a key length.</span><span><br /></span>
+                                                                            </div>
+                                                                            <div class="callout note"><b>NOTE</b>—The key length varies depending on the selected key algorithm type.</div>
+                                                                        </td>
+                                                                    </tr>
+                                                                    <tr>
+                                                                        <td>
+                                                                            <div><span>Auth Method</span>
+                                                                            </div>
+                                                                        </td>
+                                                                        <td>
+                                                                            <div><span>Select an authentication method between </span><span style="font-weight: bold;">User account</span><span> and </span><span style="font-weight: bold;">Certificate</span><span>.</span>
+                                                                            </div>
+                                                                        </td>
+                                                                    </tr>
+                                                                    <tr>
+                                                                        <td>
+                                                                            <div><span>User ID</span>
+                                                                            </div>
+                                                                        </td>
+                                                                        <td>
+                                                                            <div><span>Enter the CA user ID.</span>
+                                                                            </div>
+                                                                        </td>
+                                                                    </tr>
+                                                                    <tr>
+                                                                        <td>
+                                                                            <div><span>Password</span>
+                                                                            </div>
+                                                                        </td>
+                                                                        <td>
+                                                                            <div><span>Enter the password for the user ID.</span>
+                                                                            </div>
+                                                                        </td>
+                                                                    </tr>
+                                                                    <tr>
+                                                                        <td>
+                                                                            <div><span>Certificate KeyStore</span>
+                                                                            </div>
+                                                                        </td>
+                                                                        <td>
+                                                                            <div><span>Click </span><span style="font-weight: bold;">Browse</span><span> and select a certificate file in the CER, DER, PFX or P12 format.</span><span><br /></span>
+                                                                            </div>
+                                                                            <div class="callout note"><b>NOTE</b>—This field appears only when <b>Certificate</b> is selected as the authentication method.</div>
+                                                                        </td>
+                                                                    </tr>
+                                                                    <tr>
+                                                                        <td>
+                                                                            <div><span>KeyStore Password</span>
+                                                                            </div>
+                                                                        </td>
+                                                                        <td>
+                                                                            <div><span>Enter the password for the uploaded certificate KeyStore file.</span><span><br /></span>
+                                                                            </div>
+                                                                            <div class="callout note"><b>NOTE</b>—This field appears only when <b>Certificate</b> is selected as the authentication method.</div>
+                                                                        </td>
+                                                                    </tr>
+                                                                </tbody>
+                                                            </table>
                                                         </li>
                                                         <li value="4">
-                                                            <p>Click <b>Save</b>.</p>
+                                                            <p><b>Test Connection</b>—Click to check if the entered CA information connects to the CA server successfully.</p>
+                                                            <div class="callout note"><b>NOTE</b>—To add a CA, you must pass the connection test.</div>
                                                         </li>
-                                                    </ol>
-                                                    <h2>View a certificate authority (CA)
-</h2>
-                                                    <p>Navigate to <b>Advanced</b> &gt; <b>Certificate</b> &gt; <b>Certificate Authority (CA)</b> to view all the CA information on the <b>Certificate Authority (CA)</b> page.</p>
-                                                    <p>To view the detailed information of a specific CA, click the CA name of a specific CA on the list.</p>
-                                                    <h2>Modify a certificate authority (CA)</h2>
-                                                    <p>To modify a CA, complete the following steps:</p>
-                                                    <ol>
-                                                        <li value="1">
-                                                            <p> Navigate to <b>Advanced</b> &gt; <b>Certificate</b> &gt; <b>Certificate Authority (CA)</b>.</p>
+                                                        <li value="5">
+                                                            <p><b>Managing CA</b>—Select a CA server name from the root CA list.</p>
                                                         </li>
-                                                        <li value="2">
-                                                            <p> On the <b>Certificate Authority (CA)</b> page, click the check box for the CA you want to modify, and the click <b>Modify</b>.</p>
-                                                        </li>
-                                                        <li value="3">
-                                                            <p> On the <b>Modify Certificate Authority</b> page, modify the CA information. The information varies depending on the selected CA type.</p>
-                                                            <div class="callout note"><b>NOTE</b>—You can register a new root certificate when modifying the CA.</div>
-                                                        </li>
-                                                        <li value="4">Click <b>Save</b>.</li>
-                                                    </ol>
-                                                    <h2>Delete a certificate authority (CA)</h2>
-                                                    <p>To delete a CA, complete the following steps:</p>
-                                                    <ol>
-                                                        <li value="1">
-                                                            <p> Navigate to <b>Advanced</b> &gt; <b>Certificate</b> &gt; <b>Certificate Authority (CA)</b>.</p>
-                                                        </li>
-                                                        <li value="2">
-                                                            <p> On the <b>Certificate Authority (CA)</b> page, click the check box for the CA you want to delete, and the click <b>Delete</b>.</p>
-                                                        </li>
-                                                        <li value="3">
-                                                            <p>In the <b>Delete Certificate Authority</b> window, click <b>OK</b>.</p>
-                                                            <div class="callout note"><b>NOTE</b>—&#160;You can delete the CA only when there is no template in use.</div>
-                                                        </li>
-                                                    </ol>
-                                                </div>
-                                                <!-- UAT 23.06 -->
-                                                <div id="23-06" class="tabs-panel tabs-panel-release">
-                                                    <div class="release-banner">
-                                                        <p>This document was updated for <a href="../uat/index.htm">Knox cloud services 23.06 UAT</a>.</p>
-                                                    </div>
-                                                    <p>Register the Certificate Authority (CA) to use the Knox Manage certificate services. Before adding the CA, first download the CA root certificate from a SCEP-supported CA server. This enables you to issue device certificates and external certificates. The Cloud Connector is provided between the CA server and the Knox Manage server for secure data transmission. For more information about the Cloud Connector, see the <a href="overview-cloud-connector.htm">Cloud Connector overview</a>.</p>
-                                                    <h2>Add a certificate authority (CA)</h2>
-                                                    <p>To add a CA, complete the following steps:</p>
-                                                    <ol>
-                                                        <li value="1">
-                                                            <p>Go to <b>Advanced</b> &gt; <b>Certificate</b> &gt; <b>Certificate Authority (CA)</b>.</p>
-                                                        </li>
-                                                        <li value="2">
-                                                            <p>On the <b>Certificate Authority (CA)</b> page, click <b>Add</b>.</p>
-                                                        </li>
-                                                        <li value="3">
-                                                            <p>On the <b>Add Certificate Authority</b> page, enter the following CA information.</p>
-                                                            <ul>
-                                                                <li value="1">
-                                                                    <p><b>CA Name</b>—Assign a unique name for each CA.</p>
-                                                                </li>
-                                                                <li value="2">
-                                                                    <p><b>Description</b>—Enter a description for the CA.</p>
-                                                                </li>
-                                                                <li value="3">
-                                                                    <p><b>CA Type</b>—Select a CA type. The input information varies depending on the selected CA type.</p>
-                                                                    <p style="font-weight: bold;">When the CA type is <b style="font-style: italic;">ADCS</b>:</p>
-                                                                    <table>
-                                                                        <colgroup>
-                                                                            <col />
-                                                                            <col />
-                                                                        </colgroup>
-                                                                        <tbody>
-                                                                            <tr>
-                                                                                <td>
-                                                                                    <div><span>Item</span>
-                                                                                    </div>
-                                                                                </td>
-                                                                                <td>
-                                                                                    <div><span>Description</span>
-                                                                                    </div>
-                                                                                </td>
-                                                                            </tr>
-                                                                            <tr>
-                                                                                <td>
-                                                                                    <div><span>Host Name</span>
-                                                                                    </div>
-                                                                                </td>
-                                                                                <td>
-                                                                                    <div><span>Enter the CA server host URL address.</span><span><br /></span><span>For example: </span><span class="C_URL"><a target="_blank" href="http://emm.smartemm.com/">http://emm.smartemm.com/</a></span>
-                                                                                    </div>
-                                                                                </td>
-                                                                            </tr>
-                                                                            <tr>
-                                                                                <td>
-                                                                                    <div><span>Request Method</span>
-                                                                                    </div>
-                                                                                </td>
-                                                                                <td>
-                                                                                    <div><span>Select a method to send the certificate validity check request to the CA.</span><span><br /></span>
-                                                                                    </div>
-                                                                                    <div>
-                                                                                        <ul>
-                                                                                            <li value="1"><span style="font-weight: bold;">CERTSRV</span><span>: Validity is checked with the CRL method when logging into the user device.</span>
-                                                                                            </li>
-                                                                                            <li value="2"><span style="font-weight: bold;">URL</span><span>: Validity is checked with the OCSP method when logging into the user device.</span>
-                                                                                            </li>
-                                                                                        </ul>
-                                                                                    </div>
-                                                                                </td>
-                                                                            </tr>
-                                                                            <tr>
-                                                                                <td>
-                                                                                    <div><span>CA Cert Chain URL</span>
-                                                                                    </div>
-                                                                                </td>
-                                                                                <td>
-                                                                                    <div><span>Enter the CA Cert Chain URL address.</span><span><br /></span>
-                                                                                    </div>
-                                                                                    <div class="callout note"><b>NOTE</b>—<span>This field is automatically entered based on the host name if the </span><span style="font-weight: bold;">CERTSRV</span><span> is selected as the request method.</span></div>
-                                                                                </td>
-                                                                            </tr>
-                                                                            <tr>
-                                                                                <td>
-                                                                                    <div><span>WSURL</span>
-                                                                                    </div>
-                                                                                </td>
-                                                                                <td>
-                                                                                    <div><span>Enter the registered Certificate Enrollment Web Service (CES) address to provide web service with the CA.</span>
-                                                                                    </div>
-                                                                                </td>
-                                                                            </tr>
-                                                                            <tr>
-                                                                                <td>
-                                                                                    <div><span>Key Algorithm</span>
-                                                                                    </div>
-                                                                                </td>
-                                                                                <td>
-                                                                                    <div><span>Select a key algorithm type between </span><span style="font-weight: bold;">EC</span><span> and </span><span style="font-weight: bold;">RSA</span><span>.</span>
-                                                                                    </div>
-                                                                                </td>
-                                                                            </tr>
-                                                                            <tr>
-                                                                                <td>
-                                                                                    <div><span>Key Length</span>
-                                                                                    </div>
-                                                                                </td>
-                                                                                <td>
-                                                                                    <div><span>Select a key length.</span><span><br /></span>
-                                                                                    </div>
-                                                                                    <div class="callout note"><b>NOTE</b>—The key length varies depending on the selected key algorithm type.</div>
-                                                                                </td>
-                                                                            </tr>
-                                                                            <tr>
-                                                                                <td>
-                                                                                    <div><span>Auth Method</span>
-                                                                                    </div>
-                                                                                </td>
-                                                                                <td>
-                                                                                    <div><span>Select an authentication method between </span><span style="font-weight: bold;">User account</span><span> and </span><span style="font-weight: bold;">Certificate</span><span>.</span>
-                                                                                    </div>
-                                                                                </td>
-                                                                            </tr>
-                                                                            <tr>
-                                                                                <td>
-                                                                                    <div><span>User ID</span>
-                                                                                    </div>
-                                                                                </td>
-                                                                                <td>
-                                                                                    <div><span>Enter the CA user ID.</span>
-                                                                                    </div>
-                                                                                </td>
-                                                                            </tr>
-                                                                            <tr>
-                                                                                <td>
-                                                                                    <div><span>Password</span>
-                                                                                    </div>
-                                                                                </td>
-                                                                                <td>
-                                                                                    <div><span>Enter the password for the user ID.</span>
-                                                                                    </div>
-                                                                                </td>
-                                                                            </tr>
-                                                                            <tr>
-                                                                                <td>
-                                                                                    <div><span>Workstation</span>
-                                                                                    </div>
-                                                                                </td>
-                                                                                <td>
-                                                                                    <div><span>Enter the workstation information.</span>
-                                                                                    </div>
-                                                                                </td>
-                                                                            </tr>
-                                                                            <tr>
-                                                                                <td>
-                                                                                    <div><span>Domain</span>
-                                                                                    </div>
-                                                                                </td>
-                                                                                <td>
-                                                                                    <div><span>Enter the domain name that is used on Knox Manage.</span>
-                                                                                    </div>
-                                                                                </td>
-                                                                            </tr>
-                                                                            <tr>
-                                                                                <td>
-                                                                                    <div><span>Certificate Type</span>
-                                                                                    </div>
-                                                                                </td>
-                                                                                <td>
-                                                                                    <div><span>Select a certificate type.</span><span><br /></span>
-                                                                                    </div>
-                                                                                    <div class="callout note"><b>NOTE</b>—This field appears only when <b>Certificate</b> is selected as the authentication method.</div>
-                                                                                </td>
-                                                                            </tr>
-                                                                            <tr>
-                                                                                <td>
-                                                                                    <div><span>Certificate KeyStore</span>
-                                                                                    </div>
-                                                                                </td>
-                                                                                <td>
-                                                                                    <div><span>Click </span><span style="font-weight: bold;">Browse</span><span> and select a certificate file in the CER, DER, PFX, or P12 format.</span><span><br /></span>
-                                                                                    </div>
-                                                                                    <div class="callout note"><b>NOTE</b>—This field appears only when <b>Certificate</b> is selected as the authentication method.</div>
-                                                                                </td>
-                                                                            </tr>
-                                                                            <tr>
-                                                                                <td>
-                                                                                    <div><span>KeyStore Password</span>
-                                                                                    </div>
-                                                                                </td>
-                                                                                <td>
-                                                                                    <div><span>Enter the password for the uploaded certificate KeyStore file.</span><span><br /></span>
-                                                                                    </div>
-                                                                                    <div class="callout note"><b>NOTE</b>—This field appears only when <b>Certificate</b> is selected as the authentication method.</div>
-                                                                                </td>
-                                                                            </tr>
-                                                                        </tbody>
-                                                                    </table>
-                                                                    <p style="font-weight: bold;">When the CA type is <b style="font-style: italic;">Generic SCEP</b> or <b style="font-style: italic;">NDES</b>:</p>
-                                                                    <table>
-                                                                        <col />
-                                                                        <col />
-                                                                        <tbody>
-                                                                            <tr>
-                                                                                <td style="font-weight: bold;text-align: center;"><span>Item</span>
-                                                                                </td>
-                                                                                <td style="text-align: center;"><span style="font-weight: bold;">Description</span>
-                                                                                </td>
-                                                                            </tr>
-                                                                            <tr>
-                                                                                <td>
-                                                                                    <div><span>SCEP URL</span>
-                                                                                    </div>
-                                                                                </td>
-                                                                                <td>
-                                                                                    <div><span>Enter the SCEP IP or URL to send the certificate validity check request to the CA.</span><span><br /></span><span>For example, </span><span class="C_URL"><a target="_blank" href="http://emm.smartemm.com/certsrv/mscep/mscep.dll">http://emm.smartemm.com/certsrv/mscep/mscep.dll</a></span>
-                                                                                    </div>
-                                                                                </td>
-                                                                            </tr>
-                                                                            <tr>
-                                                                                <td>
-                                                                                    <div><span>Key Algorithm</span>
-                                                                                    </div>
-                                                                                </td>
-                                                                                <td>
-                                                                                    <div><span>Only </span><span style="font-weight: bold;">RSA</span><span> is supported when Generic SCEP and NDES CA types are selected.</span>
-                                                                                    </div>
-                                                                                </td>
-                                                                            </tr>
-                                                                            <tr>
-                                                                                <td>
-                                                                                    <div><span>Key Length</span>
-                                                                                    </div>
-                                                                                </td>
-                                                                                <td>
-                                                                                    <div><span>Select a key length from among </span><span style="font-weight: bold;">2048</span><span>, </span><span style="font-weight: bold;">3072</span><span>, or </span><span style="font-weight: bold;">4096</span><span>.</span>
-                                                                                    </div>
-                                                                                </td>
-                                                                            </tr>
-                                                                            <tr>
-                                                                                <td>
-                                                                                    <div><span>Challenge Type</span>
-                                                                                    </div>
-                                                                                </td>
-                                                                                <td>
-                                                                                    <div><span>Select a challenge type to authenticate the selected CA type.</span><span><br /></span>
-                                                                                    </div>
-                                                                                    <div>
-                                                                                        <ul>
-                                                                                            <li value="1">
-                                                                                                <p><span style="font-weight: bold;">Dynamic</span><span>: Enter the information used on the Knox Manage server for authentication configuration.</span>
-                                                                                                </p>
-                                                                                            </li>
-                                                                                            <li value="2">
-                                                                                                <p><span style="font-weight: bold;">Static</span><span>: Enter the challenge password.</span>
-                                                                                                </p>
-                                                                                            </li>
-                                                                                            <li value="3">
-                                                                                                <p><span style="font-weight: bold;">No Challenge</span><span>: If no challenge is selected the challenge password is not required.</span>
-                                                                                                </p>
-                                                                                                <div class="callout note"><b>NOTE</b>—The Dynamic field displays only when the selected CA Type is <b>NDES</b>.</div>
-                                                                                            </li>
-                                                                                        </ul>
-                                                                                    </div>
-                                                                                </td>
-                                                                            </tr>
-                                                                            <tr>
-                                                                                <td>
-                                                                                    <div><span>User ID</span>
-                                                                                    </div>
-                                                                                </td>
-                                                                                <td>
-                                                                                    <div><span>Enter the CA user ID.</span><span><br /></span>
-                                                                                    </div>
-                                                                                    <div class="callout note"><b>NOTE</b>—This field appears only when <b>Dynamic</b> is selected as the challenge type.</div>
-                                                                                </td>
-                                                                            </tr>
-                                                                            <tr>
-                                                                                <td>
-                                                                                    <div><span>Password</span>
-                                                                                    </div>
-                                                                                </td>
-                                                                                <td>
-                                                                                    <div><span>Enter the password for the user ID.</span><span><br /></span>
-                                                                                    </div>
-                                                                                    <div class="callout note"><b>NOTE</b>—This field appears only when <b>Dynamic</b> is selected as the challenge type.</div>
-                                                                                </td>
-                                                                            </tr>
-                                                                            <tr>
-                                                                                <td>
-                                                                                    <div><span>Domain</span>
-                                                                                    </div>
-                                                                                </td>
-                                                                                <td>
-                                                                                    <div><span>Enter the domain name that is used on Knox Manage.</span><span><br /></span>
-                                                                                    </div>
-                                                                                    <div class="callout note"><b>NOTE</b>—This field appears only when <b>Dynamic</b> is selected as the challenge type.</div>
-                                                                                </td>
-                                                                            </tr>
-                                                                            <tr>
-                                                                                <td>
-                                                                                    <div><span>Challenge URL</span>
-                                                                                    </div>
-                                                                                </td>
-                                                                                <td>
-                                                                                    <div><span>Enter the challenge URL address used on Knox Manage.</span>
-                                                                                    </div>
-                                                                                    <div class="callout note"><b>NOTE</b>—This field appears only when <b>Dynamic</b> is selected as the challenge type.</div>
-                                                                                </td>
-                                                                            </tr>
-                                                                            <tr>
-                                                                                <td>
-                                                                                    <div><span>Challenge Password</span>
-                                                                                    </div>
-                                                                                </td>
-                                                                                <td>
-                                                                                    <div><span>Enter the same password used for the authentication password.</span><span><br /></span>
-                                                                                    </div>
-                                                                                    <div class="callout note"><b>NOTE</b>—This field appears only when <b>Static</b> is selected as the challenge type.</div>
-                                                                                </td>
-                                                                            </tr>
-                                                                            <tr>
-                                                                                <td>
-                                                                                    <div><span>Retry Count</span>
-                                                                                    </div>
-                                                                                </td>
-                                                                                <td>
-                                                                                    <p>
-                                       Select a maximum number of retry to issue certificates.</p>
-                                                                                    <div class="callout note"><b>NOTE</b>—Consider the following items: <br /><ul><li value="1"><span>The default value is set to 5.</span></li><li value="2"><span>The retry count value can be between 1-10 times.</span></li></ul></div>
-                                                                                </td>
-                                                                            </tr>
-                                                                            <tr>
-                                                                                <td>
-                                                                                    <div><span>Cloud Connector</span>
-                                                                                    </div>
-                                                                                </td>
-                                                                                <td>
-                                                                                    <p>Select the type of cloud connection to use for CA.</p>
-                                                                                    <h4>Values</h4>
-                                                                                    <ul>
-                                                                                        <li value="1"><b>Secure Connection via Cloud Connector</b> — This option requires installing the cloud connector.</li>
-                                                                                        <li value="2"><b>Direct Connection</b> — This option supports the use of the CA of an authorized public network.</li>
-                                                                                    </ul>
-                                                                                </td>
-                                                                            </tr>
-                                                                        </tbody>
-                                                                    </table>
-                                                                    <p><b>When the CA type is <i>CertAgent</i></b>:</p>
-                                                                    <table>
-                                                                        <col />
-                                                                        <col />
-                                                                        <tbody>
-                                                                            <tr>
-                                                                                <td style="font-weight: bold;text-align: center;">Item</td>
-                                                                                <td style="font-weight: bold;text-align: center;">Description</td>
-                                                                            </tr>
-                                                                            <tr>
-                                                                                <td>
-                                                                                    <div><span>RAMI URL</span>
-                                                                                    </div>
-                                                                                </td>
-                                                                                <td>
-                                                                                    <div><span>Enter the RAMI IP address or URL to send the certificate validity check request to the CA.</span><span><br /></span><span>For example, </span><span class="C_URL"><a target="_blank" href="http://emm.smartemm.com/certagentadmin/ca/rami">http://emm.smartemm.com/certagentadmin/ca/rami</a></span>
-                                                                                    </div>
-                                                                                </td>
-                                                                            </tr>
-                                                                            <tr>
-                                                                                <td>
-                                                                                    <div><span>Key Algorithm</span>
-                                                                                    </div>
-                                                                                </td>
-                                                                                <td>
-                                                                                    <div><span>Select a key algorithm type between </span><span style="font-weight: bold;">EC</span><span> and </span><span style="font-weight: bold;">RSA</span><span>.</span>
-                                                                                    </div>
-                                                                                </td>
-                                                                            </tr>
-                                                                            <tr>
-                                                                                <td>
-                                                                                    <div><span>Key Length</span>
-                                                                                    </div>
-                                                                                </td>
-                                                                                <td>
-                                                                                    <div><span>Select a key length.</span><span><br /></span>
-                                                                                    </div>
-                                                                                    <div class="callout note"><b>NOTE</b>—The key length varies depending on the selected key algorithm type.</div>
-                                                                                </td>
-                                                                            </tr>
-                                                                            <tr>
-                                                                                <td>
-                                                                                    <div><span>CA Account</span>
-                                                                                    </div>
-                                                                                </td>
-                                                                                <td>
-                                                                                    <div><span>Enter the CA account ID.</span>
-                                                                                    </div>
-                                                                                </td>
-                                                                            </tr>
-                                                                            <tr>
-                                                                                <td>
-                                                                                    <div><span>Certificate KeyStore</span>
-                                                                                    </div>
-                                                                                </td>
-                                                                                <td>
-                                                                                    <div><span>Click </span><span style="font-weight: bold;">Browse</span><span> and select a certificate file in the CER, DER, PFX or P12 format.</span>
-                                                                                    </div>
-                                                                                </td>
-                                                                            </tr>
-                                                                            <tr>
-                                                                                <td>
-                                                                                    <div><span>KeyStore Password</span>
-                                                                                    </div>
-                                                                                </td>
-                                                                                <td>
-                                                                                    <div><span>Enter the password for the uploaded certificate KeyStore file.</span>
-                                                                                    </div>
-                                                                                </td>
-                                                                            </tr>
-                                                                        </tbody>
-                                                                    </table>
-                                                                    <p style="font-weight: bold;">When CA type is <i>EST</i>:</p>
-                                                                    <table>
-                                                                        <col />
-                                                                        <col />
-                                                                        <tbody>
-                                                                            <tr>
-                                                                                <td style="text-align: center;"><b>Item</b>
-                                                                                </td>
-                                                                                <td style="font-weight: bold;text-align: center;">Description</td>
-                                                                            </tr>
-                                                                            <tr>
-                                                                                <td>
-                                                                                    <div><span>Host Name</span>
-                                                                                    </div>
-                                                                                </td>
-                                                                                <td>
-                                                                                    <div><span>Enter the server host IP or domain name.</span>
-                                                                                    </div>
-                                                                                </td>
-                                                                            </tr>
-                                                                            <tr>
-                                                                                <td>
-                                                                                    <div><span>Port</span>
-                                                                                    </div>
-                                                                                </td>
-                                                                                <td>
-                                                                                    <div><span>Enter the CA server host port number.</span>
-                                                                                    </div>
-                                                                                </td>
-                                                                            </tr>
-                                                                            <tr>
-                                                                                <td>
-                                                                                    <div><span>CA Label</span>
-                                                                                    </div>
-                                                                                </td>
-                                                                                <td>
-                                                                                    <div><span>Enter the CA server label.</span><span><br /></span>
-                                                                                    </div>
-                                                                                    <div class="callout note"><b>NOTE</b>—Contact Knox Manage Technical&#160;Support for the&#160;CA&#160;label.</div>
-                                                                                </td>
-                                                                            </tr>
-                                                                            <tr>
-                                                                                <td>
-                                                                                    <div><span>Key Algorithm</span>
-                                                                                    </div>
-                                                                                </td>
-                                                                                <td>
-                                                                                    <div><span>Select a key algorithm type between </span><span style="font-weight: bold;">EC</span><span> and </span><span style="font-weight: bold;">RSA</span><span>.</span>
-                                                                                    </div>
-                                                                                </td>
-                                                                            </tr>
-                                                                            <tr>
-                                                                                <td>
-                                                                                    <div><span>Key Length</span>
-                                                                                    </div>
-                                                                                </td>
-                                                                                <td>
-                                                                                    <div><span>Select a key length.</span><span><br /></span>
-                                                                                    </div>
-                                                                                    <div class="callout note"><b>NOTE</b>—The key length varies depending on the selected key algorithm type.</div>
-                                                                                </td>
-                                                                            </tr>
-                                                                            <tr>
-                                                                                <td>
-                                                                                    <div><span>Auth Method</span>
-                                                                                    </div>
-                                                                                </td>
-                                                                                <td>
-                                                                                    <div><span>Select an authentication method between </span><span style="font-weight: bold;">User account</span><span> and </span><span style="font-weight: bold;">Certificate</span><span>.</span>
-                                                                                    </div>
-                                                                                </td>
-                                                                            </tr>
-                                                                            <tr>
-                                                                                <td>
-                                                                                    <div><span>User ID</span>
-                                                                                    </div>
-                                                                                </td>
-                                                                                <td>
-                                                                                    <div><span>Enter the CA user ID.</span>
-                                                                                    </div>
-                                                                                </td>
-                                                                            </tr>
-                                                                            <tr>
-                                                                                <td>
-                                                                                    <div><span>Password</span>
-                                                                                    </div>
-                                                                                </td>
-                                                                                <td>
-                                                                                    <div><span>Enter the password for the user ID.</span>
-                                                                                    </div>
-                                                                                </td>
-                                                                            </tr>
-                                                                            <tr>
-                                                                                <td>
-                                                                                    <div><span>Certificate KeyStore</span>
-                                                                                    </div>
-                                                                                </td>
-                                                                                <td>
-                                                                                    <div><span>Click </span><span style="font-weight: bold;">Browse</span><span> and select a certificate file in the CER, DER, PFX or P12 format.</span><span><br /></span>
-                                                                                    </div>
-                                                                                    <div class="callout note"><b>NOTE</b>—This field appears only when <b>Certificate</b> is selected as the authentication method.</div>
-                                                                                </td>
-                                                                            </tr>
-                                                                            <tr>
-                                                                                <td>
-                                                                                    <div><span>KeyStore Password</span>
-                                                                                    </div>
-                                                                                </td>
-                                                                                <td>
-                                                                                    <div><span>Enter the password for the uploaded certificate KeyStore file.</span><span><br /></span>
-                                                                                    </div>
-                                                                                    <div class="callout note"><b>NOTE</b>—This field appears only when <b>Certificate</b> is selected as the authentication method.</div>
-                                                                                </td>
-                                                                            </tr>
-                                                                        </tbody>
-                                                                    </table>
-                                                                </li>
-                                                                <li value="4">
-                                                                    <p><b>Test Connection</b>—Click to check if the entered CA information connects to the CA server successfully.</p>
-                                                                    <div class="callout note"><b>NOTE</b>—To add a CA, you must pass the connection test.</div>
-                                                                </li>
-                                                                <li value="5">
-                                                                    <p><b>Managing CA</b>—Select a CA server name from the root CA list.</p>
-                                                                </li>
-                                                            </ul>
-                                                        </li>
-                                                        <li value="4">
-                                                            <p>Click <b>Save</b>.</p>
-                                                        </li>
-                                                    </ol>
-                                                    <h2>View a certificate authority (CA)
-</h2>
-                                                    <p>Navigate to <b>Advanced</b> &gt; <b>Certificate</b> &gt; <b>Certificate Authority (CA)</b> to view all the CA information on the <b>Certificate Authority (CA)</b> page.</p>
-                                                    <p>To view the detailed information of a specific CA, click the CA name of a specific CA on the list.</p>
-                                                    <h2>Modify a certificate authority (CA)</h2>
-                                                    <p>To modify a CA, complete the following steps:</p>
-                                                    <ol>
-                                                        <li value="1">
-                                                            <p> Navigate to <b>Advanced</b> &gt; <b>Certificate</b> &gt; <b>Certificate Authority (CA)</b>.</p>
-                                                        </li>
-                                                        <li value="2">
-                                                            <p> On the <b>Certificate Authority (CA)</b> page, click the check box for the CA you want to modify, and the click <b>Modify</b>.</p>
-                                                        </li>
-                                                        <li value="3">
-                                                            <p> On the <b>Modify Certificate Authority</b> page, modify the CA information. The information varies depending on the selected CA type.</p>
-                                                            <div class="callout note"><b>NOTE</b>—You can register a new root certificate when modifying the CA.</div>
-                                                        </li>
-                                                        <li value="4">Click <b>Save</b>.</li>
-                                                    </ol>
-                                                    <h2>Delete a certificate authority (CA)</h2>
-                                                    <p>To delete a CA, complete the following steps:</p>
-                                                    <ol>
-                                                        <li value="1">
-                                                            <p> Navigate to <b>Advanced</b> &gt; <b>Certificate</b> &gt; <b>Certificate Authority (CA)</b>.</p>
-                                                        </li>
-                                                        <li value="2">
-                                                            <p> On the <b>Certificate Authority (CA)</b> page, click the check box for the CA you want to delete, and the click <b>Delete</b>.</p>
-                                                        </li>
-                                                        <li value="3">
-                                                            <p>In the <b>Delete Certificate Authority</b> window, click <b>OK</b>.</p>
-                                                            <div class="callout note"><b>NOTE</b>—&#160;You can delete the CA only when there is no template in use.</div>
-                                                        </li>
-                                                    </ol>
-                                                </div>
-                                            </div>
+                                                    </ul>
+                                                </li>
+                                                <li value="4">
+                                                    <p>Click <b>Save</b>.</p>
+                                                </li>
+                                            </ol>
+                                            <h2>View a certificate authority (CA)</h2>
+                                            <p>Navigate to <b>Advanced</b> &gt; <b>Certificate</b> &gt; <b>Certificate Authority (CA)</b> to view all the CA information on the <b>Certificate Authority (CA)</b> page.</p>
+                                            <p>To view the detailed information of a specific CA, click the CA name of a specific CA on the list.</p>
+                                            <h2>Modify a certificate authority (CA)</h2>
+                                            <p>To modify a CA, complete the following steps:</p>
+                                            <ol>
+                                                <li value="1">
+                                                    <p> Navigate to <b>Advanced</b> &gt; <b>Certificate</b> &gt; <b>Certificate Authority (CA)</b>.</p>
+                                                </li>
+                                                <li value="2">
+                                                    <p> On the <b>Certificate Authority (CA)</b> page, click the check box for the CA you want to modify, and the click <b>Modify</b>.</p>
+                                                </li>
+                                                <li value="3">
+                                                    <p> On the <b>Modify Certificate Authority</b> page, modify the CA information. The information varies depending on the selected CA type.</p>
+                                                    <div class="callout note"><b>NOTE</b>—You can register a new root certificate when modifying the CA.</div>
+                                                </li>
+                                                <li value="4">Click <b>Save</b>.</li>
+                                            </ol>
+                                            <h2>Delete a certificate authority (CA)</h2>
+                                            <p>To delete a CA, complete the following steps:</p>
+                                            <ol>
+                                                <li value="1">
+                                                    <p> Navigate to <b>Advanced</b> &gt; <b>Certificate</b> &gt; <b>Certificate Authority (CA)</b>.</p>
+                                                </li>
+                                                <li value="2">
+                                                    <p> On the <b>Certificate Authority (CA)</b> page, click the check box for the CA you want to delete, and the click <b>Delete</b>.</p>
+                                                </li>
+                                                <li value="3">
+                                                    <p>In the <b>Delete Certificate Authority</b> window, click <b>OK</b>.</p>
+                                                    <div class="callout note"><b>NOTE</b>—&#160;You can delete the CA only when there is no template in use.</div>
+                                                </li>
+                                            </ol>
                                         </div>
                                         <!-- Inserts feedback module here -->
                                         <div id="feedback">

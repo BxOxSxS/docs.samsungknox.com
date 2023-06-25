@@ -496,6 +496,8 @@
                                             <ul class="sub-menu">
                                                 <li><a href="../knox-mobile-enrollment/welcome.htm">Introduction</a>
                                                 </li>
+                                                <li><a href="../knox-mobile-enrollment/videos.htm">How-to videos</a>
+                                                </li>
                                                 <li class="has-children"><a href="unenroll-devices.htm#">Get started</a>
                                                     <ul class="sub-menu">
                                                         <li><a href="../knox-mobile-enrollment/get-started.htm">Before you begin</a>
@@ -900,7 +902,7 @@
                                         </li>
                                         <li class="has-children"><a href="unenroll-devices.htm#">Knox Asset Intelligence</a>
                                             <ul class="sub-menu">
-                                                <li><a href="../knox-asset-intelligence/welcome.htm">Welcome</a>
+                                                <li><a href="../knox-asset-intelligence/welcome.htm">Introduction</a>
                                                 </li>
                                                 <li><a href="../knox-asset-intelligence/videos.htm">How-to videos</a>
                                                 </li>
@@ -942,7 +944,9 @@
                                                         </li>
                                                         <li class="has-children"><a href="unenroll-devices.htm#">Network insights</a>
                                                             <ul class="sub-menu">
-                                                                <li><a href="../knox-asset-intelligence/dashboard/network/network-usage-issues.htm">Network usage and issues</a>
+                                                                <li><a href="../knox-asset-intelligence/dashboard/network/network-usage.htm">Network usage</a>
+                                                                </li>
+                                                                <li><a href="../knox-asset-intelligence/dashboard/network/wifi-disconnection-events.htm">Wi-Fi disconnection events</a>
                                                                 </li>
                                                                 <li><a href="../knox-asset-intelligence/dashboard/network/network-latency.htm">Network latency</a>
                                                                 </li>
@@ -986,6 +990,8 @@
                                                     <ul class="sub-menu">
                                                         <li><a href="../knox-asset-intelligence/how-to/manage-devices.htm">Manage devices</a>
                                                         </li>
+                                                        <li><a href="../knox-asset-intelligence/how-to/enroll-devices.htm">Enroll devices</a>
+                                                        </li>
                                                         <li><a href="../knox-asset-intelligence/how-to/manage-licenses.htm">Manage licenses</a>
                                                         </li>
                                                         <li><a href="../knox-asset-intelligence/how-to/register-resellers.htm">Register a reseller</a>
@@ -1007,6 +1013,12 @@
                                                         <li><a href="../knox-asset-intelligence/device-side-errors.htm">Device-side errors</a>
                                                         </li>
                                                         <li><a href="../knox-asset-intelligence/portal-side-errors.htm">Portal-side errors</a>
+                                                        </li>
+                                                    </ul>
+                                                </li>
+                                                <li class="has-children"><a href="unenroll-devices.htm#">Appendix</a>
+                                                    <ul class="sub-menu">
+                                                        <li><a href="../knox-asset-intelligence/appendix/drop-detection-supported-devices.htm">Devices supporting drop detection</a>
                                                         </li>
                                                     </ul>
                                                 </li>
@@ -2396,138 +2408,61 @@
                                     <div id="sec2" class="small-12 medium-8 large-9 columns">
                                         <div itemscope="itemscope" itemtype="http://schema.org/Guide">
                                             <h1>Unenroll devices</h1>
-                                            <!-- Release tabs header with buttons -->
-                                            <ul class="tabs tabs-release" data-tabs="" id="knox-release">
-                                                <li class="tabs-title tabs-title-release is-active" value="1"><a href="unenroll-devices.htm#23-03" data-tabs-target="22-03" aria-selected="true" class="tabs-button-release selected">
-                    23.03
-                </a>
-                                                </li>
-                                                <li class="tabs-title tabs-title-release" value="2"><a href="unenroll-devices.htm#23-06" data-tabs-target="23-06" aria-selected="false" class="tabs-button-release selected">
-                    23.06 UAT
-                </a>
-                                                </li>
+                                            <p>You can unenroll the devices registered in the Knox Manage server. The methods for unenrollment differ depending on the device type.</p>
+                                            <p>To delete the work profile from Android Enterprise devices or delete Knox Manage from fully-managed devices, push the <a href="android-enterprise-device-commands.htm#km-unenroll-device">Unenroll device</a> command to them.</p>
+                                            <div class="callout alert"><b>CAUTION</b> — When you unenroll Fully Managed or Fully Managed with Work Profile devices, the devices are factory reset. If the devices are running Android 7 to 8.1, any inserted microSD cards are also wiped.</div>
+                                            <p>To restart the device user's session, send the <a href="android-enterprise-device-commands.htm#km-delete-account">Delete account</a> command, and then ask the user to sign in again.</p>
+                                            <h2 id="unenroll-connected-devices">Unenroll connected devices</h2>
+                                            <p>To unenroll devices that are connected to the server:</p>
+                                            <ol>
+                                                <li value="1">Go to <b>Device</b> on the Knox Manage console.</li>
+                                                <li value="2">On the <b>Device</b> page, select the device you want to unenroll.</li>
+                                                <li value="3">Click <b>Unenroll</b>.</li>
+                                                <li value="4">(Optional) Select <b>Unassign profiles and delete devices from KME</b> to delete the device from Knox Mobile Enrollment (KME) as well.</li>
+                                                <li value="5">(Optional) Select <b>Remove Work Profile only </b> to remove installed Knox Manage agents and all management polices from the company-owned device, without unenrolling it. You do not need to factory reset the device and the device user can continue using the device without losing any data.</li>
+                                                <li value="6">On the <b>Unenroll</b> screen, click <b>OK</b> to confirm. Alternatively, click <b>Force Unenroll</b> to unenroll the device both from the server and the Knox Manage agent on the device.</li>
+                                            </ol>
+                                            <div class="callout warning"><b>NOTE</b> — For information about unenrolling devices from Knox Mobile Enrollment, see <a href="https://docs.samsungknox.com/admin/use-samsung-knox-mobile-enrollment.htm">Use Samsung Knox Mobile Enrollment (KME)</a>.</div>
+                                            <h2 id="unenroll-disconnected-devices">Unenroll disconnected devices</h2>
+                                            <p>When a device is unable to communicate with the server, you can send an offline unenrollment code to the device. Then, the user can change the device's status manually and unenroll the device.</p>
+                                            <p>To unenroll devices that are offline:</p>
+                                            <ol>
+                                                <li value="1">Identify which device needs to be unenrolled. You might need to contact the device user directly. Instruct them to launch the Knox Manage agent and to go to <b>Settings</b> &gt; <b>Offline Unenrollment</b>. Their <b>User ID</b>, <b>Device Name</b>, and <b>IMEI/MEID</b> are shown.</li>
+                                                <li value="2">Go to <b>Device</b> on the Knox Manage console.</li>
+                                                <li value="3">On the <b>Device</b> page, select the device.</li>
+                                                <li value="4">Click <b>Unenroll</b>.</li>
+                                                <li value="5">On the confirmation dialog, click <b>Offline Unenrollment Code</b>.</li>
+                                                <li value="6">Click <b>Force Unenroll</b>. A signal is sent to the device to unenroll it.</li>
+                                                <li value="7">Instruct the user to enter the offline unenrollment code (from step 5) in the Knox Manage agent's <b>Offline Unenrollment</b> screen. The device unenrolls.
+                <div class="callout success"><b>TIP</b> — You can also find the unenrollment code on the <b>Deleted Devices</b> page. To get the code, go to <b>Device</b> &gt; <b>Deleted Devices</b>. In the dialog that opens, search for the appropriate device. You can find the unenrollment code in the list of results.</div></li>
+                                            </ol>
+                                            <p>Consider the following when unenrolling disconnected devices:</p>
+                                            <ul>
+                                                <li value="1">You can also delete installed apps from a device as it unenrolls. You can delete all internal apps on Android devices and all apps on iPhones running iOS 11 or later. To configure this, go to <b>Setting</b> &gt; <b>Configuration</b> &gt; <b>Basic Configuration</b> &gt; <b>Device</b>, and set <b>Delete App upon Unenrollment</b> to <b>Yes</b>.</li>
+                                                <li value="2">On a connected device, the <b>Force Unenroll</b> command functions the same as the <b>Unenroll</b> command.</li>
+                                                <li value="3">On a disconnected device, the <b>Unenroll</b> and <b>Force Unenroll</b> commands are executed the next time the device connects to the Knox Manage servers, and the device is unenrolled.</li>
+                                                <li value="4">On a disconnected Windows device, if the device unenrollment is unsuccessful, check and disconnect from all enterprise account connections on the device by going to <b>Start</b> &gt; <b><img class="no-border" src="../../assets/merge/images/knox-manage/km-windows-settings.png" style="width: 16px;height: 16px;" alt="settings" /> Settings</b> &gt; <b>Accounts</b> &gt; <b>Access work or school</b>.</li>
                                             </ul>
-                                            <!-- Release tabs -->
-                                            <div class="tabs-content" data-tabs-content="knox-release">
-                                                <!-- 23.03 -->
-                                                <div id="23-03" class="tabs-panel tabs-panel-release is-active">
-                                                    <p>You can unenroll the devices registered in the Knox Manage server. The methods for unenrollment differ depending on the device type.</p>
-                                                    <p>To delete the work profile from Android Enterprise devices or delete Knox Manage from fully-managed devices, push the <a href="android-enterprise-device-commands.htm#km-unenroll-device">Unenroll device</a> command to them.</p>
-                                                    <div class="callout alert"><b>CAUTION</b> — When you unenroll Fully Managed or Fully Managed with Work Profile devices, the devices are factory reset. If the devices are running Android 7 to 8.1, any inserted microSD cards are also wiped.</div>
-                                                    <p>To restart the device user's session, send the <a href="android-enterprise-device-commands.htm#km-delete-account">Delete account</a> command, and then ask the user to sign in again.</p>
-                                                    <h2 id="unenroll-connected-devices">Unenroll connected devices</h2>
-                                                    <p>To unenroll devices that are connected to the server:</p>
-                                                    <ol>
-                                                        <li value="1">Go to <b>Device</b> on the Knox Manage console.</li>
-                                                        <li value="2">On the <b>Device</b> page, select the device you want to unenroll.</li>
-                                                        <li value="3">Click <b>Unenroll</b>.</li>
-                                                        <li value="4">(Optional) Select <b>Unassign profiles and delete devices from KME</b> to delete the device from Knox Mobile Enrollment (KME) as well.</li>
-                                                        <li value="5">On the <b>Unenroll</b> screen, click <b>OK</b> to confirm. Alternatively, click <b>Force Unenroll</b> to unenroll the device both from the server and the Knox Manage agent on the device.</li>
-                                                    </ol>
-                                                    <div class="callout warning"><b>NOTE</b> — For information about unenrolling devices from Knox Mobile Enrollment, see <a href="https://docs.samsungknox.com/admin/use-samsung-knox-mobile-enrollment.htm">Use Samsung Knox Mobile Enrollment (KME)</a>.</div>
-                                                    <h2 id="unenroll-disconnected-devices">Unenroll disconnected devices</h2>
-                                                    <p>When a device is unable to communicate with the server, you can send an offline unenrollment code to the device. Then, the user can change the device's status manually and unenroll the device.</p>
-                                                    <p>To unenroll devices that are offline:</p>
-                                                    <ol>
-                                                        <li value="1">Identify which device needs to be unenrolled. You might need to contact the device user directly. Instruct them to launch the Knox Manage agent and to go to <b>Settings</b> &gt; <b>Offline Unenrollment</b>. Their <b>User ID</b>, <b>Device Name</b>, and <b>IMEI/MEID</b> are shown.</li>
-                                                        <li value="2">Go to <b>Device</b> on the Knox Manage console.</li>
-                                                        <li value="3">On the <b>Device</b> page, select the device.</li>
-                                                        <li value="4">Click <b>Unenroll</b>.</li>
-                                                        <li value="5">On the confirmation dialog, click <b>Offline Unenrollment Code</b>.</li>
-                                                        <li value="6">Click <b>Force Unenroll</b>. A signal is sent to the device to unenroll it.</li>
-                                                        <li value="7">Instruct the user to enter the offline unenrollment code (from step 5) in the Knox Manage agent's <b>Offline Unenrollment</b> screen. The device unenrolls.
-                <div class="callout success"><b>TIP</b> — You can also find the unenrollment code on the <b>Deleted Devices</b> page. To get the code, go to <b>Device</b> &gt; <b>Deleted Devices</b>. In the dialog that opens, search for the appropriate device. You can find the unenrollment code in the list of results.</div></li>
-                                                    </ol>
-                                                    <p>Consider the following when unenrolling disconnected devices:</p>
-                                                    <ul>
-                                                        <li value="1">You can also delete installed apps from a device as it unenrolls. You can delete all internal apps on Android devices and all apps on iPhones running iOS 11 or later. To configure this, go to <b>Setting</b> &gt; <b>Configuration</b> &gt; <b>Basic Configuration</b> &gt; <b>Device</b>, and set <b>Delete App upon Unenrollment</b> to <b>Yes</b>.</li>
-                                                        <li value="2">On a connected device, the <b>Force Unenroll</b> command functions the same as the <b>Unenroll</b> command.</li>
-                                                        <li value="3">On a disconnected device, the <b>Unenroll</b> and <b>Force Unenroll</b> commands are executed the next time the device connects to the Knox Manage servers, and the device is unenrolled.</li>
-                                                        <li value="4">On a disconnected Windows device, if the device unenrollment is unsuccessful, check and disconnect from all enterprise account connections on the device by going to <b>Start</b> &gt; <b><img class="no-border" src="../../assets/merge/images/knox-manage/km-windows-settings.png" style="width: 16px;height: 16px;" alt="settings" /> Settings</b> &gt; <b>Accounts</b> &gt; <b>Access work or school</b>.</li>
-                                                    </ul>
-                                                    <h2 id="unenroll-groups-devices">Unenroll groups of devices</h2>
-                                                    <p>When you need to unenroll devices in bulk, you can send the unenrollment command to entire device groups at once. Keep in mind that device groups and user groups are fundamentally different types, so you can't unenroll user groups in bulk, even if there are devices associated with them.</p>
-                                                    <div class="callout warning"><b>CAUTION</b> — Accidental use or misuse of this action can have severe consequences on a large number of devices at once. As a precaution, you can only unenroll one group at a time, and the Knox Manage console asks you to confirm your submission twice.</div>
-                                                    <p>To unenroll all the devices in a group:</p>
-                                                    <ol>
-                                                        <li value="1">Go to <b>Group</b>.</li>
-                                                        <li value="2">Select a device group.</li>
-                                                        <li value="3">Make sure that you selected the right device group, then click <b>Unenroll Device</b>. A confirmation dialog opens.</li>
-                                                        <li value="4">Read the on-screen warning, then select <b>I have read the warnings and agree to proceed with the process</b>.</li>
-                                                        <li value="5">Click <b>OK</b> to gracefully unenroll the devices or <b>Force Unenroll</b> to push the action through. If you choose the latter option, the console asks you to confirm again.</li>
-                                                    </ol>
-                                                    <h2 id="allow-users-enroll-devices">Allow users to unenroll their devices</h2>
-                                                    <p>If a device is connected to a network and can establish communication with the server, then users can unenroll the devices by uninstalling the agent.</p>
-                                                    <p>To allow the user to uninstall the agent, complete the following steps:</p>
-                                                    <ol>
-                                                        <li value="1">Go to <b>Setting</b> &gt; <b>Configuration</b> &gt; <b>Knox Manage Agent Policy</b>.</li>
-                                                        <li value="2">On the <b>Knox Manage Agent Policy</b> page, click the <b>Default</b> tab. You can also add more agent policy sets by clicking <img class="no-border" src="../../assets/merge/images/B-add.png" alt="add" style="width: 15.56px;height: 14px;" />.</li>
-                                                        <li value="3">Set the <b>Allow Unenroll Request</b> policy to <b>Allow</b>.</li>
-                                                        <li value="4">Click <b>Save &amp; Apply</b>.</li>
-                                                    </ol>
-                                                </div>
-                                                <!-- UAT 23.06 -->
-                                                <div id="23-06" class="tabs-panel tabs-panel-release">
-                                                    <div class="release-banner">
-                                                        <p>This document was updated for <a href="../uat/index.htm">Knox cloud services 23.06 UAT</a>.</p>
-                                                    </div>
-                                                    <p>You can unenroll the devices registered in the Knox Manage server. The methods for unenrollment differ depending on the device type.</p>
-                                                    <p>To delete the work profile from Android Enterprise devices or delete Knox Manage from fully-managed devices, push the <a href="android-enterprise-device-commands.htm#km-unenroll-device">Unenroll device</a> command to them.</p>
-                                                    <div class="callout alert"><b>CAUTION</b> — When you unenroll Fully Managed or Fully Managed with Work Profile devices, the devices are factory reset. If the devices are running Android 7 to 8.1, any inserted microSD cards are also wiped.</div>
-                                                    <p>To restart the device user's session, send the <a href="android-enterprise-device-commands.htm#km-delete-account">Delete account</a> command, and then ask the user to sign in again.</p>
-                                                    <h2 id="unenroll-connected-devices">Unenroll connected devices</h2>
-                                                    <p>To unenroll devices that are connected to the server:</p>
-                                                    <ol>
-                                                        <li value="1">Go to <b>Device</b> on the Knox Manage console.</li>
-                                                        <li value="2">On the <b>Device</b> page, select the device you want to unenroll.</li>
-                                                        <li value="3">Click <b>Unenroll</b>.</li>
-                                                        <li value="4">(Optional) Select <b>Unassign profiles and delete devices from KME</b> to delete the device from Knox Mobile Enrollment (KME) as well.</li>
-                                                        <li value="5">(Optional) Select <b>Remove Work Profile only </b> to remove installed Knox Manage agents and all management polices from the company-owned device, without unenrolling it. You do not need to factory reset the device and the device user can continue using the device without losing any data.</li>
-                                                        <li value="6">On the <b>Unenroll</b> screen, click <b>OK</b> to confirm. Alternatively, click <b>Force Unenroll</b> to unenroll the device both from the server and the Knox Manage agent on the device.</li>
-                                                    </ol>
-                                                    <div class="callout warning"><b>NOTE</b> — For information about unenrolling devices from Knox Mobile Enrollment, see <a href="https://docs.samsungknox.com/admin/use-samsung-knox-mobile-enrollment.htm">Use Samsung Knox Mobile Enrollment (KME)</a>.</div>
-                                                    <h2 id="unenroll-disconnected-devices">Unenroll disconnected devices</h2>
-                                                    <p>When a device is unable to communicate with the server, you can send an offline unenrollment code to the device. Then, the user can change the device's status manually and unenroll the device.</p>
-                                                    <p>To unenroll devices that are offline:</p>
-                                                    <ol>
-                                                        <li value="1">Identify which device needs to be unenrolled. You might need to contact the device user directly. Instruct them to launch the Knox Manage agent and to go to <b>Settings</b> &gt; <b>Offline Unenrollment</b>. Their <b>User ID</b>, <b>Device Name</b>, and <b>IMEI/MEID</b> are shown.</li>
-                                                        <li value="2">Go to <b>Device</b> on the Knox Manage console.</li>
-                                                        <li value="3">On the <b>Device</b> page, select the device.</li>
-                                                        <li value="4">Click <b>Unenroll</b>.</li>
-                                                        <li value="5">On the confirmation dialog, click <b>Offline Unenrollment Code</b>.</li>
-                                                        <li value="6">Click <b>Force Unenroll</b>. A signal is sent to the device to unenroll it.</li>
-                                                        <li value="7">Instruct the user to enter the offline unenrollment code (from step 5) in the Knox Manage agent's <b>Offline Unenrollment</b> screen. The device unenrolls.
-                <div class="callout success"><b>TIP</b> — You can also find the unenrollment code on the <b>Deleted Devices</b> page. To get the code, go to <b>Device</b> &gt; <b>Deleted Devices</b>. In the dialog that opens, search for the appropriate device. You can find the unenrollment code in the list of results.</div></li>
-                                                    </ol>
-                                                    <p>Consider the following when unenrolling disconnected devices:</p>
-                                                    <ul>
-                                                        <li value="1">You can also delete installed apps from a device as it unenrolls. You can delete all internal apps on Android devices and all apps on iPhones running iOS 11 or later. To configure this, go to <b>Setting</b> &gt; <b>Configuration</b> &gt; <b>Basic Configuration</b> &gt; <b>Device</b>, and set <b>Delete App upon Unenrollment</b> to <b>Yes</b>.</li>
-                                                        <li value="2">On a connected device, the <b>Force Unenroll</b> command functions the same as the <b>Unenroll</b> command.</li>
-                                                        <li value="3">On a disconnected device, the <b>Unenroll</b> and <b>Force Unenroll</b> commands are executed the next time the device connects to the Knox Manage servers, and the device is unenrolled.</li>
-                                                        <li value="4">On a disconnected Windows device, if the device unenrollment is unsuccessful, check and disconnect from all enterprise account connections on the device by going to <b>Start</b> &gt; <b><img class="no-border" src="../../assets/merge/images/knox-manage/km-windows-settings.png" style="width: 16px;height: 16px;" alt="settings" /> Settings</b> &gt; <b>Accounts</b> &gt; <b>Access work or school</b>.</li>
-                                                    </ul>
-                                                    <h2 id="unenroll-groups-devices">Unenroll groups of devices</h2>
-                                                    <p>When you need to unenroll devices in bulk, you can send the unenrollment command to entire device groups at once. Keep in mind that device groups and user groups are fundamentally different types, so you can't unenroll user groups in bulk, even if there are devices associated with them.</p>
-                                                    <div class="callout warning"><b>CAUTION</b> — Accidental use or misuse of this action can have severe consequences on a large number of devices at once. As a precaution, you can only unenroll one group at a time, and the Knox Manage console asks you to confirm your submission twice.</div>
-                                                    <p>To unenroll all the devices in a group:</p>
-                                                    <ol>
-                                                        <li value="1">Go to <b>Group</b>.</li>
-                                                        <li value="2">Select a device group.</li>
-                                                        <li value="3">Make sure that you selected the right device group, then click <b>Unenroll Device</b>. A confirmation dialog opens.</li>
-                                                        <li value="4">Read the on-screen warning, then select <b>I have read the warnings and agree to proceed with the process</b>.</li>
-                                                        <li value="5">Click <b>OK</b> to gracefully unenroll the devices or <b>Force Unenroll</b> to push the action through. If you choose the latter option, the console asks you to confirm again.</li>
-                                                    </ol>
-                                                    <h2 id="allow-users-enroll-devices">Allow users to unenroll their devices</h2>
-                                                    <p>If a device is connected to a network and can establish communication with the server, then users can unenroll the devices by uninstalling the agent.</p>
-                                                    <p>To allow the user to uninstall the agent, complete the following steps:</p>
-                                                    <ol>
-                                                        <li value="1">Go to <b>Setting</b> &gt; <b>Configuration</b> &gt; <b>Knox Manage Agent Policy</b>.</li>
-                                                        <li value="2">On the <b>Knox Manage Agent Policy</b> page, click the <b>Default</b> tab. You can also add more agent policy sets by clicking <img class="no-border" src="../../assets/merge/images/B-add.png" alt="add" style="width: 15.56px;height: 14px;" />.</li>
-                                                        <li value="3">Set the <b>Allow Unenroll Request</b> policy to <b>Allow</b>.</li>
-                                                        <li value="4">Click <b>Save &amp; Apply</b>.</li>
-                                                    </ol>
-                                                </div>
-                                            </div>
+                                            <h2 id="unenroll-groups-devices">Unenroll groups of devices</h2>
+                                            <p>When you need to unenroll devices in bulk, you can send the unenrollment command to entire device groups at once. Keep in mind that device groups and user groups are fundamentally different types, so you can't unenroll user groups in bulk, even if there are devices associated with them.</p>
+                                            <div class="callout warning"><b>CAUTION</b> — Accidental use or misuse of this action can have severe consequences on a large number of devices at once. As a precaution, you can only unenroll one group at a time, and the Knox Manage console asks you to confirm your submission twice.</div>
+                                            <p>To unenroll all the devices in a group:</p>
+                                            <ol>
+                                                <li value="1">Go to <b>Group</b>.</li>
+                                                <li value="2">Select a device group.</li>
+                                                <li value="3">Make sure that you selected the right device group, then click <b>Unenroll Device</b>. A confirmation dialog opens.</li>
+                                                <li value="4">Read the on-screen warning, then select <b>I have read the warnings and agree to proceed with the process</b>.</li>
+                                                <li value="5">Click <b>OK</b> to gracefully unenroll the devices or <b>Force Unenroll</b> to push the action through. If you choose the latter option, the console asks you to confirm again.</li>
+                                            </ol>
+                                            <h2 id="allow-users-enroll-devices">Allow users to unenroll their devices</h2>
+                                            <p>If a device is connected to a network and can establish communication with the server, then users can unenroll the devices by uninstalling the agent.</p>
+                                            <p>To allow the user to uninstall the agent, complete the following steps:</p>
+                                            <ol>
+                                                <li value="1">Go to <b>Setting</b> &gt; <b>Configuration</b> &gt; <b>Knox Manage Agent Policy</b>.</li>
+                                                <li value="2">On the <b>Knox Manage Agent Policy</b> page, click the <b>Default</b> tab. You can also add more agent policy sets by clicking <img class="no-border" src="../../assets/merge/images/B-add.png" alt="add" style="width: 15.56px;height: 14px;" />.</li>
+                                                <li value="3">Set the <b>Allow Unenroll Request</b> policy to <b>Allow</b>.</li>
+                                                <li value="4">Click <b>Save &amp; Apply</b>.</li>
+                                            </ol>
                                         </div>
                                         <!-- Inserts feedback module here -->
                                         <div id="feedback">

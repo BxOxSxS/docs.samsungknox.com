@@ -496,6 +496,8 @@
                                             <ul class="sub-menu">
                                                 <li><a href="../../../knox-mobile-enrollment/welcome.htm">Introduction</a>
                                                 </li>
+                                                <li><a href="../../../knox-mobile-enrollment/videos.htm">How-to videos</a>
+                                                </li>
                                                 <li class="has-children"><a href="create-venues.htm#">Get started</a>
                                                     <ul class="sub-menu">
                                                         <li><a href="../../../knox-mobile-enrollment/get-started.htm">Before you begin</a>
@@ -900,7 +902,7 @@
                                         </li>
                                         <li class="has-children"><a href="create-venues.htm#">Knox Asset Intelligence</a>
                                             <ul class="sub-menu">
-                                                <li><a href="../../welcome.htm">Welcome</a>
+                                                <li><a href="../../welcome.htm">Introduction</a>
                                                 </li>
                                                 <li><a href="../../videos.htm">How-to videos</a>
                                                 </li>
@@ -942,7 +944,9 @@
                                                         </li>
                                                         <li class="has-children"><a href="create-venues.htm#">Network insights</a>
                                                             <ul class="sub-menu">
-                                                                <li><a href="../network/network-usage-issues.htm">Network usage and issues</a>
+                                                                <li><a href="../network/network-usage.htm">Network usage</a>
+                                                                </li>
+                                                                <li><a href="../network/wifi-disconnection-events.htm">Wi-Fi disconnection events</a>
                                                                 </li>
                                                                 <li><a href="../network/network-latency.htm">Network latency</a>
                                                                 </li>
@@ -986,6 +990,8 @@
                                                     <ul class="sub-menu">
                                                         <li><a href="../../how-to/manage-devices.htm">Manage devices</a>
                                                         </li>
+                                                        <li><a href="../../how-to/enroll-devices.htm">Enroll devices</a>
+                                                        </li>
                                                         <li><a href="../../how-to/manage-licenses.htm">Manage licenses</a>
                                                         </li>
                                                         <li><a href="../../how-to/register-resellers.htm">Register a reseller</a>
@@ -1007,6 +1013,12 @@
                                                         <li><a href="../../device-side-errors.htm">Device-side errors</a>
                                                         </li>
                                                         <li><a href="../../portal-side-errors.htm">Portal-side errors</a>
+                                                        </li>
+                                                    </ul>
+                                                </li>
+                                                <li class="has-children"><a href="create-venues.htm#">Appendix</a>
+                                                    <ul class="sub-menu">
+                                                        <li><a href="../../appendix/drop-detection-supported-devices.htm">Devices supporting drop detection</a>
                                                         </li>
                                                     </ul>
                                                 </li>
@@ -2396,11 +2408,11 @@
                                     <div id="sec2" class="small-12 medium-8 large-9 columns">
                                         <div itemscope="itemscope" itemtype="http://schema.org/Guide">
                                             <h1>Create Venues</h1>
-                                            <p>Venues are Knox Asset Intelligence's way of identifying geographical areas for the purpose of indoor location tracking. A Venue can be a single building, or it can be a property with multiple buildings within its boundaries.</p>
-                                            <p>In order to view indoor location tracking statuses on the Location dashboard, or view indoor location related analytics, you MUST first create one or more Venues. There are two options to create Venues:</p>
+                                            <p>In Knox Asset Intelligence, <b>Venues</b> are a way of identifying geographical areas for the purpose of indoor location tracking. A Venue can be a single building, or it can be a property with multiple buildings within its boundaries.</p>
+                                            <p>In order to view indoor location tracking statuses on the Location dashboard, or view indoor location related analytics, you must first create one or more Venues. There are two options to create Venues:</p>
                                             <ul>
-                                                <li value="1">A <b>Lite</b> mode option that creates a 2D venue map — easy to create but less accurate</li>
-                                                <li value="2">A <b>Full</b> mode option that creates a 3D venue map — difficult to create but highly accurate. Requires a complete IMDF (Indoor Mapping Data Format) floor plan.</li>
+                                                <li value="1">A <b>Lite</b> mode option — easy to create but less accurate using floor plan image.</li>
+                                                <li value="2">A <b>Full</b> mode option — more time-consuming to create but highly accurate.</li>
                                             </ul>
                                             <h2 id="how-to-create-venue">How to create a Venue</h2>
                                             <p>The process for creating either venue type is similar. To create a Venue:</p>
@@ -2427,15 +2439,18 @@
                                                     <p>Using the <a href="https://configure.samsungknox.com/files/immovable-asset-sample.csv" target="_blank">immovable asset CSV template</a>, enter the following information for each immovable asset you want to include in your floor plan:</p>
                                                     <ul>
                                                         <li value="1"><b>Group name</b> — The type of immovable asset. This release only supports <b>Wi-Fi AP-802.11mc</b> as the <b>Group name</b>.</li>
-                                                        <li value="2"><b>Asset ID</b> — The unique identifier for the asset (IMEI) .</li>
+                                                        <li value="2"><b>Asset ID</b> — The unique identifier for the asset (IMEI).</li>
                                                         <li value="3"><b>BSSID</b> — The basic service set identifier used to identify an access point.</li>
                                                         <li value="4"><b>Friendly name</b> — A custom (user-friendly) name given to the asset, which can be used to differentiate it from similar assets. For example, "Conference room 1"</li>
-                                                        <li value="5"><b>Usage</b> — Depending on whether the asset is intended to be used indoors or outdoors, either <b>Indoor Only</b> or <b>Outdoor Only</b> respectively. This will affect the internal accuracy calculation algorithms and how the AP location information is sent to location tracking algorithm.</li>
+                                                        <li value="5"><b>Usage</b> — Depending on whether the asset is intended to be used indoors or outdoors, either <b>Indoor Only</b> or <b>Outdoor Only</b> respectively. This will affect the internal accuracy calculation algorithms and how the Access Point location information is sent to the location tracking algorithm.</li>
                                                         <li value="6"><b>Coordinate type</b> — Either Geo or Relative. If you use relative coordinates, the bottom-left corner is marked (0,0).</li>
                                                         <li value="7"><b>Height</b> — The height of the property, in the unit of measurement designated by the Scale factor</li>
                                                         <li value="8">
-                                                            <p><b>Position coordinates</b> — If the coordinate type is Geo, latitude and longitude values. For example, enter -123.456789; -98.123456.</p>
-                                                            <div class="callout note"><b>NOTE</b> — If the coordinate type is Relative, coordinates relative to the bottom-left corner of the floor plan and in the unit of measurement designated by Scale factor. For example, if the scale factor is meters and the immovable asset is 100 m above (0,0) and 200 m to the right of (0,0), enter 100;200 as the position coordinates.</div>
+                                                            <p><b>Position coordinates</b> — The location of your immovable assets.</p>
+                                                            <ul>
+                                                                <li value="1">If the coordinate type is Geo, latitude and longitude values. For example, enter -123.456789; -98.123456.</li>
+                                                                <li value="2">If the coordinate type is Relative, coordinates relative to the bottom-left corner of the floor plan and in the unit of measurement designated by Scale factor. For example, if the scale factor is meters and the immovable asset is 100 m above (0,0) and 200 m to the right of (0,0), enter 100;200 as the position coordinates.</li>
+                                                            </ul>
                                                         </li>
                                                         <li value="9"><b>Scale factor</b> — The unit of measurement for the height and relative coordinates. For example, meters or feet.</li>
                                                     </ul>
@@ -2448,7 +2463,7 @@
                                                 <li value="2">
                                                     <p>To the left of your building name, click <b>&gt;</b> to expand the floor details.</p>
                                                     <p>
-                                                        <img src="../../assets/location-venue-upload-plan.png" srcset="../../assets/location-venue-upload-plan.png 2x" alt="description" />
+                                                        <img src="../../assets/location-venue-upload-plan.png" srcset="../../assets/location-venue-upload-plan.png 2x" alt="location venue upload plan" />
                                                     </p>
                                                 </li>
                                                 <li value="3">Next to <b>Total building floors</b>, enter the number of floors in your building.</li>
@@ -2466,7 +2481,7 @@
                                                 <li value="8">
                                                     <p>If your floor plans meet the requirements — that is, at least 300 DPI and in PNG, JPG, or SVG format — and your immovable asset CSV files contain the proper fields, a message under each building name shows <b>Floor plans and immovable assets uploaded</b>.</p>
                                                     <p>
-                                                        <img src="../../assets/location-venue-floor-plan-added.png" srcset="../../assets/location-venue-floor-plan-added.png 2x" alt="description" />
+                                                        <img src="../../assets/location-venue-floor-plan-added.png" srcset="../../assets/location-venue-floor-plan-added.png 2x" alt="venue floor plan added" />
                                                     </p>
                                                 </li>
                                             </ol>
@@ -2474,11 +2489,11 @@
                                             <p>Before you assign your devices, make sure they're grouped in Knox Asset Intelligence first. </p>
                                             <ol>
                                                 <li value="1">At the bottom of the <b>CREATE VENUE</b> page, click <b>ADD MOVABLE ASSETS</b>.</li>
-                                                <li value="2">Under a building name, click <b>&gt;</b> to expand the details.</li>
+                                                <li value="2">Beside a building name, click <b>&gt;</b> to expand the details.</li>
                                                 <li value="3">
                                                     <p>Under <b>Groups</b>, enter the name of the Knox Asset Intelligence device group you want to add. You can select one or more groups to add.</p>
                                                     <p>
-                                                        <img src="../../assets/location-venue-add-groups.png" srcset="../../assets/location-venue-add-groups.png 2x" alt="description" />
+                                                        <img src="../../assets/location-venue-add-groups.png" srcset="../../assets/location-venue-add-groups.png 2x" alt="venue add groups" />
                                                     </p>
                                                 </li>
                                                 <li value="4">Repeat Steps 2 and 3 for any additional buildings in your venue.</li>

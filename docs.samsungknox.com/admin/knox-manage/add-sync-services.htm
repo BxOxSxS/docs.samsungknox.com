@@ -496,6 +496,8 @@
                                             <ul class="sub-menu">
                                                 <li><a href="../knox-mobile-enrollment/welcome.htm">Introduction</a>
                                                 </li>
+                                                <li><a href="../knox-mobile-enrollment/videos.htm">How-to videos</a>
+                                                </li>
                                                 <li class="has-children"><a href="add-sync-services.htm#">Get started</a>
                                                     <ul class="sub-menu">
                                                         <li><a href="../knox-mobile-enrollment/get-started.htm">Before you begin</a>
@@ -900,7 +902,7 @@
                                         </li>
                                         <li class="has-children"><a href="add-sync-services.htm#">Knox Asset Intelligence</a>
                                             <ul class="sub-menu">
-                                                <li><a href="../knox-asset-intelligence/welcome.htm">Welcome</a>
+                                                <li><a href="../knox-asset-intelligence/welcome.htm">Introduction</a>
                                                 </li>
                                                 <li><a href="../knox-asset-intelligence/videos.htm">How-to videos</a>
                                                 </li>
@@ -942,7 +944,9 @@
                                                         </li>
                                                         <li class="has-children"><a href="add-sync-services.htm#">Network insights</a>
                                                             <ul class="sub-menu">
-                                                                <li><a href="../knox-asset-intelligence/dashboard/network/network-usage-issues.htm">Network usage and issues</a>
+                                                                <li><a href="../knox-asset-intelligence/dashboard/network/network-usage.htm">Network usage</a>
+                                                                </li>
+                                                                <li><a href="../knox-asset-intelligence/dashboard/network/wifi-disconnection-events.htm">Wi-Fi disconnection events</a>
                                                                 </li>
                                                                 <li><a href="../knox-asset-intelligence/dashboard/network/network-latency.htm">Network latency</a>
                                                                 </li>
@@ -986,6 +990,8 @@
                                                     <ul class="sub-menu">
                                                         <li><a href="../knox-asset-intelligence/how-to/manage-devices.htm">Manage devices</a>
                                                         </li>
+                                                        <li><a href="../knox-asset-intelligence/how-to/enroll-devices.htm">Enroll devices</a>
+                                                        </li>
                                                         <li><a href="../knox-asset-intelligence/how-to/manage-licenses.htm">Manage licenses</a>
                                                         </li>
                                                         <li><a href="../knox-asset-intelligence/how-to/register-resellers.htm">Register a reseller</a>
@@ -1007,6 +1013,12 @@
                                                         <li><a href="../knox-asset-intelligence/device-side-errors.htm">Device-side errors</a>
                                                         </li>
                                                         <li><a href="../knox-asset-intelligence/portal-side-errors.htm">Portal-side errors</a>
+                                                        </li>
+                                                    </ul>
+                                                </li>
+                                                <li class="has-children"><a href="add-sync-services.htm#">Appendix</a>
+                                                    <ul class="sub-menu">
+                                                        <li><a href="../knox-asset-intelligence/appendix/drop-detection-supported-devices.htm">Devices supporting drop detection</a>
                                                         </li>
                                                     </ul>
                                                 </li>
@@ -2395,703 +2407,344 @@
 									-->
                                     <div id="sec2" class="small-12 medium-8 large-9 columns">
                                         <div itemscope="itemscope" itemtype="http://schema.org/Guide">
-                                            <h1><a name="aanchor193"></a>
-                                                <MadCap:concept term="knox-manage" />Add sync services</h1>
-                                            <!-- Release tabs header with buttons -->
-                                            <ul class="tabs tabs-release" data-tabs="" id="knox-release">
-                                                <li class="tabs-title tabs-title-release is-active" value="1"><a href="add-sync-services.htm#23-03" data-tabs-target="22-03" aria-selected="true" class="tabs-button-release selected">
-                    23.03
-                </a>
-                                                </li>
-                                                <li class="tabs-title tabs-title-release" value="2"><a href="add-sync-services.htm#23-06" data-tabs-target="23-06" aria-selected="false" class="tabs-button-release selected">
-                    23.06 UAT
-                </a>
-                                                </li>
-                                            </ul>
-                                            <!-- Release tabs -->
-                                            <div class="tabs-content" data-tabs-content="knox-release">
-                                                <!-- 23.03 -->
-                                                <div id="23-03" class="tabs-panel tabs-panel-release is-active">
-                                                    <p>Add AD/LDAP directory services in Knox Manage to synchronize user, organizational, and group information. Once added, you can sync through the corresponding menus in <b>User</b>, <b>Group</b>, and <b>Organization</b>.</p>
-                                                    <p>These procedures apply to adding AD sync services that use the LDAP protocol. For information on adding Azure AD as a sync service with the Microsoft Graph API, see <a href="sync-user-info-with-azure-ad-microsoft-graph-api.htm">Sync user information with Azure AD through Microsoft Graph API</a>.</p>
-                                                    <p>To add a sync service, complete the following steps:</p>
-                                                    <ol>
-                                                        <li value="1">Go to <b>Advanced &gt; AD/LDAP Sync &gt; Sync Service</b> in the Knox Manage console.</li>
-                                                        <li value="2">On the <b>Sync Service</b> page, click <b>Add</b>.</li>
-                                                        <li value="3">On the <b>Add Sync Service</b> page, enter information required for specifying the basic information about a sync service.
+                                            <h1>Add sync services</h1>
+                                            <p>Add AD/LDAP directory services in Knox Manage to synchronize user, organizational, and group information. Once added, you can sync through the corresponding menus in <b>User</b>, <b>Group</b>, and <b>Organization</b>.</p>
+                                            <p>Knox Manage supports only one SCC client connection to a single-forest active directory with a single domain.</p>
+                                            <p>You can use the following procedure to add AD sync services that use the LDAP protocol. For information on adding Azure AD as a sync service with the Microsoft Graph API, see <a href="sync-user-info-with-azure-ad-microsoft-graph-api.htm">Sync user information with Azure AD through Microsoft Graph API</a>.</p>
+                                            <p>To add a sync service:</p>
+                                            <ol>
+                                                <li value="1">Go to <b>Advanced &gt; AD/LDAP Sync &gt; Sync Service</b> in the Knox Manage console.</li>
+                                                <li value="2">On the <b>Sync Service</b> page, click <b>Add</b>.</li>
+                                                <li value="3">On the <b>Add Sync Service</b> page, enter information required for specifying the basic information about a sync service.
                 <ul><li value="1"><b>Sync Service Name</b>—Enter the sync service name; up to 25 characters consisting of letters, numbers, and special characters (- or _ only). This name is used to distinguish each sync service and also used when selecting sync services in <b>User</b>, <b>Group</b>, and <b>Organization</b>.</li><li value="2"><b>Target</b>—Select sync targets for your AD/LDAP integration:
                         <ul><li value="1"><b>User</b>—Select this option to allow integration at the user level.</li><li value="2"><b>Group</b>—Select this option to allow integration by groups based on the User Base DN. Selecting <b>Group</b> automatically selects <b>User</b> as well.</li><li value="3"><b>Organization</b>—Select this option only if the Knox Manage users' organization code is identical to the AD/LDAP's organization code.</li></ul></li><li value="3"><b>Scheduler</b>—Select <b>Use</b> if you want to schedule automatic syncs. In the <b>Schedule</b> tab under it, fill in the details of the sync schedule:
                         <ul><li value="1"><b>Time Zone</b>—Click the drop-down menu and select the time zone to use for the automatic synchronization. You can change the default in <b>Setting &gt; Configuration &gt; Basic Configuration</b>.</li><li value="2"><b>Sync Interval</b>—Click the drop-down menu and select a sync service interval from <b>Once, Hourly, Daily, Weekly, Monthly</b>, or <b>Advanced Settings</b>. If you select <b>Advanced Settings</b>, set a regular interval in month, week, day, or hour format using cron expressions, following the examples given on the screen.</li><li value="3"><b>Time</b>—Set the start time for the sync service.</li><li value="4"><b>Start Date</b>—Set the start date for the sync service.</li><li value="5"><b>Target of Scheduler</b>—Click the check box next to <b>User</b>, <b>Group</b>, or <b>Organization</b> as the target information to retrieve from the directory through the scheduled sync service.</li></ul></li></ul></li>
-                                                        <li value="4">Click the <b>Server</b> tab and enter information required for specifying the LDAP server information.
+                                                <li value="4">Click the <b>Server</b> tab and enter information required for specifying the LDAP server information.
                 <ul><li value="1"><b>Directory Type</b>—Select a directory type from On-premise AD, Azure AD (Domain Services based), or Other. 
                         <div class="callout note"><b>NOTE</b>—If Azure AD (Domain Services based) is selected as the directory type, the account does not connect to the server through the cloud connector. If you experience connection errors, you may need to turn off the firewall on the target device.</div></li><li value="2"><b>IP/Host</b>—Enter the IP or host address of the directory, and the TCP port number for communicating with the directory server. The default port number used for unencrypted communication with the directory server is 389.</li><li value="3"><b>Encryption Type</b>—Select <b>None</b> (No encryption) or <b>TLS</b> (Transport Layer Security) as the encryption method for the internet communication protocol used for communicating with the directory server.</li><li value="4"><b>Auth Type</b>—Select <b>None</b>, <b>Simple</b>, <b>DIGEST-MD5(SASL)</b>, or <b>CRAM-MD5(SASL)</b> as the authentication method used when establishing a connection with the directory server. After selecting <b>DIGEST-MD5(SASL)</b> or <b>CRAM-MD5(SASL)</b>, fill out the Authentication details field for the chosen Auth Type as follows:
                         <table><tbody><tr><td style="font-weight: bold;">Auth Type</td><td style="font-weight: bold;">Description</td></tr><tr><td><p>DIGESTMD5(SASL)/CRAMMD5(SASL)</p></td><td><p>Configure the settings for Simple Authentication and Security Layer (SASL), a telnet-based protocol:</p><ul><li value="1"><b>SASL Realm</b>—Enter the realm value of the SASL server in domain format, for example ,sample.com.</li><li value="2"><b>Quality of Protection</b>—Select the quality of the data protection from the following.
                                                 <ul style="list-style-type: circle;"><li value="1"><b>Authentication Only</b>—Protect data only upon authentication.</li><li value="2"><b>Authentication with integrity</b>—Ensure integrity of all the data exchanged, as well as authentication.</li><li value="3"><b>Authentication with integrity and privacy</b>—Ensure integrity of all data exchanges, as well as authentication through data encryption.</li></ul></li><li value="3"><b>Protection Strength</b>—Select a data protection level, and determine whether or not mutual authentication should be performed when exchanging data.
                                                 <ul style="list-style-type: circle;"><li value="1"><b>High</b>—Use 128-bit encryption.</li><li value="2"><b>Medium</b>—Use 56-bit encryption.</li><li value="3"><b>Low</b>—Use 40-bit encryption.</li><li value="4"><b>Mutual authentication</b>—Click the check box next to <b>Mutual authentication</b> to ensure data validity by inserting the key into the data exchanged between the client and server.</li></ul></li></ul></td></tr></tbody></table></li><li value="5"><b>User ID</b>—Enter the administrator information of the directory server in any of the following forms:
                                                         <ul style="list-style-type: circle;"><li value="1">domain/administrator ID</li><li value="2">administrator ID @ domain</li><li value="3">CN = administrator ID, CN = Users, DC = domain, and DC = com.</li></ul></li><li value="6"><b>Password</b>—Enter the user ID's password.</li></ul></li>
-                                                        <li value="5">Click the <b>User</b>, <b>Group</b>, or <b>Organization</b> tab according to your selection in <b>Target</b>. Fill in the details.
+                                                <li value="5">Click the <b>User</b>, <b>Group</b>, or <b>Organization</b> tab according to your selection in <b>Target</b>. Fill in the details.
                 <ul><li value="1">For more information on the <b>User</b> tab, see <a href="add-sync-services.htm#customize-user-information" class="selected">Customizing user information</a>.</li><li value="2">For more information on the <b>Group</b> tab, see <a href="add-sync-services.htm#customize-group-information" class="selected">Customizing group information</a>.</li><li value="3">For more information on the <b>Organization</b> tab, see <a href="add-sync-services.htm#Customize-organization-information" class="selected">Customizing organization information</a>.</li></ul></li>
-                                                        <li value="6">Click <b>Save &amp; Sync</b>.</li>
-                                                        <li value="7">(Optional)&#160;On the <b>Save &amp; Sync Service</b> page, click <b>View</b> next to <b>Expected Sync Result</b> if you want to preview the sync result before starting sync.</li>
-                                                        <li value="8">Click <b>OK</b>.</li>
-                                                    </ol>
-                                                    <h2 id="customize-user-information">Customize user information</h2>
-                                                    <p>Customize user information on the User tab on the <b>Add Sync Service</b> page.</p>
-                                                    <p>To customize the user information when adding the sync service, complete the following steps:</p>
-                                                    <ol>
-                                                        <li value="1">On the <b>Add Sync Service</b> page, enter information required for specifying the basic information about a sync service. For more information, see <a href="add-sync-services.htm#top" class="selected">Adding sync services</a>.
+                                                <li value="6">Click <b>Save &amp; Sync</b>.</li>
+                                                <li value="7">(Optional)&#160;On the <b>Save &amp; Sync Service</b> page, click <b>View</b> next to <b>Expected Sync Result</b> if you want to preview the sync result before starting sync.</li>
+                                                <li value="8">Click <b>OK</b>.</li>
+                                            </ol>
+                                            <h2 id="customize-user-information">Customize user information</h2>
+                                            <p>Customize user information on the User tab on the <b>Add Sync Service</b> page.</p>
+                                            <p>To customize the user information when adding the sync service, complete the following steps:</p>
+                                            <ol>
+                                                <li value="1">On the <b>Add Sync Service</b> page, enter information required for specifying the basic information about a sync service. For more information, see <a href="add-sync-services.htm#top" class="selected">Adding sync services</a>.
                 <div class="callout note"><b>NOTE</b>—When entering the information on the <b>Add Sync Service</b> page, you must select <b>User</b> for the sync service target.</div></li>
-                                                        <li value="2">Click the <b>User</b> tab, and then enter the following information:
-                <ul><li value="1"><b>Base DN</b>—Base DN (Distinguished Name) is the point from which a server searches for users. We recommend that you select the closest Base DN to the target users for the best performance.</li><li value="2"><p><b>Filter</b>—Filter strings that specify a subset of data items in an LDAP data type.</p><p>Click <b>Select</b> to open the <b>Select Object Class</b> page and select an <b>Object Class</b> and attributes for the LDAP Syntax string that are used to filter search results. For more information about setting filters, see <a href="add-a-directory-connector.htm">Add a directory connector</a>.</p><ul style="list-style-type: circle;"><li value="1"><p><b>Recommended Properties</b>—Displays the recommended properties of the selected object class.</p></li><li value="2"><p><b>Return Value</b>—Displays the LDAP Syntax of the selected property information and object class.</p></li><li value="3"><p><b>Default</b>—Select the object class name defined by default as a filter.</p></li><li value="4"><p><b>Custom</b>—Select the object class name defined by connected directory server as a filter.</p></li></ul></li><li value="3"><p><b>Sync Target</b>—Select some or all users from the Base DN set above.</p><ul style="list-style-type: circle;"><li value="1"><p><b>Directly Select (Recommended)</b>—Click <b>Select</b> to open the <b>Select Sync Target</b> screen where you can select your desired targets.</p><p>Click <b>Preview</b> to view details about a sync target.</p></li><li value="2"><p><b>All Users</b>—All users are selected.</p></li></ul></li><li value="4"><p><b>Auto Profile Deploy</b>—A profile is automatically applied to a user's device only when their organization details change.</p></li><li value="5"><p><b>Sync Deleted LDAP Users</b>—Select whether to sync deleted users in the LDAP server with Knox Manage users:</p><ul style="list-style-type: circle;"><li value="1"><p><b>Yes</b>—Deleted users in the LDAP server are also deleted from the Knox Manage user list. The deleted users can be viewed in <b>Manage Sync Exception</b> on the Sync Service list.</p></li><li value="2"><p><b>No</b>—Deleted users in the LDAP server are not deleted from the Knox Manage user list.</p></li></ul></li></ul></li>
-                                                        <li value="3">
-                                                            <p>Click <img src="../../assets/merge/images/B-expand.png" /> next to <b>Detail</b> in the <b>Mapping Information</b> area and enter information for mapping the user attributes of the directory server and the user attributes entered when registering user accounts in Knox Manage. The most common values of a directory server are entered automatically, but you can change them according to the directory server.</p>
-                                                            <ul>
-                                                                <li value="1">
-                                                                    <p><b>User ID</b>—Enter a user ID up to 220 characters.</p>
-                                                                </li>
-                                                                <li value="2">
-                                                                    <p><b>User Name</b>—Enter the user's login name that is used for the Windows domain. Enter the UPN in <b>User's login name@domain_name</b> format.</p>
-                                                                </li>
-                                                                <li value="3">
-                                                                    <p><b>Employee No.</b>—Enter the employee's number.</p>
-                                                                </li>
-                                                                <li value="4">
-                                                                    <p><b>Email</b>—Enter the user's email address.</p>
-                                                                </li>
-                                                                <li value="5">
-                                                                    <p><b>Mobile No.</b>—Enter the user's mobile number.</p>
-                                                                </li>
-                                                                <li value="6">
-                                                                    <p><b>DN (Distinguished Name)</b>—Enter the unique name of the LDAP object.</p>
-                                                                </li>
-                                                                <li value="7">
-                                                                    <p><b>Object Identifier</b>—Enter the ID used to distinguish the synced user.</p>
-                                                                </li>
-                                                                <li value="8">
-                                                                    <p><b>Organization</b>—Enter the organization name.</p>
-                                                                </li>
-                                                                <li value="9">
-                                                                    <p><b>Status</b>—Enter the status of the user account.</p>
-                                                                </li>
-                                                                <li value="10">
-                                                                    <p><b>Last Updated Date</b>—Enter the last date when the user information was updated.</p>
-                                                                </li>
-                                                                <li value="11">
-                                                                    <p><b>Created Date</b>—Enter the date when the user was created.</p>
-                                                                </li>
-                                                                <li value="12">
-                                                                    <p><b>First Name</b>—Enter the user's first name.</p>
-                                                                </li>
-                                                                <li value="13">
-                                                                    <p><b>Middle Name</b>—Enter the user's middle name.</p>
-                                                                </li>
-                                                                <li value="14">
-                                                                    <p><b>Last Name</b>—Enter the user's last name.</p>
-                                                                </li>
-                                                                <li value="15">
-                                                                    <p><b>Display Name</b>—Enter the user's display name.</p>
-                                                                </li>
-                                                                <li value="16">
-                                                                    <p><b>Department</b>—Enter the user's department.</p>
-                                                                </li>
-                                                                <li value="17">
-                                                                    <p><b>Administrator DN</b>—Enter the unique name of the administrator.</p>
-                                                                </li>
-                                                                <li value="18">
-                                                                    <p><b>Email User Name</b>—Enter the user's email address that is linked to their username.</p>
-                                                                </li>
-                                                                <li value="19">
-                                                                    <p><b>Contact</b>—Enter the contact information.</p>
-                                                                </li>
-                                                                <li value="20">
-                                                                    <p><b>UPN</b>—Enter the User Principal Name (UPN).</p>
-                                                                </li>
-                                                                <li value="21">
-                                                                    <p><b>User Identifier</b>—Enter the name used to distinguish the synced user.</p>
-                                                                </li>
-                                                                <li value="22">
-                                                                    <p><b>Default Country Code</b>—Enter the default country code.</p>
-                                                                </li>
-                                                                <li value="23">
-                                                                    <p><b>Organization Code</b>—Enter the organization code.</p>
-                                                                </li>
-                                                                <li value="24">
-                                                                    <p><b>Position Code</b>—Enter the position code.</p>
-                                                                </li>
-                                                                <li value="25">
-                                                                    <p><b>Site</b>—Enter the site information.</p>
-                                                                </li>
-                                                                <li value="26">
-                                                                    <p><b>Security Level</b>—Select a security level for the user.</p>
-                                                                </li>
-                                                                <li value="27">
-                                                                    <p><b>User Certificate</b>—Select a user certificate.</p>
-                                                                </li>
-                                                                <li value="28">
-                                                                    <p><b>User-Defined 1</b>—Enter a user defined value.</p>
-                                                                </li>
-                                                                <li value="29">
-                                                                    <p><b>User-Defined 2</b>—Enter a user defined value.</p>
-                                                                </li>
-                                                                <li value="30">
-                                                                    <p><b>User-Defined 3</b>—Enter a user defined value.</p>
-                                                                </li>
-                                                            </ul>
-                                                            <div class="callout note"><b>NOTE</b>
-                                                                <ul>
-                                                                    <li value="1">Click <b>Select</b> to the right of each item to search for the attributes defined in the directory server.</li>
-                                                                    <li value="2">Click <b>Refresh</b> to the right of each item to reset the saved values back to the default values.</li>
-                                                                    <li value="3">Click the check box next to <b>User Static Input Value</b> to delete the default mapped values and to allow you to enter values manually.</li>
-                                                                </ul>
-                                                            </div>
-                                                        </li>
-                                                        <li value="4">
-                                                            <p>Click <b>Save &amp; Sync</b>.</p>
-                                                        </li>
-                                                        <li value="5">
-                                                            <p>On the <b>Save &amp; Sync Service</b> page, click <b>OK</b>.</p>
-                                                            <ul>
-                                                                <li value="1">
-                                                                    <p>Click <b>View</b> next to <b>Expected Sync Result</b> to preview the sync result before starting sync.</p>
-                                                                </li>
-                                                            </ul>
-                                                        </li>
-                                                    </ol>
-                                                    <h2 id="customize-group-information">Customize group information</h2>
-                                                    <p>Customize group information on the Group tab on the <b>Add Sync Service</b> page.</p>
-                                                    <p>To customize the group information when adding the sync service, complete the following steps:</p>
-                                                    <ol>
-                                                        <li value="1">
-                                                            <p>On the <b>Add Sync Service</b> page, enter information required for specifying the basic information about a sync service. For more information, see <a href="add-sync-services.htm#top" class="selected">Adding sync services</a>.</p>
-                                                            <div class="callout note"><b>NOTE</b>—When entering the information on the <b>Add Sync Service</b> page, you must select the sync service target as <b>Group</b>.</div>
-                                                        </li>
-                                                        <li value="2">
-                                                            <p>Click the <b>Group</b> tab, and then enter the following information:</p>
-                                                            <ul>
-                                                                <li value="1">
-                                                                    <p><b>Base DN</b>—Base DN (Distinguished Name)  is the point from which a server searches for groups. We recommend that you select the closest Base DN to the target groups for the best performance.</p>
-                                                                </li>
-                                                                <li value="2">
-                                                                    <p><b>Filter</b>—Filter strings that specify a subset of data items in an LDAP data type.</p>
-                                                                    <p>Click <b>Select</b> to open the <b>Select Object Class</b> screen and select an Object Class and attributes for the LDAP Syntax string that are used to filter search results. For more information about setting filters, see <a href="add-a-directory-connector.htm">Add a directory connector</a>.</p>
-                                                                </li>
-                                                                <li value="3">
-                                                                    <p><b>Sync Target</b>—Select some or all groups from the Base DN set above.</p>
-                                                                    <ul style="list-style-type: circle;">
-                                                                        <li value="1">
-                                                                            <p><b>Directly Select (Recommended)</b>—Click <b>Select</b> to open the <b>Select Sync Target</b> screen where you can select your desired targets.</p>
-                                                                            <p>Click <b>Preview</b> to view details about a sync target.</p>
-                                                                        </li>
-                                                                        <li value="2">
-                                                                            <p><b>All Groups</b>—All groups are selected. This option may exhibit poor performance in high-volume cases.</p>
-                                                                        </li>
-                                                                    </ul>
-                                                                </li>
-                                                                <li value="4">
-                                                                    <p><b>Auto Profile/App Apply</b>—Profiles are automatically applied to the user devices when organization information is changed.</p>
-                                                                </li>
-                                                                <li value="5">
-                                                                    <p><b>Sync Deleted LDAP Groups</b>—Select whether to sync deleted groups in the LDAP server with Knox Manage groups:</p>
-                                                                    <ul style="list-style-type: circle;">
-                                                                        <li value="1">
-                                                                            <p><b>Yes</b>—Deleted groups in the LDAP server are also deleted from the Knox Manage group list. The deleted groups can be viewed in <b>Manage Sync Exception</b> on the Sync Service list.</p>
-                                                                        </li>
-                                                                        <li value="2">
-                                                                            <p><b>No</b>—Deleted users in the LDAP server are not deleted from the Knox Manage organization list.</p>
-                                                                        </li>
-                                                                    </ul>
-                                                                </li>
-                                                            </ul>
-                                                        </li>
-                                                        <li value="3">
-                                                            <p>Click <img src="../../assets/merge/images/B-expand.png" /> next to <b>Detail</b> in the Mapping Information area and enter information for mapping the group attributes of the directory server and the group attributes entered when registering groups in Knox Manage. The most common values of a directory server are entered automatically, but you can change them according to the directory server.</p>
-                                                            <ul>
-                                                                <li value="1">
-                                                                    <p><b>Group Name</b>—Enter the name for the group.</p>
-                                                                </li>
-                                                                <li value="2">
-                                                                    <p><b>Member</b>—Select a member for the group.</p>
-                                                                </li>
-                                                                <li value="3">
-                                                                    <p><b>Organization</b>—Select the organization to which the group belongs. If left unspecified, the group does not belong to any organization.</p>
-                                                                </li>
-                                                                <li value="4">
-                                                                    <p><b>DN</b> (Distinguished Name)—Enter the unique name of the LDAP object.</p>
-                                                                </li>
-                                                                <li value="5">
-                                                                    <p><b>Object Identifier</b>—Enter the ID used to distinguish the synced group.</p>
-                                                                </li>
-                                                                <li value="6">
-                                                                    <p><b>Group Identifier</b>—Enter the name used to distinguish the synced group.</p>
-                                                                </li>
-                                                            </ul>
-                                                            <div class="callout note"><b>NOTE</b>—Consider the following items:
-                    <ul><li value="1"><p>Click <b>Select</b> to the right of each item to search for the attributes defined in the directory server.</p></li><li value="2"><p>Click <b>Refresh</b> to the right of each item to reset the saved values back to the default values.</p></li><li value="3"><p>Click the check box next to <b>User Static Input Value</b> to delete the default mapped values and to allow you to enter values manually.</p></li></ul></div>
-                                                        </li>
-                                                        <li value="4">
-                                                            <p>Click <b>Save &amp; Sync</b>.</p>
-                                                        </li>
-                                                        <li value="5">
-                                                            <p>(Optional)&#160;On the <b>Save &amp; Sync Service</b> p, click <b>View</b> next to <b>Expected Sync Result</b> if you want to preview the sync result before starting sync.</p>
-                                                        </li>
-                                                        <li value="6">
-                                                            <p>Click <b>OK</b>.</p>
-                                                        </li>
-                                                    </ol>
-                                                    <h2 id="Customize-organization-information">Customize organization information</h2>
-                                                    <p>Customize organization information on the Organization tab on the <b>Add Sync Service</b> page.</p>
-                                                    <p>To customize the organization information when adding the sync service, complete the following steps:</p>
-                                                    <ol>
-                                                        <li value="1">
-                                                            <p> On the <b>Add Sync Service</b> page, enter information required for specifying the basic information about a sync service. For more information, see <a href="add-sync-services.htm#top" class="selected">Add sync services</a>.</p>
-                                                            <div class="callout note"><b>NOTE</b>—When entering the information on the <b>Add Sync Service</b> page, you must select the sync service target as <b>Organization</b>.</div>
-                                                        </li>
-                                                        <li value="2">
-                                                            <p>Click the <b>Organization</b> tab, and then enter the following information:</p>
-                                                            <ul>
-                                                                <li value="1">
-                                                                    <p><b>Base DN</b>—Base DN (Distinguished Name)  is the point from which a server searches for organizations. We recommend that you select the closest Base DN to the target organizations for the best performance.</p>
-                                                                </li>
-                                                                <li value="2">
-                                                                    <p><b>Filter</b>—Filter strings that specify a subset of data items in an LDAP data type.</p>
-                                                                    <p>Click <b>Select</b> to open the <b>Select Object Class</b> page and select an Object Class and attributes for the LDAP Syntax string that are used to filter search results. For more information about setting filters, see <a href="add-a-directory-connector.htm">Add a directory connector</a>.</p>
-                                                                </li>
-                                                                <li value="3">
-                                                                    <p><b>Sync Target</b>—Select some or all organizations from the Base DN set above.</p>
-                                                                    <ul style="list-style-type: circle;">
-                                                                        <li value="1">
-                                                                            <p><b>Directly Select (Recommended)</b>—Click <b>Select</b> to open the <b>Select Sync Target</b> page where you can select your desired targets.</p>
-                                                                            <p>Click <b>Preview</b> to view details about a sync target.</p>
-                                                                        </li>
-                                                                        <li value="2">
-                                                                            <p><b>All Organizations</b>—All organizations are selected.</p>
-                                                                        </li>
-                                                                    </ul>
-                                                                </li>
-                                                                <li value="4">
-                                                                    <p><b>Sync Deleted LDAP Organizations</b>—Select whether to sync deleted organizations in the LDAP server with Knox Manage organizations:</p>
-                                                                    <ul style="list-style-type: circle;">
-                                                                        <li value="1">
-                                                                            <p><b>Yes</b>—Deleted organizations in the LDAP server are also deleted from the Knox Manage organization list. The deleted organizations can be viewed in <b>Manage Sync Exception</b> on the Sync Service list.</p>
-                                                                        </li>
-                                                                        <li value="2">
-                                                                            <p><b>No</b>—Deleted organizations in the LDAP server are not deleted from the Knox Manage organization list.</p>
-                                                                        </li>
-                                                                    </ul>
-                                                                </li>
-                                                            </ul>
-                                                        </li>
-                                                        <li value="3">
-                                                            <p>Click <img src="../../assets/merge/images/B-expand.png" /> next to <b>Detail</b> in the Mapping Information area and enter information for mapping the organization attributes of the directory server and the organization attributes entered when registering organizations in Knox Manage. The most common values of a directory server are entered automatically, but you can change them according to the directory server.</p>
-                                                            <ul>
-                                                                <li value="1">
-                                                                    <p><b>Organization Code</b>—Enter the organization code.</p>
-                                                                </li>
-                                                                <li value="2">
-                                                                    <p><b>Organization Name</b>—Enter the organization name.</p>
-                                                                </li>
-                                                                <li value="3">
-                                                                    <p><b>Member</b>—Enter the member of the organization.</p>
-                                                                </li>
-                                                                <li value="4">
-                                                                    <p><b>Organization</b>—Enter the member's organization.</p>
-                                                                </li>
-                                                                <li value="5">
-                                                                    <p><b>DN</b>—Enter the unique name of the organization.</p>
-                                                                </li>
-                                                                <li value="6">
-                                                                    <p><b>Object Identifier</b>—Enter the ID used to distinguish the synced organization.</p>
-                                                                </li>
-                                                                <li value="7">
-                                                                    <p><b>Organization Identifier</b>—Enter the name used to distinguish the synced organization.</p>
-                                                                </li>
-                                                                <li value="8">
-                                                                    <p><b>Company Number</b>—Enter the company number.</p>
-                                                                </li>
-                                                                <li value="9">
-                                                                    <p><b>Upper Organization Code</b>—Enter the code for an organization in a higher tier than the organization to which the user belongs. It allows synchronizing the organization by maintaining the hierarchical relationships in the organization chart.</p>
-                                                                </li>
-                                                                <li value="10">
-                                                                    <p><b>Department Head ID</b>—Enter the ID of the department head.</p>
-                                                                </li>
-                                                                <li value="11">
-                                                                    <p><b>Department Head Name</b>—Enter the name of the department head.</p>
-                                                                </li>
-                                                                <li value="12">
-                                                                    <p><b>Department Head Position</b>—Enter the position of the department head.</p>
-                                                                </li>
-                                                                <li value="13">
-                                                                    <p><b>Display Order</b>—Enter the display order.</p>
-                                                                </li>
-                                                            </ul>
-                                                            <div class="callout note"><b>NOTE</b>
-                                                                <ul>
-                                                                    <li value="1">
-                                                                        <p>Click <b>Select</b> to the right of each item to search for the attributes defined in the directory server.</p>
-                                                                    </li>
-                                                                    <li value="2">
-                                                                        <p>Click <b>Refresh</b> to the right of each item to reset the saved values back to the default values.</p>
-                                                                    </li>
-                                                                    <li value="3">
-                                                                        <p>Click the check box next to <b>User Static Input Value</b> to delete the default mapped values and to allow you to enter values manually.</p>
-                                                                    </li>
-                                                                </ul>
-                                                            </div>
-                                                        </li>
-                                                        <li value="4">
-                                                            <p>Click <b>Save &amp; Sync</b>.</p>
-                                                        </li>
-                                                        <li value="5">
-                                                            <p>(Optional)&#160;On the <b>Save &amp; Sync Service</b> page, click <b>View</b> next to <b>Expected Sync Result</b> if you want to preview the sync result before starting sync.</p>
-                                                        </li>
-                                                        <li value="6">
-                                                            <p>Click <b>OK</b>.</p>
-                                                        </li>
-                                                    </ol>
-                                                </div>
-                                                <!-- UAT 23.06 -->
-                                                <div id="23-06" class="tabs-panel tabs-panel-release">
-                                                    <div class="release-banner">
-                                                        <p>This document was updated for <a href="../uat/index.htm">Knox cloud services 23.06 UAT</a>.</p>
-                                                    </div>
-                                                    <p>Add AD/LDAP directory services in Knox Manage to synchronize user, organizational, and group information. Once added, you can sync through the corresponding menus in <b>User</b>, <b>Group</b>, and <b>Organization</b>.</p>
-                                                    <p>These procedures apply to adding AD sync services that use the LDAP protocol. For information on adding Azure AD as a sync service with the Microsoft Graph API, see <a href="sync-user-info-with-azure-ad-microsoft-graph-api.htm">Sync user information with Azure AD through Microsoft Graph API</a>.</p>
-                                                    <p>To add a sync service, complete the following steps:</p>
-                                                    <ol>
-                                                        <li value="1">Go to <b>Advanced &gt; AD/LDAP Sync &gt; Sync Service</b> in the Knox Manage console.</li>
-                                                        <li value="2">On the <b>Sync Service</b> page, click <b>Add</b>.</li>
-                                                        <li value="3">On the <b>Add Sync Service</b> page, enter information required for specifying the basic information about a sync service.
-                <ul><li value="1"><b>Sync Service Name</b>—Enter the sync service name; up to 25 characters consisting of letters, numbers, and special characters (- or _ only). This name is used to distinguish each sync service and also used when selecting sync services in <b>User</b>, <b>Group</b>, and <b>Organization</b>.</li><li value="2"><b>Target</b>—Select sync targets for your AD/LDAP integration:
-                        <ul><li value="1"><b>User</b>—Select this option to allow integration at the user level.</li><li value="2"><b>Group</b>—Select this option to allow integration by groups based on the User Base DN. Selecting <b>Group</b> automatically selects <b>User</b> as well.</li><li value="3"><b>Organization</b>—Select this option only if the Knox Manage users' organization code is identical to the AD/LDAP's organization code.</li></ul></li><li value="3"><b>Scheduler</b>—Select <b>Use</b> if you want to schedule automatic syncs. In the <b>Schedule</b> tab under it, fill in the details of the sync schedule:
-                        <ul><li value="1"><b>Time Zone</b>—Click the drop-down menu and select the time zone to use for the automatic synchronization. You can change the default in <b>Setting &gt; Configuration &gt; Basic Configuration</b>.</li><li value="2"><b>Sync Interval</b>—Click the drop-down menu and select a sync service interval from <b>Once, Hourly, Daily, Weekly, Monthly</b>, or <b>Advanced Settings</b>. If you select <b>Advanced Settings</b>, set a regular interval in month, week, day, or hour format using cron expressions, following the examples given on the screen.</li><li value="3"><b>Time</b>—Set the start time for the sync service.</li><li value="4"><b>Start Date</b>—Set the start date for the sync service.</li><li value="5"><b>Target of Scheduler</b>—Click the check box next to <b>User</b>, <b>Group</b>, or <b>Organization</b> as the target information to retrieve from the directory through the scheduled sync service.</li></ul></li></ul></li>
-                                                        <li value="4">Click the <b>Server</b> tab and enter information required for specifying the LDAP server information.
-                <ul><li value="1"><b>Directory Type</b>—Select a directory type from On-premise AD, Azure AD (Domain Services based), or Other. 
-                        <div class="callout note"><b>NOTE</b>—If Azure AD (Domain Services based) is selected as the directory type, the account does not connect to the server through the cloud connector. If you experience connection errors, you may need to turn off the firewall on the target device.</div></li><li value="2"><b>IP/Host</b>—Enter the IP or host address of the directory, and the TCP port number for communicating with the directory server. The default port number used for unencrypted communication with the directory server is 389.</li><li value="3"><b>Encryption Type</b>—Select <b>None</b> (No encryption) or <b>TLS</b> (Transport Layer Security) as the encryption method for the internet communication protocol used for communicating with the directory server.</li><li value="4"><b>Auth Type</b>—Select <b>None</b>, <b>Simple</b>, <b>DIGEST-MD5(SASL)</b>, or <b>CRAM-MD5(SASL)</b> as the authentication method used when establishing a connection with the directory server. After selecting <b>DIGEST-MD5(SASL)</b> or <b>CRAM-MD5(SASL)</b>, fill out the Authentication details field for the chosen Auth Type as follows:
-                        <table><tbody><tr><td style="font-weight: bold;">Auth Type</td><td style="font-weight: bold;">Description</td></tr><tr><td><p>DIGESTMD5(SASL)/CRAMMD5(SASL)</p></td><td><p>Configure the settings for Simple Authentication and Security Layer (SASL), a telnet-based protocol:</p><ul><li value="1"><b>SASL Realm</b>—Enter the realm value of the SASL server in domain format, for example ,sample.com.</li><li value="2"><b>Quality of Protection</b>—Select the quality of the data protection from the following.
-                                                <ul style="list-style-type: circle;"><li value="1"><b>Authentication Only</b>—Protect data only upon authentication.</li><li value="2"><b>Authentication with integrity</b>—Ensure integrity of all the data exchanged, as well as authentication.</li><li value="3"><b>Authentication with integrity and privacy</b>—Ensure integrity of all data exchanges, as well as authentication through data encryption.</li></ul></li><li value="3"><b>Protection Strength</b>—Select a data protection level, and determine whether or not mutual authentication should be performed when exchanging data.
-                                                <ul style="list-style-type: circle;"><li value="1"><b>High</b>—Use 128-bit encryption.</li><li value="2"><b>Medium</b>—Use 56-bit encryption.</li><li value="3"><b>Low</b>—Use 40-bit encryption.</li><li value="4"><b>Mutual authentication</b>—Click the check box next to <b>Mutual authentication</b> to ensure data validity by inserting the key into the data exchanged between the client and server.</li></ul></li></ul></td></tr></tbody></table></li><li value="5"><b>User ID</b>—Enter the administrator information of the directory server in any of the following forms:
-                                                        <ul style="list-style-type: circle;"><li value="1">domain/administrator ID</li><li value="2">administrator ID @ domain</li><li value="3">CN = administrator ID, CN = Users, DC = domain, and DC = com.</li></ul></li><li value="6"><b>Password</b>—Enter the user ID's password.</li></ul></li>
-                                                        <li value="5">Click the <b>User</b>, <b>Group</b>, or <b>Organization</b> tab according to your selection in <b>Target</b>. Fill in the details.
-                <ul><li value="1">For more information on the <b>User</b> tab, see <a href="add-sync-services.htm#customize-user-information" class="selected">Customizing user information</a>.</li><li value="2">For more information on the <b>Group</b> tab, see <a href="add-sync-services.htm#customize-group-information" class="selected">Customizing group information</a>.</li><li value="3">For more information on the <b>Organization</b> tab, see <a href="add-sync-services.htm#Customize-organization-information" class="selected">Customizing organization information</a>.</li></ul></li>
-                                                        <li value="6">Click <b>Save &amp; Sync</b>.</li>
-                                                        <li value="7">(Optional)&#160;On the <b>Save &amp; Sync Service</b> page, click <b>View</b> next to <b>Expected Sync Result</b> if you want to preview the sync result before starting sync.</li>
-                                                        <li value="8">Click <b>OK</b>.</li>
-                                                    </ol>
-                                                    <h2 id="customize-user-information">Customize user information</h2>
-                                                    <p>Customize user information on the User tab on the <b>Add Sync Service</b> page.</p>
-                                                    <p>To customize the user information when adding the sync service, complete the following steps:</p>
-                                                    <ol>
-                                                        <li value="1">On the <b>Add Sync Service</b> page, enter information required for specifying the basic information about a sync service. For more information, see <a href="add-sync-services.htm#top" class="selected">Adding sync services</a>.
-                <div class="callout note"><b>NOTE</b>—When entering the information on the <b>Add Sync Service</b> page, you must select <b>User</b> for the sync service target.</div></li>
-                                                        <li value="2">Click the <b>User</b> tab, and then enter the following information:
+                                                <li value="2">Click the <b>User</b> tab, and then enter the following information:
                 <ul><li value="1"><b>Base DN</b>—Base DN (Distinguished Name) is the point from which a server searches for users. We recommend that you select the closest Base DN to the target users for the best performance.</li><li value="2"><p><b>Filter</b>—Filter strings that specify a subset of data items in an LDAP data type.</p><p>Click <b>Select</b> to open the <b>Select Object Class</b> page and select an <b>Object Class</b> and attributes for the LDAP Syntax string that are used to filter search results. For more information about setting filters, see <a href="add-a-directory-connector.htm">Add a directory connector</a>.</p><ul style="list-style-type: circle;"><li value="1"><p><b>Recommended Properties</b>—Displays the recommended properties of the selected object class.</p></li><li value="2"><p><b>Return Value</b>—Displays the LDAP Syntax of the selected property information and object class.</p></li><li value="3"><p><b>Default</b>—Select the object class name defined by default as a filter.</p></li><li value="4"><p><b>Custom</b>—Select the object class name defined by connected directory server as a filter.</p></li></ul></li><li value="3"><p><b>Sync Target</b>—Select some or all users from the Base DN set above.</p><ul style="list-style-type: circle;"><li value="1"><p><b>Directly Select (Recommended)</b>—Click <b>Select</b> to open the <b>Select Sync Target</b> screen where you can select your desired targets.</p><p>Click <b>Preview</b> to view details about a sync target.</p></li><li value="2"><p><b>All Users</b>—All users are selected.</p></li></ul></li><li value="4"><p><b>Apply Auto Profile</b>—A profile is automatically applied to a user's device only when their organization details change.</p></li><li value="5"><p><b>Sync Deleted LDAP Users</b>—Select whether to sync deleted users in the LDAP server with Knox Manage users:</p><ul style="list-style-type: circle;"><li value="1"><p><b>Yes</b>—Deleted users in the LDAP server are also deleted from the Knox Manage user list. The deleted users can be viewed in <b>Manage Sync Exception</b> on the Sync Service list.</p></li><li value="2"><p><b>No</b>—Deleted users in the LDAP server are not deleted from the Knox Manage user list.</p></li></ul></li></ul></li>
-                                                        <li value="3">
-                                                            <p>Click <img src="../../assets/merge/images/B-expand.png" /> next to <b>Detail</b> in the <b>Mapping Information</b> area and enter information for mapping the user attributes of the directory server and the user attributes entered when registering user accounts in Knox Manage. The most common values of a directory server are entered automatically, but you can change them according to the directory server.</p>
-                                                            <ul>
-                                                                <li value="1">
-                                                                    <p><b>User ID</b>—Enter a user ID up to 220 characters.</p>
-                                                                </li>
-                                                                <li value="2">
-                                                                    <p><b>User Name</b>—Enter the user's login name that is used for the Windows domain. Enter the UPN in <b>User's login name@domain_name</b> format.</p>
-                                                                </li>
-                                                                <li value="3">
-                                                                    <p><b>Employee No.</b>—Enter the employee's number.</p>
-                                                                </li>
-                                                                <li value="4">
-                                                                    <p><b>Email</b>—Enter the user's email address.</p>
-                                                                </li>
-                                                                <li value="5">
-                                                                    <p><b>Mobile No.</b>—Enter the user's mobile number.</p>
-                                                                </li>
-                                                                <li value="6">
-                                                                    <p><b>DN (Distinguished Name)</b>—Enter the unique name of the LDAP object.</p>
-                                                                </li>
-                                                                <li value="7">
-                                                                    <p><b>Object Identifier</b>—Enter the ID used to distinguish the synced user.</p>
-                                                                </li>
-                                                                <li value="8">
-                                                                    <p><b>Organization</b>—Enter the organization name.</p>
-                                                                </li>
-                                                                <li value="9">
-                                                                    <p><b>Status</b>—Enter the status of the user account.</p>
-                                                                </li>
-                                                                <li value="10">
-                                                                    <p><b>Last Updated Date</b>—Enter the last date when the user information was updated.</p>
-                                                                </li>
-                                                                <li value="11">
-                                                                    <p><b>Created Date</b>—Enter the date when the user was created.</p>
-                                                                </li>
-                                                                <li value="12">
-                                                                    <p><b>First Name</b>—Enter the user's first name.</p>
-                                                                </li>
-                                                                <li value="13">
-                                                                    <p><b>Middle Name</b>—Enter the user's middle name.</p>
-                                                                </li>
-                                                                <li value="14">
-                                                                    <p><b>Last Name</b>—Enter the user's last name.</p>
-                                                                </li>
-                                                                <li value="15">
-                                                                    <p><b>Display Name</b>—Enter the user's display name.</p>
-                                                                </li>
-                                                                <li value="16">
-                                                                    <p><b>Department</b>—Enter the user's department.</p>
-                                                                </li>
-                                                                <li value="17">
-                                                                    <p><b>Administrator DN</b>—Enter the unique name of the administrator.</p>
-                                                                </li>
-                                                                <li value="18">
-                                                                    <p><b>Email User Name</b>—Enter the user's email address that is linked to their username.</p>
-                                                                </li>
-                                                                <li value="19">
-                                                                    <p><b>Contact</b>—Enter the contact information.</p>
-                                                                </li>
-                                                                <li value="20">
-                                                                    <p><b>UPN</b>—Enter the User Principal Name (UPN).</p>
-                                                                </li>
-                                                                <li value="21">
-                                                                    <p><b>User Identifier</b>—Enter the name used to distinguish the synced user.</p>
-                                                                </li>
-                                                                <li value="22">
-                                                                    <p><b>Default Country Code</b>—Enter the default country code.</p>
-                                                                </li>
-                                                                <li value="23">
-                                                                    <p><b>Organization Code</b>—Enter the organization code.</p>
-                                                                </li>
-                                                                <li value="24">
-                                                                    <p><b>Position Code</b>—Enter the position code.</p>
-                                                                </li>
-                                                                <li value="25">
-                                                                    <p><b>Site</b>—Enter the site information.</p>
-                                                                </li>
-                                                                <li value="26">
-                                                                    <p><b>Security Level</b>—Select a security level for the user.</p>
-                                                                </li>
-                                                                <li value="27">
-                                                                    <p><b>User Certificate</b>—Select a user certificate.</p>
-                                                                </li>
-                                                                <li value="28">
-                                                                    <p><b>User-Defined 1</b>—Enter a user defined value.</p>
-                                                                </li>
-                                                                <li value="29">
-                                                                    <p><b>User-Defined 2</b>—Enter a user defined value.</p>
-                                                                </li>
-                                                                <li value="30">
-                                                                    <p><b>User-Defined 3</b>—Enter a user defined value.</p>
-                                                                </li>
-                                                            </ul>
-                                                            <div class="callout note"><b>NOTE</b>
-                                                                <ul>
-                                                                    <li value="1">Click <b>Select</b> to the right of each item to search for the attributes defined in the directory server.</li>
-                                                                    <li value="2">Click <b>Refresh</b> to the right of each item to reset the saved values back to the default values.</li>
-                                                                    <li value="3">Click the check box next to <b>User Static Input Value</b> to delete the default mapped values and to allow you to enter values manually.</li>
-                                                                </ul>
-                                                            </div>
-                                                        </li>
-                                                        <li value="4">
-                                                            <p>Click <b>Save &amp; Sync</b>.</p>
-                                                        </li>
-                                                        <li value="5">
-                                                            <p>On the <b>Save &amp; Sync Service</b> page, click <b>OK</b>.</p>
-                                                            <ul>
-                                                                <li value="1">
-                                                                    <p>Click <b>View</b> next to <b>Expected Sync Result</b> to preview the sync result before starting sync.</p>
-                                                                </li>
-                                                            </ul>
-                                                        </li>
-                                                    </ol>
-                                                    <h2 id="customize-group-information">Customize group information</h2>
-                                                    <p>Customize group information on the Group tab on the <b>Add Sync Service</b> page.</p>
-                                                    <p>To customize the group information when adding the sync service, complete the following steps:</p>
-                                                    <ol>
+                                                <li value="3">
+                                                    <p>Click <img src="../../assets/merge/images/B-expand.png" /> next to <b>Detail</b> in the <b>Mapping Information</b> area and enter information for mapping the user attributes of the directory server and the user attributes entered when registering user accounts in Knox Manage. The most common values of a directory server are entered automatically, but you can change them according to the directory server.</p>
+                                                    <ul>
                                                         <li value="1">
-                                                            <p>On the <b>Add Sync Service</b> page, enter information required for specifying the basic information about a sync service. For more information, see <a href="add-sync-services.htm#top" class="selected">Adding sync services</a>.</p>
-                                                            <div class="callout note"><b>NOTE</b>—When entering the information on the <b>Add Sync Service</b> page, you must select the sync service target as <b>Group</b>.</div>
+                                                            <p><b>User ID</b>—Enter a user ID up to 220 characters.</p>
                                                         </li>
                                                         <li value="2">
-                                                            <p>Click the <b>Group</b> tab, and then enter the following information:</p>
-                                                            <ul>
+                                                            <p><b>User Name</b>—Enter the user's login name that is used for the Windows domain. Enter the UPN in <b>User's login name@domain_name</b> format.</p>
+                                                        </li>
+                                                        <li value="3">
+                                                            <p><b>Employee No.</b>—Enter the employee's number.</p>
+                                                        </li>
+                                                        <li value="4">
+                                                            <p><b>Email</b>—Enter the user's email address.</p>
+                                                        </li>
+                                                        <li value="5">
+                                                            <p><b>Mobile No.</b>—Enter the user's mobile number.</p>
+                                                        </li>
+                                                        <li value="6">
+                                                            <p><b>DN (Distinguished Name)</b>—Enter the unique name of the LDAP object.</p>
+                                                        </li>
+                                                        <li value="7">
+                                                            <p><b>Object Identifier</b>—Enter the ID used to distinguish the synced user.</p>
+                                                        </li>
+                                                        <li value="8">
+                                                            <p><b>Organization</b>—Enter the organization name.</p>
+                                                        </li>
+                                                        <li value="9">
+                                                            <p><b>Status</b>—Enter the status of the user account.</p>
+                                                        </li>
+                                                        <li value="10">
+                                                            <p><b>Last Updated Date</b>—Enter the last date when the user information was updated.</p>
+                                                        </li>
+                                                        <li value="11">
+                                                            <p><b>Created Date</b>—Enter the date when the user was created.</p>
+                                                        </li>
+                                                        <li value="12">
+                                                            <p><b>First Name</b>—Enter the user's first name.</p>
+                                                        </li>
+                                                        <li value="13">
+                                                            <p><b>Middle Name</b>—Enter the user's middle name.</p>
+                                                        </li>
+                                                        <li value="14">
+                                                            <p><b>Last Name</b>—Enter the user's last name.</p>
+                                                        </li>
+                                                        <li value="15">
+                                                            <p><b>Display Name</b>—Enter the user's display name.</p>
+                                                        </li>
+                                                        <li value="16">
+                                                            <p><b>Department</b>—Enter the user's department.</p>
+                                                        </li>
+                                                        <li value="17">
+                                                            <p><b>Administrator DN</b>—Enter the unique name of the administrator.</p>
+                                                        </li>
+                                                        <li value="18">
+                                                            <p><b>Email User Name</b>—Enter the user's email address that is linked to their username.</p>
+                                                        </li>
+                                                        <li value="19">
+                                                            <p><b>Contact</b>—Enter the contact information.</p>
+                                                        </li>
+                                                        <li value="20">
+                                                            <p><b>UPN</b>—Enter the User Principal Name (UPN).</p>
+                                                        </li>
+                                                        <li value="21">
+                                                            <p><b>User Identifier</b>—Enter the name used to distinguish the synced user.</p>
+                                                        </li>
+                                                        <li value="22">
+                                                            <p><b>Default Country Code</b>—Enter the default country code.</p>
+                                                        </li>
+                                                        <li value="23">
+                                                            <p><b>Organization Code</b>—Enter the organization code.</p>
+                                                        </li>
+                                                        <li value="24">
+                                                            <p><b>Position Code</b>—Enter the position code.</p>
+                                                        </li>
+                                                        <li value="25">
+                                                            <p><b>Site</b>—Enter the site information.</p>
+                                                        </li>
+                                                        <li value="26">
+                                                            <p><b>Security Level</b>—Select a security level for the user.</p>
+                                                        </li>
+                                                        <li value="27">
+                                                            <p><b>User Certificate</b>—Select a user certificate.</p>
+                                                        </li>
+                                                        <li value="28">
+                                                            <p><b>User-Defined 1</b>—Enter a user defined value.</p>
+                                                        </li>
+                                                        <li value="29">
+                                                            <p><b>User-Defined 2</b>—Enter a user defined value.</p>
+                                                        </li>
+                                                        <li value="30">
+                                                            <p><b>User-Defined 3</b>—Enter a user defined value.</p>
+                                                        </li>
+                                                    </ul>
+                                                    <div class="callout note"><b>NOTE</b>
+                                                        <ul>
+                                                            <li value="1">Click <b>Select</b> to the right of each item to search for the attributes defined in the directory server.</li>
+                                                            <li value="2">Click <b>Refresh</b> to the right of each item to reset the saved values back to the default values.</li>
+                                                            <li value="3">Click the check box next to <b>User Static Input Value</b> to delete the default mapped values and to allow you to enter values manually.</li>
+                                                        </ul>
+                                                    </div>
+                                                </li>
+                                                <li value="4">
+                                                    <p>Click <b>Save &amp; Sync</b>.</p>
+                                                </li>
+                                                <li value="5">
+                                                    <p>On the <b>Save &amp; Sync Service</b> page, click <b>OK</b>.</p>
+                                                    <ul>
+                                                        <li value="1">
+                                                            <p>Click <b>View</b> next to <b>Expected Sync Result</b> to preview the sync result before starting sync.</p>
+                                                        </li>
+                                                    </ul>
+                                                </li>
+                                            </ol>
+                                            <h2 id="customize-group-information">Customize group information</h2>
+                                            <p>Customize group information on the Group tab on the <b>Add Sync Service</b> page.</p>
+                                            <p>To customize the group information when adding the sync service:</p>
+                                            <ol>
+                                                <li value="1">
+                                                    <p>On the <b>Add Sync Service</b> page, enter information required for specifying the basic information about a sync service. For more information, see <a href="add-sync-services.htm#top" class="selected">Adding sync services</a>.</p>
+                                                    <div class="callout note"><b>NOTE</b>—When entering the information on the <b>Add Sync Service</b> page, you must select the sync service target as <b>Group</b>.</div>
+                                                </li>
+                                                <li value="2">
+                                                    <p>Click the <b>Group</b> tab, and then enter the following information:</p>
+                                                    <ul>
+                                                        <li value="1">
+                                                            <p><b>Base DN</b>—Base DN (Distinguished Name)  is the point from which a server searches for groups. We recommend that you select the closest Base DN to the target groups for the best performance.</p>
+                                                        </li>
+                                                        <li value="2">
+                                                            <p><b>Filter</b>—Filter strings that specify a subset of data items in an LDAP data type.</p>
+                                                            <p>Click <b>Select</b> to open the <b>Select Object Class</b> screen and select an Object Class and attributes for the LDAP Syntax string that are used to filter search results. For more information about setting filters, see <a href="add-a-directory-connector.htm">Add a directory connector</a>.</p>
+                                                        </li>
+                                                        <li value="3">
+                                                            <p><b>Sync Target</b>—Select some or all groups from the Base DN set above.</p>
+                                                            <ul style="list-style-type: circle;">
                                                                 <li value="1">
-                                                                    <p><b>Base DN</b>—Base DN (Distinguished Name)  is the point from which a server searches for groups. We recommend that you select the closest Base DN to the target groups for the best performance.</p>
+                                                                    <p><b>Directly Select (Recommended)</b>—Click <b>Select</b> to open the <b>Select Sync Target</b> screen where you can select your desired targets.</p>
+                                                                    <p>Click <b>Preview</b> to view details about a sync target.</p>
                                                                 </li>
                                                                 <li value="2">
-                                                                    <p><b>Filter</b>—Filter strings that specify a subset of data items in an LDAP data type.</p>
-                                                                    <p>Click <b>Select</b> to open the <b>Select Object Class</b> screen and select an Object Class and attributes for the LDAP Syntax string that are used to filter search results. For more information about setting filters, see <a href="add-a-directory-connector.htm">Add a directory connector</a>.</p>
-                                                                </li>
-                                                                <li value="3">
-                                                                    <p><b>Sync Target</b>—Select some or all groups from the Base DN set above.</p>
-                                                                    <ul style="list-style-type: circle;">
-                                                                        <li value="1">
-                                                                            <p><b>Directly Select (Recommended)</b>—Click <b>Select</b> to open the <b>Select Sync Target</b> screen where you can select your desired targets.</p>
-                                                                            <p>Click <b>Preview</b> to view details about a sync target.</p>
-                                                                        </li>
-                                                                        <li value="2">
-                                                                            <p><b>All Groups</b>—All groups are selected. This option may exhibit poor performance in high-volume cases.</p>
-                                                                        </li>
-                                                                    </ul>
-                                                                </li>
-                                                                <li value="4">
-                                                                    <p><b>Apply or Unassign Auto Profile/App</b>—Profiles are automatically applied to the user devices when organization information is changed.</p>
-                                                                </li>
-                                                                <li value="5">
-                                                                    <p><b>Sync Deleted LDAP Groups</b>—Select whether to sync deleted groups in the LDAP server with Knox Manage groups:</p>
-                                                                    <ul style="list-style-type: circle;">
-                                                                        <li value="1">
-                                                                            <p><b>Yes</b>—Deleted groups in the LDAP server are also deleted from the Knox Manage group list. The deleted groups can be viewed in <b>Manage Sync Exception</b> on the Sync Service list.</p>
-                                                                        </li>
-                                                                        <li value="2">
-                                                                            <p><b>No</b>—Deleted users in the LDAP server are not deleted from the Knox Manage organization list.</p>
-                                                                        </li>
-                                                                    </ul>
+                                                                    <p><b>All Groups</b>—All groups are selected. This option may exhibit poor performance in high-volume cases.</p>
                                                                 </li>
                                                             </ul>
                                                         </li>
-                                                        <li value="3">
-                                                            <p>Click <img src="../../assets/merge/images/B-expand.png" /> next to <b>Detail</b> in the Mapping Information area and enter information for mapping the group attributes of the directory server and the group attributes entered when registering groups in Knox Manage. The most common values of a directory server are entered automatically, but you can change them according to the directory server.</p>
-                                                            <ul>
+                                                        <li value="4">
+                                                            <p><b>Apply or Unassign Auto Profile/App</b>—Profiles are automatically applied to the user devices when organization information is changed.</p>
+                                                        </li>
+                                                        <li value="5">
+                                                            <p><b>Sync Deleted LDAP Groups</b>—Select whether to sync deleted groups in the LDAP server with Knox Manage groups:</p>
+                                                            <ul style="list-style-type: circle;">
                                                                 <li value="1">
-                                                                    <p><b>Group Name</b>—Enter the name for the group.</p>
+                                                                    <p><b>Yes</b>—Deleted groups in the LDAP server are also deleted from the Knox Manage group list. The deleted groups can be viewed in <b>Manage Sync Exception</b> on the Sync Service list.</p>
                                                                 </li>
                                                                 <li value="2">
-                                                                    <p><b>Member</b>—Select a member for the group.</p>
-                                                                </li>
-                                                                <li value="3">
-                                                                    <p><b>Organization</b>—Select the organization to which the group belongs. If left unspecified, the group does not belong to any organization.</p>
-                                                                </li>
-                                                                <li value="4">
-                                                                    <p><b>DN</b> (Distinguished Name)—Enter the unique name of the LDAP object.</p>
-                                                                </li>
-                                                                <li value="5">
-                                                                    <p><b>Object Identifier</b>—Enter the ID used to distinguish the synced group.</p>
-                                                                </li>
-                                                                <li value="6">
-                                                                    <p><b>Group Identifier</b>—Enter the name used to distinguish the synced group.</p>
+                                                                    <p><b>No</b>—Deleted users in the LDAP server are not deleted from the Knox Manage organization list.</p>
                                                                 </li>
                                                             </ul>
-                                                            <div class="callout note"><b>NOTE</b>—Consider the following items:
+                                                        </li>
+                                                    </ul>
+                                                </li>
+                                                <li value="3">
+                                                    <p>Click <img src="../../assets/merge/images/B-expand.png" /> next to <b>Detail</b> in the Mapping Information area and enter information for mapping the group attributes of the directory server and the group attributes entered when registering groups in Knox Manage. The most common values of a directory server are entered automatically, but you can change them according to the directory server.</p>
+                                                    <ul>
+                                                        <li value="1">
+                                                            <p><b>Group Name</b>—Enter the name for the group.</p>
+                                                        </li>
+                                                        <li value="2">
+                                                            <p><b>Member</b>—Select a member for the group.</p>
+                                                        </li>
+                                                        <li value="3">
+                                                            <p><b>Organization</b>—Select the organization to which the group belongs. If left unspecified, the group does not belong to any organization.</p>
+                                                        </li>
+                                                        <li value="4">
+                                                            <p><b>DN</b> (Distinguished Name)—Enter the unique name of the LDAP object.</p>
+                                                        </li>
+                                                        <li value="5">
+                                                            <p><b>Object Identifier</b>—Enter the ID used to distinguish the synced group.</p>
+                                                        </li>
+                                                        <li value="6">
+                                                            <p><b>Group Identifier</b>—Enter the name used to distinguish the synced group.</p>
+                                                        </li>
+                                                    </ul>
+                                                    <div class="callout note"><b>NOTE</b>—Consider the following items:
                     <ul><li value="1"><p>Click <b>Select</b> to the right of each item to search for the attributes defined in the directory server.</p></li><li value="2"><p>Click <b>Refresh</b> to the right of each item to reset the saved values back to the default values.</p></li><li value="3"><p>Click the check box next to <b>User Static Input Value</b> to delete the default mapped values and to allow you to enter values manually.</p></li></ul></div>
-                                                        </li>
-                                                        <li value="4">
-                                                            <p>Click <b>Save &amp; Sync</b>.</p>
-                                                        </li>
-                                                        <li value="5">
-                                                            <p>(Optional)&#160;On the <b>Save &amp; Sync Service</b> p, click <b>View</b> next to <b>Expected Sync Result</b> if you want to preview the sync result before starting sync.</p>
-                                                        </li>
-                                                        <li value="6">
-                                                            <p>Click <b>OK</b>.</p>
-                                                        </li>
-                                                    </ol>
-                                                    <h2 id="Customize-organization-information">Customize organization information</h2>
-                                                    <p>Customize organization information on the Organization tab on the <b>Add Sync Service</b> page.</p>
-                                                    <p>To customize the organization information when adding the sync service, complete the following steps:</p>
-                                                    <ol>
+                                                </li>
+                                                <li value="4">
+                                                    <p>Click <b>Save &amp; Sync</b>.</p>
+                                                </li>
+                                                <li value="5">
+                                                    <p>(Optional)&#160;On the <b>Save &amp; Sync Service</b> p, click <b>View</b> next to <b>Expected Sync Result</b> if you want to preview the sync result before starting sync.</p>
+                                                </li>
+                                                <li value="6">
+                                                    <p>Click <b>OK</b>.</p>
+                                                </li>
+                                            </ol>
+                                            <h2 id="Customize-organization-information">Customize organization information</h2>
+                                            <p>Customize organization information on the Organization tab on the <b>Add Sync Service</b> page.</p>
+                                            <p>To customize the organization information when adding the sync service:</p>
+                                            <ol>
+                                                <li value="1">
+                                                    <p> On the <b>Add Sync Service</b> page, enter information required for specifying the basic information about a sync service. For more information, see <a href="add-sync-services.htm#top" class="selected">Add sync services</a>.</p>
+                                                    <div class="callout note"><b>NOTE</b>—When entering the information on the <b>Add Sync Service</b> page, you must select the sync service target as <b>Organization</b>.</div>
+                                                </li>
+                                                <li value="2">
+                                                    <p>Click the <b>Organization</b> tab, and then enter the following information:</p>
+                                                    <ul>
                                                         <li value="1">
-                                                            <p> On the <b>Add Sync Service</b> page, enter information required for specifying the basic information about a sync service. For more information, see <a href="add-sync-services.htm#top" class="selected">Add sync services</a>.</p>
-                                                            <div class="callout note"><b>NOTE</b>—When entering the information on the <b>Add Sync Service</b> page, you must select the sync service target as <b>Organization</b>.</div>
+                                                            <p><b>Base DN</b>—Base DN (Distinguished Name)  is the point from which a server searches for organizations. We recommend that you select the closest Base DN to the target organizations for the best performance.</p>
                                                         </li>
                                                         <li value="2">
-                                                            <p>Click the <b>Organization</b> tab, and then enter the following information:</p>
-                                                            <ul>
-                                                                <li value="1">
-                                                                    <p><b>Base DN</b>—Base DN (Distinguished Name)  is the point from which a server searches for organizations. We recommend that you select the closest Base DN to the target organizations for the best performance.</p>
-                                                                </li>
-                                                                <li value="2">
-                                                                    <p><b>Filter</b>—Filter strings that specify a subset of data items in an LDAP data type.</p>
-                                                                    <p>Click <b>Select</b> to open the <b>Select Object Class</b> page and select an Object Class and attributes for the LDAP Syntax string that are used to filter search results. For more information about setting filters, see <a href="add-a-directory-connector.htm">Add a directory connector</a>.</p>
-                                                                </li>
-                                                                <li value="3">
-                                                                    <p><b>Sync Target</b>—Select some or all organizations from the Base DN set above.</p>
-                                                                    <ul style="list-style-type: circle;">
-                                                                        <li value="1">
-                                                                            <p><b>Directly Select (Recommended)</b>—Click <b>Select</b> to open the <b>Select Sync Target</b> page where you can select your desired targets.</p>
-                                                                            <p>Click <b>Preview</b> to view details about a sync target.</p>
-                                                                        </li>
-                                                                        <li value="2">
-                                                                            <p><b>All Organizations</b>—All organizations are selected.</p>
-                                                                        </li>
-                                                                    </ul>
-                                                                </li>
-                                                                <li value="4">
-                                                                    <p><b>Sync Deleted LDAP Organizations</b>—Select whether to sync deleted organizations in the LDAP server with Knox Manage organizations:</p>
-                                                                    <ul style="list-style-type: circle;">
-                                                                        <li value="1">
-                                                                            <p><b>Yes</b>—Deleted organizations in the LDAP server are also deleted from the Knox Manage organization list. The deleted organizations can be viewed in <b>Manage Sync Exception</b> on the Sync Service list.</p>
-                                                                        </li>
-                                                                        <li value="2">
-                                                                            <p><b>No</b>—Deleted organizations in the LDAP server are not deleted from the Knox Manage organization list.</p>
-                                                                        </li>
-                                                                    </ul>
-                                                                </li>
-                                                            </ul>
+                                                            <p><b>Filter</b>—Filter strings that specify a subset of data items in an LDAP data type.</p>
+                                                            <p>Click <b>Select</b> to open the <b>Select Object Class</b> page and select an Object Class and attributes for the LDAP Syntax string that are used to filter search results. For more information about setting filters, see <a href="add-a-directory-connector.htm">Add a directory connector</a>.</p>
                                                         </li>
                                                         <li value="3">
-                                                            <p>Click <img src="../../assets/merge/images/B-expand.png" /> next to <b>Detail</b> in the Mapping Information area and enter information for mapping the organization attributes of the directory server and the organization attributes entered when registering organizations in Knox Manage. The most common values of a directory server are entered automatically, but you can change them according to the directory server.</p>
-                                                            <ul>
+                                                            <p><b>Sync Target</b>—Select some or all organizations from the Base DN set above.</p>
+                                                            <ul style="list-style-type: circle;">
                                                                 <li value="1">
-                                                                    <p><b>Organization Code</b>—Enter the organization code.</p>
+                                                                    <p><b>Directly Select (Recommended)</b>—Click <b>Select</b> to open the <b>Select Sync Target</b> page where you can select your desired targets.</p>
+                                                                    <p>Click <b>Preview</b> to view details about a sync target.</p>
                                                                 </li>
                                                                 <li value="2">
-                                                                    <p><b>Organization Name</b>—Enter the organization name.</p>
-                                                                </li>
-                                                                <li value="3">
-                                                                    <p><b>Member</b>—Enter the member of the organization.</p>
-                                                                </li>
-                                                                <li value="4">
-                                                                    <p><b>Organization</b>—Enter the member's organization.</p>
-                                                                </li>
-                                                                <li value="5">
-                                                                    <p><b>DN</b>—Enter the unique name of the organization.</p>
-                                                                </li>
-                                                                <li value="6">
-                                                                    <p><b>Object Identifier</b>—Enter the ID used to distinguish the synced organization.</p>
-                                                                </li>
-                                                                <li value="7">
-                                                                    <p><b>Organization Identifier</b>—Enter the name used to distinguish the synced organization.</p>
-                                                                </li>
-                                                                <li value="8">
-                                                                    <p><b>Company Number</b>—Enter the company number.</p>
-                                                                </li>
-                                                                <li value="9">
-                                                                    <p><b>Upper Organization Code</b>—Enter the code for an organization in a higher tier than the organization to which the user belongs. It allows synchronizing the organization by maintaining the hierarchical relationships in the organization chart.</p>
-                                                                </li>
-                                                                <li value="10">
-                                                                    <p><b>Department Head ID</b>—Enter the ID of the department head.</p>
-                                                                </li>
-                                                                <li value="11">
-                                                                    <p><b>Department Head Name</b>—Enter the name of the department head.</p>
-                                                                </li>
-                                                                <li value="12">
-                                                                    <p><b>Department Head Position</b>—Enter the position of the department head.</p>
-                                                                </li>
-                                                                <li value="13">
-                                                                    <p><b>Display Order</b>—Enter the display order.</p>
+                                                                    <p><b>All Organizations</b>—All organizations are selected.</p>
                                                                 </li>
                                                             </ul>
-                                                            <div class="callout note"><b>NOTE</b>
-                                                                <ul>
-                                                                    <li value="1">
-                                                                        <p>Click <b>Select</b> to the right of each item to search for the attributes defined in the directory server.</p>
-                                                                    </li>
-                                                                    <li value="2">
-                                                                        <p>Click <b>Refresh</b> to the right of each item to reset the saved values back to the default values.</p>
-                                                                    </li>
-                                                                    <li value="3">
-                                                                        <p>Click the check box next to <b>User Static Input Value</b> to delete the default mapped values and to allow you to enter values manually.</p>
-                                                                    </li>
-                                                                </ul>
-                                                            </div>
                                                         </li>
                                                         <li value="4">
-                                                            <p>Click <b>Save &amp; Sync</b>.</p>
+                                                            <p><b>Sync Deleted LDAP Organizations</b>—Select whether to sync deleted organizations in the LDAP server with Knox Manage organizations:</p>
+                                                            <ul style="list-style-type: circle;">
+                                                                <li value="1">
+                                                                    <p><b>Yes</b>—Deleted organizations in the LDAP server are also deleted from the Knox Manage organization list. The deleted organizations can be viewed in <b>Manage Sync Exception</b> on the Sync Service list.</p>
+                                                                </li>
+                                                                <li value="2">
+                                                                    <p><b>No</b>—Deleted organizations in the LDAP server are not deleted from the Knox Manage organization list.</p>
+                                                                </li>
+                                                            </ul>
+                                                        </li>
+                                                    </ul>
+                                                </li>
+                                                <li value="3">
+                                                    <p>Click <img src="../../assets/merge/images/B-expand.png" /> next to <b>Detail</b> in the Mapping Information area and enter information for mapping the organization attributes of the directory server and the organization attributes entered when registering organizations in Knox Manage. The most common values of a directory server are entered automatically, but you can change them according to the directory server.</p>
+                                                    <ul>
+                                                        <li value="1">
+                                                            <p><b>Organization Code</b>—Enter the organization code.</p>
+                                                        </li>
+                                                        <li value="2">
+                                                            <p><b>Organization Name</b>—Enter the organization name.</p>
+                                                        </li>
+                                                        <li value="3">
+                                                            <p><b>Member</b>—Enter the member of the organization.</p>
+                                                        </li>
+                                                        <li value="4">
+                                                            <p><b>Organization</b>—Enter the member's organization.</p>
                                                         </li>
                                                         <li value="5">
-                                                            <p>(Optional)&#160;On the <b>Save &amp; Sync Service</b> page, click <b>View</b> next to <b>Expected Sync Result</b> if you want to preview the sync result before starting sync.</p>
+                                                            <p><b>DN</b>—Enter the unique name of the organization.</p>
                                                         </li>
                                                         <li value="6">
-                                                            <p>Click <b>OK</b>.</p>
+                                                            <p><b>Object Identifier</b>—Enter the ID used to distinguish the synced organization.</p>
                                                         </li>
-                                                    </ol>
-                                                </div>
-                                            </div>
+                                                        <li value="7">
+                                                            <p><b>Organization Identifier</b>—Enter the name used to distinguish the synced organization.</p>
+                                                        </li>
+                                                        <li value="8">
+                                                            <p><b>Company Number</b>—Enter the company number.</p>
+                                                        </li>
+                                                        <li value="9">
+                                                            <p><b>Upper Organization Code</b>—Enter the code for an organization in a higher tier than the organization to which the user belongs. It allows synchronizing the organization by maintaining the hierarchical relationships in the organization chart.</p>
+                                                        </li>
+                                                        <li value="10">
+                                                            <p><b>Department Head ID</b>—Enter the ID of the department head.</p>
+                                                        </li>
+                                                        <li value="11">
+                                                            <p><b>Department Head Name</b>—Enter the name of the department head.</p>
+                                                        </li>
+                                                        <li value="12">
+                                                            <p><b>Department Head Position</b>—Enter the position of the department head.</p>
+                                                        </li>
+                                                        <li value="13">
+                                                            <p><b>Display Order</b>—Enter the display order.</p>
+                                                        </li>
+                                                    </ul>
+                                                    <div class="callout note"><b>NOTE</b>
+                                                        <ul>
+                                                            <li value="1">
+                                                                <p>Click <b>Select</b> to the right of each item to search for the attributes defined in the directory server.</p>
+                                                            </li>
+                                                            <li value="2">
+                                                                <p>Click <b>Refresh</b> to the right of each item to reset the saved values back to the default values.</p>
+                                                            </li>
+                                                            <li value="3">
+                                                                <p>Click the check box next to <b>User Static Input Value</b> to delete the default mapped values and to allow you to enter values manually.</p>
+                                                            </li>
+                                                        </ul>
+                                                    </div>
+                                                </li>
+                                                <li value="4">
+                                                    <p>Click <b>Save &amp; Sync</b>.</p>
+                                                </li>
+                                                <li value="5">
+                                                    <p>(Optional)&#160;On the <b>Save &amp; Sync Service</b> page, click <b>View</b> next to <b>Expected Sync Result</b> if you want to preview the sync result before starting sync.</p>
+                                                </li>
+                                                <li value="6">
+                                                    <p>Click <b>OK</b>.</p>
+                                                </li>
+                                            </ol>
                                         </div>
                                         <!-- Inserts feedback module here -->
                                         <div id="feedback">
