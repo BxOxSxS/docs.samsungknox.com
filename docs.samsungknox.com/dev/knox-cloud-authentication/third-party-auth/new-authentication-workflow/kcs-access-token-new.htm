@@ -1692,11 +1692,11 @@
                                             </div>
                                         </nav>
                                         <h1>Generate a Knox Cloud Services signed access token</h1>
-        <p>Retrieving and signing a Knox Cloud Services (KCS) access token forms the second stage of <a href="overview-new.htm">third party integration with KCS</a>. Ensure you have a valid Samsung Account access token before proceeding. For more information on retrieving a Samsung Account access token, see <a href="../samsung-account-authentication.htm">Authorize a user with Samsung Account</a>.</p>
-        <h2>1. Sign your Client Identifier with your Samsung Account access token</h2>
-        <p>Sign your Knox Client Identifier with the Knox token utility using your Samsung Account access token. For more information on downloading and using the Knox token utility, see <a href="overview-new.htm#Knox">Knox API token library</a>.</p>
-        <p>You can get your public key using <code>KnoxTokenUtility.generateBase64EncodedStringPublicKey( )</code> as shown:</p>
-        <div style="display:block"><pre class="prettyprint" xml:space="preserve">
+                                        <p>Retrieving and signing a Knox Cloud Services (KCS) access token forms the second stage of <a href="overview-new.htm">third party integration with KCS</a>. Ensure you have a valid Samsung Account access token before proceeding. For more information on retrieving a Samsung Account access token, see <a href="../samsung-account-authentication.htm">Authorize a user with Samsung Account</a>.</p>
+                                        <h2>1. Sign your Client Identifier with your Samsung Account access token</h2>
+                                        <p>Sign your Knox Client Identifier with the Knox token utility using your Samsung Account access token. For more information on downloading and using the Knox token utility, see <a href="overview-new.htm#Knox">Knox API token library</a>.</p>
+                                        <p>You can get your public key using <code>KnoxTokenUtility.generateBase64EncodedStringPublicKey( )</code> as shown:</p>
+                                        <div style="display:block"><pre class="prettyprint" xml:space="preserve">
 // Downloaded from the Knox Portal 
 String clientIdentifier = &lt;Your Client Identifier&gt;; 
 String downloadedKeys = &lt;insert path to keys.json&gt;; 
@@ -1711,52 +1711,52 @@ String signedClientIDJWT = KnoxTokenUtility.generateSignedclientIdentifierJwtWit
                                 new FileInputStream(new File(downloadedKeys)),
                                 clientIdentifier, 
                                 saAccessToken);</pre>
-        </div>
-        <h2>2. Get a KCS access token</h2>
-        <p>Generate your access token by passing your signed Samsung Account access token and public key to the <a href="../../../../devref/knox-cloud-authentication/third-party-auth-new.htm#operation/accesstoken"><code>accesstoken</code></a> endpoint. Optionally set the token’s validity by including a value for <code>validityForAccessTokenInMinutes</code> in the request body.</p>
-        <p>Example <a href="../../../../devref/knox-cloud-authentication/third-party-auth-new.htm#operation/accesstoken"><code>accesstoken</code></a> request body:</p>
-        <div style="display:block"><pre class="prettyprint" xml:space="preserve">
+                                        </div>
+                                        <h2>2. Get a KCS access token</h2>
+                                        <p>Generate your access token by passing your signed Samsung Account access token and public key to the <a href="../../../../devref/knox-cloud-authentication/third-party-auth-new.htm#operation/accesstoken"><code>accesstoken</code></a> endpoint. Optionally set the token’s validity by including a value for <code>validityForAccessTokenInMinutes</code> in the request body.</p>
+                                        <p>Example <a href="../../../../devref/knox-cloud-authentication/third-party-auth-new.htm#operation/accesstoken"><code>accesstoken</code></a> request body:</p>
+                                        <div style="display:block"><pre class="prettyprint" xml:space="preserve">
 { 
     "base64EncodedStringPublicKey": "&lt;your-public-key&gt;",
     "clientIdentifierJwt": "&lt;your-signed-clientIdentifierJwt&gt;",
     "validityForAccessTokenInMinutes": 30
 }</pre>
-        </div>
-        <p class="callout warning"><b>NOTE</b> — When your KCS access token expires, you can use the <a href="../../../../devref/knox-cloud-authentication/third-party-auth-new.htm#operation/accesstoken"><code>accesstoken</code></a> endpoint to repeatedly request a new access token until the session token is invalidated or expires. You must sign the Samsung Account access token before each of these requests to avoid replay attacks.</p>
-        <p>Example response:</p>
-        <div style="display:block"><pre class="prettyprint" xml:space="preserve">
+                                        </div>
+                                        <p class="callout warning"><b>NOTE</b> — When your KCS access token expires, you can use the <a href="../../../../devref/knox-cloud-authentication/third-party-auth-new.htm#operation/accesstoken"><code>accesstoken</code></a> endpoint to repeatedly request a new access token until the session token is invalidated or expires. You must sign the Samsung Account access token before each of these requests to avoid replay attacks.</p>
+                                        <p>Example response:</p>
+                                        <div style="display:block"><pre class="prettyprint" xml:space="preserve">
 { 
     "accessToken": "&lt;Your unsigned KCS access token &gt;" 
 }	</pre>
-        </div>
-        <h2>3. Sign your KCS access token</h2>
-        <p>Sign your access token with your private key using the Knox token utility. The access token will be valid for 30 minutes once signed. You can use the refresh token (see step 5) to get a new token after it expires.
+                                        </div>
+                                        <h2>3. Sign your KCS access token</h2>
+                                        <p>Sign your access token with your private key using the Knox token utility. The access token will be valid for 30 minutes once signed. You can use the refresh token (see step 5) to get a new token after it expires.
         </p>
-        <div style="display:block"><pre class="prettyprint" xml:space="preserve">
+                                        <div style="display:block"><pre class="prettyprint" xml:space="preserve">
 String signedAccessToken = KnoxTokenUtility.generateSignedAccessTokenJWT(
                                 new FileInputStream(new File(downloadedKeys)), 
                                 &lt; Your unsigned KCS access token &gt;);
 </pre>
-        </div>
-        <h2>4. Start making KCS API calls</h2>
-        <p>This completes the third-party integration tutorial. You can now start making calls to KCS APIs to access end customer data with your signed KCS access token. </p>
-        <p>Include your signed KCS access token as a header parameter when requesting resources on behalf of your customer. <a href="../../../knox-mobile-enrollment/tutorial.htm">Check out step 5 of the KME tutorial</a> to see an example of using the KME API to assign device profiles.</p>
-        <p>You can also browse the detailed <a href="../../../../devref/knox-mobile-enrollment/index.htm">KME  API reference</a>, which includes example calls.</p>
-        <p class="callout warning"><b>NOTE</b> — If this step fails, ensure that your end customers have <a href="overview-new.htm#Help">established a full trust relationship with your portal</a>.</p>
-        <h2>5. Regenerate access token using refresh token</h2>
-        <p>You can regenerate the KCS Access Token when it expires using the <a href="../../../../devref/knox-cloud-authentication/third-party-auth-new.htm#tag/Samsung-Account-OAuth2/operation/refreshToken" target="_blank">Refresh Token</a>. The Refresh Token can be found in the response of Samsung Account Access Token.</p>
-        <h4>See also:</h4>
-        <ul>
-            <li><a href="overview-new.htm">Integration for EMMs</a>
-            </li>
-            <li><a href="../samsung-account-authentication.htm">Authorize a user with Samsung Account</a>
-            </li>
-            <li><a href="../../error-codes.htm">Error codes</a>
-            </li>
-            <li><a href="../../../../devref/knox-cloud-authentication/third-party-auth-new.htm">Knox Cloud Services Third Party Integration
+                                        </div>
+                                        <h2>4. Start making KCS API calls</h2>
+                                        <p>This completes the third-party integration tutorial. You can now start making calls to KCS APIs to access end customer data with your signed KCS access token. </p>
+                                        <p>Include your signed KCS access token as a header parameter when requesting resources on behalf of your customer. <a href="../../../knox-mobile-enrollment/tutorial.htm">Check out step 5 of the KME tutorial</a> to see an example of using the KME API to assign device profiles.</p>
+                                        <p>You can also browse the detailed <a href="../../../../devref/knox-mobile-enrollment/index.htm">KME  API reference</a>, which includes example calls.</p>
+                                        <p class="callout warning"><b>NOTE</b> — If this step fails, ensure that your end customers have <a href="overview-new.htm#Help">established a full trust relationship with your portal</a>.</p>
+                                        <h2>5. Regenerate access token using refresh token</h2>
+                                        <p>You can regenerate the KCS Access Token when it expires using the <a href="../../../../devref/knox-cloud-authentication/third-party-auth-new.htm#tag/Samsung-Account-OAuth2/operation/refreshToken" target="_blank">Refresh Token</a>. The Refresh Token can be found in the response of Samsung Account Access Token.</p>
+                                        <h4>See also:</h4>
+                                        <ul>
+                                            <li value="1"><a href="overview-new.htm">Integration for EMMs</a>
+                                            </li>
+                                            <li value="2"><a href="../samsung-account-authentication.htm">Authorize a user with Samsung Account</a>
+                                            </li>
+                                            <li value="3"><a href="../../error-codes.htm">Error codes</a>
+                                            </li>
+                                            <li value="4"><a href="../../../../devref/knox-cloud-authentication/third-party-auth-new.htm">Knox Cloud Services Third Party Integration
                 (authentication) REST API reference</a>
-            </li>
-        </ul>
+                                            </li>
+                                        </ul>
                                         <!-- Inserts feedback module here -->
                                         <div id="feedback">
                                         </div>

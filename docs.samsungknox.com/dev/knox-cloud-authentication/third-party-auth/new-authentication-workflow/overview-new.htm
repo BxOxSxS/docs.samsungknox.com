@@ -1692,81 +1692,80 @@
                                             </div>
                                         </nav>
                                         <h1 id="tutorial-integration-for-emms">Tutorial: Integration for EMMs</h1>
-        <p class="callout warning"><b>NOTE</b> - While this authentication flow incorporates parts of the general Samsung Account and KCS authentication protocols, it is not the same and should only be used for third party portal integration. This flow uses a set of specially designed APIs for third party integration maintained separately from the standard Samsung Account and KCS authentication APIs.</p>
-        <p>This tutorial guides third party portal providers through integrating with Samsung Account and Knox Cloud Services (KCS) in order to:
+                                        <p class="callout warning"><b>NOTE</b> - While this authentication flow incorporates parts of the general Samsung Account and KCS authentication protocols, it is not the same and should only be used for third party portal integration. This flow uses a set of specially designed APIs for third party integration maintained separately from the standard Samsung Account and KCS authentication APIs.</p>
+                                        <p>This tutorial guides third party portal providers through integrating with Samsung Account and Knox Cloud Services (KCS) in order to:
         </p>
-        <ul>
-            <li>Add Samsung Account end customer authentication to a web portal </li>
-            <li>Make calls from the web portal to KCS APIs on behalf of end customers</li>
-        </ul>
-        <p>After you implement this authentication flow, your customers will be able to create a Samsung Account, sign up for KCS, and then establish a trust relationship with your service to start managing Knox data from your portal (shown in the following end customer registration diagram).</p>
-        <img style="width: 500px;" alt="end customer registration flow" src="../../../../assets/merge/images/kcs-enrollment-auth/end-customer-registration.png" />
-        <h2>Authentication sequence diagram</h2>
-        <p>The following diagram shows the 10-step authentication process and data flow:
+                                        <ul>
+                                            <li value="1">Add Samsung Account end customer authentication to a web portal </li>
+                                            <li value="2">Make calls from the web portal to KCS APIs on behalf of end customers</li>
+                                        </ul>
+                                        <p>After you implement this authentication flow, your customers will be able to create a Samsung Account, sign up for KCS, and then establish a trust relationship with your service to start managing Knox data from your portal (shown in the following end customer registration diagram).</p>
+                                        <img style="width: 500px;" alt="end customer registration flow" src="../../../../assets/merge/images/kcs-enrollment-auth/end-customer-registration.png" />
+                                        <h2>Authentication sequence diagram</h2>
+                                        <p>The following diagram shows the 10-step authentication process and data flow:
         </p>
-        <p>
-            <img src="../../assets/kcs-third-party-auth-sequence-v2.png" />
-        </p>
-        <h2>Terms to know</h2>
-        <ul>
-            <li><b>Knox cloud services (KCS)</b> - cloud services and REST APIs for products like Knox Mobile Enrollment and Knox Configure.</li>
-            <li><b>end customer</b> — a customer enrolled in one or more Knox Cloud Services who has also registered for Samsung Account.</li>
-            <li><b>third party provider</b> — a company providing a Knox-integrated service, allowing end customers to manage data without logging into a Knox admin portal.
+                                        <p>
+                                            <img src="../../assets/kcs-third-party-auth-sequence-v2.png" />
+                                        </p>
+                                        <h2>Terms to know</h2>
+                                        <ul>
+                                            <li value="1"><b>Knox cloud services (KCS)</b> - cloud services and REST APIs for products like Knox Mobile Enrollment and Knox Configure.</li>
+                                            <li value="2"><b>end customer</b> — a customer enrolled in one or more Knox Cloud Services who has also registered for Samsung Account.</li>
+                                            <li value="3"><b>third party provider</b> — a company providing a Knox-integrated service, allowing end customers to manage data without logging into a Knox admin portal.
             </li>
-            <li><b>third party portal</b> — a web portal hosted by a third party provider.</li>
-            <li><b>Samsung Account (SA)</b> — Samsung's identity provider for KCS.</li>
-            <li><b>Samsung Account access token</b> — an OAuth2 token obtained from Samsung Account when the end customer signs into a third party portal through Samsung Account.</li>
-            <li><b>KCS access token</b> — a token used to make requests to KCS APIs, obtained from KCS with a valid Samsung Account access token. </li>
-            <li><b>Refresh token</b> — The access token can be easily re-issued using refresh token instead of doing the authentication all over again.</li>
-        </ul>
-        <h2>Before you start</h2>
-        <p>Before you start, ensure that you've registered your portal for Samsung Account and for Knox cloud services (illustrated in the diagram below), and that you've prepared the following items:</p>
-        <img style="width: 500px;" alt="third party portal registration flow" src="../../../../assets/merge/images/kcs-enrollment-auth/third-party-registration.png" />
-        <h4>Samsung Account client ID and secret</h4>
-        <p>Locate your Samsung Account client ID and secret. If you need help with either, contact <a href="https://partner.samsungknox.com/contact?redirect=dashboard%2Fsupport" target="_blank">Knox Support</a> with the following information:</p>
-        <p><b>Redirect URL</b> - The URL where the user will be redirected to once the Samsung Account authentication is completed.</p>
-        <p><b>Alias ID</b> - An identifier which maps the Samsung Account with a client ID. This needs to be passed by a third-party authenticator when calling the Samsung Account OAuth2 API (for example, https://account.samsung.com/accounts/v1/<b style="font-style: italic;">thirdPartyAliasID</b>/signInGate).</p>
-        <p>
-        </p>
-        <h4><a name="Knox"></a>Knox API token library</h4>
-        <p><a href="../../../../cloud-authentication/download/samsung-knox-cloud-jar.zip">Download the Knox utility JAR</a> (which supports Java version 1.6 and above) or the <a href="https://www.nuget.org/packages/Samsung.Knox.APITokenLibrary/1.0.0" target="_blank">Knox token utility NuGet package</a>. You'll need this utility to sign your Samsung Account access and KCS access tokens.</p>
-        <h4>Knox public/private key pair</h4>
-        <p>Get your public/private key pair from the Knox API portal.</p>
-        <ol>
-            <li>Launch the <a href="https://us-kcs-api.samsungknox.com/kapi/" target="_blank">Knox API Portal</a> from the <a href="https://www2.samsungknox.com/en/user" target="_blank">Knox Partner Portal Dashboard</a>. The Knox API portal works best with Chrome, Firefox, Safari, or Microsoft Edge.</li>
-            <li>From the portal, generate a public/private key pair called keys.json by clicking <b>Download</b>.</li>
-        </ol>
-        <p class="callout alert"><b>WARNING</b> — keys.json can only be generated once and cannot be restored if lost.</p>
-        <p>keys.json contains the following information:</p>
-        <ul>
-            <li><b>Public key</b> - Sent in the body of the <a href="../../../../devref/knox-cloud-authentication/third-party-auth-new.htm#operation/accesstoken" target="_blank">accesstoken</a> APIs and stored by Samsung Knox to validate signed requests.</li>
-            <li><b>Private key</b> - Stored for your use and never revealed. This key is used for signing your KCS Client Identifier, Samsung Account access token, and KCS access token. This key is not stored by Samsung Knox and we will never request it from you.</li>
-        </ul>
-        <h4>Knox Client Identifier</h4>
-        <p>Obtain your Client Identifier from the <a href="https://us-kcs-api.samsungknox.com/kapi/" target="_blank">Knox API Portal</a>. This unique identifier only needs to be generated once unless:</p>
-        <ul>
-            <li>Privileges need to be changed</li>
-            <li>The Client Identifier is lost or stolen</li>
-        </ul>
-        <p>In both cases, regenerating the Client Identifier invalidates the previous one. The image below shows the page you see when generating the Client Identifier from the portal.</p>
-        <p>
-            <img alt="Generating your Client Identifier in the Knox Portal" style="width:333px; border: 1px solid black" src="../../../../assets/merge/images/kcs-enrollment-auth/client-id.png" />
-        </p>
-        <h4><a name="Help"></a>Help end customers authorize your portal</h4>
-        <p>End customers must enter your Knox partner ID into their Knox admin portal to authorize your service. This creates a full trust relationship, giving your portal permission to make calls to KCS on the end customer's behalf.</p>
-        <p>For example, an end customer using Knox Mobile Enrollment (KME) should log into their KME admin portal and enter <i>your</i> Knox partner ID.</p>
-        <p>Your Knox partner ID is the unique ID issued by KCS when your service applies for access to a KCS API.</p>
-        <p>How you share your Knox partner ID is entirely up to you. KCS is not involved with sharing your Knox partner ID with end customers.</p>
-        <h2>Steps</h2>
-        <h4>
+                                            <li value="4"><b>third party portal</b> — a web portal hosted by a third party provider.</li>
+                                            <li value="5"><b>Samsung Account (SA)</b> — Samsung's identity provider for KCS.</li>
+                                            <li value="6"><b>Samsung Account access token</b> — an OAuth2 token obtained from Samsung Account when the end customer signs into a third party portal through Samsung Account.</li>
+                                            <li value="7"><b>KCS access token</b> — a token used to make requests to KCS APIs, obtained from KCS with a valid Samsung Account access token. </li>
+                                            <li value="8"><b>Refresh token</b> — The access token can be easily re-issued using refresh token instead of doing the authentication all over again.</li>
+                                        </ul>
+                                        <h2>Before you start</h2>
+                                        <p>Before you start, ensure that you've registered your portal for Samsung Account and for Knox cloud services (illustrated in the diagram below), and that you've prepared the following items:</p>
+                                        <img style="width: 500px;" alt="third party portal registration flow" src="../../../../assets/merge/images/kcs-enrollment-auth/third-party-registration.png" />
+                                        <h4>Samsung Account client ID and secret</h4>
+                                        <p>Locate your Samsung Account client ID and secret. If you need help with either, contact <a href="https://partner.samsungknox.com/contact?redirect=dashboard%2Fsupport" target="_blank">Knox Support</a> with the following information:</p>
+                                        <p><b>Redirect URL</b> - The URL where the user will be redirected to once the Samsung Account authentication is completed.</p>
+                                        <p><b>Alias ID</b> - An identifier which maps the Samsung Account with a client ID. This needs to be passed by a third-party authenticator when calling the Samsung Account OAuth2 API (for example, https://account.samsung.com/accounts/v1/<b style="font-style: italic;">thirdPartyAliasID</b>/signInGate).</p>
+                                        <p />
+                                        <h4><a name="Knox"></a>Knox API token library</h4>
+                                        <p><a href="../../../../cloud-authentication/download/samsung-knox-cloud-jar.zip">Download the Knox utility JAR</a> (which supports Java version 1.6 and above) or the <a href="https://www.nuget.org/packages/Samsung.Knox.APITokenLibrary/1.0.0" target="_blank">Knox token utility NuGet package</a>. You'll need this utility to sign your Samsung Account access and KCS access tokens.</p>
+                                        <h4>Knox public/private key pair</h4>
+                                        <p>Get your public/private key pair from the Knox API portal.</p>
+                                        <ol>
+                                            <li value="1">Launch the <a href="https://us-kcs-api.samsungknox.com/kapi/" target="_blank">Knox API Portal</a> from the <a href="https://www2.samsungknox.com/en/user" target="_blank">Knox Partner Portal Dashboard</a>. The Knox API portal works best with Chrome, Firefox, Safari, or Microsoft Edge.</li>
+                                            <li value="2">From the portal, generate a public/private key pair called keys.json by clicking <b>Download</b>.</li>
+                                        </ol>
+                                        <p class="callout alert"><b>WARNING</b> — keys.json can only be generated once and cannot be restored if lost.</p>
+                                        <p>keys.json contains the following information:</p>
+                                        <ul>
+                                            <li value="1"><b>Public key</b> - Sent in the body of the <a href="../../../../devref/knox-cloud-authentication/third-party-auth-new.htm#operation/accesstoken" target="_blank">accesstoken</a> APIs and stored by Samsung Knox to validate signed requests.</li>
+                                            <li value="2"><b>Private key</b> - Stored for your use and never revealed. This key is used for signing your KCS Client Identifier, Samsung Account access token, and KCS access token. This key is not stored by Samsung Knox and we will never request it from you.</li>
+                                        </ul>
+                                        <h4>Knox Client Identifier</h4>
+                                        <p>Obtain your Client Identifier from the <a href="https://us-kcs-api.samsungknox.com/kapi/" target="_blank">Knox API Portal</a>. This unique identifier only needs to be generated once unless:</p>
+                                        <ul>
+                                            <li value="1">Privileges need to be changed</li>
+                                            <li value="2">The Client Identifier is lost or stolen</li>
+                                        </ul>
+                                        <p>In both cases, regenerating the Client Identifier invalidates the previous one. The image below shows the page you see when generating the Client Identifier from the portal.</p>
+                                        <p>
+                                            <img alt="Generating your Client Identifier in the Knox Portal" style="width: 333px;border: 1px solid black;" src="../../../../assets/merge/images/kcs-enrollment-auth/client-id.png" />
+                                        </p>
+                                        <h4><a name="Help"></a>Help end customers authorize your portal</h4>
+                                        <p>End customers must enter your Knox partner ID into their Knox admin portal to authorize your service. This creates a full trust relationship, giving your portal permission to make calls to KCS on the end customer's behalf.</p>
+                                        <p>For example, an end customer using Knox Mobile Enrollment (KME) should log into their KME admin portal and enter <i>your</i> Knox partner ID.</p>
+                                        <p>Your Knox partner ID is the unique ID issued by KCS when your service applies for access to a KCS API.</p>
+                                        <p>How you share your Knox partner ID is entirely up to you. KCS is not involved with sharing your Knox partner ID with end customers.</p>
+                                        <h2>Steps</h2>
+                                        <h4>
                 1. <a href="../samsung-account-authentication.htm">Authorize a user with Samsung Account</a></h4>
-        <h4>
+                                        <h4>
                 2. <a href="kcs-access-token-new.htm">Generate a Knox Cloud Services signed access token</a></h4>
-        <h4>See also: </h4>
-        <ul>
-            <li><a href="../../../../devref/knox-cloud-authentication/third-party-auth-new.htm" target="_blank">Knox Cloud Services Third Party Integration(authentication) REST API reference</a>
-            </li>
-        </ul>
+                                        <h4>See also: </h4>
+                                        <ul>
+                                            <li value="1"><a href="../../../../devref/knox-cloud-authentication/third-party-auth-new.htm" target="_blank">Knox Cloud Services Third Party Integration(authentication) REST API reference</a>
+                                            </li>
+                                        </ul>
                                         <!-- Inserts feedback module here -->
                                         <div id="feedback">
                                         </div>

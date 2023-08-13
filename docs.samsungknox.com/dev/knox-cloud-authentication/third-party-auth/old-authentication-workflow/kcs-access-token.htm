@@ -1692,11 +1692,11 @@
                                             </div>
                                         </nav>
                                         <h1>Generate a Knox Cloud Services signed access token</h1>
-        <div class="callout note"><b>NOTE</b> — This is the old authentication workflow, if you want to implement the new authentication workflow, please see the <a href="../new-authentication-workflow/kcs-access-token-new.htm">new authentication workflow for generating the access token</a> page.</div>
-        <p>Retrieving and signing a Knox Cloud Services (KCS) access token forms the second stage of <a href="overview.htm">third party integration with KCS</a>. Ensure you have a valid Samsung Account access token before proceeding. For more information on retrieving a Samsung Account access token, see <a href="../samsung-account-authentication.htm">Authorize a user with Samsung Account</a>.</p>
-        <h2>1. Sign your Client Identifier with your Samsung Account access token</h2>
-        <p>Sign your Knox Client Identifier with the Knox token utility using your Samsung Account access token. For more information on downloading and using the Knox token utility, see <a href="overview.htm#Knox">Knox API token library</a>.</p>
-        <p>You can get your public key using <code>KnoxTokenUtility.generateBase64EncodedStringPublicKey( )</code> as shown:</p><pre class="prettyprint" xml:space="preserve"><span style="font-size: 10pt;">   // Downloaded from the Knox Portal 
+                                        <div class="callout note"><b>NOTE</b> — This is the old authentication workflow, if you want to implement the new authentication workflow, please see the <a href="../new-authentication-workflow/kcs-access-token-new.htm">new authentication workflow for generating the access token</a> page.</div>
+                                        <p>Retrieving and signing a Knox Cloud Services (KCS) access token forms the second stage of <a href="overview.htm">third party integration with KCS</a>. Ensure you have a valid Samsung Account access token before proceeding. For more information on retrieving a Samsung Account access token, see <a href="../samsung-account-authentication.htm">Authorize a user with Samsung Account</a>.</p>
+                                        <h2>1. Sign your Client Identifier with your Samsung Account access token</h2>
+                                        <p>Sign your Knox Client Identifier with the Knox token utility using your Samsung Account access token. For more information on downloading and using the Knox token utility, see <a href="overview.htm#Knox">Knox API token library</a>.</p>
+                                        <p>You can get your public key using <code>KnoxTokenUtility.generateBase64EncodedStringPublicKey( )</code> as shown:</p><pre class="prettyprint" xml:space="preserve"><span style="font-size: 10pt;">   // Downloaded from the Knox Portal 
     String clientIdentifier = &lt;Your Client Identifier&gt;; 
     String downloadedKeys = &lt;insert path to keys.json&gt;; 
  
@@ -1710,65 +1710,65 @@
                                     new FileInputStream(new File(downloadedKeys)),
                                     clientIdentifier, 
                                     saAccessToken);</span></pre>
-        <h2>2. Get and sign a KCS session token</h2>
-        <p>You must first establish a KCS session on behalf of the logged-in customer by requesting a token from the <a href="../../../../devref/knox-cloud-authentication/third-party-auth.htm#operation/sessiontoken"><code>sessiontoken</code></a> endpoint. You’ll use this session token to request a KCS access token. </p>
-        <p>A session’s validity can either be tied to the identity provider's session (default) or be explicitly set by including a value for <code>validityForSessionTokenInHours</code> in the request body.</p>
-        <p>Example <a href="../../../../devref/knox-cloud-authentication/third-party-auth.htm#operation/sessiontoken"><code>sessiontoken</code></a> request body:</p>
-        <div><pre class="prettyprint" xml:space="preserve">
+                                        <h2>2. Get and sign a KCS session token</h2>
+                                        <p>You must first establish a KCS session on behalf of the logged-in customer by requesting a token from the <a href="../../../../devref/knox-cloud-authentication/third-party-auth.htm#operation/sessiontoken"><code>sessiontoken</code></a> endpoint. You’ll use this session token to request a KCS access token. </p>
+                                        <p>A session’s validity can either be tied to the identity provider's session (default) or be explicitly set by including a value for <code>validityForSessionTokenInHours</code> in the request body.</p>
+                                        <p>Example <a href="../../../../devref/knox-cloud-authentication/third-party-auth.htm#operation/sessiontoken"><code>sessiontoken</code></a> request body:</p>
+                                        <div><pre class="prettyprint" xml:space="preserve">
     { 
         "clientIdentifierJwt": &lt; signedClientIDJWT &gt;, 
         "base64EncodedStringPublicKey": &lt; publicKey &gt;, 
         "validityForSessionTokenInHours": 24 
     }			</pre>
-        </div>
-        <p>Now sign your session token with the Knox token utility:</p>
-        <div><pre class="prettyprint" xml:space="preserve">
+                                        </div>
+                                        <p>Now sign your session token with the Knox token utility:</p>
+                                        <div><pre class="prettyprint" xml:space="preserve">
     String signedsessionTokenJwt = KnoxTokenUtility.generateSignedsessionTokenJwt(	
 					new FileInputStream(new File(downloadedKeys)), 
 					&lt; Your unsigned KCS session token &gt;);
 	</pre>
-        </div>
-        <h2>4. Get a KCS access token</h2>
-        <p>Generate your access token by passing your signed session token and public key to the <a href="../../../../devref/knox-cloud-authentication/third-party-auth.htm#operation/accesstoken"><code>accesstoken</code></a> endpoint. Optionally set the token’s validity by including a value for <code>validityForAccessTokenInMinutes</code> in the request body.</p>
-        <p>Example <a href="../../../../devref/knox-cloud-authentication/third-party-auth.htm#operation/accesstoken"><code>accesstoken</code></a> request body:</p>
-        <div style="display:block"><pre class="prettyprint" xml:space="preserve">
+                                        </div>
+                                        <h2>4. Get a KCS access token</h2>
+                                        <p>Generate your access token by passing your signed session token and public key to the <a href="../../../../devref/knox-cloud-authentication/third-party-auth.htm#operation/accesstoken"><code>accesstoken</code></a> endpoint. Optionally set the token’s validity by including a value for <code>validityForAccessTokenInMinutes</code> in the request body.</p>
+                                        <p>Example <a href="../../../../devref/knox-cloud-authentication/third-party-auth.htm#operation/accesstoken"><code>accesstoken</code></a> request body:</p>
+                                        <div style="display:block"><pre class="prettyprint" xml:space="preserve">
     { 
         "sessionTokenJwt": &lt; signedsessionTokenJwt &gt;, 
         "base64EncodedStringPublicKey": &lt; publicKey &gt;, 
         "validityForAccessTokenInMinutes": 30 
     }</pre>
-        </div>
-        <p class="callout warning"><b>NOTE</b> - When your KCS access token expires, you can use the <a href="../../../../devref/knox-cloud-authentication/third-party-auth.htm#operation/sessiontoken"><code>sessiontoken</code></a> endpoint to repeatedly request a new access token until the session token is invalidated or expires. You must sign the session token before each of these requests to avoid replay attacks.</p>
-        <p>Example response:</p>
-        <div style="display:block"><pre class="prettyprint" xml:space="preserve">
+                                        </div>
+                                        <p class="callout warning"><b>NOTE</b> - When your KCS access token expires, you can use the <a href="../../../../devref/knox-cloud-authentication/third-party-auth.htm#operation/sessiontoken"><code>sessiontoken</code></a> endpoint to repeatedly request a new access token until the session token is invalidated or expires. You must sign the session token before each of these requests to avoid replay attacks.</p>
+                                        <p>Example response:</p>
+                                        <div style="display:block"><pre class="prettyprint" xml:space="preserve">
     { 
         "accessToken": "&lt;Your unsigned KCS access token &gt;" 
     }	</pre>
-        </div>
-        <h2>5. Sign your KCS access token</h2>
-        <p>Sign your access token with your private key using the Knox token utility. The access token will be valid for 30 minutes once signed.
+                                        </div>
+                                        <h2>5. Sign your KCS access token</h2>
+                                        <p>Sign your access token with your private key using the Knox token utility. The access token will be valid for 30 minutes once signed.
         </p>
-        <div style="display:block"><pre class="prettyprint" xml:space="preserve">
+                                        <div style="display:block"><pre class="prettyprint" xml:space="preserve">
     String signedAccessToken = KnoxTokenUtility.generateSignedAccessTokenJWT(
                                    new FileInputStream(new File(downloadedKeys)), 
                                    &lt; Your unsigned KCS access token &gt;);
 </pre>
-        </div>
-        <h2>6. Start making KCS API calls</h2>
-        <p>This completes the third party integration tutorial. You can now start making calls to KCS APIs to access end customer data with your signed KCS access token. </p>
-        <p>Include your signed KCS access token as a header parameter when requesting resources on behalf of your customer. <a href="../../../knox-mobile-enrollment/tutorial.htm">Check out step 5 of the KME tutorial</a> to see an example of using the KME API to assign device profiles.</p>
-        <p>You can also browse the detailed <a href="../../../../devref/knox-mobile-enrollment/index.htm">KME  API reference</a>, which includes example calls.</p>
-        <p class="callout warning"><b>NOTE</b> - If this step fails, ensure that your end customers have <a href="overview.htm#Help">established a full trust relationship with your portal</a>.</p>
-        <h4>See also: <a href="overview.htm"> <![CDATA[ ]]></a></h4>
-        <ul>
-            <li><a href="../samsung-account-authentication.htm">Authorize a user with Samsung Account</a>
-            </li>
-            <li><a href="../../error-codes.htm">Error codes</a>
-            </li>
-            <li><a href="../../../../devref/knox-cloud-authentication/index.htm"><a href="../../../../devref/knox-cloud-authentication/third-party-auth.htm">Knox Cloud Services Third Party Integration
+                                        </div>
+                                        <h2>6. Start making KCS API calls</h2>
+                                        <p>This completes the third party integration tutorial. You can now start making calls to KCS APIs to access end customer data with your signed KCS access token. </p>
+                                        <p>Include your signed KCS access token as a header parameter when requesting resources on behalf of your customer. <a href="../../../knox-mobile-enrollment/tutorial.htm">Check out step 5 of the KME tutorial</a> to see an example of using the KME API to assign device profiles.</p>
+                                        <p>You can also browse the detailed <a href="../../../../devref/knox-mobile-enrollment/index.htm">KME  API reference</a>, which includes example calls.</p>
+                                        <p class="callout warning"><b>NOTE</b> - If this step fails, ensure that your end customers have <a href="overview.htm#Help">established a full trust relationship with your portal</a>.</p>
+                                        <h4>See also: <a href="overview.htm">  <![CDATA[ ]]></a></h4>
+                                        <ul>
+                                            <li value="1"><a href="../samsung-account-authentication.htm">Authorize a user with Samsung Account</a>
+                                            </li>
+                                            <li value="2"><a href="../../error-codes.htm">Error codes</a>
+                                            </li>
+                                            <li value="3"><a href="../../../../devref/knox-cloud-authentication/index.htm"><a href="../../../../devref/knox-cloud-authentication/third-party-auth.htm">Knox Cloud Services Third Party Integration
                 (authentication) REST API reference</a></a>
-            </li>
-        </ul>
+                                            </li>
+                                        </ul>
                                         <!-- Inserts feedback module here -->
                                         <div id="feedback">
                                         </div>

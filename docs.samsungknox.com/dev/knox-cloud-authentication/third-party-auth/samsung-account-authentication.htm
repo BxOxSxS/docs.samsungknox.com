@@ -1694,7 +1694,7 @@
                                         <h1>Authorize a user with Samsung Account</h1>
                                         <p>This first stage of third party integration with Knox Cloud Services consists of authorizing an end customer with Samsung Account to retrieve a Samsung Account access token.</p>
                                         <h2>1. Redirect a user to the Samsung Account login</h2>
-                                        <p>When an end customer selects the Samsung Account login method in your portal, your server should call the <a href="../../../devref/knox-cloud-authentication/third-party-auth.htm#operation/signInGate"><code>signInGate</code></a> endpoint to redirect the end customer to the Samsung Account login and authorization prompt.</p>
+                                        <p>When an end customer selects the Samsung Account login method in your portal, your server should call the <a href="../../../devref/knox-cloud-authentication/third-party-auth-new.htm#operation/signInGate"><code>signInGate</code></a> endpoint to redirect the end customer to the Samsung Account login and authorization prompt.</p>
                                         <p>Your request must include values for the following fields:</p>
                                         <ul>
                                             <li value="1"><b>ALIAS_ID</b>- an identifier which maps the Samsung Account with the client ID</li>
@@ -1703,7 +1703,7 @@
                                             <li value="4"><b>redirect_uri</b> - a Samsung-registered URI specifying where the end customer should land after logging in through Samsung Account. </li>
                                             <li value="5"><b>state</b> – an opaque value used to maintain the state between the request and callback to prevent cross-site request forgery. The authorization server includes this value as a query parameter when redirecting to the redirect_uri.</li>
                                         </ul>
-                                        <p>Here's an example request to <a href="../../../devref/knox-cloud-authentication/third-party-auth.htm#operation/signInGate"><code>signInGate</code></a> with the required parameters: </p>
+                                        <p>Here's an example request to <a href="../../../devref/knox-cloud-authentication/third-party-auth-new.htm#operation/signInGate"><code>signInGate</code></a> with the required parameters: </p>
                                         <div><pre class="prettyprint" xml:space="preserve">
     GET https://&lt; Authorization Host URL&gt;/accounts/&lt;ALIAS_ID&gt;/signInGate?
 	    client_id=xxxxxxxxx&amp;
@@ -1718,15 +1718,15 @@
                                         <p>After the end customer logs in, the Samsung Account server redirects the browser to the <code>redirect_uri</code> specified in the request body.</p>
                                         <p>You’ll find the response fields <code>code</code> and <code>state</code> as query parameters in the browser’s address bar. </p>
                                         <p>Check that <code>state</code> matches the value sent in your request, and extract the code value from the body of the code query parameter, which you'll exchange for a Samsung Account access token.</p>
-                                        <p class="callout warning"><b><b>NOTE</b> - </b>To sign the user out, make a call to the <a href="../../../devref/knox-cloud-authentication/third-party-auth.htm#operation/signOutGate"><code>signOutGate</code></a> endpoint.</p>
+                                        <p class="callout warning"><b><b>NOTE</b> - </b>To sign the user out, make a call to the <a href="../../../devref/knox-cloud-authentication/third-party-auth-new.htm#operation/signOutGate"><code>signOutGate</code></a> endpoint.</p>
                                         <h2>2. Get a Samsung Account access token</h2>
-                                        <p>Next, exchange the authorization <code>code</code> for a Samsung Account access token with the <a href="../../../devref/knox-cloud-authentication/third-party-auth.htm#operation/token"><code>token</code></a> endpoint using your Samsung Account client ID and secret.</p>
+                                        <p>Next, exchange the authorization <code>code</code> for a Samsung Account access token with the <a href="../../../devref/knox-cloud-authentication/third-party-auth-new.htm#operation/token"><code>token</code></a> endpoint using your Samsung Account client ID and secret.</p>
                                         <p>Make sure to include values for the following fields in your request body:</p>
                                         <ul>
                                             <li value="1"><b>client_id</b> - your public Samsung Account client ID.</li>
                                             <li value="2"><b>client_secret</b> - your Samsung Account secret key.</li>
                                             <li value="3"><b>grant_type</b> - the OAuth 2.0 grant type; should always be set to authorization_code.</li>
-                                            <li value="4"><b>code</b> - the authorization code extracted from the <a href="../../../devref/knox-cloud-authentication/third-party-auth.htm#operation/signInGate"><code>signInGate</code> <![CDATA[ ]]></a>response.</li>
+                                            <li value="4"><b>code</b> - the authorization code extracted from the <a href="../../../devref/knox-cloud-authentication/third-party-auth-new.htm#operation/signInGate"><code>signInGate</code> <![CDATA[ ]]></a>response.</li>
                                             <li value="5"><b>redirect_uri</b> - the same redirect_uri used when requesting the authorization code.</li>
                                         </ul>
                                         <p>Here's an example request body:</p>
@@ -1739,7 +1739,7 @@
 	    "redirect_uri": &lt;redirect_uri&gt; 
     }</pre>
                                         </div>
-                                        <p>If successful, the <a href="../../../devref/knox-cloud-authentication/third-party-auth.htm#operation/token"><code>token</code></a> endpoint returns an <code>access_token</code> along with the following fields (shown below) in the response body. Save this Samsung Account access token to embed in your request for a KCS session token.</p>
+                                        <p>If successful, the <a href="../../../devref/knox-cloud-authentication/third-party-auth-new.htm#operation/token"><code>token</code></a> endpoint returns an <code>access_token</code> along with the following fields (shown below) in the response body. Save this Samsung Account access token to embed in your request for a KCS session token.</p>
                                         <p>Example token response:</p>
                                         <div><pre class="prettyprint" xml:space="preserve">
     { 
@@ -1753,13 +1753,13 @@
     }</pre>
                                         </div>
                                         <h2>Next</h2>
-                                        <h3><a href="kcs-access-token.htm">Generate a Knox Cloud Services signed access token</a>
+                                        <h3><a href="new-authentication-workflow/kcs-access-token-new.htm">Generate a Knox Cloud Services signed access token</a>
                                         </h3>
                                         <h4>See also: </h4>
                                         <ul>
                                             <li value="1"><a href="../error-codes.htm">Error codes</a>
                                             </li>
-                                            <li value="2"><a href="../../../devref/knox-cloud-authentication/third-party-auth.htm">Knox Cloud Services Third Party Integration
+                                            <li value="2"><a href="../../../devref/knox-cloud-authentication/third-party-auth-new.htm">Knox Cloud Services Third Party Integration
                 (authentication) REST API reference</a>
                                             </li>
                                         </ul>
