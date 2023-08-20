@@ -856,12 +856,12 @@
               <h1>Get started as an IT admin</h1>
             </div>
             <div class="">
-              <p><span>Last updated July  26th, 2023</span></p>
+              <p><span>Last updated August  14th, 2023</span></p>
             </div>
           </div>
           <div class="l-content">
             <p>The following tutorial is intended for IT admins and guides you through the basics of setting up Knox Authentication Manager.</p>
-<h2 id="step-1-get-a-knox-suite-license">Step 1: Get a Knox Suite License</h2>
+<h2 id="step-1-get-a-knox-suite-license">Step 1: Get a Knox Suite license</h2>
 <p>A valid Knox Suite license is required to use Knox Authentication Manager. To get a Knox Suite license:</p>
 <ol>
 <li>Sign up for a Samsung Knox account if you haven&rsquo;t done so already. Refer to 
@@ -869,7 +869,7 @@
   <a href="../../knox-suite/get-started/create-a-samsung-account.html">Create a Samsung account</a> to learn more.</li>
 <li>Next, 
     
-  <a href="../../knox-suite/get-started/apply-for-access-to-knox-suite.html">Apply for access to Knox Suite</a>. After you apply, a trial license is automatically generated for you, which covers 30 active devices and expires after three months. For more information on Knox Suite licenses, see 
+  <a href="../../knox-suite/get-started/apply-for-access-to-knox-suite.html">Apply for access to Knox Suite</a>. After you apply, a trial license is automatically generated for you, which covers 30 active devices and expires after three months. Once your trial license expires, you can purchase a commercial Knox Suite license from your local reseller. For more information on Knox Suite licenses, see 
     
   <a href="../../knox-suite/get-started/confirm-and-register-your-license.html">Confirm and register your license</a>.</li>
 </ol>
@@ -877,7 +877,20 @@
 <p>If your enterprise is behind a firewall, you must add our Knox servers to your firewall&rsquo;s allowlist. For details, see 
     
   <a href="../../knox-mobile-enrollment/get-started/firewall-exceptions/index.html">Firewall exceptions</a>.</p>
-<h2 id="step-2-add-as-managed-app">Step 2: Add Knox Authentication Manager as a managed app in your UEM</h2>
+<h2 id="step-2-set-up-your-uem">Step 2: Set up your UEM</h2>
+<p>Knox Authentication Manager requires devices to be set up in a particular way, depending on your UEM. Read on to learn about how to set up these methods for your respective UEM.</p>
+<h3 id="vmware-workspace-one">VMware Workspace ONE</h3>
+<p>To work with VMware Workspace ONE, Knox Authentication Manager requires devices to be set up with the Workspace ONE Launcher.</p>
+<p>For more information, see <a href="https://docs.vmware.com/en/VMware-Workspace-ONE-UEM/services/Launcher_Publication/GUID-AWLAUNCHERINTRO.html" target="_blank">About VMWare Workspace ONE Launcher</a> in the UEM&rsquo;s documentation.</p>
+<h3 id="soti-mobicontrol">SOTI MobiControl</h3>
+<p>To work with SOTI MobiControl, Knox Authentication Manager requires devices to be set up in Lockdown. Lockdown, or lockdown mode, is a means of setting up a dedicated device, and is similar to kiosk mode in Knox Manage. It limits device access to a home screen with approved apps and web pages.</p>
+<p>For more information, see <a href="https://www.soti.net/mc/help/v15.6/en/console/reference/dialogs/profiles/androidplus/profile_kioskmode_androidplus.html" target="_blank">Lockdown (Android Enterprise-Work Managed)</a> in the SOTI MobiControl documentation.</p>
+<h3 id="knox-manage">Knox Manage</h3>
+<p>To work with Knox Manage, Knox Authentication Manager requires devices to be set up in kiosk mode. Kiosk mode is a means of setting up a dedicated device, by constraining the device&rsquo;s functionality to suit that of an on-premises or embedded computer.</p>
+<p>For more information, see 
+    
+  <a href="../../knox-manage/kiosk-devices/create-kiosk-devices/create-a-kiosk-using-the-kiosk-wizard.html">Create a kiosk</a> in the Knox Manage documentation.</p>
+<h2 id="step-3-add-knox-authentication-manager-as-a-managed-app-in-your-uem">Step 3: Add Knox Authentication Manager as a managed app in your UEM</h2>
 <p>To add Knox Authentication Manager from Google Play as a managed app through your UEM, see the pages below.</p>
 <ul>
 <li><a href="https://docs.vmware.com/en/VMware-Workspace-ONE-UEM/services/Application_Management_for_Android/GUID-49653838-C99A-4BAB-BD5C-AE8CB0E4B30B.html" target="_blank">VMware Workspace ONE</a></li>
@@ -886,10 +899,10 @@
     
   <a href="../../knox-manage/configure/applications/add-applications/add-public-apps-using-google-play-store/index.html">Knox Manage</a></li>
 </ul>
-<p>For Knox Manage and SOTI MobiControl environments, you have to register Knox Authentication Manager in your Azure portal. To register Knox Authentication Manager in your AAD portal:</p>
+<p>For Knox Manage and SOTI MobiControl environments, you have to register Knox Authentication Manager in the Azure portal. To register Knox Authentication Manager in the Azure portal:</p>
 <ol>
 <li>
-<p>Sign into your AAD portal and navigate to <strong>Azure services</strong> &gt; <strong>Azure Active Directory</strong>.</p>
+<p>Sign in to the Azure portal and navigate to <strong>Azure services</strong> &gt; <strong>Azure Active Directory</strong>.</p>
 </li>
 <li>
 <p>Under <strong>Manage</strong> on the page that opens, select <strong>App registrations</strong> &gt; <strong>New registration</strong>.</p>
@@ -913,7 +926,7 @@
 </li>
 </ol>
 <p>Knox Authentication Manager is now registered in your AAD tenant.</p>
-<h2 id="step-3-configure-and-assign-the-app">Step 3: Configure and assign the app</h2>
+<h2 id="step-4-configure-and-assign-the-app">Step 4: Configure and assign the app</h2>
 <p>In your UEM, create a managed configuration for Knox Authentication Manager according to the table below.</p>
 <table>
     <tr>
@@ -947,12 +960,12 @@
             <ul>
                 <li><strong>VMware Workspace ONE Launcher</strong></li>
                 <li><strong>Microsoft Managed Home Screen</strong> (This option will only be applicable to Intune users).</li>
-                <li><strong>Other-Kiosk Mode</strong> &mdash; Select this setting if your UEM is SOTI MobiControl or Knox Manage.</li>
+                <li><strong>Other-Kiosk Mode</strong> &mdash; Select this setting when you have dedicated devices managed by Knox Manage (in kiosk mode) or SOTI MobiControl (in lockdown mode).</li>
             </ul>
             <div class="border-start border-3 border-important">
             <div class="ms-3 mb-3 pt-1 pb-2 text-grey">
                 <p class="mb-0"><strong>Important</strong></p>
-                <p class="mb-0">Knox Authentication Manager v1.3, planned for September, will include support for Microsoft Intune. Users can then authenticate with the Microsoft Managed Home Screen if it’s set as the main sign-in app.</p>
+                <p class="mb-0">Knox Authentication Manager v1.3, planned for September 2023, will include support for Microsoft Intune. Users can then authenticate with the Microsoft Managed Home Screen if it's set as the main sign-in method.</p>
             </div>
             </div>
         </td>
@@ -1090,7 +1103,7 @@
         <td>
         <p>Sets a sync group key to encrypt and protect user profiles and device group communication.</p>
         <strong>Values</strong>
-        <p>Enter a 32-character key. One way to create the key is to generate it via <code>openssl rand -base64 24</code>.</p>
+        <p>Enter a 32-character key. One way to create the key is to run <code>openssl rand -base64 24</code> in a terminal.</p>
         </td>
     </tr>
     <tr>
@@ -1118,7 +1131,7 @@
         </td>
     </tr>
 </table>
-<p>Once you configure the Knox Authentication Manager app, you should assign it to your device group to push and automatically install it to devices. If you use SOTI MobiControl or Knox Manage, add Knox Authentication Manager to a kiosk profile before you deploy the kiosk to your devices.</p>
+<p>Once you configure the Knox Authentication Manager app, you should assign it to your device group to push and automatically install it to devices. If you use SOTI MobiControl or Knox Manage, add Knox Authentication Manager to the kiosk profile or configure them in Lockdown before you deploy to your devices.</p>
 <p>Additionally, you should configure the below settings in your UEM.</p>
 <p>To ensure that the Knox Authentication Manager app is always running on your shared devices across user sessions:</p>
 <ul>
@@ -1166,7 +1179,7 @@
 <p>For SOTI MobiControl and Knox Manage, if users use Microsoft 365 accounts, ensure that you or the user don&rsquo;t set the account to stay signed in.</p>
 </li>
 </ul>
-<h2 id="step-4-test-device-syncing">Step 4: Test device syncing</h2>
+<h2 id="step-5-test-device-syncing">Step 5: Test device syncing</h2>
 <p>To test that Knox Authentication Manager syncs across your devices, you need two devices with Knox Authentication Manager installed that are in the same device group or on the same Wi-Fi subnet, depending on how you configured Knox Authentication Manager in your UEM. These devices are referred to as Device A and Device B below.</p>
 <ol>
 <li>Dock or plug in Device B. When you charge a device, a <strong>Starting sync service</strong> notification appears on its lock screen.</li>
@@ -1187,10 +1200,17 @@
     <h2 class="body-4 fw-bold mt-0">On this page</h2>
     <nav id="TableOfContents">
   <ul>
-    <li><a href="get-started-as-an-it-admin.html#step-1-get-a-knox-suite-license">Step 1: Get a Knox Suite License</a></li>
-    <li><a href="get-started-as-an-it-admin.html#step-2-add-as-managed-app">Step 2: Add Knox Authentication Manager as a managed app in your UEM</a></li>
-    <li><a href="get-started-as-an-it-admin.html#step-3-configure-and-assign-the-app">Step 3: Configure and assign the app</a></li>
-    <li><a href="get-started-as-an-it-admin.html#step-4-test-device-syncing">Step 4: Test device syncing</a></li>
+    <li><a href="get-started-as-an-it-admin.html#step-1-get-a-knox-suite-license">Step 1: Get a Knox Suite license</a></li>
+    <li><a href="get-started-as-an-it-admin.html#step-2-set-up-your-uem">Step 2: Set up your UEM</a>
+      <ul>
+        <li><a href="get-started-as-an-it-admin.html#vmware-workspace-one">VMware Workspace ONE</a></li>
+        <li><a href="get-started-as-an-it-admin.html#soti-mobicontrol">SOTI MobiControl</a></li>
+        <li><a href="get-started-as-an-it-admin.html#knox-manage">Knox Manage</a></li>
+      </ul>
+    </li>
+    <li><a href="get-started-as-an-it-admin.html#step-3-add-knox-authentication-manager-as-a-managed-app-in-your-uem">Step 3: Add Knox Authentication Manager as a managed app in your UEM</a></li>
+    <li><a href="get-started-as-an-it-admin.html#step-4-configure-and-assign-the-app">Step 4: Configure and assign the app</a></li>
+    <li><a href="get-started-as-an-it-admin.html#step-5-test-device-syncing">Step 5: Test device syncing</a></li>
   </ul>
 </nav>
   </nav>

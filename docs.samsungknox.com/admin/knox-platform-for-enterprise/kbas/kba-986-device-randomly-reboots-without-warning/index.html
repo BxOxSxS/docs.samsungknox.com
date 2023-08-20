@@ -4014,10 +4014,12 @@
 <p>When 
     
   <a href="../../troubleshoot/get-device-logs.html">viewing the device dumpstate logs</a>, the following message is displayed:</p>
-<p><strong>Line 237947: 2023-05-24 16:10:00-0400 |  REBOOT  |       | REASON: enterprise,mainline_update</strong></p>
+<blockquote>
+<p>Line 237947: 2023-05-24 16:10:00-0400 |  REBOOT  |       | REASON: enterprise,mainline_update</p>
+</blockquote>
 <h2 id="cause">Cause</h2>
 <p>As part of <a href="https://developer.android.com/about/versions/10/highlights#faster_updates_fresher_code" target="_blank">Google Play system updates</a>, device restarts are required for mainline updates. Google Play system updates can force software updates to specific system components. When the <strong>System Update</strong> policy is enabled and set to <strong>Automatic</strong> on the EMM profile, the updates can begin at unpredictable times, causing the issue.</p>
-<div class="my-3 ps-3 border-start border-3 border-black"><p class="fw-bold">Note</p><p>Mainline updates are separate from Android Security Maintenance Releases and Android version updates. These updates occur independently.</p></div>
+<div class="my-3 ps-3 border-start border-3 border-black"><p class="fw-bold">Note</p><p>Mainline updates are separate from Android Security Maintenance Releases (SMRs) and Android version updates. These updates occur independently.</p></div>
 <h2 id="resolution">Resolution</h2>
 <p>There are several methods to prevent unexpected mainline updates:</p>
 <ul>
@@ -4025,6 +4027,8 @@
 <li>Postpone all updates on the device with the <strong>System Update</strong> policy.</li>
 <li>Configure an update maintenance window with the <strong>System Update</strong> policy.</li>
 </ul>
+<p>The exact steps to update the System Update policy are different for each EMM. Please consult your EMM&rsquo;s documentation for more details.</p>
+<div class="my-3 ps-3 border-start border-3 border-black"><p class="fw-bold">Note</p><p>Knox E-FOTA can schedule updates for SMRs and Android version updates, but not mainline updates. If you configure the System Update policy through your EMM, you can pause mainline updates. With this policy in combination with Knox E-FOTA, you can manage all three types of system updates.</p></div>
 <p>To disable the <strong>System Update</strong> policy:</p>
 <ol>
 <li>On your EMM, go to the <strong>Android Enterprise</strong> configuration.</li>
@@ -4054,6 +4058,7 @@
 <p>Save and apply your changes to the affected devices.</p>
 </li>
 </ol>
+<p>Updates can only be postponed for 30 days. After 30 days, the device user is prompted to update and restart the device.</p>
 <p>To configure an update maintenance window with the <strong>System Update</strong> policy:</p>
 <ol>
 <li>
@@ -4083,6 +4088,9 @@
 <p>If the device continues to reboot, 
     
   <a href="../../../fundamentals/submit-a-support-ticket/index.html">submit a support ticket</a>.</p>
+<h2 id="additional-information">Additional information</h2>
+<p>For more information about the System Update policy types, refer to <a href="https://developer.android.com/work/dpc/system-updates#set-policy" target="_blank">Manage system updates</a> in the Android developer documentation.</p>
+<p>For more information about Knox E-FOTA, refer to the <a href="../../../efota-one.html" target="_blank">Knox E-FOTA admin guide</a>.</p>
 
 
 
@@ -4110,6 +4118,7 @@
     <li><a href="index.html#overview">Overview</a></li>
     <li><a href="index.html#cause">Cause</a></li>
     <li><a href="index.html#resolution">Resolution</a></li>
+    <li><a href="index.html#additional-information">Additional information</a></li>
   </ul>
 </nav>
   </nav>
