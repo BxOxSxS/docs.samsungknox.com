@@ -1266,7 +1266,7 @@
   
   
   <div class="d-flex justify-content-between align-items-center">
-    <a class="body-5 text-black fw-light" href="../../dashboard/system-insights/security-center/index.html">Security center</a>
+    <a class="body-5 text-black fw-light" href="../../dashboard/system-insights/security-center.html">Security center</a>
   </div>
   
   
@@ -2819,41 +2819,148 @@
               <h1>Knox Asset Intelligence 23.09 release notes</h1>
             </div>
             <div class="">
-              <p><span>Last updated August  23rd, 2023</span></p>
+              <p><span>Last updated September  6th, 2023</span></p>
             </div>
           </div>
           <div class="l-content">
             <p>The 23.09 release of Knox Asset Intelligence introduces the following changes:</p>
-<ul
-  class="nav nav-tabs d-flex align-items-center mt-3"
-  id="nav-tabs"
-  role="tablist"
->
-   
-   
-   
-   
-   
+<h2 id="new-dashboard-tile-for-app-screen-time">New dashboard tile for app screen time</h2>
+<p>A new <strong>Screen time</strong> dashboard tile lets you see how many hours an app was used in the foreground, and how many times it was launched by a device user, regardless of the device&rsquo;s charging state.</p>
+
+
+
+
   
-  <li class="nav-item" role="presentation">
-    <button
-      class="tab-link active px-3 py-2 rounded-5"
-      id="caebdf-tab"
-      data-bs-toggle="tab"
-      data-bs-target="#caebdf"
-      type="button"
-      role="tab"
-      aria-controls="caebdf"
-      aria-selected="true"
-    >23.09
-    </button>
-  </li>
-   
-   
-   
+
+
+
+
+
+
+
   
+  
+  
+  
+  
+    
+    
+    
+    
+      
+    
+    
+  
+    
+    
+    
+    
+      
+    
+    
+  
+    
+    
+    
+    
+      
+    
+    
+  
+    
+    
+    
+    
+      
+    
+    
+  
+    
+    
+    
+    
+      
+    
+    
+  
+    
+    
+    
+    
+      
+    
+    
+  
+    
+    
+    
+    
+      
+    
+    
+  
+    
+    
+    
+      
+    
+    
+    
+  
+    
+    
+    
+      
+    
+    
+    
+  
+    
+    
+    
+      
+    
+    
+    
+  
+    
+    
+    
+      
+    
+    
+    
+  
+    
+    
+    
+      
+    
+    
+    
+  
+    
+    
+    
+      
+    
+    
+    
+  
+
+
+<p><img src="../../assets/app-screen-time-tile.png" class="image-block-scale-50 img-thumbnail" alt="app screen time tile" /></p>
+<h2 id="extended-call-stack-support-for-apps-not-responding-and-forced-closed-events">Extended call stack support for Apps Not Responding and Forced Closed events</h2>
+<p>Several improvements were made to the <strong>Apps with issue events</strong> insight. Previously, when viewing call stack data for <strong>Apps Not Responding (ANR)</strong> and <strong>Force Close (FC)</strong> events, it was possible that some data wasn&rsquo;t available due to the CSV file  size limit. This release increases the file size limit, letting you see the full call stack for both event types.</p>
+<ul>
+<li>For the ANR (App Not Responding) events, you can now download the full call stack as TXT file from the console.</li>
+<li>For the FC (Force close) events, you can now view the extended call stack in a popup on the console.</li>
 </ul>
-<div class="tab-content mb-6" id="nav-tab-content">
+
+
+
+
+  
 
 
 
@@ -2862,11 +2969,85 @@
 
 
 
+<p><img src="../../assets/ANR-event-log-callstack-download.png" class="img-fluid img-thumbnail" alt="call stack download" /></p>
+<p>To learn more about viewing call stack data, see 
+    
+  <a href="../../dashboard/app-insights/app-issues/index.html">App issues</a>.</p>
+<h2 id="new-dashboard-tiles-for-knox-service-plugin-profile-failures">New dashboard tiles for Knox Service Plugin profile failures</h2>
+<p>Two new tiles related to Knox Service Plugin are available. You can now see which Knox Service Plugin policies caused a profile failure, and how many profile failures occurred per error category.</p>
+<h2 id="new-csv-download-option-for-network-latency-trend-data">New CSV download option for Network latency trend data</h2>
+<p>You can now download a CSV file of your <strong>Network latency trend</strong> data. In the <strong>Network latency response times</strong> tile&rsquo;s expanded view, a new <strong>ACTIONS</strong> menu in the <strong>RESPONSE TIME PER GROUP</strong> data table contains two options for downloading a CSV file:</p>
+<ul>
+<li>To download the CSV data for groups in the fleet, select one or more groups from the list, then click <strong>ACTIONS</strong> &gt; <strong>Download as CSV</strong>. You can also perform this action without selecting a group. If no group is selected, the CSV file will contain data for all groups.</li>
+<li>To download the CSV data for devices in a specific group, select one or more groups from the list, the click <strong>ACTIONS</strong> &gt; <strong>Download device list as CSV</strong>. If you select more than one group, the CSV file will contain data for all devices in the selected groups.</li>
+</ul>
+<p>To learn more about the CSV file and what type of data is available, see the 
+    
+  <a href="../../dashboard/network-insights/network-latency/index.html">Network latency</a> page.</p>
+
+
+
+
+  
 
 
 
 
 
+
+
+
+<p><img src="../../assets/network-latency-csv-all-groups.png" class="img-fluid img-thumbnail" alt="csv download network latency" /></p>
+<h2 id="ability-to-refresh-device-logs">Ability to refresh Device logs</h2>
+<p>When viewing a device log, you can now refresh the page to get the latest data, without needing to close and re-open the page.</p>
+
+
+
+
+  
+
+
+
+
+
+
+
+
+<p><img src="../../assets/device-log-refresh.png" class="img-fluid img-thumbnail" alt="device log refresh" /></p>
+<h2 id="mobile-network-diagnostics-in-agent-app">Mobile network diagnostics in agent app</h2>
+<p>The Knox Asset Intelligence agent app now lets device users view mobile network diagnostic information like total data consumption for each SIM card in their device, and network signal strength.</p>
+<h2 id="new-dashboard-tile-for-device-security-vulnerabilities">New dashboard tile for device security vulnerabilities</h2>
+<p>A new Labs dashboard tile called the <strong>Security Center</strong> lets you track vulnerabilities across different Samsung device models in your fleet. It provides the ability to know which individual devices are at risk from a particular vulnerability, and which are covered by the latest security patch.</p>
+<p>Additionally, with Knox Attestation, the <strong>Security center</strong> dashboard tile provides insight into whether your devices have ever installed non-official Samsung software. The <strong>Fleet integrity</strong> chart in the tile&rsquo;s expanded view shows you how many devices have a <strong>Good</strong>, <strong>Bad</strong>, or <strong>Unknown</strong> status. Devices that have failed Knox Attestation receive a <strong>Bad</strong> status.</p>
+
+
+
+
+  
+
+
+
+
+
+
+
+
+<p><img src="../../assets/security-center-expanded.png" class="img-fluid img-thumbnail" alt="security center" /></p>
+<h2 id="new-dashboard-tile-for-device-drop-detection-labs">New dashboard tile for device drop detection (Labs)</h2>
+<p>A new <strong>Labs</strong> dashboard tile called <strong>Device drop detection</strong> lets you see how many times your devices were dropped, and the height from which they were dropped. This feature currently only reports drop events between 0.9m and 1.8m.</p>
+
+
+
+
+  
+
+
+
+
+
+
+
+  
   
   
   
@@ -2875,341 +3056,143 @@
     
     
     
-    
-    
-  
-  
-
-  
-  
-  
-  
-  
-
-  
-  
-  
-  
-  
-
-  
-  
-  
-  
-    
-    
-    
-    
-    
-    
-  
-  
-
-  
-  
-  
-  
-  
-
-  
-  
-  
-  
-  
-
-  
-  
-  
-  
-  
-
-  
-  
-  
-  
-  
-
-  
-  
-  
-  
-  
-
-  
-  
-  
-  
-  
-
-  
-  
-  
-  
-  
-
-  
-  
-  
-  
-  
-
-  
-  
-  
-  
-  
-
-  
-  
-  
-  
-    
-    
-    
-    
-    
-    
-  
-  
-
-  
-  
-  
-  
-  
-
-  
-  
-  
-  
-    
-    
-    
-    
-    
-    
-  
-  
-
-  
-  
-  
-  
-  
-
-  
-  
-  
-  
-  
-
-  
-  
-  
-  
-  
-
-  
-  
-  
-  
-  
-
-  
-  
-  
-  
-  
-
-  
-  
-  
-  
-  
-
-  
-  
-  
-  
-  
-
-  
-  
-  
-  
-  
-
-  
-  
-  
-  
-  
-
-  
-  
-  
-  
-    
-    
-    
-    
-    
-    
-  
-  
-
-  
-  
-  
-  
-  
-
-  
-  
-  
-  
-  
-
-  
-  
-  
-  
-    
-    
-    
-    
-    
-    
-  
-  
-
-  
-  
-  
-  
-  
-
-  
-  
-  
-  
-    
-    
-    
-    
-    
-    
-  
-  
-
-  
-  
-  
-  
-  
-
-  
-  
-  
-  
-  
-
-  
-  
-  
-  
-  
-
-  
-  
-  
-  
-    
-    
-    
-    
-    
-    
-  
-  
-
-  
-  
-  
-  
-  
-
-  
-  
-  
-  
-  
-
-  
-  
-  
-  
-  
-
-  
-  
-  
-  
-  
-
-
-<div class="tab-pane fade  show active  border border-grey-line rounded-3 overflow-hidden" id="caebdf" role="tabpanel" aria-labelledby="caebdf-tab">
-  
-  <div class="tab-text bg-light p-3 border-bottom border-grey-line">
-    <p>This document is new for the <a href="../../../uat.html">Knox cloud services 23.09 UAT</a>.</p>
-    
-  </div>
-  
-  
-    
-    <div class="tab-text p-3 border-bottom border-grey-line">
-      <p class="fw-bold">On this tab</p>
-      <ul class="mt-2 mb-0 list-unstyled section-nav">
       
+    
+    
+  
+    
+    
+    
+    
+      
+    
+    
+  
+    
+    
+    
+    
+      
+    
+    
+  
+    
+    
+    
+    
+      
+    
+    
+  
+    
+    
+    
+    
+      
+    
+    
+  
+    
+    
+    
+    
+      
+    
+    
+  
+    
+    
+    
+    
+      
+    
+    
+  
+    
+    
+    
+      
+    
+    
+    
+  
+    
+    
+    
+      
+    
+    
+    
+  
+    
+    
+    
+      
+    
+    
+    
+  
+    
+    
+    
+      
+    
+    
+    
+  
+    
+    
+    
+      
+    
+    
+    
+  
+    
+    
+    
+      
+    
+    
+    
+  
+
+
+<p><img src="../../assets/drop-detection-tile.png" class="image-block-scale-50 img-thumbnail" alt="device drop" /></p>
+
+
+
+    
+    
         
-        <li class="ms-0"><a href="index.html#new-dashboard-tile-for-app-screen-time-23-09">New dashboard tile for app screen time</a>
-      
         
-        <li class="ms-0"><a href="index.html#extended-call-stack-support-for-apps-not-responding-and-forced-closed-events-23-09">Extended call stack support for Apps Not Responding and Forced Closed events</a>
-      
         
-        <li class="ms-0"><a href="index.html#new-dashboard-tiles-for-knox-service-plugin-profile-failures-23-09">New dashboard tiles for Knox Service Plugin profile failures</a>
-      
+            
         
-        <li class="ms-0"><a href="index.html#new-csv-download-option-for-network-latency-trend-data-23-09">New CSV download option for Network latency trend data</a>
-      
-        
-        <li class="ms-0"><a href="index.html#ability-to-refresh-device-logs-23-09">Ability to refresh Device logs</a>
-      
-        
-        <li class="ms-0"><a href="index.html#mobile-network-diagnostics-in-agent-app-23-09">Mobile network diagnostics in agent app</a>
-      
-        
-        <li class="ms-0"><a href="index.html#new-dashboard-tile-for-device-security-vulnerabilities-23-09">New dashboard tile for device security vulnerabilities</a>
-      
-        
-        <li class="ms-0"><a href="index.html#new-dashboard-tile-for-device-drop-detection-labs-23-09">New dashboard tile for device drop detection (Labs)</a>
-      
-      </ul>
-  </div>
     
-  
-  
-  <div class="tab-text p-3"><h2 id="new-dashboard-tile-for-app-screen-time-23-09">New dashboard tile for app screen time</h2><p>A new <strong>Screen time</strong> dashboard tile lets you see how many hours an app was used in the foreground, and how many times it was launched by a device user, regardless of the device&rsquo;s charging state.</p><p><img src="../../assets/app-screen-time-tile.png" class="image-block-scale-50 img-thumbnail" alt="app screen time tile" /></p><h2 id="extended-call-stack-support-for-apps-not-responding-and-forced-closed-events-23-09">Extended call stack support for Apps Not Responding and Forced Closed events</h2><p>Several improvements were made to the <strong>Apps with issue events</strong> insight. Previously, when viewing call stack data for <strong>Apps Not Responding (ANR)</strong> and <strong>Force Close (FC)</strong> events, it was possible that some data wasn&rsquo;t available due to the CSV file  size limit. This release increases the file size limit, letting you see the full call stack for both event types.</p><ul><li>For the ANR (App Not Responding) events, you can now download the full call stack as TXT file from the console.</li><li>For the FC (Force close) events, you can now view the extended call stack in a popup on the console.</li></ul><p><img src="../../assets/ANR-event-log-callstack-download.png" class="img-fluid img-thumbnail" alt="call stack download" /></p><p>To learn more about viewing call stack data, see       <a href="https://docs.samsungknox.com/admin/knox-asset-intelligence/release-notes/dashboard/app-insights/app-issues">App issues</a>.</p><h2 id="new-dashboard-tiles-for-knox-service-plugin-profile-failures-23-09">New dashboard tiles for Knox Service Plugin profile failures</h2><p>Two new tiles related to Knox Service Plugin are available. You can now see which Knox Service Plugin policies caused a profile failure, and how many profile failures occurred per error category.</p><h2 id="new-csv-download-option-for-network-latency-trend-data-23-09">New CSV download option for Network latency trend data</h2><p>You can now download a CSV file of your <strong>Network latency trend</strong> data. In the <strong>Network latency response times</strong> tile&rsquo;s expanded view, a new <strong>ACTIONS</strong> menu in the <strong>RESPONSE TIME PER GROUP</strong> data table contains two options for downloading a CSV file:</p><ul><li>To download the CSV data for groups in the fleet, select one or more groups from the list, then click <strong>ACTIONS</strong> &gt; <strong>Download as CSV</strong>. You can also perform this action without selecting a group. If no group is selected, the CSV file will contain data for all groups.</li><li>To download the CSV data for devices in a specific group, select one or more groups from the list, the click <strong>ACTIONS</strong> &gt; <strong>Download device list as CSV</strong>. If you select more than one group, the CSV file will contain data for all devices in the selected groups.</li></ul><p>To learn more about the CSV file and what type of data is available, see the       <a href="https://docs.samsungknox.com/admin/knox-asset-intelligence/release-notes/dashboard/network-insights/network-latency">Network latency</a> page.</p><p><img src="../../assets/network-latency-csv-all-groups.png" class="img-fluid img-thumbnail" alt="csv download network latency" /></p><h2 id="ability-to-refresh-device-logs-23-09">Ability to refresh Device logs</h2><p>When viewing a device log, you can now refresh the page to get the latest data, without needing to close and re-open the page.</p><p><img src="../../assets/device-log-refresh.png" class="img-fluid img-thumbnail" alt="device log refresh" /></p><h2 id="mobile-network-diagnostics-in-agent-app-23-09">Mobile network diagnostics in agent app</h2><p>The Knox Asset Intelligence agent app now lets device users view mobile network diagnostic information like total data consumption for each SIM card in their device, and network signal strength.</p><h2 id="new-dashboard-tile-for-device-security-vulnerabilities-23-09">New dashboard tile for device security vulnerabilities</h2><p>A new Labs dashboard tile called the <strong>Security Center</strong> lets you track vulnerabilities across different Samsung device models in your fleet. It provides the ability to know which individual devices are at risk from a particular vulnerability, and which are covered by the latest security patch.</p><p>Additionally, with Knox Attestation, the <strong>Security center</strong> dashboard tile provides insight into whether your devices have ever installed non-official Samsung software. The <strong>Fleet integrity</strong> chart in the tile&rsquo;s expanded view shows you how many devices have a <strong>Good</strong>, <strong>Bad</strong>, or <strong>Unknown</strong> status. Devices that have failed Knox Attestation receive a <strong>Bad</strong> status.</p><p><img src="../../assets/security-center-expanded.png" class="img-fluid img-thumbnail" alt="security center" /></p><h2 id="new-dashboard-tile-for-device-drop-detection-labs-23-09">New dashboard tile for device drop detection (Labs)</h2><p>A new <strong>Labs</strong> dashboard tile called <strong>Device drop detection</strong> lets you see how many times your devices were dropped, and the height from which they were dropped. This feature currently only reports drop events between 0.9m and 1.8m.</p><p><img src="../../assets/drop-detection-tile.png" class="image-block-scale-50 img-thumbnail" alt="device drop" /></p><p><a href="../index.html"  class="btn d-inline-block button-subtle">Back to Release notes</a></p>
-  </div>
-  
-</div>
-</div>
+
+<a href="../index.html"  class="btn d-inline-block button-subtle">Back to Release notes</a>
 
             
           </div>
           <div class="l-toc">
             <aside class="toc">
+  
+  <nav class="section-nav">
+    <h2 class="body-4 fw-bold mt-0">On this page</h2>
+    <nav id="TableOfContents">
+  <ul>
+    <li><a href="index.html#new-dashboard-tile-for-app-screen-time">New dashboard tile for app screen time</a></li>
+    <li><a href="index.html#extended-call-stack-support-for-apps-not-responding-and-forced-closed-events">Extended call stack support for Apps Not Responding and Forced Closed events</a></li>
+    <li><a href="index.html#new-dashboard-tiles-for-knox-service-plugin-profile-failures">New dashboard tiles for Knox Service Plugin profile failures</a></li>
+    <li><a href="index.html#new-csv-download-option-for-network-latency-trend-data">New CSV download option for Network latency trend data</a></li>
+    <li><a href="index.html#ability-to-refresh-device-logs">Ability to refresh Device logs</a></li>
+    <li><a href="index.html#mobile-network-diagnostics-in-agent-app">Mobile network diagnostics in agent app</a></li>
+    <li><a href="index.html#new-dashboard-tile-for-device-security-vulnerabilities">New dashboard tile for device security vulnerabilities</a></li>
+    <li><a href="index.html#new-dashboard-tile-for-device-drop-detection-labs">New dashboard tile for device drop detection (Labs)</a></li>
+  </ul>
+</nav>
+  </nav>
   
 </aside>
 
@@ -3293,7 +3276,7 @@
             
             <li>
               <a
-                href="https://docs.samsungknox.com/admin/efota-common"
+                href="../../../efota-one.html"
                 class="body-5 d-flex align-items-center text-black fw-light pe-auto text-decoration-none"
                 >Knox E-FOTA</a
               >

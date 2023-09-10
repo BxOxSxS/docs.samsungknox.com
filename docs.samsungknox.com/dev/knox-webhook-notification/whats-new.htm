@@ -1504,11 +1504,15 @@
                                                             <ul class="sub-menu">
                                                                 <li><a href="tutorial-kwn-for-kg.htm">For Knox Guard</a>
                                                                 </li>
+                                                                <li><a href="tutorial-kwn-for-kai.htm">For Knox Asset Intelligence</a>
+                                                                </li>
                                                             </ul>
                                                         </li>
                                                         <li class="has-children"><a href="whats-new.htm#">API Reference</a>
                                                             <ul class="sub-menu">
                                                                 <li><a href="../../devref/knox-webhook-notification/index.htm" target="_blank">Subscription API</a>
+                                                                </li>
+                                                                <li><a href="../../devref/knox-asset-intelligence/index.htm" target="_blank">Knox Asset Intelligence API</a>
                                                                 </li>
                                                                 <li><a href="../../devref/knox-guard/index.htm" target="_blank">Knox Guard API</a>
                                                                 </li>
@@ -1626,6 +1630,18 @@
                                                         </li>
                                                     </ul>
                                                 </li>
+                                                <li class="has-children"><a href="whats-new.htm#">Knox Asset Intelligence</a>
+                                                    <ul class="sub-menu">
+                                                        <li><a href="../knox-asset-intelligence/index.htm">Overview</a>
+                                                        </li>
+                                                        <li><a href="../knox-asset-intelligence/whats-new.htm">What's new</a>
+                                                        </li>
+                                                        <li><a href="../knox-asset-intelligence/tutorial.htm">Tutorial</a>
+                                                        </li>
+                                                        <li><a href="../../devref/knox-asset-intelligence/index.htm" target="_blank">API Reference</a>
+                                                        </li>
+                                                    </ul>
+                                                </li>
                                             </ul>
                                         </li>
                                         <li class="has-children"><a href="../assets/navheads/configurations.htm">Managed configurations</a>
@@ -1694,11 +1710,133 @@
                                         <h1>What's new in Knox Webhook Notification</h1>
                                         <p>Find out what's new in this release of the Knox Webhook Notification REST APIs:</p>
                                         <ul class="tabs" data-tabs="" id="example-tabs">
-                                            <li class="tabs-title is-active" value="1"><a href="whats-new.htm#panel1" aria-selected="true" class="selected">Knox Webhook Notification v0.1</a>
+                                            <li class="tabs-title is-active" value="1"><a href="whats-new.htm#panel1" aria-selected="true" class="selected">Knox Webhook Notification v1</a>
+                                            </li>
+                                            <li class="tabs-title" value="2"><a href="whats-new.htm#panel2" class="selected">Knox Webhook Notification v0.1</a>
                                             </li>
                                         </ul>
                                         <div class="tabs-content" data-tabs-content="example-tabs">
                                             <div class="tabs-panel is-active" id="panel1">
+                                                <h2 id="knox-webhook-notification-0-1">Knox Webhook Notification v1</h2>
+                                                <p><i>August 2023</i>
+                                                </p>
+                                                <p>The Knox Webhook Notification API currently provides the following APIs:</p>
+                                                <table style="width: 100%;">
+                                                    <col style="width: 350px;" />
+                                                    <col />
+                                                    <thead>
+                                                        <tr>
+                                                            <th>API</th>
+                                                            <th>Description</th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                        <tr>
+                                                            <td><code>POST /kwn/v1/subscriptions</code>
+                                                            </td>
+                                                            <td>
+                                                                <ul>
+                                                                    <li value="1">Creates a subscription.</li>
+                                                                    <li value="2">Requires:
+                                        <ul><li value="1">The subscription URL or "callback".</li><li value="2">A set of Knox cloud services events. For example, the Knox Guard device enrollment event.</li></ul></li>
+                                                                </ul>
+                                                            </td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td><code>GET /kwn/v1/subscriptions</code>
+                                                            </td>
+                                                            <td>
+                                                                <ul>
+                                                                    <li value="1">Retrieves the subscription associated with a customer.</li>
+                                                                </ul>
+                                                            </td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td><code>GET /kwn/v1/subscriptions/{subscriptionId}</code>
+                                                            </td>
+                                                            <td>
+                                                                <ul>
+                                                                    <li value="1">Retrieves the subscription associated with a particular subscriptionId. Used to identify the URL that KWN uses to dispatch change notifications.</li>
+                                                                </ul>
+                                                            </td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td><code>PUT /kwn/v1/subscriptions/{subscriptionId}</code>
+                                                            </td>
+                                                            <td>
+                                                                <ul>
+                                                                    <li value="1">Updates an existing subscription associated with a particular subscriptionId.</li>
+                                                                </ul>
+                                                            </td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td><code>DELETE /kwn/v1/subscriptions/{subscriptionId}</code>
+                                                            </td>
+                                                            <td>
+                                                                <ul>
+                                                                    <li value="1">Deletes an existing subscription associated with a particular subscriptionId.</li>
+                                                                </ul>
+                                                            </td>
+                                                        </tr>
+                                                    </tbody>
+                                                </table>
+                                                <p>The Knox Webhook Notification API currently supports subscription calls to the following Knox cloud service events:</p>
+                                                <table style="width: 100%;">
+                                                    <col />
+                                                    <col />
+                                                    <col />
+                                                    <thead>
+                                                        <tr>
+                                                            <th>Knox cloud service</th>
+                                                            <th>Event</th>
+                                                            <th>Description</th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                        <tr>
+                                                            <td>Knox Asset Intelligence</td>
+                                                            <td><code>KAI_APP_ANR_FC</code>: App no response and force close events.</td>
+                                                            <td>Reports <a href="../../admin/knox-asset-intelligence/dashboard/app-insights/app-issues/index.html#app-no-response-force-close-events-23-06">ANR (App no response) and FC (Force close) events</a> on the device.</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>Knox Asset Intelligence</td>
+                                                            <td><code>KAI_WIFI_DISCONNECTIONS</code>: Wi-Fi abnormal disconnections.</td>
+                                                            <td>Reports <a href="../../admin/knox-asset-intelligence/dashboard/network-insights/wifi-disconnection-events/index.html">abnormal Wi-Fi disconnection events</a> on the device.</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>Knox Asset Intelligence</td>
+                                                            <td><code>KAI_BATTERY_STATUS</code>: Battery status.</td>
+                                                            <td>Reports <a href="../../admin/knox-asset-intelligence/dashboard/battery-insights/battery-status/index.html">device battery status</a>.</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>Knox Asset Intelligence</td>
+                                                            <td><code>KAI_DEVICE_DIAGNOSTICSLOGS</code>: Device diagnostics logs.</td>
+                                                            <td>Sends <a href="../../admin/knox-asset-intelligence/how-to-guides/view-diagnostic-device-logs/index.html#request-logs-23-06">device diagnostics logs</a>.</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>Knox Guard</td>
+                                                            <td><code>KG_DEVICE_ENROLLED</code>: Device enrollment.</td>
+                                                            <td>Enrolls a device to Knox Guard.</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>Knox Guard</td>
+                                                            <td><code>KG_DEVICE_RELOCK_TIMESTAMP_APPLIED</code>: Device relock timestamping.</td>
+                                                            <td>Updates the relock timestamp to the device.</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>Knox Guard</td>
+                                                            <td><code>KG_DEVICE_LOCKED</code>: Device lock.</td>
+                                                            <td>Locks an enrolled device.</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>Knox Guard</td>
+                                                            <td><code>KG_DEVICE_UNLOCKED</code>: Device unlock.</td>
+                                                            <td>Unlocks a locked device.</td>
+                                                        </tr>
+                                                    </tbody>
+                                                </table>
+                                            </div>
+                                            <div class="tabs-panel" id="panel2">
                                                 <h2 id="knox-webhook-notification-0-1">Knox Webhook Notification v0.1</h2>
                                                 <p><i>March 2023</i>
                                                 </p>
@@ -1720,7 +1858,7 @@
                                                                 <ul>
                                                                     <li value="1">Creates a subscription.</li>
                                                                     <li value="2">Requires:
-										<ul><li value="1">The subscription URL or "callback".</li><li value="2">A set of Knox cloud services events. For example, the Knox Guard device enrollment event.</li></ul></li>
+                                        <ul><li value="1">The subscription URL or "callback".</li><li value="2">A set of Knox cloud services events. For example, the Knox Guard device enrollment event.</li></ul></li>
                                                                 </ul>
                                                             </td>
                                                         </tr>
