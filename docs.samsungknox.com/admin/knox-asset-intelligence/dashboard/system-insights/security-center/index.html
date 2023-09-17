@@ -29,7 +29,7 @@
   </script>
   <meta name="viewport" content="width=device-width,height=device-height,initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title>Device drops | Samsung Knox Documentation</title>
+  <title>Security center (Labs) | Samsung Knox Documentation</title>
   <meta http-equiv="content-language" content="en">
   <meta name="language" content="en">
   <script src="../../../../assets/js/bundle.js"></script>
@@ -1266,7 +1266,7 @@
   
   
   <div class="d-flex justify-content-between align-items-center">
-    <a class="body-5 text-black fw-light" href="../security-center.html">Security center</a>
+    <a class="body-5 text-black active" href="index.html">Security center</a>
   </div>
   
   
@@ -1310,7 +1310,7 @@
   
   
   <div class="d-flex justify-content-between align-items-center">
-    <a class="body-5 text-black active" href="index.html">Device drops</a>
+    <a class="body-5 text-black fw-light" href="../device-drops.html">Device drops</a>
   </div>
   
   
@@ -2820,17 +2820,19 @@
 
             </div>
             <div class="mt-4">
-              <h1>Device drops</h1>
+              <h1>Security center (Labs)</h1>
             </div>
             <div class="">
               <p><span>Last updated September  6th, 2023</span></p>
             </div>
           </div>
           <div class="l-content">
-            <p>The <strong>Device drops</strong> insight lets you see how many times your devices were dropped, and the average height from which they were dropped. This feature currently only reports drop events up to approximately 2m.</p>
-<div class="my-3 ps-3 border-start border-3 border-black"><p class="fw-bold">Note</p><p>Device drops is currently a Labs feature, which means it is under development. While it remains a Labs feature, customers can use and evaluate the feature while Samsung continues to enhance and add new functionality. There are limitations on reported events, and reported data should only be used as a reference. Measured values may differ from actual.</p></div>
+            <p>The <strong>Security Center</strong> dashboard insight lets you track vulnerabilities across different Samsung device models in your fleet. It provides the ability to know which individual
+devices are at risk from a particular vulnerability, and which are covered by the latest security patch.</p>
+<div class="my-3 ps-3 border-start border-3 border-black"><p class="fw-bold">Note</p><p>The <strong>Security center</strong> insight is currently in a <strong>Labs</strong> state. While it remains in this state, Samsung will continue to enhance current features and add new functionality for customers to use and evaluate.</p></div>
 <h2 id="main-tile-view">Main tile view</h2>
-<p>In the top part of the <strong>Device drops</strong> insight&rsquo;s main tile view, you can see the total number of devices dropped, as well as the total number of drop events over the selected reporting period. In the bottom part of the tile, you can see the top 5 devices that had the most drop events in your fleet.</p>
+<p>The Security center insight&rsquo;s main tile view lets you know how many devices in your fleet are not up-to-date with the latest security patches, the total number of vulnerabilities across your entire fleet, and the total number of devices that failed a critical boot-time integrity check.</p>
+<p>In the notification area, you&rsquo;ll see the deployment (device model and security patch combination) with the most devices in your fleet, and its total vulnerability count. Click <strong>VIEW</strong> to see the list of vulnerabilities for these devices.</p>
 
 
 
@@ -2954,11 +2956,9 @@
   
 
 
-<p><img src="../../../assets/device-drops-main-tile.png" class="image-block-scale-50" alt="device drop main tile" /></p>
-<h3 id="expanded-view">Expanded view</h3>
-<p>In the <strong>Device drops</strong> insight&rsquo;s expanded view, the <strong>DEVICE LIST</strong> lets you know how many times each device was dropped, how many of those drop events were <strong>Hard drops</strong> (dropped while the screen was on), and average height from which the device was dropped.</p>
-<div class="my-3 ps-3 border-start border-3 border-black"><p class="fw-bold">Note</p><p>Hard drops are only reported when the device screen is on, in order to prevent excessive battery consumption.</p></div>
-<p>Click any device in the list to view the device&rsquo;s details.</p>
+<p><img src="../../../assets/security-center-main-tile.png" class="image-block-scale-50" alt="security center main tile" /></p>
+<h2 id="expanded-view">Expanded view</h2>
+<p>The Security center insight&rsquo;s expanded view page is divided into the following key components:</p>
 
 
 
@@ -2972,7 +2972,186 @@
 
 
 
-<p><img src="../../../assets/device-drops-expanded.png" class="img-fluid" alt="device drop expanded" /></p>
+<p><img src="../../../assets/security-center-expanded.png" class="img-fluid" alt="security center expanded" /></p>
+<p>In the top section, you&rsquo;ll see a summary of your fleet&rsquo;s security status, letting you know how many devices are not up-to-date with the latest security patches, how many have critical vulnerabilities, and how many failed a boot-time integrity check.</p>
+<h3 id="fleet-vulnerabilities">Fleet vulnerabilities</h3>
+<p>In the middle section, the <strong>Fleet vulnerabilities</strong> chart provides a breakdown of your fleet&rsquo;s vulnerability categories (Critical, High, Medium, Low), and lets you know how many vulnerabilities exist under each category. Hover over each segment in the chart to get an explanation of the category, or click any category in the legend to hide it from the chart.</p>
+<p>Below the chart, you can click <strong>DOWNLOAD ALL SECURITY VULNERABILITIES</strong> to receive a ZIP file containing all vulnerabilities in CSV format.</p>
+<p>From the Fleet vulnerabilities chart, if you click the drill-down view button (&gt;), you&rsquo;ll see a breakdown of every CVE (Common Vulnerabilities and Exposures) and SVE (Samsung Vulnerabilities and Exposures) reported in your fleet.</p>
+
+
+
+
+  
+
+
+
+
+
+
+
+
+<p><img src="../../../assets/security-center-expanded-fleet-vulnerabilities.png" class="img-fluid" alt="security center expanded view fleet vulnerabilities" /></p>
+<p>From this page, you can click any link in the <strong>Affected devices</strong> column to get a second drill-down view of each device affected by a particular CVE/SVE, or click <strong>See report</strong> in the <strong>NIST Report</strong> column to view additional information about that vulnerability.</p>
+
+
+
+
+  
+
+
+
+
+
+
+
+
+<p><img src="../../../assets/security-center-expanded-fleet-vulnerabilities-device.png" class="img-fluid" alt="security center fleet vulnerabilities per device" /></p>
+<h3 id="fleet-integrity">Fleet integrity</h3>
+<p>Using Knox Attestation, the <strong>Fleet integrity chart</strong> provides insight into whether your devices have ever installed non-official Samsung software. You can see how many devices have a <strong>Good</strong>, <strong>Bad</strong>, or <strong>Unknown</strong> status. Devices that have failed Knox Attestation receive a <strong>Bad</strong> status.</p>
+<p>In the notification section at the bottom of the chart, you&rsquo;ll see when attestation was last checked, and when the next check will occur.</p>
+
+
+
+
+  
+
+
+
+
+
+
+
+  
+  
+  
+  
+  
+    
+    
+    
+    
+      
+    
+    
+  
+    
+    
+    
+    
+      
+    
+    
+  
+    
+    
+    
+    
+      
+    
+    
+  
+    
+    
+    
+    
+      
+    
+    
+  
+    
+    
+    
+    
+      
+    
+    
+  
+    
+    
+    
+    
+      
+    
+    
+  
+    
+    
+    
+    
+      
+    
+    
+  
+    
+    
+    
+      
+    
+    
+    
+  
+    
+    
+    
+      
+    
+    
+    
+  
+    
+    
+    
+      
+    
+    
+    
+  
+    
+    
+    
+      
+    
+    
+    
+  
+    
+    
+    
+      
+    
+    
+    
+  
+    
+    
+    
+      
+    
+    
+    
+  
+
+
+<p><img src="../../../assets/security-center-fleet-integrity-chart.png" class="image-block-scale-50 img-thumbnail" alt="security center fleet integrity chart" /></p>
+<h3 id="vulnerabilities-per-device-model">Vulnerabilities per device model</h3>
+<p>The data table in the Security center expanded view provides a list of all device-model and installed security patch combinations in the fleet, and how many vulnerabilities were detected for that particular combination. In the <strong>Device count</strong> column, you’ll see the total number of devices in the fleet that have the exact model-patch combination.</p>
+<div class="my-3 ps-3 border-start border-3 border-black"><p class="fw-bold">Note</p><p>The table is sorted by Device count in descending order, with the largest device count at the top.</p></div>
+<p>Click any value in the <strong>Vulnerabilities</strong> column to get a drill-down view of the vulnerabilies affecting that particular model-patch pair. In the drill-down view, click <strong>See report</strong> in the <strong>NIST report</strong> column to read additional information about the reported CVE/SVE.</p>
+
+
+
+
+  
+
+
+
+
+
+
+
+
+<p><img src="../../../assets/security-center-expanded-view-table-vulnerabilities.png" class="img-fluid" alt="security center expanded view table" /></p>
 
             
           </div>
@@ -2983,9 +3162,12 @@
     <h2 class="body-4 fw-bold mt-0">On this page</h2>
     <nav id="TableOfContents">
   <ul>
-    <li><a href="index.html#main-tile-view">Main tile view</a>
+    <li><a href="index.html#main-tile-view">Main tile view</a></li>
+    <li><a href="index.html#expanded-view">Expanded view</a>
       <ul>
-        <li><a href="index.html#expanded-view">Expanded view</a></li>
+        <li><a href="index.html#fleet-vulnerabilities">Fleet vulnerabilities</a></li>
+        <li><a href="index.html#fleet-integrity">Fleet integrity</a></li>
+        <li><a href="index.html#vulnerabilities-per-device-model">Vulnerabilities per device model</a></li>
       </ul>
     </li>
   </ul>
