@@ -42,7 +42,7 @@
   <link rel="mask-icon" href="../../../safari-pinned-tab.svg" color="#5bbad5">
   <meta name="theme-color" content="white">
 </head>
-<body id=>
+<body id=ZgotmplZ>
   <a class="button-back-to-top button-text" id="BackToTopBtn"><span class="me-4">Back to top</span></a>
   
     <header>
@@ -175,7 +175,7 @@
         <li class="mt-2">
   
   <div class="d-flex justify-content-between align-items-center">
-    <a class="body-5 text-black fw-light" href="../../get-started/get-started-as-a-user/index.html">Get started as a user</a>
+    <a class="body-5 text-black fw-light" href="../../get-started/get-started-as-a-user.html">Get started as a user</a>
   </div>
   </li></ul>
   </div></li>
@@ -192,42 +192,49 @@
         <li class="mt-2">
   
   <div class="d-flex justify-content-between align-items-center">
-    <a class="body-5 text-black fw-light" href="../available-sign-in-flows-for-apps/index.html">Available sign-in flows for apps</a>
+    <a class="body-5 text-black fw-light" href="../available-sign-in-flows-for-apps.html">Available sign-in flows for apps</a>
   </div>
   </li>
       
         <li class="mt-2">
   
   <div class="d-flex justify-content-between align-items-center">
-    <a class="body-5 text-black fw-light" href="../re-register-your-face-and-change-your-pin/index.html">Re-register your face and change your PIN</a>
+    <a class="body-5 text-black fw-light" href="../re-register-your-face-and-change-your-pin.html">Re-register your face and change your PIN</a>
   </div>
   </li>
       
         <li class="mt-2">
   
   <div class="d-flex justify-content-between align-items-center">
-    <a class="body-5 text-black active" href="index.html">Troubleshoot device syncing</a>
+    <a class="body-5 text-black active" href="../troubleshoot-device-syncing.html">Troubleshoot device syncing</a>
   </div>
   </li>
       
         <li class="mt-2">
   
   <div class="d-flex justify-content-between align-items-center">
-    <a class="body-5 text-black fw-light" href="../change-the-sign-in-method/index.html">Change the sign in method</a>
+    <a class="body-5 text-black fw-light" href="../change-the-sign-in-method.html">Change the sign in method</a>
   </div>
   </li>
       
         <li class="mt-2">
   
   <div class="d-flex justify-content-between align-items-center">
-    <a class="body-5 text-black fw-light" href="../unregister-a-user-account/index.html">Unregister a user account</a>
+    <a class="body-5 text-black fw-light" href="../unregister-a-user-account.html">Unregister a user account</a>
   </div>
   </li>
       
         <li class="mt-2">
   
   <div class="d-flex justify-content-between align-items-center">
-    <a class="body-5 text-black fw-light" href="../submit-in-app-feedback/index.html">Submit in-app feedback</a>
+    <a class="body-5 text-black fw-light" href="../submit-in-app-feedback.html">Submit in-app feedback</a>
+  </div>
+  </li>
+      
+        <li class="mt-2">
+  
+  <div class="d-flex justify-content-between align-items-center">
+    <a class="body-5 text-black fw-light" href="../debug-mode/index.html">Use Debug mode</a>
   </div>
   </li></ul>
   </div></li>
@@ -235,16 +242,22 @@
             
               <li class="mt-2">
   <div class="d-flex justify-content-between align-items-center">
-    <a class="body-5 text-black fw-light" href="../../release-notes/index.html">Knox Authentication Manager release notes</a>
+    <a class="body-5 text-black fw-light" href="../../release-notes/index.html">Release notes</a>
   </div></li>
         
             
               <li class="mt-2">
   
   <div class="d-flex justify-content-between align-items-center">
-    <a class="body-5 text-black fw-light" href="../../faq/index.html">FAQ</a>
+    <a class="body-5 text-black fw-light" href="../../faq.html">FAQ</a>
   </div>
-  </li></ul>
+  </li>
+        
+            
+              <li class="mt-2">
+  <div class="d-flex justify-content-between align-items-center">
+    <a class="body-5 text-black fw-light" href="../../kbas/index.html">KBAs</a>
+  </div></li></ul>
   </nav>
 </aside>
         </div>
@@ -271,17 +284,21 @@
               <h1>Troubleshoot device syncing</h1>
             </div>
             <div class="">
-              <p><span>Last updated July  26th, 2023</span></p>
+              <p><span>Last updated September  26th, 2023</span></p>
             </div>
           </div>
           <div class="l-content">
-            <p>This page outlines how to test that your devices sync properly.</p>
+            
+  
+
+<p>This page outlines how to test that your devices sync properly.</p>
 <h2 id="prerequisites">Prerequisites</h2>
 <p>Synchronization between shared devices happens when all of the following conditions are met:</p>
 <ul>
 <li>The devices have the same group ID or are on the same Wi-Fi subnet, depending on how you configured Knox Authentication Manager in your UEM.</li>
 <li>The devices are charging.</li>
-<li>Your network&rsquo;s configuration allows devices to communicate with one another using the UDP and TCP port numbers specified in the managed configuration.</li>
+<li>Your network&rsquo;s configuration and firewall allows devices to communicate with one another using the UDP and TCP port numbers specified in the managed configuration.</li>
+<li>Port 443 and URLs that end with <strong>*.firebaseio.com</strong> have been added to your firewall&rsquo;s allowlist to allow communication with Firebase.</li>
 </ul>
 <h2 id="test-device-syncing">Test device syncing</h2>
 <p>To test device syncing, you need two devices with Knox Authentication Manager installed that are in the same device group or on the same Wi-Fi subnet, depending on how you configured Knox Authentication Manager in your UEM. For instruction purposes, these devices will be referred to as Device A and Device B.</p>
@@ -296,6 +313,7 @@
 <p>Devices may not sync if:</p>
 <ul>
 <li>The UDP/TCP port number is blocked by your enterprise&rsquo;s network policy.</li>
+<li>HTTPS or port 443 is blocked so devices can&rsquo;t communicate with Google Firebase.</li>
 </ul>
 <h3 id="device-related-issues">Device related issues</h3>
 <p>Devices may not sync if:</p>
@@ -307,8 +325,7 @@
 <h3 id="configuration-related-issues">Configuration related issues</h3>
 <p>Devices may not sync if in the Knox Authentication Manager configuration in your UEM:</p>
 <ul>
-<li>Devices aren&rsquo;t under the same group ID.</li>
-<li>The configuration of Multicast IP/portnumber is invalid.</li>
+<li>Devices aren&rsquo;t under the same org ID, group ID, and group key.</li>
 <li>The UDP/TCP port number is invalid or conflicts with other services on the device.</li>
 </ul>
 <h3 id="charge-related-issues">Charge related issues</h3>
@@ -327,14 +344,14 @@
     <h2 class="body-4 fw-bold mt-0">On this page</h2>
     <nav id="TableOfContents">
   <ul>
-    <li><a href="index.html#prerequisites">Prerequisites</a></li>
-    <li><a href="index.html#test-device-syncing">Test device syncing</a></li>
-    <li><a href="index.html#potential-issues">Potential issues</a>
+    <li><a href="../troubleshoot-device-syncing.html#prerequisites">Prerequisites</a></li>
+    <li><a href="../troubleshoot-device-syncing.html#test-device-syncing">Test device syncing</a></li>
+    <li><a href="../troubleshoot-device-syncing.html#potential-issues">Potential issues</a>
       <ul>
-        <li><a href="index.html#network-related-issues">Network related issues</a></li>
-        <li><a href="index.html#device-related-issues">Device related issues</a></li>
-        <li><a href="index.html#configuration-related-issues">Configuration related issues</a></li>
-        <li><a href="index.html#charge-related-issues">Charge related issues</a></li>
+        <li><a href="../troubleshoot-device-syncing.html#network-related-issues">Network related issues</a></li>
+        <li><a href="../troubleshoot-device-syncing.html#device-related-issues">Device related issues</a></li>
+        <li><a href="../troubleshoot-device-syncing.html#configuration-related-issues">Configuration related issues</a></li>
+        <li><a href="../troubleshoot-device-syncing.html#charge-related-issues">Charge related issues</a></li>
       </ul>
     </li>
   </ul>
@@ -373,7 +390,7 @@
       
       <div class="col-sm-12 col-md-6 col-lg-3 footer-vertical-section">
         <div class="d-flex justify-content-between align-items-center">
-          <a class="footer-section-title" data-bs-toggle="collapse" href="index.html#item0" role="button" aria-expanded="false" aria-controls="item0"> 
+          <a class="footer-section-title" data-bs-toggle="collapse" href="../troubleshoot-device-syncing.html#item0" role="button" aria-expanded="false" aria-controls="item0"> 
             <h6 class="body-3 fw-bold text-uppercase text-black pt-4">Knox admin documentation</h6>
           </a>
           <a class="btn-toggle d-inline-flex d-lg-none rounded border-0 fw-light" data-bs-toggle="collapse" data-bs-target="#item0" aria-expanded="false"></a>
@@ -491,7 +508,7 @@
       
       <div class="col-sm-12 col-md-6 col-lg-3 footer-vertical-section">
         <div class="d-flex justify-content-between align-items-center">
-          <a class="footer-section-title" data-bs-toggle="collapse" href="index.html#item1" role="button" aria-expanded="false" aria-controls="item1"> 
+          <a class="footer-section-title" data-bs-toggle="collapse" href="../troubleshoot-device-syncing.html#item1" role="button" aria-expanded="false" aria-controls="item1"> 
             <h6 class="body-3 fw-bold text-uppercase text-black pt-4">Support</h6>
           </a>
           <a class="btn-toggle d-inline-flex d-lg-none rounded border-0 fw-light" data-bs-toggle="collapse" data-bs-target="#item1" aria-expanded="false"></a>
@@ -513,7 +530,7 @@
       
       <div class="col-sm-12 col-md-6 col-lg-3 footer-vertical-section">
         <div class="d-flex justify-content-between align-items-center">
-          <a class="footer-section-title" data-bs-toggle="collapse" href="index.html#item2" role="button" aria-expanded="false" aria-controls="item2"> 
+          <a class="footer-section-title" data-bs-toggle="collapse" href="../troubleshoot-device-syncing.html#item2" role="button" aria-expanded="false" aria-controls="item2"> 
             <h6 class="body-3 fw-bold text-uppercase text-black pt-4">Samsung</h6>
           </a>
           <a class="btn-toggle d-inline-flex d-lg-none rounded border-0 fw-light" data-bs-toggle="collapse" data-bs-target="#item2" aria-expanded="false"></a>
