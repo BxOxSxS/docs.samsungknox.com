@@ -1,0 +1,10 @@
+﻿document.write("<div id=\"header\">");
+document.write("  <nav class=\"navbar navbar-toggleable-md navbar-light\">");
+document.write("    <div class='container'>");
+document.write("      <button class=\"navbar-toggler navbar-toggler-right\" type=\"button\" data-toggle=\"collapse\" data-target=\"#mega-nav\">");
+document.write("        <span class=\"navbar-toggler-icon\"><\/span>");
+document.write("      <\/button>");
+document.write("      <a class=\"navbar-brand\" href=\"https:\/\/developer.samsungknox.com\"><img src=\"https:\/\/kp4-cdn.samsungknox.com\/resource\/iUxOLMPWhXEJheVY.svg\"><\/a>");
+document.write("    <\/div>");
+document.write("  <\/nav>");
+document.write("<\/div>");

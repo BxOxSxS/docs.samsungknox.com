@@ -510,7 +510,7 @@
               <h1>Service provider update interrupts the KME enrollment process</h1>
             </div>
             <div class="">
-              <p><span>Last updated July  26th, 2023</span></p>
+              <p><span>Last updated October  5th, 2023</span></p>
             </div>
           </div>
           <div class="l-content">
@@ -518,59 +518,178 @@
   
 
 
-  
-  
-    
-  
-  
-    
-  
-  
-    <h2 id="environment">Environment</h2>
+
+      
+      
+      
+      
+        
+      
+      
+      
+      
+        
+      
+      
+      
+      
+        
+      
+      
+      
+      
+        <h2 id="environment">Environment</h2>
 <ul>
-<li>Knox Mobile Enrollment (KME)</li>
+<li>Knox Mobile Enrollment</li>
 <li>True Single SKU (TSS) devices</li>
 </ul>
 <h2 id="overview">Overview</h2>
-<p>New True Single SKU devices require a one-time restart to finish the setup process. Customers using these devices in conjunction with KME have reported experiencing an issue where the enrollment data entered in KME is not passed to their chosen MDM after the restart. Due to this behavior, manual end-user intervention is required.</p>
-<h2 id="cause">Cause</h2>
-<p>Due to the mandatory service provider update restart during the setup process of TSS devices, the seamless KME enrollment process is interrupted and KME fails to pass vital enrollment data to the MDM.</p>
-<h2 id="resolution">Resolution</h2>
-<p>A few short-term fixes are being released, please see the workaround section. The Samsung team is working on a more permanent solution. Please check back for updates on the release.</p>
-<h2 id="workaround">Workaround</h2>
-<p>For <strong>Android 11+</strong>, <strong>LTE 5G devices</strong>, a short-term fix will be released that allows you to temporarily postpone the service provider update in order to complete the enrollment process.</p>
-<p>The schedule of the release depends on the specific device model and service provider.</p>
-
-
-
-
-
-
-
-
-<p><img src="../assets/pastedImage.jpg" class="img-fluid img-thumbnail" alt="service provider update" /></p>
-<div class="my-3 ps-3 border-start border-3 border-black"><p class="fw-bold">Note</p><p>Please ensure the end-user selects the “Remind in 30 minutes” option to allow KME to finish enrollment. If the end-user selects “Restart” they will run into the same issue as described above and will then require manual action from the end-user to complete the enrollment.</p></div>
-<p>For devices <strong>Android 10 or lower</strong>:</p>
-<ol>
-<li>
-<p>The IT admin will need to unassign the device from the KME profile to allow the end-user to complete the service provider update.</p>
-</li>
-<li>
-<p>Once the device has completed the service provider update, the IT admin can then re-assign the device to the KME profile.</p>
-</li>
-<li>
-<p>The end-user will either need to:</p>
-<ol>
-<li>Factory Reset the device, which will then take them through the regular KME enrollment process.</li>
-<li>Using a browser on the device, navigate to me.samsungknox.com and click next to trigger the KME enrollment.</li>
-</ol>
-</li>
-</ol>
+<p>New True Single SKU devices require a one-time restart to complete the setup process. Customers using these devices in conjunction with Knox Mobile Enrollment have reported experiencing an issue where the enrollment data isn&rsquo;t passed to their chosen EMM after the restart. Due to this behavior, the device user must manually intervene.</p>
 <h2 id="what-is-true-single-sku">What is True Single SKU?</h2>
-<p>When you purchase a new Galaxy device it will come pre-loaded with network-specific features and services, depending on where the device has been purchased from. This is because most devices have a specific service provider or SKU that indicates which network they are connected to. With True Single SKU, new devices have a common service provider. This means that when the device is set up, it will determine what service provider is being used and apply the specific service provider SKU.</p>
+<p>When you purchase a new Galaxy device, it will come pre-loaded with network-specific features and services, depending on where the device has been purchased from. This is because most devices have a specific service provider or SKU that indicates which network they are connected to. With True Single SKU, new devices have a common service provider. This means that when the device is set up, it will determine what service provider is being used and apply the specific service provider SKU.</p>
 <p>True Single SKU devices will connect to a server during the initial setup to get information about the service provider. After setup has finished, the device will restart to apply the network specific features and services.</p>
-<h2 id="service-provider-update-pop-up">Service Provider Update pop-up</h2>
-<p>To finish setting up your True Single SKU device with all of the appropriate services and features, your device will need to perform a one time restart. This restart may change the apps and layout of your device, depending on the service provider being applied.</p>
+<h2 id="cause">Cause</h2>
+<p>During SKU setup, the device restarts, which can interrupt the Knox Mobile Enrollment flow, which in turn prevents vital enrollment data from passing to your EMM.</p>
+<h2 id="resolution">Resolution</h2>
+<p>The device setup process has been updated to complete the service provider update after the TSS setup. The following is the setup process order:</p>
+<ol>
+<li>
+<p><a href="../how-to-guides/manage-devices/enroll-devices.html">Begin enrolling the device</a> through Knox Mobile Enrollment.</p>
+</li>
+<li>
+<p>After the device is connected to a Wi-Fi APN, the True Single SKU setup begins.</p>
+
+    
+    
+    
+    
+    
+    
+      
+      
+      
+      
+      
+        
+        
+        
+        
+          
+        
+        
+      
+        
+        
+        
+        
+          
+        
+        
+      
+        
+        
+        
+        
+          
+        
+        
+      
+        
+        
+        
+        
+          
+        
+        
+      
+        
+        
+        
+        
+          
+        
+        
+      
+        
+        
+        
+        
+          
+        
+        
+      
+        
+        
+        
+        
+          
+        
+        
+      
+        
+        
+        
+        
+          
+        
+        
+      
+        
+        
+        
+          
+        
+        
+        
+      
+        
+        
+        
+          
+        
+        
+        
+      
+        
+        
+        
+          
+        
+        
+        
+      
+        
+        
+        
+          
+        
+        
+        
+      
+        
+        
+        
+          
+        
+        
+        
+      
+    
+    
+    <p><img src="../assets/kba-967-service-provider-setup-screen.png" class="image-block-scale-40 img-thumbnail" alt="Service provider update" /></p>
+</li>
+<li>
+<p>When prompted, restart the device.</p>
+</li>
+<li>
+<p>Complete device enrollment with Knox Mobile Enrollment.</p>
+</li>
+</ol>
+<p>If the service provider update is interrupted during the True Single SKU setup, the wizard notifies you. One possible error message is:</p>
+<blockquote>
+<p>There was a problem connecting. Service provider features will be set up later when your phone is able to connect.</p>
+</blockquote>
+<p>After an interruption, if you proceed through the on-screen instructions, you&rsquo;re presented with the option on the home screen to postpone the setup by tapping <strong>Remind in 30 minutes</strong>.</p>
 
 
 
@@ -578,8 +697,119 @@
 
 
 
+  
+  
+  
+  
+  
+    
+    
+    
+    
+      
+    
+    
+  
+    
+    
+    
+    
+      
+    
+    
+  
+    
+    
+    
+    
+      
+    
+    
+  
+    
+    
+    
+    
+      
+    
+    
+  
+    
+    
+    
+    
+      
+    
+    
+  
+    
+    
+    
+    
+      
+    
+    
+  
+    
+    
+    
+    
+      
+    
+    
+  
+    
+    
+    
+    
+      
+    
+    
+  
+    
+    
+    
+      
+    
+    
+    
+  
+    
+    
+    
+      
+    
+    
+    
+  
+    
+    
+    
+      
+    
+    
+    
+  
+    
+    
+    
+      
+    
+    
+    
+  
+    
+    
+    
+      
+    
+    
+    
+  
 
-<p><img src="../assets/pastedImage_dupe_2.png" class="img-fluid img-thumbnail" alt="service provider update popup" /></p>
+
+<p><img src="../assets/kba-967-service-provider-setup-postpone.png" class="image-block-scale-40 img-thumbnail" alt="service provider update popup" /></p>
+<p>Postponing it allows Knox Mobile Enrollment to complete device enrollment, without any interruptions.</p>
 <a href="../kbas.html"  class="btn d-inline-block button-subtle">Back to KBAs</a>
 
             
@@ -593,11 +823,9 @@
   <ul>
     <li><a href="kba-524-service-provider-update-interrupts-kme-enrollment.html#environment">Environment</a></li>
     <li><a href="kba-524-service-provider-update-interrupts-kme-enrollment.html#overview">Overview</a></li>
+    <li><a href="kba-524-service-provider-update-interrupts-kme-enrollment.html#what-is-true-single-sku">What is True Single SKU?</a></li>
     <li><a href="kba-524-service-provider-update-interrupts-kme-enrollment.html#cause">Cause</a></li>
     <li><a href="kba-524-service-provider-update-interrupts-kme-enrollment.html#resolution">Resolution</a></li>
-    <li><a href="kba-524-service-provider-update-interrupts-kme-enrollment.html#workaround">Workaround</a></li>
-    <li><a href="kba-524-service-provider-update-interrupts-kme-enrollment.html#what-is-true-single-sku">What is True Single SKU?</a></li>
-    <li><a href="kba-524-service-provider-update-interrupts-kme-enrollment.html#service-provider-update-pop-up">Service Provider Update pop-up</a></li>
   </ul>
 </nav>
   </nav>
