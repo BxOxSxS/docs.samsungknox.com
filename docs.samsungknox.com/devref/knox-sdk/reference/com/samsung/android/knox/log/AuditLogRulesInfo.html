@@ -159,9 +159,9 @@
     </select>
   </div>
   <script>
-   var SINCE_DATA = [ '1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12', '13', '14', '15', '16', '17', '18', '19', '20', '21', '22', '23', '24', '25', '26', '27', '28', '29', '30', '31', '32', '33', '34', '35', '36' ];
+   var SINCE_DATA = [ '1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12', '13', '14', '15', '16', '17', '18', '19', '20', '21', '22', '23', '24', '25', '26', '27', '28', '29', '30', '31', '32', '33', '34', '35', '36', '37' ];
     
-    var SINCE_LABELS = [ '1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12', '13', '14', '15', '16', '17', '18', '19', '20', '21', '22', '23', '24', '25', '26', '27', '28', '29', '30', '31', '32', '33', '34', '35', '36' ];
+    var SINCE_LABELS = [ '1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12', '13', '14', '15', '16', '17', '18', '19', '20', '21', '22', '23', '24', '25', '26', '27', '28', '29', '30', '31', '32', '33', '34', '35', '36', '37' ];
     buildApiLevelSelector();
     addLoadEvent(changeApiLevel);
   </script>
@@ -460,38 +460,71 @@ Summary:
 
 <h2>Class Overview</h2>
 <p>This class provides the configuration object that is used by <code><a href="AuditLog.html">AuditLog</a></code> to perform
+
  selective data logging, via <code><a href="AuditLog.html#setAuditLogRules(com.samsung.android.knox.log.AuditLogRulesInfo)">setAuditLogRules(AuditLogRulesInfo)</a></code>.<br>
+
  Using this class, administrator will be able to configure the rules, based on the following
+
  parameters:
+
  <p>
+
  <b>Severity</b>: This parameter configures the rule for severity level of data selection. The
+
  selection scale is: <br>
+
  <code><a href="AuditLog.html#AUDIT_LOG_SEVERITY_ALERT">AUDIT_LOG_SEVERITY_ALERT</a></code> <br>
+
  <code><a href="AuditLog.html#AUDIT_LOG_SEVERITY_CRITICAL">AUDIT_LOG_SEVERITY_CRITICAL</a></code> <br>
+
  <code><a href="AuditLog.html#AUDIT_LOG_SEVERITY_ERROR">AUDIT_LOG_SEVERITY_ERROR</a></code> <br>
+
  <code><a href="AuditLog.html#AUDIT_LOG_SEVERITY_WARNING">AUDIT_LOG_SEVERITY_WARNING</a></code> <br>
+
  <code><a href="AuditLog.html#AUDIT_LOG_SEVERITY_NOTICE">AUDIT_LOG_SEVERITY_NOTICE</a></code> <br>
+
  <br>
+
  <b>Outcome</b>: This parameter is used to select log information based on outcome.The defined
+
  values for this parameter are: <br>
+
  <code><a href="AuditLogRulesInfo.html#AUDIT_LOG_OUTCOME_ALL">AUDIT_LOG_OUTCOME_ALL</a></code> <br>
+
  <code><a href="AuditLogRulesInfo.html#AUDIT_LOG_OUTCOME_FAILURE">AUDIT_LOG_OUTCOME_FAILURE</a></code> <br>
+
  <code><a href="AuditLogRulesInfo.html#AUDIT_LOG_OUTCOME_SUCCESS">AUDIT_LOG_OUTCOME_SUCCESS</a></code> <br>
+
  <br>
+
  <b>Groups</b>: Use a list with the module groups: <br>
+
  <code><a href="AuditLog.html#AUDIT_LOG_GROUP_SECURITY">AUDIT_LOG_GROUP_SECURITY</a></code> <br>
+
  <code><a href="AuditLog.html#AUDIT_LOG_GROUP_SYSTEM">AUDIT_LOG_GROUP_SYSTEM</a></code> <br>
+
  <code><a href="AuditLog.html#AUDIT_LOG_GROUP_NETWORK">AUDIT_LOG_GROUP_NETWORK</a></code> <br>
+
  <code><a href="AuditLog.html#AUDIT_LOG_GROUP_EVENTS">AUDIT_LOG_GROUP_EVENTS</a></code> <br>
+
  <code><a href="AuditLog.html#AUDIT_LOG_GROUP_APPLICATION">AUDIT_LOG_GROUP_APPLICATION</a></code> <br>
+
  <br>
+
  <b>Users</b>: Provide a list with the current users on device to select auditable information
+
  based on user. Only owner (User 0) administrator is able to filter audit events by user. <br>
+
  <br>
+
  <b>EnableKernel</b>: Administrator may request all information from kernel to be logged, using
+
  boolean value <b>true</b>. Using <b>false</b> will disable this selection. To avoid selection of
+
  unnecessary information causing excessive storage allocation, it is recommended to leave this
+
  value as <b>false</b>. Disabling kernel will not interfere on collection of necessary data that
+
  comes from kernel, including IpTables and Encryption information.</p>
 
       
@@ -650,6 +683,7 @@ android.os.Parcelable
         <span class="sympad"><a href="AuditLogRulesInfo.html#AuditLogRulesInfo()">AuditLogRulesInfo</a></span>()</nobr>
         
         <div class="jd-descrdiv">This constructor is used to instantiate an AuditLogRulesInfo object with the most permissive
+
  values and kernel messages disabled.</div>
   
   </td></tr>
@@ -669,6 +703,7 @@ android.os.Parcelable
         <span class="sympad"><a href="AuditLogRulesInfo.html#AuditLogRulesInfo(int, int, java.util.List<java.lang.Integer>, boolean, java.util.List<java.lang.Integer>)">AuditLogRulesInfo</a></span>(int severityRule, int outcomeRule, <a href="http://developer.android.com/reference/java/util/List.html">List</a>&lt;<a href="http://developer.android.com/reference/java/lang/Integer.html">Integer</a>&gt; groupsRule, boolean enableKernel, <a href="http://developer.android.com/reference/java/util/List.html">List</a>&lt;<a href="http://developer.android.com/reference/java/lang/Integer.html">Integer</a>&gt; userRule)</nobr>
         
         <div class="jd-descrdiv">This constructor is used to instantiate an AuditLogRulesInfo object with parameters defined
+
  by the administrator.</div>
   
   </td></tr>
@@ -1210,6 +1245,7 @@ From interface
         </tr>  
         <tr>
             <td>KNOX 2.5
+
 </td>
         </tr>
       </table>
@@ -1265,6 +1301,7 @@ From interface
         </tr>  
         <tr>
             <td>KNOX 2.5
+
 </td>
         </tr>
       </table>
@@ -1320,6 +1357,7 @@ From interface
         </tr>  
         <tr>
             <td>KNOX 2.5
+
 </td>
         </tr>
       </table>
@@ -1382,22 +1420,34 @@ From interface
       
 
   <div class="jd-tagdata jd-tagdescr"><p>This constructor is used to instantiate an AuditLogRulesInfo object with the most permissive
+
  values and kernel messages disabled.</p></div>      
   <div class="jd-tagdata">
       <h5 class="jd-tagtitle">Usage</h5>
       <table class="jd-tagtable">  
         <tr>
             <td>The Default values are: <br>
+
  <p>
+
  <b>Severity</b>: <code><a href="AuditLog.html#AUDIT_LOG_SEVERITY_NOTICE">AUDIT_LOG_SEVERITY_NOTICE</a></code><br>
+
  <b>Outcome</b>: <code><a href="AuditLogRulesInfo.html#AUDIT_LOG_OUTCOME_ALL">AUDIT_LOG_OUTCOME_ALL</a></code><br>
+
  <b>Groups</b>: a <code>null</code> value.<br>
+
  <b>Kernel</b>: false(Kernel originated messages disabled).<br>
+
  <b>Users</b>: a <code>null</code> value.
+
  
+
  <pre>
+
  
+
  AuditLogRulesInfo mAuditLogRulesInfo = new AuditLogRulesInfo();
+
  </pre></td>
         </tr>
       </table>
@@ -1455,6 +1505,7 @@ From interface
       
 
   <div class="jd-tagdata jd-tagdescr"><p>This constructor is used to instantiate an AuditLogRulesInfo object with parameters defined
+
  by the administrator.</p></div>
   <div class="jd-tagdata">
       <h5 class="jd-tagtitle">Parameters</h5>
@@ -1486,19 +1537,33 @@ From interface
       <table class="jd-tagtable">  
         <tr>
             <td>Administrator must inform the parameter values to use this API.
+
  <p>
+
  
+
  <pre>
+
  List&lt;Integer&gt; mGroups = new ArrayList&lt;Integer&gt;();
+
  mGroups.add(AuditLog.AUDIT_LOG_GROUP_SECURITY);
+
  mGroups.add(AuditLog.AUDIT_LOG_GROUP_SYSTEM);
+
  mGroups.add(AuditLog.AUDIT_LOG_GROUP_NETWORK);
+
  List&lt;Integer&gt; mUsers = new ArrayList&lt;Integer&gt;();
+
  mUsers.add(0);
+
  mUsers.add(100);
+
  AuditLogRulesInfo mAuditLogRulesInfo = new AuditLogRulesInfo(
+
          AuditLog.AUDIT_LOG_SEVERITY_NOTICE,
+
          AUDIT_LOG_OUTCOME_RULES_ALL, mGroups, false, mUsers);
+
  </pre></td>
         </tr>
       </table>
@@ -1580,12 +1645,19 @@ From interface
       <table class="jd-tagtable">  
         <tr>
             <td>Administrator may use this API to retrieve the list of group modules configured for an
+
  AuditLogRulesInfo.
+
  <p>
+
  
+
  <pre>
+
  AuditLogRulesInfo mAuditLogRulesInfo = new AuditLogRulesInfo();
+
  List<Integer> mGroups = mAuditLogRulesInfo.getGroupsRule();
+
  </pre></td>
         </tr>
       </table>
@@ -1652,12 +1724,19 @@ From interface
       <table class="jd-tagtable">  
         <tr>
             <td>Administrator may use this API to retrieve the outcome set for an AuditLogRulesInfo
+
  object
+
  <p>
+
  
+
  <pre>
+
  AuditLogRulesInfo mAuditLogRulesInfo = new AuditLogRulesInfo();
+
  int outComerule = mAuditLogRulesInfo.getOutcomeRule();
+
  </pre></td>
         </tr>
       </table>
@@ -1724,12 +1803,19 @@ From interface
       <table class="jd-tagtable">  
         <tr>
             <td>Administrator may use this API to get the severity value set for an AuditLogRulesInfo
+
  object.
+
  <p>
+
  
+
  <pre>
+
  AuditLogRulesInfo mAuditLogRulesInfo = new AuditLogRulesInfo();
+
  int severityRule = mAuditLogRulesInfo.getSeverityRule();
+
  </pre></td>
         </tr>
       </table>
@@ -1796,12 +1882,19 @@ From interface
       <table class="jd-tagtable">  
         <tr>
             <td>Administrator may use this API to retrieve the list of users configured for an
+
  AuditLogRulesInfo.
+
  <p>
+
  
+
  <pre>
+
  AuditLogRulesInfo mAuditLogRulesInfo = new AuditLogRulesInfo();
+
  List<Integer> mUsers = mAuditLogRulesInfo.getUsersRule();
+
  </pre></td>
         </tr>
       </table>
@@ -1867,6 +1960,7 @@ From interface
   <div class="jd-tagdata">
       <h5 class="jd-tagtitle">Returns</h5>
       <ul class="nolist"><li>Returns <code>true</code> if kernel logs selection is enabled and <code>false</code>
+
  otherwise.</li></ul>
   </div>      
   <div class="jd-tagdata">
@@ -1874,12 +1968,19 @@ From interface
       <table class="jd-tagtable">  
         <tr>
             <td>Administrator may use this API to retrieve kernel logging status of an
+
  AuditLogRulesInfo object.
+
  <p>
+
  
+
  <pre>
+
  AuditLogRulesInfo mAuditLogRulesInfo = new AuditLogRulesInfo();
+
  boolean ret = mAuditLogRulesInfo.isKernelLogsEnabled();
+
  </pre></td>
         </tr>
       </table>
@@ -1951,15 +2052,25 @@ From interface
       <table class="jd-tagtable">  
         <tr>
             <td>Administrator may use this API to set the group modules for an AuditLogRulesInfo.
+
  <p>
+
  
+
  <pre>
+
  AuditLogRulesInfo mAuditLogRulesInfo = new AuditLogRulesInfo();
+
  List<Integer> mGroups = new ArrayList<Integer>();
+
  mGroups.add(AuditLog.AUDIT_LOG_GROUP_SECURITY);
+
  mGroups.add(AuditLog.AUDIT_LOG_GROUP_SYSTEM);
+
  mGroups.add(AuditLog.AUDIT_LOG_GROUP_NETWORK);
+
  mAuditLogRulesInfo.setGroupsRule(mGroups);
+
  </pre></td>
         </tr>
       </table>
@@ -2022,7 +2133,9 @@ From interface
   </p>
 
   <div class="jd-tagdata jd-tagdescr"><p>This API configures kernel logging status AuditLogRulesInfo object. <br>
+
  It is recommended to leave kernel messages logging off, in order to preserve storage
+
  allocation with unnecessary information.</p></div>
   <div class="jd-tagdata">
       <h5 class="jd-tagtitle">Parameters</h5>
@@ -2038,11 +2151,17 @@ From interface
       <table class="jd-tagtable">  
         <tr>
             <td>Administrator may use this API to configure kernel logging of an AuditLogRulesInfo.
+
  <p>
+
  
+
  <pre>
+
  AuditLogRulesInfo mAuditLogRulesInfo = new AuditLogRulesInfo();
+
  mAuditLogRulesInfo.setKernelLogsEnabled(true);
+
  </pre></td>
         </tr>
       </table>
@@ -2114,11 +2233,17 @@ From interface
       <table class="jd-tagtable">  
         <tr>
             <td>Administrator may use this API to configure Outcome value for an AuditLogRulesInfo.
+
  <p>
+
  
+
  <pre>
+
  AuditLogRulesInfo mAuditLogRulesInfo = new AuditLogRulesInfo();
+
  mAuditLogRulesInfo.setOutcomeRule(AUDIT_LOG_OUTCOME_FAILURE);
+
  </pre></td>
         </tr>
       </table>
@@ -2190,11 +2315,17 @@ From interface
       <table class="jd-tagtable">  
         <tr>
             <td>Administrator may use this API to configure severity level for an AuditLogRulesInfo.
+
  <p>
+
  
+
  <pre>
+
  AuditLogRulesInfo mAuditLogRulesInfo = new AuditLogRulesInfo();
+
  mAuditLogRulesInfo.setSeverityRule(AuditLog.AUDIT_LOG_SEVERITY_NOTICE);
+
  </pre></td>
         </tr>
       </table>
@@ -2266,17 +2397,29 @@ From interface
       <table class="jd-tagtable">  
         <tr>
             <td>Administrator may use this API to configure users for an AuditLogRulesInfo.
+
  <p>
+
  <br>
+
  <b>NOTE: Only owner (User 0) administrator is able to filter audit events by user. </b>
+
  <p>
+
  
+
  <pre>
+
  AuditLogRulesInfo mAuditLogRulesInfo = new AuditLogRulesInfo();
+
  List<Integer> mUsers = new ArrayList<Integer>();
+
  mUsers.add(0);
+
  mUsers.add(100);
+
  mAuditLogRulesInfo.setUsersRule(mUsers);
+
  </pre></td>
         </tr>
       </table>
@@ -2316,7 +2459,7 @@ From interface
 <A NAME="navbar_top"></A>
 
 <div id="footer">
-<a href="http://www.samsung.com">Samsung Electronics</a>.<br/>SDK API level 36 - November 3 2022
+<a href="http://www.samsung.com">Samsung Electronics</a>.<br/>SDK API level 37 - June 7 2023
 </div> <!-- end footer -->
 
 </div> <!-- jd-content -->

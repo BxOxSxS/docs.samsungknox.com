@@ -23,9 +23,9 @@ var NAVTREEINDEX =
 [
 "annotated.html",
 "group__mdm__admin.html#gga9379ebff89025b8db04936e987bac5d5abea3297d477d6d294ca983460bad39b6",
-"group__mdm__device__inventory.html#ga9d5a5a7499b1d56c0705c914e9b1891d",
-"group__mdm__remote.html#gga05ce410515d345f1e4a919efeea8ffe6a33753d2a5eb67f331792f9de12d69637",
-"structapp__network__stats__t.html"
+"group__mdm__device__inventory.html#gaa92aab518032beffdfe296d908498d48",
+"group__mdm__restriction.html#ga84c258a1436938fa4b6412fdb89dd050",
+"structmdm__history__query__t.html#a2d8685f8c79f5f351ccfd9f34e380bea"
 ];
 
 var SYNCONMSG = 'click to disable panel synchronisation';

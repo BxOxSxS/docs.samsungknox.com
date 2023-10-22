@@ -1,90 +1,10 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
-<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" xml:lang="en-us" MadCap:lastBlockDepth="8" MadCap:lastHeight="2751" MadCap:lastWidth="1444" MadCap:conditions="Builds.knox-sdk-build">
-    <head>
-    </head>
-    <body>
-        <MadCap:snippetBlock src="../Resources/snippets/product/knox-sdk.flsnp" />
-        <h1>Create containers</h1>
-        <div class="callout warning"><b>NOTE:</b> Dual Persona and Corporate Liable (CL) containers were deprecated on the Note 10 and later devices. COM containers were deprecated in S10s running Knox 3.3 and higher. 
-        For more information, see <a href="com-deprecation.htm" target="_blank">Unsupported COM and CL Workspaces</a>.
-        Deprecated container types that were created on existing devices in your fleet will continue to work until the official end of life (EOL) of the devices.
-        However, we recommend that you use the new 
-        <a href="../../admin/knox-platform-for-enterprise/device-management-modes.htm">Device management modes</a> 
-        to take advantage of the latest security and personal privacy features.</div>
-        <p>This topic shows how to create a Knox Platform for Enterprise container. </p>
-        <h2>Create a container</h2>
-        <p>To support the new container, EMM agents leverage Androids method to create a Work Profile. After a manged profile is created, simply activating a Knox license converts the profile to a Knox Workspace. </p>
-        <p>Here is a sample code snippet on provisioning a PO from our <a href="getting-started-work-profile-introduction.htm" target="_blank">work profile sample app</a>.<br /></p><pre class="prettyprint"> // Provision an Android Profile Owner
-    private void createAndroidProfile() {
-
-        Activity provisioningActivity = this;
-        // Set up the provisioning intent
-        Intent provisioningIntent = new Intent("android.app.action.PROVISION_MANAGED_PROFILE");
-        provisioningIntent.putExtra(EXTRA_PROVISIONING_DEVICE_ADMIN_PACKAGE_NAME,getPackageName());
-        if (provisioningIntent.resolveActivity(provisioningActivity.getPackageManager()) == null) {
-            // No handler for intent! Can't provision this device.
-            // Show an error message and cancel.
-        } else {
-            // REQUEST_PROVISION_MANAGED_PROFILE is defined
-            startActivityForResult(provisioningIntent, 1);
-            provisioningActivity.finish();
-        }
-    }</pre>
-        <p>Next, you activate a Knox license. This upgrades your Android work profile to a Knox Workspace. Here is an example:</a></p><pre class="prettyprint">private void activateLicence() {
-
-        // Instantiate the EnterpriseLicenseManager class to use the activateLicense method
-        KnoxEnterpriseLicenseManager klmManager = KnoxEnterpriseLicenseManager.getInstance(this);
-
-        try {
-            // ELM License Activation TODO Add license key to Constants.java
-            klmManager.activateLicense(Constants.KLM_LICENSE_KEY);
-            mUtils.log(getResources().getString(R.string.license_progress));
-
-        } catch (Exception e) {
-            mUtils.processException(e,TAG);
-        }
-    }</pre>
-        <h2>Remove container</h2>
-        <p>When a Knox license is deactivated, the KPE&#160;container is locked. Here is an example:</a></p><pre class="prettyprint">private void deActivateLicence() {
-
-        // Instantiate the EnterpriseLicenseManager class to use the activateLicense method
-        KnoxEnterpriseLicenseManager klmManager = KnoxEnterpriseLicenseManager.getInstance(this);
-
-        try {
-            // License Activation TODO Add license key to Constants.java
-            klmManager.deActivateLicense(Constants.KLM_LICENSE_KEY);
-            mUtils.log(getResources().getString(R.string.deactivate_license_progress));
-
-        } catch (Exception e) {
-            mUtils.processException(e,TAG);
-        }
-    }</pre>
-        <div class="callout success">See <a href="tutorial-upgrade-workspace-introduction.htm">Upgrade Android Work Profile to Knox Workspace</a> for a full walk through of this process using a Knox sample app.</div>
-        <h2><a name="custom-tabs"></a>Customize tab names</h2>
-        <p>Knox 3.2.1 introduced a tabbed UI&#160;view for the Personal and Workspace apps.</p>
-        <p>
-            <img src="../../assets/merge/images/knox-sdk/custom-tab-names.png" />
-        </p>
-        <p>Knox 3.4 introduces customized names for the Personal and Workspace tabs, using the API <a href="../../devref/knox-sdk/reference/com/samsung/android/knox/container/ContainerConfigurationPolicy.html#setCustomResource(int, android.os.Bundle)" target="_blank">setCustomResource().</a></p>
-        <p>Through new parameter values, you can set custom container resources like tab names. </p>
-        <p>In the sample code below, we change the name of the Personal tab to Out of Workspace:</p><pre class="prettyprint" xml:space="preserve"> EnterpriseKnoxManager ekm = EnterpriseKnoxManager.getInstance(context);
- try {
-     Bitmap bitmap = // generate a Bitmap object from resource
-     KnoxContainerManager kcm = ekm.getKnoxContainerManager(containerID);
-     ContainerConfigurationPolicy ccp = kcm.getContainerConfigurationPolicy();
-     Bundle data = new Bundle();
-     data.putParcelable(KEY_IMAGE, bitmap);
-     boolean result = ccp.setCustomResource(ContainerConfigurationPolicy.RES_TYPE_PROFILE_ICON, data);
-	 Bundle data2 = new Bundle();
-	 data2.putParcelable(KEY_NAME, "Out of Workspace");
-	 boolean result2 = ccp.setCustomResource(ContainerConfigurationPolicy.RES_TYPE_PERSONAL_MODE_NAME, data2);
-     if (true == result) {
-         // set succeeded.
-     } else {
-         // set failed.
-     }
- } catch (SecurityException e) {
-     Log.w(TAG, "SecurityException: " + e);
- }</pre>
-    </body>
+<!DOCTYPE html>
+<html lang="en-us">
+  <head>
+    <title>https://docs.samsungknox.com/dev/knox-sdk/features/mdm-providers/workspaces/create-containers/</title>
+    <link rel="canonical" href="features/mdm-providers/workspaces/create-containers.html">
+    <meta name="robots" content="noindex">
+    <meta charset="utf-8">
+    <meta http-equiv="refresh" content="0; URL=features/mdm-providers/workspaces/create-containers.html">
+  </head>
 </html>

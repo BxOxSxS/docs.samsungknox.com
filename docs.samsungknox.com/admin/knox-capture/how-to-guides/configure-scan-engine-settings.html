@@ -48,14 +48,14 @@
     <header>
   <div class="container-xxl border-bottom">
     <nav class="nav-top navbar navbar-expand-lg d-flex px-3">
-        <a class="navbar-brand" href="../../index.html">
+        <a class="navbar-brand" href="../../../admin.html">
           <img src="../../svg/samsung_knox_nav_logo.svg" alt="Logo for Samsung Knox documentation">
         </a>
         <div class="collapse navbar-collapse">
           <ul class="row align-items-center ms-10 mb-0 p-0">
             
             <li class="navbar-nav col">
-              <a href="../../index.html" class="body-5 text-black fw-light pe-auto me-6 text-decoration-none fw-bold border-bottom border-2 border-black">Admin</a>
+              <a href="../../../admin.html" class="body-5 text-black fw-light pe-auto me-6 text-decoration-none fw-bold border-bottom border-2 border-black">Admin</a>
             </li>
             
             <li class="navbar-nav col">
@@ -63,7 +63,7 @@
             </li>
             
             <li class="navbar-nav col">
-              <a href="../../../partner/index.html" class="body-5 text-black fw-light pe-auto me-6 text-decoration-none ">Partner</a>
+              <a href="../../../partner.html" class="body-5 text-black fw-light pe-auto me-6 text-decoration-none ">Partner</a>
             </li>
             
           </ul>
@@ -300,6 +300,13 @@
   <div class="d-flex justify-content-between align-items-center">
     <a class="body-5 text-black fw-light" href="ar/use-ar.html">Use AR</a>
   </div>
+  </li>
+      
+        <li class="mt-2">
+  
+  <div class="d-flex justify-content-between align-items-center">
+    <a class="body-5 text-black fw-light" href="ar/demo-ar.html">Demo AR</a>
+  </div>
   </li></ul>
   </div></li></ul>
   </div></li>
@@ -369,7 +376,15 @@
     <a class="body-5 text-black fw-light" href="../knox-capture-scandit/scan-engine-settings-scandit/index.html">Scan engine settings Scandit</a>
   </div>
   </li></ul>
-  </div></li></ul>
+  </div></li>
+        
+            
+              <li class="mt-2">
+  
+  <div class="d-flex justify-content-between align-items-center">
+    <a class="body-5 text-black fw-light" href="../ar-demo-barcodes.html">AR demo barcodes</a>
+  </div>
+  </li></ul>
   </nav>
 </aside>
         </div>
@@ -382,7 +397,7 @@
     
      
 
-    <a class="fw-light text-black" href="../../index.html">Home </a><span>/</span>
+    <a class="fw-light text-black" href="../../../admin.html">Home </a><span>/</span>
  
 
     <a class="fw-light text-black" href="../../knox-capture.html">Knox Capture </a><span>/</span>
@@ -396,11 +411,12 @@
               <h1>Configure scan engine settings</h1>
             </div>
             <div class="">
-              <p><span>Last updated July  26th, 2023</span></p>
+              <p><span>Last updated October  16th, 2023</span></p>
             </div>
           </div>
           <div class="l-content">
             
+
   
 
 
@@ -409,82 +425,228 @@
 <h2 id="barcode-types">Barcode types</h2>
 <p>Choose the barcode symbologies the scanner should recognize. For example, Code 39, and QR code.
 Available barcode types:</p>
-<ul>
-<li><strong>Numeric-only (1D)</strong> &mdash; Codabar, EAN13, EAN8, Interleaved 2 of 5, UPCA, UPCE</li>
-<li><strong>Alphanumeric (1D)</strong> &mdash; Code 128, Code 39, Code 93</li>
-<li><strong>2D</strong> &mdash; Data Matrix, PDF417, QR</li>
-</ul>
+<table>
+<thead>
+<tr>
+<th>Type</th>
+<th>Options</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Numeric-only (1D)</td>
+<td>Codabar, EAN13, EAN8, Interleaved 2 of 5, UPCA, UPCE</td>
+</tr>
+<tr>
+<td>Alphanumeric (1D)</td>
+<td>Code 128, Code 39, Code 93</td>
+</tr>
+<tr>
+<td>2D</td>
+<td>Data Matrix, PDF417, QR</td>
+</tr>
+</tbody>
+</table>
 <div class="my-3 ps-3 border-start border-3 border-black"><p class="fw-bold">Note</p><p>Every barcode except <strong>Codabar</strong> and <strong>Code 93</strong> is enabled by default.</p></div>
-<h2 id="scan-settings">Scan settings</h2>
+<h2 id="scanning-settings">Scanning settings</h2>
 <p>Use scan settings to define how barcodes are scanned, selected, and parsed before Knox Capture sends them to a target business application.</p>
 <h3 id="scan-mode">Scan mode</h3>
 <p>Sets the primary capture mode for scanning. Available options:</p>
-<ul>
-<li><strong>Single scan</strong> (default) &mdash; Scans and parses one barcode at a time.</li>
-<li><strong>Multi scan</strong> &mdash; Detects multiple barcodes in the scan area at the same time.</li>
-</ul>
+<table>
+<thead>
+<tr>
+<th>Setting</th>
+<th>Option</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Single scan (default)</td>
+<td>Scans and parses one barcode at a time.</td>
+</tr>
+<tr>
+<td>Multi scan</td>
+<td>Detects multiple barcodes in the scan area at the same time.</td>
+</tr>
+</tbody>
+</table>
 <h3 id="single-scan-preferences">Single scan preferences</h3>
 <p>Sets the way a user selects barcodes when interacting with the camera scanning UI in Single scan mode. Available options:</p>
-<h4 id="barcode-selection-single-scan">Barcode selection</h4>
-<ul>
-<li>Automatic (default) &mdash; Captures the first-detected barcode without additional user input.</li>
-<li>Aim and scan &mdash; Requires the user to aim the camera at a barcode and tap the Scan button to capture barcode data.</li>
-</ul>
-<h4 id="continuous-scanning">Continuous scanning</h4>
-<p>Toggle <strong>On</strong> to allow device users to scan several barcodes in sequence &mdash; and have each scan be registered as a single event &mdash; without having to press the camera trigger button between each scan.</p>
-<p>Device users will see a <strong>Scan</strong> button in the camera preview window when they trigger a barcode scan. Device users can simply tap Scan each time they want to capture a new barcode. As each barcode is scanned, a counter in the top-left corner of the preview window gets updated. Once the user is finished scanning, they can click <strong>Done</strong> to close the camera preview window and return to the business app.</p>
-<p>By default, this option is toggled <strong>Off</strong>.</p>
+<table>
+    <tr>
+        <th scope="col">Setting</th>
+        <th scope="col">Options</th>
+    </tr>
+    <tr>
+        <td>Barcode selection </td>
+        <td>
+            <ul>
+                <li>Automatic (default) — Captures the first-detected barcode without additional user input.</li>
+                <li>Aim and scan — Requires the user to aim the camera at a barcode and tap the Scan button to capture barcode data.</li>
+            </ul>
+        </td>
+    </tr>
+    <tr>
+        <td>Continuous scanning</td>
+        <td>
+            <ul>
+                <li>Off (default)</li>
+                <li>On — Allow device users to scan several barcodes in sequence (and have each scan be registered as a single event) without having to press the camera trigger button between each scan.<sup>1</sup></li>
+            </ul>
+        </td>
+    </tr>
+</table>
+<p><sup>1</sup> Device users will see a <strong>Scan</strong> button in the camera preview window when they trigger a barcode scan. Device users can simply tap Scan each time they want to capture a new barcode. As each barcode is scanned, a counter in the top-left corner of the preview window gets updated. Once the user is finished scanning, they can click <strong>Done</strong> to close the camera preview window and return to the business app.</p>
 <h3 id="multi-scan-preferences">Multi scan preferences</h3>
 <p>Sets the way a user selects barcodes when interacting with the camera scanning UI in Multi scan mode. Available options:</p>
-<h4 id="barcode-selection-multi-scan">Barcode selection</h4>
-<ul>
-<li><strong>Automatic</strong> (default) &mdash; Allows the user to scan multiple barcodes without having to press a <strong>Scan</strong> button.</li>
-<li><strong>Batch</strong> &mdash; Lets the user scan multiple barcodes in a single camera frame using the <strong>Scan</strong> button.</li>
-<li><strong>Aim and scan</strong> &mdash; Requires the user to aim the camera at a set of barcodes and tap the <strong>Scan</strong> button to capture the barcodes, one at a time.</li>
-<li><strong>Tap to select</strong> &mdash; Lets a user aim the camera at multiple barcodes, freeze the scanning overlay, tap to select barcodes, and tap the <strong>Scan</strong> button to capture data from the selected barcodes.</li>
-</ul>
-<h4 id="scan-session-limit">Scan session limit</h4>
-<p>This defines the number of barcodes a user must scan before the camera preview window closes. A counter in the top-left corner of the preview window gets updated after each scan. Once the user has scanned the set number of barcodes, the camera preview window closes and the user returns to the business app. Users can exit the camera preview window at any time by tapping <strong>Done</strong>, regardless of the number of barcodes captured.</p>
-<p>You can set any integer value. By default, this value is set to 0 to indicate infinite scans.</p>
+<table>
+    <tr>
+        <th scope="col">Setting</th>
+        <th scope="col">Options</th>
+    </tr>
+    <tr>
+        <td>Barcode selection </td>
+        <td>
+            <ul>
+                <li>Automatic (default) — Allows the user to scan multiple barcodes without having to press a scan button.</li>
+                <li>Batch — Lets the user scan multiple barcodes in a single camera frame using the scan button.</li>
+                <li>Aim and scan — Requires the user to aim the camera at a set of barcodes and tap the **Scan** button to capture the barcodes, one at a time.</li>
+                <li>Tap to select — Lets a user aim the camera at multiple barcodes, freeze the scanning overlay, tap to select barcodes, and tap the Scan button to capture data from the selected barcodes.</li>
+            </ul>
+        </td>
+    </tr>
+    <tr>
+        <td>Scan session limit</td>
+        <td>
+            <p>This defines the number of barcodes a user must scan before the camera preview window closes. A counter in the top-left corner of the preview window gets updated after each scan. Once the user has scanned the set number of barcodes, the camera preview window closes and the user returns to the business app.</p>
+           <p>Users can exit the camera preview window at any time by tapping <strong>Done</strong>, regardless of the number of barcodes captured. You can set any integer value. By default, this value is set to 0 to indicate infinite scans.
+            </p>
+        </td>
+    </tr>
+</table>
 <h3 id="beep-after-scan">Beep after scan</h3>
 <p>Emits a beep sound after each barcode scan. This is toggled <strong>On</strong> by default.</p>
 <h3 id="vibrate-after-scan">Vibrate after scan</h3>
 <p>Vibrates the device after each barcode scan. This is toggled <strong>On</strong> by default.</p>
 <h2 id="camera-settings">Camera settings</h2>
 <p>Customize camera hardware and scanning UI options using the following settings:</p>
-<h3 id="default-camera">Default camera</h3>
-<p>Select the device camera &mdash; <strong>Front</strong> or <strong>Back</strong> &mdash; used for scanning. Set to <strong>Back</strong> camera by default.</p>
-<h3 id="flashlight-button">Flashlight button</h3>
-<p>Set whether to show a UI button in the camera preview window that allows users to turn the device flashlight on and off. Toggled <strong>On</strong> by default.</p>
-<h3 id="zoom-factor">Zoom factor</h3>
-<p>Set the factor by which the camera focus zooms in when scanning, from <strong>1.0</strong> (no zoom) to <strong>4.0</strong> (fully zoomed in). Set to 1.0 by default.</p>
+<table>
+    <tr>
+        <th scope="col">Setting</th>
+        <th scope="col">Options</th>
+    </tr>
+    <tr>
+        <td>Default Camera</td>
+        <td>
+            <ul>
+                <li>Back (default)</li>
+                <li>Front</li>
+            </ul>
+        </td>
+    </tr>
+    <tr>
+        <td>Flashlight</td>
+        <td>
+            <ul>
+                <li>Off (default) — When a scan is triggered, the flashlight is turned off. A flashlight button is provided in the preview, and the button is off.</li>
+                <li>On — When a scan is triggered, the flashlight is automatically turned on. A flashlight button is provided in the preview, and the button is on.</li>
+                <li>Auto<sup>2</sup> — When a scan is triggered, the device automatically monitors the light level to turn the flashlights ON and OFF. A flashlight button is not provided in the preview.</li>
+            </ul>
+        </td>
+    </tr>
+    <tr>
+        <td>Zoom factor</td>
+        <td>Any value from <strong>1.0</strong> (no zoom) to <strong>4.0</strong> (fully zoomed in). Default value is <strong>1.0</strong>.</td>
+    </tr>
+</table>
+<p><sup>2</sup> Flashlight Auto is not available in Knox Capture: Scandit Edition.</p>
 <h2 id="barcode-highlighting">Barcode highlighting</h2>
 <p>Refer to the following settings to change the camera UI overlay displaying around recognized barcodes when scanning:</p>
-<h3 id="fill-color">Fill color</h3>
-<p>Set the color inside the box highlighting a recognized barcode, represented as ARGB in HEX format. Set to <strong>00000000</strong> (transparent) by default.</p>
-<h3 id="stroke-color">Stroke color</h3>
-<p>Set the border color of the box highlighting the recognized barcode, represented as ARGB in HEX format. Set to <strong>FF1C7980</strong> by default.</p>
-<h3 id="stroke-width">Stroke width</h3>
-<p>Set the border width of the box highlighting the recognized barcode in pixels. Set to <strong>3 pixels</strong> by default.</p>
+<table>
+<thead>
+<tr>
+<th>Setting</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Fill color</td>
+<td>Set the color inside the box highlighting a recognized barcode, represented as ARGB in HEX format. Set to <strong>00000000</strong> (transparent) by default.</td>
+</tr>
+<tr>
+<td>Stroke color</td>
+<td>Set the border color of the box highlighting the recognized barcode, represented as ARGB in HEX format. Set to <strong>FF1C7980</strong> by default.</td>
+</tr>
+<tr>
+<td>Stroke width</td>
+<td>Set the border width of the box highlighting the recognized barcode in pixels. Set to <strong>3 pixels</strong> by default.</td>
+</tr>
+</tbody>
+</table>
 <h2 id="advanced-settings">Advanced settings</h2>
+<h3 id="extended-barcode-type-settings">Extended barcode type settings</h3>
+<p>Use these settings to configure each barcode type used in a Knox Capture profile. Access these settings by tapping <strong>Advanced settings</strong> near the bottom of the scan engine settings menu, then tap <strong>Extended barcode type settings</strong> to display a list of all barcode types. To view the extended settings for a particular barcode type, tap its name. The following table describes the possible barcode type settings that may appear:</p>
+<table>
+    <tr>
+        <th scope="col">Setting</th>
+        <th scope="col">Options</th>
+    </tr>
+    <tr>
+        <td>Inverted color recognition</td>
+        <td>
+            <ul>
+                <li>Off (default)</li>
+                <li>On</li>
+            </ul>
+        </td>
+    </tr>
+</table>
 <h3 id="barcode-filtering">Barcode filtering</h3>
 <p>Use the following settings to conditionally validate barcodes and highlight rejected barcodes:</p>
-<h4 id="custom-validation">Custom validation</h4>
-<p>Set a regular expression (regex) used to filter scanned barcodes. Only barcodes that match the provided regular expression will be accepted. Refer to this <a href="https://developer.android.com/reference/java/util/regex/Pattern" target="_blank">reference</a> for details on crafting an expression. By default, no regex is set.</p>
-<h4 id="highlight-rejected-code">Highlight rejected code</h4>
-<p>Toggle on to enable an overlay in the camera preview window that appears around rejected codes. A <strong>Custom validation</strong> value must be set to enable this setting. This is toggled <strong>Off</strong> by default.</p>
+<table>
+<thead>
+<tr>
+<th>Setting</th>
+<th>Options</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Custom validation</td>
+<td>Set a regular expression (regex) used to filter scanned barcodes. Only barcodes that match the provided regular expression will be accepted. Refer to this <a href="https://developer.android.com/reference/java/util/regex/Pattern" target="_blank">reference</a> for details on crafting an expression. By default, no regex is set.</td>
+</tr>
+<tr>
+<td>Highlight rejected code</td>
+<td>Toggle on to enable an overlay in the camera preview window that appears around rejected codes. A <strong>Custom validation</strong> value must be set to enable this setting. This is toggled <strong>Off</strong> by default.</td>
+</tr>
+</tbody>
+</table>
 <h3 id="visual-cue">Visual cue</h3>
 <p>The visual cue is the viewfinder overlay centered in the camera scanning UI that focuses the user&rsquo;s attention on a barcode. The size of the visual cue is the same size as of the actual scan area.</p>
-<h4 id="viewfinder-selection">View finder selection</h4>
-<p>Define the shape of the visual cue that appears on or around an in-focus barcode:</p>
-<ul>
-<li><strong>Rectangular</strong> (default) &mdash; Draws a rectangle around detected barcodes.</li>
-<li><strong>Laser</strong> &mdash; Overlays a horizontal &ldquo;laser&rdquo; line over detected barcodes.</li>
-</ul>
-<h4 id="rectangular-viewfinder-width">Rectangular viewfinder width</h4>
-<p>Set the width of the rectangular viewfinder, specified in screen width percentage. Only active if <strong>View finder</strong> selection is set to <strong>Rectangular</strong>. Available values are <strong>0%</strong> to <strong>100%</strong>. Default value is <strong>90%</strong>.</p>
-<h4 id="rectangular-viewfinder-height">Rectangular viewfinder height</h4>
-<p>Set the height of the rectangular viewfinder specified in screen height percentage. Only active if <strong>View finder</strong> selection is set to <strong>Rectangular</strong>. Available values are <strong>0%</strong> to <strong>100%</strong>. Default value is <strong>40%</strong>.</p>
+<table>
+    <tr>
+        <th scope="col">Setting</th>
+        <th scope="col">Options</th>
+    </tr>
+    <tr>
+        <td>View finder selection</td>
+        <td>
+            <ul>
+                <li>Rectangular (default) — Draws a rectangle around detected barcodes.</li>
+                <li>Laser — Overlays a horizontal "laser" line over detected barcodes.</li>
+            </ul>
+        </td>
+    </tr>
+    <tr>
+        <td>Rectangular viewfinder width</td>
+        <td>Set the width of the rectangular viewfinder, specified in screen width percentage. Only active if <strong>View finder</strong> selection is set to <strong>Rectangular</strong>. Available values are <strong>0%</strong> to <strong>100%</strong>. Default value is <strong>90%</strong>.</td>
+    </tr>
+    <tr>
+        <td>Rectangular viewfinder height</td>
+        <td>Set the height of the rectangular viewfinder specified in screen height percentage. Only active if <strong>View finder</strong> selection is set to <strong>Rectangular</strong>. Available values are <strong>0%</strong> to <strong>100%</strong>. Default value is <strong>40%</strong>.</td>
+    </tr>
+</table>
 
             
           </div>
@@ -496,7 +658,7 @@ Available barcode types:</p>
     <nav id="TableOfContents">
   <ul>
     <li><a href="configure-scan-engine-settings.html#barcode-types">Barcode types</a></li>
-    <li><a href="configure-scan-engine-settings.html#scan-settings">Scan settings</a>
+    <li><a href="configure-scan-engine-settings.html#scanning-settings">Scanning settings</a>
       <ul>
         <li><a href="configure-scan-engine-settings.html#scan-mode">Scan mode</a></li>
         <li><a href="configure-scan-engine-settings.html#single-scan-preferences">Single scan preferences</a></li>
@@ -505,22 +667,11 @@ Available barcode types:</p>
         <li><a href="configure-scan-engine-settings.html#vibrate-after-scan">Vibrate after scan</a></li>
       </ul>
     </li>
-    <li><a href="configure-scan-engine-settings.html#camera-settings">Camera settings</a>
-      <ul>
-        <li><a href="configure-scan-engine-settings.html#default-camera">Default camera</a></li>
-        <li><a href="configure-scan-engine-settings.html#flashlight-button">Flashlight button</a></li>
-        <li><a href="configure-scan-engine-settings.html#zoom-factor">Zoom factor</a></li>
-      </ul>
-    </li>
-    <li><a href="configure-scan-engine-settings.html#barcode-highlighting">Barcode highlighting</a>
-      <ul>
-        <li><a href="configure-scan-engine-settings.html#fill-color">Fill color</a></li>
-        <li><a href="configure-scan-engine-settings.html#stroke-color">Stroke color</a></li>
-        <li><a href="configure-scan-engine-settings.html#stroke-width">Stroke width</a></li>
-      </ul>
-    </li>
+    <li><a href="configure-scan-engine-settings.html#camera-settings">Camera settings</a></li>
+    <li><a href="configure-scan-engine-settings.html#barcode-highlighting">Barcode highlighting</a></li>
     <li><a href="configure-scan-engine-settings.html#advanced-settings">Advanced settings</a>
       <ul>
+        <li><a href="configure-scan-engine-settings.html#extended-barcode-type-settings">Extended barcode type settings</a></li>
         <li><a href="configure-scan-engine-settings.html#barcode-filtering">Barcode filtering</a></li>
         <li><a href="configure-scan-engine-settings.html#visual-cue">Visual cue</a></li>
       </ul>
