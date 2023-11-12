@@ -268,7 +268,7 @@
   
   
   <div class="d-flex justify-content-between align-items-center">
-    <a class="body-5 text-black fw-light" href="../get-started/integration-with-knox-msp-program/index.html">Integration with Knox MSP Program</a>
+    <a class="body-5 text-black fw-light" href="../get-started/integration-with-knox-msp-program.html">Integration with Knox MSP Program</a>
   </div>
   
   </li>
@@ -1429,7 +1429,7 @@
   
   
   <div class="d-flex justify-content-between align-items-center">
-    <a class="body-5 text-black fw-light" href="../configure/devices/enroll-devices/enroll-a-windows-device-with-azure-ad.html">Enroll a Windows device with Azure AD</a>
+    <a class="body-5 text-black fw-light" href="../configure/devices/enroll-devices/enroll-a-windows-device-with-entra-id.html">Enroll a Windows device with Entra ID</a>
   </div>
   
   </li>
@@ -4331,7 +4331,7 @@
             </div>
             
 
-  <p><span>Last updated July  26th, 2023</span></p>
+  <p><span>Last updated November  8th, 2023</span></p>
 </div>
           <div class="l-content">
             
@@ -4349,40 +4349,116 @@
       
       
       
-      
-      
-      
-      
-      
-      
         <p>Go to the <a href="../../knox-mobile-enrollment.html">Knox Mobile Enrollment User Guide</a> for detailed information on how to integrate this service with Knox Manage.</p>
 <p>You will need to enter the following data during the setup process:</p>
-<p><strong>MDM Server URI</strong></p>
-<ul>
-<li><strong>Asia</strong> &mdash; <a href="https://ap01.manage.samsungknox.com" target="_blank">https://ap01.manage.samsungknox.com</a></li>
-<li><strong>US</strong> &mdash; <a href="https://us01.manage.samsungknox.com" target="_blank">https://us01.manage.samsungknox.com</a></li>
-<li><strong>EU</strong> &mdash; <a href="https://eu01.manage.samsungknox.com" target="_blank">https://eu01.manage.samsungknox.com</a></li>
-</ul>
-<p>Depending on the tenant, you may have to change the domain URI. Refer to your prefix server address of the Knox Manage Admin Portal, and then enter that value in the MDM Server URI. For example, if your server address is <a href="https://ap02.manage.samsungknox.com/emm/admin/login.do" target="_blank">https://ap02.manage.samsungknox.com/emm/admin/login.do</a>, your MDM Server URI should be <a href="https://ap02.manage.samsungknox.com" target="_blank">https://ap02.manage.samsungknox.com</a>.</p>
-<p><strong>MDM Agent APK</strong></p>
-<ul>
-<li><strong>Asia</strong> &mdash; <a href="http://install-ap.manage.samsungknox.com/KnoxManageEMMService.apk" target="_blank">http://install-ap.manage.samsungknox.com/KnoxManageEMMService.apk</a></li>
-<li><strong>US</strong> &mdash; http://install-us.manage.samsungknox.com/KnoxManageEMMService.apk</li>
-<li><strong>EU</strong> &mdash; http://install-eu.manage.samsungknox.com/KnoxManageEMMService.apk</li>
-</ul>
-<p><strong>Custom JSON data</strong></p>
-<p>{&ldquo;TenantId&rdquo;:&ldquo;YOUR_TENANT&rdquo;, &ldquo;TenantType&rdquo;:&ldquo;M&rdquo;}</p>
-<ul>
-<li><strong>TenantId</strong> refers to the name of your Knox Manage company account. It occurs after <strong>@</strong> in your Knox Manage Username.</li>
-</ul>
-<p>For example, your JSON data entry may look like this:</p>
-<p>{&ldquo;TenantId&rdquo;:&ldquo;knoxteam.samsung.com&rdquo;, &ldquo;TenantType&rdquo;:&ldquo;M&rdquo;}</p>
-<a href="../kbas.html"  class="btn d-inline-block button-subtle">Back to KBAs</a>
+<h2 id="mdm-server-uri">MDM Server URI</h2>
+<table>
+<thead>
+<tr>
+<th>Region</th>
+<th>URI</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Asia</td>
+<td>https://ap01.manage.samsungknox.com</td>
+</tr>
+<tr>
+<td>US</td>
+<td>https://us01.manage.samsungknox.com</td>
+</tr>
+<tr>
+<td>EU</td>
+<td>https://eu01.manage.samsungknox.com</td>
+</tr>
+</tbody>
+</table>
+<p>Depending on the tenant, you may have to change the domain URI. Refer to your prefix server address on the Knox Manage console, and enter that value in the EMM Server URI field. For example, if your server address is https://ap02.manage.samsungknox.com/emm/admin/login.do, your EMM Server URI should be https://ap02.manage.samsungknox.com.</p>
+<h2 id="emm-agent-apk">EMM Agent APK</h2>
+<table>
+<thead>
+<tr>
+<th>Region</th>
+<th>APK</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Asia</td>
+<td>http://install-ap.manage.samsungknox.com/KnoxManageEMMService.apk</td>
+</tr>
+<tr>
+<td>US</td>
+<td>http://install-us.manage.samsungknox.com/KnoxManageEMMService.apk</td>
+</tr>
+<tr>
+<td>EU</td>
+<td>http://install-eu.manage.samsungknox.com/KnoxManageEMMService.apk</td>
+</tr>
+</tbody>
+</table>
+<h2 id="json-payload-for-enrollment">JSON payload for enrollment</h2>
+<p>The following key-value pairs can be added to the JSON payload:</p>
+<table>
+<thead>
+<tr>
+<th>Key</th>
+<th>Type</th>
+<th>Value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>tenantId</code></td>
+<td>String</td>
+<td>Enter the name of your Knox Manage company account. It occurs after <strong>@</strong> in your Knox Manage user name.</td>
+</tr>
+<tr>
+<td><code>tenantType</code></td>
+<td>String</td>
+<td><code>M</code></td>
+</tr>
+<tr>
+<td><code>AllowModifyUserId</code></td>
+<td>String</td>
+<td><code>Allow</code> or <code>Disallow</code></td>
+</tr>
+<tr>
+<td><code>Mode</code></td>
+<td>String</td>
+<td><code>DO</code> or <code>PO</code></td>
+</tr>
+</tbody>
+</table>
+<p>For a basic configuration, your JSON data entry may look like this:</p>
+<div class="highlight"><pre tabindex="0" style=";-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-json" data-lang="json"><span style="display:flex;"><span>{  
+</span></span><span style="display:flex;"><span>    <span style="color:#008000;font-weight:bold">&#34;tenantId&#34;</span>: <span style="color:#ba2121">&#34;knoxteam.samsung.com&#34;</span>,  
+</span></span><span style="display:flex;"><span>    <span style="color:#008000;font-weight:bold">&#34;tenantType&#34;</span>: <span style="color:#ba2121">&#34;M&#34;</span>  
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p>To configure additional parameters to automatically enroll the device in a particular mode, your JSON data entry may look like this:</p>
+<div class="highlight"><pre tabindex="0" style=";-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-json" data-lang="json"><span style="display:flex;"><span>{
+</span></span><span style="display:flex;"><span>    <span style="color:#008000;font-weight:bold">&#34;tenantId&#34;</span>: <span style="color:#ba2121">&#34;knoxteam.samsung.com&#34;</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#008000;font-weight:bold">&#34;AllowModifyUserId&#34;</span>: <span style="color:#ba2121">&#34;Disallow&#34;</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#008000;font-weight:bold">&#34;Mode&#34;</span>: <span style="color:#ba2121">&#34;DO&#34;</span>
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><a href="../kbas.html"  class="btn d-inline-block button-subtle">Back to KBAs</a>
 
             
           </div>
           <div class="l-toc">
             <aside class="toc">
+  
+  <nav class="section-nav">
+    <h2 class="body-4 fw-bold mt-0">On this page</h2>
+    <nav id="TableOfContents">
+  <ul>
+    <li><a href="kba-360001257167.html#mdm-server-uri">MDM Server URI</a></li>
+    <li><a href="kba-360001257167.html#emm-agent-apk">EMM Agent APK</a></li>
+    <li><a href="kba-360001257167.html#json-payload-for-enrollment">JSON payload for enrollment</a></li>
+  </ul>
+</nav>
+  </nav>
   
 </aside>
 
