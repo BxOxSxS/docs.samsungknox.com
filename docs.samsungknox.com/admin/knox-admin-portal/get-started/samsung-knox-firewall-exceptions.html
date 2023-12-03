@@ -353,7 +353,7 @@
             </div>
             
 
-  <p><span>Last updated July  26th, 2023</span></p>
+  <p><span>Last updated November  30th, 2023</span></p>
 </div>
           <div class="l-content">
             
@@ -363,17 +363,42 @@
 
 
       
-      <p>This page lists the firewall exceptions that your organization needs to use to securely reach and connect to the Knox server and its supporting resources. It includes the URLs and port numbers that you need to allowlist in order to reach the Knox servers.</p>
-<p>These server resources can include the following Knox services:</p>
+      
+      
+      
+      
+      
+      
+        
+      
+      
+      
+      
+      
+      
+      
+      
+        <p>This page lists the firewall exceptions that your organization needs to use to securely reach and connect to the Knox server and its supporting resources. It includes the URLs and port numbers that you must allow to reach the Knox servers.</p>
+<p>To accurately configure your firewall settings, please ensure:</p>
+<ol>
+<li>
+<p>Ports 443 and 80 are open within your local network domain to reach Knox server resources.</p>
+</li>
+<li>
+<p>Add Amazon Web Services or Google Firebase to your organization&rsquo;s firewall allowlist, as Knox services might use either of these services:</p>
 <ul>
-<li><em>Samsung license Servers</em> &mdash; When you activate Knox services, devices need to verify their license keys. Devices periodically check their licenses a few times a week.</li>
-<li><em>Samsung SDS IAM &amp; EMM</em> &mdash; If you&rsquo;re using an EMM, devices will need to access web-based EMM consoles and storage sites.</li>
-<li><em>Samsung ActiveSync Server</em> &mdash; If you&rsquo;re using Exchange ActiveSync, you&rsquo;ll need an ActiveSync Server connection so the email client can successfully reach the ActiveSync Server.</li>
+<li>
+<p>See <a href="https://ip-ranges.amazonaws.com/ip-ranges.json" target="_blank">https://ip-ranges.amazonaws.com/ip-ranges.json</a> for more information on IP ranges that you might have to allow to correctly use Amazon Web Services.</p>
+</li>
+<li>
+<p>See <a href="https://firebase.google.com/docs/cloud-messaging" target="_blank">Firebase Cloud Messaging</a> for more information on Google Firebase services.</p>
+</li>
 </ul>
-<div class="my-3 ps-3 border-start border-3 border-black"><p class="fw-bold">Note</p><p>If your organization doesn’t permit connections with external servers, you can request an on-premises Knox Server to handle license verification within your firewall. Samsung charges an extra fee for this service. For more information, contact your Samsung representative or reseller.</p></div>
-<p>Ports 443 and 80 must be open within your local network domain to reach Knox server resources.</p>
-<div class="my-3 ps-3 border-start border-3 border-black"><p class="fw-bold">Note</p><p>Knox Cloud Services can utilize both Amazon Web Services (AWS) and Google Firebase. Both services may also warrant adding to the allowlist within your organization’s firewall policy.</p><p>For information on the AWS that may require allowlist inclusion, see <a href="https://ip-ranges.amazonaws.com/ip-ranges.json" target="_blank">https://ip-ranges.amazonaws.com/ip-ranges.json</a>.</p><p>For information on the Google Firebase services that may require allowlist inclusion, see <a href="https://firebase.google.com/docs/cloud-messaging/concept-options#ports_and_your_firewall" target="_blank">https://firebase.google.com/docs/cloud-messaging/concept-options#ports_and_your_firewall</a>.</p></div>
-<p>The following table lists the portal exemptions required for each listed Knox server resource:</p>
+</li>
+</ol>
+<div class="my-3 ps-3 border-start border-3 border-important"><p class="fw-bold">Important</p><p>If your organization doesn’t permit connections with external servers, you can request an on-premises Knox server to handle license verification within your firewall. Samsung charges a fee for this service. For more information, contact your Samsung representative or reseller directly, or <a href="https://www.samsungknox.com/contactus" target="_blank">contact the Samsung Knox team</a>.</p></div>
+<h2 id="portal-exceptions">Portal exceptions</h2>
+<p>The following table lists the URLs that you must create exceptions for in your organization&rsquo;s firewall in order to use Knox services web portals on your desktop:</p>
 <table>
     <tr>
         <th scope="col">URL</th>
@@ -382,29 +407,30 @@
     </tr>
     <tr>
         <td>
-            <p>*.samsungknox.com*</p>
+            <p>*.samsungknox.com</p>
             <p>*.secb2b.com</p>
         </td>
-        <td>443/80</td>
+        <td>443, 80</td>
         <td>
             <p>Knox cloud service</p>
             <p>Knox Identity Management</p>
             <p>Single sign-on (SSO)</p>
-            <p>Knox Portal</p>
+            <p>Knox Admin Portal</p>
+            <p>Knox Partner Portal</p>
         </td>
     </tr>
     <tr>
         <td>*.samsung.com</td>
-        <td>443/80</td>
+        <td>443, 80</td>
         <td>
-            <p>Knox Partner Portal</p>
             <p>Samsung account</p>
         </td>
     </tr>
 </table>
 <h2 id="license-servers-knox-products">License servers for Knox products</h2>
-<p>The following Knox license server resources may be required to add to the allowlist depending on your organization&rsquo;s IT policies. Additionally, if your organization&rsquo;s IT policy restricts the use of a wildcard (*) to abbreviate a domain name, the FQDN may be required to reach a Knox license server. Refer to the following for license server destinations per region:</p>
-<h3 id="license-servers-global">Global</h3>
+<p>Depending on your enterprise&rsquo;s IT policies, you might have to add the following Knox license server resources to your firewall allowlist, listed by server destinations per region:</p>
+<div class="my-3 ps-3 border-start border-3 border-important"><p class="fw-bold">Important</p><p>If your enterprise’s IT policy restricts the use of a wildcard (*) to abbreviate a domain name, you might require the FQDN to reach a Knox license server.</p></div>
+<h3 id="global">Global</h3>
 <table>
 <thead>
 <tr>
@@ -423,19 +449,8 @@
 </tr>
 <tr>
 <td>account.samsung.com</td>
-<td>80|443</td>
+<td>80, 443</td>
 </tr>
-</tbody>
-</table>
-<h3 id="license-servers-americas">Americas</h3>
-<table>
-<thead>
-<tr>
-<th>URL</th>
-<th>Port</th>
-</tr>
-</thead>
-<tbody>
 <tr>
 <td>gslb.secb2b.com</td>
 <td>443</td>
@@ -444,6 +459,17 @@
 <td>gsl.samsunggsl.com</td>
 <td>443</td>
 </tr>
+</tbody>
+</table>
+<h3 id="americas">Americas</h3>
+<table>
+<thead>
+<tr>
+<th>URL</th>
+<th>Port</th>
+</tr>
+</thead>
+<tbody>
 <tr>
 <td>us-elm.secb2b.com</td>
 <td>443</td>
@@ -462,7 +488,7 @@
 </tr>
 </tbody>
 </table>
-<h3 id="license-servers-emea">EMEA</h3>
+<h3 id="emea">EMEA</h3>
 <table>
 <thead>
 <tr>
@@ -471,14 +497,6 @@
 </tr>
 </thead>
 <tbody>
-<tr>
-<td>gslb.secb2b.com</td>
-<td>443</td>
-</tr>
-<tr>
-<td>gsl.samsunggsl.com</td>
-<td>443</td>
-</tr>
 <tr>
 <td>eu-elm.secb2b.com</td>
 <td>443</td>
@@ -497,36 +515,10 @@
 </tr>
 </tbody>
 </table>
-<h3 id="license-servers-china">China</h3>
-<table>
-<thead>
-<tr>
-<th>URL</th>
-<th>Port</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>china-gslb.secb2b.com.cn</td>
-<td>443</td>
-</tr>
-<tr>
-<td>china-elm.secb2b.com.cn</td>
-<td>443</td>
-</tr>
-<tr>
-<td>china-b2c-klm.secb2b.com.cn</td>
-<td>443</td>
-</tr>
-<tr>
-<td>china-prod-klm.secb2b.com.cn</td>
-<td>443</td>
-</tr>
-</tbody>
-</table>
-<h2 id="networking-requirements-knox-cloud-services">Networking requirements for Knox cloud services</h2>
-<p>The following Knox network resources may need to be added to the allowlist depending on your organization&rsquo;s IT policies. Additionally, if your organization&rsquo;s IT policy restricts the use of a wildcard (*) to abbreviate a domain name, the FQDN may be required to reach a Knox network deployment resource. Refer to the following for per region:</p>
-<h3 id="networking-requirements-global">Global</h3>
+<h2 id="networking-requirements-for-knox-cloud-services">Networking requirements for Knox cloud services</h2>
+<p>Depending on your enterprise&rsquo;s IT policies, you might have to add the following network resources to your firewall allowlist, listed by server destinations per region:</p>
+<div class="my-3 ps-3 border-start border-3 border-important"><p class="fw-bold">Important</p><p>If your enterprise’s IT policy restricts the use of a wildcard (*) to abbreviate a domain name, you might require the FQDN to reach a Knox network deployment resource.</p></div>
+<h3 id="global-1">Global</h3>
 <table>
 <thead>
 <tr>
@@ -537,51 +529,51 @@
 <tbody>
 <tr>
 <td>knoxservices.secb2b.com</td>
-<td>80|443</td>
+<td>80, 443</td>
 </tr>
 <tr>
 <td>pinning.secb2b.com</td>
-<td>80|443</td>
+<td>80, 443</td>
 </tr>
 <tr>
 <td>pinning-02.secb2b.com</td>
-<td>80|443</td>
+<td>80, 443</td>
 </tr>
 <tr>
 <td>eula.secb2b.com</td>
-<td>80|443</td>
+<td>80, 443</td>
 </tr>
 <tr>
 <td>umc-cdn.secb2b.com</td>
-<td>80|443</td>
+<td>80, 443</td>
 </tr>
 <tr>
 <td>me.samsungknox.com</td>
-<td>80|443</td>
+<td>80, 443</td>
 </tr>
 <tr>
 <td>configure.samsungknox.com</td>
-<td>80|443</td>
+<td>80, 443</td>
 </tr>
 <tr>
 <td>custom.samsungknox.com</td>
-<td>80|443</td>
+<td>80, 443</td>
 </tr>
 <tr>
 <td>kcc-prod-repo.s3.amazonaws.com</td>
-<td>80|443</td>
+<td>80, 443</td>
 </tr>
 <tr>
 <td>klms-dev.s3.amazonaws.com</td>
 <td>443</td>
 </tr>
 <tr>
-<td>eu-api.samsungknox.com</td>
-<td>-</td>
+<td>kfm-prod.samsungknox.com</td>
+<td>80, 443</td>
 </tr>
 </tbody>
 </table>
-<h3 id="networking-requirements-americas">Americas</h3>
+<h3 id="americas-1">Americas</h3>
 <table>
 <thead>
 <tr>
@@ -630,9 +622,21 @@
 <td>us-kme-reseller.samsungknox.com</td>
 <td>-</td>
 </tr>
+<tr>
+<td>usprd-knoxv2-dai.s3.us-west-2.amazonaws.com</td>
+<td>443</td>
+</tr>
+<tr>
+<td>us-dai.samsungknox.com</td>
+<td>443</td>
+</tr>
+<tr>
+<td>us-securitycenter.samsungknox.com</td>
+<td>443</td>
+</tr>
 </tbody>
 </table>
-<h3 id="networking-requirements-emea">EMEA</h3>
+<h3 id="emea-1">EMEA</h3>
 <table>
 <thead>
 <tr>
@@ -655,19 +659,19 @@
 </tr>
 <tr>
 <td>eu-prod-bulk.secb2b.com</td>
-<td>80|443</td>
+<td>80,443</td>
 </tr>
 <tr>
 <td>eu-segd-api.secb2b.com</td>
-<td>80|443</td>
+<td>80, 443</td>
 </tr>
 <tr>
 <td>eu-segp-api.secb2b.com</td>
-<td>80|443</td>
+<td>80, 443</td>
 </tr>
 <tr>
 <td>eu-segm-api.secb2b.com</td>
-<td>80|443</td>
+<td>80, 443</td>
 </tr>
 <tr>
 <td>eu-kme.samsungknox.com</td>
@@ -685,9 +689,201 @@
 <td>eu-kme-reseller.samsungknox.com</td>
 <td>-</td>
 </tr>
+<tr>
+<td>eu-api.samsungknox.com</td>
+<td>-</td>
+</tr>
+<tr>
+<td>eu-dai.samsungknox.com</td>
+<td>443</td>
+</tr>
+<tr>
+<td>eu-securitycenter.samsungknox.com</td>
+<td>443</td>
+</tr>
+<tr>
+<td>euprd-knoxv2-dai.s3.eu-west-1.amazonaws.com</td>
+<td>443</td>
+</tr>
 </tbody>
 </table>
-<h3 id="networking-requirements-china">China</h3>
+<h3 id="knox-manage-exceptions">Knox Manage exceptions</h3>
+<p>Apart from the exceptions mentioned above, your device platform also determines how you configure your firewall, as follows:</p>
+<table>
+    <tr>
+        <th scope="col">Platform</th>
+        <th scope="col">URL</th>
+        <th scope="col">Port</th>
+    </tr>
+    <tr>
+        <td rowspan="4">All</td>
+        <td>*.samsungknox.com</td>
+        <td rowspan="4">TCP 443, 80</td>
+    </tr>
+    <tr>
+        <td>*.secb2b.com</td>
+    </tr>
+    <tr>
+        <td>*.samsung.com</td>
+    </tr>
+    <tr>
+        <td>*.gstatic.com</td>
+    </tr>
+    <tr>
+        <td rowspan="10">Android</td>
+        <td>*.google.com</td>
+        <td rowspan="9">
+            <p>TCP 443</p>
+            <p>TCP, UDP 5228-5230, 5235, 5236</p>
+        </td>
+    </tr>
+    <tr>
+        <td>android.com</td>
+    </tr>
+    <tr>
+        <td>google-analytics.com</td>
+    </tr>
+    <tr>
+        <td>googleusercontent.com</td>
+    </tr>
+    <tr>
+        <td>*gstatic.com</td>
+    </tr>
+    <tr>
+        <td>*.gvt1.com</td>
+    </tr>
+    <tr>
+        <td>*.ggpht.com</td>
+    </tr>
+    <tr>
+        <td>*.gvt2.com</td>
+    </tr>
+    <tr>
+        <td>*.gvt3.com</td>
+    </tr>
+    <tr>
+        <td>*.googleapis.com</td>
+        <td>TCP 443, 5228-5230</td>
+    </tr>
+    <tr>
+        <td>iOS</td>
+        <td>*.push.apple.com</td>
+        <td>TCP 443, 5223, 2197</td>
+    </tr>
+    <tr>
+        <td rowspan="2">Windows</td>
+        <td>*.wns.windows.com</td>
+        <td rowspan="2">443</td>
+    </tr>
+    <tr>
+        <td>*.notify.live.net</td>
+    </tr>
+</table>
+<h3 id="knox-remote-support-exceptions">Knox Remote Support exceptions</h3>
+ <table>
+    <tr>
+        <th scope="col">Region</th>
+        <th scope="col">Server</th>
+        <th scope="col">Domain</th>
+        <th style="width: 25%" scope="col">IP address</th>
+        <th scope="col">Port</th>
+        <th scope="col">Connection</th>
+    </tr>
+    <tr>
+        <td rowspan="3">Asia</td>
+        <td rowspan="2">Relay</td>
+        <td rowspan="2">ap-rs-relay.manage.samsungknox.com</td>
+        <td>18.141.250.233</td>
+        <td rowspan="2">45001</td>
+        <td rowspan="2">Mobile</td>
+    </tr>
+    <tr>
+        <td>13.213.198.62</td>
+    </tr>
+    <tr>
+        <td>WAS</td>
+        <td>ap-rs-web.manage.samsungknox.com</td>
+        <td>-</td>
+        <td>443</td>
+        <td>Desktop</td>
+    </tr>
+    <tr>
+        <td rowspan="3">US</td>
+        <td rowspan="2">Relay</td>
+        <td rowspan="2">us-rs-relay.manage.samsungknox.com</td>
+        <td>35.83.188.168</td>
+        <td rowspan="2">45001</td>
+        <td rowspan="2">Mobile</td>
+    </tr>
+    <tr>
+        <td>52.36.230.249</td>
+    </tr>
+    <tr>
+        <td>WAS</td>
+        <td>us-rs-web.manage.samsungknox.com</td>
+        <td>-</td>
+        <td>443</td>
+        <td>Desktop</td>
+    </tr>
+    <tr>
+        <td rowspan="3">EU</td>
+        <td rowspan="2">Relay</td>
+        <td rowspan="2">eu-rs-relay.manage.samsungknox.com</td>
+        <td>54.155.132.151</td>
+        <td rowspan="2">45001</td>
+        <td rowspan="2">Mobile</td>
+    </tr>
+    <tr>
+        <td>63.34.35.115</td>
+    </tr>
+    <tr>
+        <td>WAS</td>
+        <td>eu-rs-web.manage.samsungknox.com</td>
+        <td>-</td>
+        <td>443</td>
+        <td>Desktop</td>
+    </tr>
+</table>
+<p>For more information on the requirements for Knox Remote Support, see <a href="../../knox-remote-support/minimum-requirements.html">Knox Remote Support minimum requirements</a>.</p>
+<h4 id="additional-information">Additional information</h4>
+<p>For more information on Android network requirements, refer to <a href="https://support.google.com/work/android/answer/10513641?hl=en" target="_blank">Android Enterprise Network Requirements</a>.</p>
+<p>For more information on iOS network requirements, refer to <a href="https://support.apple.com/guide/deployment/configure-your-network-for-mdm-dep2bcde692e/web" target="_blank">Configure your network for MDM</a> and <a href="https://support.apple.com/en-us/HT210060" target="_blank">Use Apple products on enterprise networks</a>.</p>
+<p>For more information on Windows network requirements, refer to <a href="https://learn.microsoft.com/en-us/windows/apps/design/shell/tiles-and-notifications/firewall-allowlist-config" target="_blank">Adding WNS Traffic to the Firewall Allowlist</a>.</p>
+<h2 id="firewall-exceptions-for-knox-configure-in-china">Firewall exceptions for Knox Configure in China</h2>
+<p>Depending on your enterprise&rsquo;s IT policies, you might have to add the following resources to your firewall allowlist to access <a href="../../knox-configure.html">Knox Configure</a>.</p>
+<div class="my-3 ps-3 border-start border-3 border-important"><p class="fw-bold">Important</p><p>If your enterprise’s IT policy restricts the use of a wildcard (*) to abbreviate a domain name, you might require the FQDN to reach a Knox network deployment resource.</p></div>
+<h3 id="license-servers">License servers</h3>
+<table>
+<thead>
+<tr>
+<th>URL</th>
+<th>Port</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>china-gslb.secb2b.com.cn</td>
+<td>443</td>
+</tr>
+<tr>
+<td>china-elm.secb2b.com.cn</td>
+<td>443</td>
+</tr>
+<tr>
+<td>china-b2c-klm.secb2b.com.cn</td>
+<td>443</td>
+</tr>
+<tr>
+<td>china-prod-klm.secb2b.com.cn</td>
+<td>443</td>
+</tr>
+<tr>
+<td>china-klm.secb2b.com.cn</td>
+<td>443</td>
+</tr>
+</tbody>
+</table>
+<h3 id="network-requirements">Network requirements</h3>
 <table>
 <thead>
 <tr>
@@ -702,7 +898,7 @@
 </tr>
 <tr>
 <td>myknoxapk.blob.core.chinacloudapi.cn</td>
-<td>80|443</td>
+<td>80, 443</td>
 </tr>
 </tbody>
 </table>
@@ -716,20 +912,27 @@
     <h2 class="body-4 fw-bold mt-0">On this page</h2>
     <nav id="TableOfContents">
   <ul>
+    <li><a href="samsung-knox-firewall-exceptions.html#portal-exceptions">Portal exceptions</a></li>
     <li><a href="samsung-knox-firewall-exceptions.html#license-servers-knox-products">License servers for Knox products</a>
       <ul>
-        <li><a href="samsung-knox-firewall-exceptions.html#license-servers-global">Global</a></li>
-        <li><a href="samsung-knox-firewall-exceptions.html#license-servers-americas">Americas</a></li>
-        <li><a href="samsung-knox-firewall-exceptions.html#license-servers-emea">EMEA</a></li>
-        <li><a href="samsung-knox-firewall-exceptions.html#license-servers-china">China</a></li>
+        <li><a href="samsung-knox-firewall-exceptions.html#global">Global</a></li>
+        <li><a href="samsung-knox-firewall-exceptions.html#americas">Americas</a></li>
+        <li><a href="samsung-knox-firewall-exceptions.html#emea">EMEA</a></li>
       </ul>
     </li>
-    <li><a href="samsung-knox-firewall-exceptions.html#networking-requirements-knox-cloud-services">Networking requirements for Knox cloud services</a>
+    <li><a href="samsung-knox-firewall-exceptions.html#networking-requirements-for-knox-cloud-services">Networking requirements for Knox cloud services</a>
       <ul>
-        <li><a href="samsung-knox-firewall-exceptions.html#networking-requirements-global">Global</a></li>
-        <li><a href="samsung-knox-firewall-exceptions.html#networking-requirements-americas">Americas</a></li>
-        <li><a href="samsung-knox-firewall-exceptions.html#networking-requirements-emea">EMEA</a></li>
-        <li><a href="samsung-knox-firewall-exceptions.html#networking-requirements-china">China</a></li>
+        <li><a href="samsung-knox-firewall-exceptions.html#global-1">Global</a></li>
+        <li><a href="samsung-knox-firewall-exceptions.html#americas-1">Americas</a></li>
+        <li><a href="samsung-knox-firewall-exceptions.html#emea-1">EMEA</a></li>
+        <li><a href="samsung-knox-firewall-exceptions.html#knox-manage-exceptions">Knox Manage exceptions</a></li>
+        <li><a href="samsung-knox-firewall-exceptions.html#knox-remote-support-exceptions">Knox Remote Support exceptions</a></li>
+      </ul>
+    </li>
+    <li><a href="samsung-knox-firewall-exceptions.html#firewall-exceptions-for-knox-configure-in-china">Firewall exceptions for Knox Configure in China</a>
+      <ul>
+        <li><a href="samsung-knox-firewall-exceptions.html#license-servers">License servers</a></li>
+        <li><a href="samsung-knox-firewall-exceptions.html#network-requirements">Network requirements</a></li>
       </ul>
     </li>
   </ul>
