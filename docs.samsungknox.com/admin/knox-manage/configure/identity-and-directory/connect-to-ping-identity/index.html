@@ -117,6 +117,8 @@
   </li>
 <li>
   <a href="../../../../knox-manage.html" class="active-drop-item">Knox Manage</a>
+  <ul>
+    </ul>
   </li>
 <li>
   <a href="../../../../efota-one.html" >Knox E-FOTA</a>
@@ -4382,7 +4384,7 @@
             </div>
             
 
-  <p><span>Last updated November  23rd, 2023</span></p>
+  <p><span>Last updated December  6th, 2023</span></p>
 </div>
           <div class="l-content">
             
@@ -4435,36 +4437,6 @@
       
       
       
-        
-      
-      
-      
-      
-        
-      
-      
-      
-      
-        
-      
-      
-      
-      
-        
-      
-      
-      
-      
-        
-      
-      
-      
-      
-        
-      
-      
-      
-      
       
         
       
@@ -4557,1440 +4529,462 @@
       
       
       
-        <ul
-  class="nav nav-tabs d-flex align-items-center mt-3"
-  id="nav-tabs"
-  role="tablist"
->
-   
-   
-   
-   
-   
-  
-  <li class="nav-item" role="presentation">
-    <button
-      class="tab-link active px-3 py-2 rounded-5"
-      id="efcabd-tab"
-      data-bs-toggle="tab"
-      data-bs-target="#efcabd"
-      type="button"
-      role="tab"
-      aria-controls="efcabd"
-      aria-selected="true"
-    >23.12
-    </button>
-  </li>
-   
-   
-   
-  
+        <p>Ping Identity provides services for user identity and authentication based on System for Cross-domain Identity Management (SCIM) 2.0 and OpenID Connect (OIDC) protocol.</p>
+<p>You can integrate and connect Knox Manage with Ping Identity services to manage user authentication across your enterprise applications. The integration is enabled by the cloud-based Knox Manage MDM app on the Ping Identity portal. When connected and configured, the user and group information in your Ping Identity tenant is synced with Knox Manage.</p>
+<p>Consider the following while integrating with Ping Identity:</p>
+<ul>
+<li>
+<p>Syncing of organizations isn’t currently supported.</p>
+</li>
+<li>
+<p>User authentication is executed directly by Ping Identity.</p>
+</li>
+<li>
+<p>Multi-factor authentication (MFA) is supported and set up in the Ping Identity portal. Knox Manage follows the MFA set up in Ping Identity.</p>
+</li>
+<li>
+<p>SCIM setting is required to enable user provisioning and synchronization.</p>
+<ul>
+<li>Make note of the tenant URL and secret token information before saving your settings in the Ping Identity portal. You can only renew this information after the settings are saved.</li>
 </ul>
-<div class="tab-content mb-6" id="nav-tab-content">
+</li>
+<li>
+<p>OIDC setting is required to enable user authentication. You can configure OIDC before SCIM, or after SCIM is set and user information sync is successful.</p>
+</li>
+</ul>
+<h2 id="connect-knox-manage-to-ping-identity-through-oidc">Connect Knox Manage to Ping Identity through OIDC</h2>
+<p>To connect Knox Manage with Ping Identity for user authentication using the OIDC configuration:</p>
+<ol>
+<li>
+<p>Access the Ping Identity admin console, navigate to <strong>Connections</strong> &gt; <strong>Applications</strong> &gt; <strong>Add Application</strong>, and add the Knox Manage app as a Single-Page application type. The OIDC app for Knox Manage is added to the list of applications in the console.</p>
 
-
-
-
-
-
-
-
-
-
-
-
-
-  
-  
-  
-  
-  
-
-  
-  
-  
-  
-  
-
-  
-  
-  
-  
-  
-
-  
-  
-  
-  
-  
-
-  
-  
-  
-  
-  
-
-  
-  
-  
-  
-  
-
-  
-  
-  
-  
-  
-
-  
-  
-  
-  
-  
-
-  
-  
-  
-  
-  
-
-  
-  
-  
-  
-  
-
-  
-  
-  
-  
-  
-
-  
-  
-  
-  
-  
-
-  
-  
-  
-  
-  
-
-  
-  
-  
-  
-  
-
-  
-  
-  
-  
-  
-
-  
-  
-  
-  
-  
-
-  
-  
-  
-  
-  
-
-  
-  
-  
-  
-  
-
-  
-  
-  
-  
-  
-
-  
-  
-  
-  
-  
-
-  
-  
-  
-  
-  
-
-  
-  
-  
-  
-  
-
-  
-  
-  
-  
-  
-
-  
-  
-  
-  
     
     
     
     
     
-  
+    
+    
+    <p><img src="../../../assets/idp-ping-01.png" class="img-fluid img-thumbnail" alt="Add Knox Manage app" /></p>
+</li>
+<li>
+<p>Select the Knox Manage app from the application list and click <strong>OpenID Connect Edit</strong> to edit the configuration.</p>
 
-  
-  
-  
-  
-  
-
-  
-  
-  
-  
-  
-
-  
-  
-  
-  
-  
-
-  
-  
-  
-  
-  
-
-  
-  
-  
-  
-  
-
-  
-  
-  
-  
-  
-
-  
-  
-  
-  
-  
-
-  
-  
-  
-  
-  
-
-  
-  
-  
-  
-  
-
-  
-  
-  
-  
-  
-
-  
-  
-  
-  
-  
-
-  
-  
-  
-  
-  
-
-  
-  
-  
-  
-  
-
-  
-  
-  
-  
-  
-
-  
-  
-  
-  
-  
-
-  
-  
-  
-  
-  
-
-  
-  
-  
-  
-  
-
-  
-  
-  
-  
-  
-
-  
-  
-  
-  
-  
-
-  
-  
-  
-  
-  
-
-  
-  
-  
-  
-  
-
-  
-  
-  
-  
-  
-
-  
-  
-  
-  
-  
-
-  
-  
-  
-  
-  
-
-  
-  
-  
-  
-  
-
-  
-  
-  
-  
-  
-
-  
-  
-  
-  
-  
-
-  
-  
-  
-  
-  
-
-  
-  
-  
-  
-  
-
-  
-  
-  
-  
-  
-
-  
-  
-  
-  
-  
-
-  
-  
-  
-  
-  
-
-  
-  
-  
-  
-  
-
-  
-  
-  
-  
-  
-
-  
-  
-  
-  
-  
-
-  
-  
-  
-  
-  
-
-  
-  
-  
-  
-  
-
-  
-  
-  
-  
-  
-
-  
-  
-  
-  
-  
-
-  
-  
-  
-  
-  
-
-  
-  
-  
-  
-  
-
-  
-  
-  
-  
-  
-
-  
-  
-  
-  
-  
-
-  
-  
-  
-  
-  
-
-  
-  
-  
-  
-  
-
-  
-  
-  
-  
-  
-
-  
-  
-  
-  
-  
-
-  
-  
-  
-  
-  
-
-  
-  
-  
-  
-  
-
-  
-  
-  
-  
-  
-
-  
-  
-  
-  
-  
-
-  
-  
-  
-  
     
     
     
     
     
-  
+    
+    
+    <p><img src="../../../assets/idp-ping-02.png" class="img-fluid img-thumbnail" alt="Edit configuration for Knox Manage app" /></p>
+</li>
+<li>
+<p>Enter and save CRS callback information under <strong>Response Type</strong> (Code, Token, ID Token selection), <strong>Grant Type</strong> (Authorization Code, Implicit selection), and <strong>Redirect URIs</strong>, and click <strong>Save</strong>.</p>
 
-  
-  
-  
-  
-  
-
-  
-  
-  
-  
-  
-
-  
-  
-  
-  
-  
-
-  
-  
-  
-  
-  
-
-  
-  
-  
-  
-  
-
-  
-  
-  
-  
-  
-
-  
-  
-  
-  
-  
-
-  
-  
-  
-  
-  
-
-  
-  
-  
-  
-  
-
-  
-  
-  
-  
-  
-
-  
-  
-  
-  
-  
-
-  
-  
-  
-  
-  
-
-  
-  
-  
-  
-  
-
-  
-  
-  
-  
-  
-
-  
-  
-  
-  
-  
-
-  
-  
-  
-  
-  
-
-  
-  
-  
-  
     
     
     
     
     
-  
+    
+    
+    <p><img src="../../../assets/idp-ping-03.png" class="img-fluid img-thumbnail" alt="Specify CRS information" /></p>
+</li>
+<li>
+<p>After saving the configuration, go to the <strong>Policies</strong> tab and click <strong>Add Policies</strong> to add single and multi factor authentication policies. Depending on the option defined, a policy is determined when signing in a user.</p>
 
-  
-  
-  
-  
-  
-
-  
-  
-  
-  
-  
-
-  
-  
-  
-  
-  
-
-  
-  
-  
-  
-  
-
-  
-  
-  
-  
-  
-
-  
-  
-  
-  
-  
-
-  
-  
-  
-  
-  
-
-  
-  
-  
-  
-  
-
-  
-  
-  
-  
-  
-
-  
-  
-  
-  
-  
-
-  
-  
-  
-  
-  
-
-  
-  
-  
-  
-  
-
-  
-  
-  
-  
-  
-
-  
-  
-  
-  
-  
-
-  
-  
-  
-  
     
     
     
     
     
-  
+    
+    
+    <p><img src="../../../assets/idp-ping-04.png" class="img-fluid img-thumbnail" alt="Add single or multi factor policies" /></p>
+</li>
+<li>
+<p>Enable the Knox Manage app using the toggle at the top.</p>
 
-  
-  
-  
-  
-  
-
-  
-  
-  
-  
-  
-
-  
-  
-  
-  
-  
-
-  
-  
-  
-  
-  
-
-  
-  
-  
-  
-  
-
-  
-  
-  
-  
-  
-
-  
-  
-  
-  
-  
-
-  
-  
-  
-  
-  
-
-  
-  
-  
-  
-  
-
-  
-  
-  
-  
-  
-
-  
-  
-  
-  
-  
-
-  
-  
-  
-  
-  
-
-  
-  
-  
-  
-  
-
-  
-  
-  
-  
-  
-
-  
-  
-  
-  
-  
-
-  
-  
-  
-  
-  
-
-  
-  
-  
-  
-  
-
-  
-  
-  
-  
-  
-
-  
-  
-  
-  
-  
-
-  
-  
-  
-  
-  
-
-  
-  
-  
-  
-  
-
-  
-  
-  
-  
-  
-
-  
-  
-  
-  
-  
-
-  
-  
-  
-  
-  
-
-  
-  
-  
-  
-  
-
-  
-  
-  
-  
-  
-
-  
-  
-  
-  
-  
-
-  
-  
-  
-  
     
     
     
     
     
-  
+    
+    
+    <p><img src="../../../assets/idp-ping-05.png" class="img-fluid img-thumbnail" alt="Enable app using toggle" /></p>
+</li>
+<li>
+<p>In the <strong>Configuration</strong> tab, copy and save the values of <strong>Client ID</strong> and <strong>OIDC Discovery Endpoint</strong>. These values are required for configuring Knox Manage OIDC settings.</p>
 
-  
-  
-  
-  
-  
-
-  
-  
-  
-  
-  
-
-  
-  
-  
-  
-  
-
-  
-  
-  
-  
-  
-
-  
-  
-  
-  
-  
-
-  
-  
-  
-  
-  
-
-  
-  
-  
-  
-  
-
-  
-  
-  
-  
-  
-
-  
-  
-  
-  
-  
-
-  
-  
-  
-  
-  
-
-  
-  
-  
-  
-  
-
-  
-  
-  
-  
-  
-
-  
-  
-  
-  
-  
-
-  
-  
-  
-  
-  
-
-  
-  
-  
-  
-  
-
-  
-  
-  
-  
-  
-
-  
-  
-  
-  
-  
-
-  
-  
-  
-  
-  
-
-  
-  
-  
-  
-  
-
-  
-  
-  
-  
-  
-
-  
-  
-  
-  
-  
-
-  
-  
-  
-  
-  
-
-  
-  
-  
-  
-  
-
-  
-  
-  
-  
-  
-
-  
-  
-  
-  
-  
-
-  
-  
-  
-  
-  
-
-  
-  
-  
-  
-  
-
-  
-  
-  
-  
-  
-
-  
-  
-  
-  
-  
-
-  
-  
-  
-  
-  
-
-  
-  
-  
-  
-  
-
-  
-  
-  
-  
-  
-
-  
-  
-  
-  
-  
-
-  
-  
-  
-  
-  
-
-  
-  
-  
-  
-  
-
-  
-  
-  
-  
-  
-
-  
-  
-  
-  
-  
-
-  
-  
-  
-  
-  
-
-  
-  
-  
-  
-  
-
-  
-  
-  
-  
-  
-
-  
-  
-  
-  
-  
-
-  
-  
-  
-  
     
     
     
     
     
-  
-
-  
-  
-  
-  
-  
-
-  
-  
-  
-  
-  
-
-  
-  
-  
-  
-  
-
-  
-  
-  
-  
-  
-
-  
-  
-  
-  
-  
-
-  
-  
-  
-  
-  
-
-  
-  
-  
-  
-  
-
-  
-  
-  
-  
-  
-
-  
-  
-  
-  
-  
-
-  
-  
-  
-  
-  
-
-  
-  
-  
-  
-  
-
-  
-  
-  
-  
-  
-
-  
-  
-  
-  
-  
-
-  
-  
-  
-  
-  
-
-  
-  
-  
-  
-  
-
-  
-  
-  
-  
-  
-
-  
-  
-  
-  
-  
-
-  
-  
-  
-  
-  
-
-  
-  
-  
-  
-  
-
-  
-  
-  
-  
-  
-
-  
-  
-  
-  
-  
-
-  
-  
-  
-  
-  
-
-  
-  
-  
-  
-  
-
-  
-  
-  
-  
-  
-
-  
-  
-  
-  
-  
-
-  
-  
-  
-  
-  
-
-  
-  
-  
-  
-  
-
-  
-  
-  
-  
-  
-
-  
-  
-  
-  
-  
-
-  
-  
-  
-  
-  
-
-  
-  
-  
-  
-  
-
-  
-  
-  
-  
-  
-
-  
-  
-  
-  
-  
-
-  
-  
-  
-  
-  
-
-  
-  
-  
-  
-  
-
-  
-  
-  
-  
-  
-
-  
-  
-  
-  
-  
-
-  
-  
-  
-  
-  
-
-  
-  
-  
-  
-  
-
-  
-  
-  
-  
-  
-
-  
-  
-  
-  
-  
-
-
-<div class="tab-pane fade  show active  border border-grey-line rounded-3 overflow-hidden" id="efcabd" role="tabpanel" aria-labelledby="efcabd-tab">
-  
-  <div class="tab-text bg-light p-3 border-bottom border-grey-line">
-    <p>This document is new for the <a href="../../../../uat.html">Knox cloud services 23.12 UAT</a>.</p>
     
-  </div>
-  
-  
     
-    <div class="tab-text p-3 border-bottom border-grey-line">
-      <p class="fw-bold">On this tab</p>
-      <ul class="mt-2 mb-0 list-unstyled section-nav">
-      
-        
-        <li class="ms-0"><a href="../connect-to-ping-identity.html#connect-knox-manage-to-ping-identity-through-oidc-23-12">Connect Knox Manage to Ping Identity through OIDC</a>
-      
-        
-        <li class="ms-0"><a href="../connect-to-ping-identity.html#connect-knox-manage-to-ping-identity-through-scim-for-automatic-user-provisioning-23-12">Connect Knox Manage to Ping Identity through SCIM for automatic user provisioning</a>
-      
-        
-        <li class="ms-2"><a href="../connect-to-ping-identity.html#prerequisites-23-12">Prerequisites</a>
-      
-        
-        <li class="ms-2"><a href="../connect-to-ping-identity.html#step-1-----configure-knox-manage-to-support-provisioning-with-ping-identity-23-12">Step 1 — Configure Knox Manage to support provisioning with Ping Identity</a>
-      
-        
-        <li class="ms-2"><a href="../connect-to-ping-identity.html#step-2-----configure-automatic-user-provisioning-for-knox-manage-23-12">Step 2 — Configure automatic user provisioning for Knox Manage</a>
-      
-        
-        <li class="ms-2"><a href="../connect-to-ping-identity.html#step-3-----configure-user-scopes-for-knox-manage-in-ping-identity-23-12">Step 3 — Configure user scopes for Knox Manage in Ping Identity</a>
-      
-      </ul>
-  </div>
+    <p><img src="../../../assets/idp-ping-06.png" class="img-fluid img-thumbnail" alt="Copy and save client ID and OIDC discovery endpoint" /></p>
+</li>
+<li>
+<p>(Optional) To perform MFA testing with a user, enable the MFA setting in the Ping Identity console.</p>
+<p>If no other MFA is set up, the MFA available in the <strong>PingID</strong> app is used by default.</p>
+
     
-  
-  
-  <div class="tab-text p-3"><p>Ping Identity provides services for user identity and authentication based on System for Cross-domain Identity Management (SCIM) 2.0 and OpenID Connect (OIDC) protocol.</p><p>You can integrate and connect Knox Manage with Ping Identity services to manage user authentication across your enterprise applications. The integration is enabled by the cloud-based Knox Manage MDM app on the Ping Identity portal. When connected and configured, the user and group information in your Ping Identity tenant is synced with Knox Manage.</p><p>Consider the following while integrating with Ping Identity:</p><ul><li><p>Syncing of organizations isn’t currently supported.</p></li><li><p>User authentication is executed directly by Ping Identity.</p></li><li><p>Multi-factor authentication (MFA) is supported and set up in the Ping Identity portal. Knox Manage follows the MFA set up in Ping Identity.</p></li><li><p>SCIM setting is required to enable user provisioning and synchronization.</p><ul><li>Make note of the tenant URL and secret token information before saving your settings in the Ping Identity portal. You can only renew this information after the settings are saved.</li></ul></li><li><p>OIDC setting is required to enable user authentication. You can configure OIDC before SCIM, or after SCIM is set and user information sync is successful.</p></li></ul><h2 id="connect-knox-manage-to-ping-identity-through-oidc-23-12">Connect Knox Manage to Ping Identity through OIDC</h2><p>To connect Knox Manage with Ping Identity for user authentication using the OIDC configuration:</p><ol><li><p>Access the Ping Identity admin console, navigate to <strong>Connections</strong> &gt; <strong>Applications</strong> &gt; <strong>Add Application</strong>, and add the Knox Manage app as a Single-Page application type. The OIDC app for Knox Manage is added to the list of applications in the console.</p> <p><img src="../../../assets/idp-ping-01.png" class="img-fluid img-thumbnail" alt="Add Knox Manage app" /></p></li><li><p>Select the Knox Manage app from the application list and click <strong>OpenID Connect Edit</strong> to edit the configuration.</p> <p><img src="../../../assets/idp-ping-02.png" class="img-fluid img-thumbnail" alt="Edit configuration for Knox Manage app" /></p></li><li><p>Enter and save CRS callback information under <strong>Response Type</strong> (Code, Token, ID Token selection), <strong>Grant Type</strong> (Authorization Code, Implicit selection), and <strong>Redirect URIs</strong>, and click <strong>Save</strong>.</p> <p><img src="../../../assets/idp-ping-03.png" class="img-fluid img-thumbnail" alt="Specify CRS information" /></p></li><li><p>After saving the configuration, go to the <strong>Policies</strong> tab and click <strong>Add Policies</strong> to add single and multi factor authentication policies. Depending on the option defined, a policy is determined when signing in a user.</p> <p><img src="../../../assets/idp-ping-04.png" class="img-fluid img-thumbnail" alt="Add single or multi factor policies" /></p></li><li><p>Enable the Knox Manage app using the toggle at the top.</p> <p><img src="../../../assets/idp-ping-05.png" class="img-fluid img-thumbnail" alt="Enable app using toggle" /></p></li><li><p>In the <strong>Configuration</strong> tab, copy and save the values of <strong>Client ID</strong> and <strong>OIDC Discovery Endpoint</strong>. These values are required for configuring Knox Manage OIDC settings.</p> <p><img src="../../../assets/idp-ping-06.png" class="img-fluid img-thumbnail" alt="Copy and save client ID and OIDC discovery endpoint" /></p></li><li><p>(Optional) To perform MFA testing with a user, enable the MFA setting in the Ping Identity console.</p><p>If no other MFA is set up, the MFA available in the <strong>PingID</strong> app is used by default.</p> <p><img src="../../../assets/idp-ping-07.png" class="img-fluid img-thumbnail" alt="Enable MFA" /></p></li><li><p>On the Knox Manage Console, go to <strong>Setting</strong> &gt; <strong>Identity &amp; Directory</strong> &gt; <strong>Connection</strong> &gt; <strong>Add Connection</strong>, and integrate Ping Identity OIDC authentication as follows:</p><ul><li><p>Select <strong>Okta (SCIM)</strong> for <strong>Connection Type</strong></p></li><li><p>Select <strong>Use</strong> for <strong>User Authentication</strong></p></li><li><p>Enter the previously copied Ping Identity OIDC client ID in the <strong>Client ID</strong> field</p></li><li><p>Enter the previously copied Ping Identity OIDC metadata URI in the <strong>Discovery URL</strong> field.</p></li></ul> <div class="my-3 ps-3 border-start border-3 border-caution"><p class="fw-bold">Caution</p><ul><li><p>All SCIM settings must be completed in one go. Refer to the following section for details.</p></li><li><p>If you set user authentication as Do not use, OIDC authentication must be configured after the SCIM provisioning is set and the sync for device enrollment is successful.</p></li></ul></div> <p><img src="../../../assets/idp-ping-08.png" class="img-fluid img-thumbnail" alt="Specify OIDC client ID and URI" /></p></li></ol><h2 id="connect-knox-manage-to-ping-identity-through-scim-for-automatic-user-provisioning-23-12">Connect Knox Manage to Ping Identity through SCIM for automatic user provisioning</h2><p>To enable automatic user provisioning, you must configure settings in the Knox Manage console and in the Ping Identity console.</p><p>Once configured, Ping Identity automatically provisions and de-provisions users and groups to <a href="https://www.samsungknox.com/en/solutions/it-solutions/knox-manage" target="_blank">Knox Manage</a> using the Ping Identity provisioning service. The following capabilities are supported:</p><ul><li><p>Creation of users and groups in Knox Manage</p></li><li><p>Deactivation or deleting of users in Knox Manage when they do not require access anymore</p></li><li><p>Sync of user attributes between Okta and Knox Manage</p></li><li><p>Provisioning of groups and group memberships in Knox Manage</p></li></ul><h3 id="prerequisites-23-12">Prerequisites</h3><ul><li><p>A Ping Identity Organization</p></li><li><p>A Knox Manage tenant</p></li><li><p>A user account in Ping Identity with roles to configure provisioning (such as Client Application Administrator, Client Application Developer, or Organization Administrator)</p></li><li><p>A Knox Manage user account with admin permission</p></li></ul><h3 id="step-1-----configure-knox-manage-to-support-provisioning-with-ping-identity-23-12">Step 1 &mdash; Configure Knox Manage to support provisioning with Ping Identity</h3><ol><li><p>Sign in to the Knox Manage console.</p></li><li><p>Go to <strong>Setting</strong> &gt; <strong>Identity &amp; Directory</strong> &gt; <strong>Connection</strong> and click <strong>Add</strong>.</p> <p><img src="../../../assets/idp-ping-09.png" class="img-fluid img-thumbnail" alt="Add connection" /></p></li><li><p>On the <strong>Add Connection</strong> page, set <strong>Connection Type</strong> as <strong>Ping (SCIM)</strong>.</p></li><li><p>Copy the <strong>Tenant URL</strong> and <strong>Secret Token</strong> and ensure to keep them accessible for later use in the Ping Identity portal. The secret token cannot be retrieved, it can only be reissued.</p><ul><li><p>If you completed OIDC setup on the Ping Identity tenant, enter Client ID and Discovery URL. Ensure that Do not use is selected for User Authentication.</p></li><li><p>You can set user authentication after setting up SCIM.</p></li></ul> <p><img src="../../../assets/idp-ping-10.png" class="img-fluid img-thumbnail" alt="Set user authentication later" /></p></li><li><p>Click Save.</p></li></ol><h3 id="step-2-----configure-automatic-user-provisioning-for-knox-manage-23-12">Step 2 &mdash; Configure automatic user provisioning for Knox Manage</h3><p>You can configure the Ping Identity provisioning service to create, update, and disable users in Knox Manage based on user assignments defined in Ping Identity.</p><p>To configure connection for Samsung Knox Manage in Ping Identity:</p><ol><li><p>In the Ping Identity console, select <strong>Connections</strong> &gt; <strong>Provisioning</strong> &gt; <strong>New Connection</strong>.</p> <p><img src="../../../assets/idp-ping-11.png" class="img-fluid img-thumbnail" alt="Create new connections" /></p></li><li><p>In the connection list, select <strong>SCIM</strong> and click <strong>Next</strong>.</p> <p><img src="../../../assets/idp-ping-12.png" class="img-fluid img-thumbnail" alt="Select SCIM from list of connections" /></p></li><li><p>In the <strong>Create a New Connection</strong> dialog, enter <strong>Name</strong> and click <strong>Next</strong>.</p> <p><img src="../../../assets/idp-ping-13.png" class="img-fluid img-thumbnail" alt="Enter name of connection" /></p></li><li><p>In the <strong>Configure Authentication</strong> section, set the following:</p><ul><li><p>Set <strong>Authentication Method</strong> as <strong>OAuth 2 Bearer Token</strong>.</p></li><li><p>Set <strong>SCIM BASE URL</strong> as the tenant URL copied and saved earlier.</p></li><li><p>Set <strong>OAuth Access Token</strong> as the secret token copied and saved earlier.</p></li></ul></li><li><p>Click <strong>Test Connection</strong> to validate the connection and click <strong>Continue</strong>.</p><p>If the test fails, ensure that the <strong>Tenant URL</strong> and <strong>Secret Token</strong> are correct and the connection was properly saved and try again.</p> <p><img src="../../../assets/idp-ping-14.png" class="img-fluid img-thumbnail" alt="Specify values" /></p></li><li><p>Retain the default settings defined under <strong>Configure Preferences</strong> and click <strong>Finish</strong>.</p> <p><img src="../../../assets/idp-ping-15.png" class="img-fluid img-thumbnail" alt="Retain default preferences" /></p></li></ol><p>After successful connection set up, two provisioning connections are created.</p><p><img src="../../../assets/idp-ping-16.png" class="img-fluid img-thumbnail" alt="Provisioned connections" /></p><h3 id="step-3-----configure-user-scopes-for-knox-manage-in-ping-identity-23-12">Step 3 &mdash; Configure user scopes for Knox Manage in Ping Identity</h3><ol><li><p>In the Ping Identity console, go to <strong>Connections</strong> &gt; <strong>Provisioning</strong>, and click <strong>New Rule</strong>.</p> <p><img src="../../../assets/idp-ping-17.png" class="img-fluid img-thumbnail" alt="New rule" /></p></li><li><p>Enter the name of the rule and click <strong>Create Rule</strong>.</p> <p><img src="../../../assets/idp-ping-18.png" class="img-fluid img-thumbnail" alt="Create rule" /></p></li><li><p>In the <strong>Configuration</strong> tab, click the plus icon to select the previously created connection, and click <strong>Save</strong>.</p> <p><img src="../../../assets/idp-ping-19.png" class="img-fluid img-thumbnail" alt="Plus icon" /></p> <p><img src="../../../assets/idp-ping-20.png" class="img-fluid img-thumbnail" alt="Select connection" /></p></li><li><p>Click <strong>User Filter</strong> and specify the users to be provisioned. For example, you can specify all active users. You can use a scoping filter as described in Ping Identity&rsquo;s topic <a href="https://docs.pingidentity.com/r/en-us/pingone/p1_add_provisioning_filter" target="_blank">Adding a user filter</a>.</p> <p><img src="../../../assets/idp-ping-21.png" class="img-fluid img-thumbnail" alt="Use filter option" /></p> <p><img src="../../../assets/idp-ping-22.png" class="img-fluid img-thumbnail" alt="Set filter for users" /></p></li><li><p>Click <strong>Save</strong>. The filter displays on the <strong>User Filter</strong> page.</p> <p><img src="../../../assets/idp-ping-23.png" class="img-fluid img-thumbnail" alt="Use filter" /></p></li><li><p>Go to the <strong>Attribute Mapping</strong> page and click the <strong>Edit</strong> icon.</p> <p><img src="../../../assets/idp-ping-24.png" class="img-fluid img-thumbnail" alt="Click Edit icon" /></p></li><li><p>Click <strong>Add</strong>, map <strong>User ID</strong> from PingOne Directory to <strong>externalId</strong> in Knox Manage, and click Save.</p> <div class="my-3 ps-3 border-start border-3 border-black"><p class="fw-bold">Note</p><p>If this mapping is not added, user sign in to Knox Manage will fail on devices.</p></div> <p><img src="../../../assets/idp-ping-25.png" class="img-fluid img-thumbnail" alt="Map attributes" /></p></li><li><p>Enable the Knox Manage Rule using the toggle at the top of the page.</p> <p><img src="../../../assets/idp-ping-26.png" class="img-fluid img-thumbnail" alt="Toggle on the page" /></p></li></ol><p>The user provisioning process starts and the sync summary report is available in the Overview tab.</p><p><img src="../../../assets/idp-ping-27.png" class="img-fluid img-thumbnail" alt="Rule sync summary" /></p><p>For more information on how to configure the Ping Identity User Provisioning, see Configuring provisioning.</p>
-  </div>
-  
-</div>
-</div>
+    
+    
+    
+    
+    
+    
+    <p><img src="../../../assets/idp-ping-07.png" class="img-fluid img-thumbnail" alt="Enable MFA" /></p>
+</li>
+<li>
+<p>On the Knox Manage Console, go to <strong>Setting</strong> &gt; <strong>Identity &amp; Directory</strong> &gt; <strong>Connection</strong> &gt; <strong>Add Connection</strong>, and integrate Ping Identity OIDC authentication as follows:</p>
+<ul>
+<li>
+<p>Select <strong>Okta (SCIM)</strong> for <strong>Connection Type</strong></p>
+</li>
+<li>
+<p>Select <strong>Use</strong> for <strong>User Authentication</strong></p>
+</li>
+<li>
+<p>Enter the previously copied Ping Identity OIDC client ID in the <strong>Client ID</strong> field</p>
+</li>
+<li>
+<p>Enter the previously copied Ping Identity OIDC metadata URI in the <strong>Discovery URL</strong> field.</p>
+</li>
+</ul>
+<div class="my-3 ps-3 border-start border-3 border-caution"><p class="fw-bold">Caution</p><ul><li><p>All SCIM settings must be completed in one go. Refer to the following section for details.</p></li><li><p>If you set user authentication as Do not use, OIDC authentication must be configured after the SCIM provisioning is set and the sync for device enrollment is successful.</p></li></ul></div>
+
+    
+    
+    
+    
+    
+    
+    
+    <p><img src="../../../assets/idp-ping-08.png" class="img-fluid img-thumbnail" alt="Specify OIDC client ID and URI" /></p>
+</li>
+</ol>
+<h2 id="connect-knox-manage-to-ping-identity-through-scim-for-automatic-user-provisioning">Connect Knox Manage to Ping Identity through SCIM for automatic user provisioning</h2>
+<p>To enable automatic user provisioning, you must configure settings in the Knox Manage console and in the Ping Identity console.</p>
+<p>Once configured, Ping Identity automatically provisions and de-provisions users and groups to <a href="https://www.samsungknox.com/en/solutions/it-solutions/knox-manage" target="_blank">Knox Manage</a> using the Ping Identity provisioning service. The following capabilities are supported:</p>
+<ul>
+<li>
+<p>Creation of users and groups in Knox Manage</p>
+</li>
+<li>
+<p>Deactivation or deleting of users in Knox Manage when they do not require access anymore</p>
+</li>
+<li>
+<p>Sync of user attributes between Okta and Knox Manage</p>
+</li>
+<li>
+<p>Provisioning of groups and group memberships in Knox Manage</p>
+</li>
+</ul>
+<h3 id="prerequisites">Prerequisites</h3>
+<ul>
+<li>
+<p>A Ping Identity Organization</p>
+</li>
+<li>
+<p>A Knox Manage tenant</p>
+</li>
+<li>
+<p>A user account in Ping Identity with roles to configure provisioning (such as Client Application Administrator, Client Application Developer, or Organization Administrator)</p>
+</li>
+<li>
+<p>A Knox Manage user account with admin permission</p>
+</li>
+</ul>
+<h3 id="step-1-----configure-knox-manage-to-support-provisioning-with-ping-identity">Step 1 &mdash; Configure Knox Manage to support provisioning with Ping Identity</h3>
+<ol>
+<li>
+<p>Sign in to the Knox Manage console.</p>
+</li>
+<li>
+<p>Go to <strong>Setting</strong> &gt; <strong>Identity &amp; Directory</strong> &gt; <strong>Connection</strong> and click <strong>Add</strong>.</p>
+
+    
+    
+    
+    
+    
+    
+    
+    <p><img src="../../../assets/idp-ping-09.png" class="img-fluid img-thumbnail" alt="Add connection" /></p>
+</li>
+<li>
+<p>On the <strong>Add Connection</strong> page, set <strong>Connection Type</strong> as <strong>Ping (SCIM)</strong>.</p>
+</li>
+<li>
+<p>Copy the <strong>Tenant URL</strong> and <strong>Secret Token</strong> and ensure to keep them accessible for later use in the Ping Identity portal. The secret token cannot be retrieved, it can only be reissued.</p>
+<ul>
+<li>
+<p>If you completed OIDC setup on the Ping Identity tenant, enter Client ID and Discovery URL. Ensure that Do not use is selected for User Authentication.</p>
+</li>
+<li>
+<p>You can set user authentication after setting up SCIM.</p>
+</li>
+</ul>
+
+    
+    
+    
+    
+    
+    
+    
+    <p><img src="../../../assets/idp-ping-10.png" class="img-fluid img-thumbnail" alt="Set user authentication later" /></p>
+</li>
+<li>
+<p>Click Save.</p>
+</li>
+</ol>
+<h3 id="step-2-----configure-automatic-user-provisioning-for-knox-manage">Step 2 &mdash; Configure automatic user provisioning for Knox Manage</h3>
+<p>You can configure the Ping Identity provisioning service to create, update, and disable users in Knox Manage based on user assignments defined in Ping Identity.</p>
+<p>To configure connection for Samsung Knox Manage in Ping Identity:</p>
+<ol>
+<li>
+<p>In the Ping Identity console, select <strong>Connections</strong> &gt; <strong>Provisioning</strong> &gt; <strong>New Connection</strong>.</p>
+
+    
+    
+    
+    
+    
+    
+    
+    <p><img src="../../../assets/idp-ping-11.png" class="img-fluid img-thumbnail" alt="Create new connections" /></p>
+</li>
+<li>
+<p>In the connection list, select <strong>SCIM</strong> and click <strong>Next</strong>.</p>
+
+    
+    
+    
+    
+    
+    
+    
+    <p><img src="../../../assets/idp-ping-12.png" class="img-fluid img-thumbnail" alt="Select SCIM from list of connections" /></p>
+</li>
+<li>
+<p>In the <strong>Create a New Connection</strong> dialog, enter <strong>Name</strong> and click <strong>Next</strong>.</p>
+
+    
+    
+    
+    
+    
+    
+    
+    <p><img src="../../../assets/idp-ping-13.png" class="img-fluid img-thumbnail" alt="Enter name of connection" /></p>
+</li>
+<li>
+<p>In the <strong>Configure Authentication</strong> section, set the following:</p>
+<ul>
+<li>
+<p>Set <strong>Authentication Method</strong> as <strong>OAuth 2 Bearer Token</strong>.</p>
+</li>
+<li>
+<p>Set <strong>SCIM BASE URL</strong> as the tenant URL copied and saved earlier.</p>
+</li>
+<li>
+<p>Set <strong>OAuth Access Token</strong> as the secret token copied and saved earlier.</p>
+</li>
+</ul>
+</li>
+<li>
+<p>Click <strong>Test Connection</strong> to validate the connection and click <strong>Continue</strong>.</p>
+<p>If the test fails, ensure that the <strong>Tenant URL</strong> and <strong>Secret Token</strong> are correct and the connection was properly saved and try again.</p>
+
+    
+    
+    
+    
+    
+    
+    
+    <p><img src="../../../assets/idp-ping-14.png" class="img-fluid img-thumbnail" alt="Specify values" /></p>
+</li>
+<li>
+<p>Retain the default settings defined under <strong>Configure Preferences</strong> and click <strong>Finish</strong>.</p>
+
+    
+    
+    
+    
+    
+    
+    
+    <p><img src="../../../assets/idp-ping-15.png" class="img-fluid img-thumbnail" alt="Retain default preferences" /></p>
+</li>
+</ol>
+<p>After successful connection set up, two provisioning connections are created.</p>
+
+
+
+
+
+
+
+
+<p><img src="../../../assets/idp-ping-16.png" class="img-fluid img-thumbnail" alt="Provisioned connections" /></p>
+<h3 id="step-3-----configure-user-scopes-for-knox-manage-in-ping-identity">Step 3 &mdash; Configure user scopes for Knox Manage in Ping Identity</h3>
+<ol>
+<li>
+<p>In the Ping Identity console, go to <strong>Connections</strong> &gt; <strong>Provisioning</strong>, and click <strong>New Rule</strong>.</p>
+
+    
+    
+    
+    
+    
+    
+    
+    <p><img src="../../../assets/idp-ping-17.png" class="img-fluid img-thumbnail" alt="New rule" /></p>
+</li>
+<li>
+<p>Enter the name of the rule and click <strong>Create Rule</strong>.</p>
+
+    
+    
+    
+    
+    
+    
+    
+    <p><img src="../../../assets/idp-ping-18.png" class="img-fluid img-thumbnail" alt="Create rule" /></p>
+</li>
+<li>
+<p>In the <strong>Configuration</strong> tab, click the plus icon to select the previously created connection, and click <strong>Save</strong>.</p>
+
+    
+    
+    
+    
+    
+    
+    
+    <p><img src="../../../assets/idp-ping-19.png" class="img-fluid img-thumbnail" alt="Plus icon" /></p>
+
+    
+    
+    
+    
+    
+    
+    
+    <p><img src="../../../assets/idp-ping-20.png" class="img-fluid img-thumbnail" alt="Select connection" /></p>
+</li>
+<li>
+<p>Click <strong>User Filter</strong> and specify the users to be provisioned. For example, you can specify all active users. You can use a scoping filter as described in Ping Identity&rsquo;s topic <a href="https://docs.pingidentity.com/r/en-us/pingone/p1_add_provisioning_filter" target="_blank">Adding a user filter</a>.</p>
+
+    
+    
+    
+    
+    
+    
+    
+    <p><img src="../../../assets/idp-ping-21.png" class="img-fluid img-thumbnail" alt="Use filter option" /></p>
+
+    
+    
+    
+    
+    
+    
+    
+    <p><img src="../../../assets/idp-ping-22.png" class="img-fluid img-thumbnail" alt="Set filter for users" /></p>
+</li>
+<li>
+<p>Click <strong>Save</strong>. The filter displays on the <strong>User Filter</strong> page.</p>
+
+    
+    
+    
+    
+    
+    
+    
+    <p><img src="../../../assets/idp-ping-23.png" class="img-fluid img-thumbnail" alt="Use filter" /></p>
+</li>
+<li>
+<p>Go to the <strong>Attribute Mapping</strong> page and click the <strong>Edit</strong> icon.</p>
+
+    
+    
+    
+    
+    
+    
+    
+    <p><img src="../../../assets/idp-ping-24.png" class="img-fluid img-thumbnail" alt="Click Edit icon" /></p>
+</li>
+<li>
+<p>Click <strong>Add</strong>, map <strong>User ID</strong> from PingOne Directory to <strong>externalId</strong> in Knox Manage, and click Save.</p>
+<div class="my-3 ps-3 border-start border-3 border-black"><p class="fw-bold">Note</p><p>If this mapping is not added, user sign in to Knox Manage will fail on devices.</p></div>
+
+    
+    
+    
+    
+    
+    
+    
+    <p><img src="../../../assets/idp-ping-25.png" class="img-fluid img-thumbnail" alt="Map attributes" /></p>
+</li>
+<li>
+<p>Enable the Knox Manage Rule using the toggle at the top of the page.</p>
+
+    
+    
+    
+    
+    
+    
+    
+    <p><img src="../../../assets/idp-ping-26.png" class="img-fluid img-thumbnail" alt="Toggle on the page" /></p>
+</li>
+</ol>
+<p>The user provisioning process starts and the sync summary report is available in the Overview tab.</p>
+
+
+
+
+
+
+
+
+<p><img src="../../../assets/idp-ping-27.png" class="img-fluid img-thumbnail" alt="Rule sync summary" /></p>
+<p>For more information on how to configure the Ping Identity User Provisioning, see Configuring provisioning.</p>
 
             
           </div>
           <div class="l-toc">
             <aside class="toc">
+  
+  <nav class="section-nav">
+    <h2 class="body-4 fw-bold mt-0">On this page</h2>
+    <nav id="TableOfContents">
+  <ul>
+    <li><a href="../connect-to-ping-identity.html#connect-knox-manage-to-ping-identity-through-oidc">Connect Knox Manage to Ping Identity through OIDC</a></li>
+    <li><a href="../connect-to-ping-identity.html#connect-knox-manage-to-ping-identity-through-scim-for-automatic-user-provisioning">Connect Knox Manage to Ping Identity through SCIM for automatic user provisioning</a>
+      <ul>
+        <li><a href="../connect-to-ping-identity.html#prerequisites">Prerequisites</a></li>
+        <li><a href="../connect-to-ping-identity.html#step-1-----configure-knox-manage-to-support-provisioning-with-ping-identity">Step 1 &mdash; Configure Knox Manage to support provisioning with Ping Identity</a></li>
+        <li><a href="../connect-to-ping-identity.html#step-2-----configure-automatic-user-provisioning-for-knox-manage">Step 2 &mdash; Configure automatic user provisioning for Knox Manage</a></li>
+        <li><a href="../connect-to-ping-identity.html#step-3-----configure-user-scopes-for-knox-manage-in-ping-identity">Step 3 &mdash; Configure user scopes for Knox Manage in Ping Identity</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+  </nav>
   
 </aside>
 

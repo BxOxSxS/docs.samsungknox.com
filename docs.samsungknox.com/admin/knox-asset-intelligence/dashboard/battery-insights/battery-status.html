@@ -117,6 +117,8 @@
   </li>
 <li>
   <a href="../../../knox-manage.html" >Knox Manage</a>
+  <ul>
+    </ul>
   </li>
 <li>
   <a href="../../../efota-one.html" >Knox E-FOTA</a>
@@ -372,6 +374,16 @@
   
   
   <div class="d-flex justify-content-between align-items-center">
+    <a class="body-5 text-black fw-light" href="battery-events/groups-with-low-battery-at-shift-start/index.html">Groups with low battery at shift start</a>
+  </div>
+  
+  </li>
+
+
+  <li class="mt-2">
+  
+  
+  <div class="d-flex justify-content-between align-items-center">
     <a class="body-5 text-black fw-light" href="battery-events/battery-drain-events/index.html">Battery drain events</a>
   </div>
   
@@ -396,16 +408,6 @@
   
   <div class="d-flex justify-content-between align-items-center">
     <a class="body-5 text-black fw-light" href="battery-level-at-start-end-shift/index.html">Battery level at start and end of shift</a>
-  </div>
-  
-  </li>
-
-
-  <li class="mt-2">
-  
-  
-  <div class="d-flex justify-content-between align-items-center">
-    <a class="body-5 text-black fw-light" href="groups-with-low-battery-at-shift-start/index.html">Groups with low battery devices at shift start</a>
   </div>
   
   </li>
@@ -916,16 +918,13 @@
       
       
       
-        <p>Knox Asset Intelligence provides a granular view of your devices&rsquo; battery life, enabling you to proactively manage battery-related issues before business disruptions occur. Easily monitor the working time of your devices using the following four battery states:</p>
-<ol>
-<li><strong>Low battery</strong> &mdash; The device&rsquo;s battery level is below the <a href="../configure-dashboard-settings.html#thresholds">low battery threshold</a>.</li>
-<li><strong>Charging</strong> &mdash; The device is connected to a battery charger.</li>
-<li><strong>Consuming</strong> &mdash; The device is discharging its battery.</li>
-<li><strong>Fully charged</strong> &mdash; The device&rsquo;s battery is fully charged.</li>
-</ol>
-<p>Battery data collection is triggered when a low battery event or charging event occurs &mdash; for example, whenever the device is connected to a battery charger &mdash; or if a certain amount of time has elapsed since the last collection. When a device&rsquo;s battery reaches 100%, Knox Asset Intelligence reports the state as <strong>Fully charged</strong>. You can configure the time duration on the Knox Asset Intelligence console. Refer to <a href="../configure-dashboard-settings.html">Dashboard settings</a> for more details.</p>
-<h2 id="module-views">Module views</h2>
-<h3 id="dashboard-chart">Dashboard chart</h3>
+        
+      
+      
+      
+      
+        <p>The <strong>Battery status</strong> insight helps you proactively manage your fleet&rsquo;s battery-related issues before business disruptions occur.</p>
+<h2 id="main-tile-view">Main tile view</h2>
 
 
 
@@ -1045,31 +1044,27 @@
 
 
 <p><img src="../../assets/22.05-battery-status.png" class="image-block-scale-50 img-thumbnail" alt="Battery status dashboard widget" /></p>
-<p>The <strong>Battery status</strong> chart is separated into four battery states, and the number of devices currently in each state. The <strong>Low battery</strong> and <strong>Fully charged</strong> statuses include the average remaining time left on the devices&rsquo; batteries.</p>
-<p>The last time the data was refreshed in your time zone is shown in the bottom-right corner. To refresh the battery status data, click the <strong>Refresh</strong> icon.</p>
-<p>Click Expand to move to a list of devices, which includes information such as the current battery status, battery state of health (SOH), and the remaining time left on the battery. For certain devices that seem to be consuming abnormal amounts of data, you can select them and click <strong>REQUEST DEBUG LOG</strong> to generate device logs for troubleshooting.</p>
-<h3 id="expanded-view">Expanded view</h3>
-
-
-
-
-
-
-
-
-<p><img src="../../assets/22.05-battery-status-expanded.png" class="img-fluid img-thumbnail" alt="Battery status expanded view" /></p>
-<p>In the expanded view, a list provides battery-related details on each device. However, for devices in the <strong>Charging</strong> state, the remaining battery time is replaced with battery charging indicator.</p>
-<p>The device list includes the following:</p>
+<p>The main tile view summarizes your fleet&rsquo;s battery status with the following four states:</p>
 <ul>
-<li><strong>DEVICE ID</strong> &mdash; The IMEI/MEID or serial number of the device. This info is only shown when viewing events by access point.</li>
-<li><strong>DEVICE GROUP</strong> &mdash; The name of group the device belongs to.</li>
-<li><strong>MODEL</strong> &mdash; The model of the device.</li>
-<li><strong>OS VERSION</strong> &mdash; The Android version the device is currently running.</li>
-<li><strong>BATTERY STATUS</strong> &mdash; The status of the device&rsquo;s battery, and its current battery level.</li>
-<li><strong>BATTERY SOH</strong> &mdash; The device&rsquo;s <a href="battery-state-of-health.html">battery state of health</a>.</li>
-<li><strong>BATTERY REMAINING TIME</strong> &mdash; The remaining time on the device&rsquo;s current battery charge.</li>
+<li><strong>Low battery</strong> &mdash; The device&rsquo;s battery level is below the allowable threshold.</li>
+<li><strong>Charging</strong> &mdash; The device is connected to a battery charger.</li>
+<li><strong>Consuming</strong> &mdash; The device is discharging its battery.</li>
+<li><strong>Fully charged</strong> &mdash; The device&rsquo;s battery is fully charged.</li>
 </ul>
-<p>In the search bar above the list, you can search for a group name to filter for devices in that group. Click the Filter icon to show the filter panel, where you can sort data by specific parameters. Information in the list is filtered according to the parameters you specify in this panel.</p>
+<p>Battery status information is collected whenever a low battery or charging event occurs (for example, when a charger is connected or disconnected). For the Low battery state, you can define the threshold in the Dashboard settings &gt; THRESHOLDS tab. See <a href="../configure-dashboard-settings.html#thresholds">Configure dashboard settings</a> to learn more. For <strong>Low battery</strong> and <strong>Fully charged</strong> states, you&rsquo;ll also see the average remaining battery time for all affected devices.</p>
+<h2 id="expanded-view">Expanded view</h2>
+
+
+
+
+
+
+
+
+<p><img src="../../assets/battery-status-expanded.png" class="img-fluid img-thumbnail" alt="Battery status expanded view" /></p>
+<p>The Battery status expanded view provides a list of devices along with helpful information such as the current battery status, battery state of health (SOH), and the remaining time left on each device&rsquo;s battery.</p>
+<p>To help troubleshoot battery issues further, you can request or schedule a <a href="../../how-to-guides/view-diagnostics.html#view-snapshots">device snapshot</a>, or request a <a href="../../how-to-guides/view-diagnostics.html#request-diagnostic-logs">device debug log</a> by selecting one or more devices then clicking <strong>ACTIONS</strong>.</p>
+<p>Click any device in the <strong>DEVICE ID</strong> column to view more details in an expanded panel. To learn more about expanded device details, see <a href="../../how-to-guides/manage-devices.html">Manage devices</a>.</p>
 
             
           </div>
@@ -1080,12 +1075,8 @@
     <h2 class="body-4 fw-bold mt-0">On this page</h2>
     <nav id="TableOfContents">
   <ul>
-    <li><a href="battery-status.html#module-views">Module views</a>
-      <ul>
-        <li><a href="battery-status.html#dashboard-chart">Dashboard chart</a></li>
-        <li><a href="battery-status.html#expanded-view">Expanded view</a></li>
-      </ul>
-    </li>
+    <li><a href="battery-status.html#main-tile-view">Main tile view</a></li>
+    <li><a href="battery-status.html#expanded-view">Expanded view</a></li>
   </ul>
 </nav>
   </nav>

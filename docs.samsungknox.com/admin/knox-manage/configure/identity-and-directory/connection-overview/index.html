@@ -117,6 +117,8 @@
   </li>
 <li>
   <a href="../../../../knox-manage.html" class="active-drop-item">Knox Manage</a>
+  <ul>
+    </ul>
   </li>
 <li>
   <a href="../../../../efota-one.html" >Knox E-FOTA</a>
@@ -4382,7 +4384,7 @@
             </div>
             
 
-  <p><span>Last updated November  23rd, 2023</span></p>
+  <p><span>Last updated December  6th, 2023</span></p>
 </div>
           <div class="l-content">
             
@@ -4415,832 +4417,133 @@
       
       
       
-        <ul
-  class="nav nav-tabs d-flex align-items-center mt-3"
-  id="nav-tabs"
-  role="tablist"
->
-   
-   
-   
-   
-   
-  
-  <li class="nav-item" role="presentation">
-    <button
-      class="tab-link active px-3 py-2 rounded-5"
-      id="defbac-tab"
-      data-bs-toggle="tab"
-      data-bs-target="#defbac"
-      type="button"
-      role="tab"
-      aria-controls="defbac"
-      aria-selected="true"
-    >23.12
-    </button>
-  </li>
-   
-   
-   
-  
+        <p>You can connect Knox Manage to various third-party directory and identity provider services that manage enterprise employee authentication and employee information, such as user IDs. This enables sync of required information between Knox Manage and the enterprise directories, and also helps authenticate users when they sign in to enrolled devices.</p>
+<p>Depending on your enterprise’s directory services and the user types defined by your identity providers, you can configure various settings for sync and authentication. The following table provides information about the directory integrations supported by Knox Manage.</p>
+<table>
+    <tr>
+        <th scope="col">Connection type</th>
+        <th scope="col">Supported sync</th>
+        <th scope="col">Supported protocol</th>
+        <th scope="col">Support for MFA</th>
+        <th scope="col">Description</th>
+    </tr>
+    <tr>
+        <th>Knox Manage server</th>
+        <td>N/A</td>
+        <td>N/A</td>
+        <td>N/A</td>
+        <td>Click <strong>User</strong> in the Knox Manage console and manually add users</td>
+    </tr>
+    <tr>
+        <th>On-premises AD</th>
+        <td>
+            <ul>
+                <li>User</li>
+                <li>Group</li>
+                <li>Organization</li>
+            </ul>
+        </td>
+        <td>
+            <ul>
+                <li>(Sync) LDAP</li>
+                <li>(Auth) Kerberos</li>
+            </ul>
+        </td>
+        <td>N/A</td>
+        <td>
+            <ul>
+                <li>For user data sync, set LDAP server as On-prem AD. For details, see <a href="../connect-to-ad-ldap.html">Connect to AD/LDAP</a>.</li>
+                <li>To sync Knox Manage data with the enterprise and cloud servers, Samsung provides a secure Cloud Connector data transfer channel. For details, see <a href ="../../../active-directory/use-cloud-connector/samsung-cloud-connector-overview.html">Using Cloud Connector</a>.</li>
+            </ul>
+        </td>
+    </tr>
+    <tr>
+        <th>Azure AD Domain Service</th>
+        <td>
+            <ul>
+                <li>User</li>
+                <li>Group</li>
+                <li>Organization</li>
+            </ul>
+        </td>
+        <td>
+            <ul>
+                <li>(Sync) LDAP</li>
+                <li>(Auth) Kerberos</li>
+            </ul>
+        </td>
+        <td>N/A</td>
+        <td>For user data sync, set LDAP server as Azure AD Domain Service. For details, see <a href="../connect-to-ad-ldap.html">Connect to AD/LDAP</a>.</td>
+    </tr>
+    <tr>
+        <th>Azure AD</th>
+        <td>
+            <ul>
+                <li>User</li>
+                <li>Group</li>
+            </ul>
+        </td>
+        <td>
+            <ul>
+                <li>(Sync) Microsoft Graph API</li>
+                <li>(Auth) OIDC</li>
+            </ul>
+        </td>
+        <td>Yes</td>
+        <td>For user data sync and authorization, connect to Azure AD by integrating with Microsoft Graph API. For details, see <a href="../connect-to-azure-ad.html">Connect to Azure AD</a>.</td>
+    </tr>
+    <tr>
+        <th>Okta</th>
+        <td>
+            <ul>
+                <li>User</li>
+                <li>Group</li>
+            </ul>
+        </td>
+        <td>
+            <ul>
+                <li>(Sync) SCIM</li>
+                <li>(Auth) OIDC</li>
+            </ul>
+        </td>
+        <td>Yes</td>
+        <td>For user sync, SCIM provisioning setting is required. For user authorization, OIDC authentication setting is required. For details, see <a href="../connect-to-okta.html">Connect to Okta</a>.</td>
+    </tr>
+    <tr>
+        <th>Ping Identity</th>
+        <td>
+            <ul>
+                <li>User</li>
+                <li>Group</li>
+            </ul>
+        </td>
+        <td>
+            <ul>
+                <li>(Sync) SCIM</li>
+                <li>(Auth) OIDC</li>
+            </ul>
+        </td>
+        <td>Yes</td>
+        <td>For user sync, SCIM provisioning setting is required. For user authorization, OIDC authentication setting is required. For details, see <a href="../connect-to-ping-identity.html">Connect to Ping Identity</a>.</td>
+    </tr>
+</table>
+<p>Consider the following while setting up your integrations:</p>
+<ul>
+<li>
+<p>OIDC-based IDP direct authentication is newly supported in modern IDPs, such as Azure AD, Okta, and Ping Identity.</p>
+<ul>
+<li>
+<p>Okta and Ping Identity require additional OIDC settings to support IDP direct authentication and MFA.</p>
+</li>
+<li>
+<p>For Azure AD, OIDC authentication is covered under the Azure AD integration settings, and additional settings are not required.</p>
+</li>
 </ul>
-<div class="tab-content mb-6" id="nav-tab-content">
-
-
-
-
-
-
-
-
-
-
-
-
-
-  
-  
-  
-  
-  
-
-  
-  
-  
-  
-  
-
-  
-  
-  
-  
-  
-
-  
-  
-  
-  
-  
-
-  
-  
-  
-  
-  
-
-  
-  
-  
-  
-  
-
-  
-  
-  
-  
-  
-
-  
-  
-  
-  
-  
-
-  
-  
-  
-  
-  
-
-  
-  
-  
-  
-  
-
-  
-  
-  
-  
-  
-
-  
-  
-  
-  
-  
-
-  
-  
-  
-  
-  
-
-  
-  
-  
-  
-  
-
-  
-  
-  
-  
-  
-
-  
-  
-  
-  
-  
-
-  
-  
-  
-  
-  
-
-  
-  
-  
-  
-  
-
-  
-  
-  
-  
-  
-
-  
-  
-  
-  
-  
-
-  
-  
-  
-  
-  
-
-  
-  
-  
-  
-  
-
-  
-  
-  
-  
-  
-
-  
-  
-  
-  
-  
-
-  
-  
-  
-  
-  
-
-  
-  
-  
-  
-  
-
-  
-  
-  
-  
-  
-
-  
-  
-  
-  
-  
-
-  
-  
-  
-  
-  
-
-  
-  
-  
-  
-  
-
-  
-  
-  
-  
-  
-
-  
-  
-  
-  
-  
-
-  
-  
-  
-  
-  
-
-  
-  
-  
-  
-  
-
-  
-  
-  
-  
-  
-
-  
-  
-  
-  
-  
-
-  
-  
-  
-  
-  
-
-  
-  
-  
-  
-  
-
-  
-  
-  
-  
-  
-
-  
-  
-  
-  
-  
-
-  
-  
-  
-  
-  
-
-  
-  
-  
-  
-  
-
-  
-  
-  
-  
-  
-
-  
-  
-  
-  
-  
-
-  
-  
-  
-  
-  
-
-  
-  
-  
-  
-  
-
-  
-  
-  
-  
-  
-
-  
-  
-  
-  
-  
-
-  
-  
-  
-  
-  
-
-  
-  
-  
-  
-  
-
-  
-  
-  
-  
-  
-
-  
-  
-  
-  
-  
-
-  
-  
-  
-  
-  
-
-  
-  
-  
-  
-  
-
-  
-  
-  
-  
-  
-
-  
-  
-  
-  
-  
-
-  
-  
-  
-  
-  
-
-  
-  
-  
-  
-  
-
-  
-  
-  
-  
-  
-
-  
-  
-  
-  
-  
-
-  
-  
-  
-  
-  
-
-  
-  
-  
-  
-  
-
-  
-  
-  
-  
-  
-
-  
-  
-  
-  
-  
-
-  
-  
-  
-  
-  
-
-  
-  
-  
-  
-  
-
-  
-  
-  
-  
-  
-
-  
-  
-  
-  
-  
-
-  
-  
-  
-  
-  
-
-  
-  
-  
-  
-  
-
-  
-  
-  
-  
-  
-
-  
-  
-  
-  
-  
-
-  
-  
-  
-  
-  
-
-  
-  
-  
-  
-  
-
-  
-  
-  
-  
-  
-
-  
-  
-  
-  
-  
-
-  
-  
-  
-  
-  
-
-  
-  
-  
-  
-  
-
-  
-  
-  
-  
-  
-
-  
-  
-  
-  
-  
-
-  
-  
-  
-  
-  
-
-  
-  
-  
-  
-  
-
-  
-  
-  
-  
-  
-
-  
-  
-  
-  
-  
-
-  
-  
-  
-  
-  
-
-  
-  
-  
-  
-  
-
-  
-  
-  
-  
-  
-
-  
-  
-  
-  
-  
-
-  
-  
-  
-  
-  
-
-  
-  
-  
-  
-  
-
-  
-  
-  
-  
-  
-
-  
-  
-  
-  
-  
-
-  
-  
-  
-  
-  
-
-  
-  
-  
-  
-  
-
-  
-  
-  
-  
-  
-
-  
-  
-  
-  
-  
-
-  
-  
-  
-  
-  
-
-  
-  
-  
-  
-  
-
-  
-  
-  
-  
-  
-
-  
-  
-  
-  
-  
-
-  
-  
-  
-  
-  
-
-  
-  
-  
-  
-  
-
-  
-  
-  
-  
-  
-
-  
-  
-  
-  
-  
-
-  
-  
-  
-  
-  
-
-  
-  
-  
-  
-  
-
-  
-  
-  
-  
-  
-
-  
-  
-  
-  
-  
-
-  
-  
-  
-  
-  
-
-  
-  
-  
-  
-  
-
-  
-  
-  
-  
-  
-
-  
-  
-  
-  
-  
-
-  
-  
-  
-  
-  
-
-  
-  
-  
-  
-  
-
-  
-  
-  
-  
-  
-
-  
-  
-  
-  
-  
-
-  
-  
-  
-  
-  
-
-  
-  
-  
-  
-  
-
-  
-  
-  
-  
-  
-
-  
-  
-  
-  
-  
-
-  
-  
-  
-  
-  
-
-  
-  
-  
-  
-  
-
-  
-  
-  
-  
-  
-
-  
-  
-  
-  
-  
-
-  
-  
-  
-  
-  
-
-  
-  
-  
-  
-  
-
-  
-  
-  
-  
-  
-
-  
-  
-  
-  
-  
-
-
-<div class="tab-pane fade  show active  border border-grey-line rounded-3 overflow-hidden" id="defbac" role="tabpanel" aria-labelledby="defbac-tab">
-  
-  <div class="tab-text bg-light p-3 border-bottom border-grey-line">
-    <p>This document is new for the <a href="../../../../uat.html">Knox cloud services 23.12 UAT</a>.</p>
-    
-  </div>
-  
-  
-  
-  <div class="tab-text p-3"><p>You can connect Knox Manage to various third-party directory and identity provider services that manage enterprise employee authentication and employee information, such as user IDs. This enables sync of required information between Knox Manage and the enterprise directories, and also helps authenticate users when they sign in to enrolled devices.</p><p>Depending on your enterprise’s directory services and the user types defined by your identity providers, you can configure various settings for sync and authentication. The following table provides information about the directory integrations supported by Knox Manage.</p><table>    <tr>        <th scope="col">Connection type</th>        <th scope="col">Supported sync</th>        <th scope="col">Supported protocol</th>        <th scope="col">Support for MFA</th>        <th scope="col">Description</th>    </tr>    <tr>        <th>Knox Manage server</th>        <td>N/A</td>        <td>N/A</td>        <td>N/A</td>        <td>Click <strong>User</strong> in the Knox Manage console and manually add users</td>    </tr>    <tr>        <th>On-premises AD</th>        <td>            <ul>                <li>User</li>                <li>Group</li>                <li>Organization</li>            </ul>        </td>        <td>            <ul>                <li>(Sync) LDAP</li>                <li>(Auth) Kerberos</li>            </ul>        </td>        <td>N/A</td>        <td>            <ul>                <li>For user data sync, set LDAP server as On-prem AD. For details, see <a href="../connect-to-ad-ldap.html">Connect to AD/LDAP</a>.</li>                <li>To sync Knox Manage data with the enterprise and cloud servers, Samsung provides a secure Cloud Connector data transfer channel. For details, see <a href ="../../../active-directory/use-cloud-connector/samsung-cloud-connector-overview.html">Using Cloud Connector</a>.</li>            </ul>        </td>    </tr>    <tr>        <th>Azure AD Domain Service</th>        <td>            <ul>                <li>User</li>                <li>Group</li>                <li>Organization</li>            </ul>        </td>        <td>            <ul>                <li>(Sync) LDAP</li>                <li>(Auth) Kerberos</li>            </ul>        </td>        <td>N/A</td>        <td>For user data sync, set LDAP server as Azure AD Domain Service. For details, see <a href="../connect-to-ad-ldap.html">Connect to AD/LDAP</a>.</td>    </tr>    <tr>        <th>Azure AD</th>        <td>            <ul>                <li>User</li>                <li>Group</li>            </ul>        </td>        <td>            <ul>                <li>(Sync) Microsoft Graph API</li>                <li>(Auth) OIDC</li>            </ul>        </td>        <td>Yes</td>        <td>For user data sync and authorization, connect to Azure AD by integrating with Microsoft Graph API. For details, see <a href="../connect-to-azure-ad.html">Connect to Azure AD</a>.</td>    </tr>    <tr>        <th>Okta</th>        <td>            <ul>                <li>User</li>                <li>Group</li>            </ul>        </td>        <td>            <ul>                <li>(Sync) SCIM</li>                <li>(Auth) OIDC</li>            </ul>        </td>        <td>Yes</td>        <td>For user sync, SCIM provisioning setting is required. For user authorization, OIDC authentication setting is required. For details, see <a href="../connect-to-okta.html">Connect to Okta</a>.</td>    </tr>    <tr>        <th>Ping Identity</th>        <td>            <ul>                <li>User</li>                <li>Group</li>            </ul>        </td>        <td>            <ul>                <li>(Sync) SCIM</li>                <li>(Auth) OIDC</li>            </ul>        </td>        <td>Yes</td>        <td>For user sync, SCIM provisioning setting is required. For user authorization, OIDC authentication setting is required. For details, see <a href="../connect-to-ping-identity.html">Connect to Ping Identity</a>.</td>    </tr></table><p>Consider the following while setting up your integrations:</p><ul><li><p>OIDC-based IDP direct authentication is newly supported in modern IDPs, such as Azure AD, Okta, and Ping Identity.</p><ul><li><p>Okta and Ping Identity require additional OIDC settings to support IDP direct authentication and MFA.</p></li><li><p>For Azure AD, OIDC authentication is covered under the Azure AD integration settings, and additional settings are not required.</p></li></ul></li><li><p>Multi Factor Authentication (MFA), supported in the modern IDPs Azure AD, Okta and Ping Identity, is set directly in each IDP server. Knox Manage follows the MFA set in the IDP server.</p></li></ul>
-  </div>
-  
-</div>
-</div>
+</li>
+<li>
+<p>Multi Factor Authentication (MFA), supported in the modern IDPs Azure AD, Okta and Ping Identity, is set directly in each IDP server. Knox Manage follows the MFA set in the IDP server.</p>
+</li>
+</ul>
 
             
           </div>

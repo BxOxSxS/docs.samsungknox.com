@@ -117,6 +117,8 @@
   </li>
 <li>
   <a href="../../../knox-manage.html" class="active-drop-item">Knox Manage</a>
+  <ul>
+    </ul>
   </li>
 <li>
   <a href="../../../efota-one.html" >Knox E-FOTA</a>
@@ -4382,7 +4384,7 @@
             </div>
             
 
-  <p><span>Last updated November  23rd, 2023</span></p>
+  <p><span>Last updated December  6th, 2023</span></p>
 </div>
           <div class="l-content">
             
@@ -4440,46 +4442,6 @@
       
       
       
-        
-      
-      
-      
-      
-        
-      
-      
-      
-      
-        
-      
-      
-      
-      
-        
-      
-      
-      
-      
-        
-      
-      
-      
-      
-        
-      
-      
-      
-      
-        
-      
-      
-      
-      
-        
-      
-      
-      
-      
       
       
         
@@ -4549,1420 +4511,426 @@
       
       
         
-      <ul
-  class="nav nav-tabs d-flex align-items-center mt-3"
-  id="nav-tabs"
-  role="tablist"
->
-   
-   
-   
-   
-   
-  
-  <li class="nav-item" role="presentation">
-    <button
-      class="tab-link active px-3 py-2 rounded-5"
-      id="bedfca-tab"
-      data-bs-toggle="tab"
-      data-bs-target="#bedfca"
-      type="button"
-      role="tab"
-      aria-controls="bedfca"
-      aria-selected="true"
-    >23.12
-    </button>
-  </li>
-   
-   
-   
-  
+      <p>Okta provides secure services for user identity and authentication that are based on System for Cross-domain Identity Management (SCIM) 2.0 and OpenID Connect (OIDC) protocol.</p>
+<p>You can integrate and connect Knox Manage with Okta services using the cloud-based Knox Manage MDM app available on the Okta portal. When connected and configured, the user and group information in your Okta tenant is synced with Knox Manage.</p>
+<p>Consider the following while integrating with Okta:</p>
+<ul>
+<li>
+<p>Syncing of organizations isn’t currently supported.</p>
+</li>
+<li>
+<p>User authentication is executed directly by Okta.</p>
+</li>
+<li>
+<p>Multi-factor authentication (MFA) is supported and set up in the Okta portal. Knox Manage follows the MFA set up in Okta.</p>
+</li>
+<li>
+<p>SCIM setting is required to enable user provisioning and synchronization.</p>
+<ul>
+<li>Make note of the tenant URL and secret token information before saving your settings in the Okta portal. You can only renew this information after the settings are saved.</li>
 </ul>
-<div class="tab-content mb-6" id="nav-tab-content">
+</li>
+<li>
+<p>OIDC setting is required to enable user authentication. You can configure OIDC before SCIM, or after SCIM is set and user information sync is successful.</p>
+</li>
+</ul>
+<h2 id="connect-knox-manage-to-okta-through-oidc">Connect Knox Manage to Okta through OIDC</h2>
+<p>To connect Knox Manage with Okta through OIDC for user authentication:</p>
+<ol>
+<li>
+<p>In the Okta admin console, go to <strong>Applications</strong> &gt; <strong>Applications</strong>, and click <strong>Create App Integration</strong>.</p>
 
-
-
-
-
-
-
-
-
-
-
-
-
-  
-  
-  
-  
-  
-
-  
-  
-  
-  
-  
-
-  
-  
-  
-  
-  
-
-  
-  
-  
-  
-  
-
-  
-  
-  
-  
-  
-
-  
-  
-  
-  
-  
-
-  
-  
-  
-  
-  
-
-  
-  
-  
-  
-  
-
-  
-  
-  
-  
-  
-
-  
-  
-  
-  
-  
-
-  
-  
-  
-  
-  
-
-  
-  
-  
-  
-  
-
-  
-  
-  
-  
-  
-
-  
-  
-  
-  
-  
-
-  
-  
-  
-  
-  
-
-  
-  
-  
-  
-  
-
-  
-  
-  
-  
-  
-
-  
-  
-  
-  
-  
-
-  
-  
-  
-  
-  
-
-  
-  
-  
-  
-  
-
-  
-  
-  
-  
-  
-
-  
-  
-  
-  
-  
-
-  
-  
-  
-  
-  
-
-  
-  
-  
-  
     
     
     
     
     
-  
+    
+    
+    <p><img src="../../assets/idp-okta-01.png" class="img-fluid img-thumbnail" alt="Create app integration" /></p>
+</li>
+<li>
+<p>On the <strong>Create a new app integration</strong> screen, select <strong>OIDC – OpenID Connect</strong> and <strong>Single-Page Application</strong>, and click <strong>Next</strong>.</p>
 
-  
-  
-  
-  
-  
-
-  
-  
-  
-  
-  
-
-  
-  
-  
-  
-  
-
-  
-  
-  
-  
-  
-
-  
-  
-  
-  
-  
-
-  
-  
-  
-  
-  
-
-  
-  
-  
-  
-  
-
-  
-  
-  
-  
-  
-
-  
-  
-  
-  
-  
-
-  
-  
-  
-  
-  
-
-  
-  
-  
-  
-  
-
-  
-  
-  
-  
-  
-
-  
-  
-  
-  
-  
-
-  
-  
-  
-  
-  
-
-  
-  
-  
-  
-  
-
-  
-  
-  
-  
-  
-
-  
-  
-  
-  
-  
-
-  
-  
-  
-  
-  
-
-  
-  
-  
-  
-  
-
-  
-  
-  
-  
-  
-
-  
-  
-  
-  
-  
-
-  
-  
-  
-  
-  
-
-  
-  
-  
-  
-  
-
-  
-  
-  
-  
-  
-
-  
-  
-  
-  
-  
-
-  
-  
-  
-  
-  
-
-  
-  
-  
-  
-  
-
-  
-  
-  
-  
-  
-
-  
-  
-  
-  
-  
-
-  
-  
-  
-  
-  
-
-  
-  
-  
-  
-  
-
-  
-  
-  
-  
-  
-
-  
-  
-  
-  
-  
-
-  
-  
-  
-  
-  
-
-  
-  
-  
-  
-  
-
-  
-  
-  
-  
-  
-
-  
-  
-  
-  
-  
-
-  
-  
-  
-  
-  
-
-  
-  
-  
-  
-  
-
-  
-  
-  
-  
-  
-
-  
-  
-  
-  
-  
-
-  
-  
-  
-  
-  
-
-  
-  
-  
-  
-  
-
-  
-  
-  
-  
-  
-
-  
-  
-  
-  
-  
-
-  
-  
-  
-  
-  
-
-  
-  
-  
-  
-  
-
-  
-  
-  
-  
-  
-
-  
-  
-  
-  
-  
-
-  
-  
-  
-  
-  
-
-  
-  
-  
-  
-  
-
-  
-  
-  
-  
-  
-
-  
-  
-  
-  
-  
-
-  
-  
-  
-  
     
     
     
     
     
-  
+    
+    
+    <p><img src="../../assets/idp-okta-02.png" class="img-fluid img-thumbnail" alt="Settings for the app integration" /></p>
+</li>
+<li>
+<p>Specify <strong>App integration name</strong>, <strong>Grant type</strong>, <strong>Sign-in redirect URI</strong>, and user access under <strong>Controlled access</strong>. Click <strong>Save</strong>.</p>
+<div class="my-3 ps-3 border-start border-3 border-black"><p class="fw-bold">Note</p><p>Ensure the CRS information in <strong>Sign-in redirect URIs</strong> is correct to avoid errors during user authentication.</p></div>
 
-  
-  
-  
-  
-  
-
-  
-  
-  
-  
-  
-
-  
-  
-  
-  
-  
-
-  
-  
-  
-  
-  
-
-  
-  
-  
-  
-  
-
-  
-  
-  
-  
-  
-
-  
-  
-  
-  
-  
-
-  
-  
-  
-  
-  
-
-  
-  
-  
-  
-  
-
-  
-  
-  
-  
-  
-
-  
-  
-  
-  
-  
-
-  
-  
-  
-  
-  
-
-  
-  
-  
-  
-  
-
-  
-  
-  
-  
-  
-
-  
-  
-  
-  
-  
-
-  
-  
-  
-  
-  
-
-  
-  
-  
-  
-  
-
-  
-  
-  
-  
     
     
     
     
     
-  
+    
+    
+    <p><img src="../../assets/idp-okta-03.png" class="img-fluid img-thumbnail" alt="Specify CRS details" /></p>
+</li>
+<li>
+<p>(Optional) To activate MFA for user authentication in the Knox Manage app, edit <strong>User Authentication settings</strong>, and select <strong>Any two factors</strong> as the <strong>Authentication policy</strong>.</p>
 
-  
-  
-  
-  
-  
-
-  
-  
-  
-  
-  
-
-  
-  
-  
-  
-  
-
-  
-  
-  
-  
-  
-
-  
-  
-  
-  
-  
-
-  
-  
-  
-  
-  
-
-  
-  
-  
-  
-  
-
-  
-  
-  
-  
-  
-
-  
-  
-  
-  
-  
-
-  
-  
-  
-  
-  
-
-  
-  
-  
-  
-  
-
-  
-  
-  
-  
-  
-
-  
-  
-  
-  
-  
-
-  
-  
-  
-  
-  
-
-  
-  
-  
-  
     
     
     
     
     
-  
+    
+    
+    <p><img src="../../assets/idp-okta-04.png" class="img-fluid img-thumbnail" alt="Edit user authentication settings" /></p>
 
-  
-  
-  
-  
-  
-
-  
-  
-  
-  
-  
-
-  
-  
-  
-  
-  
-
-  
-  
-  
-  
-  
-
-  
-  
-  
-  
-  
-
-  
-  
-  
-  
-  
-
-  
-  
-  
-  
-  
-
-  
-  
-  
-  
-  
-
-  
-  
-  
-  
-  
-
-  
-  
-  
-  
-  
-
-  
-  
-  
-  
-  
-
-  
-  
-  
-  
-  
-
-  
-  
-  
-  
-  
-
-  
-  
-  
-  
-  
-
-  
-  
-  
-  
-  
-
-  
-  
-  
-  
-  
-
-  
-  
-  
-  
-  
-
-  
-  
-  
-  
-  
-
-  
-  
-  
-  
-  
-
-  
-  
-  
-  
-  
-
-  
-  
-  
-  
     
     
     
     
     
-  
+    
+    
+    <p><img src="../../assets/idp-okta-05.png" class="img-fluid img-thumbnail" alt="Select two factors for authentication policy" /></p>
+</li>
+<li>
+<p>(Optional) If the OIDC application is configured for Knox Manage, copy and save <strong>Client ID</strong> displayed in the <strong>General</strong> tab.</p>
 
-  
-  
-  
-  
-  
-
-  
-  
-  
-  
-  
-
-  
-  
-  
-  
-  
-
-  
-  
-  
-  
-  
-
-  
-  
-  
-  
-  
-
-  
-  
-  
-  
-  
-
-  
-  
-  
-  
-  
-
-  
-  
-  
-  
-  
-
-  
-  
-  
-  
-  
-
-  
-  
-  
-  
-  
-
-  
-  
-  
-  
-  
-
-  
-  
-  
-  
-  
-
-  
-  
-  
-  
-  
-
-  
-  
-  
-  
-  
-
-  
-  
-  
-  
-  
-
-  
-  
-  
-  
-  
-
-  
-  
-  
-  
-  
-
-  
-  
-  
-  
-  
-
-  
-  
-  
-  
-  
-
-  
-  
-  
-  
-  
-
-  
-  
-  
-  
     
     
     
     
     
-  
+    
+    
+    <p><img src="../../assets/idp-okta-06.png" class="img-fluid img-thumbnail" alt="Copy client ID" /></p>
+</li>
+<li>
+<p>To configure OIDC Discovery URL and Client ID in the Knox Manage console and enable user authentication, specify an authorization server in the Okta portal. To do so, go to <strong>Security</strong> &gt; <strong>API</strong> &gt; <strong>Authorization Servers</strong>, and select a server.</p>
+<div class="my-3 ps-3 border-start border-3 border-black"><p class="fw-bold">Note</p><p>If no authorization server is added, only the <strong>Default</strong> authorization server is displayed.</p></div>
 
-  
-  
-  
-  
-  
-
-  
-  
-  
-  
-  
-
-  
-  
-  
-  
-  
-
-  
-  
-  
-  
-  
-
-  
-  
-  
-  
-  
-
-  
-  
-  
-  
-  
-
-  
-  
-  
-  
-  
-
-  
-  
-  
-  
-  
-
-  
-  
-  
-  
-  
-
-  
-  
-  
-  
-  
-
-  
-  
-  
-  
-  
-
-  
-  
-  
-  
-  
-
-  
-  
-  
-  
-  
-
-  
-  
-  
-  
-  
-
-  
-  
-  
-  
-  
-
-  
-  
-  
-  
-  
-
-  
-  
-  
-  
-  
-
-  
-  
-  
-  
-  
-
-  
-  
-  
-  
-  
-
-  
-  
-  
-  
-  
-
-  
-  
-  
-  
-  
-
-  
-  
-  
-  
-  
-
-  
-  
-  
-  
-  
-
-  
-  
-  
-  
-  
-
-  
-  
-  
-  
-  
-
-  
-  
-  
-  
-  
-
-  
-  
-  
-  
-  
-
-  
-  
-  
-  
-  
-
-  
-  
-  
-  
-  
-
-  
-  
-  
-  
     
     
     
     
     
-  
+    
+    
+    <p><img src="../../assets/idp-okta-07.png" class="img-fluid img-thumbnail" alt="Specify authentication server" /></p>
+</li>
+<li>
+<p>Copy <strong>Metadata URI</strong> from the Settings tab on the Authorization Server detail page.</p>
 
-  
-  
-  
-  
-  
-
-  
-  
-  
-  
-  
-
-  
-  
-  
-  
-  
-
-  
-  
-  
-  
-  
-
-  
-  
-  
-  
-  
-
-  
-  
-  
-  
-  
-
-  
-  
-  
-  
-  
-
-  
-  
-  
-  
-  
-
-  
-  
-  
-  
-  
-
-  
-  
-  
-  
-  
-
-  
-  
-  
-  
-  
-
-  
-  
-  
-  
-  
-
-  
-  
-  
-  
-  
-
-  
-  
-  
-  
     
     
     
     
     
-  
-
-  
-  
-  
-  
-  
-
-  
-  
-  
-  
-  
-
-  
-  
-  
-  
-  
-
-  
-  
-  
-  
-  
-
-  
-  
-  
-  
-  
-
-  
-  
-  
-  
-  
-
-  
-  
-  
-  
-  
-
-  
-  
-  
-  
-  
-
-  
-  
-  
-  
-  
-
-  
-  
-  
-  
-  
-
-  
-  
-  
-  
-  
-
-  
-  
-  
-  
-  
-
-  
-  
-  
-  
-  
-
-  
-  
-  
-  
-  
-
-  
-  
-  
-  
-  
-
-  
-  
-  
-  
-  
-
-
-<div class="tab-pane fade  show active  border border-grey-line rounded-3 overflow-hidden" id="bedfca" role="tabpanel" aria-labelledby="bedfca-tab">
-  
-  <div class="tab-text bg-light p-3 border-bottom border-grey-line">
-    <p>This document is new for the <a href="../../../uat.html">Knox cloud services 23.12 UAT</a>.</p>
     
-  </div>
-  
-  
     
-    <div class="tab-text p-3 border-bottom border-grey-line">
-      <p class="fw-bold">On this tab</p>
-      <ul class="mt-2 mb-0 list-unstyled section-nav">
-      
-        
-        <li class="ms-0"><a href="connect-to-okta.html#connect-knox-manage-to-okta-through-oidc-23-12">Connect Knox Manage to Okta through OIDC</a>
-      
-        
-        <li class="ms-0"><a href="connect-to-okta.html#connect-knox-manage-to-okta-through-scim-for-user-provisioning-and-sync-23-12">Connect Knox Manage to Okta through SCIM for user provisioning and sync</a>
-      
-        
-        <li class="ms-2"><a href="connect-to-okta.html#prerequisites-23-12">Prerequisites</a>
-      
-        
-        <li class="ms-2"><a href="connect-to-okta.html#step-1-----configure-knox-manage-to-support-provisioning-with-okta-23-12">Step 1 — Configure Knox Manage to support provisioning with Okta</a>
-      
-        
-        <li class="ms-2"><a href="connect-to-okta.html#step-2----register-the-scim-app-in-okta-23-12">Step 2 –– Register the SCIM App in Okta</a>
-      
-        
-        <li class="ms-2"><a href="connect-to-okta.html#step-3-----enable-scim-api-integration-in-okta-23-12">Step 3 — Enable SCIM API integration in Okta</a>
-      
-        
-        <li class="ms-2"><a href="connect-to-okta.html#step-4-----assign-people-or-groups-to-the-app-23-12">Step 4 — Assign people or groups to the app</a>
-      
-        
-        <li class="ms-2"><a href="connect-to-okta.html#step-5-----push-groups-to-the-app-23-12">Step 5 — Push groups to the app</a>
-      
-      </ul>
-  </div>
+    <p><img src="../../assets/idp-okta-08.png" class="img-fluid img-thumbnail" alt="Copy Metadata URI" /></p>
+</li>
+<li>
+<p>On the Knox Manage console, go to <strong>Setting</strong> &gt; <strong>Identity &amp; Directory</strong> &gt; <strong>Connection</strong> &gt; <strong>Add Connection</strong>, and integrate Okta’s OIDC authentication as follows:</p>
+<ul>
+<li>
+<p>Select <strong>Okta (SCIM)</strong> for <strong>Connection Type</strong></p>
+</li>
+<li>
+<p>Select <strong>Use</strong> for <strong>User Authentication</strong></p>
+</li>
+<li>
+<p>Enter the previously copied Okta OIDC client ID in the <strong>Client ID</strong> field</p>
+</li>
+<li>
+<p>Enter the previously copied Okta OIDC metadata URI in the <strong>Discovery URL</strong> field</p>
+</li>
+</ul>
+<div class="my-3 ps-3 border-start border-3 border-caution"><p class="fw-bold">Caution</p><ul><li><p>All SCIM settings must be completed in one go. Refer to the following section for details.</p></li><li><p>If you set user authentication as Do not use, OIDC authentication must be configured after the SCIM provisioning is set and the sync for device enrollment is successful.</p></li></ul></div>
+
     
-  
-  
-  <div class="tab-text p-3"><p>Okta provides secure services for user identity and authentication that are based on System for Cross-domain Identity Management (SCIM) 2.0 and OpenID Connect (OIDC) protocol.</p><p>You can integrate and connect Knox Manage with Okta services using the cloud-based Knox Manage MDM app available on the Okta portal. When connected and configured, the user and group information in your Okta tenant is synced with Knox Manage.</p><p>Consider the following while integrating with Okta:</p><ul><li><p>Syncing of organizations isn’t currently supported.</p></li><li><p>User authentication is executed directly by Okta.</p></li><li><p>Multi-factor authentication (MFA) is supported and set up in the Okta portal. Knox Manage follows the MFA set up in Okta.</p></li><li><p>SCIM setting is required to enable user provisioning and synchronization.</p><ul><li>Make note of the tenant URL and secret token information before saving your settings in the Okta portal. You can only renew this information after the settings are saved.</li></ul></li><li><p>OIDC setting is required to enable user authentication. You can configure OIDC before SCIM, or after SCIM is set and user information sync is successful.</p></li></ul><h2 id="connect-knox-manage-to-okta-through-oidc-23-12">Connect Knox Manage to Okta through OIDC</h2><p>To connect Knox Manage with Okta through OIDC for user authentication:</p><ol><li><p>In the Okta admin console, go to <strong>Applications</strong> &gt; <strong>Applications</strong>, and click <strong>Create App Integration</strong>.</p> <p><img src="../../assets/idp-okta-01.png" class="img-fluid img-thumbnail" alt="Create app integration" /></p></li><li><p>On the <strong>Create a new app integration</strong> screen, select <strong>OIDC – OpenID Connect</strong> and <strong>Single-Page Application</strong>, and click <strong>Next</strong>.</p> <p><img src="../../assets/idp-okta-02.png" class="img-fluid img-thumbnail" alt="Settings for the app integration" /></p></li><li><p>Specify <strong>App integration name</strong>, <strong>Grant type</strong>, <strong>Sign-in redirect URI</strong>, and user access under <strong>Controlled access</strong>. Click <strong>Save</strong>.</p> <div class="my-3 ps-3 border-start border-3 border-black"><p class="fw-bold">Note</p><p>Ensure the CRS information in <strong>Sign-in redirect URIs</strong> is correct to avoid errors during user authentication.</p></div> <p><img src="../../assets/idp-okta-03.png" class="img-fluid img-thumbnail" alt="Specify CRS details" /></p></li><li><p>(Optional) To activate MFA for user authentication in the Knox Manage app, edit <strong>User Authentication settings</strong>, and select <strong>Any two factors</strong> as the <strong>Authentication policy</strong>.</p> <p><img src="../../assets/idp-okta-04.png" class="img-fluid img-thumbnail" alt="Edit user authentication settings" /></p> <p><img src="../../assets/idp-okta-05.png" class="img-fluid img-thumbnail" alt="Select two factors for authentication policy" /></p></li><li><p>(Optional) If the OIDC application is configured for Knox Manage, copy and save <strong>Client ID</strong> displayed in the <strong>General</strong> tab.</p> <p><img src="../../assets/idp-okta-06.png" class="img-fluid img-thumbnail" alt="Copy client ID" /></p></li><li><p>To configure OIDC Discovery URL and Client ID in the Knox Manage console and enable user authentication, specify an authorization server in the Okta portal. To do so, go to <strong>Security</strong> &gt; <strong>API</strong> &gt; <strong>Authorization Servers</strong>, and select a server.</p> <div class="my-3 ps-3 border-start border-3 border-black"><p class="fw-bold">Note</p><p>If no authorization server is added, only the <strong>Default</strong> authorization server is displayed.</p></div> <p><img src="../../assets/idp-okta-07.png" class="img-fluid img-thumbnail" alt="Specify authentication server" /></p></li><li><p>Copy <strong>Metadata URI</strong> from the Settings tab on the Authorization Server detail page.</p> <p><img src="../../assets/idp-okta-08.png" class="img-fluid img-thumbnail" alt="Copy Metadata URI" /></p></li><li><p>On the Knox Manage console, go to <strong>Setting</strong> &gt; <strong>Identity &amp; Directory</strong> &gt; <strong>Connection</strong> &gt; <strong>Add Connection</strong>, and integrate Okta’s OIDC authentication as follows:</p><ul><li><p>Select <strong>Okta (SCIM)</strong> for <strong>Connection Type</strong></p></li><li><p>Select <strong>Use</strong> for <strong>User Authentication</strong></p></li><li><p>Enter the previously copied Okta OIDC client ID in the <strong>Client ID</strong> field</p></li><li><p>Enter the previously copied Okta OIDC metadata URI in the <strong>Discovery URL</strong> field</p></li></ul> <div class="my-3 ps-3 border-start border-3 border-caution"><p class="fw-bold">Caution</p><ul><li><p>All SCIM settings must be completed in one go. Refer to the following section for details.</p></li><li><p>If you set user authentication as Do not use, OIDC authentication must be configured after the SCIM provisioning is set and the sync for device enrollment is successful.</p></li></ul></div> <p><img src="../../assets/idp-okta-09.png" class="img-fluid img-thumbnail" alt="Configure OIDC authentication and provisioning settings" /></p></li></ol><h2 id="connect-knox-manage-to-okta-through-scim-for-user-provisioning-and-sync-23-12">Connect Knox Manage to Okta through SCIM for user provisioning and sync</h2><p>To enable automatic user provisioning, you must configure settings in the Knox Manage console and in the Okta portal.</p><p>Once configured, Okta automatically provisions and de-provisions users and groups to Knox Manage using the Okta provisioning service. The following capabilities are supported:</p><ul><li><p>Creation of users and groups in Knox Manage</p></li><li><p>Deactivation of users in Knox Manage when they do not require access anymore</p></li><li><p>Sync of user attributes between Okta and Knox Manage</p></li><li><p>Provisioning of groups and group memberships in Knox Manage</p></li></ul><p>To learn more about how Okta works with SCIM, see Okta’s article on <a href="https://www.okta.com/blog/2017/01/what-is-scim/" target="_blank">What is SCIM?</a></p><h3 id="prerequisites-23-12">Prerequisites</h3><ul><li><p><a href="https://developer.okta.com/docs/concepts/okta-organizations/" target="_blank">An Okta organization</a></p></li><li><p>A Knox Manage tenant</p></li><li><p>A user account in Okta with permission to configure provisioning</p></li><li><p>A Knox Manage user account with administrator permissions</p></li></ul><h3 id="step-1-----configure-knox-manage-to-support-provisioning-with-okta-23-12">Step 1 &mdash; Configure Knox Manage to support provisioning with Okta</h3><ol><li><p>Sign in to the Knox Manage console.</p></li><li><p>Go to <strong>Setting</strong> &gt; <strong>Identity &amp; Directory</strong> &gt; <strong>Connection</strong> and click <strong>Add</strong>.</p></li><li><p>On the <strong>Add Connection</strong> page, set <strong>Connection Type</strong> as <strong>Okta (SCIM)</strong>.</p></li><li><p>Copy the <strong>Tenant URL</strong> and <strong>Secret Token</strong> and ensure to keep them accessible for later use in the Okta portal. The secret token cannot be retrieved, it can only be reissued.</p><ul><li>If you need to reissue the secret token, go to <strong>Setting</strong> &gt; <strong>Identity &amp; Directory</strong> &gt; <strong>Connection</strong>. Click the required connection to view its information, click <strong>Details</strong> for Token Expiration, and click <strong>Replace Token</strong> in the <strong>Token Details</strong> dialog.</li></ul></li><li><p>Click <strong>Save</strong>.</p></li></ol><h3 id="step-2----register-the-scim-app-in-okta-23-12">Step 2 –&ndash; Register the SCIM App in Okta</h3><ol><li><p>Sign in to Okta and navigate to <strong>Applications</strong> &gt; <strong>Applications</strong> &gt; <strong>Browse App Catalog</strong>.</p> <p><img src="../../assets/idp-okta-10.png" class="img-fluid img-thumbnail" alt="Browse App Catalog button on the Applications page" /></p></li><li><p>Search for and select the <strong>Samsung Knox Manage</strong> app and click <strong>Add Integration</strong>. For details, see Okta’s article on how to <a href="https://help.okta.com/en-us/Content/Topics/Provisioning/lcm/lcm-add-application.htm" target="_blank">Add an app integration to Okta</a>.</p> <p><img src="../../assets/idp-okta-11.png" class="img-fluid img-thumbnail" alt="Search and select Samsung Knox Manage" /></p> <p><img src="../../assets/idp-okta-12.png" class="img-fluid img-thumbnail" alt="Click Add Integration" /></p> <p><img src="../../assets/idp-okta-13.png" class="img-fluid img-thumbnail" alt="General settings for the app" /></p></li><li><p>Open Samsung Knox Manage in the portal, navigate to <strong>General</strong> &gt; <strong>App Setting</strong>, click <strong>Edit</strong>, and select the following and click <strong>Save</strong>:</p><ul><li><strong>Do not display application icon to users</strong></li><li><strong>Auto-launch the app when user signs into Okta</strong></li></ul> <p><img src="../../assets/idp-okta-14.png" class="img-fluid img-thumbnail" alt="Set display and auto-launch options for the app" /></p></li></ol><h3 id="step-3-----enable-scim-api-integration-in-okta-23-12">Step 3 &mdash; Enable SCIM API integration in Okta</h3><ol><li><p>Navigate to <strong>Provisioning</strong>, and click <strong>Configure API integration</strong>.</p> <p><img src="../../assets/idp-okta-15.png" class="img-fluid img-thumbnail" alt="Configure API integration" /></p></li><li><p>Select <strong>Enable API integration</strong>.</p></li><li><p>Paste the <strong>Tenant URL</strong> and <strong>Secret Token</strong> values you copied from the Knox Manage console into the <strong>Base URL</strong> and <strong>API Token</strong> fields respectively.</p> <p><img src="../../assets/idp-okta-16.png" class="img-fluid img-thumbnail" alt="Paste the values copied from Knox Manage console" /></p></li><li><p>Click <strong>Test API Credentials</strong>. If the test passes, select <strong>Save</strong>.</p><p>If the test fails, ensure that the <strong>Tenant URL</strong> and <strong>Secret Token</strong> are correct and the connection was properly saved and try again.</p> <p><img src="../../assets/idp-okta-17.png" class="img-fluid img-thumbnail" alt="Test API credentials" /></p></li><li><p>Under <strong>Settings</strong>, click <strong>To App</strong>.</p></li><li><p>Click <strong>Edit</strong> and enable the provisioning options you want to use. For example, you can map user attributes or leave them with default settings.</p> <p><img src="../../assets/idp-okta-18.png" class="img-fluid img-thumbnail" alt="Specify provisioning options" /></p></li><li><p>Finally, map attributes for the Samsung Knox Manage app. If there is nothing to modify, you can leave the default mapping as is.</p> <p><img src="../../assets/idp-okta-19.png" class="img-fluid img-thumbnail" alt="Retain default mapping" /></p></li></ol><h3 id="step-4-----assign-people-or-groups-to-the-app-23-12">Step 4 &mdash; Assign people or groups to the app</h3><p>After adding Knox Manage to Okta, configure the Okta provisioning service to create, update, and disable users and groups in Knox Manage based on the user and group assignments in Okta.</p><ol><li><p>In Okta, navigate to <strong>Assignments</strong> &gt; <strong>Assign</strong> &gt; <strong>Assign to People</strong> or <strong>Assign to Groups</strong>.</p> <p><img src="../../assets/idp-okta-20.png" class="img-fluid img-thumbnail" alt="Configure provisioning of users and groups" /></p></li><li><p>Click <strong>Assign</strong> for the required people or groups that you want to assign to Knox Manage. When you assign a group to Knox Manage, all users in that group are automatically assigned to the application.</p></li><li><p>Click <strong>Done</strong>.</p></li></ol><h3 id="step-5-----push-groups-to-the-app-23-12">Step 5 &mdash; Push groups to the app</h3><ol><li><p>Navigate to <strong>Push Groups</strong>, then click <strong>By name</strong>. Enter the name of the okta group you want to push to Knox Manage, then click <strong>Save</strong>.</p> <p><img src="../../assets/idp-okta-21.png" class="img-fluid img-thumbnail" alt="Search Okta group to push to Knox Manage" /></p> <p><img src="../../assets/idp-okta-22.png" class="img-fluid img-thumbnail" alt="Push Okta group to Knox Manage" /></p></li><li><p>Review the pushed groups to ensure that all required groups are pushed.</p> <p><img src="../../assets/idp-okta-23.png" class="img-fluid img-thumbnail" alt="Verify all groups are pushed" /></p></li><li><p>Groups and their members can be pushed to Knox Manage as users and group members. For more about using group push operations, see <a href="https://help.okta.com/en-us/Content/Topics/users-groups-profiles/usgp-about-group-push.htm" target="_blank">Using Group Push</a>.</p></li></ol><div class="my-3 ps-3 border-start border-3 border-black"><p class="fw-bold">Note</p><ul><li><p>SCIM Provisioning of Samsung Knox Manage does not support <strong>Okta LINK GROUPS</strong>.</p></li><li><p>The <strong>Organization</strong> of the Okta user profile is mapped to <strong>Organization Code</strong> in Knox Manage. If the Okta user’s Organization does not exist, it belongs to the default organization in Knox Manage, and if the organization does not exist in Knox Manage, it is not applied to the user of Knox Manage.</p></li></ul></div>
-  </div>
-  
-</div>
-</div>
+    
+    
+    
+    
+    
+    
+    <p><img src="../../assets/idp-okta-09.png" class="img-fluid img-thumbnail" alt="Configure OIDC authentication and provisioning settings" /></p>
+</li>
+</ol>
+<h2 id="connect-knox-manage-to-okta-through-scim-for-user-provisioning-and-sync">Connect Knox Manage to Okta through SCIM for user provisioning and sync</h2>
+<p>To enable automatic user provisioning, you must configure settings in the Knox Manage console and in the Okta portal.</p>
+<p>Once configured, Okta automatically provisions and de-provisions users and groups to Knox Manage using the Okta provisioning service. The following capabilities are supported:</p>
+<ul>
+<li>
+<p>Creation of users and groups in Knox Manage</p>
+</li>
+<li>
+<p>Deactivation of users in Knox Manage when they do not require access anymore</p>
+</li>
+<li>
+<p>Sync of user attributes between Okta and Knox Manage</p>
+</li>
+<li>
+<p>Provisioning of groups and group memberships in Knox Manage</p>
+</li>
+</ul>
+<p>To learn more about how Okta works with SCIM, see Okta’s article on <a href="https://www.okta.com/blog/2017/01/what-is-scim/" target="_blank">What is SCIM?</a></p>
+<h3 id="prerequisites">Prerequisites</h3>
+<ul>
+<li>
+<p><a href="https://developer.okta.com/docs/concepts/okta-organizations/" target="_blank">An Okta organization</a></p>
+</li>
+<li>
+<p>A Knox Manage tenant</p>
+</li>
+<li>
+<p>A user account in Okta with permission to configure provisioning</p>
+</li>
+<li>
+<p>A Knox Manage user account with administrator permissions</p>
+</li>
+</ul>
+<h3 id="step-1-----configure-knox-manage-to-support-provisioning-with-okta">Step 1 &mdash; Configure Knox Manage to support provisioning with Okta</h3>
+<ol>
+<li>
+<p>Sign in to the Knox Manage console.</p>
+</li>
+<li>
+<p>Go to <strong>Setting</strong> &gt; <strong>Identity &amp; Directory</strong> &gt; <strong>Connection</strong> and click <strong>Add</strong>.</p>
+</li>
+<li>
+<p>On the <strong>Add Connection</strong> page, set <strong>Connection Type</strong> as <strong>Okta (SCIM)</strong>.</p>
+</li>
+<li>
+<p>Copy the <strong>Tenant URL</strong> and <strong>Secret Token</strong> and ensure to keep them accessible for later use in the Okta portal. The secret token cannot be retrieved, it can only be reissued.</p>
+<ul>
+<li>If you need to reissue the secret token, go to <strong>Setting</strong> &gt; <strong>Identity &amp; Directory</strong> &gt; <strong>Connection</strong>. Click the required connection to view its information, click <strong>Details</strong> for Token Expiration, and click <strong>Replace Token</strong> in the <strong>Token Details</strong> dialog.</li>
+</ul>
+</li>
+<li>
+<p>Click <strong>Save</strong>.</p>
+</li>
+</ol>
+<h3 id="step-2----register-the-scim-app-in-okta">Step 2 –&ndash; Register the SCIM App in Okta</h3>
+<ol>
+<li>
+<p>Sign in to Okta and navigate to <strong>Applications</strong> &gt; <strong>Applications</strong> &gt; <strong>Browse App Catalog</strong>.</p>
+
+    
+    
+    
+    
+    
+    
+    
+    <p><img src="../../assets/idp-okta-10.png" class="img-fluid img-thumbnail" alt="Browse App Catalog button on the Applications page" /></p>
+</li>
+<li>
+<p>Search for and select the <strong>Samsung Knox Manage</strong> app and click <strong>Add Integration</strong>. For details, see Okta’s article on how to <a href="https://help.okta.com/en-us/Content/Topics/Provisioning/lcm/lcm-add-application.htm" target="_blank">Add an app integration to Okta</a>.</p>
+
+    
+    
+    
+    
+    
+    
+    
+    <p><img src="../../assets/idp-okta-11.png" class="img-fluid img-thumbnail" alt="Search and select Samsung Knox Manage" /></p>
+
+    
+    
+    
+    
+    
+    
+    
+    <p><img src="../../assets/idp-okta-12.png" class="img-fluid img-thumbnail" alt="Click Add Integration" /></p>
+
+    
+    
+    
+    
+    
+    
+    
+    <p><img src="../../assets/idp-okta-13.png" class="img-fluid img-thumbnail" alt="General settings for the app" /></p>
+</li>
+<li>
+<p>Open Samsung Knox Manage in the portal, navigate to <strong>General</strong> &gt; <strong>App Setting</strong>, click <strong>Edit</strong>, and select the following and click <strong>Save</strong>:</p>
+<ul>
+<li><strong>Do not display application icon to users</strong></li>
+<li><strong>Auto-launch the app when user signs into Okta</strong></li>
+</ul>
+
+    
+    
+    
+    
+    
+    
+    
+    <p><img src="../../assets/idp-okta-14.png" class="img-fluid img-thumbnail" alt="Set display and auto-launch options for the app" /></p>
+</li>
+</ol>
+<h3 id="step-3-----enable-scim-api-integration-in-okta">Step 3 &mdash; Enable SCIM API integration in Okta</h3>
+<ol>
+<li>
+<p>Navigate to <strong>Provisioning</strong>, and click <strong>Configure API integration</strong>.</p>
+
+    
+    
+    
+    
+    
+    
+    
+    <p><img src="../../assets/idp-okta-15.png" class="img-fluid img-thumbnail" alt="Configure API integration" /></p>
+</li>
+<li>
+<p>Select <strong>Enable API integration</strong>.</p>
+</li>
+<li>
+<p>Paste the <strong>Tenant URL</strong> and <strong>Secret Token</strong> values you copied from the Knox Manage console into the <strong>Base URL</strong> and <strong>API Token</strong> fields respectively.</p>
+
+    
+    
+    
+    
+    
+    
+    
+    <p><img src="../../assets/idp-okta-16.png" class="img-fluid img-thumbnail" alt="Paste the values copied from Knox Manage console" /></p>
+</li>
+<li>
+<p>Click <strong>Test API Credentials</strong>. If the test passes, select <strong>Save</strong>.</p>
+<p>If the test fails, ensure that the <strong>Tenant URL</strong> and <strong>Secret Token</strong> are correct and the connection was properly saved and try again.</p>
+
+    
+    
+    
+    
+    
+    
+    
+    <p><img src="../../assets/idp-okta-17.png" class="img-fluid img-thumbnail" alt="Test API credentials" /></p>
+</li>
+<li>
+<p>Under <strong>Settings</strong>, click <strong>To App</strong>.</p>
+</li>
+<li>
+<p>Click <strong>Edit</strong> and enable the provisioning options you want to use. For example, you can map user attributes or leave them with default settings.</p>
+
+    
+    
+    
+    
+    
+    
+    
+    <p><img src="../../assets/idp-okta-18.png" class="img-fluid img-thumbnail" alt="Specify provisioning options" /></p>
+</li>
+<li>
+<p>Finally, map attributes for the Samsung Knox Manage app. If there is nothing to modify, you can leave the default mapping as is.</p>
+
+    
+    
+    
+    
+    
+    
+    
+    <p><img src="../../assets/idp-okta-19.png" class="img-fluid img-thumbnail" alt="Retain default mapping" /></p>
+</li>
+</ol>
+<h3 id="step-4-----assign-people-or-groups-to-the-app">Step 4 &mdash; Assign people or groups to the app</h3>
+<p>After adding Knox Manage to Okta, configure the Okta provisioning service to create, update, and disable users and groups in Knox Manage based on the user and group assignments in Okta.</p>
+<ol>
+<li>
+<p>In Okta, navigate to <strong>Assignments</strong> &gt; <strong>Assign</strong> &gt; <strong>Assign to People</strong> or <strong>Assign to Groups</strong>.</p>
+
+    
+    
+    
+    
+    
+    
+    
+    <p><img src="../../assets/idp-okta-20.png" class="img-fluid img-thumbnail" alt="Configure provisioning of users and groups" /></p>
+</li>
+<li>
+<p>Click <strong>Assign</strong> for the required people or groups that you want to assign to Knox Manage. When you assign a group to Knox Manage, all users in that group are automatically assigned to the application.</p>
+</li>
+<li>
+<p>Click <strong>Done</strong>.</p>
+</li>
+</ol>
+<h3 id="step-5-----push-groups-to-the-app">Step 5 &mdash; Push groups to the app</h3>
+<ol>
+<li>
+<p>Navigate to <strong>Push Groups</strong>, then click <strong>By name</strong>. Enter the name of the okta group you want to push to Knox Manage, then click <strong>Save</strong>.</p>
+
+    
+    
+    
+    
+    
+    
+    
+    <p><img src="../../assets/idp-okta-21.png" class="img-fluid img-thumbnail" alt="Search Okta group to push to Knox Manage" /></p>
+
+    
+    
+    
+    
+    
+    
+    
+    <p><img src="../../assets/idp-okta-22.png" class="img-fluid img-thumbnail" alt="Push Okta group to Knox Manage" /></p>
+</li>
+<li>
+<p>Review the pushed groups to ensure that all required groups are pushed.</p>
+
+    
+    
+    
+    
+    
+    
+    
+    <p><img src="../../assets/idp-okta-23.png" class="img-fluid img-thumbnail" alt="Verify all groups are pushed" /></p>
+</li>
+<li>
+<p>Groups and their members can be pushed to Knox Manage as users and group members. For more about using group push operations, see <a href="https://help.okta.com/en-us/Content/Topics/users-groups-profiles/usgp-about-group-push.htm" target="_blank">Using Group Push</a>.</p>
+</li>
+</ol>
+<div class="my-3 ps-3 border-start border-3 border-black"><p class="fw-bold">Note</p><ul><li><p>SCIM Provisioning of Samsung Knox Manage does not support <strong>Okta LINK GROUPS</strong>.</p></li><li><p>The <strong>Organization</strong> of the Okta user profile is mapped to <strong>Organization Code</strong> in Knox Manage. If the Okta user’s Organization does not exist, it belongs to the default organization in Knox Manage, and if the organization does not exist in Knox Manage, it is not applied to the user of Knox Manage.</p></li></ul></div>
 
             
           </div>
           <div class="l-toc">
             <aside class="toc">
+  
+  <nav class="section-nav">
+    <h2 class="body-4 fw-bold mt-0">On this page</h2>
+    <nav id="TableOfContents">
+  <ul>
+    <li><a href="connect-to-okta.html#connect-knox-manage-to-okta-through-oidc">Connect Knox Manage to Okta through OIDC</a></li>
+    <li><a href="connect-to-okta.html#connect-knox-manage-to-okta-through-scim-for-user-provisioning-and-sync">Connect Knox Manage to Okta through SCIM for user provisioning and sync</a>
+      <ul>
+        <li><a href="connect-to-okta.html#prerequisites">Prerequisites</a></li>
+        <li><a href="connect-to-okta.html#step-1-----configure-knox-manage-to-support-provisioning-with-okta">Step 1 &mdash; Configure Knox Manage to support provisioning with Okta</a></li>
+        <li><a href="connect-to-okta.html#step-2----register-the-scim-app-in-okta">Step 2 –&ndash; Register the SCIM App in Okta</a></li>
+        <li><a href="connect-to-okta.html#step-3-----enable-scim-api-integration-in-okta">Step 3 &mdash; Enable SCIM API integration in Okta</a></li>
+        <li><a href="connect-to-okta.html#step-4-----assign-people-or-groups-to-the-app">Step 4 &mdash; Assign people or groups to the app</a></li>
+        <li><a href="connect-to-okta.html#step-5-----push-groups-to-the-app">Step 5 &mdash; Push groups to the app</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+  </nav>
   
 </aside>
 

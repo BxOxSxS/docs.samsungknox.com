@@ -117,6 +117,8 @@
   </li>
 <li>
   <a href="../../../knox-manage.html" >Knox Manage</a>
+  <ul>
+    </ul>
   </li>
 <li>
   <a href="../../../efota-one.html" >Knox E-FOTA</a>
@@ -372,6 +374,16 @@
   
   
   <div class="d-flex justify-content-between align-items-center">
+    <a class="body-5 text-black fw-light" href="battery-events/groups-with-low-battery-at-shift-start/index.html">Groups with low battery at shift start</a>
+  </div>
+  
+  </li>
+
+
+  <li class="mt-2">
+  
+  
+  <div class="d-flex justify-content-between align-items-center">
     <a class="body-5 text-black fw-light" href="battery-events/battery-drain-events/index.html">Battery drain events</a>
   </div>
   
@@ -396,16 +408,6 @@
   
   <div class="d-flex justify-content-between align-items-center">
     <a class="body-5 text-black fw-light" href="battery-level-at-start-end-shift/index.html">Battery level at start and end of shift</a>
-  </div>
-  
-  </li>
-
-
-  <li class="mt-2">
-  
-  
-  <div class="d-flex justify-content-between align-items-center">
-    <a class="body-5 text-black fw-light" href="groups-with-low-battery-at-shift-start/index.html">Groups with low battery devices at shift start</a>
   </div>
   
   </li>
@@ -901,36 +903,14 @@
       
       
       
-        <p>On the system level, the device&rsquo;s power management integrated circuit (PMIC) records battery-related critical events in system logs, which are periodically pulled by the Knox Asset Intelligence agent. The agent then uploads the data to the server, where your devices are categorized as <strong>Good</strong>, <strong>Normal</strong>, or <strong>Bad</strong> according to the following table. These states represent the overall health of each device&rsquo;s battery, and how much of its original charge the battery can hold.</p>
-<table>
-<thead>
-<tr>
-<th>Status</th>
-<th>Battery</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>Good</td>
-<td>75% and higher</td>
-</tr>
-<tr>
-<td>Normal</td>
-<td>55-75%</td>
-</tr>
-<tr>
-<td>Bad</td>
-<td>55% and lower</td>
-</tr>
-</tbody>
-</table>
-<p>The above chart is intended to provide a rough guideline of how battery health correlates with device states. Actual measurements may vary based on the device model. Use this information to determine whether batteries have recently been replaced, or if they should be replaced in the near future.</p>
-<p>Currently, the following device models support the enhanced battery state of health information if they run Android 13 or higher:</p>
-<ul>
-<li>Galaxy XCover Pro</li>
-<li>Galaxy XCover Pro2</li>
-</ul>
-<h2 id="dashboard-tile-view">Dashboard tile view</h2>
+        
+      
+      
+      
+      
+        <p>The Battery state of health (SOH) insight provides a summary of your device fleet&rsquo;s overall battery condition and how much of its original charge the battery can hold.</p>
+<div class="my-3 ps-3 border-start border-3 border-black"><p class="fw-bold">Note</p><p>Battery state of health information is only available for the following device models, and each device must be running Android 13 or higher:</p><ul><li>Galaxy XCover Pro</li><li>Galaxy XCover Pro 2</li></ul></div>
+<h2 id="main-tile-view">Main tile view</h2>
 
 
 
@@ -1050,7 +1030,30 @@
 
 
 <p><img src="../../assets/22.11-battery-soh.png" class="image-block-scale-50 img-thumbnail" alt="Battery state of health dashboard widget" /></p>
-<p>The <strong>Battery state of health</strong> tile shows your enrolled devices split between <strong>Good</strong>, <strong>Normal</strong>, or <strong>Bad</strong> states. Hover over a chart segment to see the devices in that category and the overall percentage of the fleet or group it covers. Click a device state to be taken to a filtered <strong>Devices</strong> list.</p>
+<p>On the insight&rsquo;s main tile view, you&rsquo;ll see your fleet&rsquo;s battery health put into one of three categories.</p>
+<table>
+<thead>
+<tr>
+<th>Status</th>
+<th>Battery</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Good</td>
+<td>75% and higher</td>
+</tr>
+<tr>
+<td>Normal</td>
+<td>55-75%</td>
+</tr>
+<tr>
+<td>Bad</td>
+<td>55% and lower</td>
+</tr>
+</tbody>
+</table>
+<p>Hover over a chart segment to view the total number of devices in that category, as well as the category&rsquo;s overall percentage within the fleet. You can use this information to help efficiently plan for your devices&rsquo; battery replacements.</p>
 <h2 id="expanded-view">Expanded view</h2>
 <p>Click the <strong>Expanded view</strong> button ( <strong>&gt;</strong> ) to view all devices and their <strong>Battery state of health</strong>. If you only want to view data related to a specific status, click either <strong>Good</strong>, <strong>Normal</strong>, or <strong>Bad</strong> in the tile list. The expanded view page shows devices with those selected states.</p>
 
@@ -1063,8 +1066,8 @@
 
 <p><img src="../../assets/22.11-battery-soh-expanded.png" class="img-fluid img-thumbnail" alt="Device list filtered by battery state of health" /></p>
 <p>On the Expanded view page, you&rsquo;ll see battery state of health (Good, Normal, Bad) followed by a value in the BATTERY SOH column. For example, Good (74) would indicate that the device&rsquo;s battery health is in a Good state, and that it is able to hold approximately 74% of its original charge.</p>
-<div class="my-3 ps-3 border-start border-3 border-black"><p class="fw-bold">Note</p><p>Battery state of health (SOH) data is only supported on a few select devices. If your device is not supported, you’ll see a <strong>Good (0)</strong> value in the table’s <strong>BATTERY SOH</strong> column.</p></div>
-<p>In the list, you can click a <strong>Device ID</strong> to show detailed information about the device, or click <strong>DOWNLOAD AS CSV</strong> to receive a copy of the data for offline viewing.</p>
+<div class="my-3 ps-3 border-start border-3 border-black"><p class="fw-bold">Note</p><p>Battery state of health (SOH) data is only supported on a few select devices. If your device is not supported, you’ll see <strong>Unknown (-)</strong> in the table’s <strong>BATTERY SOH</strong> column.</p></div>
+<p>Click any device in the <strong>DEVICE ID</strong> column to view more details in an expanded panel. To learn more about expanded device details, see <a href="../../how-to-guides/manage-devices.html">Manage devices</a>.</p>
 
             
           </div>
@@ -1075,7 +1078,7 @@
     <h2 class="body-4 fw-bold mt-0">On this page</h2>
     <nav id="TableOfContents">
   <ul>
-    <li><a href="battery-state-of-health.html#dashboard-tile-view">Dashboard tile view</a></li>
+    <li><a href="battery-state-of-health.html#main-tile-view">Main tile view</a></li>
     <li><a href="battery-state-of-health.html#expanded-view">Expanded view</a></li>
   </ul>
 </nav>
