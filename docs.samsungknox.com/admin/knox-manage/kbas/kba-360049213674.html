@@ -34,9 +34,10 @@
     ga('send', 'pageview');
   </script>
   
+<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start': new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0], j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src='https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);})(window,document,'script','dataLayer','GTM-P24TWCG');</script>
   <meta name="viewport" content="width=device-width,height=device-height,initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title>How to disable Suggested Apps feature in Knox Manage Kiosk mode | Samsung Knox Documentation</title>
+  <title>Disable Suggested Apps with Knox Service Plugin | Samsung Knox Documentation</title>
   <meta http-equiv="content-language" content="en">
   <meta name="language" content="en">
   <script src="../../assets/js/bundle.js"></script>
@@ -50,7 +51,8 @@
   <meta name="theme-color" content="white">
 </head>
 <body id=ZgotmplZ>
-  <a class="button-back-to-top button-text" id="BackToTopBtn"><span class="me-4">Back to top</span></a>
+  
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-P24TWCG" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript><a class="button-back-to-top button-text" id="BackToTopBtn"><span class="me-4">Back to top</span></a>
   
     <header>
   <div class="container-xxl border-bottom">
@@ -552,7 +554,7 @@
   
   
   <div class="d-flex justify-content-between align-items-center">
-    <a class="body-5 text-black fw-light" href="../get-started/create-organizations/move-a-user-to-a-different-organization/index.html">Move a user to a different organization</a>
+    <a class="body-5 text-black fw-light" href="../get-started/create-organizations/move-a-user-to-a-different-organization.html">Move a user to a different organization</a>
   </div>
   
   </li>
@@ -874,7 +876,7 @@
   
   
   <div class="d-flex justify-content-between align-items-center">
-    <a class="body-5 text-black fw-light" href="../configure/organizations/modify-an-organizations-details/index.html">Modify an organization&rsquo;s details</a>
+    <a class="body-5 text-black fw-light" href="../configure/organizations/modify-an-organizations-details.html">Modify an organization&rsquo;s details</a>
   </div>
   
   </li>
@@ -904,7 +906,7 @@
   
   
   <div class="d-flex justify-content-between align-items-center">
-    <a class="body-5 text-black fw-light" href="../configure/organizations/delete-organizations/index.html">Delete organizations</a>
+    <a class="body-5 text-black fw-light" href="../configure/organizations/delete-organizations.html">Delete organizations</a>
   </div>
   
   </li>
@@ -4379,12 +4381,24 @@
 
             </div>
             <div class="mt-4">
-              <h1>How to disable Suggested Apps feature in Knox Manage Kiosk mode</h1>
+              <h1>Disable Suggested Apps with Knox Service Plugin</h1>
             </div>
             
 
-  <p><span>Last updated July  26th, 2023</span></p>
-</div>
+  <p><span>Last updated December  15th, 2023</span></p>
+
+
+    
+
+
+  
+      
+        
+    
+  <p>Categories:</p>
+<div class="kba-tags">
+    <a class="d-inline-block px-5 py-2 me-2 mt-2 fw-bold text-samsung-blue bg-samsung-light-blue" href="tags/kiosk/index.html">Kiosk</a></div>
+  </div>
           <div class="l-content">
             
 
@@ -4403,25 +4417,54 @@
       
         <h2 id="environment">Environment</h2>
 <ul>
-<li>Knox Manage (KM) Kiosk mode</li>
-<li>Knox Suite license key</li>
-<li>Android Enterprise (AE) Device Owner (DO) mode</li>
+<li>Knox Manage</li>
+<li>Knox Service Plugin</li>
 <li>Samsung devices running Knox 3.4.1 and higher</li>
 </ul>
 <h2 id="overview">Overview</h2>
-<p>On Samsung devices running Knox 3.4.1 and higher, opening the task manager displays suggested apps for quick navigation. The Suggested Apps feature works even on devices locked down with Knox Manage&rsquo;s (KM) Kiosk mode, allowing users to access restricted apps.</p>
-<p>This knowledge base article guides you through the steps on how to disable the Suggested Apps feature using KM, preventing the user from exiting Kiosk mode.</p>
-<h2 id="how-can-idisable-the-suggested-apps-feature-on-my-devices-using-knox-manage">How can I disable the Suggested Apps feature on my devices using Knox Manage?</h2>
-<p>In KM v20.4, the &ldquo;Apps Suggestions&rdquo; policy was introduced as part of the Knox Service Plugin (KSP) Premium integration. To disable the Suggested Apps feature using <strong>Apps Suggestions</strong>:</p>
+<p>On Samsung devices running Knox 3.4.1 and higher, opening the task manager displays suggested apps for quick navigation. The Suggested Apps feature also works on devices in kiosk mode, allowing device users to access restricted apps.</p>
+<p>This knowledge base article guides you through disabling the Suggested Apps feature in Knox Manage using Knox Service Plugin policies.</p>
+<h2 id="how-to-disable-the-suggested-apps-feature-on-a-device-using-knox-service-plugin-policies">How to disable the Suggested Apps feature on a device using Knox Service Plugin policies</h2>
+<p>In Knox Manage 20.04, the <strong>Apps Suggestions</strong> policy was introduced as part of the Knox Service Plugin Premium integration. To disable the Suggested Apps feature:</p>
 <ol>
-<li>In your KM console, create or modify an Android Enterprise profile.</li>
-<li>Under <strong>Policy</strong>, create a new policy for Android Enterprise.</li>
-<li>Under <strong>Samsung Knox Android Enterprise</strong>, select <strong>System</strong> &gt; <strong>Device Customization Controls</strong> &gt; <strong>Apply</strong>.</li>
-<li>Next to <strong>Apps Suggestions</strong>, select <strong>Enable</strong>.</li>
+<li>
+<p>On the Knox Manage console, go to <strong>Profile</strong>.</p>
+</li>
+<li>
+<p>Create a new profile or modify an existing profile.</p>
+</li>
+<li>
+<p>Set the following policies:</p>
+<table>
+<thead>
+<tr>
+<th>Policy</th>
+<th>Value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Device-wide policies &gt; Enable device policy controls</td>
+<td>True</td>
+</tr>
+<tr>
+<td>Device-wide policies &gt; Device customization controls &gt; Enable device customization</td>
+<td>True</td>
+</tr>
+<tr>
+<td>Device and Setting customization profile &gt; Disable app suggestions</td>
+<td>True</td>
+</tr>
+</tbody>
+</table>
+</li>
+<li>
+<p>Click <strong>Save &amp; Assign</strong> to save your changes and assign the profile to your device group.</p>
+</li>
 </ol>
-<p>Enabling <strong>Apps Suggestions</strong> blocks suggested apps from appearing in the device task manager.</p>
+<p>Applying this configuration blocks suggested apps from appearing in the device task manager.</p>
 <h2 id="additional-information">Additional information</h2>
-<p>To learn more about the changes introduced in KM v20.4, see the <a href="../release-notes/20-04.html">Knox Manage release notes</a>.</p>
+<p>To learn more about the changes introduced in Knox Manage 20.04, see the <a href="../release-notes/20-04.html">Knox Manage release notes</a>.</p>
 <a href="../kbas.html"  class="btn d-inline-block button-subtle">Back to KBAs</a>
 
             
@@ -4435,7 +4478,7 @@
   <ul>
     <li><a href="kba-360049213674.html#environment">Environment</a></li>
     <li><a href="kba-360049213674.html#overview">Overview</a></li>
-    <li><a href="kba-360049213674.html#how-can-idisable-the-suggested-apps-feature-on-my-devices-using-knox-manage">How can I disable the Suggested Apps feature on my devices using Knox Manage?</a></li>
+    <li><a href="kba-360049213674.html#how-to-disable-the-suggested-apps-feature-on-a-device-using-knox-service-plugin-policies">How to disable the Suggested Apps feature on a device using Knox Service Plugin policies</a></li>
     <li><a href="kba-360049213674.html#additional-information">Additional information</a></li>
   </ul>
 </nav>
