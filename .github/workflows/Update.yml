@@ -11,7 +11,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - name: Checkout repo
-      uses: actions/checkout@v2
+      uses: actions/checkout@v4
     - name: Get current date
       id: date
       run: echo "::set-output name=date::$(date +%d.%m.%Y)"
@@ -25,7 +25,7 @@ jobs:
         tar acf 'docs.samsungknox.com_${{ steps.date.outputs.date }}.tar' docs.samsungknox.com
         zstd --ultra -22 'docs.samsungknox.com_${{ steps.date.outputs.date }}.tar'
     - name: Archive file
-      uses: actions/upload-artifact@v2
+      uses: actions/upload-artifact@v4
       with:
         name: 'docs.samsungknox.com_${{ steps.date.outputs.date }}'
         path: 'docs.samsungknox.com_${{ steps.date.outputs.date }}.tar.zst'
@@ -34,7 +34,7 @@ jobs:
         find . -name '*.apk' -delete
         rm -rf docs.samsungknox.com_${{ steps.date.outputs.date }}.tar.zst docs.samsungknox.com_${{ steps.date.outputs.date }}.tar
     - name: Add files and commit
-      uses: EndBug/add-and-commit@v7
+      uses: EndBug/add-and-commit@v9
       with:
         author_name: github-actions
         author_email: 41898282+github-actions[bot]@users.noreply.github.com
