@@ -37,7 +37,7 @@
 <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start': new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0], j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src='https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);})(window,document,'script','dataLayer','GTM-P24TWCG');</script>
   <meta name="viewport" content="width=device-width,height=device-height,initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title>Knox Deployment App only able to add device to one Knox Cloud Service | Samsung Knox Documentation</title>
+  <title>Knox Deployment App only able to add device to one Knox cloud service | Samsung Knox Documentation</title>
   <meta http-equiv="content-language" content="en">
   <meta name="language" content="en">
   <script src="../../assets/js/bundle.js"></script>
@@ -615,6 +615,16 @@
 
   <li class="mt-2">
   
+  
+  <div class="d-flex justify-content-between align-items-center">
+    <a class="body-5 text-black fw-light" href="../register-for-samsung-knox/sign-in-to-the-knox-admin-portal-directly/index.html">Sign in to the Knox Admin Portal directly</a>
+  </div>
+  
+  </li>
+
+
+  <li class="mt-2">
+  
   <div class="d-flex justify-content-between align-items-center cursor-pointer" data-bs-toggle="collapse" data-bs-target="#sub-fundamentals-register-for-samsung-knox-single-sign-on-single-sign-on" aria-expanded="false">
     <span class="body-5 text-black fw-light">Single sign-on</span>
     <a class="btn-toggle d-inline-flex rounded border-0 fw-light" data-bs-toggle="collapse" data-bs-target="#sub-fundamentals-register-for-samsung-knox-single-sign-on-single-sign-on" aria-expanded="false"></a>
@@ -669,7 +679,7 @@
   
   
   <div class="d-flex justify-content-between align-items-center">
-    <a class="body-5 text-black fw-light" href="../register-for-samsung-knox/single-sign-on/sign-in-to-samsung-knox-with-sso/index.html">Sign in to Samsung Knox with SSO</a>
+    <a class="body-5 text-black fw-light" href="../register-for-samsung-knox/single-sign-on/sign-in-to-samsung-knox-with-sso.html">Sign in to Samsung Knox with SSO</a>
   </div>
   
   </li>
@@ -835,11 +845,11 @@
 
             </div>
             <div class="mt-4">
-              <h1>Knox Deployment App only able to add device to one Knox Cloud Service</h1>
+              <h1>Knox Deployment App only able to add device to one Knox cloud service</h1>
             </div>
             
 
-  <p><span>Last updated July  26th, 2023</span></p>
+  <p><span>Last updated January  4th, 2024</span></p>
 
 
     
@@ -873,30 +883,30 @@
       
         <h2 id="environment">Environment</h2>
 <ul>
-<li>Knox cloud service (KCS)</li>
-<li>Knox Deployment App (KDA)</li>
+<li>Knox cloud services</li>
+<li>Knox Deployment App</li>
 </ul>
 <h2 id="overview">Overview</h2>
-<p>Using KDA, some administrators have reported that they are not able to enroll devices in more than one KCS. When adding a device in a second service (e.g. enrolling in Knox Mobile Enrollment after enrolling in Knox Configure), the following error message is shown:</p>
+<p>Using the Knox Deployment App, some admins have reported that they aren&rsquo;t able to enroll devices in more than one Knox cloud service. When adding a device in a second service, such as enrolling in Knox Mobile Enrollment after enrolling in Knox Configure, the following error message displays:</p>
 <blockquote>
 <p>The device is already enrolled.</p>
 </blockquote>
-<h2 id="Cause">Cause</h2>
-<p>This behavior is by design. After the KCS server looks for any profiles associated with the device, one of two actions occurs:</p>
+<h2 id="cause">Cause</h2>
+<p>This behavior is by design. After the Knox cloud services server looks for any profiles associated with the device, one of two actions occurs:</p>
 <ul>
 <li>If no profiles are found, the user is prompted to enroll with Bluetooth or NFC.</li>
-<li>If one or more profiles are found, KDA proceeds to the next step without prompting for Bluetooth or NFC enrollment.</li>
+<li>If one or more profiles are found, the Knox Deployment App proceeds to the next step without prompting for Bluetooth or NFC enrollment.</li>
 </ul>
-<div class="my-3 ps-3 border-start border-3 border-black"><p class="fw-bold">Note</p><p>Bluetooth enrollment is only available when enrolling in a KCS service for the first time, and if the device was not previously enrolled in any other KCS service.</p></div>
-<p>If a profile is found, KCS checks if the device is already enrolled with the profile, then repeats for any additional profiles. For example, if the only profile assigned to the device is in Knox Mobile Enrollment (KME), KCS retrieves the KME profile and marks the device as enrolled. KDA then displays the message &ldquo;The device is already enrolled&rdquo;.</p>
-<p>If no profile is found, KDA continues with the enrollment process.</p>
+<div class="my-3 ps-3 border-start border-3 border-black"><p class="fw-bold">Note</p><p>Bluetooth enrollment is only available when enrolling in a service for the first time, and if the device was not previously enrolled in any other service.</p></div>
+<p>If a profile is found, your services check if the device is already enrolled with the profile, then repeats for any additional profiles. For example, if the only profile assigned to the device is in Knox Mobile Enrollment, your services retrieve the Knox Mobile Enrollment profile and marks the device as enrolled. The Knox Deployment App then displays the message &ldquo;The device is already enrolled&rdquo;.</p>
+<p>If no profile is found, the Knox Deployment App continues with the enrollment process.</p>
 <div class="my-3 ps-3 border-start border-3 border-black"><p class="fw-bold">Note</p><p>The NFC enrollment method will be deprecated from Android 11 onwards.</p></div>
 <h2 id="resolution">Resolution</h2>
-<p>Currently, KDA is only designed for use with one KCS service at a time. To avoid encountering issues with Bluetooth and NFC enrollment, please ensure you remove your device from any KCS services it is in before enrolling in another.</p>
-<p>If you would like to use both KME and KC, ask your reseller to upload your devices to your KME console. If you do not have a reseller, raise a support ticket through the <a href="http://samsungknox.com/" target="_blank">Knox Admin Portal</a> and our KCS team can assist.</p>
+<p>Currently, the Knox Deployment App is only designed for use with one Knox cloud service at a time. To avoid encountering issues with Bluetooth and NFC enrollment, please ensure you remove your device from any service it&rsquo;s in before enrolling in another.</p>
+<p>If you&rsquo;d like to use both Knox Mobile Enrollment and Knox Configure, ask your reseller to upload your devices to your Knox Mobile Enrollment console. If you don&rsquo;t have a reseller, raise a support ticket through the <a href="https://central.samsungknox.com/login-navigator" target="_blank">Knox Admin Portal</a> and the Samsung Knox team can assist you.</p>
 <h2 id="additional-information">Additional information</h2>
 <ul>
-<li>To learn more about KDA, see the <a href="../../knox-mobile-enrollment/how-to-guides/use-the-knox-deployment-app.html">KME admin guide</a>.</li>
+<li>To learn more about the Knox Deployment App, see the <a href="../../knox-mobile-enrollment/how-to-guides/use-the-knox-deployment-app.html">Knox Mobile Enrollment admin guide</a>.</li>
 <li>To find a local reseller, visit <a href="https://www.samsungknox.com/resellers" target="_blank">Buy from a reseller</a>.</li>
 </ul>
 <a href="index.html"  class="btn d-inline-block button-subtle">Back to KBAs</a>
@@ -912,7 +922,7 @@
   <ul>
     <li><a href="kba-360044252693-kda-enrolls-to-only-one-kcs.html#environment">Environment</a></li>
     <li><a href="kba-360044252693-kda-enrolls-to-only-one-kcs.html#overview">Overview</a></li>
-    <li><a href="kba-360044252693-kda-enrolls-to-only-one-kcs.html#Cause">Cause</a></li>
+    <li><a href="kba-360044252693-kda-enrolls-to-only-one-kcs.html#cause">Cause</a></li>
     <li><a href="kba-360044252693-kda-enrolls-to-only-one-kcs.html#resolution">Resolution</a></li>
     <li><a href="kba-360044252693-kda-enrolls-to-only-one-kcs.html#additional-information">Additional information</a></li>
   </ul>
