@@ -147,8 +147,12 @@ function search_changed(e, kd, toroot)
             var s = DATA[i];
             if (text.length != 0 &&
                   s.label.toLowerCase().indexOf(text.toLowerCase()) != -1) {
+if (!(s.label.toLowerCase().indexOf("com.samsung.android.knox.log.auditevents.") != -1)) {
+if (!(s.label.toLowerCase().indexOf("com.samsung.android.knox.log.auditevents.") != -1)) {
                 gMatches[matchedCount] = s;
                 matchedCount++;
+}
+}
             }
         }
         rank_autocomplete_results(text);

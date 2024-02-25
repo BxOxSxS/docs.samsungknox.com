@@ -2656,16 +2656,6 @@
   </div>
   
   </li>
-
-
-  <li class="mt-2">
-  
-  
-  <div class="d-flex justify-content-between">
-    <a class="body-5 text-black fw-light" href="../../../features/storage-providers/manage-ode-decryption-keys/index.html">Manage ODE decryption keys</a>
-  </div>
-  
-  </li>
 </ul>
   </div>
   </li>
@@ -2976,7 +2966,8 @@
             </div>
             
 
-  
+  <p><span>Last updated February  8th, 2024</span></p>
+
 
     
 
@@ -2995,18 +2986,18 @@
       
         <p>Now, you can use the Knox APIs to manage certificates in TIMA CCM.</p>
 <h2 id="create-ccm-profile">Create CCM Profile</h2>
-<p>This method initializes a CCMProfile object, sets its accessControlMethod to default and asks the user if they want to whitelist all the packages in the container.</p>
+<p>This method initializes a CCMProfile object, sets its accessControlMethod to default and asks the user if they want to allowlist all the packages in the container.</p>
 <div class="highlight"><pre tabindex="0" style=";-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#008000;font-weight:bold">private</span> <span style="color:#b00040">void</span> <span style="color:#00f">createCCMProfile</span><span style="color:#666">()</span> <span style="color:#666">{</span>
 </span></span><span style="display:flex;"><span>        <span style="color:#408080;font-style:italic">// Initialize a CCMProfile object
 </span></span></span><span style="display:flex;"><span><span style="color:#408080;font-style:italic"></span>        mCCMProfileObj <span style="color:#666">=</span> <span style="color:#008000;font-weight:bold">new</span> CCMProfile<span style="color:#666">();</span>
 </span></span><span style="display:flex;"><span>        <span style="color:#408080;font-style:italic">// Set its accessControlMethod to the default method
 </span></span></span><span style="display:flex;"><span><span style="color:#408080;font-style:italic"></span>        mCCMProfileObj<span style="color:#666">.</span><span style="color:#7d9029">accessControlMethod</span> <span style="color:#666">=</span> CCMProfile<span style="color:#666">.</span><span style="color:#7d9029">AccessControlMethod</span><span style="color:#666">.</span><span style="color:#7d9029">LOCK_STATE</span><span style="color:#666">;</span>
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>        <span style="color:#408080;font-style:italic">// Proceed to ask the user if they want to whitelist all packages
+</span></span><span style="display:flex;"><span>        <span style="color:#408080;font-style:italic">// Proceed to ask the user if they want to allowlist all packages
 </span></span></span><span style="display:flex;"><span><span style="color:#408080;font-style:italic"></span>        whitelistAllPackages<span style="color:#666">();</span>
 </span></span><span style="display:flex;"><span>    <span style="color:#666">}</span>   
-</span></span></code></pre></div><h2 id="whitelist-all-packages">Whitelist all packages</h2>
-<p>This method asks the user if they want to whitelist all the packages in the container. Whitelisting allows them access to the token. If they do, the app skips asking the user to whitelist specific package names and set the CCM profile. If they don&rsquo;t, it asks the user to whitelist specific package names before setting the CCM profile.</p>
+</span></span></code></pre></div><h2 id="allowlist-all-packages">Allowlist all packages</h2>
+<p>This method asks the user if they want to allowlist all the packages in the container. Allowlisting allows them access to the token. If they do, the app skips asking the user to allowlist specific package names and set the CCM profile. If they don&rsquo;t, it asks the user to allowlist specific package names before setting the CCM profile.</p>
 <div class="highlight"><pre tabindex="0" style=";-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#008000;font-weight:bold">private</span> <span style="color:#b00040">void</span> <span style="color:#00f">whitelistAllPackages</span><span style="color:#666">()</span> <span style="color:#666">{</span>
 </span></span><span style="display:flex;"><span>        <span style="color:#408080;font-style:italic">// Create a dialog box to show to the user
 </span></span></span><span style="display:flex;"><span><span style="color:#408080;font-style:italic"></span>        <span style="color:#008000;font-weight:bold">new</span> AlertDialog<span style="color:#666">.</span><span style="color:#7d9029">Builder</span><span style="color:#666">(</span><span style="color:#008000;font-weight:bold">this</span><span style="color:#666">)</span>
@@ -3018,21 +3009,21 @@
 </span></span></span><span style="display:flex;"><span><span style="color:#408080;font-style:italic"></span>                <span style="color:#666">.</span><span style="color:#7d9029">setPositiveButton</span><span style="color:#666">(</span>getString<span style="color:#666">(</span>R<span style="color:#666">.</span><span style="color:#7d9029">string</span><span style="color:#666">.</span><span style="color:#7d9029">opt_yes</span><span style="color:#666">),</span> <span style="color:#008000;font-weight:bold">new</span> DialogInterface<span style="color:#666">.</span><span style="color:#7d9029">OnClickListener</span><span style="color:#666">()</span> <span style="color:#666">{</span>
 </span></span><span style="display:flex;"><span>                    <span style="color:#a2f">@Override</span>
 </span></span><span style="display:flex;"><span>                    <span style="color:#008000;font-weight:bold">public</span> <span style="color:#b00040">void</span> <span style="color:#00f">onClick</span><span style="color:#666">(</span>DialogInterface dialog<span style="color:#666">,</span> <span style="color:#b00040">int</span> which<span style="color:#666">)</span> <span style="color:#666">{</span>
-</span></span><span style="display:flex;"><span>                        <span style="color:#408080;font-style:italic">// Whitelist all the packages, then set the CCM profile
+</span></span><span style="display:flex;"><span>                        <span style="color:#408080;font-style:italic">// Allowlist all the packages, then set the CCM profile
 </span></span></span><span style="display:flex;"><span><span style="color:#408080;font-style:italic"></span>                        mCCMProfileObj<span style="color:#666">.</span><span style="color:#7d9029">whiteListAllPackages</span> <span style="color:#666">=</span> <span style="color:#008000;font-weight:bold">true</span><span style="color:#666">;</span>
 </span></span><span style="display:flex;"><span>                        setCCMProfile<span style="color:#666">();</span>
 </span></span><span style="display:flex;"><span>                    <span style="color:#666">}</span>
 </span></span><span style="display:flex;"><span>                <span style="color:#666">}).</span><span style="color:#7d9029">setNegativeButton</span><span style="color:#666">(</span>getString<span style="color:#666">(</span>R<span style="color:#666">.</span><span style="color:#7d9029">string</span><span style="color:#666">.</span><span style="color:#7d9029">opt_no</span><span style="color:#666">),</span> <span style="color:#008000;font-weight:bold">new</span> DialogInterface<span style="color:#666">.</span><span style="color:#7d9029">OnClickListener</span><span style="color:#666">()</span> <span style="color:#666">{</span>
 </span></span><span style="display:flex;"><span>            <span style="color:#a2f">@Override</span>
 </span></span><span style="display:flex;"><span>            <span style="color:#008000;font-weight:bold">public</span> <span style="color:#b00040">void</span> <span style="color:#00f">onClick</span><span style="color:#666">(</span>DialogInterface dialog<span style="color:#666">,</span> <span style="color:#b00040">int</span> which<span style="color:#666">)</span> <span style="color:#666">{</span>
-</span></span><span style="display:flex;"><span>                <span style="color:#408080;font-style:italic">// Ask the user for specific package names to be whitelisted
+</span></span><span style="display:flex;"><span>                <span style="color:#408080;font-style:italic">// Ask the user for specific package names to be allowlisted
 </span></span></span><span style="display:flex;"><span><span style="color:#408080;font-style:italic"></span>                mCCMProfileObj<span style="color:#666">.</span><span style="color:#7d9029">whiteListAllPackages</span> <span style="color:#666">=</span> <span style="color:#008000;font-weight:bold">false</span><span style="color:#666">;</span>
 </span></span><span style="display:flex;"><span>                whitelistPackagesToAccessToken<span style="color:#666">();</span>
 </span></span><span style="display:flex;"><span>            <span style="color:#666">}</span>
 </span></span><span style="display:flex;"><span>        <span style="color:#666">}).</span><span style="color:#7d9029">show</span><span style="color:#666">();</span>
 </span></span><span style="display:flex;"><span>    <span style="color:#666">}</span>
-</span></span></code></pre></div><h2 id="whitelist-specific-packages">Whitelist specific packages</h2>
-<p>This method prompts the user to select certain packages in the container to be whitelisted, allowing them to access the token.</p>
+</span></span></code></pre></div><h2 id="allowlist-specific-packages">Allowlist specific packages</h2>
+<p>This method prompts the user to select certain packages in the container to be allowlisted, allowing them to access the token.</p>
 <div class="highlight"><pre tabindex="0" style=";-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#008000;font-weight:bold">private</span> <span style="color:#b00040">void</span> <span style="color:#00f">whitelistPackagesToAccessToken</span><span style="color:#666">()</span> <span style="color:#666">{</span>
 </span></span><span style="display:flex;"><span>        <span style="color:#408080;font-style:italic">// List to contain the user&#39;s selected packages
 </span></span></span><span style="display:flex;"><span><span style="color:#408080;font-style:italic"></span>        <span style="color:#008000;font-weight:bold">final</span> List<span style="color:#666">&lt;</span>String<span style="color:#666">&gt;</span> selectedPackages <span style="color:#666">=</span> <span style="color:#008000;font-weight:bold">new</span> ArrayList<span style="color:#666">&lt;&gt;();</span>
@@ -3067,7 +3058,7 @@
 </span></span></span><span style="display:flex;"><span><span style="color:#408080;font-style:italic"></span>                <span style="color:#666">.</span><span style="color:#7d9029">setPositiveButton</span><span style="color:#666">(</span>getString<span style="color:#666">(</span>R<span style="color:#666">.</span><span style="color:#7d9029">string</span><span style="color:#666">.</span><span style="color:#7d9029">option_confirm</span><span style="color:#666">),</span> <span style="color:#008000;font-weight:bold">new</span> DialogInterface<span style="color:#666">.</span><span style="color:#7d9029">OnClickListener</span><span style="color:#666">()</span> <span style="color:#666">{</span>
 </span></span><span style="display:flex;"><span>                    <span style="color:#a2f">@Override</span>
 </span></span><span style="display:flex;"><span>                    <span style="color:#008000;font-weight:bold">public</span> <span style="color:#b00040">void</span> <span style="color:#00f">onClick</span><span style="color:#666">(</span>DialogInterface dialog<span style="color:#666">,</span> <span style="color:#b00040">int</span> id<span style="color:#666">)</span> <span style="color:#666">{</span>
-</span></span><span style="display:flex;"><span>                        <span style="color:#408080;font-style:italic">// Set the CCM Profile&#39;s packageList to that of whitelisted packages by user
+</span></span><span style="display:flex;"><span>                        <span style="color:#408080;font-style:italic">// Set the CCM Profile&#39;s packageList to that of allowlisted packages by user
 </span></span></span><span style="display:flex;"><span><span style="color:#408080;font-style:italic"></span>                        mCCMProfileObj<span style="color:#666">.</span><span style="color:#7d9029">packageList</span> <span style="color:#666">=</span> selectedPackages<span style="color:#666">;</span>
 </span></span><span style="display:flex;"><span>                        <span style="color:#408080;font-style:italic">// Proceed to apply the CCM profile
 </span></span></span><span style="display:flex;"><span><span style="color:#408080;font-style:italic"></span>                        setCCMProfile<span style="color:#666">();</span>
@@ -3099,10 +3090,10 @@
 </span></span><span style="display:flex;"><span>        mUtils<span style="color:#666">.</span><span style="color:#7d9029">log</span><span style="color:#666">(</span>getString<span style="color:#666">(</span>R<span style="color:#666">.</span><span style="color:#7d9029">string</span><span style="color:#666">.</span><span style="color:#7d9029">about_to_apply_profile</span><span style="color:#666">));</span>
 </span></span><span style="display:flex;"><span>        <span style="color:#408080;font-style:italic">// display the current CCM Profile Object&#39;s access method
 </span></span></span><span style="display:flex;"><span><span style="color:#408080;font-style:italic"></span>        mUtils<span style="color:#666">.</span><span style="color:#7d9029">log</span><span style="color:#666">(</span>getString<span style="color:#666">(</span>R<span style="color:#666">.</span><span style="color:#7d9029">string</span><span style="color:#666">.</span><span style="color:#7d9029">display_ccm_access</span><span style="color:#666">,</span> mCCMProfileObj<span style="color:#666">.</span><span style="color:#7d9029">accessControlMethod</span><span style="color:#666">));</span>
-</span></span><span style="display:flex;"><span>        <span style="color:#408080;font-style:italic">// display whether the CCM profile whitelisted all packages
+</span></span><span style="display:flex;"><span>        <span style="color:#408080;font-style:italic">// display whether the CCM profile allowlisted all packages
 </span></span></span><span style="display:flex;"><span><span style="color:#408080;font-style:italic"></span>        mUtils<span style="color:#666">.</span><span style="color:#7d9029">log</span><span style="color:#666">(</span>getString<span style="color:#666">(</span>R<span style="color:#666">.</span><span style="color:#7d9029">string</span><span style="color:#666">.</span><span style="color:#7d9029">display_ccm_whitelist_all_packages</span><span style="color:#666">,</span>
 </span></span><span style="display:flex;"><span>                mCCMProfileObj<span style="color:#666">.</span><span style="color:#7d9029">whiteListAllPackages</span><span style="color:#666">));</span>
-</span></span><span style="display:flex;"><span>        <span style="color:#408080;font-style:italic">// if not whitelisting all packages, display each whitelisted package
+</span></span><span style="display:flex;"><span>        <span style="color:#408080;font-style:italic">// if not allowlisting all packages, display each allowlisted package
 </span></span></span><span style="display:flex;"><span><span style="color:#408080;font-style:italic"></span>        <span style="color:#008000;font-weight:bold">if</span> <span style="color:#666">(!</span>mCCMProfileObj<span style="color:#666">.</span><span style="color:#7d9029">whiteListAllPackages</span><span style="color:#666">)</span> <span style="color:#666">{</span>
 </span></span><span style="display:flex;"><span>            mUtils<span style="color:#666">.</span><span style="color:#7d9029">log</span><span style="color:#666">(</span>getString<span style="color:#666">(</span>R<span style="color:#666">.</span><span style="color:#7d9029">string</span><span style="color:#666">.</span><span style="color:#7d9029">display_ccm_packagelist</span><span style="color:#666">));</span>
 </span></span><span style="display:flex;"><span>            <span style="color:#408080;font-style:italic">// display the CCM profile&#39;s package list
@@ -3140,10 +3131,10 @@
 </span></span><span style="display:flex;"><span>                <span style="color:#408080;font-style:italic">// display the current CCM Profile Object&#39;s access method
 </span></span></span><span style="display:flex;"><span><span style="color:#408080;font-style:italic"></span>                mUtils<span style="color:#666">.</span><span style="color:#7d9029">log</span><span style="color:#666">(</span>getString<span style="color:#666">(</span>R<span style="color:#666">.</span><span style="color:#7d9029">string</span><span style="color:#666">.</span><span style="color:#7d9029">display_ccm_access</span><span style="color:#666">,</span>
 </span></span><span style="display:flex;"><span>                        currentProfile<span style="color:#666">.</span><span style="color:#7d9029">accessControlMethod</span><span style="color:#666">));</span>
-</span></span><span style="display:flex;"><span>                <span style="color:#408080;font-style:italic">// display whether the CCM profile whitelisted all packages
+</span></span><span style="display:flex;"><span>                <span style="color:#408080;font-style:italic">// display whether the CCM profile allowlisted all packages
 </span></span></span><span style="display:flex;"><span><span style="color:#408080;font-style:italic"></span>                mUtils<span style="color:#666">.</span><span style="color:#7d9029">log</span><span style="color:#666">(</span>getString<span style="color:#666">(</span>R<span style="color:#666">.</span><span style="color:#7d9029">string</span><span style="color:#666">.</span><span style="color:#7d9029">display_ccm_whitelist_all_packages</span><span style="color:#666">,</span>
 </span></span><span style="display:flex;"><span>                        currentProfile<span style="color:#666">.</span><span style="color:#7d9029">whiteListAllPackages</span><span style="color:#666">));</span>
-</span></span><span style="display:flex;"><span>                <span style="color:#408080;font-style:italic">// if not whitelisting all packages, display each whitelisted package
+</span></span><span style="display:flex;"><span>                <span style="color:#408080;font-style:italic">// if not allowlisting all packages, display each allowlisted package
 </span></span></span><span style="display:flex;"><span><span style="color:#408080;font-style:italic"></span>                <span style="color:#008000;font-weight:bold">if</span> <span style="color:#666">(!</span>currentProfile<span style="color:#666">.</span><span style="color:#7d9029">whiteListAllPackages</span><span style="color:#666">)</span> <span style="color:#666">{</span>
 </span></span><span style="display:flex;"><span>                    mUtils<span style="color:#666">.</span><span style="color:#7d9029">log</span><span style="color:#666">(</span>getString<span style="color:#666">(</span>R<span style="color:#666">.</span><span style="color:#7d9029">string</span><span style="color:#666">.</span><span style="color:#7d9029">display_ccm_packagelist</span><span style="color:#666">));</span>
 </span></span><span style="display:flex;"><span>                    <span style="color:#408080;font-style:italic">// display the CCM profile&#39;s package list
@@ -3311,7 +3302,7 @@
 </span></span><span style="display:flex;"><span>                        <span style="color:#008000;font-weight:bold">new</span> DialogInterface<span style="color:#666">.</span><span style="color:#7d9029">OnClickListener</span><span style="color:#666">()</span> <span style="color:#666">{</span>
 </span></span><span style="display:flex;"><span>                    <span style="color:#a2f">@Override</span>
 </span></span><span style="display:flex;"><span>                    <span style="color:#008000;font-weight:bold">public</span> <span style="color:#b00040">void</span> <span style="color:#00f">onClick</span><span style="color:#666">(</span>DialogInterface dialog<span style="color:#666">,</span> <span style="color:#b00040">int</span> id<span style="color:#666">)</span> <span style="color:#666">{</span>
-</span></span><span style="display:flex;"><span>                        <span style="color:#408080;font-style:italic">// Set the CertificateProfile&#39;s packageList to that of whitelisted packages
+</span></span><span style="display:flex;"><span>                        <span style="color:#408080;font-style:italic">// Set the CertificateProfile&#39;s packageList to that of allowlisted packages
 </span></span></span><span style="display:flex;"><span><span style="color:#408080;font-style:italic"></span>                        mCertificateProfile<span style="color:#666">.</span><span style="color:#7d9029">packageList</span> <span style="color:#666">=</span> selectedPackages<span style="color:#666">;</span>
 </span></span><span style="display:flex;"><span>                        <span style="color:#408080;font-style:italic">// Proceed to set CertificateProfile&#39;s path and password
 </span></span></span><span style="display:flex;"><span><span style="color:#408080;font-style:italic"></span>                        setCertificatePathAndPassword<span style="color:#666">();</span>
@@ -3661,8 +3652,8 @@
     <nav id="TableOfContents">
   <ul>
     <li><a href="../manage-certificates.html#create-ccm-profile">Create CCM Profile</a></li>
-    <li><a href="../manage-certificates.html#whitelist-all-packages">Whitelist all packages</a></li>
-    <li><a href="../manage-certificates.html#whitelist-specific-packages">Whitelist specific packages</a></li>
+    <li><a href="../manage-certificates.html#allowlist-all-packages">Allowlist all packages</a></li>
+    <li><a href="../manage-certificates.html#allowlist-specific-packages">Allowlist specific packages</a></li>
     <li><a href="../manage-certificates.html#set-ccm-profile">Set CCM Profile</a></li>
     <li><a href="../manage-certificates.html#get-ccm-profile">Get CCM Profile</a></li>
     <li><a href="../manage-certificates.html#delete-ccm-profile">Delete CCM Profile</a></li>

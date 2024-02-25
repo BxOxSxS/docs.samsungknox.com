@@ -2656,16 +2656,6 @@
   </div>
   
   </li>
-
-
-  <li class="mt-2">
-  
-  
-  <div class="d-flex justify-content-between">
-    <a class="body-5 text-black fw-light" href="../../../storage-providers/manage-ode-decryption-keys/index.html">Manage ODE decryption keys</a>
-  </div>
-  
-  </li>
 </ul>
   </div>
   </li>
@@ -2977,7 +2967,8 @@
             </div>
             
 
-  
+  <p><span>Last updated February  8th, 2024</span></p>
+
 
     
 
@@ -3010,7 +3001,7 @@
       
       
         <p>The UCM framework uses an application allowlist to control credential storage and access. UCM determines whether or not an app is legitimately authorized to access a storage space or a particular credential by checking the allowlist and the application&rsquo;s UID.</p>
-<h2 id="whitelisting-access-to-credentials">Whitelisting access to credentials</h2>
+<h2 id="allowlisting-access-to-credentials">Allowlisting access to credentials</h2>
 <p>The UCM framework has two types of allowlists to access credentials:</p>
 <ul>
 <li>Allowlist per Storage &mdash; If an application is added to this allowlist, then the application can access the third-party UCM plugin that manages credentials on the third-party storage device. MDMs with the proper UCM permission can configure the allowlist exclusively.</li>
@@ -3135,7 +3126,7 @@
   
 
 
-<p><img src="../../../../assets/UCM-storage-whitelist.png" class="image-block-scale-80 img-thumbnail" alt="UCM-storage-whitelist.png" /></p>
+<p><img src="../../../../assets/ucm-storage-allowlist.png" class="image-block-scale-80 img-thumbnail" alt="UCM Plugin workflow diagram" /></p>
 <h2 id="managing-multiple-users">Managing multiple users</h2>
 <p>The UCM framework supports user space isolation for multiple user accounts, depending on plugin configuration. All UCM Cryptography actions involve user ID and application UID. The UCM plugin retrieves the user&rsquo;s information when an MDM or 3rd party tries to install credentials. The UCM plugin can then store the credentials separately by a user and return the proper credentials. This isolated access depends on the plugin&rsquo;s implementation. For more information, see <a href="../../../storage-providers/create-a-ucm-plugin.html">Create a UCM plugin</a>.</p>
 
@@ -3262,13 +3253,11 @@
 <ul>
 <li>KeyChain &mdash; The credentials installed by KeyChain are accessible by all applications using KeyChain and KeyChainActivity.</li>
 <li>KeyStore &mdash; Credentials installed by KeyStore are accessible exclusively through the installer.</li>
-<li>Wi-Fi &mdash; The credentials for accessing Wi-Fi allows users to access only the Wi-Fi module. Depending on the plugin&rsquo;s implementation, UCM Cryptography can have the same approach using a UCM resource ID.</li>
 </ul>
 <p>When an application requests credentials, the UCM framework sends a different UCM resource ID to the plugin for authentication. If the application uses:</p>
 <ul>
 <li>KeyChain &mdash; The UCM framework sends SHARED_KEYCHAIN_RESOURCE.</li>
 <li>KeyStore &mdash; The UCM framework sends PRIVATE_RESOURCE.</li>
-<li>Wi-Fi &mdash; The UCM framework sends SHARED_WIFI_RESOURCE.</li>
 </ul>
 <p>The UCM plugin then retrieves the requested credentials and sends them through the UCM framework to the requesting application.</p>
 
@@ -3400,7 +3389,7 @@
     <h2 class="body-4 fw-bold mt-0">On this page</h2>
     <nav id="TableOfContents">
   <ul>
-    <li><a href="../how-the-ucm-framework-works.html#whitelisting-access-to-credentials">Whitelisting access to credentials</a></li>
+    <li><a href="../how-the-ucm-framework-works.html#allowlisting-access-to-credentials">Allowlisting access to credentials</a></li>
     <li><a href="../how-the-ucm-framework-works.html#managing-multiple-users">Managing multiple users</a></li>
     <li><a href="../how-the-ucm-framework-works.html#handling-credential-requests">Handling credential requests</a></li>
   </ul>
