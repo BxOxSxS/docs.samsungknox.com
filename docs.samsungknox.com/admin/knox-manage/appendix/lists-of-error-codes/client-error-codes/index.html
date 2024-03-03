@@ -950,7 +950,7 @@
   
   
   <div class="d-flex justify-content-between">
-    <a class="body-5 text-black fw-light" href="../../../configure/identity-and-directory/connect-to-azure-ad.html">Connect to Azure AD</a>
+    <a class="body-5 text-black fw-light" href="../../../configure/identity-and-directory/connect-to-microsoft-entra-id.html">Connect to Microsoft Entra ID</a>
   </div>
   
   </li>
@@ -4181,16 +4181,6 @@
   
   
   <div class="d-flex justify-content-between">
-    <a class="body-5 text-black fw-light" href="../console-error-codes/index.html">Console error codes</a>
-  </div>
-  
-  </li>
-
-
-  <li class="mt-2">
-  
-  
-  <div class="d-flex justify-content-between">
     <a class="body-5 text-black fw-light" href="../appwrapper-error-codes/index.html">AppWrapper error codes</a>
   </div>
   
@@ -4295,7 +4285,7 @@
             </div>
             
 
-  <p><span>Last updated January  2nd, 2024</span></p>
+  <p><span>Last updated February  28th, 2024</span></p>
 
 
     
@@ -4308,17 +4298,16 @@
 
 
 
-<p>The following table lists error codes that may show on the user&rsquo;s device while using Knox Manage.</p>
+<p>This page lists error codes that may show on a user&rsquo;s device while using Knox Manage. The following tables group the errors under categories, such as Client, Provisioning Library, Profile, and so on.</p>
+<h2 id="client">Client</h2>
 <div class="overflow-auto my-3"><table>
     <tr>
-        <th scope="col">Category</th>
         <th scope="col">Module</th>
-        <th scope="col">Error Code</th>
-        <th scope="col">Error Title</th>
-        <th scope="col">Error Message</th>
+        <th scope="col">Error code</th>
+        <th scope="col">Error title</th>
+        <th scope="col">Error message</th>
     </tr>
     <tr>
-        <td rowspan="4">Client</td>
         <td rowspan="4">Service Provision</td>
         <td>KMA_F100</td>
         <td>Server Info Not Found</td>
@@ -4340,14 +4329,13 @@
         <td>The license associated with your company account has been expired. Please contact your administrator.</td>
     </tr>
     <tr>
-        <td rowspan="9">Client</td>
         <td>Device Certificate</td>
         <td>KMA_A1011</td>
         <td>Issuing Device Certificate Failed</td>
         <td>Failed to issue a device certificate. Please try again or contact your administrator if the problem continues.</td>
     </tr>
     <tr>
-        <td rowspan="3">Login</td>
+        <td rowspan="6">Login</td>
         <td>KMA_A1004</td>
         <td>Invalid User Info</td>
         <td>Failed to enroll in Knox Manage due to invalid user information. Please check your user ID or password again.</td>
@@ -4356,6 +4344,21 @@
         <td>KMA_A1021</td>
         <td>Server Information Retrieval Failed</td>
         <td>Failed to retrieve server information. Please try again or contact your administrator if the problem continues.</td>
+    </tr>
+    <tr>
+        <td>KMA_A1022</td>
+        <td>Invalid Request</td>
+        <td>The request is invalid. Please try again or contact your administrator if the problem continues.</td>
+    </tr>
+    <tr>
+        <td>KMA_A1023</td>
+        <td>Server Error</td>
+        <td>A server error has occurred. Please try again or contact your administrator if the problem continues.</td>
+    </tr>
+    <tr>
+        <td>KMA_A1024</td>
+        <td>Service Unavailable</td>
+        <td>Integrated web authentication service is not available. Please try again or contact your administrator if the problem continues.</td>
     </tr>
     <tr>
         <td>KMA_A5003</td>
@@ -4398,8 +4401,16 @@
         <td>Network Error</td>
         <td>Please check the network connectivity. If the problem continues, please contact your administrator.</td>
     </tr>
+</table></div>
+<h2 id="provisioning-library">Provisioning library</h2>
+<div class="overflow-auto my-3"><table>
     <tr>
-        <td rowspan="20">Provisioning Library</td>
+        <th scope="col">Module</th>
+        <th scope="col">Error code</th>
+        <th scope="col">Error title</th>
+        <th scope="col">Error message</th>
+    </tr>
+    <tr>
         <td rowspan="8">Common</td>
         <td>KMA_B1001</td>
         <td>Empty Device ID</td>
@@ -4489,7 +4500,7 @@
     </tr>
     <tr>
         <td>KMA_B3004</td>
-        <td>Server Page Error (HTTP Error Code) Occurred</td>
+        <td>Server Page Error (HTTP Error code) Occurred</td>
         <td>Temporarily unable to establish a connection to the network. Please try again or contact your administrator if the problem continues.</td>
     </tr>
     <tr>
@@ -4504,8 +4515,7 @@
         <td>An unknown error has occurred. Please contact your administrator.</td>
     </tr>
     <tr>
-        <td rowspan="33">Provisioning Library</td>
-        <td rowspan="33">Provision Server</td>
+        <td rowspan="32">Provision Server</td>
         <td>KMA_B5001</td>
         <td>Public Key Not Found</td>
         <td>Temporarily unable to find the public key on the server. Please try again or contact your administrator if the problem continues.</td>
@@ -4527,13 +4537,13 @@
     </tr>
     <tr>
         <td>KMA_B5005</td>
-        <td>Blocked Device</td>
-        <td>The device is blocked. If the problem continues, please contact your administrator.</td>
+        <td>Expired Device</td>
+        <td>The device is expired. If using force unenrollment, the device can be re-enroll. If the problem continues, please contact your administrator.</td>
     </tr>
     <tr>
         <td>KMA_B5006</td>
         <td>Device Registration Restricted</td>
-        <td>Only the devices registered in advance can be enrolled in Knox Manage. Please ask your administrator to register the device information and try again.</td>
+        <td>In the case of using Limited Enrollment function, only the devices set by your administrator in advance can be enrolled in Knox Manage. Please ask your administrator to register the limitation condition and try again.</td>
     </tr>
     <tr>
         <td>KMA_B5007</td>
@@ -4589,11 +4599,6 @@
         <td>KMA_B5017</td>
         <td>Loading License Info Failed</td>
         <td>Failed to fetch the license information. Please try again or contact your administrator if the problem continues.</td>
-    </tr>
-    <tr>
-        <td>KMA_B5005</td>
-        <td>Blocked Device</td>
-        <td>The device is blocked. If the problem continues, please contact your administrator.</td>
     </tr>
     <tr>
         <td>KMA_B5018</td>
@@ -4671,8 +4676,7 @@
         <td>The number of devices that can be enrolled has been exceeded. Please contact your administrator.</td>
     </tr>
     <tr>
-        <td rowspan="19">&#160;</td>
-        <td rowspan="19">Login</td>
+        <td rowspan="25">Login</td>
         <td>KMA_C1001</td>
         <td>Network Error</td>
         <td>Please check the network connectivity. If the problem continues, please contact your administrator.</td>
@@ -4684,11 +4688,6 @@
     </tr>
     <tr>
         <td>KMA_C1003</td>
-        <td>Invalid User Info</td>
-        <td>Failed to enroll in Knox Manage due to invalid user information. Please check your user ID or password again.</td>
-    </tr>
-    <tr>
-        <td>KMA_C1004</td>
         <td>Invalid User Info</td>
         <td>Failed to enroll in Knox Manage due to invalid user information. Please check your user ID or password again.</td>
     </tr>
@@ -4768,7 +4767,24 @@
         <td>The mobile ID of the device does not match the server. Please contact your administrator.</td>
     </tr>
     <tr>
-        <td rowspan="56">Profile</td>
+        <td>KMA_C1022</td>
+        <td>Login Failed</td>
+        <td>Service mode cannot be viewed. Please contact your administrator.</td>
+    </tr>
+        <td>KMA_C1023</td>
+        <td>Server Connection Error</td>
+        <td>Temporarily unable to connect to the server. Please try again or contact your administrator if the problem continues.</td>
+    </tr>
+</table></div>
+<h2 id="profile">Profile</h2>
+<div class="overflow-auto my-3"><table>
+    <tr>
+        <th scope="col">Module</th>
+        <th scope="col">Error code</th>
+        <th scope="col">Error title</th>
+        <th scope="col">Error message</th>
+    </tr>
+    <tr>
         <td rowspan="7">Common</td>
         <td>KMA_D1001</td>
         <td>Header Parameter Not Existing</td>
@@ -4920,13 +4936,12 @@
         <td>The device cannot create a client command message. Please contact your administrator.</td>
     </tr>
     <tr>
-        <td>Check Enrollment</td>
+        <td rowspan="18">Configuration</td>
         <td>KMA_D9001</td>
         <td>Configuration Installation Failed</td>
         <td>Configured items cannot be installed on the device. Please contact your administrator to check the profile or certificate settings.</td>
     </tr>
     <tr>
-        <td rowspan="3">Client Command</td>
         <td>KMA_D9002</td>
         <td>Configuration Installation Already Requested</td>
         <td>It has already been requested to install the configuration. Please wait while it is being installed.</td>
@@ -4942,7 +4957,6 @@
         <td>The SDK version available on this device is not compatible with the pushed configuration.</td>
     </tr>
     <tr>
-        <td rowspan="14">Configuration</td>
         <td>KMA_D9005</td>
         <td>CA Certificate Installation Failed</td>
         <td>User certificates cannot be installed on the device. Please contact your administrator to check the profile or certificate settings.</td>
@@ -5071,8 +5085,16 @@
         <td>Knox Container Creation Failed</td>
         <td>Knox Container cannot be created since the SafetyNet Attestation detected a device compromise.</td>
     </tr>
+</table></div>
+<h2 id="agent-enrollment">Agent enrollment</h2>
+<div class="overflow-auto my-3"><table>
     <tr>
-        <td rowspan="56">Agent-Enrollment</td>
+        <th scope="col">Module</th>
+        <th scope="col">Error code</th>
+        <th scope="col">Error title</th>
+        <th scope="col">Error message</th>
+    </tr>
+    <tr>
         <td rowspan="5">Provision</td>
         <td>KMA_F1002</td>
         <td>Provision Exception Error</td>
@@ -5099,7 +5121,7 @@
         <td>Failed to enroll in Knox Manage due to an invalid device private key. Please contact your administrator.</td>
     </tr>
     <tr>
-        <td rowspan="6">Verify Preprovision Info</td>
+        <td rowspan="6">Verify preprovision info</td>
         <td>KMA_F1007</td>
         <td>Invalid Manage Type</td>
         <td>Android Enterprise users are only allowed to enroll on "Fully Managed" or "Work Profile on company-owned" mode via KME. Please contact your administrator.</td>
@@ -5131,7 +5153,7 @@
         <td>Staging User is only allowed to enroll on Fully Managed.</td>
     </tr>
     <tr>
-        <td rowspan="5">PushRegistration</td>
+        <td rowspan="5">Push registration</td>
         <td>KMA_F2002</td>
         <td>Push Registration Failed</td>
         <td>The device cannot register the push service. Update the Google Play services to the latest version and try again. If the problem continues, please contact your administrator.</td>
@@ -5173,7 +5195,7 @@
         <td>The enrollment record of this device remains on the server. It must be initialized. Please contact your administrator.</td>
     </tr>
     <tr>
-        <td rowspan="36">UpdateLicense</td>
+        <td rowspan="34">UpdateLicense</td>
         <td>KMA_F4001</td>
         <td>Device Admin Activation Failed</td>
         <td>The device admin is not activated and the enrollment operation has timed out. Please activate the device admin in the enrollment process.</td>
@@ -5294,16 +5316,6 @@
         <td>The license activation operation has failed because the license key does not match with the other service or the license type does not match with the user type. Please contact your administrator.</td>
     </tr>
     <tr>
-        <td>KMA_F8001</td>
-        <td>Invalid Unenrollment Code</td>
-        <td>The unenrollment code is invalid. Please check the code you entered again.</td>
-    </tr>
-    <tr>
-        <td>KMA_F4026</td>
-        <td>License Activation Failed</td>
-        <td>License activation operation failed due to license key mismatch with other service or license type mismatch with user type. Please contact your administrator.</td>
-    </tr>
-    <tr>
         <td>KMA_F5001</td>
         <td>License Activation Failed</td>
         <td>License activation failed because BCK or ELM licenses do not exist. Please contact your administrator.</td>
@@ -5354,13 +5366,21 @@
         <td>A server error occurred while checking a valid license. Please contact your administrator.</td>
     </tr>
     <tr>
-        <td rowspan="1">Unenrollment</td>
-        <td>KMA_F4025</td>
+        <td rowspan="1">Enrollment</td>
+        <td>KMA_F9001</td>
         <td>Enrollment Failure</td>
         <td>Failed to enroll the Samsung Knox Manage service. If the problem continues, please contact your administrator.</td>
     </tr>
+</table></div>
+<h2 id="shared-device">Shared device</h2>
+<div class="overflow-auto my-3"><table>
     <tr>
-        <td rowspan="16">Shared Device</td>
+        <th scope="col">Module</th>
+        <th scope="col">Error code</th>
+        <th scope="col">Error title</th>
+        <th scope="col">Error message</th>
+    </tr>
+    <tr>
         <td rowspan="16">User</td>
         <td>KMA_E1000</td>
         <td>User Operation Failed</td>
@@ -5442,8 +5462,31 @@
         <td>User Operation Failed</td>
         <td>Failed to activate the user. If this problem persists, contact your administrator.</td>
     </tr>
+</table></div>
+<h2 id="non-shared-device">Non-shared device</h2>
+<div class="overflow-auto my-3"><table>
     <tr>
-        <td rowspan="6">Kiosk Launcher</td>
+        <th scope="col">Module</th>
+        <th scope="col">Error code</th>
+        <th scope="col">Error title</th>
+        <th scope="col">Error message</th>
+    </tr>
+    <tr>
+        <td>User</td>
+        <td>KMA_E1016</td>
+        <td>Invalid User Type</td>
+        <td>Failed to check in because the server does not have the device or the user information is not updated. If this problem persists, contact your administrator.</td>
+    </tr>
+</table></div>
+<h2 id="kiosk-launcher">Kiosk launcher</h2>
+<div class="overflow-auto my-3"><table>
+    <tr>
+        <th scope="col">Module</th>
+        <th scope="col">Error code</th>
+        <th scope="col">Error title</th>
+        <th scope="col">Error message</th>
+    </tr>
+    <tr>
         <td rowspan="4">App</td>
         <td>KIO_CODE_001</td>
         <td>App Execution Failed</td>
@@ -5481,6 +5524,21 @@
           </div>
           <div class="l-toc">
             <aside class="toc">
+  
+  <nav class="section-nav">
+    <h2 class="body-4 fw-bold mt-0">On this page</h2>
+    <nav id="TableOfContents">
+  <ul>
+    <li><a href="index.html#client">Client</a></li>
+    <li><a href="index.html#provisioning-library">Provisioning library</a></li>
+    <li><a href="index.html#profile">Profile</a></li>
+    <li><a href="index.html#agent-enrollment">Agent enrollment</a></li>
+    <li><a href="index.html#shared-device">Shared device</a></li>
+    <li><a href="index.html#non-shared-device">Non-shared device</a></li>
+    <li><a href="index.html#kiosk-launcher">Kiosk launcher</a></li>
+  </ul>
+</nav>
+  </nav>
   
 </aside>
 

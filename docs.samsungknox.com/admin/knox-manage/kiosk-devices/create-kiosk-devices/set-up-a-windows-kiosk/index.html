@@ -950,7 +950,7 @@
   
   
   <div class="d-flex justify-content-between">
-    <a class="body-5 text-black fw-light" href="../../../configure/identity-and-directory/connect-to-azure-ad.html">Connect to Azure AD</a>
+    <a class="body-5 text-black fw-light" href="../../../configure/identity-and-directory/connect-to-microsoft-entra-id.html">Connect to Microsoft Entra ID</a>
   </div>
   
   </li>
@@ -4181,16 +4181,6 @@
   
   
   <div class="d-flex justify-content-between">
-    <a class="body-5 text-black fw-light" href="../../../appendix/lists-of-error-codes/console-error-codes/index.html">Console error codes</a>
-  </div>
-  
-  </li>
-
-
-  <li class="mt-2">
-  
-  
-  <div class="d-flex justify-content-between">
     <a class="body-5 text-black fw-light" href="../../../appendix/lists-of-error-codes/appwrapper-error-codes/index.html">AppWrapper error codes</a>
   </div>
   
@@ -4295,7 +4285,7 @@
             </div>
             
 
-  <p><span>Last updated July  26th, 2023</span></p>
+  <p><span>Last updated February  28th, 2024</span></p>
 
 
     
@@ -4456,7 +4446,7 @@
       
       
       
-        <p>This article covers how to set up a Windows device in your fleet to deploy as kiosks in your enterprise. On the Windows platform, Knox Manage implements kiosk configurations primarily through device policies.</p>
+        <p>This article covers how to set up a Windows device as a kiosk through Knox Manage. On the Windows platform, Knox Manage implements kiosk configurations primarily through device policies.</p>
 <h2 id="before-you-begin">Before you begin</h2>
 <p>Windows kiosks require extra preparation and configuration. Your prerequisite activites are to:</p>
 <ol>
@@ -4466,80 +4456,38 @@
 </ol>
 <h2 id="configure-windows-kiosk-apps">Configure Windows kiosk apps</h2>
 <p>Apps for both single- and multi-app Windows kiosks have quite specific requirements and configuration needs. In some cases, you must prepare the apps. Read this section carefully before you begin setting up a kiosk.</p>
-<h3 id="app-requirements-multi-app-kiosks">App requirements for multi-app kiosks</h3>
+<h3 id="app-requirements-for-multi-app-kiosks">App requirements for multi-app kiosks</h3>
 <p>Multi-app kiosks can deploy with the Kiosk Browser, Microsoft Store (UWP) apps, or native Win32 apps. Each type has some exceptions you should keep in mind when you configure them in a profile:</p>
 <div class="overflow-auto my-3"><table>
- <tr>
-  <th scope="col">
-   App type
-  </th>
-  <th scope="col">
-   Requirements
-  </th>
-  <th scope="col">
-   Helpful links
-  </th>
- </tr>
- <tr>
-  <td>
-   Kiosk Browse
-  </td>
-  <td>
-   This app type must be assigned and deployed to the device as a provisioning package (PPKG) before you can configure it.
-  </td>
-  <td>
-   <p>
-    <a href="../set-up-a-windows-kiosk.html#install-kiosk-browser-app-multi-app-kiosk">
-     Install the Kiosk Browser app on a multi-app kiosk
-    </a>
-   </p>
-   <p>
-    <a href="../../../configure/applications/add-applications/add-internal-windows-apps.html">
-     Add an internal Windows app
-    </a>
-   </p>
-   <p>
-    <a href="../../../configure/applications/assign-applications/assign-windows-apps.html">
-     Assign a Windows app
-    </a>
-   </p>
-  </td>
- </tr>
- <tr>
-  <td>
-   Microsoft Store (UWP) app
-  </td>
-  <td>
-   This app type must be pre-configured in your Knox Manage tenant with an Application User Model ID (AUMID).
-  </td>
-  <td>
-   <a href="../set-up-a-windows-kiosk.html#prepare-microsoft-store-app-kiosks">
-    Prepare a Microsoft Store app for kiosks
-   </a>
-  </td>
- </tr>
- <tr>
-  <td>
-   Win32 app
-  </td>
-  <td>
-   You must assign the app to the device before you can configure it.
-  </td>
-  <td>
-   <p>
-    <a href="../../../configure/applications/add-applications/add-internal-windows-apps.html">
-     Add an internal Windows app
-    </a>
-   </p>
-   <p>
-    <a href="../../../configure/applications/assign-applications/assign-windows-apps.html">
-     Assign a Windows app
-    </a>
-   </p>
-  </td>
- </tr>
+    <tr>
+        <th scope="col">App type</th>
+        <th scope="col">Requirements</th>
+        <th scope="col">Helpful links</th>
+    </tr>
+    <tr>
+        <td>Kiosk Browser</td>
+        <td>This app type must be assigned and deployed to the device as a provisioning package (PPKG) before you can configure it.</td>
+        <td>
+            <p><a href="../set-up-a-windows-kiosk.html#install-the-kiosk-browser-app-on-a-multi-app-kiosk">Install the Kiosk Browser app on a multi-app kiosk</a></p>
+            <p><a href="../../../configure/applications/add-applications/add-internal-windows-apps.html">Add an internal Windows app</a></p>
+            <p><a href="../../../configure/applications/assign-applications/assign-windows-apps.html">Assign a Windows app</a></p>
+        </td>
+    </tr>
+    <tr>
+        <td>Microsoft Store (UWP) app</td>
+        <td>This app type must be pre-configured in your Knox Manage tenant with an Application User Model ID (AUMID).</td>
+        <td><a href="../set-up-a-windows-kiosk.html#prepare-a-microsoft-store-app-for-kiosks">Prepare a Microsoft Store app for kiosks</a></td>
+    </tr>
+    <tr>
+        <td>Win32 app</td>
+        <td>You must assign the app to the device before you can configure it.</td>
+        <td>
+            <p><a href="../../../configure/applications/add-applications/add-internal-windows-apps.html">Add an internal Windows app</a></p>
+            <p><a href="../../../configure/applications/assign-applications/assign-windows-apps.html">Assign a Windows app</a></p>
+        </td>
+    </tr>
 </table></div>
-<h3 id="prepare-microsoft-store-app-kiosks">Prepare a Microsoft Store app for kiosks</h3>
+<h3 id="prepare-a-microsoft-store-app-for-kiosks">Prepare a Microsoft Store app for kiosks</h3>
 <p>Microsoft Store (UWP) apps require that you pre-configure them in your Knox Manage tenant with the correct Application User Model ID (AUMID).</p>
 <p>To add a Windows app for kiosks:</p>
 <ol>
@@ -4550,7 +4498,7 @@
 <li><strong>Save</strong> your changes.</li>
 </ol>
 <p>Once the app is configured with an AUMID, it&rsquo;s available for selection during configuration.</p>
-<h2 id="install-kiosk-browser-app-multi-app-kiosk">Install the Kiosk Browser app on a multi-app kiosk</h2>
+<h2 id="install-the-kiosk-browser-app-on-a-multi-app-kiosk">Install the Kiosk Browser app on a multi-app kiosk</h2>
 <p>Unlike single-app kiosks, a multi-app kiosk needs a special offline license version of Microsoft&rsquo;s Kiosk Browser if you want to use that app. Once you obtain it, you must manually install it to the device as a provisioning package (PPKG) file.</p>
 <p>To install the Kiosk Browser app for a multi-app kiosk, first obtain the offline license version of the Knox Browser app:</p>
 <ol>
@@ -4575,8 +4523,12 @@
 <p>Obtain the app package and license:</p>
 <p><img src="../../../assets/km-set-up-windows-kiosk-kiosk-browser-app-microsoft-store-business-download-offline.png" alt="Downloading the offline license and package of the Kiosk Browser app on Microsoft Store for Business." /></p>
 <ul>
-<li>Under <strong>Download the package for offline use</strong>, click <strong>Download</strong>. The package is an APPXBUNDLE file.</li>
-<li>Under <strong>Get app license</strong>, select Unencoded license and then click Generate <strong>license</strong>. The license is an XML file.</li>
+<li>
+<p>Under <strong>Download the package for offline use</strong>, click <strong>Download</strong>. The package is an APPXBUNDLE file.</p>
+</li>
+<li>
+<p>Under <strong>Get app license</strong>, select Unencoded license and then click Generate <strong>license</strong>. The license is an XML file.</p>
+</li>
 </ul>
 </li>
 </ol>
@@ -4603,10 +4555,18 @@
     
     <p><img src="../../../assets/km-set-up-windows-kiosk-kiosk-browser-app-microsoft-store-business-ppkg-app.png" class="img-fluid img-thumbnail" alt="Adding the Kiosk Browser app on the Add an Application screen of the wizard in the Windows Configuration Designer." /></p>
 <ul>
-<li>For <strong>Application name</strong>, enter <strong>Kiosk Browser</strong>.</li>
-<li>For <strong>Installer Path</strong>, attach the Kiosk Browser package (APPXBUNDLE file) you downloaded in the previous procedure.</li>
-<li>For <strong>License path (optional)</strong>, attach the Kiosk Browser license (XML file) you downloaded in the previous procedure.</li>
-<li>Enter the <strong>Package family name</strong> you copied in the previous procedure.</li>
+<li>
+<p>For <strong>Application name</strong>, enter <strong>Kiosk Browser</strong>.</p>
+</li>
+<li>
+<p>For <strong>Installer Path</strong>, attach the Kiosk Browser package (APPXBUNDLE file) you downloaded in the previous procedure.</p>
+</li>
+<li>
+<p>For <strong>License path (optional)</strong>, attach the Kiosk Browser license (XML file) you downloaded in the previous procedure.</p>
+</li>
+<li>
+<p>Enter the <strong>Package family name</strong> you copied in the previous procedure.</p>
+</li>
 </ul>
 </li>
 <li>
@@ -4628,8 +4588,8 @@
 <li>Transfer the PPKG file to the Windows device you plan to deploy as a kiosk.</li>
 <li>Apply the provisioning package directly by double-clicking the PPKG file. For help, see <a href="https://learn.microsoft.com/en-us/windows/configuration/provisioning-packages/provisioning-apply-package#apply-directly" target="_blank">Apply a provisioning package</a> in the Microsoft 365 docs.</li>
 </ol>
-<p>Now that the offline license version of Kiosk Browser is installed, the Windows device is ready to be <a href="../set-up-a-windows-kiosk.html#set-up-multi-app-windows-kiosk">set up as a multi-app kiosk</a> with the browser.</p>
-<h2 id="set-up-single-app-windows-kiosk">Set up a single-app Windows kiosk</h2>
+<p>Now that the offline license version of Kiosk Browser is installed, the Windows device is ready to be <a href="../set-up-a-windows-kiosk.html#set-up-a-multi-app-windows-kiosk">set up as a multi-app kiosk</a> with the browser.</p>
+<h2 id="set-up-a-single-app-windows-kiosk">Set up a single-app Windows kiosk</h2>
 <p>Before you can set up a single-app kiosk, you must decide whether the main app experience will be Microsoft Edge, Kiosk Browser, or some other app from Microsoft Store.</p>
 <p>To set up a single-app kiosk:</p>
 <ol>
@@ -4660,9 +4620,15 @@
 <li>
 <p>Set <strong>Running App Type</strong> to the desired kiosk experience:</p>
 <ul>
-<li>Microsoft Edge Browse</li>
-<li>Kiosk Browse</li>
-<li>Store App</li>
+<li>
+<p>Microsoft Edge Browser</p>
+</li>
+<li>
+<p>Kiosk Browser</p>
+</li>
+<li>
+<p>Store App</p>
+</li>
 </ul>
 </li>
 </ol>
@@ -4684,16 +4650,22 @@
     
     <p><img src="../../../assets/km-set-up-windows-kiosk-single-app-microsoft-edge-policies.png" class="img-fluid img-thumbnail" alt="Setting the Microsoft Edge policies on the Set Policy page." /></p>
 <ul>
-<li>For <strong>Kiosk URL</strong>, enter the path to the web page that the kiosk will open.</li>
-<li>For <strong>Kiosk Mode</strong>, select <strong>Public Browsing (InPrivate)</strong> for a session-based browser, or <strong>Digital/Interactive Signage (InPrivate)</strong> for an interactive sign. If you make the kiosk a sign, the browser can only open the web page you specified in the <strong>Kiosk URL</strong> setting.</li>
-<li>For <strong>Reset Browser after Idle Time (Min)</strong>, enter the maximum session length, in minutes. If you leave this field blank or enter <strong>0</strong>, then a session only expires when the device user manually ends it.</li>
+<li>
+<p>For <strong>Kiosk URL</strong>, enter the path to the web page that the kiosk will open.</p>
+</li>
+<li>
+<p>For <strong>Kiosk Mode</strong>, select <strong>Public Browsing (InPrivate)</strong> for a session-based browser, or <strong>Digital/Interactive Signage (InPrivate)</strong> for an interactive sign. If you make the kiosk a sign, the browser can only open the web page you specified in the <strong>Kiosk URL</strong> setting.</p>
+</li>
+<li>
+<p>For <strong>Reset Browser after Idle Time (Min)</strong>, enter the maximum session length, in minutes. If you leave this field blank or enter <strong>0</strong>, then a session only expires when the device user manually ends it.</p>
+</li>
 </ul>
 </li>
 <li>
 <p><strong>Save</strong> the profile for now and assign it to a group or organization later, or <strong>Save &amp; Assign</strong> it immediately.</p>
 </li>
 <li>
-<p><a href="../set-up-a-windows-kiosk.html#deploy-windows-kiosk">Deploy the kiosk</a>.</p>
+<p><a href="../set-up-a-windows-kiosk.html#deploy-a-windows-kiosk">Deploy the kiosk</a>.</p>
 </li>
 </ol>
 <h4 id="kiosk-browser">Kiosk Browser</h4>
@@ -4713,23 +4685,35 @@
     
     <p><img src="../../../assets/km-set-up-windows-kiosk-single-app-kiosk-browser-policies.png" class="img-fluid img-thumbnail" alt="Setting the Kiosk Browser policies." /></p>
 <ul>
-<li>For <strong>Default Homepage URL</strong>, enter the path to the browser&rsquo;s home page.</li>
-<li>For <strong>Home Button</strong>, select whether to show or hide the home button on the browser&rsquo;s navigation bar.</li>
-<li>For <strong>Navigation Button</strong>, select whether to show or hide the forward and back buttons.</li>
-<li>For <strong>End Session Button</strong>, select whether to show or hide the button that ends the user session.</li>
-<li>For <strong>Reset Browser after Idle Time (Min)</strong>, enter the maximum session length, in minutes. If you leave this field blank or enter <strong>0</strong>, then a session only expires when the device user manually ends it.</li>
-<li>By default, the device user can go to any web page. If needed, you can add one or more URLs to <strong>Allowed Websites</strong> to restrict their browsing. Sub-domains are automatically included. For example, if you enter <strong>example.com</strong>, <strong>help.example.com</strong> is also included. This setting doesn&rsquo;t support wildcards (<strong>*</strong>).</li>
+<li>
+<p>For <strong>Default Homepage URL</strong>, enter the path to the browser&rsquo;s home page.</p>
+</li>
+<li>
+<p>For <strong>Home Button</strong>, select whether to show or hide the home button on the browser&rsquo;s navigation bar.</p>
+</li>
+<li>
+<p>For <strong>Navigation Button</strong>, select whether to show or hide the forward and back buttons.</p>
+</li>
+<li>
+<p>For <strong>End Session Button</strong>, select whether to show or hide the button that ends the user session.</p>
+</li>
+<li>
+<p>For <strong>Reset Browser after Idle Time (Min)</strong>, enter the maximum session length, in minutes. If you leave this field blank or enter <strong>0</strong>, then a session only expires when the device user manually ends it.</p>
+</li>
+<li>
+<p>By default, the device user can go to any web page. If needed, you can add one or more URLs to <strong>Allowed Websites</strong> to restrict their browsing. Sub-domains are automatically included. For example, if you enter <strong>example.com</strong>, <strong>help.example.com</strong> is also included. This setting doesn&rsquo;t support wildcards (<strong>*</strong>).</p>
+</li>
 </ul>
 </li>
 <li>
 <p><strong>Save</strong> the profile for now and assign it to a group or organization later, or <strong>Save &amp; Assign</strong> it immediately.</p>
 </li>
 <li>
-<p><a href="../set-up-a-windows-kiosk.html#deploy-windows-kiosk">Deploy the kiosk</a>.</p>
+<p><a href="../set-up-a-windows-kiosk.html#deploy-a-windows-kiosk">Deploy the kiosk</a>.</p>
 </li>
 </ol>
 <h4 id="store-app">Store App</h4>
-<p>Before you configure a Microsoft Store app, consult the <a href="../set-up-a-windows-kiosk.html#app-requirements-multi-app-kiosks">detailed requirements of this app type</a> and make the necessary arrangements so that the chosen app can deploy without issues.</p>
+<p>Before you configure a Microsoft Store app, consult the <a href="../set-up-a-windows-kiosk.html#app-requirements-for-multi-app-kiosks">detailed requirements of this app type</a> and make the necessary arrangements so that the chosen app can deploy without issues.</p>
 <ol>
 <li>
 <p>Click <strong>Add</strong> to specify the app that the kiosk runs. The <strong>Select Application</strong> dialog opens.</p>
@@ -4750,10 +4734,10 @@
 <p><strong>Save</strong> the profile for now and assign it to a group or organization later, or <strong>Save &amp; Assign</strong> it immediately.</p>
 </li>
 <li>
-<p><a href="../set-up-a-windows-kiosk.html#deploy-windows-kiosk">Deploy the kiosk</a>.</p>
+<p><a href="../set-up-a-windows-kiosk.html#deploy-a-windows-kiosk">Deploy the kiosk</a>.</p>
 </li>
 </ol>
-<h2 id="set-up-multi-app-windows-kiosk">Set up a multi-app Windows kiosk</h2>
+<h2 id="set-up-a-multi-app-windows-kiosk">Set up a multi-app Windows kiosk</h2>
 <p>Before you can set up a multi-app kiosk profile, consult the detailed exceptions for each type of app in Manage Windows kiosks and make the necessary arrangements so that the chosen apps can deploy without issues.</p>
 <p>To set up a multi-app Windows kiosk:</p>
 <ol>
@@ -4782,14 +4766,20 @@
     <p><img src="../../../assets/km-set-up-windows-kiosk-multi-app-policy.png" class="img-fluid img-thumbnail" alt="Setting the base multi-app kiosk policies on the Set Policy page." /></p>
 </li>
 <li>
-<p><a href="../set-up-a-windows-kiosk.html#configure-app-multi-app-kiosk">Add and configure one or more apps</a>.</p>
+<p><a href="../set-up-a-windows-kiosk.html#configure-an-app-for-a-multi-app-kiosk">Add and configure one or more apps</a>.</p>
 </li>
 <li>
 <p>(Optional) Modify the arrangement of the app grid:</p>
 <ol>
-<li><a href="https://learn.microsoft.com/en-us/windows/configuration/customize-and-export-start-layout" target="_blank">Create a custom Start layout</a>.</li>
-<li>Set <strong>Alternative Start Layout</strong> to <strong>Apply</strong> to show the <strong>Layout Configuration</strong> policy.</li>
-<li>Click <strong>Configure</strong>, paste the contents of the layout XML into the dialog, and click <strong>Save</strong>.</li>
+<li>
+<p><a href="https://learn.microsoft.com/en-us/windows/configuration/customize-and-export-start-layout" target="_blank">Create a custom Start layout</a>.</p>
+</li>
+<li>
+<p>Set <strong>Alternative Start Layout</strong> to <strong>Apply</strong> to show the <strong>Layout Configuration</strong> policy.</p>
+</li>
+<li>
+<p>Click <strong>Configure</strong>, paste the contents of the layout XML into the dialog, and click <strong>Save</strong>.</p>
+</li>
 </ol>
 </li>
 <li>
@@ -4802,10 +4792,10 @@
 <p><strong>Save</strong> the profile for now and assign it to a group or organization later, or <strong>Save &amp; Assign</strong> it immediately.</p>
 </li>
 <li>
-<p><a href="../set-up-a-windows-kiosk.html#deploy-windows-kiosk">Deploy the kiosk</a>.</p>
+<p><a href="../set-up-a-windows-kiosk.html#deploy-a-windows-kiosk">Deploy the kiosk</a>.</p>
 </li>
 </ol>
-<h3 id="configure-app-multi-app-kiosk">Configure an app for a multi-app kiosk</h3>
+<h3 id="configure-an-app-for-a-multi-app-kiosk">Configure an app for a multi-app kiosk</h3>
 <p>To configure an app for a multi-app kiosk:</p>
 <ol>
 <li>
@@ -4817,12 +4807,24 @@
 <li>
 <p><strong>Kiosk Browser</strong> &mdash; Configure the browser settings:</p>
 <ul>
-<li>For <strong>Default Homepage URL</strong>, enter the path to the browser&rsquo;s home page.</li>
-<li>For <strong>Home Button</strong>, select whether to show or hide the home button on the browser&rsquo;s navigation bar.</li>
-<li>For <strong>Navigation Button</strong>, select whether to show or hide the forward and back buttons.</li>
-<li>For <strong>End Session Button</strong>, select whether to show or hide the button that ends the user session.</li>
-<li>For <strong>Reset Browser after Idle Time (Min)</strong>, enter the maximum session length, in minutes. If you leave this field blank or enter <strong>0</strong>, then a session only expires when the device user manually ends it.</li>
-<li>By default, the device user can go to any web page. If needed, you can add one or more URLs to <strong>Allowed Websites</strong> to restrict their browsing. Sub-domains are automatically included. For example, if you enter <strong>example.com</strong>, <strong>help.example.com</strong> is also included. This setting doesn&rsquo;t support wildcards (<strong>*</strong>).</li>
+<li>
+<p>For <strong>Default Homepage URL</strong>, enter the path to the browser&rsquo;s home page.</p>
+</li>
+<li>
+<p>For <strong>Home Button</strong>, select whether to show or hide the home button on the browser&rsquo;s navigation bar.</p>
+</li>
+<li>
+<p>For <strong>Navigation Button</strong>, select whether to show or hide the forward and back buttons.</p>
+</li>
+<li>
+<p>For <strong>End Session Button</strong>, select whether to show or hide the button that ends the user session.</p>
+</li>
+<li>
+<p>For <strong>Reset Browser after Idle Time (Min)</strong>, enter the maximum session length, in minutes. If you leave this field blank or enter <strong>0</strong>, then a session only expires when the device user manually ends it.</p>
+</li>
+<li>
+<p>By default, the device user can go to any web page. If needed, you can add one or more URLs to <strong>Allowed Websites</strong> to restrict their browsing. Sub-domains are automatically included. For example, if you enter <strong>example.com</strong>, <strong>help.example.com</strong> is also included. This setting doesn&rsquo;t support wildcards (<strong>*</strong>).</p>
+</li>
 </ul>
 </li>
 <li>
@@ -4831,9 +4833,15 @@
 <li>
 <p><strong>Win32 App</strong> &mdash; Define a native Windows app:</p>
 <ul>
-<li>For <strong>Application Name</strong>, enter a unique name for the app.</li>
-<li>For <strong>Local Path to App Executable</strong>, enter the path to the app on the kiosk&rsquo;s Windows volume. Use the <strong>%windir%</strong> substitution string to reference the C:\Windows directory.</li>
-<li>For <strong>App User Model ID (AUMID)</strong>, enter the AUMID of the app. For more details about how to find this identifier, see <a href="https://learn.microsoft.com/en-us/windows/configuration/find-the-application-user-model-id-of-an-installed-app" target="_blank">Find the Application User Model ID of an installed app</a> in the Windows docs.</li>
+<li>
+<p>For <strong>Application Name</strong>, enter a unique name for the app.</p>
+</li>
+<li>
+<p>For <strong>Local Path to App Executable</strong>, enter the path to the app on the kiosk&rsquo;s Windows volume. Use the <strong>%windir%</strong> substitution string to reference the C:\Windows directory.</p>
+</li>
+<li>
+<p>For <strong>App User Model ID (AUMID)</strong>, enter the AUMID of the app. For more details about how to find this identifier, see <a href="https://learn.microsoft.com/en-us/windows/configuration/find-the-application-user-model-id-of-an-installed-app" target="_blank">Find the Application User Model ID of an installed app</a> in the Windows docs.</p>
+</li>
 </ul>
 </li>
 </ol>
@@ -4848,7 +4856,7 @@
 <p>Click <strong>Save</strong> to finish adding the app.</p>
 </li>
 </ol>
-<h2 id="deploy-windows-kiosk">Deploy a Windows kiosk</h2>
+<h2 id="deploy-a-windows-kiosk">Deploy a Windows kiosk</h2>
 <p>After you assign a profile to a device with the appropriate kiosk policies, it&rsquo;s ready for deployment as a kiosk.</p>
 <p>To deploy a Windows kiosk:</p>
 <ol>
@@ -4856,7 +4864,7 @@
 <p>Restart the device.</p>
 </li>
 <li>
-<p>On boot, the device will provision the kiosk user account and then enter kiosk mode.
+<p>On boot, the device will provision the kiosk user account and then enter kiosk mode.</p>
 
     
     
@@ -4865,7 +4873,7 @@
     
     
     
-    <p><img src="../../../assets/km-set-up-windows-kiosk-provisioning.png" class="img-fluid img-thumbnail" alt="Three screens that appear during the provsioning process, consisting of the standard sign-in screen and two account creation screens." /></p></p>
+    <p><img src="../../../assets/km-set-up-windows-kiosk-provisioning.png" class="img-fluid img-thumbnail" alt="Three screens that appear during the provsioning process, consisting of the standard sign-in screen and two account creation screens." /></p>
 </li>
 <li>
 <p>When you see the welcome screen or app grid, the kiosk is ready for use.</p>
@@ -4888,22 +4896,22 @@
     <li><a href="../set-up-a-windows-kiosk.html#before-you-begin">Before you begin</a></li>
     <li><a href="../set-up-a-windows-kiosk.html#configure-windows-kiosk-apps">Configure Windows kiosk apps</a>
       <ul>
-        <li><a href="../set-up-a-windows-kiosk.html#app-requirements-multi-app-kiosks">App requirements for multi-app kiosks</a></li>
-        <li><a href="../set-up-a-windows-kiosk.html#prepare-microsoft-store-app-kiosks">Prepare a Microsoft Store app for kiosks</a></li>
+        <li><a href="../set-up-a-windows-kiosk.html#app-requirements-for-multi-app-kiosks">App requirements for multi-app kiosks</a></li>
+        <li><a href="../set-up-a-windows-kiosk.html#prepare-a-microsoft-store-app-for-kiosks">Prepare a Microsoft Store app for kiosks</a></li>
       </ul>
     </li>
-    <li><a href="../set-up-a-windows-kiosk.html#install-kiosk-browser-app-multi-app-kiosk">Install the Kiosk Browser app on a multi-app kiosk</a></li>
-    <li><a href="../set-up-a-windows-kiosk.html#set-up-single-app-windows-kiosk">Set up a single-app Windows kiosk</a>
+    <li><a href="../set-up-a-windows-kiosk.html#install-the-kiosk-browser-app-on-a-multi-app-kiosk">Install the Kiosk Browser app on a multi-app kiosk</a></li>
+    <li><a href="../set-up-a-windows-kiosk.html#set-up-a-single-app-windows-kiosk">Set up a single-app Windows kiosk</a>
       <ul>
         <li></li>
       </ul>
     </li>
-    <li><a href="../set-up-a-windows-kiosk.html#set-up-multi-app-windows-kiosk">Set up a multi-app Windows kiosk</a>
+    <li><a href="../set-up-a-windows-kiosk.html#set-up-a-multi-app-windows-kiosk">Set up a multi-app Windows kiosk</a>
       <ul>
-        <li><a href="../set-up-a-windows-kiosk.html#configure-app-multi-app-kiosk">Configure an app for a multi-app kiosk</a></li>
+        <li><a href="../set-up-a-windows-kiosk.html#configure-an-app-for-a-multi-app-kiosk">Configure an app for a multi-app kiosk</a></li>
       </ul>
     </li>
-    <li><a href="../set-up-a-windows-kiosk.html#deploy-windows-kiosk">Deploy a Windows kiosk</a></li>
+    <li><a href="../set-up-a-windows-kiosk.html#deploy-a-windows-kiosk">Deploy a Windows kiosk</a></li>
     <li><a href="../set-up-a-windows-kiosk.html#see-also">See also</a></li>
   </ul>
 </nav>
