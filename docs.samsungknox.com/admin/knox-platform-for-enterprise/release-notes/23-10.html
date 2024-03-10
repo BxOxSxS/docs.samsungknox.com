@@ -401,6 +401,16 @@
   
   
   <div class="d-flex justify-content-between">
+    <a class="body-5 text-black fw-light" href="../knox-service-plugin/configure-advanced-policies/data-processing-for-galaxy-ai.html">Data processing for Galaxy AI</a>
+  </div>
+  
+  </li>
+
+
+  <li class="mt-2">
+  
+  
+  <div class="d-flex justify-content-between">
     <a class="body-5 text-black fw-light" href="../knox-service-plugin/configure-advanced-policies/deep-settings-customization.html">Deep Settings Customization</a>
   </div>
   
@@ -621,7 +631,7 @@
   
   
   <div class="d-flex justify-content-between">
-    <a class="body-5 text-black fw-light" href="../knox-service-plugin/configure-advanced-policies/universal-credential-management/index.html">Universal Credential Management</a>
+    <a class="body-5 text-black fw-light" href="../knox-service-plugin/configure-advanced-policies/universal-credential-management.html">Universal Credential Management</a>
   </div>
   
   </li>
@@ -642,6 +652,16 @@
   
   <div class="d-flex justify-content-between">
     <a class="body-5 text-black fw-light" href="../knox-service-plugin/configure-advanced-policies/workspace-configuration/index.html">Workspace configuration</a>
+  </div>
+  
+  </li>
+
+
+  <li class="mt-2">
+  
+  
+  <div class="d-flex justify-content-between">
+    <a class="body-5 text-black fw-light" href="../knox-service-plugin/configure-advanced-policies/zero-trust-network-access.html">Zero Trust Network Access</a>
   </div>
   
   </li>
@@ -1121,7 +1141,7 @@
             </div>
             
 
-  <p><span>Last updated February  20th, 2024</span></p>
+  <p><span>Last updated March  7th, 2024</span></p>
 
 
     
@@ -1136,6 +1156,12 @@
 
 
       
+      
+      
+      
+      
+      
+        
       
       
       
@@ -1156,17 +1182,11 @@
 <li>The device user doesn&rsquo;t need to take any action when a new certificate becomes available, reducing IT overhead and certificate coverage when users are neglectful or uncertain.</li>
 </ul>
 <p>Within the Knox implementation of this protocol, Knox acts as the agent between the EMM and the ACME server that acts as a certificate authority (CA) by coordinating the certificate transaction. When a new certificate is published, an IT admin in your enterprise can send a command to your device fleet through your EMM. When a device receives this signal, the built-in Knox framework queries the CA, and correctly identifies and authenticates itself during the initial challenge-response. When the CA is certain that the request and the device are genuine, it sends the certificate to the device, which in turn seamlessly places said certificate into its Android keystore.</p>
-<p>For a more technical look at how ACME works within the Knox platform, see the <a href="../../../dev/knox-sdk/whats-new/knox-sdk-310.html#enterprise-certificate-management-using-acme-protocol" target="_blank">release material for Knox SDK 3.10</a>.</p>
-<h2 id="granular-sim-restrictions">Granular SIM restrictions</h2>
-<p>With Knox 3.9, the platform could disable the secondary physical SIM slot on devices. While handy for enterprises that needed to enforce a particular cell service, this feature didn&rsquo;t account for more complex hardware setups, such as devices that have the SIM slot numbers reversed, or that have eSIMs. Devices carrying a combination of physical SIMs and eSIMs have become increasingly common in many regions of the world, and are likely to continue growing in popularity.</p>
-<p>To account for more complex cellular service plans, Knox 3.10 now offers additional capabilities for controlling Samsung devices. Enterprises can now:</p>
-<ul>
-<li>Disable either SIM slot on dual-SIM devices</li>
-<li>Prevent device users from disabling SIM slots</li>
-<li>Block new eSIMs</li>
-<li>Disable existing eSIMs</li>
-<li>Disable all eSIMs except eSIM 1</li>
-</ul>
+<p>For a more technical look at how ACME works within the Knox platform, see the <a href="../../../dev/knox-sdk/whats-new/knox-sdk-310/index.html#enterprise-certificate-management-using-acme-protocol" target="_blank">release material for Knox SDK 3.10</a>.</p>
+<h2 id="galaxy-ai-data-processing">Galaxy AI data processing</h2>
+<p>The Knox platform now provides you the means to disable data processing in the cloud for Galaxy AI features. When enforced, the AI features will only process data on the device itself. If a feature can&rsquo;t process data on the device, it&rsquo;s disabled.</p>
+<p>For information on how to manage this setting in Knox Service Plugin, see <a href="../knox-service-plugin/configure-advanced-policies/data-processing-for-galaxy-ai.html">Data processing for Galaxy AI</a>.</p>
+<p>To learn about the implementation details for this control in the Knox SDK, see <a href="../../../devref/knox-sdk/reference/com/samsung/android/knox/restriction/AdvancedRestrictionPolicy.html#allowIntelligenceOnlineProcessing%28boolean%29" target="_blank">allowIntelligenceOnlineProcessing()</a>.</p>
 <h2 id="force-single-window-view-on-settings-app">Force single-window view on Settings app</h2>
 <p>The Galaxy S23, Flip5, and Fold5 support <a href="https://www.samsung.com/us/support/answer/ANS00079048" target="_blank">Multi window</a>, a feature that allows users to multitask with two apps at the same time. By default, the Settings app on these devices opens in this split screen view. The Knox team was made aware by its partners of a potential security vulnerability &mdash; some EMM agents can&rsquo;t monitor and restrict the device user&rsquo;s actions in the Settings app while it’s in Multi window view.</p>
 <p>To cover this security gap, Knox 3.10 now has the capability to force the Settings app into the standard single-screen view.</p>
@@ -1187,7 +1207,7 @@
     <nav id="TableOfContents">
   <ul>
     <li><a href="23-10.html#certificate-distribution-through-acme-protocol">Certificate distribution through ACME protocol</a></li>
-    <li><a href="23-10.html#granular-sim-restrictions">Granular SIM restrictions</a></li>
+    <li><a href="23-10.html#galaxy-ai-data-processing">Galaxy AI data processing</a></li>
     <li><a href="23-10.html#force-single-window-view-on-settings-app">Force single-window view on Settings app</a></li>
     <li><a href="23-10.html#audit-log-enhancements">Audit log enhancements</a></li>
     <li><a href="23-10.html#enhancements-to-ucm-keystore-and-keyguard">Enhancements to UCM keystore and keyguard</a></li>

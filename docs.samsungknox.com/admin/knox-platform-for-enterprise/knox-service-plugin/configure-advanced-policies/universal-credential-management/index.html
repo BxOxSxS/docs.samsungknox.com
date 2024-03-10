@@ -401,6 +401,16 @@
   
   
   <div class="d-flex justify-content-between">
+    <a class="body-5 text-black fw-light" href="../data-processing-for-galaxy-ai.html">Data processing for Galaxy AI</a>
+  </div>
+  
+  </li>
+
+
+  <li class="mt-2">
+  
+  
+  <div class="d-flex justify-content-between">
     <a class="body-5 text-black fw-light" href="../deep-settings-customization.html">Deep Settings Customization</a>
   </div>
   
@@ -621,7 +631,7 @@
   
   
   <div class="d-flex justify-content-between">
-    <a class="body-5 text-black active" href="index.html">Universal Credential Management</a>
+    <a class="body-5 text-black active" href="../universal-credential-management.html">Universal Credential Management</a>
   </div>
   
   </li>
@@ -642,6 +652,16 @@
   
   <div class="d-flex justify-content-between">
     <a class="body-5 text-black fw-light" href="../workspace-configuration/index.html">Workspace configuration</a>
+  </div>
+  
+  </li>
+
+
+  <li class="mt-2">
+  
+  
+  <div class="d-flex justify-content-between">
+    <a class="body-5 text-black fw-light" href="../zero-trust-network-access.html">Zero Trust Network Access</a>
   </div>
   
   </li>
@@ -1122,7 +1142,7 @@
             </div>
             
 
-  <p><span>Last updated July  26th, 2023</span></p>
+  <p><span>Last updated March  7th, 2024</span></p>
 
 
     
@@ -1135,56 +1155,77 @@
 
 
 
-<p>KSP provides a group of policies to manage universal authentication credentials in both external and internal device storage, for example, a smartcard, micro SD card, or embedded Secure Element. Depending upon your network and security needs, you can enable or disable UCM policies as well as configure advanced settings for your UCM plugins.</p>
+
+      <p>Knox Serivce Plugin provides a group of policies to manage universal authentication credentials in both external and internal device storage, for example, a smartcard, micro SD card, or embedded Secure Element. Depending upon your network and security needs, you can enable or disable Universal Credential Management (UCM) policies as well as configure advanced settings for your UCM plugins.</p>
 <p>Before you can enable UCM plugins for your devices, you must create and configure at least one UCM configuration policy.</p>
-<h2 id="1-create-ucm-configuration-policy">1. Create UCM configuration policy</h2>
-<p>The following example describes the process to create a new UCM configuration policy, called Screen lock, that dictates how the UCM plugin restricts access to specific apps on the target device when the device is locked.</p>
+<h2 id="option-1-----create-a-ucm-configuration">Option 1 &mdash; Create a UCM configuration</h2>
+<p>You can create a new UCM configuration from scratch. As an example, the following procedure uses a policy called <em>Screen lock</em> that defines the UCM app, the rules for when it locks, and the other apps that can access credentials.</p>
+<p>To create a UCM configuration for screen locking:</p>
 <ol>
 <li>
-<p><span id="CreateUCMConfig-step1"></span> In your UEM console, open the Device Configuration Profile that is associated with your target devices &gt; click the appropriate option to edit the profile.</p>
+<p>On your EMM console, begin editing the app assignment of Knox Service Plugin.</p>
 </li>
 <li>
-<p>On the policy settings homepage, next to UCM plugin configurations, click <strong>Configure</strong>. The page refreshes to show the UCM plugin configurations menu item on the left hand navigation menu.</p>
+<p>In the managed configuration, under the <strong>UCM plugin configurations</strong> section, create a new UCM configuration:</p>
+<div class="overflow-auto my-3"><table>
+<thead>
+<tr>
+<th>UCM configuration setting</th>
+<th>Value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Name of UCM plugin configuration</td>
+<td><strong>Screen lock</strong></td>
+</tr>
+<tr>
+<td>Package name of UCM plugin application</td>
+<td>Enter the package name of the UCM app. Visit the app&rsquo;s page on Google Play to retrieve the package name.</td>
+</tr>
+<tr>
+<td>Credential usage</td>
+<td><strong>Screen lock</strong></td>
+</tr>
+<tr>
+<td>Pin properties &gt; PIN timeout type</td>
+<td>If the UCM app can cache PINs, select <strong>Same as screen lock</strong>. When set, the UCM app and the device lock are synchronized, and the device user will always need to re-authenticate with the UCM app after they unlock the device.</td>
+</tr>
+<tr>
+<td>Application access controls &gt; Type of access restrictions</td>
+<td><strong>Unrestricted access</strong></td>
+</tr>
+<tr>
+<td>Application access controls &gt; Application signature</td>
+<td>For increased security, you can enter the certificate fingerprint of the app&rsquo;s signature in MD5, SHA-1, or SHA-256 format. For more details about app signing and how to obtain the fingerprint, see <a href="https://support.google.com/googleplay/android-developer/answer/9842756" target="_blank">Use Play App Signing § Set up and manage Play App Signing</a> in Play Console Help.</td>
+</tr>
+<tr>
+<td>Access control when device or workspace is locked &gt; Lock credential storage when device or workspace is locked</td>
+<td><strong>True</strong></td>
+</tr>
+<tr>
+<td>List of apps allowed to access credential storage when locked</td>
+<td>Enter a comma-separated list of package names of the apps that can have access to the credentials while the device is locked.</td>
+</tr>
+</tbody>
+</table></div>
 </li>
 <li>
-<p>On the refreshed navigation menu, click <strong>UCM plugin configurations</strong> &gt; <strong>Add setting</strong>. The UCM plugin configuration page opens to show a set of fields that help you create and customize your UCM plugin.</p>
+<p>Save the UCM configuration.</p>
 </li>
 <li>
-<p>On the UCM plugin configuration page, do as follows:</p>
-<ol>
-<li>
-<p>In the <strong>Name of UCM plugin configuration</strong> field, enter <strong>Screen lock</strong>.</p>
-<div class="my-3 ps-3 border-start border-3 border-black"><p class="fw-bold">Note</p><p>Always choose a name that highlights the main feature or use of the UCM plugin configuration that you are setting up. You can then reference this name in KSP to apply these settings to the target device.</p></div>
+<p>Prepare the configuration based on the device management mode:</p>
+<ul>
+<li>For fully manage devices, set <strong>Device-wide policies</strong> to <strong>True</strong>.</li>
+<li>For devices with a work profile, set <strong>Enable work profile policies</strong> to <strong>True</strong>.</li>
+</ul>
 </li>
 <li>
-<p>In the <strong>Package name of UCM plugin application</strong> field, enter the package name for your UCM vendor&rsquo;s application. Sample format is <code>com.mycompany.ucm.plugin</code>. Refer to the UCM vendor application&rsquo;s Google Play Store page for the correct package name.</p>
-</li>
-<li>
-<p>In the <strong>Credential usage</strong> list, select <strong>Screen lock</strong>.</p>
-</li>
-<li>
-<p>If your UCM vendor&rsquo;s plugin supports PIN caching, in the <strong>Pin properties</strong> area &gt; in the <strong>PIN timeout type</strong> list &gt; select <strong>Same as screen lock</strong>. The UCM plugin now requires re-authentication whenever the screen locks.</p>
-</li>
-<li>
-<p>In the <strong>Application access controls</strong> area &gt; <strong>Type of access restrictions</strong> list &gt; select <strong>Unrestricted access</strong>.</p>
-</li>
-<li>
-<p>In the <strong>Access control when device or workspace is locked</strong> area &gt; <strong>Lock credential storage when device or workspace is locked</strong> list &gt; click <strong>True</strong>.</p>
-</li>
-<li>
-<p>In the <strong>List of apps allowed to access credential storage when locked</strong> field, enter the package names &mdash; in a comma-separated list &mdash; to allow specific apps to access UCM credential storage when the device is locked.</p>
-</li>
-<li>
-<p>List of certificates to install on this credential storage after configuration.</p>
+<p>Save the app assignment and push it to your devices.</p>
 </li>
 </ol>
-</li>
-<li>
-<p><span id="CreateUCMConfig-step5"></span> Click <strong>OK</strong> to save this new UCM configuration. This UCM configuration restricts all apps&rsquo; access to UCM credential storage, with the exception of specific apps, when the device is locked.</p>
-<div class="my-3 ps-3 border-start border-3 border-black"><p class="fw-bold">Note</p><p>Repeat steps 1 to 5 for each type of UCM configuration policy you want to create in your Device Configuration Profile.</p></div>
-</li>
-</ol>
-<h2 id="2-use-an-existing-ucm-configuration-policy">2. Use an existing UCM configuration policy</h2>
+<p>When the managed configuration is applied, the UCM app locks in sync with the device&rsquo;s lock, and only the allowed apps can access the credentials under the jurisdiction of UCM.</p>
+<h2 id="option-2-----use-an-existing-ucm-configuration">Option 2 &mdash; Use an existing UCM configuration</h2>
 <p>The following example shows you how to use the Screen lock UCM configuration policy that you created earlier to automatically secure target devices in the High security devices device group when the screen is locked.</p>
 <ol>
 <li>
@@ -1213,8 +1254,8 @@
     <h2 class="body-4 fw-bold mt-0">On this page</h2>
     <nav id="TableOfContents">
   <ul>
-    <li><a href="index.html#1-create-ucm-configuration-policy">1. Create UCM configuration policy</a></li>
-    <li><a href="index.html#2-use-an-existing-ucm-configuration-policy">2. Use an existing UCM configuration policy</a></li>
+    <li><a href="../universal-credential-management.html#option-1-----create-a-ucm-configuration">Option 1 &mdash; Create a UCM configuration</a></li>
+    <li><a href="../universal-credential-management.html#option-2-----use-an-existing-ucm-configuration">Option 2 &mdash; Use an existing UCM configuration</a></li>
   </ul>
 </nav>
   </nav>
@@ -1251,7 +1292,7 @@
       
       <div class="col-sm-12 col-md-6 col-lg-3 footer-vertical-section">
         <div class="d-flex justify-content-between align-items-center">
-          <a class="footer-section-title" data-bs-toggle="collapse" href="index.html#item0" role="button" aria-expanded="false" aria-controls="item0"> 
+          <a class="footer-section-title" data-bs-toggle="collapse" href="../universal-credential-management.html#item0" role="button" aria-expanded="false" aria-controls="item0"> 
             <h6 class="body-3 fw-bold text-uppercase text-black pt-4">Knox admin documentation</h6>
           </a>
           <a class="btn-toggle d-inline-flex d-lg-none rounded border-0 fw-light" data-bs-toggle="collapse" data-bs-target="#item0" aria-expanded="false"></a>
@@ -1369,7 +1410,7 @@
       
       <div class="col-sm-12 col-md-6 col-lg-3 footer-vertical-section">
         <div class="d-flex justify-content-between align-items-center">
-          <a class="footer-section-title" data-bs-toggle="collapse" href="index.html#item1" role="button" aria-expanded="false" aria-controls="item1"> 
+          <a class="footer-section-title" data-bs-toggle="collapse" href="../universal-credential-management.html#item1" role="button" aria-expanded="false" aria-controls="item1"> 
             <h6 class="body-3 fw-bold text-uppercase text-black pt-4">Support</h6>
           </a>
           <a class="btn-toggle d-inline-flex d-lg-none rounded border-0 fw-light" data-bs-toggle="collapse" data-bs-target="#item1" aria-expanded="false"></a>
@@ -1391,7 +1432,7 @@
       
       <div class="col-sm-12 col-md-6 col-lg-3 footer-vertical-section">
         <div class="d-flex justify-content-between align-items-center">
-          <a class="footer-section-title" data-bs-toggle="collapse" href="index.html#item2" role="button" aria-expanded="false" aria-controls="item2"> 
+          <a class="footer-section-title" data-bs-toggle="collapse" href="../universal-credential-management.html#item2" role="button" aria-expanded="false" aria-controls="item2"> 
             <h6 class="body-3 fw-bold text-uppercase text-black pt-4">Samsung</h6>
           </a>
           <a class="btn-toggle d-inline-flex d-lg-none rounded border-0 fw-light" data-bs-toggle="collapse" data-bs-target="#item2" aria-expanded="false"></a>
