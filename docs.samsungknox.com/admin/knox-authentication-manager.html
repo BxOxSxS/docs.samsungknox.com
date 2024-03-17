@@ -469,6 +469,9 @@
 <li>
 <p>Knox Authentication Manager uses UDP and TLS protocols for device communication and data exchange over port numbers. The default ports for UDP are <strong>49158</strong> and <strong>49159</strong>, and the default port number for TLS is <strong>7788</strong>, but these ports <a href="https://firebase.google.com/docs/cloud-messaging/concept-options#messaging-ports-and-your-firewall" target="_blank">can be customized</a>. Add these ports, or the ones you set, to your firewall&rsquo;s allowlist.</p>
 </li>
+<li>
+<p>Knox Authentication Manager relies on the Network Time Protocol (NTP) to determine the most up-to-date user profile when performing device-to-device syncing. You&rsquo;ll need to provide a firewall exception on your network for time.android.com on UDP port 123 in order to communicate with the NTP server.</p>
+</li>
 </ul>
 <p>When you set up Knox Authentication Manager in your UEM, you need to create a shared key to encrypt and protect user profiles and device group communication. One way to generate this key is through OpenSSL. Mac and Linux users can run <code>openssl rand -base64 24</code> in a terminal. Windows users first have to install OpenSSL. See the <a href="https://www.openssl.org/source/" target="_blank">OpenSSL documentation</a> for more information.</p>
 <h2 id="required-license">Required license</h2>
