@@ -37,7 +37,7 @@
 <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start': new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0], j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src='https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);})(window,document,'script','dataLayer','GTM-P24TWCG');</script>
   <meta name="viewport" content="width=device-width,height=device-height,initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title>Samsung Knox firewall exceptions | Samsung Knox Documentation</title>
+  <title>Samsung Knox firewall exceptions  | Knox Admin Portal  | Samsung Knox Documentation</title>
   <meta http-equiv="content-language" content="en">
   <meta name="language" content="en">
   <script src="../../../assets/js/bundle.js"></script>
@@ -292,7 +292,7 @@
   
   
   <div class="d-flex justify-content-between">
-    <a class="body-5 text-black fw-light" href="../../how-to-guides/configure-your-account-settings/index.html">Configure your account settings</a>
+    <a class="body-5 text-black fw-light" href="../../how-to-guides/configure-your-account-settings.html">Configure your account settings</a>
   </div>
   
   </li>
@@ -323,6 +323,16 @@
   
   <div class="d-flex justify-content-between">
     <a class="body-5 text-black fw-light" href="../../how-to-guides/view-device-states.html">View device states</a>
+  </div>
+  
+  </li>
+
+
+  <li class="mt-2">
+  
+  
+  <div class="d-flex justify-content-between">
+    <a class="body-5 text-black fw-light" href="../../how-to-guides/manage-emm-consent/index.html">Manage EMM consent</a>
   </div>
   
   </li>
@@ -357,7 +367,7 @@
             </div>
             
 
-  <p><span>Last updated January  31st, 2024</span></p>
+  <p><span>Last updated March  18th, 2024</span></p>
 
 
     
@@ -375,9 +385,6 @@
       
       
       
-      
-      
-      
         
       
       
@@ -387,11 +394,18 @@
       
       
       
-        <p>This page lists the firewall exceptions that your organization needs to use to securely reach and connect to the Knox server and its supporting resources. It includes the URLs and port numbers that you must allow to reach the Knox servers.</p>
-<p>To accurately configure your firewall settings, please ensure:</p>
+      
+      
+      
+      
+      
+      
+        <p>Configuring firewall exceptions is a crucial step in making sure your organization securely connects to the Knox servers and accesses the supporting resources. This process includes adding certain URLs and ports to your organization&rsquo;s allowlist and accurately setting up your server and client firewalls to access different Knox cloud services.</p>
+<p>For example, Knox Asset Intelligence enables you to get files from the supporting Amazon cloud infrastructure if you&rsquo;ve configured your server firewall allowlist correctly. Similarly, adding TCP ports 5228-5230 to your client firewall allowlist ensures you can access Google services using Knox Manage. Check out the <a href="../samsung-knox-firewall-exceptions.html#networking-requirements-for-knox-cloud-services">Networking requirements for Knox cloud services</a> for more information.</p>
+<p>To get started with configuring your firewalls:</p>
 <ol>
 <li>
-<p>Ports 443 and 80 are open within your local network domain to reach Knox server resources.</p>
+<p>Ensure ports 443 and 80 are open within your local network to reach Knox server resources.</p>
 </li>
 <li>
 <p>Add Amazon Web Services or Google Firebase to your organization&rsquo;s firewall allowlist, as Knox services might use either of these services:</p>
@@ -401,9 +415,6 @@
 </li>
 <li>
 <p>See <a href="https://firebase.google.com/docs/cloud-messaging" target="_blank">Firebase Cloud Messaging</a> for more information on Google Firebase services.</p>
-<ul>
-<li>Add <strong>firebaseinstallations.googleapis.com</strong> to your client firewall allowlist to correctly allow client requests from Knox E-FOTA, Knox Configure, and Knox Asset Intelligence.</li>
-</ul>
 </li>
 </ul>
 </li>
@@ -439,7 +450,588 @@
         </td>
     </tr>
 </table></div>
-<h2 id="license-servers-knox-products">License servers for Knox products</h2>
+<h2 id="networking-requirements-for-knox-cloud-services">Networking requirements for Knox cloud services</h2>
+<p>Depending on your enterprise&rsquo;s IT policies, you might have to add the following network resources to your firewall allowlist:</p>
+<div class="my-3 ps-3 border-start border-3 border-important"><p class="fw-bold">Important</p><p>If your enterprise’s IT policy restricts the use of a wildcard (*) to abbreviate a domain name, you might require the fully qualified domain name (FQDN) to reach a Knox network deployment resource.</p></div>
+<h3 id="knox-mobile-enrollment">Knox Mobile Enrollment</h3>
+<h4 id="server-firewall">Server firewall</h4>
+<div class="overflow-auto my-3"><table>
+    <tr>
+        <th scope="col">Server</th>
+        <th scope="col">URL</th>
+        <th scope="col">Port</th>
+    </tr>
+    <tr>
+        <td>Samsung Account</td>
+        <td>*.samsung.com</td>
+        <td>443, 80</td>
+    </tr>
+    <tr>
+        <td>samsungknox.com</td>
+        <td>
+            <p>*.samsungknox.com</p>
+            <p>*.secb2b.com</p>
+        </td>
+        <td>443, 80</td>
+    </tr>
+    <tr>
+        <td>Knox Admin Portal</td>
+        <td>central.samsungknox.com</td>
+        <td>443, 80</td>
+    </tr>
+</table></div>
+<h4 id="client-firewall">Client firewall</h4>
+<div class="overflow-auto my-3"><table>
+    <tr>
+        <th scope="col">Server</th>
+        <th scope="col">URL</th>
+        <th scope="col">Port</th>
+    </tr>
+    <tr>
+        <td>Pinning</td>
+        <td>pinning-02.secb2b.com</td>
+        <td>443, 80</td>
+    </tr>
+    <tr>
+        <td>GSL</td>
+        <td>gsl.samsunggsl.com</td>
+        <td>443</td>
+    </tr>
+    <tr>
+        <td>umc-cdn</td>
+        <td>umc-cdn.secb2b.com</td>
+        <td>443, 80</td>
+    </tr>
+    <tr>
+        <td>KSL</td>
+        <td>
+            <p>eu-segd-api.secb2b.com</p>
+            <p>us-segd-api.secb2b.com</p>
+        </td>
+        <td>443</td>
+    </tr>
+    <tr>
+        <td>Auth server</td>
+        <td>
+            <p>eu-prod-bulk.secb2b.com</p>
+            <p>us-prod-bulk.secb2b.com</p>
+        </td>
+        <td>443</td>
+    </tr>
+    <tr>
+        <td>Knox Mobile Enrollment server</td>
+        <td>
+            <p>eu-kme.samsungknox.com</p>
+            <p>us-kme.samsungknox.com</p>
+        </td>
+        <td>443, 80</td>
+    </tr>
+    <tr>
+        <td>Knox Mobile Enrollment APIs</td>
+        <td>
+            <p>eu-kme-api-mssl.samsungknox.com</p>
+            <p>us-kme-api-mssl.samsungknox.com</p>
+        </td>
+        <td>443</td>
+    </tr>
+</table></div>
+<h3 id="knox-manage">Knox Manage</h3>
+<h4 id="server-firewall-1">Server firewall</h4>
+<div class="overflow-auto my-3"><table>
+    <tr>
+        <th scope="col">Server</th>
+        <th scope="col">URL</th>
+        <th scope="col">Port</th>
+    </tr>
+    <tr>
+        <td>samsungknox.com</td>
+        <td>
+            <p>*.samsungknox.com</p>
+            <p>*.secb2b.com</p>
+        </td>
+        <td>443, 80</td>
+    </tr>
+    <tr>
+        <td>Samsung Account</td>
+        <td>*.samsung.com</td>
+        <td>443, 80</td>
+    </tr>
+    <tr>
+        <td>Google services</td>
+        <td>*.gstatic.com</td>
+        <td>443, 80</td>
+    </tr>
+</table></div>
+<h4 id="client-firewall-1">Client firewall</h4>
+<div class="overflow-auto my-3"><table>
+    <tr>
+        <th scope="col">Platform</th>
+        <th scope="col">URL</th>
+        <th scope="col">Port</th>
+    </tr>
+    <tr>
+        <td>Google services</td>
+        <td>
+            <p>*.google.com</p>
+            <p>android.com</p>
+            <p>google-analytics.com</p>
+            <p>googleusercontent.com</p>
+            <p>*gstatic.com</p>
+            <p>*.gvt1.com</p>
+            <p>*.ggpht.com</p>
+            <p>*.gvt2.com</p>
+            <p>*.gvt3.com</p>
+        </td>
+        <td>
+            <p>TCP 443</p>
+            <p>TCP, UDP 5228-5230, 5235, 5236</p>
+        </td>
+    </tr>
+    <tr>
+        <td>Google services</td>
+        <td>*.googleapis.com</td>
+        <td>TCP 443, 5228-5230</td>
+    </tr>
+    <tr>
+        <td>Apple push notification services</td>
+        <td>*.push.apple.com</td>
+        <td>TCP 443, 5223, 2197</td>
+    </tr>
+    <tr>
+        <td>Windows push notification services</td>
+        <td>
+            <p>*.wns.windows.com</p>
+            <p>*.notify.live.net</p>
+        </td>
+        <td>443</td>
+    </tr>
+</table></div>
+<h3 id="knox-remote-support">Knox Remote Support</h3>
+<h4 id="server-firewall-2">Server firewall</h4>
+<div class="overflow-auto my-3"><table>
+<thead>
+<tr>
+<th>Knox Remote Support server</th>
+<th>URL</th>
+<th>Port</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Asia region</td>
+<td>ap-rs-web.manage.samsungknox.com</td>
+<td>443</td>
+</tr>
+<tr>
+<td>US region</td>
+<td>us-rs-web.manage.samsungknox.com</td>
+<td>443</td>
+</tr>
+<tr>
+<td>EU region</td>
+<td>eu-rs-web.manage.samsungknox.com</td>
+<td>443</td>
+</tr>
+</tbody>
+</table></div>
+<h4 id="client-firewall-2">Client firewall</h4>
+ <div class="overflow-auto my-3"><table>
+    <tr>
+        <th scope="col">Region</th>
+        <th scope="col">Server</th>
+        <th scope="col">Domain</th>
+        <th style="width: 25%" scope="col">IP address</th>
+        <th scope="col">Port</th>
+        <th scope="col">Connection</th>
+    </tr>
+    <tr>
+        <td>Asia</td>
+        <td>
+            <p>Relay</p>
+            <p>WAS</p>
+        </td>
+        <td>
+            <p>ap-rs-relay.manage.samsungknox.com</p>
+            <p>ap-rs-web.manage.samsungknox.com</p>
+        </td>
+        <td>
+            <p>18.141.250.233</p>
+            <p>13.213.198.62</p>
+        </td>
+        <td>45001</td>
+        <td>
+            <p>Mobile</p>
+            <p>Desktop</p>
+        </td>
+    </tr>
+        <tr>
+        <td>US</td>
+        <td>
+            <p>Relay</p>
+            <p>WAS</p>
+        </td>
+        <td>
+            <p>us-rs-relay.manage.samsungknox.com</p>
+            <p>us-rs-web.manage.samsungknox.com</p>
+        </td>
+        <td>
+            <p>35.83.188.168</p>
+            <p>52.36.230.249</p>
+        </td>
+        <td>45001</td>
+        <td>
+            <p>Mobile</p>
+            <p>Desktop</p>
+        </td>
+    </tr>
+        <tr>
+        <td>EU</td>
+        <td>
+            <p>Relay</p>
+            <p>WAS</p>
+        </td>
+        <td>
+            <p>eu-rs-relay.manage.samsungknox.com</p>
+            <p>eu-rs-web.manage.samsungknox.com</p>
+        </td>
+        <td>
+            <p>54.155.132.151</p>
+            <p>63.34.35.115</p>
+        </td>
+        <td>45001</td>
+        <td>
+            <p>Mobile</p>
+            <p>Desktop</p>
+        </td>
+    </tr>
+</table></div>
+<h4 id="exceptions-to-file-upload-restrction">Exceptions to file upload restrction</h4>
+<p>You may have restrictions on uploading files from your protected network environment to the Knox server. If so, you must use the following domains and regional URLs:</p>
+<div class="overflow-auto my-3"><table>
+<thead>
+<tr>
+<th>Region</th>
+<th>Domain/IP</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Asia</td>
+<td>km-rs-ap.s3.ap-southeast-1.amazonaws.com</td>
+</tr>
+<tr>
+<td>US</td>
+<td>km-rs-us.s3.us-west-2.amazonaws.com</td>
+</tr>
+<tr>
+<td>EU</td>
+<td>km-rs-eu.s3.eu-west-1.amazonaws.com</td>
+</tr>
+</tbody>
+</table></div>
+<div class="my-3 ps-3 border-start border-3 border-black"><p class="fw-bold">Note</p><p>The maximum file transfer size allowed is 200 MB and the maximum number of files you can transfer at once is 100.</p></div>
+<h4 id="additional-information">Additional information</h4>
+<p>For more information on Android network requirements, see <a href="https://support.google.com/work/android/answer/10513641?hl=en" target="_blank">Android Enterprise Network Requirements</a>.</p>
+<p>For more information on iOS network requirements, see <a href="https://support.apple.com/guide/deployment/configure-your-network-for-mdm-dep2bcde692e/web" target="_blank">Configure your network for MDM</a> and <a href="https://support.apple.com/en-us/HT210060" target="_blank">Use Apple products on enterprise networks</a>.</p>
+<p>For more information on Windows network requirements, see <a href="https://learn.microsoft.com/en-us/windows/apps/design/shell/tiles-and-notifications/firewall-allowlist-config" target="_blank">Adding WNS Traffic to the Firewall Allowlist</a>.</p>
+<h3 id="knox-e-fota">Knox E-FOTA</h3>
+<h4 id="server-firewall-3">Server firewall</h4>
+<div class="overflow-auto my-3"><table>
+    <tr>
+        <th scope="col">Server</th>
+        <th scope="col">URL</th>
+        <th scope="col">Port</th>
+    </tr>
+    <tr>
+        <td>Samsung Account</td>
+        <td>*.samsung.com</td>
+        <td>443, 80</td>
+    </tr>
+    <tr>
+        <td>samsungknox.com</td>
+        <td>
+            <p>*.samsungknox.com</p>
+            <p>*.secb2b.com</p>
+        </td>
+        <td>443, 80</td>
+    </tr>
+    <tr>
+        <td>Knox Admin Portal</td>
+        <td>central.samsungknox.com</td>
+        <td>443</td>
+    </tr>
+</table></div>
+<h4 id="client-firewall-3">Client firewall</h4>
+<div class="overflow-auto my-3"><table>
+    <tr>
+        <th scope="col">Server</th>
+        <th scope="col">URL</th>
+        <th scope="col">Port</th>
+    </tr>
+    <tr>
+        <td>GSL</td>
+        <td>gsl.samsunggsl.com</td>
+        <td>443</td>
+    </tr>
+    <tr>
+        <td>Firmware management server</td>
+        <td>http://eu-efm.samsungknox.com/</td>
+        <td>443</td>
+    </tr>
+    <tr>
+        <td>S3 storage (firmware storage server)</td>
+        <td>http://kfm-prod.samsungknox.com/</td>
+        <td>443, 80</td>
+    </tr>
+    <tr>
+        <td>KSL (old SEG)</td>
+        <td>
+            <p>us-segd-api.secb2b.com</p>
+            <p>us-segd-api.secb2b.com</p>
+            <p>us-segp-api.secb2b.com</p>
+            <p>eu-segd-api.secb2b.com</p>
+            <p>eu-segm-api.secb2b.com</p>
+            <p>eu-segp-api.secb2b.com</p>
+        </td>
+        <td>443</td>
+    </tr>
+    <tr>
+        <td>umc-cdn</td>
+        <td>umc-cdn.secb2b.com</td>
+        <td>443, 80</td>
+    </tr>
+    <tr>
+        <td>Knox Privacy Policy or Terms and Conditions</td>
+        <td>eula.secb2b.com</td>
+        <td>443, 80</td>
+    </tr>
+    <tr>
+        <td>Feedback</td>
+        <td>knoxservices.secb2b.com</td>
+        <td>443, 80</td>
+    </tr>
+    <tr>
+        <td>Pinning</td>
+        <td>
+            <p>pinning.secb2b.com</p>
+            <p>pinning-02.secb2b.com</p>
+        </td>
+        <td>443, 80</td>
+    </tr>
+    <tr>
+        <td>Firebase Cloud Messaging</td>
+        <td>Since the hostnames are revised periodically, see the <a href="https://firebase.google.com/docs/cloud-messaging/concept-options#messaging-ports-and-your-firewall">Google Firebase documentation</a> for the latest list.</td>
+        <td>5228, 5229, 5230</td>
+    </tr>
+</table></div>
+<h3 id="knox-asset-intelligence">Knox Asset Intelligence</h3>
+<h4 id="server-firewall-4">Server firewall</h4>
+<div class="overflow-auto my-3"><table>
+    <tr>
+        <th scope="col">Server</th>
+        <th scope="col">URL</th>
+        <th scope="col">Port</th>
+    </tr>
+    <tr>
+        <td>Samsung Account</td>
+        <td>*.samsung.com</td>
+        <td>443, 80</td>
+    </tr>
+    <tr>
+        <td>samsungknox.com</td>
+        <td>
+            <p>*.samsungknox.com</p>
+            <p>*.secb2b.com</p>
+        </td>
+        <td>443, 80</td>
+    </tr>
+    <tr>
+        <td>Knox Admin Portal</td>
+        <td>central.samsungknox.com</td>
+        <td>443, 80</td>
+    </tr>
+    <tr>
+        <td>File retrieval from Amazon S3</td>
+        <td>
+            <p>https://usprd-knoxv2-dai.s3.us-west-2.amazonaws.com</p>
+            <p>https://euprd-knoxv2-dai.s3.eu-west-1.amazonaws.com</p>
+        </td>
+        <td>443</td>
+    </tr>
+</table></div>
+<h4 id="client-firewall-4">Client firewall</h4>
+<div class="overflow-auto my-3"><table>
+    <tr>
+        <th scope="col">Server</th>
+        <th scope="col">URL</th>
+        <th scope="col">Port</th>
+    </tr>
+    <tr>
+        <td>Knox Asset Intelligence server</td>
+        <td>
+            <p>us-dai.samsungknox.com</p>
+            <p>eu-dai.samsungknox.com</p>
+        </td>
+        <td>443</td>
+    </tr>
+    <tr>
+        <td>Amazon S3 storage (for debug log file uploads)</td>
+        <td>
+            <p>https://usprd-knoxv2-dai.s3.us-west-2.amazonaws.com</p>
+            <p>https://euprd-knoxv2-dai.s3.eu-west-1.amazonaws.com</p>
+        </td>
+        <td>443</td>
+    </tr>
+    <tr>
+        <td>umc-cdn</td>
+        <td>umc-cdn.secb2b.com</td>
+        <td>443, 80</td>
+    </tr>
+    <tr>
+        <td>Knox Privacy Policy or Terms and Conditions</td>
+        <td>eula.secb2b.com</td>
+        <td>443, 80</td>
+    </tr>
+    <tr>
+        <td>GSL</td>
+        <td>gsl.samsunggsl.com</td>
+        <td>443</td>
+    </tr>
+    <tr>
+        <td>Security center</td>
+        <td>
+            <p>us-securitycenter.samsungknox.com</p>
+            <p>eu-securitycenter.samsungknox.com</p>
+        </td>
+        <td>443</td>
+    </tr>
+    <tr>
+        <td>Pinning</td>
+        <td>
+            <p>pinning.secb2b.com</p>
+            <p>pinning-02.secb2b.com</p>
+        </td>
+        <td>443, 80</td>
+    </tr>
+    <tr>
+        <td>Firebase Cloud Messaging</td>
+        <td>
+            <p><a href="https://firebase.google.com/docs/cloud-messaging/concept-options#messaging-ports-and-your-firewall">See Google Firebase documentation for hostnames</a>. These hostnames are subject to change.</p>
+        </td>
+        <td>5228, 5229, 5230</td>
+    </tr>
+</table></div>
+<h3 id="knox-configure">Knox Configure</h3>
+<h4 id="server-firewall-5">Server firewall</h4>
+<div class="overflow-auto my-3"><table>
+    <tr>
+        <th scope="col">Server</th>
+        <th scope="col">URL</th>
+        <th scope="col">Port</th>
+    </tr>
+    <tr>
+        <td>Samsung Account</td>
+        <td>*.samsung.com</td>
+        <td>443, 80</td>
+    </tr>
+    <tr>
+        <td>samsungknox.com</td>
+        <td>
+            <p>*.samsungknox.com</p>
+            <p>*.secb2b.com</p>
+        </td>
+        <td>443, 80</td>
+    </tr>
+    <tr>
+        <td>Knox Admin Portal</td>
+        <td>central.samsungknox.com</td>
+        <td>443, 80</td>
+    </tr>
+</table></div>
+<h4 id="client-firewall-5">Client firewall</h4>
+<div class="overflow-auto my-3"><table>
+    <tr>
+        <th scope="col">Server</th>
+        <th scope="col">URL</th>
+        <th scope="col">Port</th>
+    </tr>
+    <tr>
+        <td>Pinning</td>
+        <td>pinning-02.secb2b.com</td>
+        <td>443, 80</td>
+    </tr>
+    <tr>
+        <td>GSL</td>
+        <td>gsl.samsunggsl.com</td>
+        <td>443</td>
+    </tr>
+    <tr>
+        <td>umc-cdn</td>
+        <td>umc-cdn.secb2b.com</td>
+        <td>443, 80</td>
+    </tr>
+    <tr>
+        <td>KSL</td>
+        <td>
+            <p>eu-segd-api.secb2b.com</p>
+            <p>us-segd-api.secb2b.com</p>
+        </td>
+        <td>443</td>
+    </tr>
+    <tr>
+        <td>Auth server</td>
+        <td>
+            <p>eu-prod-bulk.secb2b.com</p>
+            <p>us-prod-bulk.secb2b.com</p>
+        </td>
+        <td>443</td>
+    </tr>
+    <tr>
+        <td>Knox Configure server</td>
+        <td>
+            <p>eu-kc.samsungknox.com</p>
+            <p>us-kc.samsungknox.com</p>
+            <p>eu-kc-portal.samsungknox.com</p>
+            <p>us-kc-portal.samsungknox.com</p>
+        </td>
+        <td>443, 80</td>
+    </tr>
+    <tr>
+        <td>Firebase Cloud Messaging</td>
+        <td>
+            <p><a href="https://firebase.google.com/docs/cloud-messaging/concept-options#messaging-ports-and-your-firewall">See Google Firebase documentation for hostnames</a>. These hostnames are subject to change.</p>
+        </td>
+        <td>5228, 5229, 5230</td>
+    </tr>
+</table></div>
+<h3 id="samsung-care-for-business">Samsung Care+ for Business</h3>
+<h4 id="server-firewall-6">Server firewall</h4>
+<div class="overflow-auto my-3"><table>
+    <tr>
+        <th scope="col">Server</th>
+        <th scope="col">URL</th>
+        <th scope="col">Port</th>
+    </tr>
+    <tr>
+        <td>Samsung Account</td>
+        <td>*.samsung.com</td>
+        <td>443, 80</td>
+    </tr>
+    <tr>
+        <td>samsungknox.com</td>
+        <td>
+            <p>*.samsungknox.com</p>
+            <p>*.secb2b.com</p>
+        </td>
+        <td>443, 80</td>
+    </tr>
+    <tr>
+        <td>Knox Admin Portal</td>
+        <td>central.samsungknox.com</td>
+        <td>443, 80</td>
+    </tr>
+</table></div>
+<h2 id="license-servers-for-knox-products">License servers for Knox products</h2>
 <p>Depending on your enterprise&rsquo;s IT policies, you might have to add the following Knox license server resources to your firewall allowlist, listed by server destinations per region:</p>
 <div class="my-3 ps-3 border-start border-3 border-important"><p class="fw-bold">Important</p><p>If your enterprise’s IT policy restricts the use of a wildcard (*) to abbreviate a domain name, you might require the FQDN to reach a Knox license server.</p></div>
 <h3 id="global">Global</h3>
@@ -453,11 +1045,11 @@
 <tbody>
 <tr>
 <td>analytics.samsungknox.com</td>
-<td>-</td>
+<td>All</td>
 </tr>
 <tr>
 <td>prod-knoxlog.secb2b.com</td>
-<td>-</td>
+<td>All</td>
 </tr>
 <tr>
 <td>account.samsung.com</td>
@@ -496,7 +1088,7 @@
 </tr>
 <tr>
 <td>usprod-knoxlog.secb2b.com</td>
-<td>-</td>
+<td>All</td>
 </tr>
 </tbody>
 </table></div>
@@ -523,344 +1115,10 @@
 </tr>
 <tr>
 <td>euprod-knoxlog.secb2b.com</td>
-<td>-</td>
+<td>All</td>
 </tr>
 </tbody>
 </table></div>
-<h2 id="networking-requirements-for-knox-cloud-services">Networking requirements for Knox cloud services</h2>
-<p>Depending on your enterprise&rsquo;s IT policies, you might have to add the following network resources to your firewall allowlist, listed by server destinations per region:</p>
-<div class="my-3 ps-3 border-start border-3 border-important"><p class="fw-bold">Important</p><p>If your enterprise’s IT policy restricts the use of a wildcard (*) to abbreviate a domain name, you might require the FQDN to reach a Knox network deployment resource.</p></div>
-<h3 id="global-1">Global</h3>
-<div class="overflow-auto my-3"><table>
-<thead>
-<tr>
-<th>URL</th>
-<th>Port</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>knoxservices.secb2b.com</td>
-<td>80, 443</td>
-</tr>
-<tr>
-<td>pinning.secb2b.com</td>
-<td>80, 443</td>
-</tr>
-<tr>
-<td>pinning-02.secb2b.com</td>
-<td>80, 443</td>
-</tr>
-<tr>
-<td>eula.secb2b.com</td>
-<td>80, 443</td>
-</tr>
-<tr>
-<td>umc-cdn.secb2b.com</td>
-<td>80, 443</td>
-</tr>
-<tr>
-<td>me.samsungknox.com</td>
-<td>80, 443</td>
-</tr>
-<tr>
-<td>configure.samsungknox.com</td>
-<td>80, 443</td>
-</tr>
-<tr>
-<td>custom.samsungknox.com</td>
-<td>80, 443</td>
-</tr>
-<tr>
-<td>kcc-prod-repo.s3.amazonaws.com</td>
-<td>80, 443</td>
-</tr>
-<tr>
-<td>klms-dev.s3.amazonaws.com</td>
-<td>443</td>
-</tr>
-<tr>
-<td>kfm-prod.samsungknox.com</td>
-<td>80, 443</td>
-</tr>
-</tbody>
-</table></div>
-<h3 id="americas-1">Americas</h3>
-<div class="overflow-auto my-3"><table>
-<thead>
-<tr>
-<th>URL</th>
-<th>Port</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>us-kc-portal.samsungknox.com</td>
-<td>443</td>
-</tr>
-<tr>
-<td>us-kc.samsungknox.com</td>
-<td>443</td>
-</tr>
-<tr>
-<td>us-kcc.samsungknox.com</td>
-<td>443</td>
-</tr>
-<tr>
-<td>us-segd-api.secb2b.com</td>
-<td>443</td>
-</tr>
-<tr>
-<td>us-segp-api.secb2b.com</td>
-<td>443</td>
-</tr>
-<tr>
-<td>us-segm-api.secb2b.com</td>
-<td>443</td>
-</tr>
-<tr>
-<td>us-kme.samsungknox.com</td>
-<td>-</td>
-</tr>
-<tr>
-<td>us-kme-api.samsungknox.com</td>
-<td>-</td>
-</tr>
-<tr>
-<td>us-kme-api-mssl.samsungknox.com</td>
-<td>-</td>
-</tr>
-<tr>
-<td>us-kme-reseller.samsungknox.com</td>
-<td>-</td>
-</tr>
-<tr>
-<td>usprd-knoxv2-dai.s3.us-west-2.amazonaws.com</td>
-<td>443</td>
-</tr>
-<tr>
-<td>us-dai.samsungknox.com</td>
-<td>443</td>
-</tr>
-<tr>
-<td>us-securitycenter.samsungknox.com</td>
-<td>443</td>
-</tr>
-</tbody>
-</table></div>
-<h3 id="emea-1">EMEA</h3>
-<div class="overflow-auto my-3"><table>
-<thead>
-<tr>
-<th>URL</th>
-<th>Port</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>eu-kcc.samsungknox.com</td>
-<td>443</td>
-</tr>
-<tr>
-<td>eu-kc-portal.samsungknox.com</td>
-<td>443</td>
-</tr>
-<tr>
-<td>eu-kc.samsungknox.com</td>
-<td>443</td>
-</tr>
-<tr>
-<td>eu-prod-bulk.secb2b.com</td>
-<td>80,443</td>
-</tr>
-<tr>
-<td>eu-segd-api.secb2b.com</td>
-<td>80, 443</td>
-</tr>
-<tr>
-<td>eu-segp-api.secb2b.com</td>
-<td>80, 443</td>
-</tr>
-<tr>
-<td>eu-segm-api.secb2b.com</td>
-<td>80, 443</td>
-</tr>
-<tr>
-<td>eu-kme.samsungknox.com</td>
-<td>-</td>
-</tr>
-<tr>
-<td>eu-kme-api.samsungknox.com</td>
-<td>-</td>
-</tr>
-<tr>
-<td>eu-kme-api-mssl.samsungknox.com</td>
-<td>-</td>
-</tr>
-<tr>
-<td>eu-kme-reseller.samsungknox.com</td>
-<td>-</td>
-</tr>
-<tr>
-<td>eu-api.samsungknox.com</td>
-<td>-</td>
-</tr>
-<tr>
-<td>eu-dai.samsungknox.com</td>
-<td>443</td>
-</tr>
-<tr>
-<td>eu-securitycenter.samsungknox.com</td>
-<td>443</td>
-</tr>
-<tr>
-<td>euprd-knoxv2-dai.s3.eu-west-1.amazonaws.com</td>
-<td>443</td>
-</tr>
-</tbody>
-</table></div>
-<h3 id="knox-manage-exceptions">Knox Manage exceptions</h3>
-<p>Apart from the exceptions mentioned above, your device platform also determines how you configure your firewall, as follows:</p>
-<div class="overflow-auto my-3"><table>
-    <tr>
-        <th scope="col">Platform</th>
-        <th scope="col">URL</th>
-        <th scope="col">Port</th>
-    </tr>
-    <tr>
-        <td rowspan="4">All</td>
-        <td>*.samsungknox.com</td>
-        <td rowspan="4">TCP 443, 80</td>
-    </tr>
-    <tr>
-        <td>*.secb2b.com</td>
-    </tr>
-    <tr>
-        <td>*.samsung.com</td>
-    </tr>
-    <tr>
-        <td>*.gstatic.com</td>
-    </tr>
-    <tr>
-        <td rowspan="10">Android</td>
-        <td>*.google.com</td>
-        <td rowspan="9">
-            <p>TCP 443</p>
-            <p>TCP, UDP 5228-5230, 5235, 5236</p>
-        </td>
-    </tr>
-    <tr>
-        <td>android.com</td>
-    </tr>
-    <tr>
-        <td>google-analytics.com</td>
-    </tr>
-    <tr>
-        <td>googleusercontent.com</td>
-    </tr>
-    <tr>
-        <td>*gstatic.com</td>
-    </tr>
-    <tr>
-        <td>*.gvt1.com</td>
-    </tr>
-    <tr>
-        <td>*.ggpht.com</td>
-    </tr>
-    <tr>
-        <td>*.gvt2.com</td>
-    </tr>
-    <tr>
-        <td>*.gvt3.com</td>
-    </tr>
-    <tr>
-        <td>*.googleapis.com</td>
-        <td>TCP 443, 5228-5230</td>
-    </tr>
-    <tr>
-        <td>iOS</td>
-        <td>*.push.apple.com</td>
-        <td>TCP 443, 5223, 2197</td>
-    </tr>
-    <tr>
-        <td rowspan="2">Windows</td>
-        <td>*.wns.windows.com</td>
-        <td rowspan="2">443</td>
-    </tr>
-    <tr>
-        <td>*.notify.live.net</td>
-    </tr>
-</table></div>
-<h3 id="knox-remote-support-exceptions">Knox Remote Support exceptions</h3>
- <div class="overflow-auto my-3"><table>
-    <tr>
-        <th scope="col">Region</th>
-        <th scope="col">Server</th>
-        <th scope="col">Domain</th>
-        <th style="width: 25%" scope="col">IP address</th>
-        <th scope="col">Port</th>
-        <th scope="col">Connection</th>
-    </tr>
-    <tr>
-        <td rowspan="3">Asia</td>
-        <td rowspan="2">Relay</td>
-        <td rowspan="2">ap-rs-relay.manage.samsungknox.com</td>
-        <td>18.141.250.233</td>
-        <td rowspan="2">45001</td>
-        <td rowspan="2">Mobile</td>
-    </tr>
-    <tr>
-        <td>13.213.198.62</td>
-    </tr>
-    <tr>
-        <td>WAS</td>
-        <td>ap-rs-web.manage.samsungknox.com</td>
-        <td>-</td>
-        <td>443</td>
-        <td>Desktop</td>
-    </tr>
-    <tr>
-        <td rowspan="3">US</td>
-        <td rowspan="2">Relay</td>
-        <td rowspan="2">us-rs-relay.manage.samsungknox.com</td>
-        <td>35.83.188.168</td>
-        <td rowspan="2">45001</td>
-        <td rowspan="2">Mobile</td>
-    </tr>
-    <tr>
-        <td>52.36.230.249</td>
-    </tr>
-    <tr>
-        <td>WAS</td>
-        <td>us-rs-web.manage.samsungknox.com</td>
-        <td>-</td>
-        <td>443</td>
-        <td>Desktop</td>
-    </tr>
-    <tr>
-        <td rowspan="3">EU</td>
-        <td rowspan="2">Relay</td>
-        <td rowspan="2">eu-rs-relay.manage.samsungknox.com</td>
-        <td>54.155.132.151</td>
-        <td rowspan="2">45001</td>
-        <td rowspan="2">Mobile</td>
-    </tr>
-    <tr>
-        <td>63.34.35.115</td>
-    </tr>
-    <tr>
-        <td>WAS</td>
-        <td>eu-rs-web.manage.samsungknox.com</td>
-        <td>-</td>
-        <td>443</td>
-        <td>Desktop</td>
-    </tr>
-</table></div>
-<p>For more information on the requirements for Knox Remote Support, see <a href="../../../knox-remote-support/minimum-requirements.html">Knox Remote Support minimum requirements</a>.</p>
-<h4 id="additional-information">Additional information</h4>
-<p>For more information on Android network requirements, refer to <a href="https://support.google.com/work/android/answer/10513641?hl=en" target="_blank">Android Enterprise Network Requirements</a>.</p>
-<p>For more information on iOS network requirements, refer to <a href="https://support.apple.com/guide/deployment/configure-your-network-for-mdm-dep2bcde692e/web" target="_blank">Configure your network for MDM</a> and <a href="https://support.apple.com/en-us/HT210060" target="_blank">Use Apple products on enterprise networks</a>.</p>
-<p>For more information on Windows network requirements, refer to <a href="https://learn.microsoft.com/en-us/windows/apps/design/shell/tiles-and-notifications/firewall-allowlist-config" target="_blank">Adding WNS Traffic to the Firewall Allowlist</a>.</p>
 <h2 id="firewall-exceptions-for-knox-configure-in-china">Firewall exceptions for Knox Configure in China</h2>
 <p>Depending on your enterprise&rsquo;s IT policies, you might have to add the following resources to your firewall allowlist to access <a href="../../../knox-configure.html">Knox Configure</a>.</p>
 <div class="my-3 ps-3 border-start border-3 border-important"><p class="fw-bold">Important</p><p>If your enterprise’s IT policy restricts the use of a wildcard (*) to abbreviate a domain name, you might require the FQDN to reach a Knox network deployment resource.</p></div>
@@ -925,20 +1183,22 @@
     <nav id="TableOfContents">
   <ul>
     <li><a href="../samsung-knox-firewall-exceptions.html#portal-exceptions">Portal exceptions</a></li>
-    <li><a href="../samsung-knox-firewall-exceptions.html#license-servers-knox-products">License servers for Knox products</a>
+    <li><a href="../samsung-knox-firewall-exceptions.html#networking-requirements-for-knox-cloud-services">Networking requirements for Knox cloud services</a>
+      <ul>
+        <li><a href="../samsung-knox-firewall-exceptions.html#knox-mobile-enrollment">Knox Mobile Enrollment</a></li>
+        <li><a href="../samsung-knox-firewall-exceptions.html#knox-manage">Knox Manage</a></li>
+        <li><a href="../samsung-knox-firewall-exceptions.html#knox-remote-support">Knox Remote Support</a></li>
+        <li><a href="../samsung-knox-firewall-exceptions.html#knox-e-fota">Knox E-FOTA</a></li>
+        <li><a href="../samsung-knox-firewall-exceptions.html#knox-asset-intelligence">Knox Asset Intelligence</a></li>
+        <li><a href="../samsung-knox-firewall-exceptions.html#knox-configure">Knox Configure</a></li>
+        <li><a href="../samsung-knox-firewall-exceptions.html#samsung-care-for-business">Samsung Care+ for Business</a></li>
+      </ul>
+    </li>
+    <li><a href="../samsung-knox-firewall-exceptions.html#license-servers-for-knox-products">License servers for Knox products</a>
       <ul>
         <li><a href="../samsung-knox-firewall-exceptions.html#global">Global</a></li>
         <li><a href="../samsung-knox-firewall-exceptions.html#americas">Americas</a></li>
         <li><a href="../samsung-knox-firewall-exceptions.html#emea">EMEA</a></li>
-      </ul>
-    </li>
-    <li><a href="../samsung-knox-firewall-exceptions.html#networking-requirements-for-knox-cloud-services">Networking requirements for Knox cloud services</a>
-      <ul>
-        <li><a href="../samsung-knox-firewall-exceptions.html#global-1">Global</a></li>
-        <li><a href="../samsung-knox-firewall-exceptions.html#americas-1">Americas</a></li>
-        <li><a href="../samsung-knox-firewall-exceptions.html#emea-1">EMEA</a></li>
-        <li><a href="../samsung-knox-firewall-exceptions.html#knox-manage-exceptions">Knox Manage exceptions</a></li>
-        <li><a href="../samsung-knox-firewall-exceptions.html#knox-remote-support-exceptions">Knox Remote Support exceptions</a></li>
       </ul>
     </li>
     <li><a href="../samsung-knox-firewall-exceptions.html#firewall-exceptions-for-knox-configure-in-china">Firewall exceptions for Knox Configure in China</a>

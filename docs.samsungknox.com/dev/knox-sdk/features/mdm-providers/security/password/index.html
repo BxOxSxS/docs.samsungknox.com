@@ -37,7 +37,7 @@
 <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start': new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0], j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src='https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);})(window,document,'script','dataLayer','GTM-P24TWCG');</script>
   <meta name="viewport" content="width=device-width,height=device-height,initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title>Password | Samsung Knox Documentation</title>
+  <title>Password  | Knox SDK  | Samsung Knox Documentation</title>
   <meta http-equiv="content-language" content="en">
   <meta name="language" content="en">
   <script src="../../../../../assets/js/bundle.js"></script>
@@ -3044,12 +3044,12 @@
   <li class="nav-item" role="presentation">
     <button
       class="tab-link active px-3 py-2 rounded-5"
-      id="fdcabe-tab"
+      id="febdca-tab"
       data-bs-toggle="tab"
-      data-bs-target="#fdcabe"
+      data-bs-target="#febdca"
       type="button"
       role="tab"
-      aria-controls="fdcabe"
+      aria-controls="febdca"
       aria-selected="true"
     >Knox 3.2.1
     </button>
@@ -3060,12 +3060,12 @@
   <li class="nav-item" role="presentation">
     <button
       class="tab-link  px-3 py-2 rounded-5"
-      id="efcdba-tab"
+      id="edacfb-tab"
       data-bs-toggle="tab"
-      data-bs-target="#efcdba"
+      data-bs-target="#edacfb"
       type="button"
       role="tab"
-      aria-controls="efcdba"
+      aria-controls="edacfb"
       aria-selected="true"
     >Knox 3.0
     </button>
@@ -3076,12 +3076,12 @@
   <li class="nav-item" role="presentation">
     <button
       class="tab-link  px-3 py-2 rounded-5"
-      id="abecdf-tab"
+      id="efbcda-tab"
       data-bs-toggle="tab"
-      data-bs-target="#abecdf"
+      data-bs-target="#efbcda"
       type="button"
       role="tab"
-      aria-controls="abecdf"
+      aria-controls="efbcda"
       aria-selected="true"
     >Knox 2.x
     </button>
@@ -3209,11 +3209,11 @@
   
 
 
-<div class="tab-pane fade  show active  border border-grey-line rounded-3 overflow-hidden" id="fdcabe" role="tabpanel" aria-labelledby="fdcabe-tab">
+<div class="tab-pane fade  show active  border border-grey-line rounded-3 overflow-hidden" id="febdca" role="tabpanel" aria-labelledby="febdca-tab">
   
   
     
-    <div class="tab-text p-3 border-bottom border-grey-line">
+    <div class="tab-toc p-3 border-bottom border-grey-line">
       <p class="fw-bold">On this tab</p>
       <ul class="mt-2 mb-0 list-unstyled section-nav">
       
@@ -3237,7 +3237,7 @@
     
   
   
-  <div class="tab-text p-3"><p>Samsung Knox SDK provides wrapper APIs for specific DPM methods. One such API is <a href="../../../../../../devref/knox-sdk/reference/com/samsung/android/knox/container/BasePasswordPolicy.html#resetPassword%28java.lang.String,%20int%29" target="_blank">BasePasswordPolicy.resetPassword()</a> which provides the functionality for Android&rsquo;s DPM.resetPassword() method. Android has deprecated DPM.resetPassword() from Android O onwards and recommends using <a href="https://developer.android.com/reference/android/app/admin/DevicePolicyManager.html#resetPasswordWithToken%28android.content.ComponentName,%20java.lang.String,%20byte%5B%5D,%20int%29" target="_blank">DPM.resetPasswordWithToken()</a>. However for token APIs, the caller must be a Device Owner(DO) or Profile Owner(PO).</p><h4 id="impact-to-partners-knox-3-2-1">Impact to Partners</h4><p>Both existing deployments on Android O and upgrades to Android P are impacted.</p><h4 id="android-o-81-with-knox-30-knox-3-2-1">Android O (8.1 with Knox 3.0)</h4><p>Due to design changes in Android keystore in Android 8.1, if resetPassword API is called the keystore is corrupted. Certificates needed for email, VPN, etc. are not guaranteed. If resetPassword is called on Android 8.1 the device will need to re-enroll.</p><h4 id="android-p-90-with-knox-321-knox-3-2-1">Android P (9.0 with Knox 3.2.1)</h4><p>As Android has deprecated DPM.resetPassword and limited DPM.resetPasswordWithToken to Device Owner(DO) and Profile Owner(PO). DA based solutions that upgrade from Android O to Android P have no mechanism to reset password.</p><h4 id="recommendation-for-partners-knox-3-2-1">Recommendation for Partners</h4><p>For partners that are Device Owner (DO) or Profile Owner (PO) we recommend using <a href="https://developer.android.com/reference/android/app/admin/DevicePolicyManager.html#resetPasswordWithToken%28android.content.ComponentName,%20java.lang.String,%20byte%5B%5D,%20int%29" target="_blank">DPM.resetPasswordWithToken</a> For partners that are DA based solution starting with Android P (Knox 3.2.1) Samsung Knox SDK will provide another wrapper API <a href="../../../../../../devref/knox-sdk/reference/com/samsung/android/knox/container/BasePasswordPolicy.html#resetPasswordWithToken%28android.content.ComponentName,%20java.lang.String,%20byte%5B%5D,%20int%29" target="_blank">BasePasswordPolicy.resetPasswordWithToken</a>. We recommend EMM partners to use the new BasePasswordPolicy.resetPasswordWithToken() for their existing DA deployments.</p><h4 id="setresetpasswordtoken-knox-3-2-1">setResetPasswordToken</h4><p>In order to use BasePasswordPolicy.resetPasswordWithToken(), the token must be set first using the BasePasswordPolicy.setResetPasswordToken() method. IT admins must ensure the user confirms their credentials after setting the token or it will not be active. Please see the following note from the <a href="https://developer.android.com/reference/android/app/admin/DevicePolicyManager.html#setResetPasswordToken%28android.content.ComponentName,%20byte%5B%5D%29" target="_blank">Google&rsquo;s API guide</a> for more information. If the user currently has a lockscreen password, the provisioned token will <strong>not be usable</strong> until after the user performs a confirm credential operation triggered by KeyguardManager.createConfirmDeviceCredentialIntent(CharSequence, CharSequence).</p><p>Our recommendation is to ask users to confirm their credentials after token is set otherwise the end users will be required to remember their password during this upgrade. If a user forgets their password prior to a MDM (UEM) having set the token, the only option is to factory reset the device. The impact of this is limited to DA based devices upgrading from Android O to P.</p>
+  <div class="tab-content p-3"><p>Samsung Knox SDK provides wrapper APIs for specific DPM methods. One such API is <a href="../../../../../../devref/knox-sdk/reference/com/samsung/android/knox/container/BasePasswordPolicy.html#resetPassword%28java.lang.String,%20int%29" target="_blank">BasePasswordPolicy.resetPassword()</a> which provides the functionality for Android&rsquo;s DPM.resetPassword() method. Android has deprecated DPM.resetPassword() from Android O onwards and recommends using <a href="https://developer.android.com/reference/android/app/admin/DevicePolicyManager.html#resetPasswordWithToken%28android.content.ComponentName,%20java.lang.String,%20byte%5B%5D,%20int%29" target="_blank">DPM.resetPasswordWithToken()</a>. However for token APIs, the caller must be a Device Owner(DO) or Profile Owner(PO).</p><h4 id="impact-to-partners-knox-3-2-1">Impact to Partners</h4><p>Both existing deployments on Android O and upgrades to Android P are impacted.</p><h4 id="android-o-81-with-knox-30-knox-3-2-1">Android O (8.1 with Knox 3.0)</h4><p>Due to design changes in Android keystore in Android 8.1, if resetPassword API is called the keystore is corrupted. Certificates needed for email, VPN, etc. are not guaranteed. If resetPassword is called on Android 8.1 the device will need to re-enroll.</p><h4 id="android-p-90-with-knox-321-knox-3-2-1">Android P (9.0 with Knox 3.2.1)</h4><p>As Android has deprecated DPM.resetPassword and limited DPM.resetPasswordWithToken to Device Owner(DO) and Profile Owner(PO). DA based solutions that upgrade from Android O to Android P have no mechanism to reset password.</p><h4 id="recommendation-for-partners-knox-3-2-1">Recommendation for Partners</h4><p>For partners that are Device Owner (DO) or Profile Owner (PO) we recommend using <a href="https://developer.android.com/reference/android/app/admin/DevicePolicyManager.html#resetPasswordWithToken%28android.content.ComponentName,%20java.lang.String,%20byte%5B%5D,%20int%29" target="_blank">DPM.resetPasswordWithToken</a> For partners that are DA based solution starting with Android P (Knox 3.2.1) Samsung Knox SDK will provide another wrapper API <a href="../../../../../../devref/knox-sdk/reference/com/samsung/android/knox/container/BasePasswordPolicy.html#resetPasswordWithToken%28android.content.ComponentName,%20java.lang.String,%20byte%5B%5D,%20int%29" target="_blank">BasePasswordPolicy.resetPasswordWithToken</a>. We recommend EMM partners to use the new BasePasswordPolicy.resetPasswordWithToken() for their existing DA deployments.</p><h4 id="setresetpasswordtoken-knox-3-2-1">setResetPasswordToken</h4><p>In order to use BasePasswordPolicy.resetPasswordWithToken(), the token must be set first using the BasePasswordPolicy.setResetPasswordToken() method. IT admins must ensure the user confirms their credentials after setting the token or it will not be active. Please see the following note from the <a href="https://developer.android.com/reference/android/app/admin/DevicePolicyManager.html#setResetPasswordToken%28android.content.ComponentName,%20byte%5B%5D%29" target="_blank">Google&rsquo;s API guide</a> for more information. If the user currently has a lockscreen password, the provisioned token will <strong>not be usable</strong> until after the user performs a confirm credential operation triggered by KeyguardManager.createConfirmDeviceCredentialIntent(CharSequence, CharSequence).</p><p>Our recommendation is to ask users to confirm their credentials after token is set otherwise the end users will be required to remember their password during this upgrade. If a user forgets their password prior to a MDM (UEM) having set the token, the only option is to factory reset the device. The impact of this is limited to DA based devices upgrading from Android O to P.</p>
   </div>
   
 </div>
@@ -3280,11 +3280,11 @@
   
 
 
-<div class="tab-pane fade  border border-grey-line rounded-3 overflow-hidden" id="efcdba" role="tabpanel" aria-labelledby="efcdba-tab">
+<div class="tab-pane fade  border border-grey-line rounded-3 overflow-hidden" id="edacfb" role="tabpanel" aria-labelledby="edacfb-tab">
   
   
   
-  <div class="tab-text p-3"><p>In Knox 3.0 password is not enforced during creation. IT admins can set a password policy for the user to set the password after Workspace is launched for the first time.</p><p><img src="../../../../assets/terms-3-x.png" class="image-block-scale-90 img-thumbnail" alt="terms-3-x.png" /></p><div class="my-3 ps-3 border-start border-3 border-black"><p class="fw-bold">Note</p><p>Starting with Knox 3.0, EMM’s <code>DeviceAdminReceiver</code> for CL and COM containers, located in user 0, gets all the callbacks that a DPC that is running inside the managed profile would get. For example — <code>onPasswordChanged</code> or <code>onEnabled</code>.</p></div>
+  <div class="tab-content p-3"><p>In Knox 3.0 password is not enforced during creation. IT admins can set a password policy for the user to set the password after Workspace is launched for the first time.</p><p><img src="../../../../assets/terms-3-x.png" class="image-block-scale-90 img-thumbnail" alt="terms-3-x.png" /></p><div class="my-3 ps-3 border-start border-3 border-black"><p class="fw-bold">Note</p><p>Starting with Knox 3.0, EMM’s <code>DeviceAdminReceiver</code> for CL and COM containers, located in user 0, gets all the callbacks that a DPC that is running inside the managed profile would get. For example — <code>onPasswordChanged</code> or <code>onEnabled</code>.</p></div>
   </div>
   
 </div>
@@ -3321,11 +3321,11 @@
   
 
 
-<div class="tab-pane fade  border border-grey-line rounded-3 overflow-hidden" id="abecdf" role="tabpanel" aria-labelledby="abecdf-tab">
+<div class="tab-pane fade  border border-grey-line rounded-3 overflow-hidden" id="efbcda" role="tabpanel" aria-labelledby="efbcda-tab">
   
   
   
-  <div class="tab-text p-3"><p>The below screenshots show the Knox 2.x password flow.</p><p><img src="../../../../assets/terms.png" class="image-block-scale-90 img-thumbnail" alt="terms.png" /></p>
+  <div class="tab-content p-3"><p>The below screenshots show the Knox 2.x password flow.</p><p><img src="../../../../assets/terms.png" class="image-block-scale-90 img-thumbnail" alt="terms.png" /></p>
   </div>
   
 </div>
