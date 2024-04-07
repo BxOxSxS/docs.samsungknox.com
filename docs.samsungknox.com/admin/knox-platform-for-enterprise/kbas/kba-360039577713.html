@@ -52,7 +52,7 @@
 </head>
 <body id=ZgotmplZ>
   
-<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-P24TWCG" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript><a class="button-back-to-top button-text" id="BackToTopBtn"><span class="me-4">Back to top</span></a>
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-P24TWCG" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript><a id="back-to-top-button" class="button-back-to-top">Back to top</a>
   
     <header>
   <div class="container-xxl border-bottom">
@@ -220,8 +220,7 @@
   
   </li>
 </ul>
-  </div>
-  </li>
+  </div></li>
 
         
           
@@ -291,8 +290,7 @@
   
   </li>
 </ul>
-  </div>
-  </li>
+  </div></li>
 
 
   <li class="mt-2">
@@ -666,8 +664,7 @@
   
   </li>
 </ul>
-  </div>
-  </li>
+  </div></li>
 
 
   <li class="mt-2">
@@ -739,8 +736,7 @@
   
   </li>
 </ul>
-  </div>
-  </li>
+  </div></li>
 
 
   <li class="mt-2">
@@ -836,8 +832,7 @@
   
   </li>
 </ul>
-  </div>
-  </li>
+  </div></li>
 
 
   <li class="mt-2">
@@ -871,8 +866,7 @@
   
   </li>
 </ul>
-  </div>
-  </li>
+  </div></li>
 
 
   <li class="mt-2">
@@ -916,14 +910,11 @@
   
   </li>
 </ul>
-  </div>
-  </li>
+  </div></li>
 </ul>
-  </div>
-  </li>
+  </div></li>
 </ul>
-  </div>
-  </li>
+  </div></li>
 
         
           
@@ -970,8 +961,7 @@
   
   </li>
 </ul>
-  </div>
-  </li>
+  </div></li>
 
         
           
@@ -1059,8 +1049,7 @@
   
   </li>
 </ul>
-  </div>
-  </li>
+  </div></li>
 
 
   <li class="mt-2">
@@ -1072,8 +1061,7 @@
   
   </li>
 </ul>
-  </div>
-  </li>
+  </div></li>
 
         
           
@@ -1111,8 +1099,7 @@
   
   </li>
 </ul>
-  </div>
-  </li>
+  </div></li>
 
         
           
@@ -1123,7 +1110,16 @@
     <a class="body-5 text-black fw-light" href="../kbas.html">KBAs</a>
   </div>
     
-  </li>
+  <div class="show" id="sub-knox-platform-for-enterprise-kbas-kbas">
+    <ul>
+      <li>
+        <div class="d-flex justify-content-between">
+          <a class="body-5 text-black active" href="../kbas.html">File-based encryption (FBE) and full-disk encryption (FDE)</a>
+        </div>
+      </li>
+    </ul>
+  </div>
+    </li>
 </ul>
   </nav>
 </aside></div>
@@ -1174,11 +1170,6 @@
       
       
       
-        
-      
-      
-      
-      
         <h2 id="environment">Environment</h2>
 <ul>
 <li>
@@ -1193,16 +1184,16 @@
 </ul>
 <h2 id="overview">Overview</h2>
 <p>This article provides a general overview of how full-disk encryption (FDE) and file-based encryption (FBE) work, as well as instructions on how to check if your device uses FDE or FBE.</p>
-<div class="my-3 ps-3 border-start border-3 border-black"><p class="fw-bold">Note</p><p>Per Google Android Compatibility Program’s requirements, devices launched with Android 10.0 or higher are required to use file-based encryption.</p></div>
+<div class="notice border-black"><p>Note</p><p>Per Google Android Compatibility Program’s requirements, devices launched with Android 10.0 or higher are required to use file-based encryption.</p></div>
 <h2 id="what-is-full-disk-encryption-fde">What is full-disk encryption (FDE)?</h2>
 <p>FDE was introduced in Android 4.4 to provide users with the option to encrypt the entire User Data partition at the Flash Block level. For devices launching with Android 7.0 or higher, the User Data partition is encrypted by default. To meet industry and government security requirements, Samsung Knox builds upon FDE to enhance the Android Open Source Project (AOSP) implementation, taking advantage of hardware security mechanisms and the Trusted Execution Environment (TEE) on Samsung Galaxy devices.</p>
 <p>On FDE-based Android devices, all user data is encrypted using AES-256-XTS or AES-256-CBC (depending on the device) with a randomly generated encryption key, also known as the Primary Key. Once a device is encrypted, all data created by the user is automatically encrypted before being committed to disk and decrypted during the read process.</p>
 <p>When the user boots up the device for the first time (for example, following a factory reset), the 256-bit Primary Key is randomly generated and encrypted in storage by the TEE-based Keymaster component. This component uses keys derived from a default password and a device-unique hardware based key to protect against offline attacks. If the user sets a PIN, password, or pattern on the device, and configures Secure Startup via <strong>Settings</strong> &gt; <strong>Biometrics and Security</strong>, the Primary Key is re-encrypted by the Keymaster using the user&rsquo;s credentials and stored. If Secure Startup is not enabled after being configured, the Primary Key is re-encrypted using the default password instead of the user&rsquo;s credentials.</p>
 <p>During subsequent device reboots, the Primary Key is recovered using either the default password or the user&rsquo;s credentials, depending on whether Secure Startup was configured, allowing the system to mount the user data partition and decrypt its data while it is read from Flash memory.</p>
-<div class="my-3 ps-3 border-start border-3 border-black"><p class="fw-bold">Note</p><p>Changing the user credentials on the device does not re-encrypt the user data. Instead, the Primary Key is re-encrypted with the new password.</p></div>
+<div class="notice border-black"><p>Note</p><p>Changing the user credentials on the device does not re-encrypt the user data. Instead, the Primary Key is re-encrypted with the new password.</p></div>
 <h2 id="What">What is file-based encryption (FBE)?</h2>
 <p>Available on all Samsung Galaxy devices shipping with Android 9.0 or higher and Knox 3.3 or higher, FBE protects files in the user data Flash partition. Each file is independently encrypted using AES-256-XTS, with a unique File Encryption Key that is derived from a Primary Key. In FBE, Primary Keys are randomly generated and protected by the TEE-based Keymaster component, similar to the FDE implementation.</p>
-<div class="my-3 ps-3 border-start border-3 border-black"><p class="fw-bold">Note</p><p>Devices that launched with Android versions before version 9 continue to use FDE even after upgrading to Android 10 through a maintenance release.</p></div>
+<div class="notice border-black"><p>Note</p><p>Devices that launched with Android versions before version 9 continue to use FDE even after upgrading to Android 10 through a maintenance release.</p></div>
 <p>FBE also introduced a new feature called Direct Boot, which lets encrypted devices boot straight to the lock screen. This feature allows for extended functionality over FDE-based devices, which require the user to enter their credentials before the OS boots and any user data is accessed. If the user chooses not to enter their credentials, the device is unable to receive phone calls and alarms are prevented from functioning.</p>
 <p>FBE-based devices allow certain apps to be aware of their encryption and run with limited functionality enabled through the use of two storage locations:</p>
 <ol>
@@ -1252,15 +1243,14 @@
 <p><a href="../../fundamentals/whitepaper/samsung-knox-for-android/app-and-data-protection/dualdar-encryption.html">Dual Data-At-Rest (DualDAR) Encryption</a></p>
 </li>
 </ul>
-<a href="../kbas.html"  class="btn d-inline-block button-subtle">Back to KBAs</a>
 
             
           </div>
           <div class="l-toc">
-            <aside class="toc">
+            <h2 class="body-4 fw-bold mt-0">On this page</h2>
+<aside class="table-of-headings">
   
   <nav class="section-nav">
-    <h2 class="body-4 fw-bold mt-0">On this page</h2>
     <nav id="TableOfContents">
   <ul>
     <li><a href="kba-360039577713.html#environment">Environment</a></li>

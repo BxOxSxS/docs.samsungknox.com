@@ -52,7 +52,7 @@
 </head>
 <body id=ZgotmplZ>
   
-<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-P24TWCG" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript><a class="button-back-to-top button-text" id="BackToTopBtn"><span class="me-4">Back to top</span></a>
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-P24TWCG" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript><a id="back-to-top-button" class="button-back-to-top">Back to top</a>
   
     <header>
   <div class="container-xxl border-bottom">
@@ -220,8 +220,7 @@
   
   </li>
 </ul>
-  </div>
-  </li>
+  </div></li>
 
         
           
@@ -291,8 +290,7 @@
   
   </li>
 </ul>
-  </div>
-  </li>
+  </div></li>
 
 
   <li class="mt-2">
@@ -666,8 +664,7 @@
   
   </li>
 </ul>
-  </div>
-  </li>
+  </div></li>
 
 
   <li class="mt-2">
@@ -739,8 +736,7 @@
   
   </li>
 </ul>
-  </div>
-  </li>
+  </div></li>
 
 
   <li class="mt-2">
@@ -836,8 +832,7 @@
   
   </li>
 </ul>
-  </div>
-  </li>
+  </div></li>
 
 
   <li class="mt-2">
@@ -871,8 +866,7 @@
   
   </li>
 </ul>
-  </div>
-  </li>
+  </div></li>
 
 
   <li class="mt-2">
@@ -916,14 +910,11 @@
   
   </li>
 </ul>
-  </div>
-  </li>
+  </div></li>
 </ul>
-  </div>
-  </li>
+  </div></li>
 </ul>
-  </div>
-  </li>
+  </div></li>
 
         
           
@@ -970,8 +961,7 @@
   
   </li>
 </ul>
-  </div>
-  </li>
+  </div></li>
 
         
           
@@ -1059,8 +1049,7 @@
   
   </li>
 </ul>
-  </div>
-  </li>
+  </div></li>
 
 
   <li class="mt-2">
@@ -1072,8 +1061,7 @@
   
   </li>
 </ul>
-  </div>
-  </li>
+  </div></li>
 
         
           
@@ -1111,8 +1099,7 @@
   
   </li>
 </ul>
-  </div>
-  </li>
+  </div></li>
 
         
           
@@ -1123,7 +1110,16 @@
     <a class="body-5 text-black fw-light" href="../kbas.html">KBAs</a>
   </div>
     
-  </li>
+  <div class="show" id="sub-knox-platform-for-enterprise-kbas-kbas">
+    <ul>
+      <li>
+        <div class="d-flex justify-content-between">
+          <a class="body-5 text-black active" href="../kbas.html">Device is locked with &lsquo;Workspace License Expired&rsquo; error after migrating from a Knox Workspace to an Android Enterprise profile</a>
+        </div>
+      </li>
+    </ul>
+  </div>
+    </li>
 </ul>
   </nav>
 </aside></div>
@@ -1181,12 +1177,7 @@
       
       
         
-      
-      
-      
-      
-      
-        <h2 id="environment">Environment</h2>
+      <h2 id="environment">Environment</h2>
 <ul>
 <li>Knox Platform for Enterprise (KPE)</li>
 <li>Devices previously activated against a KPE Premium license key</li>
@@ -1198,7 +1189,7 @@
 <p>During the device enrollment process to a UEM, a KLM license key is activated for Knox Workspace deployments, which grants Knox Premium permissions for creating and managing a Knox Workspace. The license activation process creates an association between the device and the license key, and grants the device a set of permissions.</p>
 <p>Periodic checks are made between the device and licensing server to verify that its assigned seat is still in use. If the device does not check in to the server for 180 days or more, its seat is automatically released and all permissions previously granted to the device are revoked.</p>
 <p>During the migration process from a Knox Workspace deployment to AE Device Owner mode, some UEMs may also activate an ELM key. The ELM key grants devices <a href="../../../dev/common/license-permissions.htm" target="_blank">Knox Standard permissions</a> for access to APIs offered by the Knox Standard SDK. When activating an ELM key, the UEM inherits all the permissions granted on the previous license activation by the same UEM client. An unintended consequence of this activation is the device upgrading to Device Owner Premium mode, which requires a paid KLM* license key. However, the Knox Premium permissions are not granted because the KLM license key may have expired. Consequently, the device may be locked with the <strong>Workspace License Expired</strong> error.</p>
-<div class="my-3 ps-3 border-start border-3 border-black"><p class="fw-bold">Note</p><p>There may be other causes related to this issue, which the Samsung Knox team is currently investigating.</p></div>
+<div class="notice border-black"><p>Note</p><p>There may be other causes related to this issue, which the Samsung Knox team is currently investigating.</p></div>
 <p>*The KLM license key has become the KPE license key. Please refer to the <a href="../../../dev/common/knox-licenses.htm" target="_blank">Knox licenses page</a> to learn more about license types.</p>
 <h2 id="workaround">Workaround</h2>
 <p>To avoid encountering this error, the association between device and server must be removed on both sides. Before factory resetting a device, re-enrolling it in a UEM, or uninstalling a UEM client, ensure you have followed these instructions on <a href="../../fundamentals/kbas/kba-845-how-to-disassociate-a-device-from-knox-license-key.html">how to disassociate a device from a KPE license key</a>.</p>
@@ -1214,7 +1205,7 @@
 <p>Re-enroll the device(s) to the MDM/UEM solution.</p>
 </li>
 </ol>
-<div class="my-3 ps-3 border-start border-3 border-black"><p class="fw-bold">Note</p><p>If you have not been provided with a KPE license key, please submit a ticket through the <a href="https://central.samsungknox.com/" target="_blank">Knox Admin Portal</a>.</p></div>
+<div class="notice border-black"><p>Note</p><p>If you have not been provided with a KPE license key, please submit a ticket through the <a href="https://central.samsungknox.com/" target="_blank">Knox Admin Portal</a>.</p></div>
 <h2 id="additional-information">Additional information</h2>
 <ul>
 <li>
@@ -1224,15 +1215,14 @@
 <p>If you require further support, please submit a ticket through the <a href="https://central.samsungknox.com/" target="_blank">Knox Admin Portal</a>.</p>
 </li>
 </ul>
-<a href="../kbas.html"  class="btn d-inline-block button-subtle">Back to KBAs</a>
 
             
           </div>
           <div class="l-toc">
-            <aside class="toc">
+            <h2 class="body-4 fw-bold mt-0">On this page</h2>
+<aside class="table-of-headings">
   
   <nav class="section-nav">
-    <h2 class="body-4 fw-bold mt-0">On this page</h2>
     <nav id="TableOfContents">
   <ul>
     <li><a href="kba-360038165294.html#environment">Environment</a></li>

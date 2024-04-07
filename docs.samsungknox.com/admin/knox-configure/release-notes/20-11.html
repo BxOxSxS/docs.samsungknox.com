@@ -52,7 +52,7 @@
 </head>
 <body id=ZgotmplZ>
   
-<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-P24TWCG" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript><a class="button-back-to-top button-text" id="BackToTopBtn"><span class="me-4">Back to top</span></a>
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-P24TWCG" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript><a id="back-to-top-button" class="button-back-to-top">Back to top</a>
   
     <header>
   <div class="container-xxl border-bottom">
@@ -232,8 +232,7 @@
   
   </li>
 </ul>
-  </div>
-  </li>
+  </div></li>
 
 
   <li class="mt-2">
@@ -275,8 +274,7 @@
   
   </li>
 </ul>
-  </div>
-  </li>
+  </div></li>
 
         
           
@@ -394,8 +392,7 @@
   
   </li>
 </ul>
-  </div>
-  </li>
+  </div></li>
 
 
   <li class="mt-2">
@@ -469,8 +466,7 @@
   
   </li>
 </ul>
-  </div>
-  </li>
+  </div></li>
 
 
   <li class="mt-2">
@@ -514,8 +510,7 @@
   
   </li>
 </ul>
-  </div>
-  </li>
+  </div></li>
 
 
   <li class="mt-2">
@@ -567,8 +562,7 @@
   
   </li>
 </ul>
-  </div>
-  </li>
+  </div></li>
 
         
           
@@ -648,8 +642,7 @@
   
   </li>
 </ul>
-  </div>
-  </li>
+  </div></li>
 
         
           
@@ -759,8 +752,7 @@
   
   </li>
 </ul>
-  </div>
-  </li>
+  </div></li>
 
 
   <li class="mt-2">
@@ -782,8 +774,7 @@
   
   </li>
 </ul>
-  </div>
-  </li>
+  </div></li>
 
 
   <li class="mt-2">
@@ -867,8 +858,7 @@
   
   </li>
 </ul>
-  </div>
-  </li>
+  </div></li>
 
 
   <li class="mt-2">
@@ -941,11 +931,9 @@
   
   </li>
 </ul>
-  </div>
-  </li>
+  </div></li>
 </ul>
-  </div>
-  </li>
+  </div></li>
 
         
           
@@ -971,8 +959,7 @@
   
   </li>
 </ul>
-  </div>
-  </li>
+  </div></li>
 
         
           
@@ -983,7 +970,16 @@
     <a class="body-5 text-black fw-light" href="index.html">Release notes</a>
   </div>
     
-  </li>
+  <div class="show" id="sub-knox-configure-release-notes-release-notes">
+    <ul>
+      <li>
+        <div class="d-flex justify-content-between">
+          <a class="body-5 text-black active" href="index.html">Knox Configure 20.11 release notes</a>
+        </div>
+      </li>
+    </ul>
+  </div>
+    </li>
 
         
           
@@ -1057,17 +1053,12 @@
       
       
       
-        
-      
-      
-      
-      
         <h2 id="enhanced-auto-assignment-capability">Enhanced auto-assignment capability</h2>
 <p>This update allows a reseller to frontload some of the operations typically performed by a KC customer. For example, if a KC customer has the same profile for every device, it does not make much sense for the IT admin to login to the portal just to assign. This step can be eliminated if the reseller can point to the appropriate KC profile at the time of the upload itself.</p>
 <p>With this release, a profile alias can be created in the KC console and shared with a reseller, who then attaches the alias to an upload. This, in turn, can be used as a profile auto-assignment rule. Customers don&rsquo;t always want to share their actual profile names with resellers. With an alias, they can use a more user-friendly name. For example, they can use the alias &ldquo;<em>Coke-campaign1</em>&rdquo; instead of the actual profile name, &ldquo;<em>v1.23_Coke-compaign1-*6712</em>&rdquo;.</p>
 <p>Profile aliases are not shared across resellers, so they do not need to be unique across resellers. However, they do need to be unique for each reseller. Up to 10 profile aliases can be created per reseller, and a profile can be associated with 1 or more aliases. Aliases are optional, but when utilized, need to be associated with an existing profile.</p>
 <p>When an additional profile with an alias is added, additional mandatory fields appear: <strong>Profile</strong>, <strong>License</strong> and <strong>Profile alias</strong>. If the license associated with the alias is expired or if its seat count is 0, disable the auto-approval when the profile is assigned. For details, see <a href="../how-to-guides/register-a-reseller.html">Assign automatically on upload by reseller</a>.</p>
-<div class="my-3 ps-3 border-start border-3 border-black"><p class="fw-bold">Note</p><p>IT admins that choose to use this feature must ensure that the reseller knows which alias to use per upload. This feature should only be used if they have coordinated with the reseller regarding which profile alias to use. Otherwise, the devices may not be auto-assigned correctly.</p></div>
+<div class="notice border-black"><p>Note</p><p>IT admins that choose to use this feature must ensure that the reseller knows which alias to use per upload. This feature should only be used if they have coordinated with the reseller regarding which profile alias to use. Otherwise, the devices may not be auto-assigned correctly.</p></div>
 <h2 id="device-custom-id-support">Device custom ID support</h2>
 <p>A custom ID is an ID that you create to map to an IMEI or SN, which are no longer accessible by device apps. Company apps deployed through KC can use it to identify the company approved devices and allow use only for these devices.</p>
 <p>For this reason, Knox Configure will allow IT admins to set a custom ID per device.</p>
@@ -1078,7 +1069,7 @@
 <li>The KC client stores the provided custom ID using the Knox API provided by the Knox framework.</li>
 <li>The partner app provides the custom ID of the device when the partner app sends a request through the Knox SDK.</li>
 </ol>
-<div class="my-3 ps-3 border-start border-3 border-black"><p class="fw-bold">Note</p><p>Only partner apps deployed through KC can read the custom ID using the Knox API (<code>DeviceInventory.getKnoxServiceId</code> in Knox SDK version 3.7).</p></div>
+<div class="notice border-black"><p>Note</p><p>Only partner apps deployed through KC can read the custom ID using the Knox API (<code>DeviceInventory.getKnoxServiceId</code> in Knox SDK version 3.7).</p></div>
 <p>When a customer updates their custom ID, they need to ensure it&rsquo;s also updated in KC. There are two ways to update the custom ID in KC.</p>
 <ul>
 <li>Update the custom ID within the Device Details screen for each ID update</li>
@@ -1097,15 +1088,14 @@
 
 <p><img src="../assets/kc-device-details-os-version.png" class="img-fluid img-thumbnail" alt="Device version and details" /></p>
 <p>Beginning with this release, the device Knox version and OS version are available as customizable display options within the KC Devices screen and also displayed for a selected device within the Device details screen. This data is collected during enrollment for new devices. For existing devices, this data is retrieved during next agent update. For more details, see <a href="../how-to-guides/devices/view-device-details-and-logs.html">Device details and logs</a>.</p>
-<a href="index.html"  class="btn d-inline-block button-subtle">Back to release notes</a>
 
             
           </div>
           <div class="l-toc">
-            <aside class="toc">
+            <h2 class="body-4 fw-bold mt-0">On this page</h2>
+<aside class="table-of-headings">
   
   <nav class="section-nav">
-    <h2 class="body-4 fw-bold mt-0">On this page</h2>
     <nav id="TableOfContents">
   <ul>
     <li><a href="20-11.html#enhanced-auto-assignment-capability">Enhanced auto-assignment capability</a></li>
