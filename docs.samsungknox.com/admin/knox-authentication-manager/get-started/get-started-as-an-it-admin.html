@@ -501,7 +501,7 @@
 <p>Knox Authentication Manager is now registered in your AAD tenant.</p>
 <h2 id="step-5-configure-and-assign-the-app">Step 5: Configure and assign the app</h2>
 <p>In your UEM, create a managed configuration for Knox Authentication Manager according to the table below.</p>
-<div class="notice border-important"><p>Important</p><p>If you’re a <strong>Microsoft Intune</strong> customer, you can download and use the following JSON file to help configure your Knox Authentication Manager app. Refer to the table below for detailed explanations of the key-value pairs, then edit the JSON file according to your fleet’s deployment needs. All keys with a value of “CHANGEME” must be edited for the configuration to work.</p><p><a href="../assets/kam-sample-json-intune.json">Download JSON file for Intune</a></p></div>
+<div class="notice-important"><p>If you’re a <strong>Microsoft Intune</strong> customer, you can download and use the following JSON file to help configure your Knox Authentication Manager app. Refer to the table below for detailed explanations of the key-value pairs, then edit the JSON file according to your fleet’s deployment needs. All keys with a value of “CHANGEME” must be edited for the configuration to work.</p><p><a href="../assets/kam-sample-json-intune.json">Download JSON file for Intune</a></p></div>
 <div class="overflow-auto my-3"><table>
     <tr>
         <th scope="col" style="width: 20%">Category</th>
@@ -536,11 +536,8 @@
                 <li><strong>Microsoft Managed Home Screen</strong> (This option will only be applicable to Intune users).</li>
                 <li><strong>Other-Kiosk Mode</strong> &mdash; Select this setting when you have dedicated devices managed by Knox Manage (in kiosk mode) or SOTI MobiControl (in lockdown mode).</li>
             </ul>
-            <div class="border-start border-3 border-important">
-                <div class="ms-3 mb-3 pt-1 pb-2 text-grey">
-                    <p class="mb-0"><strong>Important</strong></p>
-                    <p class="mb-0">Knox Authentication Manager v1.3, planned for September 2023, will include support for Microsoft Intune. Users can then authenticate with the Microsoft Managed Home Screen if it's set as the main sign-in method.</p>
-                </div>
+            <div class="notice-important">
+                <p>Knox Authentication Manager v1.3, planned for September 2023, will include support for Microsoft Intune. Users can then authenticate with the Microsoft Managed Home Screen if it's set as the main sign-in method.</p>
             </div>
         </td>
     </tr>
@@ -662,10 +659,9 @@
             <p>Sets a single identifier for your company or organization, under which your device sync groups are organized.</p>
             <strong>Values</strong>
             <p>Enter an Org ID. This should be the same for devices that you want to sync with one another.</p>
-            <div class="border-start border-3 border-black">
+            <div class="notice-note">
                 <div class="ms-3 mb-3 py-2 text-grey">
-                    <p class="mb-0"><strong>Note</strong></p>
-                    <p class="mb-0">Your Org ID must only consist of letters and numbers.</p>
+                    <p>Your Org ID must only consist of letters and numbers.</p>
                 </div>
             </div>
         </td>
@@ -687,10 +683,9 @@
             <p>Sets a unique identifier for a group of devices across which user profiles will be synced. This setting only applies if your devices sync by group ID. Group IDs often correspond to device groups you configured in your UEM.</p>
             <strong>Values</strong>
             <p>Enter an group ID. This should be the same for devices that you want to sync with one another.</p>
-            <div class="border-start border-3 border-black">
+            <div class="notice-note">
                 <div class="ms-3 mb-3 py-2 text-grey">
-                    <p class="mb-0"><strong>Note</strong></p>
-                    <p class="mb-0">Your group ID must only consist of letters and numbers.</p>
+                    <p>Your group ID must only consist of letters and numbers.</p>
                 </div>
             </div>
         </td>
@@ -701,10 +696,9 @@
             <p>Sets a sync group key to encrypt and protect user profiles and device group communication.</p>
             <strong>Values</strong>
             <p>Enter a 32-character key. This should be the same for devices that you want to sync with one another. One way to create the key is to run <code>openssl rand -base64 24</code> in a terminal.</p>
-            <div class="border-start border-3 border-black">
+            <div class="notice-note">
                 <div class="ms-3 mb-3 py-2 text-grey">
-                    <p class="mb-0"><strong>Note</strong></p>
-                    <p class="mb-0">Your group key must only consist of letters and numbers.</p>
+                    <p>Your group key must only consist of letters and numbers.</p>
                 </div>
             </div>
         </td>
@@ -768,7 +762,7 @@
 <p>Unlock a device. Knox Authentication Manager automatically launches on devices managed by VMware Workspace ONE. Knox Authentication Manager doesn&rsquo;t automatically launch on devices managed by Knox Manage or SOTI unless you configured it to. In this case, open the app and click <strong>Sign in or enroll</strong>.</p>
 <p>A dialog should pop up asking users to enter their enterprise username.</p>
 <p>Once you know Knox Authentication Manager works as expected, test that Knox Authentication Manager syncs across your devices.</p>
-<div class="notice border-black"><p>Note</p><p>Knox Authentication Manager relies on the <strong>Network Time Protocol (NTP)</strong> to determine the most up-to-date user profile when performing device-to-device syncing. You’ll need to add the following firewall exception on your network in order to communicate with the NTP server:</p><ul><li>time.android.com – UDP port 123</li></ul></div>
+<div class="notice-note"><p>Knox Authentication Manager relies on the <strong>Network Time Protocol (NTP)</strong> to determine the most up-to-date user profile when performing device-to-device syncing. You’ll need to add the following firewall exception on your network in order to communicate with the NTP server:</p><ul><li>time.android.com – UDP port 123</li></ul></div>
 <p>You need two devices with Knox Authentication Manager installed that are in the same device group or on the same Wi-Fi subnet, depending on how you configured Knox Authentication Manager in your UEM. These devices are referred to as Device A and Device B below.</p>
 <ol>
 <li>Dock or plug in Device B. When you charge a device, a <strong>Starting sync service</strong> notification appears on its lock screen.</li>

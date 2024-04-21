@@ -2940,7 +2940,7 @@
 <p>In order to clear the keyboard history for a user, invoke the Knox SDK API <code>ApplicationPolicy.wipeApplicationData()</code>, with <code>com.sec.android.inputmethod</code> passed in the parameter.</p>
 <p>For example:</p>
 <div class="highlight"><pre tabindex="0" style=";-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span>wipeApplicationData<span style="color:#666">(</span><span style="color:#ba2121">&#34;com.sec.android.inputmethod&#34;</span><span style="color:#666">)</span>
-</span></span></code></pre></div><div class="notice border-black"><p>Note</p><p>Ensure that the permission <code>com.samsung.android.knox.permission.KNOX_APP_MGMT</code> is declared or granted.</p></div>
+</span></span></code></pre></div><div class="notice-note"><p>Ensure that the permission <code>com.samsung.android.knox.permission.KNOX_APP_MGMT</code> is declared or granted.</p></div>
 <p>Although the default Samsung keyboard is passed into the API call, all keyboards&rsquo; histories will be removed by this API since it removes both cache and stored application data.</p>
 <h2 id="workaround">Workaround</h2>
 <p>To ensure the white bar is removed while still hiding the navigation buttons, invoke <code>SystemManager.setStatusBarMode()</code> instead.
@@ -2948,7 +2948,7 @@ The following is an example of how to do this:</p>
 <div class="highlight"><pre tabindex="0" style=";-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span>CustomDeviceManager cdm <span style="color:#666">=</span> CustomDeviceManager<span style="color:#666">.</span><span style="color:#7d9029">getInstance</span><span style="color:#666">();</span>
 </span></span><span style="display:flex;"><span>SystemManager sm <span style="color:#666">=</span> cdm<span style="color:#666">.</span><span style="color:#7d9029">getSystemManager</span><span style="color:#666">();</span>
 </span></span><span style="display:flex;"><span>sm<span style="color:#666">.</span><span style="color:#7d9029">setStatusBarMode</span><span style="color:#666">(</span>CustomDeviceManager<span style="color:#666">.</span><span style="color:#7d9029">HIDE</span><span style="color:#666">);</span>
-</span></span></code></pre></div><div class="notice border-black"><p>Note</p><p>You must have a KPE Premium license to use the <code>CustomDeviceManager</code> object.</p></div>
+</span></span></code></pre></div><div class="notice-note"><p>You must have a KPE Premium license to use the <code>CustomDeviceManager</code> object.</p></div>
 <h2 id="additional-information">Additional information</h2>
 <p>The <code>ApplicationPolicy.wipeApplicationData()</code> method does not affect autofill settings configured through <strong>Settings</strong> &gt; <strong>Language and input</strong> &gt; <strong>Autofill service</strong>, or any other keyboard settings.</p>
 <p>You can disable autofill on the Samsung browser by using the public boolean <code>setAutoFillSetting (boolean enable)</code> API with the <code>com.samsung.android.knox.permission.KNOX_BROWSER_SETTINGS</code> permission.</p>

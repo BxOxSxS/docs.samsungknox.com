@@ -365,7 +365,7 @@
             </div>
             
 
-  <p><span>Last updated July  26th, 2023</span></p>
+  <p><span>Last updated April  17th, 2024</span></p>
 
 
     
@@ -410,13 +410,27 @@
       
         <p>To streamline the admin management process, the Knox Admin Portal offers a consolidated <strong>Administrators &amp; Roles</strong> page that allows you to invite and manage admins for multiple services.</p>
 <p>In the left sidebar of the Knox Admin Portal, click <strong>Administrators &amp; Roles</strong> to view a list of admins for all supported Knox services.</p>
-<div class="notice border-important"><p>Important</p><p>Only admins with the <strong>Invite and manage administrators</strong> or <strong>Manage roles</strong> permission can access the consolidated <strong>Administrators & Roles</strong> page.</p></div>
+<div class="notice-important"><p>Only admins with the <strong>Invite and manage administrators</strong> or <strong>Manage roles</strong> permission can access the consolidated <strong>Administrators & Roles</strong> page.</p></div>
 <h2 id="administrators">Administrators</h2>
 <p>The <strong>Administrators</strong> tab displays a list of all admins registered for Knox services. The list contains the following information:</p>
-<ul>
-<li><strong>NAME</strong> &mdash; The name of the admin. The super admin, who created the enterprise&rsquo;s tenant, is marked with a crown next to their name. Click an admin&rsquo;s name to view or edit their details, including services they have access to and roles they have been assigned.</li>
-<li><strong>EMAIL</strong> &mdash; The work email address of the admin.</li>
-</ul>
+<div class="overflow-auto my-3"><table>
+<thead>
+<tr>
+<th>Column</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>NAME</td>
+<td>The name of the admin. The super admin, who created the enterprise&rsquo;s tenant, is marked with a crown next to their name. Click an admin&rsquo;s name to view or edit their details, including services they have access to and roles they have been assigned.</td>
+</tr>
+<tr>
+<td>EMAIL</td>
+<td>The work email address of the admin.</td>
+</tr>
+</tbody>
+</table></div>
 <p>Additionally, all currently supported Knox services are included as columns in the list. If an admin has permission to manage a service, their role and admin status is shown in the service column. In order to view the admin list for a service, a user must have a role with the <strong>Invite and manage administrators</strong> or <strong>Manage roles</strong> permission.</p>
 
 
@@ -427,7 +441,7 @@
 
 
 <p><img src="../assets/admins-and-roles-permissions.png" class="img-fluid img-thumbnail" alt="Knox Admin Portal administrators and roles permissions" /></p>
-<div class="notice border-important"><p>Important</p><p>An admin with either the <strong>Invite and manage administrators</strong> or <strong>Manage roles</strong> permission can grant another admin any available permission, regardless of whether the granting admin has that permission or not.</p></div>
+<div class="notice-important"><p>An admin with either the <strong>Invite and manage administrators</strong> or <strong>Manage roles</strong> permission can only grant another admin permissions that are less than or equal to the granting admin’s available permissions for the corresponding Knox service.</p></div>
 <h3 id="invite-admin">Invite an admin</h3>
 <p>Click <strong>INVITE ADMINISTRATOR</strong> to add a new admin. An <strong>Invite administrator</strong> page opens, where you&rsquo;re prompted to enter the first name, last name, email address, and service permissions for the new admin. Similar to other Knox services, you can also bulk invite admins by uploading a CSV file containing their first names, last names, and email addresses.</p>
 
@@ -441,7 +455,7 @@
 <p><img src="../assets/invite-admin.png" class="img-fluid img-thumbnail" alt="Invite administrator screen" /></p>
 <p>If an admin has not yet been invited to all available services, click <strong>INVITE TO MORE SERVICES</strong> to select services and roles for that admin.</p>
 <h3 id="edit-admin">Edit an admin</h3>
-<div class="notice border-important"><p>Important</p><p>This feature is only available if your admin user has the <strong>Invite and manage administrators</strong> or <strong>Manage roles</strong> permission.</p></div>
+<div class="notice-important"><p>This feature is only available if your admin user has the <strong>Invite and manage administrators</strong> or <strong>Manage roles</strong> permission.</p></div>
 <p>Once you&rsquo;ve invited an admin, click their name in the admin list to edit their details. On the <strong>Edit administrator</strong> page, you can modify the admin&rsquo;s first and last names, as well as their roles for each service they&rsquo;re invited to.</p>
 
 
@@ -464,7 +478,7 @@
 <p>The admin then won&rsquo;t be able to access the Knox services you selected, but can still manage any services you unselected.</p>
 <h3 id="delete-admin">Delete an admin</h3>
 <p>If an admin no longer needs to manage any Knox services for your company, you can delete them from your admin list. Make sure you have the <strong>Invite and manage administrators</strong> or <strong>Manage roles</strong> permission for the same Knox services as the admin you&rsquo;re deleting, or the <strong>Delete account</strong> option is disabled.</p>
-<div class="notice border-black"><p>Note</p><p>If you delete an admin with permission to manage Knox Guard from the Knox Admin Portal, they can still access the Knox Guard console afterward. Note that they also need to be deleted from the Knox Guard console to ensure their access to Knox cloud services is fully revoked. To do so, <a href="../../fundamentals/submit-a-support-ticket.html">submit a support ticket</a>.</p></div>
+<div class="notice-note"><p>If you delete an admin with permission to manage Knox Guard from the Knox Admin Portal, they can still access the Knox Guard console afterward. Note that they also need to be deleted from the Knox Guard console to ensure their access to Knox cloud services is fully revoked. To do so, <a href="../../fundamentals/submit-a-support-ticket.html">submit a support ticket</a>.</p></div>
 <p>To delete a Knox admin:</p>
 <ol>
 <li>In <strong>Administrators &amp; Roles</strong>, click the name of the admin you want to delete.</li>
@@ -476,31 +490,43 @@
 <h2 id="roles">Roles</h2>
 <p>On the <strong>ROLES</strong> tab, you can define custom permissions for admins for each solution, or for all solutions. Above the list, the search bar lets you search for roles by name.</p>
 <p>The roles list contains the following information:</p>
-<ul>
-<li>
-<p><strong>SERVICE</strong> &mdash; The Knox service, or services, the role applies to.</p>
-</li>
-<li>
-<p><strong>ROLE NAME</strong> &mdash; Either <strong>Super admin</strong> or the name of a custom role, both of which you can click on. Depending on whether you click a super admin role or a custom role, the resulting pop-up shows:</p>
-<ul>
-<li>
-<p><strong>Super admin</strong> &mdash; The role details, along with a dropdown that lets you switch between services to view the permissions for each. The first admin who created the account is marked with a crown next to their name, and is also known as the account super admin.</p>
-</li>
-<li>
-<p><strong>Custom role</strong> &mdash; The role details, its permissions, and the number of admins assigned to it.</p>
-</li>
-</ul>
-<div class="notice border-important"><p>Important</p><p>Custom roles for Knox Manage must be defined through the Knox Manage console instead. In the Knox Admin Portal roles list, custom Knox Manage roles are listed as <strong>Sub Admin</strong>.</p></div>
-</li>
-<li>
-<p><strong>DESCRIPTION</strong> &mdash; A short phrase describing the organizational purpose of the role.</p>
-</li>
-<li>
-<p><strong>ADMINISTRATORS</strong> &mdash; The number of admins assigned to the role. Click a number to see a full list of the admins and their information.</p>
-</li>
-</ul>
+<div class="overflow-auto my-3"><table>
+    <tr>
+        <th scope="col">Column</th>
+        <th scope="col">Description</th>
+    </tr>
+    <tr>
+        <td>SERVICE</td>
+        <td>The Knox service, or services, the role applies to.</td>
+    </tr>
+    <tr>
+        <td>ROLE NAME</td>
+        <td>
+            <p>Either <strong>Super admin</strong> or the name of a custom role, both of which you can click on. Depending on whether you click a super admin role or a custom role, the resulting pop up shows:</p>
+            <ul>
+                <li><strong>Super admin</strong>. The role details, along with a dropdown that lets you switch between services to view the permissions for each. The super admin is marked with a crown next to their name.</li>
+                <li>
+                    <p><strong>Custom role</strong>. The role details, its permissions, and the number of admins assigned to it.</p>
+                    <div class="notice border-important">
+                        <p><strong>Important</strong></p>
+                        <p>Custom roles for Knox Manage must be defined through the Knox Manage console instead. In the Knox Admin Portal roles list, custom Knox Manage roles are listed as <strong>Sub Admin</strong>.</p>
+                    </div>
+                </li>
+            </ul>
+        </td>
+    </tr>
+    <tr>
+        <td>DESCRIPTION</td>
+        <td>A short phrase describing the organizational purpose of the role.</td>
+    </tr>
+    <tr>
+        <td>ADMINISTRATORS</td>
+        <td>The number of admins assigned to the role. Click a number to see a full list of the admins and their information.</td>
+    </tr>
+</table></div>
 <h3 id="create-role">Create a role</h3>
 <p>To create a custom role, click <strong>CREATE ROLE</strong> to the right of the search bar. On the <strong>Create role</strong> page, you can select a Knox service for the role and enter a name and description for it. Based on the service you&rsquo;re creating a role for, various permissions are available.</p>
+<div class="notice-important"><p>While admins can create roles with any permissions, they can only assign roles that contain permissions that they have themselves.</p></div>
 
 
 

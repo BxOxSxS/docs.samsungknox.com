@@ -3063,7 +3063,7 @@
 </ul>
 <h2 id="default-credential-storage">Default credential storage</h2>
 <p>Default credential storage contains all system preloaded CA root certificates. Users can install or remove other CA root certificates to and from this storage using <strong>Settings Security Trusted Credentials</strong>.</p>
-<p><div class="notice border-black"><p>Note</p><p>Users cannot remove preloaded certificates, but can disable them if necessary. Users can install only CA root certificates in this keystore.</p></div> </p>
+<p><div class="notice-note"><p>Users cannot remove preloaded certificates, but can disable them if necessary. Users can install only CA root certificates in this keystore.</p></div> </p>
 <p>Default storage divides its credentials into the following two groups.</p>
 <ul>
 <li>System group that contains all preloaded CA certificates</li>
@@ -3472,7 +3472,7 @@
 <li><code>CertificatePolicy.removeUntrustedCertificateList(List certificates)</code></li>
 </ul>
 <p>For security reasons, the untrusted list takes precedence over the trusted list. When a certificate is added to untrusted list, it is removed from the system even if it is present in the trusted list.</p>
-<div class="notice border-black"><p>Note</p><ul><li>Adding certificates to trusted certificates lists does not install the certificates</li><li>From Knox 2.6 onwards, trusted and untrusted certificates lists are in “Wi-Fi credential storage”, which means that different lists can be enforced for each user and for containers</li><li>For versions Knox 2.5 and below, certificates are in <strong>Global Scope</strong> and can be enforced only from the owner space. To keep backwards compatibility, if these lists are applied from the owner space they still work as Global Scope and will be enforced for all users (including container), although they are classified as user scope.</li></ul></div>
+<div class="notice-note"><ul><li>Adding certificates to trusted certificates lists does not install the certificates</li><li>From Knox 2.6 onwards, trusted and untrusted certificates lists are in “Wi-Fi credential storage”, which means that different lists can be enforced for each user and for containers</li><li>For versions Knox 2.5 and below, certificates are in <strong>Global Scope</strong> and can be enforced only from the owner space. To keep backwards compatibility, if these lists are applied from the owner space they still work as Global Scope and will be enforced for all users (including container), although they are classified as user scope.</li></ul></div>
 <h2 id="knox-trust-anchor-examples">Knox Trust Anchor Examples</h2>
 <h4 id="install-credentials">Install credentials</h4>
 <p>The following API allows credentials installation without user interaction to any of the Android Credential Storages, such as Default, Wi-Fi, or VPN and Apps.</p>
@@ -3486,7 +3486,7 @@
 <ul>
 <li><code>CertificatePolicy.addTrustedCaCertificateList(List&lt;X509Certificate&gt; certificates) CertificatePolicy.removeTrustedCaCertificateList(List&lt;X509Certificate&gt; certificates)</code></li>
 </ul>
-<p><div class="notice border-black"><p>Note</p><p>To use these APIs, you must have the <code>com.samsung.android.knox.permission.KNOX_SECURITY</code> permission which has a protection level of <code>signature</code>.</p></div> </p>
+<p><div class="notice-note"><p>To use these APIs, you must have the <code>com.samsung.android.knox.permission.KNOX_SECURITY</code> permission which has a protection level of <code>signature</code>.</p></div> </p>
 <p>Full Example</p>
 <p>The following code shows how to manage credentials installation and trusted certificates list on user space.</p>
 <ol>
@@ -3635,7 +3635,7 @@
 </span></span></code></pre></div><h4 id="monitor-trusted-credential-store-using-audit-logs">Monitor trusted credential store using audit logs</h4>
 <p>The following examples illustrate how to monitor trusted credential store using audit logs:</p>
 <p><strong>Example - Dump audit logs for trusted credentials events</strong></p>
-<div class="notice border-black"><p>Note</p><p>To use the APIs illustrated in this example you must have the:</p><ul><li>com.samsung.android.knox.permission.KNOX_SECURITY</li><li>com.samsung.android.knox.permission.KNOX_CERTIFICATE</li><li>com.samsung.android.knox.permission.KNOX_AUDIT_LOGpermissions which have a protection level of signature.</li></ul></div>
+<div class="notice-note"><p>To use the APIs illustrated in this example you must have the:</p><ul><li>com.samsung.android.knox.permission.KNOX_SECURITY</li><li>com.samsung.android.knox.permission.KNOX_CERTIFICATE</li><li>com.samsung.android.knox.permission.KNOX_AUDIT_LOGpermissions which have a protection level of signature.</li></ul></div>
 <ol>
 <li>Get instances of AuditLog, SecurityPolicy, and CertificatePolicy:</li>
 </ol>
@@ -3735,7 +3735,7 @@
 </ol>
 <p><strong>Log File analysis</strong></p>
 <p>The following log messages are present on the AuditLog file after triggering the events in Step 3 (see above):</p>
-<div class="notice border-black"><p>Note</p><p>Characters in <span style="color: #ff0000;">RED</span> refers to the UserId of the user that triggered an AuditLog event, 0 is the Owner User, 100 is the Container, -1 refers to Global Scope events related to all users. The descriptions listed in the following section are not part of the audit messages, instead they are comments that explain the message.</p></div>
+<div class="notice-note"><p>Characters in <span style="color: #ff0000;">RED</span> refers to the UserId of the user that triggered an AuditLog event, 0 is the Owner User, 100 is the Container, -1 refers to Global Scope events related to all users. The descriptions listed in the following section are not part of the audit messages, instead they are comments that explain the message.</p></div>
 <div class="overflow-auto my-3"><table>
 <thead>
 <tr>
@@ -3790,7 +3790,7 @@
 </tr>
 </tbody>
 </table></div>
-<div class="notice border-black"><p>Note</p><p>Although AuditLog is classified as a User scope feature, in the log messages above there are some messages from container. Prior to Knox 2.6 AuditLog was Global Scope and could be enforced only from Owner space. To keep backwards compatibility, when AuditLog is applied from Owner space it still working as Global Scope. Logs will contain info from all users and Workspaces owned by the admin that enabled the feature.</p></div>
+<div class="notice-note"><p>Although AuditLog is classified as a User scope feature, in the log messages above there are some messages from container. Prior to Knox 2.6 AuditLog was Global Scope and could be enforced only from Owner space. To keep backwards compatibility, when AuditLog is applied from Owner space it still working as Global Scope. Logs will contain info from all users and Workspaces owned by the admin that enabled the feature.</p></div>
 
             
           </div>
