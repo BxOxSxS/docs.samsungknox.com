@@ -814,7 +814,7 @@
     
     
     <div class="d-flex justify-content-between">
-      <a class="body-5 text-black fw-light" href="../../users/register-a-single-ad-ldap-user-account/index.html">Register a single AD/LDAP user account</a>
+      <a class="body-5 text-black fw-light" href="../../users/register-a-single-directory-user-account/index.html">Register a single directory user account</a>
     </div>
     
     </li>
@@ -825,7 +825,7 @@
     
     
     <div class="d-flex justify-content-between">
-      <a class="body-5 text-black fw-light" href="../../users/register-multiple-ad-ldap-user-accounts.html">Register multiple AD/LDAP user accounts</a>
+      <a class="body-5 text-black fw-light" href="../../users/register-multiple-directory-user-accounts.html">Register multiple directory user accounts</a>
     </div>
     
     </li>
@@ -1151,7 +1151,7 @@
     
     
     <div class="d-flex justify-content-between">
-      <a class="body-5 text-black fw-light" href="../../groups/create-groups/register-an-ad-ldap-sync-group/index.html">Register an AD/LDAP sync group</a>
+      <a class="body-5 text-black fw-light" href="../../groups/create-groups/register-a-directory-sync-group/index.html">Register a directory sync group</a>
     </div>
     
     </li>
@@ -1396,7 +1396,7 @@
     
     
     <div class="d-flex justify-content-between">
-      <a class="body-5 text-black fw-light" href="../../devices/enroll-devices/enroll-devices-in-bulk/use-samsung-knox-mobile-enrollment-kme.html">Use Samsung Knox Mobile Enrollment (KME)</a>
+      <a class="body-5 text-black fw-light" href="../../devices/enroll-devices/enroll-devices-in-bulk/use-samsung-knox-mobile-enrollment-kme.html">Use Samsung Knox Mobile Enrollment</a>
     </div>
     
     </li>
@@ -1918,7 +1918,7 @@
     
     
     <div class="d-flex justify-content-between">
-      <a class="body-5 text-black fw-light" href="../../applications/add-applications/add-public-apps-using-google-play-store.html">Add public apps using Google Play Store</a>
+      <a class="body-5 text-black fw-light" href="../../applications/add-applications/add-public-apps-using-google-play-store.html">Add public apps using Google Play</a>
     </div>
     
     </li>
@@ -4638,7 +4638,7 @@
             </div>
             
 
-  <p><span>Last updated April  3rd, 2024</span></p>
+  <p><span>Last updated May  8th, 2024</span></p>
 
 
     
@@ -4651,49 +4651,72 @@
 
 
 
-<p>You can collect location data from devices on a regular basis.</p>
-<p>The time in the collected location data is based on the device time. It may vary depending on the time and time zone of the device.</p>
+<p>You can collect location data from Android devices on a regular basis.</p>
+<p>Timestamps of location data are relative to the device&rsquo;s internal clock. They can vary depending on local conditions, network connectivity, and the device&rsquo;s current timezone.</p>
+<div class="notice-important"><p>The Location Settings policy described in this procedure takes precedence over the <strong>Collect current location</strong> device command.</p></div>
 <p>To set the location collection policy for Android Enterprise and Android Legacy devices:</p>
 <ol>
 <li>
-<p>Go to <strong>Profile</strong>.</p>
+<p>Create a new profile or begin editing the profile of the device.</p>
 </li>
 <li>
-<p>On the <strong>Profile</strong> page, click the name of the profile to configure the policy for.</p>
+<p>Go to the <strong>Location</strong> policy of the target platform.</p>
 </li>
 <li>
-<p>On the <strong>Profile Details</strong> page, click <strong>Modify Policy</strong>.</p>
-</li>
-<li>
-<p>On the <strong>Set Policy</strong> page, set the following under the <strong>Location</strong> policy of each platform.</p>
-</li>
-<li>
-<p>Select an option for <strong>Location Settings</strong> to specify whether device users can enable or disable location on their device and if user consent is required:</p>
-<ul>
-<li><strong>Allow user to configure</strong> &mdash; Device users can enable or disable location settings</li>
-<li><strong>Allow user to configure and prompt for location accuracy</strong> &mdash; Device users can enable or disable location settings and must provide consent before location data is collected</li>
-<li><strong>Force on</strong> &mdash; Turns on the location setting on devices</li>
-<li><strong>Force off</strong> &mdash; Turns off the location setting on devices</li>
-</ul>
-<div class="notice-note"><p>This policy holds a higher priority than the <strong>Collect current location</strong> command. That is, when this policy is set to <strong>N/A</strong>, either the device command is sent or location data is not collected.</p></div>
+<p>For <strong>Location Settings</strong>, set whether device users can enable or disable location services on the device, and whether their consent is required:</p>
+<div class="overflow-auto my-3"><table>
+<thead>
+<tr>
+<th>Value</th>
+<th>Result</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Allow user to configure</td>
+<td>Allows the device user to toggle location services.</td>
+</tr>
+<tr>
+<td>Allow user to configure and prompt for location accuracy</td>
+<td>Allows the device user to toggle location services, and apps will prompt the device user for consent to collect precise location data.</td>
+</tr>
+<tr>
+<td>Force on</td>
+<td>Turns on location services without prompting the device user. The user can&rsquo;t change any location settings.</td>
+</tr>
+<tr>
+<td>Force off</td>
+<td>Turns off location services without prompting the device user. The user can&rsquo;t change any location settings.</td>
+</tr>
+</tbody>
+</table></div>
 </li>
 <li>
 <p>Specify a <strong>Device Location Collection</strong> method:</p>
-<ul>
-<li><strong>Automatic</strong> &mdash; Collect device location data without user consent. This option is available for a fully-managed device.</li>
-<li><strong>Upon user consent</strong> &mdash; Location data is collected after user consent.
-<ul>
-<li>For fully-managed devices, location data is collected after device user provides consent when prompted</li>
-<li>For devices with work profile, location data is collected only if the device user turns on the location settings on the device</li>
-</ul>
-</li>
-</ul>
+<div class="overflow-auto my-3"><table>
+<thead>
+<tr>
+<th>Value</th>
+<th>Result</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Automatic</td>
+<td>Collect device location data without user consent. This option is available for a fully-managed device.</td>
+</tr>
+<tr>
+<td>Upon user consent</td>
+<td>Location data is collected after user consent. For fully managed devices, location data is collected after the device user provides consent. For devices with a work profile, location data is collected only if the device user turns on location services.</td>
+</tr>
+</tbody>
+</table></div>
 </li>
 <li>
-<p>Specify <strong>Time Between Location Collection</strong> to set the frequency of data collection. Values are 30 mins, 1 hour, 2 hours, 4 hours, 12 hours, and 24 hours.</p>
+<p>Specify the <strong>Time Between Location Collection</strong> to set the frequency of data collection. Available values are 30 mins, 1 hour, 2 hours, 4 hours, 12 hours, and 24 hours.</p>
 </li>
 <li>
-<p>Click <strong>Save</strong>.</p>
+<p>Save and assign the profile to the target devices.</p>
 </li>
 </ol>
 

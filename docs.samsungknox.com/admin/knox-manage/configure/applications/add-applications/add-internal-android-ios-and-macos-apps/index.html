@@ -814,7 +814,7 @@
     
     
     <div class="d-flex justify-content-between">
-      <a class="body-5 text-black fw-light" href="../../../users/register-a-single-ad-ldap-user-account/index.html">Register a single AD/LDAP user account</a>
+      <a class="body-5 text-black fw-light" href="../../../users/register-a-single-directory-user-account/index.html">Register a single directory user account</a>
     </div>
     
     </li>
@@ -825,7 +825,7 @@
     
     
     <div class="d-flex justify-content-between">
-      <a class="body-5 text-black fw-light" href="../../../users/register-multiple-ad-ldap-user-accounts.html">Register multiple AD/LDAP user accounts</a>
+      <a class="body-5 text-black fw-light" href="../../../users/register-multiple-directory-user-accounts.html">Register multiple directory user accounts</a>
     </div>
     
     </li>
@@ -1151,7 +1151,7 @@
     
     
     <div class="d-flex justify-content-between">
-      <a class="body-5 text-black fw-light" href="../../../groups/create-groups/register-an-ad-ldap-sync-group/index.html">Register an AD/LDAP sync group</a>
+      <a class="body-5 text-black fw-light" href="../../../groups/create-groups/register-a-directory-sync-group/index.html">Register a directory sync group</a>
     </div>
     
     </li>
@@ -1396,7 +1396,7 @@
     
     
     <div class="d-flex justify-content-between">
-      <a class="body-5 text-black fw-light" href="../../../devices/enroll-devices/enroll-devices-in-bulk/use-samsung-knox-mobile-enrollment-kme.html">Use Samsung Knox Mobile Enrollment (KME)</a>
+      <a class="body-5 text-black fw-light" href="../../../devices/enroll-devices/enroll-devices-in-bulk/use-samsung-knox-mobile-enrollment-kme.html">Use Samsung Knox Mobile Enrollment</a>
     </div>
     
     </li>
@@ -1918,7 +1918,7 @@
     
     
     <div class="d-flex justify-content-between">
-      <a class="body-5 text-black fw-light" href="../add-public-apps-using-google-play-store.html">Add public apps using Google Play Store</a>
+      <a class="body-5 text-black fw-light" href="../add-public-apps-using-google-play-store.html">Add public apps using Google Play</a>
     </div>
     
     </li>
@@ -4638,7 +4638,7 @@
             </div>
             
 
-  <p><span>Last updated April  3rd, 2024</span></p>
+  <p><span>Last updated May  8th, 2024</span></p>
 
 
     
@@ -4674,20 +4674,18 @@
       
       
       
-        <h2 id="adding-internal-apps">Adding internal apps</h2>
+        <p>All internal apps are uploaded to the Knox Manage console as standalone files. Version control consists of manually uploading newer instances of the app. Different platforms support different file formats, and depending on the app technology, the file may require a well-formed manifest and certificate. Consult your platform&rsquo;s developer documentation for precise details about how to correctly bundle an app for distribution.</p>
+<h2 id="adding-internal-apps">Adding internal apps</h2>
 <p>To add internal Android, iOS, or macOS apps, complete the following steps:</p>
 <ol>
 <li>
-<p>Go to <strong>Application</strong>.</p>
+<p>Go to <strong>Application</strong>, then click <strong>Add</strong>. The <strong>Select Application Type</strong> page opens.</p>
 </li>
 <li>
-<p>On the <strong>Application</strong> page, click <strong>Add</strong>.</p>
+<p>Select the app&rsquo;s platform, select <strong>Internal - Knox Manage Portal</strong>, then click <strong>Next</strong>. The <strong>Add Application</strong> page opens.</p>
 </li>
 <li>
-<p>On the <strong>Select Application Type</strong> page, select the platform, select <strong>Internal-Knox Manage Portal</strong> and click <strong>Next</strong>.</p>
-</li>
-<li>
-<p>On the <strong>Add Application</strong> page, enter the following information:</p>
+<p>Configure the app&rsquo;s properties in Knox Manage:</p>
  <div class="overflow-auto my-3"><table>
      <tr>
          <th scope="col">Action</th>
@@ -4701,22 +4699,16 @@
          <td>Application File</td>
          <td>
              <p>Click <img src="../../../../assets/B-template.png"> and select either an APK file for an Android application or an IPA file for an iOS application.</p>
-             <div class="notice-note">
-                 <div class="ms-3 mb-3 py-2 text-grey">
-                     <p>You can upload an Android APK to your tenant twice, if you add it as an internal app and a private Managed Google Play app. Note that this results in duplicate apps in the Knox Manage agent and the Managed Google Play store.</p>
-                 </div>
+             <div class="notice-caution">
+                 <p>It's possible to upload two copies of the same APK, both as an internal app and a private Managed Google Play app. This is undesirable, as it results in duplicate apps in the Knox Manage agent and the Managed Google Play store.</p>
              </div>
          </td>
      </tr>
      <tr>
          <td>Name</td>
          <td>
-             <p>Enter the app name.</p>
-             <div class="notice-note">
-                 <div class="ms-3 mb-3 py-2 text-grey">
-                     <p>For macOS apps, you must manually enter the app name, version, bundle ID, and bundle name.</p>
-                 </div>
-             </div>
+             <p>Enter the app's name.</p>
+             <p>For macOS apps, you must manually enter the app name, version, bundle ID, and bundle name.</p>
          </td>
      </tr>
      <tr>
@@ -4764,14 +4756,10 @@
          <td>
              <p>Select <strong>Uninstall if the app is unassigned</strong> if you want to uninstall the app from the device upon unassigning it.</p>
              <div class="notice-note">
-                 <div class="ms-3 mb-3 py-2 text-grey">
-                     <p>If <strong>Uninstall if the app is unassigned</strong> is selected for an app installed on the device and the app isn't assigned to a group or organization in the Knox Manage console, the app is deleted from the device. This applies to all installed apps, whether or not installed through Knox Manage.</p>
-                 </div>
+                 <p>If <strong>Uninstall if the app is unassigned</strong> is selected for an app installed on the device and the app isn't assigned to a group or organization in the Knox Manage console, the app is deleted from the device. This applies to all installed apps, whether or not installed through Knox Manage.</p>
              </div>
              <div class="notice-note">
-                 <div class="ms-3 mb-3 py-2 text-grey">
-                     <p>As <a href="https://www.samsung.com/us/support/answer/ANS00091702/">Samsung One UI Home</a> is an essential app for Samsung devices, it can't be uninstalled through the Knox Manage console. <strong>Uninstall if the app is unassigned</strong> is always disabled for this app to prevent the device from malfunctioning.</p>
-                 </div>
+                 <p>As <a href="https://www.samsung.com/us/support/answer/ANS00091702/">Samsung One UI Home</a> is an essential app for Samsung devices, it can't be uninstalled through the Knox Manage console. <strong>Uninstall if the app is unassigned</strong> is always disabled for this app to prevent the device from malfunctioning.</p>
              </div>
          </td>
      </tr>
@@ -4784,9 +4772,7 @@
          <td>
              <p>If you selected <strong>Yes</strong> in <strong>Managed App Setting</strong>, click <strong>Add</strong> and enter the key and value of a MDM setting you want to change. You can add one key and its value at a time.</p>
              <div class="notice-note">
-                 <div class="ms-3 mb-3 py-2 text-grey">
-                     <p>Ask the app developers about the key and value for the MDM settings. For example, if you want to add the ManagedAppConfig app and set its default URL to <a href="http://www.samsungsds.com">http://www.samsungsds.com</a>, the key is the server URL and the value is <a href="http://www.samsungsds.com">http://www.samsungsds.com</a>.</p>
-                 </div>
+                 <p>Ask the app developers about the key and value for the MDM settings. For example, if you want to add the ManagedAppConfig app and set its default URL to <a href="http://www.samsungsds.com">http://www.samsungsds.com</a>, the key is the server URL and the value is <a href="http://www.samsungsds.com">http://www.samsungsds.com</a>.</p>
              </div>
          </td>
      </tr>
@@ -4807,8 +4793,12 @@
 <li>
 <p>Do one of the following:</p>
 <ul>
-<li>Click <strong>Save</strong> to save the information and return to the <strong>Application</strong> page.</li>
-<li>Click <strong>Save &amp; Assign</strong> to assign the configuration right away, then follow the on-screen instructions. For more information, see <a href="../../assign-applications/assign-internal-android-ios-macos-and-windows-apps.html">Assign internal Android, iOS, and Windows apps</a>.</li>
+<li>
+<p>Click <strong>Save</strong> to save the information and return to the <strong>Application</strong> page.</p>
+</li>
+<li>
+<p>Click <strong>Save &amp; Assign</strong> to assign the configuration right away, then follow the on-screen instructions. For more information, see <a href="../../assign-applications/assign-internal-android-ios-macos-and-windows-apps.html">Assign internal Android, iOS, and Windows apps</a>.</p>
+</li>
 </ul>
 </li>
 </ol>

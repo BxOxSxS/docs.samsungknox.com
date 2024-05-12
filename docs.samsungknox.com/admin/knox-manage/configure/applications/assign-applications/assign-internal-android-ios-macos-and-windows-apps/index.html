@@ -814,7 +814,7 @@
     
     
     <div class="d-flex justify-content-between">
-      <a class="body-5 text-black fw-light" href="../../../users/register-a-single-ad-ldap-user-account/index.html">Register a single AD/LDAP user account</a>
+      <a class="body-5 text-black fw-light" href="../../../users/register-a-single-directory-user-account/index.html">Register a single directory user account</a>
     </div>
     
     </li>
@@ -825,7 +825,7 @@
     
     
     <div class="d-flex justify-content-between">
-      <a class="body-5 text-black fw-light" href="../../../users/register-multiple-ad-ldap-user-accounts.html">Register multiple AD/LDAP user accounts</a>
+      <a class="body-5 text-black fw-light" href="../../../users/register-multiple-directory-user-accounts.html">Register multiple directory user accounts</a>
     </div>
     
     </li>
@@ -1151,7 +1151,7 @@
     
     
     <div class="d-flex justify-content-between">
-      <a class="body-5 text-black fw-light" href="../../../groups/create-groups/register-an-ad-ldap-sync-group/index.html">Register an AD/LDAP sync group</a>
+      <a class="body-5 text-black fw-light" href="../../../groups/create-groups/register-a-directory-sync-group/index.html">Register a directory sync group</a>
     </div>
     
     </li>
@@ -1396,7 +1396,7 @@
     
     
     <div class="d-flex justify-content-between">
-      <a class="body-5 text-black fw-light" href="../../../devices/enroll-devices/enroll-devices-in-bulk/use-samsung-knox-mobile-enrollment-kme.html">Use Samsung Knox Mobile Enrollment (KME)</a>
+      <a class="body-5 text-black fw-light" href="../../../devices/enroll-devices/enroll-devices-in-bulk/use-samsung-knox-mobile-enrollment-kme.html">Use Samsung Knox Mobile Enrollment</a>
     </div>
     
     </li>
@@ -1918,7 +1918,7 @@
     
     
     <div class="d-flex justify-content-between">
-      <a class="body-5 text-black fw-light" href="../../add-applications/add-public-apps-using-google-play-store.html">Add public apps using Google Play Store</a>
+      <a class="body-5 text-black fw-light" href="../../add-applications/add-public-apps-using-google-play-store.html">Add public apps using Google Play</a>
     </div>
     
     </li>
@@ -4638,7 +4638,7 @@
             </div>
             
 
-  <p><span>Last updated April  3rd, 2023</span></p>
+  <p><span>Last updated May  8th, 2023</span></p>
 
 
     
@@ -4651,113 +4651,151 @@
 
 
 
-<p>To assign an internal app:</p>
+
+      
+      
+      
+      
+        
+      
+      
+      
+      
+        <p>Like with apps hosted and distributed by cloud ecosystems, you can assign a privately developed app, or an app sourced from an on-premises vendor. Both of these fall under the definition of <em>internal</em> app.</p>
+<h2 id="requirements">Requirements</h2>
+<ul>
+<li>Before you can assign an internal app, you must add it to your tenant. Different platforms have different requirements for adding an app:
+<ul>
+<li><a href="../../add-applications/add-internal-android-ios-and-macos-apps.html">Android, iOS, macOS</a></li>
+<li><a href="../../add-applications/add-internal-windows-apps.html">Windows</a></li>
+</ul>
+</li>
+<li>Android devices require a Knox Manage or Knox Suite license to install an internal app in the work profile.</li>
+<li>Internal apps on Android Enterprise, iOS, and Wear OS can only be installed automatically, but the device user can choose to remove them.</li>
+</ul>
+<h2 id="assign-an-internal-app">Assign an internal app</h2>
+<p>To assign an internal app on any platform:</p>
 <ol>
 <li>
 <p>Go to <strong>Application</strong>, select an internal app, then click <strong>Assign</strong>. The <strong>Assign Application</strong> page opens.</p>
 </li>
 <li>
-<p>Configure the assignment settings:</p>
-<ul>
-<li>
-<p><strong>Target Device</strong> &mdash; Shows the app platform.</p>
-<ul>
-<li>For an Android internal app, select a target device type from <strong>Android Enterprise</strong>, <strong>Android Legacy</strong>, and <strong>Android Enterprise + Legacy</strong>.</li>
-</ul>
-</li>
-<li>
-<p><strong>Installation Area</strong> &mdash; This option is available only for Android apps. Depending on the Target Device setting, shows the area where the app will be installed.</p>
-<div class="overflow-auto my-3"><table>
-<thead>
-<tr>
-<th>Target Device</th>
-<th>Installation Area</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>Android Enterprise</td>
-<td>Device + Work Profile</td>
-</tr>
-<tr>
-<td>Android Legacy</td>
-<td>Device + Knox Workspace</td>
-</tr>
-<tr>
-<td>Android Enterprise  + Legacy</td>
-<td>Device + Work Profile, Device + Knox Workspace</td>
-</tr>
-</tbody>
-</table></div>
-<div class="notice-note"><p>A Knox Suite or Knox Platform for Enterprise license is required to:</p><ul><li>Install an internal app on work profile devices.</li><li>Install an internal app in the Work Profile area of devices that are fully managed with a work profile and run Android O OS. Devices running Android P or later just require a Knox Manage license.</li></ul></div>
-</li>
-<li>
-<p><strong>Installation Type</strong> &mdash; Select the installation type.</p>
-<ul>
-<li>
-<p><strong>Manual</strong> &mdash; Allow the device user to install the app manually.</p>
-</li>
-<li>
-<p><strong>Automatic (Removable)</strong> &mdash; Set the app to be installed automatically. The device user can remove the app. When you select this option, a new option called <strong>Schedule</strong> opens.</p>
-<div class="notice-note"><p>For macOS apps, only the <strong>Automatic (Removable)</strong> installation type is available. Users can remove the app, if required.</p></div>
-</li>
-<li>
-<p><strong>Automatic (Non-removable)</strong> &mdash; Set the app to be installed automatically. The device user can&rsquo;t remove the app.</p>
-</li>
-</ul>
-<div class="notice-note"><p>You may designate the installation type depending on the target device type.</p></div>
-</li>
-<li>
-<p><strong>Installation Request Priority</strong> (Android Enterprise) &mdash; Selects the preferred order in which the app installs on the device. Apps with high priority install before apps with normal priority. When multiple apps have high priority, they are installed in order of largest to smallest package size.</p>
-<ul>
-<li><strong>High</strong></li>
-<li><strong>Normal</strong></li>
-</ul>
-</li>
-<li>
-<p><strong>Installation Context</strong> (Windows) &mdash; Whether to install for all users on the device, or the user currently signed in.</p>
-</li>
-<li>
-<p><strong>Text copy</strong> &mdash; Allow the device user to copy text in the app.</p>
-</li>
-<li>
-<p><strong>Screen capture</strong> (Android Enterprise) &mdash; Allow the device user to capture screens in the app.</p>
-</li>
-<li>
-<p><strong>Auto-run after Installation</strong> (Android Enterprise) &mdash; Start the app immediately after installation.</p>
-</li>
-<li>
-<p><strong>Managed Configuration</strong> (Android Enterprise) &mdash; Click <strong>Set Configuration</strong> and select the reference values in the <strong>Managed Configuration</strong> dialog.</p>
-</li>
-<li>
-<p><strong>Home Screen Shortcut</strong> (Samsung Galaxy devices only) &mdash; Add a shortcut for the app on the Home screen of the device. If the device user deletes the shortcut, it won&rsquo;t be re-added.</p>
-</li>
-<li>
-<p><strong>Printing</strong> (iOS) &mdash; Allow the device user to print the app screens.</p>
-</li>
-<li>
-<p><strong>Share list</strong> (iOS) &mdash; Allow the device user to use sharing features while using the app.</p>
-</li>
-<li>
-<p><strong>Managed App Setting</strong> (iOS) &mdash; Select <strong>Yes</strong> if you are adding an app that is designed to apply a managed configuration.</p>
-</li>
-<li>
-<p><strong>Key &amp; Value</strong> (iOS) &mdash; If you selected <strong>Yes</strong> in <strong>Managed App Setting</strong>, click <strong>Add</strong> and specify a key-value pair for the managed configuration. You can add one key and its value at a time.</p>
-</li>
-</ul>
-</li>
-<li>
-<p><strong>Schedule</strong> &mdash; In this section, you can specify the following two options:</p>
-<ul>
-<li><strong>Use Deployment Scheduler</strong> &mdash; You can either choose to allow a scheduled deployment or continue to use manual deployment for the app. Depending upon your requirements, select <strong>Use</strong> or <strong>Do not use</strong>.</li>
-<li><strong>Deployment Starts At</strong> &mdash; If you chose to use a scheduled deployment method, you can select your deployment start time in this option. Use the date picker and time lists to specify the deployment start time.</li>
-</ul>
-</li>
-<li>
-<p>Select the target type.</p>
-<ul>
-<li>Search for a target group or organization and select the groups or organizations to assign the app.</li>
-</ul>
+<p>Configure the assignment:</p>
+ <div class="overflow-auto my-3"><table>
+     <tr>
+         <th scope="col" style="width: 25%">Setting</th>
+         <th scope="col">Action</th>
+         <th scope="col" style="width: 25%">Supported platform</th>
+     </tr>
+     <tr>
+         <td>Target Device</td>
+         <td>Specify the platform, between <strong>Android Enterprise</strong>, <strong>Android Legacy</strong>, and <strong>Android Enterprise + Legacy</strong>.</td>
+         <td>
+             <p>Android Enterprise</p>
+             <p>Android Legacy</p>
+         </td>
+     </tr>
+     <tr>
+         <td>Installation Area</td>
+         <td>
+             <p>For Android Enterprise, the app installs to both the primary profile and work profile.</p>
+             <p>For Android Legacy, you can choose where the app installs:</p>
+             <ul>
+                 <li>Primary profile</li>
+                 <li>Knox Workspace</li>
+                 <li>Both</li>
+             </ul>
+         </td>
+         <td>
+             <p>Android Enterprise</p>
+             <p>Android Legacy</p>
+         </td>
+     </tr>
+     <tr>
+         <td>Installation Type</td>
+         <td>
+             <p>Select how the app installs:</p>
+             <ul>
+                 <li>With <strong>Manual</strong>, the device user installs the app manually from the agent.</li>
+                 <li>With <strong>Automatic</strong>, the app installs automatically.</li>
+             </ul>
+         </td>
+         <td>
+             <p>iOS</p>
+             <p>Windows</p>
+         </td>
+     </tr>
+     <tr>
+         <td>Installation Request Priority</td>
+         <td>Select the preferred order in which the app installs on the device. Apps with high priority install before apps with normal priority. When multiple apps have high priority, they are installed in order of largest to smallest package size.</td>
+         <td>Android Enterprise</td>
+     </tr>
+     <tr>
+         <td>Installation Context</td>
+         <td>Select whether to install for all users on the device, or the user currently signed in.</td>
+         <td>Windows</td>
+     </tr>
+     <tr>
+         <td>Screen capture</td>
+         <td>Select whether to allow the device user to capture screens in the app.</td>
+         <td>Android Enterprise</td>
+     </tr>
+     <tr>
+         <td>Text copy</td>
+         <td>Choose whether to allow the device user to copy text from the app.</td>
+         <td>iOS</td>
+     </tr>
+     <tr>
+         <td>Printing</td>
+         <td>Choose whether to allow the device user to print from the app.</td>
+         <td>iOS</td>
+     </tr>
+     <tr>
+         <td>Share list</td>
+         <td>Choose whether to allow the device user to share data to the app using the instant share dialog.</td>
+         <td>iOS</td>
+     </tr>
+     <tr>
+         <td>Auto-run after Installation</td>
+         <td>Choose whether the app should run immediately after it installs.</td>
+         <td>Android Enterprise</td>
+     </tr>
+     <tr>
+         <td>
+             <p>Managed Configuration</p>
+             <p>Managed App Setting</p>
+         </td>
+         <td>If the app supports it, configure special key-value pairs to override or customize behavior.</td>
+         <td>
+             <p>Android Enterprise</p>
+             <p>iOS</p>
+         </td>
+     </tr>
+     <tr>
+         <td>Home Screen Shortcut</td>
+         <td>Add a shortcut for the app to the Home screen. If the device user deletes the shortcut, it won't be re-added.</td>
+         <td>Android Legacy on Samsung Galaxy device</td>
+     </tr>
+     <tr>
+         <td>Schedule</td>
+         <td>
+             <p>Specify how the app is rolled out:</p>
+             <ul>
+                 <li>For <strong>Use Deployment Scheduler</strong>, select <strong>Use</strong> for a scheduled deployment, or <strong>Do not use</strong> for a manual deployment.</li>
+                 <li>For <strong>Deployment Starts At</strong>, choose the date and time to start the scheduled deployment.</li>
+             </ul>
+         </td>
+         <td>
+             <p>Android Enterprise</p>
+             <p>Wear OS</p>
+         </td>
+     </tr>
+     <tr>
+         <td>Target type</td>
+         <td>Select one or more groups or organizations to assign the app to. You can't assign to both groups and organizations at the same time.</td>
+         <td>All</td>
+     </tr>
+ </table></div>
 </li>
 <li>
 <p>Click <strong>Assign</strong>.</p>
@@ -4770,7 +4808,15 @@
             
           </div>
           <div class="l-toh">
-            
+            <h2 class="body-4 fw-bold mt-0">On this page</h2>
+<aside class="table-of-headings">
+  <nav id="TableOfContents">
+  <ul>
+    <li><a href="../assign-internal-android-ios-macos-and-windows-apps.html#requirements">Requirements</a></li>
+    <li><a href="../assign-internal-android-ios-macos-and-windows-apps.html#assign-an-internal-app">Assign an internal app</a></li>
+  </ul>
+</nav>
+</aside>
           </div>
         </div> 
       </div><div>

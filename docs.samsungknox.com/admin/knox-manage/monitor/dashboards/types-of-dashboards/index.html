@@ -814,7 +814,7 @@
     
     
     <div class="d-flex justify-content-between">
-      <a class="body-5 text-black fw-light" href="../../../configure/users/register-a-single-ad-ldap-user-account/index.html">Register a single AD/LDAP user account</a>
+      <a class="body-5 text-black fw-light" href="../../../configure/users/register-a-single-directory-user-account/index.html">Register a single directory user account</a>
     </div>
     
     </li>
@@ -825,7 +825,7 @@
     
     
     <div class="d-flex justify-content-between">
-      <a class="body-5 text-black fw-light" href="../../../configure/users/register-multiple-ad-ldap-user-accounts.html">Register multiple AD/LDAP user accounts</a>
+      <a class="body-5 text-black fw-light" href="../../../configure/users/register-multiple-directory-user-accounts.html">Register multiple directory user accounts</a>
     </div>
     
     </li>
@@ -1151,7 +1151,7 @@
     
     
     <div class="d-flex justify-content-between">
-      <a class="body-5 text-black fw-light" href="../../../configure/groups/create-groups/register-an-ad-ldap-sync-group/index.html">Register an AD/LDAP sync group</a>
+      <a class="body-5 text-black fw-light" href="../../../configure/groups/create-groups/register-a-directory-sync-group/index.html">Register a directory sync group</a>
     </div>
     
     </li>
@@ -1396,7 +1396,7 @@
     
     
     <div class="d-flex justify-content-between">
-      <a class="body-5 text-black fw-light" href="../../../configure/devices/enroll-devices/enroll-devices-in-bulk/use-samsung-knox-mobile-enrollment-kme.html">Use Samsung Knox Mobile Enrollment (KME)</a>
+      <a class="body-5 text-black fw-light" href="../../../configure/devices/enroll-devices/enroll-devices-in-bulk/use-samsung-knox-mobile-enrollment-kme.html">Use Samsung Knox Mobile Enrollment</a>
     </div>
     
     </li>
@@ -1918,7 +1918,7 @@
     
     
     <div class="d-flex justify-content-between">
-      <a class="body-5 text-black fw-light" href="../../../configure/applications/add-applications/add-public-apps-using-google-play-store.html">Add public apps using Google Play Store</a>
+      <a class="body-5 text-black fw-light" href="../../../configure/applications/add-applications/add-public-apps-using-google-play-store.html">Add public apps using Google Play</a>
     </div>
     
     </li>
@@ -4637,7 +4637,7 @@
             </div>
             
 
-  <p><span>Last updated July  26th, 2023</span></p>
+  <p><span>Last updated March  1st, 2024</span></p>
 
 
     
@@ -4657,90 +4657,144 @@
       
         <p>Three basic types of dashboard are as follows:</p>
 <h2 id="default-dashboard">Default dashboard</h2>
-<ul>
-<li><strong>Device Status</strong> &mdash; Displays the number of mobile devices by status and net changes in the total number of devices. Click the number to view the devices in detail.</li>
-<li><strong>Compliance Violation</strong> &mdash; Displays the number of mobile devices with compromised OSs, compromised applications, unapplied profiles, and the number of mobile devices that have not passed Android compatibility testing. Click the number to view the devices in detail.</li>
-</ul>
 <div class="overflow-auto my-3"><table>
     <tr>
-        <th scope="col">
-            <p>Item</p>
-        </th>
-        <th scope="col">
-            <p>Description</p>
-        </th>
+        <th scope="col">Component</th>
+        <th scope="col">Description</th>
     </tr>
     <tr>
+        <td>Device Status</td>
+        <td>Displays the number of mobile devices by status and net changes in the total number of devices. Click the number to view the devices in detail.</td>
+    </tr>
+    <tr>
+        <td>Compliance Violation</td>
         <td>
-            <p>Compromised OS</p>
-        </td>
-        <td>
-            <p>A mobile OS is regarded as compromised in the following cases:</p>
-            <ul>
-                <li>When a device is suspected of being a rooting device (for example, SuperUser authority) by the Knox Manage internal logic</li>
-                <li>When a device is suspected to have been compromised as a result of Attestation (Knox API inspection for OS compromise)</li>
-            </ul>
-            <p>Inspection for a compromised OS is performed whenever the Knox Manage agent is restarted or when any policies are applied on mobile devices.</p>
+            <p>Displays the number of mobile devices with compromised OSs, compromised apps, unapplied profiles, and the number of mobile devices that have not passed Android compatibility testing. Click the number to view the devices in detail.</p>
+            <div class="overflow-auto my-3"><table>
+                <tr>
+                    <th scope="col">Item</th>
+                    <th scope="col">Description</th>
+                </tr>
+                <tr>
+                    <td>Compromised OS</td>
+                    <td>
+                        <p>A mobile OS is regarded as compromised in the following cases:</p>
+                        <ul>
+                            <li>When a device is suspected of being a rooting device &mdash; for example, SuperUser authority &mdash; by the Knox Manage internal logic</li>
+                            <li>When a device is suspected to have been compromised as a result of Attestation &mdash; such as Knox API inspection for OS compromise</li>
+                        </ul>
+                        <p>Inspection for a compromised OS is performed whenever the Knox Manage agent is restarted or when any policies are applied on mobile devices.</p>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Compromised App</td>
+                    <td>
+                        <p>An app is regarded as compromised when the app's hash value (CRC) is different from the one registered on the Admin Portal.</p>
+                        <p>Inspection of compromised apps is performed whenever an app is installed or updated.</p>
+                    </td>
+                </tr>
+                <tr>
+                    <td>No profile</td>
+                    <td>Devices without profiles are counted.</td>
+                </tr>
+                <tr>
+                    <td>Play Integrity (SafetyNet Attestation)</td>
+                    <td>Validates the integrity of the device.</td>
+                </tr>
+            </table></div>
         </td>
     </tr>
     <tr>
-        <td>
-            <p>Compromised App</p>
-        </td>
-        <td>
-            <p>An application is regarded as compromised in the following cases:</p>
-            <ul>
-                <li>When the application's hash value (CRC) is different from the one registered on the Admin Portal</li>
-                <li>When you install the application on a device without registering it on the Admin Portal</li>
-            </ul>
-            <p>Inspection of compromised applications is performed whenever an application is installed or updated.</p>
-        </td>
+        <td>OS Status</td>
+        <td>Displays the number of enrolled devices by mobile OS. Click the number to view the devices in detail.</td>
     </tr>
     <tr>
-        <td>
-            <p>No profile</p>
-        </td>
-        <td>
-            <p>Devices without profiles are counted.</p>
-        </td>
+        <td>Device/User</td>
+        <td>Displays the current numbers of enrolled devices and activated users and net changes in the numbers.</td>
     </tr>
     <tr>
-        <td>
-            <p>Play Integrity (SafetyNet Attestation)</p>
-        </td>
-        <td>
-            <p>Validates the integrity of the device.</p>
-        </td>
+        <td>Users by Organization</td>
+        <td>Displays the number of activated users by organization in descending order. Click <strong>See Detail</strong> to view the organization list.</td>
+    </tr>
+    <tr>
+        <td>Device Command History</td>
+        <td>Displays the number of device commands sent from the Admin Portal and its change on a daily basis. Click <strong>See Detail</strong> to view the device command history list.</td>
+    </tr>
+    <tr>
+        <td>License Status</td>
+        <td>Displays the remaining validity period of the longest license, the numbers of registrable devices and enrolled devices, and the remaining validity period of the shortest certificate.</td>
+    </tr>
+    <tr>
+        <td>Device location</td>
+        <td>Displays the last location of devices and their information on Google Maps. All devices are displayed except for deactivated devices. Use the search field to search for a user ID.</td>
     </tr>
 </table></div>
-<ul>
-<li><strong>OS Status</strong> &mdash;Displays the number of enrolled devices by mobile OS. Click the number to view the devices in detail.</li>
-<li><strong>Device/User</strong> &mdash;Displays the current numbers of enrolled devices and activated users and net changes in the numbers.</li>
-<li><strong>Users by Organization</strong> &mdash;Displays the number of activated users by organization in descending order. Click <strong>See Detail</strong> to view the organization list.</li>
-<li><strong>Device Command History</strong> &mdash;Displays the number of device commands sent from the Admin Portal and its change on a daily basis. Click <strong>See Detail</strong> to view the device command history list.</li>
-<li><strong>License Status</strong> &mdash;Displays the remaining validity period of the longest license, the numbers of registrable devices and enrolled devices, and the remaining validity period of the shortest certificate.</li>
-<li><strong>Device location</strong> &mdash;Displays the last location of devices and their information on Google Maps. All devices are displayed except for deactivated devices. Use the search field to search for a user ID.</li>
-</ul>
-<p>To set to view the device locations, click <img src="../../../assets/B-dashboard_modify.png" alt="Modify" />, and in the <strong>Modify Default Dashboard</strong> window, click <strong>Use &gt; OK</strong>.</p>
+<p>To set to view the device locations, click <img src="../../../assets/B-dashboard_modify.png" alt="Modify" />. In the <strong>Modify Default Dashboard</strong> window, click <strong>Use</strong> &gt; <strong>OK</strong>.</p>
 <h2 id="emm-dashboard">EMM dashboard</h2>
-<ul>
-<li><strong>New User Weekly</strong> &mdash;Displays the users newly added within a week.</li>
-<li><strong>App Download Top3 (Current)</strong> &mdash;Displays the three most downloaded applications up to the current date.</li>
-<li><strong>Device Count by Platform</strong> &mdash;Displays the number and ratio of enrolled devices by mobile OS. You can exclude/include the item to display by clicking the chart legend.</li>
-<li><strong>Device Count by Status</strong> &mdash;Displays the number and ratio of enrolled devices by status. You can exclude/include the item to display by clicking the chart legend.</li>
-</ul>
+<div class="overflow-auto my-3"><table>
+<thead>
+<tr>
+<th>Component</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>New User Weekly</td>
+<td>Displays the users newly added within a week.</td>
+</tr>
+<tr>
+<td>App Download Top3 (Current)</td>
+<td>Displays the three most downloaded apps up to the current date.</td>
+</tr>
+<tr>
+<td>Device Count by Platform</td>
+<td>Displays the number and ratio of enrolled devices by mobile OS. You can exclude or include the item to display by clicking the chart legend.</td>
+</tr>
+<tr>
+<td>Device Count by Status</td>
+<td>Displays the number and ratio of enrolled devices by status. You can exclude or include the item to display by clicking the chart legend.</td>
+</tr>
+</tbody>
+</table></div>
 <h2 id="device-location">Device location</h2>
 <p>Displays the last location of devices and their information on Google Maps. All devices are displayed except for deactivated devices. Use the search field to search for a user ID.</p>
 <h2 id="widget-type-dashboards">Widget type dashboards</h2>
 <p>More widgets that can be selected for a widget type dashboard. The components of the default dashboard can be used as widgets.</p>
-<ul>
-<li><strong>Assigned Content</strong> &mdash;Displays up to 10 of the most assigned content items.</li>
-<li><strong>Android Management Type</strong> &mdash;Displays the number of Android devices by management type.</li>
-<li><strong>Users by Organization</strong> &mdash;Displays the number of activated users by organization in descending order.</li>
-<li><strong>Group &amp; Organization</strong> &mdash;Displays the number of groups and organizations.</li>
-<li><strong>AD/LDAP</strong> &mdash;Displays the number of updated devices through AD/LDAP sync.</li>
-<li><strong>Device Location</strong> &mdash;Displays the last location of devices and their information on Google Maps. All devices are displayed except for unenrolled devices. Use the search field to search for a user ID.</li>
-</ul>
+<div class="overflow-auto my-3"><table>
+<thead>
+<tr>
+<th>Component</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Assigned Content</td>
+<td>Displays up to ten of the most assigned content items.</td>
+</tr>
+<tr>
+<td>Android Management Type</td>
+<td>Displays the number of Android devices by management type.</td>
+</tr>
+<tr>
+<td>Users by Organization</td>
+<td>Displays the number of activated users by organization in descending order.</td>
+</tr>
+<tr>
+<td>Group &amp; Organization</td>
+<td>Displays the number of groups and organizations.</td>
+</tr>
+<tr>
+<td>AD/LDAP</td>
+<td>Displays the number of updated devices through AD/LDAP sync.</td>
+</tr>
+<tr>
+<td>Device Location</td>
+<td>Displays the last location of devices and their information on Google Maps. All devices are displayed except for unenrolled devices. Use the search field to search for a user ID.</td>
+</tr>
+</tbody>
+</table></div>
 
             
           </div>
