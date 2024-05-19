@@ -1247,7 +1247,7 @@
             </div>
             
 
-  <p><span>Last updated August  7th, 2023</span></p>
+  <p><span>Last updated May  15th, 2024</span></p>
 
 
     
@@ -1279,25 +1279,25 @@
       
       
       
+      
         
       
       <h2 id="environment">Environment</h2>
 <ul>
 <li>Android Enterprise</li>
-<li>EMMs</li>
+<li>Any EMM</li>
 <li>Devices running Android 10 or higher</li>
 </ul>
 <h2 id="overview">Overview</h2>
-<p>You may encounter an issue where your device reboots without warning at unpredictable intervals.</p>
-<p>When <a href="../troubleshoot/get-device-logs.html">viewing the device dumpstate logs</a>, the following message is displayed:</p>
-<blockquote>
-<p>Line 237947: 2023-05-24 16:10:00-0400 |  REBOOT  |       | REASON: enterprise,mainline_update</p>
-</blockquote>
+<p>You may encounter an issue where your device reboots without warning at unpredictable intervals. When <a href="../troubleshoot/get-device-logs.html">viewing the device dumpstate logs</a>, the following message is displayed:</p>
+<p><code>Line 237947: 2023-05-24 16:10:00-0400 | REBOOT | | REASON: enterprise,mainline_update</code></p>
 <h2 id="cause">Cause</h2>
-<p>As part of <a href="https://developer.android.com/about/versions/10/highlights#faster_updates_fresher_code" target="_blank">Google Play system updates</a>, device restarts are required for mainline updates. Google Play system updates can force software updates to specific system components. When the <strong>System Update</strong> policy is enabled and set to <strong>Automatic</strong> on the EMM profile, the updates can begin at unpredictable times, causing the issue.</p>
-<div class="notice-note"><p>Mainline updates are separate from Android Security Maintenance Releases (SMRs) and Android version updates. These updates occur independently.</p></div>
+<p>As a requirement of <a href="https://developer.android.com/about/versions/10/highlights#faster_updates_fresher_code" target="_blank">Google Play system updates</a>, devices must be restarted whenever mainline updates get applied. If your EMM profile&rsquo;s <strong>System Update</strong> policy is enabled and set to <strong>Automatic</strong>, a mainline update can be applied — and the device can restart at any time — without user interaction.</p>
+<div class="notice-note"><p>Mainline updates are separate from Android Security Maintenance Releases (SMRs) and Android version updates, and can occur independently.</p></div>
 <h2 id="resolution">Resolution</h2>
-<p>There are several methods to prevent unexpected mainline updates:</p>
+<p>As of April 2024, a fix for this issue was released from Google. <a href="https://support.google.com/work/android/answer/13791272?hl=en#zippy=%2Cmanaging-system-updates-using-system-update-policies" target="_blank">Mainline updates no longer force a restart from a device</a>. Instead, mainline updates are now scheduled to update on the next user, admin, or policy-initiated reboot.</p>
+<h2 id="workaround">Workaround</h2>
+<p>If the issue persists, there are several methods to prevent unexpected mainline updates:</p>
 <ul>
 <li>Disable the <strong>System Update</strong> policy on the device.</li>
 <li>Postpone all updates on the device with the <strong>System Update</strong> policy.</li>
@@ -1363,8 +1363,8 @@
 </ol>
 <p>If the device continues to reboot, <a href="../../fundamentals/submit-a-support-ticket.html">submit a support ticket</a>.</p>
 <h2 id="additional-information">Additional information</h2>
-<p>For more information about the System Update policy types, refer to <a href="https://developer.android.com/work/dpc/system-updates#set-policy" target="_blank">Manage system updates</a> in the Android developer documentation.</p>
-<p>For more information about Knox E-FOTA, refer to the <a href="../../efota-one/index.html" target="_blank">Knox E-FOTA admin guide</a>.</p>
+<p>For more information about the <strong>System Update</strong> policy types, refer to <a href="https://developer.android.com/work/dpc/system-updates#set-policy" target="_blank">Manage system updates</a> in the Android developer documentation.</p>
+<p>For more information about <strong>Knox E-FOTA</strong>, refer to the <a href="../../efota-one/index.html" target="_blank">Knox E-FOTA admin guide</a>.</p>
 
             
           </div>
@@ -1377,6 +1377,7 @@
     <li><a href="kba-986-device-randomly-reboots-without-warning.html#overview">Overview</a></li>
     <li><a href="kba-986-device-randomly-reboots-without-warning.html#cause">Cause</a></li>
     <li><a href="kba-986-device-randomly-reboots-without-warning.html#resolution">Resolution</a></li>
+    <li><a href="kba-986-device-randomly-reboots-without-warning.html#workaround">Workaround</a></li>
     <li><a href="kba-986-device-randomly-reboots-without-warning.html#additional-information">Additional information</a></li>
   </ul>
 </nav>
