@@ -385,7 +385,7 @@
             </div>
             
 
-  <p><span>Last updated December  7th, 2023</span></p>
+  <p><span>Last updated May  29th, 2023</span></p>
 
 
     
@@ -398,6 +398,7 @@
 
 
 
+      
       
       
       
@@ -437,12 +438,12 @@
       <p class="fs-5 mt-0">Knox Authentication Manager is a managed app for shared Samsung devices that provides multiuser facial biometrics and sign-in automation for increased frontline worker productivity and safety.</p>
     </div>
 </div>
-<h2 id="supported-uems-and-management-types">Supported UEMs and management types</h2>
-<p>Knox Authentication Manager works with the following UEM solutions using fully managed devices with access to Managed Google Play:</p>
+<h2 id="supported-uememms-and-management-types">Supported UEM/EMMs and management types</h2>
+<p>Knox Authentication Manager works with the following UEM/EMM solutions using fully managed devices with access to Managed Google Play:</p>
 <div class="overflow-auto my-3"><table>
 <thead>
 <tr>
-<th>UEM solution</th>
+<th>Solution</th>
 <th>Main sign-in method</th>
 </tr>
 </thead>
@@ -457,11 +458,11 @@
 </tr>
 <tr>
 <td>SOTI MobiControl</td>
-<td>Customer Azure AD credentials<sup>1</sup> &mdash; devices must be in kiosk mode (Lockdown)</td>
+<td>Customer Microsoft Entra ID credentials<sup>1</sup> &mdash; devices must be in kiosk mode (Lockdown)</td>
 </tr>
 <tr>
 <td>Samsung Knox Manage</td>
-<td>Customer Azure AD credentials<sup>1</sup> &mdash; devices must be in kiosk mode</td>
+<td>Customer Microsoft Entra ID credentials<sup>1</sup> &mdash; devices must be in kiosk mode</td>
 </tr>
 </tbody>
 </table></div>
@@ -473,27 +474,27 @@
 <p>Groups of devices must be able to communicate with one another through Wi-Fi for device-to-device syncing.</p>
 </li>
 <li>
-<p>Devices must be able to reach Google Firebase to coordinate syncing (no subscription is needed).</p>
+<p>Devices must be able to reach <a href="https://firebase.google.com/" target="_blank">Google Firebase</a> to coordinate syncing (no subscription is needed).</p>
 </li>
 <li>
 <p>If your enterprise is behind a firewall, you must add our Knox servers to your firewall&rsquo;s allowlist. For details, see <a href="knox-admin-portal/get-started/samsung-knox-firewall-exceptions.html">Samsung Knox firewall exceptions</a>.</p>
 </li>
 <li>
-<p>Since Knox Authentication Manager communicates with Firebase using HTTPS, you should add port <strong>443</strong>, the standard port for HTTPS transmissions, and URLs that end with <strong>*.firebaseio.com</strong> to your firewall&rsquo;s allowlist.</p>
+<p>Since Knox Authentication Manager communicates with Firebase using HTTPS, you must add port <strong>443</strong>, the standard port for HTTPS transmissions, and URLs that end with <code>.firebaseio.com</code> to your firewall&rsquo;s allowlist.</p>
 </li>
 <li>
 <p>Knox Authentication Manager uses UDP and TLS protocols for device communication and data exchange over port numbers. The default ports for UDP are <strong>49158</strong> and <strong>49159</strong>, and the default port number for TLS is <strong>7788</strong>, but these ports <a href="https://firebase.google.com/docs/cloud-messaging/concept-options#messaging-ports-and-your-firewall" target="_blank">can be customized</a>. Add these ports, or the ones you set, to your firewall&rsquo;s allowlist.</p>
 </li>
 <li>
-<p>Knox Authentication Manager relies on the Network Time Protocol (NTP) to determine the most up-to-date user profile when performing device-to-device syncing. You&rsquo;ll need to provide a firewall exception on your network for time.android.com on UDP port 123 in order to communicate with the NTP server.</p>
+<p>Knox Authentication Manager relies on the Network Time Protocol (NTP) to determine the most up-to-date user profile when performing device-to-device syncing. You&rsquo;ll need to provide a firewall exception on your network for <code>time.android.com</code> on UDP port <strong>123</strong> in order to communicate with the NTP server.</p>
 </li>
 </ul>
-<p>When you set up Knox Authentication Manager in your UEM, you need to create a shared key to encrypt and protect user profiles and device group communication. One way to generate this key is through OpenSSL. Mac and Linux users can run <code>openssl rand -base64 24</code> in a terminal. Windows users first have to install OpenSSL. See the <a href="https://www.openssl.org/source/" target="_blank">OpenSSL documentation</a> for more information.</p>
+<p>When you set up Knox Authentication Manager in your UEM/EMM, you need to create a shared key to encrypt and protect user profiles and device group communication. One way to generate this key is through OpenSSL. Mac and Linux users can run <code>openssl rand -base64 24</code> in a terminal. Windows users first have to install OpenSSL. See the <a href="https://www.openssl.org/source/" target="_blank">OpenSSL documentation</a> for more information.</p>
 <h2 id="required-license">Required license</h2>
 <p>A valid Knox Suite license key is required to use Knox Authentication Manager. For more information, see <a href="knox-authentication-manager/get-started/get-started-as-an-it-admin.html#step-1-get-a-knox-suite-license">Get started as an IT admin</a>.</p>
-<p>Additionally, to ensure that Knox Authentication Manager performs optimally, admins should configure specific Knox Service Plugin policies with their UEM. For more information on Knox Service Plugin requirements, see <a href="knox-authentication-manager/get-started/get-started-as-an-it-admin.html#step-1-get-a-knox-suite-license">Get started as an IT admin</a> and <a href="knox-platform-for-enterprise/knox-service-plugin.html">Knox Service Plugin</a>.</p>
+<p>Additionally, to ensure that Knox Authentication Manager performs optimally, admins should configure specific Knox Service Plugin policies with their UEM/EMM. For more information on Knox Service Plugin requirements, see <a href="knox-authentication-manager/get-started/get-started-as-an-it-admin.html#step-1-get-a-knox-suite-license">Get started as an IT admin</a> and <a href="knox-platform-for-enterprise/knox-service-plugin.html">Knox Service Plugin</a>.</p>
 <h2 id="supported-devices">Supported devices</h2>
-<p>Knox Authentication Manager is available for all Samsung devices secured by Knox running Android 12 and higher in an enterprise deployment. The device must be <a href="https://developers.google.com/android/work/requirements/fully-managed-device" target="_blank">fully managed</a> by an EMM. For a full list of compatible devices, see <a href="https://www.samsungknox.com/en/knox-platform/supported-devices" target="_blank">Devices secured by Knox</a>.</p>
+<p>Knox Authentication Manager is available for all Samsung devices secured by Knox running Android 12 and higher in an enterprise deployment. The device must be <a href="https://developers.google.com/android/work/requirements/fully-managed-device" target="_blank">fully managed</a> by a UEM/EMM. For a full list of compatible devices, see <a href="https://www.samsungknox.com/en/knox-platform/supported-devices" target="_blank">Devices secured by Knox</a>.</p>
 <h2 id="get-started-with-knox-authentication-manager">Get started with Knox Authentication Manager</h2>
 <p>See the below pages for guided workflows of Knox Authentication Manager for new admins and end-users.</p>
 <ul>
@@ -508,7 +509,7 @@
 <aside class="table-of-headings">
   <nav id="TableOfContents">
   <ul>
-    <li><a href="knox-authentication-manager.html#supported-uems-and-management-types">Supported UEMs and management types</a></li>
+    <li><a href="knox-authentication-manager.html#supported-uememms-and-management-types">Supported UEM/EMMs and management types</a></li>
     <li><a href="knox-authentication-manager.html#required-network-capabilities">Required network capabilities</a></li>
     <li><a href="knox-authentication-manager.html#required-license">Required license</a></li>
     <li><a href="knox-authentication-manager.html#supported-devices">Supported devices</a></li>
