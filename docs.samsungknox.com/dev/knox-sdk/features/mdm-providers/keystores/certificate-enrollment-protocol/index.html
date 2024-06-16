@@ -127,8 +127,6 @@
   <ul>
     <li>
   <a href="../../../../../knox-cloud-authentication.html" >Knox Cloud Authentication</a>
-  <ul>
-    </ul>
   </li>
 <li>
   <a href="../../../../../knox-webhook-notification.html" >Knox Webhook Notification</a>
@@ -137,6 +135,9 @@
   </li>
 <li>
   <a href="../../../../../knox-deployment-program.html" >Knox Deployment Program</a>
+  </li>
+<li>
+  <a href="../../../../../knox-msp-portal.html" >Knox MSP Portal</a>
   </li>
 <li>
   <a href="../../../../../knox-mobile-enrollment.html" >Knox Mobile Enrollment</a>
@@ -3492,8 +3493,8 @@
 </span></span></code></pre></div><div class="notice-note"><p>The binding of the certificate enrollment service happens together with the initialization of <code>EnterpriseCertEnrollPolicy</code> object.</p></div>
 <h3 id="listen-to-intents">Listen to intents</h3>
 <p>The caller or agent must listen for the following intent to get the enrollment operation result or status.</p>
-<pre tabindex="0"><code>CEP_ACTION_CERT_ENROLL_STATUS
-</code></pre><p>The <code>CEP_ACTION_SERVICE_DISCONNECTED</code> intent received has the container ID value specified in the <code>serviceuserid</code>. If the <code>serviceuserid</code> value is 0, it indicates the UserID of the CEP Service in which binding or unbinding has happened to the CEP service present in the same user space as the caller.</p>
+<p><code>CEP_ACTION_CERT_ENROLL_STATUS</code></p>
+<p>The <code>CEP_ACTION_SERVICE_DISCONNECTED</code> intent received has the container ID value specified in the <code>serviceuserid</code>. If the <code>serviceuserid</code> value is 0, it indicates the UserID of the CEP Service in which binding or unbinding has happened to the CEP service present in the same user space as the caller.</p>
 <div class="highlight"><pre tabindex="0" style=";-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span>Public <span style="color:#008000;font-weight:bold">class</span> <span style="color:#00f;font-weight:bold">EnterpriseCEPpolicyReciever</span> <span style="color:#008000;font-weight:bold">extends</span> BroadcastReceiver <span style="color:#666">{</span>     
 </span></span><span style="display:flex;"><span>          <span style="color:#008000;font-weight:bold">public</span> <span style="color:#b00040">void</span> <span style="color:#00f">onReceive</span><span style="color:#666">(</span>Context context<span style="color:#666">,</span> Intent intent<span style="color:#666">)</span> <span style="color:#666">{</span>
 </span></span><span style="display:flex;"><span>           <span style="color:#008000;font-weight:bold">if</span><span style="color:#666">(</span>intent<span style="color:#666">.</span><span style="color:#7d9029">getAction</span><span style="color:#666">().</span><span style="color:#7d9029">equalsIgnoreCase</span><span style="color:#666">(</span>
@@ -3522,65 +3523,65 @@
 <p>To enroll a user certificate, use the <code>enrollUserCertificate</code> API.  This API issues a public key X.509 certificate by sending a self-signed CSR to the CA server for enrolling in a PKI represented by the CA server.</p>
 <p>The following sample code example illustrates enrolling a user certificate at user space level.</p>
 <div class="highlight"><pre tabindex="0" style=";-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span>EnterpriseKnoxManager ekm <span style="color:#666">=</span> EnterpriseKnoxManager<span style="color:#666">.</span><span style="color:#7d9029">getInstance</span><span style="color:#666">();</span>
-</span></span><span style="display:flex;"><span> <span style="color:#008000;font-weight:bold">try</span> <span style="color:#666">{</span>
-</span></span><span style="display:flex;"><span>     List  allowedPackages <span style="color:#666">=</span> <span style="color:#008000;font-weight:bold">new</span> ArrayList<span style="color:#666">();</span>
-</span></span><span style="display:flex;"><span>     allowedPackages<span style="color:#666">.</span><span style="color:#7d9029">add</span><span style="color:#666">(</span><span style="color:#ba2121">&#34;com.android.email&#34;</span><span style="color:#666">);</span>
-</span></span><span style="display:flex;"><span>     String cepProtocol <span style="color:#666">=</span> CEPConstants<span style="color:#666">.</span><span style="color:#7d9029">CERT_PROFILE_TYPE_SCEP</span> <span style="color:#408080;font-style:italic">//for SCEP
-</span></span></span><span style="display:flex;"><span><span style="color:#408080;font-style:italic"></span>     String refNum <span style="color:#666">=</span> ekm<span style="color:#666">.</span><span style="color:#7d9029">getEnterpriseCertEnrollPolicy</span><span style="color:#666">(</span>Context<span style="color:#666">,</span> cepProtocol<span style="color:#666">).</span><span style="color:#7d9029">enrollUserCertificate</span><span style="color:#666">(</span>enrollmentProfile<span style="color:#666">,</span>allowedPackages<span style="color:#666">,</span> hashCACert<span style="color:#666">);</span>
-</span></span><span style="display:flex;"><span> <span style="color:#666">}</span> <span style="color:#008000;font-weight:bold">catch</span> <span style="color:#666">(</span>SecurityException e<span style="color:#666">)</span> <span style="color:#666">{</span>
-</span></span><span style="display:flex;"><span>     Log<span style="color:#666">.</span><span style="color:#7d9029">w</span><span style="color:#666">(</span>TAG<span style="color:#666">,</span> <span style="color:#ba2121">&#34;Exception&#34;</span> <span style="color:#666">+</span> e<span style="color:#666">);</span>
-</span></span><span style="display:flex;"><span> <span style="color:#666">}</span>
+</span></span><span style="display:flex;"><span><span style="color:#008000;font-weight:bold">try</span> <span style="color:#666">{</span>
+</span></span><span style="display:flex;"><span>    List  allowedPackages <span style="color:#666">=</span> <span style="color:#008000;font-weight:bold">new</span> ArrayList<span style="color:#666">();</span>
+</span></span><span style="display:flex;"><span>    allowedPackages<span style="color:#666">.</span><span style="color:#7d9029">add</span><span style="color:#666">(</span><span style="color:#ba2121">&#34;com.android.email&#34;</span><span style="color:#666">);</span>
+</span></span><span style="display:flex;"><span>    String cepProtocol <span style="color:#666">=</span> CEPConstants<span style="color:#666">.</span><span style="color:#7d9029">CERT_PROFILE_TYPE_SCEP</span> <span style="color:#408080;font-style:italic">//for SCEP
+</span></span></span><span style="display:flex;"><span><span style="color:#408080;font-style:italic"></span>    String refNum <span style="color:#666">=</span> ekm<span style="color:#666">.</span><span style="color:#7d9029">getEnterpriseCertEnrollPolicy</span><span style="color:#666">(</span>Context<span style="color:#666">,</span> cepProtocol<span style="color:#666">).</span><span style="color:#7d9029">enrollUserCertificate</span><span style="color:#666">(</span>enrollmentProfile<span style="color:#666">,</span>allowedPackages<span style="color:#666">,</span> hashCACert<span style="color:#666">);</span>
+</span></span><span style="display:flex;"><span><span style="color:#666">}</span> <span style="color:#008000;font-weight:bold">catch</span> <span style="color:#666">(</span>SecurityException e<span style="color:#666">)</span> <span style="color:#666">{</span>
+</span></span><span style="display:flex;"><span>    Log<span style="color:#666">.</span><span style="color:#7d9029">w</span><span style="color:#666">(</span>TAG<span style="color:#666">,</span> <span style="color:#ba2121">&#34;Exception&#34;</span> <span style="color:#666">+</span> e<span style="color:#666">);</span>
+</span></span><span style="display:flex;"><span><span style="color:#666">}</span>
 </span></span></code></pre></div><div class="notice-note"><p>The <code>refNum</code> is unique for each transaction. The corresponding request result is broadcast through broadcast intent <code>CEP_ACTION_CERT_ENROLL_STATUS</code>. Agents can map the <code>refNum</code> and know the status of the corresponding request.</p></div>
 <p>The following sample code example illustrates how to enroll a user certificate in the Knox Workspace.</p>
 <div class="highlight"><pre tabindex="0" style=";-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#408080;font-style:italic">// When you create a container successfully, containerID is returned using intent.
-</span></span></span><span style="display:flex;"><span><span style="color:#408080;font-style:italic"></span> <span style="color:#408080;font-style:italic">// Use this containerID in the following API. 
-</span></span></span><span style="display:flex;"><span><span style="color:#408080;font-style:italic"></span> String cepProtocol <span style="color:#666">=</span> CEPConstants<span style="color:#666">.</span><span style="color:#7d9029">CERT_PROFILE_TYPE_SCEP</span> 
-</span></span><span style="display:flex;"><span> EnterpriseKnoxManager ekm <span style="color:#666">=</span> EnterpriseKnoxManager<span style="color:#666">.</span><span style="color:#7d9029">getInstance</span><span style="color:#666">();</span>
-</span></span><span style="display:flex;"><span> KnoxContainerManager kcm <span style="color:#666">=</span> ekm<span style="color:#666">.</span><span style="color:#7d9029">getKnoxContainerManager</span><span style="color:#666">(</span>Context<span style="color:#666">,</span> containerID<span style="color:#666">);</span>
-</span></span><span style="display:flex;"><span> EnterpriseCertEnrollPolicy mEnterpriseCertEnrollPolicy <span style="color:#666">=</span> 
-</span></span><span style="display:flex;"><span> kcm<span style="color:#666">.</span><span style="color:#7d9029">getEnterpriseCertEnrollPolicy</span><span style="color:#666">(</span>cepProtocol<span style="color:#666">);</span>
-</span></span><span style="display:flex;"><span> <span style="color:#008000;font-weight:bold">try</span> <span style="color:#666">{</span>
-</span></span><span style="display:flex;"><span>     List  allowedPackages <span style="color:#666">=</span> <span style="color:#008000;font-weight:bold">new</span> ArrayList<span style="color:#666">();</span> 
-</span></span><span style="display:flex;"><span>     allowedPackages<span style="color:#666">.</span><span style="color:#7d9029">add</span><span style="color:#666">(</span><span style="color:#ba2121">&#34;com.android.email&#34;</span><span style="color:#666">);</span>
-</span></span><span style="display:flex;"><span>  String refNum <span style="color:#666">=</span> mEnterpriseCertEnrollPolicy<span style="color:#666">.</span><span style="color:#7d9029">enrollUserCertificate</span><span style="color:#666">(</span>enrollmentProfile<span style="color:#666">,</span>allowedPackages<span style="color:#666">,</span> caCertHash<span style="color:#666">);</span>
-</span></span><span style="display:flex;"><span> <span style="color:#666">}</span> <span style="color:#008000;font-weight:bold">catch</span> <span style="color:#666">(</span>SecurityException e<span style="color:#666">)</span> <span style="color:#666">{</span>
-</span></span><span style="display:flex;"><span>     Log<span style="color:#666">.</span><span style="color:#7d9029">w</span><span style="color:#666">(</span>TAG<span style="color:#666">,</span> <span style="color:#ba2121">&#34;Exception&#34;</span> <span style="color:#666">+</span> e<span style="color:#666">);</span>
-</span></span><span style="display:flex;"><span> <span style="color:#666">}</span>
+</span></span></span><span style="display:flex;"><span><span style="color:#408080;font-style:italic">// Use this containerID in the following API. 
+</span></span></span><span style="display:flex;"><span><span style="color:#408080;font-style:italic"></span>String cepProtocol <span style="color:#666">=</span> CEPConstants<span style="color:#666">.</span><span style="color:#7d9029">CERT_PROFILE_TYPE_SCEP</span> 
+</span></span><span style="display:flex;"><span>EnterpriseKnoxManager ekm <span style="color:#666">=</span> EnterpriseKnoxManager<span style="color:#666">.</span><span style="color:#7d9029">getInstance</span><span style="color:#666">();</span>
+</span></span><span style="display:flex;"><span>KnoxContainerManager kcm <span style="color:#666">=</span> ekm<span style="color:#666">.</span><span style="color:#7d9029">getKnoxContainerManager</span><span style="color:#666">(</span>Context<span style="color:#666">,</span> containerID<span style="color:#666">);</span>
+</span></span><span style="display:flex;"><span>EnterpriseCertEnrollPolicy mEnterpriseCertEnrollPolicy <span style="color:#666">=</span> 
+</span></span><span style="display:flex;"><span>kcm<span style="color:#666">.</span><span style="color:#7d9029">getEnterpriseCertEnrollPolicy</span><span style="color:#666">(</span>cepProtocol<span style="color:#666">);</span>
+</span></span><span style="display:flex;"><span><span style="color:#008000;font-weight:bold">try</span> <span style="color:#666">{</span>
+</span></span><span style="display:flex;"><span>    List  allowedPackages <span style="color:#666">=</span> <span style="color:#008000;font-weight:bold">new</span> ArrayList<span style="color:#666">();</span> 
+</span></span><span style="display:flex;"><span>    allowedPackages<span style="color:#666">.</span><span style="color:#7d9029">add</span><span style="color:#666">(</span><span style="color:#ba2121">&#34;com.android.email&#34;</span><span style="color:#666">);</span>
+</span></span><span style="display:flex;"><span>String refNum <span style="color:#666">=</span> mEnterpriseCertEnrollPolicy<span style="color:#666">.</span><span style="color:#7d9029">enrollUserCertificate</span><span style="color:#666">(</span>enrollmentProfile<span style="color:#666">,</span>allowedPackages<span style="color:#666">,</span> caCertHash<span style="color:#666">);</span>
+</span></span><span style="display:flex;"><span><span style="color:#666">}</span> <span style="color:#008000;font-weight:bold">catch</span> <span style="color:#666">(</span>SecurityException e<span style="color:#666">)</span> <span style="color:#666">{</span>
+</span></span><span style="display:flex;"><span>    Log<span style="color:#666">.</span><span style="color:#7d9029">w</span><span style="color:#666">(</span>TAG<span style="color:#666">,</span> <span style="color:#ba2121">&#34;Exception&#34;</span> <span style="color:#666">+</span> e<span style="color:#666">);</span>
+</span></span><span style="display:flex;"><span><span style="color:#666">}</span>
 </span></span></code></pre></div><p>If the certificate enrollment succeeds, it sends a broadcast with the hash or fingerprint of the received certificate. You must listen for the <code>CEP_ACTION_CERT_ENROLL_STATUS</code> broadcast intent to receive the hash value.</p>
 <h3 id="renew-a-certificate">Renew a certificate</h3>
 <p>To renew an enrolled user certificate, use the <code>renewUserCertificate</code> API. This API renews an existing X.509 certificate and sends a new CSR to the CA server. The CSR is signed using the existing certificate.</p>
 <p>If the certificate enrollment succeeds, it sends a broadcast with a hash or fingerprint of the received certificate. This API renews an existing X.509 certificate and sends a new CSR to the CA server. The CSR is signed using the existing certificate.</p>
 <div class="notice-note"><p>If the Keystore type is CCM, then old keypair is used for generating the CSR.</p></div>
-<div class="highlight"><pre tabindex="0" style=";-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span> String cepProtocol <span style="color:#666">=</span> CEPConstants<span style="color:#666">.</span><span style="color:#7d9029">CERT_PROFILE_TYPE_SCEP</span> <span style="color:#408080;font-style:italic">//for SCEP
-</span></span></span><span style="display:flex;"><span><span style="color:#408080;font-style:italic"></span> EnterpriseKnoxManager ekm <span style="color:#666">=</span> EnterpriseKnoxManager<span style="color:#666">.</span><span style="color:#7d9029">getInstance</span><span style="color:#666">();</span>
-</span></span><span style="display:flex;"><span> <span style="color:#008000;font-weight:bold">try</span> <span style="color:#666">{</span>
-</span></span><span style="display:flex;"><span>     List  allowedPackages <span style="color:#666">=</span> <span style="color:#008000;font-weight:bold">new</span> ArrayList<span style="color:#666">();</span>
-</span></span><span style="display:flex;"><span>     allowedPackages<span style="color:#666">.</span><span style="color:#7d9029">add</span><span style="color:#666">(</span><span style="color:#ba2121">&#34;com.android.email&#34;</span><span style="color:#666">);</span>
-</span></span><span style="display:flex;"><span>    String refNum <span style="color:#666">=</span> ekm<span style="color:#666">.</span><span style="color:#7d9029">getEnterpriseCertEnrollPolicy</span><span style="color:#666">(</span>Context<span style="color:#666">,</span> 
-</span></span><span style="display:flex;"><span>         cepProtocol<span style="color:#666">).</span><span style="color:#7d9029">renewUserCertificate</span><span style="color:#666">(</span>certHash<span style="color:#666">,</span> allowedPackages<span style="color:#666">);</span>
-</span></span><span style="display:flex;"><span> <span style="color:#666">}</span> <span style="color:#008000;font-weight:bold">catch</span> <span style="color:#666">(</span>SecurityException e<span style="color:#666">)</span> <span style="color:#666">{</span>
-</span></span><span style="display:flex;"><span>     Log<span style="color:#666">.</span><span style="color:#7d9029">w</span><span style="color:#666">(</span>TAG<span style="color:#666">,</span> <span style="color:#ba2121">&#34;Exception&#34;</span> <span style="color:#666">+</span> e<span style="color:#666">);</span>
-</span></span><span style="display:flex;"><span> <span style="color:#666">}</span>
+<div class="highlight"><pre tabindex="0" style=";-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span>String cepProtocol <span style="color:#666">=</span> CEPConstants<span style="color:#666">.</span><span style="color:#7d9029">CERT_PROFILE_TYPE_SCEP</span> <span style="color:#408080;font-style:italic">//for SCEP
+</span></span></span><span style="display:flex;"><span><span style="color:#408080;font-style:italic"></span>EnterpriseKnoxManager ekm <span style="color:#666">=</span> EnterpriseKnoxManager<span style="color:#666">.</span><span style="color:#7d9029">getInstance</span><span style="color:#666">();</span>
+</span></span><span style="display:flex;"><span><span style="color:#008000;font-weight:bold">try</span> <span style="color:#666">{</span>
+</span></span><span style="display:flex;"><span>    List  allowedPackages <span style="color:#666">=</span> <span style="color:#008000;font-weight:bold">new</span> ArrayList<span style="color:#666">();</span>
+</span></span><span style="display:flex;"><span>    allowedPackages<span style="color:#666">.</span><span style="color:#7d9029">add</span><span style="color:#666">(</span><span style="color:#ba2121">&#34;com.android.email&#34;</span><span style="color:#666">);</span>
+</span></span><span style="display:flex;"><span>String refNum <span style="color:#666">=</span> ekm<span style="color:#666">.</span><span style="color:#7d9029">getEnterpriseCertEnrollPolicy</span><span style="color:#666">(</span>Context<span style="color:#666">,</span> 
+</span></span><span style="display:flex;"><span>        cepProtocol<span style="color:#666">).</span><span style="color:#7d9029">renewUserCertificate</span><span style="color:#666">(</span>certHash<span style="color:#666">,</span> allowedPackages<span style="color:#666">);</span>
+</span></span><span style="display:flex;"><span><span style="color:#666">}</span> <span style="color:#008000;font-weight:bold">catch</span> <span style="color:#666">(</span>SecurityException e<span style="color:#666">)</span> <span style="color:#666">{</span>
+</span></span><span style="display:flex;"><span>    Log<span style="color:#666">.</span><span style="color:#7d9029">w</span><span style="color:#666">(</span>TAG<span style="color:#666">,</span> <span style="color:#ba2121">&#34;Exception&#34;</span> <span style="color:#666">+</span> e<span style="color:#666">);</span>
+</span></span><span style="display:flex;"><span><span style="color:#666">}</span>
 </span></span></code></pre></div><div class="notice-note"><p>The <code>CertHash</code> of each alias is sent post-enrollment using the broadcast intent <a href="../../../../../../devref/knox-sdk/reference/com/samsung/android/knox/keystore/CEPConstants.html#CEP_ACTION_CERT_ENROLL_STATUS" target="_blank"><code>CEP_ACTION_CERT_ENROLL_STATUS</code></a>. Alternatively, an agent can get the certificate directly from Android or CCM Keystore using the desired alias and then calculate the <code>CertHash</code>.</p></div>
 <h3 id="delete-a-certificate">Delete a certificate</h3>
 <p>To delete a user certificate in the device, use the <code>deleteUserCertificate</code> API. This API deletes the local X.509 certificate specified by the certificate hash value.</p>
 <div class="notice-note"><p>Deleting a certificate is not the same as certificate revocation. Certificate revocation in the CA server and MDM registry cleanup must be performed out-of-band.</p></div>
 <div class="highlight"><pre tabindex="0" style=";-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span>String cepProtocol <span style="color:#666">=</span> CEPConstants<span style="color:#666">.</span><span style="color:#7d9029">CERT_PROFILE_TYPE_SCEP</span> <span style="color:#408080;font-style:italic">//for SCEP
-</span></span></span><span style="display:flex;"><span><span style="color:#408080;font-style:italic"></span> EnterpriseKnoxManager ekm <span style="color:#666">=</span> EnterpriseKnoxManager<span style="color:#666">.</span><span style="color:#7d9029">getInstance</span><span style="color:#666">();</span>
-</span></span><span style="display:flex;"><span> <span style="color:#008000;font-weight:bold">try</span> <span style="color:#666">{</span>
-</span></span><span style="display:flex;"><span>     <span style="color:#b00040">int</span> status <span style="color:#666">=</span> ekm<span style="color:#666">.</span><span style="color:#7d9029">getEnterpriseCertEnrollPolicy</span><span style="color:#666">(</span>Context<span style="color:#666">,</span> cepProtocol<span style="color:#666">).</span><span style="color:#7d9029">deleteUserCertificate</span><span style="color:#666">(</span>certHash<span style="color:#666">);</span>
-</span></span><span style="display:flex;"><span> <span style="color:#666">}</span> <span style="color:#008000;font-weight:bold">catch</span> <span style="color:#666">(</span>SecurityException e<span style="color:#666">)</span> <span style="color:#666">{</span>
-</span></span><span style="display:flex;"><span>     Log<span style="color:#666">.</span><span style="color:#7d9029">w</span><span style="color:#666">(</span>TAG<span style="color:#666">,</span> <span style="color:#ba2121">&#34;Exception&#34;</span> <span style="color:#666">+</span> e<span style="color:#666">);</span>
-</span></span><span style="display:flex;"><span> <span style="color:#666">}</span>
+</span></span></span><span style="display:flex;"><span><span style="color:#408080;font-style:italic"></span>EnterpriseKnoxManager ekm <span style="color:#666">=</span> EnterpriseKnoxManager<span style="color:#666">.</span><span style="color:#7d9029">getInstance</span><span style="color:#666">();</span>
+</span></span><span style="display:flex;"><span><span style="color:#008000;font-weight:bold">try</span> <span style="color:#666">{</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#b00040">int</span> status <span style="color:#666">=</span> ekm<span style="color:#666">.</span><span style="color:#7d9029">getEnterpriseCertEnrollPolicy</span><span style="color:#666">(</span>Context<span style="color:#666">,</span> cepProtocol<span style="color:#666">).</span><span style="color:#7d9029">deleteUserCertificate</span><span style="color:#666">(</span>certHash<span style="color:#666">);</span>
+</span></span><span style="display:flex;"><span><span style="color:#666">}</span> <span style="color:#008000;font-weight:bold">catch</span> <span style="color:#666">(</span>SecurityException e<span style="color:#666">)</span> <span style="color:#666">{</span>
+</span></span><span style="display:flex;"><span>    Log<span style="color:#666">.</span><span style="color:#7d9029">w</span><span style="color:#666">(</span>TAG<span style="color:#666">,</span> <span style="color:#ba2121">&#34;Exception&#34;</span> <span style="color:#666">+</span> e<span style="color:#666">);</span>
+</span></span><span style="display:flex;"><span><span style="color:#666">}</span>
 </span></span></code></pre></div><h3 id="check-enrollment-or-renewal-status">Check enrollment or renewal status</h3>
 <p>To get the status of the certificate enrollment or renewal, use the <code>getCertEnrollmentStatus</code> API. This API returns the certificate enrollment status for the given request ID.  The agent or caller needs to provide the <code>TxId</code> of the request for the expected status. The transaction Id of each request is sent through broadcast intent <code>CEP_ACTION_CERT_ENROLL_STATUS</code>.</p>
 <div class="highlight"><pre tabindex="0" style=";-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span>String cepProtocol <span style="color:#666">=</span> CEPConstants<span style="color:#666">.</span><span style="color:#7d9029">CERT_PROFILE_TYPE_SCEP</span> <span style="color:#408080;font-style:italic">//for SCEP
-</span></span></span><span style="display:flex;"><span><span style="color:#408080;font-style:italic"></span> EnterpriseKnoxManager ekm <span style="color:#666">=</span> EnterpriseKnoxManager<span style="color:#666">.</span><span style="color:#7d9029">getInstance</span><span style="color:#666">();</span>
-</span></span><span style="display:flex;"><span> <span style="color:#008000;font-weight:bold">try</span> <span style="color:#666">{</span>
-</span></span><span style="display:flex;"><span>     <span style="color:#b00040">int</span> status <span style="color:#666">=</span> ekm<span style="color:#666">.</span><span style="color:#7d9029">getEnterpriseCertEnrollPolicy</span><span style="color:#666">(</span>Context<span style="color:#666">,</span> cepProtocol<span style="color:#666">).</span><span style="color:#7d9029">getCertEnrollmentStatus</span><span style="color:#666">(</span>transactionId<span style="color:#666">);</span>
-</span></span><span style="display:flex;"><span> <span style="color:#666">}</span> <span style="color:#008000;font-weight:bold">catch</span> <span style="color:#666">(</span>SecurityException e<span style="color:#666">)</span> <span style="color:#666">{</span>
-</span></span><span style="display:flex;"><span>     Log<span style="color:#666">.</span><span style="color:#7d9029">w</span><span style="color:#666">(</span>TAG<span style="color:#666">,</span> <span style="color:#ba2121">&#34;Exception&#34;</span> <span style="color:#666">+</span> e<span style="color:#666">);</span>
-</span></span><span style="display:flex;"><span> <span style="color:#666">}</span>
+</span></span></span><span style="display:flex;"><span><span style="color:#408080;font-style:italic"></span>EnterpriseKnoxManager ekm <span style="color:#666">=</span> EnterpriseKnoxManager<span style="color:#666">.</span><span style="color:#7d9029">getInstance</span><span style="color:#666">();</span>
+</span></span><span style="display:flex;"><span><span style="color:#008000;font-weight:bold">try</span> <span style="color:#666">{</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#b00040">int</span> status <span style="color:#666">=</span> ekm<span style="color:#666">.</span><span style="color:#7d9029">getEnterpriseCertEnrollPolicy</span><span style="color:#666">(</span>Context<span style="color:#666">,</span> cepProtocol<span style="color:#666">).</span><span style="color:#7d9029">getCertEnrollmentStatus</span><span style="color:#666">(</span>transactionId<span style="color:#666">);</span>
+</span></span><span style="display:flex;"><span><span style="color:#666">}</span> <span style="color:#008000;font-weight:bold">catch</span> <span style="color:#666">(</span>SecurityException e<span style="color:#666">)</span> <span style="color:#666">{</span>
+</span></span><span style="display:flex;"><span>    Log<span style="color:#666">.</span><span style="color:#7d9029">w</span><span style="color:#666">(</span>TAG<span style="color:#666">,</span> <span style="color:#ba2121">&#34;Exception&#34;</span> <span style="color:#666">+</span> e<span style="color:#666">);</span>
+</span></span><span style="display:flex;"><span><span style="color:#666">}</span>
 </span></span></code></pre></div><h2 id="enroll-a-certificate-using-scep">Enroll a certificate using SCEP</h2>
 <p>Following example illustrates how an enterprise IT admin provisions a certificate using Simple Certificate Enrollment Protocol (SCEP) on Samsung Knox devices.</p>
 <h3 id="about-simple-certificate-enrollment-protocol">About Simple Certificate Enrollment Protocol</h3>
@@ -4078,6 +4079,14 @@
                 href="../../../../../knox-deployment-program.html"
                 class="body-5 d-flex align-items-center text-black fw-light pe-auto text-decoration-none"
                 >Knox Deployment Program</a
+              >
+            </li>
+            
+            <li>
+              <a
+                href="../../../../../knox-msp-portal.html"
+                class="body-5 d-flex align-items-center text-black fw-light pe-auto text-decoration-none"
+                >Knox MSP Portal</a
               >
             </li>
             

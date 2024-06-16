@@ -127,8 +127,6 @@
   <ul>
     <li>
   <a href="../../../../../knox-cloud-authentication.html" >Knox Cloud Authentication</a>
-  <ul>
-    </ul>
   </li>
 <li>
   <a href="../../../../../knox-webhook-notification.html" >Knox Webhook Notification</a>
@@ -137,6 +135,9 @@
   </li>
 <li>
   <a href="../../../../../knox-deployment-program.html" >Knox Deployment Program</a>
+  </li>
+<li>
+  <a href="../../../../../knox-msp-portal.html" >Knox MSP Portal</a>
   </li>
 <li>
   <a href="../../../../../knox-mobile-enrollment.html" >Knox Mobile Enrollment</a>
@@ -3189,10 +3190,10 @@
 <p>Rich Communications Services (RCS) messaging is a new messaging protocol that is starting to replace SMS as the default messaging platform for carriers. It adds much needed features &mdash; such as group messages, and large file transfers.</p>
 <p>Knox 3.2 allows IT admins to log RCS messages. For many industries, such as the financial services, the ability to record and audit sent and received messages is required by law.</p>
 <p><code>GetRCSMessage</code> allows IT admins start RCS capture.</p>
-<div class="highlight"><pre tabindex="0" style=";-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span> phoneRestrictionPolicy<span style="color:#666">.</span><span style="color:#7d9029">getRCSMessage</span><span style="color:#666">(</span>id<span style="color:#666">);</span>
-</span></span><span style="display:flex;"><span> rcsData<span style="color:#666">.</span><span style="color:#7d9029">getString</span><span style="color:#666">(</span>BODY<span style="color:#666">);</span>
+<div class="highlight"><pre tabindex="0" style=";-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span>phoneRestrictionPolicy<span style="color:#666">.</span><span style="color:#7d9029">getRCSMessage</span><span style="color:#666">(</span>id<span style="color:#666">);</span>
+</span></span><span style="display:flex;"><span>rcsData<span style="color:#666">.</span><span style="color:#7d9029">getString</span><span style="color:#666">(</span>BODY<span style="color:#666">);</span>
 </span></span></code></pre></div><h2 id="getrcsmessage-example">GetRCS Message Example</h2>
-<h4 id="activate-device-manager">Activate Device manager</h4>
+<h3 id="activate-device-manager">Activate Device manager</h3>
 <ol>
 <li>Choose device manager.
 <ul>
@@ -3202,7 +3203,7 @@
 </li>
 <li>Create the <a href="../../../../about-the-knox-sdk.html#Enterpri">EnterpriseDeviceManager</a> object.</li>
 </ol>
-<h4 id="call-knox-apis">Call Knox APIs</h4>
+<h3 id="call-knox-apis">Call Knox APIs</h3>
 <ol>
 <li>Create <code>phoneRestrictionPolicy.getRCSMessage</code>.</li>
 <li>Call <code>rcsData.getString</code> and capture:
@@ -3217,29 +3218,29 @@
 <li>Save this data to a file</li>
 </ol>
 <div class="notice-note"><p>For TIMESTAMP, also use the getLong method as seen in the following sample.</p></div>
-<div class="highlight"><pre tabindex="0" style=";-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span> EnterpriseDeviceManager edm <span style="color:#666">=</span> EnterpriseDeviceManager<span style="color:#666">.</span><span style="color:#7d9029">getInstance</span><span style="color:#666">(</span>context<span style="color:#666">);</span>
-</span></span><span style="display:flex;"><span> PhoneRestrictionPolicy phoneRestrictionPolicy <span style="color:#666">=</span> edm<span style="color:#666">.</span><span style="color:#7d9029">getPhoneRestrictionPolicy</span><span style="color:#666">();</span>
+<div class="highlight"><pre tabindex="0" style=";-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span>EnterpriseDeviceManager edm <span style="color:#666">=</span> EnterpriseDeviceManager<span style="color:#666">.</span><span style="color:#7d9029">getInstance</span><span style="color:#666">(</span>context<span style="color:#666">);</span>
+</span></span><span style="display:flex;"><span>PhoneRestrictionPolicy phoneRestrictionPolicy <span style="color:#666">=</span> edm<span style="color:#666">.</span><span style="color:#7d9029">getPhoneRestrictionPolicy</span><span style="color:#666">();</span>
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span> <span style="color:#b00040">long</span> id <span style="color:#666">=</span> intent<span style="color:#666">.</span><span style="color:#7d9029">getExtras</span><span style="color:#666">().</span><span style="color:#7d9029">getLong</span><span style="color:#666">(</span>EXTRA_MSG_ID<span style="color:#666">);</span>
-</span></span><span style="display:flex;"><span> 
-</span></span><span style="display:flex;"><span> String action <span style="color:#666">=</span> intent<span style="color:#666">.</span><span style="color:#7d9029">getAction</span><span style="color:#666">();</span>
-</span></span><span style="display:flex;"><span> <span style="color:#b00040">boolean</span> isFile <span style="color:#666">=</span> <span style="color:#008000;font-weight:bold">false</span><span style="color:#666">;</span>
-</span></span><span style="display:flex;"><span> <span style="color:#008000;font-weight:bold">if</span> <span style="color:#666">(</span>ACTION_RCS_MSG_FILE_THUMBNAIL_RECEIVED<span style="color:#666">.</span><span style="color:#7d9029">equals</span><span style="color:#666">(</span>action<span style="color:#666">)</span>
-</span></span><span style="display:flex;"><span>        <span style="color:#666">||</span> ACTION_RCS_MSG_FILE_RECEIVED<span style="color:#666">.</span><span style="color:#7d9029">equals</span><span style="color:#666">(</span>action<span style="color:#666">)</span>
-</span></span><span style="display:flex;"><span>        <span style="color:#666">||</span> ACTION_RCS_MSG_FILE_SENT<span style="color:#666">.</span><span style="color:#7d9029">equals</span><span style="color:#666">(</span>action<span style="color:#666">))</span> <span style="color:#666">{</span>
-</span></span><span style="display:flex;"><span>     isFile <span style="color:#666">=</span> <span style="color:#008000;font-weight:bold">true</span><span style="color:#666">;</span>
-</span></span><span style="display:flex;"><span> <span style="color:#666">}</span>
+</span></span><span style="display:flex;"><span><span style="color:#b00040">long</span> id <span style="color:#666">=</span> intent<span style="color:#666">.</span><span style="color:#7d9029">getExtras</span><span style="color:#666">().</span><span style="color:#7d9029">getLong</span><span style="color:#666">(</span>EXTRA_MSG_ID<span style="color:#666">);</span>
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span> Bundle rcsData <span style="color:#666">=</span> phoneRestrictionPolicy<span style="color:#666">.</span><span style="color:#7d9029">getRCSMessage</span><span style="color:#666">(</span>id<span style="color:#666">);</span>
-</span></span><span style="display:flex;"><span> String remoteUri <span style="color:#666">=</span> rcsData<span style="color:#666">.</span><span style="color:#7d9029">getString</span><span style="color:#666">(</span>REMOTE_URI<span style="color:#666">);</span>
-</span></span><span style="display:flex;"><span> String senderAlias <span style="color:#666">=</span> rcsData<span style="color:#666">.</span><span style="color:#7d9029">getString</span><span style="color:#666">(</span>SENDER_ALIAS<span style="color:#666">);</span>
-</span></span><span style="display:flex;"><span> String contentType <span style="color:#666">=</span> rcsData<span style="color:#666">.</span><span style="color:#7d9029">getString</span><span style="color:#666">(</span>CONTENT_TYPE<span style="color:#666">);</span>
-</span></span><span style="display:flex;"><span> String body <span style="color:#666">=</span> rcsData<span style="color:#666">.</span><span style="color:#7d9029">getString</span><span style="color:#666">(</span>BODY<span style="color:#666">);</span>
-</span></span><span style="display:flex;"><span> <span style="color:#b00040">long</span> timestamp <span style="color:#666">=</span> rcsData<span style="color:#666">.</span><span style="color:#7d9029">getLong</span><span style="color:#666">(</span>TIMESTAMP<span style="color:#666">);</span>
-</span></span><span style="display:flex;"><span> <span style="color:#008000;font-weight:bold">if</span> <span style="color:#666">(</span>isFile<span style="color:#666">)</span> <span style="color:#666">{</span>
-</span></span><span style="display:flex;"><span>     String filePath <span style="color:#666">=</span> rcsData<span style="color:#666">.</span><span style="color:#7d9029">getString</span><span style="color:#666">(</span>FILE_PATH<span style="color:#666">);</span>
-</span></span><span style="display:flex;"><span>     String thumbnailPath <span style="color:#666">=</span> rcsData<span style="color:#666">.</span><span style="color:#7d9029">getString</span><span style="color:#666">(</span>THUMBNAIL_PATH<span style="color:#666">);</span>
-</span></span><span style="display:flex;"><span> <span style="color:#666">}</span>
+</span></span><span style="display:flex;"><span>String action <span style="color:#666">=</span> intent<span style="color:#666">.</span><span style="color:#7d9029">getAction</span><span style="color:#666">();</span>
+</span></span><span style="display:flex;"><span><span style="color:#b00040">boolean</span> isFile <span style="color:#666">=</span> <span style="color:#008000;font-weight:bold">false</span><span style="color:#666">;</span>
+</span></span><span style="display:flex;"><span><span style="color:#008000;font-weight:bold">if</span> <span style="color:#666">(</span>ACTION_RCS_MSG_FILE_THUMBNAIL_RECEIVED<span style="color:#666">.</span><span style="color:#7d9029">equals</span><span style="color:#666">(</span>action<span style="color:#666">)</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#666">||</span> ACTION_RCS_MSG_FILE_RECEIVED<span style="color:#666">.</span><span style="color:#7d9029">equals</span><span style="color:#666">(</span>action<span style="color:#666">)</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#666">||</span> ACTION_RCS_MSG_FILE_SENT<span style="color:#666">.</span><span style="color:#7d9029">equals</span><span style="color:#666">(</span>action<span style="color:#666">))</span> <span style="color:#666">{</span>
+</span></span><span style="display:flex;"><span>    isFile <span style="color:#666">=</span> <span style="color:#008000;font-weight:bold">true</span><span style="color:#666">;</span>
+</span></span><span style="display:flex;"><span><span style="color:#666">}</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>Bundle rcsData <span style="color:#666">=</span> phoneRestrictionPolicy<span style="color:#666">.</span><span style="color:#7d9029">getRCSMessage</span><span style="color:#666">(</span>id<span style="color:#666">);</span>
+</span></span><span style="display:flex;"><span>String remoteUri <span style="color:#666">=</span> rcsData<span style="color:#666">.</span><span style="color:#7d9029">getString</span><span style="color:#666">(</span>REMOTE_URI<span style="color:#666">);</span>
+</span></span><span style="display:flex;"><span>String senderAlias <span style="color:#666">=</span> rcsData<span style="color:#666">.</span><span style="color:#7d9029">getString</span><span style="color:#666">(</span>SENDER_ALIAS<span style="color:#666">);</span>
+</span></span><span style="display:flex;"><span>String contentType <span style="color:#666">=</span> rcsData<span style="color:#666">.</span><span style="color:#7d9029">getString</span><span style="color:#666">(</span>CONTENT_TYPE<span style="color:#666">);</span>
+</span></span><span style="display:flex;"><span>String body <span style="color:#666">=</span> rcsData<span style="color:#666">.</span><span style="color:#7d9029">getString</span><span style="color:#666">(</span>BODY<span style="color:#666">);</span>
+</span></span><span style="display:flex;"><span><span style="color:#b00040">long</span> timestamp <span style="color:#666">=</span> rcsData<span style="color:#666">.</span><span style="color:#7d9029">getLong</span><span style="color:#666">(</span>TIMESTAMP<span style="color:#666">);</span>
+</span></span><span style="display:flex;"><span><span style="color:#008000;font-weight:bold">if</span> <span style="color:#666">(</span>isFile<span style="color:#666">)</span> <span style="color:#666">{</span>
+</span></span><span style="display:flex;"><span>    String filePath <span style="color:#666">=</span> rcsData<span style="color:#666">.</span><span style="color:#7d9029">getString</span><span style="color:#666">(</span>FILE_PATH<span style="color:#666">);</span>
+</span></span><span style="display:flex;"><span>    String thumbnailPath <span style="color:#666">=</span> rcsData<span style="color:#666">.</span><span style="color:#7d9029">getString</span><span style="color:#666">(</span>THUMBNAIL_PATH<span style="color:#666">);</span>
+</span></span><span style="display:flex;"><span><span style="color:#666">}</span>
 </span></span></code></pre></div>
             
           </div>
@@ -3251,7 +3252,8 @@
     <li><a href="index.html#aboutpublic-safety-lte">About Public Safety LTE</a></li>
     <li><a href="index.html#getrcsmessage-example">GetRCS Message Example</a>
       <ul>
-        <li></li>
+        <li><a href="index.html#activate-device-manager">Activate Device manager</a></li>
+        <li><a href="index.html#call-knox-apis">Call Knox APIs</a></li>
       </ul>
     </li>
   </ul>
@@ -3356,6 +3358,14 @@
                 href="../../../../../knox-deployment-program.html"
                 class="body-5 d-flex align-items-center text-black fw-light pe-auto text-decoration-none"
                 >Knox Deployment Program</a
+              >
+            </li>
+            
+            <li>
+              <a
+                href="../../../../../knox-msp-portal.html"
+                class="body-5 d-flex align-items-center text-black fw-light pe-auto text-decoration-none"
+                >Knox MSP Portal</a
               >
             </li>
             

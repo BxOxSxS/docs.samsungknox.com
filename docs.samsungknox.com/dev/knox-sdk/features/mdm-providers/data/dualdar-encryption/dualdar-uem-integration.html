@@ -127,8 +127,6 @@
   <ul>
     <li>
   <a href="../../../../../knox-cloud-authentication.html" >Knox Cloud Authentication</a>
-  <ul>
-    </ul>
   </li>
 <li>
   <a href="../../../../../knox-webhook-notification.html" >Knox Webhook Notification</a>
@@ -137,6 +135,9 @@
   </li>
 <li>
   <a href="../../../../../knox-deployment-program.html" >Knox Deployment Program</a>
+  </li>
+<li>
+  <a href="../../../../../knox-msp-portal.html" >Knox MSP Portal</a>
   </li>
 <li>
   <a href="../../../../../knox-mobile-enrollment.html" >Knox Mobile Enrollment</a>
@@ -3302,12 +3303,12 @@
   <li class="nav-item" role="presentation">
     <button
       class="tab-link active px-3 py-2 rounded-5"
-      id="fbecda-tab"
+      id="becfda-tab"
       data-bs-toggle="tab"
-      data-bs-target="#fbecda"
+      data-bs-target="#becfda"
       type="button"
       role="tab"
-      aria-controls="fbecda"
+      aria-controls="becfda"
       aria-selected="true"
     >Setup DualDAR Container
     </button>
@@ -3318,12 +3319,12 @@
   <li class="nav-item" role="presentation">
     <button
       class="tab-link  px-3 py-2 rounded-5"
-      id="fbecad-tab"
+      id="becdfa-tab"
       data-bs-toggle="tab"
-      data-bs-target="#fbecad"
+      data-bs-target="#becdfa"
       type="button"
       role="tab"
-      aria-controls="fbecad"
+      aria-controls="becdfa"
       aria-selected="true"
     >Create a KPE container
     </button>
@@ -3334,12 +3335,12 @@
   <li class="nav-item" role="presentation">
     <button
       class="tab-link  px-3 py-2 rounded-5"
-      id="edabcf-tab"
+      id="eabfcd-tab"
       data-bs-toggle="tab"
-      data-bs-target="#edabcf"
+      data-bs-target="#eabfcd"
       type="button"
       role="tab"
-      aria-controls="edabcf"
+      aria-controls="eabfcd"
       aria-selected="true"
     >Setup DualDAR Container for company-owned devices
     </button>
@@ -3350,12 +3351,12 @@
   <li class="nav-item" role="presentation">
     <button
       class="tab-link  px-3 py-2 rounded-5"
-      id="eafbdc-tab"
+      id="abfdce-tab"
       data-bs-toggle="tab"
-      data-bs-target="#eafbdc"
+      data-bs-target="#abfdce"
       type="button"
       role="tab"
-      aria-controls="eafbdc"
+      aria-controls="abfdce"
       aria-selected="true"
     >Setup DualDAR for fully managed devices
     </button>
@@ -3517,13 +3518,13 @@
   
 
 
-<div class="tab-pane fade  show active  border border-grey-line rounded-3 overflow-hidden" id="fbecda" role="tabpanel" aria-labelledby="fbecda-tab">
+<div class="tab-pane fade  show active  border border-grey-line rounded-3 overflow-hidden" id="becfda" role="tabpanel" aria-labelledby="becfda-tab">
   
   
     
   
   
-  <div class="tab-content p-3"><h3 id="setup-a-dualdar-workspace-container-setup-dualdar-container">Setup a DualDAR Workspace container:</h3><div class="notice-warning"><p>A KPE license must be activated prior to provisioning a profile so the below KPE DualDAR configuration can be implemented.</p></div><div class="highlight"><pre tabindex="0" style=";-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#408080;font-style:italic">// Create Android For Work manage provisioning intent</span></span></span><span style="display:flex;"><span><span style="color:#408080;font-style:italic"></span>Intent provisioningIntent <span style="color:#666">=</span> <span style="color:#008000;font-weight:bold">new</span> Intent<span style="color:#666">(</span>DevicePolicyManager<span style="color:#666">.</span><span style="color:#7d9029">ACTION_PROVISION_MANAGED_PROFILE</span><span style="color:#666">);</span></span></span><span style="display:flex;"><span>provisioningIntent<span style="color:#666">.</span><span style="color:#7d9029">putExtra</span><span style="color:#666">(</span>DevicePolicyManager<span style="color:#666">.</span><span style="color:#7d9029">EXTRA_PROVISIONING_DEVICE_ADMIN_COMPONENT_NAME</span><span style="color:#666">,</span> EDMAppAdmin<span style="color:#666">.</span><span style="color:#7d9029">getComponentName</span><span style="color:#666">(</span>mContext<span style="color:#666">));</span></span></span><span style="display:flex;"><span></span></span><span style="display:flex;"><span><span style="color:#408080;font-style:italic">// Create DualDAR configuration bundle. These two lines are the only differentiators between the KPE workspaces</span></span></span><span style="display:flex;"><span><span style="color:#408080;font-style:italic">// and DualDAR</span></span></span><span style="display:flex;"><span><span style="color:#408080;font-style:italic"></span>PersistableBundle dualDARConfig <span style="color:#666">=</span> <span style="color:#008000;font-weight:bold">new</span> PersistableBundle<span style="color:#666">();</span></span></span><span style="display:flex;"><span>dualDARConfig<span style="color:#666">.</span><span style="color:#7d9029">putBoolean</span><span style="color:#666">(</span>DualDARPolicy<span style="color:#666">.</span><span style="color:#7d9029">KEY_DUAL_DAR_CONFIG</span><span style="color:#666">,</span><span style="color:#008000;font-weight:bold">true</span><span style="color:#666">);</span></span></span><span style="display:flex;"><span></span></span><span style="display:flex;"><span><span style="color:#408080;font-style:italic">/* IT admin can optionally provide the independent 3rd party to provide the inner layer of encryption.</span></span></span><span style="display:flex;"><span><span style="color:#408080;font-style:italic"> * dualDARConfig.putString(DualDARPolicy.KEY_CONFIG_CLIENT_PACKAGE,&#34;com.samsung.android.knox.dualdar.test&#34;);</span></span></span><span style="display:flex;"><span><span style="color:#408080;font-style:italic"> * dualDARConfig.putString(DualDARPolicy.KEY_CONFIG_CLIENT_SIGNATURE,&#34;421e1cf8a047556df7334b9a9b4f7c7c38b3d7280e68cf4245593ec2b47baa64&#34;);</span></span></span><span style="display:flex;"><span><span style="color:#408080;font-style:italic"> * If the above two configurations are not provided the inner layer</span></span></span><span style="display:flex;"><span><span style="color:#408080;font-style:italic"> * encryption is performed by an independent FIPS 140-2 certified cryptographic module included on the device.</span></span></span><span style="display:flex;"><span><span style="color:#408080;font-style:italic"> */</span></span></span><span style="display:flex;"><span></span></span><span style="display:flex;"><span><span style="color:#408080;font-style:italic">// Start workspace provisioning</span></span></span><span style="display:flex;"><span><span style="color:#408080;font-style:italic"></span>provisioningIntent<span style="color:#666">.</span><span style="color:#7d9029">putExtra</span><span style="color:#666">(</span>android<span style="color:#666">.</span><span style="color:#7d9029">app</span><span style="color:#666">.</span><span style="color:#7d9029">admin</span><span style="color:#666">.</span><span style="color:#7d9029">DevicePolicyManager</span><span style="color:#666">.</span><span style="color:#7d9029">EXTRA_PROVISIONING_ADMIN_EXTRAS_BUNDLE</span><span style="color:#666">,</span> dualDARConfig<span style="color:#666">);</span></span></span><span style="display:flex;"><span>startActivityForResult<span style="color:#666">(</span>provisioningIntent<span style="color:#666">,</span> RESULT_PROVISION_MANAGED_PROFILE<span style="color:#666">);</span></span></span></code></pre></div>
+  <div class="tab-content p-3"><h3 id="setup-a-dualdar-workspace-container-setup-dualdar-container">Setup a DualDAR Workspace container:</h3><div class="notice-warning"><p>A KPE license must be activated prior to provisioning a profile so the below KPE DualDAR configuration can be implemented.</p></div><div class="highlight"><pre tabindex="0" style=";-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#408080;font-style:italic">// Create Android For Work manage provisioning intent</span></span></span><span style="display:flex;"><span><span style="color:#408080;font-style:italic"></span>Intent provisioningIntent <span style="color:#666">=</span> <span style="color:#008000;font-weight:bold">new</span> Intent<span style="color:#666">(</span>DevicePolicyManager<span style="color:#666">.</span><span style="color:#7d9029">ACTION_PROVISION_MANAGED_PROFILE</span><span style="color:#666">);</span></span></span><span style="display:flex;"><span>provisioningIntent<span style="color:#666">.</span><span style="color:#7d9029">putExtra</span><span style="color:#666">(</span>DevicePolicyManager<span style="color:#666">.</span><span style="color:#7d9029">EXTRA_PROVISIONING_DEVICE_ADMIN_COMPONENT_NAME</span><span style="color:#666">,</span> EDMAppAdmin<span style="color:#666">.</span><span style="color:#7d9029">getComponentName</span><span style="color:#666">(</span>mContext<span style="color:#666">));</span></span></span><span style="display:flex;"><span></span></span><span style="display:flex;"><span><span style="color:#408080;font-style:italic">// Create DualDAR configuration bundle. These two lines are the only differentiators between the KPE workspaces</span></span></span><span style="display:flex;"><span><span style="color:#408080;font-style:italic">// and DualDAR</span></span></span><span style="display:flex;"><span><span style="color:#408080;font-style:italic"></span>PersistableBundle dualDARConfig <span style="color:#666">=</span> <span style="color:#008000;font-weight:bold">new</span> PersistableBundle<span style="color:#666">();</span></span></span><span style="display:flex;"><span>dualDARConfig<span style="color:#666">.</span><span style="color:#7d9029">putBoolean</span><span style="color:#666">(</span>DualDARPolicy<span style="color:#666">.</span><span style="color:#7d9029">KEY_DUAL_DAR_CONFIG</span><span style="color:#666">,</span><span style="color:#008000;font-weight:bold">true</span><span style="color:#666">);</span></span></span><span style="display:flex;"><span></span></span><span style="display:flex;"><span><span style="color:#408080;font-style:italic">/* IT admin can optionally provide the independent 3rd party to provide the inner layer of encryption.</span></span></span><span style="display:flex;"><span><span style="color:#408080;font-style:italic">* dualDARConfig.putString(DualDARPolicy.KEY_CONFIG_CLIENT_PACKAGE,&#34;com.samsung.android.knox.dualdar.test&#34;);</span></span></span><span style="display:flex;"><span><span style="color:#408080;font-style:italic">* dualDARConfig.putString(DualDARPolicy.KEY_CONFIG_CLIENT_SIGNATURE,&#34;421e1cf8a047556df7334b9a9b4f7c7c38b3d7280e68cf4245593ec2b47baa64&#34;);</span></span></span><span style="display:flex;"><span><span style="color:#408080;font-style:italic">* If the above two configurations are not provided the inner layer</span></span></span><span style="display:flex;"><span><span style="color:#408080;font-style:italic">* encryption is performed by an independent FIPS 140-2 certified cryptographic module included on the device.</span></span></span><span style="display:flex;"><span><span style="color:#408080;font-style:italic">*/</span></span></span><span style="display:flex;"><span></span></span><span style="display:flex;"><span><span style="color:#408080;font-style:italic">// Start workspace provisioning</span></span></span><span style="display:flex;"><span><span style="color:#408080;font-style:italic"></span>provisioningIntent<span style="color:#666">.</span><span style="color:#7d9029">putExtra</span><span style="color:#666">(</span>android<span style="color:#666">.</span><span style="color:#7d9029">app</span><span style="color:#666">.</span><span style="color:#7d9029">admin</span><span style="color:#666">.</span><span style="color:#7d9029">DevicePolicyManager</span><span style="color:#666">.</span><span style="color:#7d9029">EXTRA_PROVISIONING_ADMIN_EXTRAS_BUNDLE</span><span style="color:#666">,</span> dualDARConfig<span style="color:#666">);</span></span></span><span style="display:flex;"><span>startActivityForResult<span style="color:#666">(</span>provisioningIntent<span style="color:#666">,</span> RESULT_PROVISION_MANAGED_PROFILE<span style="color:#666">);</span></span></span></code></pre></div>
   </div>
   
 </div>
@@ -3624,7 +3625,7 @@
   
 
 
-<div class="tab-pane fade  border border-grey-line rounded-3 overflow-hidden" id="fbecad" role="tabpanel" aria-labelledby="fbecad-tab">
+<div class="tab-pane fade  border border-grey-line rounded-3 overflow-hidden" id="becdfa" role="tabpanel" aria-labelledby="becdfa-tab">
   
   
     
@@ -3779,7 +3780,7 @@
   
 
 
-<div class="tab-pane fade  border border-grey-line rounded-3 overflow-hidden" id="edabcf" role="tabpanel" aria-labelledby="edabcf-tab">
+<div class="tab-pane fade  border border-grey-line rounded-3 overflow-hidden" id="eabfcd" role="tabpanel" aria-labelledby="eabfcd-tab">
   
   
     
@@ -3934,7 +3935,7 @@
   
 
 
-<div class="tab-pane fade  border border-grey-line rounded-3 overflow-hidden" id="eafbdc" role="tabpanel" aria-labelledby="eafbdc-tab">
+<div class="tab-pane fade  border border-grey-line rounded-3 overflow-hidden" id="abfdce" role="tabpanel" aria-labelledby="abfdce-tab">
   
   
     
@@ -3972,20 +3973,20 @@
 <ul>
 <li>Use this to check your existing settings associated with the workspace.</li>
 </ul>
-<div class="highlight"><pre tabindex="0" style=";-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span>  <span style="color:#008000;font-weight:bold">try</span> <span style="color:#666">{</span>
-</span></span><span style="display:flex;"><span> <span style="color:#408080;font-style:italic">// get DualDAR active config
-</span></span></span><span style="display:flex;"><span><span style="color:#408080;font-style:italic"></span> Bundle config <span style="color:#666">=</span> dualDARPolicy<span style="color:#666">.</span><span style="color:#7d9029">getConfig</span><span style="color:#666">();</span>
-</span></span><span style="display:flex;"><span> String clientPackage <span style="color:#666">=</span> config<span style="color:#666">.</span><span style="color:#7d9029">getString</span><span style="color:#666">(</span>DualDARPolicy<span style="color:#666">.</span><span style="color:#7d9029">KEY_CONFIG_CLIENT_PACKAGE</span><span style="color:#666">);</span>
-</span></span><span style="display:flex;"><span> String clientSignature <span style="color:#666">=</span> config<span style="color:#666">.</span><span style="color:#7d9029">getString</span><span style="color:#666">(</span>DualDARPolicy<span style="color:#666">.</span><span style="color:#7d9029">KEY_CONFIG_CLIENT_SIGNATURE</span><span style="color:#666">);</span>
-</span></span><span style="display:flex;"><span> <span style="color:#b00040">long</span> dataLockTimeout <span style="color:#666">=</span> config<span style="color:#666">.</span><span style="color:#7d9029">getLong</span><span style="color:#666">(</span>DualDARPolicy<span style="color:#666">.</span><span style="color:#7d9029">KEY_CONFIG_DATA_LOCK_TIMEOUT</span><span style="color:#666">);</span>
-</span></span><span style="display:flex;"><span> Parcelable<span style="color:#666">[]</span> parcelables <span style="color:#666">=</span> config<span style="color:#666">.</span><span style="color:#7d9029">getParcelableArray</span><span style="color:#666">(</span>DualDARPolicy<span style="color:#666">.</span><span style="color:#7d9029">KEY_CONFIG_WHITELISTED_DATA_LOCK_STATE_PACKAGES</span><span style="color:#666">);</span>
-</span></span><span style="display:flex;"><span> AppIdentity<span style="color:#666">[]</span> whitelistedPackages <span style="color:#666">=</span> <span style="color:#008000;font-weight:bold">new</span> AppIdentity<span style="color:#666">[</span>parcelables<span style="color:#666">.</span><span style="color:#7d9029">length</span><span style="color:#666">];</span>
-</span></span><span style="display:flex;"><span> <span style="color:#008000;font-weight:bold">for</span><span style="color:#666">(</span><span style="color:#b00040">int</span> i<span style="color:#666">=</span><span style="color:#666">0</span><span style="color:#666">;</span>i<span style="color:#666">&lt;</span>parcelables<span style="color:#666">.</span><span style="color:#7d9029">length</span><span style="color:#666">;</span>i<span style="color:#666">++)</span> <span style="color:#666">{</span>
-</span></span><span style="display:flex;"><span>     whitelistedPackages<span style="color:#666">[</span>i<span style="color:#666">]</span> <span style="color:#666">=</span> <span style="color:#666">(</span>AppIdentity<span style="color:#666">)</span> parcelables<span style="color:#666">[</span>i<span style="color:#666">];</span>
-</span></span><span style="display:flex;"><span> <span style="color:#666">}</span>
-</span></span><span style="display:flex;"><span> <span style="color:#666">}</span> <span style="color:#008000;font-weight:bold">catch</span> <span style="color:#666">(</span>SecurityException e<span style="color:#666">)</span> <span style="color:#666">{</span>
-</span></span><span style="display:flex;"><span>     Log<span style="color:#666">.</span><span style="color:#7d9029">w</span><span style="color:#666">(</span>TAG<span style="color:#666">,</span> <span style="color:#ba2121">&#34;SecurityException: &#34;</span> <span style="color:#666">+</span> e<span style="color:#666">);</span>
-</span></span><span style="display:flex;"><span> <span style="color:#666">}</span>
+<div class="highlight"><pre tabindex="0" style=";-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#008000;font-weight:bold">try</span> <span style="color:#666">{</span>
+</span></span><span style="display:flex;"><span><span style="color:#408080;font-style:italic">// get DualDAR active config
+</span></span></span><span style="display:flex;"><span><span style="color:#408080;font-style:italic"></span>Bundle config <span style="color:#666">=</span> dualDARPolicy<span style="color:#666">.</span><span style="color:#7d9029">getConfig</span><span style="color:#666">();</span>
+</span></span><span style="display:flex;"><span>String clientPackage <span style="color:#666">=</span> config<span style="color:#666">.</span><span style="color:#7d9029">getString</span><span style="color:#666">(</span>DualDARPolicy<span style="color:#666">.</span><span style="color:#7d9029">KEY_CONFIG_CLIENT_PACKAGE</span><span style="color:#666">);</span>
+</span></span><span style="display:flex;"><span>String clientSignature <span style="color:#666">=</span> config<span style="color:#666">.</span><span style="color:#7d9029">getString</span><span style="color:#666">(</span>DualDARPolicy<span style="color:#666">.</span><span style="color:#7d9029">KEY_CONFIG_CLIENT_SIGNATURE</span><span style="color:#666">);</span>
+</span></span><span style="display:flex;"><span><span style="color:#b00040">long</span> dataLockTimeout <span style="color:#666">=</span> config<span style="color:#666">.</span><span style="color:#7d9029">getLong</span><span style="color:#666">(</span>DualDARPolicy<span style="color:#666">.</span><span style="color:#7d9029">KEY_CONFIG_DATA_LOCK_TIMEOUT</span><span style="color:#666">);</span>
+</span></span><span style="display:flex;"><span>Parcelable<span style="color:#666">[]</span> parcelables <span style="color:#666">=</span> config<span style="color:#666">.</span><span style="color:#7d9029">getParcelableArray</span><span style="color:#666">(</span>DualDARPolicy<span style="color:#666">.</span><span style="color:#7d9029">KEY_CONFIG_WHITELISTED_DATA_LOCK_STATE_PACKAGES</span><span style="color:#666">);</span>
+</span></span><span style="display:flex;"><span>AppIdentity<span style="color:#666">[]</span> whitelistedPackages <span style="color:#666">=</span> <span style="color:#008000;font-weight:bold">new</span> AppIdentity<span style="color:#666">[</span>parcelables<span style="color:#666">.</span><span style="color:#7d9029">length</span><span style="color:#666">];</span>
+</span></span><span style="display:flex;"><span><span style="color:#008000;font-weight:bold">for</span><span style="color:#666">(</span><span style="color:#b00040">int</span> i<span style="color:#666">=</span><span style="color:#666">0</span><span style="color:#666">;</span>i<span style="color:#666">&lt;</span>parcelables<span style="color:#666">.</span><span style="color:#7d9029">length</span><span style="color:#666">;</span>i<span style="color:#666">++)</span> <span style="color:#666">{</span>
+</span></span><span style="display:flex;"><span>    whitelistedPackages<span style="color:#666">[</span>i<span style="color:#666">]</span> <span style="color:#666">=</span> <span style="color:#666">(</span>AppIdentity<span style="color:#666">)</span> parcelables<span style="color:#666">[</span>i<span style="color:#666">];</span>
+</span></span><span style="display:flex;"><span><span style="color:#666">}</span>
+</span></span><span style="display:flex;"><span><span style="color:#666">}</span> <span style="color:#008000;font-weight:bold">catch</span> <span style="color:#666">(</span>SecurityException e<span style="color:#666">)</span> <span style="color:#666">{</span>
+</span></span><span style="display:flex;"><span>    Log<span style="color:#666">.</span><span style="color:#7d9029">w</span><span style="color:#666">(</span>TAG<span style="color:#666">,</span> <span style="color:#ba2121">&#34;SecurityException: &#34;</span> <span style="color:#666">+</span> e<span style="color:#666">);</span>
+</span></span><span style="display:flex;"><span><span style="color:#666">}</span>
 </span></span></code></pre></div></li>
 <li>
 <p>Set the new configuration bundle.</p>
@@ -4029,12 +4030,12 @@
   <li class="nav-item" role="presentation">
     <button
       class="tab-link active px-3 py-2 rounded-5"
-      id="fcaedb-tab"
+      id="eadbfc-tab"
       data-bs-toggle="tab"
-      data-bs-target="#fcaedb"
+      data-bs-target="#eadbfc"
       type="button"
       role="tab"
-      aria-controls="fcaedb"
+      aria-controls="eadbfc"
       aria-selected="true"
     >Set data timeout
     </button>
@@ -4045,12 +4046,12 @@
   <li class="nav-item" role="presentation">
     <button
       class="tab-link  px-3 py-2 rounded-5"
-      id="bedacf-tab"
+      id="bcadef-tab"
       data-bs-toggle="tab"
-      data-bs-target="#bedacf"
+      data-bs-target="#bcadef"
       type="button"
       role="tab"
-      aria-controls="bedacf"
+      aria-controls="bcadef"
       aria-selected="true"
     >Whitelist app packages
     </button>
@@ -4061,12 +4062,12 @@
   <li class="nav-item" role="presentation">
     <button
       class="tab-link  px-3 py-2 rounded-5"
-      id="cfedba-tab"
+      id="dbcafe-tab"
       data-bs-toggle="tab"
-      data-bs-target="#cfedba"
+      data-bs-target="#dbcafe"
       type="button"
       role="tab"
-      aria-controls="cfedba"
+      aria-controls="dbcafe"
       aria-selected="true"
     >Restrict DE storage access
     </button>
@@ -4108,7 +4109,7 @@
   
 
 
-<div class="tab-pane fade  show active  border border-grey-line rounded-3 overflow-hidden" id="fcaedb" role="tabpanel" aria-labelledby="fcaedb-tab">
+<div class="tab-pane fade  show active  border border-grey-line rounded-3 overflow-hidden" id="eadbfc" role="tabpanel" aria-labelledby="eadbfc-tab">
   
   
     
@@ -4161,7 +4162,7 @@
   
 
 
-<div class="tab-pane fade  border border-grey-line rounded-3 overflow-hidden" id="bedacf" role="tabpanel" aria-labelledby="bedacf-tab">
+<div class="tab-pane fade  border border-grey-line rounded-3 overflow-hidden" id="bcadef" role="tabpanel" aria-labelledby="bcadef-tab">
   
   
     
@@ -4220,7 +4221,7 @@
   
 
 
-<div class="tab-pane fade  border border-grey-line rounded-3 overflow-hidden" id="cfedba" role="tabpanel" aria-labelledby="cfedba-tab">
+<div class="tab-pane fade  border border-grey-line rounded-3 overflow-hidden" id="dbcafe" role="tabpanel" aria-labelledby="dbcafe-tab">
   
   
     
@@ -4314,12 +4315,12 @@
 <li><code>ERROR_FAILURE_IN_SETTING_DE_RESTRICTION</code></li>
 <li><code>ERROR_NONE</code></li>
 </ul>
-<div class="highlight"><pre tabindex="0" style=";-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span> <span style="color:#008000;font-weight:bold">try</span> <span style="color:#666">{</span>
-</span></span><span style="display:flex;"><span>     <span style="color:#408080;font-style:italic">// set new DualDAR config
-</span></span></span><span style="display:flex;"><span><span style="color:#408080;font-style:italic"></span>     <span style="color:#408080;font-style:italic">//...
-</span></span></span><span style="display:flex;"><span><span style="color:#408080;font-style:italic"></span> <span style="color:#666">}</span> <span style="color:#008000;font-weight:bold">catch</span> <span style="color:#666">(</span>SecurityException e<span style="color:#666">)</span> <span style="color:#666">{</span>
-</span></span><span style="display:flex;"><span>     Log<span style="color:#666">.</span><span style="color:#7d9029">w</span><span style="color:#666">(</span>TAG<span style="color:#666">,</span> <span style="color:#ba2121">&#34;SecurityException: &#34;</span> <span style="color:#666">+</span> e<span style="color:#666">);</span>
-</span></span><span style="display:flex;"><span> <span style="color:#666">}</span>
+<div class="highlight"><pre tabindex="0" style=";-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#008000;font-weight:bold">try</span> <span style="color:#666">{</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#408080;font-style:italic">// set new DualDAR config
+</span></span></span><span style="display:flex;"><span><span style="color:#408080;font-style:italic"></span>    <span style="color:#408080;font-style:italic">//...
+</span></span></span><span style="display:flex;"><span><span style="color:#408080;font-style:italic"></span><span style="color:#666">}</span> <span style="color:#008000;font-weight:bold">catch</span> <span style="color:#666">(</span>SecurityException e<span style="color:#666">)</span> <span style="color:#666">{</span>
+</span></span><span style="display:flex;"><span>    Log<span style="color:#666">.</span><span style="color:#7d9029">w</span><span style="color:#666">(</span>TAG<span style="color:#666">,</span> <span style="color:#ba2121">&#34;SecurityException: &#34;</span> <span style="color:#666">+</span> e<span style="color:#666">);</span>
+</span></span><span style="display:flex;"><span><span style="color:#666">}</span>
 </span></span></code></pre></div><h2 id="constraints">Constraints</h2>
 <p>Samsung Knox DualDAR leverages Android File Based Encryption (FBE) architecture and as such supports only Samsung devices with FBE. For details, please see <a href="../../../../../../admin/knox-platform-for-enterprise/kbas/kba-360039577713.html" target="_blank">File-based Encryption (FBE)</a>.</p>
 <div class="notice-note"><p>The DualDAR outer layer of encryption leverages the hardware crypto module available with the chipset Qualcomm ICE or Exynos Flash Memory Protector (FMP). Certain low end devices will not have support for FMP. The recommended way to check if DualDAR is supported for a device is to use the <a href="../../../../../../devref/knox-sdk/reference/com/samsung/android/knox/ddar/DualDARPolicy.html#getDualDARVersion%28%29" target="_blank">getDualDARversion()</a> API.</p></div>
@@ -4501,6 +4502,14 @@
                 href="../../../../../knox-deployment-program.html"
                 class="body-5 d-flex align-items-center text-black fw-light pe-auto text-decoration-none"
                 >Knox Deployment Program</a
+              >
+            </li>
+            
+            <li>
+              <a
+                href="../../../../../knox-msp-portal.html"
+                class="body-5 d-flex align-items-center text-black fw-light pe-auto text-decoration-none"
+                >Knox MSP Portal</a
               >
             </li>
             

@@ -127,8 +127,6 @@
   <ul>
     <li>
   <a href="../../knox-cloud-authentication.html" >Knox Cloud Authentication</a>
-  <ul>
-    </ul>
   </li>
 <li>
   <a href="../../knox-webhook-notification.html" >Knox Webhook Notification</a>
@@ -137,6 +135,9 @@
   </li>
 <li>
   <a href="../../knox-deployment-program.html" >Knox Deployment Program</a>
+  </li>
+<li>
+  <a href="../../knox-msp-portal.html" >Knox MSP Portal</a>
   </li>
 <li>
   <a href="../../knox-mobile-enrollment.html" >Knox Mobile Enrollment</a>
@@ -348,7 +349,7 @@
       
       
         <div class="notice-important"><p>Knox Guard v1.0 REST APIs were deprecated as of March 2019. Please migrate to the v1.1 and higher APIs.</p></div>
-<p>Samsung Knox Guard has restructured the authentication framework to adhere to Knox Cloud standards for <a href="../../knox-cloud-authentication/api-reference/api.html">REST API authentication</a>. The <a href="https://www2.samsungknox.com/en/user" target="_blank">Knox Portal dashboard</a> now displays a new tile if you have permission to any of the supported cloud services, to launch the <a href="https://us-api-portal.samsungknox.com" target="_blank">Knox Cloud API portal</a>. From here, you can generate a token for enhanced security across all Samsung Knox Cloud REST API services.</p>
+<p>Samsung Knox Guard has restructured the authentication framework to adhere to Knox Cloud standards for <a href="../../knox-cloud-authentication/knox-cloud-authentication/api-reference/api.html">REST API authentication</a>. The <a href="https://www2.samsungknox.com/en/user" target="_blank">Knox Portal dashboard</a> now displays a new tile if you have permission to any of the supported cloud services, to launch the <a href="https://us-api-portal.samsungknox.com" target="_blank">Knox Cloud API portal</a>. From here, you can generate a token for enhanced security across all Samsung Knox Cloud REST API services.</p>
 <p>If you are new to Knox Guard, disregard the following information and begin using the latest version of the <a href="../api.html">REST APIs</a>. If you are currently using the v1.0 APIs, migrate your solution to the latest APIs, as license keys to use v1.0 expired in March 2019.</p>
 
 
@@ -359,16 +360,16 @@
 
 
 <p><img src="../assets/knox-guard-v1.1-REST-API.png" class="img-fluid img-thumbnail" alt="API version diagram" /></p>
-<p>With Knox Guard v1.1 REST APIs, the authentication token is a Client Identifier and Public Key that is uniquely bound to your Private Key. When the binding process occurs, there is a expiration period of 30 minutes after the accessToken and Client Identifier are encoded. Samsung Knox has created a <a href="../../knox-cloud-authentication/assets/samsung-knox-cloud-jar.zip">JAR file</a> to help implement this binding process. For more information about the binding process and authentication APIs, see the <a href="../../knox-cloud-authentication/api-reference/api.html">Cloud Authentication Guide</a>.</p>
+<p>With Knox Guard v1.1 REST APIs, the authentication token is a Client Identifier and Public Key that is uniquely bound to your Private Key. When the binding process occurs, there is a expiration period of 30 minutes after the accessToken and Client Identifier are encoded. Samsung Knox has created a <a href="../../knox-cloud-authentication/assets/samsung-knox-cloud-jar.zip">JAR file</a> to help implement this binding process. For more information about the binding process and authentication APIs, see the <a href="../../knox-cloud-authentication/knox-cloud-authentication/api-reference/api.html">Cloud Authentication Guide</a>.</p>
 <h2 id="modify-your-rest-apis">Modify your REST APIs</h2>
 <p>To upgrade your existing solution to Knox Guard REST API v1.1, make the following changes below.</p>
 <ul>
 <li><strong>Update the URL</strong> &mdash; Change the versioning URI from <code>v1</code> to <code>v1.1</code>. All version 1 REST APIs have a corresponding v1.1 REST API. See the <a href="../api.html">server</a> for the full change of the URL.</li>
-<li><strong>Generate your token</strong> &mdash; See the <a href="../api.html#tag/Basic/operation/checkAuthorizationUsingGET">authentication parameter</a> and the <a href="../../knox-cloud-authentication/api-reference/api.html">authentication REST API</a> to learn how to create your token.</li>
+<li><strong>Generate your token</strong> &mdash; See the <a href="../api.html#tag/Basic/operation/checkAuthorizationUsingGET">authentication parameter</a> and the <a href="../../knox-cloud-authentication/knox-cloud-authentication/api-reference/api.html">authentication REST API</a> to learn how to create your token.</li>
 <li><strong>Add your API token</strong> &mdash; Modify your previous <a href="../api.html#tag/Basic/operation/checkAuthorizationUsingGET">head parameter</a> <code>x-knox-apikey</code> to the new parameter <code>x-knox-apitoken</code> for all REST API calls.</li>
 </ul>
 <h2 id="how-to-generate-your-new-token">How to generate your new token</h2>
-<p>The <code>x-knox-apitoken</code> will need to be generated every 30 minutes. The timer will start once the <a href="../../knox-cloud-authentication/api-reference/api.html#tag/Authentication/operation/createApiAccessToken"><code>accesstoken</code></a> is bound to the private key; this bound key can then be used as the <code>x-knox-apitoken</code> parameter. For more information on generating your authentication token, see the <a href="../../knox-cloud-authentication/api-reference/api.html">Cloud Authentication API reference</a>.</p>
+<p>The <code>x-knox-apitoken</code> will need to be generated every 30 minutes. The timer will start once the <a href="../../knox-cloud-authentication/knox-cloud-authentication/api-reference/api.html#tag/Authentication/operation/createApiAccessToken"><code>accesstoken</code></a> is bound to the private key; this bound key can then be used as the <code>x-knox-apitoken</code> parameter. For more information on generating your authentication token, see the <a href="../../knox-cloud-authentication/knox-cloud-authentication/api-reference/api.html">Cloud Authentication API reference</a>.</p>
 <ol>
 <li>
 <p>From the Samsung Knox dashboard, launch the Cloud Portal console. This is different than the KG console you requested access to above, but will appear on the Samsung Knox dashboard if you have access to any Samsung Knox Cloud Service.</p>
@@ -398,7 +399,7 @@
 </li>
 </ol>
 <div class="notice-note"><p>After you receive your access token sign it, using the <a href="../../knox-cloud-authentication/assets/samsung-knox-cloud-jar.zip">JAR file</a> to privately encode it, before using it as your authentication token in future Cloud REST API calls. Once signed it will only be valid for 30 minutes.</p></div>
-<p>For more information on how to generate your authentication token, see the <a href="../../knox-cloud-authentication/api-reference/api.html">Knox Cloud Authentication API reference</a>.</p>
+<p>For more information on how to generate your authentication token, see the <a href="../../knox-cloud-authentication/knox-cloud-authentication/api-reference/api.html">Knox Cloud Authentication API reference</a>.</p>
 
             
           </div>
@@ -511,6 +512,14 @@
                 href="../../knox-deployment-program.html"
                 class="body-5 d-flex align-items-center text-black fw-light pe-auto text-decoration-none"
                 >Knox Deployment Program</a
+              >
+            </li>
+            
+            <li>
+              <a
+                href="../../knox-msp-portal.html"
+                class="body-5 d-flex align-items-center text-black fw-light pe-auto text-decoration-none"
+                >Knox MSP Portal</a
               >
             </li>
             

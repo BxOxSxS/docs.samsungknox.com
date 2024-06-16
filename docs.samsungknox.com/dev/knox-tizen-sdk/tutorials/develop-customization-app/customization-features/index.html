@@ -127,8 +127,6 @@
   <ul>
     <li>
   <a href="../../../../knox-cloud-authentication.html" >Knox Cloud Authentication</a>
-  <ul>
-    </ul>
   </li>
 <li>
   <a href="../../../../knox-webhook-notification.html" >Knox Webhook Notification</a>
@@ -137,6 +135,9 @@
   </li>
 <li>
   <a href="../../../../knox-deployment-program.html" >Knox Deployment Program</a>
+  </li>
+<li>
+  <a href="../../../../knox-msp-portal.html" >Knox MSP Portal</a>
   </li>
 <li>
   <a href="../../../../knox-mobile-enrollment.html" >Knox Mobile Enrollment</a>
@@ -563,14 +564,14 @@
 <h3 id="register">Register</h3>
 <p>For the Knox Custom client app to set or apply policies on the Gear device, you must first register the app.</p>
 <p>To register the client app, call <code>knox_custom_register_client (const char *pkg_name)</code> API method.</p>
-<div class="highlight"><pre tabindex="0" style=";-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-cpp" data-lang="cpp"><span style="display:flex;"><span><span style="color:#b00040">int</span> ret <span style="color:#666">=</span> KNOX_RESULT_SUCCESS;
-</span></span><span style="display:flex;"><span>ret <span style="color:#666">=</span> knox_custom_register_client(<span style="color:#ba2121">&#34;com.samsung.knox_custom_test_tool&#34;</span>);
+<div class="highlight"><pre tabindex="0" style=";-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#b00040">int</span> ret <span style="color:#666">=</span> KNOX_RESULT_SUCCESS<span style="color:#666">;</span>
+</span></span><span style="display:flex;"><span>ret <span style="color:#666">=</span> knox_custom_register_client<span style="color:#666">(</span><span style="color:#ba2121">&#34;com.samsung.knox_custom_test_tool&#34;</span><span style="color:#666">);</span>
 </span></span></code></pre></div><p>Once the app is registered, call <code>knox_custom_get_service (void)</code> or the <code>knox_custom_get_service_ext (const char *pkg_name)</code> to verify if the app is registered, and also to get the service from the Knox Custom server daemon.</p>
-<div class="highlight"><pre tabindex="0" style=";-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-cpp" data-lang="cpp"><span style="display:flex;"><span><span style="color:#b00040">int</span> ret <span style="color:#666">=</span> knox_custom_get_service_ext(<span style="color:#ba2121">&#34;com.samsung.knox_custom_test_tool&#34;</span>);
-</span></span><span style="display:flex;"><span><span style="color:#008000;font-weight:bold">if</span> (ret <span style="color:#666">==</span> KNOX_RESULT_SUCCESS) {
+<div class="highlight"><pre tabindex="0" style=";-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#b00040">int</span> ret <span style="color:#666">=</span> knox_custom_get_service_ext<span style="color:#666">(</span><span style="color:#ba2121">&#34;com.samsung.knox_custom_test_tool&#34;</span><span style="color:#666">);</span>
+</span></span><span style="display:flex;"><span><span style="color:#008000;font-weight:bold">if</span> <span style="color:#666">(</span>ret <span style="color:#666">==</span> KNOX_RESULT_SUCCESS<span style="color:#666">)</span> <span style="color:#666">{</span>
 </span></span><span style="display:flex;"><span>  call Knox Custom APIs
-</span></span><span style="display:flex;"><span>}
-</span></span><span style="display:flex;"><span>knox_custom_release_service();
+</span></span><span style="display:flex;"><span><span style="color:#666">}</span>
+</span></span><span style="display:flex;"><span>knox_custom_release_service<span style="color:#666">();</span>
 </span></span></code></pre></div><h3 id="de-register">De-register</h3>
 <p>Call the <code>knox_custom_deregister_client (const char *pkg_name)</code> API method to de-register the client app.</p>
 <div class="notice-note"><p>The policies set by the client app will remain as is even if the app is de-registered that is, there will be no change in the state of Gear device.</p></div>
@@ -585,43 +586,43 @@
 <h3 id="customize-home-activity">Customize home activity</h3>
 <p>Call the <code>knox_custom_set_home_activity (const char *packagename, const char *clockpackagename)</code> API method to set a specific package as a launcher application in the home activity.</p>
 <div class="notice-note"><p>For this version (Knox Tizen SDK for Wearables v1.0.0), default clock package is set as the clock in the home activity. It is not possible to modify the clock package.</p></div>
-<div class="highlight"><pre tabindex="0" style=";-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-cpp" data-lang="cpp"><span style="display:flex;"><span>knox_result_t setProkiosk <span style="color:#666">=</span> knox_custom_set_home_activity(packagename, <span style="color:#008000">NULL</span>);
-</span></span><span style="display:flex;"><span><span style="color:#008000;font-weight:bold">if</span> (setProkiosk <span style="color:#666">!=</span> KNOX_RESULT_SUCCESS) {
-</span></span><span style="display:flex;"><span>  printf(stderr, <span style="color:#ba2121">&#34;Cannot set HomeActivity&#34;</span>);
-</span></span><span style="display:flex;"><span>} <span style="color:#008000;font-weight:bold">else</span> {
-</span></span><span style="display:flex;"><span>  printf(<span style="color:#ba2121">&#34;Knox_custom HomeActivity successfully set&#34;</span>);
-</span></span><span style="display:flex;"><span>}
+<div class="highlight"><pre tabindex="0" style=";-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span>knox_result_t setProkiosk <span style="color:#666">=</span> knox_custom_set_home_activity<span style="color:#666">(</span>packagename<span style="color:#666">,</span> NULL<span style="color:#666">);</span>
+</span></span><span style="display:flex;"><span><span style="color:#008000;font-weight:bold">if</span> <span style="color:#666">(</span>setProkiosk <span style="color:#666">!=</span> KNOX_RESULT_SUCCESS<span style="color:#666">)</span> <span style="color:#666">{</span>
+</span></span><span style="display:flex;"><span>  printf<span style="color:#666">(</span>stderr<span style="color:#666">,</span> <span style="color:#ba2121">&#34;Cannot set HomeActivity&#34;</span><span style="color:#666">);</span>
+</span></span><span style="display:flex;"><span><span style="color:#666">}</span> <span style="color:#008000;font-weight:bold">else</span> <span style="color:#666">{</span>
+</span></span><span style="display:flex;"><span>  printf<span style="color:#666">(</span><span style="color:#ba2121">&#34;Knox_custom HomeActivity successfully set&#34;</span><span style="color:#666">);</span>
+</span></span><span style="display:flex;"><span><span style="color:#666">}</span>
 </span></span></code></pre></div><h3 id="customize-device-display">Customize device display</h3>
 <p>Call the <code>knox_custom_set_hide_notification_messages()</code> API method to show or hide notifications and the moment bar in ProKiosk mode.</p>
-<div class="highlight"><pre tabindex="0" style=";-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-cpp" data-lang="cpp"><span style="display:flex;"><span>knox_result_t setProkiosk <span style="color:#666">=</span> knox_custom_set_hide_notification_messages(state);
-</span></span><span style="display:flex;"><span><span style="color:#008000;font-weight:bold">if</span> (setProkiosk <span style="color:#666">!=</span> KNOX_RESULT_SUCCESS) {
-</span></span><span style="display:flex;"><span>  printf(stderr, <span style="color:#ba2121">&#34;Cannot set the status of notification messages&#34;</span>);
-</span></span><span style="display:flex;"><span>} <span style="color:#008000;font-weight:bold">else</span> {
-</span></span><span style="display:flex;"><span>  printf(<span style="color:#ba2121">&#34;Knox_custom Notification status is successfully set&#34;</span>);
-</span></span><span style="display:flex;"><span>}
+<div class="highlight"><pre tabindex="0" style=";-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span>knox_result_t setProkiosk <span style="color:#666">=</span> knox_custom_set_hide_notification_messages<span style="color:#666">(</span>state<span style="color:#666">);</span>
+</span></span><span style="display:flex;"><span><span style="color:#008000;font-weight:bold">if</span> <span style="color:#666">(</span>setProkiosk <span style="color:#666">!=</span> KNOX_RESULT_SUCCESS<span style="color:#666">)</span> <span style="color:#666">{</span>
+</span></span><span style="display:flex;"><span>  printf<span style="color:#666">(</span>stderr<span style="color:#666">,</span> <span style="color:#ba2121">&#34;Cannot set the status of notification messages&#34;</span><span style="color:#666">);</span>
+</span></span><span style="display:flex;"><span><span style="color:#666">}</span> <span style="color:#008000;font-weight:bold">else</span> <span style="color:#666">{</span>
+</span></span><span style="display:flex;"><span>  printf<span style="color:#666">(</span><span style="color:#ba2121">&#34;Knox_custom Notification status is successfully set&#34;</span><span style="color:#666">);</span>
+</span></span><span style="display:flex;"><span><span style="color:#666">}</span>
 </span></span></code></pre></div><h3 id="customize-exit-ui">Customize exit UI</h3>
 <p>To exit the ProKiosk mode, long-press the physical menu key on the Gear device. The exit display string (button option) is displayed. You can customize the exit UI app and the string using the <code>knox_custom_set_exit_ui()</code> and <code>knox_custom_set_prokiosk_string()</code> API methods respectively.</p>
-<div class="highlight"><pre tabindex="0" style=";-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-cpp" data-lang="cpp"><span style="display:flex;"><span>knox_result_t setProkiosk <span style="color:#666">=</span> knox_custom_set_exit_ui(packagename);
-</span></span><span style="display:flex;"><span><span style="color:#008000;font-weight:bold">if</span> (setProkiosk <span style="color:#666">=</span> KNOX_RESULT_SUCCESS) {
-</span></span><span style="display:flex;"><span>  printf(<span style="color:#ba2121">&#34;Exit UI package succesfully set&#34;</span>);
-</span></span><span style="display:flex;"><span>  knox_result_t setProkioskString <span style="color:#666">=</span> knox_custom_set_prokiosk_string(prokiosk_string);
-</span></span><span style="display:flex;"><span>  <span style="color:#008000;font-weight:bold">if</span> (setProkioskString <span style="color:#666">=</span> KNOX_RESULT_SUCCESS) {
-</span></span><span style="display:flex;"><span>    printf(<span style="color:#ba2121">&#34;Knox_custom ProKiosk exit UI string successfully set&#34;</span>);
-</span></span><span style="display:flex;"><span>  } <span style="color:#008000;font-weight:bold">else</span> {
-</span></span><span style="display:flex;"><span>    printf(stderr, <span style="color:#ba2121">&#34;Cannot set ProKiosk string&#34;</span>);
-</span></span><span style="display:flex;"><span>  }
-</span></span><span style="display:flex;"><span>} <span style="color:#008000;font-weight:bold">else</span> {
-</span></span><span style="display:flex;"><span>  printf(stderr, <span style="color:#ba2121">&#34;Cannot set the exit UI package&#34;</span>);
-</span></span><span style="display:flex;"><span>}
+<div class="highlight"><pre tabindex="0" style=";-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span>knox_result_t setProkiosk <span style="color:#666">=</span> knox_custom_set_exit_ui<span style="color:#666">(</span>packagename<span style="color:#666">);</span>
+</span></span><span style="display:flex;"><span><span style="color:#008000;font-weight:bold">if</span> <span style="color:#666">(</span>setProkiosk <span style="color:#666">=</span> KNOX_RESULT_SUCCESS<span style="color:#666">)</span> <span style="color:#666">{</span>
+</span></span><span style="display:flex;"><span>  printf<span style="color:#666">(</span><span style="color:#ba2121">&#34;Exit UI package succesfully set&#34;</span><span style="color:#666">);</span>
+</span></span><span style="display:flex;"><span>  knox_result_t setProkioskString <span style="color:#666">=</span> knox_custom_set_prokiosk_string<span style="color:#666">(</span>prokiosk_string<span style="color:#666">);</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#008000;font-weight:bold">if</span> <span style="color:#666">(</span>setProkioskString <span style="color:#666">=</span> KNOX_RESULT_SUCCESS<span style="color:#666">)</span> <span style="color:#666">{</span>
+</span></span><span style="display:flex;"><span>    printf<span style="color:#666">(</span><span style="color:#ba2121">&#34;Knox_custom ProKiosk exit UI string successfully set&#34;</span><span style="color:#666">);</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#666">}</span> <span style="color:#008000;font-weight:bold">else</span> <span style="color:#666">{</span>
+</span></span><span style="display:flex;"><span>    printf<span style="color:#666">(</span>stderr<span style="color:#666">,</span> <span style="color:#ba2121">&#34;Cannot set ProKiosk string&#34;</span><span style="color:#666">);</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#666">}</span>
+</span></span><span style="display:flex;"><span><span style="color:#666">}</span> <span style="color:#008000;font-weight:bold">else</span> <span style="color:#666">{</span>
+</span></span><span style="display:flex;"><span>  printf<span style="color:#666">(</span>stderr<span style="color:#666">,</span> <span style="color:#ba2121">&#34;Cannot set the exit UI package&#34;</span><span style="color:#666">);</span>
+</span></span><span style="display:flex;"><span><span style="color:#666">}</span>
 </span></span></code></pre></div><h3 id="prokiosk-exit-menu">ProKiosk exit menu</h3>
 <p>To hide the ProKiosk exit menu in device options, call <code>knox_custom_set_prokiosk_exit_menu ( knox_custom_prokiosk_exit_menu_state_t state )</code>.</p>
 <p>By default the ProKiosk exit menu will be visible in the device options.</p>
-<div class="highlight"><pre tabindex="0" style=";-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-cpp" data-lang="cpp"><span style="display:flex;"><span>knox_result_t setProkioskMenuHide <span style="color:#666">=</span> knox_custom_set_prokiosk_exit_menu(KNOX_CUSTOM_PROKIOSK_EXIT_MENU_HIDE);
-</span></span><span style="display:flex;"><span><span style="color:#008000;font-weight:bold">if</span> (setProkioskMenuHide <span style="color:#666">!=</span> KNOX_RESULT_SUCCESS) {
-</span></span><span style="display:flex;"><span>  printf(stderr, <span style="color:#ba2121">&#34;Error in hiding the prokiosk exit menu&#34;</span>);
-</span></span><span style="display:flex;"><span>} <span style="color:#008000;font-weight:bold">else</span> {
-</span></span><span style="display:flex;"><span>  printf(<span style="color:#ba2121">&#34;Prokiosk exit menu hidden successfully&#34;</span>);
-</span></span><span style="display:flex;"><span>}
+<div class="highlight"><pre tabindex="0" style=";-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span>knox_result_t setProkioskMenuHide <span style="color:#666">=</span> knox_custom_set_prokiosk_exit_menu<span style="color:#666">(</span>KNOX_CUSTOM_PROKIOSK_EXIT_MENU_HIDE<span style="color:#666">);</span>
+</span></span><span style="display:flex;"><span><span style="color:#008000;font-weight:bold">if</span> <span style="color:#666">(</span>setProkioskMenuHide <span style="color:#666">!=</span> KNOX_RESULT_SUCCESS<span style="color:#666">)</span> <span style="color:#666">{</span>
+</span></span><span style="display:flex;"><span>  printf<span style="color:#666">(</span>stderr<span style="color:#666">,</span> <span style="color:#ba2121">&#34;Error in hiding the prokiosk exit menu&#34;</span><span style="color:#666">);</span>
+</span></span><span style="display:flex;"><span><span style="color:#666">}</span> <span style="color:#008000;font-weight:bold">else</span> <span style="color:#666">{</span>
+</span></span><span style="display:flex;"><span>  printf<span style="color:#666">(</span><span style="color:#ba2121">&#34;Prokiosk exit menu hidden successfully&#34;</span><span style="color:#666">);</span>
+</span></span><span style="display:flex;"><span><span style="color:#666">}</span>
 </span></span></code></pre></div><h2 id="create-a-custom-booting-animation">Create a custom booting animation</h2>
 <p>To replace the booting animation with a custom animation, the file type must be an EDJ file. Follow the instructions below to create an EDJ file:</p>
 <h3 id="steps-1">Steps</h3>
@@ -644,82 +645,82 @@
 <div class="notice-note"><p>The header file could also be set to include image files.</p></div>
 </li>
 </ol>
-<div class="highlight"><pre tabindex="0" style=";-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-cpp" data-lang="cpp"><span style="display:flex;"><span><span style="color:#408080;font-style:italic">//project_name.edc file
-</span></span></span><span style="display:flex;"><span><span style="color:#408080;font-style:italic"></span>images {
-</span></span><span style="display:flex;"><span>  <span style="color:#a0a000">image</span>: <span style="color:#ba2121">&#34;/images/Tizen_power_on_01.png&#34;</span>
-</span></span><span style="display:flex;"><span>  COMP;
-</span></span><span style="display:flex;"><span>  <span style="color:#a0a000">image</span>: <span style="color:#ba2121">&#34;/images/Tizen_power_on_02.png&#34;</span>
-</span></span><span style="display:flex;"><span>  COMP;
-</span></span><span style="display:flex;"><span>  <span style="color:#a0a000">image</span>: <span style="color:#ba2121">&#34;/images/Tizen_power_on_03.png&#34;</span>
-</span></span><span style="display:flex;"><span>  COMP;
-</span></span><span style="display:flex;"><span>  <span style="color:#a0a000">image</span>: <span style="color:#ba2121">&#34;/images/Tizen_power_on_04.png&#34;</span>
-</span></span><span style="display:flex;"><span>  COMP;
-</span></span><span style="display:flex;"><span>  <span style="color:#a0a000">image</span>: <span style="color:#ba2121">&#34;/images/Tizen_power_on_05.png&#34;</span>
-</span></span><span style="display:flex;"><span>  COMP;
-</span></span><span style="display:flex;"><span>  <span style="color:#a0a000">image</span>: <span style="color:#ba2121">&#34;/images/Tizen_power_on_06.png&#34;</span>
-</span></span><span style="display:flex;"><span>  COMP;
-</span></span><span style="display:flex;"><span>  <span style="color:#a0a000">image</span>: <span style="color:#ba2121">&#34;/images/Tizen_power_on_07.png&#34;</span>
-</span></span><span style="display:flex;"><span>  COMP;
-</span></span><span style="display:flex;"><span>  <span style="color:#a0a000">image</span>: <span style="color:#ba2121">&#34;/images/Tizen_power_on_08.png&#34;</span>
-</span></span><span style="display:flex;"><span>  COMP;
-</span></span><span style="display:flex;"><span>  <span style="color:#a0a000">image</span>: <span style="color:#ba2121">&#34;/images/Tizen_power_on_09.png&#34;</span>
-</span></span><span style="display:flex;"><span>  COMP;
-</span></span><span style="display:flex;"><span>  <span style="color:#a0a000">image</span>: <span style="color:#ba2121">&#34;/images/Tizen_power_on_10.png&#34;</span>
-</span></span><span style="display:flex;"><span>  COMP;
-</span></span><span style="display:flex;"><span>  <span style="color:#a0a000">image</span>: <span style="color:#ba2121">&#34;/images/Tizen_power_on_11.png&#34;</span>
-</span></span><span style="display:flex;"><span>  COMP;
-</span></span><span style="display:flex;"><span>}
-</span></span><span style="display:flex;"><span>collections {
-</span></span><span style="display:flex;"><span>  group {
-</span></span><span style="display:flex;"><span>    <span style="color:#a0a000">name</span>: <span style="color:#ba2121">&#34;poweron&#34;</span>;
-</span></span><span style="display:flex;"><span>    parts {
-</span></span><span style="display:flex;"><span>      part {
-</span></span><span style="display:flex;"><span>        <span style="color:#a0a000">name</span>: <span style="color:#ba2121">&#34;poweron&#34;</span>;
-</span></span><span style="display:flex;"><span>        <span style="color:#a0a000">mouse_events</span>: <span style="color:#666">0</span>;
-</span></span><span style="display:flex;"><span>        description {
-</span></span><span style="display:flex;"><span>          <span style="color:#a0a000">state</span>: <span style="color:#ba2121">&#34;default&#34;</span>
-</span></span><span style="display:flex;"><span>          <span style="color:#666">0.0</span>;
-</span></span><span style="display:flex;"><span>          image {
-</span></span><span style="display:flex;"><span>            <span style="color:#a0a000">normal</span>: <span style="color:#ba2121">&#34;/images/Tizen_power_on_01.png&#34;</span>; <span style="color:#408080;font-style:italic">//first and default image
-</span></span></span><span style="display:flex;"><span><span style="color:#408080;font-style:italic"></span>            <span style="color:#a0a000">tween</span>: <span style="color:#ba2121">&#34;/images/Tizen_power_on_02.png&#34;</span>;
-</span></span><span style="display:flex;"><span>            <span style="color:#a0a000">tween</span>: <span style="color:#ba2121">&#34;/images/Tizen_power_on_03.png&#34;</span>;
-</span></span><span style="display:flex;"><span>            <span style="color:#a0a000">tween</span>: <span style="color:#ba2121">&#34;/images/Tizen_power_on_04.png&#34;</span>;
-</span></span><span style="display:flex;"><span>            <span style="color:#a0a000">tween</span>: <span style="color:#ba2121">&#34;/images/Tizen_power_on_05.png&#34;</span>;
-</span></span><span style="display:flex;"><span>            <span style="color:#a0a000">tween</span>: <span style="color:#ba2121">&#34;/images/Tizen_power_on_06.png&#34;</span>;
-</span></span><span style="display:flex;"><span>            <span style="color:#a0a000">tween</span>: <span style="color:#ba2121">&#34;/images/Tizen_power_on_07.png&#34;</span>;
-</span></span><span style="display:flex;"><span>            <span style="color:#a0a000">tween</span>: <span style="color:#ba2121">&#34;/images/Tizen_power_on_08.png&#34;</span>;
-</span></span><span style="display:flex;"><span>            <span style="color:#a0a000">tween</span>: <span style="color:#ba2121">&#34;/images/Tizen_power_on_09.png&#34;</span>;
-</span></span><span style="display:flex;"><span>            <span style="color:#a0a000">tween</span>: <span style="color:#ba2121">&#34;/images/Tizen_power_on_10.png&#34;</span>;
-</span></span><span style="display:flex;"><span>            <span style="color:#a0a000">tween</span>: <span style="color:#ba2121">&#34;/images/Tizen_power_on_11.png&#34;</span>;
-</span></span><span style="display:flex;"><span>          }
-</span></span><span style="display:flex;"><span>          <span style="color:#a0a000">visible</span>: <span style="color:#666">1</span>;
-</span></span><span style="display:flex;"><span>        }
-</span></span><span style="display:flex;"><span>      }
-</span></span><span style="display:flex;"><span>    }
-</span></span><span style="display:flex;"><span>    programs {
-</span></span><span style="display:flex;"><span>      program {
-</span></span><span style="display:flex;"><span>        <span style="color:#a0a000">name</span>: <span style="color:#ba2121">&#34;poweron&#34;</span>;
-</span></span><span style="display:flex;"><span>        <span style="color:#a0a000">signal</span>: <span style="color:#ba2121">&#34;show&#34;</span>; <span style="color:#408080;font-style:italic">//start animation
-</span></span></span><span style="display:flex;"><span><span style="color:#408080;font-style:italic"></span>        <span style="color:#a0a000">action</span>: STATE_SET <span style="color:#ba2121">&#34;default&#34;</span>
-</span></span><span style="display:flex;"><span>        <span style="color:#666">0.0</span>; <span style="color:#408080;font-style:italic">//state for the image part
-</span></span></span><span style="display:flex;"><span><span style="color:#408080;font-style:italic"></span>        <span style="color:#a0a000">target</span>: <span style="color:#ba2121">&#34;poweron&#34;</span>; <span style="color:#408080;font-style:italic">//part name
-</span></span></span><span style="display:flex;"><span><span style="color:#408080;font-style:italic"></span>        <span style="color:#a0a000">transition</span>: LINEAR <span style="color:#666">4</span>; <span style="color:#408080;font-style:italic">//animation type and duration in seconds
-</span></span></span><span style="display:flex;"><span><span style="color:#408080;font-style:italic"></span>        <span style="color:#a0a000">after</span>: <span style="color:#ba2121">&#34;poweron_end&#34;</span>;
-</span></span><span style="display:flex;"><span>      }
-</span></span><span style="display:flex;"><span>      program {
-</span></span><span style="display:flex;"><span>        <span style="color:#a0a000">name</span>: <span style="color:#ba2121">&#34;poweron_end&#34;</span>;
-</span></span><span style="display:flex;"><span>        <span style="color:#a0a000">action</span>: SIGNAL_EMIT <span style="color:#ba2121">&#34;end&#34;</span>
-</span></span><span style="display:flex;"><span>        <span style="color:#ba2121">&#34;animation&#34;</span>;
-</span></span><span style="display:flex;"><span>      }
-</span></span><span style="display:flex;"><span>    }
-</span></span><span style="display:flex;"><span>  }
-</span></span><span style="display:flex;"><span>}
+<div class="highlight"><pre tabindex="0" style=";-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#408080;font-style:italic">//project_name.edc file
+</span></span></span><span style="display:flex;"><span><span style="color:#408080;font-style:italic"></span>images <span style="color:#666">{</span>
+</span></span><span style="display:flex;"><span>  image<span style="color:#666">:</span> <span style="color:#ba2121">&#34;/images/Tizen_power_on_01.png&#34;</span>
+</span></span><span style="display:flex;"><span>  COMP<span style="color:#666">;</span>
+</span></span><span style="display:flex;"><span>  image<span style="color:#666">:</span> <span style="color:#ba2121">&#34;/images/Tizen_power_on_02.png&#34;</span>
+</span></span><span style="display:flex;"><span>  COMP<span style="color:#666">;</span>
+</span></span><span style="display:flex;"><span>  image<span style="color:#666">:</span> <span style="color:#ba2121">&#34;/images/Tizen_power_on_03.png&#34;</span>
+</span></span><span style="display:flex;"><span>  COMP<span style="color:#666">;</span>
+</span></span><span style="display:flex;"><span>  image<span style="color:#666">:</span> <span style="color:#ba2121">&#34;/images/Tizen_power_on_04.png&#34;</span>
+</span></span><span style="display:flex;"><span>  COMP<span style="color:#666">;</span>
+</span></span><span style="display:flex;"><span>  image<span style="color:#666">:</span> <span style="color:#ba2121">&#34;/images/Tizen_power_on_05.png&#34;</span>
+</span></span><span style="display:flex;"><span>  COMP<span style="color:#666">;</span>
+</span></span><span style="display:flex;"><span>  image<span style="color:#666">:</span> <span style="color:#ba2121">&#34;/images/Tizen_power_on_06.png&#34;</span>
+</span></span><span style="display:flex;"><span>  COMP<span style="color:#666">;</span>
+</span></span><span style="display:flex;"><span>  image<span style="color:#666">:</span> <span style="color:#ba2121">&#34;/images/Tizen_power_on_07.png&#34;</span>
+</span></span><span style="display:flex;"><span>  COMP<span style="color:#666">;</span>
+</span></span><span style="display:flex;"><span>  image<span style="color:#666">:</span> <span style="color:#ba2121">&#34;/images/Tizen_power_on_08.png&#34;</span>
+</span></span><span style="display:flex;"><span>  COMP<span style="color:#666">;</span>
+</span></span><span style="display:flex;"><span>  image<span style="color:#666">:</span> <span style="color:#ba2121">&#34;/images/Tizen_power_on_09.png&#34;</span>
+</span></span><span style="display:flex;"><span>  COMP<span style="color:#666">;</span>
+</span></span><span style="display:flex;"><span>  image<span style="color:#666">:</span> <span style="color:#ba2121">&#34;/images/Tizen_power_on_10.png&#34;</span>
+</span></span><span style="display:flex;"><span>  COMP<span style="color:#666">;</span>
+</span></span><span style="display:flex;"><span>  image<span style="color:#666">:</span> <span style="color:#ba2121">&#34;/images/Tizen_power_on_11.png&#34;</span>
+</span></span><span style="display:flex;"><span>  COMP<span style="color:#666">;</span>
+</span></span><span style="display:flex;"><span><span style="color:#666">}</span>
+</span></span><span style="display:flex;"><span>collections <span style="color:#666">{</span>
+</span></span><span style="display:flex;"><span>  group <span style="color:#666">{</span>
+</span></span><span style="display:flex;"><span>    name<span style="color:#666">:</span> <span style="color:#ba2121">&#34;poweron&#34;</span><span style="color:#666">;</span>
+</span></span><span style="display:flex;"><span>    parts <span style="color:#666">{</span>
+</span></span><span style="display:flex;"><span>      part <span style="color:#666">{</span>
+</span></span><span style="display:flex;"><span>        name<span style="color:#666">:</span> <span style="color:#ba2121">&#34;poweron&#34;</span><span style="color:#666">;</span>
+</span></span><span style="display:flex;"><span>        mouse_events<span style="color:#666">:</span> <span style="color:#666">0</span><span style="color:#666">;</span>
+</span></span><span style="display:flex;"><span>        description <span style="color:#666">{</span>
+</span></span><span style="display:flex;"><span>          state<span style="color:#666">:</span> <span style="color:#ba2121">&#34;default&#34;</span>
+</span></span><span style="display:flex;"><span>          <span style="color:#666">0.0</span><span style="color:#666">;</span>
+</span></span><span style="display:flex;"><span>          image <span style="color:#666">{</span>
+</span></span><span style="display:flex;"><span>            normal<span style="color:#666">:</span> <span style="color:#ba2121">&#34;/images/Tizen_power_on_01.png&#34;</span><span style="color:#666">;</span> <span style="color:#408080;font-style:italic">//first and default image
+</span></span></span><span style="display:flex;"><span><span style="color:#408080;font-style:italic"></span>            tween<span style="color:#666">:</span> <span style="color:#ba2121">&#34;/images/Tizen_power_on_02.png&#34;</span><span style="color:#666">;</span>
+</span></span><span style="display:flex;"><span>            tween<span style="color:#666">:</span> <span style="color:#ba2121">&#34;/images/Tizen_power_on_03.png&#34;</span><span style="color:#666">;</span>
+</span></span><span style="display:flex;"><span>            tween<span style="color:#666">:</span> <span style="color:#ba2121">&#34;/images/Tizen_power_on_04.png&#34;</span><span style="color:#666">;</span>
+</span></span><span style="display:flex;"><span>            tween<span style="color:#666">:</span> <span style="color:#ba2121">&#34;/images/Tizen_power_on_05.png&#34;</span><span style="color:#666">;</span>
+</span></span><span style="display:flex;"><span>            tween<span style="color:#666">:</span> <span style="color:#ba2121">&#34;/images/Tizen_power_on_06.png&#34;</span><span style="color:#666">;</span>
+</span></span><span style="display:flex;"><span>            tween<span style="color:#666">:</span> <span style="color:#ba2121">&#34;/images/Tizen_power_on_07.png&#34;</span><span style="color:#666">;</span>
+</span></span><span style="display:flex;"><span>            tween<span style="color:#666">:</span> <span style="color:#ba2121">&#34;/images/Tizen_power_on_08.png&#34;</span><span style="color:#666">;</span>
+</span></span><span style="display:flex;"><span>            tween<span style="color:#666">:</span> <span style="color:#ba2121">&#34;/images/Tizen_power_on_09.png&#34;</span><span style="color:#666">;</span>
+</span></span><span style="display:flex;"><span>            tween<span style="color:#666">:</span> <span style="color:#ba2121">&#34;/images/Tizen_power_on_10.png&#34;</span><span style="color:#666">;</span>
+</span></span><span style="display:flex;"><span>            tween<span style="color:#666">:</span> <span style="color:#ba2121">&#34;/images/Tizen_power_on_11.png&#34;</span><span style="color:#666">;</span>
+</span></span><span style="display:flex;"><span>          <span style="color:#666">}</span>
+</span></span><span style="display:flex;"><span>          visible<span style="color:#666">:</span> <span style="color:#666">1</span><span style="color:#666">;</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#666">}</span>
+</span></span><span style="display:flex;"><span>      <span style="color:#666">}</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#666">}</span>
+</span></span><span style="display:flex;"><span>    programs <span style="color:#666">{</span>
+</span></span><span style="display:flex;"><span>      program <span style="color:#666">{</span>
+</span></span><span style="display:flex;"><span>        name<span style="color:#666">:</span> <span style="color:#ba2121">&#34;poweron&#34;</span><span style="color:#666">;</span>
+</span></span><span style="display:flex;"><span>        signal<span style="color:#666">:</span> <span style="color:#ba2121">&#34;show&#34;</span><span style="color:#666">;</span> <span style="color:#408080;font-style:italic">//start animation
+</span></span></span><span style="display:flex;"><span><span style="color:#408080;font-style:italic"></span>        action<span style="color:#666">:</span> STATE_SET <span style="color:#ba2121">&#34;default&#34;</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#666">0.0</span><span style="color:#666">;</span> <span style="color:#408080;font-style:italic">//state for the image part
+</span></span></span><span style="display:flex;"><span><span style="color:#408080;font-style:italic"></span>        target<span style="color:#666">:</span> <span style="color:#ba2121">&#34;poweron&#34;</span><span style="color:#666">;</span> <span style="color:#408080;font-style:italic">//part name
+</span></span></span><span style="display:flex;"><span><span style="color:#408080;font-style:italic"></span>        transition<span style="color:#666">:</span> LINEAR <span style="color:#666">4</span><span style="color:#666">;</span> <span style="color:#408080;font-style:italic">//animation type and duration in seconds
+</span></span></span><span style="display:flex;"><span><span style="color:#408080;font-style:italic"></span>        after<span style="color:#666">:</span> <span style="color:#ba2121">&#34;poweron_end&#34;</span><span style="color:#666">;</span>
+</span></span><span style="display:flex;"><span>      <span style="color:#666">}</span>
+</span></span><span style="display:flex;"><span>      program <span style="color:#666">{</span>
+</span></span><span style="display:flex;"><span>        name<span style="color:#666">:</span> <span style="color:#ba2121">&#34;poweron_end&#34;</span><span style="color:#666">;</span>
+</span></span><span style="display:flex;"><span>        action<span style="color:#666">:</span> SIGNAL_EMIT <span style="color:#ba2121">&#34;end&#34;</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#ba2121">&#34;animation&#34;</span><span style="color:#666">;</span>
+</span></span><span style="display:flex;"><span>      <span style="color:#666">}</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#666">}</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#666">}</span>
+</span></span><span style="display:flex;"><span><span style="color:#666">}</span>
 </span></span></code></pre></div><h3 id="booting-animation-file-specifications">Booting animation file specifications</h3>
 <div class="overflow-auto my-3"><table>
     <tr>
-        <th></th>
-        <th>POP/Solis</th>
-        <th>Memo</th>
+        <th scope="col"></th>
+        <th scope="col">POP/Solis</th>
+        <th scope="col">Memo</th>
     </tr>
     <tr>
         <td>Resolution</td>
@@ -899,6 +900,14 @@
                 href="../../../../knox-deployment-program.html"
                 class="body-5 d-flex align-items-center text-black fw-light pe-auto text-decoration-none"
                 >Knox Deployment Program</a
+              >
+            </li>
+            
+            <li>
+              <a
+                href="../../../../knox-msp-portal.html"
+                class="body-5 d-flex align-items-center text-black fw-light pe-auto text-decoration-none"
+                >Knox MSP Portal</a
               >
             </li>
             

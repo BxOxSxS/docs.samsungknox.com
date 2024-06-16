@@ -127,8 +127,6 @@
   <ul>
     <li>
   <a href="../../../../../knox-cloud-authentication.html" >Knox Cloud Authentication</a>
-  <ul>
-    </ul>
   </li>
 <li>
   <a href="../../../../../knox-webhook-notification.html" >Knox Webhook Notification</a>
@@ -137,6 +135,9 @@
   </li>
 <li>
   <a href="../../../../../knox-deployment-program.html" >Knox Deployment Program</a>
+  </li>
+<li>
+  <a href="../../../../../knox-msp-portal.html" >Knox MSP Portal</a>
   </li>
 <li>
   <a href="../../../../../knox-mobile-enrollment.html" >Knox Mobile Enrollment</a>
@@ -3282,9 +3283,10 @@
 <li>
 <p>Upon successful registration, call <code>NetworkAnalytics.start</code></p>
 <div class="highlight"><pre tabindex="0" style=";-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span>NetworkAnalytics mNap <span style="color:#666">=</span> NetworkAnalytics<span style="color:#666">.</span><span style="color:#7d9029">getInstance</span><span style="color:#666">(</span>mContext<span style="color:#666">);</span>
-</span></span><span style="display:flex;"><span>                    <span style="color:#008000;font-weight:bold">if</span> <span style="color:#666">(</span>mNap <span style="color:#666">!=</span> <span style="color:#008000;font-weight:bold">null</span><span style="color:#666">){</span>
-</span></span><span style="display:flex;"><span>                    mNap<span style="color:#666">.</span><span style="color:#7d9029">start</span><span style="color:#666">(</span><span style="color:#ba2121">&#34;testing&#34;</span><span style="color:#666">);</span>
-</span></span><span style="display:flex;"><span>                    <span style="color:#666">}</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#008000;font-weight:bold">if</span> <span style="color:#666">(</span>mNap <span style="color:#666">!=</span> <span style="color:#008000;font-weight:bold">null</span><span style="color:#666">)</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#666">{</span>
+</span></span><span style="display:flex;"><span>            mNap<span style="color:#666">.</span><span style="color:#7d9029">start</span><span style="color:#666">(</span><span style="color:#ba2121">&#34;testing&#34;</span><span style="color:#666">);</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#666">}</span>
 </span></span></code></pre></div><p>A successful call means the NPA framework binds to a service in the NPA client using the action <code>package_name.NetworkAnalyticsConstants.VENDOR_BIND_ACTION</code>.</p>
 <p>For example, if the package name is <code>com.samsung.test.networkmonitor_denali</code>, then the bind action is <code>com.samsung.test.networkmonitor_denali_namonitoraction</code>.</p>
 </li>
@@ -3302,21 +3304,21 @@
 </span></span><span style="display:flex;"><span>  <span style="color:#666">&lt;/</span>intent<span style="color:#666">-</span>filter<span style="color:#666">&gt;</span>
 </span></span><span style="display:flex;"><span><span style="color:#666">&lt;/</span>service<span style="color:#666">&gt;</span>
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>			<span style="color:#008000;font-weight:bold">public</span> <span style="color:#008000;font-weight:bold">class</span> <span style="color:#00f;font-weight:bold">NPAService</span> <span style="color:#008000;font-weight:bold">extends</span> Service <span style="color:#666">{</span>
+</span></span><span style="display:flex;"><span><span style="color:#008000;font-weight:bold">public</span> <span style="color:#008000;font-weight:bold">class</span> <span style="color:#00f;font-weight:bold">NPAService</span> <span style="color:#008000;font-weight:bold">extends</span> Service <span style="color:#666">{</span>
 </span></span><span style="display:flex;"><span>  <span style="color:#a2f">@Override</span>
 </span></span><span style="display:flex;"><span>  <span style="color:#008000;font-weight:bold">public</span> IBinder <span style="color:#00f">onBind</span><span style="color:#666">(</span>Intent intent<span style="color:#666">)</span> <span style="color:#666">{</span>
 </span></span><span style="display:flex;"><span>    <span style="color:#008000;font-weight:bold">return</span> getBinder<span style="color:#666">();</span>
 </span></span><span style="display:flex;"><span>  <span style="color:#666">}</span> 
-</span></span><span style="display:flex;"><span>			<span style="color:#008000;font-weight:bold">private</span> INetworkAnalyticsService<span style="color:#666">.</span><span style="color:#7d9029">Stub</span> <span style="color:#00f">getBinder</span><span style="color:#666">()</span> <span style="color:#666">{</span>
+</span></span><span style="display:flex;"><span>            <span style="color:#008000;font-weight:bold">private</span> INetworkAnalyticsService<span style="color:#666">.</span><span style="color:#7d9029">Stub</span> <span style="color:#00f">getBinder</span><span style="color:#666">()</span> <span style="color:#666">{</span>
 </span></span><span style="display:flex;"><span>    <span style="color:#008000;font-weight:bold">return</span> <span style="color:#008000;font-weight:bold">new</span> INetworkAnalyticsService<span style="color:#666">.</span><span style="color:#7d9029">Stub</span><span style="color:#666">()</span> <span style="color:#666">{</span>
 </span></span><span style="display:flex;"><span>      <span style="color:#a2f">@Override</span>
 </span></span><span style="display:flex;"><span>         <span style="color:#008000;font-weight:bold">public</span> <span style="color:#b00040">int</span> <span style="color:#00f">onDeactivateProfile</span><span style="color:#666">(</span>String profileName<span style="color:#666">,</span> <span style="color:#b00040">int</span> userId<span style="color:#666">)</span> <span style="color:#008000;font-weight:bold">throws</span> RemoteException<span style="color:#666">{</span>
 </span></span><span style="display:flex;"><span>          <span style="color:#008000;font-weight:bold">return</span> <span style="color:#666">0</span><span style="color:#666">;</span>
 </span></span><span style="display:flex;"><span>      <span style="color:#666">}</span>
-</span></span><span style="display:flex;"><span>			<span style="color:#a2f">@Override</span>
-</span></span><span style="display:flex;"><span>			<span style="color:#008000;font-weight:bold">public</span> <span style="color:#b00040">void</span> <span style="color:#00f">onDataAvailable</span><span style="color:#666">(</span>String profileName<span style="color:#666">,</span> List<span style="color:#666">&lt;</span>String<span style="color:#666">&gt;</span> data<span style="color:#666">)</span> <span style="color:#008000;font-weight:bold">throws</span> RemoteException <span style="color:#666">{</span>
+</span></span><span style="display:flex;"><span>            <span style="color:#a2f">@Override</span>
+</span></span><span style="display:flex;"><span>            <span style="color:#008000;font-weight:bold">public</span> <span style="color:#b00040">void</span> <span style="color:#00f">onDataAvailable</span><span style="color:#666">(</span>String profileName<span style="color:#666">,</span> List<span style="color:#666">&lt;</span>String<span style="color:#666">&gt;</span> data<span style="color:#666">)</span> <span style="color:#008000;font-weight:bold">throws</span> RemoteException <span style="color:#666">{</span>
 </span></span><span style="display:flex;"><span>      <span style="color:#666">}</span>
-</span></span><span style="display:flex;"><span>		<span style="color:#a2f">@Override</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#a2f">@Override</span>
 </span></span><span style="display:flex;"><span>        <span style="color:#008000;font-weight:bold">public</span> <span style="color:#b00040">int</span> <span style="color:#00f">onActivateProfile</span><span style="color:#666">(</span>String jsonProfile<span style="color:#666">,</span> <span style="color:#b00040">int</span> userId<span style="color:#666">,</span> String uniqueId<span style="color:#666">)</span> <span style="color:#008000;font-weight:bold">throws</span> RemoteException <span style="color:#666">{</span>
 </span></span><span style="display:flex;"><span>          <span style="color:#008000;font-weight:bold">return</span> <span style="color:#666">0</span><span style="color:#666">;</span>
 </span></span><span style="display:flex;"><span>      <span style="color:#666">}</span>
@@ -3480,6 +3482,14 @@
                 href="../../../../../knox-deployment-program.html"
                 class="body-5 d-flex align-items-center text-black fw-light pe-auto text-decoration-none"
                 >Knox Deployment Program</a
+              >
+            </li>
+            
+            <li>
+              <a
+                href="../../../../../knox-msp-portal.html"
+                class="body-5 d-flex align-items-center text-black fw-light pe-auto text-decoration-none"
+                >Knox MSP Portal</a
               >
             </li>
             

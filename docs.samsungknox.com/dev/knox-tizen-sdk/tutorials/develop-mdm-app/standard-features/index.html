@@ -127,8 +127,6 @@
   <ul>
     <li>
   <a href="../../../../knox-cloud-authentication.html" >Knox Cloud Authentication</a>
-  <ul>
-    </ul>
   </li>
 <li>
   <a href="../../../../knox-webhook-notification.html" >Knox Webhook Notification</a>
@@ -137,6 +135,9 @@
   </li>
 <li>
   <a href="../../../../knox-deployment-program.html" >Knox Deployment Program</a>
+  </li>
+<li>
+  <a href="../../../../knox-msp-portal.html" >Knox MSP Portal</a>
   </li>
 <li>
   <a href="../../../../knox-mobile-enrollment.html" >Knox Mobile Enrollment</a>
@@ -568,8 +569,8 @@
 <p>The following table lists the Samsung Knox Tizen SDK for Wearables - Standard policy groups:</p>
 <div class="overflow-auto my-3"><table>
     <tr>
-        <th>Knox SDK</th>
-        <th>Policy Groups</th>
+        <th scope="col">Knox SDK</th>
+        <th scope="col">Policy Groups</th>
     </tr>
     <tr>
         <td>Samsung Knox Tizen SDK for Wearables -MDM</td>
@@ -608,12 +609,12 @@
   <li class="nav-item" role="presentation">
     <button
       class="tab-link active px-3 py-2 rounded-5"
-      id="bdfeac-tab"
+      id="fcedba-tab"
       data-bs-toggle="tab"
-      data-bs-target="#bdfeac"
+      data-bs-target="#fcedba"
       type="button"
       role="tab"
-      aria-controls="bdfeac"
+      aria-controls="fcedba"
       aria-selected="true"
     >KPE License Keys
     </button>
@@ -624,12 +625,12 @@
   <li class="nav-item" role="presentation">
     <button
       class="tab-link  px-3 py-2 rounded-5"
-      id="beadfc-tab"
+      id="badcfe-tab"
       data-bs-toggle="tab"
-      data-bs-target="#beadfc"
+      data-bs-target="#badcfe"
       type="button"
       role="tab"
-      aria-controls="beadfc"
+      aria-controls="badcfe"
       aria-selected="true"
     >Legacy License Keys
     </button>
@@ -748,7 +749,7 @@
   
 
 
-<div class="tab-pane fade  show active  border border-grey-line rounded-3 overflow-hidden" id="bdfeac" role="tabpanel" aria-labelledby="bdfeac-tab">
+<div class="tab-pane fade  show active  border border-grey-line rounded-3 overflow-hidden" id="fcedba" role="tabpanel" aria-labelledby="fcedba-tab">
   
   
     
@@ -874,7 +875,7 @@
   
 
 
-<div class="tab-pane fade  border border-grey-line rounded-3 overflow-hidden" id="beadfc" role="tabpanel" aria-labelledby="beadfc-tab">
+<div class="tab-pane fade  border border-grey-line rounded-3 overflow-hidden" id="badcfe" role="tabpanel" aria-labelledby="badcfe-tab">
   
   
     
@@ -902,26 +903,26 @@
 <h3 id="register">Register</h3>
 <p>For the MDM client app to set or apply policies on the Gear device, you must first register the app. To register the client app, call <code>mdm_register_client ( const char * pkg_name )</code> API method.</p>
 <p>Then, call the <code>mdm_result_t mdm_get_service ( void )</code> API method to connect to MDM server daemon, and get the caller information.</p>
-<div class="highlight"><pre tabindex="0" style=";-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-cpp" data-lang="cpp"><span style="display:flex;"><span><span style="color:#408080;font-style:italic">// The package name of the app to register as an MDM client
-</span></span></span><span style="display:flex;"><span><span style="color:#408080;font-style:italic"></span><span style="color:#bc7a00">#
-</span></span></span><span style="display:flex;"><span><span style="color:#bc7a00"></span>define PACKAGE_NAME <span style="color:#ba2121">&#34;org.example.wearabletutorial&#34;</span>
-</span></span><span style="display:flex;"><span> ...
+<div class="highlight"><pre tabindex="0" style=";-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#408080;font-style:italic">// The package name of the app to register as an MDM client
+</span></span></span><span style="display:flex;"><span><span style="color:#408080;font-style:italic"></span><span style="">#</span>
+</span></span><span style="display:flex;"><span>define PACKAGE_NAME <span style="color:#ba2121">&#34;org.example.wearabletutorial&#34;</span>
+</span></span><span style="display:flex;"><span> <span style="color:#666">...</span>
 </span></span><span style="display:flex;"><span>  <span style="color:#408080;font-style:italic">// Register MDM client
-</span></span></span><span style="display:flex;"><span><span style="color:#408080;font-style:italic"></span>  <span style="color:#008000;font-weight:bold">if</span> (mdm_register_client(PACKAGE_NAME) <span style="color:#666">==</span> MDM_RESULT_SUCCESS) {
+</span></span></span><span style="display:flex;"><span><span style="color:#408080;font-style:italic"></span>  <span style="color:#008000;font-weight:bold">if</span> <span style="color:#666">(</span>mdm_register_client<span style="color:#666">(</span>PACKAGE_NAME<span style="color:#666">)</span> <span style="color:#666">==</span> MDM_RESULT_SUCCESS<span style="color:#666">)</span> <span style="color:#666">{</span>
 </span></span><span style="display:flex;"><span>    <span style="color:#408080;font-style:italic">// Connect to the MDM server daemon, and verify that the
 </span></span></span><span style="display:flex;"><span><span style="color:#408080;font-style:italic"></span>    <span style="color:#408080;font-style:italic">// app is authorized to get MDM client information
-</span></span></span><span style="display:flex;"><span><span style="color:#408080;font-style:italic"></span>    <span style="color:#008000;font-weight:bold">if</span> (mdm_get_service() <span style="color:#666">==</span> MDM_RESULT_SUCCESS) {
+</span></span></span><span style="display:flex;"><span><span style="color:#408080;font-style:italic"></span>    <span style="color:#008000;font-weight:bold">if</span> <span style="color:#666">(</span>mdm_get_service<span style="color:#666">()</span> <span style="color:#666">==</span> MDM_RESULT_SUCCESS<span style="color:#666">)</span> <span style="color:#666">{</span>
 </span></span><span style="display:flex;"><span>      <span style="color:#408080;font-style:italic">// App is authorized; register callback
-</span></span></span><span style="display:flex;"><span><span style="color:#408080;font-style:italic"></span>      mdm_register_client_callback(MDM_LICENSE_CB, __license_callback_, <span style="color:#008000">NULL</span>, <span style="color:#008000">NULL</span>);
-</span></span><span style="display:flex;"><span>    } <span style="color:#008000;font-weight:bold">else</span> {
+</span></span></span><span style="display:flex;"><span><span style="color:#408080;font-style:italic"></span>      mdm_register_client_callback<span style="color:#666">(</span>MDM_LICENSE_CB<span style="color:#666">,</span> __license_callback_<span style="color:#666">,</span> NULL<span style="color:#666">,</span> NULL<span style="color:#666">);</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#666">}</span> <span style="color:#008000;font-weight:bold">else</span> <span style="color:#666">{</span>
 </span></span><span style="display:flex;"><span>      <span style="color:#408080;font-style:italic">// Could not connect to daemon or app is not authorized
 </span></span></span><span style="display:flex;"><span><span style="color:#408080;font-style:italic"></span>      <span style="color:#408080;font-style:italic">// to get MDM client information
-</span></span></span><span style="display:flex;"><span><span style="color:#408080;font-style:italic"></span>      <span style="color:#008000;font-weight:bold">return</span> <span style="color:#008000">false</span>;
-</span></span><span style="display:flex;"><span>    }
-</span></span><span style="display:flex;"><span>  } <span style="color:#008000;font-weight:bold">else</span> {
+</span></span></span><span style="display:flex;"><span><span style="color:#408080;font-style:italic"></span>      <span style="color:#008000;font-weight:bold">return</span> <span style="color:#008000;font-weight:bold">false</span><span style="color:#666">;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#666">}</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#666">}</span> <span style="color:#008000;font-weight:bold">else</span> <span style="color:#666">{</span>
 </span></span><span style="display:flex;"><span>    <span style="color:#408080;font-style:italic">// Failed to register the client
-</span></span></span><span style="display:flex;"><span><span style="color:#408080;font-style:italic"></span>    <span style="color:#008000;font-weight:bold">return</span> <span style="color:#008000">false</span>;
-</span></span><span style="display:flex;"><span>  }
+</span></span></span><span style="display:flex;"><span><span style="color:#408080;font-style:italic"></span>    <span style="color:#008000;font-weight:bold">return</span> <span style="color:#008000;font-weight:bold">false</span><span style="color:#666">;</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#666">}</span>
 </span></span></code></pre></div><h3 id="de-register">De-register</h3>
 <p>Call the <code>mdm_deregister_client ( const char * pkg_name )</code> API method to de-register the client app. And, call the <code>mdm_release_service ( void )</code> API method to release the resources.</p>
 <h2 id="wi-fi-apis">Wi-Fi APIs</h2>
@@ -942,13 +943,13 @@
 <p>You can call <code>mdm_set_allow_wifi (mdm_status_t state)</code> to either allow or restrict the usage of the WiFi capability on the device.</p>
 <p>The Wi-Fi APIs allow you to configure Wi-Fi related settings, and to allow/block SSIDs.</p>
 <p>If Wi-Fi usage is restricted, the user cannot enable Wi-Fi from the device settings or quick panel menu. If Wi-Fi usage is allowed after being restricted it will be turned off by default so the user has to turn it on manually from device settings or quick panel menu.</p>
-<div class="highlight"><pre tabindex="0" style=";-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-cpp" data-lang="cpp"><span style="display:flex;"><span>mdm_result_t ret <span style="color:#666">=</span> MDM_RESULT_SUCCESS;
-</span></span><span style="display:flex;"><span>ret <span style="color:#666">=</span> mdm_set_allow_wifi(MDM_RESTRICTED);
-</span></span><span style="display:flex;"><span><span style="color:#008000;font-weight:bold">if</span> (ret <span style="color:#666">==</span> MDM_RESULT_SUCCESS) {
+<div class="highlight"><pre tabindex="0" style=";-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span>mdm_result_t ret <span style="color:#666">=</span> MDM_RESULT_SUCCESS<span style="color:#666">;</span>
+</span></span><span style="display:flex;"><span>ret <span style="color:#666">=</span> mdm_set_allow_wifi<span style="color:#666">(</span>MDM_RESTRICTED<span style="color:#666">);</span>
+</span></span><span style="display:flex;"><span><span style="color:#008000;font-weight:bold">if</span> <span style="color:#666">(</span>ret <span style="color:#666">==</span> MDM_RESULT_SUCCESS<span style="color:#666">)</span> <span style="color:#666">{</span>
 </span></span><span style="display:flex;"><span>  <span style="color:#408080;font-style:italic">//Success
-</span></span></span><span style="display:flex;"><span><span style="color:#408080;font-style:italic"></span>} <span style="color:#008000;font-weight:bold">else</span> {
+</span></span></span><span style="display:flex;"><span><span style="color:#408080;font-style:italic"></span><span style="color:#666">}</span> <span style="color:#008000;font-weight:bold">else</span> <span style="color:#666">{</span>
 </span></span><span style="display:flex;"><span>  <span style="color:#408080;font-style:italic">//Fail
-</span></span></span><span style="display:flex;"><span><span style="color:#408080;font-style:italic"></span>}
+</span></span></span><span style="display:flex;"><span><span style="color:#408080;font-style:italic"></span><span style="color:#666">}</span>
 </span></span></code></pre></div><h3 id="allowlist-wi-fi-policies">Allowlist Wi-Fi policies</h3>
 <p>You can use the following APIs to set Wi-Fi allowlist policies:</p>
 <div class="overflow-auto my-3"><table>
@@ -1015,12 +1016,12 @@
     </tr>
 </table></div>
 <p>The following code snippet illustrates how to set the Bluetooth mode on the managed device to hands-free only:</p>
-<div class="highlight"><pre tabindex="0" style=";-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-cpp" data-lang="cpp"><span style="display:flex;"><span>mdm_result_t ret <span style="color:#666">=</span> mdm_set_allow_bluetooth_mode(MDM_BT_HANDSFREE_ONLY);
-</span></span><span style="display:flex;"><span><span style="color:#008000;font-weight:bold">if</span> (ret <span style="color:#666">==</span> MDM_RESULT_SUCCESS) {
+<div class="highlight"><pre tabindex="0" style=";-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span>mdm_result_t ret <span style="color:#666">=</span> mdm_set_allow_bluetooth_mode<span style="color:#666">(</span>MDM_BT_HANDSFREE_ONLY<span style="color:#666">);</span>
+</span></span><span style="display:flex;"><span><span style="color:#008000;font-weight:bold">if</span> <span style="color:#666">(</span>ret <span style="color:#666">==</span> MDM_RESULT_SUCCESS<span style="color:#666">)</span> <span style="color:#666">{</span>
 </span></span><span style="display:flex;"><span>  <span style="color:#408080;font-style:italic">// Success
-</span></span></span><span style="display:flex;"><span><span style="color:#408080;font-style:italic"></span>} <span style="color:#008000;font-weight:bold">else</span> {
+</span></span></span><span style="display:flex;"><span><span style="color:#408080;font-style:italic"></span><span style="color:#666">}</span> <span style="color:#008000;font-weight:bold">else</span> <span style="color:#666">{</span>
 </span></span><span style="display:flex;"><span>  <span style="color:#408080;font-style:italic">// Some Error Handling
-</span></span></span><span style="display:flex;"><span><span style="color:#408080;font-style:italic"></span>}
+</span></span></span><span style="display:flex;"><span><span style="color:#408080;font-style:italic"></span><span style="color:#666">}</span>
 </span></span></code></pre></div><h2 id="allow-only-trusted-bluetooth-devices-using-the-device-hardware-id">Allow only trusted Bluetooth devices using the device hardware ID</h2>
 <p>To allow Bluetooth connection to only trusted Bluetooth devices, you must:</p>
 <ul>
@@ -1029,26 +1030,26 @@
 <li>Activate these Bluetooth device restrictions, using <code>mdm_activate_bluetooth_device_restriction(mdm_status_t value )</code> API method.</li>
 </ul>
 <p>The following code snippet illustrates how to allow only trusted Bluetooth devices using the device hardware ID:</p>
-<div class="highlight"><pre tabindex="0" style=";-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-cpp" data-lang="cpp"><span style="display:flex;"><span>GList _ devices <span style="color:#666">=</span> <span style="color:#008000">NULL</span>;
-</span></span><span style="display:flex;"><span>devices <span style="color:#666">=</span> g_list_append(devices, <span style="color:#ba2121">&#34;00:11:22:33:AA:BB&#34;</span>);
-</span></span><span style="display:flex;"><span>devices <span style="color:#666">=</span> g_list_append(devices, <span style="color:#ba2121">&#34;00:11:22:88:AA:CC&#34;</span>);
-</span></span><span style="display:flex;"><span>mdm_result_t ret <span style="color:#666">=</span> mdm_add_bluetooth_devices_to_blacklist(<span style="color:#ba2121">&#34;_&#34;</span>);
-</span></span><span style="display:flex;"><span><span style="color:#008000;font-weight:bold">if</span> (ret <span style="color:#666">==</span> MDM_RESULT_SUCCESS) {
-</span></span><span style="display:flex;"><span>  ret <span style="color:#666">=</span> mdm_add_bluetooth_devices_to_whitelist(devices);
-</span></span><span style="display:flex;"><span>  <span style="color:#008000;font-weight:bold">if</span> (ret <span style="color:#666">==</span> MDM_RESULT_SUCCESS) {
-</span></span><span style="display:flex;"><span>    ret <span style="color:#666">=</span> mdm_activate_bluetooth_device_restriction(MDM_TRUE);
-</span></span><span style="display:flex;"><span>    <span style="color:#008000;font-weight:bold">if</span> (ret <span style="color:#666">==</span> MDM_RESULT_SUCCESS) {
+<div class="highlight"><pre tabindex="0" style=";-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span>GList _ devices <span style="color:#666">=</span> NULL<span style="color:#666">;</span>
+</span></span><span style="display:flex;"><span>devices <span style="color:#666">=</span> g_list_append<span style="color:#666">(</span>devices<span style="color:#666">,</span> <span style="color:#ba2121">&#34;00:11:22:33:AA:BB&#34;</span><span style="color:#666">);</span>
+</span></span><span style="display:flex;"><span>devices <span style="color:#666">=</span> g_list_append<span style="color:#666">(</span>devices<span style="color:#666">,</span> <span style="color:#ba2121">&#34;00:11:22:88:AA:CC&#34;</span><span style="color:#666">);</span>
+</span></span><span style="display:flex;"><span>mdm_result_t ret <span style="color:#666">=</span> mdm_add_bluetooth_devices_to_blacklist<span style="color:#666">(</span><span style="color:#ba2121">&#34;_&#34;</span><span style="color:#666">);</span>
+</span></span><span style="display:flex;"><span><span style="color:#008000;font-weight:bold">if</span> <span style="color:#666">(</span>ret <span style="color:#666">==</span> MDM_RESULT_SUCCESS<span style="color:#666">)</span> <span style="color:#666">{</span>
+</span></span><span style="display:flex;"><span>  ret <span style="color:#666">=</span> mdm_add_bluetooth_devices_to_whitelist<span style="color:#666">(</span>devices<span style="color:#666">);</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#008000;font-weight:bold">if</span> <span style="color:#666">(</span>ret <span style="color:#666">==</span> MDM_RESULT_SUCCESS<span style="color:#666">)</span> <span style="color:#666">{</span>
+</span></span><span style="display:flex;"><span>    ret <span style="color:#666">=</span> mdm_activate_bluetooth_device_restriction<span style="color:#666">(</span>MDM_TRUE<span style="color:#666">);</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#008000;font-weight:bold">if</span> <span style="color:#666">(</span>ret <span style="color:#666">==</span> MDM_RESULT_SUCCESS<span style="color:#666">)</span> <span style="color:#666">{</span>
 </span></span><span style="display:flex;"><span>      <span style="color:#408080;font-style:italic">// Success
-</span></span></span><span style="display:flex;"><span><span style="color:#408080;font-style:italic"></span>    } <span style="color:#008000;font-weight:bold">else</span> {
+</span></span></span><span style="display:flex;"><span><span style="color:#408080;font-style:italic"></span>    <span style="color:#666">}</span> <span style="color:#008000;font-weight:bold">else</span> <span style="color:#666">{</span>
 </span></span><span style="display:flex;"><span>      <span style="color:#408080;font-style:italic">// Some Error Handling
-</span></span></span><span style="display:flex;"><span><span style="color:#408080;font-style:italic"></span>    }
-</span></span><span style="display:flex;"><span>  } <span style="color:#008000;font-weight:bold">else</span> {
+</span></span></span><span style="display:flex;"><span><span style="color:#408080;font-style:italic"></span>    <span style="color:#666">}</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#666">}</span> <span style="color:#008000;font-weight:bold">else</span> <span style="color:#666">{</span>
 </span></span><span style="display:flex;"><span>    <span style="color:#408080;font-style:italic">// Some Error Handling
-</span></span></span><span style="display:flex;"><span><span style="color:#408080;font-style:italic"></span>  }
-</span></span><span style="display:flex;"><span>} <span style="color:#008000;font-weight:bold">else</span> {
+</span></span></span><span style="display:flex;"><span><span style="color:#408080;font-style:italic"></span>  <span style="color:#666">}</span>
+</span></span><span style="display:flex;"><span><span style="color:#666">}</span> <span style="color:#008000;font-weight:bold">else</span> <span style="color:#666">{</span>
 </span></span><span style="display:flex;"><span>  <span style="color:#408080;font-style:italic">// Some Error Handling
-</span></span></span><span style="display:flex;"><span><span style="color:#408080;font-style:italic"></span>}
-</span></span><span style="display:flex;"><span>g_list_free(devices);
+</span></span></span><span style="display:flex;"><span><span style="color:#408080;font-style:italic"></span><span style="color:#666">}</span>
+</span></span><span style="display:flex;"><span>g_list_free<span style="color:#666">(</span>devices<span style="color:#666">);</span>
 </span></span></code></pre></div><h3 id="allow-only-trusted-bluetooth-uuids-to-be-used-on-the-managed-device">Allow only trusted Bluetooth UUIDs to be used on the managed device</h3>
 <p>The Bluetooth UUID restriction APIs allow you to add more control on the Bluetooth capabilities that you want to enable on the device. For example, if a Bluetooth profile is associated with multiple UUIDS, you could control Bluetooth connections based on the UUID.</p>
 <p>For example, suppose an A2DP profile is only applicable to the following UUIDs:</p>
@@ -1057,25 +1058,25 @@
 <li><strong>AudioSink</strong> &mdash; 0000110B-0000-1000-8000-00805F9B34FB</li>
 </ul>
 <p>It is possible to allow Bluetooth on the managed device to be used as an Audio Source, while blocking all other Bluetooth UUIDs. The following code snippet illustrates the above scenario:</p>
-<div class="highlight"><pre tabindex="0" style=";-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-cpp" data-lang="cpp"><span style="display:flex;"><span>GList _ uuids <span style="color:#666">=</span> <span style="color:#008000">NULL</span>;
-</span></span><span style="display:flex;"><span>uuids <span style="color:#666">=</span> g_list_append(uuids, <span style="color:#ba2121">&#34;0000110A-0000-1000-8000-00805F9B34FB&#34;</span>);
-</span></span><span style="display:flex;"><span>mdm_result_t ret <span style="color:#666">=</span> mdm_add_bluetooth_uuids_to_blacklist(<span style="color:#ba2121">&#34;_&#34;</span>);
-</span></span><span style="display:flex;"><span><span style="color:#008000;font-weight:bold">if</span> (ret <span style="color:#666">==</span> MDM_RESULT_SUCCESS) {
-</span></span><span style="display:flex;"><span>  ret <span style="color:#666">=</span> mdm_add_bluetooth_uuids_to_whitelist(uuids);
-</span></span><span style="display:flex;"><span>  <span style="color:#008000;font-weight:bold">if</span> (ret <span style="color:#666">==</span> MDM_RESULT_SUCCESS) {
-</span></span><span style="display:flex;"><span>    ret <span style="color:#666">=</span> mdm_activate_bluetooth_uuid_restriction(MDM_TRUE);
-</span></span><span style="display:flex;"><span>    <span style="color:#008000;font-weight:bold">if</span> (ret <span style="color:#666">==</span> MDM_RESULT_SUCCESS) {
+<div class="highlight"><pre tabindex="0" style=";-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span>GList _ uuids <span style="color:#666">=</span> NULL<span style="color:#666">;</span>
+</span></span><span style="display:flex;"><span>uuids <span style="color:#666">=</span> g_list_append<span style="color:#666">(</span>uuids<span style="color:#666">,</span> <span style="color:#ba2121">&#34;0000110A-0000-1000-8000-00805F9B34FB&#34;</span><span style="color:#666">);</span>
+</span></span><span style="display:flex;"><span>mdm_result_t ret <span style="color:#666">=</span> mdm_add_bluetooth_uuids_to_blacklist<span style="color:#666">(</span><span style="color:#ba2121">&#34;_&#34;</span><span style="color:#666">);</span>
+</span></span><span style="display:flex;"><span><span style="color:#008000;font-weight:bold">if</span> <span style="color:#666">(</span>ret <span style="color:#666">==</span> MDM_RESULT_SUCCESS<span style="color:#666">)</span> <span style="color:#666">{</span>
+</span></span><span style="display:flex;"><span>  ret <span style="color:#666">=</span> mdm_add_bluetooth_uuids_to_whitelist<span style="color:#666">(</span>uuids<span style="color:#666">);</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#008000;font-weight:bold">if</span> <span style="color:#666">(</span>ret <span style="color:#666">==</span> MDM_RESULT_SUCCESS<span style="color:#666">)</span> <span style="color:#666">{</span>
+</span></span><span style="display:flex;"><span>    ret <span style="color:#666">=</span> mdm_activate_bluetooth_uuid_restriction<span style="color:#666">(</span>MDM_TRUE<span style="color:#666">);</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#008000;font-weight:bold">if</span> <span style="color:#666">(</span>ret <span style="color:#666">==</span> MDM_RESULT_SUCCESS<span style="color:#666">)</span> <span style="color:#666">{</span>
 </span></span><span style="display:flex;"><span>      <span style="color:#408080;font-style:italic">// Success
-</span></span></span><span style="display:flex;"><span><span style="color:#408080;font-style:italic"></span>    } <span style="color:#008000;font-weight:bold">else</span> {
+</span></span></span><span style="display:flex;"><span><span style="color:#408080;font-style:italic"></span>    <span style="color:#666">}</span> <span style="color:#008000;font-weight:bold">else</span> <span style="color:#666">{</span>
 </span></span><span style="display:flex;"><span>      <span style="color:#408080;font-style:italic">// Some Error Handling
-</span></span></span><span style="display:flex;"><span><span style="color:#408080;font-style:italic"></span>    }
-</span></span><span style="display:flex;"><span>  } <span style="color:#008000;font-weight:bold">else</span> {
+</span></span></span><span style="display:flex;"><span><span style="color:#408080;font-style:italic"></span>    <span style="color:#666">}</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#666">}</span> <span style="color:#008000;font-weight:bold">else</span> <span style="color:#666">{</span>
 </span></span><span style="display:flex;"><span>    <span style="color:#408080;font-style:italic">// Some Error Handling
-</span></span></span><span style="display:flex;"><span><span style="color:#408080;font-style:italic"></span>  }
-</span></span><span style="display:flex;"><span>} <span style="color:#008000;font-weight:bold">else</span> {
+</span></span></span><span style="display:flex;"><span><span style="color:#408080;font-style:italic"></span>  <span style="color:#666">}</span>
+</span></span><span style="display:flex;"><span><span style="color:#666">}</span> <span style="color:#008000;font-weight:bold">else</span> <span style="color:#666">{</span>
 </span></span><span style="display:flex;"><span>  <span style="color:#408080;font-style:italic">// Some Error Handling
-</span></span></span><span style="display:flex;"><span><span style="color:#408080;font-style:italic"></span>}
-</span></span><span style="display:flex;"><span>g_list_free(uuids);
+</span></span></span><span style="display:flex;"><span><span style="color:#408080;font-style:italic"></span><span style="color:#666">}</span>
+</span></span><span style="display:flex;"><span>g_list_free<span style="color:#666">(</span>uuids<span style="color:#666">);</span>
 </span></span></code></pre></div>
             
           </div>
@@ -1211,6 +1212,14 @@
                 href="../../../../knox-deployment-program.html"
                 class="body-5 d-flex align-items-center text-black fw-light pe-auto text-decoration-none"
                 >Knox Deployment Program</a
+              >
+            </li>
+            
+            <li>
+              <a
+                href="../../../../knox-msp-portal.html"
+                class="body-5 d-flex align-items-center text-black fw-light pe-auto text-decoration-none"
+                >Knox MSP Portal</a
               >
             </li>
             

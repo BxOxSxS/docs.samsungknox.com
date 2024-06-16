@@ -127,8 +127,6 @@
   <ul>
     <li>
   <a href="../knox-cloud-authentication.html" >Knox Cloud Authentication</a>
-  <ul>
-    </ul>
   </li>
 <li>
   <a href="../knox-webhook-notification.html" >Knox Webhook Notification</a>
@@ -137,6 +135,9 @@
   </li>
 <li>
   <a href="../knox-deployment-program.html" >Knox Deployment Program</a>
+  </li>
+<li>
+  <a href="../knox-msp-portal.html" >Knox MSP Portal</a>
   </li>
 <li>
   <a href="../knox-mobile-enrollment.html" >Knox Mobile Enrollment</a>
@@ -324,8 +325,8 @@
 <p>To call some APIs like <a href="api.html#tag/Basic/operation/checkAuthorizationUsingGET">check the authorization key</a>, a registered device is not required. However, for a majority of the other APIs, you must identify a registered device using one of the following three attributes.</p>
 <div class="overflow-auto my-3"><table>
     <tr>
-        <th>Attribute</th>
-        <th>Description</th>
+        <th scope="col">Attribute</th>
+        <th scope="col">Description</th>
     </tr>
     <tr>
         <td>objectId</td>
@@ -344,12 +345,12 @@
 <p><strong>Upload from reseller</strong> &mdash; Purchase or register bulk devices directly from a reseller and have them automatically uploaded to your account based on customer ID. See <a href="https://www.samsungknox.com/en/resellers" target="_blank">supported resellers</a>, select country or region and filter for &ldquo;KDP device reseller&rdquo;.</p>
 <p><strong>Upload using the Knox Deployment App (KDA)</strong> &mdash; Upload a single purchased Samsung device using the <a href="https://play.google.com/store/apps/details?id=com.samsung.android.knox.enrollment" target="_blank">Knox Deployment App (KDA)</a>. This is intended for testing or small to medium scale implementation of the Knox Guard service.</p>
 <h2 id="request-access-to-the-knox-api-service">Request access to the Knox API service</h2>
-<p>Apply for Knox Cloud API access to the cloud REST service by emailing <a href="mailto:knoxapi@samsungknox.com">knoxapi@samsungknox.com</a>. This provides portal access to the Knox Cloud APIs to generate the authentication token sent in the header of a request. For more information, see the <a href="../knox-cloud-authentication/api-reference/api.html">Knox Cloud APIs integration guide</a>.</p>
+<p>Apply for Knox Cloud API access to the cloud REST service by emailing <a href="mailto:knoxapi@samsungknox.com">knoxapi@samsungknox.com</a>. This provides portal access to the Knox Cloud APIs to generate the authentication token sent in the header of a request. For more information, see the <a href="../knox-cloud-authentication/knox-cloud-authentication/api-reference/api.html">Knox Cloud APIs integration guide</a>.</p>
 <h2 id="generate-your-client-identifier-and-key-pair-from-the-knox-cloud-apis">Generate your Client Identifier and key pair from the Knox Cloud APIs</h2>
-<p>Download your unique key pair and Client Identifier from the <a href="https://us-api-portal.samsungknox.com" target="_blank">Knox Cloud APIs</a>. For security purposes, you can restrict your Client Identifier to certain IP addresses. The Client Identifier can be re-generated through the console, but must be bound to the downloaded certificate, as described in the <a href="../knox-cloud-authentication/api-reference/api.html">Knox Cloud APIs integration guide</a>.</p>
+<p>Download your unique key pair and Client Identifier from the <a href="https://us-api-portal.samsungknox.com" target="_blank">Knox Cloud APIs</a>. For security purposes, you can restrict your Client Identifier to certain IP addresses. The Client Identifier can be re-generated through the console, but must be bound to the downloaded certificate, as described in the <a href="../knox-cloud-authentication/knox-cloud-authentication/api-reference/api.html">Knox Cloud APIs integration guide</a>.</p>
 <h2 id="create-your-access-token">Create your access token</h2>
-<p>Call the <a href="../knox-cloud-authentication/api-reference/api.html#tag/Authentication/operation/createApiAccessToken">access token REST API</a> to generate your <code>x-knox-apitoken</code>.</p>
-<div class="notice-note"><p>For security reasons, the access token has an expiry of 30 minutes. Regenerate as specified in the <a href="../knox-cloud-authentication/api-reference/api.html">Knox Cloud APIs integration guide</a>.</p></div>
+<p>Call the <a href="../knox-cloud-authentication/knox-cloud-authentication/api-reference/api.html#tag/Authentication/operation/createApiAccessToken">access token REST API</a> to generate your <code>x-knox-apitoken</code>.</p>
+<div class="notice-note"><p>For security reasons, the access token has an expiry of 30 minutes. Regenerate as specified in the <a href="../knox-cloud-authentication/knox-cloud-authentication/api-reference/api.html">Knox Cloud APIs integration guide</a>.</p></div>
 <h2 id="call-a-knox-guard-rest-api">Call a Knox Guard REST API</h2>
 <p>Final step! Call a Knox Guard REST API, such as <code>Authentication</code>, to ensure that your access token has been correctly configured.</p>
 <div class="highlight"><pre tabindex="0" style=";-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>curl -X GET --header <span style="color:#ba2121">&#39;Accept: application/json&#39;</span> --header <span style="color:#ba2121">&#39;x-knox-apitoken: &#39;</span> <span style="color:#ba2121">&#39;https://us-kcs-api.samsungknox.com/kcs/v1.1/kg/authorization&#39;</span>
@@ -492,6 +493,14 @@
                 href="../knox-deployment-program.html"
                 class="body-5 d-flex align-items-center text-black fw-light pe-auto text-decoration-none"
                 >Knox Deployment Program</a
+              >
+            </li>
+            
+            <li>
+              <a
+                href="../knox-msp-portal.html"
+                class="body-5 d-flex align-items-center text-black fw-light pe-auto text-decoration-none"
+                >Knox MSP Portal</a
               >
             </li>
             

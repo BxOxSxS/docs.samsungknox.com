@@ -127,8 +127,6 @@
   <ul>
     <li>
   <a href="../../../../../../knox-cloud-authentication.html" >Knox Cloud Authentication</a>
-  <ul>
-    </ul>
   </li>
 <li>
   <a href="../../../../../../knox-webhook-notification.html" >Knox Webhook Notification</a>
@@ -137,6 +135,9 @@
   </li>
 <li>
   <a href="../../../../../../knox-deployment-program.html" >Knox Deployment Program</a>
+  </li>
+<li>
+  <a href="../../../../../../knox-msp-portal.html" >Knox MSP Portal</a>
   </li>
 <li>
   <a href="../../../../../../knox-mobile-enrollment.html" >Knox Mobile Enrollment</a>
@@ -3194,35 +3195,35 @@
 <div class="highlight"><pre tabindex="0" style=";-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#b00040">boolean</span> result <span style="color:#666">=</span> <span style="color:#008000;font-weight:bold">false</span><span style="color:#666">;</span>
 </span></span><span style="display:flex;"><span>String Wi<span style="color:#666">-</span>FiAlias <span style="color:#666">=</span> <span style="color:#ba2121">&#34;cert_Wi-Fi&#34;</span><span style="color:#666">;</span>
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>          <span style="color:#408080;font-style:italic">// installing into Android Wi-Fi keystore
-</span></span></span><span style="display:flex;"><span><span style="color:#408080;font-style:italic"></span>          result <span style="color:#666">=</span> mSecurityPolicy<span style="color:#666">.</span><span style="color:#7d9029">installCertificateToKeystore</span>
-</span></span><span style="display:flex;"><span>          <span style="color:#666">(</span>SecurityPolicy<span style="color:#666">.</span><span style="color:#7d9029">TYPE_PKCS12</span><span style="color:#666">,</span> cert_Wi<span style="color:#666">-</span>Fi<span style="color:#666">,</span> Wi<span style="color:#666">-</span>FiAlias<span style="color:#666">,</span> <span style="color:#ba2121">&#34;123456&#34;</span><span style="color:#666">,</span>
-</span></span><span style="display:flex;"><span>               SecurityPolicy<span style="color:#666">.</span><span style="color:#7d9029">KEYSTORE_FOR_WI</span><span style="color:#666">-</span>FI<span style="color:#666">);</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#408080;font-style:italic">// installing into Android Wi-Fi keystore
+</span></span></span><span style="display:flex;"><span><span style="color:#408080;font-style:italic"></span>        result <span style="color:#666">=</span> mSecurityPolicy<span style="color:#666">.</span><span style="color:#7d9029">installCertificateToKeystore</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#666">(</span>SecurityPolicy<span style="color:#666">.</span><span style="color:#7d9029">TYPE_PKCS12</span><span style="color:#666">,</span> cert_Wi<span style="color:#666">-</span>Fi<span style="color:#666">,</span> Wi<span style="color:#666">-</span>FiAlias<span style="color:#666">,</span> <span style="color:#ba2121">&#34;123456&#34;</span><span style="color:#666">,</span>
+</span></span><span style="display:flex;"><span>            SecurityPolicy<span style="color:#666">.</span><span style="color:#7d9029">KEYSTORE_FOR_WI</span><span style="color:#666">-</span>FI<span style="color:#666">);</span>
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>     <span style="color:#008000;font-weight:bold">if</span> <span style="color:#666">(</span>result<span style="color:#666">)</span> <span style="color:#666">{</span>
-</span></span><span style="display:flex;"><span>          Log<span style="color:#666">.</span><span style="color:#7d9029">d</span><span style="color:#666">(</span>TAG<span style="color:#666">,</span> <span style="color:#ba2121">&#34;Certificate successfully installed!&#34;</span><span style="color:#666">);</span>
-</span></span><span style="display:flex;"><span>     <span style="color:#666">}</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#008000;font-weight:bold">if</span> <span style="color:#666">(</span>result<span style="color:#666">)</span> <span style="color:#666">{</span>
+</span></span><span style="display:flex;"><span>        Log<span style="color:#666">.</span><span style="color:#7d9029">d</span><span style="color:#666">(</span>TAG<span style="color:#666">,</span> <span style="color:#ba2121">&#34;Certificate successfully installed!&#34;</span><span style="color:#666">);</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#666">}</span>
 </span></span></code></pre></div><div class="notice-note"><p>The first parameter of this API can also be <code>SecurityPolicy.TYPE_CERTIFICATE</code> if the customer needs to install a CERT — with the extensions types <code>.crt</code> and <code>.cer</code> — certificate. In such cases, there is no need to insert a password, passed in the fourth parameter of the API. A certificate installed into Wi-Fi Keystore is visible in both device owner and Knox Workspace.</p></div>
 </li>
 <li>
 <p>Verify certificate is stored into Wi-Fi Keystore.</p>
 <div class="highlight"><pre tabindex="0" style=";-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#408080;font-style:italic">// retrieving all certificates from Wi-Fi keystore
 </span></span></span><span style="display:flex;"><span><span style="color:#408080;font-style:italic"></span>List certList <span style="color:#666">=</span> mSecurityPolicy
-</span></span><span style="display:flex;"><span>     <span style="color:#666">.</span><span style="color:#7d9029">getCertificatesFromKeystore</span><span style="color:#666">(</span>Security<span style="color:#666">.</span><span style="color:#7d9029">KEYSTORE_FOR_WI</span><span style="color:#666">-</span>FI<span style="color:#666">);</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#666">.</span><span style="color:#7d9029">getCertificatesFromKeystore</span><span style="color:#666">(</span>Security<span style="color:#666">.</span><span style="color:#7d9029">KEYSTORE_FOR_WI</span><span style="color:#666">-</span>FI<span style="color:#666">);</span>
 </span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span><span style="color:#008000;font-weight:bold">if</span> <span style="color:#666">(</span>certList <span style="color:#666">!=</span> <span style="color:#008000;font-weight:bold">null</span> <span style="color:#666">&amp;&amp;</span> <span style="color:#666">!</span>certList<span style="color:#666">.</span><span style="color:#7d9029">isEmpty</span><span style="color:#666">())</span> <span style="color:#666">{</span>
-</span></span><span style="display:flex;"><span>     X509Certificate cert<span style="color:#666">;</span>
-</span></span><span style="display:flex;"><span>     String certAlias<span style="color:#666">;</span>
-</span></span><span style="display:flex;"><span>     <span style="color:#b00040">int</span> certKeystore<span style="color:#666">;</span>
+</span></span><span style="display:flex;"><span>    X509Certificate cert<span style="color:#666">;</span>
+</span></span><span style="display:flex;"><span>    String certAlias<span style="color:#666">;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#b00040">int</span> certKeystore<span style="color:#666">;</span>
 </span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span><span style="color:#408080;font-style:italic">// iterate over all certificates stored into Wi-Fi keystore
 </span></span></span><span style="display:flex;"><span><span style="color:#408080;font-style:italic"></span>
 </span></span><span style="display:flex;"><span><span style="color:#008000;font-weight:bold">for</span><span style="color:#666">(</span>CertificateInfo certInfo <span style="color:#666">:</span> certList<span style="color:#666">)</span> <span style="color:#666">{</span>
-</span></span><span style="display:flex;"><span>     cert <span style="color:#666">=</span> <span style="color:#666">(</span>X509Certificate<span style="color:#666">)</span> certInfo<span style="color:#666">.</span><span style="color:#7d9029">getCertificate</span><span style="color:#666">();</span>
-</span></span><span style="display:flex;"><span>     certAlias <span style="color:#666">=</span> certInfo<span style="color:#666">.</span><span style="color:#7d9029">getAlias</span><span style="color:#666">();</span>
-</span></span><span style="display:flex;"><span>     certKeystore <span style="color:#666">=</span> certInfo<span style="color:#666">.</span><span style="color:#7d9029">getKeystore</span><span style="color:#666">();</span>
-</span></span><span style="display:flex;"><span>     <span style="color:#666">}</span>
-</span></span><span style="display:flex;"><span>     <span style="color:#666">}</span>
+</span></span><span style="display:flex;"><span>    cert <span style="color:#666">=</span> <span style="color:#666">(</span>X509Certificate<span style="color:#666">)</span> certInfo<span style="color:#666">.</span><span style="color:#7d9029">getCertificate</span><span style="color:#666">();</span>
+</span></span><span style="display:flex;"><span>    certAlias <span style="color:#666">=</span> certInfo<span style="color:#666">.</span><span style="color:#7d9029">getAlias</span><span style="color:#666">();</span>
+</span></span><span style="display:flex;"><span>    certKeystore <span style="color:#666">=</span> certInfo<span style="color:#666">.</span><span style="color:#7d9029">getKeystore</span><span style="color:#666">();</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#666">}</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#666">}</span>
 </span></span></code></pre></div></li>
 <li>
 <p>Install certificates for the secure Browser, VPN, and Email apps inside the Workspace.</p>
@@ -3234,28 +3235,28 @@
 </span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span><span style="color:#408080;font-style:italic">// installing cert_browser into Android VPN and Apps keystore
 </span></span></span><span style="display:flex;"><span><span style="color:#408080;font-style:italic"></span>installedBrowser <span style="color:#666">=</span> mKnoxSecurityPolicy<span style="color:#666">.</span><span style="color:#7d9029">installCertificateToUserKeystore</span>
-</span></span><span style="display:flex;"><span>     <span style="color:#666">(</span>SecurityPolicy<span style="color:#666">.</span><span style="color:#7d9029">TYPE_PKCS12</span><span style="color:#666">,</span> cert_browser<span style="color:#666">,</span> browserAlias<span style="color:#666">,</span> <span style="color:#ba2121">&#34;123456&#34;</span><span style="color:#666">,</span>
-</span></span><span style="display:flex;"><span>     SecurityPolicy<span style="color:#666">.</span> KEYSTORE_FOR_VPN_AND_APPS<span style="color:#666">);</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#666">(</span>SecurityPolicy<span style="color:#666">.</span><span style="color:#7d9029">TYPE_PKCS12</span><span style="color:#666">,</span> cert_browser<span style="color:#666">,</span> browserAlias<span style="color:#666">,</span> <span style="color:#ba2121">&#34;123456&#34;</span><span style="color:#666">,</span>
+</span></span><span style="display:flex;"><span>    SecurityPolicy<span style="color:#666">.</span> KEYSTORE_FOR_VPN_AND_APPS<span style="color:#666">);</span>
 </span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span><span style="color:#408080;font-style:italic">// installing cert_browser into Android Default keystore
 </span></span></span><span style="display:flex;"><span><span style="color:#408080;font-style:italic"></span>installedBrowser <span style="color:#666">&amp;=</span> mSecurityPolicy<span style="color:#666">.</span><span style="color:#7d9029">installCertificateToKeystore</span>
-</span></span><span style="display:flex;"><span>     <span style="color:#666">(</span>SecurityPolicy<span style="color:#666">.</span><span style="color:#7d9029">TYPE_PKCS12</span><span style="color:#666">,</span> cert_browser<span style="color:#666">,</span> browserAlias<span style="color:#666">,</span> <span style="color:#ba2121">&#34;123456&#34;</span><span style="color:#666">,</span>
-</span></span><span style="display:flex;"><span>     SecurityPolicy<span style="color:#666">.</span> KEYSTORE_DEFAULT<span style="color:#666">);</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#666">(</span>SecurityPolicy<span style="color:#666">.</span><span style="color:#7d9029">TYPE_PKCS12</span><span style="color:#666">,</span> cert_browser<span style="color:#666">,</span> browserAlias<span style="color:#666">,</span> <span style="color:#ba2121">&#34;123456&#34;</span><span style="color:#666">,</span>
+</span></span><span style="display:flex;"><span>    SecurityPolicy<span style="color:#666">.</span> KEYSTORE_DEFAULT<span style="color:#666">);</span>
 </span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span><span style="color:#408080;font-style:italic">// installing cert_VPN into Android VPN and Apps keystore
 </span></span></span><span style="display:flex;"><span><span style="color:#408080;font-style:italic"></span>installedVPN <span style="color:#666">=</span> mKnoxSecurityPolicy<span style="color:#666">.</span><span style="color:#7d9029">installCertificateToUserKeystore</span>
-</span></span><span style="display:flex;"><span>     <span style="color:#666">(</span>SecurityPolicy<span style="color:#666">.</span><span style="color:#7d9029">TYPE_PKCS12</span><span style="color:#666">,</span> cert_VPN<span style="color:#666">,</span> vpnAlias<span style="color:#666">,</span> <span style="color:#ba2121">&#34;123456&#34;</span><span style="color:#666">,</span>
-</span></span><span style="display:flex;"><span>     SecurityPolicy<span style="color:#666">.</span> KEYSTORE_FOR_VPN_AND_APPS<span style="color:#666">);</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#666">(</span>SecurityPolicy<span style="color:#666">.</span><span style="color:#7d9029">TYPE_PKCS12</span><span style="color:#666">,</span> cert_VPN<span style="color:#666">,</span> vpnAlias<span style="color:#666">,</span> <span style="color:#ba2121">&#34;123456&#34;</span><span style="color:#666">,</span>
+</span></span><span style="display:flex;"><span>    SecurityPolicy<span style="color:#666">.</span> KEYSTORE_FOR_VPN_AND_APPS<span style="color:#666">);</span>
 </span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span><span style="color:#408080;font-style:italic">// installing cert_Email into Android VPN and Apps keystore
 </span></span></span><span style="display:flex;"><span><span style="color:#408080;font-style:italic"></span>installedEmail <span style="color:#666">=</span> mKnoxSecurityPolicy<span style="color:#666">.</span><span style="color:#7d9029">installCertificateToUserKeystore</span>
-</span></span><span style="display:flex;"><span>     <span style="color:#666">(</span>SecurityPolicy<span style="color:#666">.</span><span style="color:#7d9029">TYPE_PKCS12</span><span style="color:#666">,</span> cert_email<span style="color:#666">,</span> emailAlias<span style="color:#666">,</span> <span style="color:#ba2121">&#34;123456&#34;</span><span style="color:#666">,</span>
-</span></span><span style="display:flex;"><span>     SecurityPolicy<span style="color:#666">.</span> KEYSTORE_FOR_VPN_AND_APPS<span style="color:#666">);</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#666">(</span>SecurityPolicy<span style="color:#666">.</span><span style="color:#7d9029">TYPE_PKCS12</span><span style="color:#666">,</span> cert_email<span style="color:#666">,</span> emailAlias<span style="color:#666">,</span> <span style="color:#ba2121">&#34;123456&#34;</span><span style="color:#666">,</span>
+</span></span><span style="display:flex;"><span>    SecurityPolicy<span style="color:#666">.</span> KEYSTORE_FOR_VPN_AND_APPS<span style="color:#666">);</span>
 </span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span><span style="color:#408080;font-style:italic">// installing cert_Email into Android Default keystore
 </span></span></span><span style="display:flex;"><span><span style="color:#408080;font-style:italic"></span>installedEmail <span style="color:#666">&amp;=</span> mSecurityPolicy<span style="color:#666">.</span><span style="color:#7d9029">installCertificateToKeystore</span>
-</span></span><span style="display:flex;"><span>     <span style="color:#666">(</span>SecurityPolicy<span style="color:#666">.</span><span style="color:#7d9029">TYPE_PKCS12</span><span style="color:#666">,</span> cert_email<span style="color:#666">,</span> emailAlias<span style="color:#666">,</span> <span style="color:#ba2121">&#34;123456&#34;</span><span style="color:#666">,</span>
-</span></span><span style="display:flex;"><span>     SecurityPolicy<span style="color:#666">.</span> KEYSTORE_DEFAULT<span style="color:#666">);</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#666">(</span>SecurityPolicy<span style="color:#666">.</span><span style="color:#7d9029">TYPE_PKCS12</span><span style="color:#666">,</span> cert_email<span style="color:#666">,</span> emailAlias<span style="color:#666">,</span> <span style="color:#ba2121">&#34;123456&#34;</span><span style="color:#666">,</span>
+</span></span><span style="display:flex;"><span>    SecurityPolicy<span style="color:#666">.</span> KEYSTORE_DEFAULT<span style="color:#666">);</span>
 </span></span></code></pre></div><div class="notice-note"><p>In the case of using a CA certificate to validate an SSL connection in a browser, install it to <code>SecurityPolicy.KEYSTORE_DEFAULT</code>. If a user installed PKCS 12 on Default, VPN, and Apps Keystores, the CA certificate is stored into the Default and uses it to create a connection while it stores the USER certificate and the PK in VPN and Apps for authentication matters. Verify installed certificates in VPN and apps and default Keystores.</p></div>
 <div class="highlight"><pre tabindex="0" style=";-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#408080;font-style:italic">// retrieving certificates from VPN and Apps keystore
 </span></span></span><span style="display:flex;"><span><span style="color:#408080;font-style:italic"></span>List vpnList <span style="color:#666">=</span> mKnoxSecurityPolicy
@@ -3263,7 +3264,7 @@
 </span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span><span style="color:#408080;font-style:italic">// retrieving certificates from Default keystore
 </span></span></span><span style="display:flex;"><span><span style="color:#408080;font-style:italic"></span>List defaultList <span style="color:#666">=</span> mSecurityPolicy
-</span></span><span style="display:flex;"><span>     <span style="color:#666">.</span><span style="color:#7d9029">getCertificatesFromKeystore</span><span style="color:#666">(</span>SecurityPolicy<span style="color:#666">.</span><span style="color:#7d9029">KEYSTORE_DEFAULT</span><span style="color:#666">);</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#666">.</span><span style="color:#7d9029">getCertificatesFromKeystore</span><span style="color:#666">(</span>SecurityPolicy<span style="color:#666">.</span><span style="color:#7d9029">KEYSTORE_DEFAULT</span><span style="color:#666">);</span>
 </span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span><span style="color:#408080;font-style:italic">// put the retrieved list all together
 </span></span></span><span style="display:flex;"><span><span style="color:#408080;font-style:italic"></span>List certList <span style="color:#666">=</span> <span style="color:#008000;font-weight:bold">new</span> ArrayList<span style="color:#666">();</span>
@@ -3278,9 +3279,9 @@
 </span></span><span style="display:flex;"><span><span style="color:#408080;font-style:italic">// iterate over all certificates stored into VPN and Apps and
 </span></span></span><span style="display:flex;"><span><span style="color:#408080;font-style:italic">// Default keystore
 </span></span></span><span style="display:flex;"><span><span style="color:#408080;font-style:italic"></span><span style="color:#008000;font-weight:bold">for</span><span style="color:#666">(</span>CertificateInfo certInfo <span style="color:#666">:</span> certList<span style="color:#666">)</span> <span style="color:#666">{</span>
-</span></span><span style="display:flex;"><span>     cert <span style="color:#666">=</span> <span style="color:#666">(</span>X509Certificate<span style="color:#666">)</span> certInfo<span style="color:#666">.</span><span style="color:#7d9029">getCertificate</span><span style="color:#666">();</span>
-</span></span><span style="display:flex;"><span>     certAlias <span style="color:#666">=</span> certInfo<span style="color:#666">.</span><span style="color:#7d9029">getAlias</span><span style="color:#666">();</span>
-</span></span><span style="display:flex;"><span>     certKeystore <span style="color:#666">=</span> certInfo<span style="color:#666">.</span><span style="color:#7d9029">getKeystore</span><span style="color:#666">();</span>
+</span></span><span style="display:flex;"><span>    cert <span style="color:#666">=</span> <span style="color:#666">(</span>X509Certificate<span style="color:#666">)</span> certInfo<span style="color:#666">.</span><span style="color:#7d9029">getCertificate</span><span style="color:#666">();</span>
+</span></span><span style="display:flex;"><span>    certAlias <span style="color:#666">=</span> certInfo<span style="color:#666">.</span><span style="color:#7d9029">getAlias</span><span style="color:#666">();</span>
+</span></span><span style="display:flex;"><span>    certKeystore <span style="color:#666">=</span> certInfo<span style="color:#666">.</span><span style="color:#7d9029">getKeystore</span><span style="color:#666">();</span>
 </span></span><span style="display:flex;"><span><span style="color:#666">}</span>
 </span></span><span style="display:flex;"><span><span style="color:#666">}</span>
 </span></span></code></pre></div></li>
@@ -3396,6 +3397,14 @@
                 href="../../../../../../knox-deployment-program.html"
                 class="body-5 d-flex align-items-center text-black fw-light pe-auto text-decoration-none"
                 >Knox Deployment Program</a
+              >
+            </li>
+            
+            <li>
+              <a
+                href="../../../../../../knox-msp-portal.html"
+                class="body-5 d-flex align-items-center text-black fw-light pe-auto text-decoration-none"
+                >Knox MSP Portal</a
               >
             </li>
             

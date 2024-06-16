@@ -127,8 +127,6 @@
   <ul>
     <li>
   <a href="../../../../knox-cloud-authentication.html" >Knox Cloud Authentication</a>
-  <ul>
-    </ul>
   </li>
 <li>
   <a href="../../../../knox-webhook-notification.html" >Knox Webhook Notification</a>
@@ -137,6 +135,9 @@
   </li>
 <li>
   <a href="../../../../knox-deployment-program.html" >Knox Deployment Program</a>
+  </li>
+<li>
+  <a href="../../../../knox-msp-portal.html" >Knox MSP Portal</a>
   </li>
 <li>
   <a href="../../../../knox-mobile-enrollment.html" >Knox Mobile Enrollment</a>
@@ -3753,7 +3754,7 @@ The packageList must only contain the package name of VPN client 2.</li>
 <h4 id="create-and-start-a-dual-chain-vpn-connection-5">Create and Start a Dual-Chain VPN Connection</h4>
 <p>The EMM agent must make the following calls to start a VPN connection under the dual-chain configuration described above.</p>
 <ol>
-<li>gm1.addPackagesToVpn (String[] packageList, String profileName);<br>
+<li>gm1.addPackagesToVpn (String[] packageList, String profileName);
 The packageList must only contain the package name of VPN client 2.</li>
 <li>gm2.addAllPackagesToVpn (String[] packageList, String profileName):</li>
 <li>gm1.getState(string profileName); // The return value should be 1 or 5</li>
@@ -3890,11 +3891,11 @@ where $container-id is owned by the EMM agent.</li>
 <p>The EMM agent has to get the instance of the <code>GenericVpnPolicy</code> object in the KnoxManager class for each client by passing the VPN vendor&rsquo;s package name as parameter.</p>
 <div class="highlight"><pre tabindex="0" style=";-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span>EnterpriseKnoxManager ekm <span style="color:#666">=</span> EnterpriseKnoxManager<span style="color:#666">.</span><span style="color:#7d9029">getInstance</span><span style="color:#666">();</span>
 </span></span><span style="display:flex;"><span>GenericVpnPolicy gm1 <span style="color:#666">=</span> ekm<span style="color:#666">.</span><span style="color:#7d9029">getGenericVpnPolicy</span><span style="color:#666">(</span>$vpn_client_1_packageName<span style="color:#666">,</span>$userId where VPN client <span style="color:#666">1</span> is installed<span style="color:#666">);</span>
-</span></span><span style="display:flex;"><span>GenericVpnPolicy gm2 <span style="color:#666">=</span> ekm<span style="color:#666">.</span><span style="color:#7d9029">getGenericVpnPolicy</span><span style="color:#666">(</span>$vpn_client_2_packageName<span style="color:#666">,</span>$userId where VPN client <span style="color:#666">2</span> is installed<span style="color:#666">);</span> 
+</span></span><span style="display:flex;"><span>GenericVpnPolicy gm2 <span style="color:#666">=</span> ekm<span style="color:#666">.</span><span style="color:#7d9029">getGenericVpnPolicy</span><span style="color:#666">(</span>$vpn_client_2_packageName<span style="color:#666">,</span>$userId where VPN client <span style="color:#666">2</span> is installed<span style="color:#666">);</span>
 </span></span></code></pre></div><p>Once the above code executes, the framework tries to bind to the VPN vendor&rsquo;s application. When the binding succeeds, the framework sends a broadcast message to the EMM agent.</p>
 </li>
 <li>
-<p>The EMM agent has to listen for the intent action &ldquo;com.samsung.android.mdm.VPN_BIND_RESULT&rdquo; which has the following information:</p>
+<p>The EMM agent has to listen for the intent action <code>com.samsung.android.mdm.VPN_BIND_RESULT</code> which has the following information:</p>
 <ul>
 <li>vpn_bind_vendor provides the VPN vendor&rsquo;s package name</li>
 <li>vpn_bind_status returns true or false, specifying whether the bind to the VPN vendor&rsquo;s application was successful or not.</li>
@@ -3951,10 +3952,10 @@ where $container-id is owned by the EMM agent.</li>
 <h4 id="create-and-start-a-dual-chain-vpn-connection-7">Create and Start a Dual-Chain VPN Connection</h4>
 <p>The EMM agent must make the following calls to start a VPN connection under the dual-chain configuration described above.</p>
 <ol>
-<li>gm1.addPackagesToVpn (String[] packageList, String profileName);<br>
+<li>gm1.addPackagesToVpn (String[] packageList, String profileName);
 The packageList must only contain the package name of VPN client 2.</li>
 <li>gm2.addAllPackagesToVpn (String profileName);</li>
-<li>gm2.addAllContainerPackagesToVpn ($container-id, String profileName);<br>
+<li>gm2.addAllContainerPackagesToVpn ($container-id, String profileName);
 where $container-id is owned by the EMM agent.</li>
 <li>gm1.getState(string profileName); // The return value should be 1 or 5</li>
 <li>gm2.getState(string profileName); // The return value should be 1 or 5</li>
@@ -4144,6 +4145,14 @@ where $container-id is owned by the EMM agent.</li>
                 href="../../../../knox-deployment-program.html"
                 class="body-5 d-flex align-items-center text-black fw-light pe-auto text-decoration-none"
                 >Knox Deployment Program</a
+              >
+            </li>
+            
+            <li>
+              <a
+                href="../../../../knox-msp-portal.html"
+                class="body-5 d-flex align-items-center text-black fw-light pe-auto text-decoration-none"
+                >Knox MSP Portal</a
               >
             </li>
             

@@ -1,0 +1,1861 @@
+<!DOCTYPE html>
+<html lang="en">
+
+
+
+
+
+  
+
+
+
+
+
+  
+  
+<head>
+  <meta charset="utf-8">
+  
+  
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-CV8C3DHP6P"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-CV8C3DHP6P');
+  </script>
+  
+  <script>
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+    ga('create', 'UA-54474000-1', 'auto'); 
+    ga('send', 'pageview');
+  </script>
+  
+<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start': new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0], j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src='https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);})(window,document,'script','dataLayer','GTM-P24TWCG');</script>
+  <meta name="viewport" content="width=device-width,height=device-height,initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>For MSPs &mdash; Generate an access token for your Knox MSP Program tenant  | Knox Cloud Authentication  | Samsung Knox Documentation</title>
+  <meta http-equiv="content-language" content="en">
+  <meta name="language" content="en">
+  <script src="../../assets/js/bundle.js"></script>
+  <link rel="stylesheet" href="../../styles/main.min.css">
+  <link rel="icon" href="../../favicon.ico" type="image/x-icon">
+  <link rel="icon" sizes="16x16" href="../../favicon-16x16.png" type="image/png">
+  <link rel="icon" sizes="32x32" href="../../favicon-32x32.png" type="image/png">
+  <link rel="manifest" href="../../manifest.json">
+  <link rel="apple-touch-icon" sizes="180x180" href="../../apple-touch-icon.png">
+  <link rel="mask-icon" href="../../safari-pinned-tab.svg" color="#5bbad5">
+  <meta name="theme-color" content="white">
+</head>
+<body id=ZgotmplZ>
+  
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-P24TWCG" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript><a id="back-to-top-button" class="button-back-to-top">Back to top</a>
+  
+    <header>
+  <div class="container-xxl border-bottom">
+    <nav class="nav-top navbar navbar-expand-lg d-flex px-3">
+        <a class="navbar-brand" href="../../index.html">
+          <img src="../../svg/samsung_knox_nav_logo.svg" alt="Logo for Samsung Knox documentation">
+        </a>
+        <div class="collapse navbar-collapse">
+          <ul class="row align-items-center ms-10 mb-0 p-0">
+            
+            <li class="navbar-nav col">
+              <a href="../../../admin/index.html" class="body-4 text-black fw-light pe-auto me-6 text-decoration-none ">Admin</a>
+            </li>
+            
+            <li class="navbar-nav col">
+              <a href="../../index.html" class="body-4 text-black fw-light pe-auto me-6 text-decoration-none fw-bold border-bottom border-2 border-black">Developer</a>
+            </li>
+            
+            <li class="navbar-nav col">
+              <a href="../../../partner/index.html" class="body-4 text-black fw-light pe-auto me-6 text-decoration-none ">Partner</a>
+            </li>
+            
+          </ul>
+        </div>
+        <div class="ms-auto">
+          <div class="collapse navbar-collapse">
+            <div class="head-search-wrapper ms-auto ">
+              <script async src="https://cse.google.com/cse.js?cx=9119a64f9020430ac"></script>
+<div class="gcse-search"></div>
+
+            </div>
+          </div>
+        </div>
+    </nav>
+  </div>
+</header>
+
+  
+  <main>
+    
+      <div class="container-xxl l-layout">
+        <div class="l-sidebar pt-md-6">
+          
+<aside class="ps-2 pe-4">
+  <div class="d-inline-block w-100 position-relative">
+  <button id="guide-navigation-button" type="button" data-bs-toggle="collapse" data-bs-target="#guide-navigation" aria-controls="#guide-navigation" aria-expanded="false" class="dropdown-button border border-2">Samsung Knox developer guides</button>
+  <div id="guide-navigation" class="collapse w-100 position-absolute dropdown">
+    <nav aria-labelledby="guide-navigation-button" class="dropdown-content">
+      <ul>
+      <li>
+  <a href="../../fundamentals.html" >Fundamentals</a>
+  </li>
+<li>
+  <span>Device apps</span>
+  <ul>
+    <li>
+  <a href="../../knox-sdk.html" >Knox SDK</a>
+  </li>
+<li>
+  <a href="../../knox-pos-sdk.html" >Knox POS SDK</a>
+  </li>
+<li>
+  <a href="../../knox-capture-sdk.html" >Knox Capture SDK</a>
+  </li>
+<li>
+  <a href="../../knox-tizen-sdk.html" >Knox Tizen SDK</a>
+  </li>
+</ul>
+  </li>
+<li>
+  <span>Web services</span>
+  <ul>
+    <li>
+  <a href="../../knox-cloud-authentication.html" class="active-drop-item">Knox Cloud Authentication</a>
+  </li>
+<li>
+  <a href="../../knox-webhook-notification.html" >Knox Webhook Notification</a>
+  <ul>
+    </ul>
+  </li>
+<li>
+  <a href="../../knox-deployment-program.html" >Knox Deployment Program</a>
+  </li>
+<li>
+  <a href="../../knox-msp-portal.html" >Knox MSP Portal</a>
+  </li>
+<li>
+  <a href="../../knox-mobile-enrollment.html" >Knox Mobile Enrollment</a>
+  </li>
+<li>
+  <a href="../../knox-configure.html" >Knox Configure</a>
+  </li>
+<li>
+  <a href="../../knox-manage.html" >Knox Manage</a>
+  </li>
+<li>
+  <a href="../../knox-attestation.html" >Knox Attestation</a>
+  </li>
+<li>
+  <a href="../../knox-guard.html" >Knox Guard</a>
+  <ul>
+    </ul>
+  </li>
+<li>
+  <a href="../../knox-asset-intelligence.html" >Knox Asset Intelligence</a>
+  </li>
+</ul>
+  </li>
+<li>
+  <a href="../../managed-configurations.html" >Managed configurations</a>
+  </li>
+</ul>
+    </nav>
+  </div>
+</div><h3 class="body-3 mt-4 ps-2">Knox Cloud Authentication</h3>
+  <nav class="side-nav">
+    <ul class="ps-2">
+      
+      
+      <li>
+        <div>
+          <a class="body-5 text-black fw-light" href="../../knox-cloud-authentication.html">Introduction</a>
+        </div>
+      </li>
+        
+          
+  
+  
+    <li class="mt-2">
+    
+    <div class="d-flex justify-content-between cursor-pointer" data-bs-toggle="collapse" data-bs-target="#sub-knox-cloud-authentication-knox-cloud-authentication-knox-cloud-authentication" aria-expanded="false">
+      <span class="body-5 text-black fw-light">Knox Cloud Authentication</span>
+      <a class="btn-toggle d-inline-flex rounded border-0 fw-light" data-bs-toggle="collapse" data-bs-target="#sub-knox-cloud-authentication-knox-cloud-authentication-knox-cloud-authentication" aria-expanded="true"></a>
+    </div>
+      
+    <div class="show" id="sub-knox-cloud-authentication-knox-cloud-authentication-knox-cloud-authentication">
+      <ul>
+      
+      
+  
+  
+    <li class="mt-2">
+    
+    
+    <div class="d-flex justify-content-between">
+      <a class="body-5 text-black fw-light" href="overview/index.html">Overview</a>
+    </div>
+    
+    </li>
+  
+  
+  
+    <li class="mt-2">
+    
+    
+    <div class="d-flex justify-content-between">
+      <a class="body-5 text-black fw-light" href="tutorial-for-customers-generate-access-token.html">For customers</a>
+    </div>
+    
+    </li>
+  
+  
+  
+    <li class="mt-2">
+    
+    
+    <div class="d-flex justify-content-between">
+      <a class="body-5 text-black active" href="tutorial-for-msps-generate-an-access-token-for-your-knox-msp-program-tenant.html">For MSPs</a>
+    </div>
+    
+    </li>
+  
+  
+  
+    <li class="mt-2">
+    
+    <div class="d-flex justify-content-between cursor-pointer" data-bs-toggle="collapse" data-bs-target="#sub-knox-cloud-authentication-knox-cloud-authentication-for-uems-for-uems" aria-expanded="false">
+      <span class="body-5 text-black fw-light">For UEM partners</span>
+      <a class="btn-toggle d-inline-flex rounded border-0 fw-light" data-bs-toggle="collapse" data-bs-target="#sub-knox-cloud-authentication-knox-cloud-authentication-for-uems-for-uems" aria-expanded="false"></a>
+    </div>
+      
+    <div class="collapse" id="sub-knox-cloud-authentication-knox-cloud-authentication-for-uems-for-uems">
+      <ul>
+      
+      
+  
+  
+    <li class="mt-2">
+    
+    
+    <div class="d-flex justify-content-between">
+      <a class="body-5 text-black fw-light" href="for-uems/authorize-a-user-with-samsung-account.html">Authorize a user with Samsung Account</a>
+    </div>
+    
+    </li>
+  
+  
+  
+    <li class="mt-2">
+    
+    <div class="d-flex justify-content-between cursor-pointer" data-bs-toggle="collapse" data-bs-target="#sub-knox-cloud-authentication-knox-cloud-authentication-for-uems-authentication-workflow-authentication-workflow" aria-expanded="false">
+      <span class="body-5 text-black fw-light">Authentication workflow</span>
+      <a class="btn-toggle d-inline-flex rounded border-0 fw-light" data-bs-toggle="collapse" data-bs-target="#sub-knox-cloud-authentication-knox-cloud-authentication-for-uems-authentication-workflow-authentication-workflow" aria-expanded="false"></a>
+    </div>
+      
+    <div class="collapse" id="sub-knox-cloud-authentication-knox-cloud-authentication-for-uems-authentication-workflow-authentication-workflow">
+      <ul>
+      
+      
+  
+  
+    <li class="mt-2">
+    
+    
+    <div class="d-flex justify-content-between">
+      <a class="body-5 text-black fw-light" href="for-uems/authentication-workflow/tutorial-integrations-for-uems.html">Integration for UEMs</a>
+    </div>
+    
+    </li>
+  
+  
+  
+    <li class="mt-2">
+    
+    
+    <div class="d-flex justify-content-between">
+      <a class="body-5 text-black fw-light" href="for-uems/authentication-workflow/generate-knox-cloud-services-signed-access-token.html">Generate a Knox cloud services signed access token</a>
+    </div>
+    
+    </li>
+  </ul>
+    </div></li>
+  </ul>
+    </div></li>
+  
+  
+  
+    <li class="mt-2">
+    
+    <div class="d-flex justify-content-between cursor-pointer" data-bs-toggle="collapse" data-bs-target="#sub-knox-cloud-authentication-knox-cloud-authentication-api-reference-api-reference" aria-expanded="false">
+      <span class="body-5 text-black fw-light">API reference</span>
+      <a class="btn-toggle d-inline-flex rounded border-0 fw-light" data-bs-toggle="collapse" data-bs-target="#sub-knox-cloud-authentication-knox-cloud-authentication-api-reference-api-reference" aria-expanded="false"></a>
+    </div>
+      
+    <div class="collapse" id="sub-knox-cloud-authentication-knox-cloud-authentication-api-reference-api-reference">
+      <ul>
+      
+      
+  
+  
+    <li class="mt-2">
+    
+    
+    <div class="d-flex justify-content-between">
+      <a class="body-5 text-black fw-light" href="api-reference/api.html">Knox Cloud Authentication API reference</a>
+    </div>
+    
+    </li>
+  
+  
+  
+    <li class="mt-2">
+    
+    
+    <div class="d-flex justify-content-between">
+      <a class="body-5 text-black fw-light" href="api-reference/third-party-auth-api-new.html">Knox Cloud Services Third Party Integration (Authentication) API reference</a>
+    </div>
+    
+    </li>
+  </ul>
+    </div></li>
+  
+  
+  
+    <li class="mt-2">
+    
+    
+    <div class="d-flex justify-content-between">
+      <a class="body-5 text-black fw-light" href="troubleshooting-knox-cloud-services.html">Troubleshooting Knox cloud services</a>
+    </div>
+    
+    </li>
+  
+  
+  
+    <li class="mt-2">
+    
+    <div class="d-flex justify-content-between">
+      <a class="body-5 text-black fw-light" href="release-notes.html">Release notes</a>
+    </div>
+      
+    </li>
+  </ul>
+    </div></li>
+  
+        
+          
+  
+  
+    <li class="mt-2">
+    
+    <div class="d-flex justify-content-between cursor-pointer" data-bs-toggle="collapse" data-bs-target="#sub-knox-cloud-authentication-knox-oauth-2-0-authentication-knox-oauth-2-0-authentication" aria-expanded="false">
+      <span class="body-5 text-black fw-light">Knox OAuth 2.0 Authentication</span>
+      <a class="btn-toggle d-inline-flex rounded border-0 fw-light" data-bs-toggle="collapse" data-bs-target="#sub-knox-cloud-authentication-knox-oauth-2-0-authentication-knox-oauth-2-0-authentication" aria-expanded="false"></a>
+    </div>
+      
+    <div class="collapse" id="sub-knox-cloud-authentication-knox-oauth-2-0-authentication-knox-oauth-2-0-authentication">
+      <ul>
+      
+      
+  
+  
+    <li class="mt-2">
+    
+    
+    <div class="d-flex justify-content-between">
+      <a class="body-5 text-black fw-light" href="../knox-oauth-2-0-authentication/overview.html">Overview</a>
+    </div>
+    
+    </li>
+  
+  
+  
+    <li class="mt-2">
+    
+    
+    <div class="d-flex justify-content-between">
+      <a class="body-5 text-black fw-light" href="../knox-oauth-2-0-authentication/register-new-app.html">Register new app</a>
+    </div>
+    
+    </li>
+  
+  
+  
+    <li class="mt-2">
+    
+    <div class="d-flex justify-content-between cursor-pointer" data-bs-toggle="collapse" data-bs-target="#sub-knox-cloud-authentication-knox-oauth-2-0-authentication-for-customers-and-msps-for-customers-and-msps" aria-expanded="false">
+      <span class="body-5 text-black fw-light">For customers and MSPs</span>
+      <a class="btn-toggle d-inline-flex rounded border-0 fw-light" data-bs-toggle="collapse" data-bs-target="#sub-knox-cloud-authentication-knox-oauth-2-0-authentication-for-customers-and-msps-for-customers-and-msps" aria-expanded="false"></a>
+    </div>
+      
+    <div class="collapse" id="sub-knox-cloud-authentication-knox-oauth-2-0-authentication-for-customers-and-msps-for-customers-and-msps">
+      <ul>
+      
+      
+  
+  
+    <li class="mt-2">
+    
+    
+    <div class="d-flex justify-content-between">
+      <a class="body-5 text-black fw-light" href="../knox-oauth-2-0-authentication/for-customers-and-msps/step-1-get-access-token.html">Step 1 — Get access token</a>
+    </div>
+    
+    </li>
+  
+  
+  
+    <li class="mt-2">
+    
+    
+    <div class="d-flex justify-content-between">
+      <a class="body-5 text-black fw-light" href="../knox-oauth-2-0-authentication/for-customers-and-msps/step-2-call-knox-cloud-services-apis-with-access-token/index.html">Step 2 — Call Knox cloud services APIs with access token</a>
+    </div>
+    
+    </li>
+  </ul>
+    </div></li>
+  
+  
+  
+    <li class="mt-2">
+    
+    <div class="d-flex justify-content-between cursor-pointer" data-bs-toggle="collapse" data-bs-target="#sub-knox-cloud-authentication-knox-oauth-2-0-authentication-for-uem-partners-for-uem-partners" aria-expanded="false">
+      <span class="body-5 text-black fw-light">For UEM partners</span>
+      <a class="btn-toggle d-inline-flex rounded border-0 fw-light" data-bs-toggle="collapse" data-bs-target="#sub-knox-cloud-authentication-knox-oauth-2-0-authentication-for-uem-partners-for-uem-partners" aria-expanded="false"></a>
+    </div>
+      
+    <div class="collapse" id="sub-knox-cloud-authentication-knox-oauth-2-0-authentication-for-uem-partners-for-uem-partners">
+      <ul>
+      
+      
+  
+  
+    <li class="mt-2">
+    
+    
+    <div class="d-flex justify-content-between">
+      <a class="body-5 text-black fw-light" href="../knox-oauth-2-0-authentication/for-uem-partners/step-1-get-authorization-code.html">Step 1 — Get authorization code</a>
+    </div>
+    
+    </li>
+  
+  
+  
+    <li class="mt-2">
+    
+    
+    <div class="d-flex justify-content-between">
+      <a class="body-5 text-black fw-light" href="../knox-oauth-2-0-authentication/for-uem-partners/step-2-get-access-and-refresh-tokens.html">Step 2 — Get access and refresh tokens</a>
+    </div>
+    
+    </li>
+  
+  
+  
+    <li class="mt-2">
+    
+    
+    <div class="d-flex justify-content-between">
+      <a class="body-5 text-black fw-light" href="../knox-oauth-2-0-authentication/for-uem-partners/step-3-call-knox-cloud-services-apis-with-access-token/index.html">Step 3 — Call Knox cloud services APIs with access token</a>
+    </div>
+    
+    </li>
+  
+  
+  
+    <li class="mt-2">
+    
+    
+    <div class="d-flex justify-content-between">
+      <a class="body-5 text-black fw-light" href="../knox-oauth-2-0-authentication/for-uem-partners/step-4-refresh-access-token.html">Step 4 — Refresh access token</a>
+    </div>
+    
+    </li>
+  </ul>
+    </div></li>
+  
+  
+  
+    <li class="mt-2">
+    
+    
+    <div class="d-flex justify-content-between">
+      <a class="body-5 text-black fw-light" href="../knox-oauth-2-0-authentication/manage-registered-apps.html">Manage registered apps</a>
+    </div>
+    
+    </li>
+  
+  
+  
+    <li class="mt-2">
+    
+    
+    <div class="d-flex justify-content-between">
+      <a class="body-5 text-black fw-light" href="../knox-oauth-2-0-authentication/scopes-for-knox-cloud-services-apis.html">Scopes for Knox cloud services APIs</a>
+    </div>
+    
+    </li>
+  
+  
+  
+    <li class="mt-2">
+    
+    
+    <div class="d-flex justify-content-between">
+      <a class="body-5 text-black fw-light" href="../knox-oauth-2-0-authentication/knox-oauth-2-0-authentication-api.html">API reference</a>
+    </div>
+    
+    </li>
+  
+  
+  
+    <li class="mt-2">
+    
+    <div class="d-flex justify-content-between">
+      <a class="body-5 text-black fw-light" href="../knox-oauth-2-0-authentication/release-notes/index.html">Release notes</a>
+    </div>
+      
+    </li>
+  </ul>
+    </div></li>
+  
+        
+          
+  
+  
+    <li class="mt-2">
+    
+    <div class="d-flex justify-content-between">
+      <a class="body-5 text-black fw-light" href="../kbas/index.html">KBAs</a>
+    </div>
+      
+    </li>
+  </ul>
+  </nav>
+</aside></div>
+        <div class="l-main pt-md-6">
+          
+          <div class="l-content-top mb-4">
+            <div class="l-breadcrumb">
+              <a class="fw-light text-black" href="../../index.html">Home</a><span> /</span>
+<a class="fw-light text-black" href="../../knox-cloud-authentication.html">Knox Cloud Authentication</a><span> /</span>
+<a class="fw-light text-black" href="../knox-cloud-authentication.html">Knox Cloud Authentication</a><span> /</span>
+
+            </div>
+            <div class="mt-4">
+              <h1>For MSPs &mdash; Generate an access token for your Knox MSP Program tenant</h1>
+            </div>
+            
+
+  <p><span>Last updated April  30th, 2024</span></p>
+
+
+    
+
+</div>
+          <div class="l-content">
+            
+
+  
+
+
+
+
+      
+      
+      
+      
+        
+      
+      
+      
+      
+        
+      
+      
+      
+      
+      
+      
+        
+      
+      
+      
+      
+        
+      
+      
+      
+      
+      
+        <div class="notice-note"><p>If you’re a third party portal provider and you’d like to make calls to Knox cloud service on behalf of your customers, see the <a href="for-uems/authentication-workflow/tutorial-integrations-for-uems.html">integration guide for UEMs</a>.</p></div>
+<p>Complete these steps to generate your access token using the <a href="api-reference.html">Knox Cloud Authentication API</a> and successfully call the Knox cloud service APIs in the course of your MSP activities.</p>
+<ol>
+<li>
+<p>Get access to Knox Cloud API:</p>
+<ol>
+<li>
+<p>Register for a <a href="../../../admin/knox-managed-service-provider/get-started.htm" target="_blank">Knox Partner Program account as a Managed Service Provider</a>.</p>
+</li>
+<li>
+<p>Contact your local Samsung representative or the Knox team through one of the following channels to request access:</p>
+<ul>
+<li>On the Knox Partner Program dashboard, click <strong>Support</strong> and submit the web form.</li>
+<li>On the Knox Developers dashboard, click <strong>Support</strong> &gt; <strong>Technical Support</strong>.</li>
+</ul>
+</li>
+</ol>
+</li>
+<li>
+<p>Generate your key pair on the Knox API Portal:</p>
+<ol>
+<li>
+<p>On the <a href="https://developer.samsungknox.com/dashboard" target="_blank">Knox Developer Portal</a>, click <strong>Knox Cloud API Portal</strong>.</p>
+</li>
+<li>
+<p>Click <strong>Download</strong> to download your public and private key pair JSON file. This JSON file only needs to be generated once and contains the following information:</p>
+<div class="overflow-auto my-3"><table>
+<thead>
+<tr>
+<th>Key</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Public key</td>
+<td>Key that&rsquo;s sent in the body of the <code>accesstoken</code> REST API request and stored by Samsung Knox to validate signed requests.</td>
+</tr>
+<tr>
+<td>Private key</td>
+<td>Key that should be stored and never revealed. This key is used for signing the Client Identifier and the access token returned by the REST API call. This key isn&rsquo;t stored by Samsung Knox and we&rsquo;ll never request it from you.</td>
+</tr>
+</tbody>
+</table></div>
+</li>
+</ol>
+</li>
+<li>
+<p>Click <strong>GENERATE CLIENT IDENTIFIER</strong> under <strong>Knox MSP API</strong>. This unique identifier only needs to be generated once unless:</p>
+<ul>
+<li>Privileges need to be changed.</li>
+<li>The Client Identifier is lost or stolen.</li>
+</ul>
+<p>In both cases, re-generating the Client Identifier invalidates the previous one.</p>
+
+    
+    
+    
+    
+    
+    
+      
+      
+      
+      
+      
+        
+        
+        
+        
+          
+        
+        
+      
+        
+        
+        
+        
+          
+        
+        
+      
+        
+        
+        
+        
+          
+        
+        
+      
+        
+        
+        
+        
+          
+        
+        
+      
+        
+        
+        
+        
+          
+        
+        
+      
+        
+        
+        
+        
+          
+        
+        
+      
+        
+        
+        
+        
+          
+        
+        
+      
+        
+        
+        
+          
+        
+        
+        
+      
+        
+        
+        
+          
+        
+        
+        
+      
+        
+        
+        
+          
+        
+        
+        
+      
+        
+        
+        
+          
+        
+        
+        
+      
+        
+        
+        
+          
+        
+        
+        
+      
+        
+        
+        
+          
+        
+        
+        
+      
+    
+    
+    <p><img src="../assets/msp-client-identifier.png" class="image-block-scale-50 img-thumbnail" alt="Knox MSP Client identifier" /></p>
+</li>
+<li>
+<p>Get the support files.</p>
+<ul
+  class="nav nav-tabs d-flex align-items-center mt-3"
+  id="nav-tabs"
+  role="tablist"
+>
+   
+   
+   
+   
+   
+  
+  <li class="nav-item" role="presentation">
+    <button
+      class="tab-link active px-3 py-2 rounded-5"
+      id="fdaceb-tab"
+      data-bs-toggle="tab"
+      data-bs-target="#fdaceb"
+      type="button"
+      role="tab"
+      aria-controls="fdaceb"
+      aria-selected="true"
+    >Java
+    </button>
+  </li>
+   
+   
+  
+  <li class="nav-item" role="presentation">
+    <button
+      class="tab-link  px-3 py-2 rounded-5"
+      id="acebfd-tab"
+      data-bs-toggle="tab"
+      data-bs-target="#acebfd"
+      type="button"
+      role="tab"
+      aria-controls="acebfd"
+      aria-selected="true"
+    >JavaScript
+    </button>
+  </li>
+   
+   
+  
+  <li class="nav-item" role="presentation">
+    <button
+      class="tab-link  px-3 py-2 rounded-5"
+      id="bdaefc-tab"
+      data-bs-toggle="tab"
+      data-bs-target="#bdaefc"
+      type="button"
+      role="tab"
+      aria-controls="bdaefc"
+      aria-selected="true"
+    >.NET
+    </button>
+  </li>
+   
+   
+   
+  
+</ul>
+<div class="tab-content mb-6" id="nav-tab-content">
+    
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  
+  
+  
+
+  
+  
+  
+  
+  
+
+  
+  
+  
+  
+  
+
+  
+  
+  
+  
+  
+
+
+<div class="tab-pane fade  show active  border border-grey-line rounded-3 overflow-hidden" id="fdaceb" role="tabpanel" aria-labelledby="fdaceb-tab">
+  
+  
+  
+  <div class="tab-content p-3"><p>This solution is designed for a Java environment (v1.6 and above). Download the JAR and README files.<a href="../assets/samsung-knox-cloud-jar.zip"  class="btn d-inline-block button-primary">Download JAR</a></p>
+
+  </div>
+  
+</div>
+
+    
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  
+  
+  
+
+  
+  
+  
+  
+  
+
+
+<div class="tab-pane fade  border border-grey-line rounded-3 overflow-hidden" id="acebfd" role="tabpanel" aria-labelledby="acebfd-tab">
+  
+  
+  
+  <div class="tab-content p-3"><div class="highlight"><pre tabindex="0" style=";-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-js" data-lang="js"><span style="display:flex;"><span>$ npm install knox<span style="color:#666">-</span>token<span style="color:#666">-</span>library<span style="color:#666">-</span>js</span></span></code></pre></div>
+  </div>
+  
+</div>
+    
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  
+  
+  
+
+  
+  
+  
+  
+  
+
+  
+  
+  
+  
+  
+
+  
+  
+  
+  
+  
+
+
+<div class="tab-pane fade  border border-grey-line rounded-3 overflow-hidden" id="bdaefc" role="tabpanel" aria-labelledby="bdaefc-tab">
+  
+  
+  
+  <div class="tab-content p-3"><p>Get the NuGet package.<a href="https://www.nuget.org/packages/Samsung.Knox.APITokenLibrary/1.0.0" target="_blank" rel="noreferrer" class="btn d-inline-block button-primary">Download nupkg</a></p>
+
+  </div>
+  
+</div>
+    </div>
+</li>
+<li>
+<p>Sign your Client Identifier with the token utility. See the source code below on how to sign your Client Identifier. For more information on using this utility JAR, see the included README file in the JAR file download package.</p>
+<ul
+  class="nav nav-tabs d-flex align-items-center mt-3"
+  id="nav-tabs"
+  role="tablist"
+>
+   
+   
+   
+   
+   
+  
+  <li class="nav-item" role="presentation">
+    <button
+      class="tab-link active px-3 py-2 rounded-5"
+      id="abcfed-tab"
+      data-bs-toggle="tab"
+      data-bs-target="#abcfed"
+      type="button"
+      role="tab"
+      aria-controls="abcfed"
+      aria-selected="true"
+    >Java
+    </button>
+  </li>
+   
+   
+  
+  <li class="nav-item" role="presentation">
+    <button
+      class="tab-link  px-3 py-2 rounded-5"
+      id="afebcd-tab"
+      data-bs-toggle="tab"
+      data-bs-target="#afebcd"
+      type="button"
+      role="tab"
+      aria-controls="afebcd"
+      aria-selected="true"
+    >JavaScript
+    </button>
+  </li>
+   
+   
+  
+  <li class="nav-item" role="presentation">
+    <button
+      class="tab-link  px-3 py-2 rounded-5"
+      id="efdbca-tab"
+      data-bs-toggle="tab"
+      data-bs-target="#efdbca"
+      type="button"
+      role="tab"
+      aria-controls="efdbca"
+      aria-selected="true"
+    >.NET
+    </button>
+  </li>
+   
+   
+   
+  
+</ul>
+<div class="tab-content mb-6" id="nav-tab-content">
+    
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  
+  
+  
+
+  
+  
+  
+  
+  
+
+  
+  
+  
+  
+  
+
+  
+  
+  
+  
+  
+
+
+<div class="tab-pane fade  show active  border border-grey-line rounded-3 overflow-hidden" id="abcfed" role="tabpanel" aria-labelledby="abcfed-tab">
+  
+  
+  
+  <div class="tab-content p-3"><div class="highlight"><pre tabindex="0" style=";-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span>String clientId <span style="color:#666">=</span> <span style="color:#ba2121">&#34;myClientId&#34;</span><span style="color:#666">;</span></span></span><span style="display:flex;"><span>String cert <span style="color:#666">=</span> <span style="color:#ba2121">&#34;src/test/resources/keys.json&#34;</span><span style="color:#666">;</span></span></span><span style="display:flex;"><span>String signedClientId <span style="color:#666">=</span> KnoxTokenUtility<span style="color:#666">.</span><span style="color:#7d9029">generateSignedClientIdentifierJWT</span><span style="color:#666">(</span><span style="color:#008000;font-weight:bold">new</span> FileInputStream<span style="color:#666">(</span>cert<span style="color:#666">),</span> clientId<span style="color:#666">);</span></span></span></code></pre></div>
+  </div>
+  
+</div>
+    
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  
+  
+  
+
+  
+  
+  
+  
+  
+
+  
+  
+  
+  
+  
+
+  
+  
+  
+  
+  
+
+
+<div class="tab-pane fade  border border-grey-line rounded-3 overflow-hidden" id="afebcd" role="tabpanel" aria-labelledby="afebcd-tab">
+  
+  
+  
+  <div class="tab-content p-3"><div class="highlight"><pre tabindex="0" style=";-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-js" data-lang="js"><span style="display:flex;"><span><span style="color:#008000;font-weight:bold">const</span> knoxTokenLibraryJs <span style="color:#666">=</span> require(<span style="color:#ba2121">&#39;knox-token-library-js&#39;</span>);</span></span><span style="display:flex;"><span><span style="color:#008000;font-weight:bold">var</span> clientId <span style="color:#666">=</span> <span style="color:#ba2121">&#34;&lt;insert-Client-Identifier-Step-3&gt;&#34;</span>;</span></span><span style="display:flex;"><span><span style="color:#008000;font-weight:bold">var</span> signedClientId <span style="color:#666">=</span> knoxTokenLibraryJs.generateSignedClientIdentifierJWT(<span style="color:#ba2121">&#34;keys.json&#34;</span>, clientId );</span></span></code></pre></div>
+  </div>
+  
+</div>
+    
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  
+  
+  
+
+  
+  
+  
+  
+  
+
+  
+  
+  
+  
+  
+
+  
+  
+  
+  
+  
+
+  
+  
+  
+  
+  
+
+
+<div class="tab-pane fade  border border-grey-line rounded-3 overflow-hidden" id="efdbca" role="tabpanel" aria-labelledby="efdbca-tab">
+  
+  
+  
+  <div class="tab-content p-3"><div class="highlight"><pre tabindex="0" style=";-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-vbnet" data-lang="vbnet"><span style="display:flex;"><span><span style="color:#008000;font-weight:bold">using</span> knoxAPIUtility<span style="">;</span></span></span><span style="display:flex;"><span>var cert <span style="color:#666">=</span> <span style="color:#ba2121">&#34;&lt;insert path to keys.json&gt;&#34;</span><span style="">;</span></span></span><span style="display:flex;"><span>var clientId <span style="color:#666">=</span> <span style="color:#ba2121">&#34;&lt;insert-Client-Identifier-Step-3&gt;&#34;</span><span style="">;</span></span></span><span style="display:flex;"><span>var signedClientId <span style="color:#666">=</span> KnoxTokenUtility.generateSignedClientIdentifierJWT(cert, clientId )<span style="">;</span></span></span></code></pre></div>
+  </div>
+  
+</div>
+    </div>
+</li>
+<li>
+<p>Generate your access token by calling the <a href="api-reference/api.html#tag/Authentication/operation/createApiAccessToken">accesstoken</a> REST API with your signed <code>clientId</code> and <code>public key</code>. The signed Client Identifier should be set as the value to <code>clientIdentifierJwt</code> in the request body of the accesstoken REST API. You can also set the token valid time between 1 &mdash; 30 minutes. The valid time is set to 30 minutes by default.</p>
+<p>For example:</p>
+<ul
+  class="nav nav-tabs d-flex align-items-center mt-3"
+  id="nav-tabs"
+  role="tablist"
+>
+   
+   
+   
+   
+   
+  
+  <li class="nav-item" role="presentation">
+    <button
+      class="tab-link active px-3 py-2 rounded-5"
+      id="bacedf-tab"
+      data-bs-toggle="tab"
+      data-bs-target="#bacedf"
+      type="button"
+      role="tab"
+      aria-controls="bacedf"
+      aria-selected="true"
+    >CURL
+    </button>
+  </li>
+   
+   
+   
+  
+</ul>
+<div class="tab-content mb-6" id="nav-tab-content">
+    
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  
+  
+  
+
+  
+  
+  
+  
+  
+
+
+<div class="tab-pane fade  show active  border border-grey-line rounded-3 overflow-hidden" id="bacedf" role="tabpanel" aria-labelledby="bacedf-tab">
+  
+  
+  
+  <div class="tab-content p-3"><div class="highlight"><pre tabindex="0" style=";-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>curl -X POST &lt;Knox-AccessToken-Endpoint&gt; -H <span style="color:#ba2121">&#39;Content-Type: application/json&#39;</span> -d <span style="color:#ba2121">&#39;{&#34;clientIdentifierJwt&#34;: &#34;signedClientId&#34;,&#34;base64EncodedStringPublicKey&#34;: &#34;myPublicKey&#34;}&#39;</span></span></span></code></pre></div>
+  </div>
+  
+</div>
+    </div>
+</li>
+<li>
+<p>Sign your <code>accesstoken</code> with your private key, using the utility JAR file as seen below.</p>
+<ul
+  class="nav nav-tabs d-flex align-items-center mt-3"
+  id="nav-tabs"
+  role="tablist"
+>
+   
+   
+   
+   
+   
+  
+  <li class="nav-item" role="presentation">
+    <button
+      class="tab-link active px-3 py-2 rounded-5"
+      id="bdeafc-tab"
+      data-bs-toggle="tab"
+      data-bs-target="#bdeafc"
+      type="button"
+      role="tab"
+      aria-controls="bdeafc"
+      aria-selected="true"
+    >Java
+    </button>
+  </li>
+   
+   
+  
+  <li class="nav-item" role="presentation">
+    <button
+      class="tab-link  px-3 py-2 rounded-5"
+      id="fdcbea-tab"
+      data-bs-toggle="tab"
+      data-bs-target="#fdcbea"
+      type="button"
+      role="tab"
+      aria-controls="fdcbea"
+      aria-selected="true"
+    >JavaScript
+    </button>
+  </li>
+   
+   
+  
+  <li class="nav-item" role="presentation">
+    <button
+      class="tab-link  px-3 py-2 rounded-5"
+      id="fecbad-tab"
+      data-bs-toggle="tab"
+      data-bs-target="#fecbad"
+      type="button"
+      role="tab"
+      aria-controls="fecbad"
+      aria-selected="true"
+    >.NET
+    </button>
+  </li>
+   
+   
+   
+  
+</ul>
+<div class="tab-content mb-6" id="nav-tab-content">
+    
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  
+  
+  
+
+  
+  
+  
+  
+  
+
+  
+  
+  
+  
+  
+
+
+<div class="tab-pane fade  show active  border border-grey-line rounded-3 overflow-hidden" id="bdeafc" role="tabpanel" aria-labelledby="bdeafc-tab">
+  
+  
+  
+  <div class="tab-content p-3"><div class="highlight"><pre tabindex="0" style=";-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span>String accessToken <span style="color:#666">=</span> <span style="color:#ba2121">&#34;myAccessToken&#34;</span><span style="color:#666">;</span></span></span><span style="display:flex;"><span>String signedAccessToken <span style="color:#666">=</span> KnoxTokenUtility<span style="color:#666">.</span><span style="color:#7d9029">generateSignedAccessTokenJWT</span><span style="color:#666">(</span><span style="color:#008000;font-weight:bold">new</span> FileInputStream<span style="color:#666">(</span>cert<span style="color:#666">),</span> accessToken<span style="color:#666">);</span></span></span></code></pre></div>
+  </div>
+  
+</div>
+    
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  
+  
+  
+
+  
+  
+  
+  
+  
+
+  
+  
+  
+  
+  
+
+
+<div class="tab-pane fade  border border-grey-line rounded-3 overflow-hidden" id="fdcbea" role="tabpanel" aria-labelledby="fdcbea-tab">
+  
+  
+  
+  <div class="tab-content p-3"><div class="highlight"><pre tabindex="0" style=";-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-js" data-lang="js"><span style="display:flex;"><span><span style="color:#008000;font-weight:bold">var</span> accessToken  <span style="color:#666">=</span> <span style="color:#ba2121">&#34;&lt;insert-access-token&gt;&#34;</span></span></span><span style="display:flex;"><span><span style="color:#008000;font-weight:bold">var</span> signedAccessToken <span style="color:#666">=</span> knoxTokenLibraryJs.generateSignedAccessTokenJWT(<span style="color:#ba2121">&#34;keys.json&#34;</span>, accessToken );</span></span></code></pre></div>
+  </div>
+  
+</div>
+    
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  
+  
+  
+
+  
+  
+  
+  
+  
+
+  
+  
+  
+  
+  
+
+
+<div class="tab-pane fade  border border-grey-line rounded-3 overflow-hidden" id="fecbad" role="tabpanel" aria-labelledby="fecbad-tab">
+  
+  
+  
+  <div class="tab-content p-3"><div class="highlight"><pre tabindex="0" style=";-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-vbnet" data-lang="vbnet"><span style="display:flex;"><span>var accessToken  <span style="color:#666">=</span> <span style="color:#ba2121">&#34;&lt;insert-access-token&gt;&#34;</span></span></span><span style="display:flex;"><span>var signedAccessToken <span style="color:#666">=</span>KnoxTokenUtility.generateSignedAccessTokenJWT(cert, accessToken )<span style="">;</span></span></span></code></pre></div>
+  </div>
+  
+</div>
+    </div>
+<p>The signed <code>accesstoken</code> expires after its valid time runs out. Once that happens it returns the <code>403225</code> error code.</p>
+</li>
+<li>
+<p>Enter your access token in the <code>x-knox-apitoken</code> header parameter of your Knox cloud service API request. See the API reference of your Knox cloud service for details. When you call a Knox cloud service API on behalf of your managed customers, you must include the <code>x-wsm-managed-tenantid</code> header parameter in your request, which identifies which customer you are managing with the API. Use your managed customer&rsquo;s ID as its value, which is found on the <strong>Customers</strong> page on the Knox MSP Portal.</p>
+</li>
+</ol>
+<p>Here is an example of how to detect when the access token expires, get a fresh access token, and call a Knox Cloud Service API again.</p>
+<ul
+  class="nav nav-tabs d-flex align-items-center mt-3"
+  id="nav-tabs"
+  role="tablist"
+>
+   
+   
+   
+   
+   
+  
+  <li class="nav-item" role="presentation">
+    <button
+      class="tab-link active px-3 py-2 rounded-5"
+      id="ebcdfa-tab"
+      data-bs-toggle="tab"
+      data-bs-target="#ebcdfa"
+      type="button"
+      role="tab"
+      aria-controls="ebcdfa"
+      aria-selected="true"
+    >Java
+    </button>
+  </li>
+   
+   
+   
+  
+</ul>
+<div class="tab-content mb-6" id="nav-tab-content">
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  
+  
+  
+
+  
+  
+  
+  
+  
+
+  
+  
+  
+  
+  
+
+  
+  
+  
+  
+  
+
+  
+  
+  
+  
+  
+
+  
+  
+  
+  
+  
+
+  
+  
+  
+  
+  
+
+  
+  
+  
+  
+  
+
+  
+  
+  
+  
+  
+
+  
+  
+  
+  
+  
+
+  
+  
+  
+  
+  
+
+  
+  
+  
+  
+  
+
+  
+  
+  
+  
+  
+
+  
+  
+  
+  
+  
+
+  
+  
+  
+  
+  
+
+  
+  
+  
+  
+  
+
+  
+  
+  
+  
+  
+
+  
+  
+  
+  
+  
+
+
+<div class="tab-pane fade  show active  border border-grey-line rounded-3 overflow-hidden" id="ebcdfa" role="tabpanel" aria-labelledby="ebcdfa-tab">
+  
+  
+  
+  <div class="tab-content p-3"><div class="highlight"><pre tabindex="0" style=";-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#408080;font-style:italic">// Expired access token error code</span></span></span><span style="display:flex;"><span><span style="color:#408080;font-style:italic"></span><span style="color:#008000;font-weight:bold">static</span> String ACCESS_TOKEN_EXPIRED <span style="color:#666">=</span> <span style="color:#ba2121">&#34;4032251&#34;</span><span style="color:#666">;</span></span></span><span style="display:flex;"><span><span style="color:#008000;font-weight:bold">try</span> <span style="color:#666">{</span></span></span><span style="display:flex;"><span>    <span style="color:#408080;font-style:italic">// Call Knox cloud service API</span></span></span><span style="display:flex;"><span><span style="color:#408080;font-style:italic"></span>    callKnoxCloudService<span style="color:#666">(</span>signedAccessToken<span style="color:#666">);</span></span></span><span style="display:flex;"><span><span style="color:#666">}</span> <span style="color:#008000;font-weight:bold">catch</span> <span style="color:#666">(</span>Exception exception<span style="color:#666">)</span> <span style="color:#666">{</span></span></span><span style="display:flex;"><span>    String responseBodyAsString <span style="color:#666">=</span> <span style="color:#666">((</span>HttpClientErrorException<span style="color:#666">)</span> exception<span style="color:#666">).</span><span style="color:#7d9029">getResponseBodyAsString</span><span style="color:#666">();</span></span></span><span style="display:flex;"><span>    <span style="color:#408080;font-style:italic">// Get error code value</span></span></span><span style="display:flex;"><span><span style="color:#408080;font-style:italic"></span>    JsonNode code <span style="color:#666">=</span> <span style="color:#008000;font-weight:bold">new</span> ObjectMapper<span style="color:#666">().</span><span style="color:#7d9029">readTree</span><span style="color:#666">(</span>responseBodyAsString<span style="color:#666">).</span><span style="color:#7d9029">get</span><span style="color:#666">(</span><span style="color:#ba2121">&#34;code&#34;</span><span style="color:#666">);</span></span></span><span style="display:flex;"><span>    <span style="color:#408080;font-style:italic">// If error code matches expired access token error code, generate another token</span></span></span><span style="display:flex;"><span><span style="color:#408080;font-style:italic"></span>    <span style="color:#008000;font-weight:bold">if</span> <span style="color:#666">(</span>code<span style="color:#666">.</span><span style="color:#7d9029">asText</span><span style="color:#666">().</span><span style="color:#7d9029">equalsIgnoreCase</span><span style="color:#666">(</span>ACCESS_TOKEN_EXPIRED<span style="color:#666">))</span> <span style="color:#666">{</span></span></span><span style="display:flex;"><span>        <span style="color:#408080;font-style:italic">// Generate a new access token by calling accesstoken API (Step 6)</span></span></span><span style="display:flex;"><span><span style="color:#408080;font-style:italic"></span>        accessToken <span style="color:#666">=</span> getAccessToken<span style="color:#666">(</span>signedClientId<span style="color:#666">,</span> publicKey<span style="color:#666">);</span></span></span><span style="display:flex;"><span>        <span style="color:#408080;font-style:italic">// Sign your new access token (Step 7)</span></span></span><span style="display:flex;"><span><span style="color:#408080;font-style:italic"></span>        signedAccessToken <span style="color:#666">=</span> KnoxTokenUtility<span style="color:#666">.</span><span style="color:#7d9029">generateSignedAccessTokenJWT</span><span style="color:#666">(</span><span style="color:#008000;font-weight:bold">new</span> FileInputStream<span style="color:#666">(&lt;</span>insert path to keys<span style="color:#666">.</span><span style="color:#7d9029">json</span><span style="color:#666">&gt;),</span> accessToken<span style="color:#666">)</span></span></span><span style="display:flex;"><span>    <span style="color:#666">}</span></span></span><span style="display:flex;"><span><span style="color:#666">}</span></span></span></code></pre></div>
+  </div>
+  
+</div>
+</div>
+
+            
+          </div>
+          <div class="l-toh">
+            
+          </div>
+        </div> 
+      </div><div>
+  <div id="feedbackQuestion" class="py-4 border-top text-center">
+    <p class="body-4 mb-2">Is this page helpful?</p>
+    <button id="feedbackYes" class="button-icon me-4">
+      <span class="button-thumbs-up pe-4"></span> YES
+    </button>
+    <button id="feedbackNo" class="button-icon">
+      <span class="button-thumbs-down pe-4"></span> No
+    </button>
+  </div>
+</div>
+
+<div id="feedbackThanks" class="mt-6 border-top text-center" style="display: none">
+  <p class="body-4 pt-4">Thank you for your feedback!</p>
+</div>
+
+
+
+    
+  </main>
+  
+    <footer class="border-top">
+  
+  <div class="container footer">
+    <div class="row g-0 footer-top-section">
+      
+      <div class="col-sm-12 col-md-6 col-lg-3 footer-vertical-section">
+        <div class="d-flex justify-content-between align-items-center">
+          <a class="footer-section-title" data-bs-toggle="collapse" href="tutorial-for-msps-generate-an-access-token-for-your-knox-msp-program-tenant.html#item0" role="button" aria-expanded="false" aria-controls="item0"> 
+            <h6 class="body-3 fw-bold text-uppercase text-black pt-4">Knox Developer documentation</h6>
+          </a>
+          <a class="btn-toggle d-inline-flex d-lg-none rounded border-0 fw-light" data-bs-toggle="collapse" data-bs-target="#item0" aria-expanded="false"></a>
+        </div>
+        <div class="d-lg-block collapse" id="item0">
+          <ul class="nav flex-column">
+            
+            <li>
+              <a
+                href="../../fundamentals.html"
+                class="body-5 d-flex align-items-center text-black fw-light pe-auto text-decoration-none"
+                >Fundamentals</a
+              >
+            </li>
+            
+            <li>
+              <a
+                href="../../knox-sdk.html"
+                class="body-5 d-flex align-items-center text-black fw-light pe-auto text-decoration-none"
+                >Knox SDK</a
+              >
+            </li>
+            
+            <li>
+              <a
+                href="../../knox-pos-sdk.html"
+                class="body-5 d-flex align-items-center text-black fw-light pe-auto text-decoration-none"
+                >Knox POS SDK</a
+              >
+            </li>
+            
+            <li>
+              <a
+                href="../../knox-capture-sdk.html"
+                class="body-5 d-flex align-items-center text-black fw-light pe-auto text-decoration-none"
+                >Knox Capture SDK</a
+              >
+            </li>
+            
+            <li>
+              <a
+                href="../../knox-tizen-sdk.html"
+                class="body-5 d-flex align-items-center text-black fw-light pe-auto text-decoration-none"
+                >Knox Tizen SDK</a
+              >
+            </li>
+            
+            <li>
+              <a
+                href="../../knox-cloud-authentication.html"
+                class="body-5 d-flex align-items-center text-black fw-light pe-auto text-decoration-none"
+                >Knox Cloud Authentication</a
+              >
+            </li>
+            
+            <li>
+              <a
+                href="../../knox-webhook-notification.html"
+                class="body-5 d-flex align-items-center text-black fw-light pe-auto text-decoration-none"
+                >Knox Webhook Notification</a
+              >
+            </li>
+            
+            <li>
+              <a
+                href="../../knox-deployment-program.html"
+                class="body-5 d-flex align-items-center text-black fw-light pe-auto text-decoration-none"
+                >Knox Deployment Program</a
+              >
+            </li>
+            
+            <li>
+              <a
+                href="../../knox-msp-portal.html"
+                class="body-5 d-flex align-items-center text-black fw-light pe-auto text-decoration-none"
+                >Knox MSP Portal</a
+              >
+            </li>
+            
+            <li>
+              <a
+                href="../../knox-mobile-enrollment.html"
+                class="body-5 d-flex align-items-center text-black fw-light pe-auto text-decoration-none"
+                >Knox Mobile Enrollment</a
+              >
+            </li>
+            
+            <li>
+              <a
+                href="../../knox-configure.html"
+                class="body-5 d-flex align-items-center text-black fw-light pe-auto text-decoration-none"
+                >Knox Configure</a
+              >
+            </li>
+            
+            <li>
+              <a
+                href="../../knox-manage.html"
+                class="body-5 d-flex align-items-center text-black fw-light pe-auto text-decoration-none"
+                >Knox Manage</a
+              >
+            </li>
+            
+            <li>
+              <a
+                href="../../knox-attestation.html"
+                class="body-5 d-flex align-items-center text-black fw-light pe-auto text-decoration-none"
+                >Knox Attestation</a
+              >
+            </li>
+            
+            <li>
+              <a
+                href="../../knox-guard.html"
+                class="body-5 d-flex align-items-center text-black fw-light pe-auto text-decoration-none"
+                >Knox Guard</a
+              >
+            </li>
+            
+            <li>
+              <a
+                href="../../knox-asset-intelligence.html"
+                class="body-5 d-flex align-items-center text-black fw-light pe-auto text-decoration-none"
+                >Knox Asset Intelligence</a
+              >
+            </li>
+            
+            <li>
+              <a
+                href="../../managed-configurations.html"
+                class="body-5 d-flex align-items-center text-black fw-light pe-auto text-decoration-none"
+                >Managed configurations</a
+              >
+            </li>
+            
+          </ul>
+        </div>
+      </div>
+      
+      <div class="col-sm-12 col-md-6 col-lg-3 footer-vertical-section">
+        <div class="d-flex justify-content-between align-items-center">
+          <a class="footer-section-title" data-bs-toggle="collapse" href="tutorial-for-msps-generate-an-access-token-for-your-knox-msp-program-tenant.html#item1" role="button" aria-expanded="false" aria-controls="item1"> 
+            <h6 class="body-3 fw-bold text-uppercase text-black pt-4">Support</h6>
+          </a>
+          <a class="btn-toggle d-inline-flex d-lg-none rounded border-0 fw-light" data-bs-toggle="collapse" data-bs-target="#item1" aria-expanded="false"></a>
+        </div>
+        <div class="d-lg-block collapse" id="item1">
+          <ul class="nav flex-column">
+            
+            <li>
+              <a
+                href="https://developer.samsungknox.com/dashboard/support"
+                class="body-5 d-flex align-items-center text-black fw-light pe-auto text-decoration-none"
+                >Submit a support ticket</a
+              >
+            </li>
+            
+          </ul>
+        </div>
+      </div>
+      
+      <div class="col-sm-12 col-md-6 col-lg-3 footer-vertical-section">
+        <div class="d-flex justify-content-between align-items-center">
+          <a class="footer-section-title" data-bs-toggle="collapse" href="tutorial-for-msps-generate-an-access-token-for-your-knox-msp-program-tenant.html#item2" role="button" aria-expanded="false" aria-controls="item2"> 
+            <h6 class="body-3 fw-bold text-uppercase text-black pt-4">Samsung</h6>
+          </a>
+          <a class="btn-toggle d-inline-flex d-lg-none rounded border-0 fw-light" data-bs-toggle="collapse" data-bs-target="#item2" aria-expanded="false"></a>
+        </div>
+        <div class="d-lg-block collapse" id="item2">
+          <ul class="nav flex-column">
+            
+            <li>
+              <a
+                href="https://www.samsungknox.com/en"
+                class="body-5 d-flex align-items-center text-black fw-light pe-auto text-decoration-none"
+                >Samsung Knox</a
+              >
+            </li>
+            
+            <li>
+              <a
+                href="https://partner.samsungknox.com/"
+                class="body-5 d-flex align-items-center text-black fw-light pe-auto text-decoration-none"
+                >Samsung Knox Partner Program</a
+              >
+            </li>
+            
+            <li>
+              <a
+                href="https://developer.samsung.com/"
+                class="body-5 d-flex align-items-center text-black fw-light pe-auto text-decoration-none"
+                >Samsung Knox Developer</a
+              >
+            </li>
+            
+          </ul>
+        </div>
+      </div>
+      
+    </div>
+  </div>
+  <div class="container py-4 border-bottom border-top">
+    <p class="m-0"><small>Copyright © 1995-<script>document.write(new Date().getFullYear());</script><noscript>2023</noscript> SAMSUNG All Rights Reserved.</small></p>
+  </div>
+  <div class="container">
+    <div class="footer-bottom-section-row">
+      <div class="d-flex py-4 justify-content-between">
+        <div class="d-flex align-items-center">
+          
+          <p class="m-0 footer-bottom-section-item">
+            <a class="body-6 text-uppercase text-black" href="https://www2.samsungknox.com/en/privacy-policy-us">Privacy policy</a>
+          </p>
+          
+          <p class="m-0 footer-bottom-section-item">
+            <a class="body-6 text-uppercase text-black" href="https://www.samsungknox.com/en/legal">Legal</a>
+          </p>
+          
+        </div>
+      </div>
+    </div>
+  </div>
+</footer>
+
+  
+</body>
+
+</html>

@@ -127,8 +127,6 @@
   <ul>
     <li>
   <a href="../../../knox-cloud-authentication.html" >Knox Cloud Authentication</a>
-  <ul>
-    </ul>
   </li>
 <li>
   <a href="../../../knox-webhook-notification.html" >Knox Webhook Notification</a>
@@ -137,6 +135,9 @@
   </li>
 <li>
   <a href="../../../knox-deployment-program.html" >Knox Deployment Program</a>
+  </li>
+<li>
+  <a href="../../../knox-msp-portal.html" >Knox MSP Portal</a>
   </li>
 <li>
   <a href="../../../knox-mobile-enrollment.html" >Knox Mobile Enrollment</a>
@@ -3260,14 +3261,14 @@
 <p>Sample DualDAR client <strong>AndroidManifest.xml</strong>:</p>
 <div class="highlight"><pre tabindex="0" style=";-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-xml" data-lang="xml"><span style="display:flex;"><span><span style="color:#bc7a00">&lt;?xml version=&#34;1.0&#34;?&gt;</span>
 </span></span><span style="display:flex;"><span><span style="color:#008000;font-weight:bold">&lt;manifest</span> <span style="color:#7d9029">xmlns:android=</span><span style="color:#ba2121">&#34;http://schemas.android.com/apk/res/android&#34;</span> <span style="color:#7d9029">package=</span><span style="color:#ba2121">&#34;com.samsung.android.knox.test&#34;</span><span style="color:#008000;font-weight:bold">&gt;</span>
-</span></span><span style="display:flex;"><span>  <span style="color:#008000;font-weight:bold">&lt;application&gt;</span>
-</span></span><span style="display:flex;"><span>    <span style="color:#008000;font-weight:bold">&lt;meta-data</span> <span style="color:#7d9029">android:name=</span><span style="color:#ba2121">&#34;supportedDualDarSdkVersion&#34;</span> <span style="color:#7d9029">android:value=</span><span style="color:#ba2121">&#34;1.0&#34;</span><span style="color:#008000;font-weight:bold">/&gt;</span>
-</span></span><span style="display:flex;"><span>    <span style="color:#008000;font-weight:bold">&lt;service</span> <span style="color:#7d9029">android:name=</span><span style="color:#ba2121">&#34;com.samsung.android.knox.test.MyDualDARClient&#34;</span><span style="color:#008000;font-weight:bold">&gt;</span>
-</span></span><span style="display:flex;"><span>      <span style="color:#008000;font-weight:bold">&lt;intent-filter&gt;</span>
-</span></span><span style="display:flex;"><span>	 <span style="color:#008000;font-weight:bold">&lt;action</span> <span style="color:#7d9029">android:name=</span><span style="color:#ba2121">&#34;com.samsung.android.knox.ddar.BIND_DUAL_DAR_CLIENT&#34;</span><span style="color:#008000;font-weight:bold">/&gt;</span>
-</span></span><span style="display:flex;"><span>      <span style="color:#008000;font-weight:bold">&lt;/intent-filter&gt;</span>
-</span></span><span style="display:flex;"><span>    <span style="color:#008000;font-weight:bold">&lt;/service&gt;</span>
-</span></span><span style="display:flex;"><span>  <span style="color:#008000;font-weight:bold">&lt;/application&gt;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#008000;font-weight:bold">&lt;application&gt;</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#008000;font-weight:bold">&lt;meta-data</span> <span style="color:#7d9029">android:name=</span><span style="color:#ba2121">&#34;supportedDualDarSdkVersion&#34;</span> <span style="color:#7d9029">android:value=</span><span style="color:#ba2121">&#34;1.0&#34;</span><span style="color:#008000;font-weight:bold">/&gt;</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#008000;font-weight:bold">&lt;service</span> <span style="color:#7d9029">android:name=</span><span style="color:#ba2121">&#34;com.samsung.android.knox.test.MyDualDARClient&#34;</span><span style="color:#008000;font-weight:bold">&gt;</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#008000;font-weight:bold">&lt;intent-filter&gt;</span>
+</span></span><span style="display:flex;"><span>            <span style="color:#008000;font-weight:bold">&lt;action</span> <span style="color:#7d9029">android:name=</span><span style="color:#ba2121">&#34;com.samsung.android.knox.ddar.BIND_DUAL_DAR_CLIENT&#34;</span><span style="color:#008000;font-weight:bold">/&gt;</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#008000;font-weight:bold">&lt;/intent-filter&gt;</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#008000;font-weight:bold">&lt;/service&gt;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#008000;font-weight:bold">&lt;/application&gt;</span>
 </span></span><span style="display:flex;"><span><span style="color:#008000;font-weight:bold">&lt;/manifest&gt;</span>
 </span></span></code></pre></div><h3 id="extend-dualdarclient-class">Extend DualDARClient class</h3>
 <p>Next, you&rsquo;ll need to extend abstract <a href="../../../../devref/knox-sdk/reference/com/samsung/android/knox/ddar/DualDARClient.html" target="_blank">DualDARClient</a> class and implement the callbacks to handle authentication, key management and other tasks. <code>Figure 1</code> below highlights the various events, callbacks and states. The sections after the diagram provide information on how to extend the abstract class and provide implementation for the client callbacks.</p>
@@ -3412,24 +3413,24 @@ Figure 1: Represents the platform states, user events, and the callback client a
 </span></span></code></pre></div><h3 id="dualdar-setup">DualDAR setup</h3>
 <p>During DualDAR Workspace creation, the DualDAR client app also receives the <a href="../../../../devref/knox-sdk/reference/com/samsung/android/knox/ddar/DualDARClient.html#onDualDARSetupForUser%28int%29" target="_blank">onDualDARSetupForUser()</a> callback. As part of the setup process, the DualDAR client should generate the necessary keys and secrets as shown by the following sample code:</p>
 <div class="highlight"><pre tabindex="0" style=";-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#008000;font-weight:bold">public</span> <span style="color:#b00040">boolean</span> <span style="color:#00f">onDualDARSetupForUser</span><span style="color:#666">(</span><span style="color:#b00040">int</span> userId<span style="color:#666">)</span> <span style="color:#666">{</span>
-</span></span><span style="display:flex;"><span>  <span style="color:#408080;font-style:italic">// Generate Secret (Master Key) and set it to platform for (de)encrypting filesystem
-</span></span></span><span style="display:flex;"><span><span style="color:#408080;font-style:italic"></span>  <span style="color:#b00040">byte</span><span style="color:#666">[]</span> masterKey <span style="color:#666">=</span> generateSecretKey<span style="color:#666">();</span>
-</span></span><span style="display:flex;"><span>  Map <span style="color:#666">&lt;</span> String<span style="color:#666">,</span> Byte<span style="color:#666">[]</span> <span style="color:#666">&gt;</span> secrets <span style="color:#666">=</span> <span style="color:#008000;font-weight:bold">new</span> HashMap <span style="color:#666">&lt;</span> <span style="color:#666">&gt;</span> <span style="color:#666">();</span>
-</span></span><span style="display:flex;"><span>  Byte<span style="color:#666">[]</span> secretData <span style="color:#666">=</span> <span style="color:#008000;font-weight:bold">new</span> Byte<span style="color:#666">[</span>masterKey<span style="color:#666">.</span><span style="color:#7d9029">length</span><span style="color:#666">];</span>
-</span></span><span style="display:flex;"><span>  <span style="color:#008000;font-weight:bold">for</span> <span style="color:#666">(</span><span style="color:#b00040">int</span> i <span style="color:#666">=</span> <span style="color:#666">0</span><span style="color:#666">;</span> i <span style="color:#666">&lt;</span> masterKey<span style="color:#666">.</span><span style="color:#7d9029">length</span><span style="color:#666">;</span> i<span style="color:#666">++)</span> <span style="color:#666">{</span>
-</span></span><span style="display:flex;"><span>    secretData<span style="color:#666">[</span>i<span style="color:#666">]</span> <span style="color:#666">=</span> masterKey<span style="color:#666">[</span>i<span style="color:#666">];</span>
-</span></span><span style="display:flex;"><span>  <span style="color:#666">}</span>
-</span></span><span style="display:flex;"><span>  secrets<span style="color:#666">.</span><span style="color:#7d9029">put</span><span style="color:#666">(</span>MASTER_KEY_ALIAS<span style="color:#666">,</span> secretData<span style="color:#666">);</span>
-</span></span><span style="display:flex;"><span>  setSecret<span style="color:#666">(</span>userId<span style="color:#666">,</span> secrets<span style="color:#666">);</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#408080;font-style:italic">// Generate Secret (Master Key) and set it to platform for (de)encrypting filesystem
+</span></span></span><span style="display:flex;"><span><span style="color:#408080;font-style:italic"></span>    <span style="color:#b00040">byte</span><span style="color:#666">[]</span> masterKey <span style="color:#666">=</span> generateSecretKey<span style="color:#666">();</span>
+</span></span><span style="display:flex;"><span>    Map <span style="color:#666">&lt;</span> String<span style="color:#666">,</span> Byte<span style="color:#666">[]</span> <span style="color:#666">&gt;</span> secrets <span style="color:#666">=</span> <span style="color:#008000;font-weight:bold">new</span> HashMap <span style="color:#666">&lt;</span> <span style="color:#666">&gt;</span> <span style="color:#666">();</span>
+</span></span><span style="display:flex;"><span>    Byte<span style="color:#666">[]</span> secretData <span style="color:#666">=</span> <span style="color:#008000;font-weight:bold">new</span> Byte<span style="color:#666">[</span>masterKey<span style="color:#666">.</span><span style="color:#7d9029">length</span><span style="color:#666">];</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#008000;font-weight:bold">for</span> <span style="color:#666">(</span><span style="color:#b00040">int</span> i <span style="color:#666">=</span> <span style="color:#666">0</span><span style="color:#666">;</span> i <span style="color:#666">&lt;</span> masterKey<span style="color:#666">.</span><span style="color:#7d9029">length</span><span style="color:#666">;</span> i<span style="color:#666">++)</span> <span style="color:#666">{</span>
+</span></span><span style="display:flex;"><span>        secretData<span style="color:#666">[</span>i<span style="color:#666">]</span> <span style="color:#666">=</span> masterKey<span style="color:#666">[</span>i<span style="color:#666">];</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#666">}</span>
+</span></span><span style="display:flex;"><span>    secrets<span style="color:#666">.</span><span style="color:#7d9029">put</span><span style="color:#666">(</span>MASTER_KEY_ALIAS<span style="color:#666">,</span> secretData<span style="color:#666">);</span>
+</span></span><span style="display:flex;"><span>    setSecret<span style="color:#666">(</span>userId<span style="color:#666">,</span> secrets<span style="color:#666">);</span>
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>  <span style="color:#408080;font-style:italic">// Generate and save salt
-</span></span></span><span style="display:flex;"><span><span style="color:#408080;font-style:italic"></span>  <span style="color:#b00040">byte</span><span style="color:#666">[]</span> salt <span style="color:#666">=</span> generateAndSaveSalt<span style="color:#666">();</span>
-</span></span><span style="display:flex;"><span>  <span style="color:#408080;font-style:italic">// Generate and save default auth token
-</span></span></span><span style="display:flex;"><span><span style="color:#408080;font-style:italic"></span>  <span style="color:#b00040">byte</span><span style="color:#666">[]</span> defAuthToken <span style="color:#666">=</span> generateAndSaveDefAuthToken<span style="color:#666">();</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#408080;font-style:italic">// Generate and save salt
+</span></span></span><span style="display:flex;"><span><span style="color:#408080;font-style:italic"></span>    <span style="color:#b00040">byte</span><span style="color:#666">[]</span> salt <span style="color:#666">=</span> generateAndSaveSalt<span style="color:#666">();</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#408080;font-style:italic">// Generate and save default auth token
+</span></span></span><span style="display:flex;"><span><span style="color:#408080;font-style:italic"></span>    <span style="color:#b00040">byte</span><span style="color:#666">[]</span> defAuthToken <span style="color:#666">=</span> generateAndSaveDefAuthToken<span style="color:#666">();</span>
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>  <span style="color:#408080;font-style:italic">// Encrypt primary key and save
-</span></span></span><span style="display:flex;"><span><span style="color:#408080;font-style:italic"></span>  saveEncryptedMasterKey<span style="color:#666">(</span>encryptMasterKeyWithPassword<span style="color:#666">(</span>masterKey<span style="color:#666">,</span> defAuthToken<span style="color:#666">,</span> salt<span style="color:#666">));</span>
-</span></span><span style="display:flex;"><span>  <span style="color:#008000;font-weight:bold">return</span> <span style="color:#008000;font-weight:bold">true</span><span style="color:#666">;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#408080;font-style:italic">// Encrypt primary key and save
+</span></span></span><span style="display:flex;"><span><span style="color:#408080;font-style:italic"></span>    saveEncryptedMasterKey<span style="color:#666">(</span>encryptMasterKeyWithPassword<span style="color:#666">(</span>masterKey<span style="color:#666">,</span> defAuthToken<span style="color:#666">,</span> salt<span style="color:#666">));</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#008000;font-weight:bold">return</span> <span style="color:#008000;font-weight:bold">true</span><span style="color:#666">;</span>
 </span></span><span style="display:flex;"><span><span style="color:#666">}</span>
 </span></span></code></pre></div><h3 id="set-secret">Set secret</h3>
 <p>During workspace creation and authentication, the client app should pass their secret/keys to the native client library. The native client library uses these secret/keys to encrypt and decrypt file encryption key. The file encryption keys are used to encrypt and decrypt files. The secret should be set when the platform invokes the <a href="../../../../devref/knox-sdk/reference/com/samsung/android/knox/ddar/DualDARClient.html#onDualDARSetupForUser%28int%29" target="_blank">onDualDARSetupForUser()</a> and <a href="../../../../devref/knox-sdk/reference/com/samsung/android/knox/ddar/DualDARClient.html#onPasswordAuth%28int,%20byte%5B%5D%29" target="_blank">onPasswordAuth()</a> callbacks.</p>
@@ -3462,16 +3463,16 @@ Figure 1: Represents the platform states, user events, and the callback client a
 </span></span><span style="display:flex;"><span><span style="color:#666">}</span>
 </span></span></code></pre></div><h3 id="handle-change-password">Handle change password</h3>
 <p>When the user changes the password for the DualDAR Workspace, the DualDAR client app receives <a href="../../../../devref/knox-sdk/reference/com/samsung/android/knox/ddar/DualDARClient.html#onPasswordChange%28int,%20byte[],%20byte[]%29" target="_blank">onPasswordChange()</a> callback. DualDAR client app will need to unwrap the existing encrypted primary key and re-wrap the primary key with the new password as shown by the sample code below:</p>
-<pre tabindex="0"><code>public boolean onPasswordChange(int userId, byte[] oldPassword, byte[] newPassword) {
-    byte[] salt = getSalt();
-    if(oldPassword == null) {
-        oldPassword = getDefaultAuthToken();
-    }
-    saveEncryptedMasterKey(reEncryptMasterKeyWithNewPassword(
-        getEncryptedMasterKey(), derivedOldSystemToken, derivedNewSystemToken, salt));
-    return true;
-}
-</code></pre><h3 id="handle-reset-password">Handle reset password</h3>
+<div class="highlight"><pre tabindex="0" style=";-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#008000;font-weight:bold">public</span> <span style="color:#b00040">boolean</span> <span style="color:#00f">onPasswordChange</span><span style="color:#666">(</span><span style="color:#b00040">int</span> userId<span style="color:#666">,</span> <span style="color:#b00040">byte</span><span style="color:#666">[]</span> oldPassword<span style="color:#666">,</span> <span style="color:#b00040">byte</span><span style="color:#666">[]</span> newPassword<span style="color:#666">)</span> <span style="color:#666">{</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#b00040">byte</span><span style="color:#666">[]</span> salt <span style="color:#666">=</span> getSalt<span style="color:#666">();</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#008000;font-weight:bold">if</span><span style="color:#666">(</span>oldPassword <span style="color:#666">==</span> <span style="color:#008000;font-weight:bold">null</span><span style="color:#666">)</span> <span style="color:#666">{</span>
+</span></span><span style="display:flex;"><span>        oldPassword <span style="color:#666">=</span> getDefaultAuthToken<span style="color:#666">();</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#666">}</span>
+</span></span><span style="display:flex;"><span>    saveEncryptedMasterKey<span style="color:#666">(</span>reEncryptMasterKeyWithNewPassword<span style="color:#666">(</span>
+</span></span><span style="display:flex;"><span>        getEncryptedMasterKey<span style="color:#666">(),</span> derivedOldSystemToken<span style="color:#666">,</span> derivedNewSystemToken<span style="color:#666">,</span> salt<span style="color:#666">));</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#008000;font-weight:bold">return</span> <span style="color:#008000;font-weight:bold">true</span><span style="color:#666">;</span>
+</span></span><span style="display:flex;"><span><span style="color:#666">}</span>
+</span></span></code></pre></div><h3 id="handle-reset-password">Handle reset password</h3>
 <p>The IT admin can reset the user&rsquo;s password in case the user has forgotten their password. In order to reset password, the IT admin would need to first setup and activate a token. When the reset password token is set, cleared or reset for DualDAR Workspace, the DualDAR client app is informed via <a href="../../../../devref/knox-sdk/reference/com/samsung/android/knox/ddar/DualDARClient.html#onSetResetPasswordToken%28int,%20byte%5B%5D,%20long,%20byte%5B%5D%29" target="_blank">onSetResetPasswordToken()</a>, <a href="../../../../devref/knox-sdk/reference/com/samsung/android/knox/ddar/DualDARClient.html#onClearResetPasswordToken%28int,%20long%29" target="_blank">onClearResetPasswordToken()</a> and <a href="../../../../devref/knox-sdk/reference/com/samsung/android/knox/ddar/DualDARClient.html#onResetPasswordWithToken%28int,%20byte%5B%5D,%20long,%20byte%5B%5D%29" target="_blank">onResetPasswordWithToken()</a> callbacks respectively. The DualDAR client app will then need to provision, manage the token and reset password when requested as shown by the following sample code:</p>
 <div class="highlight"><pre tabindex="0" style=";-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#008000;font-weight:bold">public</span> <span style="color:#b00040">boolean</span> <span style="color:#00f">onSetResetPasswordToken</span><span style="color:#666">(</span><span style="color:#b00040">int</span> userId<span style="color:#666">,</span> <span style="color:#b00040">byte</span><span style="color:#666">[]</span> password<span style="color:#666">,</span> <span style="color:#b00040">long</span> tokenHandle<span style="color:#666">,</span> <span style="color:#b00040">byte</span><span style="color:#666">[]</span> token<span style="color:#666">)</span> <span style="color:#666">{</span>
 </span></span><span style="display:flex;"><span>    <span style="color:#408080;font-style:italic">// Decrypt Master Key using password and re-encrypt with token
@@ -3536,12 +3537,12 @@ Figure 1: Represents the platform states, user events, and the callback client a
   <li class="nav-item" role="presentation">
     <button
       class="tab-link active px-3 py-2 rounded-5"
-      id="fdebca-tab"
+      id="fcdeab-tab"
       data-bs-toggle="tab"
-      data-bs-target="#fdebca"
+      data-bs-target="#fcdeab"
       type="button"
       role="tab"
-      aria-controls="fdebca"
+      aria-controls="fcdeab"
       aria-selected="true"
     >Prepare
     </button>
@@ -3552,12 +3553,12 @@ Figure 1: Represents the platform states, user events, and the callback client a
   <li class="nav-item" role="presentation">
     <button
       class="tab-link  px-3 py-2 rounded-5"
-      id="cebfad-tab"
+      id="fdcbae-tab"
       data-bs-toggle="tab"
-      data-bs-target="#cebfad"
+      data-bs-target="#fdcbae"
       type="button"
       role="tab"
-      aria-controls="cebfad"
+      aria-controls="fdcbae"
       aria-selected="true"
     >Encrypt
     </button>
@@ -3568,12 +3569,12 @@ Figure 1: Represents the platform states, user events, and the callback client a
   <li class="nav-item" role="presentation">
     <button
       class="tab-link  px-3 py-2 rounded-5"
-      id="defcab-tab"
+      id="ceadbf-tab"
       data-bs-toggle="tab"
-      data-bs-target="#defcab"
+      data-bs-target="#ceadbf"
       type="button"
       role="tab"
-      aria-controls="defcab"
+      aria-controls="ceadbf"
       aria-selected="true"
     >Decrypt
     </button>
@@ -3741,7 +3742,7 @@ Figure 1: Represents the platform states, user events, and the callback client a
   
 
 
-<div class="tab-pane fade  show active  border border-grey-line rounded-3 overflow-hidden" id="fdebca" role="tabpanel" aria-labelledby="fdebca-tab">
+<div class="tab-pane fade  show active  border border-grey-line rounded-3 overflow-hidden" id="fcdeab" role="tabpanel" aria-labelledby="fcdeab-tab">
   
   
     
@@ -3836,7 +3837,7 @@ Figure 1: Represents the platform states, user events, and the callback client a
   
 
 
-<div class="tab-pane fade  border border-grey-line rounded-3 overflow-hidden" id="cebfad" role="tabpanel" aria-labelledby="cebfad-tab">
+<div class="tab-pane fade  border border-grey-line rounded-3 overflow-hidden" id="fdcbae" role="tabpanel" aria-labelledby="fdcbae-tab">
   
   
     
@@ -3931,7 +3932,7 @@ Figure 1: Represents the platform states, user events, and the callback client a
   
 
 
-<div class="tab-pane fade  border border-grey-line rounded-3 overflow-hidden" id="defcab" role="tabpanel" aria-labelledby="defcab-tab">
+<div class="tab-pane fade  border border-grey-line rounded-3 overflow-hidden" id="ceadbf" role="tabpanel" aria-labelledby="ceadbf-tab">
   
   
     
@@ -4103,6 +4104,14 @@ Figure 1: Represents the platform states, user events, and the callback client a
                 href="../../../knox-deployment-program.html"
                 class="body-5 d-flex align-items-center text-black fw-light pe-auto text-decoration-none"
                 >Knox Deployment Program</a
+              >
+            </li>
+            
+            <li>
+              <a
+                href="../../../knox-msp-portal.html"
+                class="body-5 d-flex align-items-center text-black fw-light pe-auto text-decoration-none"
+                >Knox MSP Portal</a
               >
             </li>
             

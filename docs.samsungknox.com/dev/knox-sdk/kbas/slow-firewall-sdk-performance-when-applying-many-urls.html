@@ -127,8 +127,6 @@
   <ul>
     <li>
   <a href="../../knox-cloud-authentication.html" >Knox Cloud Authentication</a>
-  <ul>
-    </ul>
   </li>
 <li>
   <a href="../../knox-webhook-notification.html" >Knox Webhook Notification</a>
@@ -137,6 +135,9 @@
   </li>
 <li>
   <a href="../../knox-deployment-program.html" >Knox Deployment Program</a>
+  </li>
+<li>
+  <a href="../../knox-msp-portal.html" >Knox MSP Portal</a>
   </li>
 <li>
   <a href="../../knox-mobile-enrollment.html" >Knox Mobile Enrollment</a>
@@ -3195,12 +3196,12 @@
 </ul>
 <h2 id="overview">Overview</h2>
 <p>Some customers are reporting that when using the Firewall SDK to write 300 URLs and IPs, it takes 25 seconds. The expected duration is within 5 seconds. The URLs and IP are added to the allowlist by calling the <code>Firewall()</code> method:</p>
-<pre tabindex="0"><code>removeDomainFilterRules CLEAR_ALL
-addDomainFilterRules(all 300 URLs)
-clearRules FIREWALL_ALL_RULES.
-addRules(all IPs)
-enableFirewall(true);
-</code></pre><h2 id="cause">Cause</h2>
+<div class="highlight"><pre tabindex="0" style=";-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span>removeDomainFilterRules CLEAR_ALL
+</span></span><span style="display:flex;"><span><span style="color:#00f">addDomainFilterRules</span><span style="color:#666">(</span>all <span style="color:#666">300</span> URLs<span style="color:#666">)</span>
+</span></span><span style="display:flex;"><span>clearRules FIREWALL_ALL_RULES<span style="color:#666">.</span>
+</span></span><span style="display:flex;"><span><span style="color:#00f">addRules</span><span style="color:#666">(</span>all IPs<span style="color:#666">)</span>
+</span></span><span style="display:flex;"><span>enableFirewall<span style="color:#666">(</span><span style="color:#008000;font-weight:bold">true</span><span style="color:#666">);</span>
+</span></span></code></pre></div><h2 id="cause">Cause</h2>
 <p>This issue occurs because the Firewall SDK is currently implemented in fork mode. For example, when executing addDomainFilterRules(), each URL creates an iptable command. Each command is then executed in the Knox framework through shell command. If there are 300 URLs, the iptable command executes 300 times, resulting in slow performance.</p>
 <h2 id="resolution">Resolution</h2>
 <p>Use <code>iptables-restore</code> instead of iptable commands, which significantly improves performance.</p>
@@ -3319,6 +3320,14 @@ enableFirewall(true);
                 href="../../knox-deployment-program.html"
                 class="body-5 d-flex align-items-center text-black fw-light pe-auto text-decoration-none"
                 >Knox Deployment Program</a
+              >
+            </li>
+            
+            <li>
+              <a
+                href="../../knox-msp-portal.html"
+                class="body-5 d-flex align-items-center text-black fw-light pe-auto text-decoration-none"
+                >Knox MSP Portal</a
               >
             </li>
             

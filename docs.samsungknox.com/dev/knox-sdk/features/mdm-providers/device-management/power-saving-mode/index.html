@@ -127,8 +127,6 @@
   <ul>
     <li>
   <a href="../../../../../knox-cloud-authentication.html" >Knox Cloud Authentication</a>
-  <ul>
-    </ul>
   </li>
 <li>
   <a href="../../../../../knox-webhook-notification.html" >Knox Webhook Notification</a>
@@ -137,6 +135,9 @@
   </li>
 <li>
   <a href="../../../../../knox-deployment-program.html" >Knox Deployment Program</a>
+  </li>
+<li>
+  <a href="../../../../../knox-msp-portal.html" >Knox MSP Portal</a>
   </li>
 <li>
   <a href="../../../../../knox-mobile-enrollment.html" >Knox Mobile Enrollment</a>
@@ -3182,28 +3183,28 @@
 <p>This API requires the <code>com.samsung.android.knox.permission.KNOX_RESTRICTION_MGMT</code> permission with a protection level of signature.</p>
 <div class="highlight"><pre tabindex="0" style=";-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span>EnterpriseKnoxManager ekm <span style="color:#666">=</span> EnterpriseKnoxManager<span style="color:#666">.</span><span style="color:#7d9029">getInstance</span><span style="color:#666">(</span>context<span style="color:#666">);</span>
 </span></span><span style="display:flex;"><span>KnoxContainerManager kcm <span style="color:#666">=</span> ekm<span style="color:#666">.</span><span style="color:#7d9029">getKnoxContainerManager</span><span style="color:#666">(</span>containerID<span style="color:#666">);</span>
-</span></span><span style="display:flex;"><span> RestrictionPolicy restrictionPolicy <span style="color:#666">=</span> edm<span style="color:#666">.</span><span style="color:#7d9029">getRestrictionPolicy</span><span style="color:#666">();</span>
-</span></span><span style="display:flex;"><span> <span style="color:#008000;font-weight:bold">try</span> <span style="color:#666">{</span>
-</span></span><span style="display:flex;"><span>     <span style="color:#408080;font-style:italic">// disallow Power Saving Mode
-</span></span></span><span style="display:flex;"><span><span style="color:#408080;font-style:italic"></span>     <span style="color:#b00040">boolean</span> result <span style="color:#666">=</span> restrictionPolicy<span style="color:#666">.</span><span style="color:#7d9029">allowPowerSavingMode</span><span style="color:#666">(</span><span style="color:#008000;font-weight:bold">false</span><span style="color:#666">);</span>
-</span></span><span style="display:flex;"><span> 
-</span></span><span style="display:flex;"><span>     <span style="color:#008000;font-weight:bold">if</span> <span style="color:#666">(</span><span style="color:#008000;font-weight:bold">true</span> <span style="color:#666">==</span> result<span style="color:#666">)</span> <span style="color:#666">{</span>
-</span></span><span style="display:flex;"><span>         <span style="color:#408080;font-style:italic">// Power Saving Mode disallowed and cannot be enabled by user.
-</span></span></span><span style="display:flex;"><span><span style="color:#408080;font-style:italic"></span>     <span style="color:#666">}</span>
-</span></span><span style="display:flex;"><span> <span style="color:#666">}</span> <span style="color:#008000;font-weight:bold">catch</span> <span style="color:#666">(</span>SecurityException e<span style="color:#666">)</span> <span style="color:#666">{</span>
-</span></span><span style="display:flex;"><span>     Log<span style="color:#666">.</span><span style="color:#7d9029">w</span><span style="color:#666">(</span>TAG<span style="color:#666">,</span> <span style="color:#ba2121">&#34;SecurityException: &#34;</span> <span style="color:#666">+</span> e<span style="color:#666">);</span>
-</span></span><span style="display:flex;"><span> <span style="color:#666">}</span>
+</span></span><span style="display:flex;"><span>RestrictionPolicy restrictionPolicy <span style="color:#666">=</span> edm<span style="color:#666">.</span><span style="color:#7d9029">getRestrictionPolicy</span><span style="color:#666">();</span>
+</span></span><span style="display:flex;"><span><span style="color:#008000;font-weight:bold">try</span> <span style="color:#666">{</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#408080;font-style:italic">// disallow Power Saving Mode
+</span></span></span><span style="display:flex;"><span><span style="color:#408080;font-style:italic"></span>    <span style="color:#b00040">boolean</span> result <span style="color:#666">=</span> restrictionPolicy<span style="color:#666">.</span><span style="color:#7d9029">allowPowerSavingMode</span><span style="color:#666">(</span><span style="color:#008000;font-weight:bold">false</span><span style="color:#666">);</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#008000;font-weight:bold">if</span> <span style="color:#666">(</span><span style="color:#008000;font-weight:bold">true</span> <span style="color:#666">==</span> result<span style="color:#666">)</span> <span style="color:#666">{</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#408080;font-style:italic">// Power Saving Mode disallowed and cannot be enabled by user.
+</span></span></span><span style="display:flex;"><span><span style="color:#408080;font-style:italic"></span>    <span style="color:#666">}</span>
+</span></span><span style="display:flex;"><span><span style="color:#666">}</span> <span style="color:#008000;font-weight:bold">catch</span> <span style="color:#666">(</span>SecurityException e<span style="color:#666">)</span> <span style="color:#666">{</span>
+</span></span><span style="display:flex;"><span>    Log<span style="color:#666">.</span><span style="color:#7d9029">w</span><span style="color:#666">(</span>TAG<span style="color:#666">,</span> <span style="color:#ba2121">&#34;SecurityException: &#34;</span> <span style="color:#666">+</span> e<span style="color:#666">);</span>
+</span></span><span style="display:flex;"><span><span style="color:#666">}</span>
 </span></span></code></pre></div><h2 id="ispowersavingmodeallowed">isPowerSavingModeAllowed()</h2>
 <p>An administrator uses <a href="../../../../../../devref/knox-sdk/reference/com/samsung/android/knox/restriction/RestrictionPolicy.html#isPowerSavingModeAllowed%28%29" target="_blank">isPowerSavingModeAllowed()</a> to check whether Power Saving Mode is allowed or not.</p>
 <div class="highlight"><pre tabindex="0" style=";-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span>EnterpriseKnoxManager ekm <span style="color:#666">=</span> EnterpriseKnoxManager<span style="color:#666">.</span><span style="color:#7d9029">getInstance</span><span style="color:#666">(</span>context<span style="color:#666">);</span>
 </span></span><span style="display:flex;"><span>KnoxContainerManager kcm <span style="color:#666">=</span> ekm<span style="color:#666">.</span><span style="color:#7d9029">getKnoxContainerManager</span><span style="color:#666">(</span>containerID<span style="color:#666">);</span>
-</span></span><span style="display:flex;"><span> RestrictionPolicy restrictionPolicy <span style="color:#666">=</span> edm<span style="color:#666">.</span><span style="color:#7d9029">getRestrictionPolicy</span><span style="color:#666">();</span>
-</span></span><span style="display:flex;"><span> <span style="color:#b00040">boolean</span> result <span style="color:#666">=</span> <span style="color:#008000;font-weight:bold">false</span><span style="color:#666">;</span>
-</span></span><span style="display:flex;"><span> <span style="color:#008000;font-weight:bold">try</span> <span style="color:#666">{</span>
-</span></span><span style="display:flex;"><span>     <span style="color:#408080;font-style:italic">// Check Power Saving Mode is allowed
-</span></span></span><span style="display:flex;"><span><span style="color:#408080;font-style:italic"></span>     result <span style="color:#666">=</span> restrictionPolicy<span style="color:#666">.</span><span style="color:#7d9029">isPowerSavingModeAllowed</span><span style="color:#666">();</span>
-</span></span><span style="display:flex;"><span> <span style="color:#666">}</span> <span style="color:#008000;font-weight:bold">catch</span> <span style="color:#666">(</span>RemoteException e<span style="color:#666">)</span> <span style="color:#666">{</span>
-</span></span><span style="display:flex;"><span>     Log<span style="color:#666">.</span><span style="color:#7d9029">e</span><span style="color:#666">(</span>TAG<span style="color:#666">,</span> <span style="color:#ba2121">&#34;Remote exception : &#34;</span> <span style="color:#666">+</span> e<span style="color:#666">);}</span>
+</span></span><span style="display:flex;"><span>RestrictionPolicy restrictionPolicy <span style="color:#666">=</span> edm<span style="color:#666">.</span><span style="color:#7d9029">getRestrictionPolicy</span><span style="color:#666">();</span>
+</span></span><span style="display:flex;"><span><span style="color:#b00040">boolean</span> result <span style="color:#666">=</span> <span style="color:#008000;font-weight:bold">false</span><span style="color:#666">;</span>
+</span></span><span style="display:flex;"><span><span style="color:#008000;font-weight:bold">try</span> <span style="color:#666">{</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#408080;font-style:italic">// Check Power Saving Mode is allowed
+</span></span></span><span style="display:flex;"><span><span style="color:#408080;font-style:italic"></span>    result <span style="color:#666">=</span> restrictionPolicy<span style="color:#666">.</span><span style="color:#7d9029">isPowerSavingModeAllowed</span><span style="color:#666">();</span>
+</span></span><span style="display:flex;"><span><span style="color:#666">}</span> <span style="color:#008000;font-weight:bold">catch</span> <span style="color:#666">(</span>RemoteException e<span style="color:#666">)</span> <span style="color:#666">{</span>
+</span></span><span style="display:flex;"><span>    Log<span style="color:#666">.</span><span style="color:#7d9029">e</span><span style="color:#666">(</span>TAG<span style="color:#666">,</span> <span style="color:#ba2121">&#34;Remote exception : &#34;</span> <span style="color:#666">+</span> e<span style="color:#666">);}</span>
 </span></span></code></pre></div>
             
           </div>
@@ -3320,6 +3321,14 @@
                 href="../../../../../knox-deployment-program.html"
                 class="body-5 d-flex align-items-center text-black fw-light pe-auto text-decoration-none"
                 >Knox Deployment Program</a
+              >
+            </li>
+            
+            <li>
+              <a
+                href="../../../../../knox-msp-portal.html"
+                class="body-5 d-flex align-items-center text-black fw-light pe-auto text-decoration-none"
+                >Knox MSP Portal</a
               >
             </li>
             

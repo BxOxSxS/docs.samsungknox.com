@@ -127,8 +127,6 @@
   <ul>
     <li>
   <a href="../../../knox-cloud-authentication.html" >Knox Cloud Authentication</a>
-  <ul>
-    </ul>
   </li>
 <li>
   <a href="../../../knox-webhook-notification.html" >Knox Webhook Notification</a>
@@ -137,6 +135,9 @@
   </li>
 <li>
   <a href="../../../knox-deployment-program.html" >Knox Deployment Program</a>
+  </li>
+<li>
+  <a href="../../../knox-msp-portal.html" >Knox MSP Portal</a>
   </li>
 <li>
   <a href="../../../knox-mobile-enrollment.html" >Knox Mobile Enrollment</a>
@@ -3262,8 +3263,7 @@
 </span></span><span style="display:flex;"><span><span style="color:#666">}</span>
 </span></span></code></pre></div><h2 id="get-provisioning-key">Get provisioning key</h2>
 <p>Call this API to provision Device Encryption Key (DEK) from server for Knox ML Model Protection. Implement the <code>KeyProvisioningResultCallback</code> abstract class for handling Knox key provisioning result and pass its object.</p>
-<div class="highlight"><pre tabindex="0" style=";-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span>            
-</span></span><span style="display:flex;"><span>KeyProvisioningResultCallback callBack <span style="color:#666">=</span> <span style="color:#008000;font-weight:bold">new</span> KeyProvisioningResultCallback<span style="color:#666">()</span> <span style="color:#666">{</span>
+<div class="highlight"><pre tabindex="0" style=";-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span>KeyProvisioningResultCallback callBack <span style="color:#666">=</span> <span style="color:#008000;font-weight:bold">new</span> KeyProvisioningResultCallback<span style="color:#666">()</span> <span style="color:#666">{</span>
 </span></span><span style="display:flex;"><span>    <span style="color:#a2f">@Override</span>
 </span></span><span style="display:flex;"><span>    <span style="color:#008000;font-weight:bold">public</span> <span style="color:#b00040">void</span> <span style="color:#00f">onFinished</span><span style="color:#666">(</span>KnoxAiManager<span style="color:#666">.</span><span style="color:#7d9029">ErrorCodes</span> errorCodes<span style="color:#666">)</span> <span style="color:#666">{</span>
 </span></span><span style="display:flex;"><span>        <span style="color:#008000;font-weight:bold">if</span> <span style="color:#666">(</span>errorCodes <span style="color:#666">==</span> KnoxAiManager<span style="color:#666">.</span><span style="color:#7d9029">ErrorCodes</span><span style="color:#666">.</span><span style="color:#7d9029">SUCCESS</span><span style="color:#666">){</span>
@@ -3281,8 +3281,7 @@
 </span></span><span style="display:flex;"><span><span style="color:#666">}</span>
 </span></span></code></pre></div><h2 id="create-knoxaisession">Create KnoxAiSession</h2>
 <p>Call this API after DEK key provision is successful. This API exposes <code>open(KfaOptions option)</code>, <code>execute(DataBuffer[] inputs, DataBuffer[] outputs)</code> and <code>close()</code> APIs.</p>
-<div class="highlight"><pre tabindex="0" style=";-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span>         
-</span></span><span style="display:flex;"><span>KnoxAiSession session<span style="color:#666">;</span>
+<div class="highlight"><pre tabindex="0" style=";-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span>KnoxAiSession session<span style="color:#666">;</span>
 </span></span><span style="display:flex;"><span><span style="color:#008000;font-weight:bold">try</span> <span style="color:#666">{</span>
 </span></span><span style="display:flex;"><span>   session <span style="color:#666">=</span> knoxAIManager<span style="color:#666">.</span><span style="color:#7d9029">createKnoxAiSession</span><span style="color:#666">();</span>
 </span></span><span style="display:flex;"><span><span style="color:#666">}</span><span style="color:#008000;font-weight:bold">catch</span> <span style="color:#666">(</span>SecurityException e<span style="color:#666">)</span> <span style="color:#666">{</span>
@@ -3294,69 +3293,39 @@
 <p>Following are the fields of KfaOptions class:</p>
 <div class="overflow-auto my-3"><table>
     <tr>
-        <th>Field Name</th>
-        <th>Use</th>
+        <th scope="col">Field Name</th>
+        <th scope="col">Use</th>
     </tr>
     <tr>
-        <td>
-            <p>int <a href="../../../../devref/knox-sdk/reference/com/samsung/android/knox/ex/knoxAI/KfaOptions.html">execType</a>;</p>
-        </td>
-        <td>
-            <p>Execution type for model (Float32,Float16 etc)</p>
-        </td>
+        <td>int <a href="../../../../devref/knox-sdk/reference/com/samsung/android/knox/ex/knoxAI/KfaOptions.html">execType</a>;</td>
+        <td>Execution type for model (Float32,Float16 etc)</td>
     </tr>
     <tr>
-        <td>
-            <p>int <a href="../../../../devref/knox-sdk/reference/com/samsung/android/knox/ex/knoxAI/KfaOptions.html">compUnit</a>;</p>
-        </td>
-        <td>
-            <p>Computing Unit (CPU,GPU, NPU, DSP and so on)</p>
-        </td>
+        <td>int <a href="../../../../devref/knox-sdk/reference/com/samsung/android/knox/ex/knoxAI/KfaOptions.html">compUnit</a>;</td>
+        <td>Computing Unit (CPU,GPU, NPU, DSP and so on)</td>
     </tr>
     <tr>
-        <td>
-            <p>int <a href="../../../../devref/knox-sdk/reference/com/samsung/android/knox/ex/knoxAI/KfaOptions.html#getModelInputType()">modelInputType</a>;</p>
-        </td>
-        <td>
-            <p>Model Input Type (FD, Path, Buffer) </p>
-        </td>
+        <td>int <a href="../../../../devref/knox-sdk/reference/com/samsung/android/knox/ex/knoxAI/KfaOptions.html#getModelInputType()">modelInputType</a>;</td>
+        <td>Model Input Type (FD, Path, Buffer) </td>
     </tr>
     <tr>
-        <td>
-            <p>int <a href="../../../../devref/knox-sdk/reference/com/samsung/android/knox/ex/knoxAI/KfaOptions.html#setmType(int)">modelType</a>;</p>
-        </td>
-        <td>
-            <p>Model Type (Tflite, Tensorflow, ONNX and so on)</p>
-        </td>
+        <td>int <a href="../../../../devref/knox-sdk/reference/com/samsung/android/knox/ex/knoxAI/KfaOptions.html#setmType(int)">modelType</a>;</td>
+        <td>Model Type (Tflite, Tensorflow, ONNX and so on)</td>
     </tr>
     <tr>
-        <td>
-            <p>String <a href="../../../../devref/knox-sdk/reference/com/samsung/android/knox/ex/knoxAI/KfaOptions.html#getModelName()">model_name</a>;</p>
-        </td>
-        <td>
-            <p>Name of the model</p>
-        </td>
+        <td>String <a href="../../../../devref/knox-sdk/reference/com/samsung/android/knox/ex/knoxAI/KfaOptions.html#getModelName()">model_name</a>;</td>
+        <td>Name of the model</td>
     </tr>
     <tr>
-        <td>
-            <p>String <a href="../../../../devref/knox-sdk/reference/com/samsung/android/knox/ex/knoxAI/KfaOptions.html#getModelFile()">model_file</a>;</p>
-        </td>
-        <td>
-            <p>Model File Path</p>
-        </td>
+        <td>String <a href="../../../../devref/knox-sdk/reference/com/samsung/android/knox/ex/knoxAI/KfaOptions.html#getModelFile()">model_file</a>;</td>
+        <td>Model File Path</td>
     </tr>
     <tr>
-        <td>
-            <p>String <a href="../../../../devref/knox-sdk/reference/com/samsung/android/knox/ex/knoxAI/KfaOptions.html#getWeightsFile()">weights_file</a>;</p>
-        </td>
-        <td>
-            <p>Weights File Path</p>
-        </td>
+        <td>String <a href="../../../../devref/knox-sdk/reference/com/samsung/android/knox/ex/knoxAI/KfaOptions.html#getWeightsFile()">weights_file</a>;</td>
+        <td>Weights File Path</td>
     </tr>
     <tr>
-        <td>
-            <p>FileDescriptor <a href="../../../../devref/knox-sdk/reference/com/samsung/android/knox/ex/knoxAI/KfaOptions.html#getFd()">fd</a>;</p>
-        </td>
+        <td>FileDescriptor <a href="../../../../devref/knox-sdk/reference/com/samsung/android/knox/ex/knoxAI/KfaOptions.html#getFd()">fd</a>;</td>
         <td>
             <p>FileDescriptor of Model Data Shared Memory</p>
             <p>**[When modelInputType is FD]</p>
@@ -3370,52 +3339,34 @@
         </td>
     </tr>
     <tr>
-        <td>
-            <p>ArrayList&lt;String&gt; <a href="../../../../devref/knox-sdk/reference/com/samsung/android/knox/ex/knoxAI/KfaOptions.html#getOutputNames()">outputNames</a>;</p>
-        </td>
-        <td>
-            <p>Output Layers Name</p>
-        </td>
+        <td>ArrayList&lt;String&gt; <a href="../../../../devref/knox-sdk/reference/com/samsung/android/knox/ex/knoxAI/KfaOptions.html#getOutputNames()">outputNames</a>;</td>
+        <td>Output Layers Name</td>
     </tr>
     <tr>
-        <td>
-            <p>ArrayList&lt;String&gt; <a href="../../../../devref/knox-sdk/reference/com/samsung/android/knox/ex/knoxAI/KfaOptions.html#getInputNames()">inputNames</a>;</p>
-        </td>
-        <td>
-            <p>Input Layers Name</p>
-        </td>
+        <td>ArrayList&lt;String&gt; <a href="../../../../devref/knox-sdk/reference/com/samsung/android/knox/ex/knoxAI/KfaOptions.html#getInputNames()">inputNames</a>;</td>
+        <td>Input Layers Name</td>
     </tr>
     <tr>
-        <td>
-            <p>byte[] <a href="../../../../devref/knox-sdk/reference/com/samsung/android/knox/ex/knoxAI/KfaOptions.html#getModelPackageBufferPtr()">model_package_buffer_ptr</a>;</p>
-        </td>
+        <td>byte[] <a href="../../../../devref/knox-sdk/reference/com/samsung/android/knox/ex/knoxAI/KfaOptions.html#getModelPackageBufferPtr()">model_package_buffer_ptr</a>;</td>
         <td>
             <p>Pointer to Model Package Data</p>
             <p>**[When modelInputType is Buffer]</p>
         </td>
     </tr>
     <tr>
-        <td>
-            <p>int <a href="../../../../devref/knox-sdk/reference/com/samsung/android/knox/ex/knoxAI/KfaOptions.html#getModelPackageBufferLen()">model_package_buffer_len</a>;</p>
-        </td>
+        <td>int <a href="../../../../devref/knox-sdk/reference/com/samsung/android/knox/ex/knoxAI/KfaOptions.html#getModelPackageBufferLen()">model_package_buffer_len</a>;</td>
         <td>
             <p>Length of Model Package Data</p>
             <p>**[When modelInputType is Buffer]</p>
         </td>
     </tr>
     <tr>
-        <td>
-            <p>byte[] <a href="../../../../devref/knox-sdk/reference/com/samsung/android/knox/ex/knoxAI/KfaOptions.html#getModelBufferPtr()">model_buffer_ptr</a>;</p>
-        </td>
-        <td>
-            <p>Pointer to Model DataBuffer</p>
-        </td>
+        <td>byte[] <a href="../../../../devref/knox-sdk/reference/com/samsung/android/knox/ex/knoxAI/KfaOptions.html#getModelBufferPtr()">model_buffer_ptr</a>;</td>
+        <td>Pointer to Model DataBuffer</td>
     </tr>
     <tr>
         <td>int <a href="../../../../devref/knox-sdk/reference/com/samsung/android/knox/ex/knoxAI/KfaOptions.html#getModelPackageBufferLen()">model_buffer_len</a>;</td>
-        <td>
-            <p>Length of Model Data</p>
-        </td>
+        <td>Length of Model Data</td>
     </tr>
 </table></div>
 <h3 id="supported-model-types">Supported model types</h3>
@@ -3455,8 +3406,7 @@
 </tbody>
 </table></div>
 <h3 id="kfaoptions-example">KfaOptions example</h3>
-<div class="highlight"><pre tabindex="0" style=";-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span>            
-</span></span><span style="display:flex;"><span>KfaOptions options <span style="color:#666">=</span> <span style="color:#008000;font-weight:bold">new</span> KfaOptions<span style="color:#666">();</span>
+<div class="highlight"><pre tabindex="0" style=";-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span>KfaOptions options <span style="color:#666">=</span> <span style="color:#008000;font-weight:bold">new</span> KfaOptions<span style="color:#666">();</span>
 </span></span><span style="display:flex;"><span>options<span style="color:#666">.</span><span style="color:#7d9029">setExecType</span><span style="color:#666">(</span>KnoxAiSession<span style="color:#666">.</span><span style="color:#7d9029">ExecType</span><span style="color:#666">.</span><span style="color:#7d9029">FLOAT32</span><span style="color:#666">.</span><span style="color:#7d9029">getValue</span><span style="color:#666">());</span>
 </span></span><span style="display:flex;"><span>options<span style="color:#666">.</span><span style="color:#7d9029">setCompUnit</span><span style="color:#666">(</span>comp<span style="color:#666">);</span>
 </span></span><span style="display:flex;"><span>options<span style="color:#666">.</span><span style="color:#7d9029">setmType</span><span style="color:#666">(</span>model<span style="color:#666">);</span>
@@ -3476,14 +3426,12 @@
 </span></span><span style="display:flex;"><span>options<span style="color:#666">.</span><span style="color:#7d9029">setCompUnit</span><span style="color:#666">(</span>KnoxAiSession<span style="color:#666">.</span><span style="color:#7d9029">CompUnit</span><span style="color:#666">.</span><span style="color:#7d9029">CPU</span><span style="color:#666">.</span><span style="color:#7d9029">getValue</span><span style="color:#666">());</span>
 </span></span><span style="display:flex;"><span>options<span style="color:#666">.</span><span style="color:#7d9029">setmType</span><span style="color:#666">(</span>KnoxAiSession<span style="color:#666">.</span><span style="color:#7d9029">ModelType</span><span style="color:#666">.</span><span style="color:#7d9029">TENSORFLOWLITE</span><span style="color:#666">.</span><span style="color:#7d9029">getValue</span><span style="color:#666">());</span>
 </span></span><span style="display:flex;"><span>options<span style="color:#666">.</span><span style="color:#7d9029">setModelInputType</span><span style="color:#666">(</span>KnoxAiSession<span style="color:#666">.</span><span style="color:#7d9029">ModelInputType</span><span style="color:#666">.</span><span style="color:#7d9029">FD</span><span style="color:#666">);</span>
-</span></span></code></pre></div><h4 id="passing-converted-onnx-models">Passing converted ONNX models</h4>
-<div class="highlight"><pre tabindex="0" style=";-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span>            
-</span></span><span style="display:flex;"><span>KfaOptions options <span style="color:#666">=</span> <span style="color:#008000;font-weight:bold">new</span> KfaOptions<span style="color:#666">();</span> options<span style="color:#666">.</span><span style="color:#7d9029">setExecType</span><span style="color:#666">(</span>KnoxAiSession<span style="color:#666">.</span><span style="color:#7d9029">ExecType</span><span style="color:#666">.</span><span style="color:#7d9029">FLOAT32</span><span style="color:#666">.</span><span style="color:#7d9029">getValue</span><span style="color:#666">());</span>
+</span></span></code></pre></div><h3 id="passing-converted-onnx-models">Passing converted ONNX models</h3>
+<div class="highlight"><pre tabindex="0" style=";-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span>KfaOptions options <span style="color:#666">=</span> <span style="color:#008000;font-weight:bold">new</span> KfaOptions<span style="color:#666">();</span> options<span style="color:#666">.</span><span style="color:#7d9029">setExecType</span><span style="color:#666">(</span>KnoxAiSession<span style="color:#666">.</span><span style="color:#7d9029">ExecType</span><span style="color:#666">.</span><span style="color:#7d9029">FLOAT32</span><span style="color:#666">.</span><span style="color:#7d9029">getValue</span><span style="color:#666">());</span>
 </span></span><span style="display:flex;"><span>options<span style="color:#666">.</span><span style="color:#7d9029">setCompUnit</span><span style="color:#666">(</span>KnoxAiSession<span style="color:#666">.</span><span style="color:#7d9029">CompUnit</span><span style="color:#666">.</span><span style="color:#7d9029">CPU</span><span style="color:#666">.</span><span style="color:#7d9029">getValue</span><span style="color:#666">());</span>
 </span></span><span style="display:flex;"><span>options<span style="color:#666">.</span><span style="color:#7d9029">setmType</span><span style="color:#666">(</span>KnoxAiSession<span style="color:#666">.</span><span style="color:#7d9029">ModelType</span><span style="color:#666">.</span><span style="color:#7d9029">ONNX</span><span style="color:#666">.</span><span style="color:#7d9029">getValue</span><span style="color:#666">());</span>
 </span></span></code></pre></div><h3 id="calling-open-api">Calling Open() API</h3>
-<div class="highlight"><pre tabindex="0" style=";-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span>            
-</span></span><span style="display:flex;"><span><span style="color:#b00040">int</span> status <span style="color:#666">=</span> <span style="color:#666">-</span><span style="color:#666">1</span><span style="color:#666">;</span>
+<div class="highlight"><pre tabindex="0" style=";-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#b00040">int</span> status <span style="color:#666">=</span> <span style="color:#666">-</span><span style="color:#666">1</span><span style="color:#666">;</span>
 </span></span><span style="display:flex;"><span>status <span style="color:#666">=</span> session<span style="color:#666">.</span><span style="color:#7d9029">open</span><span style="color:#666">(</span>options<span style="color:#666">).</span><span style="color:#7d9029">getValue</span><span style="color:#666">();</span>
 </span></span></code></pre></div><p>When <code>open(KfaOptions option)</code> is called, it loads the model package buffer and decrypt the encrypted model according to policies and makes the model ready for execution.</p>
 <h2 id="decrypt-ml-model">Decrypt ML model</h2>
@@ -3492,62 +3440,38 @@
 <p>Following are the fields of DataBuffer Class:</p>
 <div class="overflow-auto my-3"><table>
     <tr>
-        <th>Field Name</th>
-        <th>Use</th>
+        <th scope="col">Field Name</th>
+        <th scope="col">Use</th>
     </tr>
     <tr>
-        <td>
-            <p>float[] <a href="../../../../devref/knox-sdk/reference/com/samsung/android/knox/ex/knoxAI/DataBuffer.html#getDataOriginal()">dataOriginal</a>;</p>
-        </td>
-        <td>
-            <p>Input Data</p>
-        </td>
+        <td>float[] <a href="../../../../devref/knox-sdk/reference/com/samsung/android/knox/ex/knoxAI/DataBuffer.html#getDataOriginal()">dataOriginal</a>;</td>
+        <td>Input Data</td>
     </tr>
     <tr>
-        <td>
-            <p>int[] <a href="../../../../devref/knox-sdk/reference/com/samsung/android/knox/ex/knoxAI/DataBuffer.html#getShape()">shape</a>;</p>
-        </td>
-        <td>
-            <p>Shape of Data (Dimension)</p>
-        </td>
+        <td>int[] <a href="../../../../devref/knox-sdk/reference/com/samsung/android/knox/ex/knoxAI/DataBuffer.html#getShape()">shape</a>;</td>
+        <td>Shape of Data (Dimension)</td>
     </tr>
     <tr>
-        <td>
-            <p>byte <a href="../../../../devref/knox-sdk/reference/com/samsung/android/knox/ex/knoxAI/DataBuffer.html#getDataType()">dataType</a>;</p>
-        </td>
-        <td>
-            <p>Type of data in dataOriginal (Float32, Float16, Byte, INT64, String, Sequence_map, INT32)</p>
-        </td>
+        <td>byte <a href="../../../../devref/knox-sdk/reference/com/samsung/android/knox/ex/knoxAI/DataBuffer.html#getDataType()">dataType</a>;</td>
+        <td>Type of data in dataOriginal (Float32, Float16, Byte, INT64, String, Sequence_map, INT32)</td>
     </tr>
     <tr>
-        <td>
-            <p>byte <a href="../../../../devref/knox-sdk/reference/com/samsung/android/knox/ex/knoxAI/DataBuffer.html#getDataFormat()">dataFormat</a>;</p>
-        </td>
-        <td>
-            <p>Data format (NCHW,NHWC,etc)</p>
-        </td>
+        <td>byte <a href="../../../../devref/knox-sdk/reference/com/samsung/android/knox/ex/knoxAI/DataBuffer.html#getDataFormat()">dataFormat</a>;</td>
+        <td>Data format (NCHW,NHWC,etc)</td>
     </tr>
     <tr>
-        <td>
-            <p>byte <a href="../../../../devref/knox-sdk/reference/com/samsung/android/knox/ex/knoxAI/DataBuffer.html#getDataSource()">dataSource</a>;</p>
-        </td>
-        <td>
-            <p>Source of Data (Fd or SharedMemory)</p>
-        </td>
+        <td>byte <a href="../../../../devref/knox-sdk/reference/com/samsung/android/knox/ex/knoxAI/DataBuffer.html#getDataSource()">dataSource</a>;</td>
+        <td>Source of Data (Fd or SharedMemory)</td>
     </tr>
     <tr>
-        <td>
-            <p>SharedMemory <a href="../../../../devref/knox-sdk/reference/com/samsung/android/knox/ex/knoxAI/DataBuffer.html#getDataShared()">dataShared</a>;</p>
-        </td>
+        <td>SharedMemory <a href="../../../../devref/knox-sdk/reference/com/samsung/android/knox/ex/knoxAI/DataBuffer.html#getDataShared()">dataShared</a>;</td>
         <td>
             <p>Shared Memory for output data</p>
             <p>**[when dataSource is SharedMemory]</p>
         </td>
     </tr>
     <tr>
-        <td>
-            <p>FileDescriptor <a href="../../../../devref/knox-sdk/reference/com/samsung/android/knox/ex/knoxAI/DataBuffer.html#getFileDesc()">filedesc</a>;</p>
-        </td>
+        <td>FileDescriptor <a href="../../../../devref/knox-sdk/reference/com/samsung/android/knox/ex/knoxAI/DataBuffer.html#getFileDesc()">filedesc</a>;</td>
         <td>
             <p>FileDescriptor for output data</p>
             <p>**[when dataSource is Fd]</p>
@@ -3639,20 +3563,17 @@
 </table></div>
 <h3 id="filling-databuffer-and-calling-execute-api-example">Filling DataBuffer and Calling execute() API Example</h3>
 <h4 id="models-with-single-output-layer">Models with single output layer</h4>
-<div class="highlight"><pre tabindex="0" style=";-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span>              
-</span></span><span style="display:flex;"><span>DataBuffer<span style="color:#666">[]</span> input <span style="color:#666">=</span> <span style="color:#008000;font-weight:bold">new</span> DataBuffer<span style="color:#666">[</span><span style="color:#666">1</span><span style="color:#666">];</span>
+<div class="highlight"><pre tabindex="0" style=";-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span>DataBuffer<span style="color:#666">[]</span> input <span style="color:#666">=</span> <span style="color:#008000;font-weight:bold">new</span> DataBuffer<span style="color:#666">[</span><span style="color:#666">1</span><span style="color:#666">];</span>
 </span></span><span style="display:flex;"><span>DataBuffer<span style="color:#666">[]</span> output <span style="color:#666">=</span> output <span style="color:#666">=</span> <span style="color:#008000;font-weight:bold">new</span> DataBuffer<span style="color:#666">[</span><span style="color:#666">1</span><span style="color:#666">];</span>
 </span></span><span style="display:flex;"><span><span style="color:#408080;font-style:italic">/* Set the Input DataBuffer options */</span>
 </span></span><span style="display:flex;"><span>status <span style="color:#666">=</span> session<span style="color:#666">.</span><span style="color:#7d9029">execute</span><span style="color:#666">(</span>input<span style="color:#666">,</span> output<span style="color:#666">).</span><span style="color:#7d9029">getValue</span><span style="color:#666">();</span>
 </span></span></code></pre></div><h4 id="models-with-multiple-output-layers">Models with multiple output layers</h4>
-<div class="highlight"><pre tabindex="0" style=";-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span>              
-</span></span><span style="display:flex;"><span>DataBuffer<span style="color:#666">[]</span> input <span style="color:#666">=</span> <span style="color:#008000;font-weight:bold">new</span> DataBuffer<span style="color:#666">[</span><span style="color:#666">1</span><span style="color:#666">];</span>
+<div class="highlight"><pre tabindex="0" style=";-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span>DataBuffer<span style="color:#666">[]</span> input <span style="color:#666">=</span> <span style="color:#008000;font-weight:bold">new</span> DataBuffer<span style="color:#666">[</span><span style="color:#666">1</span><span style="color:#666">];</span>
 </span></span><span style="display:flex;"><span>DataBuffer<span style="color:#666">[]</span> output <span style="color:#666">=</span> <span style="color:#008000;font-weight:bold">new</span>
 </span></span><span style="display:flex;"><span>DataBuffer<span style="color:#666">[</span>output_layers<span style="color:#666">.</span><span style="color:#7d9029">length</span><span style="color:#666">];</span>
 </span></span><span style="display:flex;"><span><span style="color:#408080;font-style:italic">/* Set the Input DataBuffer options */</span>
 </span></span><span style="display:flex;"><span>status <span style="color:#666">=</span> session<span style="color:#666">.</span><span style="color:#7d9029">execute</span><span style="color:#666">(</span>input<span style="color:#666">,</span> output<span style="color:#666">).</span><span style="color:#7d9029">getValue</span><span style="color:#666">();</span>
-</span></span></code></pre></div><div class="highlight"><pre tabindex="0" style=";-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span>              
-</span></span><span style="display:flex;"><span>DataBuffer<span style="color:#666">[]</span> input <span style="color:#666">=</span> <span style="color:#008000;font-weight:bold">new</span> DataBuffer<span style="color:#666">[</span><span style="color:#666">1</span><span style="color:#666">];</span>
+</span></span></code></pre></div><div class="highlight"><pre tabindex="0" style=";-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span>DataBuffer<span style="color:#666">[]</span> input <span style="color:#666">=</span> <span style="color:#008000;font-weight:bold">new</span> DataBuffer<span style="color:#666">[</span><span style="color:#666">1</span><span style="color:#666">];</span>
 </span></span><span style="display:flex;"><span>DataBuffer<span style="color:#666">[]</span> output <span style="color:#666">=</span> <span style="color:#008000;font-weight:bold">new</span> DataBuffer<span style="color:#666">[</span><span style="color:#666">1</span><span style="color:#666">];</span>
 </span></span><span style="display:flex;"><span>DataBuffer dB <span style="color:#666">=</span> <span style="color:#008000;font-weight:bold">new</span> DataBuffer<span style="color:#666">();</span>
 </span></span><span style="display:flex;"><span>dB<span style="color:#666">.</span><span style="color:#7d9029">setDataType</span><span style="color:#666">((</span><span style="color:#b00040">byte</span><span style="color:#666">)</span> <span style="color:#666">0</span><span style="color:#666">);</span>
@@ -3676,8 +3597,7 @@
 </span></span><span style="display:flex;"><span><span style="color:#666">}</span>
 </span></span></code></pre></div><h3 id="inferencing-output-from-outputs-databuffer">Inferencing Output from outputs DataBuffer</h3>
 <p>The output is received in the output DataBuffer object that is needed to extract the desired result.</p>
-<div class="highlight"><pre tabindex="0" style=";-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span>            
-</span></span><span style="display:flex;"><span><span style="color:#008000;font-weight:bold">if</span> <span style="color:#666">(</span>output <span style="color:#666">!=</span> <span style="color:#008000;font-weight:bold">null</span> <span style="color:#666">&amp;&amp;</span> output<span style="color:#666">.</span><span style="color:#7d9029">length</span> <span style="color:#666">&gt;</span> <span style="color:#666">0</span> <span style="color:#666">)</span> <span style="color:#666">{</span>
+<div class="highlight"><pre tabindex="0" style=";-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#008000;font-weight:bold">if</span> <span style="color:#666">(</span>output <span style="color:#666">!=</span> <span style="color:#008000;font-weight:bold">null</span> <span style="color:#666">&amp;&amp;</span> output<span style="color:#666">.</span><span style="color:#7d9029">length</span> <span style="color:#666">&gt;</span> <span style="color:#666">0</span> <span style="color:#666">)</span> <span style="color:#666">{</span>
 </span></span><span style="display:flex;"><span>  <span style="color:#008000;font-weight:bold">if</span> <span style="color:#666">(</span>output<span style="color:#666">[</span><span style="color:#666">0</span><span style="color:#666">].</span><span style="color:#7d9029">getDataSource</span><span style="color:#666">()</span> <span style="color:#666">==</span> <span style="color:#666">0</span><span style="color:#666">)</span> <span style="color:#666">{</span>  <span style="color:#408080;font-style:italic">// Output data source is float buffer
 </span></span></span><span style="display:flex;"><span><span style="color:#408080;font-style:italic"></span>     <span style="color:#008000;font-weight:bold">for</span> <span style="color:#666">(</span><span style="color:#b00040">int</span> i <span style="color:#666">=</span> <span style="color:#666">0</span><span style="color:#666">;</span> i <span style="color:#666">&lt;</span> outputData<span style="color:#666">.</span><span style="color:#7d9029">length</span><span style="color:#666">;</span> i<span style="color:#666">++)</span> <span style="color:#666">{</span>
 </span></span><span style="display:flex;"><span>         prediction<span style="color:#666">[</span>i<span style="color:#666">]</span> <span style="color:#666">=</span> output<span style="color:#666">[</span><span style="color:#666">0</span><span style="color:#666">].</span><span style="color:#7d9029">getDataOriginal</span><span style="color:#666">()[</span>i<span style="color:#666">];</span>
@@ -3695,9 +3615,8 @@
 </span></span><span style="display:flex;"><span>         <span style="color:#666">}</span>
 </span></span><span style="display:flex;"><span>  <span style="color:#666">}</span>
 </span></span><span style="display:flex;"><span><span style="color:#666">}</span>
-</span></span></code></pre></div><h4 id="getting-the-prediction-result">Getting the prediction result</h4>
-<div class="highlight"><pre tabindex="0" style=";-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span>            
-</span></span><span style="display:flex;"><span><span style="color:#b00040">float</span> confidence <span style="color:#666">=</span> <span style="color:#666">-</span><span style="color:#666">1f</span><span style="color:#666">;</span>
+</span></span></code></pre></div><h3 id="getting-the-prediction-result">Getting the prediction result</h3>
+<div class="highlight"><pre tabindex="0" style=";-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#b00040">float</span> confidence <span style="color:#666">=</span> <span style="color:#666">-</span><span style="color:#666">1f</span><span style="color:#666">;</span>
 </span></span><span style="display:flex;"><span>  <span style="color:#b00040">int</span> label <span style="color:#666">=</span> <span style="color:#666">0</span><span style="color:#666">;</span>
 </span></span><span style="display:flex;"><span>  <span style="color:#008000;font-weight:bold">for</span> <span style="color:#666">(</span><span style="color:#b00040">int</span> i <span style="color:#666">=</span> <span style="color:#666">0</span><span style="color:#666">;</span> i<span style="color:#666">&lt;</span> prediction<span style="color:#666">.</span><span style="color:#7d9029">length</span><span style="color:#666">;</span> i<span style="color:#666">++){</span>
 </span></span><span style="display:flex;"><span>      <span style="color:#008000;font-weight:bold">if</span><span style="color:#666">(</span>prediction<span style="color:#666">[</span>i<span style="color:#666">]&gt;</span>confidence<span style="color:#666">)</span> <span style="color:#666">{</span>
@@ -3706,8 +3625,7 @@
 </span></span><span style="display:flex;"><span>       <span style="color:#666">}</span>
 </span></span><span style="display:flex;"><span>  <span style="color:#666">}</span>
 </span></span><span style="display:flex;"><span><span style="color:#008000;font-weight:bold">return</span> labelList<span style="color:#666">.</span><span style="color:#7d9029">get</span><span style="color:#666">(</span>label<span style="color:#666">)</span> <span style="color:#666">+</span><span style="color:#ba2121">&#34;\n&#34;</span><span style="color:#666">+</span> <span style="color:#ba2121">&#34;confidence: &#34;</span> <span style="color:#666">+</span> Float<span style="color:#666">.</span><span style="color:#7d9029">toString</span><span style="color:#666">(</span>prediction<span style="color:#666">[</span>label<span style="color:#666">]);</span>
-</span></span></code></pre></div><div class="highlight"><pre tabindex="0" style=";-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span>            
-</span></span><span style="display:flex;"><span><span style="color:#008000;font-weight:bold">if</span> <span style="color:#666">(</span>output <span style="color:#666">!=</span> <span style="color:#008000;font-weight:bold">null</span> <span style="color:#666">&amp;&amp;</span> output<span style="color:#666">.</span><span style="color:#7d9029">length</span> <span style="color:#666">&gt;</span> <span style="color:#666">0</span> <span style="color:#666">)</span> <span style="color:#666">{</span>
+</span></span></code></pre></div><div class="highlight"><pre tabindex="0" style=";-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#008000;font-weight:bold">if</span> <span style="color:#666">(</span>output <span style="color:#666">!=</span> <span style="color:#008000;font-weight:bold">null</span> <span style="color:#666">&amp;&amp;</span> output<span style="color:#666">.</span><span style="color:#7d9029">length</span> <span style="color:#666">&gt;</span> <span style="color:#666">0</span> <span style="color:#666">)</span> <span style="color:#666">{</span>
 </span></span><span style="display:flex;"><span>    <span style="color:#008000;font-weight:bold">if</span> <span style="color:#666">(</span>output<span style="color:#666">[</span><span style="color:#666">0</span><span style="color:#666">].</span><span style="color:#7d9029">getDataSource</span><span style="color:#666">()</span> <span style="color:#666">==</span> <span style="color:#666">0</span><span style="color:#666">)</span> <span style="color:#666">{</span>
 </span></span><span style="display:flex;"><span>        <span style="color:#b00040">float</span><span style="color:#666">[]</span> outputData <span style="color:#666">=</span> output<span style="color:#666">[</span><span style="color:#666">0</span><span style="color:#666">].</span><span style="color:#7d9029">getDataOriginal</span><span style="color:#666">();</span>
 </span></span><span style="display:flex;"><span>        <span style="color:#008000;font-weight:bold">for</span> <span style="color:#666">(</span><span style="color:#b00040">int</span> i <span style="color:#666">=</span> <span style="color:#666">0</span><span style="color:#666">;</span> i <span style="color:#666">&lt;</span> outputData<span style="color:#666">.</span><span style="color:#7d9029">length</span><span style="color:#666">;</span> i<span style="color:#666">++)</span>  <span style="color:#666">{</span>
@@ -3751,24 +3669,20 @@
 </span></span><span style="display:flex;"><span><span style="color:#666">}</span>
 </span></span></code></pre></div><h2 id="close-ml-model">Close ML model</h2>
 <p>Close the session after execution is complete to ensure session handle is closed. It should open again for next execute session, this avoids any unknown execution. This API is followed by <code>destroyKnoxAiSession()</code>.</p>
-<div class="highlight"><pre tabindex="0" style=";-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span>            
-</span></span><span style="display:flex;"><span><span style="color:#b00040">int</span> status <span style="color:#666">=</span> <span style="color:#666">-</span><span style="color:#666">1</span><span style="color:#666">;</span>
+<div class="highlight"><pre tabindex="0" style=";-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#b00040">int</span> status <span style="color:#666">=</span> <span style="color:#666">-</span><span style="color:#666">1</span><span style="color:#666">;</span>
 </span></span><span style="display:flex;"><span>Log<span style="color:#666">.</span><span style="color:#7d9029">i</span><span style="color:#666">(</span>TAG<span style="color:#666">,</span> <span style="color:#ba2121">&#34;Close session&#34;</span><span style="color:#666">);</span>
 </span></span><span style="display:flex;"><span>status <span style="color:#666">=</span> session<span style="color:#666">.</span><span style="color:#7d9029">close</span><span style="color:#666">().</span><span style="color:#7d9029">getValue</span><span style="color:#666">();</span>
 </span></span></code></pre></div><h2 id="destroy-knoxaisession">Destroy KnoxAiSession</h2>
 <p>Call this API in the end to destroy the session handle ensuring it is needed to be created again for new cycle.</p>
-<div class="highlight"><pre tabindex="0" style=";-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span>            
-</span></span><span style="display:flex;"><span>If<span style="color:#666">(</span>knoxAIManager <span style="color:#666">!=</span> <span style="color:#008000;font-weight:bold">null</span><span style="color:#666">)</span>
+<div class="highlight"><pre tabindex="0" style=";-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span>If<span style="color:#666">(</span>knoxAIManager <span style="color:#666">!=</span> <span style="color:#008000;font-weight:bold">null</span><span style="color:#666">)</span>
 </span></span><span style="display:flex;"><span>knoxAIManager<span style="color:#666">.</span><span style="color:#7d9029">destroyKnoxAiSession</span><span style="color:#666">(</span>session<span style="color:#666">);</span>
 </span></span></code></pre></div><h2 id="proguard">Proguard Rules for Application</h2>
 <p>The application should have the <strong>proguard-rules.pro</strong> file added to allow the Knox SDK API classes to ensure these classes are available without obfuscation.</p>
 <p>Add the following line in the proguard-rules.pro file for KnoxV2 package/classes to be allowed:</p>
-<div class="highlight"><pre tabindex="0" style=";-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span>            
-</span></span><span style="display:flex;"><span><span style="color:#666">-</span>keep <span style="color:#008000;font-weight:bold">class</span> <span style="color:#00f;font-weight:bold">com</span><span style="color:#666">.</span><span style="color:#7d9029">samsung</span><span style="color:#666">.</span><span style="color:#7d9029">android</span><span style="color:#666">.</span><span style="color:#7d9029">knox</span><span style="color:#666">.</span><span style="color:#7d9029">ex</span><span style="color:#666">.</span><span style="color:#7d9029">knoxAI</span><span style="color:#666">.*</span> <span style="color:#666">{</span> <span style="color:#666">*;</span> <span style="color:#666">}</span>
+<div class="highlight"><pre tabindex="0" style=";-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#666">-</span>keep <span style="color:#008000;font-weight:bold">class</span> <span style="color:#00f;font-weight:bold">com</span><span style="color:#666">.</span><span style="color:#7d9029">samsung</span><span style="color:#666">.</span><span style="color:#7d9029">android</span><span style="color:#666">.</span><span style="color:#7d9029">knox</span><span style="color:#666">.</span><span style="color:#7d9029">ex</span><span style="color:#666">.</span><span style="color:#7d9029">knoxAI</span><span style="color:#666">.*</span> <span style="color:#666">{</span> <span style="color:#666">*;</span> <span style="color:#666">}</span>
 </span></span><span style="display:flex;"><span><span style="color:#666">-</span>keep <span style="color:#008000;font-weight:bold">class</span> <span style="color:#00f;font-weight:bold">com</span><span style="color:#666">.</span><span style="color:#7d9029">samsung</span><span style="color:#666">.</span><span style="color:#7d9029">android</span><span style="color:#666">.</span><span style="color:#7d9029">knox</span><span style="color:#666">.</span><span style="color:#7d9029">license</span><span style="color:#666">.</span><span style="color:#7d9029">KnoxEnterpriseLicenseManager</span> <span style="color:#666">{*;}</span>
 </span></span></code></pre></div><p>Application should add the following to the <strong>build.gradle</strong> file to ensure Gradle does not compress the models while building the application:</p>
-<div class="highlight"><pre tabindex="0" style=";-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span>            
-</span></span><span style="display:flex;"><span><span style="color:#666">-</span>keep <span style="color:#008000;font-weight:bold">class</span> <span style="color:#00f;font-weight:bold">com</span><span style="color:#666">.</span><span style="color:#7d9029">samsung</span><span style="color:#666">.</span><span style="color:#7d9029">android</span><span style="color:#666">.</span><span style="color:#7d9029">knox</span><span style="color:#666">.</span><span style="color:#7d9029">ex</span><span style="color:#666">.</span><span style="color:#7d9029">knoxAI</span><span style="color:#666">.*</span> <span style="color:#666">{</span> <span style="color:#666">*;</span> <span style="color:#666">}</span>
+<div class="highlight"><pre tabindex="0" style=";-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#666">-</span>keep <span style="color:#008000;font-weight:bold">class</span> <span style="color:#00f;font-weight:bold">com</span><span style="color:#666">.</span><span style="color:#7d9029">samsung</span><span style="color:#666">.</span><span style="color:#7d9029">android</span><span style="color:#666">.</span><span style="color:#7d9029">knox</span><span style="color:#666">.</span><span style="color:#7d9029">ex</span><span style="color:#666">.</span><span style="color:#7d9029">knoxAI</span><span style="color:#666">.*</span> <span style="color:#666">{</span> <span style="color:#666">*;</span> <span style="color:#666">}</span>
 </span></span></code></pre></div>
             
           </div>
@@ -3786,6 +3700,7 @@
         <li><a href="knox-sdk-for-model-protection-deployment.html#filling-kfaoptions-object">Filling KfaOptions object</a></li>
         <li><a href="knox-sdk-for-model-protection-deployment.html#supported-model-types">Supported model types</a></li>
         <li><a href="knox-sdk-for-model-protection-deployment.html#kfaoptions-example">KfaOptions example</a></li>
+        <li><a href="knox-sdk-for-model-protection-deployment.html#passing-converted-onnx-models">Passing converted ONNX models</a></li>
         <li><a href="knox-sdk-for-model-protection-deployment.html#calling-open-api">Calling Open() API</a></li>
       </ul>
     </li>
@@ -3796,6 +3711,7 @@
         <li><a href="knox-sdk-for-model-protection-deployment.html#different-output-data-types-supported">Different Output Data Types Supported</a></li>
         <li><a href="knox-sdk-for-model-protection-deployment.html#filling-databuffer-and-calling-execute-api-example">Filling DataBuffer and Calling execute() API Example</a></li>
         <li><a href="knox-sdk-for-model-protection-deployment.html#inferencing-output-from-outputs-databuffer">Inferencing Output from outputs DataBuffer</a></li>
+        <li><a href="knox-sdk-for-model-protection-deployment.html#getting-the-prediction-result">Getting the prediction result</a></li>
       </ul>
     </li>
     <li><a href="knox-sdk-for-model-protection-deployment.html#close-ml-model">Close ML model</a></li>
@@ -3903,6 +3819,14 @@
                 href="../../../knox-deployment-program.html"
                 class="body-5 d-flex align-items-center text-black fw-light pe-auto text-decoration-none"
                 >Knox Deployment Program</a
+              >
+            </li>
+            
+            <li>
+              <a
+                href="../../../knox-msp-portal.html"
+                class="body-5 d-flex align-items-center text-black fw-light pe-auto text-decoration-none"
+                >Knox MSP Portal</a
               >
             </li>
             

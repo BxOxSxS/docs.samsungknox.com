@@ -127,8 +127,6 @@
   <ul>
     <li>
   <a href="../../../../knox-cloud-authentication.html" >Knox Cloud Authentication</a>
-  <ul>
-    </ul>
   </li>
 <li>
   <a href="../../../../knox-webhook-notification.html" >Knox Webhook Notification</a>
@@ -137,6 +135,9 @@
   </li>
 <li>
   <a href="../../../../knox-deployment-program.html" >Knox Deployment Program</a>
+  </li>
+<li>
+  <a href="../../../../knox-msp-portal.html" >Knox MSP Portal</a>
   </li>
 <li>
   <a href="../../../../knox-mobile-enrollment.html" >Knox Mobile Enrollment</a>
@@ -3320,7 +3321,7 @@
         <th scope="col">allowWifi(false)</th>
     </tr>
     <tr>
-        <td><p><strong>​allowWifiScanning(true)</strong></p></td>
+        <td><strong>​allowWifiScanning(true)</strong></td>
         <td>
             <p>allow Wi-Fi and Wi-Fi scanning</p>
             <p>wpa_supplicant runs</p>
@@ -3331,10 +3332,10 @@
         </td>
     </tr>
     <tr>
-        <td><p><strong>allowWifiScanning(false)</strong></p></td>
+        <td><strong>allowWifiScanning(false)</strong></td>
         <td>
-            <p> allow Wi-Fi and disallow Wi-Fi scanning</p>
-            <p> If user turns on Wi-Fi, wpa_supplicant runs</p>
+            <p>allow Wi-Fi and disallow Wi-Fi scanning</p>
+            <p>If user turns on Wi-Fi, wpa_supplicant runs</p>
         </td>
         <td>
             <p>disallow Wi-Fi and Wi-Fi scanning</p>
@@ -3350,7 +3351,7 @@
 </ul>
 <p>See the API references for a <a href="../../../../../devref/knox-sdk/reference/com/samsung/android/knox/net/wifi/WifiAdminProfile.html#WifiAdminProfile%28%29" target="_blank">list of supported networks</a> types.</p>
 <div class="notice-note"><p>When you create a Wi-Fi profile, the provisioned SSID is restricted so no other network can share the same SSID. If an admin profile is deleted, all of their associations are also removed.</p></div>
-<h4 id="create-an-open-network-with-ssid">Create an open network with SSID</h4>
+<h3 id="create-an-open-network-with-ssid">Create an open network with SSID</h3>
 <div class="highlight"><pre tabindex="0" style=";-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#408080;font-style:italic">//create EDM object
 </span></span></span><span style="display:flex;"><span><span style="color:#408080;font-style:italic"></span>EnterpriseDeviceManager edm <span style="color:#666">=</span> EnterpriseDeviceManager<span style="color:#666">.</span><span style="color:#7d9029">getInstance</span><span style="color:#666">(</span>context<span style="color:#666">);</span> 
 </span></span><span style="display:flex;"><span>
@@ -3361,7 +3362,7 @@
 </span></span></span><span style="display:flex;"><span><span style="color:#408080;font-style:italic"></span>
 </span></span><span style="display:flex;"><span><span style="color:#408080;font-style:italic">// Create the network
 </span></span></span><span style="display:flex;"><span><span style="color:#408080;font-style:italic"></span>edm<span style="color:#666">.</span><span style="color:#7d9029">getWifiPolicy</span><span style="color:#666">().</span><span style="color:#7d9029">setWifiProfile</span><span style="color:#666">(</span>wifiProfile<span style="color:#666">);</span> 
-</span></span></code></pre></div><h4 id="create-an-eap-tls-network">Create an EAP-TLS network</h4>
+</span></span></code></pre></div><h3 id="create-an-eap-tls-network">Create an EAP-TLS network</h3>
 <div class="highlight"><pre tabindex="0" style=";-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#408080;font-style:italic">//create EDM object 
 </span></span></span><span style="display:flex;"><span><span style="color:#408080;font-style:italic"></span>EnterpriseDeviceManager edm <span style="color:#666">=</span> EnterpriseDeviceManager<span style="color:#666">.</span><span style="color:#7d9029">getInstance</span><span style="color:#666">(</span>context<span style="color:#666">);</span>
 </span></span><span style="display:flex;"><span>
@@ -3393,7 +3394,7 @@
 </span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span><span style="color:#408080;font-style:italic">// set user certificate, assuming it is installed with alias &#34;test1&#34;
 </span></span></span><span style="display:flex;"><span><span style="color:#408080;font-style:italic"></span>wp<span style="color:#666">.</span><span style="color:#7d9029">setNetworkClientCertificate</span><span style="color:#666">(</span><span style="color:#ba2121">&#34;PLATFORM&#34;</span><span style="color:#666">,</span><span style="color:#ba2121">&#34;test1&#34;</span><span style="color:#666">);</span>
-</span></span></code></pre></div><h4 id="blacklist-wi-fi-policies">Blacklist Wi-Fi policies</h4>
+</span></span></code></pre></div><h3 id="blacklist-wi-fi-policies">Blacklist Wi-Fi policies</h3>
 <p>There are two sets of policies which can restrict networks by the their SSID:</p>
 <ol>
 <li>
@@ -3420,8 +3421,10 @@
     <li><a href="wi-fi.html#turn-wi-fi-on-or-off">Turn Wi-Fi on or off</a></li>
     <li><a href="wi-fi.html#create-and-manage-wi-fi-profiles">Create and manage Wi-Fi profiles</a>
       <ul>
-        <li></li>
+        <li><a href="wi-fi.html#create-an-open-network-with-ssid">Create an open network with SSID</a></li>
+        <li><a href="wi-fi.html#create-an-eap-tls-network">Create an EAP-TLS network</a></li>
         <li><a href="wi-fi.html#modify-a-network-profile">Modify a network profile</a></li>
+        <li><a href="wi-fi.html#blacklist-wi-fi-policies">Blacklist Wi-Fi policies</a></li>
       </ul>
     </li>
   </ul>
@@ -3526,6 +3529,14 @@
                 href="../../../../knox-deployment-program.html"
                 class="body-5 d-flex align-items-center text-black fw-light pe-auto text-decoration-none"
                 >Knox Deployment Program</a
+              >
+            </li>
+            
+            <li>
+              <a
+                href="../../../../knox-msp-portal.html"
+                class="body-5 d-flex align-items-center text-black fw-light pe-auto text-decoration-none"
+                >Knox MSP Portal</a
               >
             </li>
             

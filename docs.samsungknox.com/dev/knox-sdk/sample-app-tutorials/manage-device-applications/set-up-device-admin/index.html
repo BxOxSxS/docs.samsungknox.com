@@ -127,8 +127,6 @@
   <ul>
     <li>
   <a href="../../../../knox-cloud-authentication.html" >Knox Cloud Authentication</a>
-  <ul>
-    </ul>
   </li>
 <li>
   <a href="../../../../knox-webhook-notification.html" >Knox Webhook Notification</a>
@@ -137,6 +135,9 @@
   </li>
 <li>
   <a href="../../../../knox-deployment-program.html" >Knox Deployment Program</a>
+  </li>
+<li>
+  <a href="../../../../knox-msp-portal.html" >Knox MSP Portal</a>
   </li>
 <li>
   <a href="../../../../knox-mobile-enrollment.html" >Knox Mobile Enrollment</a>
@@ -3185,23 +3186,23 @@
 <p>First, register the Device admin receiver in your app’s manifest. Your receiver must be a subclass of <a href="http://developer.android.com/reference/android/app/admin/DeviceAdminReceiver.html" target="_blank">DeviceAdminReceiver</a> that has both the <code>BIND_DEVICE_ADMIN</code> permission and the ability to respond to the <code>ACTION_DEVICE_ADMIN_ENABLED</code> intent.</p>
 <p>In <strong>AndroidManifest.xml</strong>, insert the following XML anywhere inside the <code>&lt;application&gt;</code> tag.</p>
 <div class="highlight"><pre tabindex="0" style=";-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-xml" data-lang="xml"><span style="display:flex;"><span><span style="color:#008000;font-weight:bold">&lt;receiver</span>
-</span></span><span style="display:flex;"><span>	<span style="color:#7d9029">android:name=</span><span style="color:#ba2121">&#34;.SampleAdminReceiver&#34;</span>
-</span></span><span style="display:flex;"><span>	<span style="color:#7d9029">android:description=</span><span style="color:#ba2121">&#34;@string/enterprise_device_admin_description&#34;</span>
-</span></span><span style="display:flex;"><span>	<span style="color:#7d9029">android:label=</span><span style="color:#ba2121">&#34;@string/enterprise_device_admin&#34;</span>
-</span></span><span style="display:flex;"><span>	<span style="color:#7d9029">android:permission=</span><span style="color:#ba2121">&#34;android.permission.BIND_DEVICE_ADMIN&#34;</span> <span style="color:#008000;font-weight:bold">&gt;</span>
-</span></span><span style="display:flex;"><span>	<span style="color:#008000;font-weight:bold">&lt;meta-data</span>
-</span></span><span style="display:flex;"><span>	<span style="color:#7d9029">android:name=</span><span style="color:#ba2121">&#34;android.app.device_admin&#34;</span>
-</span></span><span style="display:flex;"><span>	<span style="color:#7d9029">android:resource=</span><span style="color:#ba2121">&#34;@xml/device_admin_receiver&#34;</span> <span style="color:#008000;font-weight:bold">/&gt;</span>
-</span></span><span style="display:flex;"><span>	<span style="color:#008000;font-weight:bold">&lt;intent-filter&gt;</span>
-</span></span><span style="display:flex;"><span>		<span style="color:#008000;font-weight:bold">&lt;action</span> <span style="color:#7d9029">android:name=</span><span style="color:#ba2121">&#34;android.app.action.DEVICE_ADMIN_ENABLED&#34;</span> <span style="color:#008000;font-weight:bold">/&gt;</span>
-</span></span><span style="display:flex;"><span>	<span style="color:#008000;font-weight:bold">&lt;/intent-filter&gt;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#7d9029">android:name=</span><span style="color:#ba2121">&#34;.SampleAdminReceiver&#34;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#7d9029">android:description=</span><span style="color:#ba2121">&#34;@string/enterprise_device_admin_description&#34;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#7d9029">android:label=</span><span style="color:#ba2121">&#34;@string/enterprise_device_admin&#34;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#7d9029">android:permission=</span><span style="color:#ba2121">&#34;android.permission.BIND_DEVICE_ADMIN&#34;</span> <span style="color:#008000;font-weight:bold">&gt;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#008000;font-weight:bold">&lt;meta-data</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#7d9029">android:name=</span><span style="color:#ba2121">&#34;android.app.device_admin&#34;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#7d9029">android:resource=</span><span style="color:#ba2121">&#34;@xml/device_admin_receiver&#34;</span> <span style="color:#008000;font-weight:bold">/&gt;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#008000;font-weight:bold">&lt;intent-filter&gt;</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#008000;font-weight:bold">&lt;action</span> <span style="color:#7d9029">android:name=</span><span style="color:#ba2121">&#34;android.app.action.DEVICE_ADMIN_ENABLED&#34;</span> <span style="color:#008000;font-weight:bold">/&gt;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#008000;font-weight:bold">&lt;/intent-filter&gt;</span>
 </span></span><span style="display:flex;"><span><span style="color:#008000;font-weight:bold">&lt;/receiver&gt;</span>
 </span></span></code></pre></div><p>The Android Device Manager states that you must identify the security policies in use by the app in a <code>&lt;meta-data&gt;</code> entry. Since the app uses Samsung Knox policies, you don&rsquo;t have to specify any native Android (<code>DevicePolicyManager</code>) policies. However, Android still requires you to create an empty <code>device_admin_receiver</code> file.</p>
 <p>In your project, navigate to <strong>app</strong> &gt; <strong>src</strong> &gt; <strong>res</strong>. Create a directory named xml. Inside this directory, create an <strong>XML resource file</strong> named <strong>device_admin_receiver.xml</strong>, and replace the auto-generated code with the following:</p>
-<div class="highlight"><pre tabindex="0" style=";-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#666">&lt;</span>device<span style="color:#666">-</span>admin xmlns<span style="color:#666">:</span>android<span style="color:#666">=</span><span style="color:#ba2121">&#34;http://schemas.android.com/apk/res/android&#34;</span><span style="color:#666">&gt;</span>
-</span></span><span style="display:flex;"><span>    <span style="color:#666">&lt;</span>uses<span style="color:#666">-</span>policies<span style="color:#666">&gt;</span>
-</span></span><span style="display:flex;"><span>    <span style="color:#666">&lt;/</span>uses<span style="color:#666">-</span>policies<span style="color:#666">&gt;</span>
-</span></span><span style="display:flex;"><span><span style="color:#666">&lt;/</span>device<span style="color:#666">-</span>admin<span style="color:#666">&gt;</span>
+<div class="highlight"><pre tabindex="0" style=";-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-xml" data-lang="xml"><span style="display:flex;"><span><span style="color:#008000;font-weight:bold">&lt;device-admin</span> <span style="color:#7d9029">xmlns:android=</span><span style="color:#ba2121">&#34;http://schemas.android.com/apk/res/android&#34;</span><span style="color:#008000;font-weight:bold">&gt;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#008000;font-weight:bold">&lt;uses-policies&gt;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#008000;font-weight:bold">&lt;/uses-policies&gt;</span>
+</span></span><span style="display:flex;"><span><span style="color:#008000;font-weight:bold">&lt;/device-admin&gt;</span>
 </span></span></code></pre></div><p>Paste the following code in <code>MainActivity()</code> to update the state of <strong>mToggleAdminBtn</strong>.</p>
 <div class="highlight"><pre tabindex="0" style=";-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#008000;font-weight:bold">private</span> <span style="color:#b00040">void</span> <span style="color:#00f">refreshButtons</span><span style="color:#666">()</span> <span style="color:#666">{</span>
 </span></span><span style="display:flex;"><span>        <span style="color:#b00040">boolean</span> adminActive <span style="color:#666">=</span> mDevicePolicyManager<span style="color:#666">.</span><span style="color:#7d9029">isAdminActive</span><span style="color:#666">(</span>mDeviceAdmin<span style="color:#666">);</span>
@@ -3391,6 +3392,14 @@
                 href="../../../../knox-deployment-program.html"
                 class="body-5 d-flex align-items-center text-black fw-light pe-auto text-decoration-none"
                 >Knox Deployment Program</a
+              >
+            </li>
+            
+            <li>
+              <a
+                href="../../../../knox-msp-portal.html"
+                class="body-5 d-flex align-items-center text-black fw-light pe-auto text-decoration-none"
+                >Knox MSP Portal</a
               >
             </li>
             

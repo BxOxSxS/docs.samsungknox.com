@@ -127,8 +127,6 @@
   <ul>
     <li>
   <a href="../../../knox-cloud-authentication.html" >Knox Cloud Authentication</a>
-  <ul>
-    </ul>
   </li>
 <li>
   <a href="../../../knox-webhook-notification.html" >Knox Webhook Notification</a>
@@ -137,6 +135,9 @@
   </li>
 <li>
   <a href="../../../knox-deployment-program.html" >Knox Deployment Program</a>
+  </li>
+<li>
+  <a href="../../../knox-msp-portal.html" >Knox MSP Portal</a>
   </li>
 <li>
   <a href="../../../knox-mobile-enrollment.html" >Knox Mobile Enrollment</a>
@@ -511,7 +512,7 @@
 <li><strong>Get the attestation verdict</strong> &mdash; Finally, you send the blob to the Attestation Server, which indicates if a device passed or failed its integrity checks.</li>
 </ol>
 <h2 id="attestation-examples">Attestation examples</h2>
-<h4 id="set-up-server">Set up server</h4>
+<h3 id="set-up-server">Set up server</h3>
 <p>In the following examples, we use an Apache server on a Linux operating system with PHP as the scripting language. You can set up such a web server from scratch quite simply. If you don’t have a web server, you can enroll in a free or trial cloud service to get quick access to one.</p>
 <p>If you are new to web server setup, here are some basic Linux commands to set up the server:</p>
 <ol>
@@ -523,13 +524,13 @@
 </ol>
 <p>Alternatively, you can use a pre-built environment, such as that provided by <a href="https://www.apachefriends.org/index.html" target="_blank">Apache Friends</a>.</p>
 <p>Once you have a web server with PHP support, copy your scripts into the folder <code>/var/www/html</code>. In the sample Attestation app, there are two PHP scripts, called <code>nonces.php</code> and <code>measurements.php</code>, which you can copy into this folder.</p>
-<h4 id="secure-communication">Secure communication</h4>
+<h3 id="secure-communication">Secure communication</h3>
 <p>For secure communication with the Attestation server, use an HTTPS connection and a SSL certificate to encrypt data sent over the connection. Make sure to purchase an SSL certificate from a trusted provider. Self-signed certificates are not trusted by the Attestation server. Also, make sure your certificate contains the complete certificate chain. For help, please consult with your web provider.</p>
-<h4 id="vendor-unique-attestation-key">Vendor-Unique Attestation Key</h4>
+<h3 id="vendor-unique-attestation-key">Vendor-Unique Attestation Key</h3>
 <div class="notice-important"><p>If you don’t have access to <strong>License keys</strong> in the <strong>Knox Developer Portal</strong>, please contact your Samsung sales partner to request access.</p></div>
 <p>You must identify yourself in every REST API call to the Attestation server using your <strong>Vendor-Unique Attestation Key</strong> that you get from the <a href="https://developer.samsungknox.com/dashboard" target="_blank">Knox Developer Portal</a>. To do this, specify your <strong>Vendor-Unique Attestation Key</strong> in the header of your REST API call.</p>
-<h4 id="start-attestation">Start attestation</h4>
-<h5 id="define-an-attestation-intent-in-the-manifest">Define an attestation intent in the manifest</h5>
+<h3 id="start-attestation">Start attestation</h3>
+<h4 id="define-an-attestation-intent-in-the-manifest">Define an attestation intent in the manifest</h4>
 <p>When the AttestationPolicy has a blob containing the attestation measurements, <code>com.samsung.android.knox.intent.action.KNOX_ATTESTATION_RESULT</code>. To handle this intent your app must have permission that <code>com.samsung.android.knox.permission.KNOX_REMOTE_ATTESTATION</code>.</p>
 <p>Identify the class that handles this intent. In our sample app <code>com.samsung.business.sdk.attestation</code>, we use the class <code>AttestationReceiver</code>. Declare the class in the Android manifest file as follows:</p>
 <div class="highlight"><pre tabindex="0" style=";-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-xml" data-lang="xml"><span style="display:flex;"><span><span style="color:#008000;font-weight:bold">&lt;receiver</span> <span style="color:#7d9029">android:name=</span><span style="color:#ba2121">&#34;com.samsung.business.sdk.attestation.AttestationReceiver&#34;</span> <span style="color:#7d9029">android:enabled=</span><span style="color:#ba2121">&#34;true&#34;</span><span style="color:#008000;font-weight:bold">&gt;</span>
@@ -567,8 +568,7 @@
 </span></span><span style="display:flex;"><span>String mNonce <span style="color:#666">=</span> output<span style="color:#666">.</span><span style="color:#7d9029">substring</span><span style="color:#666">(</span><span style="color:#666">10</span><span style="color:#666">,</span> output<span style="color:#666">.</span><span style="color:#7d9029">length</span><span style="color:#666">()</span> <span style="color:#666">-</span> <span style="color:#666">3</span><span style="color:#666">);</span>
 </span></span><span style="display:flex;"><span><span style="color:#408080;font-style:italic">// call startAttestation
 </span></span></span><span style="display:flex;"><span><span style="color:#408080;font-style:italic"></span>mPolicy<span style="color:#666">.</span><span style="color:#7d9029">startAttestation</span><span style="color:#666">(</span>mNonce<span style="color:#666">);</span>
-</span></span><span style="display:flex;"><span>        
-</span></span></code></pre></div><h4 id="handle-the-attestation-intent">Handle the attestation intent</h4>
+</span></span></code></pre></div><h3 id="handle-the-attestation-intent">Handle the attestation intent</h3>
 <p>Your app handles the <code>intent com.samsung.android.knox.intent.action.KNOX_ATTESTATION_RESULT</code> by passing it to <code>AttestationReceiver.onReceive().</code> This method is where you handle the blob sent by the <code>AttestationPolicy</code>.</p>
 <div class="highlight"><pre tabindex="0" style=";-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#408080;font-style:italic">// import package that defines constants for values returned by AttestationPolicy
 </span></span></span><span style="display:flex;"><span><span style="color:#408080;font-style:italic"></span><span style="color:#008000;font-weight:bold">import</span> <span style="color:#00f;font-weight:bold">com.samsung.android.knox.integrity.AttestationPolicy</span><span style="color:#666">;</span>
@@ -595,8 +595,8 @@
 </span></span><span style="display:flex;"><span>          <span style="color:#408080;font-style:italic">// Get the status from within the blob
 </span></span></span><span style="display:flex;"><span><span style="color:#408080;font-style:italic"></span>          attestationFragment<span style="color:#666">.</span><span style="color:#7d9029">getAttestationStatus</span><span style="color:#666">(</span>blob<span style="color:#666">);</span>
 </span></span><span style="display:flex;"><span>          <span style="color:#008000;font-weight:bold">break</span><span style="color:#666">;</span>
-</span></span></code></pre></div><h4 id="get-nonce">Get Nonce</h4>
-<h5 id="get-a-nonce-from-your-web-script">Get a nonce from your web script</h5>
+</span></span></code></pre></div><h3 id="get-nonce">Get Nonce</h3>
+<h4 id="get-a-nonce-from-your-web-script">Get a nonce from your web script</h4>
 <p>In your Android app, request a nonce from your web server. On the web server, you need a script to take the request and forward it to Samsung’s Attestation server. In the sample Attestation app, there is a script called <code>nonces.php</code> that does this.</p>
 <div class="highlight"><pre tabindex="0" style=";-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#408080;font-style:italic">// identify the URL of your web server
 </span></span></span><span style="display:flex;"><span><span style="color:#408080;font-style:italic"></span><span style="color:#008000;font-weight:bold">private</span> <span style="color:#008000;font-weight:bold">static</span> <span style="color:#008000;font-weight:bold">final</span> String URL_MDM_SERVER_NONCE <span style="color:#666">=</span> <span style="color:#ba2121">&#34;http://attestation.example.com/nonces&#34;</span><span style="color:#666">;</span>
@@ -604,30 +604,30 @@
 </span></span><span style="display:flex;"><span><span style="color:#408080;font-style:italic">// through HTTP, send a nonce request to your web server
 </span></span></span><span style="display:flex;"><span><span style="color:#408080;font-style:italic"></span>String response <span style="color:#666">=</span> HttpClient<span style="color:#666">.</span><span style="color:#7d9029">getInstance</span><span style="color:#666">().</span><span style="color:#7d9029">getNonce</span><span style="color:#666">(</span>URL_MDM_SERVER_NONCE<span style="color:#666">,</span> mEditApiKey<span style="color:#666">.</span><span style="color:#7d9029">getText</span><span style="color:#666">().</span><span style="color:#7d9029">toString</span><span style="color:#666">());</span>
 </span></span></code></pre></div><p>In this example, we use a string variable called <code>response</code> to store the resulting nonce. Later, you will parse the <code>response</code> into a JSON object and pass it to the Attestation agent on the device.</p>
-<h5 id="get-a-nonce-from-the-attestation-server">Get a nonce from the Attestation server</h5>
+<h4 id="get-a-nonce-from-the-attestation-server">Get a nonce from the Attestation server</h4>
 <p>In your web script, build the request to get a nonce from the Attestation Server. Our sample app does this using PHP, which you can find in the file nonces.php:</p>
-<pre tabindex="0"><code class="language-curl" data-lang="curl">$curl = curl_init();
-
-curl_setopt($curl, CURLOPT_URL,&#34;https://attest-api.secb2b.com/v2/nonces&#34;);
-curl_setopt($curl, CURLOPT_POST, 1);
-curl_setopt($curl, CURLOPT_SSL_VERIFYPEER, false);
-curl_setopt($curl, CURLOPT_RETURNTRANSFER, false);
-
-$headers = array(
-&#39;x-Knox-attest-api-key: &#39;.$api_key,
-&#39;Accept: &#39;.$accept
-);
-curl_setopt($curl, CURLOPT_HTTPHEADER, $headers);
-
-curl_exec($curl);
-</code></pre><p>For details about the syntax of the REST API calls to the Attestation Server, see the <a href="../../api-reference/api.html">Attestation REST API reference</a>.</p>
-<h4 id="get-verdict">Get verdict</h4>
-<h5 id="send-a-blob-to-your-web-server">Send a blob to your web server</h5>
+<div class="highlight"><pre tabindex="0" style=";-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-php" data-lang="php"><span style="display:flex;"><span><span style="color:#19177c">$curl</span> <span style="color:#666">=</span> curl_init();
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>curl_setopt(<span style="color:#19177c">$curl</span>, CURLOPT_URL,<span style="color:#ba2121">&#34;https://attest-api.secb2b.com/v2/nonces&#34;</span>);
+</span></span><span style="display:flex;"><span>curl_setopt(<span style="color:#19177c">$curl</span>, CURLOPT_POST, <span style="color:#666">1</span>);
+</span></span><span style="display:flex;"><span>curl_setopt(<span style="color:#19177c">$curl</span>, CURLOPT_SSL_VERIFYPEER, <span style="color:#008000;font-weight:bold">false</span>);
+</span></span><span style="display:flex;"><span>curl_setopt(<span style="color:#19177c">$curl</span>, CURLOPT_RETURNTRANSFER, <span style="color:#008000;font-weight:bold">false</span>);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#19177c">$headers</span> <span style="color:#666">=</span> <span style="color:#008000;font-weight:bold">array</span>(
+</span></span><span style="display:flex;"><span><span style="color:#ba2121">&#39;x-Knox-attest-api-key: &#39;</span><span style="color:#666">.</span><span style="color:#19177c">$api_key</span>,
+</span></span><span style="display:flex;"><span><span style="color:#ba2121">&#39;Accept: &#39;</span><span style="color:#666">.</span><span style="color:#19177c">$accept</span>
+</span></span><span style="display:flex;"><span>);
+</span></span><span style="display:flex;"><span>curl_setopt(<span style="color:#19177c">$curl</span>, CURLOPT_HTTPHEADER, <span style="color:#19177c">$headers</span>);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>curl_exec(<span style="color:#19177c">$curl</span>);
+</span></span></code></pre></div><p>For details about the syntax of the REST API calls to the Attestation Server, see the <a href="../../api-reference/api.html">Attestation REST API reference</a>.</p>
+<h3 id="get-verdict">Get verdict</h3>
+<h4 id="send-a-blob-to-your-web-server">Send a blob to your web server</h4>
 <p>Send the blob to your web server using the HTTP protocol. On the web server, you need a script to take the blob and forward it to Samsung’s Attestation server. In the sample Attestation app, there is a script called measurements.php that does the following:</p>
 <div class="highlight"><pre tabindex="0" style=";-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-php" data-lang="php"><span style="display:flex;"><span>String response <span style="color:#666">=</span> HttpClient<span style="color:#666">.</span>getInstance()<span style="color:#666">.</span>getAttestationStatus(http<span style="color:#666">://</span>my<span style="color:#666">.</span>attestation<span style="color:#666">.</span>server<span style="color:#666">.</span>com<span style="color:#666">/</span>measurements <span style="color:#666">+</span> <span style="color:#ba2121">&#34;?nonce=&#34;</span>
 </span></span><span style="display:flex;"><span>        <span style="color:#666">+</span> mNonce, blob, mEditApiKey<span style="color:#666">.</span>getText()<span style="color:#666">.</span>toString());
 </span></span></code></pre></div><p>In this example, we use a string variable called <code>response</code> to store the resulting verdict. Later, you will parse the <code>response</code> into a JSON object and display the verdict details.</p>
-<h5 id="get-a-verdict-from-the-attestation-server">Get a verdict from the Attestation server</h5>
+<h4 id="get-a-verdict-from-the-attestation-server">Get a verdict from the Attestation server</h4>
 <p>In the web script, build a request to get the attestation verdict from the Attestation server. Our sample code does this using PHP, which you can find in the source code file <code>measurements.php</code>:</p>
 <div class="highlight"><pre tabindex="0" style=";-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-php" data-lang="php"><span style="display:flex;"><span><span style="color:#19177c">$curl</span> <span style="color:#666">=</span> curl_init();
 </span></span><span style="display:flex;"><span>curl_setopt(<span style="color:#19177c">$curl</span>, CURLOPT_URL, <span style="color:#ba2121">&#34;https://attest-api.secb2b.com/v2/blobs?nonce=&#34;</span><span style="color:#666">.</span><span style="color:#19177c">$nonce</span>);
@@ -643,41 +643,40 @@ curl_exec($curl);
 </span></span><span style="display:flex;"><span>curl_setopt(<span style="color:#19177c">$curl</span>, CURLOPT_HTTPHEADER, <span style="color:#19177c">$headers</span>);
 </span></span><span style="display:flex;"><span>curl_exec(<span style="color:#19177c">$curl</span>);
 </span></span></code></pre></div><p>You can process the verdict in either the web script or Android app.</p>
-<h5 id="display-the-verdict">Display the verdict</h5>
+<h4 id="display-the-verdict">Display the verdict</h4>
 <p>Here, we use the Android app to convert the attestation response into a JSONObject to extract the results of the attestation, including the attestation verdict:</p>
-<div class="highlight"><pre tabindex="0" style=";-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-json" data-lang="json"><span style="display:flex;"><span><span style="">JsonObject</span> <span style="">=</span> <span style="">new</span> <span style="">JSONObject(mAttestationStatus);</span>
+<div class="highlight"><pre tabindex="0" style=";-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span>JsonObject <span style="color:#666">=</span> <span style="color:#008000;font-weight:bold">new</span> JSONObject<span style="color:#666">(</span>mAttestationStatus<span style="color:#666">);</span>
 </span></span><span style="display:flex;"><span><span style="color:#408080;font-style:italic">// get the overall verdict
-</span></span></span><span style="display:flex;"><span><span style="color:#408080;font-style:italic"></span><span style="">String</span> <span style="">verdict</span> <span style="">=</span> <span style="">jsonObject.getString(</span><span style="color:#ba2121">&#34;verdict&#34;</span><span style="">);</span>
-</span></span><span style="display:flex;"><span><span style="">buff.append(</span><span style="color:#ba2121">&#34;verdict = &#34;</span> <span style="">+</span> <span style="">verdict);</span>
+</span></span></span><span style="display:flex;"><span><span style="color:#408080;font-style:italic"></span>String verdict <span style="color:#666">=</span> jsonObject<span style="color:#666">.</span><span style="color:#7d9029">getString</span><span style="color:#666">(</span><span style="color:#ba2121">&#34;verdict&#34;</span><span style="color:#666">);</span>
+</span></span><span style="display:flex;"><span>buff<span style="color:#666">.</span><span style="color:#7d9029">append</span><span style="color:#666">(</span><span style="color:#ba2121">&#34;verdict = &#34;</span> <span style="color:#666">+</span> verdict<span style="color:#666">);</span>
 </span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span><span style="color:#408080;font-style:italic">// get the detailed measurements
-</span></span></span><span style="display:flex;"><span><span style="color:#408080;font-style:italic"></span><span style="">String</span> <span style="">measurements</span> <span style="">=</span> <span style="">jsonObject.getString(</span><span style="color:#ba2121">&#34;measurements&#34;</span><span style="">);</span>
-</span></span><span style="display:flex;"><span><span style="">buff.append(</span><span style="color:#ba2121">&#34;measurements = &#34;</span> <span style="">+</span> <span style="">measurements);</span>
-</span></span><span style="display:flex;"><span><span style="">String</span> <span style="">mac</span> <span style="">=</span> <span style="">jsonObject.getString(</span><span style="color:#ba2121">&#34;MAC&#34;</span><span style="">);</span>
-</span></span><span style="display:flex;"><span><span style="">buff.append(</span><span style="color:#ba2121">&#34;mac = &#34;</span> <span style="">+</span> <span style="">mac);</span>
-</span></span><span style="display:flex;"><span><span style="">JSONObject</span> <span style="">rkp_dashboard</span> <span style="">=</span> <span style="">jsonObject.getJSONObject(</span><span style="color:#ba2121">&#34;RKP_Dashboard&#34;</span><span style="">);</span>
-</span></span><span style="display:flex;"><span><span style="">buff.append(</span><span style="color:#ba2121">&#34;RKP_Dashboard &#34;</span> <span style="">+</span> <span style="color:#ba2121">&#34;\n&#34;</span><span style="">);</span>
-</span></span><span style="display:flex;"><span>
+</span></span></span><span style="display:flex;"><span><span style="color:#408080;font-style:italic"></span>String measurements <span style="color:#666">=</span> jsonObject<span style="color:#666">.</span><span style="color:#7d9029">getString</span><span style="color:#666">(</span><span style="color:#ba2121">&#34;measurements&#34;</span><span style="color:#666">);</span>
+</span></span><span style="display:flex;"><span>buff<span style="color:#666">.</span><span style="color:#7d9029">append</span><span style="color:#666">(</span><span style="color:#ba2121">&#34;measurements = &#34;</span> <span style="color:#666">+</span> measurements<span style="color:#666">);</span>
+</span></span><span style="display:flex;"><span>String mac <span style="color:#666">=</span> jsonObject<span style="color:#666">.</span><span style="color:#7d9029">getString</span><span style="color:#666">(</span><span style="color:#ba2121">&#34;MAC&#34;</span><span style="color:#666">);</span>
+</span></span><span style="display:flex;"><span>buff<span style="color:#666">.</span><span style="color:#7d9029">append</span><span style="color:#666">(</span><span style="color:#ba2121">&#34;mac = &#34;</span> <span style="color:#666">+</span> mac<span style="color:#666">);</span>
+</span></span><span style="display:flex;"><span>JSONObject rkp_dashboard <span style="color:#666">=</span> jsonObject<span style="color:#666">.</span><span style="color:#7d9029">getJSONObject</span><span style="color:#666">(</span><span style="color:#ba2121">&#34;RKP_Dashboard&#34;</span><span style="color:#666">);</span>
+</span></span><span style="display:flex;"><span>buff<span style="color:#666">.</span><span style="color:#7d9029">append</span><span style="color:#666">(</span><span style="color:#ba2121">&#34;RKP_Dashboard &#34;</span> <span style="color:#666">+</span> <span style="color:#ba2121">&#34;\n&#34;</span><span style="color:#666">);</span>
 </span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span><span style="color:#408080;font-style:italic">// get UCM ODE info that derives verdict as No
-</span></span></span><span style="display:flex;"><span><span style="color:#408080;font-style:italic"></span><span style="">JSONObject</span> <span style="">reasonVerdictNo</span> <span style="">=</span> <span style="">jsonObject.getJSONObject(</span><span style="color:#ba2121">&#34;reasonVerdictNo&#34;</span><span style="">);</span>
-</span></span><span style="display:flex;"><span><span style="">buff.append(</span><span style="color:#ba2121">&#34;\todeEnabled = &#34;</span> <span style="">+</span> <span style="">reasonVerdictNo.getString(</span><span style="color:#ba2121">&#34;odeEnabled&#34;</span><span style="">));</span>
-</span></span><span style="display:flex;"><span><span style="">buff.append(</span><span style="color:#ba2121">&#34;\tmeasurementMismatch = &#34;</span> <span style="">+</span> <span style="">reasonVerdictNo.getString(</span><span style="color:#ba2121">&#34;measurementMismatch&#34;</span><span style="">));</span>
-</span></span><span style="display:flex;"><span><span style="">buff.append(</span><span style="color:#ba2121">&#34;\tTamperFuseSet = &#34;</span> <span style="">+</span> <span style="">reasonVerdictNo.getString(</span><span style="color:#ba2121">&#34;TamperFuseSet&#34;</span><span style="">));</span>
-</span></span><span style="display:flex;"><span><span style="">String</span> <span style="">ucmOdePluginSignature</span> <span style="">=</span> <span style="">jsonObject.getString(</span><span style="color:#ba2121">&#34;ucmOdePluginSignature&#34;</span><span style="">);</span>
-</span></span><span style="display:flex;"><span><span style="">buff.append(</span><span style="color:#ba2121">&#34;ucmOdePluginSignature = &#34;</span> <span style="">+</span> <span style="">ucmOdePluginSignature);</span>
-</span></span><span style="display:flex;"><span><span style="">String</span> <span style="">ucmOdeVenderId</span> <span style="">=</span> <span style="">jsonObject.getString(</span><span style="color:#ba2121">&#34;ucmOdeVenderId&#34;</span><span style="">);</span>
-</span></span><span style="display:flex;"><span><span style="">buff.append(</span><span style="color:#ba2121">&#34;ucmOdeVenderId = &#34;</span> <span style="">+</span> <span style="">ucmOdeVenderId);</span>
+</span></span></span><span style="display:flex;"><span><span style="color:#408080;font-style:italic"></span>JSONObject reasonVerdictNo <span style="color:#666">=</span> jsonObject<span style="color:#666">.</span><span style="color:#7d9029">getJSONObject</span><span style="color:#666">(</span><span style="color:#ba2121">&#34;reasonVerdictNo&#34;</span><span style="color:#666">);</span>
+</span></span><span style="display:flex;"><span>buff<span style="color:#666">.</span><span style="color:#7d9029">append</span><span style="color:#666">(</span><span style="color:#ba2121">&#34;\todeEnabled = &#34;</span> <span style="color:#666">+</span> reasonVerdictNo<span style="color:#666">.</span><span style="color:#7d9029">getString</span><span style="color:#666">(</span><span style="color:#ba2121">&#34;odeEnabled&#34;</span><span style="color:#666">));</span>
+</span></span><span style="display:flex;"><span>buff<span style="color:#666">.</span><span style="color:#7d9029">append</span><span style="color:#666">(</span><span style="color:#ba2121">&#34;\tmeasurementMismatch = &#34;</span> <span style="color:#666">+</span> reasonVerdictNo<span style="color:#666">.</span><span style="color:#7d9029">getString</span><span style="color:#666">(</span><span style="color:#ba2121">&#34;measurementMismatch&#34;</span><span style="color:#666">));</span>
+</span></span><span style="display:flex;"><span>buff<span style="color:#666">.</span><span style="color:#7d9029">append</span><span style="color:#666">(</span><span style="color:#ba2121">&#34;\tTamperFuseSet = &#34;</span> <span style="color:#666">+</span> reasonVerdictNo<span style="color:#666">.</span><span style="color:#7d9029">getString</span><span style="color:#666">(</span><span style="color:#ba2121">&#34;TamperFuseSet&#34;</span><span style="color:#666">));</span>
+</span></span><span style="display:flex;"><span>String ucmOdePluginSignature <span style="color:#666">=</span> jsonObject<span style="color:#666">.</span><span style="color:#7d9029">getString</span><span style="color:#666">(</span><span style="color:#ba2121">&#34;ucmOdePluginSignature&#34;</span><span style="color:#666">);</span>
+</span></span><span style="display:flex;"><span>buff<span style="color:#666">.</span><span style="color:#7d9029">append</span><span style="color:#666">(</span><span style="color:#ba2121">&#34;ucmOdePluginSignature = &#34;</span> <span style="color:#666">+</span> ucmOdePluginSignature<span style="color:#666">);</span>
+</span></span><span style="display:flex;"><span>String ucmOdeVenderId <span style="color:#666">=</span> jsonObject<span style="color:#666">.</span><span style="color:#7d9029">getString</span><span style="color:#666">(</span><span style="color:#ba2121">&#34;ucmOdeVenderId&#34;</span><span style="color:#666">);</span>
+</span></span><span style="display:flex;"><span>buff<span style="color:#666">.</span><span style="color:#7d9029">append</span><span style="color:#666">(</span><span style="color:#ba2121">&#34;ucmOdeVenderId = &#34;</span> <span style="color:#666">+</span> ucmOdeVenderId<span style="color:#666">);</span>
 </span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span><span style="color:#408080;font-style:italic">// display each individual violation
-</span></span></span><span style="display:flex;"><span><span style="color:#408080;font-style:italic"></span><span style="">JSONArray</span> <span style="">violations</span> <span style="">=</span> <span style="">rkp_dashboard.getJSONArray(</span><span style="color:#ba2121">&#34;violations&#34;</span><span style="">);</span>
-</span></span><span style="display:flex;"><span><span style="">for</span> <span style="">(int</span> <span style="">i</span> <span style="">=</span> <span style="color:#666">0</span><span style="">;</span> <span style="">i</span> <span style="">&amp;</span> <span style="">lt;</span> <span style="">violations.length();</span> <span style="">i++)</span> {
-</span></span><span style="display:flex;"><span>  <span style="">JSONObject</span> <span style="">obj</span> <span style="">=</span> <span style="">violations.getJSONObject(i);</span>
-</span></span><span style="display:flex;"><span>  <span style="">buff.append(</span><span style="color:#008000;font-weight:bold">&#34;violations &#34;</span> <span style="">+</span> <span style="">i</span> <span style="">+</span> <span style="color:#ba2121">&#34;\n&#34;</span><span style="">);</span>
-</span></span><span style="display:flex;"><span>  <span style="">buff.append(</span><span style="color:#ba2121">&#34;\ttimestamp = &#34;</span> <span style="">+</span> <span style="">obj.getString(</span><span style="color:#ba2121">&#34;timestamp&#34;</span><span style="">));</span>
-</span></span><span style="display:flex;"><span>  <span style="">buff.append(</span><span style="color:#ba2121">&#34;\tcounter = &#34;</span> <span style="">+</span> <span style="">obj.getString(</span><span style="color:#ba2121">&#34;counter&#34;</span><span style="">));</span>
-</span></span><span style="display:flex;"><span>  <span style="">buff.append(</span><span style="color:#ba2121">&#34;\tserialNumber = &#34;</span> <span style="">+</span> <span style="">obj.getString(</span><span style="color:#ba2121">&#34;serialNumber&#34;</span><span style="">));</span>
-</span></span><span style="display:flex;"><span>}
+</span></span></span><span style="display:flex;"><span><span style="color:#408080;font-style:italic"></span>JSONArray violations <span style="color:#666">=</span> rkp_dashboard<span style="color:#666">.</span><span style="color:#7d9029">getJSONArray</span><span style="color:#666">(</span><span style="color:#ba2121">&#34;violations&#34;</span><span style="color:#666">);</span>
+</span></span><span style="display:flex;"><span><span style="color:#008000;font-weight:bold">for</span> <span style="color:#666">(</span><span style="color:#b00040">int</span> i <span style="color:#666">=</span> <span style="color:#666">0</span><span style="color:#666">;</span> i <span style="color:#666">&amp;</span> lt<span style="color:#666">;</span> violations<span style="color:#666">.</span><span style="color:#7d9029">length</span><span style="color:#666">();</span> i<span style="color:#666">++)</span> <span style="color:#666">{</span>
+</span></span><span style="display:flex;"><span>  JSONObject obj <span style="color:#666">=</span> violations<span style="color:#666">.</span><span style="color:#7d9029">getJSONObject</span><span style="color:#666">(</span>i<span style="color:#666">);</span>
+</span></span><span style="display:flex;"><span>  buff<span style="color:#666">.</span><span style="color:#7d9029">append</span><span style="color:#666">(</span><span style="color:#ba2121">&#34;violations &#34;</span> <span style="color:#666">+</span> i <span style="color:#666">+</span> <span style="color:#ba2121">&#34;\n&#34;</span><span style="color:#666">);</span>
+</span></span><span style="display:flex;"><span>  buff<span style="color:#666">.</span><span style="color:#7d9029">append</span><span style="color:#666">(</span><span style="color:#ba2121">&#34;\ttimestamp = &#34;</span> <span style="color:#666">+</span> obj<span style="color:#666">.</span><span style="color:#7d9029">getString</span><span style="color:#666">(</span><span style="color:#ba2121">&#34;timestamp&#34;</span><span style="color:#666">));</span>
+</span></span><span style="display:flex;"><span>  buff<span style="color:#666">.</span><span style="color:#7d9029">append</span><span style="color:#666">(</span><span style="color:#ba2121">&#34;\tcounter = &#34;</span> <span style="color:#666">+</span> obj<span style="color:#666">.</span><span style="color:#7d9029">getString</span><span style="color:#666">(</span><span style="color:#ba2121">&#34;counter&#34;</span><span style="color:#666">));</span>
+</span></span><span style="display:flex;"><span>  buff<span style="color:#666">.</span><span style="color:#7d9029">append</span><span style="color:#666">(</span><span style="color:#ba2121">&#34;\tserialNumber = &#34;</span> <span style="color:#666">+</span> obj<span style="color:#666">.</span><span style="color:#7d9029">getString</span><span style="color:#666">(</span><span style="color:#ba2121">&#34;serialNumber&#34;</span><span style="color:#666">));</span>
+</span></span><span style="display:flex;"><span><span style="color:#666">}</span>
 </span></span></code></pre></div><p>For details about the fields returned in the verdict, see the <a href="../../api-reference/api.html">Attestation REST API reference</a>.</p>
 <p>Here is how the app displays the attestation results:</p>
 
@@ -831,7 +830,13 @@ curl_exec($curl);
     <li><a href="../tutorial-knox-attestation-v2.html#how-attestation-works">How Attestation works</a></li>
     <li><a href="../tutorial-knox-attestation-v2.html#attestation-examples">Attestation examples</a>
       <ul>
-        <li></li>
+        <li><a href="../tutorial-knox-attestation-v2.html#set-up-server">Set up server</a></li>
+        <li><a href="../tutorial-knox-attestation-v2.html#secure-communication">Secure communication</a></li>
+        <li><a href="../tutorial-knox-attestation-v2.html#vendor-unique-attestation-key">Vendor-Unique Attestation Key</a></li>
+        <li><a href="../tutorial-knox-attestation-v2.html#start-attestation">Start attestation</a></li>
+        <li><a href="../tutorial-knox-attestation-v2.html#handle-the-attestation-intent">Handle the attestation intent</a></li>
+        <li><a href="../tutorial-knox-attestation-v2.html#get-nonce">Get Nonce</a></li>
+        <li><a href="../tutorial-knox-attestation-v2.html#get-verdict">Get verdict</a></li>
       </ul>
     </li>
   </ul>
@@ -936,6 +941,14 @@ curl_exec($curl);
                 href="../../../knox-deployment-program.html"
                 class="body-5 d-flex align-items-center text-black fw-light pe-auto text-decoration-none"
                 >Knox Deployment Program</a
+              >
+            </li>
+            
+            <li>
+              <a
+                href="../../../knox-msp-portal.html"
+                class="body-5 d-flex align-items-center text-black fw-light pe-auto text-decoration-none"
+                >Knox MSP Portal</a
               >
             </li>
             

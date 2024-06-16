@@ -127,8 +127,6 @@
   <ul>
     <li>
   <a href="../../../../knox-cloud-authentication.html" >Knox Cloud Authentication</a>
-  <ul>
-    </ul>
   </li>
 <li>
   <a href="../../../../knox-webhook-notification.html" >Knox Webhook Notification</a>
@@ -137,6 +135,9 @@
   </li>
 <li>
   <a href="../../../../knox-deployment-program.html" >Knox Deployment Program</a>
+  </li>
+<li>
+  <a href="../../../../knox-msp-portal.html" >Knox MSP Portal</a>
   </li>
 <li>
   <a href="../../../../knox-mobile-enrollment.html" >Knox Mobile Enrollment</a>
@@ -3183,13 +3184,13 @@
 <h3 id="how-targetsdkversion-affects-permissions-on-marshmallow">How targetSdkVersion affects permissions on Marshmallow</h3>
 <p>The value that you use for <code>targetSdkVersion</code> when you build your app determines how your app behaves with respect to <code>dangerous</code> permissions when it runs on Marshmallow.</p>
 <p>The new run time model is used for apps whose <code>targetSdkVersion</code> is set to 23 or higher. Apps whose <code>targetSdkVersion</code> is less than 23 use the old permissions model, and ask the user to grant permissions at installation time. However, the user can still revoke these abilities at any time, which can break pre-Marshmallow apps.</p>
-<h6 id="if-your-apps-targetsdkversion-is--23">If your app&rsquo;s targetSdkVersion is &gt;= 23:</h6>
+<h4 id="if-your-apps-targetsdkversion-is--23">If your app&rsquo;s targetSdkVersion is &gt;= 23:</h4>
 <ul>
 <li>The system doesn&rsquo;t grant requested <code>dangerous</code> runtime permissions during app installation</li>
 <li>The user can grantor revoke <code>dangerous</code> permissions at runtime</li>
 <li>An application&rsquo;s <code>dangerous</code> permissions settings are user-specific on a multi-user supported device. That is, the state of a <code>dangerous</code> permission for one user is not shared across other Android users on the device.</li>
 </ul>
-<h6 id="if-your-apps-targetsdkversion-is--23-1">If your app&rsquo;s targetSdkVersion is &lt; 23:</h6>
+<h4 id="if-your-apps-targetsdkversion-is--23-1">If your app&rsquo;s targetSdkVersion is &lt; 23:</h4>
 <ul>
 <li>The system grants all requested <code>dangerous</code> permissions during app installation</li>
 <li>The states of <code>dangerous</code> permissions for one user are not shared across other Android users on the device, but the UI state is shared across all users.</li>
@@ -3217,7 +3218,7 @@
 <h3 id="how-firmware-over-the-air-fota-updates-affect-permissions">How firmware over-the-air (FOTA) updates affect permissions</h3>
 <p>You can control whether to allow FOTA upgrades to your enterprise&rsquo;s devices by using the <code>com.samsung.android.knox.restriction.RestrictionPolicy.allowOTAUpgrade()</code> API. If you allow FOTA upgrades to Android Marshmallow, during the upgrade, the Knox framework detects if an MDM admin agent is present on the device. If so, the system grants all requested dangerous permissions to the MDM admin agent application.</p>
 <h2 id="android-m-permission-examples">Android M permission examples</h2>
-<h4 id="apply-a-permission-state-to-a-set-of-permissions-for-an-app">Apply a permission state to a set of permissions for an app</h4>
+<h3 id="apply-a-permission-state-to-a-set-of-permissions-for-an-app">Apply a permission state to a set of permissions for an app</h3>
 <p>You can apply a <code>permission</code> state to a list of one or more permissions for an app by calling <code>applyRuntimePermissions()</code>, which overrides the current permission settings. There are three permissions states &mdash; <code>grant</code>, <code>deny</code>, and <code>default</code>.</p>
 <p>When an MDM applies either the &lsquo;grant&rsquo; or &lsquo;deny&rsquo; runtime permission state to an app using <code>applyRuntimePermissions()</code>, the app permissions settings in the device UI are grayed out, and the user can&rsquo;t modify the permission&rsquo;s state.</p>
 <p>When an MDM applies the &lsquo;default&rsquo; runtime permission state to an app using <code>applyRuntimePermissions()</code>, the existing state (granted or denied) is used but the UI is enabled, which allows the user to modify the permission state.</p>
@@ -3268,7 +3269,7 @@
 </span></span><span style="display:flex;"><span><span style="color:#666">}</span> <span style="color:#008000;font-weight:bold">catch</span> <span style="color:#666">(</span>SecurityException e<span style="color:#666">)</span> <span style="color:#666">{</span>
 </span></span><span style="display:flex;"><span>    Log<span style="color:#666">.</span><span style="color:#7d9029">w</span><span style="color:#666">(</span>TAG<span style="color:#666">,</span> <span style="color:#ba2121">&#34;SecurityException: &#34;</span> <span style="color:#666">+</span> e<span style="color:#666">);</span>
 </span></span><span style="display:flex;"><span><span style="color:#666">}</span>
-</span></span></code></pre></div><h4 id="get-the-runtime-permissions-of-an-app-that-have-a-particular-state">Get the runtime permissions of an app that have a particular state</h4>
+</span></span></code></pre></div><h3 id="get-the-runtime-permissions-of-an-app-that-have-a-particular-state">Get the runtime permissions of an app that have a particular state</h3>
 <p>You can call <code>getRuntimePermissions()</code> to retrieve a list of runtime permissions for an app, where the permissions have the specified permission state.</p>
 <p>For example, the following code demonstrates how to use <code>getRuntimePermissions()</code> to retrieve the list of <code>dangerous</code> permissions that match the specified state for the <strong>com.sta.test</strong> app:</p>
 <div class="highlight"><pre tabindex="0" style=";-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#408080;font-style:italic">/** Retrieve the list of permissions that have been granted to &#34;com.sta.test&#34;
@@ -3322,7 +3323,8 @@
     </li>
     <li><a href="android-m-permissions.html#android-m-permission-examples">Android M permission examples</a>
       <ul>
-        <li></li>
+        <li><a href="android-m-permissions.html#apply-a-permission-state-to-a-set-of-permissions-for-an-app">Apply a permission state to a set of permissions for an app</a></li>
+        <li><a href="android-m-permissions.html#get-the-runtime-permissions-of-an-app-that-have-a-particular-state">Get the runtime permissions of an app that have a particular state</a></li>
       </ul>
     </li>
   </ul>
@@ -3427,6 +3429,14 @@
                 href="../../../../knox-deployment-program.html"
                 class="body-5 d-flex align-items-center text-black fw-light pe-auto text-decoration-none"
                 >Knox Deployment Program</a
+              >
+            </li>
+            
+            <li>
+              <a
+                href="../../../../knox-msp-portal.html"
+                class="body-5 d-flex align-items-center text-black fw-light pe-auto text-decoration-none"
+                >Knox MSP Portal</a
               >
             </li>
             

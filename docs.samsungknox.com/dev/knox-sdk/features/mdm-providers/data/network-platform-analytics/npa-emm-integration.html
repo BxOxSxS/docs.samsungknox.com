@@ -127,8 +127,6 @@
   <ul>
     <li>
   <a href="../../../../../knox-cloud-authentication.html" >Knox Cloud Authentication</a>
-  <ul>
-    </ul>
   </li>
 <li>
   <a href="../../../../../knox-webhook-notification.html" >Knox Webhook Notification</a>
@@ -137,6 +135,9 @@
   </li>
 <li>
   <a href="../../../../../knox-deployment-program.html" >Knox Deployment Program</a>
+  </li>
+<li>
+  <a href="../../../../../knox-msp-portal.html" >Knox MSP Portal</a>
   </li>
 <li>
   <a href="../../../../../knox-mobile-enrollment.html" >Knox Mobile Enrollment</a>
@@ -3271,33 +3272,27 @@
 <li>A vendor-supplied configuration binary encoded in base64</li>
 </ul>
 <p>The EMM agent must describe the profile configuration using the following JSON format during profile registration.</p>
-<div class="highlight"><pre tabindex="0" style=";-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#666">{</span>
-</span></span><span style="display:flex;"><span> <span style="color:#ba2121">&#34;NETWORK_ANALYTICS_PARAMETERS&#34;</span><span style="color:#666">:</span> <span style="color:#666">{</span>
-</span></span><span style="display:flex;"><span>  <span style="color:#ba2121">&#34;profile_attribute&#34;</span><span style="color:#666">:</span> <span style="color:#666">{</span>
-</span></span><span style="display:flex;"><span>   <span style="color:#ba2121">&#34;profile_name&#34;</span><span style="color:#666">:</span> <span style="color:#ba2121">&#34;gen_profile&#34;</span><span style="color:#666">,</span>
-</span></span><span style="display:flex;"><span>   <span style="color:#ba2121">&#34;package_name&#34;</span><span style="color:#666">:</span> <span style="color:#ba2121">&#34;com.samsung.test.networkmonitor_denali&#34;</span><span style="color:#666">,</span>
-</span></span><span style="display:flex;"><span>   <span style="color:#ba2121">&#34;package_signature&#34;</span><span style="color:#666">:</span> <span style="color:#ba2121">&#34;308201e5...&#34;</span>
-</span></span><span style="display:flex;"><span>   <span style="color:#ba2121">&#34;flags&#34;</span><span style="color:#666">:</span> <span style="color:#666">0</span>
-</span></span><span style="display:flex;"><span>  <span style="color:#666">},</span>
-</span></span><span style="display:flex;"><span>  <span style="color:#ba2121">&#34;vendor&#34;</span><span style="color:#666">:</span> <span style="color:#666">{}</span>
-</span></span><span style="display:flex;"><span> <span style="color:#666">}</span>
-</span></span><span style="display:flex;"><span><span style="color:#666">}</span>
+<div class="highlight"><pre tabindex="0" style=";-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-json" data-lang="json"><span style="display:flex;"><span>{
+</span></span><span style="display:flex;"><span>    <span style="color:#008000;font-weight:bold">&#34;NETWORK_ANALYTICS_PARAMETERS&#34;</span>: {
+</span></span><span style="display:flex;"><span>        <span style="color:#008000;font-weight:bold">&#34;profile_attribute&#34;</span>: {
+</span></span><span style="display:flex;"><span>            <span style="color:#008000;font-weight:bold">&#34;profile_name&#34;</span>: <span style="color:#ba2121">&#34;gen_profile&#34;</span>,
+</span></span><span style="display:flex;"><span>            <span style="color:#008000;font-weight:bold">&#34;package_name&#34;</span>: <span style="color:#ba2121">&#34;com.samsung.test.networkmonitor_denali&#34;</span>,
+</span></span><span style="display:flex;"><span>            <span style="color:#008000;font-weight:bold">&#34;package_signature&#34;</span>: <span style="color:#ba2121">&#34;308201e5...&#34;</span>
+</span></span><span style="display:flex;"><span>            <span style="color:#ba2121">&#34;flags&#34;</span>: <span style="color:#666">0</span>
+</span></span><span style="display:flex;"><span>            },
+</span></span><span style="display:flex;"><span>        <span style="color:#008000;font-weight:bold">&#34;vendor&#34;</span>: {}
+</span></span><span style="display:flex;"><span>        }
+</span></span><span style="display:flex;"><span>}
 </span></span></code></pre></div><ul>
-<li>
-<p><code>profile_name</code> &mdash; The name of the profile assigned to this managed device</p>
-</li>
-<li>
-<p><code>package_name</code> &mdash; The app package which contains the app designated by the EMM to observe the data flows</p>
-</li>
-<li>
-<p><code>package_signature</code> &mdash; The public key signature of the NPA client which is authorized by the EMM to observe the data flows. The following snippet shows how to calculate the signature in JSON which registers the profile.</p>
+<li><code>profile_name</code> &mdash; The name of the profile assigned to this managed device</li>
+<li><code>package_name</code> &mdash; The app package which contains the app designated by the EMM to observe the data flows</li>
+<li><code>package_signature</code> &mdash; The public key signature of the NPA client which is authorized by the EMM to observe the data flows. The following snippet shows how to calculate the signature in JSON which registers the profile.</li>
+</ul>
 <div class="highlight"><pre tabindex="0" style=";-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span>signature sign <span style="color:#666">=</span> <span style="color:#008000;font-weight:bold">this</span><span style="color:#666">.</span><span style="color:#7d9029">getPackageManager</span><span style="color:#666">().</span><span style="color:#7d9029">getPackageInfo</span><span style="color:#666">(</span><span style="color:#008000;font-weight:bold">this</span><span style="color:#666">.</span><span style="color:#7d9029">getPackageName</span><span style="color:#666">(),</span>
 </span></span><span style="display:flex;"><span>            PackageManager<span style="color:#666">.</span><span style="color:#7d9029">GET_SIGNATURES</span><span style="color:#666">).</span><span style="color:#7d9029">signatures</span><span style="color:#666">[</span><span style="color:#666">0</span><span style="color:#666">];</span>
 </span></span><span style="display:flex;"><span>            String packageSignature <span style="color:#666">=</span> sign<span style="color:#666">.</span><span style="color:#7d9029">toCharString</span><span style="color:#666">();</span>
-</span></span></code></pre></div></li>
-<li>
-<p><code>flags</code> &mdash; The list of data flows authorized by the EMM for observation by the NPA client. If <code>flags</code> is set to <code>0</code> or set to <code>524287</code>, all data flows can be observed. The difference is that setting <code>flags</code> to <code>0</code> allows the observation of data flows that may be introduced in a future release. Setting <code>flags</code> to <code>524287</code> limits observation to the set of data flows defined as of the Knox 3.0 release. If you want to set <code>flags</code> to some value other than <code>0</code> and <code>524287</code>, thereby selecting only certain data flows, you must perform a bitwise OR operation using the appropriate value for each data flow flag. See the <a href="../../../../../../devref/knox-sdk/reference/com/samsung/android/knox/net/nap/NetworkAnalyticsConstants.DataPoints.html" target="_blank">NetworkAnalyticsConstants.DataPoints</a> class for the list of values. For example, if you want to allow observation of data flows for the flags <code>brecv</code>, <code>dst</code>, and <code>hostname</code>, then the <code>flags</code> value is 41 and it is calculated as follows: <code>0000000000000000001 | 0000000000000001000 | 0000000000000100000 = 0000000000000101001</code></p>
-</li>
+</span></span></code></pre></div><ul>
+<li><code>flags</code> &mdash; The list of data flows authorized by the EMM for observation by the NPA client. If <code>flags</code> is set to <code>0</code> or set to <code>524287</code>, all data flows can be observed. The difference is that setting <code>flags</code> to <code>0</code> allows the observation of data flows that may be introduced in a future release. Setting <code>flags</code> to <code>524287</code> limits observation to the set of data flows defined as of the Knox 3.0 release. If you want to set <code>flags</code> to some value other than <code>0</code> and <code>524287</code>, thereby selecting only certain data flows, you must perform a bitwise OR operation using the appropriate value for each data flow flag. See the <a href="../../../../../../devref/knox-sdk/reference/com/samsung/android/knox/net/nap/NetworkAnalyticsConstants.DataPoints.html" target="_blank">NetworkAnalyticsConstants.DataPoints</a> class for the list of values. For example, if you want to allow observation of data flows for the flags <code>brecv</code>, <code>dst</code>, and <code>hostname</code>, then the <code>flags</code> value is 41 and it is calculated as follows: <code>0000000000000000001 | 0000000000000001000 | 0000000000000100000 = 0000000000000101001</code></li>
 </ul>
 <h3 id="example-profile-and-json-message">Example Profile and JSON Message</h3>
 <p>The following example message details a NPA monitoring profile. In this example, the flags value <code>65535</code> is for the AnyConnect app.</p>
@@ -3317,7 +3312,7 @@
 </span></span><span style="display:flex;"><span><span style="color:#666">}</span>
 </span></span></code></pre></div><h2 id="supported-use-cases">Supported Use Cases</h2>
 <p>This section provides several examples of how observing data flows is impacted by the configuration of the EMM agent, the NPA client, the container, and their privileges.</p>
-<h4 id="observe-data-flows-from-apps-installed-in-user-0">Observe Data Flows From Apps Installed in User 0</h4>
+<h3 id="observe-data-flows-from-apps-installed-in-user-0">Observe Data Flows From Apps Installed in User 0</h3>
 <p>The following steps explain how to observe data from all the apps and associated processes installed in user 0.</p>
 <ol>
 <li>
@@ -3339,7 +3334,7 @@
 </span></span></code></pre></div></li>
 </ol>
 <p>You can unregister the profile by calling <a href="../../../../../../devref/knox-sdk/reference/com/samsung/android/knox/net/nap/NetworkAnalytics.html#getNetworkMonitorProfiles%28%29" target="_blank"><code>NetworkAnalytics.getNetworkMonitorProfiles()</code></a> to retrieve the profile name and then by calling <a href="../../../../../../devref/knox-sdk/reference/com/samsung/android/knox/net/nap/NetworkAnalytics.html#unregisterNetworkMonitorProfile%28java.lang.String%29" target="_blank"><code>NetworkAnalytics.unregisterNetworkMonitorProfile()</code></a>.</p>
-<h4 id="observe-data-flows-from-apps-installed-device-wide">Observe Data Flows From Apps Installed Device Wide</h4>
+<h3 id="observe-data-flows-from-apps-installed-device-wide">Observe Data Flows From Apps Installed Device Wide</h3>
 <p>When the EMM agent and NPA client are both installed as user 0, it is possible to observe all available data flows on the device. The difference here is an extra API call which provides information for an instance of both the container and the device owner.</p>
 <ol>
 <li>
@@ -3350,7 +3345,6 @@
 <div class="highlight"><pre tabindex="0" style=";-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#008000;font-weight:bold">private</span> EnterpriseKnoxManger mKm <span style="color:#666">=</span> <span style="color:#008000;font-weight:bold">null</span><span style="color:#666">;</span>
 </span></span><span style="display:flex;"><span><span style="color:#008000;font-weight:bold">private</span> NetworkAnalytics mNap <span style="color:#666">=</span> <span style="color:#008000;font-weight:bold">null</span><span style="color:#666">;</span>
 </span></span><span style="display:flex;"><span><span style="color:#008000;font-weight:bold">private</span> NetworkAnalytics mCNap <span style="color:#666">=</span> <span style="color:#008000;font-weight:bold">null</span><span style="color:#666">;</span>
-</span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span>mKm <span style="color:#666">=</span> EnterpriseKnoxManger<span style="color:#666">.</span><span style="color:#7d9029">getInstance</span><span style="color:#666">(</span><span style="color:#008000;font-weight:bold">this</span><span style="color:#666">.</span><span style="color:#7d9029">getApplicationContext</span><span style="color:#666">());</span>
 </span></span><span style="display:flex;"><span>mNap <span style="color:#666">=</span> mKm<span style="color:#666">.</span><span style="color:#7d9029">getNetworkAnalytics</span><span style="color:#666">();</span>
@@ -3363,7 +3357,7 @@
 </span></span></code></pre></div></li>
 </ol>
 <p>You can unregister the profile by calling <a href="../../../../../../devref/knox-sdk/reference/com/samsung/android/knox/net/nap/NetworkAnalytics.html#getNetworkMonitorProfiles%28%29" target="_blank"><code>NetworkAnalytics.getNetworkMonitorProfiles()</code></a> to retrieve the profile name and then by calling <a href="../../../../../../devref/knox-sdk/reference/com/samsung/android/knox/net/nap/NetworkAnalytics.html#unregisterNetworkMonitorProfile%28java.lang.String%29" target="_blank"><code>NetworkAnalytics.unregisterNetworkMonitorProfile()</code></a>.</p>
-<h4 id="observe-data-flows-from-apps-installed-in-the-cl-container-or-the-knox-com-container-only">Observe Data Flows From Apps Installed in the CL Container or the Knox COM Container Only</h4>
+<h3 id="observe-data-flows-from-apps-installed-in-the-cl-container-or-the-knox-com-container-only">Observe Data Flows From Apps Installed in the CL Container or the Knox COM Container Only</h3>
 <p>In this configuration, the EMM agent is installed as user 0 and the NPA client is installed inside the container.</p>
 <ol>
 <li>
@@ -3382,7 +3376,7 @@
 </span></span></code></pre></div></li>
 </ol>
 <p>You can unregister the profile by calling <a href="../../../../../../devref/knox-sdk/reference/com/samsung/android/knox/net/nap/NetworkAnalytics.html#getNetworkMonitorProfiles%28%29" target="_blank"><code>NetworkAnalytics.getNetworkMonitorProfiles()</code></a> to retrieve the profile name and then by calling <a href="../../../../../../devref/knox-sdk/reference/com/samsung/android/knox/net/nap/NetworkAnalytics.html#unregisterNetworkMonitorProfile%28java.lang.String%29" target="_blank"><code>NetworkAnalytics.unregisterNetworkMonitorProfile()</code></a>.</p>
-<h4 id="observe-data-flows-from-apps-installed-in-po-or-on-a-byo-device-container">Observe Data Flows From Apps Installed in PO or on a BYO Device Container</h4>
+<h3 id="observe-data-flows-from-apps-installed-in-po-or-on-a-byo-device-container">Observe Data Flows From Apps Installed in PO or on a BYO Device Container</h3>
 <p>Data flow observation can be limited to the container on a BYO device when both the EMM agent and the NPA client are installed inside the container.</p>
 <ol>
 <li>
@@ -3418,7 +3412,10 @@
     </li>
     <li><a href="npa-emm-integration.html#supported-use-cases">Supported Use Cases</a>
       <ul>
-        <li></li>
+        <li><a href="npa-emm-integration.html#observe-data-flows-from-apps-installed-in-user-0">Observe Data Flows From Apps Installed in User 0</a></li>
+        <li><a href="npa-emm-integration.html#observe-data-flows-from-apps-installed-device-wide">Observe Data Flows From Apps Installed Device Wide</a></li>
+        <li><a href="npa-emm-integration.html#observe-data-flows-from-apps-installed-in-the-cl-container-or-the-knox-com-container-only">Observe Data Flows From Apps Installed in the CL Container or the Knox COM Container Only</a></li>
+        <li><a href="npa-emm-integration.html#observe-data-flows-from-apps-installed-in-po-or-on-a-byo-device-container">Observe Data Flows From Apps Installed in PO or on a BYO Device Container</a></li>
       </ul>
     </li>
   </ul>
@@ -3523,6 +3520,14 @@
                 href="../../../../../knox-deployment-program.html"
                 class="body-5 d-flex align-items-center text-black fw-light pe-auto text-decoration-none"
                 >Knox Deployment Program</a
+              >
+            </li>
+            
+            <li>
+              <a
+                href="../../../../../knox-msp-portal.html"
+                class="body-5 d-flex align-items-center text-black fw-light pe-auto text-decoration-none"
+                >Knox MSP Portal</a
               >
             </li>
             

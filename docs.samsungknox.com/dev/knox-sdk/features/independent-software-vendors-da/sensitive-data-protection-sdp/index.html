@@ -127,8 +127,6 @@
   <ul>
     <li>
   <a href="../../../../knox-cloud-authentication.html" >Knox Cloud Authentication</a>
-  <ul>
-    </ul>
   </li>
 <li>
   <a href="../../../../knox-webhook-notification.html" >Knox Webhook Notification</a>
@@ -137,6 +135,9 @@
   </li>
 <li>
   <a href="../../../../knox-deployment-program.html" >Knox Deployment Program</a>
+  </li>
+<li>
+  <a href="../../../../knox-msp-portal.html" >Knox MSP Portal</a>
   </li>
 <li>
   <a href="../../../../knox-mobile-enrollment.html" >Knox Mobile Enrollment</a>
@@ -3181,7 +3182,7 @@
 <p>Knox Sensitive Data Protection provides protection of Data-at-rest (DAR) in your app. This protection is provided with minimum development effort and at a negligible user experience loss.</p>
 <h2 id="about-sdp">About SDP</h2>
 <p>Data at rest is a term referring to inactive data stored in any digital form, for example, in files or databases. Protecting DAR is an increasing concern for businesses due to the rise of sophisticated malicious attacks. Using the Knox Sensitive Data Protection (SDP) APIs, you can easily secure your app&rsquo;s confidential data, protecting apps from data leakage if devices are stolen or compromised. SDP encrypts your app-data and remains that way until the device owner provides authentication (pattern, pin, password, fingerprint, and so on).</p>
-<h5 id="for-example">For example:</h5>
+<h3 id="for-example">For example:</h3>
 <p>Internal messaging apps used by employees often transmit confidential data between co-workers or clients; this can include pictures, invoices, emails or contracts. Knox SDP ensures sensitive data stored within the app is inaccessible until the device owner unlocks it. Your data can be protected if a device is lost, stolen or shared with the wrong individual.</p>
 <p>There are 2 ways Knox can mark your data to help keep it secure &mdash; protected or sensitive.</p>
 <div class="overflow-auto my-3"><table>
@@ -3258,7 +3259,7 @@
 </li>
 </ul>
 <h2 id="sdp-examples">SDP examples</h2>
-<h4 id="add-sdp-support-to-your-app">Add SDP support to your app</h4>
+<h3 id="add-sdp-support-to-your-app">Add SDP support to your app</h3>
 <ol>
 <li>
 <p>Extract the <strong>knoxsdk.jar</strong> from the Knox SDK. Add these to files to the libs folder of your Android project.</p>
@@ -3277,9 +3278,9 @@
 <p>Create the SDP engine.</p>
 </li>
 </ol>
-<h4 id="create-the-default-sdp-engine">Create the default SDP engine</h4>
+<h3 id="create-the-default-sdp-engine">Create the default SDP engine</h3>
 <p>The Knox framework automatically creates the SDP default engine upon the workspace creation. No additional coding is required.</p>
-<h4 id="create-the-custom-sdp-engine">Create the Custom SDP engine</h4>
+<h3 id="create-the-custom-sdp-engine">Create the Custom SDP engine</h3>
 <div class="highlight"><pre tabindex="0" style=";-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#408080;font-style:italic">//Create SdpCreationParam
 </span></span></span><span style="display:flex;"><span><span style="color:#408080;font-style:italic"></span>
 </span></span><span style="display:flex;"><span><span style="color:#b00040">int</span> flag <span style="color:#666">=</span> SdpEngineConstants<span style="color:#666">.</span><span style="color:#7d9029">Flags</span><span style="color:#666">.</span><span style="color:#7d9029">SDP_MDFPP</span><span style="color:#666">;</span>
@@ -3291,7 +3292,7 @@
 </span></span><span style="display:flex;"><span><span style="color:#408080;font-style:italic">//addEngine
 </span></span></span><span style="display:flex;"><span><span style="color:#408080;font-style:italic"></span>
 </span></span><span style="display:flex;"><span>SdpEngine<span style="color:#666">.</span><span style="color:#7d9029">getInstance</span><span style="color:#666">().</span><span style="color:#7d9029">addEngine</span><span style="color:#666">(</span>builder<span style="color:#666">.</span><span style="color:#7d9029">getParam</span><span style="color:#666">(),</span> password<span style="color:#666">,</span> resetToken<span style="color:#666">)</span>
-</span></span></code></pre></div><h5 id="custom-engine-----lock">Custom Engine &mdash; Lock</h5>
+</span></span></code></pre></div><h4 id="custom-engine-----lock">Custom Engine &mdash; Lock</h4>
 <p>The SDP engine maintains its encryption key based on its lock state. When a user requests to unlock it with a password, the SDP framework retrieves the key for decryption and keeps it in memory until it&rsquo;s locked. We strongly recommend you have a password timeout code in your system in order to protect data when it&rsquo;s not in use. Keys for encryption are available since boot, so you can still create new sensitive data regardless of the lock state.</p>
 <p>To lock an SDP engine, use <code>sdpEngine.lock(&quot;myapp.alias&quot;);</code>.</p>
 <div class="highlight"><pre tabindex="0" style=";-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#408080;font-style:italic">//recommended code for lock()
@@ -3302,7 +3303,7 @@
 </span></span><span style="display:flex;"><span><span style="color:#408080;font-style:italic">//recommended code for unlock()
 </span></span></span><span style="display:flex;"><span><span style="color:#408080;font-style:italic"></span>sdpEngine <span style="color:#666">=</span> SdpEngine<span style="color:#666">.</span><span style="color:#7d9029">getInstance</span><span style="color:#666">();</span>
 </span></span><span style="display:flex;"><span>sdpEngine<span style="color:#666">.</span><span style="color:#7d9029">unlock</span><span style="color:#666">(</span><span style="color:#ba2121">&#34;myapp.alias&#34;</span><span style="color:#666">,</span> <span style="color:#ba2121">&#34;my_password&#34;</span><span style="color:#666">);</span>
-</span></span></code></pre></div><h5 id="custom-engine-----changeresetpassword">Custom Engine &mdash;  Change/reset/password</h5>
+</span></span></code></pre></div><h4 id="custom-engine-----changeresetpassword">Custom Engine &mdash;  Change/reset/password</h4>
 <p>Changing the password is only allowed in an unlocked state. This is the normal scenario when a user inserts an old password and update to a new password.</p>
 <p>If a user forgets the password, it can be reset with <code>resetPassword()</code>. This requires a new password and a reset token that you provided during engine creation using <code>addEngine()</code>. We recommend you don&rsquo;t store this reset token in the device but on your private server. If you don&rsquo;t have a server, you can take a back up-PIN from the user (If the user forgets this PIN, the engine cannot be unlocked, and the data is erased.)</p>
 <div class="highlight"><pre tabindex="0" style=";-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#408080;font-style:italic">//recommended code for setPassword()
@@ -3316,7 +3317,7 @@
 </span></span><span style="display:flex;"><span>SdpEngine sdpEngine<span style="color:#666">;</span>
 </span></span><span style="display:flex;"><span>sdpEngine <span style="color:#666">=</span> SdpEngine<span style="color:#666">.</span><span style="color:#7d9029">getInstance</span><span style="color:#666">();</span>
 </span></span><span style="display:flex;"><span>sdpEngine<span style="color:#666">.</span><span style="color:#7d9029">resetPassword</span><span style="color:#666">(</span><span style="color:#ba2121">&#34;myapp.alias&#34;</span><span style="color:#666">,</span> <span style="color:#ba2121">&#34;new_password&#34;</span><span style="color:#666">,</span> <span style="color:#ba2121">&#34;my_reset_token&#34;</span><span style="color:#666">);</span>
-</span></span></code></pre></div><h5 id="custom-engine----access-restriction">Custom Engine &mdash; Access restriction</h5>
+</span></span></code></pre></div><h4 id="custom-engine----access-restriction">Custom Engine &mdash; Access restriction</h4>
 <p>There are three components to SDP design if you need to create a custom engine:</p>
 <ul>
 <li><strong>The engine owner</strong> &mdash; creates the engine. Grants privileges to apps to control the engine.</li>
@@ -3328,17 +3329,17 @@
 </span></span><span style="display:flex;"><span>SdpCreationParamBuilder sdpCreationParamBuilder <span style="color:#666">=</span> <span style="color:#008000;font-weight:bold">new</span> SdpCreationParamBuilder<span style="color:#666">(</span>myapp<span style="color:#666">.</span><span style="color:#7d9029">alias</span><span style="color:#666">,</span> flag<span style="color:#666">);</span>
 </span></span><span style="display:flex;"><span>builder<span style="color:#666">.</span><span style="color:#7d9029">addPrivilegedApp</span><span style="color:#666">(</span><span style="color:#008000;font-weight:bold">new</span> SdpDomain<span style="color:#666">(</span><span style="color:#ba2121">&#34;myapp.alias&#34;</span><span style="color:#666">,</span> <span style="color:#ba2121">&#34;com.myapp.keyguard&#34;</span><span style="color:#666">));</span>
 </span></span><span style="display:flex;"><span>builder<span style="color:#666">.</span><span style="color:#7d9029">addPrivilegedApp</span><span style="color:#666">(</span><span style="color:#008000;font-weight:bold">new</span> SdpDomain<span style="color:#666">(</span><span style="color:#ba2121">&#34;myapp.alias&#34;</span><span style="color:#666">,</span> <span style="color:#ba2121">&#34;com.myapp.agent&#34;</span><span style="color:#666">));</span>
-</span></span></code></pre></div><h4 id="package-data-deletion">Package, data deletion</h4>
+</span></span></code></pre></div><h3 id="package-data-deletion">Package, data deletion</h3>
 <p>The Android framework supports the ability to delete cache/data for end users. To remove data, users go to <strong>Settings</strong> &gt; <strong>Application Manager</strong>. Encrypted directories are removed for the app accordingly.</p>
-<h4 id="set-data-as-sensitive">Set data as sensitive</h4>
+<h3 id="set-data-as-sensitive">Set data as sensitive</h3>
 <p>At this point your SDP engine is ready to protect your data. You just need to call the <code>setSensitive</code> API on that data.</p>
-<h5 id="setting-files-as-sensitive">Setting files as sensitive</h5>
+<h4 id="setting-files-as-sensitive">Setting files as sensitive</h4>
 <p>Construct a new <code>SdpFileSystem</code> object which can be used to manipulate file(s) as sensitive. You can call <code>setSensitive</code> for files at any point of time.</p>
 <div class="highlight"><pre tabindex="0" style=";-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span>String alias <span style="color:#666">=</span> <span style="color:#ba2121">&#34;sdpDemo&#34;</span><span style="color:#666">;</span> <span style="color:#408080;font-style:italic">// in case of default engine alias will be null.
 </span></span></span><span style="display:flex;"><span><span style="color:#408080;font-style:italic"></span>SdpFileSystem sdpFileSystem <span style="color:#666">=</span> <span style="color:#008000;font-weight:bold">new</span> SdpFileSystem<span style="color:#666">(</span>Context<span style="color:#666">,</span> alias<span style="color:#666">);</span>
 </span></span><span style="display:flex;"><span>File file <span style="color:#666">=</span> <span style="color:#008000;font-weight:bold">new</span> File<span style="color:#666">(</span>sdpFileSystem<span style="color:#666">.</span><span style="color:#7d9029">getFilesDir</span><span style="color:#666">(),</span> <span style="color:#ba2121">&#34;file_path&#34;</span><span style="color:#666">);</span>
 </span></span><span style="display:flex;"><span>sdpFileSystem<span style="color:#666">.</span><span style="color:#7d9029">setSensitive</span><span style="color:#666">(</span>file<span style="color:#666">)</span>
-</span></span></code></pre></div><h5 id="setting-database-columns-as-sensitive">Setting database columns as sensitive</h5>
+</span></span></code></pre></div><h4 id="setting-database-columns-as-sensitive">Setting database columns as sensitive</h4>
 <p>You can call the <code>setSensitive</code> API only in the unlocked state. It&rsquo;s recommended that after SDP engine creation you can call <code>setSensitive</code> on database columns that you want to protect:</p>
 <div class="highlight"><pre tabindex="0" style=";-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span>String alias <span style="color:#666">=</span> <span style="color:#ba2121">&#34;sdpDemo&#34;</span><span style="color:#666">;</span> <span style="color:#408080;font-style:italic">// in case of default engine alias will be null.
 </span></span></span><span style="display:flex;"><span><span style="color:#408080;font-style:italic"></span>SdpDatabase sdpColumn <span style="color:#666">=</span> <span style="color:#008000;font-weight:bold">new</span> SdpDatabase<span style="color:#666">(</span>alias<span style="color:#666">);</span>
@@ -3356,7 +3357,7 @@
   <ul>
     <li><a href="../sensitive-data-protection-sdp.html#about-sdp">About SDP</a>
       <ul>
-        <li></li>
+        <li><a href="../sensitive-data-protection-sdp.html#for-example">For example:</a></li>
       </ul>
     </li>
     <li><a href="../sensitive-data-protection-sdp.html#how-sdp-works">How SDP works</a>
@@ -3366,7 +3367,11 @@
     </li>
     <li><a href="../sensitive-data-protection-sdp.html#sdp-examples">SDP examples</a>
       <ul>
-        <li></li>
+        <li><a href="../sensitive-data-protection-sdp.html#add-sdp-support-to-your-app">Add SDP support to your app</a></li>
+        <li><a href="../sensitive-data-protection-sdp.html#create-the-default-sdp-engine">Create the default SDP engine</a></li>
+        <li><a href="../sensitive-data-protection-sdp.html#create-the-custom-sdp-engine">Create the Custom SDP engine</a></li>
+        <li><a href="../sensitive-data-protection-sdp.html#package-data-deletion">Package, data deletion</a></li>
+        <li><a href="../sensitive-data-protection-sdp.html#set-data-as-sensitive">Set data as sensitive</a></li>
       </ul>
     </li>
   </ul>
@@ -3471,6 +3476,14 @@
                 href="../../../../knox-deployment-program.html"
                 class="body-5 d-flex align-items-center text-black fw-light pe-auto text-decoration-none"
                 >Knox Deployment Program</a
+              >
+            </li>
+            
+            <li>
+              <a
+                href="../../../../knox-msp-portal.html"
+                class="body-5 d-flex align-items-center text-black fw-light pe-auto text-decoration-none"
+                >Knox MSP Portal</a
               >
             </li>
             

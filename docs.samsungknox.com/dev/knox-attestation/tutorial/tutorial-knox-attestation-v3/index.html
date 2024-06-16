@@ -127,8 +127,6 @@
   <ul>
     <li>
   <a href="../../../knox-cloud-authentication.html" >Knox Cloud Authentication</a>
-  <ul>
-    </ul>
   </li>
 <li>
   <a href="../../../knox-webhook-notification.html" >Knox Webhook Notification</a>
@@ -137,6 +135,9 @@
   </li>
 <li>
   <a href="../../../knox-deployment-program.html" >Knox Deployment Program</a>
+  </li>
+<li>
+  <a href="../../../knox-msp-portal.html" >Knox MSP Portal</a>
   </li>
 <li>
   <a href="../../../knox-mobile-enrollment.html" >Knox Mobile Enrollment</a>
@@ -350,11 +351,11 @@
 <h2 id="set-up-a-server">Set up a server</h2>
 <p>In the following examples, we use an Apache server on a Linux operating system with PHP as the scripting language. You can set up such a web server from scratch quite simply. If you don’t have a web server, you can enroll in a free or trial cloud service to get quick access to one.</p>
 <p>If you are new to web server setup, here are some basic Linux commands to set up the server:</p>
-<div class="highlight"><pre tabindex="0" style=";-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-c" data-lang="c"><span style="display:flex;"><span>install Ubuntu <span style="color:#666">14.0</span>
-</span></span><span style="display:flex;"><span>sudo apt<span style="color:#666">-</span>get update
-</span></span><span style="display:flex;"><span>sudo apt<span style="color:#666">-</span>get install apache2
-</span></span><span style="display:flex;"><span>sudo apt<span style="color:#666">-</span>get install php5 libapache2<span style="color:#666">-</span>mod<span style="color:#666">-</span>php5 php5<span style="color:#666">-</span>mcrypt php5<span style="color:#666">-</span>curl
-</span></span><span style="display:flex;"><span>sudo <span style="color:#666">/</span>etc<span style="color:#666">/</span>init.d<span style="color:#666">/</span>apache2 restart
+<div class="highlight"><pre tabindex="0" style=";-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>install Ubuntu 14.0
+</span></span><span style="display:flex;"><span>sudo apt-get update
+</span></span><span style="display:flex;"><span>sudo apt-get install apache2
+</span></span><span style="display:flex;"><span>sudo apt-get install php5 libapache2-mod-php5 php5-mcrypt php5-curl
+</span></span><span style="display:flex;"><span>sudo /etc/init.d/apache2 restart
 </span></span></code></pre></div><p>Alternatively, you can use a pre-built environment, such as that provided by <a href="https://www.apachefriends.org/index.html" target="_blank">Apache Friends</a>.</p>
 <p>Once you have a web server with PHP support, copy your scripts into the folder <code>/var/www/html</code>. In the sample Attestation app, there are two PHP scripts, called <code>nonces.php</code> and <code>measurements.php</code>, which you can copy into this folder.</p>
 <h2 id="get-a-nonce">Get a nonce</h2>
@@ -373,12 +374,12 @@
   <li class="nav-item" role="presentation">
     <button
       class="tab-link active px-3 py-2 rounded-5"
-      id="bcfeda-tab"
+      id="fedcab-tab"
       data-bs-toggle="tab"
-      data-bs-target="#bcfeda"
+      data-bs-target="#fedcab"
       type="button"
       role="tab"
-      aria-controls="bcfeda"
+      aria-controls="fedcab"
       aria-selected="true"
     >Get a nonce from the attestation server
     </button>
@@ -389,12 +390,12 @@
   <li class="nav-item" role="presentation">
     <button
       class="tab-link  px-3 py-2 rounded-5"
-      id="ecfbda-tab"
+      id="ecdfba-tab"
       data-bs-toggle="tab"
-      data-bs-target="#ecfbda"
+      data-bs-target="#ecdfba"
       type="button"
       role="tab"
-      aria-controls="ecfbda"
+      aria-controls="ecdfba"
       aria-selected="true"
     >Get a nonce from web script
     </button>
@@ -556,13 +557,13 @@
   
 
 
-<div class="tab-pane fade  show active  border border-grey-line rounded-3 overflow-hidden" id="bcfeda" role="tabpanel" aria-labelledby="bcfeda-tab">
+<div class="tab-pane fade  show active  border border-grey-line rounded-3 overflow-hidden" id="fedcab" role="tabpanel" aria-labelledby="fedcab-tab">
   
   
     
   
   
-  <div class="tab-content p-3"><h3 id="get-a-nonce-from-the-attestation-server-get-a-nonce-from-the-attestation-server">Get a nonce from the Attestation server</h3><p>In your web script, build the request to get a nonce from the Attestation Server. Our sample app does this using PHP, which you can find in the file nonces.php:</p><div class="highlight"><pre tabindex="0" style=";-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-php" data-lang="php"><span style="display:flex;"><span><span style="color:#19177c">$curl</span> <span style="color:#666">=</span> curl_init();</span></span><span style="display:flex;"><span></span></span><span style="display:flex;"><span>curl_setopt(<span style="color:#19177c">$curl</span>, CURLOPT_URL, <span style="color:#ba2121">&#34; https://attest.samsungknox.com/v3/nonces&#34;</span>;</span></span><span style="display:flex;"><span>curl_setopt(<span style="color:#19177c">$curl</span>, CURLOPT_POST, <span style="color:#666">1</span>);</span></span><span style="display:flex;"><span>curl_setopt(<span style="color:#19177c">$curl</span>, CURLOPT_SSL_VERIFYPEER, <span style="color:#008000;font-weight:bold">false</span>);</span></span><span style="display:flex;"><span>curl_setopt(<span style="color:#19177c">$curl</span>, CURLOPT_RETURNTRANSFER, <span style="color:#008000;font-weight:bold">false</span>);</span></span><span style="display:flex;"><span></span></span><span style="display:flex;"><span>  <span style="color:#19177c">$headers</span> <span style="color:#666">=</span> <span style="color:#008000;font-weight:bold">array</span>(</span></span><span style="display:flex;"><span>   <span style="color:#ba2121">&#39;Accept: application/json&#39;</span>,</span></span><span style="display:flex;"><span>   <span style="color:#ba2121">&#39;Content-Type: application/json&#39;&#39;,</span></span></span><span style="display:flex;"><span><span style="color:#ba2121">   &#39;</span>Authorization<span style="color:#666">:</span> Bearer <span style="color:#ba2121">&#39;.$api_key,</span></span></span><span style="display:flex;"><span><span style="color:#ba2121">   &#39;</span>Ats<span style="color:#666">-</span>Request<span style="color:#666">-</span>Id<span style="color:#666">:</span> <span style="color:#ba2121">&#39;.$ats_request_id</span></span></span><span style="display:flex;"><span><span style="color:#ba2121">  );</span></span></span><span style="display:flex;"><span><span style="color:#ba2121"></span></span></span><span style="display:flex;"><span><span style="color:#ba2121">  curl_setopt($curl, CURLOPT_HTTPHEADER, $headers);</span></span></span><span style="display:flex;"><span><span style="color:#ba2121"></span></span></span><span style="display:flex;"><span><span style="color:#ba2121">  if(!curl_exec($curl)){</span></span></span><span style="display:flex;"><span><span style="color:#ba2121">    die(&#39;</span>Error<span style="color:#666">:</span> <span style="color:#ba2121">&#34;&#39;. curl_error(</span><span style="color:#b68;font-weight:bold">$curl</span><span style="color:#ba2121">). &#39;&#34;</span> <span style="color:#666">-</span> Code<span style="color:#666">:</span> <span style="">&#39;</span><span style="color:#666">.</span> curl_errno(<span style="color:#19177c">$curl</span>));</span></span><span style="display:flex;"><span>  }</span></span></code></pre></div>
+  <div class="tab-content p-3"><h3 id="get-a-nonce-from-the-attestation-server-get-a-nonce-from-the-attestation-server">Get a nonce from the Attestation server</h3><p>In your web script, build the request to get a nonce from the Attestation Server. Our sample app does this using PHP, which you can find in the file nonces.php:</p><div class="highlight"><pre tabindex="0" style=";-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-php" data-lang="php"><span style="display:flex;"><span><span style="color:#19177c">$curl</span> <span style="color:#666">=</span> curl_init();</span></span><span style="display:flex;"><span></span></span><span style="display:flex;"><span>curl_setopt(<span style="color:#19177c">$curl</span>, CURLOPT_URL, <span style="color:#ba2121">&#34;https://attest.samsungknox.com/v3/nonces&#34;</span>;</span></span><span style="display:flex;"><span>curl_setopt(<span style="color:#19177c">$curl</span>, CURLOPT_POST, <span style="color:#666">1</span>);</span></span><span style="display:flex;"><span>curl_setopt(<span style="color:#19177c">$curl</span>, CURLOPT_SSL_VERIFYPEER, <span style="color:#008000;font-weight:bold">false</span>);</span></span><span style="display:flex;"><span>curl_setopt(<span style="color:#19177c">$curl</span>, CURLOPT_RETURNTRANSFER, <span style="color:#008000;font-weight:bold">false</span>);</span></span><span style="display:flex;"><span></span></span><span style="display:flex;"><span>  <span style="color:#19177c">$headers</span> <span style="color:#666">=</span> <span style="color:#008000;font-weight:bold">array</span>(</span></span><span style="display:flex;"><span>   <span style="color:#ba2121">&#39;Accept: application/json&#39;</span>,</span></span><span style="display:flex;"><span>   <span style="color:#ba2121">&#39;Content-Type: application/json&#39;&#39;,</span></span></span><span style="display:flex;"><span><span style="color:#ba2121">   &#39;</span>Authorization<span style="color:#666">:</span> Bearer <span style="color:#ba2121">&#39;.$api_key,</span></span></span><span style="display:flex;"><span><span style="color:#ba2121">   &#39;</span>Ats<span style="color:#666">-</span>Request<span style="color:#666">-</span>Id<span style="color:#666">:</span> <span style="color:#ba2121">&#39;.$ats_request_id</span></span></span><span style="display:flex;"><span><span style="color:#ba2121">  );</span></span></span><span style="display:flex;"><span><span style="color:#ba2121"></span></span></span><span style="display:flex;"><span><span style="color:#ba2121">  curl_setopt($curl, CURLOPT_HTTPHEADER, $headers);</span></span></span><span style="display:flex;"><span><span style="color:#ba2121"></span></span></span><span style="display:flex;"><span><span style="color:#ba2121">  if(!curl_exec($curl)){</span></span></span><span style="display:flex;"><span><span style="color:#ba2121">    die(&#39;</span>Error<span style="color:#666">:</span> <span style="color:#ba2121">&#34;&#39;. curl_error(</span><span style="color:#b68;font-weight:bold">$curl</span><span style="color:#ba2121">). &#39;&#34;</span> <span style="color:#666">-</span> Code<span style="color:#666">:</span> <span style="">&#39;</span><span style="color:#666">.</span> curl_errno(<span style="color:#19177c">$curl</span>));</span></span><span style="display:flex;"><span>  }</span></span></code></pre></div>
   </div>
   
 </div>
@@ -646,13 +647,13 @@
   
 
 
-<div class="tab-pane fade  border border-grey-line rounded-3 overflow-hidden" id="ecfbda" role="tabpanel" aria-labelledby="ecfbda-tab">
+<div class="tab-pane fade  border border-grey-line rounded-3 overflow-hidden" id="ecdfba" role="tabpanel" aria-labelledby="ecdfba-tab">
   
   
     
   
   
-  <div class="tab-content p-3"><h3 id="get-a-nonce-from-your-web-script-get-a-nonce-from-web-script">Get a nonce from your web script</h3><p>In your Android app, request a nonce from your web server. On the web server, you need a script to take the request and forward it to Samsung’s Attestation server.</p><p>In the sample Attestation app, there is a script called <code>nonces.php</code> that does this:</p><div class="highlight"><pre tabindex="0" style=";-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-php" data-lang="php"><span style="display:flex;"><span><span style="color:#408080;font-style:italic">// identify the URL of your web server</span></span></span><span style="display:flex;"><span><span style="color:#408080;font-style:italic"></span><span style="color:#008000;font-weight:bold">private</span> <span style="color:#008000;font-weight:bold">static</span> <span style="color:#008000;font-weight:bold">final</span> String URL_MDM_SERVER_NONCE <span style="color:#666">=</span> <span style="color:#ba2121">&#34;http://attestation.example.com/nonces&#34;</span>;</span></span><span style="display:flex;"><span></span></span><span style="display:flex;"><span><span style="color:#408080;font-style:italic">// through HTTP, send a nonce request to your web server</span></span></span><span style="display:flex;"><span><span style="color:#408080;font-style:italic"></span>String response <span style="color:#666">=</span> HttpClient<span style="color:#666">.</span>getInstance()<span style="color:#666">.</span>getNonce(URL_MDM_SERVER_NONCE, ”ATTESTATION_KEY”, “REQUEST_ID”));</span></span></code></pre></div><p>In this example, we use a string variable called <code>response</code> to store the resulting nonce. Later, you will parse the <code>response</code> into a JSON object and pass it to the Attestation agent on the device.</p>
+  <div class="tab-content p-3"><h3 id="get-a-nonce-from-your-web-script-get-a-nonce-from-web-script">Get a nonce from your web script</h3><p>In your Android app, request a nonce from your web server. On the web server, you need a script to take the request and forward it to Samsung’s Attestation server.</p><p>In the sample Attestation app, there is a script called <code>nonces.php</code> that does this:</p><div class="highlight"><pre tabindex="0" style=";-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-php" data-lang="php"><span style="display:flex;"><span><span style="color:#408080;font-style:italic">// identify the URL of your web server</span></span></span><span style="display:flex;"><span><span style="color:#408080;font-style:italic"></span><span style="color:#008000;font-weight:bold">private</span> <span style="color:#008000;font-weight:bold">static</span> <span style="color:#008000;font-weight:bold">final</span> String URL_MDM_SERVER_NONCE <span style="color:#666">=</span> <span style="color:#ba2121">&#34;http://attestation.example.com/nonces&#34;</span>;</span></span><span style="display:flex;"><span></span></span><span style="display:flex;"><span><span style="color:#408080;font-style:italic">// through HTTP, send a nonce request to your web server</span></span></span><span style="display:flex;"><span><span style="color:#408080;font-style:italic"></span>String response <span style="color:#666">=</span> HttpClient<span style="color:#666">.</span>getInstance()<span style="color:#666">.</span>getNonce(URL_MDM_SERVER_NONCE, <span style="color:#ba2121">&#34;ATTESTATION_KEY&#34;</span>, <span style="color:#ba2121">&#34;REQUEST_ID&#34;</span>));</span></span></code></pre></div><p>In this example, we use a string variable called <code>response</code> to store the resulting nonce. Later, you will parse the <code>response</code> into a JSON object and pass it to the Attestation agent on the device.</p>
   </div>
   
 </div>
@@ -720,12 +721,12 @@
   <li class="nav-item" role="presentation">
     <button
       class="tab-link active px-3 py-2 rounded-5"
-      id="edfcba-tab"
+      id="fbadec-tab"
       data-bs-toggle="tab"
-      data-bs-target="#edfcba"
+      data-bs-target="#fbadec"
       type="button"
       role="tab"
-      aria-controls="edfcba"
+      aria-controls="fbadec"
       aria-selected="true"
     >Get a verdict from web script
     </button>
@@ -736,12 +737,12 @@
   <li class="nav-item" role="presentation">
     <button
       class="tab-link  px-3 py-2 rounded-5"
-      id="eabdcf-tab"
+      id="ecfabd-tab"
       data-bs-toggle="tab"
-      data-bs-target="#eabdcf"
+      data-bs-target="#ecfabd"
       type="button"
       role="tab"
-      aria-controls="eabdcf"
+      aria-controls="ecfabd"
       aria-selected="true"
     >Get a verdict from attestation server
     </button>
@@ -819,13 +820,13 @@
   
 
 
-<div class="tab-pane fade  show active  border border-grey-line rounded-3 overflow-hidden" id="edfcba" role="tabpanel" aria-labelledby="edfcba-tab">
+<div class="tab-pane fade  show active  border border-grey-line rounded-3 overflow-hidden" id="fbadec" role="tabpanel" aria-labelledby="fbadec-tab">
   
   
     
   
   
-  <div class="tab-content p-3"><h3 id="get-a-verdict-from-web-script-get-a-verdict-from-web-script">Get a verdict from web script</h3><p>Send the result (unique Id) to your web server using the HTTP protocol. On the web server, you need a script to take the unique id which should be same as nonce and forward it to Samsung’s Attestation server. In the sample Attestation app, there is a script called <code>measurements.php</code> that does the following:</p><div class="highlight"><pre tabindex="0" style=";-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-php" data-lang="php"><span style="display:flex;"><span><span style="color:#408080;font-style:italic">// identify the URL of your web server</span></span></span><span style="display:flex;"><span><span style="color:#408080;font-style:italic"></span><span style="color:#008000;font-weight:bold">private</span> <span style="color:#008000;font-weight:bold">static</span> <span style="color:#008000;font-weight:bold">final</span> String URL_MDM_SERVER_MEASUREMENTS <span style="color:#666">=</span> <span style="color:#ba2121">&#34;http://attestation.example.com/attestations/&#34;</span>;</span></span><span style="display:flex;"><span></span></span><span style="display:flex;"><span>String response <span style="color:#666">=</span> HttpClient<span style="color:#666">.</span>getInstance()<span style="color:#666">.</span>getAttestationStatus(URL_MDM_SERVER_MEASUREMENTS <span style="color:#666">+</span> nonce, “ATTESTATION_KEY”, “REQUEST_ID”);</span></span></code></pre></div><p>In this example, we use a string variable called <code>response</code> to store the resulting verdict. Later, you will parse the <code>response</code> into a JSON object and display the verdict details.</p>
+  <div class="tab-content p-3"><h3 id="get-a-verdict-from-web-script-get-a-verdict-from-web-script">Get a verdict from web script</h3><p>Send the result (unique Id) to your web server using the HTTP protocol. On the web server, you need a script to take the unique id which should be same as nonce and forward it to Samsung’s Attestation server. In the sample Attestation app, there is a script called <code>measurements.php</code> that does the following:</p><div class="highlight"><pre tabindex="0" style=";-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-php" data-lang="php"><span style="display:flex;"><span><span style="color:#408080;font-style:italic">// identify the URL of your web server</span></span></span><span style="display:flex;"><span><span style="color:#408080;font-style:italic"></span><span style="color:#008000;font-weight:bold">private</span> <span style="color:#008000;font-weight:bold">static</span> <span style="color:#008000;font-weight:bold">final</span> String URL_MDM_SERVER_MEASUREMENTS <span style="color:#666">=</span> <span style="color:#ba2121">&#34;http://attestation.example.com/attestations/&#34;</span>;</span></span><span style="display:flex;"><span></span></span><span style="display:flex;"><span>String response <span style="color:#666">=</span> HttpClient<span style="color:#666">.</span>getInstance()<span style="color:#666">.</span>getAttestationStatus(URL_MDM_SERVER_MEASUREMENTS <span style="color:#666">+</span> nonce, <span style="color:#ba2121">&#34;ATTESTATION_KEY&#34;</span>, <span style="color:#ba2121">&#34;REQUEST_ID&#34;</span>);</span></span></code></pre></div><p>In this example, we use a string variable called <code>response</code> to store the resulting verdict. Later, you will parse the <code>response</code> into a JSON object and display the verdict details.</p>
   </div>
   
 </div>
@@ -968,20 +969,14 @@
   
   
 
-  
-  
-  
-  
-  
 
-
-<div class="tab-pane fade  border border-grey-line rounded-3 overflow-hidden" id="eabdcf" role="tabpanel" aria-labelledby="eabdcf-tab">
+<div class="tab-pane fade  border border-grey-line rounded-3 overflow-hidden" id="ecfabd" role="tabpanel" aria-labelledby="ecfabd-tab">
   
   
     
   
   
-  <div class="tab-content p-3"><h3 id="get-a-verdict-from-the-attestation-server-get-a-verdict-from-attestation-server">Get a verdict from the Attestation server</h3><p>In the web script, build a request to get the attestation verdict from the Attestation server. Our sample code does this using PHP, which you can find in the source code file <code>measurements.php</code> :</p><div class="highlight"><pre tabindex="0" style=";-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-php" data-lang="php"><span style="display:flex;"><span><span style="color:#19177c">$curl</span> <span style="color:#666">=</span> curl_init();</span></span><span style="display:flex;"><span></span></span><span style="display:flex;"><span>curl_setopt(<span style="color:#19177c">$curl</span>, CURLOPT_URL, <span style="color:#ba2121">&#34;https://attest.samsungknox.com/v3/attestations/&#34;</span><span style="color:#666">.</span><span style="color:#19177c">$nonce</span>);</span></span><span style="display:flex;"><span>curl_setopt(<span style="color:#19177c">$curl</span>, CURLOPT_SSL_VERIFYPEER, <span style="color:#008000;font-weight:bold">false</span>);</span></span><span style="display:flex;"><span>curl_setopt(<span style="color:#19177c">$curl</span>, CURLOPT_RETURNTRANSFER, <span style="color:#008000;font-weight:bold">false</span>);</span></span><span style="display:flex;"><span></span></span><span style="display:flex;"><span><span style="color:#19177c">$headers</span> <span style="color:#666">=</span> <span style="color:#008000;font-weight:bold">array</span>(</span></span><span style="display:flex;"><span>    <span style="color:#ba2121">&#39;Accept: application/json&#39;</span>,</span></span><span style="display:flex;"><span>    <span style="color:#ba2121">&#39;Content-Type: application/json&#39;</span>,</span></span><span style="display:flex;"><span>    <span style="color:#ba2121">&#39;Authorization: Bearer &#39;</span><span style="color:#666">.</span><span style="color:#19177c">$api_key</span>,</span></span><span style="display:flex;"><span>    <span style="color:#ba2121">&#39;Ats-Request-Id: &#39;</span><span style="color:#666">.</span><span style="color:#19177c">$ats_request_id</span></span></span><span style="display:flex;"><span>);</span></span><span style="display:flex;"><span></span></span><span style="display:flex;"><span>curl_setopt(<span style="color:#19177c">$curl</span>, CURLOPT_HTTPHEADER, <span style="color:#19177c">$headers</span>);</span></span><span style="display:flex;"><span><span style="color:#008000;font-weight:bold">if</span>(<span style="color:#666">!</span>curl_exec(<span style="color:#19177c">$curl</span>)){</span></span><span style="display:flex;"><span>    <span style="color:#008000;font-weight:bold">die</span>(<span style="color:#ba2121">&#39;Error: &#34;&#39;</span><span style="color:#666">.</span> curl_error(<span style="color:#19177c">$curl</span>)<span style="color:#666">.</span> <span style="color:#ba2121">&#39;&#34; - Code: &#39;</span><span style="color:#666">.</span> curl_errno(<span style="color:#19177c">$curl</span>));</span></span><span style="display:flex;"><span>}               }</span></span><span style="display:flex;"><span>                </span></span></code></pre></div>
+  <div class="tab-content p-3"><h3 id="get-a-verdict-from-the-attestation-server-get-a-verdict-from-attestation-server">Get a verdict from the Attestation server</h3><p>In the web script, build a request to get the attestation verdict from the Attestation server. Our sample code does this using PHP, which you can find in the source code file <code>measurements.php</code> :</p><div class="highlight"><pre tabindex="0" style=";-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-php" data-lang="php"><span style="display:flex;"><span><span style="color:#19177c">$curl</span> <span style="color:#666">=</span> curl_init();</span></span><span style="display:flex;"><span></span></span><span style="display:flex;"><span>curl_setopt(<span style="color:#19177c">$curl</span>, CURLOPT_URL, <span style="color:#ba2121">&#34;https://attest.samsungknox.com/v3/attestations/&#34;</span><span style="color:#666">.</span><span style="color:#19177c">$nonce</span>);</span></span><span style="display:flex;"><span>curl_setopt(<span style="color:#19177c">$curl</span>, CURLOPT_SSL_VERIFYPEER, <span style="color:#008000;font-weight:bold">false</span>);</span></span><span style="display:flex;"><span>curl_setopt(<span style="color:#19177c">$curl</span>, CURLOPT_RETURNTRANSFER, <span style="color:#008000;font-weight:bold">false</span>);</span></span><span style="display:flex;"><span></span></span><span style="display:flex;"><span><span style="color:#19177c">$headers</span> <span style="color:#666">=</span> <span style="color:#008000;font-weight:bold">array</span>(</span></span><span style="display:flex;"><span>    <span style="color:#ba2121">&#39;Accept: application/json&#39;</span>,</span></span><span style="display:flex;"><span>    <span style="color:#ba2121">&#39;Content-Type: application/json&#39;</span>,</span></span><span style="display:flex;"><span>    <span style="color:#ba2121">&#39;Authorization: Bearer &#39;</span><span style="color:#666">.</span><span style="color:#19177c">$api_key</span>,</span></span><span style="display:flex;"><span>    <span style="color:#ba2121">&#39;Ats-Request-Id: &#39;</span><span style="color:#666">.</span><span style="color:#19177c">$ats_request_id</span></span></span><span style="display:flex;"><span>);</span></span><span style="display:flex;"><span></span></span><span style="display:flex;"><span>curl_setopt(<span style="color:#19177c">$curl</span>, CURLOPT_HTTPHEADER, <span style="color:#19177c">$headers</span>);</span></span><span style="display:flex;"><span><span style="color:#008000;font-weight:bold">if</span>(<span style="color:#666">!</span>curl_exec(<span style="color:#19177c">$curl</span>)){</span></span><span style="display:flex;"><span>    <span style="color:#008000;font-weight:bold">die</span>(<span style="color:#ba2121">&#39;Error: &#34;&#39;</span><span style="color:#666">.</span> curl_error(<span style="color:#19177c">$curl</span>)<span style="color:#666">.</span> <span style="color:#ba2121">&#39;&#34; - Code: &#39;</span><span style="color:#666">.</span> curl_errno(<span style="color:#19177c">$curl</span>));</span></span><span style="display:flex;"><span>    }</span></span></code></pre></div>
   </div>
   
 </div>
@@ -989,40 +984,40 @@
 <h2 id="display-the-verdict">Display the verdict</h2>
 <p>You can process the verdict in either the web script or Android app.</p>
 <p>Here, we use the Android app to convert the attestation response into a <code>JSONObject</code> to extract the results of the attestation, including the attestation verdict:</p>
-<div class="highlight"><pre tabindex="0" style=";-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-json" data-lang="json"><span style="display:flex;"><span><span style="color:#408080;font-style:italic">//Parsing result of attestation
-</span></span></span><span style="display:flex;"><span><span style="color:#408080;font-style:italic"></span><span style="">JsonObject</span> <span style="">=</span> <span style="">new</span> <span style="">JSONObject(mAttestationStatus);</span>
-</span></span><span style="display:flex;"><span><span style="">Gson</span> <span style="">gson</span> <span style="">=</span> <span style="">new</span> <span style="">GsonBuilder().disableHtmlEscaping().create();</span>
-</span></span><span style="display:flex;"><span><span style="">EAResultInfo</span> <span style="">eAResultInfo</span> <span style="">=</span> <span style="">gson.fromJson(mAttestationStatus.responseData,</span> <span style="">EAResultInfo.class);</span>
-</span></span><span style="display:flex;"><span><span style="">eAResultInfo.toString();</span>
+<div class="highlight"><pre tabindex="0" style=";-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#408080;font-style:italic">//Parsing result of attestation
+</span></span></span><span style="display:flex;"><span><span style="color:#408080;font-style:italic"></span>JsonObject <span style="color:#666">=</span> <span style="color:#008000;font-weight:bold">new</span> JSONObject<span style="color:#666">(</span>mAttestationStatus<span style="color:#666">);</span>
+</span></span><span style="display:flex;"><span>Gson gson <span style="color:#666">=</span> <span style="color:#008000;font-weight:bold">new</span> GsonBuilder<span style="color:#666">().</span><span style="color:#7d9029">disableHtmlEscaping</span><span style="color:#666">().</span><span style="color:#7d9029">create</span><span style="color:#666">();</span>
+</span></span><span style="display:flex;"><span>EAResultInfo eAResultInfo <span style="color:#666">=</span> gson<span style="color:#666">.</span><span style="color:#7d9029">fromJson</span><span style="color:#666">(</span>mAttestationStatus<span style="color:#666">.</span><span style="color:#7d9029">responseData</span><span style="color:#666">,</span> EAResultInfo<span style="color:#666">.</span><span style="color:#7d9029">class</span><span style="color:#666">);</span>
+</span></span><span style="display:flex;"><span>eAResultInfo<span style="color:#666">.</span><span style="color:#7d9029">toString</span><span style="color:#666">();</span>
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="">public</span> <span style="">static</span> <span style="">class</span> <span style="">EAResultInfo</span> {
-</span></span><span style="display:flex;"><span> <span style="">int</span> <span style="">version;</span>
-</span></span><span style="display:flex;"><span> <span style="">String</span> <span style="">nonce;</span>
-</span></span><span style="display:flex;"><span> <span style="">String</span> <span style="">verdict;</span>
-</span></span><span style="display:flex;"><span> <span style="">int</span> <span style="">warrantyFuseState;</span>
-</span></span><span style="display:flex;"><span> <span style="">int</span> <span style="">trustBootState;</span>
-</span></span><span style="display:flex;"><span> <span style="">int</span> <span style="">deviceIdState;</span>
+</span></span><span style="display:flex;"><span><span style="color:#008000;font-weight:bold">public</span> <span style="color:#008000;font-weight:bold">static</span> <span style="color:#008000;font-weight:bold">class</span> <span style="color:#00f;font-weight:bold">EAResultInfo</span> <span style="color:#666">{</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#b00040">int</span> version<span style="color:#666">;</span>
+</span></span><span style="display:flex;"><span>    String nonce<span style="color:#666">;</span>
+</span></span><span style="display:flex;"><span>    String verdict<span style="color:#666">;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#b00040">int</span> warrantyFuseState<span style="color:#666">;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#b00040">int</span> trustBootState<span style="color:#666">;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#b00040">int</span> deviceIdState<span style="color:#666">;</span>
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span> <span style="">App</span> <span style="">app;</span>
-</span></span><span style="display:flex;"><span> <span style="">long</span> <span style="">timestamp;</span>
+</span></span><span style="display:flex;"><span>    App app<span style="color:#666">;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#b00040">long</span> timestamp<span style="color:#666">;</span>
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span> <span style="">public</span> <span style="">String</span> <span style="">toString()</span> <span style="">{</span>
-</span></span><span style="display:flex;"><span>  <span style="">return</span> <span style="color:#008000;font-weight:bold">&#34;Version: &#34;</span> <span style="">+</span> <span style="">version</span> <span style="">+</span>
-</span></span><span style="display:flex;"><span>   <span style="color:#ba2121">&#34;\nNonce: &#34;</span> <span style="">+</span> <span style="">nonce</span> <span style="">+</span>
-</span></span><span style="display:flex;"><span>   <span style="color:#ba2121">&#34;\n\nVerdict: &#34;</span> <span style="">+</span> <span style="">verdict</span> <span style="">+</span>
-</span></span><span style="display:flex;"><span>   <span style="color:#ba2121">&#34;\nWarranty bit: &#34;</span> <span style="">+</span> <span style="">warrantyFuseState</span> <span style="">+</span>
-</span></span><span style="display:flex;"><span>   <span style="color:#ba2121">&#34;\nTrust boot: &#34;</span> <span style="">+</span> <span style="">trustBootState</span> <span style="">+</span>
-</span></span><span style="display:flex;"><span>   <span style="color:#ba2121">&#34;\nDevice id Attestation: &#34;</span> <span style="">+</span> <span style="">deviceIdState</span> <span style="">+</span>
-</span></span><span style="display:flex;"><span>   <span style="color:#ba2121">&#34;\n\nTimeStamp: &#34;</span> <span style="">+</span> <span style="">timestamp</span> <span style="">+</span>
-</span></span><span style="display:flex;"><span>   <span style="color:#ba2121">&#34;\n\nApp package: &#34;</span> <span style="">+</span> <span style="">app.pkg</span> <span style="">+</span>
-</span></span><span style="display:flex;"><span>   <span style="color:#ba2121">&#34;\n\nApp signature: &#34;</span> <span style="">+</span> <span style="">app.signature;</span>
-</span></span><span style="display:flex;"><span> }
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span> <span style="">static</span> <span style="">class</span> <span style="">App</span> {
-</span></span><span style="display:flex;"><span>  <span style="">String</span> <span style="">pkg;</span>
-</span></span><span style="display:flex;"><span>  <span style="">String</span> <span style="">signature;</span>
-</span></span><span style="display:flex;"><span> }
-</span></span><span style="display:flex;"><span><span style="">}</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#008000;font-weight:bold">public</span> String <span style="color:#00f">toString</span><span style="color:#666">()</span> <span style="color:#666">{</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#008000;font-weight:bold">return</span> <span style="color:#ba2121">&#34;Version: &#34;</span> <span style="color:#666">+</span> version <span style="color:#666">+</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#ba2121">&#34;\nNonce: &#34;</span> <span style="color:#666">+</span> nonce <span style="color:#666">+</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#ba2121">&#34;\n\nVerdict: &#34;</span> <span style="color:#666">+</span> verdict <span style="color:#666">+</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#ba2121">&#34;\nWarranty bit: &#34;</span> <span style="color:#666">+</span> warrantyFuseState <span style="color:#666">+</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#ba2121">&#34;\nTrust boot: &#34;</span> <span style="color:#666">+</span> trustBootState <span style="color:#666">+</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#ba2121">&#34;\nDevice id Attestation: &#34;</span> <span style="color:#666">+</span> deviceIdState <span style="color:#666">+</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#ba2121">&#34;\n\nTimeStamp: &#34;</span> <span style="color:#666">+</span> timestamp <span style="color:#666">+</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#ba2121">&#34;\n\nApp package: &#34;</span> <span style="color:#666">+</span> app<span style="color:#666">.</span><span style="color:#7d9029">pkg</span> <span style="color:#666">+</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#ba2121">&#34;\n\nApp signature: &#34;</span> <span style="color:#666">+</span> app<span style="color:#666">.</span><span style="color:#7d9029">signature</span><span style="color:#666">;</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#666">}</span>
+</span></span><span style="display:flex;"><span>        
+</span></span><span style="display:flex;"><span>    <span style="color:#008000;font-weight:bold">static</span> <span style="color:#008000;font-weight:bold">class</span> <span style="color:#00f;font-weight:bold">App</span> <span style="color:#666">{</span>
+</span></span><span style="display:flex;"><span>        String pkg<span style="color:#666">;</span>
+</span></span><span style="display:flex;"><span>        String signature<span style="color:#666">;</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#666">}</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#666">}</span>
 </span></span></code></pre></div><p>For details about the fields returned in the result, see the <a href="../../api-reference/api.html">Attestation REST API reference</a>.</p>
 <p>A <strong>verdict</strong> of:</p>
 <ul>
@@ -1165,6 +1160,14 @@
                 href="../../../knox-deployment-program.html"
                 class="body-5 d-flex align-items-center text-black fw-light pe-auto text-decoration-none"
                 >Knox Deployment Program</a
+              >
+            </li>
+            
+            <li>
+              <a
+                href="../../../knox-msp-portal.html"
+                class="body-5 d-flex align-items-center text-black fw-light pe-auto text-decoration-none"
+                >Knox MSP Portal</a
               >
             </li>
             

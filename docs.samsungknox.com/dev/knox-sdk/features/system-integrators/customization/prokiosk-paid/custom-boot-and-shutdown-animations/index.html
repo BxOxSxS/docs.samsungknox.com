@@ -127,8 +127,6 @@
   <ul>
     <li>
   <a href="../../../../../../knox-cloud-authentication.html" >Knox Cloud Authentication</a>
-  <ul>
-    </ul>
   </li>
 <li>
   <a href="../../../../../../knox-webhook-notification.html" >Knox Webhook Notification</a>
@@ -137,6 +135,9 @@
   </li>
 <li>
   <a href="../../../../../../knox-deployment-program.html" >Knox Deployment Program</a>
+  </li>
+<li>
+  <a href="../../../../../../knox-msp-portal.html" >Knox MSP Portal</a>
   </li>
 <li>
   <a href="../../../../../../knox-mobile-enrollment.html" >Knox Mobile Enrollment</a>
@@ -3477,7 +3478,6 @@
 <li><strong>bootloop</strong> &mdash; bootloop01.png, bootloop02.png,&hellip;, bootloop99.png</li>
 <li><strong>shutdown</strong> &mdash; shutdown01.png, shutdown02.png,&hellip;, shutdown30.png</li>
 </ul>
-<p><a href="index.html">tets</a></p>
 
 
 
@@ -3864,20 +3864,19 @@
 </span></span><span style="display:flex;"><span>    String bootupFile <span style="color:#666">=</span> getFilesDir<span style="color:#666">()</span> <span style="color:#666">+</span> <span style="color:#ba2121">&#34;/bootup.qmg&#34;</span><span style="color:#666">;</span>
 </span></span><span style="display:flex;"><span>    String bootloopFile <span style="color:#666">=</span> getFilesDir<span style="color:#666">()</span> <span style="color:#666">+</span> <span style="color:#ba2121">&#34;/bootloop.qmg&#34;</span><span style="color:#666">;</span>
 </span></span><span style="display:flex;"><span>    String soundFile <span style="color:#666">=</span> getFilesDir<span style="color:#666">()</span> <span style="color:#666">+</span> <span style="color:#ba2121">&#34;/bootupsound.ogg&#34;</span><span style="color:#666">;</span>
-</span></span><span style="display:flex;"><span>     <span style="color:#b00040">int</span> soundDelay <span style="color:#666">=</span> <span style="color:#666">2000</span><span style="color:#666">;</span> <span style="color:#408080;font-style:italic">// milliseconds
+</span></span><span style="display:flex;"><span>    <span style="color:#b00040">int</span> soundDelay <span style="color:#666">=</span> <span style="color:#666">2000</span><span style="color:#666">;</span> <span style="color:#408080;font-style:italic">// milliseconds
 </span></span></span><span style="display:flex;"><span><span style="color:#408080;font-style:italic"></span>
 </span></span><span style="display:flex;"><span>    File fileBootup <span style="color:#666">=</span> <span style="color:#008000;font-weight:bold">new</span> File<span style="color:#666">(</span>bootupFile<span style="color:#666">);</span>
 </span></span><span style="display:flex;"><span>    fileBootup<span style="color:#666">.</span><span style="color:#7d9029">setReadable</span><span style="color:#666">(</span><span style="color:#008000;font-weight:bold">true</span><span style="color:#666">,</span> <span style="color:#008000;font-weight:bold">false</span><span style="color:#666">);</span>
 </span></span><span style="display:flex;"><span>    ParcelFileDescriptor bootupFD <span style="color:#666">=</span> ParcelFileDescriptor<span style="color:#666">.</span><span style="color:#7d9029">open</span><span style="color:#666">(</span>bootupFile<span style="color:#666">,</span> ParcelFileDescriptor<span style="color:#666">.</span><span style="color:#7d9029">MODE_READ_ONLY</span><span style="color:#666">);</span>
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>     File fileLoop <span style="color:#666">=</span> <span style="color:#008000;font-weight:bold">new</span> File<span style="color:#666">(</span>bootloopFile<span style="color:#666">);</span>
-</span></span><span style="display:flex;"><span>     fileLoop<span style="color:#666">.</span><span style="color:#7d9029">setReadable</span><span style="color:#666">(</span><span style="color:#008000;font-weight:bold">true</span><span style="color:#666">,</span> <span style="color:#008000;font-weight:bold">false</span><span style="color:#666">);</span>
-</span></span><span style="display:flex;"><span>     ParcelFileDescriptor bootloopFD <span style="color:#666">=</span> ParcelFileDescriptor<span style="color:#666">.</span><span style="color:#7d9029">open</span><span style="color:#666">(</span>bootloopFile<span style="color:#666">,</span> ParcelFileDescriptor<span style="color:#666">.</span><span style="color:#7d9029">MODE_READ_ONLY</span><span style="color:#666">);</span>
+</span></span><span style="display:flex;"><span>    File fileLoop <span style="color:#666">=</span> <span style="color:#008000;font-weight:bold">new</span> File<span style="color:#666">(</span>bootloopFile<span style="color:#666">);</span>
+</span></span><span style="display:flex;"><span>    fileLoop<span style="color:#666">.</span><span style="color:#7d9029">setReadable</span><span style="color:#666">(</span><span style="color:#008000;font-weight:bold">true</span><span style="color:#666">,</span> <span style="color:#008000;font-weight:bold">false</span><span style="color:#666">);</span>
+</span></span><span style="display:flex;"><span>    ParcelFileDescriptor bootloopFD <span style="color:#666">=</span> ParcelFileDescriptor<span style="color:#666">.</span><span style="color:#7d9029">open</span><span style="color:#666">(</span>bootloopFile<span style="color:#666">,</span> ParcelFileDescriptor<span style="color:#666">.</span><span style="color:#7d9029">MODE_READ_ONLY</span><span style="color:#666">);</span>
 </span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span>    File fileSound <span style="color:#666">=</span> <span style="color:#008000;font-weight:bold">new</span> File<span style="color:#666">(</span>soundFile<span style="color:#666">);</span>
 </span></span><span style="display:flex;"><span>    fileSound<span style="color:#666">.</span><span style="color:#7d9029">setReadable</span><span style="color:#666">(</span><span style="color:#008000;font-weight:bold">true</span><span style="color:#666">,</span> <span style="color:#008000;font-weight:bold">false</span><span style="color:#666">);</span>
 </span></span><span style="display:flex;"><span>    ParcelFileDescriptor soundFD <span style="color:#666">=</span> ParcelFileDescriptor<span style="color:#666">.</span><span style="color:#7d9029">open</span><span style="color:#666">(</span>soundFile<span style="color:#666">,</span> ParcelFileDescriptor<span style="color:#666">.</span><span style="color:#7d9029">MODE_READ_ONLY</span><span style="color:#666">);</span>
-</span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span>    kcsm<span style="color:#666">.</span><span style="color:#7d9029">setBootingAnimation</span><span style="color:#666">(</span>bootupFD<span style="color:#666">,</span> bootloopFD<span style="color:#666">,</span> soundFD<span style="color:#666">,</span> soundDelay<span style="color:#666">);</span>
 </span></span><span style="display:flex;"><span>    <span style="color:#008000;font-weight:bold">catch</span> <span style="color:#666">(</span>SecurityException e<span style="color:#666">)</span> <span style="color:#666">{</span>
@@ -4019,6 +4018,14 @@
                 href="../../../../../../knox-deployment-program.html"
                 class="body-5 d-flex align-items-center text-black fw-light pe-auto text-decoration-none"
                 >Knox Deployment Program</a
+              >
+            </li>
+            
+            <li>
+              <a
+                href="../../../../../../knox-msp-portal.html"
+                class="body-5 d-flex align-items-center text-black fw-light pe-auto text-decoration-none"
+                >Knox MSP Portal</a
               >
             </li>
             
