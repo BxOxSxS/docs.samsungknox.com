@@ -341,7 +341,7 @@
     <li class="mt-2">
     
     <div class="d-flex justify-content-between">
-      <a class="body-5 text-black fw-light" href="../../knox-cloud-authentication/release-notes.html">Release notes</a>
+      <a class="body-5 text-black fw-light" href="../../knox-cloud-authentication/release-notes/index.html">Release notes</a>
     </div>
       
     </li>
@@ -555,7 +555,7 @@
             </div>
             
 
-  <p><span>Last updated June  13th, 2024</span></p>
+  <p><span>Last updated June  26th, 2024</span></p>
 
 
     
@@ -574,221 +574,32 @@
       
       
       
-        <ul
-  class="nav nav-tabs d-flex align-items-center mt-3"
-  id="nav-tabs"
-  role="tablist"
->
-   
-   
-   
-   
-   
-  
-  <li class="nav-item" role="presentation">
-    <button
-      class="tab-link active px-3 py-2 rounded-5"
-      id="acefdb-tab"
-      data-bs-toggle="tab"
-      data-bs-target="#acefdb"
-      type="button"
-      role="tab"
-      aria-controls="acefdb"
-      aria-selected="true"
-    >24.06
-    </button>
-  </li>
-   
-   
-   
-  
+        <p>You can call the <a href="../knox-oauth-2-0-authentication-api.html#tag/Authorization-Server/operation/postToken" target="_blank">POST /oauth2/token</a> operation to get access and refresh tokens in exchange for the authorization code. The following are the default expiration times for these tokens:</p>
+<ul>
+<li>Access token - Short lived, 10 minutes.</li>
+<li>Refresh token - Long lived, 90 days.</li>
+<li>Authorization code - Short lived, 1 minute.</li>
 </ul>
-<div class="tab-content mb-6" id="nav-tab-content">
-
-
-
-
-
-
-
-
-
-
-
-
-
-  
-  
-  
-  
-  
-
-  
-  
-  
-  
-  
-
-  
-  
-  
-  
-  
-
-  
-  
-  
-  
-  
-
-  
-  
-  
-  
-  
-
-  
-  
-  
-  
-  
-
-  
-  
-  
-  
-  
-
-  
-  
-  
-  
-  
-
-  
-  
-  
-  
-  
-
-  
-  
-  
-  
-  
-
-  
-  
-  
-  
-  
-
-  
-  
-  
-  
-  
-
-  
-  
-  
-  
-  
-
-  
-  
-  
-  
-  
-
-  
-  
-  
-  
-  
-
-  
-  
-  
-  
-  
-
-  
-  
-  
-  
-  
-
-  
-  
-  
-  
-  
-
-  
-  
-  
-  
-  
-
-  
-  
-  
-  
-  
-
-  
-  
-  
-  
-  
-
-  
-  
-  
-  
-  
-
-  
-  
-  
-  
-  
-
-  
-  
-  
-  
-  
-
-  
-  
-  
-  
-  
-
-  
-  
-  
-  
-  
-
-
-<div class="tab-pane fade  show active  border border-grey-line rounded-3 overflow-hidden" id="acefdb" role="tabpanel" aria-labelledby="acefdb-tab">
-  
-  <div class="tab-toc bg-light p-3 border-bottom border-grey-line">
-    <p>This document is new for the <a href="../../../../admin/uat.html">Knox cloud services 24.06 UAT</a>.</p>
-    
-  </div>
-  
-  
-  
-  <div class="tab-content p-3"><p>You can call the <a href="../knox-oauth-2-0-authentication-api.html#tag/Authorization-Server/operation/postToken" target="_blank">POST /oauth2/token</a> operation to get access and refresh tokens in exchange for the authorization code. The following are the default expiration times for these tokens:</p><ul><li>Access token - Short lived, 10 minutes.</li><li>Refresh token - Long lived, 90 days.</li><li>Authorization code - Short lived, 1 minute.</li></ul><p>To get a new refresh token before its expiry, see <a href="step-4-refresh-access-token.html">Step 4 &ndash; Refresh access token</a> for more information.</p><p>The following request sample shows how you can get access and refresh tokens using the authorization code:</p><div class="highlight"><pre tabindex="0" style=";-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-javascript" data-lang="javascript"><span style="display:flex;"><span>curl </span></span><span style="display:flex;"><span><span style="color:#666">--</span>location <span style="color:#ba2121">&#39;https://api.samsungknox.com/ams/v1/oauth2/token&#39;</span> <span style="color:#666">\</span></span></span><span style="display:flex;"><span><span style="color:#666">--</span>header <span style="color:#ba2121">&#39;Content-Type: application/x-www-form-urlencoded&#39;</span> <span style="color:#666">\</span></span></span><span style="display:flex;"><span><span style="color:#666">--</span>data<span style="color:#666">-</span>urlencode <span style="color:#ba2121">&#39;grant_type=authorization_code&#39;</span> <span style="color:#666">\</span></span></span><span style="display:flex;"><span><span style="color:#666">--</span>data<span style="color:#666">-</span>urlencode <span style="color:#ba2121">&#39;client_id={OAUTH2_CLIENT_ID}&#39;</span> <span style="color:#666">\</span></span></span><span style="display:flex;"><span><span style="color:#666">--</span>data<span style="color:#666">-</span>urlencode <span style="color:#ba2121">&#39;client_secret={OAUTH2_CLIENT_SECRET}&#39;</span> <span style="color:#666">\</span></span></span><span style="display:flex;"><span><span style="color:#666">--</span>data<span style="color:#666">-</span>urlencode <span style="color:#ba2121">&#39;redirect_uri={REDIRECT_URL_USED_IN_AUTHZ_CODE_REQ}&#39;</span> <span style="color:#666">\</span></span></span><span style="display:flex;"><span><span style="color:#666">--</span>data<span style="color:#666">-</span>urlencode <span style="color:#ba2121">&#39;code_verifier={PKCE_CODE_VERIFIER}&#39;</span> <span style="color:#666">\</span></span></span><span style="display:flex;"><span><span style="color:#666">--</span>data<span style="color:#666">-</span>urlencode <span style="color:#ba2121">&#39;code={AUTHORIZATION_CODE}&#39;</span></span></span></code></pre></div><p>You receive the access and refresh tokens in the below format. The value of <code>expires_in</code> denotes the number of seconds that the access token is valid for. You need an active access token every time you make Knox cloud services API call.</p><div class="highlight"><pre tabindex="0" style=";-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-json" data-lang="json"><span style="display:flex;"><span>{</span></span><span style="display:flex;"><span>  <span style="color:#008000;font-weight:bold">&#34;access_token&#34;</span>:<span style="color:#ba2121">&#34;eyJhbGc..SbHWvZ1w&#34;</span>,</span></span><span style="display:flex;"><span>  <span style="color:#008000;font-weight:bold">&#34;refresh_token&#34;</span>:<span style="color:#ba2121">&#34;fYBll..TT8vmAH&#34;</span>,</span></span><span style="display:flex;"><span>  <span style="color:#008000;font-weight:bold">&#34;scope&#34;</span>:<span style="color:#ba2121">&#34;ke&#34;</span>,</span></span><span style="display:flex;"><span>  <span style="color:#008000;font-weight:bold">&#34;expires_in&#34;</span>: <span style="color:#666">599</span>,</span></span><span style="display:flex;"><span>  <span style="color:#008000;font-weight:bold">&#34;token_type&#34;</span>:<span style="color:#ba2121">&#34;Bearer&#34;</span></span></span><span style="display:flex;"><span>}</span></span></code></pre></div>
-  </div>
-  
-</div>
-</div>
-
+<p>To get a new refresh token before its expiry, see <a href="step-4-refresh-access-token.html">Step 4 &ndash; Refresh access token</a> for more information.</p>
+<p>The following request sample shows how you can get access and refresh tokens using the authorization code:</p>
+<div class="highlight"><pre tabindex="0" style=";-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-javascript" data-lang="javascript"><span style="display:flex;"><span>curl 
+</span></span><span style="display:flex;"><span><span style="color:#666">--</span>location <span style="color:#ba2121">&#39;https://api.samsungknox.com/ams/v1/oauth2/token&#39;</span> <span style="color:#666">\</span>
+</span></span><span style="display:flex;"><span><span style="color:#666">--</span>header <span style="color:#ba2121">&#39;Content-Type: application/x-www-form-urlencoded&#39;</span> <span style="color:#666">\</span>
+</span></span><span style="display:flex;"><span><span style="color:#666">--</span>data<span style="color:#666">-</span>urlencode <span style="color:#ba2121">&#39;grant_type=authorization_code&#39;</span> <span style="color:#666">\</span>
+</span></span><span style="display:flex;"><span><span style="color:#666">--</span>data<span style="color:#666">-</span>urlencode <span style="color:#ba2121">&#39;client_id={OAUTH2_CLIENT_ID}&#39;</span> <span style="color:#666">\</span>
+</span></span><span style="display:flex;"><span><span style="color:#666">--</span>data<span style="color:#666">-</span>urlencode <span style="color:#ba2121">&#39;client_secret={OAUTH2_CLIENT_SECRET}&#39;</span> <span style="color:#666">\</span>
+</span></span><span style="display:flex;"><span><span style="color:#666">--</span>data<span style="color:#666">-</span>urlencode <span style="color:#ba2121">&#39;redirect_uri={REDIRECT_URL_USED_IN_AUTHZ_CODE_REQ}&#39;</span> <span style="color:#666">\</span>
+</span></span><span style="display:flex;"><span><span style="color:#666">--</span>data<span style="color:#666">-</span>urlencode <span style="color:#ba2121">&#39;code_verifier={PKCE_CODE_VERIFIER}&#39;</span> <span style="color:#666">\</span>
+</span></span><span style="display:flex;"><span><span style="color:#666">--</span>data<span style="color:#666">-</span>urlencode <span style="color:#ba2121">&#39;code={AUTHORIZATION_CODE}&#39;</span>
+</span></span></code></pre></div><p>You receive the access and refresh tokens in the below format. The value of <code>expires_in</code> denotes the number of seconds that the access token is valid for. You need an active access token every time you make Knox cloud services API call.</p>
+<div class="highlight"><pre tabindex="0" style=";-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-json" data-lang="json"><span style="display:flex;"><span>{
+</span></span><span style="display:flex;"><span>  <span style="color:#008000;font-weight:bold">&#34;access_token&#34;</span>:<span style="color:#ba2121">&#34;eyJhbGc..SbHWvZ1w&#34;</span>,
+</span></span><span style="display:flex;"><span>  <span style="color:#008000;font-weight:bold">&#34;refresh_token&#34;</span>:<span style="color:#ba2121">&#34;fYBll..TT8vmAH&#34;</span>,
+</span></span><span style="display:flex;"><span>  <span style="color:#008000;font-weight:bold">&#34;scope&#34;</span>:<span style="color:#ba2121">&#34;kai&#34;</span>,
+</span></span><span style="display:flex;"><span>  <span style="color:#008000;font-weight:bold">&#34;expires_in&#34;</span>: <span style="color:#666">599</span>,
+</span></span><span style="display:flex;"><span>  <span style="color:#008000;font-weight:bold">&#34;token_type&#34;</span>:<span style="color:#ba2121">&#34;Bearer&#34;</span>
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div>
             
           </div>
           <div class="l-toh">

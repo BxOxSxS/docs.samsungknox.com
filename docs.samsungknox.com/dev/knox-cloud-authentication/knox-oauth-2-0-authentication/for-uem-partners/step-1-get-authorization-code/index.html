@@ -341,7 +341,7 @@
     <li class="mt-2">
     
     <div class="d-flex justify-content-between">
-      <a class="body-5 text-black fw-light" href="../../../knox-cloud-authentication/release-notes.html">Release notes</a>
+      <a class="body-5 text-black fw-light" href="../../../knox-cloud-authentication/release-notes/index.html">Release notes</a>
     </div>
       
     </li>
@@ -555,7 +555,7 @@
             </div>
             
 
-  <p><span>Last updated June  13th, 2024</span></p>
+  <p><span>Last updated June  24th, 2024</span></p>
 
 
     
@@ -579,80 +579,19 @@
       
       
       
-        <p><ul
-  class="nav nav-tabs d-flex align-items-center mt-3"
-  id="nav-tabs"
-  role="tablist"
->
-   
-   
-   
-   
-   
-  
-  <li class="nav-item" role="presentation">
-    <button
-      class="tab-link active px-3 py-2 rounded-5"
-      id="dfbace-tab"
-      data-bs-toggle="tab"
-      data-bs-target="#dfbace"
-      type="button"
-      role="tab"
-      aria-controls="dfbace"
-      aria-selected="true"
-    >24.06
-    </button>
-  </li>
-   
-   
-   
-  
-</ul>
-<div class="tab-content mb-6" id="nav-tab-content">
-
-
-
-
-
-
-
-
-
-
-
-
-
-  
-  
-  
-  
-  
-
-
-<div class="tab-pane fade  show active  border border-grey-line rounded-3 overflow-hidden" id="dfbace" role="tabpanel" aria-labelledby="dfbace-tab">
-  
-  <div class="tab-toc bg-light p-3 ">
-    <p>This document is new for the <a href="../../../../../admin/uat.html">Knox cloud services 24.06 UAT</a>.</p>
-    
-  </div>
-  
-  
-  
-</div>
-</div>
-The authorization code grant type lets your registered app interact with the end user’s agent, typically a web browser, and receive incoming requests from the Knox authorization server through redirection.</p>
+        <p>The authorization code grant type lets your registered app interact with the end user’s agent, typically a web browser, and receive incoming requests from the Knox authorization server through redirection.</p>
 <p>When the end user provides consent for use of requested Knox cloud services APIs, the Knox authorization server issues an authorization code that is exchanged for the access and refresh tokens. These tokens are used to authenticate the Knox cloud services API requests, which your app makes on the behalf of your end user.</p>
 <ol>
 <li>
 <p>First, your app directs the user-agent to the <a href="../../knox-oauth-2-0-authentication-api.html#tag/Authorization-server/operation/getAuthorize" target="_blank">GET /oauth2/authorize</a> operation with the request body parameters as shown in the following sample:</p>
-<div class="highlight"><pre tabindex="0" style=";-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-json" data-lang="json"><span style="display:flex;"><span><span style="">https:</span><span style="color:#408080;font-style:italic">//api.samsungknox.com/ams/v1/oauth2/authorize? 
-</span></span></span><span style="display:flex;"><span><span style="color:#408080;font-style:italic"></span><span style="">response_type=code&amp;</span> 
-</span></span><span style="display:flex;"><span><span style="">client_id=example-client&amp;</span> 
-</span></span><span style="display:flex;"><span><span style="">scope=ke&amp;</span> 
-</span></span><span style="display:flex;"><span><span style="">redirect_uri=https:</span><span style="color:#408080;font-style:italic">//example-app.com/redirect&amp; 
-</span></span></span><span style="display:flex;"><span><span style="color:#408080;font-style:italic"></span><span style="">code_challenge=</span><span style="color:#666">1234</span><span style="">abcd</span><span style="color:#666">123</span><span style="">abCd</span><span style="color:#666">1</span><span style="">a</span><span style="color:#666">2</span><span style="">BCdaBCdab</span><span style="color:#666">3</span><span style="">cDABcdaBcDABcD&amp;</span> 
-</span></span><span style="display:flex;"><span><span style="">code_challenge_method=S</span><span style="color:#666">256</span><span style="">&amp;</span> 
-</span></span><span style="display:flex;"><span><span style="">state=abcde</span>
+<div class="highlight"><pre tabindex="0" style=";-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>https://api.samsungknox.com/ams/v1/oauth2/authorize? 
+</span></span><span style="display:flex;"><span><span style="color:#19177c">response_type</span><span style="color:#666">=</span>code&amp; 
+</span></span><span style="display:flex;"><span><span style="color:#19177c">client_id</span><span style="color:#666">=</span>example-client&amp; 
+</span></span><span style="display:flex;"><span><span style="color:#19177c">scope</span><span style="color:#666">=</span>kai&amp; 
+</span></span><span style="display:flex;"><span><span style="color:#19177c">redirect_uri</span><span style="color:#666">=</span>https://example-app.com/redirect&amp; 
+</span></span><span style="display:flex;"><span><span style="color:#19177c">code_challenge</span><span style="color:#666">=</span>1234abcd123abCd1a2BCdaBCdab3cDABcdaBcDABcD&amp; 
+</span></span><span style="display:flex;"><span><span style="color:#19177c">code_challenge_method</span><span style="color:#666">=</span>S256&amp; 
+</span></span><span style="display:flex;"><span><span style="color:#19177c">state</span><span style="color:#666">=</span>abcde
 </span></span></code></pre></div><p>The authorization code request sample must:</p>
 <ul>
 <li>
@@ -692,12 +631,12 @@ The authorization code grant type lets your registered app interact with the end
   <li class="nav-item" role="presentation">
     <button
       class="tab-link active px-3 py-2 rounded-5"
-      id="fdcbea-tab"
+      id="dabefc-tab"
       data-bs-toggle="tab"
-      data-bs-target="#fdcbea"
+      data-bs-target="#dabefc"
       type="button"
       role="tab"
-      aria-controls="fdcbea"
+      aria-controls="dabefc"
       aria-selected="true"
     >Bash example
     </button>
@@ -708,12 +647,12 @@ The authorization code grant type lets your registered app interact with the end
   <li class="nav-item" role="presentation">
     <button
       class="tab-link  px-3 py-2 rounded-5"
-      id="afebdc-tab"
+      id="fecdab-tab"
       data-bs-toggle="tab"
-      data-bs-target="#afebdc"
+      data-bs-target="#fecdab"
       type="button"
       role="tab"
-      aria-controls="afebdc"
+      aria-controls="fecdab"
       aria-selected="true"
     >Java example
     </button>
@@ -804,7 +743,7 @@ The authorization code grant type lets your registered app interact with the end
   
 
 
-<div class="tab-pane fade  show active  border border-grey-line rounded-3 overflow-hidden" id="fdcbea" role="tabpanel" aria-labelledby="fdcbea-tab">
+<div class="tab-pane fade  show active  border border-grey-line rounded-3 overflow-hidden" id="dabefc" role="tabpanel" aria-labelledby="dabefc-tab">
   
   
   
@@ -970,7 +909,7 @@ The authorization code grant type lets your registered app interact with the end
   
 
 
-<div class="tab-pane fade  border border-grey-line rounded-3 overflow-hidden" id="afebdc" role="tabpanel" aria-labelledby="afebdc-tab">
+<div class="tab-pane fade  border border-grey-line rounded-3 overflow-hidden" id="fecdab" role="tabpanel" aria-labelledby="fecdab-tab">
   
   
   

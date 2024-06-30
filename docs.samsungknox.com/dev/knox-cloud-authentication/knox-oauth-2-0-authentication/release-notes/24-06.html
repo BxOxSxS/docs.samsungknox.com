@@ -341,7 +341,7 @@
     <li class="mt-2">
     
     <div class="d-flex justify-content-between">
-      <a class="body-5 text-black fw-light" href="../../knox-cloud-authentication/release-notes.html">Release notes</a>
+      <a class="body-5 text-black fw-light" href="../../knox-cloud-authentication/release-notes/index.html">Release notes</a>
     </div>
       
     </li>
@@ -564,7 +564,7 @@
             </div>
             
 
-  <p><span>Last updated June  13th, 2024</span></p>
+  <p><span>Last updated June  26th, 2024</span></p>
 
 
     
@@ -582,16 +582,6 @@
       
       
       
-        
-      
-      
-      
-      
-        
-      
-      
-      
-      
       
         
       
@@ -609,364 +599,63 @@
       
       
       
-        <ul
-  class="nav nav-tabs d-flex align-items-center mt-3"
-  id="nav-tabs"
-  role="tablist"
->
-   
-   
-   
-   
-   
-  
-  <li class="nav-item" role="presentation">
-    <button
-      class="tab-link active px-3 py-2 rounded-5"
-      id="cfedba-tab"
-      data-bs-toggle="tab"
-      data-bs-target="#cfedba"
-      type="button"
-      role="tab"
-      aria-controls="cfedba"
-      aria-selected="true"
-    >24.06
-    </button>
-  </li>
-   
-   
-   
-  
+        <h2 id="self-service-for-client-id-and-secret-generation">Self-service for client ID and secret generation</h2>
+<p>To reduce hand-holding and improve ease of use, you can now generate client IDs and client secrets for the apps which you want to integrate with Knox cloud service APIs. Available in <strong>Cloud Apps</strong> on the <a href="https://developer.samsungknox.com/dashboard" target="_blank">Knox Developer Portal</a>, you can also manage your apps from this menu. For more information, see <a href="../register-new-app.html">Register new app</a>.</p>
+<p>This functionality is also available in the Knox OAuth 2.0 Authentication API v1 using <a href="../knox-oauth-2-0-authentication-api.html#tag/Client-Management" target="_blank">client management</a> operations.</p>
+<h2 id="enhancements-to-client-management-operations">Enhancements to client management operations</h2>
+<ul>
+<li>
+<p>The <a href="../knox-oauth-2-0-authentication-api.html#tag/Client-management/operation/updateClient" target="_blank">PATCH oauth2/clients/{clientId}</a> operation is available to modify the information of a registered client app.</p>
+</li>
+<li>
+<p>The <a href="https://docs.samsungknox.com//dev/knox-cloud-authentication/knox-oauth-2-0-authentication/knox-oauth-2-0-authentication-api/#tag/Client-management/operation/deleteClient" target="_blank">DELETE /oauth2/clients/{clientId}</a> operation is available to remove client apps, registered with your enterprise, from the Knox authorization server. This operation revokes all associated tokens issued to the client, ensuring that the deleted client can no longer access resources on behalf of resource owners.</p>
+</li>
+<li>
+<p>The <a href="https://docs.samsungknox.com//dev/knox-cloud-authentication/knox-oauth-2-0-authentication/knox-oauth-2-0-authentication-api/#tag/Client-management/operation/updateExpirationTimes" target="_blank">PUT /oauth2/clients/{clientId}/expirationTimes</a> operation is available to manage the expiration times of the authorization code, access token, and refresh tokens associated with a registered client app.</p>
+</li>
+<li>
+<p>You can use the <code>search</code> query parameter in the <a href="../knox-oauth-2-0-authentication-api.html#tag/Client-management/operation/listClientss" target="_blank">GET /oauth2/clients</a> operation to search for specific registered client apps. You can search using an exact match of the client ID, a partial match of app name, or the full value of creator&rsquo;s email.</p>
+</li>
+<li>
+<p>When you register a new client app with the Knox authorization server, you can use the <code>description</code> parameter in the request body of the <a href="../knox-oauth-2-0-authentication-api.html#tag/Client-management/operation/createClient" target="_blank">POST /oauth2/clients</a> operation to provide a brief summary about the app. You can also retrieve the description associated with a registered client app by specifying its client ID in the <a href="../knox-oauth-2-0-authentication-api.html#tag/Client-management/operation/getClient" target="_blank">GET /oauth2/clients/{clientId}</a> operation.</p>
+</li>
+<li>
+<p>You can configure and retrieve the expiration times of the authorization code, access token, and refresh token.</p>
+<ul>
+<li>
+<p>To configure the expiration times when you register a new client app with the Knox authorization server, use the <code>expirationTimes</code> parameter of type object in the request body of the <a href="https://docs.samsungknox.com/dev/dev/knox-cloud-authentication/knox-oauth-2-0-authentication/knox-oauth-2-0-authentication-api/#tag/Client-management/operation/createClient" target="_blank">POST /oauth2/clients</a> operation.</p>
+</li>
+<li>
+<p>To retrieve details about the expiration times of OAuth 2.0 tokens associated with a registered client app, specify its client ID in the <a href="../knox-oauth-2-0-authentication-api.html#tag/Client-management/operation/listClients" target="_blank">GET /oauth2/clients/{clientId}</a> operation.</p>
+</li>
 </ul>
-<div class="tab-content mb-6" id="nav-tab-content">
-
-
-
-
-
-
-
-
-
-
-
-
-
-  
-  
-  
-  
-    
-    
-    
-    
-    
-  
-
-  
-  
-  
-  
-  
-
-  
-  
-  
-  
-  
-
-  
-  
-  
-  
-    
-    
-    
-    
-    
-  
-
-  
-  
-  
-  
-  
-
-  
-  
-  
-  
-  
-
-  
-  
-  
-  
-  
-
-  
-  
-  
-  
-  
-
-  
-  
-  
-  
-  
-
-  
-  
-  
-  
-  
-
-  
-  
-  
-  
-  
-
-  
-  
-  
-  
-  
-
-  
-  
-  
-  
-  
-
-  
-  
-  
-  
-  
-
-  
-  
-  
-  
-  
-
-  
-  
-  
-  
-  
-
-  
-  
-  
-  
-  
-
-  
-  
-  
-  
-  
-
-  
-  
-  
-  
-  
-
-  
-  
-  
-  
-  
-
-  
-  
-  
-  
-  
-
-  
-  
-  
-  
-  
-
-  
-  
-  
-  
-  
-
-  
-  
-  
-  
-  
-
-  
-  
-  
-  
-  
-
-  
-  
-  
-  
-  
-
-  
-  
-  
-  
-  
-
-  
-  
-  
-  
-  
-
-  
-  
-  
-  
-  
-
-  
-  
-  
-  
-  
-
-  
-  
-  
-  
-  
-
-  
-  
-  
-  
-  
-
-  
-  
-  
-  
-  
-
-  
-  
-  
-  
-  
-
-  
-  
-  
-  
-  
-
-  
-  
-  
-  
-  
-
-  
-  
-  
-  
-  
-
-  
-  
-  
-  
-  
-
-  
-  
-  
-  
-  
-
-  
-  
-  
-  
-  
-
-  
-  
-  
-  
-  
-
-  
-  
-  
-  
-  
-
-  
-  
-  
-  
-  
-
-  
-  
-  
-  
-  
-
-  
-  
-  
-  
-  
-
-
-<div class="tab-pane fade  show active  border border-grey-line rounded-3 overflow-hidden" id="cfedba" role="tabpanel" aria-labelledby="cfedba-tab">
-  
-  <div class="tab-toc bg-light p-3 border-bottom border-grey-line">
-    <p>This document is new for the <a href="../../../../admin/uat.html">Knox cloud services 24.06 UAT</a>.</p>
-    
-  </div>
-  
-  
-    
-    <div class="tab-toc p-3 border-bottom border-grey-line">
-      <p class="fw-bold">On this tab</p>
-      <ul class="mt-2 mb-0 list-unstyled section-nav">
-      
-        
-        <li class="ms-0"><a href="24-06.html#self-service-for-client-id-and-secret-generation-24-06">Self-service for client ID and secret generation</a>
-      
-        
-        <li class="ms-0"><a href="24-06.html#enhancements-to-client-management-operations-24-06">Enhancements to client management operations</a>
-      
-      </ul>
-  </div>
-    
-  
-  
-  <div class="tab-content p-3"><h2 id="self-service-for-client-id-and-secret-generation-24-06">Self-service for client ID and secret generation</h2><p>To reduce hand-holding and improve ease of use, you can now generate client IDs and client secrets for the apps which you want to integrate with Knox cloud service APIs. Available in <strong>Cloud Apps</strong> on the <a href="https://developer.samsungknox.com/dashboard" target="_blank">Knox Developer Portal</a>, you can also manage your apps from this menu. For more information, see <a href="../register-new-app.html">Register new app</a>.</p><p>This functionality is also available in the Knox OAuth 2.0 Authentication API v1 using <a href="../knox-oauth-2-0-authentication-api.html#tag/Client-Management" target="_blank">client management</a> operations.</p><h2 id="enhancements-to-client-management-operations-24-06">Enhancements to client management operations</h2><ul><li><p>The <a href="../knox-oauth-2-0-authentication-api.html#tag/Client-management/operation/updateClient" target="_blank">PATCH oauth2/clients/{clientId}</a> operation is available to modify the information of a registered client app.</p></li><li><p>The <a href="https://docs.samsungknox.com//dev/knox-cloud-authentication/knox-oauth-2-0-authentication/knox-oauth-2-0-authentication-api/#tag/Client-management/operation/deleteClient" target="_blank">DELETE /oauth2/clients/{clientId}</a> operation is available to remove client apps, registered with your enterprise, from the Knox authorization server. This operation revokes all associated tokens issued to the client, ensuring that the deleted client can no longer access resources on behalf of resource owners.</p></li><li><p>The <a href="https://docs.samsungknox.com//dev/knox-cloud-authentication/knox-oauth-2-0-authentication/knox-oauth-2-0-authentication-api/#tag/Client-management/operation/updateExpirationTimes" target="_blank">PUT /oauth2/clients/{clientId}/expirationTimes</a> operation is available to manage the expiration times of the authorization code, access token, and refresh tokens associated with a registered client app.</p></li><li><p>You can use the <code>search</code> query parameter in the <a href="../knox-oauth-2-0-authentication-api.html#tag/Client-management/operation/listClientss" target="_blank">GET /oauth2/clients</a> operation to search for specific registered client apps. You can search using an exact match of the client ID, a partial match of app name, or the full value of creator&rsquo;s email.</p></li><li><p>When you register a new client app with the Knox authorization server, you can use the <code>description</code> parameter in the request body of the <a href="../knox-oauth-2-0-authentication-api.html#tag/Client-management/operation/createClient" target="_blank">POST /oauth2/clients</a> operation to provide a brief summary about the app. You can also retrieve the description associated with a registered client app by specifying its client ID in the <a href="../knox-oauth-2-0-authentication-api.html#tag/Client-management/operation/getClient" target="_blank">GET /oauth2/clients/{clientId}</a> operation.</p></li><li><p>You can configure and retrieve the expiration times of the authorization code, access token, and refresh token.</p><ul><li><p>To configure the expiration times when you register a new client app with the Knox authorization server, use the <code>expirationTimes</code> parameter of type object in the request body of the <a href="https://docs.samsungknox.com/dev/dev/knox-cloud-authentication/knox-oauth-2-0-authentication/knox-oauth-2-0-authentication-api/#tag/Client-management/operation/createClient" target="_blank">POST /oauth2/clients</a> operation.</p></li><li><p>To retrieve details about the expiration times of OAuth 2.0 tokens associated with a registered client app, specify its client ID in the <a href="../knox-oauth-2-0-authentication-api.html#tag/Client-management/operation/listClients" target="_blank">GET /oauth2/clients/{clientId}</a> operation.</p></li></ul></li><li><p>You can configure the information shown to a user on the consent screen, when registering a client app with the Knox authorization server. You can also retrieve information about a registered client app.</p><ul><li><p>To configure the app information shown to users on the consent screen, use the <code>consentMetadata</code> parameter of type object in the request body of the <a href="../knox-oauth-2-0-authentication-api.html#tag/Client-management/operation/createClient" target="_blank">POST /oauth2/clients</a> operation.</p></li><li><p>To retrieve an enterprise&rsquo;s information associated with the registered client app, specify its client ID in the <a href="../knox-oauth-2-0-authentication-api.html#tag/Client-management/operation/getClient" target="_blank">GET /oauth2/clients/{clientId}</a> operation.</p></li></ul></li></ul><p><a href="index.html"  class="btn d-inline-block button-subtle">Back to release notes</a></p>
-  </div>
-  
-</div>
-</div>
+</li>
+<li>
+<p>You can configure the information shown to a user on the consent screen, when registering a client app with the Knox authorization server. You can also retrieve information about a registered client app.</p>
+<ul>
+<li>
+<p>To configure the app information shown to users on the consent screen, use the <code>consentMetadata</code> parameter of type object in the request body of the <a href="../knox-oauth-2-0-authentication-api.html#tag/Client-management/operation/createClient" target="_blank">POST /oauth2/clients</a> operation.</p>
+</li>
+<li>
+<p>To retrieve an enterprise&rsquo;s information associated with the registered client app, specify its client ID in the <a href="../knox-oauth-2-0-authentication-api.html#tag/Client-management/operation/getClient" target="_blank">GET /oauth2/clients/{clientId}</a> operation.</p>
+</li>
+</ul>
+</li>
+</ul>
+<a href="index.html"  class="btn d-inline-block button-subtle">Back to release notes</a>
 
             
           </div>
           <div class="l-toh">
-            
+            <h2 class="body-4 fw-bold mt-0">On this page</h2>
+<aside class="table-of-headings">
+  <nav id="TableOfContents">
+  <ul>
+    <li><a href="24-06.html#self-service-for-client-id-and-secret-generation">Self-service for client ID and secret generation</a></li>
+    <li><a href="24-06.html#enhancements-to-client-management-operations">Enhancements to client management operations</a></li>
+  </ul>
+</nav>
+</aside>
           </div>
         </div> 
       </div><div>
