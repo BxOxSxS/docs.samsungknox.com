@@ -4940,7 +4940,7 @@
             </div>
             
 
-  <p><span>Last updated July  26th, 2023</span></p>
+  <p><span>Last updated June  14th, 2024</span></p>
 
 
     
@@ -4961,25 +4961,42 @@
 
 
 
-<h2 id="environment">Environment</h2>
+
+      
+      
+      
+      
+        
+      
+      
+      
+      
+        <h2 id="environment">Environment</h2>
 <ul>
 <li>Knox Manage</li>
 <li>Knox Manage license</li>
 </ul>
 <h2 id="overview">Overview</h2>
 <p>When enrolling a device in Knox Manage, some users have experienced an issue where the enrollment fails even if their Knox Manage license has available assignments. The enrollment fails with the error:</p>
-<pre tabindex="0"><code>[Error][KMA_F5007]
-
-License Activation Failed
-
-It is failed to get KM license. Please contact your administrator.
-</code></pre><p>When viewing the issue with the <strong>Audit Log</strong>, the following Result Code is displayed:</p>
-<pre tabindex="0"><code>
-Failed (1901197)
+<blockquote>
+<p>[Error][KMA_F5007]<br>
+License Activation Failed<br>
+It is failed to get KM license. Please contact your administrator.</p>
+</blockquote>
+<p>When viewing the issue with the <strong>Audit Log</strong>, the following Result Code is displayed:</p>
+<pre tabindex="0"><code>Failed (1901197)
 </code></pre><h2 id="cause">Cause</h2>
-<p>When multiple tenants use the same Knox Manage license, each tenant draws from the same pool of assignments, but an individual tenant can only see their own consumption count on the Knox Manage console. When the license assignments are exhausted, any further device enrollments will fail with the error KMA_F007.</p>
+<p>There can be more than one reasons why the error code KMA_F5007 is displayed:</p>
+<ul>
+<li>When multiple tenants use the same Knox Manage license, each tenant draws from the same pool of assignments, but an individual tenant can only see their own consumption count on the Knox Manage console. When the license assignments are exhausted, any further device enrollments will fail with the error KMA_F007.</li>
+<li>A license was converted from Knox Manage to Knox Suite, and the license type wasn&rsquo;t updated for the user and organization groups. Both groups continue to look for the Knox Manage license type, and return the error code <strong>KMA_F5007</strong> when the license is not found.</li>
+</ul>
 <h2 id="resolution">Resolution</h2>
-<p>To resolve this issue, make sure that the sum total of assignments consumed by all tenants under the same license doesn&rsquo;t exceed the license&rsquo;s limit.</p>
+<p>Depending on the cause, you can resolve the issue as follows:</p>
+<ul>
+<li>If multiple tenants use the same Knox Manage license, ensure that the sum total of assignments consumed by all tenants under the same license doesn&rsquo;t exceed the license&rsquo;s limit.</li>
+<li>If the license was converted from Knox Manage to Knox Suite, the license type for both <a href="../configure/users/modify-the-details-of-a-user-account.html">user</a> and <a href="../configure/organizations/modify-an-organizations-details.html">organization</a> groups must be updated to match the license type.</li>
+</ul>
 
             
           </div>

@@ -2573,13 +2573,6 @@
 <p>If the SSID list already contains SSIDs, click <strong>Add another row</strong> to add a new SSID, and click <strong>Edit</strong> to make changes to any SSID. Furthermore, unselecting <strong>SSID restrictions</strong> after adding SSIDs will save the added SSIDs and display them only when you click <strong>SSID restrictions</strong> again.</p>
 <div class="notice-important"><p>All SSID restrictions are automatically disabled if a campaign is created without adding any SSIDs.</p></div>
 <h3 id="device-condition">Device condition</h3>
-<p>You can specify the following device conditions required for firmware installation.</p>
-<ul>
-<li>Only install firmware if device battery life is above a specified amount.</li>
-<li>Only install firmware if the device is connected to a charging dock.</li>
-<li>Only install firmware if Knox E-FOTA is instructed to do so by a third-party app.
-<div class="notice-note"><ul><li>Contact your Samsung administrator to enable this setting for your account.</li><li>This setting takes priority over other campaign firmware installation conditions. Once Knox E-FOTA receives the firmware installation event, it will proceed to install firmware as long as the battery life is over 20% and there is sufficient storage, ignoring other campaign installation conditions such as postpones, time periods, and device charging.</li></ul></div></li>
-</ul>
 
 
 
@@ -2699,6 +2692,33 @@
 
 
 <p><img src="../../../assets/device-condition-24-06.png" class="image-block-scale-50 img-thumbnail" alt="battery level" /></p>
+<p>You can specify the following device conditions required for firmware installation.</p>
+<ul>
+<li>Only install firmware if device battery life is above a specified amount.</li>
+<li>Only install firmware if the device is connected to a charging dock.</li>
+<li>Only install firmware if Knox E-FOTA is instructed to do so by a third-party app.
+<ul>
+<li>
+<p>Contact your Samsung administrator to enable this setting.</p>
+</li>
+<li>
+<p>This setting takes priority over other campaign firmware installation conditions. Once Knox E-FOTA receives the firmware installation event, it will proceed to install firmware as long as the battery life is over 20%, there is sufficient storage, and the device isn&rsquo;t in a phone call. Other firmware installation conditions such as postpones, time periods, and device charging are ignored when this setting is configured.</p>
+<p>The following java code sample shows how a third-party app can trigger firmware updates.</p>
+<div class="highlight"><pre tabindex="0" style=";-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#008000;font-weight:bold">public</span> <span style="color:#008000;font-weight:bold">class</span> <span style="color:#00f;font-weight:bold">SimpleActivity</span> <span style="color:#008000;font-weight:bold">extends</span> Activity <span style="color:#666">{</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#008000;font-weight:bold">private</span> <span style="color:#008000;font-weight:bold">final</span> String UPDATE_FIRMWARE <span style="color:#666">=</span> <span style="color:#ba2121">&#34;com.samsung.android.knox.intent.action.UPDATE_FIRMWARE&#34;</span><span style="color:#666">;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#008000;font-weight:bold">private</span> <span style="color:#008000;font-weight:bold">final</span> String KE_PACKAGE_NAME <span style="color:#666">=</span> <span style="color:#ba2121">&#34;com.samsung.android.knox.efota&#34;</span><span style="color:#666">;</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#b00040">void</span> <span style="color:#00f">requestUpdateFirmware</span><span style="color:#666">()</span> <span style="color:#666">{</span>
+</span></span><span style="display:flex;"><span>        Intent intent <span style="color:#666">=</span> <span style="color:#008000;font-weight:bold">new</span> Intent<span style="color:#666">(</span>UPDATE_FIRMWARE<span style="color:#666">);</span>
+</span></span><span style="display:flex;"><span>        intent<span style="color:#666">.</span><span style="color:#7d9029">setPackage</span><span style="color:#666">(</span>KE_PACKAGE_NAME<span style="color:#666">);</span>
+</span></span><span style="display:flex;"><span>        sendBroadcast<span style="color:#666">(</span>intent<span style="color:#666">);</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#666">}</span>
+</span></span><span style="display:flex;"><span><span style="color:#666">}</span>
+</span></span></code></pre></div></li>
+</ul>
+</li>
+</ul>
 <h3 id="factory-reset">Factory Reset</h3>
 <p>Specify whether you want to block end users from performing a factory reset on the device.</p>
 

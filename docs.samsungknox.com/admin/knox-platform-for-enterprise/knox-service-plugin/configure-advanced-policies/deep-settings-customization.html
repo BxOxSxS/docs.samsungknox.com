@@ -443,6 +443,17 @@
     
     
     <div class="d-flex justify-content-between">
+      <a class="body-5 text-black fw-light" href="certificate-provisioning-configurations.html">Certificate provisioning configurations</a>
+    </div>
+    
+    </li>
+  
+  
+  
+    <li class="mt-2">
+    
+    
+    <div class="d-flex justify-content-between">
       <a class="body-5 text-black fw-light" href="data-processing-for-galaxy-ai.html">Data processing for Galaxy AI</a>
     </div>
     
@@ -587,6 +598,28 @@
     
     <div class="d-flex justify-content-between">
       <a class="body-5 text-black fw-light" href="lockscreen-customization-policies.html">Lockscreen customization policies</a>
+    </div>
+    
+    </li>
+  
+  
+  
+    <li class="mt-2">
+    
+    
+    <div class="d-flex justify-content-between">
+      <a class="body-5 text-black fw-light" href="mobile-hotspot-toggle.html">Mobile hotspot toggle</a>
+    </div>
+    
+    </li>
+  
+  
+  
+    <li class="mt-2">
+    
+    
+    <div class="d-flex justify-content-between">
+      <a class="body-5 text-black fw-light" href="mute-with-gestures-toggle.html">Mute with gestures toggle</a>
     </div>
     
     </li>
@@ -1239,7 +1272,7 @@
             </div>
             
 
-  <p><span>Last updated July  26th, 2023</span></p>
+  <p><span>Last updated June  28th, 2024</span></p>
 
 
     
@@ -1277,72 +1310,237 @@
       
       
       
-        
-      
-      
-      
-      
-        
-      
-      
-      
-      
-        
-      
-      
-      
-      
-        <p>The Deep Settings Customization feature is available on devices running Knox v3.4 and higher with a KPE Premium license.</p>
-<h2 id="1-create-and-configure-deep-settings">1. Create and configure deep settings</h2>
-<p>The following example describes the process to create and configure a new policy that hides all notifications on the screen when the device is locked.</p>
+        <p>The Deep Settings Customization feature is available with a free Knox Platform for Enterprise Premium license on devices running Knox version 3.4 or higher. Support for individual settings varies based on the device model and firmware version.</p>
+<h2 id="create-and-configure-deep-settings">Create and configure deep settings</h2>
 <ol>
 <li>
-<p>In your UEM console, open the Device Configuration Profile that is associated with your target devices. On the middle navigation menu, click <strong>Properties</strong>. The Device Configuration Policy Properties page opens.</p>
+<p>Go to <strong>Device and Settings customization profile</strong> &gt; <strong>Configure values in settings menu</strong>, and add a setting menu configuration.</p>
 </li>
 <li>
-<p>On the Properties page, in the <strong>Settings</strong> list, click <strong>Configured</strong>. The OEMConfig page for the Device Configuration Policy opens.</p>
+<p>Use the <strong>Name of the Setting item</strong> control to select which device setting you&rsquo;d like to control. See <a href="deep-settings-customization.html#configurable-deep-settings">Configurable deep settings</a> below for what you can control.</p>
 </li>
 <li>
-<p>On the OEMConfig page, next to Device and Settings customization profile, click <strong>Configure</strong>. The Device and Settings customization profile page opens.</p>
+<p>Use the <strong>Set value for the setting</strong> control to turn a selected device setting on or off. Use the <strong>Specify Value</strong> control if a device setting requires a value other than on or off.</p>
 </li>
 <li>
-<p>On the customization profile page, next to the Configure values in settings menu title, click <strong>Configure</strong>. The Configure values in settings menu page opens to show a refreshed navigation menu to its immediate left.</p>
+<p>Set the <strong>Allow end-user modification of this setting</strong> control to <strong>True</strong> to allow device users to change a configuration setting. If set to <strong>False</strong>, the impacted setting is disabled and can&rsquo;t be modified by device users.</p>
 </li>
 <li>
-<p>On the refreshed navigation menu, click <strong>Configure values in settings menu</strong> &gt; <strong>Add setting</strong>. The Configure values in settings menu page opens to show fields and controls that help you customize your device settings.</p>
-</li>
-<li>
-<p>Do as follows:</p>
-<ol>
-<li>
-<p>In the <strong>Name of the setting item</strong> list, select <strong>Lock screen</strong> &gt; <strong>Notifications</strong> &gt; <strong>Hide content</strong>.</p>
-</li>
-<li>
-<p>In the <strong>Set value for setting</strong> list, select <strong>On</strong>.</p>
-</li>
-<li>
-<p>If you want to allow the device user to change this setting, in the <strong>Allow end-user modification of this setting</strong> field, click <strong>True</strong>.</p>
+<p>Set the <strong>Configure to hide settings</strong> control to <strong>True</strong> to hide the setting from device users.</p>
 </li>
 </ol>
+<h2 id="configurable-deep-settings">Configurable deep settings</h2>
+<p>Here are some of the device settings you can configure:</p>
+<ul>
+<li>
+<p>Set the <strong>Roaming clock</strong> control to <strong>True</strong> to optionally hide roaming clock settings from the user on the device&rsquo;s lock screen.</p>
+<ul>
+<li>
+<p>Set the <strong>Roaming clock</strong> &gt; <strong>Home time zone</strong> control to <strong>True</strong> to set the geographic time zone &lt;string&gt; where the device is deployed. Valid value strings could include America/New_York, Asia/Seoul, etc.</p>
 </li>
 <li>
-<p>Click <strong>OK</strong>. The new setting is created and you can now deploy it to your target devices. For information, go to: <a href="deep-settings-customization.html#deployDSC">Deploy deep settings</a>.</p>
+<p>Set the <strong>Roaming clock</strong> &gt; <strong>Show on Always On Display</strong> control to <strong>True</strong> and set 0 (off) or 1 (on) to view the device clock, battery and missed call messages and notifications when the screen is turned off. Keep in mind this setting consumes additional battery power when enabled.</p>
 </li>
-</ol>
-<div class="notice-note"><p>Repeat steps 5 to 7 for each type of deep setting you want to configure in your Device Configuration Profile.</p></div>
+</ul>
+</li>
+<li>
+<p>Set the <strong>FaceWidgets</strong> control to <strong>True</strong> to optionally hide FaceWidget settings (Music, Today&rsquo;s schedule, Next alarm etc.) from the device user on the device&rsquo;s lock screen. Enter a FaceWidget as a &lt;string&gt; listing the FaceWidget.</p>
+<ul>
+<li>
+<p>Set the <strong>FaceWidgets</strong> &gt; <strong>Show on Always On Display</strong> control to <strong>True</strong> and set 0 (off) or 1 (on) to view listed FaceWidgets when the screen is turned off. Keep in mind this setting consumes additional battery power when enabled.</p>
+</li>
+<li>
+<p>Set the <strong>FaceWidgets</strong> &gt; <strong>Music</strong> control to 0 (off) or 1 (on) to view the music controller on the device&rsquo;s lock screen.</p>
+</li>
+<li>
+<p>Set the <strong>FaceWidgets</strong> &gt; <strong>Today&rsquo;s Schedule</strong> control to 0 (off) or 1 (on) to view today&rsquo;s schedule on the device&rsquo;s lock screen.</p>
+</li>
+<li>
+<p>Set the <strong>FaceWidgets</strong> &gt; <strong>Next alarm</strong> control to 0 (off) or 1 (on) to view when the next alarm is scheduled for on the device&rsquo;s lock screen.</p>
+</li>
+</ul>
+</li>
+<li>
+<p>Set the <strong>Notifications</strong> control to <strong>True</strong> to optionally hide notifications from the user on the device&rsquo;s lock screen. Notifications can then be set to set 0 (off) or 1 (on) on the lock screen.</p>
+<ul>
+<li>
+<p>Set the <strong>Notifications</strong> &gt; <strong>Hide content</strong> control to <strong>True</strong> to optionally hide notification content, 0 (off) or 1 (on), on the device&rsquo;s lock screen.</p>
+</li>
+<li>
+<p>Set the <strong>Notifications</strong> &gt; <strong>View style</strong> control to either 0 &mdash; Detailed, 1 &mdash; Icons only, or 2 &mdash; Brief to define how notifications display on the lock screen.</p>
+</li>
+<li>
+<p>Set the <strong>Notifications</strong> &gt; <strong>Transparency</strong> control to <strong>True</strong> to define a notification message transparency setting from 0 &mdash; 75, with zero (0) being the highest transparency setting and 75 being the lowest transparency setting.</p>
+</li>
+<li>
+<p>Set the <strong>Notifications</strong> &gt; <strong>Auto-reverse text color</strong> control to <strong>True</strong> and set 0 (off) or 1 (on) to automatically reverse the color of the notification text based on the screen&rsquo;s current background color. Consider enabling <strong>Auto-reverse text color</strong> to improve the readability of notification text on the lock screen</p>
+</li>
+</ul>
+</li>
+<li>
+<p>Refer to the following <strong>General Management</strong> &gt; <strong>Language and Input</strong> controls and settings to define a unique device text-to-speech and screen keyboard display configuration:</p>
+<ul>
+<li>
+<p>Set the <strong>General Management</strong> &gt; <strong>Language and Input</strong> &gt; <strong>Text-to-speech</strong> &gt; <strong>PreferredEngine</strong> control to <strong>True</strong> to define either <strong>com.samsung.SMT</strong> (the Samsung text-to-speech engine) or <strong>com.google.android.tts</strong> (the Google Text-to-speech engine conversion engine). The selected option determines how text is read aloud on the device.</p>
+</li>
+<li>
+<p>Set the <strong>General Management</strong> &gt; <strong>Language and Input</strong> &gt; <strong>Text-to-speech</strong> &gt; <strong>Pitch</strong> control to <strong>True</strong> to configure the slider used to set the pitch from 25 (lowest) to 400 (fastest).</p>
+</li>
+<li>
+<p>Set the <strong>General Management</strong> &gt; <strong>Language and Input</strong> &gt; <strong>Text-to-speech</strong> &gt; <strong>Speech rate</strong> control to <strong>True</strong> to configure the slider used to define the rate of speech read aloud from 10 (slowest) to 600 (fastest).</p>
+</li>
+<li>
+<p>Set the <strong>General Management</strong> &gt; <strong>Language and Input</strong> &gt; <strong>On-screen keyboard</strong> &gt; <strong>Show keyboard button</strong> control to <strong>True</strong> and set 0 (off) or 1 (on) to display the <strong>On-screen keyboard</strong> button on the device.</p>
+</li>
+<li>
+<p>Set the <strong>General Management</strong> &gt; <strong>Language and Input</strong> &gt; <strong>On-screen keyboard</strong> &gt; <strong>Default keyboard</strong> control to <strong>True</strong> to use the default virtual keyboard on the device. Keyboard settings can be managed in <strong>Language and Input</strong> &gt; <strong>Virtual keyboard</strong> &gt; <strong>Manage keyboards</strong>.</p>
+</li>
+</ul>
+</li>
+<li>
+<p>Set the <strong>Sounds and vibration</strong> &gt; <strong>Language and Input</strong> control to <strong>True</strong> to define how notifications are managed for single and dual-SIM devices. SIM2 settings are ignored on devices that only support one SIM.</p>
+<ul>
+<li>
+<p>Set the <strong>Sounds and Vibration</strong> &gt; <strong>Notification sounds</strong> &gt; <strong>SIM1</strong> control to a supported ringtone &lt;string&gt; title. Supported ringtone examples include Aurora, Beep Once, Carnival, and so on. SIM2 settings are ignored on devices that only support one SIM.</p>
+</li>
+<li>
+<p>Set the <strong>Sounds and Vibration</strong> &gt; <strong>Notification sounds</strong> &gt; <strong>SIM2</strong> control to a supported ringtone &lt;string&gt; title. Supported ringtone examples include Aurora, Beep Once, Carnival, and so on.</p>
+</li>
+</ul>
+</li>
+<li>
+<p>Refer to the <strong>Sounds and Vibration</strong> &gt; <strong>System sounds and vibration</strong> controls to define the following device system sound settings:</p>
+<ul>
+<li>
+<p>Set the <strong>Sounds and Vibration</strong> &gt; <strong>System sounds and vibration</strong> &gt; <strong>Charging sound</strong> control to <strong>True</strong> to define whether a sound is emitted &mdash; 0 (off) or 1 (on) &mdash; when the device is connected to a charging resource.</p>
+</li>
+<li>
+<p>Set the <strong>Sounds and Vibration</strong> &gt; <strong>System sounds and vibration</strong> &gt; <strong>Dialing keypad tone</strong> control to <strong>True</strong> to define whether dialing keypad touch tones are emitted &mdash; 0 (off) or 1 (on) &mdash; when entering a phone number on the device. Consider turning this control off to conserve battery or avoid disrupting others in close proximity.</p>
+</li>
+<li>
+<p>Set the <strong>Sounds and Vibration</strong> &gt; <strong>System sounds and vibration</strong> &gt; <strong>Keyboard sound</strong> control to <strong>True</strong> to define whether sounds are emitted &mdash; 0 (off) or 1 (on) &mdash; when using the device virtual keyboard. Consider turning this control off to conserve battery or avoid disrupting others in close proximity.</p>
+</li>
+<li>
+<p>Set the <strong>Sounds and Vibration</strong> &gt; <strong>System sounds and vibration</strong> &gt; <strong>Keyboard vibration</strong> control to <strong>True</strong> to define whether vibrations are emitted &mdash; 0 (off) or 1 (on) &mdash; when using the device virtual keyboard. Consider turning this control off to conserve battery or avoid disrupting others in close proximity.</p>
+</li>
+<li>
+<p>Set the <strong>Sounds and Vibration</strong> &gt; <strong>System sounds and vibration</strong> &gt; <strong>Screen lock sound</strong> control to <strong>True</strong> to define whether a sound is emitted &mdash; 0 (off) or 1 (on) &mdash; when locking or unlocking the device screen.</p>
+</li>
+<li>
+<p>Set the <strong>Sounds and Vibration</strong> &gt; <strong>System sounds and vibration</strong> &gt; <strong>Touch sound</strong> control to <strong>True</strong> to define whether a clicking sound is emitted &mdash; 0 (off) or 1 (on) &mdash; each time the device screen is tapped. Consider turning this control off to conserve battery or avoid disrupting others in close proximity.</p>
+</li>
+<li>
+<p>Set the <strong>Sounds and Vibration</strong> &gt; <strong>System sounds and vibration</strong> &gt; <strong>Touch vibration</strong> control to <strong>True</strong> to define whether vibrations are emitted &mdash; 0 (off) or 1 (on) &mdash; when interacting with the device, like tapping navigation buttons or going to the app drawer. Consider turning this control off to conserve battery or avoid disrupting others in close proximity.</p>
+</li>
+</ul>
+</li>
+<li>
+<p>Refer to the <strong>Sounds and Vibration</strong> &gt; <strong>Use volume key for media</strong> control and set to <strong>True</strong> to define whether the device can use its volume keys &mdash; 0 (off) or 1 (on) &mdash; to control media volume levels. Enabling this setting allows the user to control media volume quickly if their device is either too loud or too quiet.</p>
+</li>
+<li>
+<p>Set the <strong>Sounds and Vibration</strong> &gt; <strong>Vibration pattern</strong> control to <strong>True</strong> to configure the &lt;string&gt; defining the device vibration pattern. Options include Basic call &mdash; 1, HeartBeat &mdash; 2, and so on.</p>
+</li>
+<li>
+<p>Set the <strong>Sounds and Vibration</strong> &gt; <strong>Vibration while ringing</strong> control to <strong>True</strong> to define whether the device vibrates &mdash; 0 (off) or 1 (on) &mdash; upon receipt of an incoming call.</p>
+</li>
+<li>
+<p>Set the <strong>Display</strong> &gt; <strong>Adaptive brightness</strong> control to <strong>True</strong> to define whether the device &mdash; 0 (off) or 1 (on) &mdash; automatically increases or decreases display brightness depending on the illumination of current device environment.</p>
+</li>
+<li>
+<p>Set the <strong>Display</strong> &gt; <strong>Accidental touch protection</strong> control to <strong>True</strong> to define whether the device &mdash; 0 (off) or 1 (on) &mdash; is protected from accidental touches in dark places. Enabling this feature is recommended to ensure the device doesn&rsquo;t accidentally lock or send unintended messages.</p>
+</li>
+<li>
+<p>Refer to the <strong>Display</strong> &gt; <strong>Blue light filter</strong> control and set to <strong>True</strong> to configure whether the device &mdash; 0 (off) or 1 (on) &mdash; can control the intensity of the blue light (night mode) emitting from the screen if it&rsquo;s too bright in the dark. Once enabled, refer to the following blue light configuration controls:</p>
+<ul>
+<li>
+<p>Set the <strong>Display</strong> &gt; <strong>Blue light filter</strong> &gt; <strong>Opacity</strong> control to <strong>True</strong> to define the density (or tint) of the blue light display in the range of 1 &mdash; 10.</p>
+</li>
+<li>
+<p>Set the <strong>Display</strong> &gt; <strong>Blue light filter</strong> &gt; <strong>Turn on now</strong> control to <strong>True</strong> to turn on the blue light filter immediately, without scheduling a future time to turn on the filter based on light conditions.</p>
+</li>
+<li>
+<p>To use the blue light filter at a specific time, set the <strong>Display</strong> &gt; <strong>Blue light filter</strong> &gt; <strong>Turn on as scheduled</strong> control to <strong>True</strong> and set it to 0 (off) or 1 (on) for the following display schedule options.</p>
+<ul>
+<li>
+<p>Set the <strong>Display</strong> &gt; <strong>Blue light filter</strong> &gt; <strong>Turn on as scheduled</strong> &gt; <strong>Sunset to sunrise / Custom schedule</strong> control to <strong>True</strong> and select either 2 &mdash; <strong>Sunset to sunrise</strong> or 1 &mdash; <strong>Custom schedule</strong>.</p>
+<ul>
+<li>
+<p>Set the <strong>Display</strong> &gt; <strong>Blue light filter</strong> &gt; <strong>Turn on as scheduled</strong> &gt; <strong>Custom schedule</strong> &gt; <strong>Start time</strong> to <strong>True</strong> and define a start time between 1-1440 minutes from 12 AM.</p>
+</li>
+<li>
+<p>Set the <strong>Display</strong> &gt; <strong>Blue light filter</strong> &gt; <strong>Turn on as scheduled</strong> &gt; <strong>Custom schedule</strong> &gt; <strong>End time</strong> to <strong>True</strong> and define an end time between 1-1440 minutes from 12 AM.</p>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p>Set the <strong>Display</strong> &gt; <strong>Screen timeout</strong> control to <strong>True</strong> to configure a timeout &lt;integer&gt; in milliseconds for the time it takes for the screen to turn off after no user input.</p>
+</li>
+<li>
+<p>Set the <strong>Display</strong> &gt; <strong>Screen zoom</strong> control to <strong>True</strong> to define a screen magnification increase from 0 - 5.</p>
+</li>
+<li>
+<p>Set the <strong>Display</strong> &gt; <strong>Navigation bar</strong> control to <strong>True</strong> to display the device navigation menu at the bottom of the screen. Setting this value to <strong>False</strong> frees up the entire display. The navigation bar buttons control the left/right and up/down screen navigation.</p>
+<ul>
+<li>
+<p>Set the <strong>Display</strong> &gt; <strong>Navigation bar</strong> &gt; <strong>Button order</strong> control to <strong>True</strong> to set the button order to 0 for normal navigation or 1 for reverse navigation.</p>
+</li>
+<li>
+<p>Set the <strong>Display</strong> &gt; <strong>Navigation bar</strong> &gt; <strong>Navigation type</strong> setting to <strong>Use specified value</strong>. Specify the value as 0 for button navigation and 1 for gesture navigation.</p>
+</li>
+</ul>
+</li>
+<li>
+<p>Set the <strong>Font size and style</strong> &gt; <strong>Font Size (Accessibility / Display)</strong> control to <strong>True</strong> to define the font size from 0-7, with zero (0) being the smallest font size displayed on the device and seven (7) the largest. You must set a font size value from 0-7.</p>
+</li>
+<li>
+<p>Set the <strong>Font size and style</strong> &gt; <strong>Font Style (Accessibility / Display)</strong> control to <strong>True</strong> to configure the <strong>Font Style</strong> as either <strong>SamsungOneUI-Regular.xml</strong> (SamsungOne), or <strong>Foundation.xml</strong> (Gothic bold).</p>
+</li>
+<li>
+<p>Set the <strong>Special access</strong> &gt; <strong>Picture-in-Picture</strong> control to <strong>True</strong> to optionally enable videos while using other device apps at the same time. Setting this control to <strong>False</strong> prevents the user from viewing potentially disruptive videos while using other apps. This control can be located by selecting Settings &gt; Apps &gt; tap on menu (&hellip;) &gt; Special access.</p>
+</li>
+</ul>
+<h2 id="configUniqueDSC">Configure unique deep settings</h2>
+<p>The following describes how to set specific deep settings that require configuration beyond simply enabling or disabling a specific control. This section is periodically updated when unique deep settings requiring specific configuration values are added.</p>
+<ul>
+<li>
+<p>Refer to the <strong>Show notification icons</strong> controls to define whether all or some notifications display on the device. Enter the notification icon display setting as one of the following numeric values:</p>
+<ul>
+<li><strong>0</strong> &mdash; All notifications are received.</li>
+<li><strong>1</strong> &mdash; Only the three most recent notifications are received.</li>
+<li><strong>2</strong> &mdash; Notifications are turned off and none are received.</li>
+<li><strong>3</strong> &mdash; Notifications are enabled, but only a defined number are received.</li>
+</ul>
+</li>
+<li>
+<p>Set one of the following <strong>Language Shortcut</strong> values to configure how language shortcuts are used on the device. Language settings are configured in the <a href="device-settings.html">Device settings policies</a> section, while other language settings such as preferred speech engine, pitch, and speech rate can be set as a <a href="deep-settings-customization.html#configurable-deep-settings">configurable deep setting</a>. Enter the <strong>Language shortcut</strong> setting as one of the following numeric values:</p>
+<ul>
+<li><strong>1</strong> &mdash; Shift+Space</li>
+<li><strong>2</strong> &mdash; Ctrl+Space</li>
+<li><strong>3</strong> &mdash; Shift+Space or Ctrl+Space</li>
+<li><strong>4</strong> &mdash; left Alt+Shift</li>
+<li><strong>5</strong> &mdash; Shift+Space or left Alt+Shift</li>
+<li><strong>6</strong> &mdash; Ctrl+Space or Left Alt+Shift</li>
+<li><strong>7</strong> &mdash; All</li>
+</ul>
+</li>
+</ul>
 <h3 id="side-key">Side key</h3>
-<p>The side key used to be a single purpose power key, but on newer devices you can program the side key to perform multiple functions depending on how it is pressed.</p>
+<p>The side key used to be a single-purpose power key, but on newer devices you can program the side key to perform multiple functions depending on how it&rsquo;s pressed.</p>
 <ul>
 <li>
 <p>Double press</p>
-<p>You can use this key to configure quick launch camera, open Bixby or open any app installed on the device. This can be done using <a href="device-key-mapping.html">Device key mapping</a>.</p>
+<p>You can configure this action to quickly launch the camera, open Bixby, or open any app installed on the device. This configuration can be done using <a href="device-key-mapping.html">Device key mapping</a>.</p>
 </li>
 <li>
 <p>Long press</p>
-<p>It can be used to wake Bixby or open the power off menu on long press. Wake Bixby is currently supported only in Work Profile on Corporate owned (WP-C) devices and will be grayed out in other modes. Power Off is currently supported in both Device Owner (DO) and WP-C modes.</p>
+<p>This action can be used to wake Bixby or open the power off menu. Wake Bixby is currently only supported on company-owned devices with a work profile, and is disabled in other modes. Power Off is currently supported on both fully managed devices and company-owned devices with a work profile.</p>
 </li>
 </ul>
-<p>The Side Key press and hold can be configured in <strong>Device and Settings customization profile</strong> &gt; <strong>Configure values in settings menu</strong> &gt; <strong>Configure a setting menu item.</strong></p>
+<p>The Side Key press and hold action can be configured in <strong>Device and Settings customization profile</strong> &gt; <strong>Configure values in settings menu</strong> &gt; <strong>Configure a setting menu item.</strong></p>
 
 
 
@@ -1352,36 +1550,9 @@
 
 
 <p><img src="../assets/ksp-side-key.png" class="img-fluid" alt="" /></p>
-<p>Configure the Side Key mapping as shown in the image. In <strong>Specify value</strong> field, IT admins can enter either 0 or 1. Set the value to 0 to wake Bixby and 1 to open the power off menu. Disable <strong>Allow end-user modification of this setting</strong> to disallow end-users to modify settings. The corresponding menu item on the UI is grayed out. Enable <strong>Configure to hide settings</strong> to hide this setting from the UI.</p>
-<div class="notice-note"><p>To configure deep settings that require specific values be set beyond simply enabling or disabling a specific control, go to <a href="deep-settings-customization.html#configUniqueDSC">Configure unique deep settings</a>.</p></div>
-<h2 id="configUniqueDSC">2. Configure unique deep settings</h2>
-<p>The following describes how to set specific deep settings that require configuration beyond simply enabling or disabling a specific control. This section will be periodically updated as unique deep settings requiring specific configuration values are added.</p>
-<div class="notice-note"><p>For information on the unique configuration controls available to the device Lockscreen, go to: <a href="lockscreen-customization-policies.html">Deep settings for Lockscreen policies</a>. These deep settings include the configuration parameters required for the roaming clock, face widgets, notifications, language and input, system sounds and vibrations, display settings, and font utilization.</p></div>
-<ul>
-<li>
-<p>Refer to the <strong>Show notification icons</strong> controls to define whether all or some notifications display on the device. Notification setting, (battery percentage, icon display, etc.) adjustments are made within the <a href="lockscreen-customization-policies.html">Lockscreen customization policies</a> section. Enter the notification icon display setting as one of the following numeric values:</p>
-<ul>
-<li><strong>0</strong> &mdash; All notifications are received.</li>
-<li><strong>1</strong> &mdash; Only the three most recent notifications are received.</li>
-<li><strong>2</strong> &mdash; Notifications are turned off and none are received.</li>
-<li><strong>3</strong> &mdash; Notifications are enabled, but only a defined number are received.</li>
-</ul>
-</li>
-<li>
-<p>Set one of the following <strong>Language Shortcut</strong> values to configure how language shortcuts are utilized on the device. Language settings are configured within the <a href="device-settings.html">Device settings policies</a> section, while other language settings such as preferred speech engine, pitch and speech rate can be set within the <a href="lockscreen-customization-policies.html">Lockscreen customization policies</a> section. Enter the Language shortcut setting as one of the following numeric values:</p>
-<ul>
-<li><strong>1</strong> &mdash; shift+space</li>
-<li><strong>2</strong> &mdash; ctrl+space</li>
-<li><strong>3</strong> &mdash; shift+space &amp; ctrl+space</li>
-<li><strong>4</strong> &mdash; left alt+shift</li>
-<li><strong>5</strong> &mdash; shift+space &amp; left alt+shift</li>
-<li><strong>6</strong> &mdash; ctrl+space &amp; left alt+shift</li>
-<li><strong>7</strong> &mdash; All</li>
-</ul>
-</li>
-</ul>
-<h2 id="deployDSC">3. Deploy deep settings</h2>
-<p>The following example describes how to use the policy that hides all notifications on the locked device screen to automatically secure target devices in a group called High security devices.</p>
+<p>Configure the Side Key mapping as shown in the image. In the <strong>Specify value</strong> field, you can set the value to 0 to wake Bixby or 1 to open the power off menu. Disable <strong>Allow end-user modification of this setting</strong> to prevent device users from changing this setting. Enable <strong>Configure to hide settings</strong> to hide this setting.</p>
+<h2 id="deployDSC">Deploy deep settings</h2>
+<p>The following example describes how to deploy deep settings to an existing group called <strong>High security devices</strong>.</p>
 <ol>
 <li>
 <p>After you have created a deep settings policy in your chosen Device Configuration Policy, go to <strong>Groups</strong> &gt; <strong>All groups</strong>.</p>
@@ -1407,13 +1578,14 @@
 <aside class="table-of-headings">
   <nav id="TableOfContents">
   <ul>
-    <li><a href="deep-settings-customization.html#1-create-and-configure-deep-settings">1. Create and configure deep settings</a>
+    <li><a href="deep-settings-customization.html#create-and-configure-deep-settings">Create and configure deep settings</a></li>
+    <li><a href="deep-settings-customization.html#configurable-deep-settings">Configurable deep settings</a></li>
+    <li><a href="deep-settings-customization.html#configUniqueDSC">Configure unique deep settings</a>
       <ul>
         <li><a href="deep-settings-customization.html#side-key">Side key</a></li>
       </ul>
     </li>
-    <li><a href="deep-settings-customization.html#configUniqueDSC">2. Configure unique deep settings</a></li>
-    <li><a href="deep-settings-customization.html#deployDSC">3. Deploy deep settings</a></li>
+    <li><a href="deep-settings-customization.html#deployDSC">Deploy deep settings</a></li>
   </ul>
 </nav>
 </aside>
