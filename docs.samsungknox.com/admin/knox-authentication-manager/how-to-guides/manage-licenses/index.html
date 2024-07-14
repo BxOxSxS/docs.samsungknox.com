@@ -37,7 +37,7 @@
 <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start': new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0], j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src='https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);})(window,document,'script','dataLayer','GTM-P24TWCG');</script>
   <meta name="viewport" content="width=device-width,height=device-height,initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title>Troubleshoot device syncing  | Knox Authentication Manager  | Samsung Knox Documentation</title>
+  <title>Manage licenses  | Knox Authentication Manager  | Samsung Knox Documentation</title>
   <meta http-equiv="content-language" content="en">
   <meta name="language" content="en">
   <script src="../../../assets/js/bundle.js"></script>
@@ -272,7 +272,7 @@
     
     
     <div class="d-flex justify-content-between">
-      <a class="body-5 text-black active" href="../troubleshoot-device-syncing.html">Troubleshoot device syncing</a>
+      <a class="body-5 text-black fw-light" href="../troubleshoot-device-syncing.html">Troubleshoot device syncing</a>
     </div>
     
     </li>
@@ -338,7 +338,7 @@
     
     
     <div class="d-flex justify-content-between">
-      <a class="body-5 text-black fw-light" href="../manage-licenses/index.html">Manage licenses</a>
+      <a class="body-5 text-black active" href="index.html">Manage licenses</a>
     </div>
     
     </li>
@@ -394,11 +394,11 @@
 
             </div>
             <div class="mt-4">
-              <h1>Troubleshoot device syncing</h1>
+              <h1>Manage licenses</h1>
             </div>
             
 
-  <p><span>Last updated September  26th, 2023</span></p>
+  <p><span>Last updated July  9th, 2024</span></p>
 
 
     
@@ -411,49 +411,36 @@
 
 
 
-<p>This page outlines how to test that your devices sync properly.</p>
-<h2 id="prerequisites">Prerequisites</h2>
-<p>Synchronization between shared devices happens when all of the following conditions are met:</p>
-<ul>
-<li>The devices have the same group ID or are on the same Wi-Fi subnet, depending on how you configured Knox Authentication Manager in your UEM.</li>
-<li>The devices are charging.</li>
-<li>Your network&rsquo;s configuration and firewall allows devices to communicate with one another using the UDP and TCP port numbers specified in the managed configuration.</li>
-<li>Port 443 and URLs that end with <strong>*.firebaseio.com</strong> have been added to your firewall&rsquo;s allowlist to allow communication with Firebase.</li>
-</ul>
-<h2 id="test-device-syncing">Test device syncing</h2>
-<p>To test device syncing, you need two devices with Knox Authentication Manager installed that are in the same device group or on the same Wi-Fi subnet, depending on how you configured Knox Authentication Manager in your UEM. For instruction purposes, these devices will be referred to as Device A and Device B.</p>
+
+      
+      
+      
+      
+        
+      
+      
+      
+      
+        
+      
+      
+      
+      
+        <p>A valid Knox Suite license is required in order to deploy Knox Authentication Manager on your devices. Each device — with Knox Authentication Manager installed — consumes a single Knox Suite license seat.</p>
+<p>The process for adding, deleting, and viewing licenses is the same for all Knox Suite services. Please see the Knox Admin Portal <a href="../../../knox-admin-portal/how-to-guides/manage-knox-licenses.html">Manage Knox licenses</a> page for more information.</p>
+<h2 id="remove-a-device-from-a-license">Remove a device from a license</h2>
+<p>If you have Knox Authentication Manager installed on a device that you no longer need in your fleet, you can easily remove the device from your Knox Suite license. This frees up a license seat, allowing you to re-assign the license to another device in the future. To do this:</p>
 <ol>
-<li>Dock or plug in Device B.</li>
-<li>Enroll a new user account with Knox Authentication Manager on Device A.</li>
-<li>Dock or plug in Device A and wait 1-2 minutes for the devices to sync.</li>
-<li>On Device B, enter the enterprise ID you used to create the new user account on Device A. If Knox Authentication Manager signs in to the account without asking you to re-enroll the account, then the devices synced successfully.</li>
+<li>On the device, first uninstall the Knox Authentication Manager application.</li>
+<li>After the app is uninstalled from the device, unenroll it from your UEM.
+<ol>
+<li>For Knox Manage, see <a href="../../../knox-manage/configure/devices/unenroll-devices.html">Unenroll devices</a>.</li>
+<li>For all other UEMs, see their respective documentation.</li>
 </ol>
-<h2 id="potential-issues">Potential issues</h2>
-<h3 id="network-related-issues">Network related issues</h3>
-<p>Devices may not sync if:</p>
-<ul>
-<li>The UDP/TCP port number is blocked by your enterprise&rsquo;s network policy.</li>
-<li>HTTPS or port 443 is blocked so devices can&rsquo;t communicate with Google Firebase.</li>
-</ul>
-<h3 id="device-related-issues">Device related issues</h3>
-<p>Devices may not sync if:</p>
-<ul>
-<li>A device&rsquo;s storage is full.</li>
-<li>A device has lower than 5% power.</li>
-<li>A device&rsquo;s storage is encrypted. Since Knox Authentication Manager&rsquo;s application data is stored in the Credential Encrypted (CE) storage location, if a device is rebooted but not unlocked, the CE storage is encrypted.</li>
-</ul>
-<h3 id="configuration-related-issues">Configuration related issues</h3>
-<p>Devices may not sync if in the Knox Authentication Manager configuration in your UEM:</p>
-<ul>
-<li>Devices aren&rsquo;t under the same org ID, group ID, and group key.</li>
-<li>The UDP/TCP port number is invalid or conflicts with other services on the device.</li>
-</ul>
-<h3 id="charge-related-issues">Charge related issues</h3>
-<p>Devices may not sync if:</p>
-<ul>
-<li>A device was just charged out of the network range.</li>
-<li>A device was powered off when charged.</li>
-</ul>
+</li>
+<li>On the Knox Admin Portal, use the <a href="../../../fundamentals/kbas/kba-845-how-to-disassociate-a-device-from-knox-license-key.html">Device deactivation tool</a> to remove the device from your license.</li>
+</ol>
+<p>Once the device is removed, the license seat is returned to the pool and you can reassign the seat when installing Knox Authentication Manager on a new device.</p>
 
             
           </div>
@@ -462,16 +449,7 @@
 <aside class="table-of-headings">
   <nav id="TableOfContents">
   <ul>
-    <li><a href="../troubleshoot-device-syncing.html#prerequisites">Prerequisites</a></li>
-    <li><a href="../troubleshoot-device-syncing.html#test-device-syncing">Test device syncing</a></li>
-    <li><a href="../troubleshoot-device-syncing.html#potential-issues">Potential issues</a>
-      <ul>
-        <li><a href="../troubleshoot-device-syncing.html#network-related-issues">Network related issues</a></li>
-        <li><a href="../troubleshoot-device-syncing.html#device-related-issues">Device related issues</a></li>
-        <li><a href="../troubleshoot-device-syncing.html#configuration-related-issues">Configuration related issues</a></li>
-        <li><a href="../troubleshoot-device-syncing.html#charge-related-issues">Charge related issues</a></li>
-      </ul>
-    </li>
+    <li><a href="index.html#remove-a-device-from-a-license">Remove a device from a license</a></li>
   </ul>
 </nav>
 </aside>
@@ -505,7 +483,7 @@
       
       <div class="col-sm-12 col-md-6 col-lg-3 footer-vertical-section">
         <div class="d-flex justify-content-between align-items-center">
-          <a class="footer-section-title" data-bs-toggle="collapse" href="../troubleshoot-device-syncing.html#item0" role="button" aria-expanded="false" aria-controls="item0"> 
+          <a class="footer-section-title" data-bs-toggle="collapse" href="index.html#item0" role="button" aria-expanded="false" aria-controls="item0"> 
             <h6 class="body-3 fw-bold text-uppercase text-black pt-4">Knox admin documentation</h6>
           </a>
           <a class="btn-toggle d-inline-flex d-lg-none rounded border-0 fw-light" data-bs-toggle="collapse" data-bs-target="#item0" aria-expanded="false"></a>
@@ -623,7 +601,7 @@
       
       <div class="col-sm-12 col-md-6 col-lg-3 footer-vertical-section">
         <div class="d-flex justify-content-between align-items-center">
-          <a class="footer-section-title" data-bs-toggle="collapse" href="../troubleshoot-device-syncing.html#item1" role="button" aria-expanded="false" aria-controls="item1"> 
+          <a class="footer-section-title" data-bs-toggle="collapse" href="index.html#item1" role="button" aria-expanded="false" aria-controls="item1"> 
             <h6 class="body-3 fw-bold text-uppercase text-black pt-4">Support</h6>
           </a>
           <a class="btn-toggle d-inline-flex d-lg-none rounded border-0 fw-light" data-bs-toggle="collapse" data-bs-target="#item1" aria-expanded="false"></a>
@@ -645,7 +623,7 @@
       
       <div class="col-sm-12 col-md-6 col-lg-3 footer-vertical-section">
         <div class="d-flex justify-content-between align-items-center">
-          <a class="footer-section-title" data-bs-toggle="collapse" href="../troubleshoot-device-syncing.html#item2" role="button" aria-expanded="false" aria-controls="item2"> 
+          <a class="footer-section-title" data-bs-toggle="collapse" href="index.html#item2" role="button" aria-expanded="false" aria-controls="item2"> 
             <h6 class="body-3 fw-bold text-uppercase text-black pt-4">Samsung</h6>
           </a>
           <a class="btn-toggle d-inline-flex d-lg-none rounded border-0 fw-light" data-bs-toggle="collapse" data-bs-target="#item2" aria-expanded="false"></a>
