@@ -110,6 +110,8 @@
   <ul>
     <li>
   <a href="../../knox-sdk.html" >Knox SDK</a>
+  <ul>
+    </ul>
   </li>
 <li>
   <a href="../../knox-pos-sdk.html" >Knox POS SDK</a>
@@ -269,7 +271,8 @@
             </div>
             
 
-  
+  <p><span>Last updated July  19th, 2024</span></p>
+
 
     
 
@@ -305,7 +308,7 @@
 <li><a href="https://www.samsungknox.com/en/resellers" target="_blank">Samsung Knox device resellers</a>, who use the <a href="../../../admin/knox-deployment-program/welcome.htm" target="_blank">Knox Deployment Program console</a> or <a href="../../knox-deployment-program.html">REST APIs</a></li>
 <li><a href="https://play.google.com/store/apps/details?id=com.samsung.android.knox.enrollment" target="_blank">Knox Deployment App</a>, which is designed for small-scale deployments or testing</li>
 </ul>
-<p>These devices start out in a <strong>Pending</strong> state. You can approve these devices for Knox Guard payment tracking using either the <a href="../../../admin/knox-guard.html" target="_blank">Knox Guard Console</a> or REST API call <a href="../api.html#tag/Device/operation/approveDeviceUsingPOST"><code>approve</code></a>. Once approved, devices transition to the <strong>Activating</strong> state. When the Knox Guard app on the device confirms activation, the device then transitions to <strong>Active</strong>.</p>
+<p>These devices start out in a <strong>Pending</strong> state. You can approve these devices for Knox Guard payment tracking using either the <a href="../../../admin/knox-guard.html" target="_blank">Knox Guard console</a> or REST API call <a href="../api.html#tag/Device/operation/approveDeviceUsingPOST"><code>approve</code></a>. Once approved, devices transition to the <strong>Activating</strong> state. When the Knox Guard app on the device confirms activation, the device then transitions to <strong>Active</strong>.</p>
 
 
 
@@ -321,11 +324,130 @@
 <li><strong>Pay-As-You-Go Plans</strong> &mdash; These devices start in a <strong>Locked</strong> state, then become <strong>Active</strong> with the appropriate payment for a specified time period. After this period, the device becomes <strong>Locked</strong> again. Currently, these devices support all the current Knox Guard features except offline lock and default blinking reminder.</li>
 </ul>
 <p>If a device is either rejected or is payment complete, it can be deleted from the Knox Guard payment tracking. Once deleted, the Knox Guard app on the device is uninstalled and the device is no longer tracked.</p>
+<h2 id="device-state">Device state</h2>
+<p>Device state changes when it is approved, assigned a license, completes the payment cycle and so on. For each device state, see the table:</p>
+<div class="overflow-auto my-3"><table>
+<thead>
+<tr>
+<th>Device State</th>
+<th>Description</th>
+<th>External State (on console)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Pending</td>
+<td>The device is pending when a reseller uploads the device to a customer. Customers can then see the device in the list and reject or accept it.</td>
+<td>Pending</td>
+</tr>
+<tr>
+<td>Rejected</td>
+<td>When a customer rejects the device, it&rsquo;s state will change to rejected.</td>
+<td>Rejected</td>
+</tr>
+<tr>
+<td>Accepted</td>
+<td>Once accepted, a Knox Guard agent on the client side is triggered. If auto accept is on, the devices&rsquo; state is changed from &ldquo;Pending&rdquo; to &ldquo;Accepted&rdquo; automatically.</td>
+<td>Activating</td>
+</tr>
+<tr>
+<td>Enrolled</td>
+<td>This state allows the device to be controlled by Knox Guard to lock, unlock, send a message, or blink a device.</td>
+<td>Active</td>
+</tr>
+<tr>
+<td>Exchanging</td>
+<td>Status of a device, which is undergoing maintenance, being replaced with a new device/IMEI number. This requires Samsung customer support assistance and is for tracking purposes only.</td>
+<td>Exchanging</td>
+</tr>
+<tr>
+<td>Resetting</td>
+<td>A device will report the resetting state if a license has expired or been deleted. Once reported, it will transition to the pending state</td>
+<td>Resetting</td>
+</tr>
+<tr>
+<td>StartingReminder</td>
+<td>The state is changed to &ldquo;StartingReminder&rdquo; when a customer sends the start-reminder event to the client.</td>
+<td>Starting Reminder</td>
+</tr>
+<tr>
+<td>StoppingReminder</td>
+<td>The state is changed to &ldquo;StoppingReminder&rdquo; when a customer sends the stop-reminder event to the client.</td>
+<td>Stopping Reminder</td>
+</tr>
+<tr>
+<td>Blinked</td>
+<td>Reminder is activated on the client.</td>
+<td>Reminder On</td>
+</tr>
+<tr>
+<td>Locking</td>
+<td>The state is changed to &ldquo;Locking&rdquo; when a customer sends the lock event to the client.</td>
+<td>Locking</td>
+</tr>
+<tr>
+<td>Locked</td>
+<td>Confirmed that the device is locked.</td>
+<td>Locked</td>
+</tr>
+<tr>
+<td>Unlocking</td>
+<td>The state is changed to &ldquo;Unlocking&rdquo; when a customer sends the unlock event to the client.</td>
+<td>Unlocking</td>
+</tr>
+<tr>
+<td>Completing</td>
+<td>The state is changed to &ldquo;Completing&rdquo; when a customer sends the complete event to the client.</td>
+<td>Completing</td>
+</tr>
+<tr>
+<td>Completed</td>
+<td>Device is out of control of Knox Guard anymore. customer can complete when the loan is over.</td>
+<td>Completed</td>
+</tr>
+</tbody>
+</table></div>
+<h2 id="license-state">License state</h2>
+<p>Following table provide information on different license states.</p>
+<div class="overflow-auto my-3"><table>
+<thead>
+<tr>
+<th>State</th>
+<th>Description</th>
+<th>External state (on console)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Registered</td>
+<td>The license has been created but has yet to be activated.</td>
+<td>Registered</td>
+</tr>
+<tr>
+<td>Active</td>
+<td>The activation period has started and the license is still valid.</td>
+<td>Active</td>
+</tr>
+<tr>
+<td>Expired</td>
+<td>License has surpassed the expiration date and is no longer valid.</td>
+<td>Expired</td>
+</tr>
+</tbody>
+</table></div>
 
             
           </div>
           <div class="l-toh">
-            
+            <h2 class="body-4 fw-bold mt-0">On this page</h2>
+<aside class="table-of-headings">
+  <nav id="TableOfContents">
+  <ul>
+    <li><a href="../how-knox-guard-works.html#device-state">Device state</a></li>
+    <li><a href="../how-knox-guard-works.html#license-state">License state</a></li>
+  </ul>
+</nav>
+</aside>
           </div>
         </div> 
       </div><div>

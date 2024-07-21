@@ -295,7 +295,7 @@
             </div>
             
 
-  <p><span>Last updated July  12th, 2024</span></p>
+  <p><span>Last updated July  19th, 2024</span></p>
 
 
     
@@ -314,26 +314,26 @@
       
       
       
-        <p>This page describes how to set up Knox Remote Support for both the Knox Admin Portal and Knox Manage, and covers how to enable the Knox Remote Support agent with the required EMM policies for your devices.</p>
-<div class="notice-important"><p>In order for Knox Remote Support to function, the device user must install the <a href="https://play.google.com/store/apps/details?id=com.sds.emm.sers" target="_blank">Knox Remote Support agent from Google Play Store</a> in the <strong>personal</strong> or <strong>primary profile</strong> of the device. It won’t function if installed in a work profile.</p><p>Make sure you also keep the agent up-to-date so your support sessions work as expected.</p></div>
-<h2 id="install-enable-knox-remote-support-agent">Install and enable the Knox Remote Support agent</h2>
-<h3 id="use-knox-remote-support-knox-admin-portal">To use Knox Remote Support from the Knox Admin Portal</h3>
+        <p>This page describes how to set up Knox Remote Support for both the Knox Admin Portal and Knox Manage, and covers how to enable the Knox Remote Support agent with the required UEM policies for your devices.</p>
+<div class="notice-important"><p>In order for Knox Remote Support to function, the device user must install the <a href="https://play.google.com/store/apps/details?id=com.sds.emm.sers" target="_blank">Knox Remote Support agent from Google Play Store</a> in the <strong>personal</strong> or <strong>primary profile</strong> of the device. It won’t function if installed in a work profile. It can also be installed by you through app assignment.</p><p>Make sure you also keep the agent up-to-date so your support sessions work as expected.</p></div>
+<h2 id="install-and-enable-the-knox-remote-support-agent">Install and enable the Knox Remote Support agent</h2>
+<h3 id="use-knox-remote-support-from-the-knox-admin-portal">Use Knox Remote Support from the Knox Admin Portal</h3>
 <p>If you&rsquo;re using Knox Remote Support from the Knox Admin Portal, you can:</p>
 <ul>
 <li>
 <p>Ask the device user to install the Knox Remote Support agent from the Google Play Store, then directly share an access code with them. If you choose this method, you won&rsquo;t be able to automatically start or ask users to start a remote session.</p>
 </li>
 <li>
-<p>Set up and deploy the Knox Remote Support agent to fully managed devices through an EMM, then <strong>Automatically start</strong> or <strong>Ask users to start</strong> a remote session. To do so, you need to set up managed configurations for the agent in your EMM. If you use this method for non-fully managed devices, those devices aren&rsquo;t added to the <strong>Devices</strong> menu.</p>
+<p>Set up and deploy the Knox Remote Support agent to fully managed devices through a UEM, then <strong>Automatically start</strong> or <strong>Ask users to start</strong> a remote session. To do so, you need to set up managed configurations for the agent in your UEM. If you use this method for non-fully managed devices, those devices aren&rsquo;t added to the <strong>Devices</strong> menu.</p>
 </li>
 </ul>
 <div class="notice-note"><p>Only fully managed Samsung devices running the Knox platform support the <strong>Automatically start</strong> option.</p></div>
 <h4 id="set-up-managed-configurations">Set up managed configurations</h4>
 <p>Before you start, go to <strong>Knox Remote Support</strong> in the Knox Admin Portal navigation menu. Then, click your username in the top-right corner and copy the <strong>Secret Key</strong>. You&rsquo;ll need to enter this key later.</p>
-<p>Then, to configure these policies in your EMM:</p>
+<p>Then, to configure these policies in your UEM:</p>
 <ol>
 <li>
-<p>In your EMM console, add <strong>Knox Remote Support</strong> to Managed Google Play.</p>
+<p>In your UEM console, add <strong>Knox Remote Support</strong> to Managed Google Play.</p>
 </li>
 <li>
 <p>Go to the managed app configuration for Knox Remote Support. Then, for <strong>Secret Key</strong>, paste the key you copied earlier.</p>
@@ -372,7 +372,8 @@
 </li>
 </ol>
 <p>Once the agent is installed on the device, you can see it on the Knox Remote Support <strong>Device</strong> page.</p>
-<h3 id="use-knox-remote-support-knox-manage">Use Knox Remote Support from Knox Manage</h3>
+<div class="notice-note"><p>After the Knox Remote Support agent is installed, the device user is prompted to grant it access permissions on the device. The device user must provide consent to these permissions to use Knox Remote Support, including for use of <strong>Automatically start</strong> option for starting remote sessions.</p><ul><li><p>On Samsung devices, device users are prompted only once to grant permissions to the Knox Remote Support agent after it’s installed.</p></li><li><p>On non-Samsung and DeX mode devices, device users are prompted to grant permissions to the Knox Remote Support agent at the start of each Knox Remote Support session.</p></li></ul></div>
+<h3 id="use-knox-remote-support-from-knox-manage">Use Knox Remote Support from Knox Manage</h3>
 <p>If you&rsquo;re using Knox Remote Support from the Knox Manage console, you have two options:</p>
 <ul>
 <li>
@@ -402,12 +403,13 @@
 </ul>
 <div class="notice-tip"><p>In the device’s profile, under <strong>Android Enterprise</strong> > <strong>Application</strong> > <strong>App Uninstallation Prevention List Setting</strong>, add the agent to prevent the device user from deleting it.</p></div>
 <p>If a device user is enabling Knox Remote Support from the Knox Manage agent, they have the option to install, update and, run the agent in the kiosk mode of the device. For details on how, see <a href="../knox-manage/kiosk-devices/kiosk-wizard/configure-kiosk-device-settings.html#access-knox-remote-support-from-kiosk">Access Knox Remote Support from kiosk</a>.</p>
-<h2 id="fully-enable-knox-remote-support-devices-enrolled-emms">Fully enable Knox Remote Support for devices enrolled in an EMM</h2>
-<p>For devices enrolled in an EMM, you must also enable the appropriate Knox Service Plugin policy. Without this policy, basic Knox Remote Support functionality may be severely impacted. The remote device won&rsquo;t stream its screen, resulting in a blank live view in the Viewer.</p>
-<p>To fully enable the Knox Remote Support agent on devices enrolled in an EMM:</p>
+<div class="notice-note"><p>After the Knox Remote Support agent is installed, the device user is prompted to grant it access permissions on the device. The device user must provide consent to these permissions to use Knox Remote Support, including for use of <strong>Automatically start</strong> option for starting remote sessions.</p><ul><li><p>On Samsung devices, device users are prompted only once to grant permissions to the Knox Remote Support agent after it’s installed.</p></li><li><p>On non-Samsung and DeX mode devices, device users are prompted to grant permissions to the Knox Remote Support agent at the start of each Knox Remote Support session.</p></li></ul></div>
+<h2 id="fully-enable-knox-remote-support-for-devices-enrolled-in-an-uem">Fully enable Knox Remote Support for devices enrolled in an UEM</h2>
+<p>For devices enrolled in a UEM, you must also enable the appropriate Knox Service Plugin policy. Without this policy, basic Knox Remote Support functionality may be severely impacted. The remote device&rsquo;s screen is not relayed and shown in the Viewer, which displays a blank screen instead.</p>
+<p>To fully enable the Knox Remote Support agent on devices enrolled in a UEM:</p>
 <ol>
 <li>
-<p>Go to your EMM console and edit the policies for your device.</p>
+<p>Go to your UEM console and edit the policies for your device.</p>
 <ul>
 <li>If you&rsquo;re a Knox Manage user, go to <strong>Profile</strong>, then click the name of the device&rsquo;s profile. Then, click <strong>Modify Policy</strong> &gt; <strong>Samsung Knox</strong>.</li>
 </ul>
@@ -460,7 +462,7 @@
 </ul>
 </li>
 </ol>
-<h3 id="automatically-grant-app-permissions-knox-remote-support-agent">Automatically grant app permissions to the Knox Remote Support agent</h3>
+<h3 id="automatically-grant-app-permissions-to-the-knox-remote-support-agent">Automatically grant app permissions to the Knox Remote Support agent</h3>
 <p>If you want to automatically start remote support sessions on your devices, you need to set certain policies to bypass the prompt asking device users to manually grant permissions.</p>
 <p>If you&rsquo;re a Knox Manage user:</p>
 <ol>
@@ -471,7 +473,7 @@
 <p>Set the <strong>Android Enterprise</strong> &gt; <strong>Application</strong> &gt; <strong>App Permission policy</strong> to <strong>Prompt</strong>, then click <strong>Add</strong>.</p>
 </li>
 <li>
-<p>In the app dialog, search for and select Knox Remote Support ( <strong>com.sds.emm.sers</strong> ).</p>
+<p>In the app dialog, search for and select Knox Remote Support (<strong>com.sds.emm.sers</strong>).</p>
 </li>
 <li>
 <p>In the app permissions dialog, <strong>Grant</strong> the following:</p>
@@ -485,17 +487,17 @@
 <p>Save your profile and deploy it to the devices.</p>
 </li>
 </ol>
-<p>If you&rsquo;re an EMM user, grant the following app runtime permissions to the Knox Remote Support agent:</p>
+<p>If you&rsquo;re a UEM user, grant the following app runtime permissions to the Knox Remote Support agent:</p>
 <ul>
 <li><strong>read phone status and identity</strong></li>
 <li><strong>android.permission.READ_PHONE_NUMBERS</strong></li>
 <li><strong>post notifications</strong> (for Android 13 and higher)</li>
 </ul>
-<h4 id="resolve-device-admin-errors-android-enterprise">Resolve device admin errors with Android Enterprise</h4>
+<h4 id="resolve-device-admin-errors-with-android-enterprise">Resolve device admin errors with Android Enterprise</h4>
 <p>In some cases, Android Enterprise devices might display error notifications related to device admin notifications, and Knox Remote Support might fail to launch. If this behavior occurs after setting the Knox Service Plugin policies in the previous section, then you should enable the following additional Knox service Plugin policies to resolve the issue:</p>
 <ol>
 <li>
-<p>Go to your EMM console and edit the policies for your device.</p>
+<p>Go to your UEM console and edit the policies for your device.</p>
 <ul>
 <li>If you&rsquo;re a Knox Manage user, go to <strong>Profile</strong>, then click the name of the device&rsquo;s profile. Then, click <strong>Modify Policy</strong> &gt; <strong>Samsung Knox</strong>.</li>
 </ul>
@@ -530,15 +532,15 @@
 <aside class="table-of-headings">
   <nav id="TableOfContents">
   <ul>
-    <li><a href="knox-remote-support-agent.html#install-enable-knox-remote-support-agent">Install and enable the Knox Remote Support agent</a>
+    <li><a href="knox-remote-support-agent.html#install-and-enable-the-knox-remote-support-agent">Install and enable the Knox Remote Support agent</a>
       <ul>
-        <li><a href="knox-remote-support-agent.html#use-knox-remote-support-knox-admin-portal">To use Knox Remote Support from the Knox Admin Portal</a></li>
-        <li><a href="knox-remote-support-agent.html#use-knox-remote-support-knox-manage">Use Knox Remote Support from Knox Manage</a></li>
+        <li><a href="knox-remote-support-agent.html#use-knox-remote-support-from-the-knox-admin-portal">Use Knox Remote Support from the Knox Admin Portal</a></li>
+        <li><a href="knox-remote-support-agent.html#use-knox-remote-support-from-knox-manage">Use Knox Remote Support from Knox Manage</a></li>
       </ul>
     </li>
-    <li><a href="knox-remote-support-agent.html#fully-enable-knox-remote-support-devices-enrolled-emms">Fully enable Knox Remote Support for devices enrolled in an EMM</a>
+    <li><a href="knox-remote-support-agent.html#fully-enable-knox-remote-support-for-devices-enrolled-in-an-uem">Fully enable Knox Remote Support for devices enrolled in an UEM</a>
       <ul>
-        <li><a href="knox-remote-support-agent.html#automatically-grant-app-permissions-knox-remote-support-agent">Automatically grant app permissions to the Knox Remote Support agent</a></li>
+        <li><a href="knox-remote-support-agent.html#automatically-grant-app-permissions-to-the-knox-remote-support-agent">Automatically grant app permissions to the Knox Remote Support agent</a></li>
       </ul>
     </li>
   </ul>
