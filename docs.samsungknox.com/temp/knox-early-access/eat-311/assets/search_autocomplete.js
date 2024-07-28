@@ -148,10 +148,8 @@ function search_changed(e, kd, toroot)
             if (text.length != 0 &&
                   s.label.toLowerCase().indexOf(text.toLowerCase()) != -1) {
 if (!(s.label.toLowerCase().indexOf("com.samsung.android.knox.log.auditevents.") != -1)) {
-if (!(s.label.toLowerCase().indexOf("com.samsung.android.knox.log.auditevents.") != -1)) {
                 gMatches[matchedCount] = s;
                 matchedCount++;
-}
 }
             }
         }

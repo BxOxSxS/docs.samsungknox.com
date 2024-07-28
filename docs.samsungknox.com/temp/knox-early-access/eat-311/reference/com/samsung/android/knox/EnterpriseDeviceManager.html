@@ -5224,6 +5224,16 @@ From class
   <div class="jd-tagdata">
       <h5 class="jd-tagtitle">Returns</h5>
       <ul class="nolist"><li><code>true</code> on success, <code>false</code> on failure</li></ul>
+  </div>
+  <div class="jd-tagdata">
+      <h5 class="jd-tagtitle">Throws</h5>
+      <table class="jd-tagtable">  
+        <tr>
+            <th><a href="http://developer.android.com/reference/java/lang/SecurityException.html">SecurityException</a></td>
+            <td>If caller does not have the required permissions or
+          administrator is not a Device or Profile Owner.</td>
+        </tr>
+      </table>
   </div>      
   <div class="jd-tagdata">
       <h5 class="jd-tagtitle">Usage</h5>
@@ -5232,10 +5242,13 @@ From class
             <td>An administrator can set the removable status of another administrator application. If
         set to <code>true</code>, the user can remove the administrator through the Settings application.
         If set to <code>false</code>, the user cannot remove the administrator through the Settings
-        application. <br>
-        <br>
-        Note: Currently this API does not support rollback so it is administrator
+        application.
+        <p>
+        <b>NOTE 1</b>: Currently this API does not support rollback so it is administrator
         responsibility to revoke this policy before de-registering itself.
+        <p>
+        <b>NOTE 2</b>: Since API level 38, only Device Owner or Profile Owner can call
+        this API with <code>removable</code> parameter as <code>false</code>.
         <p></td>
         </tr>
       </table>
@@ -5336,7 +5349,8 @@ From class
       <table class="jd-tagtable">  
         <tr>
             <th><a href="http://developer.android.com/reference/java/lang/SecurityException.html">SecurityException</a></td>
-            <td>If caller does not have required permissions</td>
+            <td>If caller does not have the required permissions or
+          administrator is not a Device or Profile Owner.</td>
         </tr>
       </table>
   </div>      
@@ -5347,6 +5361,9 @@ From class
             <td>An administrator can set their removable status. If set to <code>true</code>, the user can remove
         the administrator through the Settings application. If set to <code>false</code>, the user cannot
         remove the administrator through the Settings application. <br>
+        <p>
+        <b>NOTE</b>: Since API level 38, only Device Owner or Profile Owner can call
+        this API with <code>removable</code> parameter as <code>false</code>.
         <p></td>
         </tr>
       </table>
@@ -5405,7 +5422,7 @@ From class
 <A NAME="navbar_top"></A>
 
 <div id="footer">
-<a href="http://www.samsung.com">Samsung Electronics</a>.<br/>SDK API level 38 - July 15 2024
+<a href="http://www.samsung.com">Samsung Electronics</a>.<br/>SDK API level 38 - July 22 2024
 </div> <!-- end footer -->
 
 </div> <!-- jd-content -->
