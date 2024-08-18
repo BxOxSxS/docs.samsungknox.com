@@ -705,6 +705,17 @@
     
     
     <div class="d-flex justify-content-between">
+      <a class="body-5 text-black fw-light" href="../nist-requirements/index.html">NIST requirements</a>
+    </div>
+    
+    </li>
+  
+  
+  
+    <li class="mt-2">
+    
+    
+    <div class="d-flex justify-content-between">
       <a class="body-5 text-black fw-light" href="../glossary/index.html">Glossary</a>
     </div>
     
@@ -1017,7 +1028,7 @@
             </div>
             
 
-  <p><span>Last updated February  20th, 2024</span></p>
+  <p><span>Last updated August  12th, 2024</span></p>
 
 
     
@@ -1053,7 +1064,7 @@
       
       
         <p>Having established a secure Below-the-OS platform, it&rsquo;s critical to extend security into the OS. Several security-sensitive operations, such as logging, occur either in the OS kernel or in processes. For robust security, Below-the-OS platform components need to integrate with and protect these security-critical OS components.</p>
-<p>Samsung PCs have special Below-the-OS features to protect security-critical OS components from tamper, and to integrate Below-the-OS security events into Windows event logs.</p>
+<p>Samsung Galaxy Books with the Knox security platform have special Below-the-OS security features to protect security-critical OS components from tamper, and to integrate Below-the-OS security events into Windows event logs.</p>
 <h2 id="samsung-security-service-tamper-protection-using-below-the-os">Samsung Security Service Tamper Protection using Below-the-OS</h2>
 <p>Malware and ransomware often try to <a href="https://attack.mitre.org/techniques/T1562/001/" target="_blank">kill, disable, and uninstall security components</a> such as logging services to evade detection. Therefore, it&rsquo;s important to protect such services from tamper. However, protection is especially challenging since Windows malware often executes with elevated system privileges, allowing malware to easily kill and uninstall security-related services.</p>
 
@@ -1175,54 +1186,22 @@
 
 
 <p><img src="../../assets/pc-white-paper-figure-6.png" class="image-block-scale-75 img-thumbnail" alt="Figure 6: Samsung Security Service Tamper Protection from Below-the-OS" /></p>
-<p><strong>Figure 6</strong>: Samsung Security Service Tamper Protection from Below-the-OS.</p>
+<p>Figure 6: Samsung Security Service Tamper Protection from Below-the-OS.</p>
 <p>Samsung&rsquo;s Security Service handles critical operations such as logging. Thus, it&rsquo;s important that the Samsung Security Service remains protected from tamper.</p>
-<p>This protection begins at boot-time and extends through run-time. During boot-time, as shown in <strong>Figure 6</strong>, the UEFI and BIOS securely reinstalls Samsung&rsquo;s Security Controller Driver and the Samsung Security Service if either of these are uninstalled or not present. It does this by using a standard Windows mechanism called the <a href="http://go.microsoft.com/fwlink/p/?LinkId=234840#driver-archive" target="_blank">Windows Platform Binary Table</a>, or WPBT, during boot. This process verifies that the security driver and service binaries are signed by Samsung before starting them.</p>
+<p>This protection begins at boot-time and extends through run-time. During boot-time, as shown in Figure 6, the UEFI and BIOS securely reinstalls Samsung&rsquo;s Security Controller Driver and the Samsung Security Service if either of these are uninstalled or not present. It does this by using a standard Windows mechanism called the <a href="http://go.microsoft.com/fwlink/p/?LinkId=234840#driver-archive" target="_blank">Windows Platform Binary Table</a>, or WPBT, during boot. This process verifies that the security driver and service binaries are signed by Samsung before starting them.</p>
 <p>The Security Controller Driver and Security Service binaries are embedded into the UEFI image, and are thus immune from file system tampering. At run-time, the Samsung Security Controller Driver monitors and protects the Security Service by using layered defense mechanisms. If the Security Service process is somehow stopped, the Security Controller Driver is notified through callbacks and instantly restarts the service. The Security Service binary is itself compiled with protection against run-time attacks such as code or DLL injection using various defense-in-depth techniques.</p>
 <h2 id="event-integration-with-windows-event-viewer">Event integration with Windows Event Viewer</h2>
 <p>Another important aspect of extending Below-the-OS security into the OS is to make sure that Below-the-OS security events are appended to existing OS logs in a secure manner. Samsung&rsquo;s Below-the-OS and in-OS security components generate boot-time and runtime security events that are stored in logs in persistent and secure SPI flash memory.</p>
 <p>The Security Service&rsquo;s <strong>Event Logging Service</strong> appends these events to Windows Event Logs, which can be viewed using the Windows Event Viewer. To ensure that event logging can&rsquo;t be bypassed, the Event Logging Service is started on every boot and is protected from tamper or shut-down at run-time. For more details, see <a href="index.html#samsung-security-service-tamper-protection-using-below-the-os">Samsung Security Service Tamper Protection</a>.</p>
-<p>The Event Logging Service logs several types of security events and information that can be viewed using the Windows Event Viewer under a dedicated &ldquo;Samsung Security&rdquo; app event log section:</p>
-<div class="overflow-auto my-3"><table>
-    <tr>
-        <th scope="col">Event</th>
-        <th scope="col">Examples</th>
-    </tr>
-    <tr>
-        <td>Below-the-OS security events</td>
-        <td>
-            <ul>
-                <li><a href="../enhancements-to-uefi.html#tamper-alert">Tamper Alerts</a></li>
-                <li>Unauthorized writes to BIOS variables and protected SMM areas</li>
-                <li>BIOS and Secure Boot key recovery attempts</li>
-                <li>Suspicious SMI calls</li>
-            </ul>
-        </td>
-    </tr>
-    <tr>
-        <td>In-OS security events </td>
-        <td>
-            <ul>
-                <li>Uninstalls</li>
-                <li>Unloads of security-critical components, such as the Security Service</li>
-                <li>Writes to security-critical registry keys</li>
-            </ul>
-        </td>
-    </tr>
-    <tr>
-        <td>Security state of the system</td>
-        <td>
-            <ul>
-                <li>Security software version information</li>
-                <li>Enable or disable status of security-relevant BIOS settings</li>
-                <li>Variables such as Secure Boot, Advanced SMM Protection, SMI Guard, and TPM activation status</li>
-            </ul>
-        </td>
-    </tr>
-</table></div>
-<p>Event severity levels are one of <strong>Information</strong> for normal but security-relevant events, <strong>Warning</strong> for notice of abnormal events that have been automatically resolved, and <strong>Error</strong> for unrecoverable events that need administrator action.</p>
+<p>The Event Logging Service logs several types of security events and information that can be viewed using the Windows Event Viewer under a dedicated “Samsung Security” application event log section. The following events are available:</p>
+<ul>
+<li><strong>Below-the-OS security</strong> events such as <a href="../enhancements-to-uefi.html#tamper-alert">Tamper Alerts</a>, unauthorized writes to BIOS variables and protected SMM areas, BIOS and Secure Boot key recovery attempts, and suspicious SMI calls.</li>
+<li><strong>In-OS security</strong> events such as uninstalls, unloads of security-critical components such as the Security Service, and writes to security-critical registry keys.</li>
+<li><strong>Security state of the system</strong>, such as the security software version information, enable/disable status of security-relevant BIOS settings, and variables such as Secure Boot, Advanced SMM Protection, SMI Guard, and TPM activation status.</li>
+</ul>
+<p>Event severity levels are one of <strong>Information</strong> (normal but security-relevant events), <strong>Warning</strong> (notice of abnormal events that have been automatically resolved), and <strong>Error</strong> (unrecoverable events that need administrator action).</p>
 <h3 id="user-notifications">User notifications</h3>
-<p>When certain security-critical events happen at runtime, in addition to being logged, the user is notified of the event through a toast notification in Windows. The user has the option to obtain more information or dismiss the event, as seen in <strong>Figure 7</strong>.</p>
+<p>When certain security-critical events happen at runtime, in addition to being logged, the user is notified of the event through a toast notification in Windows. The user has the option to obtain more information or dismiss the event, as seen in Figure 7.</p>
 
 
 
@@ -1286,8 +1265,8 @@
     
     
     
-      
     
+      
     
     
   
@@ -1341,8 +1320,8 @@
   
 
 
-<p><img src="../../assets/pc-white-paper-figure-7.png" class="image-block-scale-60 img-thumbnail" alt="Figure 7: Notification of a Tamper Alert" /></p>
-<p><strong>Figure 7</strong>: Notification of a Tamper Alert</p>
+<p><img src="../../assets/pc-white-paper-figure-7.png" class="image-block-scale-50 img-thumbnail" alt="Figure 7: Notification of a Tamper Alert" /></p>
+<p>Figure 7: Notification of a Tamper Alert</p>
 
             
           </div>
@@ -1400,9 +1379,9 @@
             
             <li>
               <a
-                href="../../../../knox-suite.html"
+                href="../../../../fundamentals.html"
                 class="body-5 d-flex align-items-center text-black fw-light pe-auto text-decoration-none"
-                >Knox Suite</a
+                >Fundamentals</a
               >
             </li>
             
@@ -1411,6 +1390,14 @@
                 href="../../../../knox-admin-portal.html"
                 class="body-5 d-flex align-items-center text-black fw-light pe-auto text-decoration-none"
                 >Knox Admin Portal</a
+              >
+            </li>
+            
+            <li>
+              <a
+                href="../../../../knox-suite.html"
+                class="body-5 d-flex align-items-center text-black fw-light pe-auto text-decoration-none"
+                >Knox Suite</a
               >
             </li>
             
@@ -1499,6 +1486,14 @@
                 href="../../../../care-plus.html"
                 class="body-5 d-flex align-items-center text-black fw-light pe-auto text-decoration-none"
                 >Samsung Care&#43; for Business</a
+              >
+            </li>
+            
+            <li>
+              <a
+                href="../../../../uat.html"
+                class="body-5 d-flex align-items-center text-black fw-light pe-auto text-decoration-none"
+                >User Acceptance Testing</a
               >
             </li>
             

@@ -705,6 +705,17 @@
     
     
     <div class="d-flex justify-content-between">
+      <a class="body-5 text-black fw-light" href="../nist-requirements/index.html">NIST requirements</a>
+    </div>
+    
+    </li>
+  
+  
+  
+    <li class="mt-2">
+    
+    
+    <div class="d-flex justify-content-between">
       <a class="body-5 text-black fw-light" href="../glossary/index.html">Glossary</a>
     </div>
     
@@ -1017,7 +1028,7 @@
             </div>
             
 
-  <p><span>Last updated February  20th, 2024</span></p>
+  <p><span>Last updated August  12th, 2024</span></p>
 
 
     
@@ -1040,18 +1051,12 @@
       
       
       
-        
-      
-      
-      
-      
         <p>In typical laptop PCs, the motherboard normally provides power directly to the CPU during the boot sequence. Once powered up, the CPU would then access its dedicated SPI flash storage to load and run the BIOS.</p>
-<p>With the Samsung Galaxy Book4 Secured by Knox, the boot sequence begins with the SecEP. When the motherboard first powers up, it initializes the SecEP. The SecEP is responsible for providing power to the CPU. Before the SecEP powers on the CPU, it first verifies whether or not the BIOS is corrupted. If the BIOS is safe and corruption-free, the SecEP then powers on the CPU, and the CPU accesses its SPI flash storage to load the BIOS.</p>
-<p>These layers of protection are put in place to prevent the device from loading and executing corrupt firmware and compromising the system. <strong>Figure 2</strong> in <a href="../hardware-backed-trust.html#secep-bios-validation-and-cpu-initialization">SecEP BIOS validation and CPU initialization</a> further describes how the SecEP protects the CPU during the boot sequence.</p>
-<p>Throughout this chapter, we&rsquo;ll explain the various security features used by the SecEP to provide a robust, hardware-backed system of trust to help protect the Samsung Galaxy Book4 Secured by Knox from threats and compromises.</p>
+<p>On Galaxy Books with the Knox security platform, the boot sequence begins with the SecEP. When the motherboard first powers up, it initializes the SecEP. The SecEP is responsible for providing power to the CPU. Before the SecEP powers on the CPU, it first verifies whether or not the BIOS is corrupted. If the BIOS is safe and corruption-free, the SecEP then powers on the CPU, and the CPU accesses SPI flash storage (to load the BIOS).</p>
+<p>These layers of protection are put in place to prevent the device from loading and executing corrupt firmware and compromising the system. Figure 2 further describes how the SecEP protects the CPU during the boot sequence.</p>
+<p>Throughout this chapter, we&rsquo;ll explain the various security features used by the SecEP to provide a robust, hardware-backed system of trust to help protect the Galaxy Book from threats and compromises.</p>
 <h2 id="secep-firmware-self-validation">SecEP firmware self-validation</h2>
-<p>With Galaxy Book4 Secured by Knox, the SecEP prevents the CPU from accessing the SPI flash storage until permission is granted. However, before that permission is even granted, the SecEP goes through a series of self-validation checks to make sure that its own firmware hasn&rsquo;t been compromised.</p>
-<p><strong>Figure 1</strong> describes how the SecEP performs this firmware self-validation:</p>
+<p>The SecEP prevents the CPU from accessing the SPI Flash Storage until permission is granted. However, before that permission is even granted the SecEP goes through a series of self-validation checks to ensure that its own firmware hasn’t been compromised. Figure 1 describes how the SecEP performs this firmware self-validation:</p>
 
 
 
@@ -1061,7 +1066,7 @@
 
 
 <p><img src="../../assets/pc-white-paper-figure-1.png" class="img-fluid img-thumbnail" alt="Figure 1: SecEP firmware self-validation" /></p>
-<p><strong>Figure 1</strong>: SecEP firmware self-validation</p>
+<p>Figure 1: SecEP firmware self-validation</p>
 <ol>
 <li>
 <p>The SecEP firmware self-validation first begins with a firmware hash check. This happens when the <strong>SecEP Boot ROM</strong> retrieves the Firmware Certificate Hash (SHA384) &mdash; generated using an EC SecP384r1 algorithm &mdash; from the <strong>SecEP Fuse Bank</strong>. The Boot ROM then uses this hash to validate the <strong>Public Key</strong> stored in the SecEP flash storage.</p>
@@ -1077,6 +1082,7 @@
 </li>
 </ol>
 <h2 id="secep-bios-validation-and-cpu-initialization">SecEP BIOS validation and CPU initialization</h2>
+<p>Once the SecEP validates and runs its own firmware, it then proceeds to verify the main BIOS, as described in Figure 2. In order to verify the BIOS:</p>
 
 
 
@@ -1196,17 +1202,16 @@
 
 
 <p><img src="../../assets/pc-white-paper-figure-2.png" class="image-block-scale-80 img-thumbnail" alt="Figure 2: SecEP protection during boot up" /></p>
-<p><strong>Figure 2</strong>: SecEP protection during boot up</p>
-<p>Once the SecEP validates and runs its own firmware, it then proceeds to verify the main BIOS. In order to verify the BIOS:</p>
+<p>Figure 2: SecEP protection during boot up</p>
 <ol>
 <li>
-<p>First, the SecEP reads the BIOS RSA2048 OEM public key from the SPI flash storage as illustrated in <strong>Figure 2</strong>, <strong>step 2</strong>. This key is checked against a SHA384 hash stored in the SecEP&rsquo;s fuse bank. If the key is valid, the SecEP then checks the BIOS version number against the Rollback Protection Value stored in the SecEP fuse bank.</p>
+<p>First, the SecEP reads the BIOS RSA2048 OEM public key from the SPI flash storage as illustrated in step 2. This key is checked against a SHA384 hash stored in the SecEP&rsquo;s fuse bank. If the key is valid, the SecEP then checks the BIOS version number against the Rollback Protection Value stored in the SecEP fuse bank.</p>
 </li>
 <li>
-<p>Once both the BIOS public key and version number are validated, the SecEP gives the CPU access to the SPI flash storage in order to load the BIOS, as illustrated in <strong>Figure 2</strong>, <strong>step 3</strong>.</p>
+<p>Once both the BIOS public key and version number are validated, the SecEP gives the CPU access to the SPI flash storage in order to load the BIOS, as illustrated in step 3.</p>
 </li>
 <li>
-<p>The SecEP then powers on the CPU. Once the CPU has power, it can load the BIOS from the SPI Flash Storage, as illustrated in <strong>Figure 2</strong>, <strong>steps 4</strong> and <strong>5</strong>.</p>
+<p>The SecEP then powers on the CPU. Once the CPU has power, it can load the BIOS from the SPI Flash Storage, as illustrated in steps 4 and 5.</p>
 </li>
 </ol>
 <p>If the SecEP detects any incorrectly-signed firmware in place of the BIOS, the SecEP won&rsquo;t grant the CPU access to the firmware, and the CPU won&rsquo;t boot.
@@ -1216,8 +1221,8 @@ After the CPU is powered on, <strong>Intel Boot Guard</strong> independently val
 <p>During a normal boot flow, the SecEP depends on the CPU&rsquo;s flash storage to load the BIOS firmware. This firmware, while cryptographically verified before being loaded, is still susceptible to attacks from the CPU. If the firmware in flash storage gets corrupted, SecEP will prevent it from loading. While this could mitigate the threat, the device might still be unable to boot up &mdash; thus rendering it unusable without IT admin intervention.</p>
 <p><strong>BIOS Auto Recovery</strong> addresses this problem by including a backup copy of the BIOS firmware in the SecEP&rsquo;s flash storage. This storage is physically inaccessible from the CPU and other hardware running on the device. If the SecEP fails to verify the BIOS firmware stored on the CPU&rsquo;s flash storage, it overwrites that firmware with its own locally-stored copy. Once the BIOS firmware has been restored, the SecEP reboots the device so that the recovered firmware can once again be verified and loaded.</p>
 <h2 id="secure-communications-with-the-bios">Secure communications with the BIOS</h2>
-<p>Once the BIOS has been initialized, the CPU and the SecEP communicate with one another through a dedicated line called the <strong>System Management BUS</strong>, or <strong>SMBUS</strong>. This line helps ensure that only messages using an authentication key are passed back and forth between these two components.</p>
-<p>Since the SMBUS is connected to the CPU, the OS also sends messages to the SecEP, opening up the possibility for a compromised OS to impersonate the BIOS and execute privileged operations with the SecEP. To help protect against this type of compromise, the SecEP and BIOS negotiate a per-boot HMAC-SHA256 authentication key using ECDH-P256 during the Pre-EFI Initialization Phase.</p>
+<p>Once the BIOS has been initialized, the CPU and the SecEP communicate with one another through a dedicated channel over Enhanced Serial Peripheral Interface (eSPI). This channel helps ensure that only messages using an authentication key are passed back and forth between these two components.</p>
+<p>Since the eSPI is connected to the CPU, the OS also sends messages to the SecEP, opening up the possibility for a compromised OS to impersonate the BIOS and execute privileged operations with the SecEP. To help protect against this type of compromise, the SecEP and BIOS negotiate a per-boot HMAC-SHA256 authentication key using ECDH-P256 during the Pre-EFI Initialization Phase.</p>
 <p>This shared key gets maintained by the BIOS as it progresses through its boot stages and enters System Management Mode. Once in this mode, the shared key is hardware-isolated from the OS in a special area of main system RAM dedicated to system management data.</p>
 <p>The early key negotiation, combined with the boot-time-guarantees provided by the SecEP, ensure that only the SecEP and the BIOS have access to this authentication key. This enables the BIOS to use the SecEP to secure its data, and the SecEP to restrict data access to only the BIOS.</p>
 <h2 id="secured-data">Secured data</h2>
@@ -1280,9 +1285,9 @@ After the CPU is powered on, <strong>Intel Boot Guard</strong> independently val
             
             <li>
               <a
-                href="../../../../knox-suite.html"
+                href="../../../../fundamentals.html"
                 class="body-5 d-flex align-items-center text-black fw-light pe-auto text-decoration-none"
-                >Knox Suite</a
+                >Fundamentals</a
               >
             </li>
             
@@ -1291,6 +1296,14 @@ After the CPU is powered on, <strong>Intel Boot Guard</strong> independently val
                 href="../../../../knox-admin-portal.html"
                 class="body-5 d-flex align-items-center text-black fw-light pe-auto text-decoration-none"
                 >Knox Admin Portal</a
+              >
+            </li>
+            
+            <li>
+              <a
+                href="../../../../knox-suite.html"
+                class="body-5 d-flex align-items-center text-black fw-light pe-auto text-decoration-none"
+                >Knox Suite</a
               >
             </li>
             
@@ -1379,6 +1392,14 @@ After the CPU is powered on, <strong>Intel Boot Guard</strong> independently val
                 href="../../../../care-plus.html"
                 class="body-5 d-flex align-items-center text-black fw-light pe-auto text-decoration-none"
                 >Samsung Care&#43; for Business</a
+              >
+            </li>
+            
+            <li>
+              <a
+                href="../../../../uat.html"
+                class="body-5 d-flex align-items-center text-black fw-light pe-auto text-decoration-none"
+                >User Acceptance Testing</a
               >
             </li>
             

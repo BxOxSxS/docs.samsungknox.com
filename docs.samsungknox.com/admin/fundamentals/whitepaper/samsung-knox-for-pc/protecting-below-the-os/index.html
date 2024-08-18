@@ -705,6 +705,17 @@
     
     
     <div class="d-flex justify-content-between">
+      <a class="body-5 text-black fw-light" href="../nist-requirements/index.html">NIST requirements</a>
+    </div>
+    
+    </li>
+  
+  
+  
+    <li class="mt-2">
+    
+    
+    <div class="d-flex justify-content-between">
       <a class="body-5 text-black fw-light" href="../glossary/index.html">Glossary</a>
     </div>
     
@@ -1017,7 +1028,7 @@
             </div>
             
 
-  <p><span>Last updated February  20th, 2024</span></p>
+  <p><span>Last updated August  12th, 2024</span></p>
 
 
     
@@ -1030,11 +1041,11 @@
 
 
 
-<p>Laptops can be particularly challenging for IT admins to protect since the BIOS &mdash; the software that initializes the computer&rsquo;s hardware components and starts the operating system (OS) &mdash; is often the target of attackers. The BIOS needs to be particularly secure from threats to its <strong>data</strong> and <strong>code</strong>, as these are vulnerable to hackers. The following vulnerabilities are present if the BIOS isn&rsquo;t properly protected:</p>
-<h3 id="data-compromise">Data compromise</h3>
+<p>Laptop PCs can be particularly challenging for IT admins to protect since the BIOS &mdash; the software that initializes the computer&rsquo;s hardware components and starts the Operating System (OS) &mdash; is often the target of attackers. The BIOS needs to be particularly secure from threats to its data and its code, as these are most vulnerable to hackers. The following describes the types of compromises that are present if the BIOS isn&rsquo;t properly protected, as well as their impacts on the BIOS:</p>
+<h2 id="data-compromise">Data compromise</h2>
 <p>A data compromise occurs when an attacker gains access to protected information like passwords, certificates, or encryption keys. During a normal boot sequence, the BIOS relies on the <strong>Trusted Platform Module</strong>, or <strong>TPM</strong>, to encrypt sensitive data and fend off hacking attempts on the hardware. Windows features like <strong>BitLocker</strong> then use the Trusted Platform Module to ensure that protected data is only available when trusted firmware has been loaded. If the BIOS is compromised, it may provide false information to the Trusted Platform Module and trick it into loading a malicious OS, thus giving an attacker backdoor access to protected enterprise data.</p>
-<h3 id="code-compromises">Code compromises</h3>
-<p>The integrity of the OS depends on the integrity of the BIOS, since it is ultimately trusted for loading and executing the code that starts the OS. If the BIOS is compromised, then the self-check code Windows uses to detect threats may also be compromised. Without properly functioning update-validation systems, the BIOS &mdash; which normally validates update packages &mdash; can update itself with malicious code, granting backdoor access to hackers and preventing itself from being removed. This could lead to the entire device being compromised unless an IT admin intervenes.</p>
+<h2 id="code-compromises">Code compromises</h2>
+<p>The integrity of the OS depends on the integrity of the BIOS, since it is ultimately trusted for loading and executing the code that starts the OS. If the BIOS is compromised, then the self-check code Windows uses to detect threats may also be compromised. Without properly functioning update-validation systems, the BIOS (which normally validates update packages) can update itself with malicious code, granting backdoor access to hackers and preventing itself from being removed. This could lead to the entire device being compromised unless an IT Admin intervenes.</p>
 <h2 id="impacts-of-bios-compromise">Impacts of BIOS compromise</h2>
 <p>If a BIOS is compromised, the following may happen to either its data or code:</p>
 <div class="overflow-auto my-3"><table>
@@ -1059,33 +1070,40 @@
 </tr>
 </tbody>
 </table></div>
-<p>Although these problems are persistent, they aren&rsquo;t new to IT security professionals. Various technologies have been developed to help mitigate these problems. For example, <strong>UEFI</strong> introduced standards to the Secure Boot process to ensure that code only loads after it&rsquo;s been verified. Other technologies like <strong>Intel Boot Guard</strong> extend the Secure Boot process by ensuring code verification begins with the CPU hardware itself. Though these technologies help to mitigate some of the BIOS compromise issues mentioned above, they also present several limitations. For example:</p>
+<p>Although these problems are persistent, they aren&rsquo;t new to IT security professionals. Various technologies have been developed to help mitigate these problems. For example, UEFI introduced standards to the Secure Boot process to ensure that code only loads after it&rsquo;s been verified. Other technologies like Intel Boot Guard extend the Secure Boot process by ensuring code verification begins with the CPU hardware itself.</p>
+<p>Though these technologies help to mitigate some of the BIOS compromise issues mentioned above, they also present several limitations. For example:</p>
 <ul>
-<li>
-<p>While the UEFI Secure Boot process validates firmware code, it doesn&rsquo;t validate UEFI configuration data. This can lead to users and software processes making modifications to corrupt the BIOS settings. Once an attacker has access to BIOS settings, they could remove Secure Boot features altogether to allow the loading of malicious firmware code.</p>
+<li>While the UEFI Secure Boot process validates firmware code, it doesn&rsquo;t validate UEFI configuration data.
+<ul>
+<li>This can lead to users and software processes making modifications to corrupt the BIOS settings. Once an attacker has access to BIOS settings, they could remove Secure Boot features altogether to allow the loading of malicious firmware code.</li>
+</ul>
 </li>
-<li>
-<p>UEFI is limited in the response options it provides when it detects security issues. This can be a problem in situations where the device can&rsquo;t silently handle security issues by itself. For example, if a compromise is detected at boot time, the user or admin may need to trigger incident response processes, which might require unified and flexible response mechanisms out-of-scope from UEFI.</p>
+<li>UEFI is limited in the response options it provides when it detects security issues.
+<ul>
+<li>This can be a problem in situations where the device can&rsquo;t silently handle security issues by itself. For example, if a compromise is detected at boot time, the user or admin may need to trigger incident response processes, which might require unified and flexible response mechanisms out-of-scope from UEFI.</li>
+</ul>
 </li>
-<li>
-<p>The existing Secure Boot process is focused solely on the <em>detection</em> and <em>prevention</em> of unsigned or revoked firmware being loaded. During a normal boot sequence, the BIOS is loaded in several stages, with each stage verifying the authenticity of the next. If a tampered boot stage is detected anywhere in the process, the BIOS would simply stop booting, and likely require administrator intervention &mdash; costing valuable time and resources &mdash; to be repaired.</p>
+<li>The existing Secure Boot process is focused solely on the detection and prevention of unsigned or revoked firmware being loaded.
+<ul>
+<li>During a normal boot sequence, the BIOS is loaded in several stages, with each stage verifying the authenticity of the next. If a tampered boot stage is detected anywhere in the process, the BIOS would simply stop booting, and likely require administrator intervention – costing valuable time and resources – to be repaired.</li>
+</ul>
 </li>
 </ul>
-<p>With all these limitations in place, IT admins and executives need a more secure and robust solution to protect their enterprise from the growing number of threats below the OS. A solution that guarantees data and code protection before the OS ever boots up. This is why Samsung built the Galaxy Book4 Secured by Knox; our most secure and tamper-resistant laptop to date.</p>
-<h2 id="introducing-the-samsung-galaxy-book4-secured-by-knox">Introducing the Samsung Galaxy Book4 Secured by Knox</h2>
-<p>The Samsung Galaxy Book4 Secured by Knox was designed to provide best-in-class hardware-backed security to meet the needs of enterprise users. It pairs industry-wide standards with powerful OEM features to provide a high level of firmware protection and robust firmware recovery capabilities.</p>
-<p>Every Galaxy Book4 Secured by Knox comes equipped with our <strong>Secure Embedded Processor</strong>, or <strong>SecEP</strong>, a standalone processor that validates firmware <em>before</em> the CPU ever powers up. This processor, along with its memory (RAM) and dedicated storage unit, are all isolated from the CPU in order to protect against compromises to the OS, hypervisor, and BIOS.</p>
-<p>While the BIOS takes advantage of industry-standard security features like Intel Boot Guard and UEFI Secure Boot, the SecEP brings additional robust security features to help further protect the firmware. For example:</p>
+<p>With all these limitations in place, IT admins and executives need a more secure and robust solution to protect their enterprise from the growing number of threats below the OS. A solution that guarantees data and code protection before the OS ever boots up. This is why we built the Samsung Galaxy Book with the Knox security platform, starting with the Samsung Galaxy Book4 &mdash; our most secure and tamper-resistant laptop to date.</p>
+<h2 id="introducing-the-samsung-galaxy-book4">Introducing the Samsung Galaxy Book4</h2>
+<p>Samsung Galaxy Books with the Knox security platform were designed to provide best-in-class hardware-backed security to meet the needs of enterprise users. They pair industry-wide standards with powerful OEM features to provide high levels of firmware protection and robust firmware recovery capabilities.</p>
+<p>Every Galaxy Book with the Knox security platform comes equipped with our <strong>Secure Embedded Processor</strong> (SecEP), a standalone processor that validates firmware before the CPU ever powers up. This processor &mdash; along with its memory (RAM) and dedicated storage unit &mdash; are all isolated from the CPU in order to protect against compromises to the OS, hypervisor, and BIOS.</p>
+<p>While the BIOS takes advantage of industry-standard security features like <strong>Intel Boot Guard</strong> and <strong>UEFI Secure Boot</strong>, the SecEP brings additional robust security features to help further protect the firmware. For example:</p>
 <ul>
 <li>
 <p>Intel Boot Guard ensures that only an OEM-approved BIOS may run on the CPU. The SecEP takes security one step further by ensuring that only approved versions of the BIOS may modify any boot configuration data, and that a backup copy of the BIOS firmware is always available even if the original is corrupted.</p>
 </li>
 <li>
-<p>UEFI ensures that all firmware modules are verified by hash and validated against a binary revocation list. This means that only privileged processes have the ability to modify boot configuration data. The SecEP further enhances this process by making the revocation lists and boot configuration data tamper-resilient. It works with the BIOS to ensure that critical boot parameters only get modified by an authenticated user or admin through the BIOS setup utility. If UEFI detects an attempt to load suspicious firmware, the SecEP&rsquo;s <strong>Tamper Alert</strong> feature can be configured to require either user or admin confirmation before booting.</p>
+<p>UEFI ensures that all firmware modules are verified by hash and validated against a binary revocation list. This means that only privileged processes have the ability to modify boot configuration data. The SecEP further enhances this process by making the revocation lists and boot configuration data tamper-resilient. It works with the BIOS to ensure that critical boot parameters only get modified by an authenticated user or admin through the BIOS setup utility. If UEFI detects an attempt to load suspicious firmware, the SecEP&rsquo;s Tamper Alert feature can be configured to require either user or admin confirmation before booting.</p>
 </li>
 </ul>
 <p>By introducing the SecEP, admins gain more awareness and control of common security compromises. Critical features like auto-recovery, data protection, and tamper alert are deeply integrated with the BIOS, but also completely isolated from the OS. This helps to ensure that an attack on the BIOS gets handled <em>before</em> firmware ever gets loaded.</p>
-<p>Throughout the rest of this document, we&rsquo;ll describe the various hardware-backed security features and enhancements introduced in the Samsung Galaxy Book4 Secured by Knox. Join us, as we showcase our best-in-class, most secure and protected laptop PC yet.</p>
+<p>Throughout the rest of this document, we&rsquo;ll describe the various hardware-backed security features and enhancements introduced by the Knox security platform. Join us, as we showcase our best-in-class, most secure and protected laptop PC yet.</p>
 
             
           </div>
@@ -1094,14 +1112,10 @@
 <aside class="table-of-headings">
   <nav id="TableOfContents">
   <ul>
-    <li>
-      <ul>
-        <li><a href="index.html#data-compromise">Data compromise</a></li>
-        <li><a href="index.html#code-compromises">Code compromises</a></li>
-      </ul>
-    </li>
+    <li><a href="index.html#data-compromise">Data compromise</a></li>
+    <li><a href="index.html#code-compromises">Code compromises</a></li>
     <li><a href="index.html#impacts-of-bios-compromise">Impacts of BIOS compromise</a></li>
-    <li><a href="index.html#introducing-the-samsung-galaxy-book4-secured-by-knox">Introducing the Samsung Galaxy Book4 Secured by Knox</a></li>
+    <li><a href="index.html#introducing-the-samsung-galaxy-book4">Introducing the Samsung Galaxy Book4</a></li>
   </ul>
 </nav>
 </aside>
@@ -1145,9 +1159,9 @@
             
             <li>
               <a
-                href="../../../../knox-suite.html"
+                href="../../../../fundamentals.html"
                 class="body-5 d-flex align-items-center text-black fw-light pe-auto text-decoration-none"
-                >Knox Suite</a
+                >Fundamentals</a
               >
             </li>
             
@@ -1156,6 +1170,14 @@
                 href="../../../../knox-admin-portal.html"
                 class="body-5 d-flex align-items-center text-black fw-light pe-auto text-decoration-none"
                 >Knox Admin Portal</a
+              >
+            </li>
+            
+            <li>
+              <a
+                href="../../../../knox-suite.html"
+                class="body-5 d-flex align-items-center text-black fw-light pe-auto text-decoration-none"
+                >Knox Suite</a
               >
             </li>
             
@@ -1244,6 +1266,14 @@
                 href="../../../../care-plus.html"
                 class="body-5 d-flex align-items-center text-black fw-light pe-auto text-decoration-none"
                 >Samsung Care&#43; for Business</a
+              >
+            </li>
+            
+            <li>
+              <a
+                href="../../../../uat.html"
+                class="body-5 d-flex align-items-center text-black fw-light pe-auto text-decoration-none"
+                >User Acceptance Testing</a
               >
             </li>
             

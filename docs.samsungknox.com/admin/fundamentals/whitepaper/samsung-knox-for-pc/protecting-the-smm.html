@@ -705,6 +705,17 @@
     
     
     <div class="d-flex justify-content-between">
+      <a class="body-5 text-black fw-light" href="nist-requirements/index.html">NIST requirements</a>
+    </div>
+    
+    </li>
+  
+  
+  
+    <li class="mt-2">
+    
+    
+    <div class="d-flex justify-content-between">
       <a class="body-5 text-black fw-light" href="glossary/index.html">Glossary</a>
     </div>
     
@@ -1017,7 +1028,7 @@
             </div>
             
 
-  <p><span>Last updated February  20th, 2024</span></p>
+  <p><span>Last updated August  12th, 2024</span></p>
 
 
     
@@ -1052,9 +1063,30 @@
 <h2 id="how-smm-exploitation-works">How SMM exploitation works</h2>
 <p>Attackers typically escalate privileges to the SMM by exploiting vulnerabilities in the SMM code. The OS calls SMM code through <strong>system management interrupts</strong>, or <strong>SMI</strong>, and passes parameters to SMI handlers using a shared memory area called the <a href="https://raw.githubusercontent.com/tianocore-docs/Docs/master/White_Papers/A_Tour_Beyond_BIOS_Secure_SMM_Communication.pdf" target="_blank">SMM Communication Buffer</a>.</p>
 <p>If the attacker finds a vulnerability such as memory corruption in any of the SMI handlers, they can craft an input in the SMM Communication Buffer to exploit vulnerable code in the SMI handler. An attacker typically uses well-known exploitation techniques like <strong>Return-Oriented Programming</strong>, or <strong>ROP</strong>, to escalate to SMM privileges, disable SPI write protections, and persist malware.</p>
-<p>Samsung Galaxy Book4 Secured by Knox has several features dedicated to detecting, hardening, and mitigating the effect of SMM exploits. These features are described below.</p>
+<p>The Knox platform introduces several features dedicated to detecting, hardening, and mitigating the effect of SMM exploits. These features are described below.</p>
 <h2 id="smi-guard-protecting-smi-calls">SMI Guard: Protecting SMI calls</h2>
-<p>The SMI Guard is a security routine that intercepts SMI calls and analyzes the content of the shared buffer to detect malicious inputs or known exploit patterns based on rules, as shown in <strong>Figure 3</strong>.</p>
+<p>The SMI Guard is a security routine that intercepts SMI calls and analyzes the content of the shared buffer to detect malicious inputs or known exploit patterns based on rules, as shown in Figure 3.</p>
+<p>Once an attack is detected, remedial actions include blocking the SMM call from going through, and alerting an admin.</p>
+<p>This feature enables IT admins to define the following rules to limit calls to the SMM at runtime:</p>
+<div class="overflow-auto my-3"><table>
+<thead>
+<tr>
+<th>Rule</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Attack surface reduction</td>
+<td>This type of rule blocks SMIs that are not required at run-time, including blocking SMI setup function calls and security-critical BIOS variable updates that legitimately happen only during system initialization at boot-time.</td>
+</tr>
+<tr>
+<td>Exploit detection</td>
+<td>This type of rule prevents attacks on specific SMI handler calls by detecting exploit patterns and comparing SMI call argument values against known-bad values. If a known-bad argument value is detected, SMI Guard can block such known-bad calls to the vulnerable SMI handler until a firmware patch is deployed.</td>
+</tr>
+</tbody>
+</table></div>
+<p>The exploit detection feature is used for rapid incident response against newly discovered SMM vulnerabilities until the enterprise deploys a fully patched BIOS version. Enterprises may intentionally delay BIOS updates for stability and compliance purposes. In such scenarios, the SMI Guard minimizes the period of time a device is vulnerable by detecting and blocking exploit attempts on the firmware.</p>
 
 
 
@@ -1174,42 +1206,13 @@
 
 
 <p><img src="../assets/pc-white-paper-figure-3.png" class="image-block-scale-70 img-thumbnail" alt="Figure 3: SMI Guard blocks SMI calls that shouldn&#39;t be called at run-time and SMI calls with known-bad arguments indicative of exploits" /></p>
-<p><strong>Figure 3</strong>: SMI Guard blocks SMI calls that shouldn&rsquo;t be called at run-time and SMI calls with known-bad arguments indicative of exploits.</p>
-<p>Once an attack is detected, remedial actions include blocking the SMM call from going through, and alerting an admin.</p>
-<p>This feature enables IT admins to define the following rules to limit calls to the SMM at runtime:</p>
-<div class="overflow-auto my-3"><table>
-<thead>
-<tr>
-<th>Rule</th>
-<th>Description</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>Attack surface reduction</td>
-<td>This type of rule blocks SMIs that are not required at run-time, including blocking SMI setup function calls and security-critical BIOS variable updates that legitimately happen only during system initialization at boot-time.</td>
-</tr>
-<tr>
-<td>Exploit detection</td>
-<td>This type of rule prevents attacks on specific SMI handler calls by detecting exploit patterns and comparing SMI call argument values against known-bad values. If a known-bad argument value is detected, SMI Guard can block such known-bad calls to the vulnerable SMI handler until a firmware patch is deployed.</td>
-</tr>
-</tbody>
-</table></div>
-<p>The exploit detection feature is used for rapid incident response against newly discovered SMM vulnerabilities until the enterprise deploys a fully patched BIOS version. Enterprises may intentionally delay BIOS updates for stability and compliance purposes. In such scenarios, the SMI Guard minimizes the period of time a device is vulnerable by detecting and blocking exploit attempts on the firmware.</p>
-<p>The typical rapid incident response flow is shown in <strong>Figure 4</strong>:</p>
+<p>Figure 3: SMI Guard blocks SMI calls that shouldn&rsquo;t be called at run-time and SMI calls with known-bad arguments indicative of exploits.</p>
+<p>The typical rapid incident response flow is described as follows in Figure 4:</p>
 <ol>
-<li>
-<p>A new SMM vulnerability is reported.</p>
-</li>
-<li>
-<p>If the vulnerability affects Samsung Galaxy Book4 Secured by Knox and can be blocked by SMI Guard, Samsung rapidly releases SMI Guard rules to block exploitation on vulnerable firmware versions.</p>
-</li>
-<li>
-<p>SMI Guard rules are deployed along with a notification. The Samsung Galaxy Book4 Secured by Knox is now protected from attempts to exploit the vulnerability.</p>
-</li>
-<li>
-<p>Finally, when an updated BIOS firmware version that fixes the vulnerability is deployed, the SMI Guard rule is automatically disabled.</p>
-</li>
+<li>A new SMM vulnerability is reported (Step 1).</li>
+<li>If the vulnerability affects a Galaxy Book, and can be blocked by SMI Guard, Samsung rapidly releases SMI Guard rules to block exploitation on vulnerable firmware versions (Step 2).</li>
+<li>SMI Guard rules are deployed along with a notification (Step 3). The Galaxy Book is now protected from attempts to exploit the vulnerability.</li>
+<li>Finally, when an updated BIOS firmware version that fixes the vulnerability is deployed, the SMI Guard rule is automatically disabled.</li>
 </ol>
 
 
@@ -1220,7 +1223,7 @@
 
 
 <p><img src="../assets/pc-white-paper-figure-4.png" class="img-fluid img-thumbnail" alt="Figure 4: SMI Guard enables rapid incident response and minimizes the window of vulnerability" /></p>
-<p><strong>Figure 4</strong>: SMI Guard enables rapid incident response and minimizes the window of vulnerability.</p>
+<p>Figure 4: SMI Guard enables rapid incident response and minimizes the window of vulnerability.</p>
 <h2 id="advanced-smm-protection">Advanced SMM Protection</h2>
 <p>This feature adds a layer of exploit mitigation to protect SMM even in the face of previously unknown vulnerabilities and zero-day attacks.</p>
 <p>While chip firmware manufacturers and BIOS vendors take special efforts to ensure that SMM code has no vulnerabilities, given the significant volume of SMM code, attackers are sometimes able to discover previously unknown vulnerabilities &mdash; also called &ldquo;zero days&rdquo; vulnerabilities. Advanced SMM Protection aims to block the attacker from taking advantage of such these previously unknown vulnerabilities.</p>
@@ -1232,7 +1235,7 @@
 <p>The Policy-shim has the power to allow and disallow any resource access, allowing OEMs like Samsung to tightly control which system resources the SMI handlers can access. This makes it much more difficult for a potential attacker to force one of our SMI handlers to perform a malicious action and further compromise the platform.</p>
 <h3 id="introducing-novel-mitigations">Introducing novel mitigations</h3>
 <p>While the above mitigations significantly reduce the attack surface and impact of an SMM exploit, they all focus on protecting code but not data. Security-critical data structures in SMM are still vulnerable to unauthorized write attempts that can be leveraged by an attacker. For example, one such data structure describes non-SMM memory regions, which could be modified by an exploit to disclose or modify SMM memory.</p>
-<p><strong>Advanced SMM Protection</strong> provides additional exploit mitigation by marking security-critical SMM data as read-only, making it impossible for an attacker to overwrite or modify. This is seen in <strong>Figure 5</strong>.</p>
+<p><strong>Advanced SMM Protection</strong> provides additional exploit mitigation by marking security-critical SMM data as read-only, making it impossible for an attacker to overwrite or modify. This is seen in Figure 5.</p>
 
 
 
@@ -1352,7 +1355,7 @@
 
 
 <p><img src="../assets/pc-white-paper-figure-5.png" class="image-block-scale-90 img-thumbnail" alt="Figure 5: Advanced SMM Protection mitigates zero-day SMM vulnerabilities by blocking writes to security-critical data" /></p>
-<p><strong>Figure 5</strong>: Advanced SMM Protection mitigates zero-day SMM vulnerabilities by blocking writes to security-critical data.</p>
+<p>Figure 5: Advanced SMM Protection mitigates zero-day SMM vulnerabilities by blocking writes to security-critical data.</p>
 
             
           </div>
@@ -1412,9 +1415,9 @@
             
             <li>
               <a
-                href="../../../knox-suite.html"
+                href="../../../fundamentals.html"
                 class="body-5 d-flex align-items-center text-black fw-light pe-auto text-decoration-none"
-                >Knox Suite</a
+                >Fundamentals</a
               >
             </li>
             
@@ -1423,6 +1426,14 @@
                 href="../../../knox-admin-portal.html"
                 class="body-5 d-flex align-items-center text-black fw-light pe-auto text-decoration-none"
                 >Knox Admin Portal</a
+              >
+            </li>
+            
+            <li>
+              <a
+                href="../../../knox-suite.html"
+                class="body-5 d-flex align-items-center text-black fw-light pe-auto text-decoration-none"
+                >Knox Suite</a
               >
             </li>
             
@@ -1511,6 +1522,14 @@
                 href="../../../care-plus.html"
                 class="body-5 d-flex align-items-center text-black fw-light pe-auto text-decoration-none"
                 >Samsung Care&#43; for Business</a
+              >
+            </li>
+            
+            <li>
+              <a
+                href="../../../uat.html"
+                class="body-5 d-flex align-items-center text-black fw-light pe-auto text-decoration-none"
+                >User Acceptance Testing</a
               >
             </li>
             
