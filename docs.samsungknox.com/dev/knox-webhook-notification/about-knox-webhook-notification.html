@@ -58,10 +58,11 @@
   <div class="container-xxl border-bottom">
     <nav class="nav-top navbar navbar-expand-lg d-flex px-3">
         <a class="navbar-brand" href="../index.html">
-          <img src="../svg/samsung_knox_nav_logo.svg" alt="Logo for Samsung Knox documentation">
+          <img src="../svg/samsung_knox_doc_logo.svg" alt="Logo for Samsung Knox documentation">
         </a>
         <div class="collapse navbar-collapse">
           <ul class="row align-items-center ms-10 mb-0 p-0">
+            
             
             <li class="navbar-nav col">
               <a href="../../admin/index.html" class="body-4 text-black fw-light pe-auto me-6 text-decoration-none ">Admin</a>
@@ -72,7 +73,7 @@
             </li>
             
             <li class="navbar-nav col">
-              <a href="../../partner/index.html" class="body-4 text-black fw-light pe-auto me-6 text-decoration-none ">Partner</a>
+              <a href="../../partner/index.html" class="body-4 text-black fw-light pe-auto me-3 text-decoration-none ">Partner</a>
             </li>
             
           </ul>
@@ -128,7 +129,7 @@
   <span>Web services</span>
   <ul>
     <li>
-  <a href="../knox-cloud-authentication.html" >Knox Cloud Authentication</a>
+  <a href="../knox-cloud-authentication.html" >Knox cloud services authentication</a>
   </li>
 <li>
   <a href="../knox-webhook-notification.html" class="active-drop-item">Knox Webhook Notification</a>
@@ -321,7 +322,8 @@
             </div>
             
 
-  
+  <p><span>Last updated September  12th, 2024</span></p>
+
 
     
 
@@ -353,11 +355,73 @@
       
       
       
-        <p>The Knox Webhook Notification API allows different Knox cloud services to send change notifications to a subscribed client when a subscribed event or background process is complete.</p>
-<p>Since most client requests are resource-intensive, Knox Webhook Notification offers the advantage of asynchronous APIs. These APIs run these client events as different background processes, thus freeing up resources for other client events. The asynchronous design allows a client to have multiple subscriptions for all the unique events, either using the same URL across all subscriptions or configuring each subscription URL differently. Such a resource-efficient API workflow allows multiple requests to be handled simultaneously, without any inefficient event dependencies.</p>
-<p>To leverage this notification service, a client must first subscribe to the Knox Webhook Notification Subscription API to receive the change notifications whenever an event trigger occurs.</p>
-<h2 id="knox-webhook-notification-api-workflow">Knox Webhook Notification API workflow</h2>
-<p>The following procedure summarizes the Knox Webhook Notification API workflow:</p>
+        
+      
+      
+      
+      
+        
+      
+      
+      
+      
+        
+      
+      
+      
+      
+      
+        
+      
+      
+      
+      
+        <ul
+  class="nav nav-tabs d-flex align-items-center mt-3"
+  id="nav-tabs"
+  role="tablist"
+>
+   
+   
+   
+   
+   
+  
+  <li class="nav-item" role="presentation">
+    <button
+      class="tab-link active px-3 py-2 rounded-5"
+      id="ecadbf-tab"
+      data-bs-toggle="tab"
+      data-bs-target="#ecadbf"
+      type="button"
+      role="tab"
+      aria-controls="ecadbf"
+      aria-selected="true"
+    >24.06
+    </button>
+  </li>
+   
+   
+  
+  <li class="nav-item" role="presentation">
+    <button
+      class="tab-link  px-3 py-2 rounded-5"
+      id="edfacb-tab"
+      data-bs-toggle="tab"
+      data-bs-target="#edfacb"
+      type="button"
+      role="tab"
+      aria-controls="edfacb"
+      aria-selected="true"
+    >24.09
+    </button>
+  </li>
+   
+   
+   
+  
+</ul>
+<div class="tab-content mb-6" id="nav-tab-content">
 
 
 
@@ -366,53 +430,560 @@
 
 
 
-<p><img src="assets/kwn-workflow-kg.jpg" class="img-fluid img-thumbnail" alt="Knox Webhook Notification Workflow" /></p>
-<ol>
-<li>
-<p>The client downloads the Samsung Knox validation certificate for message signing and to validate the response from Knox Webhook Notification.</p>
-</li>
-<li>
-<p>The client uses <a href="../knox-cloud-authentication.html">Knox Cloud Authentication API</a> access tokens to call different Knox cloud service APIs. Within the Knox Webhook Notification workflow, you are the API client that wants to receive change notifications.</p>
-</li>
-<li>
-<p>The client registers to an event with the Knox Webhook Notification Subscription API. For example, an event could be the enrollment of a device using the Knox Guard device upload operation.</p>
-</li>
-<li>
-<p>The event is now subscribed. A database stores the event subscription and the associated event.</p>
-</li>
-<li>
-<p>The client makes a call to a Knox cloud services API.</p>
-</li>
-<li>
-<p>The completed Knox cloud services operation, through the Knox cloud service APIs, triggers an asynchronous event.</p>
-</li>
-<li>
-<p>Knox Webhook Notification receives the asynchronous event from the Knox cloud services API operation. Then, Knox Webhook Notification performs a database lookup to get the configured callback URL.</p>
-</li>
-<li>
-<p>The client receives the Knox Webhook Notification callback response along with the signature for validation.</p>
-</li>
-<li>
-<p>The client validates the authenticity of the callback response by comparing the signature against the public key contained in the Samsung Knox certificate.</p>
-</li>
-<li>
-<p>Successful validation marks the completion of your request.</p>
-</li>
-</ol>
-<div class="notice-note"><p>Steps 1, 2, and 3 need to be completed only once. However, if your Samsung Knox validation certificate expires, you need to redo Step 1.</p></div>
-<p>If you would like to learn how to use the Knox Webhook Notification API for Knox Guard, see the <a href="tutorial/knox-webhook-notification-for-knox-guard.html">Knox Webhook Notification for Knox Guard</a> and <a href="tutorial/knox-webhook-notification-for-knox-asset-intelligence.html">Knox Webhook Notification for Knox Asset Intelligence</a> tutorials.</p>
+
+
+
+
+
+  
+  
+  
+  
+  
+
+  
+  
+  
+  
+  
+
+  
+  
+  
+  
+  
+
+  
+  
+  
+  
+    
+    
+    
+    
+    
+  
+
+  
+  
+  
+  
+  
+
+  
+  
+  
+  
+  
+
+  
+  
+  
+  
+  
+
+  
+  
+  
+  
+  
+
+  
+  
+  
+  
+  
+
+  
+  
+  
+  
+  
+
+  
+  
+  
+  
+  
+
+  
+  
+  
+  
+  
+
+  
+  
+  
+  
+  
+
+  
+  
+  
+  
+  
+
+  
+  
+  
+  
+  
+
+  
+  
+  
+  
+  
+
+  
+  
+  
+  
+  
+
+  
+  
+  
+  
+  
+
+  
+  
+  
+  
+  
+
+  
+  
+  
+  
+  
+
+  
+  
+  
+  
+  
+
+  
+  
+  
+  
+  
+
+  
+  
+  
+  
+  
+
+  
+  
+  
+  
+  
+
+  
+  
+  
+  
+  
+
+  
+  
+  
+  
+  
+
+  
+  
+  
+  
+  
+
+  
+  
+  
+  
+  
+
+  
+  
+  
+  
+  
+
+  
+  
+  
+  
+  
+
+  
+  
+  
+  
+  
+
+  
+  
+  
+  
+  
+
+  
+  
+  
+  
+  
+
+  
+  
+  
+  
+  
+
+  
+  
+  
+  
+  
+
+  
+  
+  
+  
+  
+
+  
+  
+  
+  
+  
+
+  
+  
+  
+  
+  
+
+  
+  
+  
+  
+  
+
+  
+  
+  
+  
+  
+
+  
+  
+  
+  
+  
+
+
+<div class="tab-pane fade  show active  border border-grey-line rounded-3 overflow-hidden" id="ecadbf" role="tabpanel" aria-labelledby="ecadbf-tab">
+  
+  
+    
+  
+  
+  <div class="tab-content p-3"><p>The Knox Webhook Notification API allows different Knox cloud services to send change notifications to a subscribed client when a subscribed event or background process is complete.</p><p>Since most client requests are resource-intensive, Knox Webhook Notification offers the advantage of asynchronous APIs. These APIs run these client events as different background processes, thus freeing up resources for other client events. The asynchronous design allows a client to have multiple subscriptions for all the unique events, either using the same URL across all subscriptions or configuring each subscription URL differently. Such a resource-efficient API workflow allows multiple requests to be handled simultaneously, without any inefficient event dependencies.</p><p>To leverage this notification service, a client must first subscribe to the Knox Webhook Notification Subscription API to receive the change notifications whenever an event trigger occurs.</p><h2 id="knox-webhook-notification-api-workflow-24-06">Knox Webhook Notification API workflow</h2><p>The following procedure summarizes the Knox Webhook Notification API workflow:</p><p><img src="assets/kwn-workflow-kg.jpg" class="img-fluid img-thumbnail" alt="Knox Webhook Notification Workflow" /></p><ol><li><p>The client downloads the Samsung Knox validation certificate for message signing and to validate the response from Knox Webhook Notification.</p></li><li><p>The client uses <a href="../knox-cloud-authentication.html">Knox Cloud Authentication API</a> access tokens to call different Knox cloud service APIs. Within the Knox Webhook Notification workflow, you are the API client that wants to receive change notifications.</p></li><li><p>The client registers to an event with the Knox Webhook Notification Subscription API. For example, an event could be the enrollment of a device using the Knox Guard device upload operation.</p></li><li><p>The event is now subscribed. A database stores the event subscription and the associated event.</p></li><li><p>The client makes a call to a Knox cloud services API.</p></li><li><p>The completed Knox cloud services operation, through the Knox cloud service APIs, triggers an asynchronous event.</p></li><li><p>Knox Webhook Notification receives the asynchronous event from the Knox cloud services API operation. Then, Knox Webhook Notification performs a database lookup to get the configured callback URL.</p></li><li><p>The client receives the Knox Webhook Notification callback response along with the signature for validation.</p></li><li><p>The client validates the authenticity of the callback response by comparing the signature against the public key contained in the Samsung Knox certificate.</p></li><li><p>Successful validation marks the completion of your request.</p></li></ol><div class="notice-note"><p>Steps 1, 2, and 3 need to be completed only once. However, if your Samsung Knox validation certificate expires, you need to redo Step 1.</p></div><p>If you would like to learn how to use the Knox Webhook Notification API for Knox Guard, see the <a href="tutorial/knox-webhook-notification-for-knox-guard.html">Knox Webhook Notification for Knox Guard</a> and <a href="tutorial/knox-webhook-notification-for-knox-asset-intelligence.html">Knox Webhook Notification for Knox Asset Intelligence</a> tutorials.</p>
+  </div>
+  
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  
+  
+  
+
+  
+  
+  
+  
+  
+
+  
+  
+  
+  
+  
+
+  
+  
+  
+  
+    
+    
+    
+    
+    
+  
+
+  
+  
+  
+  
+  
+
+  
+  
+  
+  
+  
+
+  
+  
+  
+  
+  
+
+  
+  
+  
+  
+  
+
+  
+  
+  
+  
+  
+
+  
+  
+  
+  
+  
+
+  
+  
+  
+  
+  
+
+  
+  
+  
+  
+  
+
+  
+  
+  
+  
+  
+
+  
+  
+  
+  
+  
+
+  
+  
+  
+  
+  
+
+  
+  
+  
+  
+  
+
+  
+  
+  
+  
+  
+
+  
+  
+  
+  
+  
+
+  
+  
+  
+  
+  
+
+  
+  
+  
+  
+  
+
+  
+  
+  
+  
+  
+
+  
+  
+  
+  
+  
+
+  
+  
+  
+  
+  
+
+  
+  
+  
+  
+  
+
+  
+  
+  
+  
+  
+
+  
+  
+  
+  
+  
+
+  
+  
+  
+  
+  
+
+  
+  
+  
+  
+  
+
+  
+  
+  
+  
+  
+
+  
+  
+  
+  
+  
+
+  
+  
+  
+  
+  
+
+  
+  
+  
+  
+  
+
+  
+  
+  
+  
+  
+
+  
+  
+  
+  
+  
+
+  
+  
+  
+  
+  
+
+  
+  
+  
+  
+  
+
+  
+  
+  
+  
+  
+
+  
+  
+  
+  
+  
+
+  
+  
+  
+  
+  
+
+  
+  
+  
+  
+  
+
+  
+  
+  
+  
+  
+
+
+<div class="tab-pane fade  border border-grey-line rounded-3 overflow-hidden" id="edfacb" role="tabpanel" aria-labelledby="edfacb-tab">
+  
+  <div class="tab-toc bg-light p-3 border-bottom border-grey-line">
+    <p> This document was updated for the <a href="../../admin/uat.html">Knox cloud services 24.09 UAT</a>.</p>
+    
+  </div>
+  
+  
+    
+  
+  
+  <div class="tab-content p-3"><p>The Knox Webhook Notification API allows different Knox cloud services to send change notifications to a subscribed client when a subscribed event or background process is complete.</p><p>Since most client requests are resource-intensive, Knox Webhook Notification offers the advantage of asynchronous APIs. These APIs run these client events as different background processes, thus freeing up resources for other client events. The asynchronous design allows a client to have multiple subscriptions for all the unique events, either using the same URL across all subscriptions or configuring each subscription URL differently. Such a resource-efficient API workflow allows multiple requests to be handled simultaneously, without any inefficient event dependencies.</p><p>To leverage this notification service, a client must first subscribe to the Knox Webhook Notification Subscription API to receive the change notifications whenever an event trigger occurs.</p><h2 id="knox-webhook-notification-api-workflow-24-09">Knox Webhook Notification API workflow</h2><p>The following procedure summarizes the Knox Webhook Notification API workflow:</p><p><img src="assets/kwn-workflow-kg-24-09.jpg" class="img-fluid img-thumbnail" alt="Knox Webhook Notification Workflow" /></p><ol><li><p>The client uses <a href="../knox-cloud-authentication.html">Knox Cloud Authentication API</a> access tokens to call different Knox cloud service APIs. Within the Knox Webhook Notification workflow, you are the API client that wants to receive change notifications.</p></li><li><p>The client registers to an event with the Knox Webhook Notification Subscription API. For example, an event could be the enrollment of a device using the Knox Guard device upload operation.</p></li><li><p>The event is now subscribed. A database stores the event subscription and the associated event.</p></li><li><p>The client makes a call to a Knox cloud services API.</p></li><li><p>The completed Knox cloud services operation, through the Knox cloud service APIs, triggers an asynchronous event.</p></li><li><p>Knox Webhook Notification receives the asynchronous event from the Knox cloud services API operation. Then, Knox Webhook Notification performs a database lookup to get the configured callback URL.</p></li><li><p>The client receives the Knox Webhook Notification callback response along with the signature for validation.</p></li><li><p>The client checks for available Samsung Knox validation certificate. If there&rsquo;s no locally-stored Samsung Knox validation certificate or if it&rsquo;s expired, then the client calls the <a href="api-reference/api.html#tag/Certificate/operation/certificateGetWithPost" target="_blank">GET /downloadCertificate</a> operation to get a new certificate and stores it locally.</p></li><li><p>The client validates the authenticity of the callback response by comparing the signature against the public key contained in the Samsung Knox certificate.</p></li><li><p>Successful validation marks the completion of your request.</p></li></ol><div class="notice-note"><p>Steps 1, 2, and 3 need to be completed only once. However, if your Samsung Knox validation certificate expires, use Step 8 to get a new or updated certificate.</p></div><p>If you would like to learn how to use the Knox Webhook Notification API for Knox Guard, see the <a href="tutorial/knox-webhook-notification-for-knox-guard.html">Knox Webhook Notification for Knox Guard</a> and <a href="tutorial/knox-webhook-notification-for-knox-asset-intelligence.html">Knox Webhook Notification for Knox Asset Intelligence</a> tutorials.</p>
+  </div>
+  
+</div>
+</div>
 
             
           </div>
           <div class="l-toh">
-            <h2 class="body-4 fw-bold mt-0">On this page</h2>
-<aside class="table-of-headings">
-  <nav id="TableOfContents">
-  <ul>
-    <li><a href="about-knox-webhook-notification.html#knox-webhook-notification-api-workflow">Knox Webhook Notification API workflow</a></li>
-  </ul>
-</nav>
-</aside>
+            
           </div>
         </div> 
       </div><div>

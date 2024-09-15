@@ -58,10 +58,11 @@
   <div class="container-xxl border-bottom">
     <nav class="nav-top navbar navbar-expand-lg d-flex px-3">
         <a class="navbar-brand" href="../../../index.html">
-          <img src="../../../svg/samsung_knox_nav_logo.svg" alt="Logo for Samsung Knox documentation">
+          <img src="../../../svg/samsung_knox_doc_logo.svg" alt="Logo for Samsung Knox documentation">
         </a>
         <div class="collapse navbar-collapse">
           <ul class="row align-items-center ms-10 mb-0 p-0">
+            
             
             <li class="navbar-nav col">
               <a href="../../../../admin/index.html" class="body-4 text-black fw-light pe-auto me-6 text-decoration-none ">Admin</a>
@@ -72,7 +73,7 @@
             </li>
             
             <li class="navbar-nav col">
-              <a href="../../../../partner/index.html" class="body-4 text-black fw-light pe-auto me-6 text-decoration-none ">Partner</a>
+              <a href="../../../../partner/index.html" class="body-4 text-black fw-light pe-auto me-3 text-decoration-none ">Partner</a>
             </li>
             
           </ul>
@@ -128,7 +129,7 @@
   <span>Web services</span>
   <ul>
     <li>
-  <a href="../../../knox-cloud-authentication.html" >Knox Cloud Authentication</a>
+  <a href="../../../knox-cloud-authentication.html" >Knox cloud services authentication</a>
   </li>
 <li>
   <a href="../../../knox-webhook-notification.html" >Knox Webhook Notification</a>
@@ -327,7 +328,7 @@
             </div>
             
 
-  <p><span>Last updated May  24th, 2024</span></p>
+  <p><span>Last updated September  12th, 2024</span></p>
 
 
     
@@ -352,56 +353,608 @@
       
       
       
-        <p>The Knox Asset Intelligence APIs provide functionalities for device management, allowing greater visibility into a device&rsquo;s status and health. This tutorial focuses on the <code>getDevices</code> endpoint, which allows you to obtain essential details about the devices registered like model, serial number, permissions, firmware, operating system version and so on.</p>
-<p>Ensure that you have the necessary permissions to set or update the Knox Asset Intelligence settings and obtain an authentication token. For more information, see <a href="../../get-started.html">Get started</a>.</p>
-<h2 id="information-retrieval">Information retrieval</h2>
-<ol>
-<li>
-<p>To retrieve information about devices, make a POST request to the <a href="../../api.html#tag/Devices/paths/~1devices~1getDevices/post" target="_blank">/devices/getDevices</a> endpoint.</p>
-</li>
-<li>
-<p>In the request body, you can make use of the following optional parameters:</p>
-<ul>
-<li><strong>pageNum</strong> &mdash; Page number to retrieve.</li>
-<li><strong>pageSize</strong> &mdash; Number of items on a page.</li>
-<li><strong>deviceIds</strong> &mdash; List of the device IMEIs or serial numbers for targeted retrieval.</li>
-<li><strong>status</strong> &mdash; List of Knox Asset Intelligence enrollment statuses.</li>
-<li><strong>batterySoh</strong> &mdash; List of battery health statuses you want information about.</li>
-<li><strong>permissions</strong> &mdash; List of Knox Asset Intelligence client’s permissions you want information about.</li>
+        
+      
+      
+      
+      
+        
+      
+      
+      
+      
+      
+      
+        <ul
+  class="nav nav-tabs d-flex align-items-center mt-3"
+  id="nav-tabs"
+  role="tablist"
+>
+   
+   
+   
+   
+   
+  
+  <li class="nav-item" role="presentation">
+    <button
+      class="tab-link active px-3 py-2 rounded-5"
+      id="fbdcea-tab"
+      data-bs-toggle="tab"
+      data-bs-target="#fbdcea"
+      type="button"
+      role="tab"
+      aria-controls="fbdcea"
+      aria-selected="true"
+    >24.06
+    </button>
+  </li>
+   
+   
+  
+  <li class="nav-item" role="presentation">
+    <button
+      class="tab-link  px-3 py-2 rounded-5"
+      id="fecdba-tab"
+      data-bs-toggle="tab"
+      data-bs-target="#fecdba"
+      type="button"
+      role="tab"
+      aria-controls="fecdba"
+      aria-selected="true"
+    >24.09
+    </button>
+  </li>
+   
+   
+   
+  
 </ul>
-</li>
-</ol>
-<p>For example, the response of the following request body provides the details of those devices which have their IMEIs listed in <code>deviceIds</code>, whose status is <code>Active</code>, whose battery health is either <code>Good</code> or <code>Normal</code> and the <code>location</code> permission is enabled.</p>
-<div class="highlight"><pre tabindex="0" style=";-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-json" data-lang="json"><span style="display:flex;"><span>{
-</span></span><span style="display:flex;"><span>  <span style="color:#008000;font-weight:bold">&#34;pageNum&#34;</span>: <span style="color:#666">2</span>,
-</span></span><span style="display:flex;"><span>  <span style="color:#008000;font-weight:bold">&#34;pageSize&#34;</span>: <span style="color:#666">50</span>,
-</span></span><span style="display:flex;"><span>  <span style="color:#008000;font-weight:bold">&#34;deviceIds&#34;</span>: [
-</span></span><span style="display:flex;"><span>      <span style="color:#666">123456789123456</span>,<span style="color:#666">123123123123123</span> 
-</span></span><span style="display:flex;"><span>    ],
-</span></span><span style="display:flex;"><span>  <span style="color:#008000;font-weight:bold">&#34;status&#34;</span>: [
-</span></span><span style="display:flex;"><span>      <span style="color:#ba2121">&#34;Active&#34;</span> 
-</span></span><span style="display:flex;"><span>    ],
-</span></span><span style="display:flex;"><span>  <span style="color:#008000;font-weight:bold">&#34;batterySoh&#34;</span>: [
-</span></span><span style="display:flex;"><span>      <span style="color:#ba2121">&#34;Good&#34;</span>, <span style="color:#ba2121">&#34;Normal&#34;</span> 
-</span></span><span style="display:flex;"><span>    ],
-</span></span><span style="display:flex;"><span>  <span style="color:#008000;font-weight:bold">&#34;permissions&#34;</span>: [
-</span></span><span style="display:flex;"><span>      <span style="color:#ba2121">&#34;Location&#34;</span>
-</span></span><span style="display:flex;"><span>    ]
-</span></span><span style="display:flex;"><span>}
-</span></span></code></pre></div><p>You can adjust the parameter values in the request body according to the kind of information you want to fetch.. For detailed response schema, see <a href="../../api.html#tag/Devices/paths/~1devices~1getDevices/post" target="_blank">Knox Asset Intelligence API</a>.</p>
-<p>Ensure that you handle errors appropriately in your application by checking the <code>code</code> and the <code>message</code> in the response. For detailed specification, see <a href="https://docs.samsungknox.com/dev/knox-asset-intelligence/knox-asset-intelligence/api">Knox Asset Intelligence API</a>.</p>
+<div class="tab-content mb-6" id="nav-tab-content">
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  
+  
+  
+
+  
+  
+  
+  
+  
+
+  
+  
+  
+  
+    
+    
+    
+    
+    
+  
+
+  
+  
+  
+  
+  
+
+  
+  
+  
+  
+  
+
+  
+  
+  
+  
+  
+
+  
+  
+  
+  
+  
+
+  
+  
+  
+  
+  
+
+  
+  
+  
+  
+  
+
+  
+  
+  
+  
+  
+
+  
+  
+  
+  
+  
+
+  
+  
+  
+  
+  
+
+  
+  
+  
+  
+  
+
+  
+  
+  
+  
+  
+
+  
+  
+  
+  
+  
+
+  
+  
+  
+  
+  
+
+  
+  
+  
+  
+  
+
+  
+  
+  
+  
+  
+
+  
+  
+  
+  
+  
+
+  
+  
+  
+  
+  
+
+  
+  
+  
+  
+  
+
+  
+  
+  
+  
+  
+
+  
+  
+  
+  
+  
+
+  
+  
+  
+  
+  
+
+  
+  
+  
+  
+  
+
+  
+  
+  
+  
+  
+
+  
+  
+  
+  
+  
+
+  
+  
+  
+  
+  
+
+  
+  
+  
+  
+  
+
+  
+  
+  
+  
+  
+
+  
+  
+  
+  
+  
+
+  
+  
+  
+  
+  
+
+  
+  
+  
+  
+  
+
+  
+  
+  
+  
+  
+
+  
+  
+  
+  
+  
+
+  
+  
+  
+  
+  
+
+  
+  
+  
+  
+  
+
+  
+  
+  
+  
+  
+
+  
+  
+  
+  
+  
+
+
+<div class="tab-pane fade  show active  border border-grey-line rounded-3 overflow-hidden" id="fbdcea" role="tabpanel" aria-labelledby="fbdcea-tab">
+  
+  
+    
+  
+  
+  <div class="tab-content p-3"><p>The Knox Asset Intelligence APIs provide functionalities for device management, allowing greater visibility into a device&rsquo;s status and health. This tutorial focuses on the <code>getDevices</code> endpoint, which allows you to obtain essential details about the devices registered like model, serial number, permissions, firmware, operating system version and so on.</p><p>Ensure that you have the necessary permissions to set or update the Knox Asset Intelligence settings and obtain an authentication token. For more information, see <a href="../../get-started.html">Get started</a>.</p><h2 id="information-retrieval-24-06">Information retrieval</h2><ol><li><p>To retrieve information about devices, make a POST request to the <a href="../../api.html#tag/Devices/paths/~1devices~1getDevices/post" target="_blank">/devices/getDevices</a> endpoint.</p></li><li><p>In the request body, you can make use of the following optional parameters:</p><ul><li><strong>pageNum</strong> &mdash; Page number to retrieve.</li><li><strong>pageSize</strong> &mdash; Number of items on a page.</li><li><strong>deviceIds</strong> &mdash; List of the device IMEIs or serial numbers for targeted retrieval.</li><li><strong>status</strong> &mdash; List of Knox Asset Intelligence enrollment statuses.</li><li><strong>batterySoh</strong> &mdash; List of battery health statuses you want information about.</li><li><strong>permissions</strong> &mdash; List of Knox Asset Intelligence client’s permissions you want information about.</li></ul></li></ol><p>For example, the response of the following request body provides the details of those devices which have their IMEIs listed in <code>deviceIds</code>, whose status is <code>Active</code>, whose battery health is either <code>Good</code> or <code>Normal</code> and the <code>location</code> permission is enabled.</p><div class="highlight"><pre tabindex="0" style=";-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-json" data-lang="json"><span style="display:flex;"><span>{</span></span><span style="display:flex;"><span>  <span style="color:#008000;font-weight:bold">&#34;pageNum&#34;</span>: <span style="color:#666">2</span>,</span></span><span style="display:flex;"><span>  <span style="color:#008000;font-weight:bold">&#34;pageSize&#34;</span>: <span style="color:#666">50</span>,</span></span><span style="display:flex;"><span>  <span style="color:#008000;font-weight:bold">&#34;deviceIds&#34;</span>: [</span></span><span style="display:flex;"><span>      <span style="color:#666">123456789123456</span>,<span style="color:#666">123123123123123</span> </span></span><span style="display:flex;"><span>    ],</span></span><span style="display:flex;"><span>  <span style="color:#008000;font-weight:bold">&#34;status&#34;</span>: [</span></span><span style="display:flex;"><span>      <span style="color:#ba2121">&#34;Active&#34;</span> </span></span><span style="display:flex;"><span>    ],</span></span><span style="display:flex;"><span>  <span style="color:#008000;font-weight:bold">&#34;batterySoh&#34;</span>: [</span></span><span style="display:flex;"><span>      <span style="color:#ba2121">&#34;Good&#34;</span>, <span style="color:#ba2121">&#34;Normal&#34;</span> </span></span><span style="display:flex;"><span>    ],</span></span><span style="display:flex;"><span>  <span style="color:#008000;font-weight:bold">&#34;permissions&#34;</span>: [</span></span><span style="display:flex;"><span>      <span style="color:#ba2121">&#34;Location&#34;</span></span></span><span style="display:flex;"><span>    ]</span></span><span style="display:flex;"><span>}</span></span></code></pre></div><p>You can adjust the parameter values in the request body according to the kind of information you want to fetch.. For detailed response schema, see <a href="../../api.html#tag/Devices/paths/~1devices~1getDevices/post" target="_blank">Knox Asset Intelligence API</a>.</p><p>Ensure that you handle errors appropriately in your application by checking the <code>code</code> and the <code>message</code> in the response. For detailed specification, see <a href="https://docs.samsungknox.com/dev/knox-asset-intelligence/knox-asset-intelligence/api">Knox Asset Intelligence API</a>.</p>
+  </div>
+  
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  
+  
+  
+
+  
+  
+  
+  
+  
+
+  
+  
+  
+  
+    
+    
+    
+    
+    
+  
+
+  
+  
+  
+  
+  
+
+  
+  
+  
+  
+  
+
+  
+  
+  
+  
+  
+
+  
+  
+  
+  
+  
+
+  
+  
+  
+  
+  
+
+  
+  
+  
+  
+  
+
+  
+  
+  
+  
+  
+
+  
+  
+  
+  
+  
+
+  
+  
+  
+  
+  
+
+  
+  
+  
+  
+  
+
+  
+  
+  
+  
+  
+
+  
+  
+  
+  
+  
+
+  
+  
+  
+  
+  
+
+  
+  
+  
+  
+  
+
+  
+  
+  
+  
+  
+
+  
+  
+  
+  
+  
+
+  
+  
+  
+  
+  
+
+  
+  
+  
+  
+  
+
+  
+  
+  
+  
+  
+
+  
+  
+  
+  
+  
+
+  
+  
+  
+  
+  
+
+  
+  
+  
+  
+  
+
+  
+  
+  
+  
+  
+
+  
+  
+  
+  
+  
+
+  
+  
+  
+  
+  
+
+  
+  
+  
+  
+  
+
+  
+  
+  
+  
+  
+
+  
+  
+  
+  
+  
+
+  
+  
+  
+  
+  
+
+  
+  
+  
+  
+  
+
+  
+  
+  
+  
+  
+
+  
+  
+  
+  
+  
+
+  
+  
+  
+  
+  
+
+  
+  
+  
+  
+  
+
+  
+  
+  
+  
+  
+
+  
+  
+  
+  
+  
+
+  
+  
+  
+  
+  
+
+
+<div class="tab-pane fade  border border-grey-line rounded-3 overflow-hidden" id="fecdba" role="tabpanel" aria-labelledby="fecdba-tab">
+  
+  <div class="tab-toc bg-light p-3 border-bottom border-grey-line">
+    <p> This document was updated for the <a href="../../../../admin/uat.html">Knox cloud services 24.09 UAT</a>.</p>
+    
+  </div>
+  
+  
+    
+  
+  
+  <div class="tab-content p-3"><p>The Knox Asset Intelligence APIs provide functionalities for device management, allowing greater visibility into a device&rsquo;s status and health. This tutorial focuses on the <code>getDevices</code> endpoint, which allows you to obtain essential details about the devices registered like model, serial number, permissions, firmware, operating system version and so on.</p><p>Ensure that you have the necessary permissions to set or update the Knox Asset Intelligence settings and obtain an authentication token. For more information, see <a href="../../get-started.html">Get started</a>.</p><h2 id="information-retrieval-24-09">Information retrieval</h2><ol><li><p>To retrieve information about devices, make a POST request to the <a href="../../api.html#tag/Devices/paths/~1devices~1getDevices/post" target="_blank">/devices/getDevices</a> endpoint.</p></li><li><p>In the request body, you can make use of the following optional parameters:</p><ul><li><strong>pageNum</strong> &mdash; Page number to retrieve.</li><li><strong>pageSize</strong> &mdash; Number of items on a page.</li><li><strong>deviceIds</strong> &mdash; List of the device IMEIs or serial numbers for targeted retrieval.</li><li><strong>status</strong> &mdash; List of Knox Asset Intelligence enrollment statuses.</li><li><strong>batterySoh</strong> &mdash; List of battery health statuses you want information about.</li><li><strong>groupName</strong> &mdash; Name of the Knox Asset Intelligence device group you want information about.</li></ul></li></ol><p>For example, the response of the following request body provides the details of those devices which have their IMEIs listed in <code>deviceIds</code>, whose status is <code>Active</code>, whose battery health is either <code>Good</code> or <code>Normal</code> and the <code>location</code> permission is enabled, and which are a part of device group <code>Group A</code>.</p><div class="highlight"><pre tabindex="0" style=";-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-json" data-lang="json"><span style="display:flex;"><span>{</span></span><span style="display:flex;"><span>  <span style="color:#008000;font-weight:bold">&#34;pageNum&#34;</span>: <span style="color:#666">2</span>,</span></span><span style="display:flex;"><span>  <span style="color:#008000;font-weight:bold">&#34;pageSize&#34;</span>: <span style="color:#666">50</span>,</span></span><span style="display:flex;"><span>  <span style="color:#008000;font-weight:bold">&#34;deviceIds&#34;</span>: [</span></span><span style="display:flex;"><span>      <span style="color:#666">123456789123456</span>,<span style="color:#666">123123123123123</span> </span></span><span style="display:flex;"><span>    ],</span></span><span style="display:flex;"><span>  <span style="color:#008000;font-weight:bold">&#34;status&#34;</span>: [</span></span><span style="display:flex;"><span>      <span style="color:#ba2121">&#34;Active&#34;</span> </span></span><span style="display:flex;"><span>    ],</span></span><span style="display:flex;"><span>  <span style="color:#008000;font-weight:bold">&#34;batterySoh&#34;</span>: [</span></span><span style="display:flex;"><span>      <span style="color:#ba2121">&#34;Good&#34;</span>, <span style="color:#ba2121">&#34;Normal&#34;</span> </span></span><span style="display:flex;"><span>    ],</span></span><span style="display:flex;"><span>  <span style="color:#008000;font-weight:bold">&#34;permissions&#34;</span>: [</span></span><span style="display:flex;"><span>      <span style="color:#ba2121">&#34;Location&#34;</span></span></span><span style="display:flex;"><span>    ],</span></span><span style="display:flex;"><span>  <span style="color:#008000;font-weight:bold">&#34;groupName&#34;</span>: <span style="color:#ba2121">&#34;Group A&#34;</span></span></span><span style="display:flex;"><span>}</span></span></code></pre></div><p>You can adjust the parameter values in the request body according to the kind of information you want to fetch. For detailed response schema, see <a href="../../api.html#tag/Devices/paths/~1devices~1getDevices/post" target="_blank">Knox Asset Intelligence API</a>.</p><p>Ensure that you handle errors appropriately in your application by checking the <code>code</code> and the <code>message</code> in the response. For detailed specification, see <a href="https://docs.samsungknox.com/dev/knox-asset-intelligence/knox-asset-intelligence/api">Knox Asset Intelligence API</a>.</p>
+  </div>
+  
+</div>
+</div>
 
             
           </div>
           <div class="l-toh">
-            <h2 class="body-4 fw-bold mt-0">On this page</h2>
-<aside class="table-of-headings">
-  <nav id="TableOfContents">
-  <ul>
-    <li><a href="index.html#information-retrieval">Information retrieval</a></li>
-  </ul>
-</nav>
-</aside>
+            
           </div>
         </div> 
       </div><div>
