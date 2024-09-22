@@ -2077,7 +2077,7 @@
     
     
     <div class="d-flex justify-content-between">
-      <a class="body-5 text-black fw-light" href="../../../configure/applications/assign-applications/assign-a-wear-os-app/index.html">Assign a Wear OS app</a>
+      <a class="body-5 text-black fw-light" href="../../../configure/applications/assign-applications/assign-a-wear-os-app.html">Assign a Wear OS app</a>
     </div>
     
     </li>
@@ -4933,7 +4933,7 @@
             </div>
             
 
-  <p><span>Last updated September  12th, 2024</span></p>
+  <p><span>Last updated September  18th, 2024</span></p>
 
 
     
@@ -5077,7 +5077,7 @@
     <tr>
         <td id="system-set-limit-for-background-processes">&gt; Set limit for background processes</td>
         <td>
-            <p>Specifies the maximum number of background processes.</p>
+            <p>Allows limiting background processes on the device.</p>
         </td>
         <td></td>
     </tr>
@@ -6014,18 +6014,6 @@
         <td>Android 8 and higher</td>
     </tr>
     <tr>
-        <td id="app-Verify apps using Google Play Protect">Verify apps using Google Play Protect</td>
-        <td>
-            <p></p>
-            <h5>Values</h5>
-            <ul>
-                <li><strong>Allow</strong> (default)</li>
-                <li><strong>Don't allow</strong></li>
-            </ul>
-        </td>
-        <td>Android 8 and higher</td>
-    </tr>
-    <tr>
         <td id="app-verify-apps-using-google-play-protect">Verify apps using Google Play Protect</td>
         <td>
             <p>Specifies if apps must be verified using Google Play Protect.</p>
@@ -6166,14 +6154,26 @@
                 <li><strong>File uploads</strong> (default off). Allows the device user to upload files through Kiosk Browser.</li>
                 <li><strong>Copy text</strong> (default off). Allows the device user to copy text in Kiosk Browser.</li>
                 <li>
-                    <p><strong>Screen saver</strong> (default off). Controls whether to use a screen saver. The screen saver launches when no user activity is detected for a specific amount of time, or when the device is charging.</p>
+                    <p><strong>Session timeout</strong> (default off). Controls if the kiosk session terminates following user inactivity for a specific number of seconds. If this setting is selected, the default timeout period is 1800 seconds. Cookies and other session information are automatically deleted, and Kiosk Browser redirects to the default URL.</p>
                     <ul>
-                        <li><strong>Images (Up to 10 images, max 5MB per image)</strong>. Specifies the images to use as a screen saver. Each image can be up to 5 MB in size. You can add up to 10 images, in the PNG, JPG, JPEG, or GIF formats. If an image is a GIF, it can't be animated.</li>
-                        <li><strong>Video (Max 50MB)</strong>. Specifies the video to use as a screen saver. the corresponding files. The video file can be up to 50 MB in size. The MP4 and MKV file formats are supported.</li>
-                        <li><strong>Session timeout</strong> (default <strong>1800</strong>). Specifies the amount of time, in seconds, that the device must be idle before the screen saver launches. Enter a value between 10 and 3,600.</li>
+                        <li><strong>Screen saver</strong>. Allows you to set a screen saver to display while the device is charging and upon session timeout.</li>
+                        <ul>
+                            <li><strong>Images</strong> (up to 10 images, max 5 MB per image). Specifies the images to use as a screen saver. PNG, JPG, JPEG, and non-animated GIF file formats are supported.</li>
+                            <li><strong>Video</strong> (max 50 MB). Specifies the video to use as a screen saver. MP4 and MKV file formats are supported.</li>
+                        </ul>
                     </ul>
                 </li>
                 <li><strong>Run JavaScript</strong> (default on). Controls whether Kiosk Browser can run JavaScript on web pages.</li>
+                <li><strong>Exit Kiosk mode attempt limit</strong> (default off). Prevents exiting Kiosk mode following a maximum number of invalid attempts. If this setting is selected, the default maximum is five attempts.
+                    <ul>
+                        <li><strong>Take action if attempts are exceeded</strong> (default off). Lets you prevent the user from re-entering a Kiosk mode exit code for a certain period of time upon exceeding the maximum number of invalid attempts. Options are:
+                        <ul>
+                            <li><strong>Prevent re-entering code for 10 min</strong> (default)</li>
+                            <li><strong>Prevent re-entering code for 30 min</strong></li>
+                        </ul>
+                        </li> 
+                    </ul>
+                </li>
             </ul>
         </td>
         <td>Android 9 and higher</td>
@@ -6184,12 +6184,28 @@
             <p>Controls settings related to OS behavior in the kiosk.</p>
             <h5>Values</h5>
             <ul>
-                <li><strong>System status bar (default off)</strong>. Enables the system status bar.</li>
-                <li><strong>Notification bar (default off)</strong>. Enables notifications.</li>
-                <li><strong>Power off (default on)</strong>. Enables the power off button.</li>
-                <li><strong>Home button (default off)</strong>. Enables the home button.</li>
-                <li><strong>Recent apps (default off)</strong>. Enables the recent app button, also known as the <a href="https://developer.android.com/guide/components/activities/recents">Recents button</a>.</li>
-                <li><strong>Keyguard (default on)</strong>. Allows the <a href="../android-policies.html#lock-screen">Lock screen</a> policy to apply to the device. If turned off, the device doesn't won't be protected by a lock screen, and the device user can access the device without first unlocking it.</li>
+                <li><strong>System status bar</strong> (default off). Enables the system status bar.</li>
+                <li><strong>Notification bar</strong> (default off). Enables notifications.</li>
+                <li><strong>Power off</strong> (default off). Enables the power off button.</li>
+                <li><strong>Home button</strong> (default off). Enables the home button.</li>
+                <li><strong>Recent apps</strong> (default off). Enables the recent app button, also known as the <a href="https://developer.android.com/guide/components/activities/recents">Recents button</a>.</li>
+                <li><strong>Keyguard</strong> (default off). Allows the <a href="../android-policies.html#lock-screen">Lock screen</a> policy to apply to the device. If turned off, the device doesn't won't be protected by a lock screen, and the device user can access the device without first unlocking it.</li>
+            </ul>
+        </td>
+        <td>Android 9 and higher</td>
+    </tr>
+    <tr>
+        <td id="kiosk-advanced-settings">Advanced settings</td>
+        <td>
+            <p>Controls settings related to advanced kiosk behavior.</p>
+            <h5>Values</h5>
+            <ul>
+                <li><strong>Use HTTP Proxy</strong> (default off). Lets you specify proxy details for the kiosk. You can set:
+                    <ul>
+                        <li><strong>IP/domain</strong> (required) &mdash; An IP address or domain</li>
+                        <li><strong>Port</strong> (optional) &mdash; A specific port associated with the IP/domain</li>
+                    </ul>
+                </li>
             </ul>
         </td>
         <td>Android 9 and higher</td>
