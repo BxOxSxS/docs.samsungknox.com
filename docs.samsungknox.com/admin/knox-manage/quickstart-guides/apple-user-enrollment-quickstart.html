@@ -3874,7 +3874,7 @@
     
     
     <div class="d-flex justify-content-between">
-      <a class="body-5 text-black fw-light" href="../../knox-remote-support/manage-admins-and-roles.html">Manage admins and roles</a>
+      <a class="body-5 text-black fw-light" href="../../knox-remote-support/manage-admins-and-roles/index.html">Manage admins and roles</a>
     </div>
     
     </li>
@@ -3929,6 +3929,16 @@
     
     <div class="d-flex justify-content-between">
       <a class="body-5 text-black fw-light" href="../../knox-remote-support/release-notes/index.html">Release notes</a>
+    </div>
+      
+    </li>
+  
+  
+  
+    <li class="mt-2">
+    
+    <div class="d-flex justify-content-between">
+      <a class="body-5 text-black fw-light" href="../../knox-remote-support/kbas/index.html">KBAs</a>
     </div>
       
     </li>
@@ -4932,7 +4942,7 @@
             </div>
             
 
-  <p><span>Last updated September  12th, 2024</span></p>
+  <p><span>Last updated September  25th, 2024</span></p>
 
 
     
@@ -4950,31 +4960,6 @@
       
       
       
-        
-      
-      
-      
-      
-        
-      
-      
-      
-      
-        
-      
-      
-      
-      
-        
-      
-      
-      
-      
-        
-      
-      
-      
-      
       
         
       
@@ -5006,1371 +4991,239 @@
       
       
       
-        
-      
-      
-      
-      
-        
-      
-      
-      
-      
-        
-      
-      
-      
-      
-        
-      
-      
-      
-      
-        
-      
-      
-      
-      
-        
-      
-      
-      
-      
-      
-        
-      
-      
-      
-      
-        
-      
-      
-      
-      
-        
-      
-      
-      
-      
-        
-      
-      
-      
-      
-        
-      
-      
-      
-      
-        
-      
-      
-      
-      
-        <ul
-  class="nav nav-tabs d-flex align-items-center mt-3"
-  id="nav-tabs"
-  role="tablist"
->
-   
-   
-   
-   
-   
-  
-  <li class="nav-item" role="presentation">
-    <button
-      class="tab-link active px-3 py-2 rounded-5"
-      id="dfaceb-tab"
-      data-bs-toggle="tab"
-      data-bs-target="#dfaceb"
-      type="button"
-      role="tab"
-      aria-controls="dfaceb"
-      aria-selected="true"
-    >24.06
-    </button>
-  </li>
-   
-   
-  
-  <li class="nav-item" role="presentation">
-    <button
-      class="tab-link  px-3 py-2 rounded-5"
-      id="fdebca-tab"
-      data-bs-toggle="tab"
-      data-bs-target="#fdebca"
-      type="button"
-      role="tab"
-      aria-controls="fdebca"
-      aria-selected="true"
-    >24.09
-    </button>
-  </li>
-   
-   
-   
-  
+        <p>In your device fleet, Knox Manage supports enrolling BYOD (personally-owned) iPhones and iPads, an activity called <a href="https://support.apple.com/guide/deployment/user-enrollment-and-mdm-dep23db2037d" target="_blank">User Enrollment</a>. Unlike company-owned devices, BYODs can&rsquo;t be supervised.</p>
+<p>Knox Manage implements User Enrollment by mapping a user&rsquo;s Managed Apple ID from your Apple Business Manager to their EMM user account in your Knox Manage tenant. When the personally-owned device then requests enrollment, Knox Manage is able to enroll it on behalf of your organization.</p>
+<h2 id="supported-devices">Supported devices</h2>
+<p>You can enroll the following personally-owned devices:</p>
+<ul>
+<li>iPhones running iOS 15 through 17</li>
+<li>iPads running iPadOS 15 through 17</li>
 </ul>
-<div class="tab-content mb-6" id="nav-tab-content">
+<h2 id="supported-management-features">Supported management features</h2>
+<p>Personally-owned iOS devices are subject the following conditions and limitations in Knox Manage:</p>
+<ul>
+<li>
+<p>They can have <a href="../configure/applications/volume-purchase-program-for-ios/use-the-volume-purchase-program-ios-only.html">Apple Volume Purchase Program</a> apps assigned to them.</p>
+</li>
+<li>
+<p>They support the online sign-in and QR code enrollment methods. The sign-in method requires entering a long URL, so the QR method is more convenient for users.</p>
+</li>
+<li>
+<p>Knox Manage can&rsquo;t collect any identifying information about the device, such as its IMEI, serial number, phone number, and network information.</p>
+</li>
+<li>
+<p>The device name format is the user&rsquo;s Managed Apple ID, followed by <strong>iOS</strong>, followed by the serialized personal device number in your tenant (not the Apple serial number).</p>
+<p>For example:
+<strong>alex@appleid.example.com_iOS_27</strong></p>
+</li>
+<li>
+<p>They support a subset of the total iOS policies and device commands. To see which are compatible, check the <strong>Supported system</strong> column in the <a href="../configure/profile/configure-profile-policies/ios-policies.html">iOS policy</a> and <a href="../configure/devices/send-commands-to-devices/ios-device-commands.html">iOS device command</a> references.</p>
+</li>
+</ul>
+<h2 id="prepare-your-tenant-user-enrollment">Prepare your tenant for User Enrollment</h2>
+<p>Before you can enroll your users&rsquo; personal iPhones and iPads, you must turn it on for your Knox Manage tenant:</p>
+<ol>
+<li>On the Knox Manage console, go to <strong>Setting</strong> &gt; <strong>Configuration</strong> &gt; <strong>Basic Configuration</strong>, then open the <strong>Device</strong> tab.</li>
+<li>Set <strong>User Enrollment for iOS</strong> to <strong>Allow</strong>.</li>
+<li><strong>Save</strong> your changes.</li>
+</ol>
+<h2 id="enroll-personally-owned-device">Enroll a personally-owned device</h2>
+<p>First, prepare the user&rsquo;s Knox Manage account and send an enrollment request:</p>
+<ol>
+<li>
+<p>On Apple Business Manager, copy the user&rsquo;s Managed Apple ID.</p>
+</li>
+<li>
+<p>On the Knox Manage console, go to <strong>User</strong>.</p>
+</li>
+<li>
+<p>If you haven&rsquo;t already set up an account for the user in Knox Manage, <a href="../configure/applications/add-applications/add-public-apps-using-the-microsoft-store.html">create a new account</a> for them. If they have an account, select it and click <strong>Modify</strong>.</p>
+</li>
+<li>
+<p>In the user details, enter the <strong>Managed Apple ID</strong> you copied earlier.</p>
+</li>
+<li>
+<p>If you&rsquo;d like to enroll the device immediately:</p>
+<ol>
+<li>Click <strong>Save &amp; Request Enrollment</strong>.</li>
+<li>When asked for the request format, select <strong>Send email with installation guide</strong> and confirm.</li>
+</ol>
+</li>
+<li>
+<p>If you&rsquo;d like to enroll the device later:</p>
+<ol>
+<li>Click <strong>Save</strong>.</li>
+<li>At a later time, go to <strong>User</strong>.</li>
+<li>Select the user and click <strong>Request Enrollment</strong>.</li>
+<li>When asked for the request format, select <strong>Send email with installation guide</strong> and confirm.</li>
+</ol>
+</li>
+</ol>
+<p>Knox Manage sends an enrollment request to the device user&rsquo;s email address.</p>
+<p>Next, to complete enrollment, the device user must:</p>
+<ol>
+<li>
+<p>On their personal device, scan the QR code sent in the enrollment request. The Knox Manage sign-in page opens in a web browser.</p>
 
-
-
-
-
-
-
-
-
-
-
-
-
-  
-  
-  
-  
-  
-
-  
-  
-  
-  
-  
-
-  
-  
-  
-  
     
     
     
     
     
-  
-
-  
-  
-  
-  
-  
-
-  
-  
-  
-  
-  
-
-  
-  
-  
-  
-  
-
-  
-  
-  
-  
-  
-
-  
-  
-  
-  
-  
-
-  
-  
-  
-  
     
-    
-    
-    
-    
-  
-
-  
-  
-  
-  
-  
-
-  
-  
-  
-  
-  
-
-  
-  
-  
-  
-  
-
-  
-  
-  
-  
-  
-
-  
-  
-  
-  
-  
-
-  
-  
-  
-  
-  
-
-  
-  
-  
-  
-  
-
-  
-  
-  
-  
-  
-
-  
-  
-  
-  
-  
-
-  
-  
-  
-  
-  
-
-  
-  
-  
-  
-  
-
-  
-  
-  
-  
-  
-
-  
-  
-  
-  
-  
-
-  
-  
-  
-  
-  
-
-  
-  
-  
-  
-  
-
-  
-  
-  
-  
-  
-
-  
-  
-  
-  
-  
-
-  
-  
-  
-  
-  
-
-  
-  
-  
-  
-  
-
-  
-  
-  
-  
-  
-
-  
-  
-  
-  
-    
-    
-    
-    
-    
-  
-
-  
-  
-  
-  
-  
-
-  
-  
-  
-  
-  
-
-  
-  
-  
-  
-  
-
-  
-  
-  
-  
-  
-
-  
-  
-  
-  
-  
-
-  
-  
-  
-  
-  
-
-  
-  
-  
-  
-    
-    
-    
-    
-    
-  
-
-  
-  
-  
-  
-  
-
-  
-  
-  
-  
-  
-
-  
-  
-  
-  
-  
-
-  
-  
-  
-  
-  
-
-  
-  
-  
-  
-  
-
-  
-  
-  
-  
-  
-
-  
-  
-  
-  
-  
-
-  
-  
-  
-  
-  
-
-  
-  
-  
-  
-  
-
-  
-  
-  
-  
-  
-
-  
-  
-  
-  
-  
-
-  
-  
-  
-  
-  
-
-  
-  
-  
-  
-  
-
-  
-  
-  
-  
-  
-
-  
-  
-  
-  
-  
-
-  
-  
-  
-  
-  
-
-  
-  
-  
-  
-  
-
-  
-  
-  
-  
-  
-
-  
-  
-  
-  
-  
-
-  
-  
-  
-  
-  
-
-  
-  
-  
-  
-  
-
-  
-  
-  
-  
-  
-
-  
-  
-  
-  
-  
-
-  
-  
-  
-  
-  
-
-  
-  
-  
-  
-  
-
-  
-  
-  
-  
-  
-
-  
-  
-  
-  
-  
-
-  
-  
-  
-  
-  
-
-  
-  
-  
-  
-  
-
-  
-  
-  
-  
-  
-
-  
-  
-  
-  
-  
-
-  
-  
-  
-  
-  
-
-  
-  
-  
-  
-  
-
-  
-  
-  
-  
-  
-
-  
-  
-  
-  
-  
-
-  
-  
-  
-  
-  
-
-  
-  
-  
-  
-  
-
-  
-  
-  
-  
-  
-
-  
-  
-  
-  
-  
-
-  
-  
-  
-  
-  
-
-  
-  
-  
-  
-  
-
-  
-  
-  
-  
-  
-
-  
-  
-  
-  
-  
-
-  
-  
-  
-  
-  
-
-  
-  
-  
-  
-  
-
-  
-  
-  
-  
-  
-
-  
-  
-  
-  
-    
-    
-    
-    
-    
-  
-
-  
-  
-  
-  
-  
-
-  
-  
-  
-  
-  
-
-  
-  
-  
-  
-  
-
-  
-  
-  
-  
-  
-
-  
-  
-  
-  
-  
-
-  
-  
-  
-  
-  
-
-  
-  
-  
-  
-  
-
-  
-  
-  
-  
-  
-
-
-<div class="tab-pane fade  show active  border border-grey-line rounded-3 overflow-hidden" id="dfaceb" role="tabpanel" aria-labelledby="dfaceb-tab">
-  
-  
-    
-    <div class="tab-toc p-3 border-bottom border-grey-line">
-      <p class="fw-bold">On this tab</p>
-      <ul class="mt-2 mb-0 list-unstyled section-nav">
+      
+      
+      
+      
       
         
-        <li class="ms-0"><a href="apple-user-enrollment-quickstart.html#supported-devices-24-06">Supported devices</a>
+        
+        
+        
+          
+        
+        
       
         
-        <li class="ms-0"><a href="apple-user-enrollment-quickstart.html#supported-management-features-24-06">Supported management features</a>
+        
+        
+        
+          
+        
+        
       
         
-        <li class="ms-0"><a href="apple-user-enrollment-quickstart.html#prepare-your-tenant-user-enrollment-24-06">Prepare your tenant for User Enrollment</a>
+        
+        
+        
+          
+        
+        
       
         
-        <li class="ms-0"><a href="apple-user-enrollment-quickstart.html#enroll-personally-owned-device-24-06">Enroll a personally-owned device</a>
+        
+        
+        
+          
+        
+        
       
         
-        <li class="ms-0"><a href="apple-user-enrollment-quickstart.html#assign-apps-personally-owned-device-24-06">Assign apps to a personally-owned device</a>
-      
-      </ul>
-  </div>
-    
-  
-  
-  <div class="tab-content p-3"><p>In your device fleet, Knox Manage supports enrolling BYOD (personally-owned) iPhones and iPads, an activity called <a href="https://support.apple.com/guide/deployment/user-enrollment-and-mdm-dep23db2037d" target="_blank">User Enrollment</a>. Unlike company-owned devices, BYODs can&rsquo;t be supervised.</p><p>Knox Manage implements User Enrollment by mapping a user&rsquo;s Managed Apple ID from your Apple Business Manager to their EMM user account in your Knox Manage tenant. When the personally-owned device then requests enrollment, Knox Manage is able to enroll it on behalf of your organization.</p><h2 id="supported-devices-24-06">Supported devices</h2><p>You can enroll the following personally-owned devices:</p><ul><li>iPhones running iOS 13 through 15</li><li>iPads running iPadOS 13 through 15</li></ul><h2 id="supported-management-features-24-06">Supported management features</h2><p>Personally-owned iOS devices are subject the following conditions and limitations in Knox Manage:</p><ul><li><p>They can have <a href="../configure/applications/volume-purchase-program-for-ios/use-the-volume-purchase-program-ios-only.html">Apple Volume Purchase Program</a> apps assigned to them.</p></li><li><p>They support the online sign-in and QR code enrollment methods. The sign-in method requires entering a long URL, so the QR method is more convenient for users.</p></li><li><p>Knox Manage can&rsquo;t collect any identifying information about the device, such as its IMEI, serial number, phone number, and network information.</p></li><li><p>The device name format is the user&rsquo;s Managed Apple ID, followed by <strong>iOS</strong>, followed by the serialized personal device number in your tenant (not the Apple serial number).</p><p>For example:<strong>alex@appleid.example.com_iOS_27</strong></p></li><li><p>They support a subset of the total iOS policies and device commands. To see which are compatible, check the <strong>Supported system</strong> column in the <a href="../configure/profile/configure-profile-policies/ios-policies.html">iOS policy</a> and <a href="../configure/devices/send-commands-to-devices/ios-device-commands.html">iOS device command</a> references.</p></li></ul><h2 id="prepare-your-tenant-user-enrollment-24-06">Prepare your tenant for User Enrollment</h2><p>Before you can enroll your users&rsquo; personal iPhones and iPads, you must turn it on for your Knox Manage tenant:</p><ol><li>On the Knox Manage console, go to <strong>Setting</strong> &gt; <strong>Configuration</strong> &gt; <strong>Basic Configuration</strong>, then open the <strong>Device</strong> tab.</li><li>Set <strong>User Enrollment for iOS</strong> to <strong>Allow</strong>.</li><li><strong>Save</strong> your changes.</li></ol><h2 id="enroll-personally-owned-device-24-06">Enroll a personally-owned device</h2><p>First, prepare the user&rsquo;s Knox Manage account and send an enrollment request:</p><ol><li><p>On Apple Business Manager, copy the user&rsquo;s Managed Apple ID.</p></li><li><p>On the Knox Manage console, go to <strong>User</strong>.</p></li><li><p>If you haven&rsquo;t already set up an account for the user in Knox Manage, <a href="../configure/applications/add-applications/add-public-apps-using-the-microsoft-store.html">create a new account</a> for them. If they have an account, select it and click <strong>Modify</strong>.</p></li><li><p>In the user details, enter the <strong>Managed Apple ID</strong> you copied earlier.</p></li><li><p>If you&rsquo;d like to enroll the device immediately:</p><ol><li>Click <strong>Save &amp; Request Enrollment</strong>.</li><li>When asked for the request format, select <strong>Send email with installation guide</strong> and confirm.</li></ol></li><li><p>If you&rsquo;d like to enroll the device later:</p><ol><li>Click <strong>Save</strong>.</li><li>At a later time, go to <strong>User</strong>.</li><li>Select the user and click <strong>Request Enrollment</strong>.</li><li>When asked for the request format, select <strong>Send email with installation guide</strong> and confirm.</li></ol></li></ol><p>Knox Manage sends an enrollment request to the device user&rsquo;s email address.</p><p>Next, to complete enrollment, the device user must:</p><ol><li><p>On their personal device, scan the QR code sent in the enrollment request. The Knox Manage sign-in page opens in a web browser.</p> <p><img src="../assets/km-ios-user-enrollment-sign-in-page.png" class="image-block-scale-50 img-thumbnail" alt="Signing in a Knox Manage account in a web browser." /></p></li><li><p>Sign in with their Knox Manage account credentials. Knox Manage enrolls the device.</p></li><li><p>Open Settings and look for an EMM profile to verify that enrollment was successful.</p> <p><img src="../assets/km-ios-user-enrollment-settings-emm-profile.jpg" class="img-fluid img-thumbnail" alt="An EMM profile in the Settings app." /></p></li></ol><h2 id="assign-apps-personally-owned-device-24-06">Assign apps to a personally-owned device</h2><p>To assign an Volume Purchase Program (VPP) app to the device:</p><ol><li>On the Knox Manage console, start <a href="../configure/applications/volume-purchase-program-for-ios/manage-vpp-applications.html#Assignin">assigning a VPP app to the device</a>.</li><li>Set <strong>Assignment Type</strong> to <strong>User</strong>.</li><li>Finish assigning the app to the device.</li></ol><p>Once the app is assigned, the device user can manually install the app.</p>
-  </div>
-  
-</div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-  
-  
-  
-  
-  
-
-  
-  
-  
-  
-  
-
-  
-  
-  
-  
-    
-    
-    
-    
-    
-  
-
-  
-  
-  
-  
-  
-
-  
-  
-  
-  
-  
-
-  
-  
-  
-  
-  
-
-  
-  
-  
-  
-  
-
-  
-  
-  
-  
-  
-
-  
-  
-  
-  
-    
-    
-    
-    
-    
-  
-
-  
-  
-  
-  
-  
-
-  
-  
-  
-  
-  
-
-  
-  
-  
-  
-  
-
-  
-  
-  
-  
-  
-
-  
-  
-  
-  
-  
-
-  
-  
-  
-  
-  
-
-  
-  
-  
-  
-  
-
-  
-  
-  
-  
-  
-
-  
-  
-  
-  
-  
-
-  
-  
-  
-  
-  
-
-  
-  
-  
-  
-  
-
-  
-  
-  
-  
-  
-
-  
-  
-  
-  
-  
-
-  
-  
-  
-  
-  
-
-  
-  
-  
-  
-  
-
-  
-  
-  
-  
-  
-
-  
-  
-  
-  
-  
-
-  
-  
-  
-  
-  
-
-  
-  
-  
-  
-  
-
-  
-  
-  
-  
-  
-
-  
-  
-  
-  
-    
-    
-    
-    
-    
-  
-
-  
-  
-  
-  
-  
-
-  
-  
-  
-  
-  
-
-  
-  
-  
-  
-  
-
-  
-  
-  
-  
-  
-
-  
-  
-  
-  
-  
-
-  
-  
-  
-  
-  
-
-  
-  
-  
-  
-    
-    
-    
-    
-    
-  
-
-  
-  
-  
-  
-  
-
-  
-  
-  
-  
-  
-
-  
-  
-  
-  
-  
-
-  
-  
-  
-  
-  
-
-  
-  
-  
-  
-  
-
-  
-  
-  
-  
-  
-
-  
-  
-  
-  
-  
-
-  
-  
-  
-  
-  
-
-  
-  
-  
-  
-  
-
-  
-  
-  
-  
-  
-
-  
-  
-  
-  
-  
-
-  
-  
-  
-  
-  
-
-  
-  
-  
-  
-  
-
-  
-  
-  
-  
-  
-
-  
-  
-  
-  
-  
-
-  
-  
-  
-  
-  
-
-  
-  
-  
-  
-  
-
-  
-  
-  
-  
-  
-
-  
-  
-  
-  
-  
-
-  
-  
-  
-  
-  
-
-  
-  
-  
-  
-  
-
-  
-  
-  
-  
-  
-
-  
-  
-  
-  
-  
-
-  
-  
-  
-  
-  
-
-  
-  
-  
-  
-  
-
-  
-  
-  
-  
-  
-
-  
-  
-  
-  
-  
-
-  
-  
-  
-  
-  
-
-  
-  
-  
-  
-  
-
-  
-  
-  
-  
-  
-
-  
-  
-  
-  
-  
-
-  
-  
-  
-  
-  
-
-  
-  
-  
-  
-  
-
-  
-  
-  
-  
-  
-
-  
-  
-  
-  
-  
-
-  
-  
-  
-  
-  
-
-  
-  
-  
-  
-  
-
-  
-  
-  
-  
-  
-
-  
-  
-  
-  
-  
-
-  
-  
-  
-  
-  
-
-  
-  
-  
-  
-  
-
-  
-  
-  
-  
-  
-
-  
-  
-  
-  
-  
-
-  
-  
-  
-  
-  
-
-  
-  
-  
-  
-  
-
-  
-  
-  
-  
-  
-
-  
-  
-  
-  
-    
-    
-    
-    
-    
-  
-
-  
-  
-  
-  
-  
-
-  
-  
-  
-  
-  
-
-  
-  
-  
-  
-  
-
-  
-  
-  
-  
-  
-
-  
-  
-  
-  
-  
-
-  
-  
-  
-  
-  
-
-  
-  
-  
-  
-  
-
-  
-  
-  
-  
-  
-
-
-<div class="tab-pane fade  border border-grey-line rounded-3 overflow-hidden" id="fdebca" role="tabpanel" aria-labelledby="fdebca-tab">
-  
-  <div class="tab-toc bg-light p-3 border-bottom border-grey-line">
-    <p> This document was updated for the <a href="../../uat.html">Knox cloud services 24.09 UAT</a>.</p>
-    
-  </div>
-  
-  
-    
-    <div class="tab-toc p-3 border-bottom border-grey-line">
-      <p class="fw-bold">On this tab</p>
-      <ul class="mt-2 mb-0 list-unstyled section-nav">
+        
+        
+        
+          
+        
+        
       
         
-        <li class="ms-0"><a href="apple-user-enrollment-quickstart.html#supported-devices-24-09">Supported devices</a>
+        
+        
+        
+          
+        
+        
       
         
-        <li class="ms-0"><a href="apple-user-enrollment-quickstart.html#supported-management-features-24-09">Supported management features</a>
+        
+        
+        
+          
+        
+        
       
         
-        <li class="ms-0"><a href="apple-user-enrollment-quickstart.html#prepare-your-tenant-user-enrollment-24-09">Prepare your tenant for User Enrollment</a>
+        
+        
+          
+        
+        
+        
       
         
-        <li class="ms-0"><a href="apple-user-enrollment-quickstart.html#enroll-personally-owned-device-24-09">Enroll a personally-owned device</a>
+        
+        
+          
+        
+        
+        
       
         
-        <li class="ms-0"><a href="apple-user-enrollment-quickstart.html#assign-apps-personally-owned-device-24-09">Assign apps to a personally-owned device</a>
+        
+        
+          
+        
+        
+        
       
-      </ul>
-  </div>
+        
+        
+        
+          
+        
+        
+        
+      
+        
+        
+        
+          
+        
+        
+        
+      
+        
+        
+        
+          
+        
+        
+        
+      
     
-  
-  
-  <div class="tab-content p-3"><p>In your device fleet, Knox Manage supports enrolling BYOD (personally-owned) iPhones and iPads, an activity called <a href="https://support.apple.com/guide/deployment/user-enrollment-and-mdm-dep23db2037d" target="_blank">User Enrollment</a>. Unlike company-owned devices, BYODs can&rsquo;t be supervised.</p><p>Knox Manage implements User Enrollment by mapping a user&rsquo;s Managed Apple ID from your Apple Business Manager to their EMM user account in your Knox Manage tenant. When the personally-owned device then requests enrollment, Knox Manage is able to enroll it on behalf of your organization.</p><h2 id="supported-devices-24-09">Supported devices</h2><p>You can enroll the following personally-owned devices:</p><ul><li>iPhones running iOS 15 through 17</li><li>iPads running iPadOS 15 through 17</li></ul><h2 id="supported-management-features-24-09">Supported management features</h2><p>Personally-owned iOS devices are subject the following conditions and limitations in Knox Manage:</p><ul><li><p>They can have <a href="../configure/applications/volume-purchase-program-for-ios/use-the-volume-purchase-program-ios-only.html">Apple Volume Purchase Program</a> apps assigned to them.</p></li><li><p>They support the online sign-in and QR code enrollment methods. The sign-in method requires entering a long URL, so the QR method is more convenient for users.</p></li><li><p>Knox Manage can&rsquo;t collect any identifying information about the device, such as its IMEI, serial number, phone number, and network information.</p></li><li><p>The device name format is the user&rsquo;s Managed Apple ID, followed by <strong>iOS</strong>, followed by the serialized personal device number in your tenant (not the Apple serial number).</p><p>For example:<strong>alex@appleid.example.com_iOS_27</strong></p></li><li><p>They support a subset of the total iOS policies and device commands. To see which are compatible, check the <strong>Supported system</strong> column in the <a href="../configure/profile/configure-profile-policies/ios-policies.html">iOS policy</a> and <a href="../configure/devices/send-commands-to-devices/ios-device-commands.html">iOS device command</a> references.</p></li></ul><h2 id="prepare-your-tenant-user-enrollment-24-09">Prepare your tenant for User Enrollment</h2><p>Before you can enroll your users&rsquo; personal iPhones and iPads, you must turn it on for your Knox Manage tenant:</p><ol><li>On the Knox Manage console, go to <strong>Setting</strong> &gt; <strong>Configuration</strong> &gt; <strong>Basic Configuration</strong>, then open the <strong>Device</strong> tab.</li><li>Set <strong>User Enrollment for iOS</strong> to <strong>Allow</strong>.</li><li><strong>Save</strong> your changes.</li></ol><h2 id="enroll-personally-owned-device-24-09">Enroll a personally-owned device</h2><p>First, prepare the user&rsquo;s Knox Manage account and send an enrollment request:</p><ol><li><p>On Apple Business Manager, copy the user&rsquo;s Managed Apple ID.</p></li><li><p>On the Knox Manage console, go to <strong>User</strong>.</p></li><li><p>If you haven&rsquo;t already set up an account for the user in Knox Manage, <a href="../configure/applications/add-applications/add-public-apps-using-the-microsoft-store.html">create a new account</a> for them. If they have an account, select it and click <strong>Modify</strong>.</p></li><li><p>In the user details, enter the <strong>Managed Apple ID</strong> you copied earlier.</p></li><li><p>If you&rsquo;d like to enroll the device immediately:</p><ol><li>Click <strong>Save &amp; Request Enrollment</strong>.</li><li>When asked for the request format, select <strong>Send email with installation guide</strong> and confirm.</li></ol></li><li><p>If you&rsquo;d like to enroll the device later:</p><ol><li>Click <strong>Save</strong>.</li><li>At a later time, go to <strong>User</strong>.</li><li>Select the user and click <strong>Request Enrollment</strong>.</li><li>When asked for the request format, select <strong>Send email with installation guide</strong> and confirm.</li></ol></li></ol><p>Knox Manage sends an enrollment request to the device user&rsquo;s email address.</p><p>Next, to complete enrollment, the device user must:</p><ol><li><p>On their personal device, scan the QR code sent in the enrollment request. The Knox Manage sign-in page opens in a web browser.</p> <p><img src="../assets/km-ios-user-enrollment-sign-in-page.png" class="image-block-scale-50 img-thumbnail" alt="Signing in a Knox Manage account in a web browser." /></p></li><li><p>Sign in with their Knox Manage account credentials. Knox Manage enrolls the device.</p></li><li><p>Open Settings and look for an EMM profile to verify that enrollment was successful.</p> <p><img src="../assets/km-ios-user-enrollment-settings-emm-profile.jpg" class="img-fluid img-thumbnail" alt="An EMM profile in the Settings app." /></p></li></ol><h2 id="assign-apps-personally-owned-device-24-09">Assign apps to a personally-owned device</h2><p>To assign an Volume Purchase Program (VPP) app to the device:</p><ol><li>On the Knox Manage console, start <a href="../configure/applications/volume-purchase-program-for-ios/manage-vpp-applications.html#Assignin">assigning a VPP app to the device</a>.</li><li>Set <strong>Assignment Type</strong> to <strong>User</strong>.</li><li>Finish assigning the app to the device.</li></ol><p>Once the app is assigned, the device user can manually install the app.</p>
-  </div>
-  
-</div>
-</div>
+    
+    <p><img src="../assets/km-ios-user-enrollment-sign-in-page.png" class="image-block-scale-50 img-thumbnail" alt="Signing in a Knox Manage account in a web browser." /></p>
+</li>
+<li>
+<p>Sign in with their Knox Manage account credentials. Knox Manage enrolls the device.</p>
+</li>
+<li>
+<p>Open Settings and look for an EMM profile to verify that enrollment was successful.</p>
+
+    
+    
+    
+    
+    
+    
+    
+    <p><img src="../assets/km-ios-user-enrollment-settings-emm-profile.jpg" class="img-fluid img-thumbnail" alt="An EMM profile in the Settings app." /></p>
+</li>
+</ol>
+<h2 id="assign-apps-personally-owned-device">Assign apps to a personally-owned device</h2>
+<p>To assign an Volume Purchase Program (VPP) app to the device:</p>
+<ol>
+<li>On the Knox Manage console, start <a href="../configure/applications/volume-purchase-program-for-ios/manage-vpp-applications.html#Assignin">assigning a VPP app to the device</a>.</li>
+<li>Set <strong>Assignment Type</strong> to <strong>User</strong>.</li>
+<li>Finish assigning the app to the device.</li>
+</ol>
+<p>Once the app is assigned, the device user can manually install the app.</p>
 
             
           </div>
           <div class="l-toh">
-            
+            <h2 class="body-4 fw-bold mt-0">On this page</h2>
+<aside class="table-of-headings">
+  <nav id="TableOfContents">
+  <ul>
+    <li><a href="apple-user-enrollment-quickstart.html#supported-devices">Supported devices</a></li>
+    <li><a href="apple-user-enrollment-quickstart.html#supported-management-features">Supported management features</a></li>
+    <li><a href="apple-user-enrollment-quickstart.html#prepare-your-tenant-user-enrollment">Prepare your tenant for User Enrollment</a></li>
+    <li><a href="apple-user-enrollment-quickstart.html#enroll-personally-owned-device">Enroll a personally-owned device</a></li>
+    <li><a href="apple-user-enrollment-quickstart.html#assign-apps-personally-owned-device">Assign apps to a personally-owned device</a></li>
+  </ul>
+</nav>
+</aside>
           </div>
         </div> 
       </div><div>

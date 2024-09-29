@@ -3874,7 +3874,7 @@
     
     
     <div class="d-flex justify-content-between">
-      <a class="body-5 text-black fw-light" href="../../../../knox-remote-support/manage-admins-and-roles.html">Manage admins and roles</a>
+      <a class="body-5 text-black fw-light" href="../../../../knox-remote-support/manage-admins-and-roles/index.html">Manage admins and roles</a>
     </div>
     
     </li>
@@ -3929,6 +3929,16 @@
     
     <div class="d-flex justify-content-between">
       <a class="body-5 text-black fw-light" href="../../../../knox-remote-support/release-notes/index.html">Release notes</a>
+    </div>
+      
+    </li>
+  
+  
+  
+    <li class="mt-2">
+    
+    <div class="d-flex justify-content-between">
+      <a class="body-5 text-black fw-light" href="../../../../knox-remote-support/kbas/index.html">KBAs</a>
     </div>
       
     </li>
@@ -4934,7 +4944,7 @@
             </div>
             
 
-  <p><span>Last updated September  12th, 2024</span></p>
+  <p><span>Last updated September  25th, 2024</span></p>
 
 
     
@@ -5240,16 +5250,6 @@
       
       
       
-        
-      
-      
-      
-      
-        
-      
-      
-      
-      
         <div class="notice-important"><p>Starting with Knox Manage 23.09, support for management and monitoring of new fully managed Android Management API devices is restricted. To enroll new fully managed devices, use the Android Enterprise platform instead.</p><p>Any existing fully managed Android Management API devices and fully managed Android devices are unaffected by this change. You can also continue using work profiles on Android Management API devices.</p><p>If you need to enroll new fully managed Android Management API devices, <a href="https://www2.samsungknox.com/en/support" target="_blank">contact the Knox Support team</a>.</p></div>
 <p>This page describes the policies that you can <a href="configure-profile-policies-by-device-platform.html">configure</a> for Android devices through the Android Management API.</p>
 <p>In order to help reduce potential confusion, settings labelled <strong>(default)</strong> in a policy description indicate default system and user account behavior. There may also be notation that describes unique default behavior when a policy is unset, or system behavior that by default the device user has control over.</p>
@@ -5439,7 +5439,7 @@
     <tr>
         <td id="connectivity-printing">Printing</td>
         <td>
-            <p>Specifies whether to allow the printing function.</p>
+            <p>Specifies whether to allow sending print commands to a connected printer.</p>
             <h4>Values</h4>
             <ul>
                 <li><strong>Allow</strong></li>
@@ -5499,11 +5499,11 @@
     <tr>
         <td id="connectivity-bluetooth">Bluetooth</td>
         <td>
-            <p>Enables connecting to Bluetooth devices.</p>
+            <p>Specifies if the device can establish Bluetooth connections with other devices.</p>
             <h4>Values</h4>
             <ul>
-                <li><strong>Allow</strong> (default) &mdash; Enables Bluetooth.</li>
-                <li><strong>Disable On</strong> &mdash; Disables Bluetooth.</li>
+                <li><strong>Allow</strong> (default)</li>
+                <li><strong>Disallow</strong></li>
             </ul>
         </td>
         <td>Work profile on company-owned device</td>
@@ -5511,7 +5511,7 @@
     <tr>
         <td id="connectivity-bluetooth-setting">Bluetooth Setting</td>
         <td>
-            <p>Allows the device user to configure settings related to Bluetooth.</p>
+            <p>Allows the device user to configure Bluetooth settings.</p>
             <h4>Values</h4>
             <ul>
                 <li><strong>Allow</strong> (default)</li>
@@ -5533,7 +5533,7 @@
         <td>Work profile on company-owned device</td>
     </tr>
     <tr>
-        <td id="connectivity-outgoing-beam">Transfer Data Using NFC</td>
+        <td id="connectivity-transfer-data-using-nfc">Transfer Data Using NFC</td>
         <td>
             <p>Allows the device user to use NFC to transfer data.</p>
             <h4>Values</h4>
@@ -6613,40 +6613,45 @@
     </tr>
     <tr>
         <td id="certificate-install-area">Install Area</td>
-        <td>Specify where the certificate should be installed.</td>
+        <td>
+            <p>Specify where the certificate should be installed.</p>
+            <p><strong>Value:</strong></p>
+            <ul>
+                <li><strong>Work Profile</strong> (selected by default)</li>
+            </ul>
+        </td>
     </tr>
     <tr>
-        <td id="certificate-user-certificate-input-method">User certificate input method</td>
+        <td id="certificate-user-certificate-input-method">User Certificate Input Method</td>
         <td>
             <p>Select an input method for entering certificate information.</p>
+            <p><strong>Value:</strong></p>
             <ul>
                 <li><strong>EMM Management Certificate</strong> &mdash; Register an external certificate on the Knox Manage server for each network setting, and then verify each network setting using that certificate. All users share this one certificate for each network setting.</li>
             </ul>
             <div class="notice-note">
                 <p>Navigate to <strong>Advanced</strong> &gt; <strong>Certificate</strong> &gt; <strong>External Certificate</strong> to register network settings for each purpose.</p>
             </div>
-            <ul>
-                <li><strong>Connector interworking</strong> &mdash; Verifies network settings using the user information obtained by applying the filter set for the connector. To verify the network settings on the device, you should set the Service <strong>Type as Profile Configuration(Certification)</strong> when you register a connector in <strong>Advanced</strong> &gt; <strong>System Integration</strong> &gt; <strong>Directory Connector</strong>. To learn more about how to add a directory connector, see <a href="../../identity-and-directory/connect-to-ad-ldap.html">Connect to AD/LDAP</a>.</li>
-                <li>When you search for a user using the filter set for the connector, the user certificate (.p12 or .pfx) corresponding to the obtained user information is applied along with a profile, allowing you to use this certificate to verify the user.</li>
-                <li><strong>Issuing external CA</strong> &mdash; Register a certificate obtained from an external certificate authority to <strong>Advanced</strong> &gt; <strong>Certificate</strong> &gt; <strong>Certificate Template</strong>.
-                    <p>Then, you register a certificate template for each network setting, and verify it as a user certificate. To learn more about how to add an external certificate, see <a href="../../certificates/external-certificates.html">External certificates</a>.</p>
-                </li>
-            </ul>
         </td>
     </tr>
     <tr>
-        <td id="certificate-certificate-category">Certificate Category</td>
+        <td id="certificate-certificate-category">&gt; Certificate Category</td>
         <td>
-            <p>Select a certification category when EMM Management Certificate is selected in User certificate input method,</p>
+            <p>Select a certification category when <strong>EMM Management Certificate</strong> is selected as the user certificate input method.</p>
+            <p><strong>Values:</strong></p>
             <ul>
-                <li><strong>CA certificate</strong> &mdash; Select a certificate to use from the CA certificate list. Among the certificates registered in <strong>Advanced</strong> &gt; <strong>Certificate</strong> &gt; <strong>External Certificate</strong>, those with the Purpose set as CA Cert and the Type set as Root show on the list.</li>
-                <li><strong>User certificate</strong> &mdash; Select a certificate to use from the User Certificate list. Among the certificates registered in <strong>Advanced</strong> &gt; <strong>Certificate</strong> &gt; <strong>External Certificate</strong>, those with the Purpose has been set as CA Cert and the Type set as User show on the list.</li>
+                <li><strong>CA certificate</strong> &mdash; Select a certificate to use from the CA certificate list. Among certificates registered in <strong>Advanced</strong> &gt; <strong>Certificate</strong> &gt; <strong>External Certificate</strong>, those with <strong>Purpose</strong> set to <strong>CA Cert</strong> and <strong>Type</strong> set to <strong>Root</strong> appear on the list.</li>
+                <li><strong>User certificate</strong> &mdash; Select a certificate to use from the User Certificate list. Among certificates registered in <strong>Advanced</strong> &gt; <strong>Certificate</strong> &gt; <strong>External Certificate</strong>, those with <strong>Purpose</strong> set to <strong>CA Cert</strong> and <strong>Type</strong> set to <strong>User</strong> appear on the list.</li>
             </ul>
         </td>
     </tr>
     <tr>
-        <td id="certificate-apps-delegated-certificate-management">Apps with Delegated Certificate Management</td>
-        <td>Add specific applications, which are installed on the device, to grant silent privileged access using a certificate while running.</td>
+        <td id="certificate-certificate-category-ca-certificate-alias">&gt;&gt; CA Certificate (Alias)</td>
+        <td>Select a CA certificate name. This option is available when <strong>CA Certificate</strong> is selected as the <strong>Certificate Category</strong>.</td>
+    </tr>
+    <tr>
+        <td id="certificate-certificate-category-user-certificate-alias">&gt;&gt; User Certificate (Alias)</td>
+        <td>Select a user certificate name. This option is available when <strong>User Certificate</strong> is selected as the <strong>Certificate Category</strong>.</td>
     </tr>
 </table></div>
 
