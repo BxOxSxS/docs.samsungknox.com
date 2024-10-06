@@ -285,7 +285,8 @@
             </div>
             
 
-  
+  <p><span>Last updated October  4th, 2024</span></p>
+
 
     
 
@@ -330,37 +331,13 @@
       
       
       
-        
       
       
       
       
-        
       
       
       
-      
-        
-      
-      
-      
-      
-        
-      
-      
-      
-      
-        
-      
-      
-      
-      
-        
-      
-      
-      
-      
-        
       <p>The aim of this integration is to be able to upload customer devices that are sold through [CARRIER COMPANY] with their customer-side Samsung Knox services, such as <a href="https://www.samsungknox.com/en/solutions/it-solutions/knox-mobile-enrollment" target="_blank">Knox Mobile Enrollment</a> and <a href="https://www.samsungknox.com/en/solutions/it-solutions/knox-configure" target="_blank">Knox Configure</a>.</p>
 <h2 id="prerequisites-and-documentation-general-steps">Prerequisites and Documentation (General Steps)</h2>
 <ol>
@@ -418,78 +395,89 @@
 </li>
 </ul>
 <p>For more information, see the <a href="../fundamentals/web-services.html">Knox Web Services overview</a>.</p>
-<h2 id="step-3-ensure-you-can-generate-session-tokens">Step 3: Ensure you can generate session tokens</h2>
-<p>Creating the session token is a security-heavy process and is required for any Cloud API call.</p>
+<h2 id="step-3-generate-and-sign-your-access-token">Step 3: Generate and sign your access token</h2>
+<p>Follow steps 4 to 9 of the <a href="../knox-cloud-authentication/knox-cloud-authentication/tutorial-for-customers-generate-access-token.html">Knox Cloud Authentication Developer Guide</a> to generate and sign your access token.</p>
+<h2 id="step-4-integrate-with-the-knox-deployment-program-api">Step 4: Integrate with the Knox Deployment Program API</h2>
+<p>Here are the most important Knox Deployment Program API operations to integrate with:</p>
+<h3 id="upload-devices">Upload devices</h3>
+<p>Upload devices to your customer&rsquo;s account with the <a href="api.html#tag/Management/operation/uploadDevicesUsingPUT" target="_blank">PUT /kcs/v1/rp/devices/upload</a> operation.</p>
+<p>In the header, include your signed access token from the previous step. Then, make sure you include the following required body parameters:</p>
 <ul>
-<li>
-<p>Follow Steps 4 to 8 of the <a href="../knox-cloud-authentication/knox-cloud-authentication/tutorial-for-customers-generate-access-token.html">Knox Cloud Authentication Developer Guide</a>.</p>
-</li>
-<li>
-<p>As a practical guide, use the attached sample JavaScript token signing and session token generating code.</p>
+<li><code>customerId</code> – ID of the customer to upload devices for.</li>
+<li><code>resellerId</code> – Your reseller ID.</li>
+<li><code>transactionId</code> – Unique transaction ID for this operation. You can later use this transaction ID to check the status of this operation.</li>
+<li><code>devices</code> - An array of device IMEIs or Serial Numbers to be uploaded.</li>
+<li><code>type</code> -  Device type. <code>IMEI</code>, <code>MEID</code>, or <code>SN</code>.</li>
+</ul>
+<p>There are also optional parameters you can set for this request. To learn more, see the <a href="api.html#tag/Management/operation/uploadDevicesUsingPUT" target="_blank">Knox Deployment Program API reference</a>.</p>
+<p>Here&rsquo;s a cURL request example that calls the upload operation.</p>
+<div class="highlight"><pre tabindex="0" style=";-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>curl -X PUT <span style="color:#b62;font-weight:bold">\
+</span></span></span><span style="display:flex;"><span><span style="color:#b62;font-weight:bold"></span>  https://us-kcs-api.samsungknox.com/kcs/v1/rp/devices/upload <span style="color:#b62;font-weight:bold">\
+</span></span></span><span style="display:flex;"><span><span style="color:#b62;font-weight:bold"></span>  -H <span style="color:#ba2121">&#39;content-type: application/json&#39;</span> <span style="color:#b62;font-weight:bold">\
+</span></span></span><span style="display:flex;"><span><span style="color:#b62;font-weight:bold"></span>  -H <span style="color:#ba2121">&#39;x-knox-apitoken: &lt;insert-token-here&gt;&#39;</span> <span style="color:#b62;font-weight:bold">\
+</span></span></span><span style="display:flex;"><span><span style="color:#b62;font-weight:bold"></span>  -d <span style="color:#ba2121">&#39;{
+</span></span></span><span style="display:flex;"><span><span style="color:#ba2121">  &#34;customerId&#34;: &#34;string&#34;,
+</span></span></span><span style="display:flex;"><span><span style="color:#ba2121">  &#34;resellerId&#34;: &#34;string&#34;,
+</span></span></span><span style="display:flex;"><span><span style="color:#ba2121">  &#34;transactionId&#34;: &#34;string&#34;,
+</span></span></span><span style="display:flex;"><span><span style="color:#ba2121">  &#34;devices&#34;: [
+</span></span></span><span style="display:flex;"><span><span style="color:#ba2121">    &#34;string&#34;
+</span></span></span><span style="display:flex;"><span><span style="color:#ba2121">    ]
+</span></span></span><span style="display:flex;"><span><span style="color:#ba2121">  &#34;type&#34;: &#34;IMEI&#34;
+</span></span></span><span style="display:flex;"><span><span style="color:#ba2121">  }&#39;</span>
+</span></span></code></pre></div><h3 id="list-device-transactions-status">List device transactions status</h3>
+<p>Get a list of device transaction statuses with the <a href="api.html#tag/Management/operation/getDeviceTransactionStatusUsingGET" target="_blank">GET /kcs/v1/rp/devices/status</a> operation.</p>
+<p>In the header, include your signed access token from the previous step. Then, make sure you include the <code>resellerId</code> as a query parameter in your request.</p>
+<p>There are also optional query parameters you can set for filtering. To learn more, see the <a href="api.html#tag/Management/operation/getDeviceTransactionStatusUsingGET" target="_blank">Knox Deployment Program API reference</a>.</p>
+<p>Here&rsquo;s a cURL request example that calls this operation.</p>
+<div class="highlight"><pre tabindex="0" style=";-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>curl -X GET <span style="color:#b62;font-weight:bold">\
+</span></span></span><span style="display:flex;"><span><span style="color:#b62;font-weight:bold"></span>  https://us-kcs-api.samsungknox.com/kcs/v1/rp/devices/status?resellerId<span style="color:#666">=</span><span style="color:#ba2121">&#34;your-reseller-id&#34;</span> <span style="color:#b62;font-weight:bold">\
+</span></span></span><span style="display:flex;"><span><span style="color:#b62;font-weight:bold"></span>  -H <span style="color:#ba2121">&#39;x-knox-apitoken: &lt;insert-token-here&gt;&#39;</span>
+</span></span></code></pre></div><h3 id="delete-devices">Delete devices</h3>
+<p>Delete devices with the <a href="api.html#tag/Management/operation/deleteDevicesUsingPUT" target="_blank">PUT /kcs/v1/rp/devices/delete</a> operation.</p>
+<p>In the header, include your signed access token from the previous step. Then, make sure you include the following required body parameters:</p>
 <ul>
-<li>
-<p>There are JavaScript and Native Java libraries to integrate.</p>
-</li>
-<li>
-<p>We created a sample script on JavaScript, based on the APIs for the Knox Cloud APIs Integration.</p>
-<ol>
-<li>
-<p>The name of the file is <a href="assets/SampleSessionID-GeneratingCode.gz">SampleSessionID-GeneratingCode.gz</a>.</p>
-</li>
-<li>
-<p>The .gz file can be opened with Winzip. It needs to be renamed as.js and is meant to be run with node (The file name is modified so your antivirus does not catch it).</p>
-</li>
-<li>
-<p>You need to install node.js and the Samsung JavaScript libraries as per the guide.</p>
-</li>
-</ol>
-</li>
+<li><code>customerId</code> – ID of the customer to delete devices for.</li>
+<li><code>resellerId</code> – Your reseller ID.</li>
+<li><code>transactionId</code> – Unique transaction ID for this operation. You can later use this transaction ID to check the status of this operation.</li>
+<li><code>devices</code> - An array of device IMEIs or Serial Numbers to be deleted. Required if <code>removeTransactionId</code> is not provided.</li>
+<li><code>removeTransactionId</code> -  Transaction ID of a device upload operation. Allows you to delete devices from that specific upload. Required if <code>devices</code> is not provided.</li>
+<li><code>type</code> - Device type. <code>IMEI</code>, <code>MEID</code>, or <code>SN</code>. Required if <code>devices</code> is provided and <code>removeTransactionId</code> is not provided.</li>
 </ul>
-</li>
-</ul>
-<h2 id="step-4-create-your-access-token">Step 4: Create your access token</h2>
-<p>Call the <code>access token</code> REST API to generate your access token <code>x-knox-apitoken</code>.</p>
-<div class="notice-note"><p>For security reasons, the access token has an expiry of 30 minutes. Regenerate as specified in the <a href="../fundamentals/web-services.html">Knox Web Services overview</a>.</p></div>
-<h2 id="step-5-integrate-with-the-knox-deployment-program-apis">Step 5: Integrate with the Knox Deployment Program APIs</h2>
-<p>At a minimum, these are the APIs that you need to integrate with:</p>
-<ul>
-<li><a href="api.html#tag/Management/operation/uploadDevicesUsingPUT">Upload Devices</a></li>
-</ul>
-<div class="highlight"><pre tabindex="0" style=";-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-http" data-lang="http"><span style="display:flex;"><span><span style="">    </span><span style="color:#00f">PUT</span> <span style="color:#00f;font-weight:bold">/kcs/v1/rp/devices/upload</span> <span style="color:#008000;font-weight:bold">HTTP</span><span style="color:#666">/</span><span style="color:#666">1.1</span>
-</span></span><span style="display:flex;"><span>    host: https://us-kcs-api.samsungknox.com
-</span></span><span style="display:flex;"><span>    content-type: application/json
-</span></span><span style="display:flex;"><span>    x-knox-apitoken: &#34;&lt;insert-token-step-4&gt;&#34;
-</span></span></code></pre></div><ul>
-<li><a href="api.html#tag/Management/operation/getDeviceTransactionStatusUsingGET">List Device Transaction Status</a></li>
-</ul>
-<div class="highlight"><pre tabindex="0" style=";-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-http" data-lang="http"><span style="display:flex;"><span><span style="">    </span><span style="color:#00f">GET</span> <span style="color:#00f;font-weight:bold">/kcs/v1/rp/devices/status?resellerId=&#34;&lt;your-reseller-id&gt;&#34;&amp;customerId=&#34;&lt;your-customer-id&gt;&#34;;</span> <span style="color:#008000;font-weight:bold">HTTP</span><span style="color:#666">/</span><span style="color:#666">1.1</span>
-</span></span><span style="display:flex;"><span>    host: https://us-kcs-api.samsungknox.com
-</span></span><span style="display:flex;"><span>    content-type:application/json
-</span></span><span style="display:flex;"><span>    x-knox-apitoken: &#34;&lt;insert-token-step-4&gt;&#34;
-</span></span></code></pre></div><ul>
-<li><a href="api.html#tag/Management/operation/deleteDevicesUsingPUT">Delete Devices</a></li>
-</ul>
-<div class="highlight"><pre tabindex="0" style=";-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-http" data-lang="http"><span style="display:flex;"><span><span style="">    </span><span style="color:#00f">PUT</span> <span style="color:#00f;font-weight:bold">/kcs/v1/rp/devices/delete</span> <span style="color:#008000;font-weight:bold">HTTP</span><span style="color:#666">/</span><span style="color:#666">1.1</span>
-</span></span><span style="display:flex;"><span>    host: https://us-kcs-api.samsungknox.com
-</span></span><span style="display:flex;"><span>    content-type:application/json
-</span></span><span style="display:flex;"><span>    x-knox-apitoken: &#34;&lt;insert-token-step-4&gt;&#34;
-</span></span></code></pre></div><ul>
-<li>Optionally, you can use the <a href="api.html#tag/Management/operation/getDevicesUsingGET">List Devices</a> API to view all successfully loaded devices for a customer.</li>
-</ul>
-<div class="highlight"><pre tabindex="0" style=";-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-http" data-lang="http"><span style="display:flex;"><span><span style="">    GET /kcs/v1/rp/devices?resellerId=&#34;&lt;your-reseller-id&gt;&#34;&amp;pageSize=100&amp;pageNum=0
-</span></span></span><span style="display:flex;"><span><span style="">    host: https://us-kcs-api.samsungknox.com
-</span></span></span><span style="display:flex;"><span><span style="">    content-type:application/json
-</span></span></span><span style="display:flex;"><span><span style="">    x-knox-apitoken: &#34;&lt;insert-token-step-4&gt;&#34;
-</span></span></span></code></pre></div><ul>
-<li>You can also access the list of customers in your portal by using the <a href="api.html#tag/Management/operation/getAssociatedCustomersUsingGET">List Reseller&rsquo;s Customers</a> API (optional as well).</li>
-</ul>
-<div class="highlight"><pre tabindex="0" style=";-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-http" data-lang="http"><span style="display:flex;"><span><span style="">    </span><span style="color:#00f">GET</span> <span style="color:#00f;font-weight:bold">/kcs/v1/rp/customers/list?resellerId=&#34;%lt;your-reseller-id&gt;&#34;</span> <span style="color:#008000;font-weight:bold">HTTP</span><span style="color:#666">/</span><span style="color:#666">1.1</span>
-</span></span><span style="display:flex;"><span>    content-type:application/json
-</span></span><span style="display:flex;"><span>    x-knox-apitoken: &#34;&lt;insert-token-step-4&gt;&#34;
-</span></span><span style="display:flex;"><span>    host: https://us-kcs-api.samsungknox.com
-</span></span></code></pre></div><p>Evaluate any additional APIs and specific methods with which you might wish to integrate.</p>
+<p>There are also optional parameters you can set for this request. To learn more, see the <a href="api.html#tag/Management/operation/deleteDevicesUsingPUT" target="_blank">Knox Deployment Program API reference</a>.</p>
+<div class="highlight"><pre tabindex="0" style=";-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>curl -X PUT <span style="color:#b62;font-weight:bold">\
+</span></span></span><span style="display:flex;"><span><span style="color:#b62;font-weight:bold"></span>  https://us-kcs-api.samsungknox.com/kcs/v1/rp/devices/delete <span style="color:#b62;font-weight:bold">\
+</span></span></span><span style="display:flex;"><span><span style="color:#b62;font-weight:bold"></span>  -H <span style="color:#ba2121">&#39;Content-Type: application/json&#39;</span> <span style="color:#b62;font-weight:bold">\
+</span></span></span><span style="display:flex;"><span><span style="color:#b62;font-weight:bold"></span>  -H <span style="color:#ba2121">&#39;x-knox-apitoken: &lt;insert-token-here&gt;&#39;</span> <span style="color:#b62;font-weight:bold">\
+</span></span></span><span style="display:flex;"><span><span style="color:#b62;font-weight:bold"></span>  -d <span style="color:#ba2121">&#39;{
+</span></span></span><span style="display:flex;"><span><span style="color:#ba2121">  &#34;customerId&#34;: &#34;string&#34;,
+</span></span></span><span style="display:flex;"><span><span style="color:#ba2121">  &#34;resellerId&#34;: &#34;string&#34;,
+</span></span></span><span style="display:flex;"><span><span style="color:#ba2121">  &#34;transactionId&#34;: &#34;string&#34;,
+</span></span></span><span style="display:flex;"><span><span style="color:#ba2121">  &#34;devices&#34;: [
+</span></span></span><span style="display:flex;"><span><span style="color:#ba2121">    &#34;string&#34;
+</span></span></span><span style="display:flex;"><span><span style="color:#ba2121">  ],
+</span></span></span><span style="display:flex;"><span><span style="color:#ba2121">  &#34;removeTransactionId&#34;: &#34;string&#34;,
+</span></span></span><span style="display:flex;"><span><span style="color:#ba2121">  &#34;type&#34;: &#34;string&#34;,
+</span></span></span><span style="display:flex;"><span><span style="color:#ba2121">  &#34;vendorId&#34;: &#34;string&#34;
+</span></span></span><span style="display:flex;"><span><span style="color:#ba2121">}&#39;</span>
+</span></span></code></pre></div><h3 id="list-devices">List devices</h3>
+<p>Get a list of devices uploaded with the <a href="api.html#tag/Management/operation/getDevicesUsingGET" target="_blank">GET /kcs/v1/rp/devices</a> operation.</p>
+<p>In the header, include your signed access token from the previous step. Then, make sure you include the <code>resellerId</code> as a query parameter in your request.</p>
+<p>There are also optional query parameters you can set for filtering. To learn more, see the <a href="api.html#tag/Management/operation/getDevicesUsingGET" target="_blank">Knox Deployment Program API reference</a>.</p>
+<p>Here&rsquo;s a cURL request example that calls this operation.</p>
+<div class="highlight"><pre tabindex="0" style=";-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>curl -X GET <span style="color:#b62;font-weight:bold">\
+</span></span></span><span style="display:flex;"><span><span style="color:#b62;font-weight:bold"></span>  https://us-kcs-api.samsungknox.com/kcs/v1/rp/devices?resellerId<span style="color:#666">=</span><span style="color:#ba2121">&#34;your-reseller-id&#34;</span> <span style="color:#b62;font-weight:bold">\
+</span></span></span><span style="display:flex;"><span><span style="color:#b62;font-weight:bold"></span>  -H <span style="color:#ba2121">&#39;x-knox-apitoken: &lt;insert-token-here&gt;&#39;</span>
+</span></span></code></pre></div><h3 id="list-customers">List customers</h3>
+<p>Get a list of customers with the <a href="api.html#tag/Management/operation/getAssociatedCustomersUsingGET" target="_blank">GET /kcs/v1/rp/customers/list</a> operation.</p>
+<p>In the header, include your signed access token from the previous step. Then, make sure you include the <code>resellerId</code> as a query parameter in your request.</p>
+<p>There are also optional query parameters you can set for filtering. To learn more, see the <a href="api.html#tag/Management/operation/getAssociatedCustomersUsingGET" target="_blank">Knox Deployment Program API reference</a>.</p>
+<div class="highlight"><pre tabindex="0" style=";-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>curl -X GET <span style="color:#b62;font-weight:bold">\
+</span></span></span><span style="display:flex;"><span><span style="color:#b62;font-weight:bold"></span>  https://us-kcs-api.samsungknox.com/kcs/v1/rp/customers/list?resellerId<span style="color:#666">=</span><span style="color:#ba2121">&#34;&lt;your-reseller-id&gt; \
+</span></span></span><span style="display:flex;"><span><span style="color:#ba2121">  -H &#39;x-knox-apitoken: &lt;insert-token-here&gt;&#39;
+</span></span></span></code></pre></div><h3 id="other-api-operations">Other API operations</h3>
+<p>Evaluate any additional operations which you might wish to integrate. For more information, see the <a href="api.html" target="_blank">Knox Deployment Program API reference</a>.</p>
 <p>As a participating Knox Deployment Program reseller, you are responsible for uploading devices purchased by your customers for access to Knox Mobile Enrollment, Knox Configure, and other Knox cloud services. The association between the reseller and the customer is automatically created during a device&rsquo;s first upload based on their <code>customerId</code>.</p>
-<h2 id="step-6-test-your-knox-deployment-programapiintegration">Step 6: Test your Knox Deployment Program API Integration</h2>
+<h2 id="step-5-test-your-knox-deployment-programapiintegration">Step 5: Test your Knox Deployment Program API Integration</h2>
 <p>Since you are testing as a Samsung Device Vendor, you will need a Samsung Knox Customer-Side Knox Mobile Enrollment account for testing the end-to-end flow.</p>
 <p>Create a <strong>different</strong> Knox Portal account than the account used on Step 1 above.</p>
 <ul>
@@ -509,9 +497,9 @@
 <li>Once you are inside the Knox Portal, go to <strong>Knox Suite</strong> &gt; <strong>Knox Mobile Enrollment</strong> and request access.</li>
 </ul>
 <p>Ensure that you can upload and delete devices against a (test) customer-side Samsung Knox Customer account.</p>
-<h2 id="step-7-integrate-your-knox-deployment-program-integration-with-your-internal-systems">Step 7: Integrate your Knox Deployment Program integration with your internal systems</h2>
+<h2 id="step-6-integrate-your-knox-deployment-program-integration-with-your-internal-systems">Step 6: Integrate your Knox Deployment Program integration with your internal systems</h2>
 <p>The effort and duration of this project stage is dependent on your integration resources, technical availability and internal system complexity.</p>
-<h2 id="step-8-go-live-with-your-knox-deployment-program-api-integration">Step 8: Go Live with your Knox Deployment Program API Integration</h2>
+<h2 id="step-7-go-live-with-your-knox-deployment-program-api-integration">Step 7: Go Live with your Knox Deployment Program API Integration</h2>
 <p>Once all your internal and Knox Deployment Program API integration testing is complete, you are ready to go live with your Knox Deployment Program integration and to upload devices to customer&rsquo;s environments.</p>
 <p>Coordinate with your Samsung representative on go-live steps.</p>
 
@@ -525,12 +513,20 @@
     <li><a href="tutorial-knox-deployment-program-integration.html#prerequisites-and-documentation-general-steps">Prerequisites and Documentation (General Steps)</a></li>
     <li><a href="tutorial-knox-deployment-program-integration.html#step-1-sign-up-for-the-knox-deployment-program">Step 1: Sign up for the Knox Deployment Program</a></li>
     <li><a href="tutorial-knox-deployment-program-integration.html#step-2-apply-for-knox-deployment-programapiaccess-and-getting-your-access-key-pair">Step 2: Apply for Knox Deployment Program API access and getting your Access Key Pair</a></li>
-    <li><a href="tutorial-knox-deployment-program-integration.html#step-3-ensure-you-can-generate-session-tokens">Step 3: Ensure you can generate session tokens</a></li>
-    <li><a href="tutorial-knox-deployment-program-integration.html#step-4-create-your-access-token">Step 4: Create your access token</a></li>
-    <li><a href="tutorial-knox-deployment-program-integration.html#step-5-integrate-with-the-knox-deployment-program-apis">Step 5: Integrate with the Knox Deployment Program APIs</a></li>
-    <li><a href="tutorial-knox-deployment-program-integration.html#step-6-test-your-knox-deployment-programapiintegration">Step 6: Test your Knox Deployment Program API Integration</a></li>
-    <li><a href="tutorial-knox-deployment-program-integration.html#step-7-integrate-your-knox-deployment-program-integration-with-your-internal-systems">Step 7: Integrate your Knox Deployment Program integration with your internal systems</a></li>
-    <li><a href="tutorial-knox-deployment-program-integration.html#step-8-go-live-with-your-knox-deployment-program-api-integration">Step 8: Go Live with your Knox Deployment Program API Integration</a></li>
+    <li><a href="tutorial-knox-deployment-program-integration.html#step-3-generate-and-sign-your-access-token">Step 3: Generate and sign your access token</a></li>
+    <li><a href="tutorial-knox-deployment-program-integration.html#step-4-integrate-with-the-knox-deployment-program-api">Step 4: Integrate with the Knox Deployment Program API</a>
+      <ul>
+        <li><a href="tutorial-knox-deployment-program-integration.html#upload-devices">Upload devices</a></li>
+        <li><a href="tutorial-knox-deployment-program-integration.html#list-device-transactions-status">List device transactions status</a></li>
+        <li><a href="tutorial-knox-deployment-program-integration.html#delete-devices">Delete devices</a></li>
+        <li><a href="tutorial-knox-deployment-program-integration.html#list-devices">List devices</a></li>
+        <li><a href="tutorial-knox-deployment-program-integration.html#list-customers">List customers</a></li>
+        <li><a href="tutorial-knox-deployment-program-integration.html#other-api-operations">Other API operations</a></li>
+      </ul>
+    </li>
+    <li><a href="tutorial-knox-deployment-program-integration.html#step-5-test-your-knox-deployment-programapiintegration">Step 5: Test your Knox Deployment Program API Integration</a></li>
+    <li><a href="tutorial-knox-deployment-program-integration.html#step-6-integrate-your-knox-deployment-program-integration-with-your-internal-systems">Step 6: Integrate your Knox Deployment Program integration with your internal systems</a></li>
+    <li><a href="tutorial-knox-deployment-program-integration.html#step-7-go-live-with-your-knox-deployment-program-api-integration">Step 7: Go Live with your Knox Deployment Program API Integration</a></li>
   </ul>
 </nav>
 </aside>
