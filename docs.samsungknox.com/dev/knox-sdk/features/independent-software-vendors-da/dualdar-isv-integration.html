@@ -3545,414 +3545,138 @@ Figure 1: Represents the platform states, user events, and the callback client a
    
    
    
-   
+  
    
   
   <li class="nav-item" role="presentation">
     <button
       class="tab-link active px-3 py-2 rounded-5"
-      id="dacefb-tab"
+      id="tab-1-tab"
       data-bs-toggle="tab"
-      data-bs-target="#dacefb"
+      data-bs-target="#tab-1"
       type="button"
       role="tab"
-      aria-controls="dacefb"
+      aria-controls="tab-1"
       aria-selected="true"
     >Prepare
     </button>
   </li>
    
-   
   
   <li class="nav-item" role="presentation">
     <button
       class="tab-link  px-3 py-2 rounded-5"
-      id="abefcd-tab"
+      id="tab-2-tab"
       data-bs-toggle="tab"
-      data-bs-target="#abefcd"
+      data-bs-target="#tab-2"
       type="button"
       role="tab"
-      aria-controls="abefcd"
+      aria-controls="tab-2"
       aria-selected="true"
     >Encrypt
     </button>
   </li>
    
-   
   
   <li class="nav-item" role="presentation">
     <button
       class="tab-link  px-3 py-2 rounded-5"
-      id="eacfbd-tab"
+      id="tab-3-tab"
       data-bs-toggle="tab"
-      data-bs-target="#eacfbd"
+      data-bs-target="#tab-3"
       type="button"
       role="tab"
-      aria-controls="eacfbd"
+      aria-controls="tab-3"
       aria-selected="true"
     >Decrypt
     </button>
   </li>
-   
-   
-   
-  
-</ul>
+  </ul>
 <div class="tab-content mb-6" id="nav-tab-content">
 
 
-
-
-
-
-
-
-
-
-
-
-
   
   
+
+
+
+<div class="tab-pane fade  show active  border border-grey-line rounded-3 overflow-hidden" id="tab-1" role="tabpanel" aria-labelledby="tab-1-tab">
   
   
     
-    
-    
-    
-    
-  
-
-  
-  
-  
-  
-  
-
-  
-  
-  
-  
-  
-
-  
-  
-  
-  
-  
-
-  
-  
-  
-  
-  
-
-  
-  
-  
-  
-  
-
-  
-  
-  
-  
-  
-
-  
-  
-  
-  
-  
-
-  
-  
-  
-  
-  
-
-  
-  
-  
-  
-  
-
-  
-  
-  
-  
-  
-
-  
-  
-  
-  
-  
-
-  
-  
-  
-  
-  
-
-  
-  
-  
-  
-  
-
-  
-  
-  
-  
-  
-
-  
-  
-  
-  
-  
-
-  
-  
-  
-  
-  
-
-  
-  
-  
-  
-  
-
-  
-  
-  
-  
-  
-
-  
-  
-  
-  
-  
-
-  
-  
-  
-  
-  
-
-  
-  
-  
-  
-  
-
-  
-  
-  
-  
-  
-
-
-<div class="tab-pane fade  show active  border border-grey-line rounded-3 overflow-hidden" id="dacefb" role="tabpanel" aria-labelledby="dacefb-tab">
-  
-  
-    
-  
-  
-  <div class="tab-content p-3"><h3 id="prepare-prepare">Prepare</h3><p>The <code>prepare</code> callback is used to initialize <code>crypto</code> materials prior to encryption and decryption, while the platform provides <code>metadata</code> object to access persistent and ephemeral storage. It&rsquo;s called for each file after the data locked state or during file creation.</p><p>For example, an implementation of <code>prepare</code> would be to derive the file encryption key (FEK) from the primary key in secret object and store the FEK in the ephemeral cache to be used with encypt/decrypt callbacks:</p><div class="highlight"><pre tabindex="0" style=";-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span>bool MyTestCrypto<span style="color:#666">::</span>prepare<span style="color:#666">(</span>ddar<span style="color:#666">::</span>context <span style="color:#666">*</span>context<span style="color:#666">,</span> ddar<span style="color:#666">::</span>metadata <span style="color:#666">*</span>md<span style="color:#666">)</span> <span style="color:#666">{</span></span></span><span style="display:flex;"><span>  ddar<span style="color:#666">::</span>secret <span style="color:#666">*</span>sec <span style="color:#666">=</span> context<span style="color:#666">-&gt;</span>get_secret<span style="color:#666">(</span><span style="color:#ba2121">&#34;my_master_key_alias&#34;</span><span style="color:#666">);</span>  <span style="">#</span> vendor client app defined</span></span><span style="display:flex;"><span>  struct my_metadata <span style="color:#666">*</span>my_md <span style="color:#666">=</span> <span style="color:#666">(</span>struct my_metadata <span style="color:#666">*)</span> md<span style="color:#666">-&gt;</span>ephemeral_addr<span style="color:#666">;</span></span></span><span style="display:flex;"><span>  <span style="color:#b00040">char</span> <span style="color:#666">*</span>iv <span style="color:#666">=</span> NULL<span style="color:#666">;</span></span></span><span style="display:flex;"><span>  <span style="color:#b00040">char</span> efek<span style="color:#666">[</span>FEK_KEYLEN<span style="color:#666">];</span></span></span><span style="display:flex;"><span>  <span style="color:#b00040">int</span> rc <span style="color:#666">=</span> md<span style="color:#666">-&gt;</span>persistent_get<span style="color:#666">(</span>ALIAS_EFEK<span style="color:#666">,</span> efek<span style="color:#666">);</span></span></span><span style="display:flex;"><span>  <span style="color:#008000;font-weight:bold">if</span> <span style="color:#666">(</span>rc <span style="color:#666">&lt;=</span> <span style="color:#666">0</span><span style="color:#666">)</span> <span style="color:#666">{</span></span></span><span style="display:flex;"><span>      <span style="color:#408080;font-style:italic">// No FEK associate with the file, create new</span></span></span><span style="display:flex;"><span><span style="color:#408080;font-style:italic"></span>      mSSL<span style="color:#666">.</span><span style="color:#7d9029">rand_bytes</span><span style="color:#666">(</span>my_md<span style="color:#666">-&gt;</span>fek<span style="color:#666">,</span> FEK_KEYLEN<span style="color:#666">);</span></span></span><span style="display:flex;"><span>      rc <span style="color:#666">=</span> mSSL<span style="color:#666">.</span><span style="color:#7d9029">encrypt</span><span style="color:#666">((</span>unsigned <span style="color:#b00040">char</span> <span style="color:#666">*)</span>my_md<span style="color:#666">-&gt;</span>fek<span style="color:#666">,</span> FEK_KEYLEN<span style="color:#666">,</span></span></span><span style="display:flex;"><span>              <span style="color:#666">(</span>unsigned <span style="color:#b00040">char</span> <span style="color:#666">*)</span>sec<span style="color:#666">-&gt;</span>data<span style="color:#666">,</span> <span style="color:#666">(</span>unsigned <span style="color:#b00040">char</span> <span style="color:#666">*)</span>iv<span style="color:#666">,</span> <span style="color:#666">(</span>unsigned <span style="color:#b00040">char</span> <span style="color:#666">*)</span>efek<span style="color:#666">);</span></span></span><span style="display:flex;"><span>      <span style="color:#008000;font-weight:bold">if</span> <span style="color:#666">(</span>rc <span style="color:#666">&lt;</span> <span style="color:#666">0</span><span style="color:#666">)</span></span></span><span style="display:flex;"><span>          <span style="color:#008000;font-weight:bold">return</span> <span style="color:#008000;font-weight:bold">false</span><span style="color:#666">;</span>  <span style="color:#408080;font-style:italic">// failed to encrypt efek</span></span></span><span style="display:flex;"><span><span style="color:#408080;font-style:italic"></span>      md<span style="color:#666">-&gt;</span>persistent_set<span style="color:#666">(</span>ALIAS_EFEK<span style="color:#666">,</span> efek<span style="color:#666">,</span> FEK_KEYLEN<span style="color:#666">);</span>  <span style="color:#408080;font-style:italic">// store efek</span></span></span><span style="display:flex;"><span><span style="color:#408080;font-style:italic"></span>  <span style="color:#666">}</span> <span style="color:#008000;font-weight:bold">else</span> <span style="color:#666">{</span></span></span><span style="display:flex;"><span>      mSSL<span style="color:#666">.</span><span style="color:#7d9029">decrypt</span><span style="color:#666">((</span>unsigned <span style="color:#b00040">char</span> <span style="color:#666">*)</span>efek<span style="color:#666">,</span> rc<span style="color:#666">,</span></span></span><span style="display:flex;"><span>          <span style="color:#666">(</span>unsigned <span style="color:#b00040">char</span> <span style="color:#666">*)</span>sec<span style="color:#666">-&gt;</span>data<span style="color:#666">,</span> <span style="color:#666">(</span>unsigned <span style="color:#b00040">char</span> <span style="color:#666">*)</span>iv<span style="color:#666">,</span> <span style="color:#666">(</span>unsigned <span style="color:#b00040">char</span> <span style="color:#666">*)</span>my_md<span style="color:#666">-&gt;</span>fek<span style="color:#666">);</span></span></span><span style="display:flex;"><span>  <span style="color:#666">}</span></span></span><span style="display:flex;"><span><span style="color:#666">}</span></span></span></code></pre></div>
+  <div class="tab-content p-3"><h3 id="prepare-prepare">Prepare</h3>
+<p>The <code>prepare</code> callback is used to initialize <code>crypto</code> materials prior to encryption and decryption, while the platform provides <code>metadata</code> object to access persistent and ephemeral storage. It&rsquo;s called for each file after the data locked state or during file creation.</p>
+<p>For example, an implementation of <code>prepare</code> would be to derive the file encryption key (FEK) from the primary key in secret object and store the FEK in the ephemeral cache to be used with encypt/decrypt callbacks:</p>
+<div class="highlight"><pre tabindex="0" style=";-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span>bool MyTestCrypto<span style="color:#666">::</span>prepare<span style="color:#666">(</span>ddar<span style="color:#666">::</span>context <span style="color:#666">*</span>context<span style="color:#666">,</span> ddar<span style="color:#666">::</span>metadata <span style="color:#666">*</span>md<span style="color:#666">)</span> <span style="color:#666">{</span>
+</span></span><span style="display:flex;"><span>  ddar<span style="color:#666">::</span>secret <span style="color:#666">*</span>sec <span style="color:#666">=</span> context<span style="color:#666">-&gt;</span>get_secret<span style="color:#666">(</span><span style="color:#ba2121">&#34;my_master_key_alias&#34;</span><span style="color:#666">);</span>  <span style="">#</span> vendor client app defined
+</span></span><span style="display:flex;"><span>  struct my_metadata <span style="color:#666">*</span>my_md <span style="color:#666">=</span> <span style="color:#666">(</span>struct my_metadata <span style="color:#666">*)</span> md<span style="color:#666">-&gt;</span>ephemeral_addr<span style="color:#666">;</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#b00040">char</span> <span style="color:#666">*</span>iv <span style="color:#666">=</span> NULL<span style="color:#666">;</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#b00040">char</span> efek<span style="color:#666">[</span>FEK_KEYLEN<span style="color:#666">];</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#b00040">int</span> rc <span style="color:#666">=</span> md<span style="color:#666">-&gt;</span>persistent_get<span style="color:#666">(</span>ALIAS_EFEK<span style="color:#666">,</span> efek<span style="color:#666">);</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#008000;font-weight:bold">if</span> <span style="color:#666">(</span>rc <span style="color:#666">&lt;=</span> <span style="color:#666">0</span><span style="color:#666">)</span> <span style="color:#666">{</span>
+</span></span><span style="display:flex;"><span>      <span style="color:#408080;font-style:italic">// No FEK associate with the file, create new
+</span></span></span><span style="display:flex;"><span><span style="color:#408080;font-style:italic"></span>      mSSL<span style="color:#666">.</span><span style="color:#7d9029">rand_bytes</span><span style="color:#666">(</span>my_md<span style="color:#666">-&gt;</span>fek<span style="color:#666">,</span> FEK_KEYLEN<span style="color:#666">);</span>
+</span></span><span style="display:flex;"><span>      rc <span style="color:#666">=</span> mSSL<span style="color:#666">.</span><span style="color:#7d9029">encrypt</span><span style="color:#666">((</span>unsigned <span style="color:#b00040">char</span> <span style="color:#666">*)</span>my_md<span style="color:#666">-&gt;</span>fek<span style="color:#666">,</span> FEK_KEYLEN<span style="color:#666">,</span>
+</span></span><span style="display:flex;"><span>              <span style="color:#666">(</span>unsigned <span style="color:#b00040">char</span> <span style="color:#666">*)</span>sec<span style="color:#666">-&gt;</span>data<span style="color:#666">,</span> <span style="color:#666">(</span>unsigned <span style="color:#b00040">char</span> <span style="color:#666">*)</span>iv<span style="color:#666">,</span> <span style="color:#666">(</span>unsigned <span style="color:#b00040">char</span> <span style="color:#666">*)</span>efek<span style="color:#666">);</span>
+</span></span><span style="display:flex;"><span>      <span style="color:#008000;font-weight:bold">if</span> <span style="color:#666">(</span>rc <span style="color:#666">&lt;</span> <span style="color:#666">0</span><span style="color:#666">)</span>
+</span></span><span style="display:flex;"><span>          <span style="color:#008000;font-weight:bold">return</span> <span style="color:#008000;font-weight:bold">false</span><span style="color:#666">;</span>  <span style="color:#408080;font-style:italic">// failed to encrypt efek
+</span></span></span><span style="display:flex;"><span><span style="color:#408080;font-style:italic"></span>      md<span style="color:#666">-&gt;</span>persistent_set<span style="color:#666">(</span>ALIAS_EFEK<span style="color:#666">,</span> efek<span style="color:#666">,</span> FEK_KEYLEN<span style="color:#666">);</span>  <span style="color:#408080;font-style:italic">// store efek
+</span></span></span><span style="display:flex;"><span><span style="color:#408080;font-style:italic"></span>  <span style="color:#666">}</span> <span style="color:#008000;font-weight:bold">else</span> <span style="color:#666">{</span>
+</span></span><span style="display:flex;"><span>      mSSL<span style="color:#666">.</span><span style="color:#7d9029">decrypt</span><span style="color:#666">((</span>unsigned <span style="color:#b00040">char</span> <span style="color:#666">*)</span>efek<span style="color:#666">,</span> rc<span style="color:#666">,</span>
+</span></span><span style="display:flex;"><span>          <span style="color:#666">(</span>unsigned <span style="color:#b00040">char</span> <span style="color:#666">*)</span>sec<span style="color:#666">-&gt;</span>data<span style="color:#666">,</span> <span style="color:#666">(</span>unsigned <span style="color:#b00040">char</span> <span style="color:#666">*)</span>iv<span style="color:#666">,</span> <span style="color:#666">(</span>unsigned <span style="color:#b00040">char</span> <span style="color:#666">*)</span>my_md<span style="color:#666">-&gt;</span>fek<span style="color:#666">);</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#666">}</span>
+</span></span><span style="display:flex;"><span><span style="color:#666">}</span>
+</span></span></code></pre></div>
   </div>
   
 </div>
 
 
-
-
-
-
-
-
-
-
-
-
-
   
   
+
+
+
+<div class="tab-pane fade  border border-grey-line rounded-3 overflow-hidden" id="tab-2" role="tabpanel" aria-labelledby="tab-2-tab">
   
   
     
-    
-    
-    
-    
-  
-
-  
-  
-  
-  
-  
-
-  
-  
-  
-  
-  
-
-  
-  
-  
-  
-  
-
-  
-  
-  
-  
-  
-
-  
-  
-  
-  
-  
-
-  
-  
-  
-  
-  
-
-  
-  
-  
-  
-  
-
-  
-  
-  
-  
-  
-
-  
-  
-  
-  
-  
-
-  
-  
-  
-  
-  
-
-
-<div class="tab-pane fade  border border-grey-line rounded-3 overflow-hidden" id="abefcd" role="tabpanel" aria-labelledby="abefcd-tab">
-  
-  
-    
-  
-  
-  <div class="tab-content p-3"><h3 id="encrypt-encrypt">Encrypt</h3><p>The <code>encrypt</code> callback is called when a file is currently being written to disk. The native interface will encrypt the data prior to being written to the disk:</p><div class="highlight"><pre tabindex="0" style=";-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span>bool MyTestCrypto<span style="color:#666">::</span>encrypt<span style="color:#666">(</span>ddar<span style="color:#666">::</span>metadata <span style="color:#666">*</span>md<span style="color:#666">,</span> <span style="color:#b00040">void</span> <span style="color:#666">*</span>pt<span style="color:#666">,</span> <span style="color:#b00040">void</span> <span style="color:#666">*</span>ct<span style="color:#666">,</span> unsigned <span style="color:#b00040">long</span> page_offset<span style="color:#666">,</span> <span style="color:#b00040">int</span> page_len<span style="color:#666">)</span> <span style="color:#666">{</span></span></span><span style="display:flex;"><span> struct my_metadata <span style="color:#666">*</span>my_md <span style="color:#666">=</span> <span style="color:#666">(</span>struct my_metadata <span style="color:#666">*)</span> md<span style="color:#666">-&gt;</span>ephemeral_addr<span style="color:#666">;</span></span></span><span style="display:flex;"><span> <span style="color:#008000;font-weight:bold">if</span><span style="color:#666">(</span>mSSL<span style="color:#666">.</span><span style="color:#7d9029">encrypt</span><span style="color:#666">((</span>unsigned <span style="color:#b00040">char</span> <span style="color:#666">*)</span>pt<span style="color:#666">,</span> page_len<span style="color:#666">,</span></span></span><span style="display:flex;"><span>         <span style="color:#666">(</span>unsigned <span style="color:#b00040">char</span> <span style="color:#666">*)</span>my_md<span style="color:#666">-&gt;</span>fek<span style="color:#666">,</span> NULL<span style="color:#666">,</span></span></span><span style="display:flex;"><span>         <span style="color:#666">(</span>unsigned <span style="color:#b00040">char</span> <span style="color:#666">*)</span>ct<span style="color:#666">)</span> <span style="color:#666">&gt;</span> <span style="color:#666">0</span><span style="color:#666">)</span></span></span><span style="display:flex;"><span>     <span style="color:#008000;font-weight:bold">return</span> <span style="color:#008000;font-weight:bold">true</span><span style="color:#666">;</span></span></span><span style="display:flex;"><span> <span style="color:#008000;font-weight:bold">return</span> <span style="color:#008000;font-weight:bold">false</span><span style="color:#666">;</span></span></span><span style="display:flex;"><span><span style="color:#666">}</span></span></span></code></pre></div>
+  <div class="tab-content p-3"><h3 id="encrypt-encrypt">Encrypt</h3>
+<p>The <code>encrypt</code> callback is called when a file is currently being written to disk. The native interface will encrypt the data prior to being written to the disk:</p>
+<div class="highlight"><pre tabindex="0" style=";-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span>bool MyTestCrypto<span style="color:#666">::</span>encrypt<span style="color:#666">(</span>ddar<span style="color:#666">::</span>metadata <span style="color:#666">*</span>md<span style="color:#666">,</span> <span style="color:#b00040">void</span> <span style="color:#666">*</span>pt<span style="color:#666">,</span> <span style="color:#b00040">void</span> <span style="color:#666">*</span>ct<span style="color:#666">,</span> unsigned <span style="color:#b00040">long</span> page_offset<span style="color:#666">,</span> <span style="color:#b00040">int</span> page_len<span style="color:#666">)</span> <span style="color:#666">{</span>
+</span></span><span style="display:flex;"><span> struct my_metadata <span style="color:#666">*</span>my_md <span style="color:#666">=</span> <span style="color:#666">(</span>struct my_metadata <span style="color:#666">*)</span> md<span style="color:#666">-&gt;</span>ephemeral_addr<span style="color:#666">;</span>
+</span></span><span style="display:flex;"><span> <span style="color:#008000;font-weight:bold">if</span><span style="color:#666">(</span>mSSL<span style="color:#666">.</span><span style="color:#7d9029">encrypt</span><span style="color:#666">((</span>unsigned <span style="color:#b00040">char</span> <span style="color:#666">*)</span>pt<span style="color:#666">,</span> page_len<span style="color:#666">,</span>
+</span></span><span style="display:flex;"><span>         <span style="color:#666">(</span>unsigned <span style="color:#b00040">char</span> <span style="color:#666">*)</span>my_md<span style="color:#666">-&gt;</span>fek<span style="color:#666">,</span> NULL<span style="color:#666">,</span>
+</span></span><span style="display:flex;"><span>         <span style="color:#666">(</span>unsigned <span style="color:#b00040">char</span> <span style="color:#666">*)</span>ct<span style="color:#666">)</span> <span style="color:#666">&gt;</span> <span style="color:#666">0</span><span style="color:#666">)</span>
+</span></span><span style="display:flex;"><span>     <span style="color:#008000;font-weight:bold">return</span> <span style="color:#008000;font-weight:bold">true</span><span style="color:#666">;</span>
+</span></span><span style="display:flex;"><span> <span style="color:#008000;font-weight:bold">return</span> <span style="color:#008000;font-weight:bold">false</span><span style="color:#666">;</span>
+</span></span><span style="display:flex;"><span><span style="color:#666">}</span>
+</span></span></code></pre></div>
   </div>
   
 </div>
 
 
-
-
-
-
-
-
-
-
-
-
-
   
   
+
+
+
+<div class="tab-pane fade  border border-grey-line rounded-3 overflow-hidden" id="tab-3" role="tabpanel" aria-labelledby="tab-3-tab">
   
   
     
-    
-    
-    
-    
-  
-
-  
-  
-  
-  
-  
-
-  
-  
-  
-  
-  
-
-  
-  
-  
-  
-  
-
-  
-  
-  
-  
-  
-
-  
-  
-  
-  
-  
-
-  
-  
-  
-  
-  
-
-  
-  
-  
-  
-  
-
-  
-  
-  
-  
-  
-
-  
-  
-  
-  
-  
-
-  
-  
-  
-  
-  
-
-
-<div class="tab-pane fade  border border-grey-line rounded-3 overflow-hidden" id="eacfbd" role="tabpanel" aria-labelledby="eacfbd-tab">
-  
-  
-    
-  
-  
-  <div class="tab-content p-3"><h3 id="decrypt-decrypt">Decrypt</h3><p>The <code>decrypt</code> callback is called when a file is currently being read from disk. The native interface will need to decrypt the data in-place:</p><div class="highlight"><pre tabindex="0" style=";-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span>bool MyTestCrypto<span style="color:#666">::</span>decrypt<span style="color:#666">(</span>ddar<span style="color:#666">::</span>metadata <span style="color:#666">*</span>md<span style="color:#666">,</span> <span style="color:#b00040">void</span> <span style="color:#666">*</span>ct<span style="color:#666">,</span> unsigned <span style="color:#b00040">long</span> page_offset<span style="color:#666">,</span> <span style="color:#b00040">int</span> page_len<span style="color:#666">)</span> <span style="color:#666">{</span></span></span><span style="display:flex;"><span>  struct my_metadata <span style="color:#666">*</span>my_md <span style="color:#666">=</span> <span style="color:#666">(</span>struct my_metadata <span style="color:#666">*)</span> md<span style="color:#666">-&gt;</span>ephemeral_addr<span style="color:#666">;</span></span></span><span style="display:flex;"><span>  <span style="color:#008000;font-weight:bold">if</span><span style="color:#666">(</span>mSSL<span style="color:#666">.</span><span style="color:#7d9029">decrypt</span><span style="color:#666">((</span>unsigned <span style="color:#b00040">char</span> <span style="color:#666">*)</span>ct<span style="color:#666">,</span> page_len<span style="color:#666">,</span></span></span><span style="display:flex;"><span>          <span style="color:#666">(</span>unsigned <span style="color:#b00040">char</span> <span style="color:#666">*)</span>my_md<span style="color:#666">-&gt;</span>fek<span style="color:#666">,</span> NULL<span style="color:#666">,</span></span></span><span style="display:flex;"><span>          <span style="color:#666">(</span>unsigned <span style="color:#b00040">char</span> <span style="color:#666">*)</span>ct<span style="color:#666">)</span> <span style="color:#666">&gt;</span> <span style="color:#666">0</span><span style="color:#666">)</span>  <span style="color:#408080;font-style:italic">// implement crypto inplace</span></span></span><span style="display:flex;"><span><span style="color:#408080;font-style:italic"></span>      <span style="color:#008000;font-weight:bold">return</span> <span style="color:#008000;font-weight:bold">true</span><span style="color:#666">;</span></span></span><span style="display:flex;"><span>  <span style="color:#008000;font-weight:bold">return</span> <span style="color:#008000;font-weight:bold">false</span><span style="color:#666">;</span></span></span><span style="display:flex;"><span> <span style="color:#666">}</span></span></span></code></pre></div>
+  <div class="tab-content p-3"><h3 id="decrypt-decrypt">Decrypt</h3>
+<p>The <code>decrypt</code> callback is called when a file is currently being read from disk. The native interface will need to decrypt the data in-place:</p>
+<div class="highlight"><pre tabindex="0" style=";-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span>bool MyTestCrypto<span style="color:#666">::</span>decrypt<span style="color:#666">(</span>ddar<span style="color:#666">::</span>metadata <span style="color:#666">*</span>md<span style="color:#666">,</span> <span style="color:#b00040">void</span> <span style="color:#666">*</span>ct<span style="color:#666">,</span> unsigned <span style="color:#b00040">long</span> page_offset<span style="color:#666">,</span> <span style="color:#b00040">int</span> page_len<span style="color:#666">)</span> <span style="color:#666">{</span>
+</span></span><span style="display:flex;"><span>  struct my_metadata <span style="color:#666">*</span>my_md <span style="color:#666">=</span> <span style="color:#666">(</span>struct my_metadata <span style="color:#666">*)</span> md<span style="color:#666">-&gt;</span>ephemeral_addr<span style="color:#666">;</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#008000;font-weight:bold">if</span><span style="color:#666">(</span>mSSL<span style="color:#666">.</span><span style="color:#7d9029">decrypt</span><span style="color:#666">((</span>unsigned <span style="color:#b00040">char</span> <span style="color:#666">*)</span>ct<span style="color:#666">,</span> page_len<span style="color:#666">,</span>
+</span></span><span style="display:flex;"><span>          <span style="color:#666">(</span>unsigned <span style="color:#b00040">char</span> <span style="color:#666">*)</span>my_md<span style="color:#666">-&gt;</span>fek<span style="color:#666">,</span> NULL<span style="color:#666">,</span>
+</span></span><span style="display:flex;"><span>          <span style="color:#666">(</span>unsigned <span style="color:#b00040">char</span> <span style="color:#666">*)</span>ct<span style="color:#666">)</span> <span style="color:#666">&gt;</span> <span style="color:#666">0</span><span style="color:#666">)</span>  <span style="color:#408080;font-style:italic">// implement crypto inplace
+</span></span></span><span style="display:flex;"><span><span style="color:#408080;font-style:italic"></span>      <span style="color:#008000;font-weight:bold">return</span> <span style="color:#008000;font-weight:bold">true</span><span style="color:#666">;</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#008000;font-weight:bold">return</span> <span style="color:#008000;font-weight:bold">false</span><span style="color:#666">;</span>
+</span></span><span style="display:flex;"><span> <span style="color:#666">}</span>
+</span></span></code></pre></div>
   </div>
   
 </div>
