@@ -37,7 +37,7 @@
 <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start': new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0], j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src='https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);})(window,document,'script','dataLayer','GTM-P24TWCG');</script>
   <meta name="viewport" content="width=device-width,height=device-height,initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title>Wear OS notification policy doesn&rsquo;t restrict device users on kiosks  | Knox Manage  | Samsung Knox Documentation</title>
+  <title>How the Knox Service Plugin managed configuration is pushed to a device  | Knox Manage  | Samsung Knox Documentation</title>
   <meta http-equiv="content-language" content="en">
   <meta name="language" content="en">
   <script src="../../assets/js/bundle.js"></script>
@@ -4507,11 +4507,11 @@
       <a class="body-5 text-black fw-light" href="../kbas.html">KBAs</a>
     </div>
       
-    <div id="sub-knox-manage-kbas-kba-1241-wear-os-notifications-policy-doesnt-restrict-device-users-on-kiosks">
+    <div id="sub-knox-manage-kbas-kba-749-how-the-knox-service-plugin-managed-configuration-is-pushed-to-a-device">
       <ul>
         <li>
           <div class="d-flex justify-content-between">
-            <a class="body-5 text-black active" href="kba-1241-wear-os-notifications-policy-doesnt-restrict-device-users-on-kiosks.html">Wear OS notification policy doesn&rsquo;t restrict device users on kiosks</a>
+            <a class="body-5 text-black active" href="kba-749-how-the-knox-service-plugin-managed-configuration-is-pushed-to-a-device.html">How the Knox Service Plugin managed configuration is pushed to a device</a>
           </div>
         </li>
       </ul>
@@ -4947,11 +4947,11 @@
 
             </div>
             <div class="mt-4">
-              <h1>Wear OS notification policy doesn&rsquo;t restrict device users on kiosks</h1>
+              <h1>How the Knox Service Plugin managed configuration is pushed to a device</h1>
             </div>
             
 
-  <p><span>Last updated September  6th, 2024</span></p>
+  <p><span>Last updated October  11th, 2024</span></p>
 
 
     
@@ -4963,7 +4963,7 @@
     
   <p>Categories:</p>
 <div class="kba-tags">
-    <a class="d-inline-block px-5 py-2 me-2 mt-2 fw-bold text-samsung-blue bg-samsung-light-blue" href="tags/kiosk/index.html">Kiosk</a></div>
+    <a class="d-inline-block px-5 py-2 me-2 mt-2 fw-bold text-samsung-blue bg-samsung-light-blue" href="tags/configuration/index.html">Configuration</a></div>
   </div>
           <div class="l-content">
             
@@ -4977,51 +4977,34 @@
       
       
       
+        
+      
+      
+      
+      
         <h2 id="environment">Environment</h2>
 <ul>
 <li>Knox Manage</li>
-<li>Wear OS kiosk</li>
+<li>Knox Service Plugin</li>
 </ul>
 <h2 id="overview">Overview</h2>
-<p>After pushing a profile that has the Wear OS policy <strong>Quick Panel &amp; Notifications</strong> set to either <strong>Disallow</strong> or <strong>Notification only</strong>, you may encounter an issue where device users in kiosk mode can still access the notification panel.</p>
-<h2 id="cause">Cause</h2>
-<p>Enabling the following packages in your kiosk&rsquo;s app allowlist overrides values of the <strong>Quick Panel &amp; Notifications</strong> policy:</p>
-<ul>
-<li>com.google.android.apps.wearable.settings</li>
-<li>com.android.providers.settings</li>
-</ul>
-<h2 id="workaround">Workaround</h2>
-<p>To resolve the issue, remove <strong>com.google.android.apps.wearable.settings</strong> and <strong>com.android.providers.settings</strong> from the <strong>Allowlisted App</strong> policy:</p>
+<p>This article explains the implementation logic behind KM and KSP, and describes the steps involved with deploying a managed configuration to a device.</p>
+<h2 id="how-the-knox-service-plugin-schemamanaged-configuration-is-pushed-to-a-device">How the Knox Service Plugin schema/managed configuration is pushed to a device</h2>
 <ol>
 <li>
-<p>On the Knox Manage console, go to <strong>Profile</strong>.</p>
+<p>Knox Manage sends the Knox Service Plugin schema data to Google.</p>
 </li>
 <li>
-<p>Select your Wear OS profile, then click <strong>Modify Policy</strong>.</p>
+<p>Google sends the Knox Service Plugin managed configuration to the device, and Knox Service Plugin sends feedback to the Knox Manage server.</p>
+<div class="notice-note"><p>It may take approximately one to two days for changes to be reflected on your device.</p></div>
 </li>
 <li>
-<p>Expand the <strong>Wear OS</strong> &gt; <strong>Kiosk</strong> policy drawer, and modify the following policy:</p>
-<div class="overflow-auto my-3"><table>
-<thead>
-<tr>
-<th>Policy</th>
-<th>Value</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>Kiosk Settings &gt; Allowlisted App</td>
-<td>Remove <strong>com.google.android.apps.wearable.settings</strong> and <strong>com.android.providers.settings</strong>.</td>
-</tr>
-</tbody>
-</table></div>
-</li>
-<li>
-<p>Click <strong>Save &amp; Assign</strong> to push the profile to your devices.</p>
+<p>When the device&rsquo;s Knox Service Plugin agent receives the new managed configuration, the agent applies the newly updated policies. If there are no functional changes to the previous policy configuration, the agent doesn&rsquo;t update the managed configuration.</p>
 </li>
 </ol>
+<div class="notice-note"><p>The managed configuration should be applied with little to no delay, but is subject to server traffic, internet connectivity, and potential product issues. If your changes aren’t applied within 1-2 days, <a href="../../fundamentals/submit-a-support-ticket.html">submit a support ticket</a>.</p></div>
 <h2 id="additional-information">Additional Information</h2>
-<p>For more information regarding Wear OS policies, see <a href="../configure/profile/configure-profile-policies/wear-os-policies.html">Wear OS policies</a>.</p>
+<p>For more details about Knox Service Plugin, see <a href="../../knox-platform-for-enterprise/knox-service-plugin.html">Knox Service Plugin admin guide</a>.</p>
 
             
           </div>
@@ -5030,11 +5013,10 @@
 <aside class="table-of-headings">
   <nav id="TableOfContents">
   <ul>
-    <li><a href="kba-1241-wear-os-notifications-policy-doesnt-restrict-device-users-on-kiosks.html#environment">Environment</a></li>
-    <li><a href="kba-1241-wear-os-notifications-policy-doesnt-restrict-device-users-on-kiosks.html#overview">Overview</a></li>
-    <li><a href="kba-1241-wear-os-notifications-policy-doesnt-restrict-device-users-on-kiosks.html#cause">Cause</a></li>
-    <li><a href="kba-1241-wear-os-notifications-policy-doesnt-restrict-device-users-on-kiosks.html#workaround">Workaround</a></li>
-    <li><a href="kba-1241-wear-os-notifications-policy-doesnt-restrict-device-users-on-kiosks.html#additional-information">Additional Information</a></li>
+    <li><a href="kba-749-how-the-knox-service-plugin-managed-configuration-is-pushed-to-a-device.html#environment">Environment</a></li>
+    <li><a href="kba-749-how-the-knox-service-plugin-managed-configuration-is-pushed-to-a-device.html#overview">Overview</a></li>
+    <li><a href="kba-749-how-the-knox-service-plugin-managed-configuration-is-pushed-to-a-device.html#how-the-knox-service-plugin-schemamanaged-configuration-is-pushed-to-a-device">How the Knox Service Plugin schema/managed configuration is pushed to a device</a></li>
+    <li><a href="kba-749-how-the-knox-service-plugin-managed-configuration-is-pushed-to-a-device.html#additional-information">Additional Information</a></li>
   </ul>
 </nav>
 </aside>
@@ -5068,7 +5050,7 @@
       
       <div class="col-sm-12 col-md-6 col-lg-3 footer-vertical-section">
         <div class="d-flex justify-content-between align-items-center">
-          <a class="footer-section-title" data-bs-toggle="collapse" href="kba-1241-wear-os-notifications-policy-doesnt-restrict-device-users-on-kiosks.html#item0" role="button" aria-expanded="false" aria-controls="item0"> 
+          <a class="footer-section-title" data-bs-toggle="collapse" href="kba-749-how-the-knox-service-plugin-managed-configuration-is-pushed-to-a-device.html#item0" role="button" aria-expanded="false" aria-controls="item0"> 
             <h6 class="body-3 fw-bold text-uppercase text-black pt-4">Knox admin documentation</h6>
           </a>
           <a class="btn-toggle d-inline-flex d-lg-none rounded border-0 fw-light" data-bs-toggle="collapse" data-bs-target="#item0" aria-expanded="false"></a>
@@ -5202,7 +5184,7 @@
       
       <div class="col-sm-12 col-md-6 col-lg-3 footer-vertical-section">
         <div class="d-flex justify-content-between align-items-center">
-          <a class="footer-section-title" data-bs-toggle="collapse" href="kba-1241-wear-os-notifications-policy-doesnt-restrict-device-users-on-kiosks.html#item1" role="button" aria-expanded="false" aria-controls="item1"> 
+          <a class="footer-section-title" data-bs-toggle="collapse" href="kba-749-how-the-knox-service-plugin-managed-configuration-is-pushed-to-a-device.html#item1" role="button" aria-expanded="false" aria-controls="item1"> 
             <h6 class="body-3 fw-bold text-uppercase text-black pt-4">Support</h6>
           </a>
           <a class="btn-toggle d-inline-flex d-lg-none rounded border-0 fw-light" data-bs-toggle="collapse" data-bs-target="#item1" aria-expanded="false"></a>
@@ -5224,7 +5206,7 @@
       
       <div class="col-sm-12 col-md-6 col-lg-3 footer-vertical-section">
         <div class="d-flex justify-content-between align-items-center">
-          <a class="footer-section-title" data-bs-toggle="collapse" href="kba-1241-wear-os-notifications-policy-doesnt-restrict-device-users-on-kiosks.html#item2" role="button" aria-expanded="false" aria-controls="item2"> 
+          <a class="footer-section-title" data-bs-toggle="collapse" href="kba-749-how-the-knox-service-plugin-managed-configuration-is-pushed-to-a-device.html#item2" role="button" aria-expanded="false" aria-controls="item2"> 
             <h6 class="body-3 fw-bold text-uppercase text-black pt-4">Samsung</h6>
           </a>
           <a class="btn-toggle d-inline-flex d-lg-none rounded border-0 fw-light" data-bs-toggle="collapse" data-bs-target="#item2" aria-expanded="false"></a>

@@ -37,7 +37,7 @@
 <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start': new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0], j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src='https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);})(window,document,'script','dataLayer','GTM-P24TWCG');</script>
   <meta name="viewport" content="width=device-width,height=device-height,initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title>How to enable No Battery Mode for Galaxy Tab Active 3 devices  | Knox Manage  | Samsung Knox Documentation</title>
+  <title>Device command unable to run on device  | Knox Manage  | Samsung Knox Documentation</title>
   <meta http-equiv="content-language" content="en">
   <meta name="language" content="en">
   <script src="../../assets/js/bundle.js"></script>
@@ -4507,11 +4507,11 @@
       <a class="body-5 text-black fw-light" href="../kbas.html">KBAs</a>
     </div>
       
-    <div id="sub-knox-manage-kbas-kba-489-enable-no-battery-mode-galaxy-tab-active-3">
+    <div id="sub-knox-manage-kbas-kba-1278-device-command-unable-to-run-on-device">
       <ul>
         <li>
           <div class="d-flex justify-content-between">
-            <a class="body-5 text-black active" href="kba-489-enable-no-battery-mode-galaxy-tab-active-3.html">How to enable No Battery Mode for Galaxy Tab Active 3 devices</a>
+            <a class="body-5 text-black active" href="kba-1278-device-command-unable-to-run-on-device.html">Device command unable to run on device</a>
           </div>
         </li>
       </ul>
@@ -4947,11 +4947,11 @@
 
             </div>
             <div class="mt-4">
-              <h1>How to enable No Battery Mode for Galaxy Tab Active 3 devices</h1>
+              <h1>Device command unable to run on device</h1>
             </div>
             
 
-  <p><span>Last updated July  26th, 2023</span></p>
+  <p><span>Last updated October  15th, 2024</span></p>
 
 
     
@@ -4963,7 +4963,7 @@
     
   <p>Categories:</p>
 <div class="kba-tags">
-    <a class="d-inline-block px-5 py-2 me-2 mt-2 fw-bold text-samsung-blue bg-samsung-light-blue" href="tags/kiosk/index.html">Kiosk</a></div>
+    <a class="d-inline-block px-5 py-2 me-2 mt-2 fw-bold text-samsung-blue bg-samsung-light-blue" href="tags/configuration/index.html">Configuration</a></div>
   </div>
           <div class="l-content">
             
@@ -4974,21 +4974,29 @@
 
 <h2 id="environment">Environment</h2>
 <ul>
-<li>Knox Manage (KM) with Knox Suite License or KM license with KPE Premium License</li>
-<li>Galaxy Tab Active 3 device</li>
+<li>Knox Manage</li>
 </ul>
 <h2 id="overview">Overview</h2>
-<p>The No Battery Mode is a new feature that&rsquo;s available on the Samsung Galaxy Tab Active 3 device and is useful for Kiosk mode. To enable this feature, you can set a KSP policy to have it automatically deploy to devices.</p>
-<h2 id="how-do-i-enable-no-battery-mode">How do I enable No Battery Mode?</h2>
-<p>Within your Knox Manage Portal, look for Samsung Knox Android Enterprise Policy and follow the steps below:</p>
+<p>After rebooting a device, you may notice that the following device commands are unable to run on the device:</p>
+<ul>
+<li>Unenroll</li>
+<li>Push Profile</li>
+<li>Factory Reset</li>
+<li>Unlock Device</li>
+<li>Update License</li>
+<li>Change License</li>
+<li>Clear Screen Lock</li>
+</ul>
+<h2 id="cause">Cause</h2>
+<p>When a device is rebooted and in a locked state while having network connectivity, new device commands are not processed due to the device being in the <strong>Device Boot Aware</strong> state. If the device user is unable to unlock the device, the device commands can&rsquo;t run while the device is in the <strong>Device Boot Aware</strong> state.</p>
+<h2 id="resolution">Resolution</h2>
+<p>To resolve this issue, you must send the command <strong>Clear Screen Lock</strong>, then reboot your device:</p>
 <ol>
-<li>Go to <strong>Samsung Knox Android Enterprise</strong>.</li>
-<li>Search for <strong>Knox Service Plugin</strong>.</li>
-<li>Go to <strong>Device-Wide policies</strong> &gt; <strong>Enable device Policy Controls</strong> &gt; set to <strong>True</strong>.</li>
-<li>Go to <strong>Device Settings (Premium)</strong> &gt; <strong>Enable device settings controls</strong> &gt; set to <strong>True</strong>.</li>
-<li>Enable the No Battery Mode and set it to <strong>True</strong>.</li>
-<li>Click <strong>Save</strong> and <strong>Apply</strong>.</li>
+<li>On the Knox Manage console, click <strong>Device</strong> and select the target devices.</li>
+<li>Click <strong>Device Command</strong>, then click <strong>Device</strong> &gt; <strong>Clear Screen Lock</strong>.</li>
+<li>After the device command has been sent, reboot your device.</li>
 </ol>
+<p>After rebooting, the <strong>Clear Screen Lock</strong> command is executed and the device is unlocked.</p>
 
             
           </div>
@@ -4997,9 +5005,10 @@
 <aside class="table-of-headings">
   <nav id="TableOfContents">
   <ul>
-    <li><a href="kba-489-enable-no-battery-mode-galaxy-tab-active-3.html#environment">Environment</a></li>
-    <li><a href="kba-489-enable-no-battery-mode-galaxy-tab-active-3.html#overview">Overview</a></li>
-    <li><a href="kba-489-enable-no-battery-mode-galaxy-tab-active-3.html#how-do-i-enable-no-battery-mode">How do I enable No Battery Mode?</a></li>
+    <li><a href="kba-1278-device-command-unable-to-run-on-device.html#environment">Environment</a></li>
+    <li><a href="kba-1278-device-command-unable-to-run-on-device.html#overview">Overview</a></li>
+    <li><a href="kba-1278-device-command-unable-to-run-on-device.html#cause">Cause</a></li>
+    <li><a href="kba-1278-device-command-unable-to-run-on-device.html#resolution">Resolution</a></li>
   </ul>
 </nav>
 </aside>
@@ -5033,7 +5042,7 @@
       
       <div class="col-sm-12 col-md-6 col-lg-3 footer-vertical-section">
         <div class="d-flex justify-content-between align-items-center">
-          <a class="footer-section-title" data-bs-toggle="collapse" href="kba-489-enable-no-battery-mode-galaxy-tab-active-3.html#item0" role="button" aria-expanded="false" aria-controls="item0"> 
+          <a class="footer-section-title" data-bs-toggle="collapse" href="kba-1278-device-command-unable-to-run-on-device.html#item0" role="button" aria-expanded="false" aria-controls="item0"> 
             <h6 class="body-3 fw-bold text-uppercase text-black pt-4">Knox admin documentation</h6>
           </a>
           <a class="btn-toggle d-inline-flex d-lg-none rounded border-0 fw-light" data-bs-toggle="collapse" data-bs-target="#item0" aria-expanded="false"></a>
@@ -5167,7 +5176,7 @@
       
       <div class="col-sm-12 col-md-6 col-lg-3 footer-vertical-section">
         <div class="d-flex justify-content-between align-items-center">
-          <a class="footer-section-title" data-bs-toggle="collapse" href="kba-489-enable-no-battery-mode-galaxy-tab-active-3.html#item1" role="button" aria-expanded="false" aria-controls="item1"> 
+          <a class="footer-section-title" data-bs-toggle="collapse" href="kba-1278-device-command-unable-to-run-on-device.html#item1" role="button" aria-expanded="false" aria-controls="item1"> 
             <h6 class="body-3 fw-bold text-uppercase text-black pt-4">Support</h6>
           </a>
           <a class="btn-toggle d-inline-flex d-lg-none rounded border-0 fw-light" data-bs-toggle="collapse" data-bs-target="#item1" aria-expanded="false"></a>
@@ -5189,7 +5198,7 @@
       
       <div class="col-sm-12 col-md-6 col-lg-3 footer-vertical-section">
         <div class="d-flex justify-content-between align-items-center">
-          <a class="footer-section-title" data-bs-toggle="collapse" href="kba-489-enable-no-battery-mode-galaxy-tab-active-3.html#item2" role="button" aria-expanded="false" aria-controls="item2"> 
+          <a class="footer-section-title" data-bs-toggle="collapse" href="kba-1278-device-command-unable-to-run-on-device.html#item2" role="button" aria-expanded="false" aria-controls="item2"> 
             <h6 class="body-3 fw-bold text-uppercase text-black pt-4">Samsung</h6>
           </a>
           <a class="btn-toggle d-inline-flex d-lg-none rounded border-0 fw-light" data-bs-toggle="collapse" data-bs-target="#item2" aria-expanded="false"></a>
