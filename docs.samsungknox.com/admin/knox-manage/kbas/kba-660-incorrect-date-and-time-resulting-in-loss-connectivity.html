@@ -4951,7 +4951,7 @@
             </div>
             
 
-  <p><span>Last updated July  26th, 2023</span></p>
+  <p><span>Last updated October  17th, 2024</span></p>
 
 
     
@@ -4977,45 +4977,82 @@
       
       
       
-        
-      
-      
       
       
         <h2 id="environment">Environment</h2>
 <ul>
-<li>Knox Manage (KM)</li>
-<li>Android Enterprise devices</li>
+<li>Knox Manage</li>
+<li>Android Enterprise</li>
 </ul>
 <h2 id="overview">Overview</h2>
-<p>Android devices enrolled in KM that have an active internet connection regularly lose connectivity with the KM server.</p>
+<p>You may notice that android devices enrolled in Knox Manage that have an active internet connection regularly lose connectivity with the Knox Manage server.</p>
 <h2 id="cause">Cause</h2>
-<p>This issue occurs when the system clock of the device has the wrong date and time. An incorrect date and time invalidates the certificates that secure communication between the device and the KM servers, affecting the connectivity between them.</p>
+<p>This issue occurs when the system clock of the device has the wrong date and time. An incorrect date and time invalidate the certificates that secure communication between the device and the Knox Manage servers, affecting the connectivity between them.</p>
 <h2 id="resolution">Resolution</h2>
-<p>Guide your device users to change the date and time manually to re-establish the connection between the KM agent and server.</p>
-<h3 id="regular-android-devices">Regular Android devices</h3>
-<p>To prevent the connection issue on the device, have the user to change the date and time:</p>
+<p>To prevent this issue, device users must change the date and time manually to re-establish the connection between the Knox Manage agent and server.</p>
+<p>For standard Android devices IT admins can follow these steps:</p>
 <ol>
-<li>On the KM console, go to <strong>Profile</strong>.</li>
-<li>Click the profile name assigned to the devices. The <strong>Profile Details</strong> page opens.</li>
-<li>Click <strong>Modify Policy</strong>. The <strong>Set Policy</strong> page opens.</li>
-<li>Set the <strong>Android Enterprise</strong> &gt; <strong>System</strong> &gt; <a href="../configure/profile/configure-profile-policies/android-enterprise-policies.html#system-automatic-date-time"><strong>Automatic Date and Time</strong></a> policy to <strong>Allow</strong>.</li>
-<li><strong>Save</strong> the profile, then, on the <strong>Profile Details</strong> page, click <strong>Apply</strong>.</li>
-<li>Instruct the user to adjust the device&rsquo;s date and time to the current local time. For help with changing the date and time of the device, consult the documentation for its model.</li>
-<li>After the device user adjusts the date and time and confirms the error is resolved, undo the changes you made in steps 1&ndash;5.</li>
+<li>
+<p>In the Knox Manage console, click <strong>Profile</strong>.</p>
+</li>
+<li>
+<p>Select your desired profile and click <strong>Modify Policy</strong>.</p>
+</li>
+<li>
+<p>Under the <strong>Android Enterprise</strong> policy drawer, select <strong>System</strong>.</p>
+</li>
+<li>
+<p>Modify the following polices:</p>
+<div class="overflow-auto my-3"><table>
+<thead>
+<tr>
+<th>Policy</th>
+<th>Value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="../configure/profile/configure-profile-policies/android-enterprise-policies.html#system-automatic-date-time" target="_blank">Set Date and Time</a></td>
+<td>Allow</td>
+</tr>
+</tbody>
+</table></div>
+</li>
+<li>
+<p>Click <strong>Save &amp; Assign</strong> to save and push your changes to the device fleet.</p>
+</li>
+<li>
+<p>Instruct the device user to adjust the device&rsquo;s date and time to the current local time. For help with changing the date and time of the device, consult the documentation for the particular device model.</p>
+</li>
+<li>
+<p>After the device user adjusts the date and time and confirms the error is resolved, you can repeat Steps 1 - 3 and modify the following policy to disallow the device user to set the date and time:</p>
+<div class="overflow-auto my-3"><table>
+<thead>
+<tr>
+<th>Policy</th>
+<th>Value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="../configure/profile/configure-profile-policies/android-enterprise-policies.html#system-automatic-date-time" target="_blank">Set Date and Time</a></td>
+<td>Disallow</td>
+</tr>
+</tbody>
+</table></div>
+</li>
 </ol>
-<h3 id="android-kiosks">Android kiosks</h3>
-<p>If the devices are configured as kiosks, add the <strong>Time Zone</strong> option in the Kiosk app settings:</p>
+<p>For devices configured as kiosks, you can follow these steps to add the Time Zone option in the Kiosk app settings:</p>
 <ol>
-<li>On the KM console, go to <strong>Kiosk</strong>.</li>
-<li>Select the kiosk and click <strong>Modify</strong>. The <strong>Modify Kiosk</strong> page opens.</li>
+<li>In the Knox Manage console, click <strong>Kiosk</strong>.</li>
+<li>Select your kiosk and click <strong>Modify</strong>.</li>
 <li>Expand <strong>Advanced Setting</strong>, then click <strong>Select</strong> next to <strong>Device Setting</strong>.</li>
 <li>Select <strong>Time Zone</strong> and confirm the device settings.</li>
-<li><strong>Save</strong> the kiosk settings and update its version.</li>
-<li>On the Kiosk page, select the kiosk and click <strong>Apply</strong>.</li>
+<li>Click <strong>Save</strong> and update its version.</li>
+<li>On the kiosk page, select your kiosk and click <strong>Apply</strong>.</li>
 </ol>
-<h2 id="additional-information">Additional information</h2>
-<p>For steps on how to set up a profile in KM, see <a href="../configure/profile/set-up-profiles/create-a-new-profile.html">Create a new profile</a>.</p>
+<h2 id="additional-reading">Additional Reading</h2>
+<p>For steps on how to set up a profile in Knox Manage, see <a href="../configure/profile/set-up-profiles/create-a-new-profile.html">Create a new profile</a>.</p>
 
             
           </div>
@@ -5027,13 +5064,8 @@
     <li><a href="kba-660-incorrect-date-and-time-resulting-in-loss-connectivity.html#environment">Environment</a></li>
     <li><a href="kba-660-incorrect-date-and-time-resulting-in-loss-connectivity.html#overview">Overview</a></li>
     <li><a href="kba-660-incorrect-date-and-time-resulting-in-loss-connectivity.html#cause">Cause</a></li>
-    <li><a href="kba-660-incorrect-date-and-time-resulting-in-loss-connectivity.html#resolution">Resolution</a>
-      <ul>
-        <li><a href="kba-660-incorrect-date-and-time-resulting-in-loss-connectivity.html#regular-android-devices">Regular Android devices</a></li>
-        <li><a href="kba-660-incorrect-date-and-time-resulting-in-loss-connectivity.html#android-kiosks">Android kiosks</a></li>
-      </ul>
-    </li>
-    <li><a href="kba-660-incorrect-date-and-time-resulting-in-loss-connectivity.html#additional-information">Additional information</a></li>
+    <li><a href="kba-660-incorrect-date-and-time-resulting-in-loss-connectivity.html#resolution">Resolution</a></li>
+    <li><a href="kba-660-incorrect-date-and-time-resulting-in-loss-connectivity.html#additional-reading">Additional Reading</a></li>
   </ul>
 </nav>
 </aside>

@@ -37,7 +37,7 @@
 <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start': new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0], j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src='https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);})(window,document,'script','dataLayer','GTM-P24TWCG');</script>
   <meta name="viewport" content="width=device-width,height=device-height,initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title>How to disable a device lock screen with Knox Manage  | Knox Manage  | Samsung Knox Documentation</title>
+  <title>How to disable a device lock screen  | Knox Manage  | Samsung Knox Documentation</title>
   <meta http-equiv="content-language" content="en">
   <meta name="language" content="en">
   <script src="../../assets/js/bundle.js"></script>
@@ -4511,7 +4511,7 @@
       <ul>
         <li>
           <div class="d-flex justify-content-between">
-            <a class="body-5 text-black active" href="kba-181.html">How to disable a device lock screen with Knox Manage</a>
+            <a class="body-5 text-black active" href="kba-181.html">How to disable a device lock screen</a>
           </div>
         </li>
       </ul>
@@ -4947,11 +4947,11 @@
 
             </div>
             <div class="mt-4">
-              <h1>How to disable a device lock screen with Knox Manage</h1>
+              <h1>How to disable a device lock screen</h1>
             </div>
             
 
-  <p><span>Last updated July  26th, 2023</span></p>
+  <p><span>Last updated October  21st, 2023</span></p>
 
 
     
@@ -4977,41 +4977,61 @@
       
       
       
-        
-      
-      
-      
-      
         <h2 id="environment">Environment</h2>
 <ul>
-<li>Knox Manage (KM)</li>
-<li>Android Legacy and Android Enterprise deployments</li>
+<li>Knox Manage</li>
+<li>Android Enterprise</li>
 <li>Samsung Knox-enabled devices</li>
 </ul>
 <h2 id="overview">Overview</h2>
-<p>You may encounter an issue where an end user forgets their device password. If the device is locked and disconnected from the Internet, it cannot receive any <strong>Reset Password</strong> commands sent from your Knox Manage (KM) console.</p>
-<p>To avoid this issue, this article shows you how to use the proper KM policy to prevent users from enabling a lock screen on their device. This method works on both Android Legacy and Android Enterprise (AE) deployments.</p>
-<h2 id="how-do-i-disable-a-devices-lock-screen-using-knox-manage">How do I disable a device&rsquo;s lock screen using Knox Manage?</h2>
+<p>You may encounter an issue where an end user forgets their device password. If the device is locked and disconnected from the Internet, it cannot receive any Reset Password commands sent from the Knox Manage console.</p>
+<p>To avoid this issue, you can use Knox Manage to disable a device&rsquo;s lock screen.</p>
+<h2 id="how-do-i-disable-a-devices-lock-screen">How do I disable a device&rsquo;s lock screen?</h2>
 <p>To disable the lock screen and prevent users from changing the lock screen settings:</p>
 <ol>
-<li>In your KM console, in the left sidebar, click <strong>Profile</strong>.</li>
-<li>Select a profile, then click <strong>Modify Profile Info</strong>.</li>
-<li>Depending on your deployment, under <strong>Android Enterprise</strong> or <strong>Android Legacy</strong>, navigate to <strong>Security</strong>.</li>
-<li>Next to the <strong>Lock Screen</strong> policy, select <strong>Disallow</strong>.</li>
-<li>Click <strong>Save &amp; Assign.</strong></li>
+<li>
+<p>In the Knox Manage console, click <strong>Profile</strong>.</p>
+</li>
+<li>
+<p>Select your desired profile and click <strong>Modify Policy</strong>.</p>
+</li>
+<li>
+<p>Under the <strong>Samsung Knox Android Enterprise</strong> policy drawer, click <strong>Lock Screen</strong>.</p>
+</li>
+<li>
+<p>Modify the following policies:</p>
+<div class="overflow-auto my-3"><table>
+<thead>
+<tr>
+<th>Policy</th>
+<th>Value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Screen Lock Policies</td>
+<td>-</td>
+</tr>
+</tbody>
+</table></div>
+</li>
+<li>
+<p>Click <strong>Save &amp; Assign</strong>.</p>
+</li>
+<li>
+<p>Click <strong>OK</strong> to confirm your changes and push the changes to your device fleet.</p>
+</li>
 </ol>
-<p>The below screen is shown on the device after the <strong>Lock Device</strong> command is sent:</p>
-
- 
- 
- 
- 
- 
- 
- 
- <p><img src="../assets/image228-1.png" class="img-fluid img-thumbnail" alt="" /></p>
-<h2 id="additional-information">Additional information</h2>
-<p>For steps on how to set up a KM profile, see the <a href="../configure/profile/set-up-profiles/create-a-new-profile.html">KM admin guide</a>.</p>
+<p>If the <strong>Lock Screen</strong> &gt; <strong>Screen Lock Policies</strong> was set to <strong>Apply</strong>, you must remove the device&rsquo;s Screen Lock. IT admins can remove the screen lock by following these steps:</p>
+<ol>
+<li>In the Knox Manage console, click <strong>Device</strong>.</li>
+<li>Select the checkboxes for any device(s) that you need to clear the screen lock from.</li>
+<li>Click on <strong>Device command</strong>.</li>
+<li>Click <strong>Device</strong> &gt; <strong>Clear Screen Lock</strong> command.</li>
+<li>Click <strong>OK</strong> to push the Clear Screen Lock command to the select device(s).</li>
+</ol>
+<h2 id="additional-reading">Additional Reading</h2>
+<p>For more information on how to set up a Knox Manage profile, see <a href="../configure/profile/set-up-profiles/create-a-new-profile.html">Create a new profile</a>.</p>
 
             
           </div>
@@ -5022,8 +5042,8 @@
   <ul>
     <li><a href="kba-181.html#environment">Environment</a></li>
     <li><a href="kba-181.html#overview">Overview</a></li>
-    <li><a href="kba-181.html#how-do-i-disable-a-devices-lock-screen-using-knox-manage">How do I disable a device&rsquo;s lock screen using Knox Manage?</a></li>
-    <li><a href="kba-181.html#additional-information">Additional information</a></li>
+    <li><a href="kba-181.html#how-do-i-disable-a-devices-lock-screen">How do I disable a device&rsquo;s lock screen?</a></li>
+    <li><a href="kba-181.html#additional-reading">Additional Reading</a></li>
   </ul>
 </nav>
 </aside>

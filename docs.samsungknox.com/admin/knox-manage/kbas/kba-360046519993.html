@@ -4951,7 +4951,7 @@
             </div>
             
 
-  <p><span>Last updated July  26th, 2023</span></p>
+  <p><span>Last updated October  17th, 2024</span></p>
 
 
     
@@ -4972,19 +4972,14 @@
 
 
 
-
-      
-      
-      
-      
-        <h2 id="environment">Environment</h2>
+<h2 id="environment">Environment</h2>
 <ul>
-<li>Knox Manage (KM)</li>
-<li>Android Enterprise (AE)</li>
+<li>Knox Manage</li>
+<li>Android Enterprise</li>
 </ul>
 <h2 id="overview">Overview</h2>
-<p>In Knox Manage (KM), some customers are experiencing an issue when sending commands to an AE-enrolled device with the latest KM agent installed.</p>
-<p>In the KM console, you may be unable to perform the following device actions:</p>
+<p>In Knox Manage, some customers are experiencing an issue when sending commands to an Android Enterprise enrolled device with the latest Knox Manage agent installed.</p>
+<p>In the Knox Manage console, you may be unable to perform the following device actions:</p>
 <ul>
 <li>Reset the screen password</li>
 <li>Update the Last seen status</li>
@@ -4993,20 +4988,41 @@
 <h2 id="cause">Cause</h2>
 <p>The Data Saver feature is enabled on the device, which optimizes data usage by preventing apps from using data in the background.</p>
 <h2 id="resolution">Resolution</h2>
-<p>You must either disable Data Saver on the affected devices or disallow the policy in the KM console to allow the KM agent to run in the background.</p>
+<p>You must either disable Data Saver on the affected devices or disallow the policy in the Knox Manage console to allow the Knox Manage agent to run in the background.</p>
 <h4 id="on-the-device">On the device:</h4>
 <p>Disable the Data Saver feature on the device by navigating to <strong>Settings</strong> &gt; <strong>Connections</strong> &gt; <strong>Data usage</strong> &gt; <strong>Data saver</strong>, and selecting <strong>Off</strong>.</p>
-<h4 id="in-the-knox-manage-console">In the Knox Manage console:</h4>
-<p>Disallow the Data Saver Mode policy to allow the KM agent to work in the background.</p>
+<p>IT admins can disallow the Data Saver mode policy to allow the Knox Manage agent to work in the background.</p>
 <ol>
-<li>In the KM console, select <strong>Profile</strong>.</li>
-<li>Select a created profile &gt; <strong>Modify Profile Info</strong>.</li>
-<li>Under <strong>Android Enterprise</strong>, ensure <strong>Samsung Knox</strong> is selected, then select <strong>Save and Set Policy</strong>.</li>
-<li>Under <strong>Samsung Knox (Android Enterprise)</strong> &gt; <strong>System</strong> &gt; <strong>Data Saver Mode</strong>, select <strong>Disallow.</strong></li>
-<li>Select <strong>Save and Assign</strong>.</li>
+<li>
+<p>In the Knox Manage console, select <strong>Profile</strong>.</p>
+</li>
+<li>
+<p>Select your profile, then click <strong>Modify Policy</strong>.</p>
+</li>
+<li>
+<p>Under the <strong>Samsung Knox (Android Enterprise</strong>) policy drawer, select <strong>Knox Service Plugin</strong>.</p>
+</li>
+<li>
+<p>Modify the following policies under <strong>Device-wide</strong> policies:</p>
+<div class="overflow-auto my-3"><table>
+<thead>
+<tr>
+<th>Policy</th>
+<th>Value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Device Restrictions &gt; Allow data saver mode</td>
+<td>False</td>
+</tr>
+</tbody>
+</table></div>
+</li>
+<li>
+<p>Click <strong>Save &amp; Assign</strong> to save and push your changes to the device fleet.</p>
+</li>
 </ol>
-<h2 id="additional-information">Additional information</h2>
-<p>For steps on how to set up a KM profile, see the <a href="../introduction/about-knox-manage.html">KM admin guide</a>.</p>
 
             
           </div>
@@ -5023,7 +5039,6 @@
         <li></li>
       </ul>
     </li>
-    <li><a href="kba-360046519993.html#additional-information">Additional information</a></li>
   </ul>
 </nav>
 </aside>

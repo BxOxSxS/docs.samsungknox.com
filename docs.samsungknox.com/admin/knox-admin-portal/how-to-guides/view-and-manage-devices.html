@@ -394,7 +394,7 @@
             </div>
             
 
-  <p><span>Last updated June  26th, 2024</span></p>
+  <p><span>Last updated October  24th, 2024</span></p>
 
 
     
@@ -454,7 +454,7 @@
 </ul>
 <p>If you&rsquo;re a managed service provider admin, device and service information is limited to the customer you&rsquo;re currently managing.</p>
 <h2 id="common-device-list">Common device list</h2>
-<p>To make it easier for you to keep track of devices across different Knox services, the common device list consolidates information about all your uploaded and approved devices. On this page, you can check the status of your devices and jump to device lists in other services to manage them.</p>
+<p>To make it easier for you to keep track of devices across different Knox services, the common device list consolidates information about all your uploaded and approved devices.</p>
 <div class="notice-note"><p>Currently, device information for Knox Manage, Knox Guard, and Knox Remote Support isn’t included in the common device list.</p></div>
 <p>To go to the common device list, click <strong>Devices</strong> in the bottom-left corner of the Knox Admin Portal navigation pane.</p>
 
@@ -466,22 +466,74 @@
 
 
 <p><img src="../assets/24-06-common-device-list.png" class="img-fluid img-thumbnail" alt="Knox Admin Portal common device list" /></p>
+<p>On this page, you&rsquo;ll find a <strong>DEVICES</strong> tab to check the status of your devices and jump to device lists in other services to manage them.</p>
+<!-- - A **COMMON TAGS** tab to create and assign tags to organize, sort, and search your devices.
+- A **BULK ACTIONS** tab for easy upload of up to 10000 devices, each associated with up to 10 device tags.-->
+<h3 id="devices-tab">DEVICES tab</h3>
 <p>The list shows common device information, such as the device IMEI/MEID, model name, and device status for each service. If a device has more than one IMEI, the primary IMEI is shown by default, with the secondary IMEI shown as a tooltip when you hover over the primary IMEI. In the tabs above the list, click a service name to jump to information about that service for the devices you&rsquo;re currently seeing. To see all the service details in a sliding panel, click the device IMEI/MEID.</p>
 <p>You can also sort the list by column and apply filters to one or more columns. To remove any filters that you applied, click <strong>Clear all filters</strong>.</p>
 <p>By default, 25 devices are shown per page. You can also select whether you want to see 50 or 100 devices on each page instead.</p>
 <p>To perform an action on certain devices, select them in the list. Above the list, you&rsquo;ll then see links to the service consoles the devices are associated with. Select a service to go to a filtered view of that service&rsquo;s device list, which only shows the devices you selected from the common device list.</p>
-<h3 id="search-for-one-or-more-devices-in-the-list">Search for one or more devices in the list</h3>
+<h4 id="search-for-one-or-more-devices-in-the-list">Search for one or more devices in the list</h4>
 <p>Using the search bar, you can search for single or multiple devices in the common device list.</p>
 <ul>
 <li><strong>Single device</strong> &mdash; Enter a device IMEI or serial number containing a minimum of 3 characters.</li>
 <li><strong>Multiple devices</strong> &mdash; Enter a maximum of 100 exact device IMEIs and serial numbers, separated by commas. You can also click <img src="../assets/upload-icon.png" alt="upload" style="height: 1.25em"> on the right side of the search bar to upload a CSV file containing up to 100 device IMEIs or serial numbers you want to find. </li>
 </ul>
 <p>To add filters to your search, click <img src="../assets/filter-icon.png" alt="filter" style="height: 1.25em">. In the <strong>Filters</strong> dialog, select the related service information you want to filter by, then click <strong>APPLY FILTERS</strong>. You can also clear any filters you applied previously by clicking <strong>CLEAR FILTERS</strong>, then <strong>APPLY FILTERS</strong> again.</p>
-<h3 id="configure-the-device-list">Configure the device list</h3>
+<h4 id="configure-the-device-list">Configure the device list</h4>
 <p>To customize the columns in the common device list, click <strong>Settings</strong>. You can select which services you want to see in the list, as well as specific device information related to each service. If you can&rsquo;t see or select a particular service, make sure you&rsquo;re registered for it and that the <a href="customize-the-portal.html#show-hide-services">service is shown on the portal</a>.</p>
-<h3 id="export-device-information">Export device information</h3>
+<!--#### Assign and remove common tags
+
+You can assign up to 10 common tags to devices. The tags assigned to a device are also shown in the device details.
+
+When you assign a common tag to a device, the information is shown in the device list and the device details. It is also shown in the common tag list.
+
+To assign common tags, select one or more devices, click **Actions** > **Assign common tags**, enter the tag names, and click **Save**. You can select from an existing tag or add a new tag.
+
+To remove assigned tags from device, select the devices and click **Actions** > **Remove common tags**.-->
+<h4 id="export-device-information">Export device information</h4>
 <p>To export common device information, click <strong>Download as CSV</strong>. You&rsquo;re then able to choose whether you want to include all available columns in your export, or just specific columns that you select. By default, the columns shown in the device list are pre-selected.</p>
-<h2 id="device-search">Device search</h2>
+<!--### COMMON TAGS tab
+
+The list shows information about any tags that you create for the common device list in the Knox Admin Portal, such as the tag name, number of devices associated with it, and its last modified date. You can sort the list by column to lookup the common tags. To see all the tag details in a sliding panel, click the common tag name.
+
+
+<div class="notice-note"><ul><li>The common tags are in addition to and separate from the device tags you might have created for each service.</li><li>If you have the <strong>Manage tags</strong> permission for a Knox cloud service or the <strong>Manage devices</strong> permission for MSP, you can create, assign, and manage common tags.</li></ul></div>
+
+
+#### Search by common tags
+
+Using the search bar, you can search for all devices associated with a common tag. To search, enter at least three characters of a tag name. You can also include numbers and alphabets from local languages, such as Korean and Japanese. No special symbols are supported in the search.
+
+
+#### Create common tags
+
+To create one or more common tags, click **Create tags**, enter the tag names, and click **Save**. The tags show in the common tags list.
+
+
+#### Rename a common tag
+
+Renaming a common tag has no effect on the devices assigned to it.
+
+To rename a common tag, click the tag name in the list, modify its name in the **Edit common tag** dialog that appears, and click **Save**. The tag name is updated in the common tags list. 
+
+
+#### Delete common tags
+
+Deleting a common tag removes it from the common tags list and also removes it from any device that it's assigned to.
+
+To delete one or more common tags, select the tags, and click **Actions** > **Delete tags**. Alternatively, click the tag name in the list, click **Delete** in the **Edit common tag** dialog, and confirm to permanently delete the tag.
+
+
+### BULK ACTIONS tab
+
+You can assign up to 10 common tags to up to 10,000 devices in a single bulk action. Use the provided CSV template to add, assign, and remove common tags in bulk.
+
+To download the CSV template, click **Assign common tags**, and click **Download CSV template** on the page. You must provide device IMEIs and corresponding common tags in the template. If you specify a new tag, it's added to the common tag list after upload.
+
+To assign common tags, click **Assign common tags**, browse and select the CSV file, and click **Submit**. You can also overwrite or remove any common tags assigned to devices.-->
+<h3 id="device-search">Device search</h3>
 <p>In the search bar at the top of the Knox Admin Portal, enter a device IMEI or serial number to view Knox service information for that device on a centralized page. If the device you&rsquo;re searching for has two SIMs, you can enter either the primary or secondary IMEI to view its information.</p>
 
 
@@ -564,13 +616,8 @@
   <ul>
     <li><a href="view-and-manage-devices.html#common-device-list">Common device list</a>
       <ul>
-        <li><a href="view-and-manage-devices.html#search-for-one-or-more-devices-in-the-list">Search for one or more devices in the list</a></li>
-        <li><a href="view-and-manage-devices.html#configure-the-device-list">Configure the device list</a></li>
-        <li><a href="view-and-manage-devices.html#export-device-information">Export device information</a></li>
-      </ul>
-    </li>
-    <li><a href="view-and-manage-devices.html#device-search">Device search</a>
-      <ul>
+        <li><a href="view-and-manage-devices.html#devices-tab">DEVICES tab</a></li>
+        <li><a href="view-and-manage-devices.html#device-search">Device search</a></li>
         <li><a href="view-and-manage-devices.html#delete-device-all-knox-cloud-services">Delete a device from all Knox cloud services</a></li>
       </ul>
     </li>

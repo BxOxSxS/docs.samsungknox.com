@@ -37,7 +37,7 @@
 <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start': new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0], j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src='https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);})(window,document,'script','dataLayer','GTM-P24TWCG');</script>
   <meta name="viewport" content="width=device-width,height=device-height,initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title>How to block the addition of unmanaged accounts on devices  | Knox Manage  | Samsung Knox Documentation</title>
+  <title>Restrict device users from adding accounts  | Knox Manage  | Samsung Knox Documentation</title>
   <meta http-equiv="content-language" content="en">
   <meta name="language" content="en">
   <script src="../../assets/js/bundle.js"></script>
@@ -4507,11 +4507,11 @@
       <a class="body-5 text-black fw-light" href="../kbas.html">KBAs</a>
     </div>
       
-    <div id="sub-knox-manage-kbas-kba-612-how-to-block-the-addition-of-unmanaged-accounts-on-devices">
+    <div id="sub-knox-manage-kbas-kba-612-restrict-device-users-from-adding-accounts">
       <ul>
         <li>
           <div class="d-flex justify-content-between">
-            <a class="body-5 text-black active" href="kba-612-how-to-block-the-addition-of-unmanaged-accounts-on-devices.html">How to block the addition of unmanaged accounts on devices</a>
+            <a class="body-5 text-black active" href="kba-612-restrict-device-users-from-adding-accounts.html">Restrict device users from adding accounts</a>
           </div>
         </li>
       </ul>
@@ -4947,11 +4947,11 @@
 
             </div>
             <div class="mt-4">
-              <h1>How to block the addition of unmanaged accounts on devices</h1>
+              <h1>Restrict device users from adding accounts</h1>
             </div>
             
 
-  <p><span>Last updated July  26th, 2023</span></p>
+  <p><span>Last updated October  22nd, 2024</span></p>
 
 
     
@@ -4974,36 +4974,134 @@
 
 <h2 id="environment">Environment</h2>
 <ul>
-<li>Knox Manage (KM)</li>
-<li>Android Enterprise (AE): Device Owner (DO)/Profile Owner (PO) modes</li>
+<li>Knox Manage</li>
+<li>Android Enterprise</li>
+<li>Fully managed device</li>
 </ul>
 <h2 id="overview">Overview</h2>
-<p>This article will explain how to block the addition of selected account types (e.g.: Google account, or Samsung account) without completely blocking other accounts. This will allow blocking unmanaged accounts on fully managed devices and work profiles, for Samsung devices as well as for devices of other manufacturers.</p>
-<h2 id="how-to-block-the-addition-of-unmanaged-accounts-on-the-device">How to block the addition of unmanaged accounts on the device?</h2>
+<p>There may be instances where you’re required to restrict device users from adding select account types to their managed device.</p>
+<h2 id="how-to-restrict-addition-of-unmanaged-accounts-on-the-device">How to restrict addition of unmanaged accounts on the device?</h2>
 <ol>
-<li>On the left sidebar of your KM console, click <strong>Profile</strong>, then click <strong>Modify Policy</strong></li>
-<li>Go to <strong>Android Enterprise</strong></li>
-<li>Search for <strong>System &gt; Account Modification</strong></li>
-<li>Click the menu for the option you wish to configure (device or work profile) and change it to <strong>Allow</strong></li>
-<li>Go to <strong>Account Blocklist</strong></li>
-<li>Click the <strong>+</strong> sign to add the accounts variable names</li>
-<li>Add the variable names of the accounts you want to block</li>
+<li>
+<p>In the Knox Manage console, go to <strong>Profile</strong>.</p>
+</li>
+<li>
+<p>Modify your profile.</p>
+</li>
+<li>
+<p>Open the <strong>Android Enterprise</strong> &gt; <strong>System</strong> policy drawer, and set the following policies:</p>
+<div class="overflow-auto my-3"><table>
+<thead>
+<tr>
+<th>Policy</th>
+<th>Value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Account Modification</td>
+<td>Allow</td>
+</tr>
+<tr>
+<td>Account Modification &gt; Account Block/Allowlist</td>
+<td>Account Blocklist</td>
+</tr>
+<tr>
+<td>Account Modification &gt; Account List</td>
+<td>Add your restricted account types</td>
+</tr>
+</tbody>
+</table></div>
+</li>
+<li>
+<p>Click <strong>Save &amp; Assign</strong> to save your changes and assign the profile to your device group.</p>
+</li>
 </ol>
-<pre tabindex="0"><code>Universal variables for Samsung and other manufacturers:
-com.google -- Google accounts
-com.google.work - managed Android Enterprise accounts in Gmail email app
-com.google.android.gm.legacyimap - IMAP accounts in Gmail email app
-com.google.android.gm.pop3 -- POP3 accounts in Gmail email app
-com.google.android.gm.exchange - Exchange accounts in Gmail email app
-</code></pre><p>Samsung devices:</p>
-<pre tabindex="0"><code>com.osp.app.signin -- Samsung accounts
-com.samsung.android.email -- Email accounts in Samsung email app
-com.samsung.android.exchange - Exchange accounts in Samsung email app
-com.samsung.android.ldap -- LDAP accounts in Samsung email app
-</code></pre><ol>
-<li>Click <strong>Save &gt; OK</strong></li>
-<li>Click <strong>Apply &gt; OK</strong></li>
-</ol>
+<h2 id="list-of-account-names-for-common-apps">List of account names for common apps</h2>
+<p>The following table details a list of common account types:</p>
+<div class="overflow-auto my-3"><table>
+    <tr>
+        <th scope="col">Service</th>
+        <th scope="col">Account type</th>
+        <th scope="col">Description</th>
+    </tr>
+    <tr>
+        <td rowspan="3">Samsung Email</td>
+        <td>com.samsung.android.exchange</td>
+        <td>Microsoft Exchange account</td>
+    </tr>
+    <tr>
+        <td>com.samsung.android.email</td>
+        <td>POP3/IMAP account</td>
+    </tr>
+    <tr>
+        <td>com.samsung.android.ldap</td>
+        <td>LDAP account</td>
+    </tr>
+    <tr>
+        <td rowspan="3">Samsung</td>
+        <td>com.sds.sso.agent</td>
+        <td>Knox SSO Agent</td>
+    </tr>
+    <tr>
+        <td>com.osp.app.signin</td>
+        <td>Samsung Account</td>
+    </tr>
+    <tr>
+        <td>com.samsung.android.coreapps</td>
+        <td>Samsung Experience Service</td>
+    </tr>
+    <tr>
+        <td rowspan="6">Google</td>
+        <td>com.google</td>
+        <td>Google Mail account</td>
+    </tr>
+    <tr>
+        <td>com.google.android.gm.exchange</td>
+        <td>Microsoft Exchange account by Google Mail</td>
+    </tr>
+    <tr>
+        <td>com.google.android.gm.pop3</td>
+        <td>Personal POP3 by Google Mail</td>
+    </tr>
+    <tr>
+        <td>com.google.android.gm.legacyimap</td>
+        <td>IMAP by Google Mail</td>
+    </tr>
+    <tr>
+        <td>com.google.android.apps.tachyon</td>
+        <td>Google Meet</td>
+    </tr>
+    <tr>
+        <td>com.google.work</td>
+        <td>Managed Android Enterprise accounts</td>
+    </tr>
+    <tr>
+        <td rowspan="6">Microsoft</td>
+        <td>com.microsoft.office.outlook.user_account</td>
+        <td>Microsoft Outlook</td>
+    </tr>
+    <tr>
+        <td>com.microsoft.office</td>
+        <td>Microsoft 365</td>
+    </tr>
+    <tr>
+        <td>com.microsoft.skydrive</td>
+        <td>Microsoft OneDrive</td>
+    </tr>
+    <tr>
+        <td>com.microsoft.workaccount</td>
+        <td>Microsoft Intune Company Portal Managed Account</td>
+    </tr>
+    <tr>
+        <td>com.microsoft.sharepoint</td>
+        <td>Microsoft Sharepoint</td>
+    </tr>
+    <tr>
+        <td>com.microsoft.teams</td>
+        <td>Microsoft Teams</td>
+    </tr>
+</table></div>
 
             
           </div>
@@ -5012,9 +5110,10 @@ com.samsung.android.ldap -- LDAP accounts in Samsung email app
 <aside class="table-of-headings">
   <nav id="TableOfContents">
   <ul>
-    <li><a href="kba-612-how-to-block-the-addition-of-unmanaged-accounts-on-devices.html#environment">Environment</a></li>
-    <li><a href="kba-612-how-to-block-the-addition-of-unmanaged-accounts-on-devices.html#overview">Overview</a></li>
-    <li><a href="kba-612-how-to-block-the-addition-of-unmanaged-accounts-on-devices.html#how-to-block-the-addition-of-unmanaged-accounts-on-the-device">How to block the addition of unmanaged accounts on the device?</a></li>
+    <li><a href="kba-612-restrict-device-users-from-adding-accounts.html#environment">Environment</a></li>
+    <li><a href="kba-612-restrict-device-users-from-adding-accounts.html#overview">Overview</a></li>
+    <li><a href="kba-612-restrict-device-users-from-adding-accounts.html#how-to-restrict-addition-of-unmanaged-accounts-on-the-device">How to restrict addition of unmanaged accounts on the device?</a></li>
+    <li><a href="kba-612-restrict-device-users-from-adding-accounts.html#list-of-account-names-for-common-apps">List of account names for common apps</a></li>
   </ul>
 </nav>
 </aside>
@@ -5048,7 +5147,7 @@ com.samsung.android.ldap -- LDAP accounts in Samsung email app
       
       <div class="col-sm-12 col-md-6 col-lg-3 footer-vertical-section">
         <div class="d-flex justify-content-between align-items-center">
-          <a class="footer-section-title" data-bs-toggle="collapse" href="kba-612-how-to-block-the-addition-of-unmanaged-accounts-on-devices.html#item0" role="button" aria-expanded="false" aria-controls="item0"> 
+          <a class="footer-section-title" data-bs-toggle="collapse" href="kba-612-restrict-device-users-from-adding-accounts.html#item0" role="button" aria-expanded="false" aria-controls="item0"> 
             <h6 class="body-3 fw-bold text-uppercase text-black pt-4">Knox admin documentation</h6>
           </a>
           <a class="btn-toggle d-inline-flex d-lg-none rounded border-0 fw-light" data-bs-toggle="collapse" data-bs-target="#item0" aria-expanded="false"></a>
@@ -5182,7 +5281,7 @@ com.samsung.android.ldap -- LDAP accounts in Samsung email app
       
       <div class="col-sm-12 col-md-6 col-lg-3 footer-vertical-section">
         <div class="d-flex justify-content-between align-items-center">
-          <a class="footer-section-title" data-bs-toggle="collapse" href="kba-612-how-to-block-the-addition-of-unmanaged-accounts-on-devices.html#item1" role="button" aria-expanded="false" aria-controls="item1"> 
+          <a class="footer-section-title" data-bs-toggle="collapse" href="kba-612-restrict-device-users-from-adding-accounts.html#item1" role="button" aria-expanded="false" aria-controls="item1"> 
             <h6 class="body-3 fw-bold text-uppercase text-black pt-4">Support</h6>
           </a>
           <a class="btn-toggle d-inline-flex d-lg-none rounded border-0 fw-light" data-bs-toggle="collapse" data-bs-target="#item1" aria-expanded="false"></a>
@@ -5204,7 +5303,7 @@ com.samsung.android.ldap -- LDAP accounts in Samsung email app
       
       <div class="col-sm-12 col-md-6 col-lg-3 footer-vertical-section">
         <div class="d-flex justify-content-between align-items-center">
-          <a class="footer-section-title" data-bs-toggle="collapse" href="kba-612-how-to-block-the-addition-of-unmanaged-accounts-on-devices.html#item2" role="button" aria-expanded="false" aria-controls="item2"> 
+          <a class="footer-section-title" data-bs-toggle="collapse" href="kba-612-restrict-device-users-from-adding-accounts.html#item2" role="button" aria-expanded="false" aria-controls="item2"> 
             <h6 class="body-3 fw-bold text-uppercase text-black pt-4">Samsung</h6>
           </a>
           <a class="btn-toggle d-inline-flex d-lg-none rounded border-0 fw-light" data-bs-toggle="collapse" data-bs-target="#item2" aria-expanded="false"></a>
