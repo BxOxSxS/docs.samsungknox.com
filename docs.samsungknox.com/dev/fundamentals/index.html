@@ -422,7 +422,8 @@
             </div>
             
 
-  
+  <p><span>Last updated October  29th, 2024</span></p>
+
 
     
 
@@ -483,13 +484,8 @@
       
       
       
-        
-      
-      
-      
-      
         <h2 id="the-big-picture">The Big Picture</h2>
-<p>Samsung provides both web-based as well as device-based APIs to manage our devices and services. Here is a high-level overview:</p>
+<p>Samsung provides a wide range of both web-based and device-based APIs to manage our devices and services, allowing developers to integrate our device management features into their applications. Here is a high-level overview:</p>
 
 
 
@@ -498,40 +494,54 @@
 
 
 
-<p><img src="assets/knox-ecosystem.png" class="img-fluid img-thumbnail" alt="knox ecosystem" /></p>
-<p>The first three services support the enterprise deployment of Samsung mobile devices:</p>
-<ol>
+<p><img src="assets/big-picture.png" class="img-fluid" alt="knox ecosystem" /></p>
+<h2 id="register-and-upload-devices">Register and upload devices</h2>
+<ul>
+<li><strong>Knox Deployment Program</strong> &mdash; Device resellers use the Knox Deployment Program to register the IMEIs or serial numbers of devices purchased by enterprises. Resellers can do this through the Knox Deployment Program reseller portal. Or, they can use our <a href="../knox-deployment-program.html">Knox Deployment Program REST APIs</a> to integrate this functionality into their own apps. The device information is stored on our Knox cloud servers for other services to access.</li>
+</ul>
+<h2 id="enroll-devices-for-management">Enroll devices for management</h2>
+<ul>
+<li><strong>Knox Mobile Enrollment</strong> &mdash; Enterprise IT admins can set up automatic UEM enrollment with Knox Mobile Enrollment, so they are compliant with management profiles and ready for enterprise use right out of the box. Enterprises can do this through the Knox Admin Portal, or they can use our <a href="../knox-mobile-enrollment.html">Knox Mobile Enrollment REST APIs</a> to integrate this functionality into their own services. The UEM information is stored on our Knox cloud servers for other services to access.</li>
+</ul>
+<h2 id="device-management">Device management</h2>
+<p>With Knox cloud services, enterprise IT admins can access a range of device management, monitoring, security, and customization solutions for their fleet of devices. Developers can integrate these device management features through the Knox cloud services APIs.</p>
+<ul>
 <li>
-<p><strong>Knox Deployment Program</strong> &mdash; Knox device resellers use the Knox Deployment Program to register the IDs of devices purchased by enterprises. Resellers can do this through Samsung&rsquo;s Knox Deployment Program reseller portal. Or, they can use our <a href="../knox-deployment-program.html">Knox Deployment Program REST APIs</a> to integrate this functionality into their own websites. The device information is stored on our Knox cloud servers for other services to access.</p>
+<p><strong>Knox Manage</strong> &mdash; Enterprise IT admins use Knox Manage to manage and control their fleet of devices with a wide range of available policies. As Samsung&rsquo;s own UEM solution, IT admins can seamlessly set up Knox Manage with other Knox cloud services such as Knox Mobile Enrollment and Knox Asset Intelligence for automatic enrollment and device fleet monitoring capabilities.</p>
 </li>
 <li>
-<p><strong>Knox Mobile Enrollment</strong> &mdash; Enterprise IT admins use Knox Mobile Enrollment to identify the Mobile Device Management system that manages purchased devices. Enterprises can do this through Samsung&rsquo;s Knox Mobile Enrollment web portal or they can use our <a href="../knox-mobile-enrollment.html">Knox Mobile Enrollment REST APIs</a> to integrate this functionality into their own websites. The MDM information is stored on our Knox cloud servers for other services to access.</p>
+<p><strong>Knox Configure</strong> &mdash; System Integrators use Knox Configure to customize devices for a wide range of vertical applications. For example, they can develop purpose-built info kiosks, point-of-sales terminals, inventory trackers, or entertainment systems. System Integrators can do this through the Knox Admin Portal or the <a href="../knox-configure.html">Knox Configure REST API</a>. Alternatively, they can use the <a href="../knox-sdk.html">Knox SDK</a> to fully customize the setup and operation of a device.</p>
 </li>
 <li>
-<p><strong>Mobile Device Management</strong> &mdash; When a purchased device first boots up, the Knox Enrollment Service connects to a Knox cloud server to see which MDM manages it, then connects to the MDM server to download the MDM client app. The MDM client deploys any corporate policies set up by the IT admin. So the device is enterprise ready right out of the box with minimal user setup needed. MDM clients use the <a href="../knox-sdk.html">Knox SDK</a>.</p>
-</li>
-</ol>
-<p>The next three services provide device customization, security, and management.</p>
-<ol start="4">
-<li>
-<p><strong>Knox Configure</strong> &mdash; System Integrators use Knox Configure to customize devices for a wide range of vertical applications. For example, they can develop purpose-built info kiosks, point-of-sales terminals, inventory trackers, or entertainment systems. System Integrators can do this through Samsung&rsquo;s Knox Configure web portal and/or the <a href="../knox-configure.html">Knox Configure REST APIs</a>. Alternatively, they can use the <a href="../knox-sdk.html">Knox SDK</a> to fully customize the setup and operation of a device.</p>
+<p><strong>Knox Attestation</strong> &mdash; UEM vendors or Independent Software Vendors (ISVs) can use Knox Attestation to ensure that a device is running authorized firmware that was installed in the factory or upgraded through official updates. They use a combination of <a href="../knox-attestation.html">Attestation REST APIs</a> and the <a href="../knox-sdk.html">Knox SDK</a>.</p>
 </li>
 <li>
-<p><strong>Knox Attestation</strong> &mdash; MDM vendors or Independent Software Vendors (ISVs) can use Knox Attestation to ensure that a device is running authorized firmware that was installed in the factory or upgraded through official updates. They use a combination of <a href="../knox-attestation.html">Attestation REST APIs</a> and the <a href="../knox-sdk.html">Knox SDK</a>.</p>
+<p><strong>Knox E-FOTA</strong> &mdash; Enterprise IT admins use Knox E-FOTA to control device firmware updates across their device fleet. They can do this through the Knox Admin Portal.</p>
 </li>
 <li>
-<p><strong>Knox E-FOTA</strong> &mdash; MDM vendors or ISVs can use Knox E-FOTA to control device firmware updates, which are typically managed by carriers. They can do this through Samsung&rsquo;s Knox E-FOTA portal.</p>
-</li>
-</ol>
-<p>The final two items support device management, security, and customization on the Samsung devices:</p>
-<ol start="7">
-<li>
-<p><strong>Knox SDK</strong> &mdash; Developers use the Knox SDK to create apps that manage, secure, and customize Samsung devices. There is a <a href="../knox-sdk.html">Knox SDK</a> for Android phones and tablets, and a <a href="../knox-tizen-sdk.html">Knox Tizen SDK</a> for wearables. Apps can take orders from a web-based MDM or Knox Configure portal, and implement them on the device using calls to APIs in the Knox SDK. The Knox SDK extends functionality in the Android SDK (for phones and tablets) and Tizen SDK (for watches), offering enhanced device manageability, security, customization, and usability.</p>
+<p><strong>Knox Asset Intelligence</strong> &mdash; Enterprise IT admins use Knox Asset Intelligence to monitor and track the status and condition of their fleet of devices. Knox Asset Intelligence also provides data-driven analytics to produce meaningful business insights regarding the usage and lifecycle of their fleet of devices.</p>
 </li>
 <li>
-<p><strong>Knox Service Plugin</strong> &mdash; MDM vendors can use the <a href="../managed-configurations/knox-service-plugin.html">Knox Service Plugin</a> to deploy new Knox features the moment they&rsquo;re released. Minimally, a web developer uses an iframe to display the list of features configurable through Knox Service Plugin. The Knox Service Plugin client on the device handles the new feature configuration, so that MDM clients don&rsquo;t need to.</p>
+<p><strong>Knox Guard</strong> &mdash; Enterprise IT admins use Knox Guard to secure and protect devices from fraud and theft. Knox Guard can detect and lock devices that are lost, stolen, or non-compliant, to protect company assets and enforce payment plans.</p>
 </li>
-</ol>
+<li>
+<p><strong>Knox Webhook Notification</strong> &mdash; Developers can subscribe to events such as uploads and device status changes from Knox Guard and Knox Asset Intelligence with the Knox Webhook Notification API. When these events are triggered, Knox Webhook Notification will send a notification to the subscribed webhook.</p>
+</li>
+</ul>
+<h2 id="device-management-support">Device management support</h2>
+<p>Developers can build apps to control and manage device capabilities using the Knox SDK.</p>
+<ul>
+<li>
+<p><strong>Knox SDK</strong> &mdash; Developers use the Knox SDK to create apps that manage, secure, and customize Samsung devices. There is a <a href="../knox-sdk.html">Knox SDK</a> for Android phones and tablets, and a <a href="../knox-tizen-sdk.html">Knox Tizen SDK</a> for wearables. Apps can take management policies from a web-based UEM or Knox Configure, and implement them on the device using the Knox SDK. The Knox SDK extends functionality in the Android SDK (for phones and tablets) and Tizen SDK (for watches), offering enhanced device manageability, security, customization, and usability.</p>
+</li>
+<li>
+<p><strong>Knox Service Plugin</strong> &mdash; IT admins can use the <a href="../managed-configurations/knox-service-plugin.html">Knox Service Plugin</a> to deploy new Knox features the moment they&rsquo;re released. UEM vendors can support Knox Service Plugin on their web consoles, allowing their IT admins to access device management features offered by Knox Service Plugin. The Knox Service Plugin client app on the device handles the new feature configuration, so that the UEM client app doesn&rsquo;t need to.</p>
+</li>
+</ul>
+<h2 id="managed-service-providers">Managed service providers</h2>
+<ul>
+<li><strong>Knox MSP Program</strong> &mdash; Partners can sign up as a managed service provider through the Knox MSP Program and onboard IT admin customers for Knox cloud services. Managed service providers can deploy and manage Knox cloud services on behalf of their customers through the Knox MSP portal, or through Knox cloud services APIs.</li>
+</ul>
 
             
           </div>
@@ -541,6 +551,11 @@
   <nav id="TableOfContents">
   <ul>
     <li><a href="../fundamentals.html#the-big-picture">The Big Picture</a></li>
+    <li><a href="../fundamentals.html#register-and-upload-devices">Register and upload devices</a></li>
+    <li><a href="../fundamentals.html#enroll-devices-for-management">Enroll devices for management</a></li>
+    <li><a href="../fundamentals.html#device-management">Device management</a></li>
+    <li><a href="../fundamentals.html#device-management-support">Device management support</a></li>
+    <li><a href="../fundamentals.html#managed-service-providers">Managed service providers</a></li>
   </ul>
 </nav>
 </aside>

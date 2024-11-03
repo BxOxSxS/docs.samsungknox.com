@@ -565,7 +565,7 @@
     
     
     <div class="d-flex justify-content-between">
-      <a class="body-5 text-black fw-light" href="../enabling-dual-dar-with-knox-service-plugin.html">Enabling Dual DAR with Knox Service Plugin</a>
+      <a class="body-5 text-black fw-light" href="../enabling-dual-dar-with-knox-service-plugin.html">Enabling DualDAR with Knox Service Plugin</a>
     </div>
     
     </li>
@@ -1273,7 +1273,7 @@
             </div>
             
 
-  <p><span>Last updated November  21st, 2023</span></p>
+  <p><span>Last updated October  28th, 2024</span></p>
 
 
     
@@ -1287,62 +1287,79 @@
 
 
 <p>As part of your mobile application management strategy, you can employ app management policies to control the installation, access, and permissions of apps in the work profile. You can push these policies to an unlimited number of apps in your EMM.</p>
-<p>Knox Service Plugin offers the following policies to configure and manage inside a device&rsquo;s work profile:</p>
+<p>In your Knox Service Plugin managed configuration, set <strong>Application management policies</strong> &gt; <strong>Enable application management controls</strong> to <strong>True</strong> to enable the following application management settings. If set to <strong>False</strong>, these settings take no effect.</p>
 <ul>
 <li>
-<p>Set the <strong>Enable application management controls</strong> to <strong>True</strong> to enable the following application management settings. If set to <strong>False</strong>, these management settings will not be configurable.</p>
+<p><strong>Battery optimization allowlist</strong> &mdash; Exempt a list of apps from battery usage optimizations. Add application package names as a comma separated list.</p>
+</li>
+<li>
+<p><strong>Notifications allowlist</strong> &mdash; All apps except for those added to this allowlist are prevented from displaying notifications on the console status bar. Add package names as a comma separated list, and you can also use a wildcard (com.abc*) to target multiple apps.</p>
+</li>
+<li>
+<p><strong>Install app from personal to work profile</strong> &mdash; Install an existing app from the default personal space to the work profile without device user interaction. Provide a comma separated list of application package names to install apps.</p>
+</li>
+<li>
+<p><strong>Allow USB devices for application configuration</strong> &mdash; Enable this setting to allow select apps to use specified USB devices.</p>
+<p>To select an app and allow it to use a USB device, go to <strong>Allowed USB devices for Applications Configurations</strong> and add a new configuration. Enter the following for each configuration:</p>
 <ul>
 <li>
-<p>Refer to the <strong>Battery optimization allowlist</strong> to enter a list of application package names &lt;string&gt; to include in the allow list for battery optimization exemption.</p>
+<p><strong>Application Name</strong> &mdash; Provide the package name of the app you would like to allow for USB configuration.</p>
 </li>
 <li>
-<p>Use the <strong>Notifications allowlist</strong> to stop applications from displaying notifications on the console status bar. All application notifications are blocked except those specified in the allow list. Enter values as a comma separated list, for example, com.xyz, or com.abc, etc. You can also use a wildcard (com.abc*) for multiple applications.</p>
-</li>
-<li>
-<p>Refer to the <strong>Install app from personal to work profile</strong> setting to install an existing application &lt;string&gt; from the default personal space to the work profile without deice user intervention. Provide a comma separated list of package names if specifying more than one application.</p>
-</li>
-<li>
-<p>Set the following <strong>Allow USB devices for application configuration</strong> controls to set application configuration access for USB supported devices. Set the following options for USB devices:</p>
+<p><strong>USB Devices Configuration</strong> &mdash; Define the following values to allow USB device access for the app above:</p>
 <ul>
 <li>
-<p>Provide the <strong>Application Name</strong> &lt;string&gt; for the package name you would like to allow for USB configuration.</p>
+<p><strong>Product ID</strong> &mdash; Hex value of the USB device Product ID.</p>
 </li>
 <li>
-<p>Refer to the <strong>USB Devices Configuration</strong> setting to define the following values allowed USB device access for configuration updates:</p>
-<ul>
-<li>
-<p>Set the hex value <strong>Product ID</strong> &lt;string&gt; for the USB devices allowed application updates.</p>
-</li>
-<li>
-<p>Set the hex value <strong>Vendor ID</strong> &lt;string&gt; for the USB devices allowed application updates.</p>
+<p><strong>Vendor ID</strong> &mdash; Hex value of the USB device Vendor ID.</p>
 </li>
 </ul>
 </li>
 </ul>
 </li>
 <li>
-<p>Use the <strong>Application Allowlist by Pkg Name</strong> control to allow applications intended for installation on the PO. Specified third party applications not part of the device system image will be allowed when included in a comma separated list. Include a wildcard (com.abc*) for multiple apps. When a currently installed app matches a package name &lt;string&gt; in both the allow and block list, then the allow list has precedence and the package is installed.</p>
+<p><strong>Application Allowlist by Pkg Name</strong> &mdash; Allow apps intended for installation on the work profile. Specified third party apps not part of the device system image can be installed on the work profile if they&rsquo;re on the allow list. Add apps as a comma separated list, or use a wildcard (com.abc*) to target multiple apps. If an app is in both the allow list and block list, then allow list takes precedence and the app is installed.</p>
 </li>
 <li>
-<p>Use the <strong>Application Blocklist by Pkg Name</strong> control to block applications &lt;string&gt; by package name and prevent them from being installed on the PO. Specified third party application names not part of the device system image will be blocked when included in a comma separated list. Include a wildcard (com.abc*) for multiple apps. If the package is already installed, the API does not impact the existing package installation.</p>
+<p><strong>Application Blocklist by Pkg Name</strong> &mdash; Block apps by package name and prevent them from being installed on the work profile. Specified third party app names not part of the device system image can&rsquo;t be installed if they&rsquo;re on the block list. Add apps as a comma separated list, or use a wildcard (com.abc*) to target multiple apps. If an app was already installed before it was added to this block list, then this block list takes no effect on the app.</p>
 </li>
 <li>
-<p>Refer to the <strong>Application Allowlist by Signature used</strong> control to allow third-party applications intended for installation on the PO based on the application&rsquo;s signature. Enter values as a comma-separated list. Include a wildcard (com.abc*) for multiple apps. When a currently installed app matches a package signature &lt;string&gt; in both the allow and block list, then the allow list has precedence and the package is installed.</p>
+<p><strong>Application Allowlist by Signature used</strong> &mdash; Allow third-party apps intended for installation on the work profile based on the app&rsquo;s signature. Enter application signatures as a comma separated list, or use a wildcard (com.abc*) to target multiple apps. If an app is in both the allow list and block list, then the allow list takes precedence and the app is installed.</p>
 </li>
 <li>
-<p>Use the <strong>Application Blocklist by Signature used</strong> control to block applications by signature &lt;string&gt; and prevent them from being installed on the PO. Specified third party application signatures not part of the device system image will be blocked when included in a comma separated list. Include a wildcard (com.abc*) for multiple apps. If the package is already installed, the API does not impact the existing package installation.</p>
+<p><strong>Application Blocklist by Signature used</strong> &mdash; Block apps by their signature and prevent them from being installed on the work profile. Specified third party application signatures that are not part of the device system image can&rsquo;t be installed if they&rsquo;re on the block list. Enter application signatures as a comma separated list, or use a wildcard (com.abc*) to target multiple apps. If an app was already installed before it was added to this block list, then this block list takes no effect on the app.</p>
 </li>
 <li>
-<p>Refer to the <strong>Disable application without user interaction</strong> control to disable specific applications &lt;string&gt; without device user interaction. A disabled application is not uninstalled, but it cannot be launched by the device user. The API does not affect the application state. Enter values as a comma separated list, for example, com.xyz, or com.abc, etc.</p>
+<p><strong>Disable application without user interaction</strong> &mdash; Disable specific apps without device user interaction. A disabled app is not uninstalled, but it can&rsquo;t be launched by the device user. This control doesn&rsquo;t affect the app state. Add package names as a comma separated list.</p>
 </li>
 <li>
-<p>Refer to the <strong>Force Stop Blocklist</strong> control to prevent the user from stopping specified applications &lt;string&gt;. Stop actions include a force stop in Settings app, stopping through third-party applications, stopping any background process, and stopping any process from the application. Enter the values as a comma separated list. Include a wildcard (com.abc*) for multiple apps in the block list.</p>
+<p><strong>Force Stop Blocklist</strong> &mdash; Prevent the user from stopping specified apps. Stop actions include a force stop in the Settings app, stopping through third-party apps, stopping any background process, and stopping any process from the app. Enter the values as a comma separated list, or use a wildcard (com.abc*) to target multiple apps.</p>
 </li>
 <li>
-<p>Refer to the <strong>Widget Allowed List</strong> and <strong>Widget Blocked List</strong> to either allow or block a set of widgets. If an allowlist is implemented, all other widgets not matching the list are blocked. Contrarily, if a blocklist is implemented, only the widgets from the list are blocked and any existing widgets are removed. If a widget package name exists in both allow and block lists, it is set to be allowed. Minimum OS version required for this feature is Android 11.</p>
+<p><strong>Widget Allowed List</strong> and <strong>Widget Blocked List</strong> &mdash; Allow or block a set of widgets. If an allowlist is implemented, all other widgets not matching the list are blocked. If a block list is implemented, only the widgets in the list are blocked and any existing widgets are removed. If a widget package name exists in both allow and block lists, then the allow list takes precedence and the widget is allowed to run. This feature requires Android 11 or higher.</p>
 </li>
 <li>
-<p>Refer to <strong>Package Name for Auto-Launch</strong> to set an application auto launch after installation. Additionally, specify a component name along with the application package name to launch a specific screen. If no component name is displayed, launcher screen of the application is displayed.</p>
+<p><strong>Package Name for Auto-Launch</strong> &mdash; Set an app to auto launch after installation. Additionally, specify a component name along with the app package name in the <code>PackageName/ComponentName</code> format to launch a specific screen. If no component name is provided, the launch screen of the app is displayed.</p>
+</li>
+<li>
+<p><strong>Enable permission controls</strong> &mdash; Enable special access permission grants for select apps. This feature means that apps requiring special access permissions can run without prompting the device user with a permission request.</p>
+<p>To select an app and grant it special permissions, go to <strong>Permission Controls</strong> and add a new configuration for each app you want to grant special access permissions. For each configuration:</p>
+<ul>
+<li>
+<p><strong>Permission Policy</strong> &mdash; Select which permissions to grant:</p>
+<ul>
+<li>All files access</li>
+<li>Appear on top</li>
+<li>Change system settings</li>
+<li>Notification access</li>
+<li>Alarms &amp; Reminders</li>
+<li>Usage data access</li>
+<li>ALL</li>
+</ul>
+</li>
+<li>
+<p><strong>Package or Component Name</strong> &mdash; Enter the package name of the app to receive the above permissions. If you&rsquo;ve selected <strong>Notification access</strong> or <strong>ALL</strong> permissions above, then you must enter both the package name and the component name of the app in the format: <code>PackageName/ComponentName</code>.</p>
 </li>
 </ul>
 </li>
