@@ -662,7 +662,7 @@
     
     
     <div class="d-flex justify-content-between">
-      <a class="body-5 text-black fw-light" href="../hardware-backed-trust.html">Hardware-backed trust</a>
+      <a class="body-5 text-black fw-light" href="../hardware-rooted-trust.html">Hardware-rooted trust</a>
     </div>
     
     </li>
@@ -695,7 +695,18 @@
     
     
     <div class="d-flex justify-content-between">
-      <a class="body-5 text-black fw-light" href="../extending-below-the-os-security-into-the-os/index.html">Extending Below-the-OS Security into the OS</a>
+      <a class="body-5 text-black fw-light" href="../extending-below-the-os-security-into-the-os.html">Extending Below-the-OS Security into the OS</a>
+    </div>
+    
+    </li>
+  
+  
+  
+    <li class="mt-2">
+    
+    
+    <div class="d-flex justify-content-between">
+      <a class="body-5 text-black fw-light" href="../secure-manageability/index.html">Secure Manageability</a>
     </div>
     
     </li>
@@ -1029,7 +1040,7 @@
             </div>
             
 
-  <p><span>Last updated August  12th, 2024</span></p>
+  <p><span>Last updated November  12th, 2024</span></p>
 
 
     
@@ -1058,15 +1069,15 @@
       
       
       
-        <p>The UEFI and BIOS installs code that remains persistent through the system&rsquo;s runtime in a mode called <strong>System Management Mode</strong>, or <strong>SMM</strong>, to maintain control of the system even after system boot. SMM code handles a variety of low-level, system-wide tasks such as power management, read and write of persistent BIOS variables and configuration, and also contains any OEM-specific code.</p>
-<p>SMM is the highest privilege mode of the processor. Like the BIOS and UEFI, SMM code runs below the OS. SMM has full access to physical memory, SMM-specific memory called SMRAM, MSR special-purpose registers, the SPI flash region to read and write BIOS variables, and I/O operations. Furthermore, the SMM is designed to be invisible to lower privilege layers such as the OS kernel or hypervisor.</p>
-<p>A compromise of the SMM has extremely high impact on security since the SMM is the highest privileged mode and is invisible to lower privileged layers. For example, an attacker that compromises the SMM can write to the SPI flash to persist stealthy malware code, disable BIOS variables such as Secure Boot, and change system configurations. Moreover, the attacker can completely conceal such activities from any OS or hypervisor detection techniques like antivirus and bypass mitigations.</p>
+        <p>The UEFI and BIOS installs code that remains persistent through the system&rsquo;s runtime in a mode called <strong>System Management Mode (SMM)</strong> to maintain control of the system even after system boot. SMM code handles a variety of low-level, system-wide tasks such as power management, read and write of persistent BIOS Variables and configuration, and also contains any OEM-specific code.</p>
+<p>SMM is the highest privilege mode of the processor. Like the BIOS and UEFI, SMM code runs below the OS. SMM has full access to physical memory, SMM-specific memory called SMRAM, MSR special-purpose registers, the SPI flash region to read and write BIOS Variables, and I/O operations. Furthermore, the SMM is designed to be invisible to lower privilege layers such as the OS kernel or hypervisor.</p>
+<p>A compromise of the SMM has extremely high impact on security since the SMM is the highest privileged mode and is invisible to lower privileged layers. For example, an attacker that compromises the SMM can write to the SPI flash to persist stealthy malware code, disable BIOS Variables such as Secure Boot, and change system configurations. Moreover, the attacker can completely conceal such activities from any OS or hypervisor detection techniques like antivirus and bypass mitigations.</p>
 <h2 id="how-smm-exploitation-works">How SMM exploitation works</h2>
 <p>Attackers typically escalate privileges to the SMM by exploiting vulnerabilities in the SMM code. The OS calls SMM code through <strong>system management interrupts</strong>, or <strong>SMI</strong>, and passes parameters to SMI handlers using a shared memory area called the <a href="https://raw.githubusercontent.com/tianocore-docs/Docs/master/White_Papers/A_Tour_Beyond_BIOS_Secure_SMM_Communication.pdf" target="_blank">SMM Communication Buffer</a>.</p>
 <p>If the attacker finds a vulnerability such as memory corruption in any of the SMI handlers, they can craft an input in the SMM Communication Buffer to exploit vulnerable code in the SMI handler. An attacker typically uses well-known exploitation techniques like <strong>Return-Oriented Programming</strong>, or <strong>ROP</strong>, to escalate to SMM privileges, disable SPI write protections, and persist malware.</p>
 <p>The Knox platform introduces several features dedicated to detecting, hardening, and mitigating the effect of SMM exploits. These features are described below.</p>
 <h2 id="smi-guard-protecting-smi-calls">SMI Guard: Protecting SMI calls</h2>
-<p>The SMI Guard is a security routine that intercepts SMI calls and analyzes the content of the shared buffer to detect malicious inputs or known exploit patterns based on rules, as shown in Figure 3.</p>
+<p>The SMI Guard is a security routine that intercepts SMI calls and analyzes the content of the shared buffer to detect malicious inputs or known exploit patterns based on rules, as shown in <strong>Figure 3</strong>.</p>
 <p>Once an attack is detected, remedial actions include blocking the SMM call from going through, and alerting an admin.</p>
 <p>This feature enables IT admins to define the following rules to limit calls to the SMM at runtime:</p>
 <div class="overflow-auto my-3"><table>
@@ -1095,120 +1106,10 @@
 
 
 
-  
-  
-  
-  
-  
-    
-    
-    
-    
-      
-    
-    
-  
-    
-    
-    
-    
-      
-    
-    
-  
-    
-    
-    
-    
-      
-    
-    
-  
-    
-    
-    
-    
-      
-    
-    
-  
-    
-    
-    
-      
-    
-    
-    
-  
-    
-    
-    
-      
-    
-    
-    
-  
-    
-    
-    
-      
-    
-    
-    
-  
-    
-    
-    
-      
-    
-    
-    
-  
-    
-    
-    
-      
-    
-    
-    
-  
-    
-    
-    
-      
-    
-    
-    
-  
-    
-    
-    
-      
-    
-    
-    
-  
-    
-    
-    
-      
-    
-    
-    
-  
-    
-    
-    
-      
-    
-    
-    
-  
 
-
-<p><img src="../../assets/pc-white-paper-figure-3.png" class="image-block-scale-70 img-thumbnail" alt="Figure 3: SMI Guard blocks SMI calls that shouldn&#39;t be called at run-time and SMI calls with known-bad arguments indicative of exploits" /></p>
-<p>Figure 3: SMI Guard blocks SMI calls that shouldn&rsquo;t be called at run-time and SMI calls with known-bad arguments indicative of exploits.</p>
-<p>The typical rapid incident response flow is described as follows in Figure 4:</p>
+<p><img src="../../assets/pc-white-paper-figure-3.png" class="img-fluid" alt="Figure 3: SMI Guard blocks SMI calls that shouldn&#39;t be called at run-time and SMI calls with known-bad arguments indicative of exploits" /></p>
+<p>Figure 3: SMI Guard blocks SMI calls that should not be called at run-time and SMI calls with known-bad arguments indicative of exploits.</p>
+<p>The typical rapid incident response flow is described as follows in <strong>Figure 4</strong>:</p>
 <ol>
 <li>A new SMM vulnerability is reported (Step 1).</li>
 <li>If the vulnerability affects a Galaxy Book, and can be blocked by SMI Guard, Samsung rapidly releases SMI Guard rules to block exploitation on vulnerable firmware versions (Step 2).</li>
@@ -1223,7 +1124,7 @@
 
 
 
-<p><img src="../../assets/pc-white-paper-figure-4.png" class="img-fluid img-thumbnail" alt="Figure 4: SMI Guard enables rapid incident response and minimizes the window of vulnerability" /></p>
+<p><img src="../../assets/pc-white-paper-figure-4.png" class="img-fluid" alt="Figure 4: SMI Guard enables rapid incident response and minimizes the window of vulnerability" /></p>
 <p>Figure 4: SMI Guard enables rapid incident response and minimizes the window of vulnerability.</p>
 <h2 id="advanced-smm-protection">Advanced SMM Protection</h2>
 <p>This feature adds a layer of exploit mitigation to protect SMM even in the face of previously unknown vulnerabilities and zero-day attacks.</p>
@@ -1236,7 +1137,7 @@
 <p>The Policy-shim has the power to allow and disallow any resource access, allowing OEMs like Samsung to tightly control which system resources the SMI handlers can access. This makes it much more difficult for a potential attacker to force one of our SMI handlers to perform a malicious action and further compromise the platform.</p>
 <h3 id="introducing-novel-mitigations">Introducing novel mitigations</h3>
 <p>While the above mitigations significantly reduce the attack surface and impact of an SMM exploit, they all focus on protecting code but not data. Security-critical data structures in SMM are still vulnerable to unauthorized write attempts that can be leveraged by an attacker. For example, one such data structure describes non-SMM memory regions, which could be modified by an exploit to disclose or modify SMM memory.</p>
-<p><strong>Advanced SMM Protection</strong> provides additional exploit mitigation by marking security-critical SMM data as read-only, making it impossible for an attacker to overwrite or modify. This is seen in Figure 5.</p>
+<p><strong>Advanced SMM Protection</strong> provides additional exploit mitigation by marking security-critical SMM data as read-only, making it impossible for an attacker to overwrite or modify. This is seen in <strong>Figure 5</strong>.</p>
 
 
 
@@ -1244,118 +1145,8 @@
 
 
 
-  
-  
-  
-  
-  
-    
-    
-    
-    
-      
-    
-    
-  
-    
-    
-    
-      
-    
-    
-    
-  
-    
-    
-    
-      
-    
-    
-    
-  
-    
-    
-    
-      
-    
-    
-    
-  
-    
-    
-    
-      
-    
-    
-    
-  
-    
-    
-    
-      
-    
-    
-    
-  
-    
-    
-    
-      
-    
-    
-    
-  
-    
-    
-    
-      
-    
-    
-    
-  
-    
-    
-    
-      
-    
-    
-    
-  
-    
-    
-    
-      
-    
-    
-    
-  
-    
-    
-    
-      
-    
-    
-    
-  
-    
-    
-    
-      
-    
-    
-    
-  
-    
-    
-    
-      
-    
-    
-    
-  
 
-
-<p><img src="../../assets/pc-white-paper-figure-5.png" class="image-block-scale-90 img-thumbnail" alt="Figure 5: Advanced SMM Protection mitigates zero-day SMM vulnerabilities by blocking writes to security-critical data" /></p>
+<p><img src="../../assets/pc-white-paper-figure-5.png" class="img-fluid img-thumbnail" alt="Figure 5: Advanced SMM Protection mitigates zero-day SMM vulnerabilities by blocking writes to security-critical data" /></p>
 <p>Figure 5: Advanced SMM Protection mitigates zero-day SMM vulnerabilities by blocking writes to security-critical data.</p>
 
             

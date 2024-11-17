@@ -662,7 +662,7 @@
     
     
     <div class="d-flex justify-content-between">
-      <a class="body-5 text-black fw-light" href="../hardware-backed-trust.html">Hardware-backed trust</a>
+      <a class="body-5 text-black fw-light" href="../hardware-rooted-trust.html">Hardware-rooted trust</a>
     </div>
     
     </li>
@@ -695,7 +695,18 @@
     
     
     <div class="d-flex justify-content-between">
-      <a class="body-5 text-black fw-light" href="../extending-below-the-os-security-into-the-os/index.html">Extending Below-the-OS Security into the OS</a>
+      <a class="body-5 text-black fw-light" href="../extending-below-the-os-security-into-the-os.html">Extending Below-the-OS Security into the OS</a>
+    </div>
+    
+    </li>
+  
+  
+  
+    <li class="mt-2">
+    
+    
+    <div class="d-flex justify-content-between">
+      <a class="body-5 text-black fw-light" href="../secure-manageability/index.html">Secure Manageability</a>
     </div>
     
     </li>
@@ -1029,7 +1040,7 @@
             </div>
             
 
-  <p><span>Last updated August  12th, 2024</span></p>
+  <p><span>Last updated November  12th, 2024</span></p>
 
 
     
@@ -1052,53 +1063,48 @@
       
       
       
-        
       
-      
-      
-      
-        
-      <p>The SecEP ensures that the CPU only executes a trusted BIOS, and the BIOS relies on the SecEP to protect security-critical data &mdash; this is the foundation that the Knox security platform builds upon to provide best-in-class laptop PC security. In this chapter, we describe how this foundation is used improve on the standard UEFI boot process.</p>
-<h2 id="secure-boot-configuration-recovery">Secure Boot Configuration Recovery</h2>
+        <p>The SecEP ensures that the CPU only executes a trusted BIOS, and the BIOS relies on the SecEP to protect security-critical data &mdash; this is the foundation that the Knox security platform builds upon to provide best-in-class laptop PC security. In this chapter, we describe how this foundation is used improve on the standard UEFI boot process.</p>
+<h2 id="bios-configuration-recovery">BIOS configuration recovery</h2>
+<div class="notice-note"><p>This feature was introduced on Samsung Galaxy Book5 models with the Knox platform. Samsung Galaxy Book4 models with the Knox platform support a prior version of this feature called <strong>Secure Boot Configuration Recovery</strong> that protected and recovered a subset of BIOS variables associated with secure boot.</p></div>
 <p>The security of the UEFI boot process depends on the integrity of both the firmware and its configuration data. Secure Boot configuration data is particularly security-sensitive, since it forms the basis to make decisions such as:</p>
 <ul>
 <li>Whether Secure Boot is enabled</li>
 <li>Which keys to use for Secure Boot</li>
 <li>Which OS images have been revoked</li>
+<li>Whether the device has certain debugging features enabled that may be abused by a physical attacker to modify in-memory BIOS code or data,</li>
+<li>Whether the device is classified as being in factory, which enables certain special operations during manufacture-time that can be abused by physical attackers.</li>
 </ul>
-<p>Therefore, protection of Secure Boot configuration data is critical to establish the root of trust. In addition, these Secure Boot settings need to be recovered from a &ldquo;known-good&rdquo; backup if corruption is detected.</p>
-<p>The section on <a href="../hardware-backed-trust.html">Hardware-backed trust</a> details how UEFI code is protected and auto-recovered from a backup if corruption is detected. However, the same techniques for code can&rsquo;t be applied for configuration data, since configuration data can be modified after the BIOS signatures are generated. Thus, it isn&rsquo;t possible to generate a signature for configuration data during compilation, <em>and</em> validate it using the same UEFI code validation flow. Samsung&rsquo;s <strong>Secure Boot Configuration Recovery</strong> addresses this shortcoming.</p>
-<p>As part of the UEFI standard, security-critical boot configuration data is written to flash as <strong>UEFI Variables</strong>. UEFI Variables are stored as key-value pairs, where each key consists of a <strong>Globally-Unique Identifier</strong>, or <strong>GUID</strong>, and a variable name. Boot configuration data is typically modified by an administrator through the BIOS menu. These &ldquo;known-good&rdquo; values are backed up in SecEP flash storage.</p>
-<p>An attacker can attempt to subvert Secure Boot by modifying or corrupting on-disk variables with inexpensive flash writing tools. For example, they can disable Secure Boot entirely, or change the public keys used to verify signatures. The Secure Boot Configuration Recovery feature detects such out-of-band writes and also recovers these variables to the previously backed up values.</p>
+<p>Therefore, the protection of such UEFI configuration data, and the ability for code to be recovered from a &ldquo;known-good&rdquo; backup if corruption is ever detected, is critical in order to establish the root of trust.</p>
+<p>The section on <a href="../hardware-rooted-trust.html">Hardware-rooted trust</a> details how UEFI code is protected and auto-recovered from a backup if corruption is detected. However, the same techniques for code can&rsquo;t be applied for configuration data, since configuration data can be modified after the BIOS signatures are generated. Thus, it isn&rsquo;t possible to generate a signature for configuration data during compilation, <em>and</em> validate it using the same UEFI code validation flow. Samsung&rsquo;s <strong>Secure Boot Configuration Recovery</strong> addresses this shortcoming.</p>
+<p>Samsung’s <strong>BIOS Configuration Recovery</strong> feature addresses this shortcoming.</p>
+<p>As part of the UEFI standard, security-critical boot configuration data is written to flash as <strong>UEFI/BIOS Variables</strong>. UEFI Variables are stored as key-value pairs on the SPI flash storage, where each key consists of a <strong>Globally-Unique Identifier</strong>, or <strong>GUID</strong>, and a variable name. UEFI configuration data is typically modified by an administrator through the BIOS menu. These &ldquo;known-good&rdquo; values are backed up in SecEP flash storage.</p>
+<p>An attacker can attempt to subvert Secure Boot by modifying or corrupting variables on the SPI flash storage with inexpensive flash writing tools. For example, they can disable Secure Boot entirely, or change the public keys used to verify signatures. The BIOS Variables Protection and Recovery feature detects such out-of-band writes and also recovers these variables to the previously backed up values.</p>
 <h3 id="detecting-and-recovering-from-unauthorized-offline-writes-to-secure-boot-configuration">Detecting and recovering from unauthorized offline writes to Secure Boot configuration</h3>
-<p>First, integrity information for the Secure Boot UEFI variables is stored on the SecEP&rsquo;s flash storage, protecting and isolating it from software and hardware-based tampering. This information is cryptographically-protected using the <strong>Master Storage</strong> key kept within the SecEP. This key authenticates the variable&rsquo;s content, name, and GUID.</p>
+<p>First, integrity information for the Secure Boot UEFI variables is stored on the SecEP’s flash storage, protecting and isolating it from tampering by untrusted software. This information is cryptographically-protected using the <strong>Master Storage</strong> key kept within the SecEP. This key authenticates the variable’s content, name, and GUID.</p>
 <p>During boot, the SecEP provides integrity information to the BIOS. The BIOS uses this information to validate the Secure Boot UEFI variables. If an integrity corruption is detected, the BIOS automatically discards any corrupted values, and reverts all protected variables back to their &ldquo;known-good&rdquo; values. Once the SecEP completes the recovery, the user is notified through a BIOS notification before the boot process is continued.</p>
+<h3 id="protecting-the-bios-password">Protecting the BIOS Password</h3>
+<p>The BIOS password is the basis for BIOS authentication, and is therefore particularly security-critical and important to recover if corrupted by hardware failure or malicious activity. The BIOS password hash is itself a UEFI variable. To offer additional isolation, robustness of storage, and recovery guarantees, the BIOS password hash is backed up in the SecEP’s internal EEPROM storage. The SecEP’s internal storage is very small, and is therefore used to store only the most security-critical data. If corruption of the BIOS password hash is detected, recovery happens from the SecEP’s internal storage (instead of the SecEP Flash Storage).</p>
 <h2 id="tamper-alert">Tamper Alert</h2>
 <p>The <strong>Tamper Alert</strong> feature alerts admins of certain security-critical events that indicate tampering with security-critical data or code in any layer of the software stack. Specifically, this feature deals with tampering that the system can&rsquo;t automatically recover from. Such events typically need admin action to restore the system to a good state. Tamper Alerts are presented to the admin in a protected pre-boot environment. This feature can also require admins to acknowledge alerts by entering their BIOS password before allowing the system to boot up.</p>
-<p>Tamper tracking is handled through the SecEP&rsquo;s <strong>Tamper Flag</strong>, an indicator used to determine if there were any new policy violations on the device. The Tamper Flag is stored on the SecEP&rsquo;s flash storage, isolating and protecting it from any compromises on the OS.</p>
-<p>Authorized software, including the BIOS and System Management Mode, can request the SecEP to turn on the Tamper Flag when they detect tampering, such as during the following scenarios:</p>
+<p>Tamper Alerts are typically indicative of actions by malware or physical attackers that impact security guarantees on the Samsung Galaxy Book with the Knox security platform. For example, Tamper Alerts are raised when there are attempts to boot unauthorized firmware, if there are writes to protected SMM memory, or if corruption of security-critical BIOS configuration data is detected.</p>
+<p>These types of attacks can lead to malicious actions such as attempts to persist on disk, manipulated security-critical configurations, privileged escalation, disabled security event logging, bypassed access control, and tampered storage.</p>
+<p>Samsung Galaxy Books with the Knox security platform provide tamper alerts for the most common cybersecurity attacks. Each alert is mapped to the <a href="https://attack.mitre.org/" target="_blank">MITRE ATT&amp;CK</a> knowledge base, a global and industry-recognized cybersecurity resource providing detailed explanations of the tactics and techniques used in malicious activities, including:</p>
 <ul>
-<li>
-<p>When unauthorized writes to protected, <a href="../protecting-the-smm.html#advanced-smm-protection">read-only System Management Mode regions</a> are detected. This typically indicates an exploit attempt within System Management Mode.</p>
-</li>
-<li>
-<p>When security-critical OS components, such as the event logging service, are detected to have been uninstalled. This typically indicates malware.</p>
-</li>
-<li>
-<p>When invalid policies for <a href="../protecting-the-smm.html#smi-guard-protecting-smi-calls">system management interrupt call protection</a> are detected. This typically indicates attempts to tamper with the system&rsquo;s security configuration.</p>
-</li>
-<li>
-<p>When the <a href="http://go.microsoft.com/fwlink/p/?LinkId=234840#driver-archive" target="_blank">Windows Platform Binary Table</a> is disabled. This typically indicates malware.</p>
-</li>
+<li>T1542 (Pre-OS Boot)</li>
+<li>T1565 (Data Manipulation)</li>
+<li>T1068 (Exploitation for Privilege Escalation)</li>
+<li>T1562 (Impair Defenses)</li>
+<li>T1489 (Service Stop)</li>
+<li>T1110 (Brute Force)</li>
+<li>T1490 (Inhibit System Recovery)</li>
 </ul>
+<p>For a list of supported Tamper Alerts, see <a href="../extending-below-the-os-security-into-the-os.html#event-integration-with-windows-event-viewer">Event Integration with Windows Event Viewer</a>.</p>
+<p>Tamper tracking is handled through the SecEP&rsquo;s <strong>Tamper Flag</strong>, an indicator used to determine if there were any new policy violations on the device. The Tamper Flag is stored on the SecEP&rsquo;s flash storage, isolating and protecting it from any compromises on the OS. Authorized software, including the BIOS and SMM (System Management Mode), can request the SecEP to turn on the Tamper Flag when they detect tampering.</p>
 <p>Tamper Alert can be configured to require either <strong>admin</strong> or <strong>user</strong> confirmation whenever a violation occurs, before the BIOS starts the OS. During system start up, the BIOS Bootloader reads the Tamper Flag state from the SecEP. If this flag indicates that corruption is detected:</p>
 <ul>
-<li>
-<p>If admin confirmation is required, then the admin BIOS password must be entered to proceed with boot, or</p>
-</li>
-<li>
-<p>If user confirmation is required, then the user can acknowledge the alert by choosing to continue with the boot process.</p>
-</li>
+<li>If admin confirmation is required, then the admin BIOS password must be entered to proceed with boot, or</li>
+<li>If user confirmation is required, then the user can acknowledge the alert by choosing to continue with the boot process.</li>
 </ul>
 <p>In both cases, the device will continue to display a message indicating that a corruption was detected during system boot, until the Tamper Flag is cleared.</p>
 <p>By providing a consistent method for different components to report a corruption, Tamper Alert ensures that IT admins and device users are made aware of compromises when they happen, thus providing enterprises an opportunity to trigger a response more quickly and effectively.</p>
@@ -1110,9 +1116,10 @@
 <aside class="table-of-headings">
   <nav id="TableOfContents">
   <ul>
-    <li><a href="../enhancements-to-uefi.html#secure-boot-configuration-recovery">Secure Boot Configuration Recovery</a>
+    <li><a href="../enhancements-to-uefi.html#bios-configuration-recovery">BIOS configuration recovery</a>
       <ul>
         <li><a href="../enhancements-to-uefi.html#detecting-and-recovering-from-unauthorized-offline-writes-to-secure-boot-configuration">Detecting and recovering from unauthorized offline writes to Secure Boot configuration</a></li>
+        <li><a href="../enhancements-to-uefi.html#protecting-the-bios-password">Protecting the BIOS Password</a></li>
       </ul>
     </li>
     <li><a href="../enhancements-to-uefi.html#tamper-alert">Tamper Alert</a></li>

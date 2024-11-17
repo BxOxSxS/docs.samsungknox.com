@@ -466,6 +466,17 @@
     
     
     <div class="d-flex justify-content-between">
+      <a class="body-5 text-black fw-light" href="../date-time-change.html">Date Time Change</a>
+    </div>
+    
+    </li>
+  
+  
+  
+    <li class="mt-2">
+    
+    
+    <div class="d-flex justify-content-between">
       <a class="body-5 text-black fw-light" href="../deep-settings-customization.html">Deep Settings Customization</a>
     </div>
     
@@ -1296,67 +1307,77 @@
 <li>Wi-Fi and Bluetooth scanning</li>
 <li>Remote control to block device connections using 3rd party applications</li>
 <li>Common criteria</li>
-<li>Dual SIM device enable/disable</li>
+<li>Dual SIM device enable/disable</li>
 <li>Wireless Intrusion Prevention Support (WIPS)</li>
 </ul>
 <h2 id="create-an-advanced-restriction-configuration">Create an advanced restriction configuration</h2>
 <ol>
 <li>
-<p>In your UEM console, open the Device Configuration Profile associated with your target devices, and then on the middle navigation menu, click <strong>Properties</strong>. The Device Configuration Policy Properties page opens.</p>
+<p>On your EMM console, add an assignment for the Knox Service Plugin app intended for your target devices, or edit it if one already exists.</p>
 </li>
 <li>
-<p>On the Properties page, in the <strong>Settings</strong> list, click <strong>Configure</strong>. The OEMConfig page for the Device Configuration Policy opens.</p>
-</li>
-<li>
-<p>Next to the Work profile policies (Profile Owner) field, click <strong>Configure</strong>. The Work profile policies (Profile Owner) page opens.</p>
-</li>
-<li>
-<p>Next to the Advanced Restriction Policy field, click <strong>Configure.</strong></p>
-</li>
-<li>
-<p>Set the following advanced restriction values as needed:</p>
-<ul>
-<li>
-<p>Set the <strong>Enable advanced restriction controls</strong> value to <strong>True</strong> to enable the following advanced restriction controls on a target device.</p>
-<ul>
-<li>
-<p>Refer to the <strong>Allow Wi-Fi scanning</strong> setting and click <strong>False</strong> to block the device from scanning for in-range Wi-Fi networks in order to improve location detection accuracy. This setting is only available with Knox 3.2 and above devices.</p>
-</li>
-<li>
-<p>Refer to the <strong>Allow bluetooth scanning</strong> setting and click <strong>False</strong> to block the device from scanning for in-range Bluetooth devices in order to improve location detection accuracy.</p>
-</li>
-<li>
-<p>Set the <strong>Allow remote control</strong> value to <strong>False</strong> to block connections to the device using 3rd party control applications. This setting is only available with Knox 3.0 and above devices.</p>
-</li>
-<li>
-<p>Refer to the <strong>Enable Common Criteria (CC) mode</strong> setting and click <strong>True</strong> to enable services to bring the device into a CC mode compliant evaluated configuration. If enrolled in a UEM, the CC mode setting is defined at the UEM level.</p>
-</li>
-<li>
-<p>Set the <strong>Allow dual SIM operation</strong> policy to <strong>False</strong> to block all mobile service (mobile data, calls, SMS) on the second SIM slot of dual-SIM devices.</p>
-<div class="notice-important"><p>This policy is only available on devices running One UI 6.0 and lower. For One UI 6.0, the policy controls the secondary physical SIM, but eSIMs are left unmanaged. To also disable eSIMs on One UI 6.0, use the <a href="../allow-esim-operation.html">Allow eSIM operation</a> policy.</p></div>
-</li>
-<li>
-<p>Set the <strong>Enable WIPS Control</strong> value to <strong>True</strong> to enable WIPS enforcement and protection options for the device. If disabled, changes to other WIPS settings have no impact.</p>
-<ul>
-<li>
-<p>Set the <strong>Allow WIPS Enforcement</strong> value to <strong>1</strong> to enforce this feature and disallow a device user from bypassing WIPS protection. Set this value to <strong>0</strong> to permit a device user to bypass WIPS.</p>
-</li>
-<li>
-<p>Set the <strong>Allow WIPS Advance Protection</strong> value to <strong>1</strong> to disallow an device user from changing the WIPS configuration. Setting this value to <strong>0</strong> turns this setting off and permits a device user to change WIPS settings.</p>
-</li>
-</ul>
-</li>
-<li>
-<p>Refer to the <strong>Set USB Device Connection Type</strong> control and set to either DEFAULT, MTP, PTP, MIDI, or CHARGING to define the USB connection type utilized by the device.</p>
-</li>
-</ul>
-</li>
-</ul>
-</li>
-<li>
-<p>Click <strong>OK</strong>. The updated advanced restriction settings are saved and deployed to devices based on the deployment schedule.</p>
+<p>On the Knox Service Plugin managed configuration, set the following to enable <strong>Advanced Restriction policies</strong>:</p>
+<div class="overflow-auto my-3"><table>
+<thead>
+<tr>
+<th>Setting</th>
+<th>Value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Device-wide policies &gt; Enable device policy controls</td>
+<td>True</td>
+</tr>
+<tr>
+<td>Device-wide policies &gt; Advanced Restriction policies (Premium) &gt; Enable Advanced restrictions controls</td>
+<td>True</td>
+</tr>
+</tbody>
+</table></div>
+<p>Now you can proceed to set the Advanced Restriction policies below.</p>
 </li>
 </ol>
+<h2 id="advanced-restriction-policies">Advanced Restriction policies</h2>
+<ul>
+<li>
+<p><strong>Allow Wi-Fi scanning</strong> &mdash; set to <strong>False</strong> to block the device from scanning for in-range Wi-Fi networks in order to improve location detection accuracy. This setting is only available with Knox 3.2 and above devices.</p>
+</li>
+<li>
+<p><strong>Allow bluetooth scanning</strong> &mdash; set to <strong>False</strong> to block the device from scanning for in-range Bluetooth devices in order to improve location detection accuracy.</p>
+</li>
+<li>
+<p><strong>Allow remote control</strong> &mdash; set to <strong>False</strong> to block connections to the device using 3rd party control applications. This setting is only available with Knox 3.0 and above devices.</p>
+</li>
+<li>
+<p><strong>Enable Common Criteria (CC) mode</strong> &mdash; set to <strong>True</strong> to enable services to bring the device into a CC mode compliant evaluated configuration. If enrolled in a UEM, the CC mode setting is defined at the UEM level.</p>
+</li>
+<li>
+<p><strong>Allow dual SIM operation</strong> &mdash; set to <strong>False</strong> to block all mobile service (mobile data, calls, SMS) on the second SIM slot of dual-SIM devices.</p>
+<div class="notice-important"><p>On OneUI 6.0 and higher, The <strong>Allow dual SIM operation</strong> policy can only control physical SIMs on a device. To control eSIMs, see the <a href="../allow-esim-operation.html">Allow eSIM operation</a> policy.</p><p>For devices below OneUI 6.0, setting <strong>Allow dual SIM operation</strong> to <strong>False</strong> can also block eSIMs.</p></div>
+</li>
+<li>
+<p><strong>Allow eSIM operation</strong> &mdash; set to <strong>False</strong> to block eSIMs on the device, restricting the device to only the physical SIM (Only supported on devices running OneUI 6.0 and higher).</p>
+</li>
+<li>
+<p><strong>Allow SOS call with side key pressing</strong> &mdash; set to <strong>False</strong> to disable default side key behavior to make SOS calls when pressed 5 times consecutively.</p>
+<div class="notice-note"><p>This policy is only supported on devices running Knox 3.11 and higher.</p></div>
+</li>
+<li>
+<p><strong>Enable WIPS Control</strong> &mdash; set to <strong>True</strong> to enable WIPS enforcement and protection options for the device. If disabled, changes to other WIPS settings have no impact.</p>
+<ul>
+<li>
+<p><strong>Allow WIPS Enforcement</strong> &mdash; set to <strong>1</strong> to enforce this feature and disallow a device user from bypassing WIPS protection. Set this value to <strong>0</strong> to permit a device user to bypass WIPS.</p>
+</li>
+<li>
+<p><strong>Allow WIPS Advance Protection</strong> &mdash; set to <strong>1</strong> to disallow an device user from changing the WIPS configuration. Setting this value to <strong>0</strong> turns this setting off and permits a device user to change WIPS settings.</p>
+</li>
+</ul>
+</li>
+<li>
+<p><strong>Set USB Device Connection Type</strong> &mdash; set to either DEFAULT, MTP, PTP, MIDI, or CHARGING to define the USB connection type utilized by the device.</p>
+</li>
+</ul>
 
             
           </div>
@@ -1366,6 +1387,7 @@
   <nav id="TableOfContents">
   <ul>
     <li><a href="../advanced-restriction-policies.html#create-an-advanced-restriction-configuration">Create an advanced restriction configuration</a></li>
+    <li><a href="../advanced-restriction-policies.html#advanced-restriction-policies">Advanced Restriction policies</a></li>
   </ul>
 </nav>
 </aside>

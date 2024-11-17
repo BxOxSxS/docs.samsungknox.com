@@ -662,7 +662,7 @@
     
     
     <div class="d-flex justify-content-between">
-      <a class="body-5 text-black fw-light" href="../hardware-backed-trust.html">Hardware-backed trust</a>
+      <a class="body-5 text-black fw-light" href="../hardware-rooted-trust.html">Hardware-rooted trust</a>
     </div>
     
     </li>
@@ -695,7 +695,18 @@
     
     
     <div class="d-flex justify-content-between">
-      <a class="body-5 text-black active" href="index.html">Extending Below-the-OS Security into the OS</a>
+      <a class="body-5 text-black active" href="../extending-below-the-os-security-into-the-os.html">Extending Below-the-OS Security into the OS</a>
+    </div>
+    
+    </li>
+  
+  
+  
+    <li class="mt-2">
+    
+    
+    <div class="d-flex justify-content-between">
+      <a class="body-5 text-black fw-light" href="../secure-manageability/index.html">Secure Manageability</a>
     </div>
     
     </li>
@@ -1029,7 +1040,7 @@
             </div>
             
 
-  <p><span>Last updated August  12th, 2024</span></p>
+  <p><span>Last updated November  12th, 2024</span></p>
 
 
     
@@ -1048,8 +1059,33 @@
       
       
       
+      
         
       
+      
+      
+      
+        
+      
+      
+      
+      
+        
+      
+      
+      
+      
+        
+      
+      
+      
+      
+        
+      
+      
+      
+      
+        
       
       
       
@@ -1068,141 +1104,38 @@
 <p>Samsung Galaxy Books with the Knox security platform have special Below-the-OS security features to protect security-critical OS components from tamper, and to integrate Below-the-OS security events into Windows event logs.</p>
 <h2 id="samsung-security-service-tamper-protection-using-below-the-os">Samsung Security Service Tamper Protection using Below-the-OS</h2>
 <p>Malware and ransomware often try to <a href="https://attack.mitre.org/techniques/T1562/001/" target="_blank">kill, disable, and uninstall security components</a> such as logging services to evade detection. Therefore, it&rsquo;s important to protect such services from tamper. However, protection is especially challenging since Windows malware often executes with elevated system privileges, allowing malware to easily kill and uninstall security-related services.</p>
-
-
-
-
-
-
-
-  
-  
-  
-  
-  
-    
-    
-    
-    
-      
-    
-    
-  
-    
-    
-    
-    
-      
-    
-    
-  
-    
-    
-    
-    
-      
-    
-    
-  
-    
-    
-    
-      
-    
-    
-    
-  
-    
-    
-    
-      
-    
-    
-    
-  
-    
-    
-    
-      
-    
-    
-    
-  
-    
-    
-    
-      
-    
-    
-    
-  
-    
-    
-    
-      
-    
-    
-    
-  
-    
-    
-    
-      
-    
-    
-    
-  
-    
-    
-    
-      
-    
-    
-    
-  
-    
-    
-    
-      
-    
-    
-    
-  
-    
-    
-    
-      
-    
-    
-    
-  
-    
-    
-    
-      
-    
-    
-    
-  
-
-
-<p><img src="../../assets/pc-white-paper-figure-6.png" class="image-block-scale-75 img-thumbnail" alt="Figure 6: Samsung Security Service Tamper Protection from Below-the-OS" /></p>
-<p>Figure 6: Samsung Security Service Tamper Protection from Below-the-OS.</p>
 <p>Samsung&rsquo;s Security Service handles critical operations such as logging. Thus, it&rsquo;s important that the Samsung Security Service remains protected from tamper.</p>
-<p>This protection begins at boot-time and extends through run-time. During boot-time, as shown in Figure 6, the UEFI and BIOS securely reinstalls Samsung&rsquo;s Security Controller Driver and the Samsung Security Service if either of these are uninstalled or not present. It does this by using a standard Windows mechanism called the <a href="http://go.microsoft.com/fwlink/p/?LinkId=234840#driver-archive" target="_blank">Windows Platform Binary Table</a>, or WPBT, during boot. This process verifies that the security driver and service binaries are signed by Samsung before starting them.</p>
+<p>This protection begins at boot-time and extends through run-time. During boot-time, as shown in <strong>Figure 6</strong>, the UEFI and BIOS securely reinstalls Samsung&rsquo;s Security Controller Driver and the Samsung Security Service if either of these are uninstalled or not present. It does this by using a standard Windows mechanism called the <a href="http://go.microsoft.com/fwlink/p/?LinkId=234840#driver-archive" target="_blank">Windows Platform Binary Table</a>, or WPBT, during boot. This process verifies that the security driver and service binaries are signed by Samsung before starting them.</p>
+
+
+
+
+
+
+
+
+<p><img src="../../assets/pc-white-paper-figure-6.png" class="img-fluid" alt="Figure 6: Samsung Security Service Tamper Protection from Below-the-OS" /></p>
+<p>Figure 6: Samsung Security Service Tamper Protection from Below-the-OS.</p>
 <p>The Security Controller Driver and Security Service binaries are embedded into the UEFI image, and are thus immune from file system tampering. At run-time, the Samsung Security Controller Driver monitors and protects the Security Service by using layered defense mechanisms. If the Security Service process is somehow stopped, the Security Controller Driver is notified through callbacks and instantly restarts the service. The Security Service binary is itself compiled with protection against run-time attacks such as code or DLL injection using various defense-in-depth techniques.</p>
 <h2 id="event-integration-with-windows-event-viewer">Event integration with Windows Event Viewer</h2>
 <p>Another important aspect of extending Below-the-OS security into the OS is to make sure that Below-the-OS security events are appended to existing OS logs in a secure manner. Samsung&rsquo;s Below-the-OS and in-OS security components generate boot-time and runtime security events that are stored in logs in persistent and secure SPI flash memory.</p>
-<p>The Security Service&rsquo;s <strong>Event Logging Service</strong> appends these events to Windows Event Logs, which can be viewed using the Windows Event Viewer. To ensure that event logging can&rsquo;t be bypassed, the Event Logging Service is started on every boot and is protected from tamper or shut-down at run-time. For more details, see <a href="index.html#samsung-security-service-tamper-protection-using-below-the-os">Samsung Security Service Tamper Protection</a>.</p>
+<p>The Security Service&rsquo;s <strong>Event Logging Service</strong> appends these events to Windows Event Logs, which can be viewed using the Windows Event Viewer. To ensure that event logging can&rsquo;t be bypassed, the Event Logging Service is started on every boot and is protected from tamper or shut-down at run-time. For more details, see <a href="../extending-below-the-os-security-into-the-os.html#samsung-security-service-tamper-protection-using-below-the-os">Samsung Security Service Tamper Protection</a>.</p>
 <p>The Event Logging Service logs several types of security events and information that can be viewed using the Windows Event Viewer under a dedicated “Samsung Security” application event log section. The following events are available:</p>
 <ul>
-<li><strong>Below-the-OS security</strong> events such as <a href="../enhancements-to-uefi.html#tamper-alert">Tamper Alerts</a>, unauthorized writes to BIOS variables and protected SMM areas, BIOS and Secure Boot key recovery attempts, and suspicious SMI calls.</li>
-<li><strong>In-OS security</strong> events such as uninstalls, unloads of security-critical components such as the Security Service, and writes to security-critical registry keys.</li>
-<li><strong>Security state of the system</strong>, such as the security software version information, enable/disable status of security-relevant BIOS settings, and variables such as Secure Boot, Advanced SMM Protection, SMI Guard, and TPM activation status.</li>
+<li>
+<p><strong>Below-the-OS security</strong> events such as <a href="../enhancements-to-uefi.html#tamper-alert">Tamper Alerts</a>, BIOS Auto Recovery and BIOS Configuration Recovery attempts, unauthorized writes to BIOS Variables and protected SMM areas, and suspicious SMI calls.</p>
+</li>
+<li>
+<p><strong>In-OS security</strong> events such as uninstalls, unloads of security-critical components such as the Security Service, and writes to security-critical registry keys.</p>
+</li>
+<li>
+<p><strong>Security state of the system</strong>, such as the security software version information, enable/disable status of security-relevant BIOS settings, and variables such as Secure Boot, Advanced SMM Protection, SMI Guard, and TPM activation status.</p>
+</li>
 </ul>
+<p>For a complete list of security events integrated into the Windows Event Viewer, refer <strong>Table 1</strong>.</p>
 <p>Event severity levels are one of <strong>Information</strong> (normal but security-relevant events), <strong>Warning</strong> (notice of abnormal events that have been automatically resolved), and <strong>Error</strong> (unrecoverable events that need administrator action).</p>
 <h3 id="user-notifications">User notifications</h3>
-<p>When certain security-critical events happen at runtime, in addition to being logged, the user is notified of the event through a toast notification in Windows. The user has the option to obtain more information or dismiss the event, as seen in Figure 7.</p>
+<p>When certain security-critical events happen at runtime, in addition to being logged, the user is notified of the event through a toast notification in Windows. The user has the option to obtain more information or dismiss the event, as seen in <strong>Figure 7</strong>.</p>
 
 
 
@@ -1266,8 +1199,8 @@
     
     
     
-    
       
+    
     
     
   
@@ -1321,8 +1254,205 @@
   
 
 
-<p><img src="../../assets/pc-white-paper-figure-7.png" class="image-block-scale-50 img-thumbnail" alt="Figure 7: Notification of a Tamper Alert" /></p>
+<p><img src="../../assets/pc-white-paper-figure-7.png" class="image-block-scale-60" alt="Figure 7: Notification of a Tamper Alert" /></p>
 <p>Figure 7: Notification of a Tamper Alert</p>
+<h3 id="list-of-security-events">List of Security Events</h3>
+<p><strong>Table 1</strong> shows a summary of the security events logged to the Windows Event Viewer, along with their IDs. The logged events contain additional event-specific details and mapping to the MITRE ATT&amp;CK knowledge base, where you can learn more about specific techniques corresponding to potential attack scenarios.</p>
+<h4 id="table-1">Table 1</h4>
+<div class="overflow-auto my-3"><table>
+    <tr>
+        <td rowspan="13"><a href="../hardware-rooted-trust.html">Hardware Root-of-Trust</a></td>
+        <td>BIOS Auto Recovery has occurred</td>
+        <td>0x301-0x303<sup>1</sup></td>
+    </tr>
+    <tr>
+        <td>The recovery BIOS image has been updated</td>
+        <td>0x304<sup>1</sup></td>
+    </tr>
+    <tr>
+        <td>Error in BIOS Auto Recovery</td>
+        <td>0x3FE<sup>1</sup></td>
+    </tr>
+    <tr>
+        <td>Error in the secure communication channel with SecEP</td>
+        <td>0x3FF<sup>2</sup></td>
+    </tr>
+    <tr>
+        <td>Failed to store or retrieve from SecEP flash storage</td>
+        <td>0x306-0x308<sup>1</sup>, 0x308-0x30A<sup>2</sup></td>
+    </tr>
+    <tr>
+        <td>Boot device verification fail (db, dbx, other)</td>
+        <td>0x430<sup>1</sup>, 0x431<sup>1</sup>, 0x432<sup>2</sup></td>
+    </tr>
+    <tr>
+        <td>Default keys provisioned for secure boot, device in user mode</td>
+        <td>0x600<sup>2</sup></td>
+    </tr>
+    <tr>
+        <td>Failed to provision default keys for secure boot, device still in setup mode</td>
+        <td>0x601<sup>2</sup></td>
+    </tr>
+    <tr>
+        <td>Secure boot BIOS Variables were deleted</td>
+        <td>0x602<sup>2</sup></td>
+    </tr>
+    <tr>
+        <td>Secure boot keys changed to default</td>
+        <td>0x603<sup>2</sup></td>
+    </tr>
+    <tr>
+        <td>Critical secure boot configuration was removed (PK, KEK, DB, DBX)</td>
+        <td>0x610-0x613<sup>2</sup></td>
+    </tr>
+    <tr>
+        <td>Critical secure boot configuration was set (PK, KEK, DB, DBX)</td>
+        <td>0x614-0x617<sup>2</sup></td>
+    </tr>
+    <tr>
+        <td>Critical secure boot configuration was appended to (KEK, DB, DBX)</td>
+        <td>0x618-0x61A<sup>2</sup></td>
+    </tr>
+    <tr>
+        <td rowspan="5"><a href="../enhancements-to-uefi.html#bios-configuration-recovery">BIOS Configuration Recovery</a></td>
+        <td>Corrupted BIOS Variable detected</td>
+        <td>0x400<sup>1</sup>, 0x403-0x406<sup>2</sup>, 0x440<sup>2</sup>, 0x444<sup>2</sup>, 0x906-0x90D<sup>2</sup></td>
+    </tr>
+    <tr>
+        <td>Failed to recover corrupted BIOS Variable</td>
+        <td>0x401<sup>1</sup>, 0x441<sup>2</sup>, 0x445<sup>2</sup>, 0x966-0x96D<sup>2</sup></td>
+    </tr>
+    <tr>
+        <td>Successfully recovered corrupted BIOS Variable</td>
+        <td>0x402<sup>1</sup>, 0x442<sup>2</sup>, 0x446<sup>2</sup>, 0x936-0x93D<sup>2</sup></td>
+    </tr>
+    <tr>
+        <td>Error enabling BIOS Configuration Recovery</td>
+        <td>0x407<sup>1</sup>, 0x447<sup>2</sup>, 0x409<sup>2</sup></td>
+    </tr>
+    <tr>
+        <td>Error disabling BIOS Configuration Recovery</td>
+        <td>0x408<sup>2</sup>, 0x443<sup>2</sup></td>
+    </tr>
+    <tr>
+        <td rowspan="13"><a href="../enhancements-to-uefi.html#tamper-alert">Tamper Alerts</a></td>
+        <td>Tamper Alert log is full</td>
+        <td>0x410<sup>1</sup></td>
+    </tr>
+    <tr>
+        <td>Tamper Alert count is invalid</td>
+        <td>0x411<sup>1</sup></td>
+    </tr>
+    <tr>
+        <td>Tamper Alerts are cleared</td>
+        <td>0x412<sup>1</sup></td>
+    </tr>
+    <tr>
+        <td>Attempt to boot unallowed, known-vulnerable, or unsigned OS </td>
+        <td>0x100<sup>1</sup>, 0x101<sup>1</sup>, 0x119<sup>2</sup></td>
+    </tr>
+    <tr>
+        <td>Unauthenticated attempt to write to BIOS Variable (PK, KEK, DB, DBX)</td>
+        <td>0x102-0x105<sup>1</sup></td>
+    </tr>
+    <tr>
+        <td>Corruption of Tamper Flag detected</td>
+        <td>0x10B<sup>1</sup></td>
+    </tr>
+    <tr>
+        <td>Advanced SMM Protection detected invalid write to SMM memory</td>
+        <td>0x10D<sup>1</sup></td>
+    </tr>
+    <tr>
+        <td>Security Service was uninstalled</td>
+        <td>0x10E<sup>1</sup></td>
+    </tr>
+    <tr>
+        <td>Invalid SMI Guard rule detected</td>
+        <td>0x10F<sup>1</sup></td>
+    </tr>
+    <tr>
+        <td>The Windows Platform Binary Table (WPBT) is disabled</td>
+        <td>0x113<sup>1</sup></td>
+    </tr>
+    <tr>
+        <td>Invalid BIOS Password entered 3 times</td>
+        <td>0x115<sup>1</sup></td>
+    </tr>
+    <tr>
+        <td>Write to SecEP internal storage failed</td>
+        <td>0x116<sup>1</sup></td>
+    </tr>
+    <tr>
+        <td>Write to SecEP external storage failed</td>
+        <td>0x117<sup>1</sup>, 0x118<sup>1</sup></td>
+    </tr>
+    <tr>
+        <td><a href="../protecting-the-smm.html#smi-guard-protecting-smi-calls">SMI Guard</a></td>
+        <td>Malformed SMM request detected by SMI Guard rule</td>
+        <td>0x420<sup>1</sup></td>
+    </tr>
+    <tr>
+        <td rowspan="14"><a href="../extending-below-the-os-security-into-the-os.html#samsung-security-service-tamper-protection-using-below-the-os">Security Service and Security Controller Driver</a></td>
+        <td>Security Controller driver loaded</td>
+        <td>0x500<sup>1</sup></td>
+    </tr>
+    <tr>
+        <td>Security Controller driver unloaded</td>
+        <td>0x501<sup>1</sup></td>
+    </tr>
+    <tr>
+        <td>Security Service was killed but restarted</td>
+        <td>0x502<sup>1</sup></td>
+    </tr>
+    <tr>
+        <td>Security Service loaded</td>
+        <td>0x504<sup>1</sup></td>
+    </tr>
+    <tr>
+        <td>Security Service started</td>
+        <td>0x505<sup>1</sup></td>
+    </tr>
+    <tr>
+        <td>Security Service stopped</td>
+        <td>0x506<sup>1</sup></td>
+    </tr>
+    <tr>
+        <td>Security Service shutdown</td>
+        <td>0x507<sup>1</sup></td>
+    </tr>
+    <tr>
+        <td>Security Service has unhandled exceptions</td>
+        <td>0x508<sup>1</sup></td>
+    </tr>
+    <tr>
+        <td>Security Service or Controller Driver was installed</td>
+        <td>0x700<sup>1</sup></td>
+    </tr>
+    <tr>
+        <td>Failed to install Security Service or Controller Driver</td>
+        <td>0x701<sup>1</sup></td>
+    </tr>
+    <tr>
+        <td>Failed to clean up after Security Service or Controller Driver install</td>
+        <td>0x702<sup>1</sup></td>
+    </tr>
+    <tr>
+        <td>Reboot required after Security Service or Controller Driver install</td>
+        <td>0x703<sup>1</sup>
+    </td>
+    </tr>
+    <tr>
+        <td>Security Service or Controller Driver was validated after install</td>
+        <td>0x720<sup>1</sup></td>
+    </tr>
+    <tr>
+        <td>Failed to validate Security Service or Controller Driver after install</td>
+        <td>0x721<sup>1</sup></td>
+    </tr>
+</table></div>
+<p><sup>1</sup> This security event is supported on Galaxy Book4 and later models with the Knox security platform.</p>
+<p><sup>2</sup> This security event is supported on Galaxy Book 5 and later models with the Knox security platform.</p>
 
             
           </div>
@@ -1331,10 +1461,11 @@
 <aside class="table-of-headings">
   <nav id="TableOfContents">
   <ul>
-    <li><a href="index.html#samsung-security-service-tamper-protection-using-below-the-os">Samsung Security Service Tamper Protection using Below-the-OS</a></li>
-    <li><a href="index.html#event-integration-with-windows-event-viewer">Event integration with Windows Event Viewer</a>
+    <li><a href="../extending-below-the-os-security-into-the-os.html#samsung-security-service-tamper-protection-using-below-the-os">Samsung Security Service Tamper Protection using Below-the-OS</a></li>
+    <li><a href="../extending-below-the-os-security-into-the-os.html#event-integration-with-windows-event-viewer">Event integration with Windows Event Viewer</a>
       <ul>
-        <li><a href="index.html#user-notifications">User notifications</a></li>
+        <li><a href="../extending-below-the-os-security-into-the-os.html#user-notifications">User notifications</a></li>
+        <li><a href="../extending-below-the-os-security-into-the-os.html#list-of-security-events">List of Security Events</a></li>
       </ul>
     </li>
   </ul>
@@ -1370,7 +1501,7 @@
       
       <div class="col-sm-12 col-md-6 col-lg-3 footer-vertical-section">
         <div class="d-flex justify-content-between align-items-center">
-          <a class="footer-section-title" data-bs-toggle="collapse" href="index.html#item0" role="button" aria-expanded="false" aria-controls="item0"> 
+          <a class="footer-section-title" data-bs-toggle="collapse" href="../extending-below-the-os-security-into-the-os.html#item0" role="button" aria-expanded="false" aria-controls="item0"> 
             <h6 class="body-3 fw-bold text-uppercase text-black pt-4">Knox admin documentation</h6>
           </a>
           <a class="btn-toggle d-inline-flex d-lg-none rounded border-0 fw-light" data-bs-toggle="collapse" data-bs-target="#item0" aria-expanded="false"></a>
@@ -1504,7 +1635,7 @@
       
       <div class="col-sm-12 col-md-6 col-lg-3 footer-vertical-section">
         <div class="d-flex justify-content-between align-items-center">
-          <a class="footer-section-title" data-bs-toggle="collapse" href="index.html#item1" role="button" aria-expanded="false" aria-controls="item1"> 
+          <a class="footer-section-title" data-bs-toggle="collapse" href="../extending-below-the-os-security-into-the-os.html#item1" role="button" aria-expanded="false" aria-controls="item1"> 
             <h6 class="body-3 fw-bold text-uppercase text-black pt-4">Support</h6>
           </a>
           <a class="btn-toggle d-inline-flex d-lg-none rounded border-0 fw-light" data-bs-toggle="collapse" data-bs-target="#item1" aria-expanded="false"></a>
@@ -1526,7 +1657,7 @@
       
       <div class="col-sm-12 col-md-6 col-lg-3 footer-vertical-section">
         <div class="d-flex justify-content-between align-items-center">
-          <a class="footer-section-title" data-bs-toggle="collapse" href="index.html#item2" role="button" aria-expanded="false" aria-controls="item2"> 
+          <a class="footer-section-title" data-bs-toggle="collapse" href="../extending-below-the-os-security-into-the-os.html#item2" role="button" aria-expanded="false" aria-controls="item2"> 
             <h6 class="body-3 fw-bold text-uppercase text-black pt-4">Samsung</h6>
           </a>
           <a class="btn-toggle d-inline-flex d-lg-none rounded border-0 fw-light" data-bs-toggle="collapse" data-bs-target="#item2" aria-expanded="false"></a>

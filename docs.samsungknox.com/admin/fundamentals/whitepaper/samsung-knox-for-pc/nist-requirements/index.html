@@ -662,7 +662,7 @@
     
     
     <div class="d-flex justify-content-between">
-      <a class="body-5 text-black fw-light" href="../hardware-backed-trust.html">Hardware-backed trust</a>
+      <a class="body-5 text-black fw-light" href="../hardware-rooted-trust.html">Hardware-rooted trust</a>
     </div>
     
     </li>
@@ -695,7 +695,18 @@
     
     
     <div class="d-flex justify-content-between">
-      <a class="body-5 text-black fw-light" href="../extending-below-the-os-security-into-the-os/index.html">Extending Below-the-OS Security into the OS</a>
+      <a class="body-5 text-black fw-light" href="../extending-below-the-os-security-into-the-os.html">Extending Below-the-OS Security into the OS</a>
+    </div>
+    
+    </li>
+  
+  
+  
+    <li class="mt-2">
+    
+    
+    <div class="d-flex justify-content-between">
+      <a class="body-5 text-black fw-light" href="../secure-manageability/index.html">Secure Manageability</a>
     </div>
     
     </li>
@@ -1110,8 +1121,8 @@
 <h3 id="definition-of-critical-platform-device-firmware">Definition of Critical Platform Device Firmware</h3>
 <p>As stated in <a href="https://nvlpubs.nist.gov/nistpubs/SpecialPublications/NIST.SP.800-193.pdf" target="_blank">NIST.SP.800-193</a>, Platform Firmware is responsible for initializing components, booting the system, and providing runtime services implemented by hardware components. While platforms support a wide range of devices with associated firmware, the scope of this document specifically covers critical platform devices and their corresponding firmware.</p>
 <p>NIST.SP.800-193 also states that for a platform as a whole to claim resiliency to destructive attacks, the set of platform devices necessary to minimally restore operation of the system, and sufficient to restore reasonable functionality, should themselves be resilient. These devices are known as critical platform devices, and their particular resiliency properties may vary from platform to platform.</p>
-<p>In other words, critical platform devices are responsible for booting and minimally restoring the system to a reasonable working state. <strong>Table 1</strong> explains the critical platform device firmwares that runs on Samsung Galaxy Books with the Knox security platform.</p>
-<h4 id="table-1-critical-platform-device-firmware-for-galaxy-books-with-the-knox-security-platform">Table 1: Critical Platform Device Firmware for Galaxy Books with the Knox security platform</h4>
+<p>In other words, critical platform devices are responsible for booting and minimally restoring the system to a reasonable working state. <strong>Table 2</strong> explains the critical platform device firmwares that runs on Samsung Galaxy Books with the Knox security platform.</p>
+<h4 id="table-2-critical-platform-device-firmware-for-galaxy-books-with-the-knox-security-platform">Table 2: Critical Platform Device Firmware for Galaxy Books with the Knox security platform</h4>
 <div class="overflow-auto my-3"><table>
     <tr>
         <th scope="col" style="width: 30%">Critical Platform Device Firmware<sup>1</sup></th>
@@ -1141,9 +1152,9 @@ Platform Runtime Firmware (SMM) | The System Management Mode (SMM) firmware prov
 </table></div>
 <p><sup>1</sup> The Network Interface Controller (NIC) firmware is not considered critical to booting the platform, since setups such as PXE boot are not typical for laptop PCs. However, the NIC firmware is still protected by being a part of the BIOS image.</p>
 <h3 id="samsung-galaxy-books-with-the-knox-security-platform-and-nist-800-193">Samsung Galaxy Books with the Knox security platform and NIST 800-193</h3>
-<p>Samsung Galaxy Books with the Knox security platform meet the firmware resiliency requirements (including protection, detection, and recovery) for critical platform code and data, as detailed in <strong>Table 2</strong>.</p>
+<p>Samsung Galaxy Books with the Knox security platform meet the firmware resiliency requirements (including protection, detection, and recovery) for critical platform code and data, as detailed in <strong>Table 3</strong>.</p>
 <p>In summary, firmware code is protected in storage by mechanisms such as secure storage and Intel BIOS Guard. Firmware code updates are only allowed after signature verification. Firmware data is stored in secure storage, protected by integrity measurements, and access is allowed only through trusted channels. Finally, firmware code and data are restored from secure backups whenever corruption is detected.</p>
-<h4 id="table-2-satisfaction-of-nist-800-193-resiliency-requirements">Table 2: Satisfaction of NIST 800-193 Resiliency Requirements</h4>
+<h4 id="table-3-satisfaction-of-nist-800-193-resiliency-requirements">Table 3: Satisfaction of NIST 800-193 Resiliency Requirements</h4>
 <div class="overflow-auto my-3"><table>
     <tr>
         <th scope="col" style="width: 10%">Criteria</th>
@@ -1165,7 +1176,7 @@ Platform Runtime Firmware (SMM) | The System Management Mode (SMM) firmware prov
             <p>EFI variables can only be modified through APIs defined in SMM firmware</p>
             <p>EFI variables without RT attribute are protected from runtime updates.</p>
             <p>EFI variables with Authenticated attribute(s) are protected from any un-authorized modification and are protected by signatures</p>
-            <p>The SecEP firmware’s data is stored in dedicated flash storage that only the SecEP has access to</p>
+            <p>The SecEP firmware's data is stored in dedicated flash storage that only the SecEP has access to</p>
         </td>
     </tr>
     <tr>
@@ -1186,7 +1197,7 @@ Platform Runtime Firmware (SMM) | The System Management Mode (SMM) firmware prov
     </tr>
     </tr>
 </table></div>
-<p><sup>1</sup> The TPM firmware’s protection mechanisms for code and data are detailed in <a href="https://trustedcomputinggroup.org/resource/tpm-library-specification/" target="_blank">TCG TPM 2.0</a>.</p>
+<p><sup>1</sup> The TPM firmware&rsquo;s protection mechanisms for code and data are detailed in <a href="https://trustedcomputinggroup.org/resource/tpm-library-specification/" target="_blank">TCG TPM 2.0</a>.</p>
 <p><sup>2</sup> Recovery of the Intel CSME firmware is not supported. However, Intel CSME firmware has <a href="https://www.intel.com/content/dam/www/public/us/en/security-advisory/documents/intel-csme-security-white-paper.pdf" target="_blank">its own recovery mechanisms</a>.</p>
 <h2 id="support-for-nist-800-147-bios-protection">Support for NIST 800-147 (BIOS Protection)</h2>
 <p>NIST 800-147, published in 2011, focuses specifically on protecting the BIOS image from unauthorized modifications. The standard requires tight controls around the few approved mechanisms that can legitimately change the BIOS image. In addition, the standard lists particular threats that are commonly used to compromise the integrity of the BIOS image, and requires that these threats are addressed. A summary of the requirements is below:</p>
@@ -1198,8 +1209,8 @@ Platform Runtime Firmware (SMM) | The System Management Mode (SMM) firmware prov
 <li><strong>Integrity</strong>: The non-volatile memory storing BIOS image and the RoT keys should be write-protected from unauthorized modifications</li>
 <li><strong>Non-bypassability</strong>: There should be no other mechanisms to update the BIOS image beyond the above authorized mechanisms.</li>
 </ul>
-<p>NIST 800-147 is largely superseded by NIST 800-193. Whereas NIST 800-147 focuses on protecting the BIOS image, NIST 800-193 addresses all critical firmware images (including the BIOS image). However, for completeness, we list how Galaxy Books with the Knox security platform satisfy NIST 800-147 requirements in Table 3.</p>
-<h4 id="table-3-satisfaction-of-nist-800-147-bios-protection-requirements">Table 3: Satisfaction of NIST 800-147 BIOS Protection Requirements</h4>
+<p>NIST 800-147 is largely superseded by NIST 800-193. Whereas NIST 800-147 focuses on protecting the BIOS image, NIST 800-193 addresses all critical firmware images (including the BIOS image). However, for completeness, we list how Galaxy Books with the Knox security platform satisfy NIST 800-147 requirements in <strong>Table 4</strong>.</p>
+<h4 id="table-4-satisfaction-of-nist-800-147-bios-protection-requirements">Table 4: Satisfaction of NIST 800-147 BIOS Protection Requirements</h4>
 <div class="overflow-auto my-3"><table>
     <tr>
         <th scope="col">Criteria</th>
@@ -1245,8 +1256,8 @@ Platform Runtime Firmware (SMM) | The System Management Mode (SMM) firmware prov
 <li><strong>Reporting</strong> &mdash; A trusted component (Root of Trust for Reporting) reports the stored integrity measurements ensuring authentication, identity of the endpoint, and freshness of the report</li>
 <li>Requirements of remediation and restoration of the BIOS.</li>
 </ul>
-<p>As mentioned, NIST 800-193 is much broader in scope than NIST 800-155 and supersedes it. However, for completeness, However, for completeness, we list how the Galaxy Books with the Knox security platform satisfy NIST 800-155 requirements in Table 4.</p>
-<h4 id="table-4-satisfaction-of-nist-800-155-bios-integrity-measurement-requirements">Table 4: Satisfaction of NIST 800-155 BIOS Integrity Measurement Requirements</h4>
+<p>As mentioned, NIST 800-193 is much broader in scope than NIST 800-155 and supersedes it. However, for completeness, However, for completeness, we list how the Galaxy Books with the Knox security platform satisfy NIST 800-155 requirements in <strong>Table 5</strong>.</p>
+<h4 id="table-5-satisfaction-of-nist-800-155-bios-integrity-measurement-requirements">Table 5: Satisfaction of NIST 800-155 BIOS Integrity Measurement Requirements</h4>
 <div class="overflow-auto my-3"><table>
     <tr>
         <th scope="col">Criteria</th>

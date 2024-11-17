@@ -466,6 +466,17 @@
     
     
     <div class="d-flex justify-content-between">
+      <a class="body-5 text-black fw-light" href="date-time-change.html">Date Time Change</a>
+    </div>
+    
+    </li>
+  
+  
+  
+    <li class="mt-2">
+    
+    
+    <div class="d-flex justify-content-between">
       <a class="body-5 text-black fw-light" href="deep-settings-customization.html">Deep Settings Customization</a>
     </div>
     
@@ -1301,40 +1312,157 @@
       
       
       
-        <p>The available DeX policies include:</p>
-<ul>
-<li>
-<p><strong>Basic policy controls</strong> &mdash; These standard controls allow you to perform simple actions, such as enable or disable DeX. These policies are listed under <strong>DO</strong> &gt; <strong>DeX policy</strong> &gt; <strong>Manage DeX restrictions</strong>.</p>
-</li>
-<li>
-<p><strong>Customization controls</strong> &mdash; These additional customization options allow you to change the DeX setup and user experience. Use of these policies requires a free Knox Platform for Enterprise Premium license.</p>
-</li>
-</ul>
+        <p>With Knox Service Plugin, you can control and configure the user experience for DeX on your devices.</p>
 <h2 id="enable-dex">Enable DeX</h2>
-<p>The process to enable DeX is simple and only requires you to turn on a few policies as follows:</p>
+<p>Follow these steps to enable DeX policy controls and allow DeX connections on your devices.</p>
 <ol>
 <li>
-<p>In your supported UEM, under the <strong>Device-wide policies (Device Owner)</strong> category turn on <strong>Enable device policy controls</strong>.</p>
+<p>On your EMM console, add an assignment for the Knox Service Plugin app intended for your target devices, or edit it if one already exists.</p>
 </li>
 <li>
-<p>Enable <strong>DeX policy</strong>.</p>
-</li>
-<li>
-<p>Under <strong>Manage DeX Restrictions</strong>, enable <strong>Allow DeX connection</strong>.</p>
-</li>
-<li>
-<p>In your UEM, save the profile and push it to a device.</p>
+<p>On the Knox Service Plugin managed configuration, set the following:</p>
+<div class="overflow-auto my-3"><table>
+<thead>
+<tr>
+<th>Setting</th>
+<th>Value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Device-wide policies &gt; Enable device policy controls</td>
+<td>True</td>
+</tr>
+<tr>
+<td>Device-wide policies &gt; DeX policy &gt; Enable DeX policy controls</td>
+<td>True</td>
+</tr>
+<tr>
+<td>Device-wide policies &gt; DeX policy &gt; Manage DeX Restrictions &gt; Allow DeX connection</td>
+<td>True</td>
+</tr>
+</tbody>
+</table></div>
 </li>
 </ol>
-<p>To disable DeX, simply turn off <strong>Allow DeX connection</strong>, as shown in the previous example.</p>
-<h2 id="Enable">Enable DeX with basic customization</h2>
+<h2 id="basic-policy-controls">Basic policy controls</h2>
+<p>These standard controls allow you to perform simple actions, such as enable or disable DeX. These policies are listed under <strong>Device-wide policies</strong> &gt; <strong>DeX policy</strong> &gt; <strong>Manage DeX restrictions</strong>.</p>
+<ul>
+<li>
+<p><strong>Allow Dex connection</strong> &mdash; Enable this to allow your devices to connect using DeX.</p>
+</li>
+<li>
+<p><strong>Enforce the use of Ethernet connection</strong> &mdash; Set this to <strong>True</strong> to disable connections other than ethernet&mdash;such as cellular data and Wi-Fi&mdash;during DeX mode.</p>
+</li>
+<li>
+<p><strong>Enforce the use of virtual MAC address</strong> &mdash; Set this to <strong>True</strong> to enforce devices to use a virtual MAC address during DeX mode. This allows your network to recognize your device differently when it&rsquo;s in DeX mode.</p>
+</li>
+<li>
+<p><strong>Manage list of apps disabled in DeX mode</strong> &mdash; Add a list of apps that are disabled when the device is in DeX mode. Enter apps as a comma separated list of package names. To find application package names, access the Play store on a desktop computer and look for the application. The package name is in the URL of the app&rsquo;s page on the Play store (For example: <code>https://play.google.com/store/apps/details?id=PackageName</code>).</p>
+</li>
+</ul>
+<h2 id="dex-customization-profile-premium">DeX customization profile (Premium)</h2>
+<p>These additional customization options allow you to change the DeX setup and user experience. These policies are listed under <strong>DeX customization profile (Premium)</strong>, and they require a free Knox Platform for Enterprise Premium license.</p>
+<p>Before you can configure these policies, you must set <strong>Device-wide policies</strong> &gt; <strong>DeX policy</strong> &gt; <strong>Customize Dex Experience (Premium)</strong> to <strong>True</strong>.</p>
+<ul>
+<li>
+<p><strong>Set home alignment</strong> &mdash; Choose the alignment of apps on the DeX mode home screen.</p>
+</li>
+<li>
+<p><strong>Set screen timeout</strong> &mdash; Set the screen timeout in seconds for devices in DeX mode. The default screen timeout is 30 seconds.</p>
+</li>
+<li>
+<p><strong>Allow screen timeout change</strong> &mdash; Set this to <strong>False</strong> to block device users from modifying the Dex mode screen timeout.</p>
+</li>
+<li>
+<p><strong>Set loading logo</strong> &mdash; Set a logo image to display when the device is starting DeX mode.</p>
+<ul>
+<li>
+<p><strong>Logo image location type</strong> &mdash; Select the appropriate location type for your image file. To use the <strong>Base64 string</strong> option, convert the source PNG image file to a Base64 encoded string and copy the data to the <strong>Logo image content or location</strong> field below. Alternatively, you can choose a <strong>Web URL</strong> or a <strong>Local file path</strong>.</p>
+</li>
+<li>
+<p><strong>Logo image content or location</strong> &mdash; Depending upon the location type you selected above, enter the image file path or Web URL in this field. For the base 64 string source type, enter the converted image data in this field.</p>
+</li>
+</ul>
+</li>
+<li>
+<p><strong>Set DeX wallpaper</strong> &mdash; Set the wallpaper for DeX mode.</p>
+<ul>
+<li>
+<p><strong>Wallpaper image</strong> &mdash; Select the appropriate location type for your wallpaper. To use the <strong>Base64 string</strong> option, convert the source PNG image file to a Base64 encoded string and copy the data to the <strong>Logo image content or location</strong> field below. Alternatively, you can choose a <strong>Web URL</strong> or a <strong>Local file path</strong>.</p>
+<div class="notice-note"><p><strong>Local file path</strong> is no longer supported on Android 11 and higher.</p></div>
+</li>
+<li>
+<p><strong>Image content or location</strong> &mdash; Depending upon the location type you selected above, enter the image file path or Web URL in this field. For the base 64 string source type, enter the converted image data in this field.</p>
+</li>
+<li>
+<p><strong>Which wallpaper to setup?</strong> &ndash; Choose if you want to update the wallpaper for the lockscreen, system, or all.</p>
+</li>
+</ul>
+</li>
+<li>
+<p><strong>Skip DeX welcome screen</strong> &mdash; Set this to <strong>True</strong> to skip the DeX welcome screen containing the Terms and Conditions that displays when the device connects to DeX for the first time.</p>
+</li>
+<li>
+<p><strong>Skip overscan detection screen</strong> &mdash; Set this to <strong>True</strong> to skip the automatic detection of overscan boundaries and size adjustment of the overlay screen on the monitor.</p>
+</li>
+<li>
+<p><strong>App allowlist to auto-launch on DeX connection</strong> &mdash; Add a list of apps that will auto-launch into DeX mode if it is in-use right before DeX mode was connected. Enter apps as a comma separated list of package names. Leave this field empty to allow the device user to configure this setting.</p>
+</li>
+<li>
+<p><strong>Auto-start DeX on HDMI connection</strong> &mdash; Set this to <strong>True</strong> to automatically start DeX mode when the device is connected to HDMI. This feature is only available on Knox 3.4 and higher.</p>
+</li>
+<li>
+<p><strong>Hide apps in app drawer</strong> &mdash; Add a list of apps that will be hidden from the app drawer in DeX mode. These apps are not disabled by this policy, and can still function normally. Enter apps as a comma separated list of package names.</p>
+</li>
+<li>
+<p><strong>Enable mouse cursor flow</strong> &mdash; Set this to <strong>True</strong> to allow mouse cursor movement to extend from the monitor to the host device while in Dual view mode.</p>
+</li>
+<li>
+<p><strong>Add application shortcuts on DeX</strong> &mdash; Add a new configuration for each app shortcut to create on DeX mode. In each configuration, enter the following:</p>
+<ul>
+<li><strong>App package name</strong> &mdash; Enter the package name of the application.</li>
+<li><strong>Class name</strong> &mdash; If applicable, enter the application component to launch when the shortcut is used. Leave blank to launch the application from its default screen.</li>
+<li><strong>Position X</strong> &mdash; X coordinate of the application shortcut on DeX mode.</li>
+<li><strong>Position Y</strong> &mdash; Y coordinate of the application shortcut on DeX mode.</li>
+</ul>
+</li>
+<li>
+<p><strong>Add URL shortcuts on DeX</strong> &mdash; Add a new configuration for each URL shortcut to create on DeX mode. In each configuration, enter the following:</p>
+<ul>
+<li><strong>URL</strong> &mdash; URL to launch for this shortcut.</li>
+<li><strong>Title</strong> &mdash; Title for the URL shortcut.</li>
+<li><strong>Position X</strong> &mdash; X coordinate of the URL shortcut on DeX mode.</li>
+<li><strong>Position Y</strong> &mdash; Y coordinate of the URL shortcut on DeX mode.</li>
+<li><strong>Browser to launch the URL</strong> &mdash; Select which browser to use to open the URL.</li>
+</ul>
+</li>
+<li>
+<p><strong>Disable buttons on the DeX panel</strong> &mdash; Choose one or more DeX panel buttons to disable.</p>
+</li>
+<li>
+<p><strong>Configure file transfer settings</strong> &mdash; Choose to enable or disable file copy functionalities between PC and DeX mode device with drag and drop, or copy and paste.</p>
+</li>
+<li>
+<p><strong>Configure values in DeX settings menu</strong> &mdash; Add a new configuration for each DeX setting item to configure. Specify the name of the setting to configure, then set a value for it. You can also choose to prevent device users from modifying it, or completely hide it from device users.</p>
+</li>
+<li>
+<p><strong>Configure the number of apps open limit on DeX</strong> &mdash; Set the limit on how many apps can be open at once on DeX. The limit must be between 5 and 15 apps. If this policy is left blank, the default app limit is 5.</p>
+<div class="notice-important"><p>This policy is only supported on external display mode. Configuring the open app limit for DeX running in standalone mode is not supported.</p></div>
+</li>
+<li>
+<p><strong>Configure DeX Stabilizer mode</strong> &mdash; Enable or disable DeX Stabilizer mode. Only supported on Android 12 and higher, and on Australian models only.</p>
+<div class="notice-important"><p><strong>Configure DeX Stabilizer mode</strong> is no longer supported starting from Knox 3.9.</p></div>
+</li>
+</ul>
+<h2 id="Enable">Enable DeX with basic customization example</h2>
 <p>This example shows you how to enable DeX so it auto-launches and sets a specific screen timeout. Note that all DeX customization policies require a free Knox Platform for Enterprise Premium license.</p>
 <ol>
 <li>
-<p>In your supported UEM, under the <strong>Device-wide policies (Device Owner)</strong> category turn on <strong>Enable device policy controls</strong>.</p>
+<p>In your supported UEM, set <strong>Device-wide policies</strong> &gt; <strong>Enable device policy controls</strong> to <strong>True</strong>.</p>
 </li>
 <li>
-<p>Enable <strong>DeX policy</strong>.</p>
+<p>Set <strong>Device-wide policies</strong> &gt; <strong>DeX policy</strong> &gt; <strong>Enable DeX policy controls</strong> to <strong>True</strong>.</p>
 </li>
 <li>
 <p>Under <strong>Manage DeX Restrictions</strong>, enable <strong>Allow DeX connection</strong>.</p>
@@ -1434,7 +1562,9 @@
   <nav id="TableOfContents">
   <ul>
     <li><a href="dex.html#enable-dex">Enable DeX</a></li>
-    <li><a href="dex.html#Enable">Enable DeX with basic customization</a></li>
+    <li><a href="dex.html#basic-policy-controls">Basic policy controls</a></li>
+    <li><a href="dex.html#dex-customization-profile-premium">DeX customization profile (Premium)</a></li>
+    <li><a href="dex.html#Enable">Enable DeX with basic customization example</a></li>
     <li><a href="dex.html#industry-example">Industry example</a></li>
   </ul>
 </nav>

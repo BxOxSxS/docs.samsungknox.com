@@ -37,7 +37,7 @@
 <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start': new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0], j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src='https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);})(window,document,'script','dataLayer','GTM-P24TWCG');</script>
   <meta name="viewport" content="width=device-width,height=device-height,initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title>Hardware-backed trust  | Fundamentals  | Samsung Knox Documentation</title>
+  <title>Extending Below-the-OS Security into the OS  | Fundamentals  | Samsung Knox Documentation</title>
   <meta http-equiv="content-language" content="en">
   <meta name="language" content="en">
   <script src="../../../assets/js/bundle.js"></script>
@@ -662,7 +662,7 @@
     
     
     <div class="d-flex justify-content-between">
-      <a class="body-5 text-black active" href="hardware-backed-trust.html">Hardware-backed trust</a>
+      <a class="body-5 text-black fw-light" href="hardware-rooted-trust.html">Hardware-rooted trust</a>
     </div>
     
     </li>
@@ -695,7 +695,18 @@
     
     
     <div class="d-flex justify-content-between">
-      <a class="body-5 text-black fw-light" href="extending-below-the-os-security-into-the-os/index.html">Extending Below-the-OS Security into the OS</a>
+      <a class="body-5 text-black active" href="extending-below-the-os-security-into-the-os.html">Extending Below-the-OS Security into the OS</a>
+    </div>
+    
+    </li>
+  
+  
+  
+    <li class="mt-2">
+    
+    
+    <div class="d-flex justify-content-between">
+      <a class="body-5 text-black fw-light" href="secure-manageability/index.html">Secure Manageability</a>
     </div>
     
     </li>
@@ -1025,11 +1036,11 @@
 
             </div>
             <div class="mt-4">
-              <h1>Hardware-backed trust</h1>
+              <h1>Extending Below-the-OS Security into the OS</h1>
             </div>
             
 
-  <p><span>Last updated August  12th, 2024</span></p>
+  <p><span>Last updated November  12th, 2024</span></p>
 
 
     
@@ -1047,17 +1058,54 @@
       
       
       
+      
+      
         
       
       
       
       
-        <p>In typical laptop PCs, the motherboard normally provides power directly to the CPU during the boot sequence. Once powered up, the CPU would then access its dedicated SPI flash storage to load and run the BIOS.</p>
-<p>On Galaxy Books with the Knox security platform, the boot sequence begins with the SecEP. When the motherboard first powers up, it initializes the SecEP. The SecEP is responsible for providing power to the CPU. Before the SecEP powers on the CPU, it first verifies whether or not the BIOS is corrupted. If the BIOS is safe and corruption-free, the SecEP then powers on the CPU, and the CPU accesses SPI flash storage (to load the BIOS).</p>
-<p>These layers of protection are put in place to prevent the device from loading and executing corrupt firmware and compromising the system. Figure 2 further describes how the SecEP protects the CPU during the boot sequence.</p>
-<p>Throughout this chapter, we&rsquo;ll explain the various security features used by the SecEP to provide a robust, hardware-backed system of trust to help protect the Galaxy Book from threats and compromises.</p>
-<h2 id="secep-firmware-self-validation">SecEP firmware self-validation</h2>
-<p>The SecEP prevents the CPU from accessing the SPI Flash Storage until permission is granted. However, before that permission is even granted the SecEP goes through a series of self-validation checks to ensure that its own firmware hasn’t been compromised. Figure 1 describes how the SecEP performs this firmware self-validation:</p>
+        
+      
+      
+      
+      
+        
+      
+      
+      
+      
+        
+      
+      
+      
+      
+        
+      
+      
+      
+      
+        
+      
+      
+      
+      
+        
+      
+      
+      
+      
+        
+      
+      
+      
+      
+        <p>Having established a secure Below-the-OS platform, it&rsquo;s critical to extend security into the OS. Several security-sensitive operations, such as logging, occur either in the OS kernel or in processes. For robust security, Below-the-OS platform components need to integrate with and protect these security-critical OS components.</p>
+<p>Samsung Galaxy Books with the Knox security platform have special Below-the-OS security features to protect security-critical OS components from tamper, and to integrate Below-the-OS security events into Windows event logs.</p>
+<h2 id="samsung-security-service-tamper-protection-using-below-the-os">Samsung Security Service Tamper Protection using Below-the-OS</h2>
+<p>Malware and ransomware often try to <a href="https://attack.mitre.org/techniques/T1562/001/" target="_blank">kill, disable, and uninstall security components</a> such as logging services to evade detection. Therefore, it&rsquo;s important to protect such services from tamper. However, protection is especially challenging since Windows malware often executes with elevated system privileges, allowing malware to easily kill and uninstall security-related services.</p>
+<p>Samsung&rsquo;s Security Service handles critical operations such as logging. Thus, it&rsquo;s important that the Samsung Security Service remains protected from tamper.</p>
+<p>This protection begins at boot-time and extends through run-time. During boot-time, as shown in <strong>Figure 6</strong>, the UEFI and BIOS securely reinstalls Samsung&rsquo;s Security Controller Driver and the Samsung Security Service if either of these are uninstalled or not present. It does this by using a standard Windows mechanism called the <a href="http://go.microsoft.com/fwlink/p/?LinkId=234840#driver-archive" target="_blank">Windows Platform Binary Table</a>, or WPBT, during boot. This process verifies that the security driver and service binaries are signed by Samsung before starting them.</p>
 
 
 
@@ -1066,24 +1114,28 @@
 
 
 
-<p><img src="../assets/pc-white-paper-figure-1.png" class="img-fluid img-thumbnail" alt="Figure 1: SecEP firmware self-validation" /></p>
-<p>Figure 1: SecEP firmware self-validation</p>
-<ol>
+<p><img src="../assets/pc-white-paper-figure-6.png" class="img-fluid" alt="Figure 6: Samsung Security Service Tamper Protection from Below-the-OS" /></p>
+<p>Figure 6: Samsung Security Service Tamper Protection from Below-the-OS.</p>
+<p>The Security Controller Driver and Security Service binaries are embedded into the UEFI image, and are thus immune from file system tampering. At run-time, the Samsung Security Controller Driver monitors and protects the Security Service by using layered defense mechanisms. If the Security Service process is somehow stopped, the Security Controller Driver is notified through callbacks and instantly restarts the service. The Security Service binary is itself compiled with protection against run-time attacks such as code or DLL injection using various defense-in-depth techniques.</p>
+<h2 id="event-integration-with-windows-event-viewer">Event integration with Windows Event Viewer</h2>
+<p>Another important aspect of extending Below-the-OS security into the OS is to make sure that Below-the-OS security events are appended to existing OS logs in a secure manner. Samsung&rsquo;s Below-the-OS and in-OS security components generate boot-time and runtime security events that are stored in logs in persistent and secure SPI flash memory.</p>
+<p>The Security Service&rsquo;s <strong>Event Logging Service</strong> appends these events to Windows Event Logs, which can be viewed using the Windows Event Viewer. To ensure that event logging can&rsquo;t be bypassed, the Event Logging Service is started on every boot and is protected from tamper or shut-down at run-time. For more details, see <a href="extending-below-the-os-security-into-the-os.html#samsung-security-service-tamper-protection-using-below-the-os">Samsung Security Service Tamper Protection</a>.</p>
+<p>The Event Logging Service logs several types of security events and information that can be viewed using the Windows Event Viewer under a dedicated “Samsung Security” application event log section. The following events are available:</p>
+<ul>
 <li>
-<p>The SecEP firmware self-validation first begins with a firmware hash check. This happens when the <strong>SecEP Boot ROM</strong> retrieves the Firmware Certificate Hash (SHA384) &mdash; generated using an EC SecP384r1 algorithm &mdash; from the <strong>SecEP Fuse Bank</strong>. The Boot ROM then uses this hash to validate the <strong>Public Key</strong> stored in the SecEP flash storage.</p>
+<p><strong>Below-the-OS security</strong> events such as <a href="enhancements-to-uefi.html#tamper-alert">Tamper Alerts</a>, BIOS Auto Recovery and BIOS Configuration Recovery attempts, unauthorized writes to BIOS Variables and protected SMM areas, and suspicious SMI calls.</p>
 </li>
 <li>
-<p>Once the Firmware Cert Public Key is verified, the Boot ROM uses the <strong>Public Key</strong> to verify the integrity of the <strong>SecEP Firmware Image</strong> stored in flash storage.</p>
+<p><strong>In-OS security</strong> events such as uninstalls, unloads of security-critical components such as the Security Service, and writes to security-critical registry keys.</p>
 </li>
 <li>
-<p>After the <strong>SecEP Firmware Image</strong> gets verified, the SecEP Boot ROM then verifies whether or not the firmware version number is valid. It does this by comparing the firmware version against the <strong>Rollback Protection Value</strong> stored in the fuse bank. Whenever the SecEP firmware gets updated, the fuses corresponding to the <em>previous</em> version get set to indicate that it is no longer valid. Once a Rollback Protection fuse is set, it can&rsquo;t be unset.</p>
+<p><strong>Security state of the system</strong>, such as the security software version information, enable/disable status of security-relevant BIOS settings, and variables such as Secure Boot, Advanced SMM Protection, SMI Guard, and TPM activation status.</p>
 </li>
-<li>
-<p>If the SecEP firmware version number is valid, the Boot ROM loads and executes the SecEP firmware.</p>
-</li>
-</ol>
-<h2 id="secep-bios-validation-and-cpu-initialization">SecEP BIOS validation and CPU initialization</h2>
-<p>Once the SecEP validates and runs its own firmware, it then proceeds to verify the main BIOS, as described in Figure 2. In order to verify the BIOS:</p>
+</ul>
+<p>For a complete list of security events integrated into the Windows Event Viewer, refer <strong>Table 1</strong>.</p>
+<p>Event severity levels are one of <strong>Information</strong> (normal but security-relevant events), <strong>Warning</strong> (notice of abnormal events that have been automatically resolved), and <strong>Error</strong> (unrecoverable events that need administrator action).</p>
+<h3 id="user-notifications">User notifications</h3>
+<p>When certain security-critical events happen at runtime, in addition to being logged, the user is notified of the event through a toast notification in Windows. The user has the option to obtain more information or dismiss the event, as seen in <strong>Figure 7</strong>.</p>
 
 
 
@@ -1115,32 +1167,32 @@
     
     
     
-      
     
+      
     
     
   
     
     
     
-      
     
+      
     
     
   
     
     
     
-      
     
+      
     
     
   
     
     
     
-      
     
+      
     
     
   
@@ -1202,34 +1254,205 @@
   
 
 
-<p><img src="../assets/pc-white-paper-figure-2.png" class="image-block-scale-80 img-thumbnail" alt="Figure 2: SecEP protection during boot up" /></p>
-<p>Figure 2: SecEP protection during boot up</p>
-<ol>
-<li>
-<p>First, the SecEP reads the BIOS RSA2048 OEM public key from the SPI flash storage as illustrated in step 2. This key is checked against a SHA384 hash stored in the SecEP&rsquo;s fuse bank. If the key is valid, the SecEP then checks the BIOS version number against the Rollback Protection Value stored in the SecEP fuse bank.</p>
-</li>
-<li>
-<p>Once both the BIOS public key and version number are validated, the SecEP gives the CPU access to the SPI flash storage in order to load the BIOS, as illustrated in step 3.</p>
-</li>
-<li>
-<p>The SecEP then powers on the CPU. Once the CPU has power, it can load the BIOS from the SPI Flash Storage, as illustrated in steps 4 and 5.</p>
-</li>
-</ol>
-<p>If the SecEP detects any incorrectly-signed firmware in place of the BIOS, the SecEP won&rsquo;t grant the CPU access to the firmware, and the CPU won&rsquo;t boot.
- 
-After the CPU is powered on, <strong>Intel Boot Guard</strong> independently validates and runs the BIOS Bootloader, which begins the standard UEFI boot process. As part of UEFI, the BIOS Bootloader contains hardcoded <strong>SHA256</strong> hashes for every firmware module that loads. Since these hashes are hardcoded, they are validated by the same signature checks used to validate the BIOS Bootloader. When loading any firmware module, UEFI verifies that the hash of each loaded module is included in the hardcoded table.</p>
-<h2 id="bios-auto-recovery">BIOS Auto Recovery</h2>
-<p>During a normal boot flow, the SecEP depends on the CPU&rsquo;s flash storage to load the BIOS firmware. This firmware, while cryptographically verified before being loaded, is still susceptible to attacks from the CPU. If the firmware in flash storage gets corrupted, SecEP will prevent it from loading. While this could mitigate the threat, the device might still be unable to boot up &mdash; thus rendering it unusable without IT admin intervention.</p>
-<p><strong>BIOS Auto Recovery</strong> addresses this problem by including a backup copy of the BIOS firmware in the SecEP&rsquo;s flash storage. This storage is physically inaccessible from the CPU and other hardware running on the device. If the SecEP fails to verify the BIOS firmware stored on the CPU&rsquo;s flash storage, it overwrites that firmware with its own locally-stored copy. Once the BIOS firmware has been restored, the SecEP reboots the device so that the recovered firmware can once again be verified and loaded.</p>
-<h2 id="secure-communications-with-the-bios">Secure communications with the BIOS</h2>
-<p>Once the BIOS has been initialized, the CPU and the SecEP communicate with one another through a dedicated channel over Enhanced Serial Peripheral Interface (eSPI). This channel helps ensure that only messages using an authentication key are passed back and forth between these two components.</p>
-<p>Since the eSPI is connected to the CPU, the OS also sends messages to the SecEP, opening up the possibility for a compromised OS to impersonate the BIOS and execute privileged operations with the SecEP. To help protect against this type of compromise, the SecEP and BIOS negotiate a per-boot HMAC-SHA256 authentication key using ECDH-P256 during the Pre-EFI Initialization Phase.</p>
-<p>This shared key gets maintained by the BIOS as it progresses through its boot stages and enters System Management Mode. Once in this mode, the shared key is hardware-isolated from the OS in a special area of main system RAM dedicated to system management data.</p>
-<p>The early key negotiation, combined with the boot-time-guarantees provided by the SecEP, ensure that only the SecEP and the BIOS have access to this authentication key. This enables the BIOS to use the SecEP to secure its data, and the SecEP to restrict data access to only the BIOS.</p>
-<h2 id="secured-data">Secured data</h2>
-<p>The SecEP stores all of its data on a dedicated flash storage, which only it has access to. This isolated storage, along with the authenticated communication, enables the SecEP to protect its own data against compromises in the CPU&rsquo;s OS.</p>
-<p>The SecEP further protects its data by associating it with a HMAC-SHA256 message authentication key. Each HMAC-SHA256 key is derived using a data identifier and a Master Storage Key unique to each device.</p>
-<p>The isolated storage enables the SecEP to protect its data from other software running on the device, and the additional encryption enables the SecEP to protect its data from hardware tampering. This lets the SecEP provide stronger security for the BIOS than the BIOS is capable of providing for itself.</p>
+<p><img src="../assets/pc-white-paper-figure-7.png" class="image-block-scale-60" alt="Figure 7: Notification of a Tamper Alert" /></p>
+<p>Figure 7: Notification of a Tamper Alert</p>
+<h3 id="list-of-security-events">List of Security Events</h3>
+<p><strong>Table 1</strong> shows a summary of the security events logged to the Windows Event Viewer, along with their IDs. The logged events contain additional event-specific details and mapping to the MITRE ATT&amp;CK knowledge base, where you can learn more about specific techniques corresponding to potential attack scenarios.</p>
+<h4 id="table-1">Table 1</h4>
+<div class="overflow-auto my-3"><table>
+    <tr>
+        <td rowspan="13"><a href="hardware-rooted-trust.html">Hardware Root-of-Trust</a></td>
+        <td>BIOS Auto Recovery has occurred</td>
+        <td>0x301-0x303<sup>1</sup></td>
+    </tr>
+    <tr>
+        <td>The recovery BIOS image has been updated</td>
+        <td>0x304<sup>1</sup></td>
+    </tr>
+    <tr>
+        <td>Error in BIOS Auto Recovery</td>
+        <td>0x3FE<sup>1</sup></td>
+    </tr>
+    <tr>
+        <td>Error in the secure communication channel with SecEP</td>
+        <td>0x3FF<sup>2</sup></td>
+    </tr>
+    <tr>
+        <td>Failed to store or retrieve from SecEP flash storage</td>
+        <td>0x306-0x308<sup>1</sup>, 0x308-0x30A<sup>2</sup></td>
+    </tr>
+    <tr>
+        <td>Boot device verification fail (db, dbx, other)</td>
+        <td>0x430<sup>1</sup>, 0x431<sup>1</sup>, 0x432<sup>2</sup></td>
+    </tr>
+    <tr>
+        <td>Default keys provisioned for secure boot, device in user mode</td>
+        <td>0x600<sup>2</sup></td>
+    </tr>
+    <tr>
+        <td>Failed to provision default keys for secure boot, device still in setup mode</td>
+        <td>0x601<sup>2</sup></td>
+    </tr>
+    <tr>
+        <td>Secure boot BIOS Variables were deleted</td>
+        <td>0x602<sup>2</sup></td>
+    </tr>
+    <tr>
+        <td>Secure boot keys changed to default</td>
+        <td>0x603<sup>2</sup></td>
+    </tr>
+    <tr>
+        <td>Critical secure boot configuration was removed (PK, KEK, DB, DBX)</td>
+        <td>0x610-0x613<sup>2</sup></td>
+    </tr>
+    <tr>
+        <td>Critical secure boot configuration was set (PK, KEK, DB, DBX)</td>
+        <td>0x614-0x617<sup>2</sup></td>
+    </tr>
+    <tr>
+        <td>Critical secure boot configuration was appended to (KEK, DB, DBX)</td>
+        <td>0x618-0x61A<sup>2</sup></td>
+    </tr>
+    <tr>
+        <td rowspan="5"><a href="enhancements-to-uefi.html#bios-configuration-recovery">BIOS Configuration Recovery</a></td>
+        <td>Corrupted BIOS Variable detected</td>
+        <td>0x400<sup>1</sup>, 0x403-0x406<sup>2</sup>, 0x440<sup>2</sup>, 0x444<sup>2</sup>, 0x906-0x90D<sup>2</sup></td>
+    </tr>
+    <tr>
+        <td>Failed to recover corrupted BIOS Variable</td>
+        <td>0x401<sup>1</sup>, 0x441<sup>2</sup>, 0x445<sup>2</sup>, 0x966-0x96D<sup>2</sup></td>
+    </tr>
+    <tr>
+        <td>Successfully recovered corrupted BIOS Variable</td>
+        <td>0x402<sup>1</sup>, 0x442<sup>2</sup>, 0x446<sup>2</sup>, 0x936-0x93D<sup>2</sup></td>
+    </tr>
+    <tr>
+        <td>Error enabling BIOS Configuration Recovery</td>
+        <td>0x407<sup>1</sup>, 0x447<sup>2</sup>, 0x409<sup>2</sup></td>
+    </tr>
+    <tr>
+        <td>Error disabling BIOS Configuration Recovery</td>
+        <td>0x408<sup>2</sup>, 0x443<sup>2</sup></td>
+    </tr>
+    <tr>
+        <td rowspan="13"><a href="enhancements-to-uefi.html#tamper-alert">Tamper Alerts</a></td>
+        <td>Tamper Alert log is full</td>
+        <td>0x410<sup>1</sup></td>
+    </tr>
+    <tr>
+        <td>Tamper Alert count is invalid</td>
+        <td>0x411<sup>1</sup></td>
+    </tr>
+    <tr>
+        <td>Tamper Alerts are cleared</td>
+        <td>0x412<sup>1</sup></td>
+    </tr>
+    <tr>
+        <td>Attempt to boot unallowed, known-vulnerable, or unsigned OS </td>
+        <td>0x100<sup>1</sup>, 0x101<sup>1</sup>, 0x119<sup>2</sup></td>
+    </tr>
+    <tr>
+        <td>Unauthenticated attempt to write to BIOS Variable (PK, KEK, DB, DBX)</td>
+        <td>0x102-0x105<sup>1</sup></td>
+    </tr>
+    <tr>
+        <td>Corruption of Tamper Flag detected</td>
+        <td>0x10B<sup>1</sup></td>
+    </tr>
+    <tr>
+        <td>Advanced SMM Protection detected invalid write to SMM memory</td>
+        <td>0x10D<sup>1</sup></td>
+    </tr>
+    <tr>
+        <td>Security Service was uninstalled</td>
+        <td>0x10E<sup>1</sup></td>
+    </tr>
+    <tr>
+        <td>Invalid SMI Guard rule detected</td>
+        <td>0x10F<sup>1</sup></td>
+    </tr>
+    <tr>
+        <td>The Windows Platform Binary Table (WPBT) is disabled</td>
+        <td>0x113<sup>1</sup></td>
+    </tr>
+    <tr>
+        <td>Invalid BIOS Password entered 3 times</td>
+        <td>0x115<sup>1</sup></td>
+    </tr>
+    <tr>
+        <td>Write to SecEP internal storage failed</td>
+        <td>0x116<sup>1</sup></td>
+    </tr>
+    <tr>
+        <td>Write to SecEP external storage failed</td>
+        <td>0x117<sup>1</sup>, 0x118<sup>1</sup></td>
+    </tr>
+    <tr>
+        <td><a href="protecting-the-smm.html#smi-guard-protecting-smi-calls">SMI Guard</a></td>
+        <td>Malformed SMM request detected by SMI Guard rule</td>
+        <td>0x420<sup>1</sup></td>
+    </tr>
+    <tr>
+        <td rowspan="14"><a href="extending-below-the-os-security-into-the-os.html#samsung-security-service-tamper-protection-using-below-the-os">Security Service and Security Controller Driver</a></td>
+        <td>Security Controller driver loaded</td>
+        <td>0x500<sup>1</sup></td>
+    </tr>
+    <tr>
+        <td>Security Controller driver unloaded</td>
+        <td>0x501<sup>1</sup></td>
+    </tr>
+    <tr>
+        <td>Security Service was killed but restarted</td>
+        <td>0x502<sup>1</sup></td>
+    </tr>
+    <tr>
+        <td>Security Service loaded</td>
+        <td>0x504<sup>1</sup></td>
+    </tr>
+    <tr>
+        <td>Security Service started</td>
+        <td>0x505<sup>1</sup></td>
+    </tr>
+    <tr>
+        <td>Security Service stopped</td>
+        <td>0x506<sup>1</sup></td>
+    </tr>
+    <tr>
+        <td>Security Service shutdown</td>
+        <td>0x507<sup>1</sup></td>
+    </tr>
+    <tr>
+        <td>Security Service has unhandled exceptions</td>
+        <td>0x508<sup>1</sup></td>
+    </tr>
+    <tr>
+        <td>Security Service or Controller Driver was installed</td>
+        <td>0x700<sup>1</sup></td>
+    </tr>
+    <tr>
+        <td>Failed to install Security Service or Controller Driver</td>
+        <td>0x701<sup>1</sup></td>
+    </tr>
+    <tr>
+        <td>Failed to clean up after Security Service or Controller Driver install</td>
+        <td>0x702<sup>1</sup></td>
+    </tr>
+    <tr>
+        <td>Reboot required after Security Service or Controller Driver install</td>
+        <td>0x703<sup>1</sup>
+    </td>
+    </tr>
+    <tr>
+        <td>Security Service or Controller Driver was validated after install</td>
+        <td>0x720<sup>1</sup></td>
+    </tr>
+    <tr>
+        <td>Failed to validate Security Service or Controller Driver after install</td>
+        <td>0x721<sup>1</sup></td>
+    </tr>
+</table></div>
+<p><sup>1</sup> This security event is supported on Galaxy Book4 and later models with the Knox security platform.</p>
+<p><sup>2</sup> This security event is supported on Galaxy Book 5 and later models with the Knox security platform.</p>
 
             
           </div>
@@ -1238,11 +1461,13 @@ After the CPU is powered on, <strong>Intel Boot Guard</strong> independently val
 <aside class="table-of-headings">
   <nav id="TableOfContents">
   <ul>
-    <li><a href="hardware-backed-trust.html#secep-firmware-self-validation">SecEP firmware self-validation</a></li>
-    <li><a href="hardware-backed-trust.html#secep-bios-validation-and-cpu-initialization">SecEP BIOS validation and CPU initialization</a></li>
-    <li><a href="hardware-backed-trust.html#bios-auto-recovery">BIOS Auto Recovery</a></li>
-    <li><a href="hardware-backed-trust.html#secure-communications-with-the-bios">Secure communications with the BIOS</a></li>
-    <li><a href="hardware-backed-trust.html#secured-data">Secured data</a></li>
+    <li><a href="extending-below-the-os-security-into-the-os.html#samsung-security-service-tamper-protection-using-below-the-os">Samsung Security Service Tamper Protection using Below-the-OS</a></li>
+    <li><a href="extending-below-the-os-security-into-the-os.html#event-integration-with-windows-event-viewer">Event integration with Windows Event Viewer</a>
+      <ul>
+        <li><a href="extending-below-the-os-security-into-the-os.html#user-notifications">User notifications</a></li>
+        <li><a href="extending-below-the-os-security-into-the-os.html#list-of-security-events">List of Security Events</a></li>
+      </ul>
+    </li>
   </ul>
 </nav>
 </aside>
@@ -1276,7 +1501,7 @@ After the CPU is powered on, <strong>Intel Boot Guard</strong> independently val
       
       <div class="col-sm-12 col-md-6 col-lg-3 footer-vertical-section">
         <div class="d-flex justify-content-between align-items-center">
-          <a class="footer-section-title" data-bs-toggle="collapse" href="hardware-backed-trust.html#item0" role="button" aria-expanded="false" aria-controls="item0"> 
+          <a class="footer-section-title" data-bs-toggle="collapse" href="extending-below-the-os-security-into-the-os.html#item0" role="button" aria-expanded="false" aria-controls="item0"> 
             <h6 class="body-3 fw-bold text-uppercase text-black pt-4">Knox admin documentation</h6>
           </a>
           <a class="btn-toggle d-inline-flex d-lg-none rounded border-0 fw-light" data-bs-toggle="collapse" data-bs-target="#item0" aria-expanded="false"></a>
@@ -1410,7 +1635,7 @@ After the CPU is powered on, <strong>Intel Boot Guard</strong> independently val
       
       <div class="col-sm-12 col-md-6 col-lg-3 footer-vertical-section">
         <div class="d-flex justify-content-between align-items-center">
-          <a class="footer-section-title" data-bs-toggle="collapse" href="hardware-backed-trust.html#item1" role="button" aria-expanded="false" aria-controls="item1"> 
+          <a class="footer-section-title" data-bs-toggle="collapse" href="extending-below-the-os-security-into-the-os.html#item1" role="button" aria-expanded="false" aria-controls="item1"> 
             <h6 class="body-3 fw-bold text-uppercase text-black pt-4">Support</h6>
           </a>
           <a class="btn-toggle d-inline-flex d-lg-none rounded border-0 fw-light" data-bs-toggle="collapse" data-bs-target="#item1" aria-expanded="false"></a>
@@ -1432,7 +1657,7 @@ After the CPU is powered on, <strong>Intel Boot Guard</strong> independently val
       
       <div class="col-sm-12 col-md-6 col-lg-3 footer-vertical-section">
         <div class="d-flex justify-content-between align-items-center">
-          <a class="footer-section-title" data-bs-toggle="collapse" href="hardware-backed-trust.html#item2" role="button" aria-expanded="false" aria-controls="item2"> 
+          <a class="footer-section-title" data-bs-toggle="collapse" href="extending-below-the-os-security-into-the-os.html#item2" role="button" aria-expanded="false" aria-controls="item2"> 
             <h6 class="body-3 fw-bold text-uppercase text-black pt-4">Samsung</h6>
           </a>
           <a class="btn-toggle d-inline-flex d-lg-none rounded border-0 fw-light" data-bs-toggle="collapse" data-bs-target="#item2" aria-expanded="false"></a>

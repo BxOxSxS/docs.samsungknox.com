@@ -419,7 +419,7 @@
             </div>
             
 
-  <p><span>Last updated October  28th, 2024</span></p>
+  <p><span>Last updated November  14th, 2024</span></p>
 
 
     
@@ -491,8 +491,8 @@
       <p class="fs-5 mt-0">Knox Authentication Manager is a managed app for shared Samsung devices that provides multiuser facial biometrics and sign-in automation for increased frontline worker productivity and safety.</p>
     </div>
 </div>
-<h2 id="supported-uememms-and-management-types">Supported UEM/EMMs and management types</h2>
-<p>Knox Authentication Manager works with the following UEM/EMM solutions using fully managed devices with access to Managed Google Play:</p>
+<h2 id="supported-uems-or-emms-and-management-types">Supported UEMs or EMMs and management types</h2>
+<p>Knox Authentication Manager works with the following UEM or EMM solutions using fully managed devices with access to Managed Google Play:</p>
 <div class="overflow-auto my-3"><table>
 <thead>
 <tr>
@@ -541,10 +541,35 @@
 <p>Knox Authentication Manager relies on the Network Time Protocol (NTP) to determine the most up-to-date user profile when performing device-to-device syncing. You&rsquo;ll need to provide a firewall exception on your network for <code>time.android.com</code> on UDP port <strong>123</strong> in order to communicate with the NTP server.</p>
 </li>
 </ul>
-<p>When you set up Knox Authentication Manager in your UEM/EMM, you need to create a shared key to encrypt and protect user profiles and device group communication. One way to generate this key is through OpenSSL. Mac and Linux users can run <code>openssl rand -base64 24</code> in a terminal. Windows users first have to install OpenSSL. See the <a href="https://www.openssl.org/source/" target="_blank">OpenSSL documentation</a> for more information.</p>
+<p>When you set up Knox Authentication Manager in your UEM or EMM, you need to create a shared key to encrypt and protect user profiles and device group communication.</p>
+<ul>
+<li>
+<p>Mac and Linux users can generate this key using OpenSSL. Run <code>openssl rand -base64 24</code> in a terminal to create a shared key.</p>
+</li>
+<li>
+<p>Windows users can generate this key using OpenSSL or Windows PowerShell:</p>
+<ul>
+<li>
+<p><a href="https://www.openssl.org/source/" target="_blank">Download</a> and install OpenSSL. Next, run <code>openssl rand -base64 24</code> in a terminal to create a shared key.</p>
+</li>
+<li>
+<p>Alternatively, run the following code in Windows PowerShell:</p>
+<div class="highlight"><pre tabindex="0" style=";-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#408080;font-style:italic"># Generate 24 random bytes</span>
+</span></span><span style="display:flex;"><span><span style="color:#19177c">$randomBytes</span> <span style="color:#666">=</span> New-Object byte<span style="color:#666">[]</span> <span style="color:#666">24</span>
+</span></span><span style="display:flex;"><span><span style="color:#666">[</span>System.Security.Cryptography.RandomNumberGenerator<span style="color:#666">]</span>::Create<span style="color:#666">()</span>.GetBytes<span style="color:#666">(</span><span style="color:#19177c">$randomBytes</span><span style="color:#666">)</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#408080;font-style:italic"># Convert to base64 string</span>
+</span></span><span style="display:flex;"><span><span style="color:#19177c">$base64String</span> <span style="color:#666">=</span> <span style="color:#666">[</span>Convert<span style="color:#666">]</span>::ToBase64String<span style="color:#666">(</span><span style="color:#19177c">$randomBytes</span><span style="color:#666">)</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#408080;font-style:italic"># Output the result</span>
+</span></span><span style="display:flex;"><span>Write-Output <span style="color:#19177c">$base64String</span>
+</span></span></code></pre></div></li>
+</ul>
+</li>
+</ul>
 <h2 id="required-license">Required license</h2>
 <p>A valid Knox Suite license key is required to use Knox Authentication Manager. For more information, see <a href="knox-authentication-manager/get-started/get-started-as-an-it-admin.html#step-1-get-a-knox-suite-license">Get started as an IT admin</a>.</p>
-<p>Additionally, to ensure that Knox Authentication Manager performs optimally, admins should configure specific Knox Service Plugin policies with their UEM/EMM. For more information on Knox Service Plugin requirements, see <a href="knox-authentication-manager/get-started/get-started-as-an-it-admin.html#step-1-get-a-knox-suite-license">Get started as an IT admin</a> and <a href="knox-platform-for-enterprise/knox-service-plugin.html">Knox Service Plugin</a>.</p>
+<p>Additionally, to ensure that Knox Authentication Manager performs optimally, admins should configure specific Knox Service Plugin policies with their UEM or EMM. For more information on Knox Service Plugin requirements, see <a href="knox-authentication-manager/get-started/get-started-as-an-it-admin.html#step-1-get-a-knox-suite-license">Get started as an IT admin</a> and <a href="knox-platform-for-enterprise/knox-service-plugin.html">Knox Service Plugin</a>.</p>
 <h2 id="supported-devices">Supported devices</h2>
 <p>Knox Authentication Manager is available for select Samsung <strong>Secured by Knox</strong> devices running Android 12 and higher, in an enterprise deployment. For a full list of compatible devices, see <a href="https://www.samsungknox.com/en/knox-platform/supported-devices" target="_blank">Devices secured by Knox</a>.</p>
 <h2 id="get-started-with-knox-authentication-manager">Get started with Knox Authentication Manager</h2>
@@ -569,7 +594,7 @@
 <aside class="table-of-headings">
   <nav id="TableOfContents">
   <ul>
-    <li><a href="knox-authentication-manager.html#supported-uememms-and-management-types">Supported UEM/EMMs and management types</a></li>
+    <li><a href="knox-authentication-manager.html#supported-uems-or-emms-and-management-types">Supported UEMs or EMMs and management types</a></li>
     <li><a href="knox-authentication-manager.html#required-network-capabilities">Required network capabilities</a></li>
     <li><a href="knox-authentication-manager.html#required-license">Required license</a></li>
     <li><a href="knox-authentication-manager.html#supported-devices">Supported devices</a></li>

@@ -421,7 +421,7 @@
             </div>
             
 
-  <p><span>Last updated October  30th, 2024</span></p>
+  <p><span>Last updated November  8th, 2024</span></p>
 
 
     
@@ -495,6 +495,7 @@
       
       
       
+      
         <p>If you&rsquo;re an IT admin setting up Knox Authentication Manager for the first time, this tutorial walks you through the basic steps required for deploying the app to your enterprise devices.</p>
 <h2 id="step-1-get-a-knox-suite-license">Step 1: Get a Knox Suite license</h2>
 <p>You must have a valid Knox Suite license if you want to deploy Knox Authentication Manager to your enterprise devices. To get a Knox Suite license, you must first sign up for a Samsung Knox account. See the <a href="../../../knox-suite/get-started/create-a-samsung-account.html">Knox Suite documentation</a> for instructions on how to sign up and obtain a license.</p>
@@ -541,10 +542,68 @@
 </ol>
 <p>Knox Authentication Manager is now registered in your AAD tenant.</p>
 <h2 id="step-6-configure-and-assign-the-app">Step 6: Configure and assign the app</h2>
-<p>In your UEM or EMM, you&rsquo;ll need to create a managed configuration for Knox Authentication Manager before deploying it to your enterprise devices. See <a href="../../how-to-guides/configure-app-policies.html">Configure app policies</a> for a list of available policies, descriptions, and options.</p>
-<p>If you&rsquo;re a <strong>Microsoft Intune</strong> customer, you can download and use the following JSON file to help configure your Knox Authentication Manager app. Refer to the <a href="../../how-to-guides/configure-app-policies.html">app policies</a> page for an explanation of each key-value pair, then edit the JSON file according to your fleet&rsquo;s deployment needs. All keys with the value <code>CHANGEME</code> must be edited for the configuration to work.</p>
-<p><a href="../../assets/kam-sample-json-intune.json">Download JSON file for Intune</a></p>
-<p>Once you configure the Knox Authentication Manager policies, assign and install the app on your devices.</p>
+<p>In your UEM or EMM, you&rsquo;ll need to create a managed configuration for Knox Authentication Manager before deploying it to your enterprise devices. See <a href="../../how-to-guides/configure-app-policies.html">Configure app policies</a> for a list of available policies, descriptions, and options. Once you configure the Knox Authentication Manager policies, assign and install the app on your devices.</p>
+<p>For Microsoft Intune admins:</p>
+<ul>
+<li>Optionally, you can download and use the following JSON file to help configure your Knox Authentication Manager app. Refer to the <a href="../../how-to-guides/configure-app-policies.html">app policies</a> page for an explanation of each key-value pair, then edit the JSON file according to your fleet&rsquo;s deployment needs. All keys with the value <code>CHANGEME</code> must be edited for the configuration to work.</li>
+<li><a href="../../assets/kam-sample-json-intune.json">Download JSON file for Intune</a></li>
+</ul>
+<h3 id="required-vmware-workspace-one-activities">Required VMware Workspace ONE activities</h3>
+<p>If you&rsquo;re a VMware Workspace ONE customer, you must also add several activities in the Workspace ONE console. When configuring a device profile, enable the following Launcher settings and enter the package and class name pairs listed below. For more information on Launcher settings, see <a href="https://docs.omnissa.com/bundle/workspaceonelauncher/page/AWLAUNCHERINTRO.html#configure_workspace_one_launcher_profile" target="_blank">Configure Workspace ONE Launcher Profile</a> in the VMware Workspace ONE documentation.</p>
+<h4 id="check-in-check-out-cico-features">Check In Check Out (CICO) Features</h4>
+<p>Enable <strong>Add Allowlist Activities on Check-in Check-out Screen</strong> and enter the following package name and class name pairs:</p>
+<div class="overflow-auto my-3"><table>
+    <tr>
+        <th>Package Name</th>
+        <th>Class Name</th>
+    </tr>
+    <tr>
+        <td rowspan="9">com.samsung.android.knox.kam</td>
+        <td>com.samsung.android.knox.kam.ui.SplashScreenActivity</td>
+    </tr>
+    <tr>
+        <td>com.samsung.android.knox.kam.ui.MainActivity</td>
+    </tr>
+    <tr>
+        <td>com.samsung.android.knox.kam.context.EnrollPinActivity</td>
+    </tr>
+    <tr>
+        <td>com.samsung.android.knox.kam.common.ActivityEventsInterceptor</td>
+    </tr>
+    <tr>
+        <td>com.samsung.android.knox.kam.common.ActivityEventsInterceptorBackup</td>
+    </tr>
+    <tr>
+        <td>com.samsung.android.knox.kam.auth.FacialEnrollmentStartActivity</td>
+    </tr>
+    <tr>
+        <td>com.samsung.android.knox.kam.auth.FaceEnrollActivity</td>
+    </tr>
+    <tr>
+        <td>com.samsung.android.knox.kam.auth.FaceRotationGuide</td>
+    </tr>
+        <tr>
+        <td>com.samsung.android.knox.kam.auth.FaceRegisteredActivity</td>
+    </tr>
+</table></div>
+<h4 id="advanced-customization">Advanced Customization</h4>
+<p>Enable <strong>Add Allowlist specific Android Activities</strong> and enter the following package name and class name pairs:</p>
+<div class="overflow-auto my-3"><table>
+    <tr>
+        <th>Package Name</th>
+        <th>Class Name</th>
+    </tr>
+    <tr>
+        <td rowspan="3">com.samsung.android.knox.kam</td>
+        <td>com.samsung.android.knox.kam.common.ActivityEventsInterceptor</td>
+    </tr>
+    <tr>
+        <td>com.samsung.android.knox.kam.ui.SplashScreenActivity</td>
+    </tr>
+    <tr>
+        <td>com.samsung.android.knox.kam.ui.OldPwHandleActivity</td>
+    </tr>
+</table></div>
 <h3 id="other-recommended-settings">Other recommended settings</h3>
 <p>For VMware Workspace ONE or Microsoft Intune admins:</p>
 <ul>
@@ -588,6 +647,7 @@
     <li><a href="../get-started-as-an-it-admin.html#step-5-add-knox-authentication-manager-as-a-managed-app-in-your-uem-or-emm">Step 5: Add Knox Authentication Manager as a managed app in your UEM or EMM</a></li>
     <li><a href="../get-started-as-an-it-admin.html#step-6-configure-and-assign-the-app">Step 6: Configure and assign the app</a>
       <ul>
+        <li><a href="../get-started-as-an-it-admin.html#required-vmware-workspace-one-activities">Required VMware Workspace ONE activities</a></li>
         <li><a href="../get-started-as-an-it-admin.html#other-recommended-settings">Other recommended settings</a></li>
       </ul>
     </li>
