@@ -2300,7 +2300,7 @@
     
     
     <div class="d-flex justify-content-between">
-      <a class="body-5 text-black fw-light" href="../../profile.html">Profile</a>
+      <a class="body-5 text-black fw-light" href="../../profile/index.html">Profile</a>
     </div>
     
     </li>
@@ -4325,17 +4325,6 @@
     
     
     <div class="d-flex justify-content-between">
-      <a class="body-5 text-black fw-light" href="../../../../appendix/list-of-audit-events/lists-of-audit-events.html">Lists of audit events</a>
-    </div>
-    
-    </li>
-  
-  
-  
-    <li class="mt-2">
-    
-    
-    <div class="d-flex justify-content-between">
       <a class="body-5 text-black fw-light" href="../../../../appendix/list-of-audit-events/device-audit-events.html">Device audit events</a>
     </div>
     
@@ -4347,7 +4336,7 @@
     
     
     <div class="d-flex justify-content-between">
-      <a class="body-5 text-black fw-light" href="../../../../appendix/list-of-audit-events/server-audit-events/index.html">Server audit events</a>
+      <a class="body-5 text-black fw-light" href="../../../../appendix/list-of-audit-events/server-audit-events.html">Server audit events</a>
     </div>
     
     </li>
@@ -4358,7 +4347,7 @@
     
     
     <div class="d-flex justify-content-between">
-      <a class="body-5 text-black fw-light" href="../../../../appendix/list-of-audit-events/console-audit-events/index.html">Console audit events</a>
+      <a class="body-5 text-black fw-light" href="../../../../appendix/list-of-audit-events/console-audit-events.html">Console audit events</a>
     </div>
     
     </li>
@@ -4955,7 +4944,7 @@
             </div>
             
 
-  <p><span>Last updated October  18th, 2024</span></p>
+  <p><span>Last updated November  27th, 2024</span></p>
 
 
     
@@ -7167,7 +7156,7 @@
 <h2 id="factory-reset-protection">Factory Reset Protection</h2>
 <p>Configures the security policy to prevent unauthorized use of a device after a factory reset.</p>
 <p>You can set up a factory reset protection policy for Android Enterprise devices. This policy allows you to prevent the unauthorized use of an organization&rsquo;s devices using a special validation method for unlocking them after a factory reset.</p>
-<div class="notice-note"><p>Currently, this policy is only supported in Fully Managed and Work profile on company-owned Devices. This policy is not supported for Work Profile on personally-owned devices.</p></div>
+<div class="notice-note"><p>Currently, this policy is only supported for fully managed devices and work profile on company-owned devices. This policy is not supported for work profile on personally-owned devices.</p></div>
 <div class="overflow-auto my-3"><table>
     <tr>
         <th scope="col" style="width: 20%">Policy</th>
@@ -7187,7 +7176,7 @@
             <ol>
                 <li>Set the value to <strong>Allow</strong>.</li>
                 <li>
-                    <p>For the <strong>the Google Account ID</strong> field, enter the email address of Google Account that will protect the devices that use this profile. This account must be appropriate for use by support providers.</p>
+                    <p>For the <strong>Google Account ID</strong> field, enter the email address of Google Account that will protect the devices that use this profile. This account must be appropriate for use by support providers.</p>
                     <div class="notice-caution">
                         <p>As this account email and password might be shared with support providers, do <strong>not</strong> use your Google Account associated with Android Enterprise.</p>
                     </div>
@@ -7204,7 +7193,7 @@
                 <li>
                     <p>Click <strong>EXECUTE</strong>.</p>
                     <ul>
-                        <li>You might be prompted to grant permission for the Google APIs Explorer to access the Google Account. If so, click <strong>Allow</strong> to grant all access.</li>
+                        <li>You might be prompted to grant permission for the Google APIs Explorer to access the Google Account. If so, click <strong>Allow</strong> to grant access.</li>
                     </ul>
                     <p>A <strong>200 OK</strong> message shows, which contains the account's detailed information as JSON values.</p>
                 </li>
@@ -7212,8 +7201,16 @@
                 <li>Back on the Knox Manage console, paste the copied ID value in the <strong>Google User ID</strong> field.</li>
                 <li>Click <img src="../../../../assets/B-add.png" alt="add" />.</li>
             </ol>
+            <div class="notice-note">
+                <p>If factory reset protection is configured to allow specific accounts, you may be required to verify those accounts by entering them on screen upon factory-resetting the device. This requirement depends on the device management type and the factory reset method you used.</p>
+                <p>In case of fully managed devices, only factory reset actions performed using device commands from the Knox Manage console require account verification. The verification step is not triggered if the factory reset is initiated through device settings.</p>
+                <p>For work profiles on company-owned devices, both device commands and device settings used for factory resets will trigger the account verification process.</p>
+            </div>
         </td>
-        <td></td>
+        <td>
+            <p>Fully Managed &mdash; Android 11 and higher</p>
+            <p>Work Profile &mdash; Android 11 and higher</p>
+        </td>
     </tr>
 </table></div>
 <h2 id="knox-browser">Knox Browser</h2>

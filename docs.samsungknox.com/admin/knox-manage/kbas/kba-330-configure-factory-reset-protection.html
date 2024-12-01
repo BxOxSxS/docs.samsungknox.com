@@ -37,7 +37,7 @@
 <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start': new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0], j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src='https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);})(window,document,'script','dataLayer','GTM-P24TWCG');</script>
   <meta name="viewport" content="width=device-width,height=device-height,initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title>Cannot allow Camera policy only in work container on fully managed with work profile device  | Knox Manage  | Samsung Knox Documentation</title>
+  <title>Configure Factory Reset Protection  | Knox Manage  | Samsung Knox Documentation</title>
   <meta http-equiv="content-language" content="en">
   <meta name="language" content="en">
   <script src="../../assets/js/bundle.js"></script>
@@ -2300,7 +2300,7 @@
     
     
     <div class="d-flex justify-content-between">
-      <a class="body-5 text-black fw-light" href="../configure/profile/profile.html">Profile</a>
+      <a class="body-5 text-black fw-light" href="../configure/profile/profile/index.html">Profile</a>
     </div>
     
     </li>
@@ -4325,17 +4325,6 @@
     
     
     <div class="d-flex justify-content-between">
-      <a class="body-5 text-black fw-light" href="../appendix/list-of-audit-events/lists-of-audit-events.html">Lists of audit events</a>
-    </div>
-    
-    </li>
-  
-  
-  
-    <li class="mt-2">
-    
-    
-    <div class="d-flex justify-content-between">
       <a class="body-5 text-black fw-light" href="../appendix/list-of-audit-events/device-audit-events.html">Device audit events</a>
     </div>
     
@@ -4347,7 +4336,7 @@
     
     
     <div class="d-flex justify-content-between">
-      <a class="body-5 text-black fw-light" href="../appendix/list-of-audit-events/server-audit-events/index.html">Server audit events</a>
+      <a class="body-5 text-black fw-light" href="../appendix/list-of-audit-events/server-audit-events.html">Server audit events</a>
     </div>
     
     </li>
@@ -4358,7 +4347,7 @@
     
     
     <div class="d-flex justify-content-between">
-      <a class="body-5 text-black fw-light" href="../appendix/list-of-audit-events/console-audit-events/index.html">Console audit events</a>
+      <a class="body-5 text-black fw-light" href="../appendix/list-of-audit-events/console-audit-events.html">Console audit events</a>
     </div>
     
     </li>
@@ -4518,11 +4507,11 @@
       <a class="body-5 text-black fw-light" href="../kbas.html">KBAs</a>
     </div>
       
-    <div id="sub-knox-manage-kbas-kba-299-cannot-allow-camera-policy-in-work-profile">
+    <div id="sub-knox-manage-kbas-kba-330-configure-factory-reset-protection">
       <ul>
         <li>
           <div class="d-flex justify-content-between">
-            <a class="body-5 text-black active" href="kba-299-cannot-allow-camera-policy-in-work-profile.html">Cannot allow Camera policy only in work container on fully managed with work profile device</a>
+            <a class="body-5 text-black active" href="kba-330-configure-factory-reset-protection.html">Configure Factory Reset Protection</a>
           </div>
         </li>
       </ul>
@@ -4958,11 +4947,11 @@
 
             </div>
             <div class="mt-4">
-              <h1>Cannot allow Camera policy only in work container on fully managed with work profile device</h1>
+              <h1>Configure Factory Reset Protection</h1>
             </div>
             
 
-  <p><span>Last updated July  26th, 2023</span></p>
+  <p><span>Last updated November  27th, 2024</span></p>
 
 
     
@@ -4983,33 +4972,131 @@
 
 
 
-<h2 id="environment">Environment</h2>
+
+      
+      
+      
+      
+      
+      
+        
+      
+      
+      
+      
+        <h2 id="environment">Environment</h2>
 <ul>
-<li>Knox Manage (KM)</li>
-<li>Android Enterprise (AE)</li>
-<li>Fully managed with work profile enrollment type</li>
+<li>Knox Manage</li>
+<li>Android Enterprise</li>
+<li>Fully managed devices</li>
+<li>Work profile on company owned devices</li>
 </ul>
 <h2 id="overview">Overview</h2>
-<p>In Knox Manage (KM), you may want to enable the camera only in a device&rsquo;s work profile, not the personal container. Under <strong>Android Enterprise</strong> &gt; <strong>System</strong>, setting the <strong>Camera</strong> policy to <strong>Fully Managed</strong> &gt; <strong>Disallow all</strong> and <strong>Work Profile</strong> &gt; <strong>Allow</strong> restricts the camera on both sides of the device.</p>
-<h2 id="cause">Cause</h2>
-<p>This behavior is by Android design. Disabling the Camera policy for the Device Owner user applies the restriction to all users, so devices enrolled as fully managed with work profile have the camera disabled for both work and personal profiles.</p>
-<h2 id="resolution">Resolution</h2>
-<p>As a workaround, you can add the camera to your <strong>Control Applications</strong> list.</p>
+<p>Factory Reset Protection protects your company devices from unauthorized use in case of theft or loss.</p>
+<div class="notice-note"><p>While Factory Reset Protection can be configured without a lock screen, we recommend setting a password or PIN lock.</p><p>Factory Reset Protection only blocks factory resets initiated through the bootloader, and doesn’t prevent a user from performing a factory reset through the device’s settings. Configuring <a href="../configure/profile/configure-profile-policies/android-enterprise-policies.html#lock-screen" target="_blank">lock screen policies</a> ensure you are protected against both methods.</p></div>
+<h2 id="how-to-configure-factory-reset-protection">How to configure Factory Reset Protection</h2>
+<p>To configure Factory Reset Protection, first generate a Google User ID:</p>
 <ol>
-<li>In your KM console, in the left sidebar, click <strong>Profile</strong>.</li>
-<li>Click <strong>Push Manage Control App</strong> &gt; <strong>Add</strong>.</li>
-<li>Enter the Camera app package name for your device (i.e. com.sec.android.app.camera).</li>
-<li>For the <strong>Application Name</strong>, enter <strong>Camera</strong>.</li>
-<li>Click <strong>Save</strong>.</li>
+<li>
+<p>Navigate to the <a href="https://developers.google.com/people/api/rest/v1/people/get" target="_blank">Google Developers API documentation</a>.</p>
+</li>
+<li>
+<p>Click <strong>Sign In</strong>.</p>
+</li>
+<li>
+<p>Sign in with your Google Account.</p>
+</li>
+<li>
+<p>Click <strong>API</strong> and modify the following fields:</p>
+<div class="overflow-auto my-3"><table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>resourceName</code></td>
+<td>people/me</td>
+</tr>
+<tr>
+<td><code>personFields</code></td>
+<td>metadata</td>
+</tr>
+</tbody>
+</table></div>
+</li>
+<li>
+<p>Click <strong>EXECUTE</strong>.</p>
+
+    
+    
+    
+    
+    
+    
+    
+    <p><img src="../assets/kba-330-try-this-api-page.png" class="img-fluid img-thumbnail" alt="" /></p>
+</li>
+<li>
+<p>The response is shown below. Locate the <code>id</code> field and copy your Google User ID.</p>
+
+    
+    
+    
+    
+    
+    
+    
+    <p><img src="../assets/kba-330-api-results.png" class="img-fluid img-thumbnail" alt="" /></p>
+</li>
 </ol>
-<p>Verify if you have the Camera app enabled in your work profile. If not, modify your profile and apply the <strong>System App Activation Setting</strong> policy under <strong>Android Enterprise</strong> &gt; <strong>Application</strong>, then add <strong>Camera</strong> to the list.</p>
+<p>Next, enter your Google Account ID and Google User ID in Knox Manage:</p>
 <ol>
-<li>In your KM profile, under <strong>Android Enterprise</strong> &gt; <strong>Application</strong>, set <strong>App Execution Blacklist Setting</strong> to <strong>Apply</strong>.</li>
-<li>Next to <strong>Application execution blacklist</strong>, click <strong>Add</strong>.</li>
-<li>Select <strong>Camera</strong>, then click <strong>OK</strong>.</li>
-<li>Save your profile and apply the changes.</li>
+<li>
+<p>In the Knox Manage console, click <strong>Profile</strong>.</p>
+</li>
+<li>
+<p>Select your profile and click <strong>Modify Policy</strong>.</p>
+</li>
+<li>
+<p>Under the <strong>Android Enterprise</strong> policy drawer, click <strong>Factory Reset Protection</strong>.</p>
+</li>
+<li>
+<p>Modify the following policies:</p>
+<div class="overflow-auto my-3"><table>
+<thead>
+<tr>
+<th>Policy</th>
+<th>Value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Factory Reset Protection</td>
+<td>Allow</td>
+</tr>
+<tr>
+<td>Google Account ID</td>
+<td>Enter your Google Account email</td>
+</tr>
+<tr>
+<td>Google User ID</td>
+<td>Enter your copied Google User ID</td>
+</tr>
+</tbody>
+</table></div>
+</li>
+<li>
+<p>Click <strong>+</strong> to add the account.</p>
+</li>
+<li>
+<p>Click <strong>Save &amp; Assign</strong> to save and push the changes to your device fleet.</p>
+</li>
 </ol>
-<div class="notice-note"><p>Following the steps above only restricts one package name (e.g. the default camera app for Samsung devices). To restrict 3rd-party camera applications, add their package names to the application execution blacklist.</p></div>
+<p>After the device is reset and restarted, Factory Reset Protection is activated and the device user must sign in with the associated Google Account.</p>
+<div class="notice-note"><p>You may be required to verify the accounts used for Factory Reset Protection after it is configured to allow specific accounts. This requirement depends on the device management type and the factory reset method you used.</p><p>For fully managed devices, only factory reset actions performed using device commands from the Knox Manage console require account verification. Account verification isn’t triggered if the factory reset is initiated through device settings.</p><p>For company-owned devices with a work profile, both device commands and device settings used for factory resets trigger the account verification step.</p></div>
 
             
           </div>
@@ -5018,10 +5105,9 @@
 <aside class="table-of-headings">
   <nav id="TableOfContents">
   <ul>
-    <li><a href="kba-299-cannot-allow-camera-policy-in-work-profile.html#environment">Environment</a></li>
-    <li><a href="kba-299-cannot-allow-camera-policy-in-work-profile.html#overview">Overview</a></li>
-    <li><a href="kba-299-cannot-allow-camera-policy-in-work-profile.html#cause">Cause</a></li>
-    <li><a href="kba-299-cannot-allow-camera-policy-in-work-profile.html#resolution">Resolution</a></li>
+    <li><a href="kba-330-configure-factory-reset-protection.html#environment">Environment</a></li>
+    <li><a href="kba-330-configure-factory-reset-protection.html#overview">Overview</a></li>
+    <li><a href="kba-330-configure-factory-reset-protection.html#how-to-configure-factory-reset-protection">How to configure Factory Reset Protection</a></li>
   </ul>
 </nav>
 </aside>
@@ -5055,7 +5141,7 @@
       
       <div class="col-sm-12 col-md-6 col-lg-3 footer-vertical-section">
         <div class="d-flex justify-content-between align-items-center">
-          <a class="footer-section-title" data-bs-toggle="collapse" href="kba-299-cannot-allow-camera-policy-in-work-profile.html#item0" role="button" aria-expanded="false" aria-controls="item0"> 
+          <a class="footer-section-title" data-bs-toggle="collapse" href="kba-330-configure-factory-reset-protection.html#item0" role="button" aria-expanded="false" aria-controls="item0"> 
             <h6 class="body-3 fw-bold text-uppercase text-black pt-4">Knox admin documentation</h6>
           </a>
           <a class="btn-toggle d-inline-flex d-lg-none rounded border-0 fw-light" data-bs-toggle="collapse" data-bs-target="#item0" aria-expanded="false"></a>
@@ -5189,7 +5275,7 @@
       
       <div class="col-sm-12 col-md-6 col-lg-3 footer-vertical-section">
         <div class="d-flex justify-content-between align-items-center">
-          <a class="footer-section-title" data-bs-toggle="collapse" href="kba-299-cannot-allow-camera-policy-in-work-profile.html#item1" role="button" aria-expanded="false" aria-controls="item1"> 
+          <a class="footer-section-title" data-bs-toggle="collapse" href="kba-330-configure-factory-reset-protection.html#item1" role="button" aria-expanded="false" aria-controls="item1"> 
             <h6 class="body-3 fw-bold text-uppercase text-black pt-4">Support</h6>
           </a>
           <a class="btn-toggle d-inline-flex d-lg-none rounded border-0 fw-light" data-bs-toggle="collapse" data-bs-target="#item1" aria-expanded="false"></a>
@@ -5211,7 +5297,7 @@
       
       <div class="col-sm-12 col-md-6 col-lg-3 footer-vertical-section">
         <div class="d-flex justify-content-between align-items-center">
-          <a class="footer-section-title" data-bs-toggle="collapse" href="kba-299-cannot-allow-camera-policy-in-work-profile.html#item2" role="button" aria-expanded="false" aria-controls="item2"> 
+          <a class="footer-section-title" data-bs-toggle="collapse" href="kba-330-configure-factory-reset-protection.html#item2" role="button" aria-expanded="false" aria-controls="item2"> 
             <h6 class="body-3 fw-bold text-uppercase text-black pt-4">Samsung</h6>
           </a>
           <a class="btn-toggle d-inline-flex d-lg-none rounded border-0 fw-light" data-bs-toggle="collapse" data-bs-target="#item2" aria-expanded="false"></a>
