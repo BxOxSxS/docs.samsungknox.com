@@ -197,22 +197,9 @@
   
     <li class="mt-2">
     
-    <div class="d-flex justify-content-between cursor-pointer" data-bs-toggle="collapse" data-bs-target="#sub-knox-configure-get-started-before-you-begin-before-you-begin" aria-expanded="false">
-      <span class="body-5 text-black fw-light">Before you begin</span>
-      <a class="btn-toggle d-inline-flex rounded border-0 fw-light" data-bs-toggle="collapse" data-bs-target="#sub-knox-configure-get-started-before-you-begin-before-you-begin" aria-expanded="false"></a>
-    </div>
-      
-    <div class="collapse" id="sub-knox-configure-get-started-before-you-begin-before-you-begin">
-      <ul>
-      
-      
-  
-  
-    <li class="mt-2">
-    
     
     <div class="d-flex justify-content-between">
-      <a class="body-5 text-black fw-light" href="../../../get-started/before-you-begin/set-up-knox-configure.html">Set up Knox Configure</a>
+      <a class="body-5 text-black fw-light" href="../../../get-started/step-1.html">Step 1: Enable service, register reseller, approve devices</a>
     </div>
     
     </li>
@@ -223,7 +210,7 @@
     
     
     <div class="d-flex justify-content-between">
-      <a class="body-5 text-black fw-light" href="../../../get-started/before-you-begin/get-started-carousel-and-auto-tour.html">Get started carousel and auto tour</a>
+      <a class="body-5 text-black fw-light" href="../../../get-started/step-2.html">Step 2: Create a Setup/Dynamic profile</a>
     </div>
     
     </li>
@@ -234,53 +221,7 @@
     
     
     <div class="d-flex justify-content-between">
-      <a class="body-5 text-black fw-light" href="../../../get-started/before-you-begin/about-the-dashboard.html">About the Dashboard</a>
-    </div>
-    
-    </li>
-  </ul>
-    </div></li>
-  
-  
-  
-    <li class="mt-2">
-    
-    
-    <div class="d-flex justify-content-between">
-      <a class="body-5 text-black fw-light" href="../../../get-started/get-a-license/index.html">Get a license</a>
-    </div>
-    
-    </li>
-  
-  
-  
-    <li class="mt-2">
-    
-    
-    <div class="d-flex justify-content-between">
-      <a class="body-5 text-black fw-light" href="../../../get-started/add-devices.html">Add devices</a>
-    </div>
-    
-    </li>
-  
-  
-  
-    <li class="mt-2">
-    
-    
-    <div class="d-flex justify-content-between">
-      <a class="body-5 text-black fw-light" href="../../../get-started/create-a-profile.html">Create a profile</a>
-    </div>
-    
-    </li>
-  
-  
-  
-    <li class="mt-2">
-    
-    
-    <div class="d-flex justify-content-between">
-      <a class="body-5 text-black fw-light" href="../../../get-started/assign-a-profile-to-a-device.html">Assign a profile to a device</a>
+      <a class="body-5 text-black fw-light" href="../../../get-started/step-3.html">Step 3: Assign a profile to a device</a>
     </div>
     
     </li>
@@ -551,7 +492,7 @@
     
     
     <div class="d-flex justify-content-between">
-      <a class="body-5 text-black fw-light" href="../../register-a-reseller.html">Register a reseller</a>
+      <a class="body-5 text-black fw-light" href="../../manage-resellers.html">Manage resellers</a>
     </div>
     
     </li>
@@ -590,19 +531,6 @@
     </li>
   </ul>
     </div></li>
-  
-        
-          
-  
-  
-    <li class="mt-2">
-    
-    
-    <div class="d-flex justify-content-between">
-      <a class="body-5 text-black fw-light" href="../../../manage-licenses.html">Manage licenses</a>
-    </div>
-    
-    </li>
   
         
           
@@ -1284,6 +1212,11 @@
       
       
       
+        
+      
+      
+      
+      
         <p>Each Knox Configure managed device has its own unique device details screen and device log that can be periodically reviewed to assess a selected device&rsquo;s current configuration and event history.</p>
 <p>To review a particular device&rsquo;s details and log:</p>
 <ol>
@@ -1330,11 +1263,55 @@
 <p>Click <strong>OK</strong> to return to the selected device&rsquo;s device details screen.</p>
 </li>
 </ol>
+<h2 id="device-states">Device states</h2>
+<p>Devices that are submitted to Knox Configure progress through the following states when assigned profiles and configurations are pushed to the device:</p>
+<ul>
+<li>
+<p><strong>Unassigned</strong> &mdash; The device is uploaded to Knox Configure, but there are no profiles yet assigned or a previously applied profile has been unassigned.</p>
+</li>
+<li>
+<p><strong>Profile assigned</strong> &mdash; A profile was assigned to the device, but the device is yet to be configured. For example, the device may not have been powered on since a profile has been assigned.</p>
+</li>
+<li>
+<p><strong>In progress</strong> &mdash; A device profile assignment has been made and the subsequent device configuration is in progress and pending completion.</p>
+</li>
+<li>
+<p><strong>Error</strong> &mdash; A problem was encountered during device configuration rendering. For more information, see <a href="../../../troubleshoot/device-side-errors.html#configuration-errors">Configuration errors.</a></p>
+</li>
+<li>
+<p><strong>Canceled by user</strong> &mdash; The device user has skipped the device profile configuration. It must be restarted to configure the device.</p>
+</li>
+<li>
+<p><strong>Configured</strong> &mdash; The device has successfully received Knox Configure profile or the profile update has been pushed successfully.</p>
+</li>
+<li>
+<p><strong>Failed to configure</strong> &mdash; Device has failed to receive the profile, or a profile update was not successfully pushed.</p>
+</li>
+<li>
+<p><strong>Updates pushed</strong> &mdash; A profile update has been pushed to the device, but the device is still processing the update.</p>
+</li>
+<li>
+<p><strong>Locked</strong> &mdash; The device is locked in Knox Configure. Either you can unlock the device or the device user can input the provided password. Locked devices remain in their locked state even after the device&rsquo;s profile is unassigned.</p>
+</li>
+<li>
+<p><strong>Exchanging</strong> &mdash; The device had its device ID swapped. This device needs its profile re-assigned and updated back to an Assigned state.</p>
+</li>
+<li>
+<p><strong>Deactivated temporarily</strong> &mdash; The device has been temporarily deactivated by the IT admin to review and assess an issue before the device is activated again.</p>
+</li>
+</ul>
 
             
           </div>
           <div class="l-toh">
-            
+            <h2 class="body-4 fw-bold mt-0">On this page</h2>
+<aside class="table-of-headings">
+  <nav id="TableOfContents">
+  <ul>
+    <li><a href="../view-device-details-and-logs.html#device-states">Device states</a></li>
+  </ul>
+</nav>
+</aside>
           </div>
         </div> 
       </div><div>

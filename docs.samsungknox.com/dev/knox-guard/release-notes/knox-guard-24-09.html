@@ -306,12 +306,14 @@
       
       
       
+      
+      
         <h2 id="ability-to-restrict-android-debug-bridge">Ability to restrict Android Debug Bridge</h2>
-<p>Starting with the Knox Guard 24.09 release, you can restrict Android Debug Bridge (adb) for enhanced security. To do so, request for the permission to block <code>adb</code> on your Knox Guard enabled devices with Android 15 and higher. With the permission granted, use the <a href="../api.html#tag/Device/operation/blockadbCommand" target="_blank">Block/unblock the ADB command</a> API to enable or disable <code>adb</code> on select devices or the corresponding <a href="../api.html#tag/Device-Async/operation/blockAdbCommandAsync" target="_blank">Async API</a> to do the same for multiple devices in bulk.</p>
+<p>Starting with the Knox Guard 24.09 release, you can restrict Android Debug Bridge (adb) for enhanced security. To do so, request for the permission to block <code>adb</code> on your Knox Guard enabled devices with Android 15 and higher. With the permission granted, use the <a href="../api.html#tag/Device/operation/blockadbCommand" target="_blank">Block/unblock the ADB command</a> API to enable or disable <code>adb</code> on select devices or the corresponding <a href="../api.html#tag/Device-Async/operation/blockAdbCommandAsync" target="_blank">Async API</a> to enable or disable <code>adb</code> for multiple devices in bulk.</p>
 <div class="notice-caution"><p>When <code>adb</code> command is blocked for the device, device user may not receive proper customer support solution. You should consider this limitation and have a plan in place to address device user issues.</p></div>
-<h2 id="restricted-device-owner-provisioning">Restricted device owner provisioning</h2>
-<p>The <a href="https://source.android.com/docs/devices/admin#fully-managed" target="_blank">Fully managed device mode</a> or device owner (DO) provisioning provides full device management control to the MDM app. Starting with the Knox Guard 24.09 release, DO provisioning is blocked, by default, on all Knox Guard activated devices manufactured with Android 15 OS and higher.</p>
-<p>With the DO provisioning blocked, company-owned devices can’t be used for work. Only select partners can request the Samsung Admin to enable DO provisioning for them. With the permission granted, use the <a href="../api.html#tag/Device/operation/blockDOProvision" target="_blank">Block/unblock the DO provisioning</a> API to block or unblock DO provisioning on select devices or the corresponding <a href="../api.html#tag/Device-Async/operation/blockDOProvisionAsync" target="_blank">Async API</a> to do the same for multiple devices in bulk.</p>
+<h2 id="restricted-android-enterprise-provisioning">Restricted Android Enterprise provisioning</h2>
+<p>Previously, you could enroll Knox Guard activated devices into <a href="https://source.android.com/docs/devices/admin#how-works" target="_blank">Android Enterprise</a> as managed devices. With the Knox Guard 24.09 release, Knox Guard activated devices manufactured with Android 15 and higher OS can&rsquo;t be enrolled into Android Enterprise and managed with a UEM. This blocks IT admins from enabling fully managed and work profile device provisioning. The <a href="https://source.android.com/docs/devices/admin#fully-managed" target="_blank">Fully managed device provisioning mode</a> &mdash; also known as device owner (DO) provisioning mode &mdash; provides full device management control to the enterprise management app. The <a href="https://source.android.com/docs/devices/admin#work-profile" target="_blank">Work profile device provisioning mode</a> &mdash; also known as profile owner (PO) provisioning mode &mdash; allows personal devices to be enrolled as managed devices.</p>
+<p>To manage devices with Android Enterprise, you must unblock device provisioning in Knox Guard. Only select partners can submit a request to Samsung admins for Android Enterprise provisioning permissions. With the permission granted, use the <a href="../api.html#tag/Device/operation/blockDOProvision" target="_blank">Block/unblock Android Enterprise provisioning</a> API to block or unblock device provisioning on select devices or the corresponding <a href="../api.html#tag/Device-Async/operation/blockDOProvisionAsync" target="_blank">Async API</a> to block or unblock device provisioning for multiple devices in bulk.</p>
 <h2 id="learn-more-about-admin-features">Learn more about admin features</h2>
 <p>To learn about features available to admins in this release, see <a href="../../../admin/knox-guard/release-notes/24-09.html" target="_blank">Knox Guard 24.09 release notes</a> in the admin guide.</p>
 <a href="../release-notes.html"  class="btn d-inline-block button-subtle">Back to release notes</a>
@@ -324,7 +326,7 @@
   <nav id="TableOfContents">
   <ul>
     <li><a href="knox-guard-24-09.html#ability-to-restrict-android-debug-bridge">Ability to restrict Android Debug Bridge</a></li>
-    <li><a href="knox-guard-24-09.html#restricted-device-owner-provisioning">Restricted device owner provisioning</a></li>
+    <li><a href="knox-guard-24-09.html#restricted-android-enterprise-provisioning">Restricted Android Enterprise provisioning</a></li>
     <li><a href="knox-guard-24-09.html#learn-more-about-admin-features">Learn more about admin features</a></li>
   </ul>
 </nav>
