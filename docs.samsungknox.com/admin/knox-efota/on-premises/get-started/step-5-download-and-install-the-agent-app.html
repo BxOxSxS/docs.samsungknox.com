@@ -34,8 +34,7 @@
     ga('send', 'pageview');
   </script>
   
-<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start': new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0], j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src='https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);})(window,document,'script','dataLayer','GTM-P24TWCG');</script>
-  <meta name="viewport" content="width=device-width,height=device-height,initial-scale=1.0">
+<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start': new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0], j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src='https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);})(window,document,'script','dataLayer','GTM-P24TWCG');</script><meta name="viewport" content="width=device-width,height=device-height,initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <title>Step 5 &mdash; Download and install the agent app  | Knox E-FOTA  | Samsung Knox Documentation</title>
   <meta http-equiv="content-language" content="en">
@@ -1229,7 +1228,7 @@
     
     
     <div class="d-flex justify-content-between">
-      <a class="body-5 text-black fw-light" href="../appendix/configure-your-server-url-and-password-through-an-android-intent.html">Configure your server URL and password through an Android intent</a>
+      <a class="body-5 text-black fw-light" href="../appendix/remove-firmware-from-your-server/index.html">Remove firmware from your server</a>
     </div>
     
     </li>
@@ -1265,7 +1264,7 @@
             </div>
             
 
-  <p><span>Last updated July  19th, 2024</span></p>
+  <p><span>Last updated December  26th, 2024</span></p>
 
 
     
@@ -1314,8 +1313,6 @@
       
       
       
-        
-      
       
       
       
@@ -1344,7 +1341,7 @@
 <p><a href="step-5-download-and-install-the-agent-app.html#manually-install-the-package">Manually install the package</a></p>
 </li>
 <li>
-<p><a href="../../appendix/install-an-app-through-an-emm.html">Install the client through your EMM</a></p>
+<p><a href="step-5-download-and-install-the-agent-app.html#install-the-client-through-your-emm">Install the client through your EMM</a></p>
 </li>
 <li>
 <p><a href="step-5-download-and-install-the-agent-app.html#download-the-agent-app-through-a-qr-code">Download the client through a QR code</a></p>
@@ -1504,35 +1501,47 @@
 <p>Before you begin, ensure you have the following prepared:</p>
 <ul>
 <li>A device capable of creating and copying a text file to a Samsung Galaxy device. For example, a computer, tablet, or phone.</li>
-<li>Your organization&rsquo;s server, connected to the local network.</li>
-<li>A device secured by Samsung Knox, connected locally to the Knox E-FOTA On-Premises server.</li>
+<li>Your organization&rsquo;s Knox E-FOTA On-Premises server, connected to your local network.</li>
+<li>The TLS certificate <code>.pem</code> file used to connect to your Knox E-FOTA On-Premises server.</li>
+<li>A device secured by Samsung Knox, connected to your local network.</li>
 </ul>
 <h3 id="create-a-configuration-file">Create a configuration file</h3>
-<p>On the device you&rsquo;re using for text editing, you first need to create a file called efota_config. In a text editor of your choice, enter the URL of your on-premises server.</p>
-<p>The on-premises server URL is defined by your organization and is used to access the Knox E-FOTA On-Premises console. The default server URL defined in the E-FOTA On-Premises agent app is http://192.168.10.10:8080/admin, but this URL can be customized in your efota_config file. If you&rsquo;re not sure what this URL is, contact the Samsung installation engineer who configured your Knox E-FOTA On-Premises server.</p>
-<div class="notice-important"><p>If you specify a server URL in efota_config, the declared URL takes precedence over the default URL.</p></div>
+<p>On the device you&rsquo;re using for text editing, you first need to create a file called <code>efota_config</code>. In a text editor of your choice, enter the URL of your on-premises server.</p>
+<p>The on-premises server URL is defined by your organization and is used to access the Knox E-FOTA On-Premises console. The default server URL defined in the E-FOTA On-Premises agent app is http://192.168.10.10:8080/admin, but this URL can be customized in your <code>efota_config</code> file. If you&rsquo;re not sure what this URL is, contact the Samsung installation engineer who configured your Knox E-FOTA On-Premises server.</p>
+<div class="notice-important"><p>If you specify a server URL in <code>efota_config</code>, the declared URL takes precedence over the default URL.</p></div>
 <p>For example, the URL might be in one of the following formats:</p>
 <ul>
 <li>https://example-sec.fota.net:6443/admin/</li>
 <li>http://181.107.61.233:6380/admin/</li>
 </ul>
-<p>Then, enter the SSL certificate password &mdash; if any &mdash; on the line underneath.</p>
-<p>Next, save the file. Ensure the file isn&rsquo;t saved with a file extension. Your efota_config file should look like the following:</p>
-<pre tabindex="0"><code>https://example.server.url.com/admin/
-password_of_SSL_certificate
-</code></pre><p>For example:</p>
+<p>Next, save the file. Ensure the file isn&rsquo;t saved with a file extension. Your <code>efota_config</code> file should look similar to this:</p>
 <pre tabindex="0"><code>https://example-sec.fota.net:6443/admin/
-mypassword12#
-</code></pre><p>Alternatively, you can choose to set the server URL and password through an <a href="https://developer.android.com/reference/android/content/Intent" target="_blank">Android intent</a>. To do so, see <a href="../appendix/configure-your-server-url-and-password-through-an-android-intent.html">Configure your server URL and password through an Android intent</a>.</p>
-<h3 id="copy-the-configuration-file-to-the-device">Copy the configuration file to the device</h3>
-<p>There are two ways to get the configuration file on your device:</p>
+</code></pre><h3 id="transfer-the-files-to-the-device">Transfer the files to the device</h3>
+<p>Transfer the <code>efota_config</code> file and the TLS certificate <code>.pem</code> file to your device.</p>
+<p>There are two ways to get these files on your device:</p>
 <ul>
-<li>Use your EMM to push the file to your device&rsquo;s Downloads folder, or</li>
-<li>Copy the file from your computer to the device&rsquo;s Downloads folder</li>
+<li>Use your EMM to push the files to your device&rsquo;s Downloads folder, or</li>
+<li>Copy the files from your computer to the device&rsquo;s Downloads folder</li>
 </ul>
-<p>If you&rsquo;re copying the file from your computer, connect the device to your computer through USB. In your computer&rsquo;s file explorer, locate the efota_config file and copy it to your device&rsquo;s Downloads folder. Make sure the agent app APK you received from your local Samsung representative is also present in the Downloads folder.</p>
+<p>If you&rsquo;re copying the file from your computer, connect the device to your computer through USB. In your computer&rsquo;s file explorer, locate the <code>efota_config</code> file and the TLS certificate file and copy it to your device&rsquo;s Downloads folder. Make sure the agent app APK you received from your local Samsung representative is also present in the Downloads folder.</p>
 <h3 id="install-the-knox-e-fota-on-premises-app">Install the Knox E-FOTA On-Premises app</h3>
-<p>On the device, navigate to the Downloads folder and tap the agent app APK to install it. After it&rsquo;s installed, launch the app.</p>
+<p>On the device, navigate to the Downloads folder and tap the agent app APK to install it. After it&rsquo;s installed, launch the app. The Knox E-FOTA On-Premises app loads the server URL from <code>efota_config</code> and the TLS certificate <code>.pem</code> file to connect to your on-premises server.</p>
+<h2 id="install-the-client-through-your-emm">Install the client through your EMM</h2>
+<p>If you&rsquo;re using Knox E-FOTA On-Premises alongside an EMM, you can use your EMM to push the Knox E-FOTA On-Premises app to your devices.</p>
+<p>Your local Samsung representative provides you with the APK for the Knox E-FOTA On-Premises app. Follow your EMM&rsquo;s documentation to add an internal app and push it to your fleet of devices.</p>
+<p>The Knox E-FOTA On-Premises app supports a managed configuration, which lets you configure the URL and TLS certificate needed for the app to connect to your Knox E-FOTA On-Premises server. Follow your EMM&rsquo;s documentation on how to configure an app&rsquo;s managed configuration.</p>
+<h3 id="test-the-managed-configuration">Test the managed configuration</h3>
+<p>You may want to test the Knox E-FOTA On-Premises app&rsquo;s managed configuration on individual devices before deploying it to your device fleet with your EMM. You can do this with Google&rsquo;s <a href="https://play.google.com/store/apps/details?id=com.afwsamples.testdpc" target="_blank">TestDPC</a> to update managed configurations for apps on the device. Here is an example showing how to set an app&rsquo;s <a href="https://github.com/android/enterprise-samples/tree/main/ManagedConfigurations" target="_blank">managed configuration with TestDPC</a>.</p>
+<ol>
+<li>Deploy and setup <a href="https://github.com/googlesamples/android-testdpc" target="_blank">TestDPC</a> on the device.</li>
+<li>Open TestDPC, and tap on <strong>Managed configurations</strong>.</li>
+<li>On the dropdown, select the Knox E-FOTA On-Premises app, and tap <strong>LOAD MANIFEST RESTRICTIONS</strong>. The app&rsquo;s managed configuration opens with fields to set the server URL and TLS certificate.</li>
+<li>Tap on <code>server_url</code> and enter the URL for your Knox E-FOTA On-Premises server.</li>
+<li>Tap on <code>pem</code> and paste the contents of your pem file with your TLS certificate information.</li>
+<li>Tap <strong>SAVE</strong>.</li>
+<li>Open the Knox E-FOTA On-Premises app and verify that the server URL is correct and the app is able to connect to your server.</li>
+</ol>
+<p>For more information, please see Google&rsquo;s <a href="https://github.com/android/enterprise-samples/tree/main/ManagedConfigurations" target="_blank">Android Managed Configuration Sample</a>.</p>
 <h2 id="download-the-agent-app-through-a-qr-code">Download the agent app through a QR code</h2>
 <div class="notice-important"><p>Before you can download the agent app from Knox E-FOTA On-Premises to your devices, you must first upload the agent app to your Knox E-FOTA On-Premises server. You can do this on the <a href="../settings-menu/view-the-agent-app-version.html">agent</a> page through the settings menu.</p></div>
 <p>You can download the agent app onto your devices using a QR code:</p>
@@ -1558,8 +1567,13 @@ mypassword12#
     <li><a href="step-5-download-and-install-the-agent-app.html#manually-install-the-package">Manually install the package</a>
       <ul>
         <li><a href="step-5-download-and-install-the-agent-app.html#create-a-configuration-file">Create a configuration file</a></li>
-        <li><a href="step-5-download-and-install-the-agent-app.html#copy-the-configuration-file-to-the-device">Copy the configuration file to the device</a></li>
+        <li><a href="step-5-download-and-install-the-agent-app.html#transfer-the-files-to-the-device">Transfer the files to the device</a></li>
         <li><a href="step-5-download-and-install-the-agent-app.html#install-the-knox-e-fota-on-premises-app">Install the Knox E-FOTA On-Premises app</a></li>
+      </ul>
+    </li>
+    <li><a href="step-5-download-and-install-the-agent-app.html#install-the-client-through-your-emm">Install the client through your EMM</a>
+      <ul>
+        <li><a href="step-5-download-and-install-the-agent-app.html#test-the-managed-configuration">Test the managed configuration</a></li>
       </ul>
     </li>
     <li><a href="step-5-download-and-install-the-agent-app.html#download-the-agent-app-through-a-qr-code">Download the agent app through a QR code</a></li>

@@ -34,10 +34,9 @@
     ga('send', 'pageview');
   </script>
   
-<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start': new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0], j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src='https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);})(window,document,'script','dataLayer','GTM-P24TWCG');</script>
-  <meta name="viewport" content="width=device-width,height=device-height,initial-scale=1.0">
+<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start': new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0], j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src='https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);})(window,document,'script','dataLayer','GTM-P24TWCG');</script><meta name="viewport" content="width=device-width,height=device-height,initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title>Configure your server URL and password through an Android intent  | Knox E-FOTA  | Samsung Knox Documentation</title>
+  <title>Remove firmware from your server  | Knox E-FOTA  | Samsung Knox Documentation</title>
   <meta http-equiv="content-language" content="en">
   <meta name="language" content="en">
   <script src="../../../../assets/js/bundle.js"></script>
@@ -1229,7 +1228,7 @@
     
     
     <div class="d-flex justify-content-between">
-      <a class="body-5 text-black active" href="../configure-your-server-url-and-password-through-an-android-intent.html">Configure your server URL and password through an Android intent</a>
+      <a class="body-5 text-black active" href="index.html">Remove firmware from your server</a>
     </div>
     
     </li>
@@ -1261,11 +1260,11 @@
 
             </div>
             <div class="mt-4">
-              <h1>Configure your server URL and password through an Android intent</h1>
+              <h1>Remove firmware from your server</h1>
             </div>
             
 
-  <p><span>Last updated December  14th, 2023</span></p>
+  <p><span>Last updated December  26th, 2024</span></p>
 
 
     
@@ -1278,59 +1277,48 @@
 
 
 
-
-      
-      
-      
-      
-      
-        <p>When you download and install the Knox E-FOTA On-Premises agent app, you can choose to set the server URL and password through an <a href="https://developer.android.com/reference/android/content/Intent" target="_blank">Android intent</a>. To do so, refer to the following sample code:</p>
-<div class="highlight"><pre tabindex="0" style=";-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#408080;font-style:italic">// package name, action
-</span></span></span><span style="display:flex;"><span><span style="color:#408080;font-style:italic"></span><span style="color:#008000;font-weight:bold">final</span> String PACKAGE_NAME   <span style="color:#666">=</span> <span style="color:#ba2121">&#34;com.samsung.android.efotaagent&#34;</span><span style="color:#666">;</span>
-</span></span><span style="display:flex;"><span><span style="color:#008000;font-weight:bold">final</span> String ACTION_CONFIG_MODE <span style="color:#666">=</span> PACKAGE_NAME <span style="color:#666">+</span> <span style="color:#ba2121">&#34;.CONFIG_MODE&#34;</span><span style="color:#666">;</span>
-</span></span><span style="display:flex;"><span><span style="color:#008000;font-weight:bold">final</span> String ACTION_SERVER_URL <span style="color:#666">=</span> PACKAGE_NAME <span style="color:#666">+</span> <span style="color:#ba2121">&#34;.SERVER_URL&#34;</span><span style="color:#666">;</span>
-</span></span><span style="display:flex;"><span><span style="color:#008000;font-weight:bold">final</span> String ACTION_BKS_PASSWORD <span style="color:#666">=</span> PACKAGE_NAME<span style="color:#666">+</span><span style="color:#ba2121">&#34;.BKS_INFO&#34;</span><span style="color:#666">;</span>
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#408080;font-style:italic">// set Config mode
-</span></span></span><span style="display:flex;"><span><span style="color:#408080;font-style:italic"></span><span style="color:#008000;font-weight:bold">final</span> String CONFIG_MODE_EXTRA <span style="color:#666">=</span> <span style="color:#ba2121">&#34;MODE&#34;</span><span style="color:#666">;</span>
-</span></span><span style="display:flex;"><span><span style="color:#008000;font-weight:bold">final</span> String CONFIG_MODE_FILE <span style="color:#666">=</span> <span style="color:#ba2121">&#34;file&#34;</span><span style="color:#666">;</span>
-</span></span><span style="display:flex;"><span><span style="color:#008000;font-weight:bold">final</span> String CONFIG_MODE_INTENT <span style="color:#666">=</span> <span style="color:#ba2121">&#34;intent&#34;</span><span style="color:#666">;</span>
-</span></span><span style="display:flex;"><span><span style="color:#408080;font-style:italic">// set server URL
-</span></span></span><span style="display:flex;"><span><span style="color:#408080;font-style:italic"></span><span style="color:#008000;font-weight:bold">final</span> String SERVER_URL_EXTRA <span style="color:#666">=</span> <span style="color:#ba2121">&#34;URL&#34;</span><span style="color:#666">;</span>
-</span></span><span style="display:flex;"><span><span style="color:#008000;font-weight:bold">final</span> String SERVER_URL <span style="color:#666">=</span> <span style="color:#ba2121">&#34;https://example.server.url.com/admin/&#34;</span><span style="color:#666">;</span>
-</span></span><span style="display:flex;"><span><span style="color:#408080;font-style:italic">// set server password
-</span></span></span><span style="display:flex;"><span><span style="color:#408080;font-style:italic"></span><span style="color:#008000;font-weight:bold">final</span> String BKS_INFO_EXTRA <span style="color:#666">=</span> <span style="color:#ba2121">&#34;BKS&#34;</span><span style="color:#666">;</span>
-</span></span><span style="display:flex;"><span><span style="color:#008000;font-weight:bold">final</span> String BKS_PASSWORD <span style="color:#666">=</span> <span style="color:#ba2121">&#34;password_of_server&#34;</span><span style="color:#666">;</span>
-</span></span><span style="display:flex;"><span><span style="color:#408080;font-style:italic">// set config mode to intent
-</span></span></span><span style="display:flex;"><span><span style="color:#408080;font-style:italic"></span>sendBroadcast<span style="color:#666">(</span><span style="color:#008000;font-weight:bold">new</span> Intent<span style="color:#666">()</span>
-</span></span><span style="display:flex;"><span>       <span style="color:#666">.</span><span style="color:#7d9029">setAction</span><span style="color:#666">(</span>ACTION_CONFIG_MODE<span style="color:#666">)</span>
-</span></span><span style="display:flex;"><span>       <span style="color:#666">.</span><span style="color:#7d9029">putExtra</span><span style="color:#666">(</span>CONFIG_MODE_EXTRA<span style="color:#666">,</span> CONFIG_MODE_INTENT<span style="color:#666">)</span>
-</span></span><span style="display:flex;"><span>       <span style="color:#666">.</span><span style="color:#7d9029">setPackage</span><span style="color:#666">(</span>PACKAGE_NAME<span style="color:#666">)</span>
-</span></span><span style="display:flex;"><span>        <span style="color:#666">);</span>
-</span></span><span style="display:flex;"><span><span style="color:#408080;font-style:italic">// set URL by intent
-</span></span></span><span style="display:flex;"><span><span style="color:#408080;font-style:italic"></span>sendBroadcast<span style="color:#666">(</span><span style="color:#008000;font-weight:bold">new</span> Intent<span style="color:#666">()</span>
-</span></span><span style="display:flex;"><span>       <span style="color:#666">.</span><span style="color:#7d9029">setAction</span><span style="color:#666">(</span>ACTION_SERVER_URL<span style="color:#666">)</span>
-</span></span><span style="display:flex;"><span>       <span style="color:#666">.</span><span style="color:#7d9029">putExtra</span><span style="color:#666">(</span>SERVER_URL_EXTRA<span style="color:#666">,</span> SERVER_URL<span style="color:#666">)</span>
-</span></span><span style="display:flex;"><span>       <span style="color:#666">.</span><span style="color:#7d9029">setPackage</span><span style="color:#666">(</span>PACKAGE_NAME<span style="color:#666">)</span>
-</span></span><span style="display:flex;"><span>        <span style="color:#666">);</span>
-</span></span><span style="display:flex;"><span><span style="color:#408080;font-style:italic">// set password by intent
-</span></span></span><span style="display:flex;"><span><span style="color:#408080;font-style:italic"></span>sendBroadcast<span style="color:#666">(</span><span style="color:#008000;font-weight:bold">new</span> Intent<span style="color:#666">()</span>
-</span></span><span style="display:flex;"><span>       <span style="color:#666">.</span><span style="color:#7d9029">setAction</span><span style="color:#666">(</span>ACTION_BKS_PASSWORD<span style="color:#666">)</span>
-</span></span><span style="display:flex;"><span>       <span style="color:#666">.</span><span style="color:#7d9029">putExtra</span><span style="color:#666">(</span>BKS_INFO_EXTRA<span style="color:#666">,</span> BKS_PASSWORD<span style="color:#666">)</span>
-</span></span><span style="display:flex;"><span>       <span style="color:#666">.</span><span style="color:#7d9029">setPackage</span><span style="color:#666">(</span>PACKAGE_NAME<span style="color:#666">)</span>
-</span></span><span style="display:flex;"><span>        <span style="color:#666">);</span>
-</span></span><span style="display:flex;"><span><span style="color:#408080;font-style:italic">// set config mode to file (efota_config)
-</span></span></span><span style="display:flex;"><span><span style="color:#408080;font-style:italic"></span>sendBroadcast<span style="color:#666">(</span><span style="color:#008000;font-weight:bold">new</span> Intent<span style="color:#666">()</span>
-</span></span><span style="display:flex;"><span>       <span style="color:#666">.</span><span style="color:#7d9029">setAction</span><span style="color:#666">(</span>ACTION_CONFIG_MODE<span style="color:#666">)</span>
-</span></span><span style="display:flex;"><span>       <span style="color:#666">.</span><span style="color:#7d9029">putExtra</span><span style="color:#666">(</span>CONFIG_MODE_EXTRA<span style="color:#666">,</span> CONFIG_MODE_FILE<span style="color:#666">)</span>
-</span></span><span style="display:flex;"><span>       <span style="color:#666">.</span><span style="color:#7d9029">setPackage</span><span style="color:#666">(</span>PACKAGE_NAME<span style="color:#666">)</span>
-</span></span><span style="display:flex;"><span>        <span style="color:#666">);</span>
-</span></span></code></pre></div><p>To learn more about how to download and install the Knox E-FOTA On-Premises agent app, see <a href="../../get-started/step-5-download-and-install-the-agent-app.html">Step 5 &mdash; Download and install the agent app</a>.</p>
-
+<p>You can use the following commands to remove firmware from your Knox E-FOTA On-Premises server.</p>
+<h2 id="red-hat-enterprise-linux">Red Hat Enterprise Linux</h2>
+<h3 id="delete-all-firmware-files">Delete all firmware files</h3>
+<div class="highlight"><pre tabindex="0" style=";-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>rm -rf /dfm/minio/data/dfm-fw-storage/*
+</span></span></code></pre></div><h3 id="delete-all-db-firmware-information">Delete all DB firmware information</h3>
+<div class="highlight"><pre tabindex="0" style=";-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>podman <span style="color:#008000">exec</span> -it dfm-mysql mysql -uroot -p1q2w3e4r
+</span></span><span style="display:flex;"><span>use dfm_core_db;
+</span></span><span style="display:flex;"><span>delete from tczs_fw_ver;
+</span></span><span style="display:flex;"><span>delete from tczs_fw_scnr;
+</span></span><span style="display:flex;"><span>delete from tczs_fw_desc;
+</span></span></code></pre></div><h2 id="ubuntu">Ubuntu</h2>
+<h3 id="delete-all-firmware-files-1">Delete all firmware files</h3>
+<div class="highlight"><pre tabindex="0" style=";-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>rm -rf /dfm/minio/data/dfm-fw-storage/*
+</span></span></code></pre></div><h3 id="delete-all-db-firmware-information-1">Delete all DB firmware information</h3>
+<div class="highlight"><pre tabindex="0" style=";-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>docker <span style="color:#008000">exec</span> -it dfm-mysql mysql -uroot -p1q2w3e4r
+</span></span><span style="display:flex;"><span>use dfm_core_db;
+</span></span><span style="display:flex;"><span>delete from tczs_fw_ver;
+</span></span><span style="display:flex;"><span>delete from tczs_fw_scnr;
+</span></span><span style="display:flex;"><span>delete from tczs_fw_desc;
+</span></span></code></pre></div>
             
           </div>
           <div class="l-toh">
-            
+            <h2 class="body-4 fw-bold mt-0">On this page</h2>
+<aside class="table-of-headings">
+  <nav id="TableOfContents">
+  <ul>
+    <li><a href="index.html#red-hat-enterprise-linux">Red Hat Enterprise Linux</a>
+      <ul>
+        <li><a href="index.html#delete-all-firmware-files">Delete all firmware files</a></li>
+        <li><a href="index.html#delete-all-db-firmware-information">Delete all DB firmware information</a></li>
+      </ul>
+    </li>
+    <li><a href="index.html#ubuntu">Ubuntu</a>
+      <ul>
+        <li><a href="index.html#delete-all-firmware-files-1">Delete all firmware files</a></li>
+        <li><a href="index.html#delete-all-db-firmware-information-1">Delete all DB firmware information</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+</aside>
           </div>
         </div> 
       </div><div>
@@ -1361,7 +1349,7 @@
       
       <div class="col-sm-12 col-md-6 col-lg-3 footer-vertical-section">
         <div class="d-flex justify-content-between align-items-center">
-          <a class="footer-section-title" data-bs-toggle="collapse" href="../configure-your-server-url-and-password-through-an-android-intent.html#item0" role="button" aria-expanded="false" aria-controls="item0"> 
+          <a class="footer-section-title" data-bs-toggle="collapse" href="index.html#item0" role="button" aria-expanded="false" aria-controls="item0"> 
             <h6 class="body-3 fw-bold text-uppercase text-black pt-4">Knox admin documentation</h6>
           </a>
           <a class="btn-toggle d-inline-flex d-lg-none rounded border-0 fw-light" data-bs-toggle="collapse" data-bs-target="#item0" aria-expanded="false"></a>
@@ -1495,7 +1483,7 @@
       
       <div class="col-sm-12 col-md-6 col-lg-3 footer-vertical-section">
         <div class="d-flex justify-content-between align-items-center">
-          <a class="footer-section-title" data-bs-toggle="collapse" href="../configure-your-server-url-and-password-through-an-android-intent.html#item1" role="button" aria-expanded="false" aria-controls="item1"> 
+          <a class="footer-section-title" data-bs-toggle="collapse" href="index.html#item1" role="button" aria-expanded="false" aria-controls="item1"> 
             <h6 class="body-3 fw-bold text-uppercase text-black pt-4">Support</h6>
           </a>
           <a class="btn-toggle d-inline-flex d-lg-none rounded border-0 fw-light" data-bs-toggle="collapse" data-bs-target="#item1" aria-expanded="false"></a>
@@ -1517,7 +1505,7 @@
       
       <div class="col-sm-12 col-md-6 col-lg-3 footer-vertical-section">
         <div class="d-flex justify-content-between align-items-center">
-          <a class="footer-section-title" data-bs-toggle="collapse" href="../configure-your-server-url-and-password-through-an-android-intent.html#item2" role="button" aria-expanded="false" aria-controls="item2"> 
+          <a class="footer-section-title" data-bs-toggle="collapse" href="index.html#item2" role="button" aria-expanded="false" aria-controls="item2"> 
             <h6 class="body-3 fw-bold text-uppercase text-black pt-4">Samsung</h6>
           </a>
           <a class="btn-toggle d-inline-flex d-lg-none rounded border-0 fw-light" data-bs-toggle="collapse" data-bs-target="#item2" aria-expanded="false"></a>
