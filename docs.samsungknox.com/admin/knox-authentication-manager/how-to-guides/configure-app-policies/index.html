@@ -305,7 +305,7 @@
     
     
     <div class="d-flex justify-content-between">
-      <a class="body-5 text-black fw-light" href="../change-the-sign-in-method.html">Change the sign in method</a>
+      <a class="body-5 text-black fw-light" href="../change-authentication-methods.html">Change authentication methods</a>
     </div>
     
     </li>
@@ -327,18 +327,7 @@
     
     
     <div class="d-flex justify-content-between">
-      <a class="body-5 text-black fw-light" href="../submit-in-app-feedback.html">Submit in-app feedback</a>
-    </div>
-    
-    </li>
-  
-  
-  
-    <li class="mt-2">
-    
-    
-    <div class="d-flex justify-content-between">
-      <a class="body-5 text-black fw-light" href="../use-debug-mode/index.html">Use Debug mode</a>
+      <a class="body-5 text-black fw-light" href="../send-device-log-files/index.html">Send device log files</a>
     </div>
     
     </li>
@@ -420,7 +409,7 @@
             </div>
             
 
-  <p><span>Last updated November  14th, 2024</span></p>
+  <p><span>Last updated January  8th, 2025</span></p>
 
 
     
@@ -458,12 +447,18 @@
       
       
       
+        
+      
+      
+      
+      
+      
         <p>Before deploying Knox Authentication Manager as a managed app to your devices, you&rsquo;ll need to configure several app policies in your UEM or EMM. The following tables describe each policy and the options available.</p>
 <ol>
 <li>For Knox Manage admins, see <a href="../../../knox-manage/configure/applications/assign-applications/assign-managed-google-play-apps.html">Assign Managed Google Play apps</a> for instructions on managing app configurations.</li>
 <li>For VMware Workspace ONE<sup id="fnref:1"><a href="../configure-app-policies.html#fn:1" class="footnote-ref" role="doc-noteref">1</a></sup>, Microsoft Intune, and SOTI MobiControl admins, refer to their respective documentation for more details.</li>
 </ol>
-<div class="notice-note"><p>For all policy settings, the following special characters are NOT permitted:<code>. # $ [ ] & ; < > "</code></p></div>
+<div class="notice-note"><p>For all policy settings, the following special characters are not permitted:<code>. # $ [ ] & ; < > "</code></p></div>
 <h2 id="basic-configuration-information">Basic configuration information</h2>
 <div class="overflow-auto my-3"><table>
 <thead>
@@ -496,8 +491,8 @@
 <tr>
 <td>Auto delete unused profile after (months)</td>
 <td>Yes</td>
-<td>The number of months that a profile must remain unused before being automatically deleted from system. This field is mandatory.</td>
-<td>Any numerical value from 1 – 36.</td>
+<td>The number of months that a profile must remain unused before being automatically deleted from system. This field is mandatory. <br><br> <div class="notice-note"><p>This policy setting applies only to Knox Authentication Manager v1.7 and higher. For devices running earlier versions, the default of 3 months is always applied. For more information, see <a href="../../kbas/kba-1362-auto-delete-unused-profile-after-policy-automatically-set-to-3-months.html">updates to the Auto delete unused profile policy</a>.</p></div></td>
+<td>Any numerical value from 1 — 36.</td>
 </tr>
 </tbody>
 </table></div>
@@ -525,6 +520,12 @@
 <td>Any text string consisting of alphanumeric characters. Max 100 characters.</td>
 </tr>
 <tr>
+<td>Show device serial number</td>
+<td>Yes</td>
+<td>Displays the device&rsquo;s serial number on the sign-in screen. <br><br> <div class="notice-note"><p>This policy applies only to Knox Authentication Manager v1.7 and higher.</p></div></td>
+<td><strong>True</strong> or <strong>False</strong></td>
+</tr>
+<tr>
 <td>Admin PIN</td>
 <td>Yes</td>
 <td>The PIN number required in order to exit Knox Authentication Manager&rsquo;s sign in screen.</td>
@@ -532,7 +533,7 @@
 </tr>
 </tbody>
 </table></div>
-<h2 id="manage-login-controls">Manage login controls</h2>
+<h2 id="manage-sign-in-controls">Manage sign in controls</h2>
 <div class="overflow-auto my-3"><table>
     <tr>
         <th scope="col">Policy name</th>
@@ -555,37 +556,105 @@
         </td>
     </tr>
     <tr>
-        <td>Main login method</td>
+        <td>Main sign in method</td>
         <td>Yes</td>
         <td>Determines how users sign in to Knox Authentication Manager. </td>
         <td>
             <ul>
-                <li><strong>PIN+Face</strong> — Users sign into the app by first entering a PIN number, then scanning their face. If you select this option, you must also select Yes in the following field to confirm that you agree to the biometric privacy notification.</li>
+                <li><strong>PIN+Face</strong> — Users sign into the app by first entering a PIN number, then scanning their face. If you select this option, you must also select **Yes** in the following field to confirm that you agree to the biometric privacy notification.</li>
                 <li><strong>PIN only</strong> — Users sign into the app using their PIN number only.</li>
-                <li><strong>Manual</strong> — Users sign into the app using their identity provider credentials (for example, their Microsoft EntraID username and password)</li>
+                <li><strong>Manual</strong> — Users sign into the app using their identity provider credentials (for example, their Microsoft EntraID username and password).</li>
             </ul>
         </td>
     </tr>
     <tr>
-        <td>I have read and understand the notice in the description (required for Face login)</td>
-        <td>Yes — if you selected <strong>PIN + Face</strong> as a login method.</td>
-        <td>This policy confirms that you've read and acknowledged the biometric privacy notice, and only appears after you select <strong>PIN+Face</strong> as the app's main login method.</td>
+        <td>I have read and understand the notice in the description (required for Face authentication)</td>
+        <td>Yes — if you selected <strong>PIN+Face</strong> as a sign in method.</td>
+        <td>This policy confirms that you've read and acknowledged the biometric privacy notice, and only appears after you select <strong>PIN+Face</strong> as the app's main sign in method.</td>
         <td>
             <ul>
                 <li><strong>No response</strong> — User will sign in using <strong>Manual</strong> authentication</li>
-                <li><strong>Yes</strong> — You're using a login method that collects a user's biometric information and you've read and acknowledged the privacy notice.</li>
+                <li><strong>Yes</strong> — You're using a sign in method that collects a user's biometric information and you've read and acknowledged the privacy notice.</li>
             </ul>
         </td>
     </tr>
     <tr>
         <td>Main Login PIN Length</td>
         <td>Yes</td>
-        <td>Sets the required PIN length when <strong>PIN + Face</strong> or <strong>PIN only</strong> login method is used.</td>
-        <td>An integer reporesenting the required PIN length.</td>
+        <td>Sets the required PIN length when <strong>PIN+Face</strong> or <strong>PIN only</strong> sign in is used.</td>
+        <td>An integer representing the required PIN length.</td>
+    </tr>
+</table></div>
+<h2 id="manage-sync-controls">Manage sync controls</h2>
+<div class="overflow-auto my-3"><table>
+<tr>
+        <th scope="col">Policy name</th>
+        <th scope="col">Required</th>
+        <th scope="col">Description</th>
+        <th scope="col">Options</th>
+    </tr>
+        <tr>
+        <td>Enable syncing</td>
+        <td>Yes</td>
+        <td>Enables device-to-device data syncing. Disabling this policy is only recommended for dedicated devices.<br><br> If set to <b>False</b>, only the <b>Sync Group ID</b> policy is required in the <b>Manage sync controls</b> group.<br> <div class="notice-note"><p>When device syncing is disabled, no network traffic is sent to <a href="https://firebase.google.com/" target="_blank">Google Firebase</a>.</p></div></td>
+        <td><b>True</b>  or <b>False</b></td>
+    </tr>
+    <tr>
+        <td>Sync Org ID</td>
+        <td>Yes</td>
+        <td>Sets a single identifier for your company or organization, under which your device sync groups are organized.</td>
+        <td>Enter an Org ID consisting of only letters and numbers. This should be the same for devices that you want to sync with one another.</td>
+    </tr>
+    <tr>
+        <td>Sync Devices By</td>
+        <td>Yes</td>
+        <td>Determines how device sync groups are defined.</td>
+        <td>
+            <ul>
+                <li><strong>Group ID</strong> — Devices sync when they're in the same admin-defined group.</li>
+                <li><strong>WiFi Subnet</strong> — Devices sync when they're on the same Wi-Fi subnet.</li>
+            </ul>
+        </td>
+    </tr>
+    <tr>
+        <td>Sync Group ID</td>
+        <td>Yes</td>
+        <td>
+            <p>Sets a unique identifier for a group of devices across which user profiles will be synced. This setting only applies if your devices sync by group ID.</p>
+            <p>Group IDs often correspond to device groups you configured in your UEM or EMM.</p>
+        </td>
+        <td>Enter an group ID consisting of only letters and numbers. This should be the same for devices that you want to sync with one another.</td>
+    </tr>
+    <tr>
+        <td>Sync Group Key</td>
+        <td>Yes</td>
+        <td>Sets a sync group key to encrypt and protect user profiles and device group communication.</td>
+        <td>
+            <p>Enter a 32-character key consisting of only letters and numbers. This should be the same for devices that you want to sync with one another. </p>
+            <p>One way to create the key is to run <code>openssl rand -base64 24</code> in a terminal.</p>
+        </td>
+    </tr>
+    <tr>
+        <td>Sync Send UDP Port</td>
+        <td>Yes</td>
+        <td>Specifies a UDP port number on devices which is used to send device communications such as sync requests</td>
+        <td>Enter a UDP port number. If left unset, the default is <strong>49158</strong>.</td>
+    </tr>
+    <tr>
+        <td>Sync Receive UDP Port</td>
+        <td>Yes</td>
+        <td>Specifies a UDP port number on devices which is used to send device communications such as sync requests.</td>
+        <td>Enter a UDP port number. If left unset, the default is <strong>49159</strong>.</td>
+    </tr>
+    <tr>
+        <td>Sync TCP Port</td>
+        <td>Yes</td>
+        <td>Specifies a TLS communication port number on devices which is used to sync data between devices.</td>
+        <td>Enter a TLS communication port. If left unset, the default is <strong>7788</strong>.</td>
     </tr>
 </table></div>
 <h2 id="manage-kam-behavior">Manage KAM behavior</h2>
-<div class="notice-note"><p>The following policies are NOT applicable if you’re using <strong>VMware Workspace ONE with launcher login screen</strong> or <strong>Microsoft Intune with Managed Home Screen</strong> as your UEM or EMM.</p></div>
+<div class="notice-note"><p>The following policies are not applicable if you’re using <strong>VMware Workspace ONE with launcher login screen</strong> or <strong>Microsoft Intune with Managed Home Screen</strong> as your UEM or EMM.</p></div>
 <div class="overflow-auto my-3"><table>
 <thead>
 <tr>
@@ -658,87 +727,6 @@
 </tr>
 </tbody>
 </table></div>
-<h2 id="manage-sync-controls">Manage sync controls</h2>
-<div class="overflow-auto my-3"><table>
-<tr>
-        <th scope="col">Policy name</th>
-        <th scope="col">Required</th>
-        <th scope="col">Description</th>
-        <th scope="col">Options</th>
-    </tr>
-    <tr>
-        <td>Sync Org ID</td>
-        <td>Yes</td>
-        <td>Sets a single identifier for your company or organization, under which your device sync groups are organized.</td>
-        <td>Enter an Org ID consisting of only letters and numbers. This should be the same for devices that you want to sync with one another.</td>
-    </tr>
-    <tr>
-        <td>Sync Devices By</td>
-        <td>Yes</td>
-        <td>Determines how device sync groups are defined.</td>
-        <td>
-            <ul>
-                <li><strong>Group ID</strong> — Devices sync when they're in the same admin-defined group.</li>
-                <li><strong>WiFi Subnet</strong> — Devices sync when they're on the same Wi-Fi subnet.</li>
-            </ul>
-        </td>
-    </tr>
-    <tr>
-        <td>Sync Group ID</td>
-        <td>Yes</td>
-        <td>
-            <p>Sets a unique identifier for a group of devices across which user profiles will be synced. This setting only applies if your devices sync by group ID.</p>
-            <p>Group IDs often correspond to device groups you configured in your UEM or EMM.</p>
-        </td>
-        <td>Enter an group ID consisting of only letters and numbers. This should be the same for devices that you want to sync with one another.</td>
-    </tr>
-    <tr>
-        <td>Sync Group Key</td>
-        <td>Yes</td>
-        <td>Sets a sync group key to encrypt and protect user profiles and device group communication.</td>
-        <td>
-            <p>Enter a 32-character key consisting of only letters and numbers. This should be the same for devices that you want to sync with one another. </p>
-            <p>One way to create the key is to run <code>openssl rand -base64 24</code> in a terminal.</p>
-        </td>
-    </tr>
-    <tr>
-        <td>Sync Send UDP Port</td>
-        <td>Yes</td>
-        <td>Specifies a UDP port number on devices which is used to send device communications such as sync requests</td>
-        <td>Enter a UDP port number. If left unset, the default is <strong>49158</strong>.</td>
-    </tr>
-    <tr>
-        <td>Sync Receive UDP Port</td>
-        <td>Yes</td>
-        <td>Specifies a UDP port number on devices which is used to send device communications such as sync requests.</td>
-        <td>Enter a UDP port number. If left unset, the default is <strong>49159</strong>.</td>
-    </tr>
-    <tr>
-        <td>Sync TCP Port</td>
-        <td>Yes</td>
-        <td>Specifies a TLS communication port number on devices which is used to sync data between devices.</td>
-        <td>Enter a TLS communication port. If left unset, the default is <strong>7788</strong>.</td>
-    </tr>
-</table></div>
-<h2 id="manage-debug-controls">Manage debug controls</h2>
-<div class="overflow-auto my-3"><table>
-<thead>
-<tr>
-<th>Policy</th>
-<th>Required</th>
-<th>Description</th>
-<th>Options</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>Debug mode</td>
-<td>No</td>
-<td>Enable Debug mode settings on the Knox Authentication Manager app.</td>
-<td><strong>True</strong> or <strong>False</strong></td>
-</tr>
-</tbody>
-</table></div>
 <div class="footnotes" role="doc-endnotes">
 <hr>
 <ol>
@@ -757,10 +745,9 @@
   <ul>
     <li><a href="../configure-app-policies.html#basic-configuration-information">Basic configuration information</a></li>
     <li><a href="../configure-app-policies.html#customize-kam-home-screen">Customize KAM home screen</a></li>
-    <li><a href="../configure-app-policies.html#manage-login-controls">Manage login controls</a></li>
-    <li><a href="../configure-app-policies.html#manage-kam-behavior">Manage KAM behavior</a></li>
+    <li><a href="../configure-app-policies.html#manage-sign-in-controls">Manage sign in controls</a></li>
     <li><a href="../configure-app-policies.html#manage-sync-controls">Manage sync controls</a></li>
-    <li><a href="../configure-app-policies.html#manage-debug-controls">Manage debug controls</a></li>
+    <li><a href="../configure-app-policies.html#manage-kam-behavior">Manage KAM behavior</a></li>
   </ul>
 </nav>
 </aside>

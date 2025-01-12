@@ -4942,7 +4942,7 @@
             </div>
             
 
-  <p><span>Last updated February  28th, 2024</span></p>
+  <p><span>Last updated January  8th, 2025</span></p>
 
 
     
@@ -4996,31 +4996,6 @@
       
       
         
-      
-      
-      
-      
-        
-      
-      
-      
-      
-      
-        
-      
-      
-      
-      
-      
-      
-        
-      
-      
-      
-      
-        
-      
-      
       
       
       
@@ -5155,97 +5130,6 @@
 <li><strong>Save</strong> your changes.</li>
 </ol>
 <p>Once the app is configured with an AUMID, it&rsquo;s available for selection during configuration.</p>
-<h2 id="install-the-kiosk-browser-app-on-a-multi-app-kiosk">Install the Kiosk Browser app on a multi-app kiosk</h2>
-<p>Unlike single-app kiosks, a multi-app kiosk needs a special offline license version of Microsoft&rsquo;s Kiosk Browser if you want to use that app. Once you obtain it, you must manually install it to the device as a provisioning package (PPKG) file.</p>
-<p>To install the Kiosk Browser app for a multi-app kiosk, first obtain the offline license version of the Knox Browser app:</p>
-<ol>
-<li>
-<p>Sign in to the <a href="https://businessstore.microsoft.com" target="_blank">Microsoft Store for Business</a> with a Microsoft account that has the admin role in your enterprise.</p>
-</li>
-<li>
-<p>Search for and select the official <strong>Kiosk Browser</strong> app in the shop.</p>
-</li>
-<li>
-<p>On the app&rsquo;s page, copy the app&rsquo;s package family name from the page&rsquo;s URL. For more details, see <a href="https://learn.microsoft.com/en-us/mem/configmgr/protect/deploy-use/find-a-pfn-for-per-app-vpn#find-a-pfn-if-the-app-is-not-installed-on-a-computer" target="_blank">Find a package family name (PFN) for per-app VPN</a> in the Microsoft Configuration Manager docs.</p>
-</li>
-<li>
-<p>Select the <strong>Offline</strong> license type, then click <strong>Get the app</strong>.</p>
-<p><img src="../../assets/km-set-up-windows-kiosk-kiosk-browser-app-microsoft-store-business-get.png" alt="The entry for the Kiosk Browser app on Microsoft Store for Business." /></p>
-<div class="notice-tip"><p>If you can’t select a different license type, go to <strong>Manage</strong> > <strong>Settings</strong> > <strong>Shopping Experience</strong> in the store and turn on <strong>Show offline apps</strong>.</p></div>
-</li>
-<li>
-<p>Click <strong>Management</strong> to see more options for the app.</p>
-</li>
-<li>
-<p>Obtain the app package and license:</p>
-<p><img src="../../assets/km-set-up-windows-kiosk-kiosk-browser-app-microsoft-store-business-download-offline.png" alt="Downloading the offline license and package of the Kiosk Browser app on Microsoft Store for Business." /></p>
-<ul>
-<li>
-<p>Under <strong>Download the package for offline use</strong>, click <strong>Download</strong>. The package is an APPXBUNDLE file.</p>
-</li>
-<li>
-<p>Under <strong>Get app license</strong>, select Unencoded license and then click Generate <strong>license</strong>. The license is an XML file.</p>
-</li>
-</ul>
-</li>
-</ol>
-<p>With the package, license, and package family name in hand, create a provisioning package that contains just the Kiosk Browser app:</p>
-<ol>
-<li>
-<p>If you haven&rsquo;t already, download and install the <a href="https://apps.microsoft.com/detail/9NBLGGH4TX22" target="_blank">Windows Configuration Designer</a> to your local PC.</p>
-</li>
-<li>
-<p>Run Windows Configuration Designer, and select <strong>Provision desktop devices</strong> on the introduction screen of the wizard.</p>
-</li>
-<li>
-<p>Follow the on-screen instructions of the wizard until you reach the <strong>Add applications</strong> step. For assistance with creating a provisioning package with the wizard, see <a href="https://learn.microsoft.com/en-us/windows/configuration/provisioning-packages/provisioning-create-package" target="_blank">Create a provisioning package</a> in the Microsoft 365 docs.</p>
-</li>
-<li>
-<p>On the <strong>Add an Application</strong> screen:</p>
-
-    
-    
-    
-    
-    
-    
-    
-    <p><img src="../../assets/km-set-up-windows-kiosk-kiosk-browser-app-microsoft-store-business-ppkg-app.png" class="img-fluid img-thumbnail" alt="Adding the Kiosk Browser app on the Add an Application screen of the wizard in the Windows Configuration Designer." /></p>
-<ul>
-<li>
-<p>For <strong>Application name</strong>, enter <strong>Kiosk Browser</strong>.</p>
-</li>
-<li>
-<p>For <strong>Installer Path</strong>, attach the Kiosk Browser package (APPXBUNDLE file) you downloaded in the previous procedure.</p>
-</li>
-<li>
-<p>For <strong>License path (optional)</strong>, attach the Kiosk Browser license (XML file) you downloaded in the previous procedure.</p>
-</li>
-<li>
-<p>Enter the <strong>Package family name</strong> you copied in the previous procedure.</p>
-</li>
-</ul>
-</li>
-<li>
-<p><strong>Add</strong> the app.</p>
-</li>
-<li>
-<p>Click <strong>Switch to Advanced Editor</strong> to customize the package in detail.</p>
-</li>
-<li>
-<p>Expand <strong>Runtime Settings</strong>, select the <strong>OOBE</strong> entry, then click <strong>✕ Remove</strong>.</p>
-</li>
-<li>
-<p>Click <strong>Export</strong> &gt; <strong>Provisioning package</strong> and follow the on-screen instructions to save the package as a PPKG file. You don&rsquo;t need to encrypt or sign the package.</p>
-</li>
-</ol>
-<div class="notice-tip"><p>To save time on future kiosk deployments, you can reuse the PPKG file you just generated.</p></div>
-<p>Finally, apply the provisioning package and install the Kiosk Browser app:</p>
-<ol>
-<li>Transfer the PPKG file to the Windows device you plan to deploy as a kiosk.</li>
-<li>Apply the provisioning package directly by double-clicking the PPKG file. For help, see <a href="https://learn.microsoft.com/en-us/windows/configuration/provisioning-packages/provisioning-apply-package#apply-directly" target="_blank">Apply a provisioning package</a> in the Microsoft 365 docs.</li>
-</ol>
-<p>Now that the offline license version of Kiosk Browser is installed, the Windows device is ready to be <a href="set-up-a-windows-kiosk.html#set-up-a-multi-app-windows-kiosk">set up as a multi-app kiosk</a> with the browser.</p>
 <h2 id="set-up-a-single-app-windows-kiosk">Set up a single-app Windows kiosk</h2>
 <p>Before you can set up a single-app kiosk, you must decide whether the main app experience will be Microsoft Edge, Kiosk Browser, or some other app from Microsoft Store.</p>
 <p>To set up a single-app kiosk:</p>
@@ -5555,7 +5439,6 @@
         <li><a href="set-up-a-windows-kiosk.html#prepare-a-microsoft-store-app-for-kiosks">Prepare a Microsoft Store app for kiosks</a></li>
       </ul>
     </li>
-    <li><a href="set-up-a-windows-kiosk.html#install-the-kiosk-browser-app-on-a-multi-app-kiosk">Install the Kiosk Browser app on a multi-app kiosk</a></li>
     <li><a href="set-up-a-windows-kiosk.html#set-up-a-single-app-windows-kiosk">Set up a single-app Windows kiosk</a>
       <ul>
         <li></li>
