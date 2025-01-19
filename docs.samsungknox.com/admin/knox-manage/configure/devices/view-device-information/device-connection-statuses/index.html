@@ -608,17 +608,6 @@
     </div>
     
     </li>
-  
-  
-  
-    <li class="mt-2">
-    
-    
-    <div class="d-flex justify-content-between">
-      <a class="body-5 text-black fw-light" href="../../../licenses/change-a-license.html">Change a license</a>
-    </div>
-    
-    </li>
   </ul>
     </div></li>
   
@@ -1036,6 +1025,17 @@
     
     <div class="d-flex justify-content-between">
       <a class="body-5 text-black fw-light" href="../../../identity-and-directory/add-a-custom-oidc-connection.html">Add a custom OIDC connection</a>
+    </div>
+    
+    </li>
+  
+  
+  
+    <li class="mt-2">
+    
+    
+    <div class="d-flex justify-content-between">
+      <a class="body-5 text-black fw-light" href="../../../identity-and-directory/add-a-custom-saml-connection.html">Add a custom SAML connection</a>
     </div>
     
     </li>
@@ -2663,7 +2663,7 @@
     <li class="mt-2">
     
     <div class="d-flex justify-content-between cursor-pointer" data-bs-toggle="collapse" data-bs-target="#sub-knox-manage-configure-profile-manage-profiles-manage-profiles" aria-expanded="false">
-      <span class="body-5 text-black fw-light">Manage policies</span>
+      <span class="body-5 text-black fw-light">Manage profiles</span>
       <a class="btn-toggle d-inline-flex rounded border-0 fw-light" data-bs-toggle="collapse" data-bs-target="#sub-knox-manage-configure-profile-manage-profiles-manage-profiles" aria-expanded="false"></a>
     </div>
       
@@ -4943,7 +4943,7 @@
             </div>
             
 
-  <p><span>Last updated March  21st, 2023</span></p>
+  <p><span>Last updated January  15th, 2025</span></p>
 
 
     
@@ -5025,25 +5025,28 @@
 - ![](../../../assets/B-device_expired.png) **Expired** --- The license registered on the device has expired. For such devices, you can only send some device commands to the device---such as update or upgrade license --- from the Knox Manage server.
 -->
 <h2 id="how-connection-status-is-evaluated">How connection status is evaluated</h2>
-<p>When a device is enrolled in Knox Manage, the server maintains information on when it was last able to communicate with that device. That time is recorded as the device&rsquo;s <strong>Last Seen</strong> property. The <strong>Last Seen</strong> property is updated each time any of the following events occur:</p>
+<p>When a device is enrolled in Knox Manage, the server maintains information on when it was last able to communicate with that device. That time is recorded as the device&rsquo;s <strong>Last Seen</strong> property.</p>
+<p>The <strong>Last Seen</strong> property is updated each time any of the following events occur:</p>
 <ul>
 <li>
-<p>The Knox Manage agent reports to the server. By default, the agent automatically sends a keepalive message to the server every 6 hours.</p>
+<p>When you run the Knox Manage agent, and there has been no communication with the server in the past six hours.</p>
 </li>
 <li>
-<p>The device user launches the Knox Manage agent on the device, which causes the agent to report to the server.</p>
-</li>
-<li>
-<p>Do any of the following:</p>
+<p>When you do any of the following:</p>
 <ul>
-<li>Execute an update to a profile assigned to the device. This option causes the <strong>Last Seen</strong> property to be updated immediately.</li>
-<li>Set up <strong>Profile Update Schedule</strong> in <strong>Setting</strong> &gt; <strong>Configuration</strong> &gt; <strong>Profile Update Schedule</strong>. This option updates the <strong>Last Seen</strong> property based on the schedule you set.</li>
-<li>Set up the <strong>Device Location Collection</strong> policy in an <a href="../../../profile/configure-profile-policies/android-enterprise-policies.html#location">Android Enterprise</a> or <a href="../../../profile/configure-profile-policies/android-legacy-policies.html#location">Android Legacy</a> profile that is assigned to the device. This option updates the <strong>Last Seen</strong> property based on the <strong>Time Between Location Collection</strong> you set.</li>
+<li>
+<p>Execute an update to a profile assigned to the device. This causes the <strong>Last Seen</strong> property to be updated immediately.</p>
+</li>
+<li>
+<p>Set up <strong>Profile Update Schedule</strong> in <strong>Setting</strong> &gt; <strong>Configuration</strong> &gt; <strong>Profile Update Schedule</strong>. This updates the <strong>Last Seen</strong> property based on the schedule you set.</p>
+</li>
+<li>
+<p>Set up the <strong>Device Location Collection</strong> policy in an <a href="../../../profile/configure-profile-policies/android-enterprise-policies.html#location">Android Enterprise</a> or <a href="../../../profile/configure-profile-policies/android-legacy-policies.html#location">Android Legacy</a> profile that is assigned to the device. This updates the <strong>Last Seen</strong> property based on the <strong>Time Between Location Collection</strong> you set.</p>
+</li>
 </ul>
 </li>
 </ul>
-<p>The device&rsquo;s <strong>Last Seen</strong> property directly affects its connection status in the Knox Manage admin portal. If the server has not seen the device for longer than the keepalive expiration, it changes the device&rsquo;s status from <strong>Enrolled</strong> to <strong>Disconnected</strong>.</p>
-<p>For information on how to configure the keepalive settings, see <a href="../../../advanced-settings/configure-the-keepalive-settings.html">Configure the Keepalive settings</a>.</p>
+<div class="notice-note"><p>The device’s <strong>Last Seen</strong> property directly affects its connection status in the Knox Manage admin portal. When Keepalive is enabled, if the server hasn’t seen the device for longer than the keepalive expiration, it changes the device’s status from <strong>Enrolled</strong> to <strong>Disconnected</strong>. For information on how to configure Keepalive, see <a href="../../../advanced-settings/configure-the-keepalive-settings.html">Configure the Keepalive settings</a>.</p></div>
 
             
           </div>

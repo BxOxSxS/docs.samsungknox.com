@@ -608,17 +608,6 @@
     </div>
     
     </li>
-  
-  
-  
-    <li class="mt-2">
-    
-    
-    <div class="d-flex justify-content-between">
-      <a class="body-5 text-black fw-light" href="../../../licenses/change-a-license.html">Change a license</a>
-    </div>
-    
-    </li>
   </ul>
     </div></li>
   
@@ -1036,6 +1025,17 @@
     
     <div class="d-flex justify-content-between">
       <a class="body-5 text-black fw-light" href="../../../identity-and-directory/add-a-custom-oidc-connection.html">Add a custom OIDC connection</a>
+    </div>
+    
+    </li>
+  
+  
+  
+    <li class="mt-2">
+    
+    
+    <div class="d-flex justify-content-between">
+      <a class="body-5 text-black fw-light" href="../../../identity-and-directory/add-a-custom-saml-connection.html">Add a custom SAML connection</a>
     </div>
     
     </li>
@@ -2663,7 +2663,7 @@
     <li class="mt-2">
     
     <div class="d-flex justify-content-between cursor-pointer" data-bs-toggle="collapse" data-bs-target="#sub-knox-manage-configure-profile-manage-profiles-manage-profiles" aria-expanded="false">
-      <span class="body-5 text-black fw-light">Manage policies</span>
+      <span class="body-5 text-black fw-light">Manage profiles</span>
       <a class="btn-toggle d-inline-flex rounded border-0 fw-light" data-bs-toggle="collapse" data-bs-target="#sub-knox-manage-configure-profile-manage-profiles-manage-profiles" aria-expanded="false"></a>
     </div>
       
@@ -4943,7 +4943,7 @@
             </div>
             
 
-  <p><span>Last updated November  27th, 2024</span></p>
+  <p><span>Last updated January  15th, 2025</span></p>
 
 
     
@@ -5074,16 +5074,6 @@
       
         
       
-      
-      
-      
-        
-      
-      
-      
-      
-      
-        
       
       
       
@@ -5910,9 +5900,68 @@
         <td>Android 9 and higher</td>
     </tr>
     <tr>
+        <td id="connectivity-always-on-vpn">Always On VPN</td>
+        <td>
+            <p>Sets a VPN app to Always On mode. This policy can be applied for only one VPN app per device. To ensure the policy value doesn’t get modified by the device user, set the <strong>System</strong> > <strong>Use VPN</strong> policy to <strong>Disallow</strong>.</p>
+            <h4>Values</h4>
+            <ul>
+                <li>Apply</li>
+            </ul>
+            <div class="notice-important">
+                <p>For Ivanti Pulse Secure, if both <strong>Connectivity</strong> &gt; <strong>Always On VPN</strong> and <strong>VPN</strong> &gt; <strong>VPN Trigger Type</strong> policies are applied, the latter takes precedence.</p>
+                <p>For example, if <strong>VPN</strong> &gt; <strong>VPN Trigger Type</strong> is set to <strong>Manual</strong>, Ivanti Pulse Secure can only be run manually by the device user &mdash; regardless of the <strong>Connectivity</strong> &gt; <strong>Always On VPN</strong> policy.</p>
+            </div>
+        </td>
+        <td>
+            <p>Fully Managed &mdash; Android 7 and higher</p>
+            <p>Work Profile &mdash; Android 7 and higher</p>
+        </td>
+    </tr>
+    <tr>
+        <td id="connectivity-always-on-vpn-set-application">&gt; Set Application</td>
+        <td>
+            <p>Lets you select the VPN application.</p>
+        </td>
+        <td>
+            <p>Fully Managed &mdash; Android 7 and higher</p>
+            <p>Work Profile &mdash; Android 7 and higher</p>
+        </td>
+    </tr>
+    <tr>
         <td id="connectivity-autofill-service">Autofill Service</td>
         <td>Allows auto-completion of information that you enter on websites in the Android browser.</td>
         <td>Android 8 and higher</td>
+    </tr>
+    <tr>
+        <td id="connectivity-bluetooth-share">Bluetooth Share</td>
+        <td>Allows Bluetooth sharing.</td>
+        <td>Fully Managed &mdash; Android 8 and higher</td>
+    </tr>
+    <tr>
+        <td id="connectivity-5g-network-slicing">5G Network Slicing</td>
+        <td>
+            <p>Allows 5G network slicing, which lets you allocate a single 5G connection as multiple distinct virtual connections.</p>
+            <p>You can enable 5G slicing for the entire device or just the work profile, or for specific apps.</p>
+            <h4>Values</h4>
+            <ul>
+                <li><strong>Allow</strong> &mdash; Allows 5G slicing for the device or work profile.</li>
+                <li><strong>Allow per App</strong> &mdash; Lets you allocate slices for specific apps.
+                    <ul>
+                        <li><strong>Enterprise Slice No.</strong> &mdash; Set the number of slices. The default value is the minimum, 1, and the maximum value is 5.</li>
+                        <li><strong>App Block/Allowlist</strong> &mdash; Lets you select <strong>Blocklist Setting</strong> to only block specific apps from using network slices, or <strong>Allowlist Setting</strong> to only allow specific apps to use network slices. For either setting, target apps can be specified using <strong>App List</strong>.</li>
+                        <li><strong>o	Fallback to Default Connection</strong> &mdash; Grants or prevents specified apps permission from using the default network connection when 5G slicing is unavailable.</li>
+                    </ul>
+                </li>
+                <li><strong>Disallow</strong> &mdash; Prevents 5G slicing for the entire device or work profile.</li>
+            </ul>
+            <div class="notice-note">
+                <p>This policy has been verified for standalone mode (SA) for 5G slicing. The carrier must support 5G slicing by enterprises.</p>
+            </div>
+        </td>
+        <td>
+            <p>Fully Managed &mdash; Android 13 and higher</p>
+            <p>Work Profile &mdash; Android 12 and higher</p>
+        </td>
     </tr>
     <tr>
         <td id="connectivity-network-reset">Network Reset</td>
@@ -6010,11 +6059,6 @@
     <tr>
         <td id="connectivity-bluetooth-setting">Control Bluetooth Settings</td>
         <td>Specifies the controls for the Bluetooth use.</td>
-        <td>Fully Managed &mdash; Android 8 and higher</td>
-    </tr>
-    <tr>
-        <td id="connectivity-bluetooth-share">Bluetooth Share</td>
-        <td>Allows Bluetooth sharing.</td>
         <td>Fully Managed &mdash; Android 8 and higher</td>
     </tr>
     <tr>
@@ -6603,6 +6647,74 @@
         <td></td>
     </tr>
     <tr>
+        <td id="kiosk-speed-lock">&gt; Speed Lock</td>
+        <td>
+            <p>Locks the device for the user’s safety while travelling above a specified speed limit.</p>
+            <h4>Values</h4>
+            <ul>
+                <li><strong>Apply</strong></li>
+            </ul>
+            <div class="notice-note">
+                <p>This feature is affected by the device’s GPS status, and may not work correctly while passing through a tunnel.</p>
+            </div>
+        </td>
+        <td>Fully Managed &mdash; Android 9 and higher</td>
+    </tr>
+    <tr>
+        <td id="kiosk-speed-lock-unit">&gt;&gt; Unit</td>
+        <td>
+            <p>The unit of measurement used to calculate and display the device’s travelling speed. </p>
+            <h4>Values</h4>
+            <ul>
+                <li><strong>MPH</strong> (miles per hour)</li>
+                <li><strong>km/h</strong> (kilometers per hour)</li>
+            </ul>
+        </td>
+        <td>Fully Managed &mdash; Android 9 and higher</td>
+    </tr>
+    <tr>
+        <td id="kiosk-speed-lock-speed">&gt;&gt; Speed</td>
+        <td>
+            <p>The speed limit, exceeding which will trigger the lock. Default value is 30.</p>
+        </td>
+        <td>Fully Managed &mdash; Android 9 and higher</td>
+    </tr>
+    <tr>
+        <td id="kiosk-speed-lock-activation-threshold">&gt;&gt; Activation Threshold (milliseconds)</td>
+        <td>
+            <p>How soon the lock will be activated upon exceeding the speed limit (<strong>Speed</strong>), measured in milliseconds. Default value is 5000.</p>
+        </td>
+        <td>Fully Managed &mdash; Android 9 and higher</td>
+    </tr>
+    <tr>
+        <td id="kiosk-speed-lock-deactivation-threshold">&gt;&gt; Deactivation Threshold (milliseconds)</td>
+        <td>
+            <p>Determines how soon the lock will be deactivated once the travelling speed returns to below the specified speed limit (<strong>Speed</strong>). Measured in milliseconds. Default value is 5000.</p>
+        </td>
+        <td>Fully Managed &mdash; Android 9 and higher</td>
+    </tr>
+    <tr>
+        <td id="kiosk-speed-lock-header-text">&gt;&gt; Header Text</td>
+        <td>
+            <p>Header text for the lock screen notification. Defaults to “Speed Lock”.</p>
+        </td>
+        <td>Fully Managed &mdash; Android 9 and higher</td>
+    </tr>
+    <tr>
+        <td id="kiosk-speed-lock-main-text">&gt;&gt; Main Text</td>
+        <td>
+            <p>Message content for the lock screen notification. Defaults to “Slow Down to Access Device”.</p>
+        </td>
+        <td>Fully Managed &mdash; Android 9 and higher</td>
+    </tr>
+    <tr>
+        <td id="kiosk-speed-lock-transparency">&gt;&gt; Transparency</td>
+        <td>
+            <p>Determines the transparency of the lock screen notification on a scale of 0 (least transparency) to 100 (maximum transparency). Default value is 100.</p>
+        </td>
+        <td>Fully Managed &mdash; Android 9 and higher</td>
+    </tr>
+    <tr>
         <td id="kiosk-javascript">&gt; Run JavaScript</td>
         <td>Allow the running of the JavaScript contained in websites.</td>
         <td></td>
@@ -6710,7 +6822,7 @@
                 <li><strong>Deny</strong> &mdash; Denies all relevant permissions.</li>
             </ul>
             <div class="notice-note">
-                <p>The App Permission policy is relevant to all apps. It is only applied when an app requests it, regardless of when an IT admin sets device permissions.</p>
+                <p>This policy is relevant to all apps, and is only applied when an app requests permission during runtime (regardless of when you set device permissions).</p>
             </div>
         </td>
         <td>Android 6 and higher</td>
@@ -6718,9 +6830,9 @@
     <tr>
         <td id="application-app-permission-exception-policy-list">&gt; App permission exception policy list</td>
         <td>
-            <p>Lets you add policy exceptions for specific applications. Only supported for Managed Google Play public apps.</p>
+            <p>Lets you add policy exceptions for specific apps. Supported for internal apps and Managed Google Play public apps.</p>
             <p>To add an app, click <strong>Add</strong>, then select the app in the <strong>Select Application</strong> window.</p>
-            <p>To delete an app, click <img src="../../../../assets/delete.png" alt="delete" /> next to it.</p>
+            <p>To delete an app, click the trash can icon next to it.</p>
             <div class="notice-note">
                 <ul>
                     <li>This policy takes priority over the <a href="../android-enterprise-policies.html#application-app-permission">Runtime Permissions for All Apps</a> policy when both are applied, and takes effect as soon as you set it.</li>
@@ -6732,19 +6844,24 @@
     </tr>
     <tr>
         <td id="application-app-execution-blocklist-setting">Block Certain Apps from Running</td>
-        <td>Set to prevent the execution of the device applications.</td>
+        <td><p>Blocks specific apps from running on the device.</p>
+            <h4>Values</h4>
+            <ul>
+                <li>Apply</li>
+            </ul>
+        </td>
         <td>Android 6 and higher</td>
     </tr>
     <tr>
-        <td id="application-app-execution-blocklist">&gt; App execution blocklist</td>
+        <td id="application-app-execution-blocklist">&gt; App List</td>
         <td>
-            <p>Add applications to prevent their execution. Icon of the blocked application disappears and users cannot run the application.</p>
+            <p>Lets you select apps that will be blocked from running.</p>
             <ul>
-                <li>To add an application, click <strong>Add</strong>, and then select applications in the <strong>Select Application</strong> window.</li>
-                <li>To delete an application, click <img src="../../../../assets/delete.png" alt="delete" /> next to the added application.</li>
+                <li>Click <strong>Add</strong> and select apps in the <strong>Select Application</strong> window to add them to the list.</li>
+                <li>To delete an app from the list, click the trash can icon next to the app.</li>
             </ul>
             <div class="notice-note">
-                <p>An application that has been added on the <a href="../android-enterprise-policies.html#application-app-download-allowlist">App download allowlist</a> policy cannot be added.</p>
+                <p>Apps that has been added to the <a href="../android-enterprise-policies.html#application-app-download-allowlist">App download allowlist</a> policy cannot be added.</p>
             </div>
         </td>
         <td></td>

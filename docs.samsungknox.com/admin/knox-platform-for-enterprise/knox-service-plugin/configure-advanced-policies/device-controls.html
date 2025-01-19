@@ -1283,7 +1283,7 @@
             </div>
             
 
-  <p><span>Last updated July  26th, 2023</span></p>
+  <p><span>Last updated January  17th, 2025</span></p>
 
 
     
@@ -1368,17 +1368,17 @@
 <li><a href="device-controls.html#Allow">Allow multiple users</a></li>
 </ul>
 <h2 id="APN">APN setting policy</h2>
-<p>Set the following <strong>APN Setting Policy</strong> values to create, update, and remove Access Point Name (APN) settings on a device. The following APN settings are configurable as device controls:</p>
+<p>Set the following <strong>APN Setting Policy</strong> values to create, update, and remove Access Point Name (APN) settings on a device. The following APN settings are configurable as device controls:</p>
 <ul>
 <li>
 <p>Set the <strong>Enable APN settings policy control</strong> to <strong>True</strong> to change APN configuration settings. If set to <strong>False</strong>, updated APN settings are ignored.</p>
 </li>
 <li>
-<p>Enter the <strong>Name of APN Configuration to add or update</strong> &lt;string&gt; for the APN configuration that is added or updated. The name provided must match at least one of the names within the APN configuration &gt; name field.</p>
+<p>Enter the <strong>Name of APN Configuration to add or update</strong> for the APN configuration that is added or updated. The name provided must match the name of at least one <strong>APN configuration</strong>.</p>
 </li>
 </ul>
 <h2 id="NFC">NFC policy</h2>
-<p>Refer to the following Near Field Communications <strong>NFC Policy</strong> settings to define how devices transmit and receive information with on another &mdash; via NFC &mdash; in close proximity.</p>
+<p>Refer to the following Near Field Communications <strong>NFC Policy</strong> settings to control how devices can use NFC.</p>
 <ul>
 <li>
 <p>Set the <strong>Enable NFC policy controls</strong> value to <strong>True</strong> to change existing NFC settings. If set to <strong>False</strong>, NFC setting updates are ignored.</p>
@@ -1387,7 +1387,7 @@
 <p><strong>Turn on NFC</strong> &mdash; set to <strong>True</strong> &mdash; to enable NFC functions such as NFC payment systems or NFC tags, etc. If set to <strong>False</strong>, NFC setting updates will not be implemented.</p>
 </li>
 <li>
-<p>Optionally <strong>Allow user to change NFC state</strong> &mdash; set to <strong>True</strong> &mdash; to permit users to change NFC settings. Click <strong>False</strong> to restrict users from changing NFC settings on their device.</p>
+<p>Optionally <strong>Allow user to change NFC state</strong> &mdash; set to <strong>True</strong> &mdash; to permit users to change NFC settings. Set to <strong>False</strong> to restrict users from changing NFC settings on their device.</p>
 </li>
 </ul>
 <h2 id="Wi-Fi">Wi-Fi policy</h2>
@@ -1419,7 +1419,8 @@
 </ul>
 </li>
 <li>
-<p>Use the <strong>Block Wi-Fi Network Connection</strong> policy to configure a list of blocked network SSIDs to prevent a devices from connecting to them.</p>
+<p>Use the <strong>Block Wi-Fi Network Connection</strong> policy to configure a list of blocked network SSIDs to prevent devices from connecting to them.</p>
+<div class="notice-note"><p>This policy takes no effect if you are managing devices running Android 13 and higher with a UEM that uses Google’s Android Management API (AMAPI), such as Microsoft Intune. In order to block SSIDs, please use your UEM’s AMAPI controls.</p></div>
 </li>
 <li>
 <p>Set <strong>Allow Automatic Wi-Fi Connection to saved SSIDs</strong> to <strong>True</strong> to allow automatic connections to saved SSIDs. Select <strong>False</strong> to disable automatic connections to saved SSIDs.</p>
@@ -1431,11 +1432,11 @@
 <p>Set the <strong>Allow Wi-Fi State Change</strong> value to <strong>True</strong> to permit the user to change the device&rsquo;s Wi-Fi state. Click <strong>False</strong> to restrict the user from making a Wi-Fi state change.</p>
 </li>
 <li>
-<p>Use <strong>Allow to configure Wi-Fi (Configure details below)</strong> to enable Wi-Fi network configuration using raw MAC ID. This policy allows devices to automatically connect to the given corporate network without user action.</p>
-<div class="notice-note"><ul><li><p>This Wi-Fi configuration will not be applied on One UI Core devices if <strong>Skip MAC Randomization</strong> is set to <strong>True</strong>.</p></li><li><p>MAC randomization support depends on the chipset and OS.</p></li><li><p>This feature is not supported on certain models. For more information, contact <a href="https://developer.samsungknox.com/contact" target="_blank">B2B customer support</a>.</p></li></ul></div>
+<p>Use <strong>Allow to configure Wi-Fi (Configure details below)</strong> to enable Wi-Fi network configuration using raw MAC ID. This policy allows devices to automatically connect to the given corporate network without user action.</p>
+<div class="notice-note"><ul><li><p>This Wi-Fi configuration will not be applied on One UI Core devices if <strong>Skip MAC Randomization</strong> is set to <strong>True</strong>.</p></li><li><p>MAC randomization support depends on the chipset and OS.</p></li><li><p>This feature is not supported on certain models. For more information, contact <a href="https://developer.samsungknox.com/contact" target="_blank">B2B customer support</a>.</p></li></ul></div>
 <p>Go to <strong>Wi-Fi Configurations</strong> and add a configuration for each Wi-Fi network you want devices to automatically connect to. For each configuration, set the following:</p>
 <ul>
-<li><strong>Wi-Fi Network Name</strong> &mdash; Specify the SSID (service set identifier) of the Wi-Fi network to be configured and managed.</li>
+<li><strong>Wi-Fi Network Name</strong> &mdash; Specify the SSID (service set identifier) of the Wi-Fi network to be configured and managed.</li>
 <li><strong>Security Type</strong> &mdash; Select the security type for the Wi-Fi network.</li>
 <li><strong>Password</strong> &mdash; Set the password for the Wi-Fi network.</li>
 <li><strong>Skip MAC Randomization</strong> &mdash; Set this to <strong>True</strong> if you want to disable MAC randomization.</li>
@@ -1454,13 +1455,13 @@
 <p><strong>Enable Advance Wi-Fi Policy Controls</strong> &mdash; set to <strong>True</strong> &mdash; to enable advanced Wi-Fi policy controls, making them available for unique configuration updates based on projected usage. If set to <strong>False</strong>, updates are ignored.</p>
 </li>
 <li>
-<p>Specify the <strong>Wi-Fi Network Name</strong> (SSID) whose settings require configuration and network management using advanced Wi-Fi controls.</p>
+<p>Specify the <strong>Wi-Fi Network Name</strong> (SSID) whose settings require configuration and network management using advanced Wi-Fi controls.</p>
 </li>
 <li>
-<p>Enter the <strong>Wi-Fi Roam Trigger</strong> threshold used to trigger a roam scan for other potential AP resources within range of the specific client SSID. The scan can only be initiated when the relative signal strength (RSSI) of the current AP is weaker then the specified Wi-Fi Roam Trigger value. The range for this value is -50 ~ -100.</p>
+<p>Enter the <strong>Wi-Fi Roam Trigger</strong> threshold used to trigger a roam scan for other potential AP resources within range of the specific client SSID. The scan can only be initiated when the relative signal strength (RSSI) of the current AP is weaker then the specified Wi-Fi Roam Trigger value. The range for this value is -50 ~ -100.</p>
 </li>
 <li>
-<p>Provide the <strong>Wi-Fi Roam Delta</strong> to define a threshold for a target client to disassociate from its current AP and associate with another. AP re-association will occur only when the RSSI of the other AP is at least the Wi-Fi Roam Delta, or stronger, of the current AP. The range for this value is 0 ~ 100.</p>
+<p>Provide the <strong>Wi-Fi Roam Delta</strong> to define a threshold for a target client to disassociate from its current AP and associate with another. AP re-association will occur only when the RSSI of the other AP is at least the Wi-Fi Roam Delta, or stronger, of the current AP. The range for this value is 0 ~ 100.</p>
 </li>
 <li>
 <p>Enter the <strong>Wi-Fi Roam Scan Period</strong> that determines how often a target client scans for roam candidate APs. The range for this value is 0 ~ 60.</p>
@@ -1494,7 +1495,7 @@
 </ul>
 </li>
 <li>
-<p>Use the <strong>Allowlist Bluetooth Service by UUID</strong> and <strong>Blocklist Bluetooth Service by UUID</strong> controls to select specific peripherals to either allow or block connections based on their bluetooth service UUID. When enabled, all peripherals except those specified are allowed or blocked from operating with the device. A wildcard character (*) is used to allow all UUID except those in the block list. Alternatively, a wildcard character is used to block all UUIDs except those in the allow list. If the same UUID is present in both the allow and block list, then the allow list takes precedent when updated by the same administrator. Ensure UUIDs are defined properly per SIG specification.</p>
+<p>Use the <strong>Allowlist Bluetooth Service by UUID</strong> and <strong>Blocklist Bluetooth Service by UUID</strong> controls to select specific peripherals to either allow or block connections based on their bluetooth service UUID. When enabled, all peripherals except those specified are allowed or blocked from operating with the device. A wildcard character (*) is used to allow all UUID except those in the block list. Alternatively, a wildcard character is used to block all UUIDs except those in the allow list. If the same UUID is present in both the allow and block list, then the allow list takes precedent when updated by the same administrator. Ensure UUIDs are defined properly per SIG specification.</p>
 </li>
 </ul>
 <h2 id="Boot">Boot banner</h2>
