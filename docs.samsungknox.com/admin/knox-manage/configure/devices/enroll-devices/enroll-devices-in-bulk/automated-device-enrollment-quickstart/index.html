@@ -3367,17 +3367,6 @@
     
     
     <div class="d-flex justify-content-between">
-      <a class="body-5 text-black fw-light" href="../../../../../monitor/alerts/types-of-alerts/index.html">Types of alerts</a>
-    </div>
-    
-    </li>
-  
-  
-  
-    <li class="mt-2">
-    
-    
-    <div class="d-flex justify-content-between">
       <a class="body-5 text-black fw-light" href="../../../../../monitor/alerts/configure-alerts.html">Configure alerts</a>
     </div>
     
@@ -4944,7 +4933,7 @@
             </div>
             
 
-  <p><span>Last updated January  22nd, 2024</span></p>
+  <p><span>Last updated January  23rd, 2025</span></p>
 
 
     
@@ -4958,8 +4947,6 @@
 
 
 
-      
-      
       
       
       
@@ -4999,12 +4986,6 @@
 <li>You configure an ADE profile for the devices.</li>
 <li>The device user receives the device, then signs in to the Knox Manage agent, completing enrollment.</li>
 </ol>
-<h2 id="before-using-automated-device-enrollment">Requirements</h2>
-<p>To use ADE, you must meet the following prerequisites:</p>
-<ul>
-<li>Have Apple devices running iOS 14 or higher, macOS 13 or higher, or iPadOS 14 and higher.</li>
-<li>Register for an Apple Business account on Apple Business Manager or upgrade from the older Device Enrollment Program. To learn more, consult <a href="https://support.apple.com/en-us/HT208817" target="_blank">Upgrade your organization to Apple Business Manager</a> in Apple support.</li>
-</ul>
 <h2 id="connect-your-tenant-automated-device-enrollment-service">Connect your tenant to the Automated Device Enrollment service</h2>
 <p>To enroll devices through ADE, you must connect your Knox Manage tenant to the ADE service, which requires sharing a key and token between Knox Manage and Apple Business Manager.</p>
 <p>To issue an ADE token and set it up with your Knox Manage tenant:</p>
@@ -5046,6 +5027,7 @@
 </ol>
 <h2 id="register-apple-device-ade">Register an Apple device for ADE</h2>
 <p>After connecting your tenant to the ADE service, you can register an Apple device for ADE on Apple Business Manager through an authorized reseller or the Apple Configurator app on your Mac.</p>
+<h3 id="prerequisites">Prerequisites</h3>
 <p>Before you begin, make sure to register your Knox Manage tenant with Apple Business Manager:</p>
 <ol>
 <li>
@@ -5055,6 +5037,7 @@
 <p>In Apple Configurator, add the Knox Manage server URL on the <strong>Preferences</strong> &gt; <strong>Organizations</strong> and <strong>Servers</strong> tabs. The URL is the one you see in your web browser for the Knox Manage console, followed by <strong>/ios/depenroll</strong>.</p>
 </li>
 </ol>
+<h3 id="register-an-ios-device">Register an iOS device</h3>
 <p>To register an iOS device on Apple Business Manager:</p>
 <ol>
 <li>
@@ -5082,7 +5065,41 @@
 <p>On the device, follow the on-screen instructions in the Setup Assistant. Make sure to sign in with your enterprise&rsquo;s Apple ID so that the Knox Manage agent is activated and the VPP apps are installed.</p>
 </li>
 </ol>
-<p>For information about enrolling new Macs, see <a href="https://support.apple.com/guide/apple-configurator/add-a-new-mac-apd65c9ff558/1.1/ios/17.0" target="_blank">Add a new Mac using Apple Configurator for iPhone</a>.</p>
+<h3 id="register-a-macos-device">Register a macOS device</h3>
+<p>Before you can register a macOS device, you&rsquo;ll need the following:</p>
+<ul>
+<li>Apple Configurator app</li>
+<li>An iPhone running iOS 15 or higher</li>
+<li>A factory reset Mac running macOS 12 or higher</li>
+<li>Both the iPhone and Mac must have internet access and be connected to the same network</li>
+</ul>
+<p>To register a macOS device on Apple Business Manager:</p>
+<ol>
+<li>
+<p>Launch Apple Configurator on your iPhone, and start the Mac.</p>
+<ul>
+<li>If you’re adding a Mac portable, plug it into a power source so that it doesn’t go to sleep during the process.</li>
+</ul>
+</li>
+<li>
+<p>On the Mac, select the language in <strong>Setup Assistant</strong> then click <strong>Continue</strong>. Stop when you see the <strong>Country or Region</strong> pane.</p>
+<div class="notice-note"><p>You must restart the Mac if you go past the <strong>Country or Region</strong> pane.</p></div>
+</li>
+<li>
+<p>Bring your iPhone near the Mac, then perform one of the following steps.</p>
+<ul>
+<li>
+<p>Scan the image that appears in <strong>Setup Assistant</strong>.</p>
+</li>
+<li>
+<p>Click <strong>Pair Manually</strong> in the lower-left corner of the <strong>Setup Assistant</strong>, then in Apple Configurator tap <strong>Manual Pairing</strong> and enter the six-digit code that appears.</p>
+</li>
+</ul>
+</li>
+<li>
+<p>The serial number and other information about the Mac are uploaded. Click <strong>Shut Down</strong> once the process completes to turn off the Mac, or <strong>Restart</strong> if you want to restart it.</p>
+</li>
+</ol>
 <h3 id="fix-knox-manage-agent-installation-issues">Fix Knox Manage agent installation issues</h3>
 <p>In some cases, the device fails to install the Knox Manage agent during ADE enrollment. If the device user later manually installs and authenticates the Knox Manage agent, the Knox Manage server doesn&rsquo;t recognize the device as originating from ADE.</p>
 <p>To prevent this issue, you can optionally install the Knox Manage agent to devices by <a href="../../../../applications/volume-purchase-program-for-ios/manage-vpp-applications.html">adding and assigning it as a Volume Purchase Program app</a>. Doing so ensures that after the Knox Manage agent is reinstalled, the Knox Manage server registers the device with the ADE service.</p>
@@ -5340,10 +5357,12 @@
 <aside class="table-of-headings">
   <nav id="TableOfContents">
   <ul>
-    <li><a href="../automated-device-enrollment-quickstart.html#before-using-automated-device-enrollment">Requirements</a></li>
     <li><a href="../automated-device-enrollment-quickstart.html#connect-your-tenant-automated-device-enrollment-service">Connect your tenant to the Automated Device Enrollment service</a></li>
     <li><a href="../automated-device-enrollment-quickstart.html#register-apple-device-ade">Register an Apple device for ADE</a>
       <ul>
+        <li><a href="../automated-device-enrollment-quickstart.html#prerequisites">Prerequisites</a></li>
+        <li><a href="../automated-device-enrollment-quickstart.html#register-an-ios-device">Register an iOS device</a></li>
+        <li><a href="../automated-device-enrollment-quickstart.html#register-a-macos-device">Register a macOS device</a></li>
         <li><a href="../automated-device-enrollment-quickstart.html#fix-knox-manage-agent-installation-issues">Fix Knox Manage agent installation issues</a></li>
       </ul>
     </li>
