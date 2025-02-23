@@ -383,17 +383,6 @@
     
     
     <div class="d-flex justify-content-between">
-      <a class="body-5 text-black fw-light" href="../../quickstart-guides/android-management-api-device-enrollment-quickstart.html">Android Management API device enrollment quickstart</a>
-    </div>
-    
-    </li>
-  
-  
-  
-    <li class="mt-2">
-    
-    
-    <div class="d-flex justify-content-between">
       <a class="body-5 text-black fw-light" href="../../quickstart-guides/apple-user-enrollment-quickstart.html">Apple User Enrollment quickstart</a>
     </div>
     
@@ -4931,7 +4920,7 @@
             </div>
             
 
-  <p><span>Last updated January  10th, 2025</span></p>
+  <p><span>Last updated February  20th, 2025</span></p>
 
 
     
@@ -4949,7 +4938,6 @@
       
       
       
-      
         
       
       
@@ -4970,11 +4958,10 @@
       
       
       
-        <p>Knox Manage can integrate with the <a href="https://docs.microsoft.com/en-us/azure/active-directory/develop/microsoft-graph-intro" target="_blank">Microsoft Graph API</a> for the purposes of connecting your Microsoft Entra ID services (previously Azure AD) to Knox Manage. This integration is powered by the cloud-based Knox Manage MDM app on the Microsoft Entra portal.</p>
-<p>When configured and connected, the user and group information in your Microsoft Entra tenant is made available to Knox Manage, similar to how connections deliver directory data through the LDAP protocol. Syncing organizations isn&rsquo;t currently supported.</p>
-<div class="notice-important"><p>In order to enroll Windows devices using methods based on Microsoft Entra ID, such as Microsoft Entra registered, Microsoft Entra joined, Windows Out of Box Experience, and Windows Autopilot, you must connect your Knox Manage tenant to your Microsoft Entra ID tenant through the Microsoft Graph API. For detailed information about these enrollment methods, see <a href="../devices/enroll-devices/enroll-a-windows-device-with-entra-id.html">Enroll a Windows device with Entra ID</a>.</p></div>
-<p>Only one Microsoft Entra ID service is allowed per Knox Manage tenant, so you can&rsquo;t concurrently sync Microsoft Entra ID through both the Microsoft Graph API and the LDAP protocol.</p>
-<div class="notice-important"><ul><li><p>Follow the procedure in the <a href="connect-to-microsoft-entra-id.html#connect-your-knox-manage-tenant-to-microsoft-entra-id-through-microsoft-graph-api">Connect your Knox Manage tenant to Microsoft Entra ID through Microsoft Graph API</a> section if you are integrating the Azure AD service through the cloud-based app after the Knox Manage 22.08 release.</p></li><li><p>If you integrated Microsoft Entra ID (previously called Azure AD) using a non-gallery MDM app (on-premises MDM app), you must now integrate using a gallery MDM app (cloud-based MDM app) because the token of the on-premises MDM app expires in Oct 2024.</p><p>Ensure that you complete migration of Microsoft Entra ID to a gallery app (cloud-based app) before token expiry. See <a href="connect-to-microsoft-entra-id.html#migrate-microsoft-entra-id-sync-through-an-on-premises-app-to-a-cloud-based-app">Migrate Microsoft Entra ID sync through an on-premises app to a cloud-based app</a> for details.</p></li></ul></div>
+        <p>Knox Manage integrates with the Microsoft Graph API, allowing you to connect your Microsoft Entra ID services to Knox Manage. This integration provides access to user and group information in your Microsoft Entra tenant.</p>
+<p>When configured, this connection makes directory data available to Knox Manage, similar to LDAP connections. A single Microsoft Entra ID service is allowed per Knox Manage tenant, so you can&rsquo;t concurrently sync Microsoft Entra ID through both the Microsoft Graph API and the LDAP protocol. Note that syncing organizations is not currently supported.</p>
+<p>To integrate with the Microsoft Graph API for purposes such as enrolling Windows devices using methods based on Microsoft Entra ID (like Microsoft Entra registered, Microsoft Entra joined, Windows Out of Box Experience, and Windows Autopilot), you must connect your Knox Manage tenant to your Microsoft Entra ID tenant. For a step-by-step guide on how to do this, follow the procedure in the <a href="connect-to-microsoft-entra-id.html#connect-your-knox-manage-tenant-to-microsoft-entra-id-through-microsoft-graph-api">Connect your Knox Manage tenant to Microsoft Entra ID through Microsoft Graph API</a> section if you are integrating the Azure AD service through the cloud-based app.</p>
+<div class="notice-important"><p>To enroll Windows devices using methods based on Microsoft Entra ID, you must connect your Knox Manage tenant to your Microsoft Entra ID tenant through the Microsoft Graph API. For detailed information about these enrollment methods, see <a href="../devices/enroll-devices/enroll-a-windows-device-with-entra-id.html">Enroll a Windows device with Entra ID</a>.</p><p>Non-gallery (on-premises) MDM app tokens expired in October 2024. If you previously integrated Microsoft Entra ID using a non-gallery MDM app, you must re-integrate using a  gallery (cloud-based) MDM app. See <a href="connect-to-microsoft-entra-id.html#migrate-microsoft-entra-id-sync-through-an-on-premises-app-to-a-cloud-based-app">Migrate Microsoft Entra ID sync through an on-premises app to a cloud-based app</a> for details.</p></div>
 <h2 id="connect-your-knox-manage-tenant-to-microsoft-entra-id-through-microsoft-graph-api">Connect your Knox Manage tenant to Microsoft Entra ID through Microsoft Graph API</h2>
 <p>To connect Knox Manage with Microsoft Entra ID through the Microsoft Graph API:</p>
 <ol>
@@ -5006,7 +4993,8 @@
 <p><strong>Connection Type</strong> &mdash; Select <strong>Microsoft Entra ID (Graph API)</strong> as a directory type to connect.</p>
 </li>
 <li>
-<p><strong>Connection Name</strong> &mdash; Enter the connection name; up to 25 characters consisting of letters, numbers, and special characters (- or _ only). This name is used to distinguish each connection and also used when selecting connection in <strong>User</strong>, <strong>Group</strong>.</p>
+<p><strong>Connection Name</strong> &mdash; Enter the connection name. This name is used to distinguish each connection, and is also used when selecting a connection in <strong>User</strong> or <strong>Group</strong>.
+<div class="notice-note"><p>The connection name can be between 1-25 characters consisting of letters, numbers, and special characters ("-" or “_” only).</p></div></p>
 </li>
 <li>
 <p><strong>Target</strong> &mdash; Select sync targets for your Microsoft Entra ID integration:</p>
@@ -5021,36 +5009,23 @@
 </li>
 <li>
 <p><strong>Scheduler</strong> &mdash; Select <strong>Use</strong> if you want to schedule automatic syncs. In the <strong>Schedule</strong> tab under it, fill in the details of the sync schedule:</p>
-<div class="overflow-auto my-3"><table>
-<thead>
-<tr>
-<th>Field</th>
-<th>Description</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><strong>Time Zone</strong></td>
-<td>Click the drop-down menu and select the time zone to use for the automatic synchronization. You can change the default in <strong>Setting</strong> &gt; <strong>Configuration</strong> &gt; <strong>Basic Configuration</strong>.</td>
-</tr>
-<tr>
-<td><strong>Sync Interval</strong></td>
-<td>Click the drop-down menu and select a connection interval from <strong>Once</strong>, <strong>Hourly</strong>, <strong>Daily</strong>, <strong>Weekly</strong>, <strong>Monthly</strong>, or <strong>Advanced Settings</strong>. If you select  <strong>Advanced Settings</strong>, set a regular interval in month, week, day, or hour format using cron expressions, following the examples given on the screen.</td>
-</tr>
-<tr>
-<td><strong>Time</strong></td>
-<td>Set the start time for the connection.</td>
-</tr>
-<tr>
-<td><strong>Start Date</strong></td>
-<td>Set the start date for the connection.</td>
-</tr>
-<tr>
-<td><strong>Target of Scheduler</strong></td>
-<td>Click the check box next to <strong>User</strong> or <strong>Group</strong> as the target information to retrieve from the directory through the scheduled connection.</td>
-</tr>
-</tbody>
-</table></div>
+<ul>
+<li>
+<p><strong>Time Zone</strong> &mdash; Click the drop-down menu and select the time zone to use for the automatic synchronization. You can change the default in <strong>Setting</strong> &gt; <strong>Configuration</strong> &gt; <strong>Basic Configuration</strong>.</p>
+</li>
+<li>
+<p><strong>Sync Interval</strong> &mdash; Click the drop-down menu and select a connection interval from <strong>Once</strong>, <strong>Hourly</strong>, <strong>Daily</strong>, <strong>Weekly</strong>, <strong>Monthly</strong>, or <strong>Advanced Settings</strong>. If you select  <strong>Advanced Settings</strong>, set a regular interval in month, week, day, or hour format using cron expressions, following the examples given on the screen.</p>
+</li>
+<li>
+<p><strong>Time</strong> &mdash; Set the start time for the connection.</p>
+</li>
+<li>
+<p><strong>Start Date</strong> &mdash; Set the start date for the connection.</p>
+</li>
+<li>
+<p><strong>Target of Scheduler</strong> &mdash; Click the check box next to <strong>User</strong> or <strong>Group</strong> as the target information to retrieve from the directory through the scheduled connection.</p>
+</li>
+</ul>
 </li>
 <li>
 <p>Click the <strong>Server</strong> tab and enter information required for integration with Microsoft Entra ID server information using the <strong>Microsoft Entra ID Integration</strong> setting.</p>
@@ -5069,7 +5044,7 @@
 </li>
 </ol>
 <h2 id="migrate-microsoft-entra-id-sync-through-an-on-premises-app-to-a-cloud-based-app">Migrate Microsoft Entra ID sync through an on-premises app to a cloud-based app</h2>
-<p>Prior to Knox Manage 22.08, released on August 17, 2022, the Microsoft Entra ID integration with Knox Manage was accomplished using an on-premises technology stack. This older method of integration is no longer supported. If you connected your Azure tenant to your Knox Manage tenant prior to Knox Manage 22.08, you must migrate to the cloud-based integration to continue syncing your Active Directory information.</p>
+<p>Before Knox Manage 22.08 (released on August 17, 2022), Microsoft Entra ID integration with Knox Manage was done using a non-gallery (on-premises) MDM app. However, this older method of integration is no longer supported. If you connected your Azure tenant to your Knox Manage tenant prior to Knox Manage 22.08, you must migrate to the integration using a gallery (cloud-based) MDM app to continue syncing your Active Directory information.</p>
 <p>To migrate to Microsoft Entra ID integration from an on-premises app to a cloud-based app:</p>
 <ol>
 <li>
@@ -5079,10 +5054,10 @@
 <p>Find and click <strong>Samsung Knox Manage</strong>.</p>
 </li>
 <li>
-<p>Click <strong>Add</strong> to confirm. The app appears in the list of apps back on the <strong>Mobility (MDM and MAM)</strong> page.</p>
+<p>Click <strong>Add</strong> to confirm. The app appears in the list of apps on the <strong>Mobility (MDM and MAM)</strong> page.</p>
 </li>
 <li>
-<p>On the Knox Manage console, go to <strong>Setting</strong> &gt; <strong>Identity &amp; Directory</strong> &gt; <strong>Connection</strong> &gt; <strong>Connection Details</strong> &gt; <strong>Server</strong> field, and click <strong>Switch to Cloud Based MDM App</strong>.</p>
+<p>On the Knox Manage console, go to the <strong>Setting</strong> &gt; <strong>Identity &amp; Directory</strong> &gt; <strong>Connection</strong> &gt; <strong>Connection Details</strong> &gt; <strong>Server</strong> field, and click <strong>Switch to Cloud Based MDM App</strong>.</p>
 </li>
 </ol>
 

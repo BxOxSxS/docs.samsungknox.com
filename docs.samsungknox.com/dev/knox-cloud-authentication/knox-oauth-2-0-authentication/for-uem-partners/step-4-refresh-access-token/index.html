@@ -155,8 +155,6 @@
   </li>
 <li>
   <a href="../../../../knox-guard.html" >Knox Guard</a>
-  <ul>
-    </ul>
   </li>
 <li>
   <a href="../../../../knox-asset-intelligence.html" >Knox Asset Intelligence</a>
@@ -557,7 +555,7 @@
             </div>
             
 
-  <p><span>Last updated June  26th, 2024</span></p>
+  <p><span>Last updated February  12th, 2025</span></p>
 
 
     
@@ -579,17 +577,16 @@
       <p>In case your access token expires, then you can use the refresh token obtained in <a href="../step-2-get-access-and-refresh-tokens.html">Step 2 &ndash;Get access and refresh tokens</a> to get another access token to call the Knox cloud services.</p>
 <div class="notice-note"><p>Knox authorization server also issues a new refresh token as a result of this request, and the old refresh token is discarded.</p></div>
 <p>When the access token expires, you can request a new access token using the current refresh token:</p>
-<div class="highlight"><pre tabindex="0" style=";-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-javascript" data-lang="javascript"><span style="display:flex;"><span>curl 
-</span></span><span style="display:flex;"><span><span style="color:#666">--</span>location <span style="color:#ba2121">&#39;https://api.samsungknox.com/ams/v1/oauth2/token&#39;</span> <span style="color:#666">\</span>
-</span></span><span style="display:flex;"><span><span style="color:#666">--</span>header <span style="color:#ba2121">&#39;Content-Type: application/x-www-form-urlencoded&#39;</span> <span style="color:#666">\</span>
-</span></span><span style="display:flex;"><span><span style="color:#666">--</span>data<span style="color:#666">-</span>urlencode <span style="color:#ba2121">&#39;grant_type=refresh_token&#39;</span> <span style="color:#666">\</span>
-</span></span><span style="display:flex;"><span><span style="color:#666">--</span>data<span style="color:#666">-</span>urlencode <span style="color:#ba2121">&#39;client_id={OAUTH2_CLIENT_ID}&#39;</span> <span style="color:#666">\</span>
-</span></span><span style="display:flex;"><span><span style="color:#666">--</span>data<span style="color:#666">-</span>urlencode <span style="color:#ba2121">&#39;client_secret={OAUTH2_CLIENT_SECRET}&#39;</span> <span style="color:#666">\</span>
-</span></span><span style="display:flex;"><span><span style="color:#666">--</span>data<span style="color:#666">-</span>urlencode <span style="color:#ba2121">&#39;refresh_token={CURRENT_REFRESH_TOKEN}&#39;</span>
+<div class="highlight"><pre tabindex="0" style=";-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-javascript" data-lang="javascript"><span style="display:flex;"><span>curl <span style="color:#666">--</span>location <span style="color:#ba2121">&#39;https://api.samsungknox.com/ams/v1/oauth2/token&#39;</span> <span style="color:#666">\</span>
+</span></span><span style="display:flex;"><span>     <span style="color:#666">--</span>header <span style="color:#ba2121">&#39;Content-Type: application/x-www-form-urlencoded&#39;</span> <span style="color:#666">\</span>
+</span></span><span style="display:flex;"><span>     <span style="color:#666">--</span>data<span style="color:#666">-</span>urlencode <span style="color:#ba2121">&#39;grant_type=refresh_token&#39;</span> <span style="color:#666">\</span>
+</span></span><span style="display:flex;"><span>     <span style="color:#666">--</span>data<span style="color:#666">-</span>urlencode <span style="color:#ba2121">&#39;client_id={OAUTH2_CLIENT_ID}&#39;</span> <span style="color:#666">\</span>
+</span></span><span style="display:flex;"><span>     <span style="color:#666">--</span>data<span style="color:#666">-</span>urlencode <span style="color:#ba2121">&#39;client_secret={OAUTH2_CLIENT_SECRET}&#39;</span> <span style="color:#666">\</span>
+</span></span><span style="display:flex;"><span>     <span style="color:#666">--</span>data<span style="color:#666">-</span>urlencode <span style="color:#ba2121">&#39;refresh_token={CURRENT_REFRESH_TOKEN}&#39;</span>
 </span></span></code></pre></div><p>You receive new access and refresh tokens in the below format:</p>
 <div class="highlight"><pre tabindex="0" style=";-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-json" data-lang="json"><span style="display:flex;"><span>{ 
-</span></span><span style="display:flex;"><span>  <span style="color:#008000;font-weight:bold">&#34;access_token&#34;</span>: <span style="color:#ba2121">&#34;eyJraWQiOiIzYjkwNjAxMSPYLQnMi9A&#34;</span>, 
-</span></span><span style="display:flex;"><span>  <span style="color:#008000;font-weight:bold">&#34;refresh_token&#34;</span>: <span style="color:#ba2121">&#34;Aj5OaUNYQ9MZ02Fc2MXZLNDvc&#34;</span>, 
+</span></span><span style="display:flex;"><span>  <span style="color:#008000;font-weight:bold">&#34;access_token&#34;</span>: <span style="color:#ba2121">&#34;abCdeFg..HiJKlM2o&#34;</span>, 
+</span></span><span style="display:flex;"><span>  <span style="color:#008000;font-weight:bold">&#34;refresh_token&#34;</span>: <span style="color:#ba2121">&#34;aBCl1..DE2fgHI&#34;</span>, 
 </span></span><span style="display:flex;"><span>  <span style="color:#008000;font-weight:bold">&#34;scope&#34;</span>: <span style="color:#ba2121">&#34;kai&#34;</span>, 
 </span></span><span style="display:flex;"><span>  <span style="color:#008000;font-weight:bold">&#34;token_type&#34;</span>: <span style="color:#ba2121">&#34;Bearer&#34;</span>, 
 </span></span><span style="display:flex;"><span>  <span style="color:#008000;font-weight:bold">&#34;expires_in&#34;</span>: <span style="color:#666">599</span> 
@@ -598,13 +595,12 @@
 <h2 id="revoke-access-token">Revoke access token</h2>
 <p>If you no longer require access to end user’s Knox cloud services resources, you can revoke your access or refresh tokens. For more information, see the <a href="../../knox-oauth-2-0-authentication-api.html#tag/Authorization-Server/operation/postRevoke" target="_blank">POST /oauth2/revoke</a> operation.</p>
 <p>For example:</p>
-<div class="highlight"><pre tabindex="0" style=";-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-javascript" data-lang="javascript"><span style="display:flex;"><span>curl 
-</span></span><span style="display:flex;"><span><span style="color:#666">--</span>location <span style="color:#ba2121">&#39;https://api.samsungknox.com/ams/v1/oauth2/revoke&#39;</span> <span style="color:#666">\</span>
-</span></span><span style="display:flex;"><span><span style="color:#666">--</span>header <span style="color:#ba2121">&#39;Accept: application/json&#39;</span> <span style="color:#666">\</span>
-</span></span><span style="display:flex;"><span><span style="color:#666">--</span>header <span style="color:#ba2121">&#39;Content-Type: application/x-www-form-urlencoded&#39;</span> <span style="color:#666">\</span>
-</span></span><span style="display:flex;"><span><span style="color:#666">--</span>data<span style="color:#666">-</span>urlencode <span style="color:#ba2121">&#39;client_id=z3w55213y2&#39;</span> <span style="color:#666">\</span>
-</span></span><span style="display:flex;"><span><span style="color:#666">--</span>data<span style="color:#666">-</span>urlencode <span style="color:#ba2121">&#39;client_secret=Cy2GFPJBfGHvc5DfBctlXNfBZH8AfVbD&#39;</span> <span style="color:#666">\</span>
-</span></span><span style="display:flex;"><span><span style="color:#666">--</span>data<span style="color:#666">-</span>urlencode <span style="color:#ba2121">&#39;token=X1JYJfxRzKlnKmEGqAsYBdBMDtYJZ&#39;</span>
+<div class="highlight"><pre tabindex="0" style=";-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-javascript" data-lang="javascript"><span style="display:flex;"><span>curl <span style="color:#666">--</span>location <span style="color:#ba2121">&#39;https://api.samsungknox.com/ams/v1/oauth2/revoke&#39;</span> <span style="color:#666">\</span>
+</span></span><span style="display:flex;"><span>     <span style="color:#666">--</span>header <span style="color:#ba2121">&#39;Accept: application/json&#39;</span> <span style="color:#666">\</span>
+</span></span><span style="display:flex;"><span>     <span style="color:#666">--</span>header <span style="color:#ba2121">&#39;Content-Type: application/x-www-form-urlencoded&#39;</span> <span style="color:#666">\</span>
+</span></span><span style="display:flex;"><span>     <span style="color:#666">--</span>data<span style="color:#666">-</span>urlencode <span style="color:#ba2121">&#39;client_id=a1b23456c7&#39;</span> <span style="color:#666">\</span>
+</span></span><span style="display:flex;"><span>     <span style="color:#666">--</span>data<span style="color:#666">-</span>urlencode <span style="color:#ba2121">&#39;client_secret=Ab1...DEfG&#39;</span> <span style="color:#666">\</span>
+</span></span><span style="display:flex;"><span>     <span style="color:#666">--</span>data<span style="color:#666">-</span>urlencode <span style="color:#ba2121">&#39;token=A1B...cDEF&#39;</span>
 </span></span></code></pre></div>
             
           </div>

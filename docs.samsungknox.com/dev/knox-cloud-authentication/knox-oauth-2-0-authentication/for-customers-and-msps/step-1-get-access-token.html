@@ -155,8 +155,6 @@
   </li>
 <li>
   <a href="../../../knox-guard.html" >Knox Guard</a>
-  <ul>
-    </ul>
   </li>
 <li>
   <a href="../../../knox-asset-intelligence.html" >Knox Asset Intelligence</a>
@@ -557,7 +555,7 @@
             </div>
             
 
-  <p><span>Last updated June  26th, 2024</span></p>
+  <p><span>Last updated February  12th, 2025</span></p>
 
 
     
@@ -574,25 +572,23 @@
       <p>You can call the <a href="../knox-oauth-2-0-authentication-api.html#tag/Authorization-Server/operation/postToken" target="_blank">POST /oauth2/token</a> operation, using your app&rsquo;s client ID and client secret, to get the access token.</p>
 <div class="notice-note"><p>The expiration period for an access token is 10 minutes.</p></div>
 <p>The following request format is used to get an access token using client credentials:</p>
-<div class="highlight"><pre tabindex="0" style=";-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-javascript" data-lang="javascript"><span style="display:flex;"><span>curl 
-</span></span><span style="display:flex;"><span><span style="color:#666">--</span>location <span style="color:#ba2121">&#39;https://api.samsungknox.com/ams/v1/oauth2/token&#39;</span> <span style="color:#666">\</span>
-</span></span><span style="display:flex;"><span><span style="color:#666">--</span>header <span style="color:#ba2121">&#39;Content-Type: application/x-www-form-urlencoded&#39;</span> <span style="color:#666">\</span>
-</span></span><span style="display:flex;"><span><span style="color:#666">--</span>data<span style="color:#666">-</span>urlencode <span style="color:#ba2121">&#39;grant_type=client_credentials&#39;</span> <span style="color:#666">\</span>
-</span></span><span style="display:flex;"><span><span style="color:#666">--</span>data<span style="color:#666">-</span>urlencode <span style="color:#ba2121">&#39;client_id={OAUTH2_CLIENT_ID}&#39;</span> <span style="color:#666">\</span>
-</span></span><span style="display:flex;"><span><span style="color:#666">--</span>data<span style="color:#666">-</span>urlencode <span style="color:#ba2121">&#39;client_secret={OAUTH2_CLIENT_SECRET}&#39;</span> <span style="color:#666">\</span>
-</span></span><span style="display:flex;"><span><span style="color:#666">--</span>data<span style="color:#666">-</span>urlencode <span style="color:#ba2121">&#39;scope={Required Scope}&#39;</span>
+<div class="highlight"><pre tabindex="0" style=";-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-javascript" data-lang="javascript"><span style="display:flex;"><span>curl <span style="color:#666">--</span>location <span style="color:#ba2121">&#39;https://api.samsungknox.com/ams/v1/oauth2/token&#39;</span> <span style="color:#666">\</span>
+</span></span><span style="display:flex;"><span>     <span style="color:#666">--</span>header <span style="color:#ba2121">&#39;Content-Type: application/x-www-form-urlencoded&#39;</span> <span style="color:#666">\</span>
+</span></span><span style="display:flex;"><span>     <span style="color:#666">--</span>data<span style="color:#666">-</span>urlencode <span style="color:#ba2121">&#39;grant_type=client_credentials&#39;</span> <span style="color:#666">\</span>
+</span></span><span style="display:flex;"><span>     <span style="color:#666">--</span>data<span style="color:#666">-</span>urlencode <span style="color:#ba2121">&#39;client_id={OAUTH2_CLIENT_ID}&#39;</span> <span style="color:#666">\</span>
+</span></span><span style="display:flex;"><span>     <span style="color:#666">--</span>data<span style="color:#666">-</span>urlencode <span style="color:#ba2121">&#39;client_secret={OAUTH2_CLIENT_SECRET}&#39;</span> <span style="color:#666">\</span>
+</span></span><span style="display:flex;"><span>     <span style="color:#666">--</span>data<span style="color:#666">-</span>urlencode <span style="color:#ba2121">&#39;scope={Required Scope}&#39;</span>
 </span></span></code></pre></div><p>For example:</p>
-<div class="highlight"><pre tabindex="0" style=";-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-javascript" data-lang="javascript"><span style="display:flex;"><span>curl 
-</span></span><span style="display:flex;"><span><span style="color:#666">--</span>location <span style="color:#ba2121">&#39;https://api.samsungknox.com/ams/v1/oauth2/token&#39;</span> <span style="color:#666">\</span>
-</span></span><span style="display:flex;"><span><span style="color:#666">--</span>header <span style="color:#ba2121">&#39;Content-Type: application/x-www-form-urlencoded&#39;</span> <span style="color:#666">\</span>
-</span></span><span style="display:flex;"><span><span style="color:#666">--</span>data<span style="color:#666">-</span>urlencode <span style="color:#ba2121">&#39;grant_type=client_credentials&#39;</span> <span style="color:#666">\</span>
-</span></span><span style="display:flex;"><span><span style="color:#666">--</span>data<span style="color:#666">-</span>urlencode <span style="color:#ba2121">&#39;client_id=u6oBxBP53rkCoqDpkzvgNtnUwsFw5mrs&#39;</span> <span style="color:#666">\</span>
-</span></span><span style="display:flex;"><span><span style="color:#666">--</span>data<span style="color:#666">-</span>urlencode <span style="color:#ba2121">&#39;client_secret=AQCGAt6Py7w1ixpksRKUzhAg99AzVoGN&#39;</span> <span style="color:#666">\</span>
-</span></span><span style="display:flex;"><span><span style="color:#666">--</span>data<span style="color:#666">-</span>urlencode <span style="color:#ba2121">&#39;scope=ke&#39;</span>
-</span></span></code></pre></div><p>You receive the access token in the following format. The value of the <code>expires_in</code> key denotes the number of seconds for which the access token is valid. You need an active access token every time you make Knox cloud services API call.</p>
+<div class="highlight"><pre tabindex="0" style=";-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-javascript" data-lang="javascript"><span style="display:flex;"><span>curl <span style="color:#666">--</span>location <span style="color:#ba2121">&#39;https://api.samsungknox.com/ams/v1/oauth2/token&#39;</span> <span style="color:#666">\</span>
+</span></span><span style="display:flex;"><span>     <span style="color:#666">--</span>header <span style="color:#ba2121">&#39;Content-Type: application/x-www-form-urlencoded&#39;</span> <span style="color:#666">\</span>
+</span></span><span style="display:flex;"><span>     <span style="color:#666">--</span>data<span style="color:#666">-</span>urlencode <span style="color:#ba2121">&#39;grant_type=client_credentials&#39;</span> <span style="color:#666">\</span>
+</span></span><span style="display:flex;"><span>     <span style="color:#666">--</span>data<span style="color:#666">-</span>urlencode <span style="color:#ba2121">&#39;client_id=a1bC...d2efg&#39;</span> <span style="color:#666">\</span>
+</span></span><span style="display:flex;"><span>     <span style="color:#666">--</span>data<span style="color:#666">-</span>urlencode <span style="color:#ba2121">&#39;client_secret=ABC...DeFG&#39;</span> <span style="color:#666">\</span>
+</span></span><span style="display:flex;"><span>     <span style="color:#666">--</span>data<span style="color:#666">-</span>urlencode <span style="color:#ba2121">&#39;scope=kai&#39;</span>
+</span></span></code></pre></div><p>You receive the access token in the following format. The value of the <code>expires_in</code> key denotes the number of seconds for which the access token is valid. You need an active access token every time you make a Knox cloud services API call.</p>
 <div class="highlight"><pre tabindex="0" style=";-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-json" data-lang="json"><span style="display:flex;"><span>{
-</span></span><span style="display:flex;"><span>  <span style="color:#008000;font-weight:bold">&#34;access_token&#34;</span>:<span style="color:#ba2121">&#34;eyJhbGc..SbHWvZ1w&#34;</span>,
-</span></span><span style="display:flex;"><span>  <span style="color:#008000;font-weight:bold">&#34;scope&#34;</span>:<span style="color:#ba2121">&#34;ke&#34;</span>,
+</span></span><span style="display:flex;"><span>  <span style="color:#008000;font-weight:bold">&#34;access_token&#34;</span>:<span style="color:#ba2121">&#34;abc123...abc123&#34;</span>,
+</span></span><span style="display:flex;"><span>  <span style="color:#008000;font-weight:bold">&#34;scope&#34;</span>:<span style="color:#ba2121">&#34;kai&#34;</span>,
 </span></span><span style="display:flex;"><span>  <span style="color:#008000;font-weight:bold">&#34;expires_in&#34;</span>: <span style="color:#666">599</span>,
 </span></span><span style="display:flex;"><span>  <span style="color:#008000;font-weight:bold">&#34;token_type&#34;</span>:<span style="color:#ba2121">&#34;Bearer&#34;</span>
 </span></span><span style="display:flex;"><span>}

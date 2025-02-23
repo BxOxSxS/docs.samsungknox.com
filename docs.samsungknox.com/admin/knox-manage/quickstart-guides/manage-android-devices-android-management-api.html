@@ -383,17 +383,6 @@
     
     
     <div class="d-flex justify-content-between">
-      <a class="body-5 text-black fw-light" href="android-management-api-device-enrollment-quickstart.html">Android Management API device enrollment quickstart</a>
-    </div>
-    
-    </li>
-  
-  
-  
-    <li class="mt-2">
-    
-    
-    <div class="d-flex justify-content-between">
       <a class="body-5 text-black fw-light" href="apple-user-enrollment-quickstart.html">Apple User Enrollment quickstart</a>
     </div>
     
@@ -4930,7 +4919,7 @@
             </div>
             
 
-  <p><span>Last updated September  25th, 2024</span></p>
+  <p><span>Last updated February  20th, 2025</span></p>
 
 
     
@@ -4949,13 +4938,19 @@
       
       
       
-        
-      
-      
-      
-      
         <p>Knox Manage lets you manage your fleet of Android devices and their apps through the Android Management API, which is the successor to the Google Play EMM API that first enabled Android Enterprise.</p>
+<div class="notice-note"><p>Knox Manage 23.09 and higher only supports work profile for Android Management API devices, and restricts the use of fully managed devices.</p></div>
 <p>Android Management API devices need to have the Samsung Knox Manage (Companion) app installed. Additionally, the <a href="https://play.google.com/store/apps/details?id=com.google.android.apps.work.clouddpc" target="_blank">Android Device Policy app</a> provides policy controller duties, unifying the policy deployment process across UEM solutions.</p>
+<p>The Knox Manage integration of the Android Management API offers the same features, and serves the same use cases as previous APIs for Android device management. Knox Manage supports the Android Management API for the following deployment parameters:</p>
+<ul>
+<li>
+<p>Personally-owned and company-owned devices with work profiles</p>
+</li>
+<li>
+<p>QR code enrollment</p>
+</li>
+</ul>
+<p>For app management, Android Management API makes exclusive use of Managed Google Play.</p>
 
 
 
@@ -4965,28 +4960,40 @@
 
 
 <p><img src="../assets/km-android-management-api-overview.png" class="img-fluid img-thumbnail" alt="An overview of the four layers of the Android Management API technology stack: the UEM console (Knox Manage), the Android Management API (represented by the data in the profile), the policy payload (stored on Google&#39;s servers), and the device (managed by the Android Device Policy app)." /></p>
-<p>The Knox Manage integration of the Android Management API is planned to offer the same features and serve the same use cases of Android device management as previous APIs.</p>
-<p>Knox Manage supports the Android Management API for the following deployment parameters:</p>
-<ul>
-<li>Personally-owned and company-owned devices with Work Profiles</li>
-<li>QR code enrollment</li>
-</ul>
 <h2 id="enroll-device-android-management-api">Enroll a device with Android Management API</h2>
-<p>This section covers how to enroll an Android device with a Work Profile. It is the same process as described in <a href="../configure/devices/enroll-devices/enroll-a-single-device.html">Enroll a single device</a>, but additional details are provided here.</p>
-<p>First, as the admin, you must prepare the enrollment:</p>
+<p>A user-based device is associated with a specific user account, and requires the device user to authenticate with their Knox Manage account during enrollment. By default, this strategy uses a QR code to initiate the enrollment flow, but you can also make use of enrollment providers like Knox Mobile Enrollment and Zero-touch.</p>
+<p>The enrollment of the device is a two-step process:</p>
+<h3 id="prepare-device-for-enrollment">Step 1 &mdash; Prepare the device for enrollment</h3>
 <ol>
-<li>Factory reset and power off the device.</li>
-<li>On the Knox Manage console, go to <strong>User</strong>.</li>
-<li>Select the user, then click <strong>Request Enrollment</strong>. An enrollment email with the QR code is sent to the user.</li>
+<li>
+<p>Factory reset and power off the device.</p>
+</li>
+<li>
+<p>On the Knox Manage console, go to <strong>User</strong>.</p>
+</li>
+<li>
+<p>Select the user, then click <strong>Request Enrollment</strong>. An enrollment email with the QR code is sent to the user.</p>
+</li>
 </ol>
-<p>Next, the device user enrolls the device:</p>
+<h3 id="device-user-enrolls-device">Step 2 &mdash; The device user enrolls the device</h3>
 <ol>
-<li>Power on the device.</li>
-<li>At the welcome screen, tap the screen six times. The QR code reader app automatically installs and launches.</li>
-<li>Using another device to display the enrollment email, scan the QR code with the device.</li>
-<li>On the <strong>Agree to Terms and Conditions</strong> screen, read and acknowledge the terms and conditions. If you agree, the sign-in screen opens with a <strong>Samsung Knox Manage</strong> logo.</li>
-<li>Sign in with the user account credentials.</li>
+<li>
+<p>Power on the device.</p>
+</li>
+<li>
+<p>At the welcome screen, tap the screen six times. The QR code reader app automatically installs and launches.</p>
+</li>
+<li>
+<p>Using another device to display the enrollment email, scan the QR code with the device.</p>
+</li>
+<li>
+<p>On the <strong>Agree to Terms and Conditions</strong> screen, read and acknowledge the terms and conditions. If you agree, the sign-in screen opens with a <strong>Samsung Knox Manage</strong> logo.</p>
+</li>
+<li>
+<p>Sign in with the user account credentials.</p>
+</li>
 </ol>
+<div class="notice-note"><p>As the sign-in URL for Android Management API devices is the same regardless of the enrollment method — QR code, Knox Mobile Enrollment, or Zero-touch — the <strong>Device</strong> page on the Knox Manage console categorizes the <strong>Enrollment Type</strong> of these devices as <strong>Others</strong>.</p></div>
 
             
           </div>
@@ -4995,7 +5002,12 @@
 <aside class="table-of-headings">
   <nav id="TableOfContents">
   <ul>
-    <li><a href="manage-android-devices-android-management-api.html#enroll-device-android-management-api">Enroll a device with Android Management API</a></li>
+    <li><a href="manage-android-devices-android-management-api.html#enroll-device-android-management-api">Enroll a device with Android Management API</a>
+      <ul>
+        <li><a href="manage-android-devices-android-management-api.html#prepare-device-for-enrollment">Step 1 &mdash; Prepare the device for enrollment</a></li>
+        <li><a href="manage-android-devices-android-management-api.html#device-user-enrolls-device">Step 2 &mdash; The device user enrolls the device</a></li>
+      </ul>
+    </li>
   </ul>
 </nav>
 </aside>
