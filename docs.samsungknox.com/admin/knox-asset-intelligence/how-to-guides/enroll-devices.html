@@ -119,8 +119,6 @@
   </li>
 <li>
   <a href="../../knox-manage.html" >Knox Manage</a>
-  <ul>
-    </ul>
   </li>
 <li>
   <a href="../../knox-efota.html" >Knox E-FOTA</a>
@@ -1096,7 +1094,7 @@
             </div>
             
 
-  <p><span>Last updated November  27th, 2024</span></p>
+  <p><span>Last updated February  27th, 2025</span></p>
 
 
     
@@ -1129,153 +1127,127 @@
       
       
       
-        <p>After devices are added to your account (either through a reseller or from a manual CSV file upload), your devices must enroll in the Knox Asset Intelligence service in order for device usage and health data to appear on your Dashboard.</p>
-<p>Device enrollment primarily involves installing the Knox Asset Intelligence agent &mdash; a managed Android app &mdash; on your devices. Depending on the UEM or EMM you&rsquo;re using, different enrollment methods are available.</p>
-<h2 id="enroll-with-knox-manage">Enroll with Knox Manage</h2>
-<p>If you&rsquo;re using <strong>Knox Manage</strong> as your UEM, you can use its built-in Knox Asset Intelligence feature to install the agent app and auto-enroll devices with just a few simple steps.</p>
-<p>Before you can use Knox Manage to enroll devices into Knox Asset Intelligence, you must ensure the following:</p>
+        
+      
+      
+      
+      
+        
+      
+      
+      
+      
+        
+      
+      
+      
+      
+        
+      
+      
+      
+      
+        
+      
+      
+      
+      
+        <p>After devices are added to your account (either through a reseller or from a manual CSV file upload), your devices must enroll in the Knox Asset Intelligence service in order for device usage and health data to appear on your <strong>Dashboard</strong>.</p>
+<p>Device enrollment primarily involves installing and launching the Knox Asset Intelligence agent on your devices. There are two main methods for enrolling a device:</p>
 <ul>
-<li>Your devices are already uploaded to the Knox Asset Intelligence console, either through a reseller or with a CSV file.</li>
-<li>Your devices have the auto-enrollment option disabled in the Knox Asset Intelligence console.</li>
+<li>OOBE auto enrollment</li>
+<li>EMM or UEM enrollment</li>
 </ul>
-
-
-
-
-
-
-
-  
-  
-  
-  
-  
-    
-    
-    
-    
-      
-    
-    
-  
-    
-    
-    
-    
-      
-    
-    
-  
-    
-    
-    
-    
-      
-    
-    
-  
-    
-    
-    
-    
-      
-    
-    
-  
-    
-    
-    
-    
-      
-    
-    
-  
-    
-    
-    
-    
-      
-    
-    
-  
-    
-    
-    
-    
-      
-    
-    
-  
-    
-    
-    
-    
-      
-    
-    
-  
-    
-    
-    
-    
-      
-    
-    
-  
-    
-    
-    
-      
-    
-    
-    
-  
-    
-    
-    
-      
-    
-    
-    
-  
-    
-    
-    
-      
-    
-    
-    
-  
-    
-    
-    
-      
-    
-    
-    
-  
-
-
-<p><img src="../assets/device-actions-disable-auto-enroll.png" class="image-block-scale-33 img-thumbnail" alt="KAI console disabled auto enroll action" /></p>
-<p>Once these conditions are met, you can use Knox Manage to auto-enroll devices into Knox Asset Intelligence. Refer to <a href="../../knox-manage/configure/basic-setup/deploy-knox-asset-intelligence.html">Deploy Knox Asset Intelligence</a> in the Knox Manage admin guide for more details.</p>
-<h2 id="enroll-with-other-uems">Enroll with other UEMs</h2>
-<div class="notice-note"><p>Since all UEM or EMMs have different user experiences, the following procedure only describes the general steps for enrollment. Refer to your UEM or EMM’s guide for detailed instructions.</p></div>
-<p>If you&rsquo;re not using Knox Manage as your UEM or EMM, you&rsquo;ll need to install the Knox Asset Intelligence agent as a Managed Google Play app onto your devices. To do this:</p>
+<h2 id="oobe-auto-enrollment">OOBE Auto enrollment</h2>
+<p>If you have new or factory reset devices in your fleet, you can automatically enroll them in Knox Asset Intelligence when they turn on for the first time. This method of enrollment is also known as Out-Of-Box-Experience (OOBE) enrollment, as it simply involves a user turning on the device and connecting to a data network. Once connected, the device attempts to download and install the Knox Asset Intelligence agent, then launch the agent in the background to automatically begin the enrollment process.</p>
+<p>To support OOBE enrollment, the following conditions must be met:</p>
 <ol>
 <li>
-<p>Enable the Knox Service Plugin in your UEM or EMM. See the <a href="../../knox-platform-for-enterprise/knox-service-plugin.html">Knox Service Plugin</a> documentation for more details.</p>
+<p>Your devices must be <a href="register-resellers.html">uploaded by a reseller</a>.</p>
 </li>
 <li>
-<p>Add the Knox Asset Intelligence agent as a Managed Google Play app. Make sure to configure the app to auto-launch after installation.</p>
+<p>You must have a valid <a href="../../knox-suite/get-started/confirm-and-register-your-license.html">Knox Suite - Enterprise plan</a> or standalone Knox Asset Intelligence license.</p>
 </li>
 <li>
-<p>You must allow the collection of location data in order for your devices to enroll into the service. If your devices are running Android 12 or higher, permissions are granted differently based on your device management mode.</p>
+<p>Your devices must be managed by Android Enterprise.</p>
+</li>
+<li>
+<p>You devices must have the auto-enrollment option <em>enabled</em>. You can enable this option in several ways:</p>
+<ol>
+<li>
+<p>Set auto-enrollment on a <em>per-device</em> basis. To do this, go to the <strong>Devices</strong> page, then select a device and click <strong>ACTIONS</strong> &gt; <strong>Enable auto enrollment</strong>.</p>
+
+        
+        
+        
+        
+        
+        
+        
+        <p><img src="../assets/kai-device-auto-enroll-action.png" class="img-fluid img-thumbnail" alt="auto enroll option in Devices page" /></p>
+</li>
+<li>
+<p>Set auto-enrollment for <em>all devices</em> uploaded by a specific reseller. To do this, go to the <strong>Reseller</strong> page, then click the reseller&rsquo;s name. On the side panel, ensure that all uploads are automatically approved from this reseller, then select the <strong>Automatically enroll all devices&hellip;</strong> option.</p>
+
+        
+        
+        
+        
+        
+        
+        
+        <p><img src="../assets/kai-reseller-oobe.png" class="img-fluid img-thumbnail" alt="auto enroll option in Reseller page" /></p>
+</li>
+<li>
+<p>Use a bulk action to auto-enroll up to 10,000 devices using a CSV file. To do this, go to the <strong>Devices</strong> page, then click the <strong>BULK ACTIONS</strong> tab and select <strong>ENABLE AUTO ENROLLMENT</strong>. Download and complete the provided CSV template, then reupload and click <strong>SUBMIT</strong>.</p>
+
+        
+        
+        
+        
+        
+        
+        
+        <p><img src="../assets/kai-devices-bulk-enroll.png" class="img-fluid img-thumbnail" alt="auto enroll option in Reseller page" /></p>
+</li>
+</ol>
+</li>
+</ol>
+<h2 id="emm-or-uem-enrollment">EMM or UEM enrollment</h2>
+<p>You can use an Enterprise Mobility Management (EMM) or Unified Endpoint Management (UEM) solution to install the Knox Asset Intelligence agent (as a Managed Google Play app) onto your devices. Once installed, you can configure your EMM or UEM to auto-launch the agent, or ask your device users to manually launch the agent to begin the enrollment process. Before you can use this enrollment method, ensure the following:</p>
+<ul>
+<li>
+<p>Your devices are already uploaded to the Knox Asset Intelligence console, either through a reseller or with a CSV file.</p>
+</li>
+<li>
+<p>You have a valid <a href="../../knox-suite/get-started/confirm-and-register-your-license.html">Knox Suite - Enterprise plan</a> or standalone Knox Asset Intelligence license.</p>
+</li>
+<li>
+<p>Your devices have the auto-enrollment option <em>disabled</em> in the Knox Asset Intelligence console. To do this, go the <strong>Devices</strong> page, select your devices, then click <strong>ACTIONS</strong> &gt; <strong>Disable auto enrollment</strong>.</p>
+</li>
+</ul>
+<h3 id="enroll-with-knox-manage">Enroll with Knox Manage</h3>
+<p>If you&rsquo;re using <strong>Knox Manage</strong> as your UEM, you can use a built-in Knox Asset Intelligence enrollment feature to install the agent and auto-enroll devices. Refer to <a href="../../knox-manage/configure/basic-setup/deploy-knox-asset-intelligence.html">Deploy Knox Asset Intelligence</a> in the Knox Manage admin guide for more details.</p>
+<h3 id="enroll-with-other-emms-or-uems">Enroll with other EMMs or UEMs</h3>
+<p>Since all EMMs and UEMs have different user experiences, the following procedure only describes the general steps for enrollment. Refer to your solution&rsquo;s guides for detailed instructions. Regardless of your solution, you&rsquo;ll need to do the following:</p>
+<ol>
+<li>
+<p>Enable the Knox Service Plugin in your UEM or EMM. See the <a href="../../knox-platform-for-enterprise/knox-service-plugin/get-started/minimum-requirements.html">Knox Service Plugin</a> documentation for more details.</p>
+</li>
+<li>
+<p>Add the Knox Asset Intelligence agent as a Managed Google Play app.</p>
+</li>
+<li>
+<p>In your managed app settings, configure the app to auto-launch after installation.</p>
+</li>
+<li>
+<p>Allow the collection of location data in order for your devices to enroll into the service. If your devices are running Android 12 or higher, permissions are granted differently based on your device management mode.</p>
 <ol>
 <li>
 <p>For fully managed devices, you can use your UEM or EMM to pre-grant location permissions during enrollment.</p>
 </li>
 <li>
-<p>For work profile on company-owned devices, users must manually grant location permissions when prompted by the agent.</p>
+<p>For work profile on company-owned devices, device users must manually grant location permissions when prompted by the agent.</p>
 </li>
 </ol>
 </li>
@@ -1283,8 +1255,8 @@
 <p>Save the device profile and assign it to the target devices.</p>
 </li>
 </ol>
-<h2 id="add-knox-asset-intelligence-to-your-allowlist-policy">Add Knox Asset Intelligence to your allowlist policy</h2>
-<p>In addition to installing the agent, you must also add it your UEM or EMM&rsquo;s app allowlist policy. This ensures that the agent receives an update whenever a new release is available.</p>
+<h3 id="add-knox-asset-intelligence-to-your-allowlist-policy">Add Knox Asset Intelligence to your allowlist policy</h3>
+<p>Regardless of which EMM you use, you must also add the agent&rsquo;s package name to your EMM&rsquo;s app allowlist policy after installing the agent. This ensures that the agent receives an update whenever a new release is available.</p>
 <p>To do this, locate your UEM or EMM <strong>Knox Service Plugin</strong> policy settings, then under <strong>Application management policies</strong>, add the following package name to the <strong>Application Allowlist by Pkg Name</strong> field: <code>com.samsung.android.knox.dai</code></p>
 
 
@@ -1303,9 +1275,14 @@
 <aside class="table-of-headings">
   <nav id="TableOfContents">
   <ul>
-    <li><a href="enroll-devices.html#enroll-with-knox-manage">Enroll with Knox Manage</a></li>
-    <li><a href="enroll-devices.html#enroll-with-other-uems">Enroll with other UEMs</a></li>
-    <li><a href="enroll-devices.html#add-knox-asset-intelligence-to-your-allowlist-policy">Add Knox Asset Intelligence to your allowlist policy</a></li>
+    <li><a href="enroll-devices.html#oobe-auto-enrollment">OOBE Auto enrollment</a></li>
+    <li><a href="enroll-devices.html#emm-or-uem-enrollment">EMM or UEM enrollment</a>
+      <ul>
+        <li><a href="enroll-devices.html#enroll-with-knox-manage">Enroll with Knox Manage</a></li>
+        <li><a href="enroll-devices.html#enroll-with-other-emms-or-uems">Enroll with other EMMs or UEMs</a></li>
+        <li><a href="enroll-devices.html#add-knox-asset-intelligence-to-your-allowlist-policy">Add Knox Asset Intelligence to your allowlist policy</a></li>
+      </ul>
+    </li>
   </ul>
 </nav>
 </aside>

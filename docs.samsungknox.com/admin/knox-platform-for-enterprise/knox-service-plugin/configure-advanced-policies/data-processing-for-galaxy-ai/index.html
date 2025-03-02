@@ -119,8 +119,6 @@
   </li>
 <li>
   <a href="../../../../knox-manage.html" >Knox Manage</a>
-  <ul>
-    </ul>
   </li>
 <li>
   <a href="../../../../knox-efota.html" >Knox E-FOTA</a>
@@ -377,6 +375,17 @@
     
     
     <div class="d-flex justify-content-between">
+      <a class="body-5 text-black fw-light" href="../allow-apps-access-sdk.html">Allow apps to access Knox SDK</a>
+    </div>
+    
+    </li>
+  
+  
+  
+    <li class="mt-2">
+    
+    
+    <div class="d-flex justify-content-between">
       <a class="body-5 text-black fw-light" href="../allow-dual-sim-operation.html">Allow dual SIM operation</a>
     </div>
     
@@ -619,28 +628,6 @@
     
     
     <div class="d-flex justify-content-between">
-      <a class="body-5 text-black fw-light" href="../mobile-hotspot-toggle.html">Mobile hotspot toggle</a>
-    </div>
-    
-    </li>
-  
-  
-  
-    <li class="mt-2">
-    
-    
-    <div class="d-flex justify-content-between">
-      <a class="body-5 text-black fw-light" href="../mute-with-gestures-toggle.html">Mute with gestures toggle</a>
-    </div>
-    
-    </li>
-  
-  
-  
-    <li class="mt-2">
-    
-    
-    <div class="d-flex justify-content-between">
       <a class="body-5 text-black fw-light" href="../network-platform-analytics/index.html">Network Platform Analytics</a>
     </div>
     
@@ -719,17 +706,6 @@
     
     <div class="d-flex justify-content-between">
       <a class="body-5 text-black fw-light" href="../separated-apps.html">Separated Apps</a>
-    </div>
-    
-    </li>
-  
-  
-  
-    <li class="mt-2">
-    
-    
-    <div class="d-flex justify-content-between">
-      <a class="body-5 text-black fw-light" href="../set-screen-brightness.html">Set screen brightness</a>
     </div>
     
     </li>
@@ -1283,7 +1259,7 @@
             </div>
             
 
-  <p><span>Last updated January  16th, 2025</span></p>
+  <p><span>Last updated February  26th, 2025</span></p>
 
 
     
@@ -1296,7 +1272,12 @@
 
 
 
-<p>Galaxy AI is a set of machine learning and generative features on Galaxy devices processed on-device and in the cloud to enhance the mobile experience. For enterprises where user data can&rsquo;t be processed in the cloud, Knox Service Plugin provides you a way of restricting the features that are cloud-dependent.</p>
+
+      
+      
+      
+      
+        <p>Galaxy AI is a set of machine learning and generative features on Galaxy devices processed on-device and in the cloud to enhance the mobile experience. Knox Service Plugin provides you with a way of restricting the features that are cloud-dependent, and disabling Galaxy AI features to fit your organization&rsquo;s policies.</p>
 <p>AI features that are processed on-device don&rsquo;t use your data for training machine learning models. Features that process data in the cloud may be used for model training.</p>
 <p>If a device has a work profile and is set to only process data locally, the data is only processed in the area that the feature is accessed from. In other words, data in the work profile isn&rsquo;t shared with the primary profile, and data in the primary profile isn&rsquo;t shared with the work profile.</p>
 <h2 id="requirements">Requirements</h2>
@@ -1363,6 +1344,57 @@
 <p>Save the profile and push it to your devices.</p>
 </li>
 </ol>
+<h2 id="control-galaxy-ai-features">Control Galaxy AI features</h2>
+<div class="notice-note"><p>Policies to block Galaxy AI are only supported on devices running Knox 3.11 and higher</p></div>
+<p>You can also selectively enable and disable Galaxy AI features with Knox Service Plugin.</p>
+<div class="overflow-auto my-3"><table>
+    <tr>
+        <th scope="col" style="width: 15%">Scope</th>
+        <th scope="col" style="width: 40%">Policy</th>
+        <th scope="col">Value</th>
+    </tr>
+    <tr>
+        <td>Device-wide</td>
+        <td>Enable device policy controls</td>
+        <td><strong>True</strong></td>
+    </tr>
+    <tr>
+        <td>Device-wide</td>
+        <td>Enable Advanced Restrictions controls</td>
+        <td><strong>True</strong></td>
+    </tr>
+    <tr>
+        <td>Device-wide</td>
+        <td>Block all galaxy AI</td>
+        <td>To disable all galaxy AI features in the primary profile (DO), set to <strong>True</strong></td>
+    </tr>
+    <tr>
+        <td>Device-wide</td>
+        <td>Block individual galaxy AI operations</td>
+        <td>In the dropdown, disable select galaxy AI features in the primary profile (DO). Selecting <strong>All</strong> here only disables the eight items listed in the menu.</td>
+    </tr>
+    <tr>
+        <td>Work profile</td>
+        <td>Enable work profile policies</td>
+        <td><strong>True</strong></td>
+    </tr>
+    <tr>
+        <td>Work profile</td>
+        <td>Enable advanced restrictions in work profile</td>
+        <td><strong>True</strong></td>
+    </tr>
+    <tr>
+        <td>Work profile</td>
+        <td>Block all galaxy AI</td>
+        <td>To disable all galaxy AI features in the work profile (PO), set to <strong>True</strong></td>
+    </tr>
+    <tr>
+        <td>Work profile</td>
+        <td>Block individual galaxy AI operations</td>
+        <td>In the dropdown, disable select galaxy AI features in the work profile (PO). Selecting <strong>All</strong> here only disables the eight items listed in the menu.</td>
+    </tr>
+</table></div>
+<p>To learn more, see <a href="../advanced-restriction-policies.html">Advanced restriction policies</a>.</p>
 
             
           </div>
@@ -1373,6 +1405,7 @@
   <ul>
     <li><a href="../data-processing-for-galaxy-ai.html#requirements">Requirements</a></li>
     <li><a href="../data-processing-for-galaxy-ai.html#manage-galaxy-ai-data-processing">Manage Galaxy AI data processing</a></li>
+    <li><a href="../data-processing-for-galaxy-ai.html#control-galaxy-ai-features">Control Galaxy AI features</a></li>
   </ul>
 </nav>
 </aside>

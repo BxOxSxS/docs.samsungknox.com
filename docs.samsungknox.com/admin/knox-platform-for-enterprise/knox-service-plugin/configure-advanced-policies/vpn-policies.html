@@ -119,8 +119,6 @@
   </li>
 <li>
   <a href="../../../knox-manage.html" >Knox Manage</a>
-  <ul>
-    </ul>
   </li>
 <li>
   <a href="../../../knox-efota.html" >Knox E-FOTA</a>
@@ -377,6 +375,17 @@
     
     
     <div class="d-flex justify-content-between">
+      <a class="body-5 text-black fw-light" href="allow-apps-access-sdk.html">Allow apps to access Knox SDK</a>
+    </div>
+    
+    </li>
+  
+  
+  
+    <li class="mt-2">
+    
+    
+    <div class="d-flex justify-content-between">
       <a class="body-5 text-black fw-light" href="allow-dual-sim-operation.html">Allow dual SIM operation</a>
     </div>
     
@@ -619,28 +628,6 @@
     
     
     <div class="d-flex justify-content-between">
-      <a class="body-5 text-black fw-light" href="mobile-hotspot-toggle.html">Mobile hotspot toggle</a>
-    </div>
-    
-    </li>
-  
-  
-  
-    <li class="mt-2">
-    
-    
-    <div class="d-flex justify-content-between">
-      <a class="body-5 text-black fw-light" href="mute-with-gestures-toggle.html">Mute with gestures toggle</a>
-    </div>
-    
-    </li>
-  
-  
-  
-    <li class="mt-2">
-    
-    
-    <div class="d-flex justify-content-between">
       <a class="body-5 text-black fw-light" href="network-platform-analytics/index.html">Network Platform Analytics</a>
     </div>
     
@@ -719,17 +706,6 @@
     
     <div class="d-flex justify-content-between">
       <a class="body-5 text-black fw-light" href="separated-apps.html">Separated Apps</a>
-    </div>
-    
-    </li>
-  
-  
-  
-    <li class="mt-2">
-    
-    
-    <div class="d-flex justify-content-between">
-      <a class="body-5 text-black fw-light" href="set-screen-brightness.html">Set screen brightness</a>
     </div>
     
     </li>
@@ -1283,7 +1259,7 @@
             </div>
             
 
-  <p><span>Last updated July  26th, 2023</span></p>
+  <p><span>Last updated February  26th, 2025</span></p>
 
 
     
@@ -1301,83 +1277,142 @@
       
       
       
-        <p>Configuring and applying VPN policies with KSP is a two step process:</p>
-<div class="notice-note"><p>To use VPN features on Samsung One UI Core devices, you are required to add the KSP package name <code>com.samsung.android.knox.kpu</code> to the certificate allow list using the <strong>allow applications to read private keys without alerting user</strong> feature in the <a href="certificate-management-policies.html">Certificate Management Policies</a> section.</p></div>
-<div class="notice-note"><p>VPN policies require a free Knox Platform for Enterprise Premium license.</p></div>
+        
+      
+      
+      
+      
+        
+      
+      
+      
+      
+        <div class="notice-note"><ul><li>VPN policies require a free Knox Platform for Enterprise Premium license.</li><li>To use VPN features on Samsung One UI Core devices, you are required to add the Knox Service Plugin package name <code>com.samsung.android.knox.kpu</code> to the certificate allowlist using the <strong>allow applications to read private keys without alerting user</strong> feature under <a href="certificate-management-policies.html">Certificate Management Policies</a>.</li></ul></div>
+<p>Configuring and applying VPN policies with Knox Service Plugin is a two step process:</p>
 <ol>
 <li>
-<p><strong>Set up the VPN configuration profile</strong> &mdash; Choose the VPN settings and policies to suit your organization. These settings are saved as a profile you can reuse in later configurations, such as setting up a DO or PO profile.</p>
+<p><a href="vpn-policies.html#create-a-vpn-profile-configuration"><strong>Create a VPN profile configuration</strong></a> &mdash; Configure a VPN profile to suit your organization.</p>
 </li>
 <li>
-<p><strong>Create the VPN policy</strong> &mdash; The VPN Policy uses settings from the VPN configuration profile created in the previous step. This VPN policy allows you to specify other rules, such as which apps should use this VPN.</p>
+<p><a href="vpn-policies.html#set-vpn-policies"><strong>Set VPN policies</strong></a> &mdash; These VPN policies govern how the VPN profile configured previously is used. This includes rules such as which managed workspaces and apps should use this VPN.</p>
 </li>
 </ol>
-<p>The following example shows you how to configure a per app VPN on a Device Owner (DO) device.</p>
-<h2 id="configure-vpn-profile">Configure VPN profile</h2>
-<ol>
+<h2 id="create-a-vpn-profile-configuration">Create a VPN profile configuration</h2>
+<p>Under <strong>VPN profiles (Premium)</strong> create a new configuration, or modify an existing one. Then, configure the following fields:</p>
+<ul>
 <li>
-<p>Under <strong>VPN profiles</strong>, <strong>VPN Profile</strong>, enter a profile name. For example, <code>VPN_Knox</code>.</p>
+<p><strong>Profile name</strong> &mdash; Specify a unique name for this VPN profile. This name is used to identify the profile when you set your VPN policies.</p>
 </li>
 <li>
-<p>Under <strong>VPN profiles</strong>, <strong>Vendor</strong>, choose the type of VPN you want to use. For this example, we select <strong>Knox built-in</strong>, which uses the <strong>Android VPN Management for Knox</strong> VPN.</p>
+<p><strong>Vendor</strong> &mdash; Select the VPN vendor of your VPN client. To use the Strong Swan VPN that&rsquo;s built into the Knox framework, select <strong>Knox built-in</strong>. If you&rsquo;re using any other VPN client, ensure that that VPN client is installed before Knox Service Plugin launches.</p>
 </li>
 <li>
-<p>Under <strong>Host</strong>, list your server host IP, for example, <code>52.3.256.0</code>.</p>
+<p><strong>Host</strong> &mdash; Enter the server host as an IP or domain name. Refer to your VPN provider&rsquo;s documentation for address formats applicable to your VPN.</p>
 </li>
 <li>
-<p>Leave all other values as default.</p>
+<p><strong>VPN connection type</strong> &ndash; Select the security protocol used by the VPN to connect to the server. Support for different connection types may vary based on your VPN provider.</p>
 </li>
 <li>
-<p>In your UEM, save the profile.</p>
-</li>
-</ol>
-<h2 id="configure-vpn-vendor-parameters">Configure VPN Vendor parameters</h2>
-<p>Now that you have created a VPN profile, you can set up the parameters such as the identifier and pre-shared key. Following the previous example, continue to configure Android VPN Management for Knox VPN.</p>
-<ol>
-<li>
-<p>Under <strong>Parameters for Knox built-in VPN</strong>, <strong>Authentication type</strong> select <code>ipsec_ike2_rsa.</code></p>
+<p><strong>Include UID/PID meta data</strong> &mdash; Include meta data about the unique identifier for the device user and the processes running on the device.</p>
 </li>
 <li>
-<p>Under <strong>User certificate alias</strong>, enter your certificate name. For example: <code>md_user.pfx</code>.</p>
+<p><strong>Proxy</strong> &mdash; Configure the proxy server for this VPN profile:</p>
+<ul>
+<li><strong>Enable Proxy with VPN</strong> &mdash; Use proxy servers with your VPN connection.</li>
+<li><strong>Server</strong> &mdash; Enter proxy server information. Contact your Network or IT Administrator for this information.</li>
+<li><strong>Port</strong> &mdash; Enter the port number on the device that the proxy uses for communication. Contact your Network or IT Administrator for this information.</li>
+<li><strong>PAC (Proxy auto config)</strong> &mdash; Specify the URL for your proxy&rsquo;s automatic configuration file that determines the appropriate proxy server to use for each URL accessed. Contact your Network or IT Administrator for this information.</li>
+<li><strong>Proxy authentication type</strong> &mdash; Proxy use is possible without authentication or with basic or NTLM authentication using admin provided credential or user credentials. Contact your Network or IT Administrator for more information.</li>
+<li><strong>Username</strong> &mdash; If you want to use admin provided credentials, enter the username for use with the proxy server. Leave this field empty to let the device user use their own credentials for the device.</li>
+<li><strong>Password</strong> &mdash; For proxies that use the IT admin provided credentials, enter the password used with the proxy username. Leave this field empty if you didn&rsquo;t provide a proxy username earlier and to let the device user use their own credentials for the device.</li>
+</ul>
 </li>
 <li>
-<p>Under <strong>CA certificate alias</strong>, enter your certificate name. For example: <code>vpn_cal.pfx</code>.</p>
+<p><strong>Parameters for Knox built-in VPN (for Strong Swan)</strong> &mdash; Use these controls to specify vendor-specific attributes for your Knox built-in VPN client.</p>
+<ul>
+<li><strong>Authentication type</strong> &mdash; Select the type of authentication that your Knox built-in VPN client uses. Note: Due to changes made by Google, the following are not be supported on Android 12 and higher: ipsec_xauth_rsa, ipsec_xauth_psk, ipsec_hybrid_rsa. Also, ipsec_ike2_eap_tls type is supported from Android 14.</li>
+<li><strong>Auto retry in minutes</strong> &mdash; When the VPN client is unable to connect or drops an active connection to the server, it automatically tries to reconnect. Enter the time interval, in minutes, after which- the VPN client tries to reconnect. Default interval is two minutes</li>
+<li><strong>Identifier</strong> &mdash; Enter the built-in unique VPN identifier that applies to your VPN provider. This information applies to the ipsec_ike2_psk authentication type. Your IT admin provides this- information when setting up the VPN client profile.</li>
+<li><strong>Remote Identifier</strong> &mdash; Configure a Remote Identifier for strongSwan VPN clients. A Remote Identifier is used for authentication during the VPN connection process, ensuring the security and privacy of the user connected to the VPN. Only supported on devices running Knox 3.11 and higher.</li>
+<li><strong>Pre-shared key</strong> &mdash; Enter your VPN client&rsquo;s pre-shared key, that is a form of password, that applies to your VPN client profile. This information applies to the ipsec_ike2_psk authentication- type. Your IT admin provides this information when setting up the VPN client profile.</li>
+<li><strong>User certificate alias</strong> &mdash; Enter the alias that identifies the user certificate used for the your VPN client. Your IT admin provides this information when setting up the VPN client profile.</li>
+<li><strong>CA certificate alias</strong> &mdash; Enter the alias that identifies the CA certificate used in your VPN client for ipsec_hybrid_rsa and ipsec_ike2_rsa authentication types. Your IT admin provides this- information when setting up the VPN client profile.</li>
+<li><strong>Server certificate alias</strong> &mdash; If your client uses ipsec_hybrid_rsa and ipsec_ike2_rsa, enter the name of the server certificate to use for authenticating connections. Your IT admin provides this- information when setting up the VPN client profile.</li>
+<li><strong>OCSP URL</strong> &mdash; If your client uses ocsp_url for ipsec_ike2_rsa, enter the URL to use for connections. Your IT admin provides this information when setting up the VPN client profile.</li>
+</ul>
 </li>
 <li>
-<p>Leave all other values as default.</p>
+<p><strong>Cisco AnyConnect VPN client settings</strong> &mdash; Use these controls to specify values for the vendor-specific attributes for your Cisco AnyConnect VPN client. Contact your Network or IT Administrator for more information.</p>
 </li>
 <li>
-<p>In your UEM, save the profile.</p>
-</li>
-</ol>
-<p>If you are using a different VPN, such as Pulse Secure or Cisco AnyConnect, these values may differ. The mandatory parameters you need to set depend on your network configuration. Contact your Network Administrator to find out which fields to use and with what values.</p>
-<h2 id="enable-vpn-policy">Enable VPN policy</h2>
-<p>Now that you have created and configured a profile, configure a policy and push it to a target device.</p>
-<ol>
-<li>
-<p>In your supported UEM, under the <strong>Device-wide policies (Device Owner)</strong> category, turn on <strong>Enable device policy controls</strong>.</p>
+<p><strong>Pulse Secure VPN client settings</strong> &mdash; Use these controls to specify the vendor-specific attributes for your Pulse Secure VPN client. Refer to your VPN provider&rsquo;s documentation for this information.</p>
 </li>
 <li>
-<p>Under VPN policy, turn on <strong>Enable VPN controls</strong>.</p>
+<p><strong>Net Motion VPN client settings</strong> &mdash; Use these controls to specify the vendor-specific attributes for your NetMotion Mobility client. Refer to your VPN provider&rsquo;s documentation for this information.</p>
 </li>
 <li>
-<p>Under VPN type, choose <strong>Selected Apps (Per-App)</strong>.</p>
-<div class="notice-note"><p>Currently, KSP does not support per-app the VPN mode for Net Motion VPN.</p></div>
+<p><strong>Sectra Mobile VPN Settings</strong> &mdash; Use these controls to specify the vendor-specific attributes for your Sectra Mobile VPN client. Refer to your VPN provider&rsquo;s documentation for this information.</p>
 </li>
 <li>
-<p>Under <strong>Manage list of apps that use VPN</strong>, add the package names of the apps you want to route through the VPN. For example, <code>com.samsung.email.provider</code>. If you do not enter any app packages, the VPN applies to all apps by default.</p>
+<p><strong>USB Tethering</strong> &mdash; Group of policies to control USB tethering over VPN. You can <strong>enable USB tethering over VPN</strong>, which allows a list of USB devices to access and share resources with a peer device. Admins can ensure there is security-based certification available so only a designated organization, or user, can use VPN tethering with allowed devices. However, VPN tethering will only work when the following conditions are met:</p>
+<ul>
+<li>
+<p>An IT admin must allow this feature from their UEM console for a target device to receive the tethering feature.</p>
 </li>
 <li>
-<p>Enter the <strong>Name of VPN profile to use</strong>, for this example we use our Android VPN Management for Knox profile <code>VPN_Knox</code>.</p>
+<p>A user must enable VPN tethering on their device.</p>
 </li>
 <li>
-<p>Leave all the other VPN values as set by default.</p>
+<p>The laptop or tablet being connected must have been previously allow listed by the IT admin.</p>
 </li>
 <li>
-<p>In your UEM, save the profile and push it to a device.</p>
+<p>The maximum number of VPN connections does not exceed 2.</p>
 </li>
-</ol>
-<div class="notice-note"><p>Within the VPN policy, optionally <strong>enable USB tethering over VPN</strong> so an allow listed USB device can access and share resources with a peer device. Admins can ensure there is security-based certification available so only a designated organization, or user, can use VPN tethering with allowed devices. However, VPN tethering will only work when the following conditions are met:</p><ul><li><p>An IT admin must allow this feature from their UEM console for a target device to receive the tethering feature.</p></li><li><p>A user must enable VPN tethering on their device.</p></li><li><p>The laptop or tablet being connected must have been previously allow listed by the IT admin.</p></li><li><p>The maximum number of VPN connections does not exceed 2.</p></li></ul><p>USB tethering over VPN is only supported on Knox 3.5 and above devices.</p></div>
+</ul>
+<div class="notice-note"><p>USB tethering over VPN is only supported on devices running Knox 3.5 and higher.</p></div>
+</li>
+</ul>
+<h2 id="set-vpn-policies">Set VPN policies</h2>
+<p>Now that you have created a VPN profile, set policies that govern how the VPN is used. To do this, go to <strong>VPN policy (Premium)</strong>, and set <strong>Enable VPN controls</strong> to <strong>True</strong>. Then, configure the following policies:</p>
+<ul>
+<li>
+<p><strong>VPN type</strong> &mdash; Choose where the VPN is applicable on the device. The VPN can be applied <strong>Device-wide</strong>, in <strong>Work-profile/Separated Apps only</strong>, or on <strong>Selected Apps(Per-app)</strong>.</p>
+</li>
+<li>
+<p><strong>Manage list of apps that use VPN</strong> &mdash; Specify a list of apps that use the VPN. This setting is applicable if you set <strong>VPN type</strong> to <strong>Selected Apps(Per-app)</strong>.</p>
+<ul>
+<li>
+<p><strong>Select apps in the device, in the main user</strong> &mdash; Specify apps on a fully-managed device that use the VPN. If you&rsquo;re deploying devices with a work profile, this setting configures the personal profile apps that use the VPN. If no apps are specified, then all apps must use the VPN to connect by default.</p>
+</li>
+<li>
+<p><strong>Select apps in the Work profile/Separated Apps</strong> &mdash; Specify apps on WP-C or Separated apps devices that use the VPN. If no apps are specified, then all apps must use the VPN to connect by default.</p>
+</li>
+</ul>
+</li>
+<li>
+<p><strong>Manage list of apps that can bypass VPN</strong> &mdash; Specify a list of apps that can bypass the VPN and connect to the network directly.</p>
+<ul>
+<li>
+<p><strong>Apps in main user</strong> &mdash; Specify apps on a fully-managed device that can bypass the VPN. If no apps are specified, then all apps must use the VPN.</p>
+</li>
+<li>
+<p><strong>Apps in work profile/Separated Apps</strong> &mdash; Specify apps on a WP-C or Separated apps device that can bypass the VPN. If no apps are specified, then all apps must use the VPN.</p>
+</li>
+</ul>
+</li>
+<li>
+<p><strong>Show persistent VPN notification</strong> &mdash; By default, devices display a persistent notification to indicate that it&rsquo;s connected to a VPN. Disable this setting to remove the persistent notification from your devices. Only supported on devices running Knox 3.11 and higher.</p>
+</li>
+<li>
+<p><strong>Name of VPN profile to use</strong> &mdash; Specify which VPN configuration profile to use. Must match the name of an existing VPN profile configuration. You can create and configure VPN profiles under <strong>VPN profiles (Premium)</strong>.</p>
+</li>
+<li>
+<p><strong>Enable VPN chaining</strong> &mdash; Enable this setting to use two VPNs to double encrypt traffic.</p>
+</li>
+<li>
+<p><strong>Name of secondary VPN profile to use</strong> &mdash; For devices with multiple VPN profiles, specify the name of the outer VPN profile. This VPN decrypts all data before passing it to the VPN client. Must match the name of an existing VPN profile configuration. You can create and configure VPN profiles under <strong>VPN profiles (Premium)</strong>.</p>
+</li>
+</ul>
 <div class="notice-note"><p>A wrong VPN configuration can disconnect your device or work profile from the network, and in some cases render it unrecoverable. To avoid this issue, Samsung recommends keeping the following applications out of the VPN configuration:</p><ul><li><strong>UEM Agent package</strong> — Check with your UEM for details.</li><li><strong>KSP package</strong> — <code>com.samsung.android.knox.kpu</code></li><li><strong>Google services</strong> — <code>com.android.vending, com.google.android.gms</code></li></ul><p>Use the <strong>Manage list of apps that can bypass VPN</strong> setting to list theses packages.</p></div>
 
             
@@ -1387,9 +1422,8 @@
 <aside class="table-of-headings">
   <nav id="TableOfContents">
   <ul>
-    <li><a href="vpn-policies.html#configure-vpn-profile">Configure VPN profile</a></li>
-    <li><a href="vpn-policies.html#configure-vpn-vendor-parameters">Configure VPN Vendor parameters</a></li>
-    <li><a href="vpn-policies.html#enable-vpn-policy">Enable VPN policy</a></li>
+    <li><a href="vpn-policies.html#create-a-vpn-profile-configuration">Create a VPN profile configuration</a></li>
+    <li><a href="vpn-policies.html#set-vpn-policies">Set VPN policies</a></li>
   </ul>
 </nav>
 </aside>

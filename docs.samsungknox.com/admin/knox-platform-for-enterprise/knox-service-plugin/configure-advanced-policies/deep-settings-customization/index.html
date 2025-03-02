@@ -119,8 +119,6 @@
   </li>
 <li>
   <a href="../../../../knox-manage.html" >Knox Manage</a>
-  <ul>
-    </ul>
   </li>
 <li>
   <a href="../../../../knox-efota.html" >Knox E-FOTA</a>
@@ -377,6 +375,17 @@
     
     
     <div class="d-flex justify-content-between">
+      <a class="body-5 text-black fw-light" href="../allow-apps-access-sdk.html">Allow apps to access Knox SDK</a>
+    </div>
+    
+    </li>
+  
+  
+  
+    <li class="mt-2">
+    
+    
+    <div class="d-flex justify-content-between">
       <a class="body-5 text-black fw-light" href="../allow-dual-sim-operation.html">Allow dual SIM operation</a>
     </div>
     
@@ -619,28 +628,6 @@
     
     
     <div class="d-flex justify-content-between">
-      <a class="body-5 text-black fw-light" href="../mobile-hotspot-toggle.html">Mobile hotspot toggle</a>
-    </div>
-    
-    </li>
-  
-  
-  
-    <li class="mt-2">
-    
-    
-    <div class="d-flex justify-content-between">
-      <a class="body-5 text-black fw-light" href="../mute-with-gestures-toggle.html">Mute with gestures toggle</a>
-    </div>
-    
-    </li>
-  
-  
-  
-    <li class="mt-2">
-    
-    
-    <div class="d-flex justify-content-between">
       <a class="body-5 text-black fw-light" href="../network-platform-analytics/index.html">Network Platform Analytics</a>
     </div>
     
@@ -719,17 +706,6 @@
     
     <div class="d-flex justify-content-between">
       <a class="body-5 text-black fw-light" href="../separated-apps.html">Separated Apps</a>
-    </div>
-    
-    </li>
-  
-  
-  
-    <li class="mt-2">
-    
-    
-    <div class="d-flex justify-content-between">
-      <a class="body-5 text-black fw-light" href="../set-screen-brightness.html">Set screen brightness</a>
     </div>
     
     </li>
@@ -1283,7 +1259,7 @@
             </div>
             
 
-  <p><span>Last updated June  28th, 2024</span></p>
+  <p><span>Last updated February  26th, 2025</span></p>
 
 
     
@@ -1306,282 +1282,480 @@
       
       
       
-        
-      
-      
-      
-      
-        
-      
-      
-      
-      
-        
-      
-      
-      
-      
-        <p>The Deep Settings Customization feature is available with a free Knox Platform for Enterprise Premium license on devices running Knox version 3.4 or higher. Support for individual settings varies based on the device model and firmware version.</p>
-<h2 id="create-and-configure-deep-settings">Create and configure deep settings</h2>
+        <p>You can configure values for specific device settings while also hiding or preventing user modification of these settings with Deep Settings Customization. Support for individual settings varies based on the device model and firmware version.</p>
+<p>Deep Settings Customization is available with a free Knox Platform for Enterprise Premium license on devices running Knox version 3.4 or higher.</p>
+<h2 id="create-a-deep-settings-configuration">Create a deep settings configuration</h2>
 <ol>
+<li>
+<p>On your EMM console, add an assignment for the Knox Service Plugin app intended for your target devices, or edit it if one already exists.</p>
+</li>
+<li>
+<p>On the Knox Service Plugin managed configuration, set <strong>Device-wide policies</strong> &gt; <strong>Device customization controls (Premium)</strong> to <strong>True</strong>.</p>
+</li>
 <li>
 <p>Go to <strong>Device and Settings customization profile</strong> &gt; <strong>Configure values in settings menu</strong>, and add a setting menu configuration.</p>
 </li>
 <li>
-<p>Use the <strong>Name of the Setting item</strong> control to select which device setting you&rsquo;d like to control. See <a href="../deep-settings-customization.html#configurable-deep-settings">Configurable deep settings</a> below for what you can control.</p>
+<p>In <strong>Name of the Setting item</strong>, select which device setting you&rsquo;d like to control. See <a href="../deep-settings-customization.html#configurable-deep-settings">Configurable deep settings</a> below for what you can control.</p>
 </li>
 <li>
-<p>Use the <strong>Set value for the setting</strong> control to turn a selected device setting on or off. Use the <strong>Specify Value</strong> control if a device setting requires a value other than on or off.</p>
+<p>In <strong>Set value for the setting</strong>, turn the selected device setting on or off. If the device setting requires a specific value, select <strong>Use specified value</strong> and set the value in the <strong>Specify value</strong> field.</p>
 </li>
 <li>
-<p>Set the <strong>Allow end-user modification of this setting</strong> control to <strong>True</strong> to allow device users to change a configuration setting. If set to <strong>False</strong>, the impacted setting is disabled and can&rsquo;t be modified by device users.</p>
+<p>(Optional) Set <strong>Allow end-user modification of this setting</strong> to <strong>True</strong> to allow device users to change the selected setting. If set to <strong>False</strong>, the device setting is greyed-out and can&rsquo;t be modified by device users.</p>
 </li>
 <li>
-<p>Set the <strong>Configure to hide settings</strong> control to <strong>True</strong> to hide the setting from device users.</p>
+<p>(Optional) Set <strong>Configure to hide settings</strong> to <strong>True</strong> to hide the setting from device users.</p>
 </li>
 </ol>
 <h2 id="configurable-deep-settings">Configurable deep settings</h2>
-<p>Here are some of the device settings you can configure:</p>
-<ul>
-<li>
-<p>Set the <strong>Roaming clock</strong> control to <strong>True</strong> to optionally hide roaming clock settings from the user on the device&rsquo;s lock screen.</p>
-<ul>
-<li>
-<p>Set the <strong>Roaming clock</strong> &gt; <strong>Home time zone</strong> control to <strong>True</strong> to set the geographic time zone &lt;string&gt; where the device is deployed. Valid value strings could include America/New_York, Asia/Seoul, etc.</p>
-</li>
-<li>
-<p>Set the <strong>Roaming clock</strong> &gt; <strong>Show on Always On Display</strong> control to <strong>True</strong> and set 0 (off) or 1 (on) to view the device clock, battery and missed call messages and notifications when the screen is turned off. Keep in mind this setting consumes additional battery power when enabled.</p>
-</li>
-</ul>
-</li>
-<li>
-<p>Set the <strong>FaceWidgets</strong> control to <strong>True</strong> to optionally hide FaceWidget settings (Music, Today&rsquo;s schedule, Next alarm etc.) from the device user on the device&rsquo;s lock screen. Enter a FaceWidget as a &lt;string&gt; listing the FaceWidget.</p>
-<ul>
-<li>
-<p>Set the <strong>FaceWidgets</strong> &gt; <strong>Show on Always On Display</strong> control to <strong>True</strong> and set 0 (off) or 1 (on) to view listed FaceWidgets when the screen is turned off. Keep in mind this setting consumes additional battery power when enabled.</p>
-</li>
-<li>
-<p>Set the <strong>FaceWidgets</strong> &gt; <strong>Music</strong> control to 0 (off) or 1 (on) to view the music controller on the device&rsquo;s lock screen.</p>
-</li>
-<li>
-<p>Set the <strong>FaceWidgets</strong> &gt; <strong>Today&rsquo;s Schedule</strong> control to 0 (off) or 1 (on) to view today&rsquo;s schedule on the device&rsquo;s lock screen.</p>
-</li>
-<li>
-<p>Set the <strong>FaceWidgets</strong> &gt; <strong>Next alarm</strong> control to 0 (off) or 1 (on) to view when the next alarm is scheduled for on the device&rsquo;s lock screen.</p>
-</li>
-</ul>
-</li>
-<li>
-<p>Set the <strong>Notifications</strong> control to <strong>True</strong> to optionally hide notifications from the user on the device&rsquo;s lock screen. Notifications can then be set to set 0 (off) or 1 (on) on the lock screen.</p>
-<ul>
-<li>
-<p>Set the <strong>Notifications</strong> &gt; <strong>Hide content</strong> control to <strong>True</strong> to optionally hide notification content, 0 (off) or 1 (on), on the device&rsquo;s lock screen.</p>
-</li>
-<li>
-<p>Set the <strong>Notifications</strong> &gt; <strong>View style</strong> control to either 0 &mdash; Detailed, 1 &mdash; Icons only, or 2 &mdash; Brief to define how notifications display on the lock screen.</p>
-</li>
-<li>
-<p>Set the <strong>Notifications</strong> &gt; <strong>Transparency</strong> control to <strong>True</strong> to define a notification message transparency setting from 0 &mdash; 75, with zero (0) being the highest transparency setting and 75 being the lowest transparency setting.</p>
-</li>
-<li>
-<p>Set the <strong>Notifications</strong> &gt; <strong>Auto-reverse text color</strong> control to <strong>True</strong> and set 0 (off) or 1 (on) to automatically reverse the color of the notification text based on the screen&rsquo;s current background color. Consider enabling <strong>Auto-reverse text color</strong> to improve the readability of notification text on the lock screen</p>
-</li>
-</ul>
-</li>
-<li>
-<p>Refer to the following <strong>General Management</strong> &gt; <strong>Language and Input</strong> controls and settings to define a unique device text-to-speech and screen keyboard display configuration:</p>
-<ul>
-<li>
-<p>Set the <strong>General Management</strong> &gt; <strong>Language and Input</strong> &gt; <strong>Text-to-speech</strong> &gt; <strong>PreferredEngine</strong> control to <strong>True</strong> to define either <strong>com.samsung.SMT</strong> (the Samsung text-to-speech engine) or <strong>com.google.android.tts</strong> (the Google Text-to-speech engine conversion engine). The selected option determines how text is read aloud on the device.</p>
-</li>
-<li>
-<p>Set the <strong>General Management</strong> &gt; <strong>Language and Input</strong> &gt; <strong>Text-to-speech</strong> &gt; <strong>Pitch</strong> control to <strong>True</strong> to configure the slider used to set the pitch from 25 (lowest) to 400 (fastest).</p>
-</li>
-<li>
-<p>Set the <strong>General Management</strong> &gt; <strong>Language and Input</strong> &gt; <strong>Text-to-speech</strong> &gt; <strong>Speech rate</strong> control to <strong>True</strong> to configure the slider used to define the rate of speech read aloud from 10 (slowest) to 600 (fastest).</p>
-</li>
-<li>
-<p>Set the <strong>General Management</strong> &gt; <strong>Language and Input</strong> &gt; <strong>On-screen keyboard</strong> &gt; <strong>Show keyboard button</strong> control to <strong>True</strong> and set 0 (off) or 1 (on) to display the <strong>On-screen keyboard</strong> button on the device.</p>
-</li>
-<li>
-<p>Set the <strong>General Management</strong> &gt; <strong>Language and Input</strong> &gt; <strong>On-screen keyboard</strong> &gt; <strong>Default keyboard</strong> control to <strong>True</strong> to use the default virtual keyboard on the device. Keyboard settings can be managed in <strong>Language and Input</strong> &gt; <strong>Virtual keyboard</strong> &gt; <strong>Manage keyboards</strong>.</p>
-</li>
-</ul>
-</li>
-<li>
-<p>Set the <strong>Sounds and vibration</strong> &gt; <strong>Language and Input</strong> control to <strong>True</strong> to define how notifications are managed for single and dual-SIM devices. SIM2 settings are ignored on devices that only support one SIM.</p>
-<ul>
-<li>
-<p>Set the <strong>Sounds and Vibration</strong> &gt; <strong>Notification sounds</strong> &gt; <strong>SIM1</strong> control to a supported ringtone &lt;string&gt; title. Supported ringtone examples include Aurora, Beep Once, Carnival, and so on. SIM2 settings are ignored on devices that only support one SIM.</p>
-</li>
-<li>
-<p>Set the <strong>Sounds and Vibration</strong> &gt; <strong>Notification sounds</strong> &gt; <strong>SIM2</strong> control to a supported ringtone &lt;string&gt; title. Supported ringtone examples include Aurora, Beep Once, Carnival, and so on.</p>
-</li>
-</ul>
-</li>
-<li>
-<p>Refer to the <strong>Sounds and Vibration</strong> &gt; <strong>System sounds and vibration</strong> controls to define the following device system sound settings:</p>
-<ul>
-<li>
-<p>Set the <strong>Sounds and Vibration</strong> &gt; <strong>System sounds and vibration</strong> &gt; <strong>Charging sound</strong> control to <strong>True</strong> to define whether a sound is emitted &mdash; 0 (off) or 1 (on) &mdash; when the device is connected to a charging resource.</p>
-</li>
-<li>
-<p>Set the <strong>Sounds and Vibration</strong> &gt; <strong>System sounds and vibration</strong> &gt; <strong>Dialing keypad tone</strong> control to <strong>True</strong> to define whether dialing keypad touch tones are emitted &mdash; 0 (off) or 1 (on) &mdash; when entering a phone number on the device. Consider turning this control off to conserve battery or avoid disrupting others in close proximity.</p>
-</li>
-<li>
-<p>Set the <strong>Sounds and Vibration</strong> &gt; <strong>System sounds and vibration</strong> &gt; <strong>Keyboard sound</strong> control to <strong>True</strong> to define whether sounds are emitted &mdash; 0 (off) or 1 (on) &mdash; when using the device virtual keyboard. Consider turning this control off to conserve battery or avoid disrupting others in close proximity.</p>
-</li>
-<li>
-<p>Set the <strong>Sounds and Vibration</strong> &gt; <strong>System sounds and vibration</strong> &gt; <strong>Keyboard vibration</strong> control to <strong>True</strong> to define whether vibrations are emitted &mdash; 0 (off) or 1 (on) &mdash; when using the device virtual keyboard. Consider turning this control off to conserve battery or avoid disrupting others in close proximity.</p>
-</li>
-<li>
-<p>Set the <strong>Sounds and Vibration</strong> &gt; <strong>System sounds and vibration</strong> &gt; <strong>Screen lock sound</strong> control to <strong>True</strong> to define whether a sound is emitted &mdash; 0 (off) or 1 (on) &mdash; when locking or unlocking the device screen.</p>
-</li>
-<li>
-<p>Set the <strong>Sounds and Vibration</strong> &gt; <strong>System sounds and vibration</strong> &gt; <strong>Touch sound</strong> control to <strong>True</strong> to define whether a clicking sound is emitted &mdash; 0 (off) or 1 (on) &mdash; each time the device screen is tapped. Consider turning this control off to conserve battery or avoid disrupting others in close proximity.</p>
-</li>
-<li>
-<p>Set the <strong>Sounds and Vibration</strong> &gt; <strong>System sounds and vibration</strong> &gt; <strong>Touch vibration</strong> control to <strong>True</strong> to define whether vibrations are emitted &mdash; 0 (off) or 1 (on) &mdash; when interacting with the device, like tapping navigation buttons or going to the app drawer. Consider turning this control off to conserve battery or avoid disrupting others in close proximity.</p>
-</li>
-</ul>
-</li>
-<li>
-<p>Refer to the <strong>Sounds and Vibration</strong> &gt; <strong>Use volume key for media</strong> control and set to <strong>True</strong> to define whether the device can use its volume keys &mdash; 0 (off) or 1 (on) &mdash; to control media volume levels. Enabling this setting allows the user to control media volume quickly if their device is either too loud or too quiet.</p>
-</li>
-<li>
-<p>Set the <strong>Sounds and Vibration</strong> &gt; <strong>Vibration pattern</strong> control to <strong>True</strong> to configure the &lt;string&gt; defining the device vibration pattern. Options include Basic call &mdash; 1, HeartBeat &mdash; 2, and so on.</p>
-</li>
-<li>
-<p>Set the <strong>Sounds and Vibration</strong> &gt; <strong>Vibration while ringing</strong> control to <strong>True</strong> to define whether the device vibrates &mdash; 0 (off) or 1 (on) &mdash; upon receipt of an incoming call.</p>
-</li>
-<li>
-<p>Set the <strong>Display</strong> &gt; <strong>Adaptive brightness</strong> control to <strong>True</strong> to define whether the device &mdash; 0 (off) or 1 (on) &mdash; automatically increases or decreases display brightness depending on the illumination of current device environment.</p>
-</li>
-<li>
-<p>Set the <strong>Display</strong> &gt; <strong>Accidental touch protection</strong> control to <strong>True</strong> to define whether the device &mdash; 0 (off) or 1 (on) &mdash; is protected from accidental touches in dark places. Enabling this feature is recommended to ensure the device doesn&rsquo;t accidentally lock or send unintended messages.</p>
-</li>
-<li>
-<p>Refer to the <strong>Display</strong> &gt; <strong>Blue light filter</strong> control and set to <strong>True</strong> to configure whether the device &mdash; 0 (off) or 1 (on) &mdash; can control the intensity of the blue light (night mode) emitting from the screen if it&rsquo;s too bright in the dark. Once enabled, refer to the following blue light configuration controls:</p>
-<ul>
-<li>
-<p>Set the <strong>Display</strong> &gt; <strong>Blue light filter</strong> &gt; <strong>Opacity</strong> control to <strong>True</strong> to define the density (or tint) of the blue light display in the range of 1 &mdash; 10.</p>
-</li>
-<li>
-<p>Set the <strong>Display</strong> &gt; <strong>Blue light filter</strong> &gt; <strong>Turn on now</strong> control to <strong>True</strong> to turn on the blue light filter immediately, without scheduling a future time to turn on the filter based on light conditions.</p>
-</li>
-<li>
-<p>To use the blue light filter at a specific time, set the <strong>Display</strong> &gt; <strong>Blue light filter</strong> &gt; <strong>Turn on as scheduled</strong> control to <strong>True</strong> and set it to 0 (off) or 1 (on) for the following display schedule options.</p>
-<ul>
-<li>
-<p>Set the <strong>Display</strong> &gt; <strong>Blue light filter</strong> &gt; <strong>Turn on as scheduled</strong> &gt; <strong>Sunset to sunrise / Custom schedule</strong> control to <strong>True</strong> and select either 2 &mdash; <strong>Sunset to sunrise</strong> or 1 &mdash; <strong>Custom schedule</strong>.</p>
-<ul>
-<li>
-<p>Set the <strong>Display</strong> &gt; <strong>Blue light filter</strong> &gt; <strong>Turn on as scheduled</strong> &gt; <strong>Custom schedule</strong> &gt; <strong>Start time</strong> to <strong>True</strong> and define a start time between 1-1440 minutes from 12 AM.</p>
-</li>
-<li>
-<p>Set the <strong>Display</strong> &gt; <strong>Blue light filter</strong> &gt; <strong>Turn on as scheduled</strong> &gt; <strong>Custom schedule</strong> &gt; <strong>End time</strong> to <strong>True</strong> and define an end time between 1-1440 minutes from 12 AM.</p>
-</li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
-</li>
-<li>
-<p>Set the <strong>Display</strong> &gt; <strong>Screen timeout</strong> control to <strong>True</strong> to configure a timeout &lt;integer&gt; in milliseconds for the time it takes for the screen to turn off after no user input.</p>
-</li>
-<li>
-<p>Set the <strong>Display</strong> &gt; <strong>Screen zoom</strong> control to <strong>True</strong> to define a screen magnification increase from 0 - 5.</p>
-</li>
-<li>
-<p>Set the <strong>Display</strong> &gt; <strong>Navigation bar</strong> control to <strong>True</strong> to display the device navigation menu at the bottom of the screen. Setting this value to <strong>False</strong> frees up the entire display. The navigation bar buttons control the left/right and up/down screen navigation.</p>
-<ul>
-<li>
-<p>Set the <strong>Display</strong> &gt; <strong>Navigation bar</strong> &gt; <strong>Button order</strong> control to <strong>True</strong> to set the button order to 0 for normal navigation or 1 for reverse navigation.</p>
-</li>
-<li>
-<p>Set the <strong>Display</strong> &gt; <strong>Navigation bar</strong> &gt; <strong>Navigation type</strong> setting to <strong>Use specified value</strong>. Specify the value as 0 for button navigation and 1 for gesture navigation.</p>
-</li>
-</ul>
-</li>
-<li>
-<p>Set the <strong>Font size and style</strong> &gt; <strong>Font Size (Accessibility / Display)</strong> control to <strong>True</strong> to define the font size from 0-7, with zero (0) being the smallest font size displayed on the device and seven (7) the largest. You must set a font size value from 0-7.</p>
-</li>
-<li>
-<p>Set the <strong>Font size and style</strong> &gt; <strong>Font Style (Accessibility / Display)</strong> control to <strong>True</strong> to configure the <strong>Font Style</strong> as either <strong>SamsungOneUI-Regular.xml</strong> (SamsungOne), or <strong>Foundation.xml</strong> (Gothic bold).</p>
-</li>
-<li>
-<p>Set the <strong>Special access</strong> &gt; <strong>Picture-in-Picture</strong> control to <strong>True</strong> to optionally enable videos while using other device apps at the same time. Setting this control to <strong>False</strong> prevents the user from viewing potentially disruptive videos while using other apps. This control can be located by selecting Settings &gt; Apps &gt; tap on menu (&hellip;) &gt; Special access.</p>
-</li>
-</ul>
-<h2 id="configUniqueDSC">Configure unique deep settings</h2>
-<p>The following describes how to set specific deep settings that require configuration beyond simply enabling or disabling a specific control. This section is periodically updated when unique deep settings requiring specific configuration values are added.</p>
-<ul>
-<li>
-<p>Refer to the <strong>Show notification icons</strong> controls to define whether all or some notifications display on the device. Enter the notification icon display setting as one of the following numeric values:</p>
-<ul>
-<li><strong>0</strong> &mdash; All notifications are received.</li>
-<li><strong>1</strong> &mdash; Only the three most recent notifications are received.</li>
-<li><strong>2</strong> &mdash; Notifications are turned off and none are received.</li>
-<li><strong>3</strong> &mdash; Notifications are enabled, but only a defined number are received.</li>
-</ul>
-</li>
-<li>
-<p>Set one of the following <strong>Language Shortcut</strong> values to configure how language shortcuts are used on the device. Language settings are configured in the <a href="../device-settings.html">Device settings policies</a> section, while other language settings such as preferred speech engine, pitch, and speech rate can be set as a <a href="../deep-settings-customization.html#configurable-deep-settings">configurable deep setting</a>. Enter the <strong>Language shortcut</strong> setting as one of the following numeric values:</p>
-<ul>
-<li><strong>1</strong> &mdash; Shift+Space</li>
-<li><strong>2</strong> &mdash; Ctrl+Space</li>
-<li><strong>3</strong> &mdash; Shift+Space or Ctrl+Space</li>
-<li><strong>4</strong> &mdash; left Alt+Shift</li>
-<li><strong>5</strong> &mdash; Shift+Space or left Alt+Shift</li>
-<li><strong>6</strong> &mdash; Ctrl+Space or Left Alt+Shift</li>
-<li><strong>7</strong> &mdash; All</li>
-</ul>
-</li>
-</ul>
+<p>Here are the device settings you can configure with Deep Settings Customization.</p>
+<h3 id="accessibility">Accessibility</h3>
+<div class="overflow-auto my-3"><table>
+    <tr>
+        <th>Name of the Setting Item</th>
+        <th>Set Value for the Setting</th>
+    </tr>
+    <tr>
+        <td>Accessibility &gt; Advanced Settings</td>
+        <td>
+            No value can be set for this setting. You can prevent device users from modifying it by disabling <strong>Allow end-user modification of this setting</strong>, or hide this setting with <strong>Configure to hide settings</strong>.
+        </td>
+    </tr>
+    <tr>
+        <td>Accessibility &gt; Advanced Settings &gt; Power and Volume up keys</td>
+        <td>
+            This setting controls <strong>Accessibility</strong> &gt; <strong>Advanced settings</strong> &gt; <strong>Side and Volume up buttons</strong>. You can prevent device users from modifying it by disabling <strong>Allow end-user modification of this setting</strong>, or hide this setting with <strong>Configure to hide settings</strong>.
+        </td>
+    </tr>
+    <tr>
+        <td>Accessibility &gt; Advanced Settings &gt; Flash Notification</td>
+        <td>
+            No value can be set for this setting. You can prevent device users from modifying it by disabling <strong>Allow end-user modification of this setting</strong>, or hide this setting with <strong>Configure to hide settings</strong>.
+        </td>
+    </tr>
+    <tr>
+        <td>Accessibility &gt; Installed Services</td>
+        <td>
+            This setting controls <strong>Accessibility</strong> &gt; <strong>Installed apps</strong>. You can prevent device users from modifying it by disabling <strong>Allow end-user modification of this setting</strong>, or hide this setting with <strong>Configure to hide settings</strong>.
+        </td>
+    </tr>
+</table></div>
+<h3 id="connections">Connections</h3>
+<div class="overflow-auto my-3"><table>
+    <tr>
+        <th>Name of the Setting Item</th>
+        <th>Set Value for the Setting</th>
+    </tr>
+    <tr>
+        <td>Connections &gt; Mobile networks</td>
+        <td>
+            No value can be set for this setting. You can prevent device users from modifying it by disabling <strong>Allow end-user modification of this setting</strong>, or hide this setting with <strong>Configure to hide settings</strong>.
+        </td>
+    </tr>
+    <tr>
+        <td>Connections &gt; Mobile Hotspot and Tethering &gt; Mobile Hotspot </td>
+        <td>
+            Set <strong>On</strong> to turn on the mobile hotspot on the device. To see how to set specific hotspot settings, such as the hotspot SSID and password, see <a href="../device-controls.html#Wi-Fi">Wi-Fi policy</a>.
+            <div class="notice-note"><p>On Android 14 and higher, the mobile hotspot can be turned on even if there’s no SIM card in the device. You can use this policy to prevent users from turning on the mobile hotspot.</li></p></div>
+        </td>
+    </tr>
+</table></div>
+<h3 id="display">Display</h3>
+<div class="overflow-auto my-3"><table>
+    <tr>
+        <th>Name of the Setting Item</th>
+        <th>Set Value for the Setting</th>
+    </tr>
+    <tr>
+        <td>Display &gt; Adaptive brightness</td>
+        <td>
+            <p>Set to <strong>On</strong> or <strong>Off</strong> to determine whether the device automatically adjusts display brightness depending on the illumination of the environment. Note that if <strong>Adaptive brightness</strong> is off, users are able to set the <strong>Extra brightness</strong> setting. Turn on <strong>Adaptive brightness</strong> to hide <strong>Extra brightness</strong> from device settings, preventing users from enabling it.</p>
+            <p>You can also specify an integer value between 0 and 255 to set a specific brightness level for the device. You can hide or grey-out this setting to prevent users from adjusting the brightness from the device settings menu. Note that if you grey-out this setting, it also hides the brightness slider on the Quick Panel.</p>
+        </td>
+    </tr>
+    <tr>
+        <td>Display &gt; Adaptive motion smoothness</td>
+        <td>
+            Set <strong>On</strong> for adaptive motion smoothness, or <strong>Off</strong> for standard motion smoothness.
+            <div class="notice-note"><p>This policy is only supported on devices running Knox 3.11 and higher.</p></div>
+        </td>
+    </tr>
+    <tr>
+        <td>Display &gt; Accidental touch protection</td>
+        <td>Set to <strong>On</strong> or <strong>Off</strong> to define whether the device is protected from accidental touches in dark places. Enabling this feature is recommended to ensure the device doesn't accidentally lock or send unintended messages.</td>
+    </tr>
+    <tr>
+        <td>Display &gt; Eye comfort shield (Blue light filter)</td>
+        <td>Set to <strong>On</strong> or <strong>Off</strong> to define whether the <strong>Eye comfort shield</strong> is enabled. Ensure that this is set to <strong>On</strong> before you configure other <strong>Eye comfort shield</strong> policies.</td>
+    </tr>
+    <tr>
+        <td>Display &gt; Eye comfort shield (Blue light filter) &gt; Color temperature (Opacity)</td>
+        <td>Specify an integer value from 1 to 10 to define the tint of the <strong>Eye comfort shield</strong>. A higher value means a stronger shield that uses warmer colors.</td>
+    </tr>
+    <tr>
+        <td>Display &gt; Blue light filter &gt; Turn on now</td>
+        <td>Set to <strong>On</strong> to turn on the <strong>Eye comfort shield</strong> immediately, without scheduling a future time to turn on the filter based on light conditions.</td>
+    </tr>
+    <tr>
+        <td>Display &gt; Eye comfort shield (Blue light filter) &gt; Custom (Turn on as scheduled)</td>
+        <td>Set <strong>On</strong> to choose a custom schedule and color temperature for the Eye comfort shield.</td>
+    </tr>
+    <tr>
+        <td>Display &gt; Eye comfort shield (Blue light filter) &gt; Set schedule (Turn on as scheduled) &gt; Sunset to sunrise / Custom</td>
+        <td>Specify an integer value, either 1 for a custom schedule or 2 for <em>Sunset to sunrise</em>.</td>
+    </tr>
+    <tr>
+        <td>Display &gt; Eye comfort shield (Blue light filter) &gt; Set schedule (Turn on as scheduled) &gt; Custom &gt; Start time</td>
+        <td>Specify an integer value from 1 to 1440, representing minutes after 12 AM, to configure a start time for your custom schedule.</td>
+    </tr>
+    <tr>
+        <td>Display &gt; Eye comfort shield (Blue light filter) &gt; Set schedule (Turn on as scheduled) &gt; Custom &gt; End time</td>
+        <td>Specify an integer value from 1 to 1440, representing minutes after 12 AM, to configure an end time for your custom schedule.</td>
+    </tr>
+    <tr>
+        <td>Display &gt; Screen timeout</td>
+        <td>Specify an integer value to configure a screen timeout in milliseconds.</td>
+    </tr>
+        <td>Display &gt; Screen zoom</td>
+        <td>Specify an integer value from 0 to 5 to magnify items on the device screen.</td>
+    </tr>
+    </tr>
+        <td>Display &gt; Navigation bar</td>
+        <td>No value can be set for this setting. You can prevent device users from modifying it by disabling <strong>Allow end-user modification of this setting</strong>, or hide this setting with <strong>Configure to hide settings</strong>.</td>
+    </tr>
+    </tr>
+        <td>Display &gt; Navigation bar &gt; Button order</td>
+        <td>Specify an integer value, either 0 for normal navigation button ordering or 1 for reversed navigation button ordering.</td>
+    </tr>
+    </tr>
+        <td>Display &gt; Navigation bar &gt; Navigation type</td>
+        <td>Specify an integer value, either 0 for button navigation or 1 for swipe gesture navigation.</td>
+    </tr>
+    </tr>
+        <td>Display &gt; Touch sensitivity</td>
+        <td>Set to <strong>On</strong> to enable touch sensitivity, which increases screen sensitivity for use with screen protectors.</td>
+    </tr>
+</table></div>
+<h3 id="font-size-and-style">Font size and style</h3>
+<div class="overflow-auto my-3"><table>
+    <tr>
+        <th>Name of the Setting Item</th>
+        <th>Set Value for the Setting</th>
+    </tr>
+    <tr>
+        <td>Font size and style &gt; Font Size (Accessibility / Display)</td>
+        <td>Specify an integer value from 0 to 7 to define the font size.</td>
+    </tr>
+    <tr>
+        <td>Font size and style &gt; Font Style (Accessibility / Display)</td>
+        <td>Specify a string value to configure the font style. Enter <code>SamsungOneUI-Regular.xml</code> for SamsungOne, or <code>Foundation.xml</code> for Gothic bold.</td>
+    </tr>
+</table></div>
+<h3 id="general-management">General management</h3>
+<div class="overflow-auto my-3"><table>
+    <tr>
+        <th>Name of the Setting Item</th>
+        <th>Set Value for the Setting</th>
+    </tr>
+    <tr>
+        <td>General Management &gt; Language and Input &gt; Text-to-speech &gt; PreferredEngine</td>
+        <td>Specify either <strong>com.samsung.SMT</strong> (the Samsung text-to-speech engine) or <strong>com.google.android.tts</strong> (the Google Text-to-speech engine conversion engine). The selected option determines how text is read aloud on the device.</td>
+    </tr>
+    <tr>
+        <td>General Management &gt; Language and Input &gt; Text-to-speech &gt; Pitch</td>
+        <td>Set to <strong>On</strong> to configure the slider used to set the pitch from 25 (lowest) to 400 (highest).</td>
+    </tr>
+    <tr>
+        <td>General Management &gt; Language and Input &gt; Text-to-speech &gt; Speech rate</td>
+        <td>Specify the rate of speech from 10 (slowest) to 600 (fastest).</td>
+    </tr>
+    <tr>
+        <td>General Management &gt; Language and Input &gt; Physical keyboard &gt; Change language shortcut</td>
+        <td>
+            Specify one of the following integer values to configure keyboard shortcuts for changing language when a physical keyboard is connected in DeX mode.
+            <ul>
+                <li><strong>1</strong> &mdash; Shift+Space</li>
+                <li><strong>2</strong> &mdash; Ctrl+Space</li>
+                <li><strong>3</strong> &mdash; Shift+Space and Ctrl+Space</li>
+                <li><strong>4</strong> &mdash; Left Alt+Shift</li>
+                <li><strong>5</strong> &mdash; Shift+Space and Left Alt+Shift</li>
+                <li><strong>6</strong> &mdash; Ctrl+Space and Left Alt+Shift</li>
+                <li><strong>7</strong> &mdash; All</li>
+            </ul>
+        </td>
+    </tr>
+    <tr>
+        <td>General Management &gt; Language and Input &gt; On-screen keyboard &gt; Show keyboard button</td>
+        <td>Set <strong>On</strong> to display the <strong>On-screen keyboard</strong> button on the device.</td>
+    </tr>
+    <tr>
+        <td>General Management &gt; Physical keyboard &gt; Show on-screen keyboard</td>
+        <td>Set <strong>On</strong> to show the on-screen keyboard while a physical keyboard is being used.</td>
+    </tr>
+    <tr>
+        <td>General Management &gt; Language and Input &gt; On-screen keyboard &gt; Default keyboard</td>
+        <td>Set to <strong>On</strong> to use the default keyboard on the device. Keyboard settings can be managed in <strong>General Management</strong>.</td>
+    </tr>
+</table></div>
+<h3 id="location">Location</h3>
+<div class="overflow-auto my-3"><table>
+    <tr>
+        <th>Name of the Setting Item</th>
+        <th>Set Value for the Setting</th>
+    </tr>
+    <tr>
+        <td>Location &gt; Improve accuracy with Wi-Fi</td>
+        <td>
+            Set <strong>On</strong> to let apps use Wi-Fi for more accurate location detection, even when Wi-Fi is off.
+            <div class="notice-note"><p>This policy is only supported on fully-managed devices.</p></div>
+        </td>
+    </tr>
+    <tr>
+        <td>Location &gt; Improve accuracy with BT</td>
+        <td>
+            Set <strong>On</strong> to let apps use Bluetooth for more accurate location detection, even when Bluetooth is off.
+            <div class="notice-note"><p>This policy is only supported on fully-managed devices.</p></div>
+        </td>
+    </tr>
+</table></div>
+<h3 id="lock-screen-and-aod">Lock screen and AOD</h3>
+<div class="overflow-auto my-3"><table>
+    <tr>
+        <th>Name of the Setting Item</th>
+        <th>Set Value for the Setting</th>
+    </tr>
+    <tr>
+        <td>Lock Screen &gt; Roaming clock</td>
+        <td>
+            Set to <strong>On</strong> to turn on Roaming clock on your devices.
+        </td>
+    </tr>
+    <tr>
+        <td>Lock Screen &gt; Roaming clock &gt; Home time zone</td>
+        <td>
+            In <strong>Specify value</strong>, enter the <a target="_blank" href="https://en.wikipedia.org/wiki/List_of_tz_database_time_zones">timezone identifier</a> of the location where the device is deployed as a string. For example, <code>America/New_York</code>.
+        </td>
+    </tr>
+    <tr>
+        <td>Lock Screen &gt; Roaming clock &gt; Show on Always On Display</td>
+        <td>
+            Set to <strong>On</strong> to display the roaming clock even when the screen is turned off. This setting may consume additional battery power when enabled.
+        </td>
+    </tr>
+    <tr>
+        <td>Lock Screen &gt; Notifications</td>
+        <td>
+            This setting controls <strong>Notifications</strong> &gt; <strong>Lock screen notifications</strong>. Set to <strong>On</strong> to enable notifications on the device's lock screen.
+        </td>
+    </tr>
+    <tr>
+        <td>Lock Screen &gt; Notifications &gt; Hide content</td>
+        <td>This setting controls <strong>Notifications</strong> &gt; <strong>Lock screen notifications</strong> &gt; <strong>Hide content</strong>. Set to <strong>On</strong> to hide content from the device's lock screen.</td>
+    </tr>
+    <tr>
+        <td>Lock Screen &gt; Notifications &gt; View style</td>
+        <td>
+            Set to either 0 &mdash; Detailed, 1 &mdash; Icons only, or 2 &mdash; Brief, to define how notifications display on the lock screen.
+            <div class="notice-note"><p>This policy is deprecated from Knox 3.7 onwards.</p></div>
+        </td>
+    </tr>
+    <tr>
+        <td>Lock Screen &gt; Notifications &gt; Transparency</td>
+        <td>
+            Define a notification message transparency setting from 0 to 75, with 0 being the highest transparency setting and 75 being the lowest transparency setting.
+            <div class="notice-note"><p>This policy is deprecated from Knox 3.11 onwards.</p></div>
+        </td>
+    </tr>
+    <tr>
+        <td>Lock Screen &gt; Notifications &gt; Auto-reverse text color</td>
+        <td>
+            Set to <strong>On</strong> to automatically reverse the color of the notification text based on the screen's current background color. Consider enabling <strong>Auto-reverse text color</strong> to improve the readability of notification text on the lock screen
+            <div class="notice-note"><p>This policy is deprecated from Knox 3.10 onwards.</p></div>
+        </td>
+    </tr>
+</table></div>
+<h3 id="notifications">Notifications</h3>
+<div class="overflow-auto my-3"><table>
+    <tr>
+        <th>Name of the Setting Item</th>
+        <th>Set Value for the Setting</th>
+    </tr>
+    <tr>
+        <td>Notifications &gt; Status bar &gt; Display battery percentage</td>
+        <td>Set to <strong>On</strong> or <strong>Off</strong> to configure whether the battery percentage value is displayed on the device status bar.</td>
+    </tr>
+    <tr>
+        <td>Notifications &gt; Status bar &gt; Show icons</td>
+        <td>
+            Specify one of these integer values to configure behavior for status bar icons:
+            <ul>
+                <li><strong>0</strong> &mdash; Show All notifications</li>
+                <li><strong>1</strong> &mdash; Show three most recent notifications</li>
+                <li><strong>2</strong> &mdash; None</li>
+                <li><strong>3</strong> &mdash; Only show the number of notifications on the status bar</li>
+            </ul>
+        </td>
+    </tr>
+</table></div>
+<h3 id="sounds-and-vibration">Sounds and Vibration</h3>
+<div class="overflow-auto my-3"><table>
+    <tr>
+        <th>Name of the Setting Item</th>
+        <th>Set Value for the Setting</th>
+    </tr>
+    <tr>
+        <td>Sounds and Vibration &gt; Notification sounds</td>
+        <td>No value can be set for this setting. You can prevent device users from modifying it by disabling <strong>Allow end-user modification of this setting</strong>, or hide this setting with <strong>Configure to hide settings</strong>.</td>
+    </tr>
+    <tr>
+        <td>Sounds and Vibration &gt; Notification sounds &gt; SIM1</td>
+        <td>Specify a string value as the SIM1 notification sound, such as <code>Alpha</code>, <code>Glitter</code>, <code>Meteor</code>, and so on.</td>
+    </tr>
+    <tr>
+        <td>Sounds and Vibration &gt; Notification sounds &gt; SIM2</td>
+        <td>Specify a string value as the SIM2 notification sound, such as <code>Alpha</code>, <code>Glitter</code>, <code>Meteor</code>, and so on.</td>
+    </tr>
+    <tr>
+        <td>Sounds and Vibration &gt; System sounds and vibration &gt; Charging sound</td>
+        <td>Set to <strong>On</strong> or <strong>Off</strong> to define whether a sound is emitted when the device is connected to a charging resource.</td>
+    </tr>
+    <tr>
+        <td>Sounds and Vibration &gt; System sounds and vibration &gt; Dialing keypad tone</td>
+        <td>Set to <strong>On</strong> or <strong>Off</strong> to define whether dialing keypad touch tones are emitted when entering a phone number on the device. Consider turning this control off to conserve battery or to avoid disrupting others in close proximity.</td>
+    </tr>
+    <tr>
+        <td>Sounds and Vibration &gt; System sounds and vibration &gt; Keyboard sound</td>
+        <td>Set to <strong>On</strong> or <strong>Off</strong> to define whether sounds are emitted when using the device virtual keyboard. Consider turning this control off to conserve battery or to avoid disrupting others in close proximity.</td>
+    </tr>
+    <tr>
+        <td>Sounds and Vibration &gt; System sounds and vibration &gt; Keyboard vibration</td>
+        <td>Set to <strong>On</strong> or <strong>Off</strong> to define whether vibrations are emitted when using the device virtual keyboard. Consider turning this control off to conserve battery or to avoid disrupting others in close proximity.</td>
+    </tr>
+    <tr>
+        <td>Sounds and Vibration &gt; System sounds and vibration &gt; Screen lock sound</td>
+        <td>Set to <strong>On</strong> or <strong>Off</strong> to define whether a sound is emitted when locking or unlocking the device screen.</td>
+    </tr>
+    <tr>
+        <td>Sounds and Vibration &gt; System sounds and vibration &gt; Touch sound</td>
+        <td>Set to <strong>On</strong> or <strong>Off</strong> to define whether a clicking sound is emitted each time the device screen is tapped. Consider turning this control off to conserve battery or to avoid disrupting others in close proximity.
+    </tr>
+    <tr>
+        <td>Sounds and Vibration &gt; System sounds and vibration &gt; Touch vibration</td>
+        <td>Set to <strong>On</strong> or <strong>Off</strong> to define whether vibrations are emitted when interacting with the device, like tapping navigation buttons or going to the app drawer. Consider turning this control off to conserve battery or to avoid disrupting others in close proximity.
+    </tr>
+    <tr>
+        <td>Sounds and Vibration &gt; Use volume key for media</td>
+        <td>Set to <strong>On</strong> or <strong>Off</strong> to define whether the volume keys control the media volume levels by default. Enabling this setting allows the user to control media volume quickly if their device is either too loud or too quiet.
+    </tr>
+    <tr>
+        <td>Sounds and Vibration &gt; Vibration pattern</td>
+        <td>Specify an integer value to configure the call vibration pattern. Enter 1 for <em>Basic call</em>, 2 for <em>Heartbeat</em>, and so on.
+    </tr>
+    <tr>
+        <td>Sounds and Vibration &gt; Vibration while ringing</td>
+        <td>Set to <strong>On</strong> or <strong>Off</strong> to define whether the device vibrates when it receives an incoming call.
+    </tr>
+</table></div>
+<h3 id="wifi">WiFi</h3>
+<div class="overflow-auto my-3"><table>
+    <tr>
+        <th>Name of the Setting Item</th>
+        <th>Set Value for the Setting</th>
+    </tr>
+    <tr>
+        <td>WiFi &gt; (connected WiFi network name) &gt; Settings &gt; QR code</td>
+        <td>
+            No value can be set for this setting. You can hide this setting with <strong>Configure to hide settings</strong> to prevent device users from sharing WiFi network credentials with QR code.
+        </td>
+    </tr>
+    <tr>
+        <td>WiFi &gt; Advanced &gt; Switch to mobile data</td>
+        <td>
+            Set <strong>On</strong> to allow devices to use mobile data when Wi-Fi internet connection is slow or unstable.
+        </td>
+    </tr>
+    <tr>
+        <td>WiFi &gt; Advanced &gt; Switch to mobile data &gt; Allow individual apps to switch</td>
+        <td>
+            Set <strong>On</strong> to allow the device to switch the current app to mobile data if the app can't connect to the internet with the current Wi-Fi network. If this setting is enabled, the device asks the user whether they want to switch the current app to mobile data.
+        </td>
+    </tr>
+    <tr>
+        <td>WiFi &gt; Advanced &gt; Turn on WiFi automatically</td>
+        <td>
+            Set <strong>On</strong> to automatically turn Wi-Fi on when the device is at locations where Wi-Fi is used frequently, and automatically turn it off elsewhere.
+        </td>
+    </tr>
+    <tr>
+        <td>WiFi &gt; Advanced &gt; WiFi power saving mode</td>
+        <td>
+            Set <strong>On</strong> to reduce battery usage by analyzing Wi-Fi traffic patterns.
+        </td>
+    </tr>
+    <tr>
+        <td>WiFi &gt; Advanced &gt; Hotspot 2.0</td>
+        <td>
+            Set <strong>On</strong> to allow the device to automatically connect to Hotspot 2.0 Wi-Fi networks.
+        </td>
+    </tr>
+    <tr>
+        <td>WiFi &gt; Advanced &gt; Proxy</td>
+        <td>
+            No value can be set for this setting. You can prevent device users from modifying it by disabling <strong>Allow end-user modification of this setting</strong>, or hide this setting with <strong>Configure to hide settings</strong>.
+        </td>
+    </tr>
+    <tr>
+        <td>WiFi &gt; Disable internet connectivity</td>
+        <td>
+            <p>Set <strong>On</strong> to disable the internet connectivity check.</p>
+            <p>Devices connected to Wi-Fi perform periodic checks to verify if the current Wi-Fi network has internet connectivity. If there's no internet access, the device displays an exclamation mark on the Wi-Fi icon to indicate that this network has no internet connection.</p>
+            <p>Enabling this policy disables the internet connectivity check for Wi-Fi networks, preventing the exclamation mark icon from being shown. This helps provide better user experience for devices used in closed-network environments.</p>
+        </td>
+    </tr>
+</table></div>
+<h3 id="samsung-keyboard">Samsung Keyboard</h3>
+<div class="overflow-auto my-3"><table>
+    <tr>
+        <th>Name of the Setting Item</th>
+        <th>Set Value for the Setting</th>
+    </tr>
+    <tr>
+        <td>Samsung Keyboard &gt; Toolbar </td>
+        <td>Prevent device users from using the Samsung Keyboard toolbar by disabling <strong>Allow end-user modification of this setting</strong>.</td>
+    </tr>
+    <tr>
+        <td>Samsung Keyboard &gt; Show toolbar with physical keyboard </td>
+        <td>
+            Set to <strong>Off</strong> to hide the Samsung Keyboard toolbar when an external keyboard is connected.
+            <div class="notice-note"><ul>    <li>This policy is only supported on tablets running Knox 3.11 and higher.</li>    <li>You can't hide or grey-out this setting with Knox Service Plugin, which means device users can modify this setting.</li></ul></div>
+        </td>
+    </tr>
+</table></div>
 <h3 id="side-key">Side key</h3>
-<p>The side key used to be a single-purpose power key, but on newer devices you can program the side key to perform multiple functions depending on how it&rsquo;s pressed.</p>
-<ul>
-<li>
-<p>Double press</p>
-<p>You can configure this action to quickly launch the camera, open Bixby, or open any app installed on the device. This configuration can be done using <a href="../device-key-mapping.html">Device key mapping</a>.</p>
-</li>
-<li>
-<p>Long press</p>
-<p>This action can be used to wake Bixby or open the power off menu. Wake Bixby is currently only supported on company-owned devices with a work profile, and is disabled in other modes. Power Off is currently supported on both fully managed devices and company-owned devices with a work profile.</p>
-</li>
-</ul>
-<p>The Side Key press and hold action can be configured in <strong>Device and Settings customization profile</strong> &gt; <strong>Configure values in settings menu</strong> &gt; <strong>Configure a setting menu item.</strong></p>
-
-
-
-
-
-
-
-
-<p><img src="../../assets/ksp-side-key.png" class="img-fluid" alt="" /></p>
-<p>Configure the Side Key mapping as shown in the image. In the <strong>Specify value</strong> field, you can set the value to 0 to wake Bixby or 1 to open the power off menu. Disable <strong>Allow end-user modification of this setting</strong> to prevent device users from changing this setting. Enable <strong>Configure to hide settings</strong> to hide this setting.</p>
-<h2 id="deployDSC">Deploy deep settings</h2>
-<p>The following example describes how to deploy deep settings to an existing group called <strong>High security devices</strong>.</p>
-<ol>
-<li>
-<p>After you have created a deep settings policy in your chosen Device Configuration Policy, go to <strong>Groups</strong> &gt; <strong>All groups</strong>.</p>
-</li>
-<li>
-<p>Within the <strong>All groups</strong> page, confirm the <strong>High security devices</strong> device group exists. Refer to your UEM console&rsquo;s help documentation for information on creating a new, or editing an existing, device group.</p>
-</li>
-<li>
-<p>Go to the Device Configuration Policy that contains the appropriate deep settings configuration &gt; click <strong>Assignments</strong> &gt; <strong>Include</strong> tab.</p>
-</li>
-<li>
-<p>On the Include page, in the Assign to list, select <strong>High security devices</strong>, and click <strong>Save</strong>.</p>
-</li>
-<li>
-<p>Depending upon the settings chosen for deploying Device Configuration Policy changes, the new settings are deployed on the devices in the High security devices group.</p>
-</li>
-</ol>
-
+<div class="overflow-auto my-3"><table>
+    <tr>
+        <th>Name of the Setting Item</th>
+        <th>Set Value for the Setting</th>
+    </tr>
+    <tr>
+        <td>Side key &gt; Press and hold</td>
+        <td>Specify an integer value to configure device behavior when the side key is pressed and held. Enter 0 to wake Bixby, or 1 to open the power off menu.</td>
+    </tr>
+</table></div>
+<h3 id="motions-and-gestures">Motions and gestures</h3>
+<div class="overflow-auto my-3"><table>
+    <tr>
+        <th>Name of the Setting Item</th>
+        <th>Set Value for the Setting</th>
+    </tr>
+    <tr>
+        <td>Motions and gestures &gt; Mute with gestures</td>
+        <td>
+            Set to <strong>On</strong> or <strong>Off</strong> to define whether <strong>Mute with gestures</strong> is enabled. If turned on, <strong>Mute with gestures</strong> lets device users mute incoming calls and alarms with gestures such as turning the phone face down, or putting their hand over the screen (only available on certain models).
+        </td>
+    </tr>
+</table></div>
             
           </div>
           <div class="l-toh">
@@ -1589,14 +1763,24 @@
 <aside class="table-of-headings">
   <nav id="TableOfContents">
   <ul>
-    <li><a href="../deep-settings-customization.html#create-and-configure-deep-settings">Create and configure deep settings</a></li>
-    <li><a href="../deep-settings-customization.html#configurable-deep-settings">Configurable deep settings</a></li>
-    <li><a href="../deep-settings-customization.html#configUniqueDSC">Configure unique deep settings</a>
+    <li><a href="../deep-settings-customization.html#create-a-deep-settings-configuration">Create a deep settings configuration</a></li>
+    <li><a href="../deep-settings-customization.html#configurable-deep-settings">Configurable deep settings</a>
       <ul>
+        <li><a href="../deep-settings-customization.html#accessibility">Accessibility</a></li>
+        <li><a href="../deep-settings-customization.html#connections">Connections</a></li>
+        <li><a href="../deep-settings-customization.html#display">Display</a></li>
+        <li><a href="../deep-settings-customization.html#font-size-and-style">Font size and style</a></li>
+        <li><a href="../deep-settings-customization.html#general-management">General management</a></li>
+        <li><a href="../deep-settings-customization.html#location">Location</a></li>
+        <li><a href="../deep-settings-customization.html#lock-screen-and-aod">Lock screen and AOD</a></li>
+        <li><a href="../deep-settings-customization.html#notifications">Notifications</a></li>
+        <li><a href="../deep-settings-customization.html#sounds-and-vibration">Sounds and Vibration</a></li>
+        <li><a href="../deep-settings-customization.html#wifi">WiFi</a></li>
+        <li><a href="../deep-settings-customization.html#samsung-keyboard">Samsung Keyboard</a></li>
         <li><a href="../deep-settings-customization.html#side-key">Side key</a></li>
+        <li><a href="../deep-settings-customization.html#motions-and-gestures">Motions and gestures</a></li>
       </ul>
     </li>
-    <li><a href="../deep-settings-customization.html#deployDSC">Deploy deep settings</a></li>
   </ul>
 </nav>
 </aside>

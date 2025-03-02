@@ -119,8 +119,6 @@
   </li>
 <li>
   <a href="../../../knox-manage.html" >Knox Manage</a>
-  <ul>
-    </ul>
   </li>
 <li>
   <a href="../../../knox-efota.html" >Knox E-FOTA</a>
@@ -377,6 +375,17 @@
     
     
     <div class="d-flex justify-content-between">
+      <a class="body-5 text-black fw-light" href="../../knox-service-plugin/configure-advanced-policies/allow-apps-access-sdk.html">Allow apps to access Knox SDK</a>
+    </div>
+    
+    </li>
+  
+  
+  
+    <li class="mt-2">
+    
+    
+    <div class="d-flex justify-content-between">
       <a class="body-5 text-black fw-light" href="../../knox-service-plugin/configure-advanced-policies/allow-dual-sim-operation.html">Allow dual SIM operation</a>
     </div>
     
@@ -619,28 +628,6 @@
     
     
     <div class="d-flex justify-content-between">
-      <a class="body-5 text-black fw-light" href="../../knox-service-plugin/configure-advanced-policies/mobile-hotspot-toggle.html">Mobile hotspot toggle</a>
-    </div>
-    
-    </li>
-  
-  
-  
-    <li class="mt-2">
-    
-    
-    <div class="d-flex justify-content-between">
-      <a class="body-5 text-black fw-light" href="../../knox-service-plugin/configure-advanced-policies/mute-with-gestures-toggle.html">Mute with gestures toggle</a>
-    </div>
-    
-    </li>
-  
-  
-  
-    <li class="mt-2">
-    
-    
-    <div class="d-flex justify-content-between">
       <a class="body-5 text-black fw-light" href="../../knox-service-plugin/configure-advanced-policies/network-platform-analytics/index.html">Network Platform Analytics</a>
     </div>
     
@@ -719,17 +706,6 @@
     
     <div class="d-flex justify-content-between">
       <a class="body-5 text-black fw-light" href="../../knox-service-plugin/configure-advanced-policies/separated-apps.html">Separated Apps</a>
-    </div>
-    
-    </li>
-  
-  
-  
-    <li class="mt-2">
-    
-    
-    <div class="d-flex justify-content-between">
-      <a class="body-5 text-black fw-light" href="../../knox-service-plugin/configure-advanced-policies/set-screen-brightness.html">Set screen brightness</a>
     </div>
     
     </li>
@@ -1297,7 +1273,7 @@
 
 <p>This section shows how you can get dumpstate logs from a device.</p>
 <h2 id="phone-dumpstate-logs">Phone dumpstate logs</h2>
-<div class="notice-note"><p>As the device’s log buffer clears after 15 minutes, ensure that the log file is captured within this period of time.</p></div>
+<div class="notice-note"><ul><li>As the device’s log buffer clears after 15 minutes, ensure that the log file is captured within this period of time.</li><li>On Android 15 and higher, you may have to disable <strong>Auto Blocker</strong> before you can access the log dump menu. To do this, go to your device’s settings, and disable <strong>Security and privacy</strong> > <strong>Auto Blocker</strong>.</li></ul></div>
 <ol>
 <li>
 <p>In the <strong>Phone</strong> app, enter <code>*#9900#</code>.</p>
@@ -1334,7 +1310,7 @@
 <p>Open the <strong>Calculator</strong> app.</p>
 </li>
 <li>
-<p>Enter <code>+30012012732+</code>.</p>
+<p>Enter <code>(+30012012732+</code>.</p>
 </li>
 <li>
 <p>Enter <code>*#9900#</code>.</p>
@@ -1350,6 +1326,7 @@
 </li>
 </ol>
 <h2 id="email-logs">Email logs</h2>
+<div class="notice-note"><p>If you’re collecting email logs and dumpstate logs to troubleshoot an issue, make sure that they both capture the timeframe when you reproduced your issue.</p></div>
 <p>Follow these steps to collect logs to investigate email and exchange issues.</p>
 <ol>
 <li>
@@ -1368,13 +1345,20 @@
 <p>Tap <strong>Manual setup</strong> (if there&rsquo;s no <strong>Manual Setup</strong> button, just tap the left button at the bottom of the screen).</p>
 </li>
 <li>
+<p>Tap <strong>Enable Parser logging (extremely verbose)</strong>.</p>
+</li>
+<li>
 <p>Reproduce the issue.</p>
 </li>
 <li>
 <p>Tap <strong>Dump emaillog</strong>, and <strong>Dump of EmailService</strong>.</p>
 </li>
 <li>
-<p>In the device&rsquo;s internal storage, navigate to the <code>/Download</code> directory, and retrieve <code>emaillog_10.txt</code> and <code>emailServiceLog.txt</code>.</p>
+<p>In the device&rsquo;s internal storage, navigate to the <code>/Download</code> directory, and retrieve these files:</p>
+<ul>
+<li>If it&rsquo;s a fully-managed device, retrieve <code>emaillog_0.txt</code>. If the <strong>Email</strong> app is in a work profile, retireve <code>emaillog_10.txt</code>.</li>
+<li><code>emailServiceLog.txt</code>.</li>
+</ul>
 </li>
 </ol>
 

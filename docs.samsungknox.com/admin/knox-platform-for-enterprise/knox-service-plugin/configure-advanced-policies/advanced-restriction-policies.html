@@ -119,8 +119,6 @@
   </li>
 <li>
   <a href="../../../knox-manage.html" >Knox Manage</a>
-  <ul>
-    </ul>
   </li>
 <li>
   <a href="../../../knox-efota.html" >Knox E-FOTA</a>
@@ -377,6 +375,17 @@
     
     
     <div class="d-flex justify-content-between">
+      <a class="body-5 text-black fw-light" href="allow-apps-access-sdk.html">Allow apps to access Knox SDK</a>
+    </div>
+    
+    </li>
+  
+  
+  
+    <li class="mt-2">
+    
+    
+    <div class="d-flex justify-content-between">
       <a class="body-5 text-black fw-light" href="allow-dual-sim-operation.html">Allow dual SIM operation</a>
     </div>
     
@@ -619,28 +628,6 @@
     
     
     <div class="d-flex justify-content-between">
-      <a class="body-5 text-black fw-light" href="mobile-hotspot-toggle.html">Mobile hotspot toggle</a>
-    </div>
-    
-    </li>
-  
-  
-  
-    <li class="mt-2">
-    
-    
-    <div class="d-flex justify-content-between">
-      <a class="body-5 text-black fw-light" href="mute-with-gestures-toggle.html">Mute with gestures toggle</a>
-    </div>
-    
-    </li>
-  
-  
-  
-    <li class="mt-2">
-    
-    
-    <div class="d-flex justify-content-between">
       <a class="body-5 text-black fw-light" href="network-platform-analytics/index.html">Network Platform Analytics</a>
     </div>
     
@@ -719,17 +706,6 @@
     
     <div class="d-flex justify-content-between">
       <a class="body-5 text-black fw-light" href="separated-apps.html">Separated Apps</a>
-    </div>
-    
-    </li>
-  
-  
-  
-    <li class="mt-2">
-    
-    
-    <div class="d-flex justify-content-between">
-      <a class="body-5 text-black fw-light" href="set-screen-brightness.html">Set screen brightness</a>
     </div>
     
     </li>
@@ -1283,7 +1259,7 @@
             </div>
             
 
-  <p><span>Last updated April  10th, 2024</span></p>
+  <p><span>Last updated February  26th, 2025</span></p>
 
 
     
@@ -1297,6 +1273,21 @@
 
 
 
+      
+      
+      
+      
+        
+      
+      
+      
+      
+        
+      
+      
+      
+      
+        
       
       
       
@@ -1315,7 +1306,7 @@
 <p>On your EMM console, add an assignment for the Knox Service Plugin app intended for your target devices, or edit it if one already exists.</p>
 </li>
 <li>
-<p>On the Knox Service Plugin managed configuration, set the following to enable <strong>Advanced Restriction policies</strong>:</p>
+<p>On the Knox Service Plugin managed configuration, set the following to enable <strong>Advanced Restriction policies</strong> in the primary profile:</p>
 <div class="overflow-auto my-3"><table>
 <thead>
 <tr>
@@ -1340,41 +1331,57 @@
 <h2 id="advanced-restriction-policies">Advanced Restriction policies</h2>
 <ul>
 <li>
-<p><strong>Allow Wi-Fi scanning</strong> &mdash; set to <strong>False</strong> to block the device from scanning for in-range Wi-Fi networks in order to improve location detection accuracy. This setting is only available with Knox 3.2 and above devices.</p>
+<p><strong>Allow Wi-Fi scanning</strong> &mdash; Set <strong>False</strong> to block the device from scanning for in-range Wi-Fi networks in order to improve location detection accuracy. This setting is only available with Knox 3.2 and above devices.</p>
 </li>
 <li>
-<p><strong>Allow bluetooth scanning</strong> &mdash; set to <strong>False</strong> to block the device from scanning for in-range Bluetooth devices in order to improve location detection accuracy.</p>
+<p><strong>Allow bluetooth scanning</strong> &mdash; Set <strong>False</strong> to block the device from scanning for in-range Bluetooth devices in order to improve location detection accuracy.</p>
 </li>
 <li>
-<p><strong>Allow remote control</strong> &mdash; set to <strong>False</strong> to block connections to the device using 3rd party control applications. This setting is only available with Knox 3.0 and above devices.</p>
+<p><strong>Allow remote control</strong> &mdash; Set <strong>False</strong> to block connections to the device using 3rd party control applications. Only supported on devices running Knox 3.0 and higher.</p>
 </li>
 <li>
-<p><strong>Enable Common Criteria (CC) mode</strong> &mdash; set to <strong>True</strong> to enable services to bring the device into a CC mode compliant evaluated configuration. If enrolled in a UEM, the CC mode setting is defined at the UEM level.</p>
+<p><strong>Allow process data only on device</strong> &mdash; Enable to process data only on the device. This setting appears on the device when you activate your Samsung Account. Supported on some flagship models running OneUI 6.1 and higher. Learn more about <a href="data-processing-for-galaxy-ai.html">controlling Galaxy AI</a>.</p>
 </li>
 <li>
-<p><strong>Allow dual SIM operation</strong> &mdash; set to <strong>False</strong> to block all mobile service (mobile data, calls, SMS) on the second SIM slot of dual-SIM devices.</p>
-<div class="notice-important"><p>On OneUI 6.0 and higher, The <strong>Allow dual SIM operation</strong> policy can only control physical SIMs on a device. To control eSIMs, see the <a href="allow-esim-operation.html">Allow eSIM operation</a> policy.</p><p>For devices below OneUI 6.0, setting <strong>Allow dual SIM operation</strong> to <strong>False</strong> can also block eSIMs.</p></div>
+<p><strong>Block all galaxy AI</strong> &mdash; Set <strong>True</strong> to disable all Galaxy AI features. Only supported on devices running Knox 3.11 and higher. Learn more about <a href="data-processing-for-galaxy-ai.html">controlling Galaxy AI</a>.</p>
 </li>
 <li>
-<p><strong>Allow eSIM operation</strong> &mdash; set to <strong>False</strong> to block eSIMs on the device, restricting the device to only the physical SIM (Only supported on devices running OneUI 6.0 and higher).</p>
+<p><strong>Block individual galaxy AI operations</strong> &mdash; Disable select Galaxy AI features. Selecting <strong>All</strong> here only disables the eight items listed in the menu. Only supported on devices running Knox 3.11 and higher. Learn more about <a href="data-processing-for-galaxy-ai.html">controlling Galaxy AI</a>.</p>
 </li>
 <li>
-<p><strong>Allow SOS call with side key pressing</strong> &mdash; set to <strong>False</strong> to disable default side key behavior to make SOS calls when pressed 5 times consecutively.</p>
-<div class="notice-note"><p>This policy is only supported on devices running Knox 3.11 and higher.</p></div>
+<p><strong>Enable Common Criteria (CC) mode</strong> &mdash; Set <strong>True</strong> to enable services to bring the device into a CC mode compliant evaluated configuration. If enrolled in a UEM, the CC mode setting is defined at the UEM level.</p>
 </li>
 <li>
-<p><strong>Enable WIPS Control</strong> &mdash; set to <strong>True</strong> to enable WIPS enforcement and protection options for the device. If disabled, changes to other WIPS settings have no impact.</p>
+<p><strong>Allow dual SIM operation</strong> &mdash; Set <strong>False</strong> to block all mobile service (mobile data, calls, SMS) on the second SIM slot of dual-SIM devices.</p>
+<div class="notice-important"><p>To control dual-SIMs and eSIMs on devices running OneUI 7.0 and higher, please use <strong>Sim management operation</strong> policies instead.</p><p>On OneUI 6.0 and 6.1.1, The <strong>Allow dual SIM operation</strong> policy can only control physical SIMs on a device. To control eSIMs, see the <a href="allow-esim-operation.html">Allow eSIM operation</a> policy.</p><p>For devices below OneUI 6.0, setting <strong>Allow dual SIM operation</strong> to <strong>False</strong> can also block eSIMs.</p></div>
+</li>
+<li>
+<p><strong>Allow eSIM operation</strong> &mdash; Set <strong>False</strong> to block eSIMs on the device, restricting the device to only the physical SIM (Only supported on devices running OneUI 6.0 and higher).</p>
+</li>
+<li>
+<p><strong>Sim management operation</strong> &mdash; Policies to manage physical SIMs and eSIMs. Only supported on devices with OneUI 7.0 running Knox 3.11 and higher.</p>
+<ul>
+<li><strong>Physical SIM control</strong> &mdash; Configure the number of physical SIMs allowed on the device.</li>
+<li><strong>eSIM control</strong> &mdash; Confiture the number of eSIMs allowed on the device.</li>
+<li><strong>SIM Lock Control with PLMN</strong> &mdash; Only allow SIMs with the specified PLMN (MCC and MNC combination) to function on the device. You can use regular expression to target specific groups of PLMNs.</li>
+</ul>
+</li>
+<li>
+<p><strong>Allow SOS call with side key pressing</strong> &mdash; Set <strong>False</strong> to disable default side key behavior to make SOS calls when pressed 5 times consecutively. This policy is only supported on devices running Knox 3.11 and higher.</p>
+</li>
+<li>
+<p><strong>Enable WIPS Control</strong> &mdash; Set <strong>True</strong> to enable WIPS enforcement and protection options for the device. If disabled, changes to other WIPS settings have no impact.</p>
 <ul>
 <li>
-<p><strong>Allow WIPS Enforcement</strong> &mdash; set to <strong>1</strong> to enforce this feature and disallow a device user from bypassing WIPS protection. Set this value to <strong>0</strong> to permit a device user to bypass WIPS.</p>
+<p><strong>Allow WIPS Enforcement</strong> &mdash; Set to <strong>1</strong> to enforce this feature and disallow a device user from bypassing WIPS protection. Set this value to <strong>0</strong> to permit a device user to bypass WIPS.</p>
 </li>
 <li>
-<p><strong>Allow WIPS Advance Protection</strong> &mdash; set to <strong>1</strong> to disallow an device user from changing the WIPS configuration. Setting this value to <strong>0</strong> turns this setting off and permits a device user to change WIPS settings.</p>
+<p><strong>Allow WIPS Advance Protection</strong> &mdash; Set to <strong>1</strong> to disallow an device user from changing the WIPS configuration. Setting this value to <strong>0</strong> turns this setting off and permits a device user to change WIPS settings.</p>
 </li>
 </ul>
 </li>
 <li>
-<p><strong>Set USB Device Connection Type</strong> &mdash; set to either DEFAULT, MTP, PTP, MIDI, or CHARGING to define the USB connection type utilized by the device.</p>
+<p><strong>Set USB Device Connection Type</strong> &mdash; Set to either DEFAULT, MTP, PTP, MIDI, or CHARGING to define the USB connection type utilized by the device.</p>
 </li>
 </ul>
 
