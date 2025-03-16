@@ -358,7 +358,7 @@
     
     
     <div class="d-flex justify-content-between">
-      <a class="body-5 text-black active" href="index.html">Download devices as CSV</a>
+      <a class="body-5 text-black active" href="../download-devices-as-csv.html">Download devices as CSV</a>
     </div>
     
     </li>
@@ -413,7 +413,7 @@
     
     
     <div class="d-flex justify-content-between">
-      <a class="body-5 text-black fw-light" href="../send-relock-timestamp-and-turn-the-relock-reminder-on-and-off/index.html">Send relock timestamp and turn the relock reminder ON and OFF</a>
+      <a class="body-5 text-black fw-light" href="../send-relock-timestamp-and-turn-the-relock-reminder-on-and-off.html">Send relock timestamp and turn the relock reminder ON and OFF</a>
     </div>
     
     </li>
@@ -457,7 +457,7 @@
     
     
     <div class="d-flex justify-content-between">
-      <a class="body-5 text-black fw-light" href="../wipe-devices/index.html">Wipe devices</a>
+      <a class="body-5 text-black fw-light" href="../wipe-devices.html">Wipe devices</a>
     </div>
     
     </li>
@@ -798,7 +798,7 @@
             </div>
             
 
-  <p><span>Last updated January  10th, 2024</span></p>
+  <p><span>Last updated March  13th, 2025</span></p>
 
 
     
@@ -831,15 +831,35 @@
       
       
       
+        
+      
+      
+      
+      
+        
+      
+      
+      
+      
+        
+      
+      
+      
+      
+        
+      
+      
+      
+      
         <h2 id="download-devices-csv">Download all devices as CSV</h2>
-<div class="notice-important"><p>A sub-admin needs the <strong>View activity log</strong> permission to view and download the activity log. Refer to <a href="../../manage-admins-and-roles.html">Manage admins and roles</a> for more information.</p></div>
+<div class="notice-important"><p>A sub-admin needs the <strong>View activity log</strong> permission to view and download the activity log. For more information, see <a href="../../manage-admins-and-roles.html">Manage admins and roles</a>.</p></div>
 <p>To download device information as a CSV:</p>
 <ol>
 <li>
 <p>Navigate to the <strong>Devices</strong> page.</p>
 </li>
 <li>
-<p>Select <strong>Download devices as CSV</strong> from the <strong>ACTIONS</strong> drop-down menu from the Devices page. If the number of devices exceed 10,000, the file is generated asynchronously and becomes available in the <a href="../../activity-log.html">Activity log</a> when it’s ready.</p>
+<p>Select <strong>ACTIONS</strong> &gt; <strong>Download devices as CSV</strong>. If the number of devices exceeds 10,000, the file is generated asynchronously and becomes available in the <a href="../../activity-log.html">Activity log</a> when it’s ready for download.</p>
 
     
     
@@ -849,36 +869,119 @@
     
     
     <p><img src="../../../assets/download-devices.png" class="img-fluid" alt="Action dropdown showing the download devices option" /></p>
-<p>The CSV will display the following device information:</p>
-<ol>
-<li>Refer to the <strong>IMEI</strong> for the device specific IMEI value.</li>
-<li>The <strong>SN</strong> column lists the SN used as device identifiers within the Knox Guard console.</li>
-<li>Refer to the <strong>MODEL</strong> column to review the list of models populating the Knox Guard console. Optionally use the column&rsquo;s filter function to refine which device models display.</li>
-<li>Refer to the <strong>STATUS</strong> column to assess whether each listed device is <em>Activating, Active, Completing, Locked, Locking, Complete, Pending, Rejected,</em> has a <em>Reminder On, Resetting&hellip;, Starting reminder, Stopping reminder, Unlocking or Exchanging</em>.</li>
-<li>Refer to the <strong>APP VERSION</strong> column to check apps installed with Knox Guard.</li>
-<li>Refer to the <strong>APPROVAL ID</strong> column to review the ID assigned when the device was approved for Knox Guard management.</li>
-<li>Refer to <strong>LAST SEEN</strong> column to display when a device was last detected by the Knox Guard server.</li>
-<li>The <strong>SERVICE ENDS</strong> column displays the date when the listed device is no longer supported by Knox Guard under the terms of its license.</li>
-<li>Refer to the <strong>CARRIER</strong> column to review and filter or search for various device carriers supporting each listed device.</li>
-<li>Refer to the <strong>ANDROID VERSION</strong> column to assess whether each listed device is using a current or legacy version of Android.</li>
-<li>Refer to the <strong>AGENT VERSION</strong> column to assess the current agent version of the device.</li>
-<li>Refer to <strong>UPLOADED</strong> column to check the upload status of the device.</li>
-<li>Refer to <strong>ACCEPTED</strong> column to check if the device has been accepted.</li>
-<li>Refer to <strong>ACTIVATED</strong> column to check if the device has been activated.</li>
-<li>Refer to the <strong>MODIFIED</strong> column to assess when the status of each listed device IMEI/SN was refreshed.</li>
-<li>Refer to the <strong>PREVIOUS IMEI/SNs</strong> to see the previous values the device was registered under.</li>
-<li>Refer to the <strong>SIM POLICY</strong> to see the current policies applied to the device.</li>
-</ol>
+<p>The CSV file will display the following device information:</p>
+<div class="overflow-auto my-3"><table>
+<thead>
+<tr>
+<th>Column</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>IMEI</strong></td>
+<td>Device IMEI number.</td>
+</tr>
+<tr>
+<td><strong>IMEI2</strong></td>
+<td>Device&rsquo;s secondary IMEI number, if applicable.</td>
+</tr>
+<tr>
+<td><strong>SN</strong></td>
+<td>Device serial number.</td>
+</tr>
+<tr>
+<td><strong>MODEL</strong></td>
+<td>Device model. You can filter the column to view specific device models.</td>
+</tr>
+<tr>
+<td><strong>STATUS</strong></td>
+<td>Current status of the device. <br><br> Available statuses include: <strong>Activating</strong>, <strong>Active</strong>, <strong>Complete</strong>, <strong>Completing</strong>, <strong>Exchanging</strong>, <strong>Locked</strong>, <strong>Locking</strong>, <strong>Offline locked</strong>, <strong>Pending</strong>, <strong>Rejected</strong>, <strong>Reminder On</strong>, <strong>Resetting</strong>, <strong>Starting reminder</strong>, <strong>Stopping reminder</strong>, and <strong>Unlocking</strong>. <br><br> For more information on a device&rsquo;s status flow once added to the console, see <a href="../../../get-started/knox-guard-status-flow.html">Knox Guard status flow</a>.</td>
+</tr>
+<tr>
+<td><strong>APP VERSION</strong></td>
+<td>Current version of apps installed using the <a href="../../manage-policies/common/application-installation.html">Application installation</a> policy. Only available to devices with apps registered (uploaded) from the Knox Guard console.</td>
+</tr>
+<tr>
+<td><strong>LAST SEEN</strong></td>
+<td>Date the device was last detected by the Knox Guard server. <br><br> This feature is only available by request. To enable <strong>Last seen</strong>, please contact your Knox Guard administrator.</td>
+</tr>
+<tr>
+<td><strong>SERVICE ENDS</strong></td>
+<td>Date after which the device is no longer supported by Knox Guard under the terms of its license.</td>
+</tr>
+<tr>
+<td><strong>CARRIER</strong></td>
+<td>Device carriers that support the device.</td>
+</tr>
+<tr>
+<td><strong>ANDROID VERSION</strong></td>
+<td>Current Android version of the device.</td>
+</tr>
+<tr>
+<td><strong>AGENT VERSION</strong></td>
+<td>Current agent version installed on the device.</td>
+</tr>
+<tr>
+<td><strong>UPLOADED</strong></td>
+<td>Upload status of the device. On uploaded devices, lists the date when the device was uploaded.</td>
+</tr>
+<tr>
+<td><strong>ACCEPTED</strong></td>
+<td>Indicates whether the device is accepted.</td>
+</tr>
+<tr>
+<td><strong>ACTIVATED</strong></td>
+<td>Indicates whether the device is activated.</td>
+</tr>
+<tr>
+<td><strong>MODIFIED</strong></td>
+<td>Date when the device&rsquo;s <strong>STATUS</strong> was last updated.</td>
+</tr>
+<tr>
+<td><strong>PREVIOUS IMEI/SNs</strong></td>
+<td>Previous values the device was registered under.</td>
+</tr>
+<tr>
+<td><strong>AUTO-LOCK</strong></td>
+<td>Indicates whether auto-lock is enabled for the device.</td>
+</tr>
+<tr>
+<td><strong>SIM POLICY</strong></td>
+<td>Current policies applied to the device.</td>
+</tr>
+<tr>
+<td><strong>WIPEOUT</strong></td>
+<td>Indicates whether the device has been successfully <a href="../wipe-devices.html">wiped</a>.</td>
+</tr>
+<tr>
+<td><strong>BLOCK FACTORY RESET</strong></td>
+<td>Indicates whether factory reset is blocked for the device.</td>
+</tr>
+<tr>
+<td><strong>OFFLINE LOCK</strong></td>
+<td>Indicates whether the offline lock policy is enabled for the device.</td>
+</tr>
+<tr>
+<td><strong>ENROLLMENT NOTICE</strong></td>
+<td>Indicates whether an enrollment notice is enabled for the device.</td>
+</tr>
+<tr>
+<td><strong>APP INSTALLATION</strong></td>
+<td>Indicates whether the <a href="../../manage-policies/common/application-installation.html">Application installation</a> policy is enabled. <br><br> This feature is available only by request. To enable <strong>Application installation</strong>, please contact your Knox Guard admin.</td>
+</tr>
+</tbody>
+</table></div>
 </li>
 </ol>
-<h2 id="search-download-selected-devices-bulk-csv">Search for and download selected devices in bulk as CSV</h2>
+<h2 id="download-select-devices-in-bulk">Download select devices in bulk</h2>
 <p>To obtain the device information selectively in bulk as a CSV file:</p>
 <ol>
 <li>
-<p>Click <strong>Search device(s)</strong> from the <strong>ACTIONS</strong> list.</p>
+<p>Select <strong>ACTIONS</strong> &gt; <strong>Search device(s)</strong>.</p>
 </li>
 <li>
-<p>Upload a CSV file with either the IMEIs or serial numbers of the devices that you want to search for. A maximum of 10,000 devices can be queried at a time.</p>
+<p>Upload a CSV file with the IMEIs or serial numbers of the devices you want to search for. A maximum of 10,000 devices can be queried at a time.</p>
 
     
     
@@ -901,8 +1004,8 @@
 <aside class="table-of-headings">
   <nav id="TableOfContents">
   <ul>
-    <li><a href="index.html#download-devices-csv">Download all devices as CSV</a></li>
-    <li><a href="index.html#search-download-selected-devices-bulk-csv">Search for and download selected devices in bulk as CSV</a></li>
+    <li><a href="../download-devices-as-csv.html#download-devices-csv">Download all devices as CSV</a></li>
+    <li><a href="../download-devices-as-csv.html#download-select-devices-in-bulk">Download select devices in bulk</a></li>
   </ul>
 </nav>
 </aside>
@@ -936,7 +1039,7 @@
       
       <div class="col-sm-12 col-md-6 col-lg-3 footer-vertical-section">
         <div class="d-flex justify-content-between align-items-center">
-          <a class="footer-section-title" data-bs-toggle="collapse" href="index.html#item0" role="button" aria-expanded="false" aria-controls="item0"> 
+          <a class="footer-section-title" data-bs-toggle="collapse" href="../download-devices-as-csv.html#item0" role="button" aria-expanded="false" aria-controls="item0"> 
             <h6 class="body-3 fw-bold text-uppercase text-black pt-4">Knox admin documentation</h6>
           </a>
           <a class="btn-toggle d-inline-flex d-lg-none rounded border-0 fw-light" data-bs-toggle="collapse" data-bs-target="#item0" aria-expanded="false"></a>
@@ -1070,7 +1173,7 @@
       
       <div class="col-sm-12 col-md-6 col-lg-3 footer-vertical-section">
         <div class="d-flex justify-content-between align-items-center">
-          <a class="footer-section-title" data-bs-toggle="collapse" href="index.html#item1" role="button" aria-expanded="false" aria-controls="item1"> 
+          <a class="footer-section-title" data-bs-toggle="collapse" href="../download-devices-as-csv.html#item1" role="button" aria-expanded="false" aria-controls="item1"> 
             <h6 class="body-3 fw-bold text-uppercase text-black pt-4">Support</h6>
           </a>
           <a class="btn-toggle d-inline-flex d-lg-none rounded border-0 fw-light" data-bs-toggle="collapse" data-bs-target="#item1" aria-expanded="false"></a>
@@ -1092,7 +1195,7 @@
       
       <div class="col-sm-12 col-md-6 col-lg-3 footer-vertical-section">
         <div class="d-flex justify-content-between align-items-center">
-          <a class="footer-section-title" data-bs-toggle="collapse" href="index.html#item2" role="button" aria-expanded="false" aria-controls="item2"> 
+          <a class="footer-section-title" data-bs-toggle="collapse" href="../download-devices-as-csv.html#item2" role="button" aria-expanded="false" aria-controls="item2"> 
             <h6 class="body-3 fw-bold text-uppercase text-black pt-4">Samsung</h6>
           </a>
           <a class="btn-toggle d-inline-flex d-lg-none rounded border-0 fw-light" data-bs-toggle="collapse" data-bs-target="#item2" aria-expanded="false"></a>
