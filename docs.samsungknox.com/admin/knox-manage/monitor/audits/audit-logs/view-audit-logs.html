@@ -3280,7 +3280,7 @@
     
     
     <div class="d-flex justify-content-between">
-      <a class="body-5 text-black fw-light" href="../create-audit-targets.html">Create audit targets</a>
+      <a class="body-5 text-black fw-light" href="../create-audit-targets/index.html">Create audit targets</a>
     </div>
     
     </li>
@@ -3298,17 +3298,6 @@
       <ul>
       
       
-  
-  
-    <li class="mt-2">
-    
-    
-    <div class="d-flex justify-content-between">
-      <a class="body-5 text-black fw-light" href="view-the-audit-list/index.html">View the audit list</a>
-    </div>
-    
-    </li>
-  
   
   
     <li class="mt-2">
@@ -4919,7 +4908,7 @@
             </div>
             
 
-  <p><span>Last updated December  6th, 2023</span></p>
+  <p><span>Last updated March  31st, 2025</span></p>
 
 
     
@@ -4947,24 +4936,99 @@
       
       
       
-        <p>Audit logs are retained on the Knox Manage servers for 93 days.</p>
+        
+      
+      
+      
+      
+        
+      
+      
+      
+      
+        
+      
+      
+      
+      
+        
+      
+      
+      
+      
+        
+      
+      
+      
+      
+        
+      
+      
+      
+      
+        
+      
+      
+      
+      
+        <p>You can view audit event logs on the <strong>Audit Log</strong> page. Audit logs are retained on the Knox Manage servers for 93 days.</p>
+
+
+
+
+
+
+
+
+<p><img src="../../../assets/25-04-audit-log.png" class="img-fluid img-thumbnail" alt="Viewing an audit event on the Audit Log page" /></p>
 <h2 id="view-audit-events">View audit events</h2>
-<p>To view the log of audit events, complete the following steps:</p>
+<p>To view the audit event log, complete the following steps:</p>
 <ol>
 <li>
 <p>Navigate to <strong>History</strong> &gt; <strong>Audit Log</strong>.</p>
 </li>
 <li>
-<p>Search for the audit logs you want to view.</p>
+<p>(Optional) Enter values for any of the following filters. To reset already-applied filters, click <strong>Reset</strong>.</p>
 <ul>
 <li>
-<p>You can search for audit logs by selecting the audit event type and the log period.</p>
+<p><strong>User ID</strong> &mdash; Enter a user ID or equivalent source to only see log entries for that user or source.</p>
 <ul>
-<li>
-<p><strong>Audit Type</strong> &mdash; Select the audit event type. <strong>Console</strong> and <strong>Server</strong> includes the history of device commands sent from the Admin Portal and the changes made due to batch tasks on the server. <strong>Device</strong> includes the history of policies applied to mobile devices, device enrollment, and the event occurred on devices, such as revoking the enrollment of the Knox Manage agent.</p>
+<li>If the audit event occured while sending a device command or administering Knox Manage, enter the admin&rsquo;s user ID.</li>
+<li>If the audit event occured on the server due to a scheduled task, enter &ldquo;SYSTEM&rdquo;, &ldquo;System&rdquo;, or (if known) the batch user ID.</li>
+</ul>
 </li>
 <li>
-<p><strong>Log Date</strong> &mdash; Select the start and end date of the log period.</p>
+<p><strong>Device Name</strong> &mdash; Enter a device name to only see events that occured on that device.</p>
+</li>
+<li>
+<p><strong>Result</strong> &mdash; Returns log events based on the outcome. Options are:</p>
+<ul>
+<li><strong>All</strong> (default) &mdash; Returns all events regardless of outcome.</li>
+<li><strong>Success</strong> &mdash; Only returns events that succeeded.</li>
+<li><strong>Failure</strong> &mdash; Only returns events that failed.</li>
+</ul>
+</li>
+<li>
+<p><strong>Log Date &amp; Time</strong> (defaults to current day) &mdash; Lets you specify a date and time range to view log events that occured during that period. You can only specify hourly intervals for the time portion. The time selector uses a 24-hour clock format.</p>
+</li>
+<li>
+<p><strong>Audit Type</strong> &mdash; Lets you specify one of the following audit event types:</p>
+<ul>
+<li>
+<p><strong>Console</strong> (default) &mdash; Returns a history of device commands sent from the Knox Manage console.</p>
+</li>
+<li>
+<p><strong>Server</strong> &mdash; Returns a history of server-side events, such as for batch processing jobs.</p>
+</li>
+<li>
+<p><strong>Device</strong> &mdash; Returns a history of on-device changes, such as due to applying policies and device enrollment.</p>
+</li>
+<li>
+<p><strong>Event Category</strong> &mdash; Lets you specify an event category. Availability of event categories depends on events that are already logged for you across all <strong>Audit Type</strong> events. Defaults to <strong>All</strong>.</p>
+</li>
+<li>
+<p><strong>Event</strong> &mdash; Enter an event name to only view log entries for that event.</p>
+<div class="notice-tip"><p>For a list of all possible audit events, see <a href="../../../appendix/list-of-audit-events/device-audit-events.html">Device audit events</a>, <a href="../../../appendix/list-of-audit-events/server-audit-events.html">Server audit events</a>, and <a href="../../../appendix/list-of-audit-events/console-audit-events.html">Console audit events</a>.</p></div>
 </li>
 </ul>
 </li>
@@ -4974,85 +5038,52 @@
 </ul>
 </li>
 <li>
-<p>View the audit logs.</p>
+<p>Click <strong>Search</strong>. Matching events appear on the page.</p>
+</li>
+<li>
+<p>Click <img src="../../../assets/B-drop_down.png" alt="Drop down icon" /> to view details of a specific event. You can view the following information:</p>
 <ul>
 <li>
-<p>The <strong>View</strong> field displays the request ID. The request ID helps to track how the audit event is applied to a device. The first three letters of the request ID complies with the following rule:</p>
+<p>Process information for the event, which appears under the <strong>Process Info</strong> tab:</p>
 <ul>
-<li>
-<p>The first letter &mdash; Mobile OS of the device (A for Android, I for iOS, W for Windows)</p>
-</li>
-<li>
-<p>The second letter &mdash; Application type (A for Android/iOS Knox Manage agent, C for iOS Knox Manage Client)</p>
-</li>
-<li>
-<p>The third letter &mdash; Start point of the process (S for Server, D for Device)</p>
-</li>
+<li><strong>Request History</strong> &mdash; Shows details about the event&rsquo;s origin, such as the tenant name, URL, and browser type.</li>
+<li><strong>Result Code</strong> &mdash; Shows the result code for the event request, such as Success (0).</li>
+<li><strong>Result History</strong> &mdash; Shows additional details about the request outcome.</li>
 </ul>
-<p>For example, AAS &mdash; The audit event started from the server and applied to the Knox Manage agent installed on the Android device.</p>
+
+      
+      
+      
+      
+      
+      
+      
+      <p><img src="../../../assets/25-04-audit-log-process-info.png" class="img-fluid img-thumbnail" alt="Viewing an audit event&#39;s details" /></p>
 </li>
 <li>
-<p>The <strong>User ID</strong> field displays the source of the audit event. If the audit event type is Console or Server, refer to the following information:</p>
-<ul>
-<li>
-<p>When the audit event occurs while sending a device command or operating Knox Manage, the administrator&rsquo;s ID is displayed.</p>
-</li>
-<li>
-<p>When a device command is sent, the administrator&rsquo;s ID is displayed.</p>
-</li>
-<li>
-<p>When a scheduled task is performed on the server, <strong>SYSTEM</strong> or the batchuser ID is displayed.</p>
+<p>Log data for the event, which appears under the <strong>Log Data</strong> tab (if applicable). The type of log data displayed varies depending on the event category.</p>
 </li>
 </ul>
 </li>
 <li>
-<p>The <strong>Device Name</strong> field displays the name of the device on which the audit event occurred. If there is no device or the audit event is a scheduled task, blank is displayed.</p>
+<p>Click the <strong>View</strong> column value to see further details (only available for applicable events). The <strong>Audit Event</strong> window opens.</p>
+<div class="notice-tip"><p>Click the <strong>View</strong> column’s tooltip to see an explanation of event request abbreviations.</p></div>
 </li>
 <li>
-<p>If you can click <img src="../../../assets/B-drop_down.png" alt="Drop down icon" /> in the row of a log, you can view the following information.</p>
-</li>
-</ul>
- <div class="overflow-auto my-3"><table>
-     <tr>
-         <th scope="col">Item</th>
-         <th scope="col">Description</th>
-     </tr>
-     <tr>
-         <td>Process Info</td>
-         <td>
-             <ul>
-                 <li>Request History &mdash; Detailed request of the audit event</li>
-                 <li>Result Code &mdash; The audit event result and its code</li>
-                 <li>Result History &mdash; Detailed result of the audit event. When you change a policy in the Admin Portal, a new event is recorded in the profile category. For example, when an Android policy is changed, all policy events to be saved in the request history of <strong>Save General Policy</strong> are displayed.</li>
-             </ul>
-         </td>
-     </tr>
-     <tr>
-         <td>
-             <p>Log Data</p>
-         </td>
-         <td>
-             <p>This information appears only for the following audit events.</p>
-             <ul>
-                 <li>The <strong>Server</strong> type &mdash; Agent Request to lock screen (Device → Server), Agent Request to unlock device (Device → Server), Agent Request for work report (Device → Server), Handle multiple devices by sending device control</li>
-                 <li>The <strong>Device</strong> type &mdash; Device Lock/Unlock History</li>
-             </ul>
-         </td>
-     </tr>
- </table></div>
-</li>
-<li>
-<p>To view the detailed flow of an audit event, click the request ID in the <strong>View</strong> field.</p>
-</li>
-<li>
-<p>In the <strong>Audit Event</strong> window, view each audit log.</p>
-<ul>
-<li>The request ID helps track how the audit event is applied to a device. Click to view more details.</li>
-</ul>
+<p>Inspect entries in the <strong>Audit Event</strong> window as needed. The <strong>Request ID</strong> helps track how the overall request is applied against a device. To view more information about a particular audit event, click <img src="../../../assets/B-drop_down.png" alt="Drop down icon" />.</p>
+
+    
+    
+    
+    
+    
+    
+    
+    <p><img src="../../../assets/25-04-audit-log-audit-event.png" class="img-fluid img-thumbnail" alt="Viewing flow details of an audit event" /></p>
 </li>
 </ol>
 <h2 id="view-knox-service-plugin-feedback">View Knox Service Plugin feedback</h2>
-<p>For Samsung&rsquo;s partners in the Knox Validated Program, the Audit Log page provides you with a history of messages sent by instances of the Knox Service Plugin (KSP) within your device fleet. The plugin, when installed on devices, sends messages related to licensing and policy payloads.</p>
+<p>For Samsung&rsquo;s partners in the Knox Validated Program, the <strong>Audit Log</strong> page provides you with a history of messages sent by instances of the Knox Service Plugin (KSP) within your device fleet. The plugin, when installed on devices, sends messages related to licensing and policy payloads.</p>
 
 
 
