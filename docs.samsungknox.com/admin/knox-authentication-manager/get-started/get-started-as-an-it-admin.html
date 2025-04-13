@@ -303,6 +303,17 @@
     
     
     <div class="d-flex justify-content-between">
+      <a class="body-5 text-black fw-light" href="../how-to-guides/configure-authentication-methods/index.html">Configure authentication methods</a>
+    </div>
+    
+    </li>
+  
+  
+  
+    <li class="mt-2">
+    
+    
+    <div class="d-flex justify-content-between">
       <a class="body-5 text-black fw-light" href="../how-to-guides/change-authentication-methods.html">Change authentication methods</a>
     </div>
     
@@ -314,7 +325,7 @@
     
     
     <div class="d-flex justify-content-between">
-      <a class="body-5 text-black fw-light" href="../how-to-guides/unregister-a-user-account.html">Unregister a user account</a>
+      <a class="body-5 text-black fw-light" href="../how-to-guides/remove-a-user-account.html">Remove a user account</a>
     </div>
     
     </li>
@@ -407,7 +418,7 @@
             </div>
             
 
-  <p><span>Last updated January  8th, 2025</span></p>
+  <p><span>Last updated April  9th, 2025</span></p>
 
 
     
@@ -471,13 +482,24 @@
       
       
       
+      
+        
+      
+      
+      
+      
+        
+      
+      
+      
+      
+      
         
       
       
       
       
         
-      
       
       
       
@@ -498,18 +520,18 @@
 </ul>
 <h2 id="step-4-set-up-your-uem-or-emm">Step 4: Set up your UEM or EMM</h2>
 <p>Depending on your UEM or EMM, you may need to configure your devices in a particular way in order to use Knox Authentication Manager.</p>
-<h3 id="vmware-workspace-one1">VMware Workspace ONE<sup id="fnref:1"><a href="get-started-as-an-it-admin.html#fn:1" class="footnote-ref" role="doc-noteref">1</a></sup></h3>
-<p>Knox Authentication Manager can be configured to launch with or without the <strong>VMware Workspace ONE Launcher</strong>. For more information, see <a href="https://docs.vmware.com/en/VMware-Workspace-ONE-UEM/services/Launcher_Publication/GUID-AWLAUNCHERINTRO.html" target="_blank">About VMware Workspace ONE Launcher</a> in the UEM&rsquo;s documentation.</p>
-<h3 id="microsoft-intune">Microsoft Intune</h3>
+<p><strong>Omnissa Workspace ONE<sup id="fnref:1"><a href="get-started-as-an-it-admin.html#fn:1" class="footnote-ref" role="doc-noteref">1</a></sup></strong></p>
+<p>Knox Authentication Manager can be configured to launch with or without the <strong>Omnissa Workspace ONE Launcher</strong>. For more information, see <a href="https://docs.omnissa.com/bundle/workspaceonelauncherVSaaS/page/AWLAUNCHERINTRO.html" target="_blank">About Omnissa Workspace ONE Launcher</a> in the UEM&rsquo;s documentation.</p>
+<p><strong>Microsoft Intune</strong></p>
 <p>Knox Authentication Manager can be configured to launch with or without the <strong>Intune Managed Home Screen</strong> app. For more information, see <a href="https://learn.microsoft.com/en-us/mem/intune/apps/app-configuration-managed-home-screen-app" target="_blank">Configure Managed Home Screen app</a> in the Microsoft Intune documentation.</p>
-<h3 id="knox-manage-or-soti-mobicontrol">Knox Manage or SOTI MobiControl</h3>
+<p><strong>Knox Manage or SOTI MobiControl</strong></p>
 <p>If you&rsquo;re using Knox Manage or SOTI MobiControl, you can configure your devices to launch Knox Authentication Manager in <a href="../../knox-manage/kiosk-devices/create-kiosk-devices/create-a-kiosk-using-the-kiosk-wizard.html"><strong>Kiosk</strong> mode</a> (Knox Manage) or <a href="https://www.soti.net/mc/help/v15.6/en/console/reference/dialogs/profiles/androidplus/profile_kioskmode_androidplus.html" target="_blank"><strong>Lockdown</strong> mode</a> (MobiControl). These modes let you constrain users to a limited set of apps and settings after they sign in, but they are not a firm requirement for the app.</p>
 <h2 id="step-5-add-knox-authentication-manager-as-a-managed-app-in-your-uem-or-emm">Step 5: Add Knox Authentication Manager as a managed app in your UEM or EMM</h2>
 <p>Next, you&rsquo;ll need to add Knox Authentication Manager as a managed Google Play app in your UEM or EMM. See the respective guides below for details on how to add apps:</p>
 <ul>
 <li><a href="../../knox-manage/configure/applications/add-applications/add-public-apps-using-google-play-store.html">Knox Manage</a></li>
 <li><a href="https://www.soti.net/mc/help/v14.3/en/console/applications/applications.html" target="_blank">SOTI MobiControl</a></li>
-<li><a href="https://docs.vmware.com/en/VMware-Workspace-ONE-UEM/services/Application_Management_for_Android/GUID-49653838-C99A-4BAB-BD5C-AE8CB0E4B30B.html" target="_blank">VMware Workspace ONE</a></li>
+<li><a href="https://docs.omnissa.com/bundle/ApplicationManagementforAndroidVSaaS/page/ManagingAndroidApplicationsusingWorkspaceONEUEM.html" target="_blank">Omnissa Workspace ONE</a></li>
 <li><a href="https://learn.microsoft.com/en-us/mem/intune/apps/app-management" target="_blank">Microsoft Intune</a></li>
 </ul>
 <p>For Knox Manage and SOTI MobiControl environments, you have to register Knox Authentication Manager in the Azure portal. To register Knox Authentication Manager in the Azure portal:</p>
@@ -529,13 +551,16 @@
 <p>Knox Authentication Manager is now registered in your AAD tenant.</p>
 <h2 id="step-6-configure-and-assign-the-app">Step 6: Configure and assign the app</h2>
 <p>In your UEM or EMM, you&rsquo;ll need to create a managed configuration for Knox Authentication Manager before deploying it to your enterprise devices. See <a href="../how-to-guides/configure-app-policies.html">Configure app policies</a> for a list of available policies, descriptions, and options. Once you configure the Knox Authentication Manager policies, assign and install the app on your devices.</p>
-<p>For Microsoft Intune admins:</p>
-<ul>
-<li>Optionally, you can download and use the following JSON file to help configure your Knox Authentication Manager app. Refer to the <a href="../how-to-guides/configure-app-policies.html">app policies</a> page for an explanation of each key-value pair, then edit the JSON file according to your fleet&rsquo;s deployment needs. All keys with the value <code>CHANGEME</code> must be edited for the configuration to work.</li>
-<li><a href="../assets/kam-sample-json-intune-1-7.json">Download JSON file for Intune</a></li>
-</ul>
-<h3 id="required-vmware-workspace-one-activities">Required VMware Workspace ONE activities</h3>
-<p>If you&rsquo;re a VMware Workspace ONE customer, you must also add several activities in the Workspace ONE console. When configuring a device profile, enable the following Launcher settings and enter the package and class name pairs listed below. For more information on Launcher settings, see <a href="https://docs.omnissa.com/bundle/workspaceonelauncher/page/AWLAUNCHERINTRO.html#configure_workspace_one_launcher_profile" target="_blank">Configure Workspace ONE Launcher Profile</a> in the VMware Workspace ONE documentation.</p>
+<h3 id="microsoft-intune">Microsoft Intune</h3>
+<p>Currently, you can only create a managed configuration for Microsoft Intune <a href="https://learn.microsoft.com/en-us/mem/intune-service/apps/app-configuration-policies-use-android#enter-json-data" target="_blank">using a JSON file</a>. To configure app policies, download and use the following JSON file.</p>
+<p><a href="../assets/kam-sample-json-intune-1-8.json">Download JSON file for Intune</a></p>
+<p>Refer to the <a href="../how-to-guides/configure-app-policies.html">app policies</a> page for an explanation of each key-value pair, then edit the file according to your fleet&rsquo;s deployment needs. In the JSON file:</p>
+<ol>
+<li>Keys denoted with the value <code>CHANGEME</code> must be edited for the configuration to work.</li>
+<li>In case of a policy with a set number of choices, all the available options are listed. Otherwise, default values are used where possible.</li>
+</ol>
+<h3 id="required-omnissa-workspace-one-activities">Required Omnissa Workspace ONE activities</h3>
+<p>If you&rsquo;re a Omnissa Workspace ONE customer, you must also add several activities in the Workspace ONE console. When configuring a device profile, enable the following Launcher settings and enter the package and class name pairs listed below. For more information on Launcher settings, see <a href="https://docs.omnissa.com/bundle/workspaceonelauncher/page/AWLAUNCHERINTRO.html#configure_workspace_one_launcher_profile" target="_blank">Configure Workspace ONE Launcher Profile</a> in the Omnissa Workspace ONE documentation.</p>
 <h4 id="check-in-check-out-cico-features">Check In Check Out (CICO) Features</h4>
 <p>Enable <strong>Add Allowlist Activities on Check-in Check-out Screen</strong> and enter the following package name and class name pairs:</p>
 <div class="overflow-auto my-3"><table>
@@ -599,20 +624,142 @@
     </tr>
 </table></div>
 <h3 id="other-recommended-settings">Other recommended settings</h3>
-<p>For VMware Workspace ONE or Microsoft Intune admins:</p>
+<p>For Omnissa Workspace ONE or Microsoft Intune admins:</p>
 <ul>
 <li>Exclude Knox Authentication Manager from clean up to avoid deleting inactive device records, if you use Workspace ONE or Intune.</li>
-<li>Allow Knox Authentication Manager main activity if you use VMware to allow the Knox Authentication Manager sign-in screen to pop up before the user signs in to the VMware launcher.</li>
+<li>Allow Knox Authentication Manager main activity if you use Omnissa to allow the Knox Authentication Manager sign-in screen to pop up before the user signs in to the Omnissa launcher.</li>
 </ul>
 <p>For SOTI MobiControl or Knox Manage admins:</p>
 <ul>
 <li>If users have Microsoft 365 accounts, ensure that they don&rsquo;t set their Microsoft 365 accounts to remain signed in.</li>
 </ul>
+<h3 id="troubleshoot-configuration-errors">Troubleshoot configuration errors</h3>
+<p>When pushing a managed profile to your devices, you may run into a configuration error.</p>
+
+
+
+
+
+
+
+  
+  
+  
+  
+  
+    
+    
+    
+    
+      
+    
+    
+  
+    
+    
+    
+    
+      
+    
+    
+  
+    
+    
+    
+    
+      
+    
+    
+  
+    
+    
+    
+    
+      
+    
+    
+  
+    
+    
+    
+    
+      
+    
+    
+  
+    
+    
+    
+    
+      
+    
+    
+  
+    
+    
+    
+    
+      
+    
+    
+  
+    
+    
+    
+    
+      
+    
+    
+  
+    
+    
+    
+    
+      
+    
+    
+  
+    
+    
+    
+    
+      
+    
+    
+  
+    
+    
+    
+      
+    
+    
+    
+  
+    
+    
+    
+      
+    
+    
+    
+  
+    
+    
+    
+      
+    
+    
+    
+  
+
+
+<p><img src="../assets/configuration-error.jpg" class="image-block-scale-30 img-thumbnail" alt="Configuration error on Knox Authentication Manager app menu" /></p>
+<p>To identify the policy causing this error, you can view Knox Authentication Manager policies directly from the app&rsquo;s <strong>About</strong> screen. For more information, see <a href="../how-to-guides/view-policies-on-device.html">View policies on device</a>.</p>
 <div class="footnotes" role="doc-endnotes">
 <hr>
 <ol>
 <li id="fn:1">
-<p>VMware Workspace ONE is also known as Omnissa Workspace ONE.&#160;<a href="get-started-as-an-it-admin.html#fnref:1" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
+<p>Omnissa Workspace ONE is also known as VMware Workspace ONE.&#160;<a href="get-started-as-an-it-admin.html#fnref:1" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
 </li>
 </ol>
 </div>
@@ -631,18 +778,14 @@
         <li><a href="get-started-as-an-it-admin.html#recommended-knox-service-plugin-policies">Recommended Knox Service Plugin policies</a></li>
       </ul>
     </li>
-    <li><a href="get-started-as-an-it-admin.html#step-4-set-up-your-uem-or-emm">Step 4: Set up your UEM or EMM</a>
-      <ul>
-        <li><a href="get-started-as-an-it-admin.html#vmware-workspace-one1">VMware Workspace ONE</a></li>
-        <li><a href="get-started-as-an-it-admin.html#microsoft-intune">Microsoft Intune</a></li>
-        <li><a href="get-started-as-an-it-admin.html#knox-manage-or-soti-mobicontrol">Knox Manage or SOTI MobiControl</a></li>
-      </ul>
-    </li>
+    <li><a href="get-started-as-an-it-admin.html#step-4-set-up-your-uem-or-emm">Step 4: Set up your UEM or EMM</a></li>
     <li><a href="get-started-as-an-it-admin.html#step-5-add-knox-authentication-manager-as-a-managed-app-in-your-uem-or-emm">Step 5: Add Knox Authentication Manager as a managed app in your UEM or EMM</a></li>
     <li><a href="get-started-as-an-it-admin.html#step-6-configure-and-assign-the-app">Step 6: Configure and assign the app</a>
       <ul>
-        <li><a href="get-started-as-an-it-admin.html#required-vmware-workspace-one-activities">Required VMware Workspace ONE activities</a></li>
+        <li><a href="get-started-as-an-it-admin.html#microsoft-intune">Microsoft Intune</a></li>
+        <li><a href="get-started-as-an-it-admin.html#required-omnissa-workspace-one-activities">Required Omnissa Workspace ONE activities</a></li>
         <li><a href="get-started-as-an-it-admin.html#other-recommended-settings">Other recommended settings</a></li>
+        <li><a href="get-started-as-an-it-admin.html#troubleshoot-configuration-errors">Troubleshoot configuration errors</a></li>
       </ul>
     </li>
   </ul>

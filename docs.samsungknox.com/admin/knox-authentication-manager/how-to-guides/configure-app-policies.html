@@ -303,6 +303,17 @@
     
     
     <div class="d-flex justify-content-between">
+      <a class="body-5 text-black fw-light" href="configure-authentication-methods/index.html">Configure authentication methods</a>
+    </div>
+    
+    </li>
+  
+  
+  
+    <li class="mt-2">
+    
+    
+    <div class="d-flex justify-content-between">
       <a class="body-5 text-black fw-light" href="change-authentication-methods.html">Change authentication methods</a>
     </div>
     
@@ -314,7 +325,7 @@
     
     
     <div class="d-flex justify-content-between">
-      <a class="body-5 text-black fw-light" href="unregister-a-user-account.html">Unregister a user account</a>
+      <a class="body-5 text-black fw-light" href="remove-a-user-account.html">Remove a user account</a>
     </div>
     
     </li>
@@ -407,7 +418,7 @@
             </div>
             
 
-  <p><span>Last updated January  14th, 2025</span></p>
+  <p><span>Last updated April  9th, 2025</span></p>
 
 
     
@@ -450,11 +461,32 @@
       
       
       
+        
+      
+      
+      
+      
+        
+      
+      
+      
+      
+      
+        
+      
+      
+      
+      
+        
+      
+      
+      
       
         <p>Before deploying Knox Authentication Manager as a managed app to your devices, you&rsquo;ll need to configure several app policies in your UEM or EMM. The following tables describe each policy and the options available.</p>
+<p>Refer to the <strong>Policy</strong> column for each policy&rsquo;s name and respective key. Policy keys are used when configuring <a href="../get-started/get-started-as-an-it-admin.html#microsoft-intune">Microsoft Intune app policies with a JSON file</a>, and when <a href="view-policies-on-device.html">viewing app policies</a> on the device.</p>
 <ol>
 <li>For Knox Manage admins, see <a href="../../knox-manage/configure/applications/assign-applications/assign-managed-google-play-apps.html">Assign Managed Google Play apps</a> for instructions on managing app configurations.</li>
-<li>For VMware Workspace ONE<sup id="fnref:1"><a href="configure-app-policies.html#fn:1" class="footnote-ref" role="doc-noteref">1</a></sup>, Microsoft Intune, and SOTI MobiControl admins, refer to their respective documentation for more details.</li>
+<li>For Omnissa Workspace ONE<sup id="fnref:1"><a href="configure-app-policies.html#fn:1" class="footnote-ref" role="doc-noteref">1</a></sup>, Microsoft Intune, and SOTI MobiControl admins, refer to their respective documentation for information on how to configure app policies.</li>
 </ol>
 <div class="notice-note"><p>For all policy settings, the following special characters are not permitted:<code>. # $ [ ] & ; < > "</code></p></div>
 <h2 id="basic-configuration-information">Basic configuration information</h2>
@@ -475,22 +507,28 @@
 <td>Any text string consisting of alphanumeric characters.</td>
 </tr>
 <tr>
-<td>Profile name</td>
+<td>Profile name<br> <code>doKAMProfileName</code></td>
 <td>No</td>
-<td>The user-facing name for the Knox Authentication Manager profile, as seen on the <a href="view-policies-on-device.html">app&rsquo;s Policy screen</a>.</td>
+<td>The user-facing name for the Knox Authentication Manager profile, as seen on the <a href="view-policies-on-device.html">app&rsquo;s policy screen</a>.</td>
 <td>Any text string consisting of alphanumeric characters. Special characters are permitted.</td>
 </tr>
 <tr>
-<td>License Key</td>
+<td>License Key<br> <code>doKAMLicenseKey</code></td>
 <td>Yes</td>
 <td>The license key included with a Knox Suite license. This field is mandatory.</td>
 <td>Any valid Knox Suite license key.</td>
 </tr>
 <tr>
-<td>Auto delete unused profile after (months)</td>
+<td>Auto delete unused profile after (months)<br> <code>doKAMAutoDeleteUnusedProfileAfter</code></td>
 <td>Yes</td>
-<td>The number of months that a profile must remain unused before being automatically deleted from system. This field is mandatory. <br><br> <div class="notice-note"><p>This policy setting applies only to Knox Authentication Manager v1.7 and higher. For devices running earlier versions, the default of 3 months is always applied. For more information, see <a href="../kbas/kba-1362-auto-delete-unused-profile-after-policy-automatically-set-to-3-months.html">updates to the Auto delete unused profile policy</a>.</p></div></td>
-<td>Any numerical value from 1 — 36. If left unset, the default is <strong>3 months</strong>.</td>
+<td>The number of days months that a profile must remain unused before being automatically deleted from system. This field is mandatory.<br> <div class="notice-note"><p>This policy setting applies only to Knox Authentication Manager v1.7 and higher. For devices running earlier versions, the default of 3 months is always applied. For more information, see <a href="../kbas/kba-1362-auto-delete-unused-profile-after-policy-automatically-set-to-3-months.html">updates to the Auto delete unused profile policy</a>.</p></div></td>
+<td>Any numerical value from 1 &mdash; 36. If left unset, the default is <strong>3 months</strong>. One month is defined as 30 days.<br><br> To set in days, enter any numerical value from 1 &mdash; 1080 and append <strong>d</strong> to the number (for example, 14d).</td>
+</tr>
+<tr>
+<td>Manually delete user profile<br> <code>doKAMManualDeleteUserProfile</code></td>
+<td>No</td>
+<td>Deletes a single user&rsquo;s credentials and profile data across all devices. This includes their username, password, PIN, face biometrics, and work app data. <br><br> <div class="notice-note"><p>This policy applies only to Knox Authentication Manager v1.8 and higher.</p></div></td>
+<td>Enter the user&rsquo;s Entra ID.</td>
 </tr>
 </tbody>
 </table></div>
@@ -498,7 +536,7 @@
 <div class="overflow-auto my-3"><table>
 <thead>
 <tr>
-<th>Policy name</th>
+<th>Policy</th>
 <th>Required</th>
 <th>Description</th>
 <th>Options</th>
@@ -506,25 +544,25 @@
 </thead>
 <tbody>
 <tr>
-<td>Title</td>
+<td>Title<br><code>doKAMHomeScreenTitle</code></td>
 <td>No</td>
 <td>A custom title that appears below the logo on the app&rsquo;s sign in screen.</td>
 <td>Any text string consisting of alphanumeric characters. Max 30 characters.</td>
 </tr>
 <tr>
-<td>Description</td>
+<td>Description<br> <code>doKAMHomeScreenDescription</code></td>
 <td>No</td>
 <td>Custom description text that appears above the <strong>Username</strong> field on the app&rsquo;s <a href="../get-started/get-started-as-a-user.html">sign in screen</a>.</td>
 <td>Any text string consisting of alphanumeric characters. Max 100 characters.</td>
 </tr>
 <tr>
-<td>Show device serial number</td>
+<td>Show device serial number<br> <code>doKAMShowDeviceSerialNumber</code></td>
 <td>Yes</td>
-<td>Displays the device&rsquo;s serial number on the sign-in screen. <br><br> <div class="notice-note"><p>This policy applies only to Knox Authentication Manager v1.7 and higher.</p></div></td>
+<td>Displays the device&rsquo;s serial number on the sign-in screen.<br><br> <div class="notice-note"><p>This policy applies only to Knox Authentication Manager v1.7 and higher.</p></div></td>
 <td><strong>True</strong> or <strong>False</strong> (default)</td>
 </tr>
 <tr>
-<td>Admin PIN</td>
+<td>Admin PIN<br> <code>doKAMLightweightLauncherAdminPIN</code></td>
 <td>Yes</td>
 <td>The PIN number required in order to exit Knox Authentication Manager&rsquo;s sign in screen.</td>
 <td>Any string consisting of numbers.</td>
@@ -534,19 +572,19 @@
 <h2 id="manage-sign-in-controls">Manage sign in controls</h2>
 <div class="overflow-auto my-3"><table>
     <tr>
-        <th scope="col">Policy name</th>
+        <th scope="col">Policy</th>
         <th scope="col">Required</th>
         <th scope="col">Description</th>
         <th scope="col">Options</th>
     </tr>
     <tr>
-        <td>UEM being used</td>
+        <td>UEM being used<br> <code>doKAMMainLoginApp</code> </td>
         <td>Yes</td>
         <td>The name of your UEM or EMM</td>
         <td>
             <ul>
-                <li><strong>VMware Workspace ONE with launcher login screen</strong> (default)</li>
-                <li><strong>VMware Workspace ONE without launcher login screen</strong></li>
+                <li><strong>Omnissa Workspace ONE with launcher login screen</strong> (default)</li>
+                <li><strong>Omnissa Workspace ONE without launcher login screen</strong></li>
                 <li><strong>Microsoft Intune with Managed Home Screen</strong></li>
                 <li><strong>Microsoft Intune without Managed Home Screen</strong></li>
                 <li><strong>Samsung Knox Manage/SOTI MobiControl</strong></li>
@@ -554,30 +592,30 @@
         </td>
     </tr>
     <tr>
-        <td>Main sign in method</td>
+        <td>Main sign in method<br> <code>doKAMMainLoginMethod</code> </td>
         <td>Yes</td>
         <td>Determines how users sign in to Knox Authentication Manager. </td>
         <td>
             <ul>
-                <li><strong>PIN+Face</strong> (default) — Users sign into the app by first entering a PIN number, then scanning their face. If you select this option, you must also select <strong>Yes</strong> in the following field to confirm that you agree to the biometric privacy notification.</li>
-                <li><strong>PIN only</strong> — Users sign into the app using their PIN number only.</li>
-                <li><strong>Manual</strong> — Users sign into the app using their identity provider credentials (for example, their Microsoft Entra ID username and password).</li>
+                <li><strong>PIN+Face</strong> (default) &mdash; Users sign into the app by first entering a PIN number, then scanning their face. If you select this option, you must also select <strong>Yes</strong> in the following field to confirm that you agree to the biometric privacy notification.</li>
+                <li><strong>PIN only</strong> &mdash; Users sign into the app using their PIN number only.</li>
+                <li><strong>Manual</strong> &mdash; Users sign into the app using their identity provider credentials (for example, their Microsoft Entra ID username and password).</li>
             </ul>
         </td>
     </tr>
     <tr>
-        <td>I have read and understand the notice in the description (required for Face authentication)</td>
-        <td>Yes — if you selected <strong>PIN+Face</strong> as a sign in method.</td>
+        <td>I have read and understand the notice in the description (required for Face authentication)<br> <code>doKAMBiometricNotice</code> </td>
+        <td>Yes &mdash; if you selected <strong>PIN+Face</strong> as the main sign in method.</td>
         <td>This policy confirms that you've read and acknowledged the biometric privacy notice, and only appears after you select <strong>PIN+Face</strong> as the app's main sign in method.</td>
         <td>
             <ul>
-                <li><strong>No response</strong> — User will sign in using <strong>Manual</strong> authentication.</li>
-                <li><strong>Yes</strong> — You're using a sign in method that collects a user's biometric information and you've read and acknowledged the privacy notice.</li>
+                <li><strong>No response</strong> &mdash; User can only sign in with <strong>PIN only</strong> or <strong>Manual</strong> authentication.</li>
+                <li><strong>Yes</strong> &mdash; You're using a sign in method that collects a user's biometric information and you've read and acknowledged the privacy notice.</li>
             </ul>
         </td>
     </tr>
     <tr>
-        <td>Main sign in PIN length</td>
+        <td>Main sign in PIN length<br> <code>doKAMMainLoginPINLength</code> </td>
         <td>Yes</td>
         <td>Sets the required PIN length when <strong>PIN+Face</strong> or <strong>PIN only</strong> sign in is used.</td>
         <td>
@@ -590,38 +628,39 @@
     </tr>
 </table></div>
 <h2 id="manage-sync-controls">Manage sync controls</h2>
+<p>If device syncing is disabled, only the <strong>Sync Group ID</strong> policy is required in the following group.</p>
 <div class="overflow-auto my-3"><table>
 <tr>
-        <th scope="col">Policy name</th>
+        <th scope="col">Policy</th>
         <th scope="col">Required</th>
         <th scope="col">Description</th>
         <th scope="col">Options</th>
     </tr>
         <tr>
-        <td>Enable syncing</td>
+        <td>Enable syncing<br> <code>doKAMSyncEnable</code> </td>
         <td>Yes</td>
         <td>Enables device-to-device data syncing. Disabling this policy is only recommended for dedicated devices.<br><br> If set to <strong>False</strong>, only the <strong>Sync Group ID</strong> policy is required in the <strong>Manage sync controls</strong> group.<br> <div class="notice-note"><p>When device syncing is disabled, no network traffic is sent to <a href="https://firebase.google.com/" target="_blank">Google Firebase</a>.</p></div></td>
         <td><strong>True</strong> (default) or <strong>False</strong></td>
     </tr>
     <tr>
-        <td>Sync Org ID</td>
+        <td>Sync Org ID<br> <code>doKAMSyncOrgID</code> </td>
         <td>Yes</td>
         <td>Sets a single identifier for your company or organization, under which your device sync groups are organized.</td>
         <td>Enter an Org ID consisting of only letters and numbers. This should be the same for devices that you want to sync with one another.</td>
     </tr>
     <tr>
-        <td>Sync Devices By</td>
+        <td>Sync Devices By<br> <code>doKAMSyncDevicesBy</code> </td>
         <td>Yes</td>
         <td>Determines how device sync groups are defined.</td>
         <td>
             <ul>
-                <li><strong>Group ID</strong> (default) — Devices sync when they're in the same admin-defined group.</li>
-                <li><strong>WiFi Subnet</strong> — Devices sync when they're on the same Wi-Fi subnet.</li>
+                <li><strong>Group ID</strong> (default) &mdash; Devices sync when they're in the same admin-defined group.</li>
+                <li><strong>Wi-Fi Subnet</strong> &mdash; Devices sync when they're on the same Wi-Fi subnet.</li>
             </ul>
         </td>
     </tr>
     <tr>
-        <td>Sync Group ID</td>
+        <td>Sync Group ID<br> <code>doKAMSyncGroupID</code> </td>
         <td>Yes</td>
         <td>
             <p>Sets a unique identifier for a group of devices across which user profiles will be synced. This setting only applies if your devices sync by group ID.</p>
@@ -630,35 +669,40 @@
         <td>Enter an group ID consisting of only letters and numbers. This should be the same for devices that you want to sync with one another.</td>
     </tr>
     <tr>
-        <td>Sync Group Key</td>
+        <td>Sync Group Key<br> <code>doKAMSyncGroupKey</code> </td>
         <td>Yes</td>
         <td>Sets a sync group key to encrypt and protect user profiles and device group communication.</td>
         <td>
             <p>Enter a 32-character key consisting of only letters and numbers. This should be the same for devices that you want to sync with one another. </p>
-            <p>One way to create the key is to run <code>openssl rand -base64 24</code> in a terminal.</p>
+            <p>You can <a href="../../knox-authentication-manager.html#required-network-capabilities">generate this key</a> using OpenSSL.</p>
         </td>
     </tr>
     <tr>
-        <td>Sync Send UDP Port</td>
+        <td>Sync Send UDP Port<br> <code>doKAMSyncSendUDPPort</code> </td>
         <td>Yes</td>
         <td>Specifies a UDP port number on devices which is used to send device communications such as sync requests.</td>
         <td>Enter a UDP port number. If left unset, the default is <strong>49158</strong>.</td>
     </tr>
     <tr>
-        <td>Sync Receive UDP Port</td>
+        <td>Sync Receive UDP Port<br> <code>doKAMSyncReceiveUDPPort</code> </td>
         <td>Yes</td>
         <td>Specifies a UDP port number on devices which is used to send device communications such as sync requests.</td>
         <td>Enter a UDP port number. If left unset, the default is <strong>49159</strong>.</td>
     </tr>
     <tr>
-        <td>Sync TCP Port</td>
+        <td>Sync TCP Port<br> <code>doKAMSyncTCPPort</code> </td>
         <td>Yes</td>
         <td>Specifies a TLS communication port number on devices which is used to sync data between devices.</td>
         <td>Enter a TLS communication port. If left unset, the default is <strong>7788</strong>.</td>
     </tr>
 </table></div>
 <h2 id="manage-kam-behavior">Manage KAM behavior</h2>
-<div class="notice-note"><p>The following policies are only applicable if you’re using <strong>VMware Workspace ONE without launcher login screen</strong>, <strong>Microsoft Intune without Managed Home Screen</strong>, or <strong>Knox Manage/SOTI MobiControl</strong> as your UEM or EMM.</p></div>
+<p>The following policies are only applicable if you&rsquo;re using one of the following UEM or EMM configurations:</p>
+<ul>
+<li>Omnissa Workspace ONE without launcher login screen</li>
+<li>Microsoft Intune without Managed Home Screen</li>
+<li>Knox Manage/SOTI MobiControl</li>
+</ul>
 <div class="overflow-auto my-3"><table>
 <thead>
 <tr>
@@ -670,64 +714,76 @@
 </thead>
 <tbody>
 <tr>
-<td>Entra Tenant ID</td>
+<td>Entra Tenant ID<br> <code>doKAMAzureADTenantID</code></td>
 <td>Yes</td>
 <td>Specifies the Knox Authentication Manager Directory (tenant) ID registered in Microsoft Entra ID. Refer to Microsoft&rsquo;s documentation for detailed instructions on how to find your tenant ID.</td>
 <td>Enter the Entra Tenant ID</td>
 </tr>
 <tr>
-<td>Entra Client ID</td>
+<td>Entra Client ID<br> <code>doKAMAzureADClientID</code></td>
 <td>Yes</td>
 <td>Specifies the Knox Authentication Manager Application (client) ID registered in Microsoft Entra ID. Refer to Microsoft&rsquo;s documentation for detailed instructions on how to find your client ID.</td>
 <td>Enter the Entra Client ID</td>
 </tr>
 <tr>
-<td>Auto sign out on charge</td>
+<td>Auto sign out on charge<br> <code>doKAMAutoLogoutOnCharge</code></td>
 <td>Yes</td>
 <td>Determines whether Knox Authentication Manager automatically signs out the current user when a device is charged (user can cancel).</td>
 <td><strong>True</strong> or <strong>False</strong> (default)</td>
 </tr>
 <tr>
-<td>Auto sign out period after screen-off (mins)</td>
+<td>Auto sign out period after screen-off (mins)<br> <code>doKAMAutoLogoutOnScreenOffAfter</code></td>
 <td>No</td>
 <td>Specifies how many minutes a device screen must remain off before Knox Authentication Manager automatically signs out the current user.</td>
-<td>Enter a value in minutes. If left unset, the default is <strong>0</strong>. <br><br><strong>0</strong> = disabled.</td>
+<td>Enter a value in minutes. If left unset, the default is <strong>0</strong>.<br><br><strong>0</strong> = disabled.</td>
 </tr>
 <tr>
-<td>Use KAM authentication to unlock device</td>
-<td>Yes</td>
-<td>Forces users to sign into Knox Authentication Manager (PIN+Face or PIN only) in order to unlock their devices.</td>
-<td><strong>True</strong> or <strong>False</strong> (default)</td>
-</tr>
-<tr>
-<td>Clean-up on sign out</td>
+<td>Clean-up on sign out<br> <code>doKAMCleanupOnLogout</code></td>
 <td>Yes</td>
 <td>Allows the removal of app and account information when users sign out, to ensure that they don&rsquo;t have access to the previous user&rsquo;s signed-in apps and data.</td>
 <td><strong>True</strong> or <strong>False</strong> (default)</td>
 </tr>
 <tr>
-<td>Clean-up excluded apps upon sign out (package names)</td>
+<td>Clean-up excluded apps upon sign out (package names)<br> <code>doKAMCleanupExcludedApps</code></td>
 <td>No</td>
-<td>Specifies the package names of apps — as a comma-delimited list — that are excluded from clean-up.</td>
+<td>Specifies the package names of apps &mdash; as a comma-delimited list &mdash; that are excluded from clean-up.</td>
 <td>Enter app package names separated by commas.</td>
 </tr>
 <tr>
-<td>Clean-up upon sign in</td>
+<td>Clean-up upon sign in<br> <code>doKAMCleanupOnLogin</code></td>
 <td>Yes</td>
 <td>Allows the removal of app and account information when users sign in, to ensure that they don&rsquo;t have access to the previous user&rsquo;s signed-in apps and data.</td>
 <td><strong>True</strong> or <strong>False</strong> (default)</td>
 </tr>
 <tr>
-<td>Clean-up apps upon sign in (package names)</td>
+<td>Clean-up apps upon sign in (package names)<br> <code>doKAMCleanupOnLoginApps</code></td>
 <td>No</td>
-<td>Specifies the package names of apps — as a comma-delimited list — you want to clean up after users sign in. <br><br>You must set <strong>Clean-up upon sign in</strong> to <strong>True</strong> for this policy to work.</td>
+<td>Specifies the package names of apps &mdash; as a comma-delimited list &mdash; you want to clean up after users sign in.<br><br>You must set <strong>Clean-up upon sign in</strong> to <strong>True</strong> for this policy to work.</td>
 <td>Enter app package names separated by commas. If left unset, the default packages included are: <ul><li>com.microsoft.appmanager</li> <li>com.microsoft.office</li><li>com.microsoft.office.excel</li><li>com.microsoft.office.officehubrow</li><li>com.microsoft.office.onenote</li><li>com.microsoft.office.outlook</li><li>com.microsoft.office.powerpoint</li><li>com.microsoft.office.word</li><li>com.microsoft.sharepoint</li><li>com.microsoft.skydrive</li><li>com.microsoft.teams</li></ul></td>
 </tr>
 <tr>
-<td>Reverification time (mins)</td>
+<td>Use KAM reverification to unlock device<br> <code>doKAMAuthToUnlockDevice</code></td>
+<td>Yes</td>
+<td>Determines if users can reverify their sign-in to locked devices using Knox Authentication Manager credentials.<br><br> If set to <strong>False</strong>, users won&rsquo;t be able to reverify their sign in using their Knox Authentication Manager credentials.</td>
+<td><strong>True</strong> or <strong>False</strong> (default)</td>
+</tr>
+<tr>
+<td>Reverification time (mins)<br> <code>doKAMLightweightLauncherReverifyAfter</code></td>
 <td>No</td>
 <td>The time period after the screen is turned off before the user must reverify their identity on the device.</td>
-<td>Enter a value in minutes. If left unset, the default is <strong>0</strong>. <br><br><strong>0</strong> = disabled.</td>
+<td>Enter a value in minutes. If left unset, the default is <strong>0</strong>.<br><br><strong>0</strong> = disabled.</td>
+</tr>
+<tr>
+<td>Reverification method<br> <code>doKAMReverifyMethod</code></td>
+<td>No</td>
+<td>Determines how users reverify their sign-in to a locked device.<br><br>You must set <strong>Use KAM reverification to unlock device</strong> to <strong>True</strong> for this policy to work.<br><br> <div class="notice-note"><p>If <strong>Reverification method</strong> conflicts with the <strong>Main sign in method</strong>, an error occurs and the authentication mode set by the <strong>Main sign in method</strong> policy is used by default. For more information, see <a href="../kbas/kba-1464-updates-to-the-reverification-method-policy.html">​Updates to the Reverification method policy</a>.</p></div></td>
+<td><ul><li><strong>default</strong> &mdash; Users will reverify using the authentication mode set by the <strong>Main sign in method</strong> policy</li><li><strong>PIN only</strong></li><li><strong>Face only</strong></li><li><strong>Let user choose</strong></li></ul></td>
+</tr>
+<tr>
+<td>Show username on reverification screen<br> <code>doKAMShowUsernameOnReverifyScreen</code></td>
+<td>Yes</td>
+<td>Displays the name of the current user on the app&rsquo;s reverification screen.</td>
+<td><strong>True</strong> or <strong>False</strong> (default)</td>
 </tr>
 </tbody>
 </table></div>
@@ -735,7 +791,7 @@
 <hr>
 <ol>
 <li id="fn:1">
-<p>VMware Workspace ONE is also known as Omnissa Workspace ONE.&#160;<a href="configure-app-policies.html#fnref:1" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
+<p>Omnissa Workspace ONE is also known as VMware Workspace ONE.&#160;<a href="configure-app-policies.html#fnref:1" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
 </li>
 </ol>
 </div>
