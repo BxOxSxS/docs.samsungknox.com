@@ -1211,27 +1211,11 @@
   
     <li class="mt-2">
     
-    <div class="d-flex justify-content-between cursor-pointer" data-bs-toggle="collapse" data-bs-target="#sub-knox-efota-on-premises-appendix-appendix" aria-expanded="false">
-      <span class="body-5 text-black fw-light">Appendix</span>
-      <a class="btn-toggle d-inline-flex rounded border-0 fw-light" data-bs-toggle="collapse" data-bs-target="#sub-knox-efota-on-premises-appendix-appendix" aria-expanded="false"></a>
-    </div>
-      
-    <div class="collapse" id="sub-knox-efota-on-premises-appendix-appendix">
-      <ul>
-      
-      
-  
-  
-    <li class="mt-2">
-    
-    
     <div class="d-flex justify-content-between">
-      <a class="body-5 text-black fw-light" href="../../on-premises/appendix/remove-firmware-from-your-server/index.html">Remove firmware from your server</a>
+      <a class="body-5 text-black fw-light" href="../../on-premises/kbas/index.html">KBAs</a>
     </div>
-    
+      
     </li>
-  </ul>
-    </div></li>
   
   
   
@@ -1261,7 +1245,7 @@
             </div>
             
 
-  <p><span>Last updated January  15th, 2025</span></p>
+  <p><span>Last updated April  16th, 2025</span></p>
 
 
     
@@ -1275,6 +1259,16 @@
 
 
 
+      
+      
+      
+      
+        
+      
+      
+      
+      
+        
       
       
       
@@ -1402,6 +1396,99 @@
 </li>
 </ul>
 <p>For details about a status, hover over the status to display a tooltip description.</p>
+<h3 id="client-status">Client status</h3>
+<h4 id="error">Error</h4>
+<p>These client statuses indicate that Knox E-FOTA encountered an error on the device. See the exact <a href="../../troubleshoot/error-codes.html">client error code</a> for specific details about your error.</p>
+<div class="overflow-auto my-3"><table>
+    <tr>
+        <th scope="col">Client status</th>
+        <th scope="col">Description</th>
+    </tr>
+    <tr>
+        <td>Failed to download</td>
+        <td>Firmware failed to download, possibly due to network issues.</td>
+    </tr>
+    <tr>
+        <td>Failed to enroll</td>
+        <td>Device couldn't enroll to Knox E-FOTA, check that your license is valid.</td>
+    </tr>
+    <tr>
+        <td>Failed to install</td>
+        <td>Firmware installation failed. This could be because the device is rooted, or there is an issue with the firmware installation process.</td>
+    </tr>
+    <tr>
+        <td>Campaign error</td>
+        <td>Campaign couldn't be read and applied.</td>
+    </tr>
+    <tr>
+        <td>Invalid firmware version</td>
+        <td>Assigned target firmware is invalid</td>
+    </tr>
+</table></div>
+<h4 id="in-progress-of-an-operation">In-progress of an operation</h4>
+<p>These client statuses indicate that Knox E-FOTA is running or preparing to run an operation. See the exact <a href="../../troubleshoot/error-codes.html">client error code</a> for specific details about your error.</p>
+<div class="overflow-auto my-3"><table>
+    <tr>
+        <th scope="col">Client status</th>
+        <th scope="col">Description</th>
+    </tr>
+    <tr>
+        <td>Awaiting download</td>
+        <td>Knox E-FOTA is waiting for firmware download conditions to be met. This can be due to firmware download timeframe, download network restrictions, or insufficient device storage.</td>
+    </tr>
+    <tr>
+        <td>Awaiting install</td>
+        <td>Firmware has successfully downloaded, and Knox E-FOTA is waiting for installation conditions to be met. This can be due to firmware install timeframe, charging and battery restrictions, or insufficient device storage.</td>
+    </tr>
+    <tr>
+        <td>In-progress (downloading)</td>
+        <td>Firmware is currently downloading.</td>
+    </tr>
+    <tr>
+        <td>In-progress (installing)</td>
+        <td>Firmware is currently installing.</td>
+    </tr>
+    <tr>
+        <td>Reverting</td>
+        <td>Dummy firmware binary was installed while the device was on a test campaign, and the device is currently reverting to a normal firmware binary.</td>
+    </tr>
+</table></div>
+<h4 id="operation-completed">Operation completed</h4>
+<p>These client statuses indicate that Knox E-FOTA has completed an operation, or was unable to begin an operation.</p>
+<div class="overflow-auto my-3"><table>
+    <tr>
+        <th scope="col">Client status</th>
+        <th scope="col">Description</th>
+    </tr>
+    <tr>
+        <td>Higher firmware version</td>
+        <td>The device's current firmware version is already higher than the firmware assigned to it in the campaign.</td>
+    </tr>
+    <tr>
+        <td>Locked firmware version</td>
+        <td>Campaign is active and the device is locked to its current firmware version.</td>
+    </tr>
+    <tr>
+        <td>Updated</td>
+        <td>Device update has completed.</td>
+    </tr>
+</table></div>
+<h4 id="not-started">Not started</h4>
+<p>These client statuses indicate that Knox E-FOTA hasn&rsquo;t begun to actively manage firmware on your devices.</p>
+<div class="overflow-auto my-3"><table>
+    <tr>
+        <th scope="col">Client status</th>
+        <th scope="col">Description</th>
+    </tr>
+    <tr>
+        <td>Enrolled</td>
+        <td>Device is enrolled to Knox E-FOTA, but has no active campaign assigned.</td>
+    </tr>
+    <tr>
+        <td>Not enrolled</td>
+        <td>Device is not enrolled. Either client is not installed or license is invalid.</td>
+    </tr>
+</table></div>
 <h2 id="perform-common-operations-on-devices">Perform common operations on devices</h2>
 <p>You can perform the following operations on one or more devices:</p>
 <ul>
@@ -1455,7 +1542,11 @@
   <nav id="TableOfContents">
   <ul>
     <li><a href="../manage-devices.html#view-device-information">View device information</a></li>
-    <li><a href="../manage-devices.html#device-statuses">Device statuses</a></li>
+    <li><a href="../manage-devices.html#device-statuses">Device statuses</a>
+      <ul>
+        <li><a href="../manage-devices.html#client-status">Client status</a></li>
+      </ul>
+    </li>
     <li><a href="../manage-devices.html#perform-common-operations-on-devices">Perform common operations on devices</a></li>
     <li><a href="../manage-devices.html#view-a-device-log">View a device log</a></li>
     <li><a href="../manage-devices.html#tag-a-device">Tag a device</a></li>

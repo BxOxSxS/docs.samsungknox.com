@@ -4985,7 +4985,7 @@
             </div>
             
 
-  <p><span>Last updated July  26th, 2023</span></p>
+  <p><span>Last updated April  11th, 2025</span></p>
 
 
     
@@ -5003,15 +5003,60 @@
       
       
       
-        <p>You can send device commands to enrolled devices by user, organization, group, or device and control them remotely. For devices with Knox Workspace or Work Profile, you can select the tab of the area on the top you want to send a device command to. Available device commands vary depending on the device type. For more information on each device command, see the list of device commands for each platform.</p>
-<div class="notice-note"><p>In general, device commands take a higher priority than profile policies. However, policies take a higher priority than the following device commands: Install, Run, Uninstall, Locate the current position, and Reset SD Card. For more information, see the list of device commands.</p></div>
+        
+      
+      
+      
+      
+        
+      
+      
+      
+      
+        
+      
+      
+      
+      
+        
+      
+      
+      
+      
+        
+      
+      
+      
+      
+        
+      
+      
+      
+      
+        
+      
+      
+      
+      
+        <p>You can send device commands to enrolled devices by user, organization, group, or device and control them remotely. For devices with Knox Workspace or Work Profile, you can select the tab of the area on the top you want to send a device command to.</p>
+<p>Available device commands vary depending on the device type. For more information, see:</p>
+<ul>
+<li><a href="android-enterprise-device-commands.html">Android Enterprise device commands</a></li>
+<li><a href="android-management-api-device-commands.html">Android Management API device commands</a></li>
+<li><a href="wear-os-device-commands.html">Wear OS device commands</a></li>
+<li><a href="android-legacy-knox-workspace-commands.html">Android Legacy/Knox Workspace device commands</a></li>
+<li><a href="ios-device-commands.html">iOS device commands</a></li>
+<li><a href="macos-device-commands.html">macOS device commands</a></li>
+<li><a href="windows-device-commands.html">Windows device commands</a></li>
+</ul>
+<div class="notice-note"><p>Device commands take precedence over profile policies, except for the following specific policies: <strong>Install</strong>, <strong>Run</strong>, <strong>Uninstall</strong>, <strong>Locate Current Position</strong>, and <strong>Reset SD Card</strong>.</p></div>
 <p>To send device commands, complete the following steps:</p>
 <ol>
 <li>Navigate to <strong>Device</strong>.</li>
 <li>On the <strong>Device</strong> page, click the check box next to the device name to send a device command to, and then click <strong>Device Command</strong>.</li>
 <li>In the <strong>Device Command</strong> window, select the desired device command.
 <ul>
-<li>For devices that have a Knox Workspace, click the target area between <strong>General</strong> and <strong>KNOX - LightWeight Knox</strong>.</li>
+<li>For devices that have a Work Profile, click the target area between <strong>General</strong> and <strong>KNOX - LightWeight Knox</strong>.</li>
 <li>For Fully Managed with Work Profile devices, click a target area between <strong>Fully Managed Device</strong> and <strong>Work Profile</strong>.</li>
 </ul>
 </li>
@@ -5019,12 +5064,11 @@
 </ol>
 <h2 id="Check">Check device commands in request</h2>
 <p>Check device commands that have not been sent successfully due to network or system issues. You can resend the device commands in request or delete them individually or all together. You can also download all device commands in queue as an Excel file.</p>
-<div class="notice-note"><p>If no device command has been sent within the past six hours of restarting the device, then Knox Manage Agent requests the server for a device command and can have it resent to the device.</p></div>
-<p>To check the device commands in request and resend or delete them individually or altogether, complete the following steps:</p>
+<div class="notice-note"><p>If no device command has been sent within the past six hours of restarting the device, then Knox Manage Agent requests the server for a device command and can have it resent to the device. Command information in <strong>Device Command in Request</strong> is automatically deleted after three months.</p></div>
+<p>To check device commands in request and resend or delete them, complete the following steps:</p>
 <ol>
 <li>
 <p>Navigate to <strong>History</strong> &gt; <strong>Device Command in Request</strong>.</p>
-<div class="notice-note"><p>Command information in <strong>Device Command in Request</strong> is automatically deleted after three months.</p></div>
 </li>
 <li>
 <p>Enter a request date and user ID or device name, and then click <strong>Search</strong>.</p>
@@ -5032,12 +5076,13 @@
 <li>
 <p>View the information of the device commands that have been found.</p>
 <ul>
-<li>To resend the device commands in request, click the check boxes of the device commands to resend, and then click <strong>Re-Request</strong>.</li>
-<li>To delete the device commands in request, click the check boxes of the device commands to delete, and then click <strong>Cancel Request</strong>.</li>
+<li>To resend device commands in request, select the device commands and click <strong>Re-Request</strong>.</li>
+<li>To delete specific device commands in request, select the device commands and click <strong>Cancel Request</strong>.</li>
+<li>To delete all device commands in request, click <strong>Cancel All Request</strong>.</li>
 </ul>
 </li>
 </ol>
-<div class="notice-note"><p>To set the Knox Manage server to resend the device commands in request automatically, navigate to <strong>Setting</strong> > <strong>Configuration</strong> > <strong>Basic Configuration</strong> > <strong>Device</strong>, then set <strong>Daily retries for device commands in queue</strong> to the desired number of retries.</p></div>
+<div class="notice-note"><p>To set the Knox Manage server to automatically resend device commands in request, navigate to <strong>Setting</strong> > <strong>Configuration</strong> > <strong>Basic Configuration</strong> > <strong>Device</strong>, then set <strong>Daily retries for device commands in queue</strong> to the desired number of retries.</p></div>
 <h2 id="Viewing">View device command history</h2>
 <p>You can view the device command history and related audit logs by date. You can also view the details about the results of device commands, and collect the device control audit logs for each event. For more information about audit log items, see <a href="../../../monitor/audits/audit-logs/view-audit-logs.html">View audit logs</a>.</p>
 <p>To view the device command history, complete the following steps:</p>
