@@ -1259,7 +1259,7 @@
             </div>
             
 
-  <p><span>Last updated May  3rd, 2024</span></p>
+  <p><span>Last updated April  21st, 2025</span></p>
 
 
     
@@ -1277,28 +1277,159 @@
       
       
       
-      <p>Zero Trust Network Access (ZTNA) is a security plan where endpoints and users are given access to network apps and services on a granular basis according to current policies and roles, instead of receiving access to the entire network in one stroke.</p>
-<p>In collaboration with Samsung&rsquo;s partners, the Knox platform provides native capabilities for ZTNA solutions. These features are currently available to customers of <a href="https://play.google.com/store/apps/details?id=com.cisco.secureclient.zta" target="_blank">Cisco Zero Trust Access</a>. For more information, see <a href="https://blogs.cisco.com/security/cisco-secure-access-extends-sse-innovation-with-mobile-zero-trust-flexible-resource-connectors" target="_blank">Cisco Zero Trust Access Extends SSE Innovation with Mobile Zero Trust and Flexible Resource Connectors</a> on the Cisco blog.</p>
-<div class="notice-note"><p>As of Knox Service Plugin 24.03, end-to-end integration of ZTNA is under development. These policies won’t take effect until the rest of development is complete, but you can safely configure and deploy these in the meantime.</p></div>
-<h2 id="requirements">Requirements</h2>
-<p>ZTNA is only available on devices running Android 14 and higher, and requires a Knox Platform for Enterprise Premium license. You can manage ZTNA for the primary profile level (DO) and the work profile (PO).</p>
-<h2 id="manage-ztna">Manage ZTNA</h2>
-<p>Enabling ZTNA is similar to configuring other package-based solutions in Knox Service Plugin. However, the procedure for disabling ZTNA isn&rsquo;t the reverse of how you enable it, so please carefully consult the following procedures to successfully perform either task.</p>
-<p>To enable ZTNA for all management modes:</p>
+      
+      
+        
+      
+      
+      
+      
+        
+      
+      
+      
+      
+      <p><strong>Zero Trust Network Access (ZTNA)</strong> is a security framework that operates on the principle of &ldquo;never trust, always verify&rdquo;. Unlike traditional security models that grant broad network access, ZTNA continuously validates network requests and grants granular access to enterprise resources depending on the requesting user, endpoint, and app.</p>
+<p>In collaboration with Samsung&rsquo;s partners, the Knox platform provides native capabilities for ZTNA solutions. These features are currently available to <a href="https://www.cisco.com/site/us/en/products/security/secure-access/index.html#tabs-35d568e0ff-item-4bd7dc8124-tab" target="_blank">Cisco Secure Access</a> customers. For more information about ZTNA, please see <a href="https://www.cisco.com/site/us/en/solutions/security/zero-trust-access/index.html#tabs-7edb32179e-item-d43da2dc1e-tab" target="_blank">Cisco Zero Trust Access</a>.</p>
+<p>Samsung Knox&rsquo;s ZTNA framework is supported on both <a href="zero-trust-network-access.html#ztna-on-managed-devices">managed</a> and <a href="zero-trust-network-access.html#ztna-on-unmanaged-devices">unmanaged</a> devices.</p>
+<div class="overflow-auto my-3"><table>
+    <tr>
+        <th scope="col">
+            <strong>Device Type</strong>
+        </th>
+        <th scope="col">
+            <strong>Deployment modes</strong>
+        </th>
+        <th scope="col">
+            <strong>Scope</strong>
+        </th>
+        <th scope="col">
+            <strong>ZTNA Scope</strong>
+        </th>
+        <th scope="col">
+            <strong>Android version</strong>
+        </th>
+        <th scope="col">
+            <strong>Activated by</strong>
+        </th>
+    </tr>
+    <tr>
+        <td rowspan="3">
+            <strong>Corporate owned device</strong>
+        </td>
+        <td>
+            Fully managed (DO)
+        </td>
+        <td>
+            <strong>Device-wide</strong>
+        </td>
+        <td>
+            <strong>Yes</strong>
+        </td>
+        <td>
+            14
+        </td>
+        <td>
+            IT Admin
+        </td>
+    </tr>
+    <tr>
+        <td rowspan="2">
+            Work Profile - Corporate (WP-C)
+        </td>
+        <td>
+            <strong>Work profile</strong>
+        </td>
+        <td>
+            <strong>Yes</strong>
+        </td>
+        <td>
+            14
+        </td>
+        <td>
+            IT Admin
+        </td>
+    </tr>
+    <tr>
+        <td>
+            <strong>Personal profile</strong>
+        </td>
+        <td>
+            <strong>N/A</strong>
+        </td>
+        <td>
+            N/A
+        </td>
+        <td>
+            N/A
+        </td>
+    </tr>
+    <tr>
+        <td rowspan="3">
+            <strong>Personal device (BYOD)</strong>
+        </td>
+        <td rowspan="2">
+            Work Profile - Personal (WP-P)
+        </td>
+        <td>
+            <strong>Work profile</strong>
+        </td>
+        <td>
+            <strong>Yes</strong>
+        </td>
+        <td>
+            14
+        </td>
+        <td>
+            IT Admin
+        </td>
+    </tr>
+    <tr>
+        <td>
+            <strong>Personal profile</strong>
+        </td>
+        <td>
+            <strong>Yes</strong>
+        </td>
+        <td>
+            15
+        </td>
+        <td>
+            Device user
+        </td>
+    </tr>
+    <tr>
+        <td>
+            Unmanaged/MAM
+        </td>
+        <td>
+            <strong>Device-wide</strong>
+        </td>
+        <td>
+            <strong>Yes</strong>
+        </td>
+        <td>
+            15
+        </td>
+        <td>
+            Device user
+        </td>
+    </tr>
+</table></div>
+<h2 id="ztna-on-managed-devices">ZTNA on managed devices</h2>
+<p>Managed devices are managed by a UEM and deployed as a fully-managed device or with a work profile. ZTNA on managed devices is only available on devices running Android 14 and higher, and requires a free <a href="../../before-you-begin/knox-platform-for-enterprise-licenses.html" target="_blank">Knox Platform for Enterprise Premium license</a>.</p>
+<h3 id="enable-ztna">Enable ZTNA</h3>
+<p>Enabling ZTNA on managed devices is similar to configuring other package-based solutions in Knox Service Plugin.</p>
 <ol>
 <li>
 <p>On your EMM console, add the following apps:</p>
-<ul>
-<li>
-<p>Knox Service Plugin (if you haven&rsquo;t already added it)</p>
+<ol>
+<li>Knox Service Plugin (if you haven&rsquo;t already added it).</li>
+<li><a href="https://play.google.com/store/apps/details?id=com.cisco.secureclient.zta" target="_blank">Cisco Zero Trust Access</a></li>
+</ol>
 </li>
 <li>
-<p><a href="https://play.google.com/store/apps/details?id=com.cisco.secureclient.zta" target="_blank">Cisco Zero Trust Access</a></p>
-</li>
-</ul>
-</li>
-<li>
-<p>Begin assigning the Knox Service Plugin app to your target devices. Give it a managed configuration with the following settings:</p>
+<p>Assign the Knox Service Plugin app to your target devices. Give it a managed configuration with the following settings:</p>
 <div class="overflow-auto my-3"><table>
 <thead>
 <tr>
@@ -1309,52 +1440,62 @@
 <tbody>
 <tr>
 <td>Debug Mode</td>
-<td><strong>True</strong></td>
+<td>True</td>
 </tr>
 <tr>
 <td>Device-wide policies &gt; Enable device policy controls</td>
-<td>To configure for the primary profile (DO), set to <strong>True</strong>.</td>
+<td>To configure for fully-managed or WP-C devices, set to True.</td>
 </tr>
 <tr>
 <td>Work profile policies &gt; Enable work profile policies</td>
-<td>To configure for the work profile (PO), set to <strong>True</strong>.</td>
+<td>To configure for personal devices with a work profile, set to True.</td>
 </tr>
 </tbody>
 </table></div>
-<p>Depending on whether you enabled <strong>Device-wide policies</strong> or <strong>Work profile policies</strong>, go to that section&rsquo;s <strong>ZTNA policy</strong> and give it these settings, too:</p>
- <div class="overflow-auto my-3"><table>
-     <tr>
-         <th scope="col" style="width: 40%">ZTNA setting in managed configuration</th>
-         <th scope="col">Value</th>
-     </tr>
-     <tr>
-         <td>ZTNA policy &gt; Enable ZTNA controls</td>
-         <td><strong>True</strong></td>
-     </tr>
-     <tr>
-         <td>ZTNA policy &gt; Package Name</td>
-         <td><strong>com.cisco.secureclient.zta</strong></td>
-     </tr>
-     <tr>
-         <td>ZTNA policy &gt; Package Signature</td>
-         <td>(Optional) For increased security, you can enter the certificate fingerprint of the ZTNA client's signature in MD5, SHA-1, or SHA-256 format. For more details about app signing and how to obtain the fingerprint, see <a href="https://support.google.com/googleplay/android-developer/answer/9842756">Use Play App Signing § Set up and manage Play App Signing</a> in Play Console Help.</td>
-     </tr>
- </table></div>
+</li>
+<li>
+<p>Go to the ZTNA policy section and configure the following:</p>
+<div class="overflow-auto my-3"><table>
+<thead>
+<tr>
+<th>ZTNA setting in managed configuration</th>
+<th>Value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>ZTNA policy &gt; Enable ZTNA controls</td>
+<td>True</td>
+</tr>
+<tr>
+<td>ZTNA policy &gt; Package Name</td>
+<td>com.cisco.secureclient.zta</td>
+</tr>
+<tr>
+<td>ZTNA policy &gt; Package Signature</td>
+<td>(Optional) For increased security, you can enter the certificate fingerprint of the ZTNA client&rsquo;s signature in MD5, SHA-1, or SHA-256 format. For more details about app signing and how to obtain the fingerprint, see <a href="https://support.google.com/googleplay/android-developer/answer/9842756" target="_blank">Use Play App Signing &gt; Set up and manage Play App Signing</a> in Play Console Help.</td>
+</tr>
+</tbody>
+</table></div>
 </li>
 <li>
 <p>Assign the ZTNA client to your target devices.</p>
 </li>
 <li>
-<p>Push the apps to the devices.</p>
+<p>Push the apps to your devices with your UEM.</p>
 </li>
 </ol>
-<p>To disable ZTNA:</p>
+<h3 id="disable-ztna">Disable ZTNA</h3>
 <ol>
-<li>On your EMM console, begin editing the existing app assignment for the Knox Service Plugin app.</li>
-<li>In the managed configuration of the assignment, locate the scope of the ZTNA policy you previously set (either as part of the <strong>Device-wide policies</strong> or <strong>Work profile policies</strong>), and set <strong>Enable ZTNA controls</strong> to <strong>False</strong>. You can leave the other ZTNA settings as-is.</li>
+<li>On your EMM console, edit the existing app assignment for the Knox Service Plugin app.</li>
+<li>In the managed configuration of the assignment, locate the scope of the ZTNA policy you previously configured, and set <strong>Enable ZTNA controls</strong> to <strong>False</strong>.</li>
 <li>Save the assignment and push it to your devices.</li>
 </ol>
-<p>For more information, see <a href="https://docs.sse.cisco.com/sse-user-guide/docs/zero-trust-access-app-for-android-on-samsung-devices" target="_blank">How to set up Zero Trust Access App on Samsung devices</a>.</p>
+<h2 id="ztna-on-unmanaged-devices">ZTNA on unmanaged devices</h2>
+<p>Unmanaged devices are personal devices or devices with a personal profile that aren&rsquo;t managed by a UEM. ZTNA on unmanaged devices is only available for devices running Android 15 and higher, and doesn&rsquo;t require a Knox Platform for Enterprise license.</p>
+<p>To enable ZTNA on unmanaged devices, provide instructions to your device users to download and install the ZTNA client. You can get the ZTNA client from the <a href="https://play.google.com/store/apps/details?id=com.cisco.secureclient.zta" target="_blank">Google Play store</a>.</p>
+<p>To disable ZTNA, you must provide instructions to your device users to uninstall or unenroll the ZTNA client from their devices.</p>
+<p>For details, see Cisco&rsquo;s topic <a href="https://docs.sse.cisco.com/sse-user-guide/docs/zero-trust-access-app-for-android-on-samsung-devices" target="_blank">How to set up Zero Trust Access App on Samsung devices</a>.</p>
 
             
           </div>
@@ -1363,8 +1504,13 @@
 <aside class="table-of-headings">
   <nav id="TableOfContents">
   <ul>
-    <li><a href="zero-trust-network-access.html#requirements">Requirements</a></li>
-    <li><a href="zero-trust-network-access.html#manage-ztna">Manage ZTNA</a></li>
+    <li><a href="zero-trust-network-access.html#ztna-on-managed-devices">ZTNA on managed devices</a>
+      <ul>
+        <li><a href="zero-trust-network-access.html#enable-ztna">Enable ZTNA</a></li>
+        <li><a href="zero-trust-network-access.html#disable-ztna">Disable ZTNA</a></li>
+      </ul>
+    </li>
+    <li><a href="zero-trust-network-access.html#ztna-on-unmanaged-devices">ZTNA on unmanaged devices</a></li>
   </ul>
 </nav>
 </aside>

@@ -586,7 +586,7 @@
             </div>
             
 
-  <p><span>Last updated October  10th, 2024</span></p>
+  <p><span>Last updated April  23rd, 2025</span></p>
 
 
     
@@ -1157,21 +1157,26 @@
 <p>A soft-trigger in your app&rsquo;s UI allows customers to initiate a scan using a dedicated UI button instead of Knox Capture&rsquo;s floating action button, or a specific hardware key. The following sample code &mdash; written in Kotlin &mdash; can be used as a template when configuring your app.</p>
 <h3 id="define-scan-trigger-options-in-the-app-ui">Define scan trigger options in the app UI</h3>
 <p>Before you configure your customer&rsquo;s business app to soft-trigger Knox Capture, you should confirm with your customer the scan modes and barcode selection methods they want to use. See the <a href="../configure-scan-engine-settings.html#scanning-settings" target="_blank">Scan engine settings documentation</a> for an explanation of each scan mode and the barcode selection methods available.</p>
-<p>Use the following sample code to define the scan modes and selection types available to your customers when using the app.</p>
+<p>Use the following sample code to define the scan modes, selection types, and parse GS1 methods available to your customers when using the app.</p>
 <div class="highlight"><pre tabindex="0" style=";-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span>val scanModeCandidates <span style="color:#666">=</span> listOf<span style="color:#666">(</span> <span style="color:#ba2121">&#34;Single scan&#34;</span><span style="color:#666">,</span><span style="color:#ba2121">&#34;Multi scan&#34;</span><span style="color:#666">,</span> <span style="color:#666">)</span>
 </span></span><span style="display:flex;"><span>val scanSelectionCandidates <span style="color:#666">=</span> listOf<span style="color:#666">(</span><span style="color:#ba2121">&#34;Automatic&#34;</span><span style="color:#666">,</span><span style="color:#ba2121">&#34;Batch&#34;</span><span style="color:#666">,</span><span style="color:#ba2121">&#34;Aim and scan&#34;</span><span style="color:#666">,</span> <span style="color:#ba2121">&#34;Tap to select&#34;</span><span style="color:#666">)</span>
-</span></span></code></pre></div><p>The following sample code triggers a single scan using automatic barcode selection, based on the values defined above:</p>
+</span></span><span style="display:flex;"><span>val gs1Candidates <span style="color:#666">=</span> listOf<span style="color:#666">(</span><span style="color:#008000;font-weight:bold">false</span><span style="color:#666">,</span> <span style="color:#008000;font-weight:bold">true</span><span style="color:#666">)</span>
+</span></span></code></pre></div><p>The following sample code triggers a single scan using automatic barcode selection with parse GS1 off, based on the values defined above:</p>
 <div class="highlight"><pre tabindex="0" style=";-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#008000;font-weight:bold">private</span> var scanMode <span style="color:#666">=</span> scanModeCandidates<span style="color:#666">[</span><span style="color:#666">0</span><span style="color:#666">]</span>
 </span></span><span style="display:flex;"><span><span style="color:#008000;font-weight:bold">private</span> var selection <span style="color:#666">=</span> scanSelectionCandidates<span style="color:#666">[</span><span style="color:#666">0</span><span style="color:#666">]</span>
+</span></span><span style="display:flex;"><span><span style="color:#008000;font-weight:bold">private</span> var parseGs1 <span style="color:#666">=</span> <span style="color:#008000;font-weight:bold">private</span> var selection <span style="color:#666">=</span> scanSelectionCandidates<span style="color:#666">[</span><span style="color:#666">0</span><span style="color:#666">]</span>
+</span></span><span style="display:flex;"><span><span style="color:#008000;font-weight:bold">private</span> var parseGs1 <span style="color:#666">=</span> gs1Candidates<span style="color:#666">[</span><span style="color:#666">0</span><span style="color:#666">]</span>
 </span></span></code></pre></div><h3 id="create-the-soft-trigger-intent">Create the soft-trigger intent</h3>
 <div class="highlight"><pre tabindex="0" style=";-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span>val i <span style="color:#666">=</span> Intent<span style="color:#666">().</span><span style="color:#7d9029">also</span> <span style="color:#666">{</span>
 </span></span><span style="display:flex;"><span>    it<span style="color:#666">.</span><span style="color:#7d9029">action</span><span style="color:#666">=</span><span style="color:#ba2121">&#34;com.samsung.android.knox.intent.api.ACTION&#34;</span>
 </span></span><span style="display:flex;"><span>    it<span style="color:#666">.</span><span style="color:#7d9029">putExtra</span><span style="color:#666">(</span><span style="color:#ba2121">&#34;com.samsung.android.knox.intent.api.TRIGGER_ACTION&#34;</span><span style="color:#666">,</span><span style="color:#ba2121">&#34;START&#34;</span><span style="color:#666">)</span>
 </span></span><span style="display:flex;"><span>    it<span style="color:#666">.</span><span style="color:#7d9029">setPackage</span><span style="color:#666">(</span><span style="color:#ba2121">&#34;com.samsung.android.app.smartscan&#34;</span><span style="color:#666">)</span>
-</span></span><span style="display:flex;"><span>    <span style="color:#408080;font-style:italic">/**this will tell what kind of scan you are going to trigger 
-</span></span></span><span style="display:flex;"><span><span style="color:#408080;font-style:italic">    based on the previous code scanMode = &#34;Single scan&#34; and selection = &#34;Automatic&#34;**/</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#408080;font-style:italic">/**this tells what kind of scan you are going to trigger 
+</span></span></span><span style="display:flex;"><span><span style="color:#408080;font-style:italic">    based on the previous code scanMode = &#34;Single scan&#34;, selection = &#34;Automatic&#34;, and parseGs1 = false**/</span>
 </span></span><span style="display:flex;"><span>    it<span style="color:#666">.</span><span style="color:#7d9029">putExtra</span><span style="color:#666">(</span><span style="color:#ba2121">&#34;scanner_mode&#34;</span><span style="color:#666">,</span>scanMode<span style="color:#666">)</span>
 </span></span><span style="display:flex;"><span>    it<span style="color:#666">.</span><span style="color:#7d9029">putExtra</span><span style="color:#666">(</span><span style="color:#ba2121">&#34;barcode_selection&#34;</span><span style="color:#666">,</span>selection<span style="color:#666">)</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#408080;font-style:italic">/**this adds extra data for &#34;Parse GS1.&#34;**/</span>
+</span></span><span style="display:flex;"><span>    it<span style="color:#666">.</span><span style="color:#7d9029">putExtra</span><span style="color:#666">(</span><span style="color:#ba2121">&#34;parse_gs1&#34;</span><span style="color:#666">,</span>parseGs1<span style="color:#666">)</span>
 </span></span><span style="display:flex;"><span>    val p <span style="color:#666">=</span> PendingIntent<span style="color:#666">.</span><span style="color:#7d9029">getActivity</span><span style="color:#666">(</span>
 </span></span><span style="display:flex;"><span>        <span style="color:#008000;font-weight:bold">this</span><span style="color:#666">,</span>
 </span></span><span style="display:flex;"><span>        <span style="color:#666">0</span><span style="color:#666">,</span>
