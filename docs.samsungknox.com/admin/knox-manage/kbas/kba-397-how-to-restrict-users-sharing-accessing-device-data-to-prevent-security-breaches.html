@@ -4994,7 +4994,7 @@
             </div>
             
 
-  <p><span>Last updated July  26th, 2023</span></p>
+  <p><span>Last updated May  5th, 2025</span></p>
 
 
     
@@ -5020,53 +5020,161 @@
       
       
       
-      
         <h2 id="environment">Environment</h2>
 <ul>
-<li>Knox Manage (KM)</li>
-<li>Device Owner</li>
+<li>Knox Manage</li>
+<li>Android Enterprise</li>
+<li>Fully managed devices</li>
 </ul>
 <h2 id="overview">Overview</h2>
-<p>This article provides information on how to restrict a user from sharing or accessing device data. This information will be helpful in various use cases, such as the following:</p>
+<p>This article provides information on how to restrict a user from sharing or accessing device data. This information can be helpful to address a variety of security concerns, for example:</p>
 <ul>
 <li>Users sharing device data via various apps.</li>
 <li>Stolen or lost devices with sensitive information on SD cards.</li>
 <li>Users attempting to export data through printing.</li>
 </ul>
 <h2 id="how-can-i-restrict-the-access-and-sharing-of-device-data">How can I restrict the access and sharing of device data?</h2>
-<p>There are multiple ways a user can share device data to a PC or other devices. We can restrict a user and secure the device so that no one will be able to access and read stolen data.</p>
-<p>Below is a list of policies and solutions to restrict a user.</p>
-<p>Users can connect a device to PC in order to access storage. We can disallow this, which will be helpful in the case of a stolen device.</p>
-<ul>
-<li><strong>Profile</strong> &gt; <strong>Android Enterprise</strong> &gt; <strong>Interface</strong> &gt; <strong>PC Connection</strong> &gt; <strong>Disallow</strong>.</li>
-</ul>
-<p>Users can share any file to other devices through Bluetooth. With this policy, they will not be able to share through Bluetooth.</p>
-<ul>
-<li><strong>Profile</strong> &gt; <strong>Android Enterprise</strong> &gt; <strong>Interface</strong> &gt; <strong>Bluetooth Share</strong> &gt; <strong>Disallow</strong>.</li>
-</ul>
-<p>Users can share data to other devices through Wi-Fi Direct. With this policy, they will not be able to use Wi-Fi Direct.</p>
-<ul>
-<li><strong>Profile</strong> &gt; <strong>Android Enterprise</strong> &gt; <strong>Interface</strong> &gt; <strong>Wi-Fi</strong> &gt; <strong>Allow and then Wi-Fi Direct</strong> &gt; <strong>Disallow</strong>.</li>
-</ul>
-<p>Data can be breached if users are able to use the print service. With this policy, users will not be able to print any content like PDF, Word documents, images, etc.</p>
-<ul>
-<li><strong>Profile</strong> &gt; <strong>Android Enterprise</strong> &gt; <strong>Interface</strong> &gt; <strong>Printing</strong> &gt; <strong>Disallow</strong>.</li>
-</ul>
-<p>If the device is stolen, the SD card data can be read by inserting the card in any other device. With this policy, the saved data will be encrypted and inaccessible.</p>
-<ul>
-<li><strong>Profile</strong> &gt; <strong>Android Enterprise</strong> &gt; <strong>System</strong> &gt; <strong>Encryption for Storage</strong> &gt; <strong>Allow</strong>.</li>
-</ul>
-<p>Users can use the Share via feature in any app. With this policy, users will not be able to use the share data feature in any app.</p>
-<ul>
-<li><strong>Profile</strong> &gt; <strong>Samsung Knox Android Enterprise</strong> &gt; <strong>System</strong> &gt; <strong>Share via Apps</strong> &gt; <strong>Disallow</strong>.</li>
-</ul>
-<p>Through DeX, users can access the device on a desktop and control it. But users will not be able to share and control the enrolled device through DeX with this policy.</p>
-<ul>
-<li><strong>Profile</strong> &gt; <strong>Samsung Knox Android Enterprise</strong> &gt; <strong>DeX</strong> &gt; <strong>Allow DeX mode</strong> &gt; <strong>Disallow</strong>.</li>
-</ul>
+<p>There are multiple ways a user can share device data to a PC or other devices. You can restrict a user and secure the device so others can&rsquo;t access or read stolen data.</p>
+<p>To restrict a user from accessing or sharing device data:</p>
+<ol>
+<li>
+<p>On the Knox Manage console, go to <strong>Profile</strong> and select the profile policy you&rsquo;d like to modify.</p>
+</li>
+<li>
+<p>In the <strong>Android Enterprise</strong> policy drawer, you can apply the following policies:</p>
+ <div class="overflow-auto my-3"><table>
+     <tr>
+         <th scope="col">
+             <strong>Group</strong>
+         </th>
+         <th scope="col">
+             <strong>Setting</strong>
+         </th>
+         <th scope="col">
+             <strong>Value</strong>
+         </th>
+         <th scope="col">
+             <strong>Purpose</strong>
+         </th>
+     </tr>
+     <tr>
+         <td rowspan="2">
+             System
+         </td>
+         <td>
+             Set Encryption for Device Storage
+         </td>
+         <td>
+             Apply
+         </td>
+         <td rowspan="2">
+             If the device is stolen, encrypt the external SD card to make its data inaccessible if inserted in another device.
+         </td>
+     </tr>
+     <tr>
+         <td>
+             Storage Encryption
+         </td>
+         <td>
+             External SD Card
+         </td>
+     </tr>
+     <tr>
+         <td>
+             Connectivity
+         </td>
+         <td>
+             Use Printer
+         </td>
+         <td>
+             Disallow
+         </td>
+         <td>
+             Prevent users from printing any content. For example, PDF files, Word documents, images, etc.
+         </td>
+     </tr>
+     <tr>
+         <td>
+             Connectivity
+         </td>
+         <td>
+             Send and Receive Files through Bluetooth
+         </td>
+         <td>
+             Disallow
+         </td>
+         <td>
+             Prevent data sharing to other devices through Bluetooth.
+         </td>
+     </tr>
+     <tr>
+         <td rowspan="2">
+             Connectivity
+         </td>
+         <td>
+             Use Wi-Fi
+         </td>
+         <td>
+             Allow
+         </td>
+         <td rowspan="2">
+             Prevent data sharing to other devices through Wi-Fi Direct.
+         </td>
+     </tr>
+     <tr>
+         <td>
+             Wi-Fi Direct
+         </td>
+         <td>
+             Disallow
+         </td>
+     </tr>
+     <tr>
+         <td>
+             Connectivity
+         </td>
+         <td>
+             Transfer files through USB
+         </td>
+         <td>
+             Disallow
+         </td>
+         <td>
+             Prevent users from connecting the device to a PC to access storage if the device is stolen.
+         </td>
+     </tr>
+ </table></div>
+</li>
+<li>
+<p>In the <strong>Samsung Knox (Android Enterprise)</strong> policy drawer, you can apply the following policies:</p>
+<div class="overflow-auto my-3"><table>
+<thead>
+<tr>
+<th>Group</th>
+<th>Setting</th>
+<th>Value</th>
+<th>Purpose</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>System</td>
+<td>Share via Apps</td>
+<td>Disallow</td>
+<td>Prevent users from using the Share via feature in any app.</td>
+</tr>
+<tr>
+<td>DeX</td>
+<td>DeX Mode</td>
+<td>Disallow</td>
+<td>Prevent users from sharing and controlling the enrolled device through DeX.</td>
+</tr>
+</tbody>
+</table></div>
+</li>
+</ol>
 <h2 id="additional-information">Additional information</h2>
-<p>To read more about Knox Manage, please refer to the <a href="https://www.samsungknox.com/en/solutions/it-solutions/knox-manage" target="_blank">Knox Manage Guide</a>.</p>
-<p>For more about Knox Manage policies, see <a href="../configure/profile/configure-profile-policies/configure-profile-policies-by-device-platform.html">Configure profile policies by device platform</a>.</p>
+<p>To learn more about Knox Manage policies, see <a href="../configure/profile/configure-profile-policies/configure-profile-policies-by-device-platform.html">Configure profile policies by device platform</a>.</p>
 
             
           </div>
