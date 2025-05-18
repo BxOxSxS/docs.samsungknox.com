@@ -4986,7 +4986,7 @@
             </div>
             
 
-  <p><span>Last updated April  9th, 2025</span></p>
+  <p><span>Last updated May  13th, 2025</span></p>
 
 
     
@@ -5079,55 +5079,37 @@
 </ul>
 </li>
 <li>
-<p>On the <strong>Unenroll</strong> dialog, click <strong>OK</strong> to confirm. Alternatively, click <strong>Force Unenroll</strong> to unenroll the device both from the server and the Knox Manage agent on the device, and factory reset the device.</p>
+<p>On the <strong>Unenroll</strong> dialog, click <strong>OK</strong> to confirm. The device is unenrolled.</p>
+<div class="notice-tip"><ul><li><p>Clicking <strong>Force Unenroll</strong> unenrolls the device and also changes the device status to <strong>Unenrolled</strong>, thereby ensuring the license seat occupied by the device is freed up. This can be helpful if, for instance, you had previously accidentally reset the device without actually unenrolling it.</p></li><li><p>For iOS devices that were reset or unenrolled from the Knox Manage console, device users can disable the activation lock in <strong>Setup Assistant</strong> by entering the code in the <strong>Password</strong> field and leaving the <strong>ID</strong> field empty.</p></li></ul></div>
 </li>
 </ol>
-<div class="notice-tip"><p>For iOS devices that were reset or unenrolled from the Knox Manage console, device users can disable the activation lock in the <strong>Setup Assistant</strong> by entering the code in the <strong>Password</strong> field and leaving the <strong>ID</strong> field empty.</p></div>
 <h2 id="unenroll-disconnected-devices">Unenroll disconnected devices</h2>
-<p>When a device is unable to communicate with the server, you can send an offline unenrollment code to the device. Then, the user can change the device&rsquo;s status manually and unenroll the device.</p>
 <p>To unenroll devices that are offline:</p>
 <ol>
 <li>
-<p>Identify which device needs to be unenrolled. You might need to contact the device user directly. Instruct them to launch the Knox Manage agent and to go to <strong>Settings</strong> &gt; <strong>Offline Unenrollment</strong>. Their <strong>User ID</strong>, <strong>Device Name</strong>, and <strong>IMEI/MEID</strong> are shown.</p>
+<p>Identify which device needs to be unenrolled.</p>
 </li>
 <li>
 <p>Go to <strong>Device</strong> on the Knox Manage console.</p>
 </li>
 <li>
-<p>On the <strong>Device</strong> page, select the device.</p>
+<p>On the <strong>Device</strong> page, select the disconnected device that you want to unenroll.</p>
 </li>
 <li>
-<p>Click <strong>Unenroll</strong>.</p>
+<p>Click <strong>Unenroll</strong>. The <strong>Unenroll</strong> dialog opens, showing relevant options and the <strong>Offline Unenrollment Code</strong> for the device. Copy the unenrollment code to send to the device user later.</p>
 </li>
 <li>
-<p>On the confirmation dialog, click <strong>Offline Unenrollment Code</strong>.</p>
+<p>Click <strong>Force Unenroll</strong>.</p>
+<div class="notice-tip"><p>Clicking <strong>Force Unenroll</strong> unenrolls the device and also changes the device status to <strong>Unenrolled</strong>, thereby ensuring the license seat occupied by the device is freed up. This can be helpful if, for instance, you had previously accidentally reset the device without actually unenrolling it.</p></div>
 </li>
 <li>
-<p>Click <strong>Force Unenroll</strong>. A signal is sent to the device to unenroll it.</p>
-</li>
-<li>
-<p>Instruct the user to enter the offline unenrollment code (from step 5) in the Knox Manage agent&rsquo;s <strong>Offline Unenrollment</strong> screen. The device unenrolls.</p>
-<div class="notice-tip"><p>You can also find the unenrollment code on the <strong>Deleted Devices</strong> page. To get the code, go to <strong>Device</strong> > <strong>Deleted Devices</strong>. In the dialog that opens, search for the appropriate device. You can find the unenrollment code in the list of results.</p></div>
+<p>Instruct the user to enter the <strong>Offline Unenrollment Code</strong> from step 4 in the Knox Manage agent&rsquo;s <strong>Offline Unenrollment</strong> screen. The device unenrolls.</p>
+<div class="notice-tip"><p>You can configure Knox Manage to automatically delete any installed apps from the device as it unenrolls, including installed internal apps (on all Android devices and iPhones running iOS 11 or later). To configure this, go to <strong>Setting</strong> > <strong>Configuration</strong> > <strong>Basic Configuration</strong> > <strong>Device</strong>, and set <strong>Delete App upon Unenrollment</strong> to <strong>Yes</strong>.</p><p>If device unenrollment is unsuccessful on a disconnected Windows device, ensure you are disconnected from all enterprise account connections on the device by going to <strong>Start</strong> > <strong>Settings</strong> > <strong>Accounts</strong> > <strong>Access work or school</strong>, and try unenrolling again.</p></div>
 </li>
 </ol>
-<p>Consider the following when unenrolling disconnected devices:</p>
-<ul>
-<li>
-<p>You can also delete installed apps from a device as it unenrolls. You can delete all internal apps on Android devices and all apps on iPhones running iOS 11 or later. To configure this, go to <strong>Setting</strong> &gt; <strong>Configuration</strong> &gt; <strong>Basic Configuration</strong> &gt; <strong>Device</strong>, and set <strong>Delete App upon Unenrollment</strong> to <strong>Yes</strong>.</p>
-</li>
-<li>
-<p>On a connected device, the <strong>Force Unenroll</strong> command functions the same as the <strong>Unenroll</strong> command.</p>
-</li>
-<li>
-<p>On a disconnected device, the <strong>Unenroll</strong> and <strong>Force Unenroll</strong> commands are executed the next time the device connects to the Knox Manage servers, and the device is unenrolled.</p>
-</li>
-<li>
-<p>On a disconnected Windows device, if the device unenrollment is unsuccessful, check and disconnect from all enterprise account connections on the device by going to <strong>Start</strong> &gt; <strong>Settings</strong> &gt; <strong>Accounts</strong> &gt; <strong>Access work or school</strong>.</p>
-</li>
-</ul>
-<h2 id="unenroll-groups-devices">Unenroll groups of devices</h2>
+<h2 id="unenroll-groups-of-devices">Unenroll groups of devices</h2>
 <p>When you need to unenroll devices in bulk, you can send the unenrollment command to entire device groups at once. Keep in mind that device groups and user groups are fundamentally different types, so you can&rsquo;t unenroll user groups in bulk, even if there are devices associated with them.</p>
-<div class="notice-caution"><p>Accidental use or misuse of this action can have severe consequences on a large number of devices at once. As a precaution, you can only unenroll one group at a time, and the Knox Manage console asks you to confirm your submission twice.</p></div>
+<div class="notice-caution"><p>Accidental use or misuse of this action can have severe consequences on a large number of devices at once. As a precaution, you can only unenroll one group at a time, and the Knox Manage console asks you twice to confirm your submission.</p></div>
 <p>To unenroll all the devices in a group:</p>
 <ol>
 <li>Go to <strong>Group</strong>.</li>
@@ -5137,7 +5119,7 @@
 <li>Read the on-screen warning, then select <strong>I have read the warnings and agree to proceed with the process</strong>.</li>
 <li>Click <strong>OK</strong> to gracefully unenroll the devices or <strong>Force Unenroll</strong> to push the action through. If you choose the latter option, the console asks you to confirm again.</li>
 </ol>
-<h2 id="allow-users-enroll-devices">Allow users to unenroll their devices</h2>
+<h2 id="allow-users-to-unenroll-their-devices">Allow users to unenroll their devices</h2>
 <p>If a device is connected to a network and can establish communication with the server, then users can unenroll the devices by uninstalling the agent.</p>
 <p>To allow the user to uninstall the agent, complete the following steps:</p>
 <ol>
@@ -5156,8 +5138,8 @@
   <ul>
     <li><a href="../unenroll-devices.html#unenroll-connected-devices">Unenroll connected devices</a></li>
     <li><a href="../unenroll-devices.html#unenroll-disconnected-devices">Unenroll disconnected devices</a></li>
-    <li><a href="../unenroll-devices.html#unenroll-groups-devices">Unenroll groups of devices</a></li>
-    <li><a href="../unenroll-devices.html#allow-users-enroll-devices">Allow users to unenroll their devices</a></li>
+    <li><a href="../unenroll-devices.html#unenroll-groups-of-devices">Unenroll groups of devices</a></li>
+    <li><a href="../unenroll-devices.html#allow-users-to-unenroll-their-devices">Allow users to unenroll their devices</a></li>
   </ul>
 </nav>
 </aside>
