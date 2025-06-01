@@ -4994,7 +4994,7 @@
             </div>
             
 
-  <p><span>Last updated August  10th, 2023</span></p>
+  <p><span>Last updated May  22nd, 2025</span></p>
 
 
     
@@ -5025,64 +5025,73 @@
       
       
       
+        
+      
+      
+      
+      
         <h2 id="environment">Environment</h2>
-<p>Knox Manage (KM)</p>
+<ul>
+<li>Knox Manage</li>
+</ul>
 <h2 id="overview">Overview</h2>
-<p>This knowledge base article teaches you how to configure Wi-Fi networks with EAP-PEAP authentication, using corporate certificates with Knox Manage. It also provides an overview on why you might want to use a secure network to protect your company data.</p>
+<p>To configure Wi-Fi networks with EAP-PEAP authentication in Knox Manage, you&rsquo;ll need to use corporate certificates. This article provides an overview on why you may want to use a secure network to protect your company data.</p>
 <h2 id="why-should-i-secure-my-enterprise-wi-fi-network">Why should I secure my enterprise Wi-Fi network?</h2>
 <p>If you leave your wireless network unsecure, your corporate data is vulnerable to external attacks and could be accessed by other devices. To protect your network, consider configuring one of the following security methods:</p>
 <ul>
-<li><strong>Authentication:</strong> Identify and approve a request from a device or software (also knowns as a supplicant) to access a network. Once the request is approved, the device can access the network.</li>
-<li><strong>Cryptography:</strong> Data sent over the network is encrypted, and only devices equipped with pre-shared keys can encrypt or decrypt transmitted data.</li>
-<li><strong>Certificate:</strong> Encryption generates a public and private key. The public key, found in the digital certificate, encrypts data that is sent to the certificate owner. The private key is held only by the certificate owner, and decrypts the information encrypted by the public key.</li>
+<li><strong>Authentication</strong>: Identify and approve a request from a device or software (also known as a supplicant) to access a network. Once the request is approved, the device can access the network.</li>
+<li><strong>Cryptography</strong>: Data sent over the network is encrypted, and only devices equipped with pre-shared keys can encrypt or decrypt transmitted data.</li>
+<li><strong>Certificate</strong>: Encryption generates a public and private key. The public key, found in the digital certificate, encrypts data that is sent to the certificate owner. The private key is held only by the certificate owner, and decrypts the information encrypted by the public key.</li>
 </ul>
-<p>802.1X authentication is the security protocol most commonly used by large companies. With 802.1X, an authentication method is used between the client and a server connected to the access point, after which a secure connection is established between the two. This process can use identity credentials, with per-user and/or per-session keys to increase security.</p>
-<p>This guide shows you how to set up Extensible Authentication Protocol (EAP) with certificates on KM, which enhances 802.1X authentication.</p>
+<p><strong>IEEE 802.1X</strong> authentication is the security protocol most commonly used by large companies. With <strong>802.1X</strong>, an authentication method is used between the client and a server connected to the access point, after which a secure connection is established between the two. This process can use identity credentials, with per-user and/or per-session keys to increase security.</p>
+<p>This guide shows you how to set up <strong>Extensible Authentication Protocol (EAP)</strong> with certificates on Knox Manage, which enhances 802.1X authentication.</p>
 <h2 id="how-does-knox-manage-secure-my-enterprise-wi-fi-network">How does Knox Manage secure my enterprise Wi-Fi network?</h2>
-<p>KM uses external certificates to handle network services like Wi-Fi, VPN, and APNs. It supports three types of EAPs:</p>
+<p>Knox Manage uses external certificates to handle network services like Wi-Fi, VPN, and APNs. It supports three types of EAPs:</p>
 <ol>
-<li><strong>EAP-TLS (Transport Layer Security):</strong> Relies on client-side and server-side certificates for authentication. The certificates must be managed on both sides, which can be time-consuming for a large WLAN installation.</li>
-<li><strong>EAP-TTLS (Tunneled Transport Layer Security):</strong> Mutually authenticates the client and network through an encrypted channel. This security method requires only server-side certificates.</li>
-<li><strong>PEAP (Protected Extensible Authentication Protocol):</strong> Transports securely authenticated data, including legacy password-based protocols. PEAP uses only server-side certificates to authenticate Wi-Fi LAN clients.</li>
+<li><strong>EAP-TLS (Transport Layer Security)</strong>: Relies on client-side and server-side certificates for authentication. The certificates must be managed on both sides, which can be time-consuming for a large WLAN installation.</li>
+<li><strong>EAP-TTLS (Tunneled Transport Layer Security)</strong>: Mutually authenticates the client and network through an encrypted channel. This security method requires only server-side certificates.</li>
+<li><strong>PEAP (Protected Extensible Authentication Protocol)</strong>: Transports securely authenticated data, including legacy password-based protocols. PEAP uses only server-side certificates to authenticate Wi-Fi LAN clients.</li>
 </ol>
 <p>The chart below compares the different 802.1X EAP types and their features:</p>
 <div class="overflow-auto my-3"><table>
-    <tr>
-        <th scope="col"><b><i>Feature</i></b></th>
-        <th scope="col"><b>TLS</b></th>
-        <th scope="col"><b>TTLS</b></th>
-        <th scope="col"><b>PEAP</b></th>
-    </tr>
-    <tr>
-        <td><p><i>Serve</i><i>-side certificate</i></p></td>
-        <td width="165"><p>Required</p></td>
-        <td width="174"><p>Required</p></td>
-        <td width="150"><p>Required</p></td>
-    </tr>
-    <tr>
-        <td><p><i>Device-side certificate</i></p></td>
-        <td width="165"><p>Required</p></td>
-        <td width="174"><p>Not required</p></td>
-        <td width="150"><p>Not required</p></td>
-    </tr>
-    <tr>
-        <td><p><i>Deployment difficulty</i></p></td>
-        <td width="165"><p>Very difficult (due to client certificate deployment)</p></td>
-        <td width="174"><p>Difficult</p></td>
-        <td width="150"><p>Difficult</p></td>
-    </tr>
-    <tr>
-        <td><p><i>Wi-Fi security</i></p></td>
-        <td width="165"><p>Very high</p></td>
-        <td width="174"><p>High</p></td>
-        <td width="150"><p>High</p></td>
-    </tr>
+<thead>
+<tr>
+<th>802.1X EAP type</th>
+<th>Server-side certificate</th>
+<th>Device-side certificate</th>
+<th>Deployment difficulty</th>
+<th>Wi-Fi security</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>TLS</td>
+<td>Required</td>
+<td>Required</td>
+<td>Very difficult (due to client certificate)</td>
+<td>Very high</td>
+</tr>
+<tr>
+<td>TTLS</td>
+<td>Required</td>
+<td>Not required</td>
+<td>Difficult</td>
+<td>High</td>
+</tr>
+<tr>
+<td>PEAP</td>
+<td>Required</td>
+<td>Not required</td>
+<td>Difficult</td>
+<td>High</td>
+</tr>
+</tbody>
 </table></div>
 <h2 id="how-do-i-configure-and-deploy-a-wi-fi-network-with-eap-peap-authentication-using-a-knox-manage-certificate">How do I configure and deploy a Wi-Fi network with EAP-PEAP authentication using a Knox Manage certificate?</h2>
-<p>Before you configure Wi-Fi EAP authentication for your network, you need to register both a user certificate and root certificate on the KM server. The user certificate must be in P12 or PFX format, and the root certificate must be in CER, DER, PFX, or P12 format.</p>
+<p>Before you configure Wi-Fi EAP authentication for your network, you need to register both a user certificate and root certificate on the Knox Manage server. The user certificate must be in P12 or PFX format, and the root certificate must be in CER, DER, PFX, or P12 format.</p>
 <h4 id="for-the-user-certificate">For the user certificate:</h4>
 <ol>
-<li>In your KM console, go to <strong>Advanced</strong> &gt; <strong>Certificate</strong> &gt; <strong>External Certificate</strong>.</li>
+<li>In the Knox Manage console, go to <strong>Advanced</strong> &gt; <strong>Certificate</strong> &gt; <strong>External Certificate</strong>.</li>
 <li>Click <strong>Add</strong>.</li>
 <li>Enter a name for your user certificate.</li>
 <li>Under <strong>Purpose</strong>, select <strong>Wifi</strong>.</li>
@@ -5092,7 +5101,7 @@
 </ol>
 <h4 id="for-the-root-certificate">For the root certificate:</h4>
 <ol>
-<li>In your KM console, go to <strong>Advanced</strong> &gt; <strong>Certificate</strong> &gt; <strong>External Certificate</strong>.</li>
+<li>In the Knox Manage console, go to <strong>Advanced</strong> &gt; <strong>Certificate</strong> &gt; <strong>External Certificate</strong>.</li>
 <li>Click <strong>Add</strong>.</li>
 <li>Enter a name for your user certificate.</li>
 <li>Under <strong>Purpose</strong>, select <strong>Wifi</strong>.</li>
@@ -5102,19 +5111,19 @@
 </ol>
 <p>You can then configure a Wi-Fi policy with EAP-PEAP authentication using your newly-added certificates. Below are the steps to configure the network in Android Legacy:</p>
 <ol>
-<li>In your KM console, go to <strong>Profile</strong> &gt; <strong>Wi-Fi</strong>.</li>
+<li>In the Knox Manage console, go to <strong>Profile</strong> &gt; <strong>Wi-Fi</strong>.</li>
 <li>Under <strong>Security type</strong>, select <strong>802.1xEAP</strong>.</li>
 <li>Under <strong>EAP Method</strong>, select <strong>PEAP</strong>.</li>
-<li>Under <strong>User information input method</strong>, select <strong>User Information</strong> to allow users to access the network with their KM credentials.</li>
+<li>Under <strong>User information input method</strong>, select <strong>User Information</strong> to allow users to access the network with their Knox Manage credentials.</li>
 <li>Under <strong>User Certificate</strong>, select the user certificate you added. Note that all users share this certificate.</li>
 <li>Under <strong>CA certificate</strong>, select the root certificate you added.</li>
 <li>Click <strong>Save &amp; Assign</strong>, then assign the profile to a group or organization.</li>
 </ol>
-<div class="notice-note"><p>For Wi-Fi policies with the security type <strong>802.1xEAP</strong>, the configuration process has been updated for the following:</p><ul><li>Samsung devices running Android 13 or higher, with an Android security patch version from June 2023 or later</li><li>Google devices running Android 13 or higher, with a Google Play system update version from April 2023 or later</li></ul><p>When configuring the Wi-Fi policy, the following fields are required:</p><ul><li><strong>CA certificate</strong></li><li><strong>Domain</strong> or <strong>Alternate Subject</strong></li></ul><p>If the required fields are not completed, the configuration will fail.</p></div>
+<div class="notice-note"><p>For Wi-Fi policies with the security type <strong>802.1xEAP</strong>, the configuration process has been updated for the following environments:</p><ul><li>Samsung devices running Android 13 and higher, with an Android security patch version from June 2023 or later.</li><li>Google devices running Android 13 and higher, with a Google Play system update version from April 2023 or later.</li></ul><p>When configuring the Wi-Fi policy, the following fields are required:</p><ul><li><strong>CA certificate</strong></li><li><strong>Domain</strong> or <strong>Alternate Subject</strong></li></ul><p>If the required fields are not completed, the configuration fails and you may encounter an error. For more information, see <a href="kba-1432-error-kma-d9001-configuration-installation-failed.html">Error KMA_D9001 — Configuration Installation Failed</a>.</p></div>
 <h2 id="additional-information">Additional information</h2>
 <ul>
-<li>To learn how to configure a Wi-Fi policy in an Android Enterprise deployment, see <a href="../configure/profile/configure-profile-policies/android-enterprise-policies.html#Wi-Fi">Android Enterprise policies</a> in the KM admin guide.</li>
-<li>For more about configuring a Wi-Fi policy in Android Legacy, see <a href="../configure/profile/configure-profile-policies/android-legacy-policies.html">Android Legacy policies</a> in the KM admin guide.</li>
+<li>To learn how to configure a Wi-Fi policy in an Android Enterprise deployment, see <a href="../configure/profile/configure-profile-policies/android-enterprise-policies.html#Wi-Fi">Android Enterprise policies</a> in the Knox Manage admin guide.</li>
+<li>For more about configuring a Wi-Fi policy in Android Legacy, see <a href="../configure/profile/configure-profile-policies/android-legacy-policies.html">Android Legacy policies</a> in the Knox Manage admin guide.</li>
 </ul>
 
             

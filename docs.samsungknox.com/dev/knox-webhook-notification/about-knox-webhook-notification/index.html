@@ -147,6 +147,9 @@
   <a href="../../knox-mobile-enrollment.html" >Knox Mobile Enrollment</a>
   </li>
 <li>
+  <a href="../../knox-efota.html" >Knox E-FOTA</a>
+  </li>
+<li>
   <a href="../../knox-configure.html" >Knox Configure</a>
   </li>
 <li>
@@ -228,6 +231,17 @@
     </div>
     
     </li>
+  
+  
+  
+    <li class="mt-2">
+    
+    
+    <div class="d-flex justify-content-between">
+      <a class="body-5 text-black fw-light" href="../tutorial/knox-webhook-notification-for-knox-efota.html">Knox Webhook Notification for Knox E-FOTA</a>
+    </div>
+    
+    </li>
   </ul>
     </div></li>
   
@@ -275,6 +289,17 @@
     
     <div class="d-flex justify-content-between">
       <a class="body-5 text-black fw-light" href="../../knox-guard/api.html">Knox Guard API reference</a>
+    </div>
+    
+    </li>
+  
+  
+  
+    <li class="mt-2">
+    
+    
+    <div class="d-flex justify-content-between">
+      <a class="body-5 text-black fw-light" href="../../knox-efota/api.html">Knox E-FOTA API reference</a>
     </div>
     
     </li>
@@ -355,6 +380,11 @@
       
       
       
+        
+      
+      
+      
+      
         <p>The Knox Webhook Notification API allows different Knox cloud services to send change notifications to a subscribed client when a subscribed event or background process is complete.</p>
 <p>Since most client requests are resource-intensive, Knox Webhook Notification offers the advantage of asynchronous APIs. These APIs run these client events as different background processes, thus freeing up resources for other client events. The asynchronous design allows a client to have multiple subscriptions for all the unique events, either using the same URL across all subscriptions or configuring each subscription URL differently. Such a resource-efficient API workflow allows multiple requests to be handled simultaneously, without any inefficient event dependencies.</p>
 <p>To leverage this notification service, a client must first subscribe to the Knox Webhook Notification Subscription API to receive the change notifications whenever an event trigger occurs.</p>
@@ -392,7 +422,7 @@
 <p>The client receives the Knox Webhook Notification callback response along with the signature for validation.</p>
 </li>
 <li>
-<p>The client checks for available Samsung Knox validation certificate. If there&rsquo;s no locally-stored Samsung Knox validation certificate or if it&rsquo;s expired, then the client calls the <a href="../api-reference/api.html#tag/Certificate/operation/certificateGetWithPost" target="_blank">GET /downloadCertificate</a> operation to get a new certificate and stores it locally.</p>
+<p>The client checks for available Samsung Knox validation certificate. If there&rsquo;s no locally-stored Samsung Knox validation certificate or if it&rsquo;s expired, then the client calls <a href="../api-reference/api.html#tag/Certificate/operation/certificateGetWithPost" target="_blank">GET /downloadCertificate</a> to get a new certificate and stores it locally.</p>
 </li>
 <li>
 <p>The client validates the authenticity of the callback response by comparing the signature against the public key contained in the Samsung Knox certificate.</p>
@@ -402,7 +432,12 @@
 </li>
 </ol>
 <div class="notice-note"><p>Steps 1, 2, and 3 need to be completed only once. However, if your Samsung Knox validation certificate expires, use Step 8 to get a new or updated certificate.</p></div>
-<p>If you would like to learn how to use the Knox Webhook Notification API for Knox Guard, see the <a href="../tutorial/knox-webhook-notification-for-knox-guard.html">Knox Webhook Notification for Knox Guard</a> and <a href="../tutorial/knox-webhook-notification-for-knox-asset-intelligence.html">Knox Webhook Notification for Knox Asset Intelligence</a> tutorials.</p>
+<p>See our tutorials on how to use Knox Webhook Notification for Knox cloud services:</p>
+<ul>
+<li><a href="../tutorial/knox-webhook-notification-for-knox-guard.html">Knox Webhook Notification for Knox Guard</a></li>
+<li><a href="../tutorial/knox-webhook-notification-for-knox-asset-intelligence.html">Knox Webhook Notification for Knox Asset Intelligence</a></li>
+<li><a href="../tutorial/knox-webhook-notification-for-knox-efota.html">Knox Webhook Notification for Knox E-FOTA</a></li>
+</ul>
 
             
           </div>
