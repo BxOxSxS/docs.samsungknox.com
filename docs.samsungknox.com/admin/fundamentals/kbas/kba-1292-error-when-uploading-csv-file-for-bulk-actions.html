@@ -36,7 +36,7 @@
   
 <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start': new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0], j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src='https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);})(window,document,'script','dataLayer','GTM-P24TWCG');</script><meta name="viewport" content="width=device-width,height=device-height,initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title>CSV file uploads are auto formatted incorrectly  | Fundamentals  | Samsung Knox Documentation</title>
+  <title>Error when uploading CSV file for bulk actions  | Fundamentals  | Samsung Knox Documentation</title>
   <meta http-equiv="content-language" content="en">
   <meta name="language" content="en">
   <script src="../../assets/js/bundle.js"></script>
@@ -1088,11 +1088,11 @@
       <a class="body-5 text-black fw-light" href="index.html">Knox KBAs</a>
     </div>
       
-    <div id="sub-fundamentals-kbas-kba-1292-csv-file-uploads-are-auto-formatted-incorrectly">
+    <div id="sub-fundamentals-kbas-kba-1292-error-when-uploading-csv-file-for-bulk-actions">
       <ul>
         <li>
           <div class="d-flex justify-content-between">
-            <a class="body-5 text-black active" href="kba-1292-csv-file-uploads-are-auto-formatted-incorrectly.html">CSV file uploads are auto formatted incorrectly</a>
+            <a class="body-5 text-black active" href="kba-1292-error-when-uploading-csv-file-for-bulk-actions.html">Error when uploading CSV file for bulk actions</a>
           </div>
         </li>
       </ul>
@@ -1205,11 +1205,11 @@
 
             </div>
             <div class="mt-4">
-              <h1>CSV file uploads are auto formatted incorrectly</h1>
+              <h1>Error when uploading CSV file for bulk actions</h1>
             </div>
             
 
-  <p><span>Last updated November  14th, 2024</span></p>
+  <p><span>Last updated June  13th, 2025</span></p>
 
 
     
@@ -1221,7 +1221,7 @@
     
   <p>Categories:</p>
 <div class="kba-tags">
-    </div>
+    <a class="d-inline-block px-5 py-2 me-2 mt-2 fw-bold text-samsung-blue bg-samsung-light-blue" href="tags/troubleshoot/index.html">Troubleshoot</a></div>
   </div>
           <div class="l-content">
             
@@ -1236,23 +1236,40 @@
 <li>Microsoft Excel</li>
 </ul>
 <h2 id="overview">Overview</h2>
-<p>Some services have a bulk upload feature that require customers to upload a CSV file that includes the device <strong>IMEI</strong> numbers.</p>
-<p>If a customer uses Microsoft Excel to modify and save the CSV file, they may run into formatting issues that cause the upload to fail and the devices not being correctly identified. They may encounter the following error:</p>
-<blockquote>
-<p>The CSV file containts invalid data.</p>
-</blockquote>
+<p>When performing a <strong>Bulk Action</strong> in the Knox Admin Portal, you may encounter an error where your CSV file upload isn&rsquo;t accepted despite following the instructions for the Knox cloud service.</p>
 <h2 id="cause">Cause</h2>
-<p>Microsoft Excel may auto format the device IMEI number format to scientific notation where the last few digits of IMEI number are incorrectly saved as the number 0, instead of the actual number.</p>
-<h2 id="resolution">Resolution</h2>
-<p>Before saving your CSV file, you must ensure that all your IMEI numbers are correctly formatted to not include any decimal places, and they are of the <strong>Number</strong> type.</p>
-<p>To resolve this issue:</p>
+<p>The CSV file may have failed to upload due to the following conditions:</p>
+<ul>
+<li><strong>Encryption</strong>: The uploaded CSV file must be decrypted. Your computer may automatically encrypt files.</li>
+<li><strong>Truncated numbers</strong>: Numerical values in the CSV file must be left expanded. Microsoft Excel automatically formats large numbers into scientific notation.</li>
+<li><strong>Default list separator</strong>: The CSV file must use the comma (<code>,</code>) delimiter. For example, the default list separator in your region may be the semicolon (<code>;</code>).</li>
+</ul>
+<h2 id="workaround">Workaround</h2>
+<p>When uploading a CSV file, ensure the decrypted CSV file is correctly formatted:</p>
+<ul>
+<li>One device IMEI or Serial Number per row</li>
+<li>No headers</li>
+<li>No empty rows</li>
+<li>No truncated numbers</li>
+<li>Uses the comma (<code>,</code>) list separator</li>
+</ul>
+<p>If you&rsquo;re using a spreadsheet software like Microsoft Excel, you can adjust your configuration to follow this format.</p>
+<p>To turn off truncated numbers in Microsoft Excel:</p>
 <ol>
-<li>Open your CSV file containing the device IMEI numbers.</li>
-<li>Right-click on the column containing all the IMEI numbers and select <strong>Format Cells</strong>.</li>
-<li>Under the <strong>Number</strong> tab, select <strong>Number</strong> under category and set the <strong>Decimal places</strong>: to 0.</li>
-<li>Click <strong>OK</strong> to confirm your changes.</li>
-<li>Save your CSV file.</li>
+<li>Select the cell(s) containing truncated numbers.</li>
+<li>Right click and select <strong>Format Cells</strong> from the menu. The <strong>Format Cells</strong> window opens.</li>
+<li>In the <strong>Number</strong> tab, select <strong>Number</strong> from the <strong>Category</strong> list. This ensures long numbers are stored without being converted into scientific notation.</li>
+<li>Set <strong>Decimal places</strong> to 0 and click <strong>OK</strong>.</li>
 </ol>
+<p>To change the default list separator in Microsoft Excel:</p>
+<ol>
+<li>Click <strong>File</strong> &gt; <strong>Options</strong> from the top menu. The <strong>Excel Options</strong> dialog pops up.</li>
+<li>Go to the <strong>Advanced</strong> tab.</li>
+<li>Under <strong>Editing options</strong>, de-select <strong>Use system separators</strong>.</li>
+<li>Set the <strong>Decimal separator</strong> to period (<code>.</code>).</li>
+<li>Set the <strong>Thousands separator</strong> to comma (<code>,</code>).</li>
+</ol>
+<p>You can review and edit a CSV file to ensure that it&rsquo;s following the correct format by opening it as a TXT file. You can also create a valid CSV file from a TXT file using applications like Notepad++.</p>
 
             
           </div>
@@ -1261,10 +1278,10 @@
 <aside class="table-of-headings">
   <nav id="TableOfContents">
   <ul>
-    <li><a href="kba-1292-csv-file-uploads-are-auto-formatted-incorrectly.html#environment">Environment</a></li>
-    <li><a href="kba-1292-csv-file-uploads-are-auto-formatted-incorrectly.html#overview">Overview</a></li>
-    <li><a href="kba-1292-csv-file-uploads-are-auto-formatted-incorrectly.html#cause">Cause</a></li>
-    <li><a href="kba-1292-csv-file-uploads-are-auto-formatted-incorrectly.html#resolution">Resolution</a></li>
+    <li><a href="kba-1292-error-when-uploading-csv-file-for-bulk-actions.html#environment">Environment</a></li>
+    <li><a href="kba-1292-error-when-uploading-csv-file-for-bulk-actions.html#overview">Overview</a></li>
+    <li><a href="kba-1292-error-when-uploading-csv-file-for-bulk-actions.html#cause">Cause</a></li>
+    <li><a href="kba-1292-error-when-uploading-csv-file-for-bulk-actions.html#workaround">Workaround</a></li>
   </ul>
 </nav>
 </aside>
@@ -1298,7 +1315,7 @@
       
       <div class="col-sm-12 col-md-6 col-lg-3 footer-vertical-section">
         <div class="d-flex justify-content-between align-items-center">
-          <a class="footer-section-title" data-bs-toggle="collapse" href="kba-1292-csv-file-uploads-are-auto-formatted-incorrectly.html#item0" role="button" aria-expanded="false" aria-controls="item0"> 
+          <a class="footer-section-title" data-bs-toggle="collapse" href="kba-1292-error-when-uploading-csv-file-for-bulk-actions.html#item0" role="button" aria-expanded="false" aria-controls="item0"> 
             <h6 class="body-3 fw-bold text-uppercase text-black pt-4">Knox admin documentation</h6>
           </a>
           <a class="btn-toggle d-inline-flex d-lg-none rounded border-0 fw-light" data-bs-toggle="collapse" data-bs-target="#item0" aria-expanded="false"></a>
@@ -1432,7 +1449,7 @@
       
       <div class="col-sm-12 col-md-6 col-lg-3 footer-vertical-section">
         <div class="d-flex justify-content-between align-items-center">
-          <a class="footer-section-title" data-bs-toggle="collapse" href="kba-1292-csv-file-uploads-are-auto-formatted-incorrectly.html#item1" role="button" aria-expanded="false" aria-controls="item1"> 
+          <a class="footer-section-title" data-bs-toggle="collapse" href="kba-1292-error-when-uploading-csv-file-for-bulk-actions.html#item1" role="button" aria-expanded="false" aria-controls="item1"> 
             <h6 class="body-3 fw-bold text-uppercase text-black pt-4">Support</h6>
           </a>
           <a class="btn-toggle d-inline-flex d-lg-none rounded border-0 fw-light" data-bs-toggle="collapse" data-bs-target="#item1" aria-expanded="false"></a>
@@ -1454,7 +1471,7 @@
       
       <div class="col-sm-12 col-md-6 col-lg-3 footer-vertical-section">
         <div class="d-flex justify-content-between align-items-center">
-          <a class="footer-section-title" data-bs-toggle="collapse" href="kba-1292-csv-file-uploads-are-auto-formatted-incorrectly.html#item2" role="button" aria-expanded="false" aria-controls="item2"> 
+          <a class="footer-section-title" data-bs-toggle="collapse" href="kba-1292-error-when-uploading-csv-file-for-bulk-actions.html#item2" role="button" aria-expanded="false" aria-controls="item2"> 
             <h6 class="body-3 fw-bold text-uppercase text-black pt-4">Samsung</h6>
           </a>
           <a class="btn-toggle d-inline-flex d-lg-none rounded border-0 fw-light" data-bs-toggle="collapse" data-bs-target="#item2" aria-expanded="false"></a>
