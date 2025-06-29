@@ -559,7 +559,7 @@
             </div>
             
 
-  <p><span>Last updated April  9th, 2025</span></p>
+  <p><span>Last updated June  5th, 2025</span></p>
 
 
     
@@ -579,6 +579,31 @@
       
       
       
+      
+      
+      
+      
+        
+      
+      
+      
+      
+        
+      
+      
+      
+      
+        
+      
+      
+      
+      
+        
+      
+      
+      
+      
+        
       <p>OAuth 2.0 scopes are required to access the Knox cloud services APIs. These scopes are service-specific, and the level of access you require for your app determines which scopes to select. For more information about the scope requirements, you can refer to the API specifications of its associated Knox cloud service.</p>
 <p>The following scopes are available:</p>
 <h3 id="knox-asset-intelligence">Knox Asset Intelligence</h3>
@@ -798,8 +823,8 @@
         <th>Applicable API endpoints</th>
     </tr>
     <tr>
-        <td rowspan=7>msp.customers</td>
-        <td rowspan=7>Add and delink MSP customers, as well as view and edit their information.</td>
+        <td rowspan=6>msp.customers</td>
+        <td rowspan=6>Add and delink MSP customers, as well as view and edit their information.</td>
         <td>POST /msp/v1/managedCustomers</td>
     <tr>
         <td>POST /msp/v1/managedCustomers/link</td>
@@ -873,6 +898,139 @@
     </tr>
 </table></div>
 <p>For detailed API specification, see <a href="../../../knox-deployment-program/api.html" target="_blank">Knox Deployment Program API reference</a>.</p>
+<h3 id="knox-e-fota">Knox E-FOTA</h3>
+<div class="overflow-auto my-3"><table>
+    <tr>
+        <th>Scope</th>
+        <th>Description</th>
+        <th>Applicable API endpoints</th>
+    </tr>
+    <tr>
+        <td>ke</td>
+        <td>Manage all Knox E-FOTA functionality.</td>
+        <td>All endpoints in the <a href="../../../knox-efota/api.html">Knox E-FOTA API</a>.</td>
+    </tr>
+    <tr>
+        <td>ke.campaign</td>
+        <td>View, assign, create, delete, and cancel Knox E-FOTA campaigns.</td>
+        <td>All campaign endpoints in the <a href="../../../knox-efota/api.html">Knox E-FOTA API</a>.</td>
+  <tr>
+    <td rowspan=3>ke.campaign:view</td>
+    <td rowspan=3>View Knox E-FOTA campaign information.</td>
+    <td>GET /campaigns</td>
+  </tr>
+  <tr>
+    <td>GET /campaigns/{campaignId}</td>
+  </tr>
+  <tr>
+    <td>GET /campaignSchemas</td>
+  </tr>
+    <tr>
+        <td rowspan=2>ke.campaign:assign</td>
+        <td rowspan=2>Assign or unassign devices from a Knox E-FOTA campaign.</td>
+        <td>POST /campaigns/{campaignId}/bulkAssign</td>
+  </tr>
+  <tr>
+        <td>POST /campaigns/{campaignId}/bulkUnassign</td>
+  </tr>
+  <tr>
+    <td rowspan=2>ke.campaign:manage</td>
+    <td rowspan=2>Create and edit Knox E-FOTA campaigns.</td>
+    <td>POST /campaigns</td>
+  </tr>
+  <tr>
+    <td>PUT /campaigns/{campaignId}</td>
+  </tr>
+  <tr>
+    <td rowspan=2>ke.campaign:delete</td>
+    <td rowspan=2>Delete and cancel Knox E-FOTA campaigns.</td>
+    <td>DELETE /campaigns/{campaignId}</td>
+  </tr>
+  <tr>
+    <td>PUT /campaigns/{campaignId}/cancel</td>
+  </tr>
+ <tr>
+    <td>ke.devices</td>
+    <td>View, upload, manage, and delete Knox E-FOTA devices.</td>
+    <td>All device endpoints in the <a href="../../../knox-efota/api.html#tag/Device">Knox E-FOTA API</a></td>
+  </tr>
+  <tr>
+    <td rowspan=5>ke.devices:view</td>
+    <td rowspan=5>View Knox E-FOTA device information.</td>
+    <td>GET /devices/models</td>
+  </tr>
+  <tr>
+    <td>GET /devices/salesCodes</td>
+  </tr>
+  <tr>
+    <td>GET /devices/aggregateDeviceUpdateStatus</td>
+  </tr>
+  <tr>
+    <td>GET /devices/csc</td>
+  </tr>
+  <tr>
+    <td>POST /devices/getDevices</td>
+  </tr>
+  <tr>
+    <td rowspan=3>ke.devices:manage</td>
+    <td rowspan=3>Upload, refresh, and unenroll Knox E-FOTA devices.</td>
+    <td>POST /devices/bulkUpload</td>
+  </tr>
+  <tr>
+    <td>POST /devices/bulkRefresh</td>
+  </tr>
+  <tr>
+    <td>POST /devices/bulkUnenroll</td>
+  </tr>
+  <tr>
+    <td>ke.devices:delete</td>
+    <td>Delete devices from Knox E-FOTA.</td>
+    <td>POST /devices/bulkDelete</td>
+  </tr>
+  <tr>
+    <td>ke.licenses</td>
+    <td>View, register, and delete Knox E-FOTA licenses.</td>
+    <td>All license endpoints in the <a href="../../../knox-efota/api.html#tag/Device">Knox E-FOTA API</a></td>
+  </tr>
+  <tr>
+    <td>ke.licenses:view</td>
+    <td>View Knox E-FOTA license information.</td>
+    <td>GET /licenses</td>
+  </tr>
+  <tr>
+    <td rowspan=2>ke.licenses:manage</td>
+    <td rowspan=2>Register commercial licenses and generate trial licenses for Knox E-FOTA.</td>
+    <td>POST /licenses</td>
+  </tr>
+  <tr>
+    <td>POST /trialLicenses</td>
+  </tr>
+  <tr>
+    <td>ke.licenses:delete</td>
+    <td>Delete Knox E-FOTA licenses.</td>
+    <td>DELETE /licenses/{licenseId}</td>
+  </tr>
+    <tr>
+        <td>ke.fota:view</td>
+        <td>View Knox E-FOTA firmware information.</td>
+        <td>GET /fota</td>
+    </tr>
+    <tr>
+        <td>ke.privacyPolicy</td>
+        <td>View and manage the skip privacy policy setting.</td>
+        <td>All privacy policy endpoints in the <a href="../../../knox-efota/api.html#tag/Tenant">Knox E-FOTA API</a></td>
+    </tr>
+    <tr>
+        <td>ke.privacyPolicy:view</td>
+        <td>View the skip privacy policy setting.</td>
+        <td>GET /privacyPolicy</td>
+    </tr>
+    <tr>
+        <td>ke.privacyPolicy:manage</td>
+        <td>Manage the skip privacy policy setting.</td>
+        <td>PUT /privacyPolicy</td>
+    </tr>
+</table></div>
 <h3 id="knox-oauth-20-authentication-----authorization-server-operations">Knox OAuth 2.0 Authentication &mdash; Authorization server operations</h3>
 <div class="overflow-auto my-3"><table>
     <tr>
@@ -906,6 +1064,7 @@
         <li><a href="../scopes-for-knox-cloud-services-apis.html#knox-mobile-enrollment">Knox Mobile Enrollment</a></li>
         <li><a href="../scopes-for-knox-cloud-services-apis.html#knox-msp-portal">Knox MSP Portal</a></li>
         <li><a href="../scopes-for-knox-cloud-services-apis.html#knox-deployment-program">Knox Deployment Program</a></li>
+        <li><a href="../scopes-for-knox-cloud-services-apis.html#knox-e-fota">Knox E-FOTA</a></li>
         <li><a href="../scopes-for-knox-cloud-services-apis.html#knox-oauth-20-authentication-----authorization-server-operations">Knox OAuth 2.0 Authentication &mdash; Authorization server operations</a></li>
       </ul>
     </li>
