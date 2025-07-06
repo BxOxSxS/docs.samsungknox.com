@@ -36,7 +36,7 @@
   
 <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start': new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0], j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src='https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);})(window,document,'script','dataLayer','GTM-P24TWCG');</script><meta name="viewport" content="width=device-width,height=device-height,initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title>How can I use Knox EFOTA to kiosk devices deployed by Knox Manage  | Knox Manage  | Samsung Knox Documentation</title>
+  <title>How to enable FOTA notifications for devices in Knox Manage kiosk mode  | Knox Manage  | Samsung Knox Documentation</title>
   <meta http-equiv="content-language" content="en">
   <meta name="language" content="en">
   <script src="../../assets/js/bundle.js"></script>
@@ -4477,7 +4477,7 @@
       <ul>
         <li>
           <div class="d-flex justify-content-between">
-            <a class="body-5 text-black active" href="kba-640-knox-efota-to-kiosk-devices-deployed-by-knox-manage.html">How can I use Knox EFOTA to kiosk devices deployed by Knox Manage</a>
+            <a class="body-5 text-black active" href="kba-640-knox-efota-to-kiosk-devices-deployed-by-knox-manage.html">How to enable FOTA notifications for devices in Knox Manage kiosk mode</a>
           </div>
         </li>
       </ul>
@@ -4990,11 +4990,11 @@
 
             </div>
             <div class="mt-4">
-              <h1>How can I use Knox EFOTA to kiosk devices deployed by Knox Manage</h1>
+              <h1>How to enable FOTA notifications for devices in Knox Manage kiosk mode</h1>
             </div>
             
 
-  <p><span>Last updated July  26th, 2023</span></p>
+  <p><span>Last updated June  26th, 2025</span></p>
 
 
     
@@ -5017,16 +5017,35 @@
 
 <h2 id="environment">Environment</h2>
 <ul>
-<li>Knox Manage (KM)</li>
-<li>Knox EFOTA (KE)</li>
-<li>Android Enterprise (AE)</li>
+<li>Knox Manage</li>
+<li>Knox E-FOTA</li>
+<li>Kiosk mode</li>
+<li>Android Enterprise</li>
 </ul>
 <h2 id="overview">Overview</h2>
-<p>While utilizing both Knox Manage and Knox EFOTA, you can deploy a device in Kiosk mode. You may expect that the devices will receive B2B FOTA while in Kiosk mode, however, the Kiosk device does not receive B2B FOTA controls.</p>
-<h2 id="cause">Cause</h2>
-<p>Kiosk mode only allows the pre-listed apps to run. Due to this cause, you should add the B2B KE FOTA app as allowed in the system app.</p>
-<h2 id="resolution">Resolution</h2>
-<p>Add package <strong>&ldquo;com.wssyncmldm&rdquo;</strong> to allowlist so that the devices enrolled in Kiosk can get the FOTA notifications for the software update.</p>
+<p>With Knox Manage, you can deploy kiosk mode on a device enrolled in Knox E-FOTA. However, when the device is in kiosk mode, you may notice that the device doesn&rsquo;t receive B2B Firmware-Over-the-Air (FOTA) controls.</p>
+<h2 id="how-to-enable-fota-notifications-for-devices-in-knox-manage-kiosk-mode">How to enable FOTA notifications for devices in Knox Manage kiosk mode</h2>
+<p>Kiosk mode only allows pre-listed apps to run. To add the B2B Knox E-FOTA app to the allowlist, add the <code>com.wssyncmldm</code> package as a System App:</p>
+<ol>
+<li>In the Knox Manage console, go to <strong>Profile</strong> &gt; <strong>Manage System App</strong>.</li>
+<li>On the <strong>Manage System App</strong> dialogue, click <strong>Add</strong> and enter the following information in the <strong>Add System App</strong> policy field:
+<ul>
+<li><strong>Platform</strong>: Android</li>
+<li><strong>Package Name</strong>: <code>com.wssyncmldm</code></li>
+<li><strong>Application Name</strong>: Update Service</li>
+</ul>
+</li>
+<li>Click <strong>Save</strong>.</li>
+</ol>
+<p>To enable FOTA notifications for software updates, add package <code>com.wssyncmldm</code> to the kiosk allowlist:</p>
+<ol>
+<li>In the Knox Manage console, go to <strong>Kiosk</strong>. Select the kiosk you&rsquo;d like to modify, then click <strong>Modify</strong>.</li>
+<li>On the <strong>Modify Kiosk</strong> page, go to <strong>Allowlisted Settings</strong> &gt; <strong>Select</strong>.</li>
+<li>Select <strong>Update Service application</strong>, then click <strong>OK</strong>.</li>
+<li>Click <strong>Save</strong> &gt; <strong>OK</strong>.</li>
+<li>Enter a comment in the <strong>Update Kiosk Version</strong> dialogue, then click <strong>OK</strong>.</li>
+<li>On the <strong>Kiosk Details</strong> page, click <strong>Apply</strong> and push the kiosk to your devices.</li>
+</ol>
 
             
           </div>
@@ -5037,8 +5056,7 @@
   <ul>
     <li><a href="kba-640-knox-efota-to-kiosk-devices-deployed-by-knox-manage.html#environment">Environment</a></li>
     <li><a href="kba-640-knox-efota-to-kiosk-devices-deployed-by-knox-manage.html#overview">Overview</a></li>
-    <li><a href="kba-640-knox-efota-to-kiosk-devices-deployed-by-knox-manage.html#cause">Cause</a></li>
-    <li><a href="kba-640-knox-efota-to-kiosk-devices-deployed-by-knox-manage.html#resolution">Resolution</a></li>
+    <li><a href="kba-640-knox-efota-to-kiosk-devices-deployed-by-knox-manage.html#how-to-enable-fota-notifications-for-devices-in-knox-manage-kiosk-mode">How to enable FOTA notifications for devices in Knox Manage kiosk mode</a></li>
   </ul>
 </nav>
 </aside>
