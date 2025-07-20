@@ -159,9 +159,9 @@
     </select>
   </div>
   <script>
-   var SINCE_DATA = [ '1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12', '13', '14', '15', '16', '17', '18', '19', '20', '21', '22', '23', '24', '25', '26', '27', '28', '29', '30', '31', '32', '33', '34', '35', '36', '37', '38' ];
+   var SINCE_DATA = [ '1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12', '13', '14', '15', '16', '17', '18', '19', '20', '21', '22', '23', '24', '25', '26', '27', '28', '29', '30', '31', '32', '33', '34', '35', '36', '37', '38', '39' ];
     
-    var SINCE_LABELS = [ '1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12', '13', '14', '15', '16', '17', '18', '19', '20', '21', '22', '23', '24', '25', '26', '27', '28', '29', '30', '31', '32', '33', '34', '35', '36', '37', '38' ];
+    var SINCE_LABELS = [ '1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12', '13', '14', '15', '16', '17', '18', '19', '20', '21', '22', '23', '24', '25', '26', '27', '28', '29', '30', '31', '32', '33', '34', '35', '36', '37', '38', '39' ];
     buildApiLevelSelector();
     addLoadEvent(changeApiLevel);
   </script>
@@ -482,7 +482,7 @@ Summary:
  <strong>Warning:</strong> Other features based on iptables may cause conflicts and unexpected
  behaviour (e.g. Tethering, VPN clients, B2C Firewall).
  <p>
- <b>NOTE: </b>Since MDM 5.6, firewall has IPv6 support for ALLOW and DENY rules. For REDIRECT and
+ <b>NOTE</b>: Since MDM 5.6, firewall has IPv6 support for ALLOW and DENY rules. For REDIRECT and
  REDIRECT_EXCEPTION IPv6 support has been added since Knox 3.6.<br>
  <h3>Domain name rules</h3>
  <p>
@@ -491,7 +491,7 @@ Summary:
  domain. In this case, domain names can be restricted, which will be achieved by disabling their
  respective DNS resolution.
  <p>
- <b>NOTE: </b>Users may add conflicting rules for IP addresses and domain names. In this case, the
+ <b>NOTE</b>: Users may add conflicting rules for IP addresses and domain names. In this case, the
  more restrictive rule always takes precedence.<br>
  <br>
  Example 1:<br>
@@ -1996,7 +1996,8 @@ From class
       <table class="jd-tagtable">  
         <tr>
             <th><a href="http://developer.android.com/reference/java/lang/SecurityException.html">SecurityException</a></td>
-            <td>If caller does not have required permissions</td>
+            <td>If caller does not have the required permissions or administrator
+ is not a Device or Profile Owner.</td>
         </tr>
       </table>
   </div>      
@@ -2004,44 +2005,51 @@ From class
       <h5 class="jd-tagtitle">Usage</h5>
       <table class="jd-tagtable">  
         <tr>
-            <td>An administrator can use this API to add rules to allow/block applications from
- accessing domains. By default, the system will not block any DNS resolution, so you don't
- need to worry about adding domain filter rules except when you want to deny DNS resolution to
- some (or all) domains.<br>
- <br>
- Once the rules are added, next time the application tries to access any denied domain it will
- be blocked. This API allows only one administrator to manage rules at a time, which means
- that if some administrator tries to add rules while another one has already added any, the
- operation will return <code><a href="FirewallResponse.Result.html#FAILED">FAILED</a></code> and an error message describing
- that. For additional information on how to properly create and use domain filter rules,
- please refer to <code><a href="DomainFilterRule.html">DomainFilterRule</a></code> class.<br>
- <br>
- Administrator can apply a rule for a specific application or for all applications at once
- (using <code><a href="Firewall.html#FIREWALL_ALL_PACKAGES">FIREWALL_ALL_PACKAGES</a></code>). If a rule with <code><a href="Firewall.html#FIREWALL_ALL_PACKAGES">FIREWALL_ALL_PACKAGES</a></code> value
- is already in database and a rule is added with a specific application, the general one will
- not be considered to resolve the domain access enforcement for this specific application.<br>
- <br>
- Some applications may not resolve a domain through default DNS, instead they forward the
- request to a specific domain. In this case, the domain rule will not be enforced.<br>
- <br>
- <b>NOTE: </b>A domain can not be on the whitelist and blacklist simultaneously, adding it 
- again but to a different list type will result in removal from previous list. If a new rule 
- contains the same domain in the blacklist and whitelist, the whitelist rule will be considered.<br>
- <br>
- <b>NOTE: </b>Since MDM 5.7, <code><a href="DomainFilterRule.html">DomainFilterRule</a></code> can also be used to manage DNS servers
- which will resolve domain names for a given application. Two DNS servers can be provided, one
- is the primary(mandatory) and the second is a backup(optional) server. To change DNS servers
- previously set just pass a rule object with the new DNS servers to this API, both DNS servers
- will be overwritten. For more details refer to <code><a href="DomainFilterRule.html">DomainFilterRule</a></code> class.<br>
- <br>
- <b>NOTE: </b>Deny rules may also need to block:
- <ul>
- <li><code>*.googlezip.net</code> to avoid the Chrome's data saver proxy, which bypasses the  
- rules when accessing websites with http protocol.</li>
- <li>IPv4 and IPv6 traffic on port 53 via <code><a href="FirewallRule.html">FirewallRule</a></code> for Chromium-based browsers, since Chromium has 
- its own DNS-resolution implementation. Blocking this implementation's resolution makes it 
- fallback to the system's one.</li>
- </ul></td>
+            <td><p>
+        An administrator can use this API to add rules to allow/block applications from
+        accessing domains. By default, the system will not block any DNS resolution, so you
+        don't need to worry about adding domain filter rules except when you want to deny DNS
+        resolution to some (or all) domains.
+        <p>
+        Once the rules are added, next time the application tries to access any denied domain
+        it will be blocked. This API allows only one administrator to manage rules at a time,
+        which means that if some administrator tries to add rules while another one has
+        already added any, the operation will return <code><a href="FirewallResponse.Result.html#FAILED">FAILED</a></code>
+        and an error message describing that. For additional information on how to properly
+        create and use domain filter rules, please refer to <code><a href="DomainFilterRule.html">DomainFilterRule</a></code> class.
+        <p>
+        Administrator can apply a rule for a specific application or for all applications at
+        once (using <code><a href="Firewall.html#FIREWALL_ALL_PACKAGES">FIREWALL_ALL_PACKAGES</a></code>). If a rule with <code><a href="Firewall.html#FIREWALL_ALL_PACKAGES">FIREWALL_ALL_PACKAGES</a></code>
+        value is already in database and a rule is added with a specific application, the
+        general one will not be considered to resolve the domain access enforcement for this
+        specific application.
+        <p>
+        Some applications may not resolve a domain through default DNS, instead they forward
+        the request to a specific domain. In this case, the domain rule will not be enforced.
+        <p>
+        <b>NOTE 1</b>: A domain can not be on the whitelist and blacklist simultaneously,
+        adding it again but to a different list type will result in removal from previous list.
+        If a new rule contains the same domain in the blacklist and whitelist, the whitelist
+        rule will be considered.
+        <p>
+        <b>NOTE 2</b>: Since MDM 5.7, <code><a href="DomainFilterRule.html">DomainFilterRule</a></code> can also be used to manage DNS
+        servers which will resolve domain names for a given application. Two DNS servers can
+        be provided, one is the primary(mandatory) and the second is a backup(optional) server.
+        To change DNS servers previously set just pass a rule object with the new DNS servers
+        to this API, both DNS servers will be overwritten. For more details refer to
+        <code><a href="DomainFilterRule.html">DomainFilterRule</a></code> class.
+        <p>
+        <b>NOTE 3</b>: Deny rules may also need to block:
+        <ul style="padding-left: 40px;">
+            <li><code>*.googlezip.net</code> to avoid the Chrome's data saver proxy, which
+            bypasses the rules when accessing websites with http protocol.</li>
+            <li>IPv4 and IPv6 traffic on port 53 via <code><a href="FirewallRule.html">FirewallRule</a></code> for Chromium-based
+            browsers, since Chromium has its own DNS-resolution implementation. Blocking this
+            implementation's resolution makes it fallback to the system's one.</li>
+        </ul>
+        <p>
+        <b>NOTE 4</b>: Since API level 39, only Device Owner or Profile Owner can call this API.
+        <p></td>
         </tr>
       </table>
   </div>      
@@ -2230,7 +2238,8 @@ From class
       <table class="jd-tagtable">  
         <tr>
             <th><a href="http://developer.android.com/reference/java/lang/SecurityException.html">SecurityException</a></td>
-            <td>If caller does not have required permissions</td>
+            <td>If caller does not have the required permissions or administrator
+ is not a Device or Profile Owner.</td>
         </tr>
       </table>
   </div>      
@@ -2238,30 +2247,37 @@ From class
       <h5 class="jd-tagtitle">Usage</h5>
       <table class="jd-tagtable">  
         <tr>
-            <td>An administrator can use this API to add rules to allow, block or redirect IP
- requests. By default, the system will not interfere on data traffic, so you don't need to
- worry about adding IP rules except when you want to block or redirect some (all) access.<br>
- <br>
- Once the rules are added and enforced (please refer to <code><a href="Firewall.html#enableFirewall(boolean)">enableFirewall(boolean)</a></code>),
- next time the application tries to send an IP request, the latest rule set will be analyzed
- before deciding to allow, block or redirect the request. For additional information on how to
- properly create and use IP rules, please refer to <code><a href="FirewallRule.html">FirewallRule</a></code> class.<br>
- <br>
- It is important to notice that the IP rules will have effect only if
- <code><a href="Firewall.html#enableFirewall(boolean)">enableFirewall(boolean)</a></code> has been called with <code>true</code>. Any administrator
- can add IP rules, but only one administrator can activate IP rules enforcement at a time.
- <br>
- <br>
- <b>NOTE: </b>It's recommended to disable the browser (e.g.Chrome) data saver feature in order to get
- the correct operation of this API, as the browser may bypass the firewall rules by using its own
- implementation for resolving the IP addresses.
- <br>
- As administrator has no control over browser's built-in data saver feature and thus cannot turn it off,
- administrator can use domain filter rules <code><a href="Firewall.html#addDomainFilterRules(java.util.List<com.samsung.android.knox.net.firewall.DomainFilterRule>)">addDomainFilterRules(List)</a></code> to block the DNS requests for the
- application and get the blocked domains with domain filter report <code><a href="Firewall.html#enableDomainFilterReport(boolean)">enableDomainFilterReport(boolean)</a></code>.
- This will help identify which domains are used specifically on data saver mode, and blocking
- these specific domains will force browser to operate out of this mode.
- <br></td>
+            <td><p>
+        An administrator can use this API to add rules to allow, block or redirect IP
+        requests. By default, the system will not interfere on data traffic, so you don't
+        need to worry about adding IP rules except when you want to block or redirect some
+        (all) access.
+        <p>
+        Once the rules are added and enforced (please refer to <code><a href="Firewall.html#enableFirewall(boolean)">enableFirewall(boolean)</a></code>),
+        next time the application tries to send an IP request, the latest rule set will be
+        analyzed before deciding to allow, block or redirect the request. For additional
+        information on how to properly create and use IP rules, please refer to
+        <code><a href="FirewallRule.html">FirewallRule</a></code> class.
+        <p>
+        It is important to notice that the IP rules will have effect only if
+        <code><a href="Firewall.html#enableFirewall(boolean)">enableFirewall(boolean)</a></code> has been called with <code>true</code>. Any
+        administrator can add IP rules, but only one administrator can activate IP rules
+        enforcement at a time.<br>
+        <p>
+        As administrator has no control over browser's built-in data saver feature and thus
+        cannot turn it off, administrator can use domain filter rules
+        <code><a href="Firewall.html#addDomainFilterRules(java.util.List<com.samsung.android.knox.net.firewall.DomainFilterRule>)">addDomainFilterRules(List)</a></code> to block the DNS requests for the application and
+        get the blocked domains with domain filter report
+        <code><a href="Firewall.html#enableDomainFilterReport(boolean)">enableDomainFilterReport(boolean)</a></code>. This will help identify which domains are
+        used specifically on data saver mode, and blocking these specific domains will force
+        browser to operate out of this mode.
+        <p>
+        <b>NOTE 1</b>: It's recommended to disable the browser (e.g. Chrome) data saver feature
+        in order to get the correct operation of this API, as the browser may bypass the
+        firewall rules by using its own implementation for resolving the IP addresses.
+        <p>
+        <b>NOTE 2</b>: Since API level 39, only Device Owner or Profile Owner can call this API.
+        <p></td>
         </tr>
       </table>
   </div>      
@@ -2443,7 +2459,6 @@ From class
  appRule[0].setNetworkInterface(NetworkInterface.WIFI_DATA_ONLY);
  
  FirewallResponse[] appResponse = firewall.addRules(appRule);
- 
  </pre></td>
         </tr>
       </table>
@@ -2561,11 +2576,13 @@ From class
       <h5 class="jd-tagtitle">Usage</h5>
       <table class="jd-tagtable">  
         <tr>
-            <td>An administrator can use this API to clear the IP rules previously added. The rules
- added by other administrators are not affected.<br>
- <br>
- Domain filter rules are not cleared by this API. To clear domain filter rules, please refer
- to <code><a href="Firewall.html#removeDomainFilterRules(java.util.List<com.samsung.android.knox.net.firewall.DomainFilterRule>)">removeDomainFilterRules(List)</a></code>.</td>
+            <td><p>
+        An administrator can use this API to clear the IP rules previously added. The rules
+        added by other administrators are not affected.
+        <p>
+        Domain filter rules are not cleared by this API. To clear domain filter rules, please
+        refer to <code><a href="Firewall.html#removeDomainFilterRules(java.util.List<com.samsung.android.knox.net.firewall.DomainFilterRule>)">removeDomainFilterRules(List)</a></code>.
+        <p></td>
         </tr>
       </table>
   </div>      
@@ -2714,7 +2731,8 @@ From class
       <table class="jd-tagtable">  
         <tr>
             <th><a href="http://developer.android.com/reference/java/lang/SecurityException.html">SecurityException</a></td>
-            <td>If caller does not have required permissions</td>
+            <td>If caller does not have the required permissions or administrator
+ is not a Device or Profile Owner.</td>
         </tr>
       </table>
   </div>      
@@ -2722,24 +2740,30 @@ From class
       <h5 class="jd-tagtitle">Usage</h5>
       <table class="jd-tagtable">  
         <tr>
-            <td>An administrator can use this API to enable/disable association between
- <code><a href="Firewall.html#addDomainFilterRules(java.util.List<com.samsung.android.knox.net.firewall.DomainFilterRule>)">addDomainFilterRules(List)</a></code> and <code><a href="Firewall.html#addRules(com.samsung.android.knox.net.firewall.FirewallRule[])">addRules(FirewallRule[])</a></code> APIs.<br>
- Once enabled, next time an application tries to send a domain name resolution request,
- the Domain rules (<code><a href="DomainFilterRule.html">DomainFilterRule</a></code>) will be analyzed before Firewall rules
- (<code><a href="FirewallRule.html">FirewallRule</a></code>), deciding to allow or block the request.<br>
- <br>
- This module will try to match each domain request against a list of <code><a href="DomainFilterRule.html">DomainFilterRule</a></code>
- configured by the admin.<br>
- <br>
- With this solution, an administrator will be able to access whitelisted domains
- even when Firewall policy dictates that all IPs should be blocked.<br>
- If the administrator disables it passing <code>false</code>, domain rules may end up being
- overridden by Firewall rules.<br>
- <br>
- This API doesn't support multiple administrators, so only the administrator who is currently
- managing domain filter rules in database can enable/disable it.<br>
- <br> <b>NOTE: </b> This API will not take effect on tethered connections. In other words, it will not associate
- domains with Firewall rules set to direction <code><a href="Firewall.Direction.html#FORWARD">FORWARD</a></code>.</td>
+            <td><p>
+        An administrator can use this API to enable/disable association between
+        <code><a href="Firewall.html#addDomainFilterRules(java.util.List<com.samsung.android.knox.net.firewall.DomainFilterRule>)">addDomainFilterRules(List)</a></code> and <code><a href="Firewall.html#addRules(com.samsung.android.knox.net.firewall.FirewallRule[])">addRules(FirewallRule[])</a></code> APIs.<br>
+        Once enabled, next time an application tries to send a domain name resolution request,
+        the Domain rules (<code><a href="DomainFilterRule.html">DomainFilterRule</a></code>) will be analyzed before Firewall rules
+        (<code><a href="FirewallRule.html">FirewallRule</a></code>), deciding to allow or block the request.
+        <p>
+        This module will try to match each domain request against a list of
+        <code><a href="DomainFilterRule.html">DomainFilterRule</a></code> configured by the admin.
+        <p>
+        With this solution, an administrator will be able to access whitelisted domains
+        even when Firewall policy dictates that all IPs should be blocked.<br>
+        If the administrator disables it passing <code>false</code>, domain rules may end up
+        being overridden by Firewall rules.
+        <p>
+        This API doesn't support multiple administrators, so only the administrator who is
+        currently managing domain filter rules in database can enable/disable it.
+        <p>
+        <b>NOTE 1</b>: This API will not take effect on tethered connections. In other words,
+        it will not associate domains with Firewall rules set to direction <code><a href="Firewall.Direction.html#FORWARD">FORWARD</a></code>.
+        <p>
+        <b>NOTE 2</b>: Since API level 39, only Device Owner or Profile Owner can call this
+        API with <code>enabled</code> parameter as <code>true</code>.
+        <p></td>
         </tr>
       </table>
   </div>      
@@ -2756,7 +2780,8 @@ From class
      FirewallResponse responseForDisable = firewall.enableDomainFilterOnIptables(<code>false</code>); // Disable DomainFilterOnIptables
  } catch (SecurityException ex) {
      // missing required permission
- }</td>
+ }
+ </pre></td>
         </tr>
       </table>
   </div>      
@@ -2774,7 +2799,8 @@ From class
      FirewallResponse responseForDisable = firewall.enableDomainFilterOnIptables(<code>false</code>); // Disable DomainFilterOnIptables
  } catch (SecurityException ex) {
      // missing required permission
- }</td>
+ }
+ </pre></td>
         </tr>
       </table>
   </div>      
@@ -2868,7 +2894,8 @@ From class
       <table class="jd-tagtable">  
         <tr>
             <th><a href="http://developer.android.com/reference/java/lang/SecurityException.html">SecurityException</a></td>
-            <td>If caller does not have required permissions</td>
+            <td>If caller does not have the required permissions or administrator
+ is not a Device or Profile Owner.</td>
         </tr>
       </table>
   </div>      
@@ -2876,18 +2903,25 @@ From class
       <h5 class="jd-tagtitle">Usage</h5>
       <table class="jd-tagtable">  
         <tr>
-            <td>Administrator can use this API to enable/disable the recording of user attempts to
- access blocked URLs by the domain filter rules. The report is disabled by default. The limit
- of reports that will be stored is <code>10000</code>. When this limit is exceeded, the oldest
- report will be replaced by the newest and so on, as in a circular buffer.<br>
- <br>
- This API supports multiple administrators, so, if one administrator enables it, the blocked
- URLs will be reported regardless of whom is managing domain rules at that time. When all
- administrators disable report, the blocked URLs will no longer be reported.<br>
- <br>
- Please note IP logs are collected by Audit Log policy from KNOX Premium SDK.<br>
- <br>
- <b>NOTE: </b>In MDM 5.6 and previous versions, the limit of reports was <code>1000</code>.</td>
+            <td><p>
+        Administrator can use this API to enable/disable the recording of user attempts to
+        access blocked URLs by the domain filter rules. The report is disabled by default.
+        The limit of reports that will be stored is <code>10000</code>. When this limit is
+        exceeded, the oldest report will be replaced by the newest and so on, as in a
+        circular buffer.
+        <p>
+        This API supports multiple administrators, so, if one administrator enables it, the
+        blocked URLs will be reported regardless of whom is managing domain rules at that
+        time. When all administrators disable report, the blocked URLs will no longer
+        be reported.
+        <p>
+        Please note IP logs are collected by Audit Log policy from KNOX Premium SDK.
+        <p>
+        <b>NOTE 1</b>: In MDM 5.6 and previous versions, the limit of reports was <code>1000</code>.
+        <p>
+        <b>NOTE 2</b>: Since API level 39, only Device Owner or Profile Owner can call this API
+        with <code>enabled</code> parameter as <code>true</code>.
+        <p></td>
         </tr>
       </table>
   </div>      
@@ -2899,7 +2933,8 @@ From class
  EnterpriseDeviceManager edm = EnterpriseDeviceManager.getInstance(context); 
  Firewall firewall = edm.getFirewall(); // enabling report try { boolean result =
  firewall.enableDomainFilterReport(true); if (result) { // success } else { // failed } }
- catch (SecurityException ex) { //missing required permission }</td>
+ catch (SecurityException ex) { //missing required permission }
+ </pre></td>
         </tr>
       </table>
   </div>      
@@ -2912,7 +2947,8 @@ From class
  EnterpriseKnoxManager.getInstance(context).getKnoxContainerManager(containerID); 
  Firewall firewall = kcm.getFirewall(); // enabling report try { boolean result =
  firewall.enableDomainFilterReport(true); if (result) { // success } else { // failed } }
- catch (SecurityException ex) { //missing required permission }</td>
+ catch (SecurityException ex) { //missing required permission }
+ </pre></td>
         </tr>
       </table>
   </div>      
@@ -3007,7 +3043,8 @@ From class
       <table class="jd-tagtable">  
         <tr>
             <th><a href="http://developer.android.com/reference/java/lang/SecurityException.html">SecurityException</a></td>
-            <td>If caller does not have required permissions</td>
+            <td>If caller does not have the required permissions or administrator
+ is not a Device or Profile Owner.</td>
         </tr>
       </table>
   </div>      
@@ -3015,23 +3052,35 @@ From class
       <h5 class="jd-tagtitle">Usage</h5>
       <table class="jd-tagtable">  
         <tr>
-            <td>An administrator can use this API to turn on/off the enforcement of IP rules. Upon
- enabling it, all IP rules previously added by this administrator will be activated. If the
- administrator disables it passing <code>false</code>, IP rules will not be enforced anymore.
- <br>
- <br>
- <strong>Multiple Administrator Scenarios</strong> <br>
- When a device is managed by multiple administrators, IP rules behave as follows:<br>
- - All administrators can add IP rules.<br>
- - Only one administrator can enforce IP rules at time.<br>
- <br>
- Example:<br>
- Administrator 1 enforces IP rules.<br>
- Administrator 2 will be able to configure rules but it will not able to enforce IP rules.<br>
- Administrator 3 will be able to configure rules but it will not able to enforce IP rules.<br>
- <br>
- As soon as administrator 1 turns off IP rules enforcement, the other administrators will be
- able to enable it.</td>
+            <td><p>
+        An administrator can use this API to turn on/off the enforcement of IP rules. Upon
+        enabling it, all IP rules previously added by this administrator will be activated.
+        If the administrator disables it passing <code>false</code>, IP rules will not be
+        enforced anymore.
+        <p>
+        <strong>Multiple Administrator Scenarios</strong>
+            <p>
+            When a device is managed by multiple administrators, IP rules behave as follows:
+            <ul>
+                <li>All administrators can add IP rules.</li>
+                <li>Only one administrator can enforce IP rules at time</li>
+            </ul>
+            <p>
+            <b>Example:</b>
+            <ul>
+                <li><i>Administrator 1</i> &nbsp;enforces IP rules.</li>
+                <li><i>Administrator 2</i> &nbsp;will be able to configure rules but it will not able to
+                enforce IP rules.</li>
+                <li><i>Administrator 3</i> &nbsp;will be able to configure rules but it will not able to
+                enforce IP rules.</li>
+            </ul>
+            <p>
+            As soon as <i>Administrator 1</i> &nbsp;turns off IP rules enforcement, the other administrators
+            will be able to enable it.
+        <p>
+        <b>NOTE</b>: Since API level 39, only Device Owner or Profile Owner can call this API
+        with <code>enabled</code> parameter as <code>true</code>.
+        <p></td>
         </tr>
       </table>
   </div>      
@@ -3155,7 +3204,8 @@ From class
       <table class="jd-tagtable">  
         <tr>
             <th><a href="http://developer.android.com/reference/java/lang/SecurityException.html">SecurityException</a></td>
-            <td>If caller does not have required permissions</td>
+            <td>If caller does not have the required permissions or administrator
+ is not a Device or Profile Owner.</td>
         </tr>
       </table>
   </div>      
@@ -3163,13 +3213,17 @@ From class
       <h5 class="jd-tagtitle">Usage</h5>
       <table class="jd-tagtable">  
         <tr>
-            <td>An administrator can use this API to retrieve a list of domain filter reports.
- Administrator can retrieve list of reports for a specific application (package name) or for
- all applications at once (passing <code>NULL</code> to parameter). For additional information
- about the reports, please refer to <code><a href="DomainFilterReport.html">DomainFilterReport</a></code>.<br>
- <br>
- This API supports multiple administrators, so any administrator is allowed to retrieve the
- list of stored reports any time.</td>
+            <td><p>
+        An administrator can use this API to retrieve a list of domain filter reports.
+        Administrator can retrieve list of reports for a specific application (package name)
+        or for all applications at once (passing <code>NULL</code> to parameter). For
+        additional information about the reports, please refer to <code><a href="DomainFilterReport.html">DomainFilterReport</a></code>.
+        <p>
+        This API supports multiple administrators, so any administrator is allowed to retrieve
+        the list of stored reports any time.
+        <p>
+        <b>NOTE</b>: Since API level 39, only Device Owner or Profile Owner can call this API.
+        <p></td>
         </tr>
       </table>
   </div>      
@@ -3183,7 +3237,8 @@ From class
  <code>List&lt;String&gt; packageNameList = new ArrayList&lt;String&gt;();</code>
  packageNameList.add("com.android.chrome"); try {
  <code>List&lt;DomainFilterReport&gt; reports = firewall.getDomainFilterReport(packageNameList);</code>
- // print reports } catch (SecurityException ex) { //missing required permissions }</td>
+ // print reports } catch (SecurityException ex) { //missing required permissions }
+ </pre></td>
         </tr>
       </table>
   </div>      
@@ -3198,7 +3253,8 @@ From class
  <code>List&lt;String&gt; packageNameList = new ArrayList&lt;String&gt;();</code>
  packageNameList.add("com.android.chrome"); try {
  <code>List&lt;DomainFilterReport&gt; reports = firewall.getDomainFilterReport(packageNameList);</code>
- // print reports } catch (SecurityException ex) { //missing required permissions }</td>
+ // print reports } catch (SecurityException ex) { //missing required permissions }
+ </pre></td>
         </tr>
       </table>
   </div>      
@@ -3302,13 +3358,15 @@ From class
       <h5 class="jd-tagtitle">Usage</h5>
       <table class="jd-tagtable">  
         <tr>
-            <td>An administrator can use this API to retrieve the list of domain filter rules
- previously added in firewall database. Administrator can retrieve list of rules for a
- specific application (package name) or for all application at once (passing <code>NULL</code>
- to parameter).<br>
- <br>
- This API doesn't support multiple administrators, so only the administrator who is currently
- managing domain filter rules in database can retrieve the applied rules.</td>
+            <td><p>
+        An administrator can use this API to retrieve the list of domain filter rules
+        previously added in firewall database. Administrator can retrieve list of rules for a
+        specific application (package name) or for all application at once (passing
+        <code>NULL</code> to parameter).
+        <p>
+        This API doesn't support multiple administrators, so only the administrator who is currently
+        managing domain filter rules in database can retrieve the applied rules.
+        <p></td>
         </tr>
       </table>
   </div>      
@@ -3322,7 +3380,8 @@ From class
  <code>List&lt;String&gt; packageNameList = new ArrayList&lt;String&gt;();</code>
  packageNameList.add("com.android.chrome"); try {
  <code>List&lt;DomainFilterRule&gt; rules = firewall.getDomainFilterRules(packageNameList);</code> //
- print rules } catch (SecurityException ex) { //missing required permissions }</td>
+ print rules } catch (SecurityException ex) { //missing required permissions }
+ </pre></td>
         </tr>
       </table>
   </div>      
@@ -3337,7 +3396,8 @@ From class
  <code>List&lt;String&gt; packageNameList = new ArrayList&lt;String&gt;();</code>
  packageNameList.add("com.android.chrome"); try {
  <code>List&lt;DomainFilterRule&gt; rules = firewall.getDomainFilterRules(packageNameList);</code> //
- print rules } catch (SecurityException ex) { //missing required permissions }</td>
+ print rules } catch (SecurityException ex) { //missing required permissions }
+ </pre></td>
         </tr>
       </table>
   </div>      
@@ -3449,9 +3509,11 @@ From class
       <h5 class="jd-tagtitle">Usage</h5>
       <table class="jd-tagtable">  
         <tr>
-            <td>An administrator can use this API to get IP rules previously added, specifying the
- <code><a href="FirewallRule.RuleType.html">FirewallRule.RuleType</a></code> and the <code><a href="FirewallRule.Status.html">FirewallRule.Status</a></code> of the required rules. IP rules added by other
- administrators will not be retrieved.</td>
+            <td><p>
+        An administrator can use this API to get IP rules previously added, specifying the
+        <code><a href="FirewallRule.RuleType.html">FirewallRule.RuleType</a></code> and the <code><a href="FirewallRule.Status.html">FirewallRule.Status</a></code> of the required rules. IP rules added by other
+        administrators will not be retrieved.
+        <p></td>
         </tr>
       </table>
   </div>      
@@ -3586,8 +3648,10 @@ From class
       <h5 class="jd-tagtitle">Usage</h5>
       <table class="jd-tagtable">  
         <tr>
-            <td>An administrator can use this API to check whether the association between domain
- and firewall rules is enabled or not.</td>
+            <td><p>
+        An administrator can use this API to check whether the association between domain
+        and firewall rules is enabled or not.
+        <p></td>
         </tr>
       </table>
   </div>      
@@ -3609,7 +3673,6 @@ From class
  } catch (SecurityException ex) {
      // missing required permission
  }
-
  </pre></td>
         </tr>
       </table>
@@ -3633,7 +3696,6 @@ From class
  } catch (SecurityException ex) {
      // missing required permission
  }
-
  </pre></td>
         </tr>
       </table>
@@ -3708,9 +3770,11 @@ From class
       <h5 class="jd-tagtitle">Usage</h5>
       <table class="jd-tagtable">  
         <tr>
-            <td>An administrator can use this API to check whether the domain filter report is enabled
- or disabled. If at least one administrator has enabled report, the return will be
- <code>true</code>.</td>
+            <td><p>
+        An administrator can use this API to check whether the domain filter report is enabled
+        or disabled. If at least one administrator has enabled report, the return will be
+        <code>true</code>.
+        <p></td>
         </tr>
       </table>
   </div>      
@@ -3732,7 +3796,6 @@ From class
  } catch (SecurityException ex) {
      // missing required permission
  }
-
  </pre></td>
         </tr>
       </table>
@@ -3756,7 +3819,6 @@ From class
  } catch (SecurityException ex) {
      // missing required permission
  }
-
  </pre></td>
         </tr>
       </table>
@@ -3831,8 +3893,10 @@ From class
       <h5 class="jd-tagtitle">Usage</h5>
       <table class="jd-tagtable">  
         <tr>
-            <td>An administrator can use this API to check whether the enforcement of IP filter rules
- is enabled or not.</td>
+            <td><p>
+        An administrator can use this API to check whether the enforcement of IP filter rules
+        is enabled or not.
+        <p></td>
         </tr>
       </table>
   </div>      
@@ -3860,7 +3924,6 @@ From class
  Firewall Firewall = kcm.getFirewall();
  
  boolean isFirewallEnabled = firewall.isFirewallEnabled();
- 
  </pre></td>
         </tr>
       </table>
@@ -3926,8 +3989,7 @@ From class
     <div class="jd-details-descr">
       
 
-  <div class="jd-tagdata jd-tagdescr"><p>API to list rules on iptables.
- <p></p></div>
+  <div class="jd-tagdata jd-tagdescr"><p>API to list rules on iptables.</p></div>
   <div class="jd-tagdata">
       <h5 class="jd-tagtitle">Returns</h5>
       <ul class="nolist"><li>The output of the commands "iptables -t filter -L -n --line-numbers -v",
@@ -3948,15 +4010,24 @@ From class
       <h5 class="jd-tagtitle">Usage</h5>
       <table class="jd-tagtable">  
         <tr>
-            <td>An administrator can use this API to list the rules from iptables. This method
- concatenates the output of the following iptables commands and returns the result:<br>
- "iptables -t filter -L -n --line-numbers -v"<br>
- "iptables -t nat -L -n --line-numbers -v"<br>
- "iptables -t mangle -L -n --line-numbers -v"<br>
- "iptables -t raw -L -n --line-numbers -v"<br>
- <br/>
- <p>
- <font face="Courier New"> // Sample Output<br/>
+            <td><p>
+        An administrator can use this API to list the rules from iptables. This method
+        concatenates the output of the following iptables commands and returns the result:
+        <ul>
+            <li>"iptables -t filter -L -n --line-numbers -v"</li>
+            <li>"iptables -t nat -L -n --line-numbers -v"</li>
+            <li>"iptables -t mangle -L -n --line-numbers -v"</li>
+            <li>"iptables -t raw -L -n --line-numbers -v"</li>
+        </ul>
+        <p></td>
+        </tr>
+      </table>
+  </div>      
+  <div class="jd-tagdata">
+      <h5 class="jd-tagtitle"> </h5>
+      <table class="jd-tagtable">  
+        <tr>
+            <td><font face="Courier New"> // Sample Output<br/>
  <br/>
  // ************ FILTER TABLE ************<br/>
  // Chain INPUT (policy ACCEPT 0 packets, 0 bytes)<br/>
@@ -4126,25 +4197,28 @@ From class
       <h5 class="jd-tagtitle">Usage</h5>
       <table class="jd-tagtable">  
         <tr>
-            <td>An administrator can use this API to remove rules previously added through
- <code><a href="Firewall.html#addDomainFilterRules(java.util.List<com.samsung.android.knox.net.firewall.DomainFilterRule>)">addDomainFilterRules(List)</a></code> API. Once removed, the rules will no longer take effect,
- meaning that a rule, used to block some domain name, after removed will no longer block it.
- <br>
- <br>
- To clear all rules in database pass <code><a href="DomainFilterRule.html#CLEAR_ALL">CLEAR_ALL</a></code> as parameter to this
- API. In order to clear just one of the lists (allow/deny) pass <code>null</code> to the
- corresponding list parameter on the class <code><a href="DomainFilterRule.html">DomainFilterRule</a></code> constructor or call
- corresponding set method from the same class. For additional information on how to properly
- create and use domain filter rules, please refer to <code><a href="DomainFilterRule.html">DomainFilterRule</a></code> class.<br>
- <br>
- This API will allow only one administrator to manage rules at a time, if some administrator
- tries to remove rules added by another administrator the operation will return (
- <code><a href="FirewallResponse.Result.html#FAILED">FAILED</a></code>) and an error message describing that. <br>
- <br>
- <b>NOTE: </b>Since MDM 5.7, <code><a href="DomainFilterRule.html">DomainFilterRule</a></code> can also be used to manage DNS servers
- which will resolve domain names for a given application. To remove DNS servers pass a object
- with the same values to this API. For more details refer to <code><a href="DomainFilterRule.html">DomainFilterRule</a></code> class.
- <br></td>
+            <td><p>
+        An administrator can use this API to remove rules previously added through
+        <code><a href="Firewall.html#addDomainFilterRules(java.util.List<com.samsung.android.knox.net.firewall.DomainFilterRule>)">addDomainFilterRules(List)</a></code> API. Once removed, the rules will no longer take
+        effect, meaning that a rule, used to block some domain name, after removed will no
+        longer block it.
+        <p>
+        To clear all rules in database pass <code><a href="DomainFilterRule.html#CLEAR_ALL">CLEAR_ALL</a></code> as parameter
+        to this API. In order to clear just one of the lists (allow/deny) pass
+        <code>null</code> to the corresponding list parameter on the class
+        <code><a href="DomainFilterRule.html">DomainFilterRule</a></code> constructor or call corresponding set method from the same
+        class. For additional information on how to properly create and use domain filter
+        rules, please refer to <code><a href="DomainFilterRule.html">DomainFilterRule</a></code> class.
+        <p>
+        This API will allow only one administrator to manage rules at a time, if some
+        administrator tries to remove rules added by another administrator the operation will
+        return (* <code><a href="FirewallResponse.Result.html#FAILED">FAILED</a></code>) and an error message describing that.
+        <p>
+        <b>NOTE</b>: Since MDM 5.7, <code><a href="DomainFilterRule.html">DomainFilterRule</a></code> can also be used to manage DNS
+        servers which will resolve domain names for a given application. To remove DNS servers
+        pass a object with the same values to this API. For more details refer to
+        <code><a href="DomainFilterRule.html">DomainFilterRule</a></code> class.
+        <p></td>
         </tr>
       </table>
   </div>      
@@ -4341,12 +4415,15 @@ From class
       <h5 class="jd-tagtitle">Usage</h5>
       <table class="jd-tagtable">  
         <tr>
-            <td>An administrator can use this API to remove rules previously added through
- <code><a href="Firewall.html#addRules(com.samsung.android.knox.net.firewall.FirewallRule[])">addRules(FirewallRule[])</a></code> API. Once removed, the rules will no longer take effect,
- meaning that a rule, used to allow, block or redirect some IP address, after removal will no
- longer apply. The rules added by other administrators are not affected.<br>
- <br>
- To clear all rules at once, please refer to <code><a href="Firewall.html#clearRules(int)">clearRules(int)</a></code> API.</td>
+            <td><p>
+        An administrator can use this API to remove rules previously added through
+        <code><a href="Firewall.html#addRules(com.samsung.android.knox.net.firewall.FirewallRule[])">addRules(FirewallRule[])</a></code> API. Once removed, the rules will no longer take
+        effect, meaning that a rule, used to allow, block or redirect some IP address, after
+        removal will no longer apply. The rules added by other administrators are not
+        affected.
+        <p>
+        To clear all rules at once, please refer to <code><a href="Firewall.html#clearRules(int)">clearRules(int)</a></code> API.
+        <p></td>
         </tr>
       </table>
   </div>      
@@ -4489,7 +4566,7 @@ From class
 <A NAME="navbar_top"></A>
 
 <div id="footer">
-<a href="http://www.samsung.com">Samsung Electronics</a>.<br/>SDK API level 38 - February 21 2025
+<a href="http://www.samsung.com">Samsung Electronics</a>.<br/>SDK API level 39 - July 2 2025
 </div> <!-- end footer -->
 
 </div> <!-- jd-content -->
