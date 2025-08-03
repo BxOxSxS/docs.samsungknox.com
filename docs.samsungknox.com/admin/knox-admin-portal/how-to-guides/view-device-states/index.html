@@ -477,7 +477,7 @@
             </div>
             
 
-  <p><span>Last updated September  6th, 2023</span></p>
+  <p><span>Last updated July  25th, 2025</span></p>
 
 
     
@@ -535,6 +535,11 @@
       
       
       
+        
+      
+      
+      
+      
         <p>The <a href="../customize-the-portal.html#about-the-knox-admin-portal-dashboard">Knox Admin Portal dashboard</a> includes the <strong>Device alerts</strong> module, which provides you with insight into which devices in the portal may need your attention.</p>
 <p>The following table describes the possible states your device can be in, separated by service.</p>
 <div class="overflow-auto my-3"><table>
@@ -545,21 +550,41 @@
             <th scope="col">Description</td>
         </tr>
         <tr>
-            <td rowspan="4"><b>Knox Mobile Enrollment</b></td>
-            <td>Failed to enroll</td>
+            <td rowspan="8"><b>Knox Mobile Enrollment</b></td>
+            <td>Unassigned</td>
+            <td>No profile is assigned to the device.</td>
+        </tr>
+        <tr>
+            <td>Failed to assign</td>
+            <td>The profile couldn't be assigned to a device. Review the profile details and try to assign it to the device again.</td>
+        </tr>
+        <tr>
+            <td>Profile assigned</td>
+            <td>A profile is assigned to the device, but the device user hasn't completed the enrollment process yet. Unassigning the profile changes the device state back to <strong>Unassigned</strong>.</td>
+        </tr>
+        <tr>
+            <td>Cancelled by user</td>
+            <td>The device wasn't enrolled because the device user cancelled the process.</td>
+        </tr>
+        <tr>
+            <td>Failed to provision</td>
             <td>After you assigned a profile, the device wasn't enrolled for a reason other than the device user canceling the enrollment.</td>
         </tr>
         <tr>
-            <td>Enrolled (Restricted)</td>
-            <td>If the device you assigned the Advanced Profile to doesn't have a Knox Suite license, or its license has no available seats left, only the profile's EMM enrollment and device settings are applied. Advanced Profile functionality isn't available.</td>
+            <td>Provisioned</td>
+            <td><p>The device is successfully enrolled by the device user. In case of an Advanced Profile, the profile's EMM enrollment and device settings are applied, and Advanced Profile functionality is available.</p>
+                <div class="notice-note">
+                    <p>If an enrollment profile does not include an EMM — only includes Knox E-FOTA or Knox Asset Intelligence — the final status shown for the device is <strong>Profile assigned</strong>. To further check if the device is successfully provisioned into Knox E-FOTA or Knox Asset Intelligence, refer to the <strong>Devices</strong> page for the respective service</p>
+                </div>
+            </td>
         </tr>
         <tr>
-            <td>Locked due to timeout</td>
-            <td>If a device assigned an Advanced Profile isn't enrolled in an EMM by the specified date, it's automatically locked.</td>
+            <td>Provision (restricted)</td>
+            <td>If the device you assigned the Advanced Profile to doesn't have an active Knox Suite - Enterprise Plan, or its license has no available seats left, only the profile's EMM enrollment and device settings are applied. Advanced Profile functionality isn't available.</td>
         </tr>
         <tr>
-            <td>Locked due to attestation failure</td>
-            <td>If an attestation failure is detected on a device assigned an Advanced Profile, the device is automatically locked.</td>
+            <td>License expired</td>
+            <td>If your Knox Suite - Enterprise Plan has expired, the device will lose all access to the advanced settings.</td>
         </tr>
         <tr>
             <td rowspan="3"><b>Knox Manage</b></td>
@@ -572,72 +597,138 @@
         </tr>
         <tr>
             <td>Screen lock not compliant</td>
-            <td>The device's screen lock doesn't comply with your policy setting. Set a screen lock policy in Profile &gt; Android Enterprise &gt; Password.</td>
+            <td>The device's screen lock doesn't comply with your policy setting. Set a screen lock policy in <strong>Profile</strong> &gt; <strong>Android Enterprise</strong> &gt; <strong>Password</strong>.</td>
         </tr>
         <tr>
-            <td rowspan="10"><b>Knox E-FOTA</b></td>
-            <td>Failed to download</td>
-            <td>The firmware wasn't downloaded to the device. Check the device's status and <a href="../../../knox-efota/features/push-and-poll.html#force-a-knox-e-fota-client-app-refresh">force a client refresh</a> if needed. </td>
+            <td rowspan="15"><b>Knox E-FOTA</b></td>
+            <td>Awaiting download</td>
+            <td>Knox E-FOTA is waiting for firmware download conditions to be met. This can be due to firmware download timeframe, download network restrictions, or insufficient device storage.</td>
         </tr>
         <tr>
-            <td>Failed to enroll</td>
-            <td>The agent wasn't downloaded to the device. Check the device's status and its network connection. </td>
-        </tr>
-        <tr>
-            <td>Failed to install</td>
-            <td>The firmware wasn't installed on the device. Check the status of the device and <a href="../../../knox-efota/features/push-and-poll.html#force-a-knox-e-fota-client-app-refresh">force a client refresh</a> if needed. </td>
+            <td>Awaiting install</td>
+            <td>Firmware has successfully downloaded, and Knox E-FOTA is waiting for installation conditions to be met. This can be due to firmware install timeframe, charging and battery restrictions, or insufficient device storage.</td>
         </tr>
         <tr>
             <td>Campaign error</td>
             <td>An unexpected error occurred when the latest campaign was applied. Try to <a href="../../../knox-efota/features/push-and-poll.html#force-a-knox-e-fota-client-app-refresh">force a client refresh</a>, then apply the campaign again.</td>
         </tr>
         <tr>
-            <td>Invalid firmware</td>
-            <td>The firmware wasn't downloaded to the device. Check the status of the device and <a href="../../../knox-efota/features/push-and-poll.html#force-a-knox-e-fota-client-app-refresh">force a client refresh</a> if needed. </td>
+            <td>Enrolled</td>
+            <td>The device is enrolled, but no active campaign is assigned to it.</td>
         </tr>
         <tr>
-            <td>Invalid license</td>
-            <td>No valid license was found. Check that your license key was entered correctly, then try again. </td>
+            <td>Failed to download</td>
+            <td>The firmware wasn't downloaded to the device, possibly due to network issues. Check the device's status and <a href="../../../knox-efota/features/push-and-poll.html#force-a-knox-e-fota-client-app-refresh">force a client refresh</a> if needed. </td>
         </tr>
         <tr>
-            <td>Campaign sync expected</td>
-            <td>The latest campaign will be applied to the client. If this process takes longer than expected, try <a href="../../../knox-efota/features/push-and-poll.html#force-a-knox-e-fota-client-app-refresh">forcing a client refresh</a>.</td>
+            <td>Failed to enroll</td>
+            <td>Device couldn't enroll to Knox E-FOTA, check that your license is valid.</td>
         </tr>
         <tr>
-            <td>Client enrolled but campaign not started</td>
-            <td>The device is enrolled, but the campaign isn&rsquo;t active yet.</td>
+            <td>Failed to install</td>
+            <td>The firmware wasn't installed on the device. Check the status of the device and <a href="../../../knox-efota/features/push-and-poll.html#force-a-knox-e-fota-client-app-refresh">force a client refresh</a> if needed. </td>
+        </tr>
+        <tr>
+            <td>Higher firmware version</td>
+            <td>The device's current firmware version is already higher than the firmware assigned to it in the campaign.</td>
+        </tr>
+        <tr>
+            <td>In-progress (downloading)</td>
+            <td>The firmware is currently downloading on the device.</td>
         </tr>
         <tr>
             <td>In-progress (installing)</td>
-            <td>The device is currently installing firmware. </td>
+            <td>The firmware is currently installing on the device.</td>
+        </tr>
+        <tr>
+            <td>Invalid firmware version</td>
+            <td>The assigned target firmware is invalid and wasn't downloaded to the device. Check the status of the device and <a href="../../../knox-efota/features/push-and-poll.html#force-a-knox-e-fota-client-app-refresh">force a client refresh</a> if needed. </td>
+        </tr>
+        <tr>
+            <td>Locked firmware version</td>
+            <td>A campaign is active and the device is locked to its current firmware version.</td>
+        </tr>
+        <tr>
+            <td>Client not enrolled</td>
+            <td>Device is not enrolled. Either client is not installed or license is invalid.</td>
         </tr>
         <tr>
             <td>Reverting</td>
             <td>After a test campaign, the device is reverting from the dummy firmware back to the regular firmware.</td>
         </tr>
         <tr>
-            <td rowspan="3"><b>Knox Asset Intelligence</b></td>
-            <td>
-                Not enrolled
-            </td>
-            <td>The device was uploaded to the console, but is not yet enrolled in Knox Asset Intelligence. Try <a href="../../../knox-asset-intelligence/how-to-guides/enroll-devices.html">enrolling the device</a>.</td>
+            <td>Updated</td>
+            <td>Device update has completed.</td>
+        </tr>
+        <tr>
+            <td rowspan="5"><b>Knox Asset Intelligence</b></td>
+            <td>Active</td>
+            <td>The device is enrolled and currently communicating with the Knox Asset Intelligence server.</td>
+        </tr>
+        <tr>
+            <td>Expired</td>
+            <td>The license expired, so the device is not reporting any data.</td>
         </tr>
         <tr>
             <td>Failed to enroll</td>
-            <td>The device encountered an error during enrollment. Check whether the license is valid and if the device's Knox version is supported. For more information, see the [device details](../../knox-asset-intelligence/how-to-guides/manage-devices#device-details).</td>
+            <td>The device encountered an error during enrollment. Check whether the license is valid and if the device's Knox version is supported. For more information, see the <a href="../../../knox-asset-intelligence/how-to-guides/manage-devices.html#device-details">device details</a>.</td>
         </tr>
         <tr>
             <td>Inactive</td>
             <td>The device stopped communicating with the server for more than 7 days in a row. Check whether the device is powered off or disconnected from a network. </td>
         </tr>
         <tr>
-            <td rowspan="2"><b>Knox Configure</b></td>
-            <td>Failed to configure</td>
-            <td>The configuration wasn't applied to the device. Try again, or <a href="../../../fundamentals/submit-a-support-ticket.html">submit a support ticket</a> if the error continues.</td>
+            <td>Client not enrolled</td>
+            <td>The device was uploaded to the console, but is not yet enrolled in Knox Asset Intelligence. Try <a href="../../../knox-asset-intelligence/how-to-guides/enroll-devices.html">enrolling the device</a>.</td>
+        </tr>
+        <tr>
+            <td rowspan="12"><b>Knox Configure</b></td>
+            <td>Cancelled by user</td>
+            <td>The device user skipped the device profile configuration. It must be restarted to configure the device.</td>
         </tr>
         <tr>
             <td>Configured</td>
             <td>The configuration was successfully applied to the device.</td>
+        </tr>
+        <tr>
+            <td>Deactivated temporarily</td>
+            <td>The device has been temporarily deactivated by the IT admin to review and assess an issue before the device is activated again.</td>
+        </tr>
+        <tr>
+            <td>Error</td>
+            <td>A problem was encountered during device configuration rendering. For more information, see <a href="../../../knox-configure/troubleshoot/device-side-errors.html#configuration-errors">Configuration errors</a>.</td>
+        </tr>
+        <tr>
+            <td>Exchanging</td>
+            <td>The device had its device ID swapped. This device needs its profile re-assigned and updated back to an Assigned state.</td>
+        </tr>
+        <tr>
+            <td>Failed</td>
+            <td>The device configuration failed.</td>
+        </tr>
+        <tr>
+            <td>Failed to configure</td>
+            <td>The configuration wasn't applied to the device. Try again, or <a href="../../../fundamentals/submit-a-support-ticket.html">submit a support ticket</a> if the error continues.</td>
+        </tr>
+        <tr>
+            <td>In Progress</td>
+            <td>A device profile assignment has been made and the subsequent device configuration is in progress and pending completion.</td>
+        </tr>
+        <tr>
+            <td>Locked</td>
+            <td>The device is locked in Knox Configure. Either you can unlock the device or the device user can input the provided password. Locked devices remain in their locked state even after the device’s profile is unassigned.</td>
+        </tr>
+        <tr>
+            <td>Profile assigned</td>
+            <td>A profile was assigned to the device, but the device is yet to be configured. For example, the device may not have been powered on since a profile has been assigned.</td>
+        </tr>
+        <tr>
+            <td>Unassigned</td>
+            <td>The device is uploaded to Knox Configure, but there are no profiles yet assigned or a previously applied profile has been unassigned.</td>
+        </tr>
+        <tr>
+            <td>Updates pushed</td>
+            <td>A profile update has been pushed to the device, but the device is still processing the update.</td>
         </tr>
         <tr>
             <td><b>Knox Guard</b></td>
@@ -645,17 +736,33 @@
             <td>The device was successfully locked by an admin. </td>
         </tr>
         <tr>
-            <td rowspan="3"><b>Samsung Care+ for Business</b></td>
-            <td>Pending</td>
-            <td>A reseller uploaded a device that's awaiting your approval.</td>
+            <td rowspan="7"><b>Samsung Care+ for Business</b></td>
+            <td>Active</td>
+            <td>The device is registed with the insurer.</td>
+        </tr>
+        <tr>
+            <td>Active Pending</td>
+            <td>The device is being registered to the insurer's system. You'll receive a notification once the registration is complete.</td>
         </tr>
         <tr>
             <td>Approved</td>
             <td>The device was approved, but you still need to assign it a license for Samsung Care+ for Business coverage.</td>
         </tr>
         <tr>
-            <td>Active Pending</td>
-            <td>The device is being registered to the insurer's system. You'll receive a notification once the registration is complete.</td>
+            <td>Pending</td>
+            <td>A reseller uploaded a device that's awaiting your approval.</td>
+        </tr>
+        <tr>
+            <td>Cancelled</td>
+            <td>The license is cancelled.</td>
+        </tr>
+        <tr>
+            <td>Expired</td>
+            <td>The license is expired.</td>
+        </tr>
+        <tr>
+            <td>Failed</td>
+            <td>The license couldn't be applied to an approved device.</td>
         </tr>
     </tbody>
 </table></div>

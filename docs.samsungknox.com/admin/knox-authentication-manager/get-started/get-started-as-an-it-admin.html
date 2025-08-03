@@ -423,7 +423,7 @@
             </div>
             
 
-  <p><span>Last updated April  9th, 2025</span></p>
+  <p><span>Last updated July  30th, 2025</span></p>
 
 
     
@@ -468,19 +468,6 @@
       
       
       
-        
-      
-      
-      
-      
-      
-        
-      
-      
-      
-      
-      
-      
       
         
       
@@ -493,8 +480,32 @@
       
       
       
+      
+      
+      
         
       
+      
+      
+      
+      
+        
+      
+      
+      
+      
+        
+      
+      
+      
+      
+        
+      
+      
+      
+      
+      
+        
       
       
       
@@ -529,6 +540,9 @@
 <p>Knox Authentication Manager can be configured to launch with or without the <strong>Omnissa Workspace ONE Launcher</strong>. For more information, see <a href="https://docs.omnissa.com/bundle/workspaceonelauncherVSaaS/page/AWLAUNCHERINTRO.html" target="_blank">About Omnissa Workspace ONE Launcher</a> in the UEM&rsquo;s documentation.</p>
 <p><strong>Microsoft Intune</strong></p>
 <p>Knox Authentication Manager can be configured to launch with or without the <strong>Intune Managed Home Screen</strong> app. For more information, see <a href="https://learn.microsoft.com/en-us/mem/intune/apps/app-configuration-managed-home-screen-app" target="_blank">Configure Managed Home Screen app</a> in the Microsoft Intune documentation.</p>
+<p><strong>Okta</strong></p>
+<p>Currently, Knox Authentication Manager only supports Okta if it&rsquo;s the identity provider (IdP) for Entra ID, connected with WS-Fed integration. For more information, see <a href="https://help.okta.com/en-us/content/topics/apps/apps-about-wsfed.htm" target="_blank">WS-Fed app integrations</a> in Okta&rsquo;s documentation.</p>
+<p>As of the v1.9 release, Knox Authentication Manager doesn&rsquo;t support Okta without Entra ID, or Entra ID integrated as the IdP for Okta.</p>
 <p><strong>Knox Manage or SOTI MobiControl</strong></p>
 <p>If you&rsquo;re using Knox Manage or SOTI MobiControl, you can configure your devices to launch Knox Authentication Manager in <a href="../../knox-manage/kiosk-devices/create-kiosk-devices/create-a-kiosk-using-the-kiosk-wizard.html"><strong>Kiosk</strong> mode</a> (Knox Manage) or <a href="https://www.soti.net/mc/help/v15.6/en/console/reference/dialogs/profiles/androidplus/profile_kioskmode_androidplus.html" target="_blank"><strong>Lockdown</strong> mode</a> (MobiControl). These modes let you constrain users to a limited set of apps and settings after they sign in, but they are not a firm requirement for the app.</p>
 <h2 id="step-5-add-knox-authentication-manager-as-a-managed-app-in-your-uem-or-emm">Step 5: Add Knox Authentication Manager as a managed app in your UEM or EMM</h2>
@@ -557,14 +571,16 @@
 <h2 id="step-6-configure-and-assign-the-app">Step 6: Configure and assign the app</h2>
 <p>In your UEM or EMM, you&rsquo;ll need to create a managed configuration for Knox Authentication Manager before deploying it to your enterprise devices. See <a href="../how-to-guides/configure-app-policies.html">Configure app policies</a> for a list of available policies, descriptions, and options. Once you configure the Knox Authentication Manager policies, assign and install the app on your devices.</p>
 <h3 id="microsoft-intune">Microsoft Intune</h3>
-<p>Currently, you can only create a managed configuration for Microsoft Intune <a href="https://learn.microsoft.com/en-us/mem/intune-service/apps/app-configuration-policies-use-android#enter-json-data" target="_blank">using a JSON file</a>. To configure app policies, download and use the following JSON file.</p>
-<p><a href="../assets/kam-sample-json-intune-1-8.json">Download JSON file for Intune</a></p>
+<p>Currently, you can only create a managed configuration for Microsoft Intune <a href="https://learn.microsoft.com/en-us/mem/intune-service/apps/app-configuration-policies-use-android#enter-json-data" target="_blank">using a JSON file</a>. To configure app policies, download and use one of the following JSON files.</p>
+<ul>
+<li><a href="../assets/kam-sample-json-intune-1-9-MHS.json">JSON file for Microsoft Intune with the Managed Home Screen app</a></li>
+<li><a href="../assets/kam-sample-json-intune-1-9-non-MHS.json">JSON file for Microsoft Intune without the Managed Home Screen app</a></li>
+</ul>
 <p>Refer to the <a href="../how-to-guides/configure-app-policies.html">app policies</a> page for an explanation of each key-value pair, then edit the file according to your fleet&rsquo;s deployment needs. In the JSON file:</p>
 <ol>
 <li>Keys denoted with the value <code>CHANGEME</code> must be edited for the configuration to work.</li>
 <li>In case of a policy with a set number of choices, all the available options are listed. Otherwise, default values are used where possible.</li>
 </ol>
-<div class="notice-note"><p>If you wish to use Microsoft Intune without the Managed Home Screen app, set the value of the <code>doKAMMainLoginApp</code> policy to <code>KAM_INTUNE</code>.</p></div>
 <h3 id="required-omnissa-workspace-one-activities">Required Omnissa Workspace ONE activities</h3>
 <p>If you&rsquo;re a Omnissa Workspace ONE customer, you must also add several activities in the Workspace ONE console. When configuring a device profile, enable the following Launcher settings and enter the package and class name pairs listed below. For more information on Launcher settings, see <a href="https://docs.omnissa.com/bundle/workspaceonelauncher/page/AWLAUNCHERINTRO.html#configure_workspace_one_launcher_profile" target="_blank">Configure Workspace ONE Launcher Profile</a> in the Omnissa Workspace ONE documentation.</p>
 <h4 id="check-in-check-out-cico-features">Check In Check Out (CICO) Features</h4>
@@ -761,6 +777,9 @@
 
 <p><img src="../assets/configuration-error.jpg" class="image-block-scale-30 img-thumbnail" alt="Configuration error on Knox Authentication Manager app menu" /></p>
 <p>To identify the policy causing this error, you can view Knox Authentication Manager policies directly from the app&rsquo;s <strong>About</strong> screen. For more information, see <a href="../how-to-guides/view-policies-on-device.html">View policies on device</a>.</p>
+<h3 id="supported-languages">Supported languages</h3>
+<p>Knox Authentication Manager will align with the device&rsquo;s system language to determine which language to use.</p>
+<p>For a complete list of supported languages, see <a href="../kbas/kba-1621-what-languages-does-kam-support.html">What languages does Knox Authentication Manager support?</a></p>
 <div class="footnotes" role="doc-endnotes">
 <hr>
 <ol>
@@ -792,6 +811,7 @@
         <li><a href="get-started-as-an-it-admin.html#required-omnissa-workspace-one-activities">Required Omnissa Workspace ONE activities</a></li>
         <li><a href="get-started-as-an-it-admin.html#other-recommended-settings">Other recommended settings</a></li>
         <li><a href="get-started-as-an-it-admin.html#troubleshoot-configuration-errors">Troubleshoot configuration errors</a></li>
+        <li><a href="get-started-as-an-it-admin.html#supported-languages">Supported languages</a></li>
       </ul>
     </li>
   </ul>
