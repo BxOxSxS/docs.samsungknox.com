@@ -55,12 +55,13 @@
 
   
 
-
-<script src="https://dc-chbt.samsungknox.com/copilot/index.js?noCache=1755042278"></script>
-<script>
-    const relPath = "\/knox-deployment-program\/comparing-gen2-and-gen1-knox-deployment-program-apis\/";
-    const prePath = relPath  === '/' ? "." : window.location.href.split(relPath)[0];
-    window.chatbot.init("https:\/\/dc-chbt.samsungknox.com", prePath + "/assets/styles/chatbot.css");
+<script onload="initBot()" defer src="https://dc-chbt.samsungknox.com/copilot/index.js?noCache=1755882897"></script>
+<script defer>
+    function initBot(){
+      const relPath = "\/knox-deployment-program\/comparing-gen2-and-gen1-knox-deployment-program-apis\/";
+      const prePath = relPath  === '/' ? "." : window.location.href.split(relPath)[0];
+      window.chatbot.init("https:\/\/dc-chbt.samsungknox.com", prePath + "/assets/styles/chatbot.css");
+    }
 </script>
   
 <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-P24TWCG" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
@@ -299,7 +300,8 @@
             </div>
             
 
-  
+  <p><span>Last updated August  19th, 2025</span></p>
+
 
     
 
@@ -316,21 +318,25 @@
       
       
       
-        <p>The Knox Deployment Program APIs allow participating carriers/resellers to integrate the features found on the Knox Deployment Program Portal with their own systems for verifying the ownership of the devices purchased by their customers using Knox cloud services such as Knox Configure and Knox Mobile Enrollment. The features include uploading and deleting device IDs (IMEIs/serial numbers).</p>
-<p>In Knox Deployment Program APIs Gen2, the latest generation, the Knox Deployment Program APIs have been restructured to simplify your workflow and enhance API authentication security.</p>
+        
+      
+      
+      
+      
+        <p>The Knox Deployment Program API allows participating carriers and resellers to integrate Knox Deployment Program Portal features with their own systems &mdash; for example, to verify the ownership of devices purchased by their customers using Knox cloud services such as Knox Configure and Knox Mobile Enrollment.</p>
+<p>In Gen2, the Knox Deployment Program API has been restructured to simplify your workflow and enhance API authentication security.</p>
 <ul>
 <li>
-<p>Participating carriers and resellers wishing to integrate the features found on the Knox Deployment Program portal are advised to use the Knox Deployment Program APIs Gen2. You can learn more about them and how to use those calls in the Gen2 integration guide.</p>
+<p>Participating carriers and resellers wishing to integrate features found on the Knox Deployment Program portal should use the Gen2 API.</p>
 </li>
 <li>
-<p>If you would still like to use the previous generation of the Knox Deployment Program APIs, you can see its Gen1 integration guide. The Knox Deployment Program APIs Gen1 will continue to work and be supported for existing users.</p>
+<p>The Gen1 API is ony supported for existing resellers who have a Gen1 static <code>apiKey</code>.</p>
 </li>
 </ul>
-<div class="notice-important"><p>Knox Deployment Program APIs Gen1 are only used for existing resellers who already have the Gen1 static <code>apiKey</code>. Otherwise, if you are not using the static key or you are a new reseller, please use the Knox Deployment Program APIs Gen2. You can move from Gen1 to Gen2 by applying to the Samsung Admin portal, but refrain from combining or interchanging between these two generations.</p></div>
+<div class="notice-important"><p>If you are not using the static key or you are a new reseller, please use the Gen2 API. You can move from Gen1 to Gen2 using the Samsung Admin portal, but refrain from combining or interchanging these two generations.</p></div>
 <h2 id="authentication">Authentication</h2>
-<p>In the Knox Deployment Program APIs Gen1, a static API license key called <code>X-WSM-API-TOKEN</code> is used. Since it is static, it never expires.</p>
-<p>In the Knox Deployment Program APIs Gen2, the static API license key has been replaced with an authentication JSON Web Token called <code>X-KNOX-APITOKEN</code>. This token expires every 30 minutes, making it more secure than the Gen1 license key, which never expires. The token consists of a Client Identifier and unique public-private key pair.</p>
-<p>To use the Gen2 APIs, follow the instructions in the Knox Cloud Authentication Guide to generate the new authentication token. After generating your new token, you can use it by including it as a header parameter in your HTTP requests.</p>
+<p>The Knox Deployment Program Gen2 API lets you authenticate calls using an OAuth 2.0 <code>Authorization</code> token. See the <a href="../../knox-cloud-authentication/knox-oauth-2-0-authentication.html">Knox OAuth 2.0 API reference</a> for details on how to generate a token. After generating your new token, you can use include it as a header parameter in your calls.</p>
+<p>In the Gen1 API, a static API license key called <code>X-WSM-API-TOKEN</code> is used.</p>
 
 
 
@@ -450,8 +456,8 @@
 
 
 <p><img src="../assets/gen-compare.png" class="image-block-scale-90 img-thumbnail" alt="Deployment program comparison" /></p>
-<h2 id="rest-api-comparison">REST API Comparison</h2>
-<p>The table bellow illustrates how APIs in the Knox Deployment Program APIs Gen1 map to those in Gen2:</p>
+<h2 id="rest-api-comparison-across-api-generations">REST API comparison across API generations</h2>
+<p>The following table shows how existing Gen1 API endpoints map to Gen2 ones:</p>
 <div class="overflow-auto my-3"><table>
     <tr>
         <th scope="col">Feature</th>
@@ -493,14 +499,14 @@
         <td>GET /kcs/v1/rp/devices</td>
     </tr>
 </table></div>
-<h2 id="device-provisioning">Device Provisioning</h2>
-<p>In Knox Deployment Program APIs Gen1, two systems of provisioning devices existed &mdash; single-tier and two-tier. Different request parameters were used for saving devices and querying transaction status.</p>
+<h2 id="device-provisioning-across-api-generations">Device provisioning across API generations</h2>
+<p>In the Gen1 API, two systems of provisioning devices existed &mdash; single-tier and two-tier. Different request parameters were used for saving devices and querying transaction status.</p>
 <p>Each system had a different use case:</p>
 <ul>
 <li><strong>Single-tier</strong> &mdash; A single reseller provisions devices for a customer.</li>
 <li><strong>Two-tier</strong> &mdash; A vendor provisions devices for a customer via a distributor. A vendorId must be specified in the request body.</li>
 </ul>
-<p>In Knox Deployment Program APIs Gen2, we simplify the workflow such that there is no distinction between tiers. You use the same APIs for either system or use case, with the exception that you provide different request parameters for certain APIs.</p>
+<p>In the Gen2 API, the workflow has been simplified so that there is no distinction between tiers. You use the same APIs for either system or either use case. Your request parameters for certain endpoints will vary accordingly.</p>
 
             
           </div>
@@ -510,8 +516,8 @@
   <nav id="TableOfContents">
   <ul>
     <li><a href="../comparing-gen2-and-gen1-knox-deployment-program-apis.html#authentication">Authentication</a></li>
-    <li><a href="../comparing-gen2-and-gen1-knox-deployment-program-apis.html#rest-api-comparison">REST API Comparison</a></li>
-    <li><a href="../comparing-gen2-and-gen1-knox-deployment-program-apis.html#device-provisioning">Device Provisioning</a></li>
+    <li><a href="../comparing-gen2-and-gen1-knox-deployment-program-apis.html#rest-api-comparison-across-api-generations">REST API comparison across API generations</a></li>
+    <li><a href="../comparing-gen2-and-gen1-knox-deployment-program-apis.html#device-provisioning-across-api-generations">Device provisioning across API generations</a></li>
   </ul>
 </nav>
 </aside>

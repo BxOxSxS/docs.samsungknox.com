@@ -55,12 +55,13 @@
 
   
 
-
-<script src="https://dc-chbt.samsungknox.com/copilot/index.js?noCache=1755045596"></script>
-<script>
-    const relPath = "\/knox-asset-intelligence\/dashboard\/security\/soc-enablement\/sentinel\/configure-kai\/";
-    const prePath = relPath  === '/' ? "." : window.location.href.split(relPath)[0];
-    window.chatbot.init("https:\/\/dc-chbt.samsungknox.com", prePath + "/assets/styles/chatbot.css");
+<script onload="initBot()" defer src="https://dc-chbt.samsungknox.com/copilot/index.js?noCache=1755896732"></script>
+<script defer>
+    function initBot(){
+      const relPath = "\/knox-asset-intelligence\/dashboard\/security\/soc-enablement\/sentinel\/configure-kai\/";
+      const prePath = relPath  === '/' ? "." : window.location.href.split(relPath)[0];
+      window.chatbot.init("https:\/\/dc-chbt.samsungknox.com", prePath + "/assets/styles/chatbot.css");
+    }
 </script>
   
 <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-P24TWCG" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
@@ -183,7 +184,7 @@
     <li class="mt-2">
     
     <div class="d-flex justify-content-between">
-      <a class="body-5 text-black fw-light" href="../../../../videos/index.html">How-to videos</a>
+      <a class="body-5 text-black fw-light" href="../../../../videos.html">How-to videos</a>
     </div>
       
     </li>
@@ -1218,6 +1219,11 @@
       
       
       
+        
+      
+      
+      
+      
         <div class="notice-important"><p>This step requires data from your Sentinel environment. Do not proceed unless you’ve completed all of the steps in the <a href="configure-sentinel.html">Sentinel configuration</a> process.</p></div>
 <h2 id="connect-to-sentinel">Connect to Sentinel</h2>
 <p>After you&rsquo;ve configured Sentinel, you&rsquo;re ready to configure your Knox Asset Intelligence console. From your <strong>Dashboard Settings</strong>, do the following:</p>
@@ -1262,16 +1268,25 @@
 </li>
 </ol>
 <h2 id="configure-security-log-settings">Configure Security log settings</h2>
+
+
+
+
+
+
+
+
+<p><img src="../../../../assets/kai-settings-sec-logs.png" class="img-fluid img-thumbnail" alt="Essential security events" /></p>
 <p>After you&rsquo;ve established a connection with Sentinel, you can choose which events get sent to your Security Operations Center. To do this:</p>
 <ol>
 <li>
-<p>(Optional) Select the device groups you want to send data for. If no groups are selected, then security events will be sent for all devices in the fleet.</p>
+<p>(Optional) Select the <strong>Device group</strong> you want to send data for. If no groups is selected, then security events will be sent for all devices in the fleet.</p>
 </li>
 <li>
 <p>Select your event types:</p>
 <ul>
-<li><strong>Essential Security Events</strong> include a list of signals curated by the Samsung Knox team that balances both device performance and log pressure in your Sentinel environment.</li>
-<li><strong>Advanced Configuration</strong> includes several additional advanced event types. You can choose to send only these additional events, or send all security event signals to your Sentinel environment. Note that selecting all events will increase your log sizes and Sentinel data consumption.</li>
+<li><strong>Essential Security Events</strong>: When you select this option, a list of 13 events curated by the Samsung Knox team is automatically selected for you. This list balances both device performance and log pressure in your Sentinel environment.</li>
+<li><strong>Advanced Configuration</strong>: When you select this option, the Essential Security Events are automatically selected. You can choose to add additional advanced security events, remove essential events, or send all security event signals to your Sentinel environment. Click <strong>Update</strong> to add advanced security events.</li>
 </ul>
 
     
@@ -1281,7 +1296,8 @@
     
     
     
-    <p><img src="../../../../assets/kai-settings-sec-logs.png" class="img-fluid img-thumbnail" alt="Essential security events" /></p>
+    <p><img src="../../../../assets/advanced-events-update.jpg" class="img-fluid img-thumbnail" alt="advanced security events" /></p>
+<div class="notice-note"><p>Selecting all events will increase your log sizes and Sentinel data consumption.</p></div>
 </li>
 <li>
 <p>Click <strong>SAVE</strong> to confirm your security log settings.</p>

@@ -55,12 +55,13 @@
 
   
 
-
-<script src="https://dc-chbt.samsungknox.com/copilot/index.js?noCache=1755042278"></script>
-<script>
-    const relPath = "\/knox-deployment-program\/tutorial-knox-deployment-program-integration\/";
-    const prePath = relPath  === '/' ? "." : window.location.href.split(relPath)[0];
-    window.chatbot.init("https:\/\/dc-chbt.samsungknox.com", prePath + "/assets/styles/chatbot.css");
+<script onload="initBot()" defer src="https://dc-chbt.samsungknox.com/copilot/index.js?noCache=1755882897"></script>
+<script defer>
+    function initBot(){
+      const relPath = "\/knox-deployment-program\/tutorial-knox-deployment-program-integration\/";
+      const prePath = relPath  === '/' ? "." : window.location.href.split(relPath)[0];
+      window.chatbot.init("https:\/\/dc-chbt.samsungknox.com", prePath + "/assets/styles/chatbot.css");
+    }
 </script>
   
 <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-P24TWCG" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
@@ -299,7 +300,7 @@
             </div>
             
 
-  <p><span>Last updated July  29th, 2025</span></p>
+  <p><span>Last updated August  19th, 2025</span></p>
 
 
     
@@ -387,7 +388,7 @@
 <p>Here are some common Knox Deployment Program API operations.</p>
 <p>Some Knox Deployment Program operations involve performing an action on a customer account. To test these endpoints, you&rsquo;ll need a separate Samsung Knox customer account. For more details, see <a href="../../admin/fundamentals/register-for-samsung-knox/create-a-samsung-knox-account.html" target="_blank">Create a Samsung Knox account</a>.</p>
 <h3 id="upload-devices">Upload devices</h3>
-<p>Upload devices to your customer&rsquo;s account with <a href="api.html#tag/Management/operation/uploadDevicesUsingPUT" target="_blank">PUT /kcs/v1/rp/devices/upload</a>.</p>
+<p>Upload devices to your customer&rsquo;s account with <a href="api.html#tag/Endpoints/operation/uploadDevicesUsingPUT" target="_blank">PUT /kcs/v1/rp/devices/upload</a>.</p>
 <p>In the header, include your signed access token from the previous step. Then, make sure you include the following required body parameters:</p>
 <ul>
 <li><code>customerId</code> – ID of the customer to upload devices for.</li>
@@ -396,10 +397,10 @@
 <li><code>devices</code> - An array of device IMEIs or Serial Numbers to be uploaded.</li>
 <li><code>type</code> -  Device type. <code>IMEI</code>, <code>MEID</code>, or <code>SN</code>.</li>
 </ul>
-<p>There are also optional parameters you can set for this request. To learn more, see the <a href="api.html#tag/Management/operation/uploadDevicesUsingPUT" target="_blank">Knox Deployment Program API reference</a>.</p>
+<p>There are also optional parameters you can set for this request. To learn more, see the <a href="api.html#tag/Endpoints/operation/uploadDevicesUsingPUT" target="_blank">Knox Deployment Program API reference</a>.</p>
 <p>Here&rsquo;s a cURL request example that calls the upload operation.</p>
 <div class="highlight"><pre tabindex="0" style=";-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>curl --request PUT <span style="color:#b62;font-weight:bold">\
-</span></span></span><span style="display:flex;"><span><span style="color:#b62;font-weight:bold"></span>  --url https://us-kcs-api.samsungknox.com/kcs/v1/rp/devices/upload <span style="color:#b62;font-weight:bold">\
+</span></span></span><span style="display:flex;"><span><span style="color:#b62;font-weight:bold"></span>  --url https://api.samsungknox.com/kcs/v1/rp/devices/upload <span style="color:#b62;font-weight:bold">\
 </span></span></span><span style="display:flex;"><span><span style="color:#b62;font-weight:bold"></span>  --header <span style="color:#ba2121">&#39;Authorization: Bearer kz06....L09Wc&#39;</span> <span style="color:#b62;font-weight:bold">\
 </span></span></span><span style="display:flex;"><span><span style="color:#b62;font-weight:bold"></span>  --header <span style="color:#ba2121">&#39;content-type: application/json&#39;</span> <span style="color:#b62;font-weight:bold">\
 </span></span></span><span style="display:flex;"><span><span style="color:#b62;font-weight:bold"></span>  --data <span style="color:#ba2121">&#39;{
@@ -412,15 +413,15 @@
 </span></span></span><span style="display:flex;"><span><span style="color:#ba2121">  &#34;type&#34;: &#34;string&#34;
 </span></span></span><span style="display:flex;"><span><span style="color:#ba2121">}&#39;</span>
 </span></span></code></pre></div><h3 id="list-device-transactions-status">List device transactions status</h3>
-<p>Get a list of device transaction statuses with <a href="api.html#tag/Management/operation/getDeviceTransactionStatusUsingGET" target="_blank">GET /kcs/v1/rp/devices/status</a>.</p>
+<p>Get a list of device transaction statuses with <a href="api.html#tag/Endpoints/operation/getDeviceTransactionStatusUsingGET" target="_blank">GET /kcs/v1/rp/devices/status</a>.</p>
 <p>In the header, include your signed access token from the previous step. Then, make sure you include the <code>resellerId</code> as a query parameter in your request.</p>
-<p>There are also optional query parameters you can set for filtering. To learn more, see the <a href="api.html#tag/Management/operation/getDeviceTransactionStatusUsingGET" target="_blank">Knox Deployment Program API reference</a>.</p>
+<p>There are also optional query parameters you can set for filtering. To learn more, see the <a href="api.html#tag/Endpoints/operation/getDeviceTransactionStatusUsingGET" target="_blank">Knox Deployment Program API reference</a>.</p>
 <p>Here&rsquo;s a cURL request example that calls this operation.</p>
 <div class="highlight"><pre tabindex="0" style=";-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>curl --request GET <span style="color:#b62;font-weight:bold">\
-</span></span></span><span style="display:flex;"><span><span style="color:#b62;font-weight:bold"></span>  --url https://us-kcs-api.samsungknox.com/kcs/v1/rp/devices?resellerId<span style="color:#666">=</span><span style="color:#ba2121">&#34;your-reseller-id&#34;</span> <span style="color:#b62;font-weight:bold">\
+</span></span></span><span style="display:flex;"><span><span style="color:#b62;font-weight:bold"></span>  --url https://api.samsungknox.com/kcs/v1/rp/devices?resellerId<span style="color:#666">=</span><span style="color:#ba2121">&#34;your-reseller-id&#34;</span> <span style="color:#b62;font-weight:bold">\
 </span></span></span><span style="display:flex;"><span><span style="color:#b62;font-weight:bold"></span>  --header <span style="color:#ba2121">&#39;Authorization: Bearer kz06....L09Wc&#39;</span>
 </span></span></code></pre></div><h3 id="delete-devices">Delete devices</h3>
-<p>Delete devices with <a href="api.html#tag/Management/operation/deleteDevicesUsingPUT" target="_blank">PUT /kcs/v1/rp/devices/delete</a>.</p>
+<p>Delete devices with <a href="api.html#tag/Endpoints/operation/deleteDevicesUsingPUT" target="_blank">PUT /kcs/v1/rp/devices/delete</a>.</p>
 <p>In the header, include your signed access token from the previous step. Then, make sure you include the following required body parameters:</p>
 <ul>
 <li><code>customerId</code> – ID of the customer to delete devices for.</li>
@@ -430,9 +431,9 @@
 <li><code>removeTransactionId</code> -  Transaction ID of a device upload operation. Allows you to delete devices from that specific upload. Required if <code>devices</code> is not provided.</li>
 <li><code>type</code> - Device type. <code>IMEI</code>, <code>MEID</code>, or <code>SN</code>. Required if <code>devices</code> is provided and <code>removeTransactionId</code> is not provided.</li>
 </ul>
-<p>There are also optional parameters you can set for this request. To learn more, see the <a href="api.html#tag/Management/operation/deleteDevicesUsingPUT" target="_blank">Knox Deployment Program API reference</a>.</p>
+<p>There are also optional parameters you can set for this request. To learn more, see the <a href="api.html#tag/Endpoints/operation/deleteDevicesUsingPUT" target="_blank">Knox Deployment Program API reference</a>.</p>
 <div class="highlight"><pre tabindex="0" style=";-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>curl --request PUT <span style="color:#b62;font-weight:bold">\
-</span></span></span><span style="display:flex;"><span><span style="color:#b62;font-weight:bold"></span>  --url https://us-kcs-api.samsungknox.com/kcs/v1/rp/devices/delete <span style="color:#b62;font-weight:bold">\ </span>
+</span></span></span><span style="display:flex;"><span><span style="color:#b62;font-weight:bold"></span>  --url https://api.samsungknox.com/kcs/v1/rp/devices/delete <span style="color:#b62;font-weight:bold">\ </span>
 </span></span><span style="display:flex;"><span>  --header <span style="color:#ba2121">&#39;Authorization: Bearer kz06....L09Wc&#39;</span> <span style="color:#b62;font-weight:bold">\ </span>
 </span></span><span style="display:flex;"><span>  --header <span style="color:#ba2121">&#39;content-type: application/json&#39;</span> <span style="color:#b62;font-weight:bold">\ </span>
 </span></span><span style="display:flex;"><span>  --data <span style="color:#ba2121">&#39;{ 
@@ -444,19 +445,19 @@
 </span></span></span><span style="display:flex;"><span><span style="color:#ba2121">    ]
 </span></span></span><span style="display:flex;"><span><span style="color:#ba2121">  }&#39;</span>
 </span></span></code></pre></div><h3 id="list-devices">List devices</h3>
-<p>Get a list of devices uploaded with <a href="api.html#tag/Management/operation/getDevicesUsingGET" target="_blank">GET /kcs/v1/rp/devices</a>.</p>
+<p>Get a list of devices uploaded with <a href="api.html#tag/Endpoints/operation/getDevicesUsingGET" target="_blank">GET /kcs/v1/rp/devices</a>.</p>
 <p>In the header, include your signed access token from the previous step. Then, make sure you include the <code>resellerId</code> as a query parameter in your request.</p>
-<p>There are also optional query parameters you can set for filtering. To learn more, see the <a href="api.html#tag/Management/operation/getDevicesUsingGET" target="_blank">Knox Deployment Program API reference</a>.</p>
+<p>There are also optional query parameters you can set for filtering. To learn more, see the <a href="api.html#tag/Endpoints/operation/getDevicesUsingGET" target="_blank">Knox Deployment Program API reference</a>.</p>
 <p>Here&rsquo;s a cURL request example that calls this operation.</p>
 <div class="highlight"><pre tabindex="0" style=";-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>curl --request GET <span style="color:#b62;font-weight:bold">\
-</span></span></span><span style="display:flex;"><span><span style="color:#b62;font-weight:bold"></span>  --url https://us-kcs-api.samsungknox.com/kcs/v1/rp/devices?resellerId<span style="color:#666">=</span><span style="color:#ba2121">&#34;your-reseller-id&#34;</span> <span style="color:#b62;font-weight:bold">\
+</span></span></span><span style="display:flex;"><span><span style="color:#b62;font-weight:bold"></span>  --url https://api.samsungknox.com/kcs/v1/rp/devices?resellerId<span style="color:#666">=</span><span style="color:#ba2121">&#34;your-reseller-id&#34;</span> <span style="color:#b62;font-weight:bold">\
 </span></span></span><span style="display:flex;"><span><span style="color:#b62;font-weight:bold"></span>  --header <span style="color:#ba2121">&#39;Authorization: Bearer kz06....L09Wc&#39;</span>
 </span></span></code></pre></div><h3 id="list-customers">List customers</h3>
-<p>Get a list of customers with <a href="api.html#tag/Management/operation/getAssociatedCustomersUsingGET" target="_blank">GET /kcs/v1/rp/customers/list</a>.</p>
+<p>Get a list of customers with <a href="api.html#tag/Endpoints/operation/getAssociatedCustomersUsingGET" target="_blank">GET /kcs/v1/rp/customers/list</a>.</p>
 <p>In the header, include your signed access token from the previous step. Then, make sure you include the <code>resellerId</code> as a query parameter in your request.</p>
-<p>There are also optional query parameters you can set for filtering. To learn more, see the <a href="api.html#tag/Management/operation/getAssociatedCustomersUsingGET" target="_blank">Knox Deployment Program API reference</a>.</p>
+<p>There are also optional query parameters you can set for filtering. To learn more, see the <a href="api.html#tag/Endpoints/operation/getAssociatedCustomersUsingGET" target="_blank">Knox Deployment Program API reference</a>.</p>
 <div class="highlight"><pre tabindex="0" style=";-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>curl --request GET <span style="color:#b62;font-weight:bold">\
-</span></span></span><span style="display:flex;"><span><span style="color:#b62;font-weight:bold"></span>  --url https://us-kcs-api.samsungknox.com/kcs/v1/rp/customers/list?resellerId<span style="color:#666">=</span><span style="color:#ba2121">&#34;your-reseller-id&#34;</span> <span style="color:#b62;font-weight:bold">\
+</span></span></span><span style="display:flex;"><span><span style="color:#b62;font-weight:bold"></span>  --url https://api.samsungknox.com/kcs/v1/rp/customers/list?resellerId<span style="color:#666">=</span><span style="color:#ba2121">&#34;your-reseller-id&#34;</span> <span style="color:#b62;font-weight:bold">\
 </span></span></span><span style="display:flex;"><span><span style="color:#b62;font-weight:bold"></span>  --header <span style="color:#ba2121">&#39;Authorization: Bearer kz06....L09Wc&#39;</span>
 </span></span></code></pre></div><h3 id="other-api-operations">Other API operations</h3>
 <p>Evaluate any additional operations which you might wish to integrate. For more information, see the <a href="api.html" target="_blank">Knox Deployment Program API reference</a>.</p>

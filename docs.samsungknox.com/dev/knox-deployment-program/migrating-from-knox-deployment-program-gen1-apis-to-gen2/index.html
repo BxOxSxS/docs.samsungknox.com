@@ -55,12 +55,13 @@
 
   
 
-
-<script src="https://dc-chbt.samsungknox.com/copilot/index.js?noCache=1755042278"></script>
-<script>
-    const relPath = "\/knox-deployment-program\/migrating-from-knox-deployment-program-gen1-apis-to-gen2\/";
-    const prePath = relPath  === '/' ? "." : window.location.href.split(relPath)[0];
-    window.chatbot.init("https:\/\/dc-chbt.samsungknox.com", prePath + "/assets/styles/chatbot.css");
+<script onload="initBot()" defer src="https://dc-chbt.samsungknox.com/copilot/index.js?noCache=1755882897"></script>
+<script defer>
+    function initBot(){
+      const relPath = "\/knox-deployment-program\/migrating-from-knox-deployment-program-gen1-apis-to-gen2\/";
+      const prePath = relPath  === '/' ? "." : window.location.href.split(relPath)[0];
+      window.chatbot.init("https:\/\/dc-chbt.samsungknox.com", prePath + "/assets/styles/chatbot.css");
+    }
 </script>
   
 <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-P24TWCG" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
@@ -299,7 +300,8 @@
             </div>
             
 
-  
+  <p><span>Last updated August  19th, 2025</span></p>
+
 
     
 
@@ -341,27 +343,22 @@
       
       
       
-        <p>The Knox Deployment Program is designed for Samsung device resellers, including carriers and distributors, who purchase devices on behalf of enterprise customers. Knox Deployment Program is the underlying backbone of Samsung&rsquo;s Knox Mobile Enrollment, Knox Configure, and other Knox cloud services, as it supplies information about enterprise devices to other services.</p>
-<p>This guide shows how to migrate from Knox Deployment Program REST APIs of the 1st generation (GEN1) to the 2nd generation (GEN2). In GEN2, the latest generation, the Knox Deployment Program APIs have been restructured to simplify your workflow and enhance API authentication security.</p>
-<h2 id="audience">Audience</h2>
-<p>This guide is intended for web developers working for Samsung device resellers, who purchase devices on behalf of enterprise customers and use their own websites to identify which customers own the devices.</p>
-<h2 id="introduction">Introduction</h2>
-<p>Knox Deployment Program Gen1 APIs were launched in late 2017; this was the initial release with a number of APIs and basic authentication.</p>
-<p>In Knox Deployment Program APIs Gen2, the Knox Deployment Program APIs have been restructured to simplify your workflow and enhance API authentication security. The Gen1 static API authentication key <code>X-WSM-API-TOKEN</code> has been replaced with an authentication JSON Web Token called <code>x-knox-apitoken</code>. This token expires every 30 minutes, making it more secure than the Gen1 license key.</p>
-<p>For more detail about the API changes, see <a href="../release-notes.html">Release notes in Knox Deployment Program Gen2</a> and <a href="../comparing-gen2-and-gen1-knox-deployment-program-apis.html">Comparing Gen2 and Gen1 Knox Deployment Program APIs</a>.</p>
+        <p>This guide covers how to migrate from the Knox Deployment Program Gen1 API to Gen2, which is the latest generation. The Gen2 API features restructured endpoints to simplify your workflow and enhance security.</p>
+<h2 id="about-gen1-and-gen2-apis">About Gen1 and Gen2 APIs</h2>
+<p>The Knox Deployment Program Gen1 API was launched in late 2017. This was the initial release with a limited number of endpoints and basic authentication.</p>
+<p>In Gen2, the API has been significantly restructured to simplify your workflow, and also supports OAuth 2.0 authentication. The Gen1 static API authentication key <code>X-WSM-API-TOKEN</code> has been replaced with an <code>Authorization</code> token in Gen2, which is much more secure.</p>
+<p>For more details, refer to <a href="../release-notes.html">Release notes</a> and <a href="../comparing-gen2-and-gen1-knox-deployment-program-apis.html">Comparing Gen2 and Gen1 Knox Deployment Program APIs</a>.</p>
 <h2 id="server-urlchange">Server URL change</h2>
-<p>We will migrate from the following Gen1 API servers, which must be whitelisted in your network firewall as required:</p>
+<p>For the migration, the following Gen1 API servers must be whitelisted in your network firewall:</p>
 <ul>
 <li>https://eu-be-reseller.samsungknox.com (EU server)</li>
 <li>https://us-be-reseller.samsungknox.com (US server)</li>
 </ul>
-<p>To the following Gen2 API servers, which should also be whitelisted as required:</p>
+<p>To the following server will be used instead for Gen2, which also needs to be whitelisted in your firewall:</p>
 <ul>
-<li>https://eu-kcs-api.samsungknox.com (EU server)</li>
-<li>https://us-kcs-api.samsungknox.com (US server)</li>
+<li>https://api.samsungknox.com/kcs/v1/rp (global server)</li>
 </ul>
-<p>During migration/development, please use the new Gen2 server URL to test the APIs.</p>
-<p>You can stop using the Gen1 server URL once your Gen2 solution is live.</p>
+<p>During migration or development, please use the new Gen2 server URL to test the APIs. You can stop using the Gen1 server URL once your Gen2 solution is live.</p>
 <h2 id="request-for-the-knox-deployment-program-api-access">Request for the Knox Deployment Program API access</h2>
 <p>When you&rsquo;re using Gen1 APIs, your reseller portal dashboard has a reseller API key section, as shown below. This static API key is for API usage.</p>
 
@@ -753,8 +750,7 @@
 <aside class="table-of-headings">
   <nav id="TableOfContents">
   <ul>
-    <li><a href="index.html#audience">Audience</a></li>
-    <li><a href="index.html#introduction">Introduction</a></li>
+    <li><a href="index.html#about-gen1-and-gen2-apis">About Gen1 and Gen2 APIs</a></li>
     <li><a href="index.html#server-urlchange">Server URL change</a></li>
     <li><a href="index.html#request-for-the-knox-deployment-program-api-access">Request for the Knox Deployment Program API access</a></li>
     <li><a href="index.html#api-message-payload-and-response-format-changes">API message payload and response format changes</a></li>
