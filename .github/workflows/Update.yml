@@ -32,6 +32,7 @@ jobs:
     - name: Remove unnecessary files
       run: |
         find . -name '*.apk' -delete
+        find . -size +100M -delete
         rm -rf docs.samsungknox.com_${{ steps.date.outputs.date }}.tar.zst docs.samsungknox.com_${{ steps.date.outputs.date }}.tar
     - name: Add files and commit
       uses: EndBug/add-and-commit@v9
