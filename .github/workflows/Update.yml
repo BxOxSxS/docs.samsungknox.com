@@ -15,11 +15,15 @@ jobs:
     - name: Get current date
       id: date
       run: echo "::set-output name=date::$(date +%d.%m.%Y)"
+    - name: Install wget2
+      run: |
+        sudo apt update
+        sudo apt install -y wget2
     - name: Update with wget
       continue-on-error: true
       run: |
         rm -rf docs.samsungknox.com
-        wget -m -np -E -k -p -e robots=off --restrict-file-names=windows https://docs.samsungknox.com
+        wget2 -m -np -E -k -p -e robots=off --restrict-file-names=windows --max-threads 24 https://docs.samsungknox.com
     - name: Create archive
       run: |
         tar acf 'docs.samsungknox.com_${{ steps.date.outputs.date }}.tar' docs.samsungknox.com
