@@ -55,7 +55,7 @@
 
   
 
-<script onload="initBot()" defer src="https://dc-chbt.samsungknox.com/copilot/index.js?noCache=1756504880"></script>
+<script onload="initBot()" defer src="https://dc-chbt.samsungknox.com/copilot/index.js?noCache=1757116803"></script>
 <script defer>
     function initBot(){
       const relPath = "\/knox-platform-for-enterprise\/knox-service-plugin\/configure-advanced-policies\/device-controls\/";
@@ -533,28 +533,6 @@
     
     <div class="d-flex justify-content-between">
       <a class="body-5 text-black fw-light" href="../device-key-mapping/index.html">Device key mapping</a>
-    </div>
-    
-    </li>
-  
-  
-  
-    <li class="mt-2">
-    
-    
-    <div class="d-flex justify-content-between">
-      <a class="body-5 text-black fw-light" href="../device-key-mapping-for-non-rugged-devices/index.html">Device key mapping for non-rugged devices</a>
-    </div>
-    
-    </li>
-  
-  
-  
-    <li class="mt-2">
-    
-    
-    <div class="d-flex justify-content-between">
-      <a class="body-5 text-black fw-light" href="../device-key-mapping-for-rugged-devices/index.html">Device key mapping for rugged devices</a>
     </div>
     
     </li>
@@ -1284,7 +1262,7 @@
             </div>
             
 
-  <p><span>Last updated January  17th, 2025</span></p>
+  <p><span>Last updated September  2nd, 2025</span></p>
 
 
     
@@ -1343,6 +1321,12 @@
       
       
       
+        
+      
+      
+      
+      
+      
         <p>Device Controls are a specific group of advanced policies designed to manage APN, NFC, Wi-Fi, Bluetooth, boot banner, battery optimization, device hardware key mapping, and multiple-user policies, to name just a few of a growing list.</p>
 <ol>
 <li>
@@ -1391,7 +1375,7 @@
 <p>Optionally <strong>Allow user to change NFC state</strong> &mdash; set to <strong>True</strong> &mdash; to permit users to change NFC settings. Set to <strong>False</strong> to restrict users from changing NFC settings on their device.</p>
 </li>
 </ul>
-<h2 id="Wi-Fi">Wi-Fi policy</h2>
+<h2 id="wi-fi-policy">Wi-Fi policy</h2>
 <p>Refer to the following <strong>Wi-Fi Policy</strong> control values to configure a device&rsquo;s hotspot settings, and manage Wi-Fi profile, connection, and security settings:</p>
 <ul>
 <li>
@@ -1410,13 +1394,18 @@
 <p>Set the <strong>Allow open Wi-Fi connection</strong> value to <strong>True</strong> to permit devices to connect to an open and unsecured Wi-Fi access point resource. If set to <strong>False</strong>, non-secure access point connections are not permitted.</p>
 </li>
 <li>
-<p>Refer to the <strong>Allow Minimum Wi-Fi Security Requirement</strong> option to permit the user to select the minimum security requirement utilized for a Wi-Fi connection. This option is only configurable if the device is restricted from connecting to open Wi-Fi connections. Options include:</p>
+<p>Set <strong>Allow Wi-Fi sharing via mobile hotspot</strong> to <strong>False</strong> to prevent the device&rsquo;s current Wi-Fi network from being shared to tethering devices, and prevents the device user from manually enabling Wi-Fi sharing.</p>
+</li>
+<li>
+<p>Refer to the <strong>Allow Minimum Wi-Fi Security Requirement</strong> option to permit the user to select the minimum security level required for a Wi-Fi connection. This option is only configurable if the device is restricted from connecting to open Wi-Fi connections. Note that on devices running Knox 3.9 and higher, this policy is enforced based on the <a href="https://developer.android.com/reference/android/app/admin/DevicePolicyManager?hl=en#setMinimumRequiredWifiSecurityLevel%28int%29#setMinimumRequiredWifiSecurityLevel(int)" target="_blank">security level</a> and not the specific security type selected. For details, see the related <a href="https://docs.samsungknox.com/admin/knox-platform-for-enterprise/knox-service-plugin/kbas/kba-1588-minimum-wi-fi-security-requirement-policy-isnt-blocking-wi-fi">KBA</a>.</p>
+<p>Below are the available options and their associated security level:</p>
 <ul>
-<li>WEP</li>
-<li>WPA</li>
-<li>LEAP, PWD</li>
-<li>FAST, PEAP</li>
-<li>TLS, TTLS, SIM, AKA, AKA'</li>
+<li>WEP (Personal)</li>
+<li>WPA (Personal)</li>
+<li>SAE (Personal)</li>
+<li>PWD (Enterprise)</li>
+<li>PEAP (Enterprise)</li>
+<li>TLS, TTLS, SIM, AKA, AKA&rsquo; (Enterprise)</li>
 </ul>
 </li>
 <li>
@@ -1448,7 +1437,7 @@
 <div class="notice-note"><p>To completely disable the mobile hotspot, see <a href="../deep-settings-customization">Deep Settings Customization</a>.</p></div>
 </li>
 </ul>
-<h2 id="Advanced">Advanced Wi-Fi policy</h2>
+<h2 id="advanced-wi-fi-policy">Advanced Wi-Fi policy</h2>
 <div class="notice-note"><p>Advanced Wi-Fi settings are configurable in Device Owner (DO) and Work Profile on Company-owned device (WP-C) mode.</p></div>
 <p>Advanced Wi-Fi settings are a group of controls to refine client behavior and improve enterprise network connectivity, including &mdash; but not limited to &mdash; SSID assignment and management controls, roam scan configuration settings, DHCP settings and SSID block list functions. Advanced Wi-Fi policy controls include the following:</p>
 <ul>
@@ -1457,6 +1446,20 @@
 </li>
 <li>
 <p>Specify the <strong>Wi-Fi Network Name</strong> (SSID) whose settings require configuration and network management using advanced Wi-Fi controls.</p>
+</li>
+<li>
+<p>Select the <strong>Wi-Fi Roam Bands</strong> your devices can connect to for this Wi-Fi network. This policy ensures that your devices only connect to the Wi-Fi bands you specified. Only supported on Galaxy S24 FE, Galaxy S25 FE, and Xcover7 pro devices running Knox 3.11 and higher.</p>
+<p>Available options:</p>
+<ul>
+<li>Auto</li>
+<li>2.4G only</li>
+<li>5G only</li>
+<li>2.4G + 5G</li>
+<li>6G only</li>
+<li>2.4G + 6G</li>
+<li>5G + 6G</li>
+<li>2.4G + 5G + 6G</li>
+</ul>
 </li>
 <li>
 <p>Enter the <strong>Wi-Fi Roam Trigger</strong> threshold used to trigger a roam scan for other potential AP resources within range of the specific client SSID. The scan only initiates when the relative signal strength (RSSI) of the current AP is weaker then the specified <strong>Wi-Fi Roam Trigger</strong> value. An RSSI value closer to 0 indicates a stronger signal. Setting a value closer to 0 for this threshold means your devices will perform more frequent scans. The range for this value is -100 to -50 dBm.</p>
@@ -1532,8 +1535,8 @@
   <ul>
     <li><a href="#APN">APN setting policy</a></li>
     <li><a href="#NFC">NFC policy</a></li>
-    <li><a href="#Wi-Fi">Wi-Fi policy</a></li>
-    <li><a href="#Advanced">Advanced Wi-Fi policy</a></li>
+    <li><a href="#wi-fi-policy">Wi-Fi policy</a></li>
+    <li><a href="#advanced-wi-fi-policy">Advanced Wi-Fi policy</a></li>
     <li><a href="#Bluetooth">Bluetooth policy</a></li>
     <li><a href="#Boot">Boot banner</a></li>
     <li><a href="#Battery">Battery optimization</a></li>

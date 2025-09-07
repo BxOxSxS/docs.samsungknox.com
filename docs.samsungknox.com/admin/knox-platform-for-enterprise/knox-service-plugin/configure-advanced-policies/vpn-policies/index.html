@@ -55,7 +55,7 @@
 
   
 
-<script onload="initBot()" defer src="https://dc-chbt.samsungknox.com/copilot/index.js?noCache=1756504880"></script>
+<script onload="initBot()" defer src="https://dc-chbt.samsungknox.com/copilot/index.js?noCache=1757116803"></script>
 <script defer>
     function initBot(){
       const relPath = "\/knox-platform-for-enterprise\/knox-service-plugin\/configure-advanced-policies\/vpn-policies\/";
@@ -533,28 +533,6 @@
     
     <div class="d-flex justify-content-between">
       <a class="body-5 text-black fw-light" href="../device-key-mapping/index.html">Device key mapping</a>
-    </div>
-    
-    </li>
-  
-  
-  
-    <li class="mt-2">
-    
-    
-    <div class="d-flex justify-content-between">
-      <a class="body-5 text-black fw-light" href="../device-key-mapping-for-non-rugged-devices/index.html">Device key mapping for non-rugged devices</a>
-    </div>
-    
-    </li>
-  
-  
-  
-    <li class="mt-2">
-    
-    
-    <div class="d-flex justify-content-between">
-      <a class="body-5 text-black fw-light" href="../device-key-mapping-for-rugged-devices/index.html">Device key mapping for rugged devices</a>
     </div>
     
     </li>
@@ -1284,7 +1262,7 @@
             </div>
             
 
-  <p><span>Last updated February  26th, 2025</span></p>
+  <p><span>Last updated September  2nd, 2025</span></p>
 
 
     
@@ -1359,6 +1337,10 @@
 <li><strong>Auto retry in minutes</strong> &mdash; When the VPN client is unable to connect or drops an active connection to the server, it automatically tries to reconnect. Enter the time interval, in minutes, after which- the VPN client tries to reconnect. Default interval is two minutes</li>
 <li><strong>Identifier</strong> &mdash; Enter the built-in unique VPN identifier that applies to your VPN provider. This information applies to the ipsec_ike2_psk authentication type. Your IT admin provides this- information when setting up the VPN client profile.</li>
 <li><strong>Remote Identifier</strong> &mdash; Configure a Remote Identifier for strongSwan VPN clients. A Remote Identifier is used for authentication during the VPN connection process, ensuring the security and privacy of the user connected to the VPN. Only supported on devices running Knox 3.11 and higher.</li>
+<li><strong>IKE Cipher Suites</strong> &mdash; Specify cipher suites used by Internet Key Exchange (IKE) for encryption and integrity protection.</li>
+<li><strong>IPsec Cipher Suites</strong> &mdash; Specify cipher suites used by IPsec for encryption and integrity protection.</li>
+<li><strong>IKE Rekey Time</strong> &mdash; Specify how often the Security Association (SA) for IKE is rekeyed, as a time interval in seconds. The default value is 14,400 (4 hours). Note that short time intervals can impact performance while long intervals may be less secure, we recommend keeping values between 1 minute and 24 hours.</li>
+<li><strong>IPsec Rekey Time</strong> &mdash; Specify how often the Security Association (SA) for IPsec is rekeyed, as a time interval in seconds. The default value is 14,400 (4 hours). Note that short time intervals can impact performance while long intervals may be less secure, we recommend keeping values between 1 minute and 24 hours.</li>
 <li><strong>Pre-shared key</strong> &mdash; Enter your VPN client&rsquo;s pre-shared key, that is a form of password, that applies to your VPN client profile. This information applies to the ipsec_ike2_psk authentication- type. Your IT admin provides this information when setting up the VPN client profile.</li>
 <li><strong>User certificate alias</strong> &mdash; Enter the alias that identifies the user certificate used for the your VPN client. Your IT admin provides this information when setting up the VPN client profile.</li>
 <li><strong>CA certificate alias</strong> &mdash; Enter the alias that identifies the CA certificate used in your VPN client for ipsec_hybrid_rsa and ipsec_ike2_rsa authentication types. Your IT admin provides this- information when setting up the VPN client profile.</li>
@@ -1402,15 +1384,21 @@
 <ul>
 <li>
 <p><strong>VPN type</strong> &mdash; Choose where the VPN is applicable on the device. The VPN can be applied <strong>Device-wide</strong>, in <strong>Work-profile/Separated Apps only</strong>, or on <strong>Selected Apps(Per-app)</strong>.</p>
+<ul>
+<li><strong>Device Wide</strong> &mdash; VPN applies to all areas of the device, including fully-managed devices, both profiles of WP-C devices, and Separated Apps.</li>
+<li><strong>Main User Wide</strong> &mdash; VPN applies to only the fully-managed profile, excluding Separated Apps.</li>
+<li><strong>Work-profile/Separated Apps Wide</strong> &mdash; VPN applies to the work profile on WP-C devices, and to Separated Apps.</li>
+<li><strong>Selected Apps(Per-app)</strong> &mdash; VPN only applies to specific apps.</li>
+</ul>
 </li>
 <li>
 <p><strong>Manage list of apps that use VPN</strong> &mdash; Specify a list of apps that use the VPN. This setting is applicable if you set <strong>VPN type</strong> to <strong>Selected Apps(Per-app)</strong>.</p>
 <ul>
 <li>
-<p><strong>Select apps in the device, in the main user</strong> &mdash; Specify apps on a fully-managed device that use the VPN. If you&rsquo;re deploying devices with a work profile, this setting configures the personal profile apps that use the VPN. If no apps are specified, then all apps must use the VPN to connect by default.</p>
+<p><strong>Select apps in the device, in the main user</strong> &mdash; Specify apps on a fully-managed device that use the VPN. If you&rsquo;re deploying WP-C devices, this setting configures the personal profile apps that use the VPN. If no apps are specified, then all apps must use the VPN.</p>
 </li>
 <li>
-<p><strong>Select apps in the Work profile/Separated Apps</strong> &mdash; Specify apps on WP-C or Separated apps devices that use the VPN. If no apps are specified, then all apps must use the VPN to connect by default.</p>
+<p><strong>Select apps in the Work profile/Separated Apps</strong> &mdash; Specify apps in the work profile of WP-C devices or Separated Apps that use the VPN. If no apps are specified, then all apps must use the VPN.</p>
 </li>
 </ul>
 </li>
@@ -1418,12 +1406,15 @@
 <p><strong>Manage list of apps that can bypass VPN</strong> &mdash; Specify a list of apps that can bypass the VPN and connect to the network directly.</p>
 <ul>
 <li>
-<p><strong>Apps in main user</strong> &mdash; Specify apps on a fully-managed device that can bypass the VPN. If no apps are specified, then all apps must use the VPN.</p>
+<p><strong>Apps in main user</strong> &mdash; Specify apps on a fully-managed device that can bypass the VPN. If no apps are specified, then all apps must use the VPN. If you&rsquo;re deploying WP-C devices, this setting configures the personal profile apps that use the VPN.</p>
 </li>
 <li>
-<p><strong>Apps in work profile/Separated Apps</strong> &mdash; Specify apps on a WP-C or Separated apps device that can bypass the VPN. If no apps are specified, then all apps must use the VPN.</p>
+<p><strong>Apps in work profile/Separated Apps</strong> &mdash; Specify apps in the work profile of WP-C devices or Separated Apps that can bypass the VPN. If no apps are specified, then all apps must use the VPN.</p>
 </li>
 </ul>
+</li>
+<li>
+<p><strong>Enable on-demand VPN</strong> &mdash; If <strong>VPN type</strong> is <strong>Selected Apps (Per-app)</strong>, use this control to start VPN on-demand when one of the specified apps connects to the network. When no apps are in use, VPN is terminated. By default, all apps use VPN on-demand.</p>
 </li>
 <li>
 <p><strong>Show persistent VPN notification</strong> &mdash; By default, devices display a persistent notification to indicate that it&rsquo;s connected to a VPN. Disable this setting to remove the persistent notification from your devices. Only supported on devices running Knox 3.11 and higher.</p>
@@ -1438,7 +1429,7 @@
 <p><strong>Name of secondary VPN profile to use</strong> &mdash; For devices with multiple VPN profiles, specify the name of the outer VPN profile. This VPN decrypts all data before passing it to the VPN client. Must match the name of an existing VPN profile configuration. You can create and configure VPN profiles under <strong>VPN profiles (Premium)</strong>.</p>
 </li>
 </ul>
-<div class="notice-note"><p>A wrong VPN configuration can disconnect your device or work profile from the network, and in some cases render it unrecoverable. To avoid this issue, Samsung recommends keeping the following applications out of the VPN configuration:</p><ul><li><strong>UEM Agent package</strong> — Check with your UEM for details.</li><li><strong>KSP package</strong> — <code>com.samsung.android.knox.kpu</code></li><li><strong>Google services</strong> — <code>com.android.vending, com.google.android.gms</code></li></ul><p>Use the <strong>Manage list of apps that can bypass VPN</strong> setting to list theses packages.</p></div>
+<div class="notice-note"><p>A wrong VPN configuration can disconnect your device or work profile from the network, and in some cases render it unrecoverable. To avoid this issue, we recommend keeping the following applications out of the VPN configuration:</p><ul><li>UEM app package — Check with your UEM for details.</li><li>KSP app package — <code>com.samsung.android.knox.kpu</code></li><li>Google services — <code>com.android.vending, com.google.android.gms</code></li></ul><p>Use the <strong>Manage list of apps that can bypass VPN</strong> policy to exclude these packages from the VPN.</p></div>
 
             
           </div>

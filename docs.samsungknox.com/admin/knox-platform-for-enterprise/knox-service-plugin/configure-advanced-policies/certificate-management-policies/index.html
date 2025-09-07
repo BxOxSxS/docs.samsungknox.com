@@ -55,7 +55,7 @@
 
   
 
-<script onload="initBot()" defer src="https://dc-chbt.samsungknox.com/copilot/index.js?noCache=1756504880"></script>
+<script onload="initBot()" defer src="https://dc-chbt.samsungknox.com/copilot/index.js?noCache=1757116803"></script>
 <script defer>
     function initBot(){
       const relPath = "\/knox-platform-for-enterprise\/knox-service-plugin\/configure-advanced-policies\/certificate-management-policies\/";
@@ -533,28 +533,6 @@
     
     <div class="d-flex justify-content-between">
       <a class="body-5 text-black fw-light" href="../device-key-mapping/index.html">Device key mapping</a>
-    </div>
-    
-    </li>
-  
-  
-  
-    <li class="mt-2">
-    
-    
-    <div class="d-flex justify-content-between">
-      <a class="body-5 text-black fw-light" href="../device-key-mapping-for-non-rugged-devices/index.html">Device key mapping for non-rugged devices</a>
-    </div>
-    
-    </li>
-  
-  
-  
-    <li class="mt-2">
-    
-    
-    <div class="d-flex justify-content-between">
-      <a class="body-5 text-black fw-light" href="../device-key-mapping-for-rugged-devices/index.html">Device key mapping for rugged devices</a>
     </div>
     
     </li>
@@ -1284,7 +1262,7 @@
             </div>
             
 
-  <p><span>Last updated March  25th, 2024</span></p>
+  <p><span>Last updated September  2nd, 2025</span></p>
 
 
     
@@ -1297,64 +1275,52 @@
 
 
 
-<p>Refer to the following certificate management policies to control certificate settings to disable and restrict certifications as needed for specific device deployments:</p>
+<p>Refer to the following certificate management policies to control certificate settings to disable and restrict certifications as needed for specific device deployments.</p>
+<p>To use Certificate management policies, first set <strong>Enable certificate management controls</strong> to <strong>True</strong>. Ensure this control is enabled before setting any certificate management settings. If disabled, certificate management policy updates are ignored.</p>
 <ul>
 <li>
-<p>Set the <strong>Enable certificate management controls</strong> to <strong>True</strong> to enable specific certificate management controls for the workspace. Ensure this control is enabled before setting any certificate management settings. If disabled, certificate management policy updates are ignored.</p>
-</li>
-<li>
-<p>Refer to the <strong>Certificate revocation</strong> value to set the revocation method best suited to your devices and deployment strategy. Options include:</p>
+<p>Choose the <strong>Certificate revocation</strong> method most appropriate for your devices.</p>
 <ul>
 <li>
-<p>Set the <strong>Enable revocation check</strong> value. For example, if you list com.samsung.email within an allow list, certificates used by this app for encryption or signing is first checked against a Certificate Revocation List (CRL) to verify they are still valid. Enter application package names as comma separated list of values. For example, com.xyz, or com.abc, etc. Options include:</p>
+<p><strong>Enable revocation check</strong> &mdash; If enabled, certificates used by apps for encryption and signing are first checked against a Certificate Revocation List (CRL) to verify that they are still valid. Note that the <strong>Enabled for all apps</strong> option is not supported on devices running Knox 3.12 and higher.</p>
 <ul>
 <li>
-<p>Not enabled</p>
+<p><strong>Not enabled</strong></p>
 </li>
 <li>
-<p>Enabled for all apps</p>
+<p><strong>Enabled for all apps</strong> (Not supported on Knox 3.12 and higher)</p>
 </li>
 <li>
-<p>Enabled for specific apps only</p>
+<p><strong>Enabled for specific apps only</strong></p>
 </li>
 </ul>
 </li>
 <li>
-<p>Set the <strong>Enable OCSP check before CRL</strong> value to <strong>True</strong> to conduct a certificate revocation status validation using Online Certificate Status Protocol (OCSP) before checking a CRL. If the OCSP response is inconclusive, the device performs a CRL check.</p>
+<p><strong>Enable OCSP check before CRL</strong> &mdash; Set <strong>True</strong> to conduct a certificate revocation status validation using Online Certificate Status Protocol (OCSP) before checking a CRL. If the OCSP response is inconclusive, the device performs a CRL check.</p>
 </li>
 <li>
-<p>Refer to the <strong>List of Apps to enable for validation</strong> setting and enter comma separated values &lt;string&gt; of application packages targeted for certificate revocation. For example, com.xyz, or com.abc, etc.</p>
+<p><strong>List of Apps to enable for validation</strong> &mdash; Enter comma separated values of app packages targeted for certificate revocation. For example, <code>com.xyz,com.abc</code>. Enter a wildcard <code>*</code> to target all apps.</p>
 </li>
 </ul>
 </li>
 <li>
-<p>Refer to the <strong>Add trusted CA certificate</strong> setting and add the name of a Trusted CA Alias &lt;string&gt; already defined in the Certificate Alias. Enter values as a comma separated list of trusted CA aliases.</p>
+<p><strong>Add trusted CA certificate</strong> &mdash; Add the name of a Trusted CA Alias already defined in the Certificate Alias. Enter values as a comma separated list of trusted CA aliases.</p>
 </li>
 <li>
-<p>Set the <strong>Block User from removing certificate</strong> control to <strong>True</strong> to restrict the user from removing certificates from the keystore. By default, users are allowed to remove certificate from the keystore.</p>
+<p><strong>Block User from removing certificate</strong> &mdash; Set <strong>True</strong> to restrict the user from removing certificates from the keystore. By default, users are allowed to remove certificates from the keystore.</p>
 </li>
 <li>
-<p>Refer to the <strong>Allow apps to read private keys without alerting user</strong> value to define a group of controls defining applications allowed to read private key configurations without device user knowledge or intervention. Enter the following values:</p>
+<p><strong>Allow apps to read private keys without alerting user</strong> &mdash; Set <strong>True</strong>, then go to <strong>Allowed apps for reading private keys Configurations (Premium)</strong> and add a configuration to let apps read private keys without device user knowledge or intervention. Enter the following for each configuration:</p>
 <ul>
-<li>
-<p>Enter the <strong>Package Name</strong> &lt;string&gt; of the application receiving this private key read permission.</p>
-</li>
-<li>
-<p>Enter the <strong>Host</strong> &lt;string&gt; of the server host receiving this private key read permission.</p>
-</li>
-<li>
-<p>Enter the <strong>Port</strong> &lt;string&gt; of the server port receiving this private key read permission.</p>
-</li>
-<li>
-<p>Enter the <strong>Alias</strong> &lt;string&gt; of the private key alias granted to an application.</p>
-</li>
-<li>
-<p>Enter the <strong>StorageName</strong> &lt;string&gt; of the credential storage private key name allowing an application to read private keys.</p>
-</li>
+<li><strong>Package Name</strong> &mdash; The app receiving this private key read permission.</li>
+<li><strong>Host</strong> &mdash; The server host receiving this private key read permission.</li>
+<li><strong>Port</strong> &mdash; The server port receiving this private key read permission.</li>
+<li><strong>Alias</strong> &mdash; The private key alias granted to the app.</li>
+<li><strong>StorageName</strong> &mdash; The credential storage private key name allowing an app to read private keys.</li>
 </ul>
 </li>
 <li>
-<p>Refer to the <strong>Install Certificate in keystore(s) silently</strong> value and enter the name of the CA Alias &lt;string&gt; installed silently within the device keystore. Enter values as a comma separated list of trusted CA aliases.</p>
+<p><strong>Install Certificate in keystore(s) silently</strong> &mdash; Enter the name of the CA Alias installed silently within the device keystore. Enter values as a comma separated list of trusted CA aliases.</p>
 </li>
 </ul>
 

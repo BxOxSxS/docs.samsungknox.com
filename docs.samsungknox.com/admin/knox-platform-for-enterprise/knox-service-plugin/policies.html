@@ -372,7 +372,7 @@ function saveChanges(modalId, configCardId) {
 <div class="top-card ms-4 border-top" id="restriction-doAdvancedRestrictionsGalaxyAiOperation">
   <div class="card-body">
     <h5 class="card-title">Block individual galaxy AI operations</h5>
-    <p class="card-text">Use this control to block individual Galaxy AI operations. Availability with Knox 3.11 and higher. *Note: All item means blocking 8 items on the menu.</p>
+    <p class="card-text">Use this control to block individual Galaxy AI operations. Availability with Knox 3.11 and higher.</p>
 
 <div class="form-check">
 
@@ -1400,7 +1400,7 @@ function saveChanges(modalId, configCardId) {
 
 <input class="form-check-input" type="radio" name="flexRadioDefault-doCertificatePolicyEnableRevoke" id="flexRadioDefault1-doCertificatePolicyEnableRevoke-1">
   <label class="form-check-label" for="flexRadioDefault1-doCertificatePolicyEnableRevoke-1">
-    Enable for all apps
+    Enable for all apps(Not supported in Knox 3.12)
   </label>
 </div>
 
@@ -2018,17 +2018,31 @@ function saveChanges(modalId, configCardId) {
   </div>
 </div>
 </div>
+<div class='col-xl-12' id="container-restriction-doDevControlsWifiHotspotAllowWifiSharing">
+<div class="top-card ms-4 border-top" id="restriction-doDevControlsWifiHotspotAllowWifiSharing">
+  <div class="card-body">
+    <h5 class="card-title">Allow Wi-Fi sharing via mobile hotspot</h5>
+    <p class="card-text">Use this control to allow devices to share their Wi-Fi connection when set up as a mobile hotspot. Only supported on Android 16 and higher.</p>
+
+<div class="form-check form-switch">
+
+<input class="form-check-input" type="checkbox" id="flexSwitchCheckDefault-doDevControlsWifiHotspotAllowWifiSharing" checked>
+
+</div>
+  </div>
+</div>
+</div>
 <div class='col-xl-12' id="container-restriction-doDevControlsWifiMinimumSecurity">
 <div class="top-card ms-4 border-top" id="restriction-doDevControlsWifiMinimumSecurity">
   <div class="card-body">
     <h5 class="card-title">Allow Minimum Wi-Fi Security Requirement</h5>
-    <p class="card-text">Use this option to allow user to select the minimum security requirement for Wi-Fi Connection. *Note: This policy can be applied only if open Wi-Fi connection is disabled</p>
+    <p class="card-text">Use this option to allow the user to select the minimum security requirements for a Wi-Fi connection. *Note: Following Google's Wi-Fi policy changes after Android 13, it supports personal/enterprise modes</p>
 
 <div class="form-check">
 
 <input class="form-check-input" type="radio" name="flexRadioDefault-doDevControlsWifiMinimumSecurity" id="flexRadioDefault1-doDevControlsWifiMinimumSecurity-0" checked>
   <label class="form-check-label" for="flexRadioDefault1-doDevControlsWifiMinimumSecurity-0">
-    WEP
+    WEP(Personal, Since Knox 3.9)
   </label>
 </div>
 
@@ -2036,7 +2050,7 @@ function saveChanges(modalId, configCardId) {
 
 <input class="form-check-input" type="radio" name="flexRadioDefault-doDevControlsWifiMinimumSecurity" id="flexRadioDefault1-doDevControlsWifiMinimumSecurity-1">
   <label class="form-check-label" for="flexRadioDefault1-doDevControlsWifiMinimumSecurity-1">
-    WPA
+    WPA(Personal, Since Knox 3.9)
   </label>
 </div>
 
@@ -2044,7 +2058,7 @@ function saveChanges(modalId, configCardId) {
 
 <input class="form-check-input" type="radio" name="flexRadioDefault-doDevControlsWifiMinimumSecurity" id="flexRadioDefault1-doDevControlsWifiMinimumSecurity-2">
   <label class="form-check-label" for="flexRadioDefault1-doDevControlsWifiMinimumSecurity-2">
-    LEAP, PWD
+    SAE(Personal, Since Knox 3.9)
   </label>
 </div>
 
@@ -2052,7 +2066,7 @@ function saveChanges(modalId, configCardId) {
 
 <input class="form-check-input" type="radio" name="flexRadioDefault-doDevControlsWifiMinimumSecurity" id="flexRadioDefault1-doDevControlsWifiMinimumSecurity-3">
   <label class="form-check-label" for="flexRadioDefault1-doDevControlsWifiMinimumSecurity-3">
-    FAST, PEAP
+    PWD(Enterprise, Since Knox 3.9)
   </label>
 </div>
 
@@ -2060,7 +2074,15 @@ function saveChanges(modalId, configCardId) {
 
 <input class="form-check-input" type="radio" name="flexRadioDefault-doDevControlsWifiMinimumSecurity" id="flexRadioDefault1-doDevControlsWifiMinimumSecurity-4">
   <label class="form-check-label" for="flexRadioDefault1-doDevControlsWifiMinimumSecurity-4">
-    "TLS, TTLS, SIM, AKA, AKA'"
+    PEAP(Enterprise, Since 3.9)
+  </label>
+</div>
+
+<div class="form-check">
+
+<input class="form-check-input" type="radio" name="flexRadioDefault-doDevControlsWifiMinimumSecurity" id="flexRadioDefault1-doDevControlsWifiMinimumSecurity-5">
+  <label class="form-check-label" for="flexRadioDefault1-doDevControlsWifiMinimumSecurity-5">
+    "TLS, TTLS, SIM, AKA, AKA'(Enterprise, Since Knox 3.9)"
   </label>
 </div>
   </div>
@@ -3466,7 +3488,7 @@ function saveChanges(modalId, configCardId) {
 <div class="top-card ms-4 border-top" id="restriction-doRestrictionEdgeScreen">
   <div class="card-body">
     <h5 class="card-title">Allow Edge Screen</h5>
-    <p class="card-text">Use this control to allow or restrict the device factory reset</p>
+    <p class="card-text">Use this control to allow or restrict the edge screen</p>
 
 <div class="form-check form-switch">
 
@@ -4594,13 +4616,13 @@ function saveChanges(modalId, configCardId) {
 <div class="top-card ms-4 border-top" id="restriction-doVpnType">
   <div class="card-body">
     <h5 class="card-title">VPN type</h5>
-    <p class="card-text">Choose the VPN type applicable to the apps on the device. For fully managed devices without a Work profile/Separated Apps, choose between all apps or specific apps. For devices with a Work profile, choose between all three options.</p>
+    <p class="card-text">Use these controls to add a list of applications at a device-wide or Work profile/Separated Apps specific level that can bypass VPN and connect to the network directly.</p>
 
 <div class="form-check">
 
 <input class="form-check-input" type="radio" name="flexRadioDefault-doVpnType" id="flexRadioDefault1-doVpnType-0" checked>
   <label class="form-check-label" for="flexRadioDefault1-doVpnType-0">
-    Device-wide
+    Device Wide
   </label>
 </div>
 
@@ -4608,7 +4630,7 @@ function saveChanges(modalId, configCardId) {
 
 <input class="form-check-input" type="radio" name="flexRadioDefault-doVpnType" id="flexRadioDefault1-doVpnType-1">
   <label class="form-check-label" for="flexRadioDefault1-doVpnType-1">
-    Work profile/Separated Apps only
+    Main User Wide
   </label>
 </div>
 
@@ -4616,6 +4638,14 @@ function saveChanges(modalId, configCardId) {
 
 <input class="form-check-input" type="radio" name="flexRadioDefault-doVpnType" id="flexRadioDefault1-doVpnType-2">
   <label class="form-check-label" for="flexRadioDefault1-doVpnType-2">
+    Work profile/Separated Apps Wide
+  </label>
+</div>
+
+<div class="form-check">
+
+<input class="form-check-input" type="radio" name="flexRadioDefault-doVpnType" id="flexRadioDefault1-doVpnType-3">
+  <label class="form-check-label" for="flexRadioDefault1-doVpnType-3">
     Selected Apps(Per-app)
   </label>
 </div>
@@ -4642,7 +4672,7 @@ function saveChanges(modalId, configCardId) {
 <div class="top-card ms-4 border-top" id="restriction-doVpnPerAppPoApps">
   <div class="card-body">
     <h5 class="card-title">Select apps in the Work profile/Separated Apps</h5>
-    <p class="card-text">For fully managed devices with a Work profile/Separated Apps and the VPN type set to Selected Apps, enter the list of Work profile/Separated Apps apps that must use VPN to connect. Enter a comma-separated list of package names to specify the apps. To use VPN for all Work profile/Separated Apps, leave blank. Default value is all apps.</p>
+    <p class="card-text">For fully managed devices with a Work Profile/Separated Apps and the VPN type set to Selected Apps, enter the list of Work Profile/Separated Apps apps that must use VPN to connect. Enter a comma-separated list of package names to specify the apps. To use VPN for all Work Profile/Separated Apps, leave blank. Default value is all apps(This applies only when Selected Apps(Per-app) is selected).</p>
 
 <input type="text" value="" class="form-control" id="restriction-string-doVpnPerAppPoApps" name="restriction-string-doVpnPerAppPoApps">
   </div>
@@ -4772,7 +4802,7 @@ function saveChanges(modalId, configCardId) {
 <div class="top-card ms-4 border-top" id="restriction-doZTNARegisterApplicationPackageName">
   <div class="card-body">
     <h5 class="card-title">Package Name</h5>
-    <p class="card-text">Package name of the authorized network filter client application</p>
+    <p class="card-text">Package name of the authorized ZTNA client application</p>
 
 <div class="form-check">
 
@@ -4796,7 +4826,7 @@ function saveChanges(modalId, configCardId) {
 <div class="top-card ms-4 border-top" id="restriction-doZTNARegisterApplicationPackageNameOther">
   <div class="card-body">
     <h5 class="card-title">Alternative Package Name</h5>
-    <p class="card-text">Package name to use if not in dropdown</p>
+    <p class="card-text">Enter a package name if you have selected Other for Package Name above</p>
 
 <input type="text" value="" class="form-control" id="restriction-string-doZTNARegisterApplicationPackageNameOther" name="restriction-string-doZTNARegisterApplicationPackageNameOther">
   </div>
@@ -4806,7 +4836,7 @@ function saveChanges(modalId, configCardId) {
 <div class="top-card ms-4 border-top" id="restriction-doZTNARegisterApplicationPackageSignature">
   <div class="card-body">
     <h5 class="card-title">Package Signature</h5>
-    <p class="card-text">Public key of the authorized network filter client application (optional)</p>
+    <p class="card-text">Public key of the authorized ZTNA client application (optional)</p>
 
 <input type="text" value="" class="form-control" id="restriction-string-doZTNARegisterApplicationPackageSignature" name="restriction-string-doZTNARegisterApplicationPackageSignature">
   </div>
@@ -4892,7 +4922,7 @@ function saveChanges(modalId, configCardId) {
 <div class="top-card ms-4 border-top" id="restriction-poAdvancedRestrictionsGalaxyAiOperation">
   <div class="card-body">
     <h5 class="card-title">Block individual galaxy AI operations</h5>
-    <p class="card-text">Use this control to block individual Galaxy AI operations. Availability with Knox 3.11 and higher. *Note: All item means blocking 6 items on the menu.</p>
+    <p class="card-text">Use this control to block individual Galaxy AI operations. Availability with Knox 3.11 and higher.</p>
 
 <div class="form-check">
 
@@ -4906,7 +4936,7 @@ function saveChanges(modalId, configCardId) {
 
 <input class="form-check-input" type="checkbox" id="flexCheckDefault1-poAdvancedRestrictionsGalaxyAiOperation-1">
   <label class="form-check-label" for="flexCheckDefault1-poAdvancedRestrictionsGalaxyAiOperation-1">
-    Note Assist
+    Interpreter
   </label>
 </div>
 
@@ -4914,7 +4944,7 @@ function saveChanges(modalId, configCardId) {
 
 <input class="form-check-input" type="checkbox" id="flexCheckDefault1-poAdvancedRestrictionsGalaxyAiOperation-2">
   <label class="form-check-label" for="flexCheckDefault1-poAdvancedRestrictionsGalaxyAiOperation-2">
-    Transcript Assist
+    Note Assist
   </label>
 </div>
 
@@ -4922,7 +4952,7 @@ function saveChanges(modalId, configCardId) {
 
 <input class="form-check-input" type="checkbox" id="flexCheckDefault1-poAdvancedRestrictionsGalaxyAiOperation-3">
   <label class="form-check-label" for="flexCheckDefault1-poAdvancedRestrictionsGalaxyAiOperation-3">
-    Browsing Assist
+    Transcript Assist
   </label>
 </div>
 
@@ -4930,7 +4960,7 @@ function saveChanges(modalId, configCardId) {
 
 <input class="form-check-input" type="checkbox" id="flexCheckDefault1-poAdvancedRestrictionsGalaxyAiOperation-4">
   <label class="form-check-label" for="flexCheckDefault1-poAdvancedRestrictionsGalaxyAiOperation-4">
-    Photo Assist
+    Browsing Assist
   </label>
 </div>
 
@@ -4938,7 +4968,7 @@ function saveChanges(modalId, configCardId) {
 
 <input class="form-check-input" type="checkbox" id="flexCheckDefault1-poAdvancedRestrictionsGalaxyAiOperation-5">
   <label class="form-check-label" for="flexCheckDefault1-poAdvancedRestrictionsGalaxyAiOperation-5">
-    Drawing Assist
+    Photo Assist
   </label>
 </div>
 
@@ -4946,6 +4976,14 @@ function saveChanges(modalId, configCardId) {
 
 <input class="form-check-input" type="checkbox" id="flexCheckDefault1-poAdvancedRestrictionsGalaxyAiOperation-6">
   <label class="form-check-label" for="flexCheckDefault1-poAdvancedRestrictionsGalaxyAiOperation-6">
+    Drawing Assist
+  </label>
+</div>
+
+<div class="form-check">
+
+<input class="form-check-input" type="checkbox" id="flexCheckDefault1-poAdvancedRestrictionsGalaxyAiOperation-7">
+  <label class="form-check-label" for="flexCheckDefault1-poAdvancedRestrictionsGalaxyAiOperation-7">
     All
   </label>
 </div>
@@ -5396,7 +5434,7 @@ function saveChanges(modalId, configCardId) {
 
 <input class="form-check-input" type="radio" name="flexRadioDefault-poCertificatePolicyEnableRevoke" id="flexRadioDefault1-poCertificatePolicyEnableRevoke-1">
   <label class="form-check-label" for="flexRadioDefault1-poCertificatePolicyEnableRevoke-1">
-    Enable for all apps
+    Enable for all apps(Not supported in Knox 3.12)
   </label>
 </div>
 
@@ -6788,7 +6826,7 @@ function saveChanges(modalId, configCardId) {
 <div class="top-card ms-4 border-top" id="restriction-poZTNARegisterApplicationPackageName">
   <div class="card-body">
     <h5 class="card-title">Package Name</h5>
-    <p class="card-text">Package name of the authorized network filter client application</p>
+    <p class="card-text">Package name of the authorized ZTNA client application</p>
 
 <div class="form-check">
 
@@ -6812,7 +6850,7 @@ function saveChanges(modalId, configCardId) {
 <div class="top-card ms-4 border-top" id="restriction-poZTNARegisterApplicationPackageNameOther">
   <div class="card-body">
     <h5 class="card-title">Alternative Package Name</h5>
-    <p class="card-text">Package name to use if not in dropdown</p>
+    <p class="card-text">Enter a package name if you have selected Other for Package Name above</p>
 
 <input type="text" value="" class="form-control" id="restriction-string-poZTNARegisterApplicationPackageNameOther" name="restriction-string-poZTNARegisterApplicationPackageNameOther">
   </div>
@@ -6822,7 +6860,7 @@ function saveChanges(modalId, configCardId) {
 <div class="top-card ms-4 border-top" id="restriction-poZTNARegisterApplicationPackageSignature">
   <div class="card-body">
     <h5 class="card-title">Packaga Signature</h5>
-    <p class="card-text">Public key of the authorized network filter client application (optional)</p>
+    <p class="card-text">Public key of the authorized ZTNA client application (optional)</p>
 
 <input type="text" value="" class="form-control" id="restriction-string-poZTNARegisterApplicationPackageSignature" name="restriction-string-poZTNARegisterApplicationPackageSignature">
   </div>
@@ -6871,7 +6909,7 @@ function saveChanges(modalId, configCardId) {
 <div class="top-card ms-4 border-top" id="restriction-profileAppMgmtAddSignatureToAccessSdk">
   <div class="card-body">
     <h5 class="card-title">Signature</h5>
-    <p class="card-text">Enter the signature of the application that needs to access the Knox SDK</p>
+    <p class="card-text">Enter the signature of the application (Optional). *Note: the signature format follows getPackageInfo(packageName, PackageManager.GET_SIGNATURES).signatures[0].toCharString()</p>
 
 <input type="text" value="" class="form-control" id="restriction-string-profileAppMgmtAddSignatureToAccessSdk" name="restriction-string-profileAppMgmtAddSignatureToAccessSdk">
   </div>
@@ -6943,6 +6981,78 @@ function saveChanges(modalId, configCardId) {
     <p class="card-text">Use this control to specify SSID, whose settings needs to be configured and managed</p>
 
 <input type="text" value="@string/advance_wifi_config_name_default_text" class="form-control" id="restriction-string-profileDevControlsAdvancedWifiName" name="restriction-string-profileDevControlsAdvancedWifiName">
+  </div>
+</div>
+</div>
+<div class='col-xl-12' id="container-restriction-profileDevControlsAdvancedWifiRoamBand">
+<div class="top-card ms-4 border-top" id="restriction-profileDevControlsAdvancedWifiRoamBand">
+  <div class="card-body">
+    <h5 class="card-title">Wi-Fi Roam Band</h5>
+    <p class="card-text">Use this control to set the Wi-Fi roam bandwidth to connect with AP. *Note : Available on Xcover 7 pro and S24 FE only</p>
+
+<div class="form-check">
+
+<input class="form-check-input" type="radio" name="flexRadioDefault-profileDevControlsAdvancedWifiRoamBand" id="flexRadioDefault1-profileDevControlsAdvancedWifiRoamBand-0">
+  <label class="form-check-label" for="flexRadioDefault1-profileDevControlsAdvancedWifiRoamBand-0">
+    Auto
+  </label>
+</div>
+
+<div class="form-check">
+
+<input class="form-check-input" type="radio" name="flexRadioDefault-profileDevControlsAdvancedWifiRoamBand" id="flexRadioDefault1-profileDevControlsAdvancedWifiRoamBand-1">
+  <label class="form-check-label" for="flexRadioDefault1-profileDevControlsAdvancedWifiRoamBand-1">
+    2.4G only
+  </label>
+</div>
+
+<div class="form-check">
+
+<input class="form-check-input" type="radio" name="flexRadioDefault-profileDevControlsAdvancedWifiRoamBand" id="flexRadioDefault1-profileDevControlsAdvancedWifiRoamBand-2">
+  <label class="form-check-label" for="flexRadioDefault1-profileDevControlsAdvancedWifiRoamBand-2">
+    5G only
+  </label>
+</div>
+
+<div class="form-check">
+
+<input class="form-check-input" type="radio" name="flexRadioDefault-profileDevControlsAdvancedWifiRoamBand" id="flexRadioDefault1-profileDevControlsAdvancedWifiRoamBand-3">
+  <label class="form-check-label" for="flexRadioDefault1-profileDevControlsAdvancedWifiRoamBand-3">
+    2.4G + 5G
+  </label>
+</div>
+
+<div class="form-check">
+
+<input class="form-check-input" type="radio" name="flexRadioDefault-profileDevControlsAdvancedWifiRoamBand" id="flexRadioDefault1-profileDevControlsAdvancedWifiRoamBand-4">
+  <label class="form-check-label" for="flexRadioDefault1-profileDevControlsAdvancedWifiRoamBand-4">
+    6G only
+  </label>
+</div>
+
+<div class="form-check">
+
+<input class="form-check-input" type="radio" name="flexRadioDefault-profileDevControlsAdvancedWifiRoamBand" id="flexRadioDefault1-profileDevControlsAdvancedWifiRoamBand-5">
+  <label class="form-check-label" for="flexRadioDefault1-profileDevControlsAdvancedWifiRoamBand-5">
+    2.4G + 6G
+  </label>
+</div>
+
+<div class="form-check">
+
+<input class="form-check-input" type="radio" name="flexRadioDefault-profileDevControlsAdvancedWifiRoamBand" id="flexRadioDefault1-profileDevControlsAdvancedWifiRoamBand-6">
+  <label class="form-check-label" for="flexRadioDefault1-profileDevControlsAdvancedWifiRoamBand-6">
+    5G + 6G
+  </label>
+</div>
+
+<div class="form-check">
+
+<input class="form-check-input" type="radio" name="flexRadioDefault-profileDevControlsAdvancedWifiRoamBand" id="flexRadioDefault1-profileDevControlsAdvancedWifiRoamBand-7">
+  <label class="form-check-label" for="flexRadioDefault1-profileDevControlsAdvancedWifiRoamBand-7">
+    2.4G + 5G + 6G
+  </label>
+</div>
   </div>
 </div>
 </div>
@@ -7956,7 +8066,7 @@ function saveChanges(modalId, configCardId) {
 
 <input class="form-check-input" type="radio" name="flexRadioDefault-profileDeviceAccountPolicyAddAccountType" id="flexRadioDefault1-profileDeviceAccountPolicyAddAccountType-0" checked>
   <label class="form-check-label" for="flexRadioDefault1-profileDeviceAccountPolicyAddAccountType-0">
-    com.samsung.android.email
+    com.samsung.android.email(POP3/IMAP account)
   </label>
 </div>
 
@@ -7964,7 +8074,7 @@ function saveChanges(modalId, configCardId) {
 
 <input class="form-check-input" type="radio" name="flexRadioDefault-profileDeviceAccountPolicyAddAccountType" id="flexRadioDefault1-profileDeviceAccountPolicyAddAccountType-1">
   <label class="form-check-label" for="flexRadioDefault1-profileDeviceAccountPolicyAddAccountType-1">
-    com.samsung.android.exchange
+    com.samsung.android.exchange(Microsoft Exchange account)
   </label>
 </div>
 
@@ -7972,7 +8082,7 @@ function saveChanges(modalId, configCardId) {
 
 <input class="form-check-input" type="radio" name="flexRadioDefault-profileDeviceAccountPolicyAddAccountType" id="flexRadioDefault1-profileDeviceAccountPolicyAddAccountType-2">
   <label class="form-check-label" for="flexRadioDefault1-profileDeviceAccountPolicyAddAccountType-2">
-    com.samsung.android.ldap
+    com.samsung.android.ldap(LDAP)
   </label>
 </div>
 
@@ -7980,7 +8090,7 @@ function saveChanges(modalId, configCardId) {
 
 <input class="form-check-input" type="radio" name="flexRadioDefault-profileDeviceAccountPolicyAddAccountType" id="flexRadioDefault1-profileDeviceAccountPolicyAddAccountType-3">
   <label class="form-check-label" for="flexRadioDefault1-profileDeviceAccountPolicyAddAccountType-3">
-    com.osp.app.signin
+    com.osp.app.signin(Samsung Account)
   </label>
 </div>
 
@@ -7988,7 +8098,7 @@ function saveChanges(modalId, configCardId) {
 
 <input class="form-check-input" type="radio" name="flexRadioDefault-profileDeviceAccountPolicyAddAccountType" id="flexRadioDefault1-profileDeviceAccountPolicyAddAccountType-4">
   <label class="form-check-label" for="flexRadioDefault1-profileDeviceAccountPolicyAddAccountType-4">
-    com.google
+    com.google(Google Mail account)
   </label>
 </div>
 
@@ -7996,7 +8106,7 @@ function saveChanges(modalId, configCardId) {
 
 <input class="form-check-input" type="radio" name="flexRadioDefault-profileDeviceAccountPolicyAddAccountType" id="flexRadioDefault1-profileDeviceAccountPolicyAddAccountType-5">
   <label class="form-check-label" for="flexRadioDefault1-profileDeviceAccountPolicyAddAccountType-5">
-    com.google.android.gm.legacyimap
+    com.google.android.gm.legacyimap(IMAP by Google Mail)
   </label>
 </div>
 
@@ -8004,7 +8114,7 @@ function saveChanges(modalId, configCardId) {
 
 <input class="form-check-input" type="radio" name="flexRadioDefault-profileDeviceAccountPolicyAddAccountType" id="flexRadioDefault1-profileDeviceAccountPolicyAddAccountType-6">
   <label class="form-check-label" for="flexRadioDefault1-profileDeviceAccountPolicyAddAccountType-6">
-    com.google.android.gm.pop3
+    com.google.android.gm.pop3(Personal POP3 by Google Mail)
   </label>
 </div>
 
@@ -8012,7 +8122,7 @@ function saveChanges(modalId, configCardId) {
 
 <input class="form-check-input" type="radio" name="flexRadioDefault-profileDeviceAccountPolicyAddAccountType" id="flexRadioDefault1-profileDeviceAccountPolicyAddAccountType-7">
   <label class="form-check-label" for="flexRadioDefault1-profileDeviceAccountPolicyAddAccountType-7">
-    com.google.android.gm.exchange
+    com.google.android.gm.exchange(Microsoft Exchange account by Google Mail)
   </label>
 </div>
 
@@ -8020,7 +8130,7 @@ function saveChanges(modalId, configCardId) {
 
 <input class="form-check-input" type="radio" name="flexRadioDefault-profileDeviceAccountPolicyAddAccountType" id="flexRadioDefault1-profileDeviceAccountPolicyAddAccountType-8">
   <label class="form-check-label" for="flexRadioDefault1-profileDeviceAccountPolicyAddAccountType-8">
-    com.google.work
+    com.google.work(Managed Android Enterprise accounts)
   </label>
 </div>
 
@@ -8028,7 +8138,7 @@ function saveChanges(modalId, configCardId) {
 
 <input class="form-check-input" type="radio" name="flexRadioDefault-profileDeviceAccountPolicyAddAccountType" id="flexRadioDefault1-profileDeviceAccountPolicyAddAccountType-9">
   <label class="form-check-label" for="flexRadioDefault1-profileDeviceAccountPolicyAddAccountType-9">
-    com.facebook.auth.login
+    com.facebook.auth.login(Facebook account)
   </label>
 </div>
   </div>
@@ -8038,9 +8148,107 @@ function saveChanges(modalId, configCardId) {
 <div class="top-card ms-4 border-top" id="restriction-profileDeviceAccountPolicyAddAccountsToAdditionList">
   <div class="card-body">
     <h5 class="card-title">Add Accounts to Addition Blocklist</h5>
-    <p class="card-text">Use this control to add a list of accounts of a specific account type to the account addition blocklist. Enter the values as a comma separated list, for example, "abc@google.com,xyz@google.com". You can also use a wildcard to specify multiple accounts to blocklist, for example, ".*@google.com".</p>
+    <p class="card-text">Use this control to add a list of accounts of a specific account type to the account addition blocklist. Enter the values as a comma separated list, for example, "abc@google.com,xyz@google.com". You can also use a wildcard to specify multiple accounts to blocklist, for example, ".*@google.com"</p>
 
 <input type="text" value="" class="form-control" id="restriction-string-profileDeviceAccountPolicyAddAccountsToAdditionList" name="restriction-string-profileDeviceAccountPolicyAddAccountsToAdditionList">
+  </div>
+</div>
+</div>
+<div class='col-xl-12' id="container-restriction-profileDeviceAccountPolicyAddAccountTypeToAllowlist">
+<div class="top-card ms-4 border-top" id="restriction-profileDeviceAccountPolicyAddAccountTypeToAllowlist">
+  <div class="card-body">
+    <h5 class="card-title">Add Account Type to Addition Allowlist</h5>
+    <p class="card-text">Use this control to select which account in specific Account Type should be added to account addition allowlist</p>
+
+<div class="form-check">
+
+<input class="form-check-input" type="radio" name="flexRadioDefault-profileDeviceAccountPolicyAddAccountTypeToAllowlist" id="flexRadioDefault1-profileDeviceAccountPolicyAddAccountTypeToAllowlist-0" checked>
+  <label class="form-check-label" for="flexRadioDefault1-profileDeviceAccountPolicyAddAccountTypeToAllowlist-0">
+    com.samsung.android.email(POP3/IMAP account)
+  </label>
+</div>
+
+<div class="form-check">
+
+<input class="form-check-input" type="radio" name="flexRadioDefault-profileDeviceAccountPolicyAddAccountTypeToAllowlist" id="flexRadioDefault1-profileDeviceAccountPolicyAddAccountTypeToAllowlist-1">
+  <label class="form-check-label" for="flexRadioDefault1-profileDeviceAccountPolicyAddAccountTypeToAllowlist-1">
+    com.samsung.android.exchange(Microsoft Exchange account)
+  </label>
+</div>
+
+<div class="form-check">
+
+<input class="form-check-input" type="radio" name="flexRadioDefault-profileDeviceAccountPolicyAddAccountTypeToAllowlist" id="flexRadioDefault1-profileDeviceAccountPolicyAddAccountTypeToAllowlist-2">
+  <label class="form-check-label" for="flexRadioDefault1-profileDeviceAccountPolicyAddAccountTypeToAllowlist-2">
+    com.samsung.android.ldap(LDAP)
+  </label>
+</div>
+
+<div class="form-check">
+
+<input class="form-check-input" type="radio" name="flexRadioDefault-profileDeviceAccountPolicyAddAccountTypeToAllowlist" id="flexRadioDefault1-profileDeviceAccountPolicyAddAccountTypeToAllowlist-3">
+  <label class="form-check-label" for="flexRadioDefault1-profileDeviceAccountPolicyAddAccountTypeToAllowlist-3">
+    com.osp.app.signin(Samsung Account)
+  </label>
+</div>
+
+<div class="form-check">
+
+<input class="form-check-input" type="radio" name="flexRadioDefault-profileDeviceAccountPolicyAddAccountTypeToAllowlist" id="flexRadioDefault1-profileDeviceAccountPolicyAddAccountTypeToAllowlist-4">
+  <label class="form-check-label" for="flexRadioDefault1-profileDeviceAccountPolicyAddAccountTypeToAllowlist-4">
+    com.google(Google Mail account)
+  </label>
+</div>
+
+<div class="form-check">
+
+<input class="form-check-input" type="radio" name="flexRadioDefault-profileDeviceAccountPolicyAddAccountTypeToAllowlist" id="flexRadioDefault1-profileDeviceAccountPolicyAddAccountTypeToAllowlist-5">
+  <label class="form-check-label" for="flexRadioDefault1-profileDeviceAccountPolicyAddAccountTypeToAllowlist-5">
+    com.google.android.gm.legacyimap(IMAP by Google Mail)
+  </label>
+</div>
+
+<div class="form-check">
+
+<input class="form-check-input" type="radio" name="flexRadioDefault-profileDeviceAccountPolicyAddAccountTypeToAllowlist" id="flexRadioDefault1-profileDeviceAccountPolicyAddAccountTypeToAllowlist-6">
+  <label class="form-check-label" for="flexRadioDefault1-profileDeviceAccountPolicyAddAccountTypeToAllowlist-6">
+    com.google.android.gm.pop3(Personal POP3 by Google Mail)
+  </label>
+</div>
+
+<div class="form-check">
+
+<input class="form-check-input" type="radio" name="flexRadioDefault-profileDeviceAccountPolicyAddAccountTypeToAllowlist" id="flexRadioDefault1-profileDeviceAccountPolicyAddAccountTypeToAllowlist-7">
+  <label class="form-check-label" for="flexRadioDefault1-profileDeviceAccountPolicyAddAccountTypeToAllowlist-7">
+    com.google.android.gm.exchange(Microsoft Exchange account by Google Mail)
+  </label>
+</div>
+
+<div class="form-check">
+
+<input class="form-check-input" type="radio" name="flexRadioDefault-profileDeviceAccountPolicyAddAccountTypeToAllowlist" id="flexRadioDefault1-profileDeviceAccountPolicyAddAccountTypeToAllowlist-8">
+  <label class="form-check-label" for="flexRadioDefault1-profileDeviceAccountPolicyAddAccountTypeToAllowlist-8">
+    com.google.work(Managed Android Enterprise accounts)
+  </label>
+</div>
+
+<div class="form-check">
+
+<input class="form-check-input" type="radio" name="flexRadioDefault-profileDeviceAccountPolicyAddAccountTypeToAllowlist" id="flexRadioDefault1-profileDeviceAccountPolicyAddAccountTypeToAllowlist-9">
+  <label class="form-check-label" for="flexRadioDefault1-profileDeviceAccountPolicyAddAccountTypeToAllowlist-9">
+    com.facebook.auth.login(Facebook account)
+  </label>
+</div>
+  </div>
+</div>
+</div>
+<div class='col-xl-12' id="container-restriction-profileDeviceAccountPolicyAddAccountsToAdditionAllowlist">
+<div class="top-card ms-4 border-top" id="restriction-profileDeviceAccountPolicyAddAccountsToAdditionAllowlist">
+  <div class="card-body">
+    <h5 class="card-title">Add Accounts to Addition Allowlist</h5>
+    <p class="card-text">Use this control to add a list of accounts of a specific account type to the account addition allowlist. Enter the values as a comma separated list, for example, "abc@google.com,xyz@google.com". You can also use a wildcard to specify multiple accounts to allowlist, for example, "*@google.com"</p>
+
+<input type="text" value="" class="form-control" id="restriction-string-profileDeviceAccountPolicyAddAccountsToAdditionAllowlist" name="restriction-string-profileDeviceAccountPolicyAddAccountsToAdditionAllowlist">
   </div>
 </div>
 </div>
@@ -8156,7 +8364,7 @@ function saveChanges(modalId, configCardId) {
 <div class="top-card ms-4 border-top" id="restriction-profileDeviceKeyboardToolbarGrammarly">
   <div class="card-body">
     <h5 class="card-title">Disable Grammarly</h5>
-    <p class="card-text">Use this control to enable or disable Grammarly on Keyboard Toolbar. Only supported on Android 14 / OneUI 6.1.1 and higher.</p>
+    <p class="card-text">Use this control to enable or disable Grammarly on Keyboard Toolbar. Only supported on Android 14 / OneUI 6.1.1</p>
 
 <div class="form-check form-switch">
 
@@ -8798,7 +9006,7 @@ Refer to https://docs.samsungknox.com/admin/knox-platform-for-enterprise/knox-se
 
 <input class="form-check-input" type="radio" name="flexRadioDefault-profileDeviceSettingsConfigName" id="flexRadioDefault1-profileDeviceSettingsConfigName-7">
   <label class="form-check-label" for="flexRadioDefault1-profileDeviceSettingsConfigName-7">
-    Display > Adaptive brightness
+    Connections > More connection settings > Private DNS
   </label>
 </div>
 
@@ -8806,7 +9014,7 @@ Refer to https://docs.samsungknox.com/admin/knox-platform-for-enterprise/knox-se
 
 <input class="form-check-input" type="radio" name="flexRadioDefault-profileDeviceSettingsConfigName" id="flexRadioDefault1-profileDeviceSettingsConfigName-8">
   <label class="form-check-label" for="flexRadioDefault1-profileDeviceSettingsConfigName-8">
-    Display > Adaptive motion smoothness
+    Display > Adaptive brightness
   </label>
 </div>
 
@@ -8814,7 +9022,7 @@ Refer to https://docs.samsungknox.com/admin/knox-platform-for-enterprise/knox-se
 
 <input class="form-check-input" type="radio" name="flexRadioDefault-profileDeviceSettingsConfigName" id="flexRadioDefault1-profileDeviceSettingsConfigName-9">
   <label class="form-check-label" for="flexRadioDefault1-profileDeviceSettingsConfigName-9">
-    Display > Accidental touch protection
+    Display > Adaptive motion smoothness
   </label>
 </div>
 
@@ -8822,7 +9030,7 @@ Refer to https://docs.samsungknox.com/admin/knox-platform-for-enterprise/knox-se
 
 <input class="form-check-input" type="radio" name="flexRadioDefault-profileDeviceSettingsConfigName" id="flexRadioDefault1-profileDeviceSettingsConfigName-10">
   <label class="form-check-label" for="flexRadioDefault1-profileDeviceSettingsConfigName-10">
-    Display > Eye comfort shield (Blue light filter)
+    Display > Accidental touch protection
   </label>
 </div>
 
@@ -8830,7 +9038,7 @@ Refer to https://docs.samsungknox.com/admin/knox-platform-for-enterprise/knox-se
 
 <input class="form-check-input" type="radio" name="flexRadioDefault-profileDeviceSettingsConfigName" id="flexRadioDefault1-profileDeviceSettingsConfigName-11">
   <label class="form-check-label" for="flexRadioDefault1-profileDeviceSettingsConfigName-11">
-    Display > Eye comfort shield (Blue light filter) > Color temperature (Opacity)
+    Display > Eye comfort shield (Blue light filter)
   </label>
 </div>
 
@@ -8838,7 +9046,7 @@ Refer to https://docs.samsungknox.com/admin/knox-platform-for-enterprise/knox-se
 
 <input class="form-check-input" type="radio" name="flexRadioDefault-profileDeviceSettingsConfigName" id="flexRadioDefault1-profileDeviceSettingsConfigName-12">
   <label class="form-check-label" for="flexRadioDefault1-profileDeviceSettingsConfigName-12">
-    Display > Eye comfort shield (Blue light filter) > Custom (Turn on as scheduled)
+    Display > Eye comfort shield (Blue light filter) > Color temperature (Opacity)
   </label>
 </div>
 
@@ -8846,7 +9054,7 @@ Refer to https://docs.samsungknox.com/admin/knox-platform-for-enterprise/knox-se
 
 <input class="form-check-input" type="radio" name="flexRadioDefault-profileDeviceSettingsConfigName" id="flexRadioDefault1-profileDeviceSettingsConfigName-13">
   <label class="form-check-label" for="flexRadioDefault1-profileDeviceSettingsConfigName-13">
-    Display > Eye comfort shield (Blue light filter) > Set schedule (Turn on as scheduled) > Sunset to sunrise / Custom
+    Display > Eye comfort shield (Blue light filter) > Custom (Turn on as scheduled)
   </label>
 </div>
 
@@ -8854,7 +9062,7 @@ Refer to https://docs.samsungknox.com/admin/knox-platform-for-enterprise/knox-se
 
 <input class="form-check-input" type="radio" name="flexRadioDefault-profileDeviceSettingsConfigName" id="flexRadioDefault1-profileDeviceSettingsConfigName-14">
   <label class="form-check-label" for="flexRadioDefault1-profileDeviceSettingsConfigName-14">
-    Display > Eye comfort shield (Blue light filter) > Set schedule (Turn on as scheduled) > Custom > Start time
+    Display > Eye comfort shield (Blue light filter) > Set schedule (Turn on as scheduled) > Sunset to sunrise / Custom
   </label>
 </div>
 
@@ -8862,7 +9070,7 @@ Refer to https://docs.samsungknox.com/admin/knox-platform-for-enterprise/knox-se
 
 <input class="form-check-input" type="radio" name="flexRadioDefault-profileDeviceSettingsConfigName" id="flexRadioDefault1-profileDeviceSettingsConfigName-15">
   <label class="form-check-label" for="flexRadioDefault1-profileDeviceSettingsConfigName-15">
-    Display > Eye comfort shield (Blue light filter) > Set schedule (Turn on as scheduled) > Custom > End time
+    Display > Eye comfort shield (Blue light filter) > Set schedule (Turn on as scheduled) > Custom > Start time
   </label>
 </div>
 
@@ -8870,7 +9078,7 @@ Refer to https://docs.samsungknox.com/admin/knox-platform-for-enterprise/knox-se
 
 <input class="form-check-input" type="radio" name="flexRadioDefault-profileDeviceSettingsConfigName" id="flexRadioDefault1-profileDeviceSettingsConfigName-16">
   <label class="form-check-label" for="flexRadioDefault1-profileDeviceSettingsConfigName-16">
-    Display > Screen timeout
+    Display > Eye comfort shield (Blue light filter) > Set schedule (Turn on as scheduled) > Custom > End time
   </label>
 </div>
 
@@ -8878,7 +9086,7 @@ Refer to https://docs.samsungknox.com/admin/knox-platform-for-enterprise/knox-se
 
 <input class="form-check-input" type="radio" name="flexRadioDefault-profileDeviceSettingsConfigName" id="flexRadioDefault1-profileDeviceSettingsConfigName-17">
   <label class="form-check-label" for="flexRadioDefault1-profileDeviceSettingsConfigName-17">
-    Display > Screen zoom
+    Display > Screen timeout
   </label>
 </div>
 
@@ -8886,7 +9094,7 @@ Refer to https://docs.samsungknox.com/admin/knox-platform-for-enterprise/knox-se
 
 <input class="form-check-input" type="radio" name="flexRadioDefault-profileDeviceSettingsConfigName" id="flexRadioDefault1-profileDeviceSettingsConfigName-18">
   <label class="form-check-label" for="flexRadioDefault1-profileDeviceSettingsConfigName-18">
-    Display > Navigation bar
+    Display > Screen zoom
   </label>
 </div>
 
@@ -8894,7 +9102,7 @@ Refer to https://docs.samsungknox.com/admin/knox-platform-for-enterprise/knox-se
 
 <input class="form-check-input" type="radio" name="flexRadioDefault-profileDeviceSettingsConfigName" id="flexRadioDefault1-profileDeviceSettingsConfigName-19">
   <label class="form-check-label" for="flexRadioDefault1-profileDeviceSettingsConfigName-19">
-    Display > Navigation bar > Button order
+    Display > Navigation bar
   </label>
 </div>
 
@@ -8902,7 +9110,7 @@ Refer to https://docs.samsungknox.com/admin/knox-platform-for-enterprise/knox-se
 
 <input class="form-check-input" type="radio" name="flexRadioDefault-profileDeviceSettingsConfigName" id="flexRadioDefault1-profileDeviceSettingsConfigName-20">
   <label class="form-check-label" for="flexRadioDefault1-profileDeviceSettingsConfigName-20">
-    Display > Navigation bar > Navigation type
+    Display > Navigation bar > Button order
   </label>
 </div>
 
@@ -8910,7 +9118,7 @@ Refer to https://docs.samsungknox.com/admin/knox-platform-for-enterprise/knox-se
 
 <input class="form-check-input" type="radio" name="flexRadioDefault-profileDeviceSettingsConfigName" id="flexRadioDefault1-profileDeviceSettingsConfigName-21">
   <label class="form-check-label" for="flexRadioDefault1-profileDeviceSettingsConfigName-21">
-    Display > Touch sensitivity
+    Display > Navigation bar > Navigation type
   </label>
 </div>
 
@@ -8918,7 +9126,7 @@ Refer to https://docs.samsungknox.com/admin/knox-platform-for-enterprise/knox-se
 
 <input class="form-check-input" type="radio" name="flexRadioDefault-profileDeviceSettingsConfigName" id="flexRadioDefault1-profileDeviceSettingsConfigName-22">
   <label class="form-check-label" for="flexRadioDefault1-profileDeviceSettingsConfigName-22">
-    Font size and style > Font Size (Accessibility / Display)
+    Display > Touch sensitivity
   </label>
 </div>
 
@@ -8926,7 +9134,7 @@ Refer to https://docs.samsungknox.com/admin/knox-platform-for-enterprise/knox-se
 
 <input class="form-check-input" type="radio" name="flexRadioDefault-profileDeviceSettingsConfigName" id="flexRadioDefault1-profileDeviceSettingsConfigName-23">
   <label class="form-check-label" for="flexRadioDefault1-profileDeviceSettingsConfigName-23">
-    Font size and style > Font Style (Accessibility / Display)
+    Font size and style > Font Size (Accessibility / Display)
   </label>
 </div>
 
@@ -8934,7 +9142,7 @@ Refer to https://docs.samsungknox.com/admin/knox-platform-for-enterprise/knox-se
 
 <input class="form-check-input" type="radio" name="flexRadioDefault-profileDeviceSettingsConfigName" id="flexRadioDefault1-profileDeviceSettingsConfigName-24">
   <label class="form-check-label" for="flexRadioDefault1-profileDeviceSettingsConfigName-24">
-    General Management > Language and Input > Text-to-speech > PreferredEngine
+    Font size and style > Font Style (Accessibility / Display)
   </label>
 </div>
 
@@ -8942,7 +9150,7 @@ Refer to https://docs.samsungknox.com/admin/knox-platform-for-enterprise/knox-se
 
 <input class="form-check-input" type="radio" name="flexRadioDefault-profileDeviceSettingsConfigName" id="flexRadioDefault1-profileDeviceSettingsConfigName-25">
   <label class="form-check-label" for="flexRadioDefault1-profileDeviceSettingsConfigName-25">
-    General Management > Language and Input > Text-to-speech > Pitch
+    General Management > Language and Input > Text-to-speech > PreferredEngine
   </label>
 </div>
 
@@ -8950,7 +9158,7 @@ Refer to https://docs.samsungknox.com/admin/knox-platform-for-enterprise/knox-se
 
 <input class="form-check-input" type="radio" name="flexRadioDefault-profileDeviceSettingsConfigName" id="flexRadioDefault1-profileDeviceSettingsConfigName-26">
   <label class="form-check-label" for="flexRadioDefault1-profileDeviceSettingsConfigName-26">
-    General Management > Language and Input > Text-to-speech > Speech rate
+    General Management > Language and Input > Text-to-speech > Pitch
   </label>
 </div>
 
@@ -8958,7 +9166,7 @@ Refer to https://docs.samsungknox.com/admin/knox-platform-for-enterprise/knox-se
 
 <input class="form-check-input" type="radio" name="flexRadioDefault-profileDeviceSettingsConfigName" id="flexRadioDefault1-profileDeviceSettingsConfigName-27">
   <label class="form-check-label" for="flexRadioDefault1-profileDeviceSettingsConfigName-27">
-    General Management > Language and Input > Physical keyboard > Change language shortcut
+    General Management > Language and Input > Text-to-speech > Speech rate
   </label>
 </div>
 
@@ -8966,7 +9174,7 @@ Refer to https://docs.samsungknox.com/admin/knox-platform-for-enterprise/knox-se
 
 <input class="form-check-input" type="radio" name="flexRadioDefault-profileDeviceSettingsConfigName" id="flexRadioDefault1-profileDeviceSettingsConfigName-28">
   <label class="form-check-label" for="flexRadioDefault1-profileDeviceSettingsConfigName-28">
-    General Management > Language and Input > On-screen keyboard > Show Keyboard Button
+    General Management > Language and Input > Physical keyboard > Change language shortcut
   </label>
 </div>
 
@@ -8974,7 +9182,7 @@ Refer to https://docs.samsungknox.com/admin/knox-platform-for-enterprise/knox-se
 
 <input class="form-check-input" type="radio" name="flexRadioDefault-profileDeviceSettingsConfigName" id="flexRadioDefault1-profileDeviceSettingsConfigName-29">
   <label class="form-check-label" for="flexRadioDefault1-profileDeviceSettingsConfigName-29">
-    General Management > Physical keyboard > Show on-screen keyboard
+    General Management > Language and Input > On-screen keyboard > Show Keyboard Button
   </label>
 </div>
 
@@ -8982,7 +9190,7 @@ Refer to https://docs.samsungknox.com/admin/knox-platform-for-enterprise/knox-se
 
 <input class="form-check-input" type="radio" name="flexRadioDefault-profileDeviceSettingsConfigName" id="flexRadioDefault1-profileDeviceSettingsConfigName-30">
   <label class="form-check-label" for="flexRadioDefault1-profileDeviceSettingsConfigName-30">
-    General Management > Language and Input > On-screen keyboard > Default keyboard
+    General Management > Physical keyboard > Show on-screen keyboard
   </label>
 </div>
 
@@ -8990,7 +9198,7 @@ Refer to https://docs.samsungknox.com/admin/knox-platform-for-enterprise/knox-se
 
 <input class="form-check-input" type="radio" name="flexRadioDefault-profileDeviceSettingsConfigName" id="flexRadioDefault1-profileDeviceSettingsConfigName-31">
   <label class="form-check-label" for="flexRadioDefault1-profileDeviceSettingsConfigName-31">
-    Location > Improve accuracy with Wi-Fi
+    General Management > Language and Input > On-screen keyboard > Default keyboard
   </label>
 </div>
 
@@ -8998,7 +9206,7 @@ Refer to https://docs.samsungknox.com/admin/knox-platform-for-enterprise/knox-se
 
 <input class="form-check-input" type="radio" name="flexRadioDefault-profileDeviceSettingsConfigName" id="flexRadioDefault1-profileDeviceSettingsConfigName-32">
   <label class="form-check-label" for="flexRadioDefault1-profileDeviceSettingsConfigName-32">
-    Location > Improve accuracy with BT
+    Location > Improve accuracy with Wi-Fi
   </label>
 </div>
 
@@ -9006,7 +9214,7 @@ Refer to https://docs.samsungknox.com/admin/knox-platform-for-enterprise/knox-se
 
 <input class="form-check-input" type="radio" name="flexRadioDefault-profileDeviceSettingsConfigName" id="flexRadioDefault1-profileDeviceSettingsConfigName-33">
   <label class="form-check-label" for="flexRadioDefault1-profileDeviceSettingsConfigName-33">
-    Lock Screen > Notifications
+    Location > Improve accuracy with BT
   </label>
 </div>
 
@@ -9014,7 +9222,7 @@ Refer to https://docs.samsungknox.com/admin/knox-platform-for-enterprise/knox-se
 
 <input class="form-check-input" type="radio" name="flexRadioDefault-profileDeviceSettingsConfigName" id="flexRadioDefault1-profileDeviceSettingsConfigName-34">
   <label class="form-check-label" for="flexRadioDefault1-profileDeviceSettingsConfigName-34">
-    Lock Screen > Notifications > Auto-reverse text color (deprecated from Knox 3.10)
+    Lock Screen > Notifications
   </label>
 </div>
 
@@ -9022,7 +9230,7 @@ Refer to https://docs.samsungknox.com/admin/knox-platform-for-enterprise/knox-se
 
 <input class="form-check-input" type="radio" name="flexRadioDefault-profileDeviceSettingsConfigName" id="flexRadioDefault1-profileDeviceSettingsConfigName-35">
   <label class="form-check-label" for="flexRadioDefault1-profileDeviceSettingsConfigName-35">
-    Lock Screen > Notifications > Transparency (deprecated from Knox 3.11)
+    Lock Screen > Notifications > Auto-reverse text color (deprecated from Knox 3.10)
   </label>
 </div>
 
@@ -9030,7 +9238,7 @@ Refer to https://docs.samsungknox.com/admin/knox-platform-for-enterprise/knox-se
 
 <input class="form-check-input" type="radio" name="flexRadioDefault-profileDeviceSettingsConfigName" id="flexRadioDefault1-profileDeviceSettingsConfigName-36">
   <label class="form-check-label" for="flexRadioDefault1-profileDeviceSettingsConfigName-36">
-    Lock Screen > Notifications > View style (deprecated from Knox 3.11)
+    Lock Screen > Notifications > Transparency (deprecated from Knox 3.11)
   </label>
 </div>
 
@@ -9038,7 +9246,7 @@ Refer to https://docs.samsungknox.com/admin/knox-platform-for-enterprise/knox-se
 
 <input class="form-check-input" type="radio" name="flexRadioDefault-profileDeviceSettingsConfigName" id="flexRadioDefault1-profileDeviceSettingsConfigName-37">
   <label class="form-check-label" for="flexRadioDefault1-profileDeviceSettingsConfigName-37">
-    Lock Screen > Notifications > Hide content
+    Lock Screen > Notifications > View style (deprecated from Knox 3.11)
   </label>
 </div>
 
@@ -9046,7 +9254,7 @@ Refer to https://docs.samsungknox.com/admin/knox-platform-for-enterprise/knox-se
 
 <input class="form-check-input" type="radio" name="flexRadioDefault-profileDeviceSettingsConfigName" id="flexRadioDefault1-profileDeviceSettingsConfigName-38">
   <label class="form-check-label" for="flexRadioDefault1-profileDeviceSettingsConfigName-38">
-    Lock Screen > Roaming clock
+    Lock Screen > Notifications > Hide content
   </label>
 </div>
 
@@ -9054,7 +9262,7 @@ Refer to https://docs.samsungknox.com/admin/knox-platform-for-enterprise/knox-se
 
 <input class="form-check-input" type="radio" name="flexRadioDefault-profileDeviceSettingsConfigName" id="flexRadioDefault1-profileDeviceSettingsConfigName-39">
   <label class="form-check-label" for="flexRadioDefault1-profileDeviceSettingsConfigName-39">
-    Lock Screen > Roaming clock > Home time zone
+    Lock Screen > Roaming clock
   </label>
 </div>
 
@@ -9062,7 +9270,7 @@ Refer to https://docs.samsungknox.com/admin/knox-platform-for-enterprise/knox-se
 
 <input class="form-check-input" type="radio" name="flexRadioDefault-profileDeviceSettingsConfigName" id="flexRadioDefault1-profileDeviceSettingsConfigName-40">
   <label class="form-check-label" for="flexRadioDefault1-profileDeviceSettingsConfigName-40">
-    Lock Screen > Roaming clock > Show on Always On Display
+    Lock Screen > Roaming clock > Home time zone
   </label>
 </div>
 
@@ -9070,7 +9278,7 @@ Refer to https://docs.samsungknox.com/admin/knox-platform-for-enterprise/knox-se
 
 <input class="form-check-input" type="radio" name="flexRadioDefault-profileDeviceSettingsConfigName" id="flexRadioDefault1-profileDeviceSettingsConfigName-41">
   <label class="form-check-label" for="flexRadioDefault1-profileDeviceSettingsConfigName-41">
-    Notifications > Status bar > Display battery percentage
+    Lock Screen > Roaming clock > Show on Always On Display
   </label>
 </div>
 
@@ -9078,7 +9286,7 @@ Refer to https://docs.samsungknox.com/admin/knox-platform-for-enterprise/knox-se
 
 <input class="form-check-input" type="radio" name="flexRadioDefault-profileDeviceSettingsConfigName" id="flexRadioDefault1-profileDeviceSettingsConfigName-42">
   <label class="form-check-label" for="flexRadioDefault1-profileDeviceSettingsConfigName-42">
-    Notifications > Advanced settings > Show notification icons
+    Notifications > Status bar > Display battery percentage
   </label>
 </div>
 
@@ -9086,7 +9294,7 @@ Refer to https://docs.samsungknox.com/admin/knox-platform-for-enterprise/knox-se
 
 <input class="form-check-input" type="radio" name="flexRadioDefault-profileDeviceSettingsConfigName" id="flexRadioDefault1-profileDeviceSettingsConfigName-43">
   <label class="form-check-label" for="flexRadioDefault1-profileDeviceSettingsConfigName-43">
-    Sounds and Vibration > Notification sounds
+    Notifications > Advanced settings > Show notification icons
   </label>
 </div>
 
@@ -9094,7 +9302,7 @@ Refer to https://docs.samsungknox.com/admin/knox-platform-for-enterprise/knox-se
 
 <input class="form-check-input" type="radio" name="flexRadioDefault-profileDeviceSettingsConfigName" id="flexRadioDefault1-profileDeviceSettingsConfigName-44">
   <label class="form-check-label" for="flexRadioDefault1-profileDeviceSettingsConfigName-44">
-    Sounds and Vibration > Notification sounds > SIM1
+    Sounds and Vibration > Notification sounds
   </label>
 </div>
 
@@ -9102,7 +9310,7 @@ Refer to https://docs.samsungknox.com/admin/knox-platform-for-enterprise/knox-se
 
 <input class="form-check-input" type="radio" name="flexRadioDefault-profileDeviceSettingsConfigName" id="flexRadioDefault1-profileDeviceSettingsConfigName-45">
   <label class="form-check-label" for="flexRadioDefault1-profileDeviceSettingsConfigName-45">
-    Sounds and Vibration > Notification sounds > SIM2
+    Sounds and Vibration > Notification sounds > SIM1
   </label>
 </div>
 
@@ -9110,7 +9318,7 @@ Refer to https://docs.samsungknox.com/admin/knox-platform-for-enterprise/knox-se
 
 <input class="form-check-input" type="radio" name="flexRadioDefault-profileDeviceSettingsConfigName" id="flexRadioDefault1-profileDeviceSettingsConfigName-46">
   <label class="form-check-label" for="flexRadioDefault1-profileDeviceSettingsConfigName-46">
-    Sounds and Vibration > System sounds and vibration > Charging sound
+    Sounds and Vibration > Notification sounds > SIM2
   </label>
 </div>
 
@@ -9118,7 +9326,7 @@ Refer to https://docs.samsungknox.com/admin/knox-platform-for-enterprise/knox-se
 
 <input class="form-check-input" type="radio" name="flexRadioDefault-profileDeviceSettingsConfigName" id="flexRadioDefault1-profileDeviceSettingsConfigName-47">
   <label class="form-check-label" for="flexRadioDefault1-profileDeviceSettingsConfigName-47">
-    Sounds and Vibration > System sounds and vibration > Dialing keypad tone
+    Sounds and Vibration > System sounds and vibration > Charging sound
   </label>
 </div>
 
@@ -9126,7 +9334,7 @@ Refer to https://docs.samsungknox.com/admin/knox-platform-for-enterprise/knox-se
 
 <input class="form-check-input" type="radio" name="flexRadioDefault-profileDeviceSettingsConfigName" id="flexRadioDefault1-profileDeviceSettingsConfigName-48">
   <label class="form-check-label" for="flexRadioDefault1-profileDeviceSettingsConfigName-48">
-    Sounds and Vibration > System sounds and vibration > Keyboard sound
+    Sounds and Vibration > System sounds and vibration > Dialing keypad tone
   </label>
 </div>
 
@@ -9134,7 +9342,7 @@ Refer to https://docs.samsungknox.com/admin/knox-platform-for-enterprise/knox-se
 
 <input class="form-check-input" type="radio" name="flexRadioDefault-profileDeviceSettingsConfigName" id="flexRadioDefault1-profileDeviceSettingsConfigName-49">
   <label class="form-check-label" for="flexRadioDefault1-profileDeviceSettingsConfigName-49">
-    Sounds and Vibration > System sounds and vibration > Keyboard vibration
+    Sounds and Vibration > System sounds and vibration > Keyboard sound
   </label>
 </div>
 
@@ -9142,7 +9350,7 @@ Refer to https://docs.samsungknox.com/admin/knox-platform-for-enterprise/knox-se
 
 <input class="form-check-input" type="radio" name="flexRadioDefault-profileDeviceSettingsConfigName" id="flexRadioDefault1-profileDeviceSettingsConfigName-50">
   <label class="form-check-label" for="flexRadioDefault1-profileDeviceSettingsConfigName-50">
-    Sounds and Vibration > System sounds and vibration > Screen lock sound
+    Sounds and Vibration > System sounds and vibration > Keyboard vibration
   </label>
 </div>
 
@@ -9150,7 +9358,7 @@ Refer to https://docs.samsungknox.com/admin/knox-platform-for-enterprise/knox-se
 
 <input class="form-check-input" type="radio" name="flexRadioDefault-profileDeviceSettingsConfigName" id="flexRadioDefault1-profileDeviceSettingsConfigName-51">
   <label class="form-check-label" for="flexRadioDefault1-profileDeviceSettingsConfigName-51">
-    Sounds and Vibration > System sounds and vibration > Touch sound
+    Sounds and Vibration > System sounds and vibration > Screen lock sound
   </label>
 </div>
 
@@ -9158,7 +9366,7 @@ Refer to https://docs.samsungknox.com/admin/knox-platform-for-enterprise/knox-se
 
 <input class="form-check-input" type="radio" name="flexRadioDefault-profileDeviceSettingsConfigName" id="flexRadioDefault1-profileDeviceSettingsConfigName-52">
   <label class="form-check-label" for="flexRadioDefault1-profileDeviceSettingsConfigName-52">
-    Sounds and Vibration > System sounds and vibration > Touch vibration
+    Sounds and Vibration > System sounds and vibration > Touch sound
   </label>
 </div>
 
@@ -9166,7 +9374,7 @@ Refer to https://docs.samsungknox.com/admin/knox-platform-for-enterprise/knox-se
 
 <input class="form-check-input" type="radio" name="flexRadioDefault-profileDeviceSettingsConfigName" id="flexRadioDefault1-profileDeviceSettingsConfigName-53">
   <label class="form-check-label" for="flexRadioDefault1-profileDeviceSettingsConfigName-53">
-    Sounds and Vibration > Use volume key for media
+    Sounds and Vibration > System sounds and vibration > Touch vibration
   </label>
 </div>
 
@@ -9174,7 +9382,7 @@ Refer to https://docs.samsungknox.com/admin/knox-platform-for-enterprise/knox-se
 
 <input class="form-check-input" type="radio" name="flexRadioDefault-profileDeviceSettingsConfigName" id="flexRadioDefault1-profileDeviceSettingsConfigName-54">
   <label class="form-check-label" for="flexRadioDefault1-profileDeviceSettingsConfigName-54">
-    Sounds and Vibration > Vibration pattern
+    Sounds and Vibration > Use volume key for media
   </label>
 </div>
 
@@ -9182,7 +9390,7 @@ Refer to https://docs.samsungknox.com/admin/knox-platform-for-enterprise/knox-se
 
 <input class="form-check-input" type="radio" name="flexRadioDefault-profileDeviceSettingsConfigName" id="flexRadioDefault1-profileDeviceSettingsConfigName-55">
   <label class="form-check-label" for="flexRadioDefault1-profileDeviceSettingsConfigName-55">
-    Sounds and Vibration > Vibration while ringing
+    Sounds and Vibration > Vibration pattern
   </label>
 </div>
 
@@ -9190,7 +9398,7 @@ Refer to https://docs.samsungknox.com/admin/knox-platform-for-enterprise/knox-se
 
 <input class="form-check-input" type="radio" name="flexRadioDefault-profileDeviceSettingsConfigName" id="flexRadioDefault1-profileDeviceSettingsConfigName-56">
   <label class="form-check-label" for="flexRadioDefault1-profileDeviceSettingsConfigName-56">
-    WiFi > (connected WiFi network name) > Settings > QR code
+    Sounds and Vibration > Vibration while ringing
   </label>
 </div>
 
@@ -9198,7 +9406,7 @@ Refer to https://docs.samsungknox.com/admin/knox-platform-for-enterprise/knox-se
 
 <input class="form-check-input" type="radio" name="flexRadioDefault-profileDeviceSettingsConfigName" id="flexRadioDefault1-profileDeviceSettingsConfigName-57">
   <label class="form-check-label" for="flexRadioDefault1-profileDeviceSettingsConfigName-57">
-    WiFi > Advanced > Switch to mobile data
+    WiFi > (connected WiFi network name) > Settings > QR code
   </label>
 </div>
 
@@ -9206,7 +9414,7 @@ Refer to https://docs.samsungknox.com/admin/knox-platform-for-enterprise/knox-se
 
 <input class="form-check-input" type="radio" name="flexRadioDefault-profileDeviceSettingsConfigName" id="flexRadioDefault1-profileDeviceSettingsConfigName-58">
   <label class="form-check-label" for="flexRadioDefault1-profileDeviceSettingsConfigName-58">
-    WiFi > Advanced > Switch to mobile data > Allow individual apps to switch
+    WiFi > Advanced > Switch to mobile data
   </label>
 </div>
 
@@ -9214,7 +9422,7 @@ Refer to https://docs.samsungknox.com/admin/knox-platform-for-enterprise/knox-se
 
 <input class="form-check-input" type="radio" name="flexRadioDefault-profileDeviceSettingsConfigName" id="flexRadioDefault1-profileDeviceSettingsConfigName-59">
   <label class="form-check-label" for="flexRadioDefault1-profileDeviceSettingsConfigName-59">
-    WiFi > Advanced > Turn on WiFi automatically
+    WiFi > Advanced > Switch to mobile data > Allow individual apps to switch
   </label>
 </div>
 
@@ -9222,7 +9430,7 @@ Refer to https://docs.samsungknox.com/admin/knox-platform-for-enterprise/knox-se
 
 <input class="form-check-input" type="radio" name="flexRadioDefault-profileDeviceSettingsConfigName" id="flexRadioDefault1-profileDeviceSettingsConfigName-60">
   <label class="form-check-label" for="flexRadioDefault1-profileDeviceSettingsConfigName-60">
-    WiFi > Advanced > WiFi power saving mode
+    WiFi > Advanced > Turn on WiFi automatically
   </label>
 </div>
 
@@ -9230,7 +9438,7 @@ Refer to https://docs.samsungknox.com/admin/knox-platform-for-enterprise/knox-se
 
 <input class="form-check-input" type="radio" name="flexRadioDefault-profileDeviceSettingsConfigName" id="flexRadioDefault1-profileDeviceSettingsConfigName-61">
   <label class="form-check-label" for="flexRadioDefault1-profileDeviceSettingsConfigName-61">
-    WiFi > Advanced > Hotspot 2.0
+    WiFi > Advanced > WiFi power saving mode
   </label>
 </div>
 
@@ -9238,7 +9446,7 @@ Refer to https://docs.samsungknox.com/admin/knox-platform-for-enterprise/knox-se
 
 <input class="form-check-input" type="radio" name="flexRadioDefault-profileDeviceSettingsConfigName" id="flexRadioDefault1-profileDeviceSettingsConfigName-62">
   <label class="form-check-label" for="flexRadioDefault1-profileDeviceSettingsConfigName-62">
-    WiFi > Advanced > Proxy
+    WiFi > Advanced > Hotspot 2.0
   </label>
 </div>
 
@@ -9246,7 +9454,7 @@ Refer to https://docs.samsungknox.com/admin/knox-platform-for-enterprise/knox-se
 
 <input class="form-check-input" type="radio" name="flexRadioDefault-profileDeviceSettingsConfigName" id="flexRadioDefault1-profileDeviceSettingsConfigName-63">
   <label class="form-check-label" for="flexRadioDefault1-profileDeviceSettingsConfigName-63">
-    WiFi > Disable internet connectivity
+    WiFi > Advanced > Proxy
   </label>
 </div>
 
@@ -9254,7 +9462,7 @@ Refer to https://docs.samsungknox.com/admin/knox-platform-for-enterprise/knox-se
 
 <input class="form-check-input" type="radio" name="flexRadioDefault-profileDeviceSettingsConfigName" id="flexRadioDefault1-profileDeviceSettingsConfigName-64">
   <label class="form-check-label" for="flexRadioDefault1-profileDeviceSettingsConfigName-64">
-    Samsung Keyboard > Toolbar
+    WiFi > Disable internet connectivity
   </label>
 </div>
 
@@ -9262,7 +9470,7 @@ Refer to https://docs.samsungknox.com/admin/knox-platform-for-enterprise/knox-se
 
 <input class="form-check-input" type="radio" name="flexRadioDefault-profileDeviceSettingsConfigName" id="flexRadioDefault1-profileDeviceSettingsConfigName-65">
   <label class="form-check-label" for="flexRadioDefault1-profileDeviceSettingsConfigName-65">
-    Samsung Keyboard > Show toolbar with physical keyboard
+    Samsung Keyboard > Toolbar
   </label>
 </div>
 
@@ -9270,7 +9478,7 @@ Refer to https://docs.samsungknox.com/admin/knox-platform-for-enterprise/knox-se
 
 <input class="form-check-input" type="radio" name="flexRadioDefault-profileDeviceSettingsConfigName" id="flexRadioDefault1-profileDeviceSettingsConfigName-66">
   <label class="form-check-label" for="flexRadioDefault1-profileDeviceSettingsConfigName-66">
-    Side key > Press and hold
+    Samsung Keyboard > Show toolbar with physical keyboard
   </label>
 </div>
 
@@ -9278,6 +9486,14 @@ Refer to https://docs.samsungknox.com/admin/knox-platform-for-enterprise/knox-se
 
 <input class="form-check-input" type="radio" name="flexRadioDefault-profileDeviceSettingsConfigName" id="flexRadioDefault1-profileDeviceSettingsConfigName-67">
   <label class="form-check-label" for="flexRadioDefault1-profileDeviceSettingsConfigName-67">
+    Side key > Press and hold
+  </label>
+</div>
+
+<div class="form-check">
+
+<input class="form-check-input" type="radio" name="flexRadioDefault-profileDeviceSettingsConfigName" id="flexRadioDefault1-profileDeviceSettingsConfigName-68">
+  <label class="form-check-label" for="flexRadioDefault1-profileDeviceSettingsConfigName-68">
     Motions and gestures > Mute with gestures
   </label>
 </div>
@@ -10365,8 +10581,8 @@ Refer to https://docs.samsungknox.com/admin/knox-platform-for-enterprise/knox-se
 <div class='col-xl-12' id="container-restriction-profileFirewallAllowRuleApp">
 <div class="top-card ms-4 border-top" id="restriction-profileFirewallAllowRuleApp">
   <div class="card-body">
-    <h5 class="card-title">Application</h5>
-    <p class="card-text">Specify the package name of the application for which this ALLOW rule is applied. Leave the field empty to apply the rule to all connections on the device.</p>
+    <h5 class="card-title">Applications</h5>
+    <p class="card-text">Specify the package name list of the applications for which this ALLOW rule is applied. Leave the field empty to apply the rule to all connections on the device.</p>
 
 <input type="text" value="" class="form-control" id="restriction-string-profileFirewallAllowRuleApp" name="restriction-string-profileFirewallAllowRuleApp">
   </div>
@@ -10494,8 +10710,8 @@ Refer to https://docs.samsungknox.com/admin/knox-platform-for-enterprise/knox-se
 <div class='col-xl-12' id="container-restriction-profileFirewallDenyRuleApp">
 <div class="top-card ms-4 border-top" id="restriction-profileFirewallDenyRuleApp">
   <div class="card-body">
-    <h5 class="card-title">Application</h5>
-    <p class="card-text">Specify the package name of the application for which this DENY rule is applied. Leave the field empty to apply the rule to all connections on the device.</p>
+    <h5 class="card-title">Applications</h5>
+    <p class="card-text">Specify the package name list of the applications for which this DENY rule is applied. Leave the field empty to apply the rule to all connections on the device.</p>
 
 <input type="text" value="" class="form-control" id="restriction-string-profileFirewallDenyRuleApp" name="restriction-string-profileFirewallDenyRuleApp">
   </div>
@@ -10611,8 +10827,8 @@ Refer to https://docs.samsungknox.com/admin/knox-platform-for-enterprise/knox-se
 <div class='col-xl-12' id="container-restriction-profileFirewallRerouteRuleApp">
 <div class="top-card ms-4 border-top" id="restriction-profileFirewallRerouteRuleApp">
   <div class="card-body">
-    <h5 class="card-title">Application</h5>
-    <p class="card-text">Specify the package name of the application for which this redirect rule is applied. Leave the field empty to apply the rule to all connections on the device.</p>
+    <h5 class="card-title">Applications</h5>
+    <p class="card-text">Specify the package name list of the applications for which this REDIRECT rule is applied. Leave the field empty to apply the rule to all connections on the device.</p>
 
 <input type="text" value="" class="form-control" id="restriction-string-profileFirewallRerouteRuleApp" name="restriction-string-profileFirewallRerouteRuleApp">
   </div>
@@ -12387,6 +12603,46 @@ Refer to https://docs.samsungknox.com/admin/knox-platform-for-enterprise/knox-se
     <p class="card-text">Enter the built-in unique remote VPN identifier that applies to your VPN provider. Your IT admin provides this information when setting up the VPN client profile. Availability: Knox v3.11 or higher.</p>
 
 <input type="text" value="" class="form-control" id="restriction-string-profileVpnBuiltinRemoteIdentifier" name="restriction-string-profileVpnBuiltinRemoteIdentifier">
+  </div>
+</div>
+</div>
+<div class='col-xl-12' id="container-restriction-profileVpnBuiltinIkeCipherSuites">
+<div class="top-card ms-4 border-top" id="restriction-profileVpnBuiltinIkeCipherSuites">
+  <div class="card-body">
+    <h5 class="card-title">IKE Cipher Suites</h5>
+    <p class="card-text">Enter the IKE(Internet Key Exchange) cipher suites used for encryption and integrarity protection during the IKE phase.</p>
+
+<input type="text" value="" class="form-control" id="restriction-string-profileVpnBuiltinIkeCipherSuites" name="restriction-string-profileVpnBuiltinIkeCipherSuites">
+  </div>
+</div>
+</div>
+<div class='col-xl-12' id="container-restriction-profileVpnBuiltinIpsecCipherSuites">
+<div class="top-card ms-4 border-top" id="restriction-profileVpnBuiltinIpsecCipherSuites">
+  <div class="card-body">
+    <h5 class="card-title">IPsec Cipher Suites</h5>
+    <p class="card-text">Enter the IPsec cipher suites used for encryption and integrity protection during the Ipsec phase.</p>
+
+<input type="text" value="" class="form-control" id="restriction-string-profileVpnBuiltinIpsecCipherSuites" name="restriction-string-profileVpnBuiltinIpsecCipherSuites">
+  </div>
+</div>
+</div>
+<div class='col-xl-12' id="container-restriction-profileVpnBuiltinIkeRekeyTime">
+<div class="top-card ms-4 border-top" id="restriction-profileVpnBuiltinIkeRekeyTime">
+  <div class="card-body">
+    <h5 class="card-title">IKE Rekey Time</h5>
+    <p class="card-text">Enter the time interval(in seconds) after which the IKE SA(Security Association) is rekeyed. The default value is 4 hours(14,400s). *Note: Considering performance and security vulnerabilities, it is recommended to avoid setting values below 1 minute or above 24 hours.</p>
+
+<input type="text" value="" class="form-control" id="restriction-string-profileVpnBuiltinIkeRekeyTime" name="restriction-string-profileVpnBuiltinIkeRekeyTime">
+  </div>
+</div>
+</div>
+<div class='col-xl-12' id="container-restriction-profileVpnBuiltinIpsecRekeyTime">
+<div class="top-card ms-4 border-top" id="restriction-profileVpnBuiltinIpsecRekeyTime">
+  <div class="card-body">
+    <h5 class="card-title">IPsec Rekey Time</h5>
+    <p class="card-text">Enter the time interval(in seconds) after which the IPsec SA is rekeyed. The default value is 2 hours and 50 mins(10,200s). *Note: Considering performance and security vulnerabilities, it is recommended to avoid setting values below 1 minute or above 24 hours.</p>
+
+<input type="text" value="" class="form-control" id="restriction-string-profileVpnBuiltinIpsecRekeyTime" name="restriction-string-profileVpnBuiltinIpsecRekeyTime">
   </div>
 </div>
 </div>

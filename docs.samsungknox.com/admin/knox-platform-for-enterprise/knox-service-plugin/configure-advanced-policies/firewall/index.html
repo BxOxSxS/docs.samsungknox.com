@@ -55,7 +55,7 @@
 
   
 
-<script onload="initBot()" defer src="https://dc-chbt.samsungknox.com/copilot/index.js?noCache=1756504880"></script>
+<script onload="initBot()" defer src="https://dc-chbt.samsungknox.com/copilot/index.js?noCache=1757116803"></script>
 <script defer>
     function initBot(){
       const relPath = "\/knox-platform-for-enterprise\/knox-service-plugin\/configure-advanced-policies\/firewall\/";
@@ -533,28 +533,6 @@
     
     <div class="d-flex justify-content-between">
       <a class="body-5 text-black fw-light" href="../device-key-mapping/index.html">Device key mapping</a>
-    </div>
-    
-    </li>
-  
-  
-  
-    <li class="mt-2">
-    
-    
-    <div class="d-flex justify-content-between">
-      <a class="body-5 text-black fw-light" href="../device-key-mapping-for-non-rugged-devices/index.html">Device key mapping for non-rugged devices</a>
-    </div>
-    
-    </li>
-  
-  
-  
-    <li class="mt-2">
-    
-    
-    <div class="d-flex justify-content-between">
-      <a class="body-5 text-black fw-light" href="../device-key-mapping-for-rugged-devices/index.html">Device key mapping for rugged devices</a>
     </div>
     
     </li>
@@ -1284,7 +1262,7 @@
             </div>
             
 
-  <p><span>Last updated July  26th, 2023</span></p>
+  <p><span>Last updated September  2nd, 2025</span></p>
 
 
     
@@ -1297,51 +1275,75 @@
 
 
 
-<h2 id="set-up-basic-firewall">Set up basic firewall</h2>
+<h2 id="create-a-firewall-configuration-profile">Create a firewall configuration profile</h2>
+<p>You can set up firewall rules on your devices to determine how apps connect to specified IP and port ranges.</p>
+<ul>
+<li>
+<p><strong>Firewall configuration profiles</strong> &mdash; Enter a profile name. For example <code>Firewall_config1</code>.</p>
+</li>
+<li>
+<p><strong>Allow rules</strong> &mdash; Add a new configuration to allow network traffic.</p>
+<ul>
+<li><strong>Hostname (IP or IP range)</strong> &mdash; Enter an IP or a range of IP addresses to allow incoming or outgoing data packets. For example, enter <code>100.0.0.10</code>, <code>100.0.0.0-100.0.0.10</code>, or use a wildcard <code>*</code> for all IP addresses.</li>
+<li><strong>Port or Port range</strong> &mdash; Enter a port number or range of port numbers that are allowed. For example, enter <code>8080</code>, <code>8080-8085</code>, or use a wildcard <code>*</code> for all ports.</li>
+<li><strong>Port location</strong> &mdash; Specify whether the ports are <strong>Remote</strong> or <strong>Local</strong>. <strong>Local</strong> ports are ports on the device, while <strong>Remote</strong> ports are those on a remote server. For example, to allow connections to an FTP server at port 21, specify an allow rule with a <strong>Remote</strong> port location.</li>
+<li><strong>Network interface</strong> &mdash; Specify the type of connection for which the firewall rule is applicable.</li>
+<li><strong>Application</strong> &mdash; Specify a list of app package names to apply this allow rule. Leave the field empty to apply the rule to all connections on the device.</li>
+</ul>
+</li>
+<li>
+<p><strong>Deny rules</strong> &mdash; Add a new configuration for blocking network traffic.</p>
+<ul>
+<li><strong>Hostname (IP or IP range)</strong> &mdash; Enter an IP or a range of IP addresses to block incoming or outgoing data packets. For example, enter <code>100.0.0.10</code>, <code>100.0.0.0-100.0.0.10</code>, or use a wildcard <code>*</code> for all IP addresses.</li>
+<li><strong>Port or Port range</strong> &mdash; Enter a port number or range of port numbers that are blocked. For example, enter <code>8080</code>, <code>8080-8085</code>, or use a wildcard <code>*</code> for all ports.</li>
+<li><strong>Port location</strong> &mdash; Specify whether the ports are <strong>Remote</strong> or <strong>Local</strong>. <strong>Local</strong> ports are ports on the device, while <strong>Remote</strong> ports are those on the server end point. For example, to block port 21 on the device from receiving connections, specify an allow rule with a <strong>Local</strong> port location.</li>
+<li><strong>Network interface</strong> &mdash; Specify the type of connection for which the firewall rule is applicable.</li>
+<li><strong>Application</strong> &mdash; Specify a list of app package names to apply this deny rule. Leave the field empty to apply the rule to all connections on the device.</li>
+</ul>
+<div class="notice-important"><p>To ensure devices are not locked out of your network, give the following apps packages explicit allow rules:</p><ul><li>UEM app package — Contact your UEM for details.</li><li>KSP app package — <code>com.samsung.android.knox.kpu</code></li><li>Google services — <code>com.android.vending, com.google.android.gms</code></li></ul></div>
+</li>
+<li>
+<p><strong>Redirect rules</strong> &mdash; Add a new configuration for redirecting network traffic.</p>
+<ul>
+<li><strong>Intended hostname (IP or IP range)</strong> &mdash; Enter an IP address or a range of IP addresses to automatically redirect data. Use a wildcard <code>*</code> to apply the rule to all IP addresses.</li>
+<li><strong>Intended port or port range</strong> &mdash; Enter a target port number or a range of port numbers to automatically redirect data.</li>
+<li><strong>Destination host IP</strong> &mdash; Enter the IP address of the target host to which all data packets are automatically redirected.</li>
+<li><strong>Destination port</strong> &mdash; Enter the port number of the target host to which all data packets are automatically redirected.</li>
+<li><strong>Network interface</strong> &mdash; Specify the type of connection for which the redirect rule is applicable.</li>
+<li><strong>Application</strong> &mdash; Specify a list of app package names to apply this redirect rule. Leave the field empty to apply the rule to all connections on the device.</li>
+</ul>
+</li>
+<li>
+<p><strong>Redirect exception</strong> &mdash; Add a new configuration to exempt network traffic from being redirected.</p>
+<ul>
+<li><strong>Hostname (IP or IP range)</strong> &mdash; Enter an IP address or a range of IP addresses which won&rsquo;t be redirected.</li>
+<li><strong>Port or Port range</strong> &mdash; Enter a port number or range of port numbers which won&rsquo;t be redirected.</li>
+</ul>
+</li>
+<li>
+<p><strong>Domain filter</strong> Add a new configuration to allow or deny connections to certain domains.</p>
+<ul>
+<li><strong>Blocked Domains</strong> &mdash; Specify the domains to which access requests are denied. Domains can be entered as a comma-separated list of URLs. Partial URLs with a wildcard <code>*</code> at the beginning and/or end of the URL are also accepted.</li>
+<li><strong>Allowed Domains</strong> &mdash; Specify the domains to which access requests are allowed. Domains can be entered as a comma-separated list of URLs. Partial URLs with a wildcard <code>*</code> at the beginning and/or end of the URL are also accepted.</li>
+<li><strong>Scope of Domain Filter</strong> &mdash; Define whether the firewall blocks or allows connection requests from all applications or only specific applications.</li>
+<li><strong>List of Applications to Apply Domain Filter To</strong> &mdash; If the scope of the domain filter is set to specific apps only, enter a comma-separated list of app package names to apply the domain filter.</li>
+</ul>
+</li>
+<li>
+<p><strong>Prioritize Domain filters over allow and deny rules</strong> &mdash; Enable this setting to make domain filters take precedence over other firewall rules. Note that this would allow data packets if there is a specific allowlist rule for that domain in the <strong>Domain Filter</strong>. Data packets to non-allowlisted domains may still be blocked if there is a firewall deny rule for it.</p>
+</li>
+</ul>
+<h2 id="apply-a-firewall-configuration-profile">Apply a firewall configuration profile</h2>
+<p>After you&rsquo;ve created a firewall configuration profile, you can apply it to your devices. To do this:</p>
 <ol>
 <li>
-<p>Under <strong>Firewall configuration profiles</strong>, enter a profile name. For example <code>Firewall_config1</code>.</p>
+<p>Under <strong>Firewall and Proxy policy</strong>, set <strong>Enable firewall controls</strong> to <strong>True</strong>.</p>
 </li>
 <li>
-<p>Under <strong>Allow rules</strong> &gt; <strong>Allow rule</strong>, fill out the required information for the data you want to allow through the firewall, for example, any connection originating from your enterprise intranet.</p>
+<p>Enter the <strong>Name of firewall configuration to use</strong>.</p>
 </li>
 <li>
-<p>Under <strong>Deny rules</strong> &gt; <strong>Deny rule</strong>, fill out the required information for the data you want to block through the firewall, for example, popular social media sites.</p>
-<div class="notice-note"><p>To ensure devices are not locked out of your network, give the following apps explicit allow rules. You must always set these allow rule exceptions if you are using DENY ALL rules.</p><ol><li><strong>UEM Agent package</strong> — Contact your UEM for details.</li><li><strong>KSP package</strong> — <code>com.samsung.android.knox.kpu</code></li><li><strong>Google services</strong> — <code>com.android.vending, com.google.android.gms</code></li></ol></div>
-</li>
-<li>
-<p>In your UEM, save the configuration.</p>
-</li>
-<li>
-<p>Under Firewall policy, turn on <strong>Enable Firewall controls</strong>.</p>
-</li>
-<li>
-<p>Under <strong>Name of firewall configuration to user</strong>, enter the name of the profile you want to use. In this example we use the profile we created previously, namely, <code>Firewall_config1</code>.</p>
-</li>
-<li>
-<p>In your UEM, save the profile and push it to a device.</p>
-</li>
-</ol>
-<h2 id="industry-example">Industry example</h2>
-<p>This example shows you how to configure a firewall that only allows traffic through for your UEM agent and internal intranet.</p>
-<ol>
-<li>
-<p>Under <strong>Firewall configuration profiles</strong>, enter a profile name. For example, <code>Firewall_internalOnly</code>.</p>
-</li>
-<li>
-<p>Under <strong>Allow rules</strong> &gt; <strong>Allow rule</strong>, fill out the required information to allow traffic for your UEM agent.</p>
-</li>
-<li>
-<p>Under <strong>Allow rules</strong> &gt; <strong>Allow rule</strong>, fill out the required information to allow traffic for intranet.</p>
-</li>
-<li>
-<p>Test to make sure the previous configurations are working before you proceed to the next step.</p>
-</li>
-<li>
-<p>Under <strong>Deny rules &gt; Deny rule</strong>, under <strong>Hostname (IP or IP range)</strong> type <code>*</code> to use a wild card to block all other incoming traffic.</p>
-</li>
-<li>
-<p>In your UEM, save the profile and push it to a device.</p>
+<p>On your UEM, save and assign this Knox Service Plugin managed configuration to your devices.</p>
 </li>
 </ol>
 
@@ -1352,8 +1354,8 @@
 <aside class="table-of-headings">
   <nav id="TableOfContents">
   <ul>
-    <li><a href="#set-up-basic-firewall">Set up basic firewall</a></li>
-    <li><a href="#industry-example">Industry example</a></li>
+    <li><a href="#create-a-firewall-configuration-profile">Create a firewall configuration profile</a></li>
+    <li><a href="#apply-a-firewall-configuration-profile">Apply a firewall configuration profile</a></li>
   </ul>
 </nav>
 </aside>

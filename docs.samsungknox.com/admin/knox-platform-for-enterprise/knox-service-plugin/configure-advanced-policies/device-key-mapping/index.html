@@ -55,7 +55,7 @@
 
   
 
-<script onload="initBot()" defer src="https://dc-chbt.samsungknox.com/copilot/index.js?noCache=1756504880"></script>
+<script onload="initBot()" defer src="https://dc-chbt.samsungknox.com/copilot/index.js?noCache=1757116803"></script>
 <script defer>
     function initBot(){
       const relPath = "\/knox-platform-for-enterprise\/knox-service-plugin\/configure-advanced-policies\/device-key-mapping\/";
@@ -533,28 +533,6 @@
     
     <div class="d-flex justify-content-between">
       <a class="body-5 text-black active" href="index.html">Device key mapping</a>
-    </div>
-    
-    </li>
-  
-  
-  
-    <li class="mt-2">
-    
-    
-    <div class="d-flex justify-content-between">
-      <a class="body-5 text-black fw-light" href="../device-key-mapping-for-non-rugged-devices/index.html">Device key mapping for non-rugged devices</a>
-    </div>
-    
-    </li>
-  
-  
-  
-    <li class="mt-2">
-    
-    
-    <div class="d-flex justify-content-between">
-      <a class="body-5 text-black fw-light" href="../device-key-mapping-for-rugged-devices/index.html">Device key mapping for rugged devices</a>
     </div>
     
     </li>
@@ -1284,7 +1262,7 @@
             </div>
             
 
-  <p><span>Last updated July  26th, 2023</span></p>
+  <p><span>Last updated September  2nd, 2025</span></p>
 
 
     
@@ -1303,6 +1281,7 @@
       
       
       
+      
         
       
       
@@ -1315,47 +1294,111 @@
       
         <h2 id="overview">Overview</h2>
 <p>Hardware keys on both rugged and non-rugged devices can be mapped to app functions. For example, you could press the side key on a non-rugged device to launch a push-to-talk (PTT) app, or press the top key on a rugged device to launch a camera or navigation app.</p>
-<h2 id="mapping-non-rugged-devices">Device key mapping for non-rugged devices</h2>
-<h4 id="supported-devices">Supported devices</h4>
+<p>This <a href="https://developer.android.com/reference/android/content/Intent" target="_blank">intent</a> doesn&rsquo;t replace the intents available for rugged devices, and works alongside them.</p>
+<h2 id="device-key-mapping-for-non-rugged-devices">Device key mapping for non-rugged devices</h2>
+<p>You can map the side key on non-rugged Samsung devices.</p>
+<h3 id="device-support">Device support</h3>
 <p>All Samsung Galaxy S, A, Tab, and Note series devices are supported.</p>
 <p>Additionally, devices with the following features are supported:</p>
 <ul>
 <li>Non-rugged devices running Android 12 and higher.</li>
 <li>Non-rugged devices that receive future Android 12 maintenance releases.</li>
 </ul>
-<h4 id="licenses">Licenses</h4>
+<div class="notice-note"><p>Depending on the device, the screen might switch on or off when the Home key is pressed. The partner app must take this into account and work around the issue.</p></div>
+<h3 id="map-the-side-key">Map the side key</h3>
+<p>To map the side key, you must disable the Bixby package and configure the side key press-and-hold setting, as described in the following procedure.</p>
+<ol>
+<li>
+<p>Deploy a compatible push-to-talk (PTT) app with your UEM through Managed Google Play.</p>
+</li>
+<li>
+<p>Disable Bixby with your UEM. You can also do this using Knox Service Plugin by adding the Bixby package <code>com.samsung.android.bixby.agent</code> to the <strong>Disable Application without user interaction</strong> policy. For details, see <a href="../application-management-policies/index.html" target="_blank">Application management policies</a>.</p>
+</li>
+<li>
+<p>In the Knox Service Plugin managed configuration, go to <strong>Device Key Mapping</strong> and set <strong>Enable Key Mapping</strong> to <strong>True</strong>. Then configure the following under <strong>Side Key Mapping for specific application</strong>:</p>
 <ul>
 <li>
-<p>A free Knox license key is required to use this functionality, but license activation isn&rsquo;t required to be built into the partners&rsquo; app.</p>
+<p><strong>Package Name</strong> &mdash; Enter the package name of the app that will receive the intent when the side key is pressed.</p>
 </li>
 <li>
-<p>Knox Service Plugin (KSP) handles the license activation on behalf of partners.</p>
+<p><strong>Use Samsung Intent</strong> &mdash; Set <strong>True</strong> to use a Samsung Intent. Otherwise, set <strong>False</strong> to define your own intent below.</p>
 </li>
 <li>
-<p>A KSP policy needs to be set up in your unified endpoint management solution (UEM). All major UEMs are compatible.</p>
+<p><strong>Intent for Key press</strong> &mdash; Specify the intent to be sent when the side key is pressed. Note that on devices running Android 14 and higher, this intent is only sent when the side key is pressed and held. On devices below Android 14, the intent is sent the moment the key is pressed down.</p>
 </li>
 <li>
-<p>Partners can retrieve Knox licenses through our <a href="https://partner.samsungknox.com/" target="_blank">Knox Partner Program</a> or a request from their Samsung representative.</p>
+<p><strong>Intent for Key release</strong> &mdash; Specify the intent to be sent when the side key is released.</p>
 </li>
 </ul>
-<h4 id="uem-ksp-knox-service-plugin">UEM and KSP (Knox Service Plugin)</h4>
-<ul>
-<li>
-<p>A UEM and Android Enterprise are required to use KSP.</p>
 </li>
-<li>
-<p>For devices where the power key is mapped to Bixby by default, you might need a UEM policy that disables Bixby.</p>
-</li>
-<li>
-<p>Depending on the device, the screen might switch on and off when the Home key is pressed. The partners&rsquo; app must take this into account and work around the issue.</p>
-</li>
-</ul>
+</ol>
+<div class="notice-note"><p>You can also prevent device users from modifying side key behavior with <a href="../deep-settings-customization">Deep Settings Customization</a>.</p></div>
 <h3 id="independent-software-vendor-isv-partners">Independent software vendor (ISV) partners</h3>
 <p>If you&rsquo;re an ISV partner, see <a href="../../kbas/kba-773-knox-service-plugin-side-key-mapping">Knox Service Plugin managed side key mapping for non-rugged devices</a> for detailed information about setting up side key mapping on non-rugged devices.</p>
-<h3 id="it-admins">IT admins</h3>
-<p>If you&rsquo;re an IT admin looking for information on how to map keys on non-rugged devices, go to <a href="../device-key-mapping-for-non-rugged-devices">Device key mapping for non-rugged devices</a>.</p>
-<h2 id="device-key-mapping-rugged-devices">Device key mapping for rugged devices</h2>
-<p>Go to <a href="../device-key-mapping-for-rugged-devices">Device key mapping for rugged devices</a>.</p>
+<h2 id="device-key-mapping-for-rugged-devices">Device key mapping for rugged devices</h2>
+<p>You can map app functions to a rugged device&rsquo;s hardware keys with <strong>Device Key Mapping</strong> policies on Knox Service Plugin.</p>
+<p>In the Knox Service Plugin managed configuration, go to <strong>Device Key Mapping</strong> and set <strong>Enable Key Mapping</strong> to <strong>True</strong>. Then configure the policies below.</p>
+<ul>
+<li>
+<p><strong>Enable XCover/Active Key Mapping for Microsoft Teams</strong> &mdash; Set <strong>True</strong> to enable key mapping support to pass an intent for a Microsoft TEAMs application package.</p>
+</li>
+<li>
+<p>Map specific app intents for the <strong>XCover/Active key</strong>, <strong>Top Key</strong>, and <strong>Side Key</strong> under their respective policies. For each key, enter the following:</p>
+<ul>
+<li>
+<p><strong>Package Name</strong> &mdash; Enter the package name of the app that will receive the intent when the key is pressed.</p>
+</li>
+<li>
+<p><strong>Use Samsung Intent</strong> &mdash; Set <strong>True</strong> to use a Samsung Intent. Otherwise, set <strong>False</strong> to define your own intent below.</p>
+</li>
+<li>
+<p><strong>Intent for Key press</strong> &mdash; Specify the intent to be sent when the key is pressed. Note that on devices running Android 14 and higher, this intent is only sent when the side key is pressed and held. On devices below Android 14, the intent is sent the moment the key is pressed down.</p>
+</li>
+<li>
+<p><strong>Intent for Key release</strong> &mdash; Specify the intent to be sent when the key is released.</p>
+</li>
+</ul>
+</li>
+<li>
+<p><strong>Enable Key Mapping to Launch applications</strong> &mdash; Set to <strong>True</strong>, then go to <strong>Device Key Mapping to Launch application Configurations</strong> and add a configuration to launch an app when a key is pressed. For each configuration, set the following:</p>
+<ul>
+<li><strong>Device Key Mapping</strong> &mdash; Select which key press intent launches the app.</li>
+<li><strong>Package Name</strong> &mdash; App package to launch when the key intent above is triggered.</li>
+</ul>
+</li>
+</ul>
+<h3 id="key-mapping-considerations">Key mapping considerations</h3>
+<p>When enabling key mapping controls, policies are applied according to a set order of precedence.</p>
+
+
+
+
+
+
+
+
+<p><img src="../../assets/ksp-key-mapping-precedence-v2.png" class="img-fluid img-thumbnail" alt="Key mapping precedence" /></p>
+<p>Keep the following usage scenarios in mind when planning your key mapping configuration:</p>
+<ul>
+<li>
+<p>Among B, C, D, and E, the precedence order is B &gt; C &gt; E for the XCover Key, and D &gt; E for the Top Key.</p>
+</li>
+<li>
+<p>If just B and C are enabled, B is applied.</p>
+</li>
+<li>
+<p>If just B and E are enabled, B is applied for the XCover Pro. E is supported on both XCover Key and Top Key, with Top Key settings applied.</p>
+</li>
+<li>
+<p>If just C and E are enabled, C is applied for the XCover Key. E is supported on both XCover Key and Top Key, with Top Key settings applied.</p>
+</li>
+<li>
+<p>If just D and E are enabled, D is applied for the Top Key. E is supported on both XCover Key and Top Key, with XCover Key settings applied.</p>
+</li>
+<li>
+<p>If B, C, D, and E are all enabled, B is applied for the XCover Pro. D is applied for the Top Key.</p>
+</li>
+</ul>
 
             
           </div>
@@ -1365,14 +1408,18 @@
   <nav id="TableOfContents">
   <ul>
     <li><a href="#overview">Overview</a></li>
-    <li><a href="#mapping-non-rugged-devices">Device key mapping for non-rugged devices</a>
+    <li><a href="#device-key-mapping-for-non-rugged-devices">Device key mapping for non-rugged devices</a>
       <ul>
-        <li></li>
+        <li><a href="#device-support">Device support</a></li>
+        <li><a href="#map-the-side-key">Map the side key</a></li>
         <li><a href="#independent-software-vendor-isv-partners">Independent software vendor (ISV) partners</a></li>
-        <li><a href="#it-admins">IT admins</a></li>
       </ul>
     </li>
-    <li><a href="#device-key-mapping-rugged-devices">Device key mapping for rugged devices</a></li>
+    <li><a href="#device-key-mapping-for-rugged-devices">Device key mapping for rugged devices</a>
+      <ul>
+        <li><a href="#key-mapping-considerations">Key mapping considerations</a></li>
+      </ul>
+    </li>
   </ul>
 </nav>
 </aside>
