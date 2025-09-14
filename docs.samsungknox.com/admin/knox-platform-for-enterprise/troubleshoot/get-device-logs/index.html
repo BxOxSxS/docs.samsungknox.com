@@ -55,7 +55,7 @@
 
   
 
-<script onload="initBot()" defer src="https://dc-chbt.samsungknox.com/copilot/index.js?noCache=1757116803"></script>
+<script onload="initBot()" defer src="https://dc-chbt.samsungknox.com/copilot/index.js?noCache=1757628415"></script>
 <script defer>
     function initBot(){
       const relPath = "\/knox-platform-for-enterprise\/troubleshoot\/get-device-logs\/";
@@ -1261,7 +1261,7 @@
             </div>
             
 
-  <p><span>Last updated May  23rd, 2025</span></p>
+  <p><span>Last updated September  3rd, 2025</span></p>
 
 
     
@@ -1274,24 +1274,21 @@
 
 
 
-<p>This section shows how you can get dumpstate logs from a device.</p>
+<p>This section shows how to get dumpstate logs from a device. Device log buffers clear after 15 minutes, make sure you reproduce the issue within this period of time.</p>
+<p>On devices running Android 15 and higher, you may have to disable <strong>Auto Blocker</strong> before you can access SysDump. To do this, go to your device&rsquo;s settings, and disable <strong>Security and privacy</strong> &gt; <strong>Auto Blocker</strong>.</p>
 <h2 id="phone-dumpstate-logs">Phone dumpstate logs</h2>
-<div class="notice-note"><ul><li>As the device’s log buffer clears after 15 minutes, ensure that the log file is captured within this period of time.</li><li>On Android 15 and higher, you may have to disable <strong>Auto Blocker</strong> before you can access the log dump menu. To do this, go to your device’s settings, and disable <strong>Security and privacy</strong> > <strong>Auto Blocker</strong>.</li></ul></div>
 <ol>
 <li>
-<p>In the <strong>Phone</strong> app, enter <code>*#9900#</code>.</p>
+<p>In the <strong>Phone</strong> app, enter <code>*#9900#</code> to open SysDump.</p>
 </li>
 <li>
-<p>Set the <strong>Debug Level</strong> to <strong>Mid</strong>.</p>
-</li>
-<li>
-<p>Wait for the device to restart.</p>
+<p>Set the <strong>Debug Level</strong> to <strong>Mid</strong> and wait for the device to restart.</p>
 </li>
 <li>
 <p>Open the app you want to debug and reproduce your issue.</p>
 </li>
 <li>
-<p>After reproducing your issue, enter <code>*#9900#</code> again in the <strong>Phone</strong> app.</p>
+<p>Enter <code>*#9900#</code> again in the <strong>Phone</strong> app.</p>
 </li>
 <li>
 <p>Tap <strong>Run dumpstate/logcat</strong>.</p>
@@ -1303,20 +1300,26 @@
 <p>In the device&rsquo;s internal storage, navigate to the <code>/log</code> directory, and retrieve the <code>dumpState</code> ZIP file.</p>
 </li>
 <li>
-<p>After you&rsquo;ve finished, you can follow steps 1-3 again to set the <strong>Debug Level</strong> back to low. Additionally, tap <strong>Delete dumpstate/logcat</strong> to free up space.</p>
+<p>(Recommended) After you&rsquo;ve finished, follow steps 1 and 2 again to set the <strong>Debug Level</strong> back to low. Additionally, tap <strong>Delete dumpstate/logcat</strong> to free up space.</p>
 </li>
 </ol>
 <h2 id="tablet-dumpstate-logs">Tablet dumpstate logs</h2>
-<div class="notice-note"><p>As the device’s log buffer clears after 15 minutes, ensure that the log file is captured within this period of time.</p></div>
+<p>For Wi-Fi only devices that don&rsquo;t have the <strong>Phone</strong> app, you can get dumpstate logs as follows.</p>
 <ol>
 <li>
-<p>Open the <strong>Calculator</strong> app.</p>
+<p>Open the <strong>Calculator</strong> app and enter <code>(+30012012732+</code> to switch to factory mode.</p>
 </li>
 <li>
-<p>Enter <code>(+30012012732+</code>.</p>
+<p>Enter <code>*#9900#</code> to open SysDump.</p>
 </li>
 <li>
-<p>Enter <code>*#9900#</code>.</p>
+<p>Set the <strong>Debug Level</strong> to <strong>Mid</strong> and wait for the device to restart.</p>
+</li>
+<li>
+<p>Reproduce your issue.</p>
+</li>
+<li>
+<p>Repeat steps 1 and 2 again to open SysDump.</p>
 </li>
 <li>
 <p>Tap <strong>Run dumpstate/logcat</strong>.</p>
@@ -1326,6 +1329,9 @@
 </li>
 <li>
 <p>In the device&rsquo;s internal storage, navigate to the <code>/log</code> directory, and retrieve the <code>dumpState</code> ZIP file.</p>
+</li>
+<li>
+<p>(Recommended) After you&rsquo;ve finished, follow steps 1 to 3 again to set the <strong>Debug Level</strong> back to low. Additionally, tap <strong>Delete dumpstate/logcat</strong> to free up space.</p>
 </li>
 </ol>
 <h2 id="email-logs">Email logs</h2>
@@ -1359,7 +1365,7 @@
 <li>
 <p>In the device&rsquo;s internal storage, navigate to the <code>/Download</code> directory, and retrieve these files:</p>
 <ul>
-<li>If it&rsquo;s a fully-managed device, retrieve <code>emaillog_0.txt</code>. If the <strong>Email</strong> app is in a work profile, retireve <code>emaillog_10.txt</code>.</li>
+<li>If it&rsquo;s a fully-managed device, retrieve <code>emaillog_0.txt</code>. If the <strong>Email</strong> app is in a work profile, retrieve <code>emaillog_10.txt</code>.</li>
 <li><code>emailServiceLog.txt</code>.</li>
 </ul>
 </li>
