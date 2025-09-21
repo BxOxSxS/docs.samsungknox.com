@@ -36,7 +36,7 @@
   
 <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start': new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0], j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src='https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);})(window,document,'script','dataLayer','GTM-P24TWCG');</script><meta name="viewport" content="width=device-width,height=device-height,initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title>Migrating from Knox Deployment Program Gen1 APIs to Gen2  | Knox Deployment Program  | Samsung Knox Documentation</title>
+  <title>Migrating from Gen1 to the Gen2 API  | Knox Deployment Program  | Samsung Knox Documentation</title>
   <meta http-equiv="content-language" content="en">
   <meta name="language" content="en">
   <script src="../../assets/js/bundle.js"></script>
@@ -55,7 +55,7 @@
 
   
 
-<script onload="initBot()" defer src="https://dc-chbt.samsungknox.com/copilot/index.js?noCache=1756919701"></script>
+<script onload="initBot()" defer src="https://dc-chbt.samsungknox.com/copilot/index.js?noCache=1758146234"></script>
 <script defer>
     function initBot(){
       const relPath = "\/knox-deployment-program\/migrating-from-knox-deployment-program-gen1-apis-to-gen2\/";
@@ -203,7 +203,7 @@
     
     
     <div class="d-flex justify-content-between">
-      <a class="body-5 text-black fw-light" href="../about-knox-deployment-program/index.html">About Knox Deployment Program</a>
+      <a class="body-5 text-black fw-light" href="../tutorial-knox-deployment-program-integration/index.html">Tutorial &mdash; Knox Deployment Program integration</a>
     </div>
     
     </li>
@@ -216,7 +216,7 @@
     
     
     <div class="d-flex justify-content-between">
-      <a class="body-5 text-black fw-light" href="../tutorial-knox-deployment-program-integration/index.html">Tutorial &mdash; Knox Deployment Program Integration</a>
+      <a class="body-5 text-black fw-light" href="../comparing-gen2-and-gen1-knox-deployment-program-apis/index.html">Comparing Gen1 and Gen2 APIs</a>
     </div>
     
     </li>
@@ -229,20 +229,7 @@
     
     
     <div class="d-flex justify-content-between">
-      <a class="body-5 text-black fw-light" href="../comparing-gen2-and-gen1-knox-deployment-program-apis/index.html">Comparing Gen2 and Gen1 Knox Deployment Program APIs</a>
-    </div>
-    
-    </li>
-  
-        
-          
-  
-  
-    <li class="mt-2">
-    
-    
-    <div class="d-flex justify-content-between">
-      <a class="body-5 text-black active" href="index.html">Migrating from Knox Deployment Program Gen1 APIs to Gen2</a>
+      <a class="body-5 text-black active" href="index.html">Migrating from Gen1 to the Gen2 API</a>
     </div>
     
     </li>
@@ -268,7 +255,7 @@
     
     
     <div class="d-flex justify-content-between">
-      <a class="body-5 text-black fw-light" href="../troubleshooting-for-knox-deployment-program/index.html">Troubleshooting for Knox Deployment Program</a>
+      <a class="body-5 text-black fw-light" href="../troubleshooting-for-knox-deployment-program/index.html">Troubleshooting</a>
     </div>
     
     </li>
@@ -296,11 +283,11 @@
 
             </div>
             <div class="mt-4">
-              <h1>Migrating from Knox Deployment Program Gen1 APIs to Gen2</h1>
+              <h1>Migrating from Gen1 to the Gen2 API</h1>
             </div>
             
 
-  <p><span>Last updated August  19th, 2025</span></p>
+  <p><span>Last updated September  15th, 2025</span></p>
 
 
     
@@ -328,26 +315,7 @@
       
       
       
-        
-      
-      
-      
-      
-        
-      
-      
-      
-      
-        
-      
-      
-      
-      
-        <p>This guide covers how to migrate from the Knox Deployment Program Gen1 API to Gen2, which is the latest generation. The Gen2 API features restructured endpoints to simplify your workflow and enhance security.</p>
-<h2 id="about-gen1-and-gen2-apis">About Gen1 and Gen2 APIs</h2>
-<p>The Knox Deployment Program Gen1 API was launched in late 2017. This was the initial release with a limited number of endpoints and basic authentication.</p>
-<p>In Gen2, the API has been significantly restructured to simplify your workflow, and also supports OAuth 2.0 authentication. The Gen1 static API authentication key <code>X-WSM-API-TOKEN</code> has been replaced with an <code>Authorization</code> token in Gen2, which is much more secure.</p>
-<p>For more details, refer to <a href="../release-notes">Release notes</a> and <a href="../comparing-gen2-and-gen1-knox-deployment-program-apis">Comparing Gen2 and Gen1 Knox Deployment Program APIs</a>.</p>
+        <p>This guide covers how to migrate from Knox Deployment Program (KDP) Gen1 API to Gen2 API, which is the latest generation. The Gen2 API features restructured endpoints to simplify your workflow and enhance security.</p>
 <h2 id="server-urlchange">Server URL change</h2>
 <p>For the migration, the following Gen1 API servers must be whitelisted in your network firewall:</p>
 <ul>
@@ -358,391 +326,132 @@
 <ul>
 <li>https://api.samsungknox.com/kcs/v1/rp (global server)</li>
 </ul>
-<p>During migration or development, please use the new Gen2 server URL to test the APIs. You can stop using the Gen1 server URL once your Gen2 solution is live.</p>
-<h2 id="request-for-the-knox-deployment-program-api-access">Request for the Knox Deployment Program API access</h2>
-<p>When you&rsquo;re using Gen1 APIs, your reseller portal dashboard has a reseller API key section, as shown below. This static API key is for API usage.</p>
-
-
-
-
-
-
-
-  
-  
-  
-  
-  
-    
-    
-    
-    
-      
-    
-    
-  
-    
-    
-    
-      
-    
-    
-    
-  
-    
-    
-    
-      
-    
-    
-    
-  
-    
-    
-    
-      
-    
-    
-    
-  
-    
-    
-    
-      
-    
-    
-    
-  
-    
-    
-    
-      
-    
-    
-    
-  
-    
-    
-    
-      
-    
-    
-    
-  
-    
-    
-    
-      
-    
-    
-    
-  
-    
-    
-    
-      
-    
-    
-    
-  
-    
-    
-    
-      
-    
-    
-    
-  
-    
-    
-    
-      
-    
-    
-    
-  
-    
-    
-    
-      
-    
-    
-    
-  
-    
-    
-    
-      
-    
-    
-    
-  
-
-
-<p><img src="../assets/reseller-portal-dashboard.png" class="image-block-scale-90 img-thumbnail" alt="Reseller dashboard" /></p>
-<p>In order to use the Gen2 API, please apply for Knox Deployment Program API access &amp; get your access Key pair. Follow this <a href="../tutorial-knox-deployment-program-integration#step-2-applying-for-kdpapiaccess-and-getting-your-access-key-pair">tutorial</a> for detailed instructions (Step 2).</p>
-<p>Once Knox Deployment Program API access is approved, your reseller portal dashboard will show a Knox Cloud API section</p>
-
-
-
-
-
-
-
-  
-  
-  
-  
-  
-    
-    
-    
-    
-      
-    
-    
-  
-    
-    
-    
-      
-    
-    
-    
-  
-    
-    
-    
-      
-    
-    
-    
-  
-    
-    
-    
-      
-    
-    
-    
-  
-    
-    
-    
-      
-    
-    
-    
-  
-    
-    
-    
-      
-    
-    
-    
-  
-    
-    
-    
-      
-    
-    
-    
-  
-    
-    
-    
-      
-    
-    
-    
-  
-    
-    
-    
-      
-    
-    
-    
-  
-    
-    
-    
-      
-    
-    
-    
-  
-    
-    
-    
-      
-    
-    
-    
-  
-    
-    
-    
-      
-    
-    
-    
-  
-    
-    
-    
-      
-    
-    
-    
-  
-
-
-<p><img src="../assets/reseller-portal-gen2.png" class="image-block-scale-90 img-thumbnail" alt="Reseller dashboard gen2" /></p>
-<h2 id="api-message-payload-and-response-format-changes">API message payload and response format changes</h2>
-<p>For overall mapping of the Gen1 API to Gen2, please read the REST API Comparison section in this <a href="../comparing-gen2-and-gen1-knox-deployment-program-apis#rest-api-comparison">article</a>.</p>
-<p>Below are the differences in message payload &amp; response format.</p>
-<p>For Upload/Delete Devices:</p>
+<div class="notice-note"><p>During migration or development, please use the new Gen2 server URL to test the APIs. You can stop using the Gen1 server URL once your Gen2 solution is live.</p></div>
+<h2 id="authentication-changes">Authentication changes</h2>
+<p>To authenticate Gen2 API calls, you need to:</p>
 <ul>
 <li>
-<p>V1 message:</p>
-<div class="highlight"><pre tabindex="0" style=";-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-json" data-lang="json"><span style="display:flex;"><span>{
-</span></span><span style="display:flex;"><span>  <span style="color:#008000;font-weight:bold">&#34;transactionId&#34;</span>: <span style="color:#ba2121">&#34;244303&#34;</span>,
-</span></span><span style="display:flex;"><span>  <span style="color:#008000;font-weight:bold">&#34;resellerId&#34;</span>: <span style="color:#ba2121">&#34;4680000925&#34;</span>,
-</span></span><span style="display:flex;"><span>  <span style="color:#008000;font-weight:bold">&#34;customerId&#34;</span>: <span style="color:#ba2121">&#34;123004321&#34;</span>,
-</span></span><span style="display:flex;"><span>  <span style="color:#008000;font-weight:bold">&#34;transactionType&#34;</span>: <span style="color:#ba2121">&#34;New&#34;</span>,
-</span></span><span style="display:flex;"><span>  <span style="color:#008000;font-weight:bold">&#34;devices&#34;</span>: {
-</span></span><span style="display:flex;"><span>    <span style="color:#008000;font-weight:bold">&#34;type&#34;</span>: <span style="color:#ba2121">&#34;IMEI&#34;</span>,
-</span></span><span style="display:flex;"><span>    <span style="color:#008000;font-weight:bold">&#34;list&#34;</span>: [<span style="color:#ba2121">&#34;351800000675702&#34;</span>
-</span></span><span style="display:flex;"><span>    ]
-</span></span><span style="display:flex;"><span>  }
-</span></span><span style="display:flex;"><span>}
-</span></span></code></pre></div></li>
+<p><a href="../tutorial-knox-deployment-program-integration#step-2-request-access-to-the-cloud-apps-feature">Request access to <strong>Cloud Apps</strong></a></p>
+</li>
 <li>
-<p>V2 message:</p>
-<div class="highlight"><pre tabindex="0" style=";-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-json" data-lang="json"><span style="display:flex;"><span>{
-</span></span><span style="display:flex;"><span>  <span style="color:#008000;font-weight:bold">&#34;transactionId&#34;</span>: <span style="color:#ba2121">&#34;244303&#34;</span>,
-</span></span><span style="display:flex;"><span>  <span style="color:#008000;font-weight:bold">&#34;resellerId&#34;</span>: <span style="color:#ba2121">&#34;4600000925&#34;</span>,
-</span></span><span style="display:flex;"><span>  <span style="color:#008000;font-weight:bold">&#34;customerId&#34;</span>: <span style="color:#ba2121">&#34;123400321&#34;</span>,
-</span></span><span style="display:flex;"><span>  <span style="color:#008000;font-weight:bold">&#34;type&#34;</span>: <span style="color:#ba2121">&#34;IMEI&#34;</span>,
-</span></span><span style="display:flex;"><span>  <span style="color:#008000;font-weight:bold">&#34;devices&#34;</span>: [
-</span></span><span style="display:flex;"><span>    <span style="color:#ba2121">&#34;351826100005702&#34;</span>
-</span></span><span style="display:flex;"><span>  ]
-</span></span><span style="display:flex;"><span>}
-</span></span></code></pre></div></li>
-</ul>
-<p><strong>transactionType</strong> has been removed (now identified by endpoint) and type has been moved to a different level.</p>
-<p>For List Devices:</p>
-<ul>
-<li>
-<p>V1 message:</p>
-<div class="highlight"><pre tabindex="0" style=";-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-json" data-lang="json"><span style="display:flex;"><span>{
-</span></span><span style="display:flex;"><span>  <span style="color:#008000;font-weight:bold">&#34;totalCount&#34;</span>: <span style="color:#666">0</span>,
-</span></span><span style="display:flex;"><span>  <span style="color:#008000;font-weight:bold">&#34;totalPage&#34;</span>: <span style="color:#666">0</span>,
-</span></span><span style="display:flex;"><span>  <span style="color:#008000;font-weight:bold">&#34;pageNum&#34;</span>: <span style="color:#666">0</span>,
-</span></span><span style="display:flex;"><span>  <span style="color:#008000;font-weight:bold">&#34;devices&#34;</span>: [{
-</span></span><span style="display:flex;"><span>    <span style="color:#008000;font-weight:bold">&#34;imei&#34;</span>: <span style="color:#ba2121">&#34;357192611111112&#34;</span>
-</span></span><span style="display:flex;"><span>  }]
-</span></span><span style="display:flex;"><span>}
-</span></span></code></pre></div></li>
-<li>
-<p>V2 message:</p>
-<div class="highlight"><pre tabindex="0" style=";-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-json" data-lang="json"><span style="display:flex;"><span>{
-</span></span><span style="display:flex;"><span>  <span style="color:#008000;font-weight:bold">&#34;code&#34;</span>: <span style="color:#ba2121">&#34;2000000&#34;</span>,
-</span></span><span style="display:flex;"><span>  <span style="color:#008000;font-weight:bold">&#34;message&#34;</span>: <span style="color:#ba2121">&#34;SUCCESS&#34;</span>,
-</span></span><span style="display:flex;"><span>  <span style="color:#008000;font-weight:bold">&#34;pageNum&#34;</span>: <span style="color:#666">0</span>,
-</span></span><span style="display:flex;"><span>  <span style="color:#008000;font-weight:bold">&#34;pageSize&#34;</span>: <span style="color:#666">1000000</span>,
-</span></span><span style="display:flex;"><span>  <span style="color:#008000;font-weight:bold">&#34;totalCount&#34;</span>: <span style="color:#666">0</span>,
-</span></span><span style="display:flex;"><span>  <span style="color:#008000;font-weight:bold">&#34;totalPages&#34;</span>: <span style="color:#666">0</span>,
-</span></span><span style="display:flex;"><span>    <span style="color:#008000;font-weight:bold">&#34;size&#34;</span>: <span style="color:#666">0</span>,
-</span></span><span style="display:flex;"><span>    <span style="color:#008000;font-weight:bold">&#34;devices&#34;</span>: [{
-</span></span><span style="display:flex;"><span>      <span style="color:#008000;font-weight:bold">&#34;id&#34;</span>: <span style="color:#ba2121">&#34;6012afe85f18342e67ee9126&#34;</span>,
-</span></span><span style="display:flex;"><span>      <span style="color:#008000;font-weight:bold">&#34;createTime&#34;</span>: <span style="color:#666">1611837416372</span>,
-</span></span><span style="display:flex;"><span>      <span style="color:#008000;font-weight:bold">&#34;mei&#34;</span>: <span style="color:#ba2121">&#34;351826000675702&#34;</span>,
-</span></span><span style="display:flex;"><span>      <span style="color:#008000;font-weight:bold">&#34;customerName&#34;</span>: <span style="color:#ba2121">&#34;TOP Oil&#34;</span>,
-</span></span><span style="display:flex;"><span>      <span style="color:#008000;font-weight:bold">&#34;customerId&#34;</span>: <span style="color:#ba2121">&#34;4600001586&#34;</span>,
-</span></span><span style="display:flex;"><span>      <span style="color:#008000;font-weight:bold">&#34;serialNumber&#34;</span>: <span style="color:#ba2121">&#34;R3OOO00WKLD&#34;</span>,
-</span></span><span style="display:flex;"><span>      <span style="color:#008000;font-weight:bold">&#34;meid&#34;</span>: <span style="color:#ba2121">&#34;089077500000423280&#34;</span>,
-</span></span><span style="display:flex;"><span>      <span style="color:#008000;font-weight:bold">&#34;model&#34;</span>: <span style="color:#ba2121">&#34;SM-G981B/DS&#34;</span>,
-</span></span><span style="display:flex;"><span>      <span style="color:#008000;font-weight:bold">&#34;state&#34;</span>: <span style="color:#ba2121">&#34;Verified&#34;</span>,
-</span></span><span style="display:flex;"><span>      <span style="color:#008000;font-weight:bold">&#34;uploadId&#34;</span>: <span style="color:#ba2121">&#34;ddb71b6c-3aef-4d54-b1f4-b86480aa447d&#34;</span>
-</span></span><span style="display:flex;"><span>    }]
-</span></span><span style="display:flex;"><span>}
-</span></span></code></pre></div></li>
-</ul>
-<p>Element <strong>totalPage</strong> was changed to <strong>totalPages</strong> and new elements were added.</p>
-<p>For Check Transaction status message</p>
-<ul>
-<li>
-<p>V1 message:</p>
-<div class="highlight"><pre tabindex="0" style=";-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-json" data-lang="json"><span style="display:flex;"><span>{
-</span></span><span style="display:flex;"><span>  <span style="color:#008000;font-weight:bold">&#34;totalCount&#34;</span>: <span style="color:#666">2</span>,
-</span></span><span style="display:flex;"><span>  <span style="color:#008000;font-weight:bold">&#34;totalPage&#34;</span>: <span style="color:#666">1</span>,
-</span></span><span style="display:flex;"><span>  <span style="color:#008000;font-weight:bold">&#34;pageNum&#34;</span>: <span style="color:#666">0</span>,
-</span></span><span style="display:flex;"><span>  <span style="color:#008000;font-weight:bold">&#34;transactions&#34;</span>: [{
-</span></span><span style="display:flex;"><span>    <span style="color:#008000;font-weight:bold">&#34;transactionId&#34;</span>: <span style="color:#ba2121">&#34;7500657464&#34;</span>,
-</span></span><span style="display:flex;"><span>    <span style="color:#008000;font-weight:bold">&#34;state&#34;</span>: <span style="color:#ba2121">&#34;Complete&#34;</span>,
-</span></span><span style="display:flex;"><span>    <span style="color:#008000;font-weight:bold">&#34;type&#34;</span>: <span style="color:#ba2121">&#34;Put&#34;</span>,
-</span></span><span style="display:flex;"><span>    <span style="color:#008000;font-weight:bold">&#34;devices&#34;</span>: [{
-</span></span><span style="display:flex;"><span>      <span style="color:#008000;font-weight:bold">&#34;imei&#34;</span>: <span style="color:#ba2121">&#34;807212627606673&#34;</span>
-</span></span><span style="display:flex;"><span>    }, {
-</span></span><span style="display:flex;"><span>      <span style="color:#008000;font-weight:bold">&#34;imei&#34;</span>: <span style="color:#ba2121">&#34;21975175979444&#34;</span>
-</span></span><span style="display:flex;"><span>    }, {
-</span></span><span style="display:flex;"><span>      <span style="color:#008000;font-weight:bold">&#34;imei&#34;</span>: <span style="color:#ba2121">&#34;40649504931126&#34;</span>,
-</span></span><span style="display:flex;"><span>      <span style="color:#008000;font-weight:bold">&#34;code&#34;</span>: <span style="color:#666">4092100</span>,
-</span></span><span style="display:flex;"><span>      <span style="color:#008000;font-weight:bold">&#34;message&#34;</span>: <span style="color:#ba2121">&#34;RESELLER_DEVICE_ALREADY_EXISTS&#34;</span>,
-</span></span><span style="display:flex;"><span>      <span style="color:#008000;font-weight:bold">&#34;data&#34;</span>: <span style="color:#ba2121">&#34;device imei[097436145498341] already exists&#34;</span>
-</span></span><span style="display:flex;"><span>    }]
-</span></span><span style="display:flex;"><span>  }]
-</span></span><span style="display:flex;"><span>}
-</span></span></code></pre></div></li>
-<li>
-<p>V2 message:</p>
-<ul>
-<li>
-<p>Whole message is <em>surrounded</em> by <strong>devices</strong> element not present earlier:</p>
-<div class="highlight"><pre tabindex="0" style=";-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-json" data-lang="json"><span style="display:flex;"><span>{
-</span></span><span style="display:flex;"><span>  <span style="color:#008000;font-weight:bold">&#34;devices&#34;</span>: {
-</span></span><span style="display:flex;"><span>    <span style="color:#008000;font-weight:bold">&#34;totalCount&#34;</span>: <span style="color:#666">1</span>,
-</span></span><span style="display:flex;"><span>    <span style="color:#008000;font-weight:bold">&#34;totalPage&#34;</span>: <span style="color:#666">1</span>,
-</span></span><span style="display:flex;"><span>    <span style="color:#008000;font-weight:bold">&#34;pageNum&#34;</span>: <span style="color:#666">0</span>,
-</span></span><span style="display:flex;"><span>    <span style="color:#008000;font-weight:bold">&#34;transactions&#34;</span>: [{
-</span></span><span style="display:flex;"><span>      <span style="color:#008000;font-weight:bold">&#34;transactionId&#34;</span>: <span style="color:#ba2121">&#34;246903&#34;</span>,
-</span></span><span style="display:flex;"><span>      <span style="color:#008000;font-weight:bold">&#34;state&#34;</span>: <span style="color:#ba2121">&#34;Complete&#34;</span>,
-</span></span><span style="display:flex;"><span>      <span style="color:#008000;font-weight:bold">&#34;type&#34;</span>: <span style="color:#ba2121">&#34;Put&#34;</span>,
-</span></span><span style="display:flex;"><span>      <span style="color:#008000;font-weight:bold">&#34;operationType&#34;</span>: <span style="color:#ba2121">&#34;UPLOAD&#34;</span>,
-</span></span><span style="display:flex;"><span>      <span style="color:#008000;font-weight:bold">&#34;devices&#34;</span>: [{
-</span></span><span style="display:flex;"><span>        <span style="color:#008000;font-weight:bold">&#34;imei&#34;</span>: <span style="color:#ba2121">&#34;351826110675643&#34;</span>,
-</span></span><span style="display:flex;"><span>        <span style="color:#008000;font-weight:bold">&#34;code&#34;</span>: <span style="color:#666">40000004</span>,
-</span></span><span style="display:flex;"><span>        <span style="color:#008000;font-weight:bold">&#34;message&#34;</span>: <span style="color:#ba2121">&#34;DEVICE_INVALID&#34;</span>,
-</span></span><span style="display:flex;"><span>        <span style="color:#008000;font-weight:bold">&#34;data&#34;</span>: <span style="color:#ba2121">&#34;The specified device is not valid.&#34;</span>
-</span></span><span style="display:flex;"><span>      }]
-</span></span><span style="display:flex;"><span>    }]
-</span></span><span style="display:flex;"><span>  }
-</span></span><span style="display:flex;"><span>}
-</span></span></code></pre></div></li>
-<li>
-<p>Internal element <strong>devices</strong> contain information about only failed transaction of all the devices in the transaction. If transaction went all fine, this element will be missing:</p>
-<div class="highlight"><pre tabindex="0" style=";-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-json" data-lang="json"><span style="display:flex;"><span>{
-</span></span><span style="display:flex;"><span>  <span style="color:#008000;font-weight:bold">&#34;devices&#34;</span>: {
-</span></span><span style="display:flex;"><span>    <span style="color:#008000;font-weight:bold">&#34;totalCount&#34;</span>: <span style="color:#666">1</span>,
-</span></span><span style="display:flex;"><span>    <span style="color:#008000;font-weight:bold">&#34;totalPage&#34;</span>: <span style="color:#666">1</span>,
-</span></span><span style="display:flex;"><span>    <span style="color:#008000;font-weight:bold">&#34;pageNum&#34;</span>: <span style="color:#666">0</span>,
-</span></span><span style="display:flex;"><span>    <span style="color:#008000;font-weight:bold">&#34;transactions&#34;</span>: [{
-</span></span><span style="display:flex;"><span>      <span style="color:#008000;font-weight:bold">&#34;transactionId&#34;</span>: <span style="color:#ba2121">&#34;248603&#34;</span>,
-</span></span><span style="display:flex;"><span>      <span style="color:#008000;font-weight:bold">&#34;state&#34;</span>: <span style="color:#ba2121">&#34;Complete&#34;</span>,
-</span></span><span style="display:flex;"><span>      <span style="color:#008000;font-weight:bold">&#34;type&#34;</span>: <span style="color:#ba2121">&#34;Put&#34;</span>,
-</span></span><span style="display:flex;"><span>      <span style="color:#008000;font-weight:bold">&#34;operationType&#34;</span>: <span style="color:#ba2121">&#34;UPLOAD&#34;</span>
-</span></span><span style="display:flex;"><span>    }]
-</span></span><span style="display:flex;"><span>  }
-</span></span><span style="display:flex;"><span>}
-</span></span></code></pre></div></li>
-</ul>
+<p><a href="../tutorial-knox-deployment-program-integration#step-3-generate-and-test-your-access-token">Generate an access token</a></p>
 </li>
 </ul>
-
+<h2 id="api-message-payload-and-response-format-changes">API message payload and response format changes</h2>
+<p>For overall mapping of Gen1 API to Gen2, please read the REST API Comparison section in <a href="../comparing-gen2-and-gen1-knox-deployment-program-apis#rest-api-comparison">this article</a>.</p>
+<p>Differences in Gen1 and Gen2 request payloads and response formats are described below.</p>
+<h3 id="for-uploaddelete-device">For upload/delete device</h3>
+<p>In Gen1:</p>
+<div class="highlight"><pre tabindex="0" style=";-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>    <span style="color:#666">{</span>
+</span></span><span style="display:flex;"><span>      <span style="color:#ba2121">&#34;transactionId&#34;</span>: <span style="color:#ba2121">&#34;244303&#34;</span>,
+</span></span><span style="display:flex;"><span>      <span style="color:#ba2121">&#34;resellerId&#34;</span>: <span style="color:#ba2121">&#34;468....925&#34;</span>,
+</span></span><span style="display:flex;"><span>      <span style="color:#ba2121">&#34;customerId&#34;</span>: <span style="color:#ba2121">&#34;12....321&#34;</span>,
+</span></span><span style="display:flex;"><span>      <span style="color:#ba2121">&#34;transactionType&#34;</span>: <span style="color:#ba2121">&#34;New&#34;</span>,
+</span></span><span style="display:flex;"><span>      <span style="color:#ba2121">&#34;devices&#34;</span>: <span style="color:#666">{</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#ba2121">&#34;type&#34;</span>: <span style="color:#ba2121">&#34;IMEI&#34;</span>,
+</span></span><span style="display:flex;"><span>        <span style="color:#ba2121">&#34;list&#34;</span>: <span style="color:#666">[</span><span style="color:#ba2121">&#34;35180000....702&#34;</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#666">]</span>
+</span></span><span style="display:flex;"><span>      <span style="color:#666">}</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#666">}</span>
+</span></span></code></pre></div><p>In Gen2, <code>transactionType</code> has been removed (now identified by endpoint), and <code>type</code> has been moved to the parent level:</p>
+<div class="highlight"><pre tabindex="0" style=";-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>    <span style="color:#666">{</span>
+</span></span><span style="display:flex;"><span>      <span style="color:#ba2121">&#34;transactionId&#34;</span>: <span style="color:#ba2121">&#34;244303&#34;</span>,
+</span></span><span style="display:flex;"><span>      <span style="color:#ba2121">&#34;resellerId&#34;</span>: <span style="color:#ba2121">&#34;460....925&#34;</span>,
+</span></span><span style="display:flex;"><span>      <span style="color:#ba2121">&#34;customerId&#34;</span>: <span style="color:#ba2121">&#34;12....321&#34;</span>,
+</span></span><span style="display:flex;"><span>      <span style="color:#ba2121">&#34;type&#34;</span>: <span style="color:#ba2121">&#34;IMEI&#34;</span>,
+</span></span><span style="display:flex;"><span>      <span style="color:#ba2121">&#34;devices&#34;</span>: <span style="color:#666">[</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#ba2121">&#34;35182610....702&#34;</span>
+</span></span><span style="display:flex;"><span>      <span style="color:#666">]</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#666">}</span>
+</span></span></code></pre></div><h3 id="for-list-devices">For list devices</h3>
+<p>In Gen1:</p>
+<div class="highlight"><pre tabindex="0" style=";-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>    <span style="color:#666">{</span>
+</span></span><span style="display:flex;"><span>      <span style="color:#ba2121">&#34;totalCount&#34;</span>: 0,
+</span></span><span style="display:flex;"><span>      <span style="color:#ba2121">&#34;totalPage&#34;</span>: 0,
+</span></span><span style="display:flex;"><span>      <span style="color:#ba2121">&#34;pageNum&#34;</span>: 0,
+</span></span><span style="display:flex;"><span>      <span style="color:#ba2121">&#34;devices&#34;</span>: <span style="color:#666">[{</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#ba2121">&#34;imei&#34;</span>: <span style="color:#ba2121">&#34;35719261....112&#34;</span>
+</span></span><span style="display:flex;"><span>      <span style="color:#666">}]</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#666">}</span>
+</span></span></code></pre></div><p>In Gen2, <code>totalPage</code> was changed to <code>totalPages</code>, which additionally includes new fields:</p>
+<div class="highlight"><pre tabindex="0" style=";-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>    <span style="color:#666">{</span>
+</span></span><span style="display:flex;"><span>      <span style="color:#ba2121">&#34;code&#34;</span>: <span style="color:#ba2121">&#34;2000000&#34;</span>,
+</span></span><span style="display:flex;"><span>      <span style="color:#ba2121">&#34;message&#34;</span>: <span style="color:#ba2121">&#34;SUCCESS&#34;</span>,
+</span></span><span style="display:flex;"><span>      <span style="color:#ba2121">&#34;pageNum&#34;</span>: 0,
+</span></span><span style="display:flex;"><span>      <span style="color:#ba2121">&#34;pageSize&#34;</span>: 1000000,
+</span></span><span style="display:flex;"><span>      <span style="color:#ba2121">&#34;totalCount&#34;</span>: 0,
+</span></span><span style="display:flex;"><span>      <span style="color:#ba2121">&#34;totalPages&#34;</span>: 0,
+</span></span><span style="display:flex;"><span>        <span style="color:#ba2121">&#34;size&#34;</span>: 0,
+</span></span><span style="display:flex;"><span>        <span style="color:#ba2121">&#34;devices&#34;</span>: <span style="color:#666">[{</span>
+</span></span><span style="display:flex;"><span>          <span style="color:#ba2121">&#34;id&#34;</span>: <span style="color:#ba2121">&#34;6012afe85f18342e67ee9126&#34;</span>,
+</span></span><span style="display:flex;"><span>          <span style="color:#ba2121">&#34;createTime&#34;</span>: 1611837416372,
+</span></span><span style="display:flex;"><span>          <span style="color:#ba2121">&#34;mei&#34;</span>: <span style="color:#ba2121">&#34;35182600....702&#34;</span>,
+</span></span><span style="display:flex;"><span>          <span style="color:#ba2121">&#34;customerName&#34;</span>: <span style="color:#ba2121">&#34;Demo-Customer&#34;</span>,
+</span></span><span style="display:flex;"><span>          <span style="color:#ba2121">&#34;customerId&#34;</span>: <span style="color:#ba2121">&#34;460....586&#34;</span>,
+</span></span><span style="display:flex;"><span>          <span style="color:#ba2121">&#34;serialNumber&#34;</span>: <span style="color:#ba2121">&#34;R3OO....KLD&#34;</span>,
+</span></span><span style="display:flex;"><span>          <span style="color:#ba2121">&#34;meid&#34;</span>: <span style="color:#ba2121">&#34;08907750000....280&#34;</span>,
+</span></span><span style="display:flex;"><span>          <span style="color:#ba2121">&#34;model&#34;</span>: <span style="color:#ba2121">&#34;SM-G981B/DS&#34;</span>,
+</span></span><span style="display:flex;"><span>          <span style="color:#ba2121">&#34;state&#34;</span>: <span style="color:#ba2121">&#34;Verified&#34;</span>,
+</span></span><span style="display:flex;"><span>          <span style="color:#ba2121">&#34;uploadId&#34;</span>: <span style="color:#ba2121">&#34;ddb71b6c-3aef-4d54-b1f4-b86480aa447d&#34;</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#666">}]</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#666">}</span>
+</span></span></code></pre></div><h3 id="for-check-transaction-status-message">For check transaction status message</h3>
+<p>In Gen1:</p>
+<div class="highlight"><pre tabindex="0" style=";-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>    <span style="color:#666">{</span>
+</span></span><span style="display:flex;"><span>      <span style="color:#ba2121">&#34;totalCount&#34;</span>: 2,
+</span></span><span style="display:flex;"><span>      <span style="color:#ba2121">&#34;totalPage&#34;</span>: 1,
+</span></span><span style="display:flex;"><span>      <span style="color:#ba2121">&#34;pageNum&#34;</span>: 0,
+</span></span><span style="display:flex;"><span>      <span style="color:#ba2121">&#34;transactions&#34;</span>: <span style="color:#666">[{</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#ba2121">&#34;transactionId&#34;</span>: <span style="color:#ba2121">&#34;7500657464&#34;</span>,
+</span></span><span style="display:flex;"><span>        <span style="color:#ba2121">&#34;state&#34;</span>: <span style="color:#ba2121">&#34;Complete&#34;</span>,
+</span></span><span style="display:flex;"><span>        <span style="color:#ba2121">&#34;type&#34;</span>: <span style="color:#ba2121">&#34;Put&#34;</span>,
+</span></span><span style="display:flex;"><span>        <span style="color:#ba2121">&#34;devices&#34;</span>: <span style="color:#666">[{</span>
+</span></span><span style="display:flex;"><span>          <span style="color:#ba2121">&#34;imei&#34;</span>: <span style="color:#ba2121">&#34;80721262....673&#34;</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#666">}</span>, <span style="color:#666">{</span>
+</span></span><span style="display:flex;"><span>          <span style="color:#ba2121">&#34;imei&#34;</span>: <span style="color:#ba2121">&#34;2197517....444&#34;</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#666">}</span>, <span style="color:#666">{</span>
+</span></span><span style="display:flex;"><span>          <span style="color:#ba2121">&#34;imei&#34;</span>: <span style="color:#ba2121">&#34;4064950....126&#34;</span>,
+</span></span><span style="display:flex;"><span>          <span style="color:#ba2121">&#34;code&#34;</span>: 4092100,
+</span></span><span style="display:flex;"><span>          <span style="color:#ba2121">&#34;message&#34;</span>: <span style="color:#ba2121">&#34;RESELLER_DEVICE_ALREADY_EXISTS&#34;</span>,
+</span></span><span style="display:flex;"><span>          <span style="color:#ba2121">&#34;data&#34;</span>: <span style="color:#ba2121">&#34;device imei[09743614....341] already exists&#34;</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#666">}]</span>
+</span></span><span style="display:flex;"><span>      <span style="color:#666">}]</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#666">}</span>
+</span></span></code></pre></div><p>In Gen2, everything now appears within a new <code>devices</code> object:</p>
+<div class="highlight"><pre tabindex="0" style=";-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>      <span style="color:#666">{</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#ba2121">&#34;devices&#34;</span>: <span style="color:#666">{</span>
+</span></span><span style="display:flex;"><span>          <span style="color:#ba2121">&#34;totalCount&#34;</span>: 1,
+</span></span><span style="display:flex;"><span>          <span style="color:#ba2121">&#34;totalPage&#34;</span>: 1,
+</span></span><span style="display:flex;"><span>          <span style="color:#ba2121">&#34;pageNum&#34;</span>: 0,
+</span></span><span style="display:flex;"><span>          <span style="color:#ba2121">&#34;transactions&#34;</span>: <span style="color:#666">[{</span>
+</span></span><span style="display:flex;"><span>            <span style="color:#ba2121">&#34;transactionId&#34;</span>: <span style="color:#ba2121">&#34;246903&#34;</span>,
+</span></span><span style="display:flex;"><span>            <span style="color:#ba2121">&#34;state&#34;</span>: <span style="color:#ba2121">&#34;Complete&#34;</span>,
+</span></span><span style="display:flex;"><span>            <span style="color:#ba2121">&#34;type&#34;</span>: <span style="color:#ba2121">&#34;Put&#34;</span>,
+</span></span><span style="display:flex;"><span>            <span style="color:#ba2121">&#34;operationType&#34;</span>: <span style="color:#ba2121">&#34;UPLOAD&#34;</span>,
+</span></span><span style="display:flex;"><span>            <span style="color:#ba2121">&#34;devices&#34;</span>: <span style="color:#666">[{</span>
+</span></span><span style="display:flex;"><span>              <span style="color:#ba2121">&#34;imei&#34;</span>: <span style="color:#ba2121">&#34;35182611....643&#34;</span>,
+</span></span><span style="display:flex;"><span>              <span style="color:#ba2121">&#34;code&#34;</span>: 40000004,
+</span></span><span style="display:flex;"><span>              <span style="color:#ba2121">&#34;message&#34;</span>: <span style="color:#ba2121">&#34;DEVICE_INVALID&#34;</span>,
+</span></span><span style="display:flex;"><span>              <span style="color:#ba2121">&#34;data&#34;</span>: <span style="color:#ba2121">&#34;The specified device is not valid.&#34;</span>
+</span></span><span style="display:flex;"><span>            <span style="color:#666">}]</span>
+</span></span><span style="display:flex;"><span>          <span style="color:#666">}]</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#666">}</span>
+</span></span><span style="display:flex;"><span>      <span style="color:#666">}</span>
+</span></span></code></pre></div><p>The inner <code>devices</code> object contains information about failed transactions. If none of the transactions failed, it will not be included in the response &mdash; as below:</p>
+<div class="highlight"><pre tabindex="0" style=";-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>      <span style="color:#666">{</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#ba2121">&#34;devices&#34;</span>: <span style="color:#666">{</span>
+</span></span><span style="display:flex;"><span>          <span style="color:#ba2121">&#34;totalCount&#34;</span>: 1,
+</span></span><span style="display:flex;"><span>          <span style="color:#ba2121">&#34;totalPage&#34;</span>: 1,
+</span></span><span style="display:flex;"><span>          <span style="color:#ba2121">&#34;pageNum&#34;</span>: 0,
+</span></span><span style="display:flex;"><span>          <span style="color:#ba2121">&#34;transactions&#34;</span>: <span style="color:#666">[{</span>
+</span></span><span style="display:flex;"><span>            <span style="color:#ba2121">&#34;transactionId&#34;</span>: <span style="color:#ba2121">&#34;248603&#34;</span>,
+</span></span><span style="display:flex;"><span>            <span style="color:#ba2121">&#34;state&#34;</span>: <span style="color:#ba2121">&#34;Complete&#34;</span>,
+</span></span><span style="display:flex;"><span>            <span style="color:#ba2121">&#34;type&#34;</span>: <span style="color:#ba2121">&#34;Put&#34;</span>,
+</span></span><span style="display:flex;"><span>            <span style="color:#ba2121">&#34;operationType&#34;</span>: <span style="color:#ba2121">&#34;UPLOAD&#34;</span>
+</span></span><span style="display:flex;"><span>          <span style="color:#666">}]</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#666">}</span>
+</span></span><span style="display:flex;"><span>      <span style="color:#666">}</span>
+</span></span></code></pre></div>
             
           </div>
           <div class="l-toh">
@@ -750,10 +459,15 @@
 <aside class="table-of-headings">
   <nav id="TableOfContents">
   <ul>
-    <li><a href="#about-gen1-and-gen2-apis">About Gen1 and Gen2 APIs</a></li>
     <li><a href="#server-urlchange">Server URL change</a></li>
-    <li><a href="#request-for-the-knox-deployment-program-api-access">Request for the Knox Deployment Program API access</a></li>
-    <li><a href="#api-message-payload-and-response-format-changes">API message payload and response format changes</a></li>
+    <li><a href="#authentication-changes">Authentication changes</a></li>
+    <li><a href="#api-message-payload-and-response-format-changes">API message payload and response format changes</a>
+      <ul>
+        <li><a href="#for-uploaddelete-device">For upload/delete device</a></li>
+        <li><a href="#for-list-devices">For list devices</a></li>
+        <li><a href="#for-check-transaction-status-message">For check transaction status message</a></li>
+      </ul>
+    </li>
   </ul>
 </nav>
 </aside>
