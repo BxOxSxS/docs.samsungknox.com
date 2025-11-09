@@ -56,7 +56,7 @@
 
   
 
-<script onload="initBot()" defer src="https://dc-chbt.samsungknox.com/copilot/index.js?noCache=1761085244"></script>
+<script onload="initBot()" defer src="https://dc-chbt.samsungknox.com/copilot/index.js?noCache=1762561369"></script>
 <script defer>
     function initBot(){
       const relPath = "\/knox-guard\/how-knox-guard-works\/";
@@ -316,6 +316,10 @@
       
       
       
+        
+      
+      
+      
       
         
       
@@ -327,7 +331,7 @@
 <li><a href="https://www.samsungknox.com/en/resellers" target="_blank">Samsung Knox device resellers</a>, who use the <a href="../../../admin/knox-deployment-program/welcome.htm" target="_blank">Knox Deployment Program console</a> or <a href="../../knox-deployment-program">REST APIs</a></li>
 <li><a href="https://play.google.com/store/apps/details?id=com.samsung.android.knox.enrollment" target="_blank">Knox Deployment App</a>, which is designed for small-scale deployments or testing</li>
 </ul>
-<p>These devices start out in a <strong>Pending</strong> state. You can approve these devices for Knox Guard payment tracking using either the <a href="../../../admin/knox-guard.html" target="_blank">Knox Guard console</a> or REST API call <a href="../api#tag/Device/operation/approveDeviceUsingPOST"><code>approve</code></a>. Once approved, devices transition to the <strong>Activating</strong> state. When the Knox Guard app on the device confirms activation, the device then transitions to <strong>Active</strong>.</p>
+<p>These devices start out in a <strong>Pending</strong> state. You can approve these devices using the <a href="../api#tag/Device/operation/approveDeviceUsingPOST"><code>Approve a Device</code></a> API. Once approved, devices transition to the <strong>Activating</strong> state. Once the device boots up and successfully enrolls into Knox Guard, its status changes to <strong>Active</strong>, and you can manage the device.</p>
 
 
 
@@ -337,97 +341,97 @@
 
 
 <p><img src="../assets/device_status_2.png" class="img-fluid img-thumbnail" alt="A diagram showing how Knox Guard works" /></p>
-<p>Knox Guard can manage devices that are on either:</p>
+<p>There are two main types of Knox Guard accounts:</p>
 <ul>
-<li><strong>Installment Plans</strong> &mdash; These devices begin in an <strong>Active</strong> state, become <strong>Locked</strong> if payments become overdue, and <strong>Payment complete</strong> when the payments are complete.</li>
-<li><strong>Pay-As-You-Go Plans</strong> &mdash; These devices start in a <strong>Locked</strong> state, then become <strong>Active</strong> with the appropriate payment for a specified time period. After this period, the device becomes <strong>Locked</strong> again. Currently, these devices support all the current Knox Guard features except offline lock and default blinking reminder.</li>
+<li><strong>Normal</strong> &mdash; Devices begin in an <strong>Active</strong> state, become <strong>Locked</strong> if payments are overdue, and become <strong>Complete</strong> when they no longer need to be managed.</li>
+<li><strong>Pay-as-you-go</strong> (PAYG) &mdash; Devices start in a <strong>Locked</strong> state. With the appropriate payment, the devices become <strong>Active</strong> for a specified time period. After this period, the device is <strong>Locked</strong> again. Currently, these devices support all the current Knox Guard features except offline device lock and blinking reminder.</li>
 </ul>
-<p>If a device is either rejected or is payment complete, it can be deleted from the Knox Guard payment tracking. Once deleted, the Knox Guard app on the device is uninstalled and the device is no longer tracked.</p>
+<p>If a device is either rejected or device management is complete, you can delete it from Knox Guard using the <a href="../api#tag/Device/operation/deleteDeviceUsingPOST"><code>Delete a Device</code></a> API. Once deleted, the Knox Guard client on the device is permanently uninstalled and the device is no longer tracked.</p>
 <h2 id="device-state">Device state</h2>
-<p>Device state changes when it is approved, assigned a license, completes the payment cycle and so on. For each device state, see the table:</p>
+<p>Once a device is added to the Knox Guard console, it can go through a variety of states:</p>
 <div class="overflow-auto my-3"><table>
 <thead>
 <tr>
-<th>Device State</th>
+<th>Device state</th>
 <th>Description</th>
-<th>External State (on console)</th>
+<th>External state (on console)</th>
 </tr>
 </thead>
 <tbody>
 <tr>
 <td>Pending</td>
-<td>The device is pending when a reseller uploads the device to a customer. Customers can then see the device in the list and reject or accept it.</td>
+<td>The reseller has uploaded the device to the Knox Guard console. Customers can view the device in the Knox Guard device list and either reject or accept it.</td>
 <td>Pending</td>
 </tr>
 <tr>
 <td>Rejected</td>
-<td>When a customer rejects the device, it&rsquo;s state will change to rejected.</td>
+<td>The device was rejected.</td>
 <td>Rejected</td>
 </tr>
 <tr>
 <td>Accepted</td>
-<td>Once accepted, a Knox Guard agent on the client side is triggered. If auto accept is on, the devices&rsquo; state is changed from &ldquo;Pending&rdquo; to &ldquo;Accepted&rdquo; automatically.</td>
+<td>The device was accepted, but isn&rsquo;t active in Knox Guard yet. If the your reseller preferences are configured to automatically accept device uploads, the device&rsquo;s state automatically changes from <strong>Pending</strong> to <strong>Accepted</strong>.</td>
 <td>Activating</td>
 </tr>
 <tr>
 <td>Enrolled</td>
-<td>This state allows the device to be controlled by Knox Guard to lock, unlock, send a message, or blink a device.</td>
+<td>The device is actively managed by Knox Guard and can be controlled.</td>
 <td>Active</td>
 </tr>
 <tr>
 <td>Exchanging</td>
-<td>Status of a device, which is undergoing maintenance, being replaced with a new device/IMEI number. This requires Samsung customer support assistance and is for tracking purposes only.</td>
+<td>A temporary state that exists when an IMEI exchange is in process. This state requires Samsung customer support assistance and is for tracking purposes only. An <strong>Exchanging</strong> state can&rsquo;t occur when the device is locked.</td>
 <td>Exchanging</td>
 </tr>
 <tr>
 <td>Resetting</td>
-<td>A device will report the resetting state if a license has expired or been deleted. Once reported, it will transition to the pending state</td>
+<td>The device&rsquo;s associated Knox Guard license has expired or is deleted. Once this status is reported to the Knox Guard server, the device returns to the <strong>Pending</strong> state.</td>
 <td>Resetting</td>
 </tr>
 <tr>
 <td>StartingReminder</td>
-<td>The state is changed to &ldquo;StartingReminder&rdquo; when a customer sends the start-reminder event to the client.</td>
+<td>Blink reminders are activating on the device.</td>
 <td>Starting Reminder</td>
 </tr>
 <tr>
 <td>StoppingReminder</td>
-<td>The state is changed to &ldquo;StoppingReminder&rdquo; when a customer sends the stop-reminder event to the client.</td>
+<td>Blink reminders are stopping on the device.</td>
 <td>Stopping Reminder</td>
 </tr>
 <tr>
 <td>Blinked</td>
-<td>Reminder is activated on the client.</td>
+<td>Blink reminders are activated on the device.</td>
 <td>Reminder On</td>
 </tr>
 <tr>
 <td>Locking</td>
-<td>The state is changed to &ldquo;Locking&rdquo; when a customer sends the lock event to the client.</td>
+<td>The device is in the process of locking.</td>
 <td>Locking</td>
 </tr>
 <tr>
 <td>Locked</td>
-<td>Confirmed that the device is locked.</td>
+<td>The device is locked.</td>
 <td>Locked</td>
 </tr>
 <tr>
 <td>Unlocking</td>
-<td>The state is changed to &ldquo;Unlocking&rdquo; when a customer sends the unlock event to the client.</td>
+<td>The device is in the process of unlocking.</td>
 <td>Unlocking</td>
 </tr>
 <tr>
 <td>Completing</td>
-<td>The state is changed to &ldquo;Completing&rdquo; when a customer sends the complete event to the client.</td>
+<td>The device is in the process of completing management. Once complete, it&rsquo;s no longer be managed by Knox Guard.</td>
 <td>Completing</td>
 </tr>
 <tr>
 <td>Completed</td>
-<td>Device is out of control of Knox Guard anymore. customer can complete when the loan is over.</td>
+<td>Device management is complete and the device is no longer managed by Knox Guard.</td>
 <td>Completed</td>
 </tr>
 </tbody>
 </table></div>
 <h2 id="license-state">License state</h2>
-<p>Following table provide information on different license states.</p>
+<p>The following table provides information on different license states:</p>
 <div class="overflow-auto my-3"><table>
 <thead>
 <tr>
@@ -439,17 +443,17 @@
 <tbody>
 <tr>
 <td>Registered</td>
-<td>The license has been created but has yet to be activated.</td>
+<td>The license has been added to the account, but isn&rsquo;t active yet.</td>
 <td>Registered</td>
 </tr>
 <tr>
 <td>Active</td>
-<td>The activation period has started and the license is still valid.</td>
+<td>The license is between the <strong>Activation start date</strong> and <strong>Activation end date</strong> and can be used in Knox Guard.</td>
 <td>Active</td>
 </tr>
 <tr>
 <td>Expired</td>
-<td>License has surpassed the expiration date and is no longer valid.</td>
+<td>The <strong>Activation end date</strong> has passed and new devices can&rsquo;t be activated using the license.</td>
 <td>Expired</td>
 </tr>
 </tbody>
