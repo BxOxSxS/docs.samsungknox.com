@@ -56,7 +56,7 @@
 
   
 
-<script onload="initBot()" defer src="https://dc-chbt.samsungknox.com/copilot/index.js?noCache=1763169038"></script>
+<script onload="initBot()" defer src="https://dc-chbt.samsungknox.com/copilot/index.js?noCache=1763751807"></script>
 <script defer>
     function initBot(){
       const relPath = "\/knox-deployment-program\/tutorial-knox-deployment-program-integration\/";
@@ -106,9 +106,10 @@
 
   
   <main>
-    <div class="container-xxl l-layout">
-    <div class="l-sidebar pt-md-6">
-      
+    
+      <div class="container-xxl l-layout">
+        <div class="l-sidebar pt-md-6">
+          
 <aside class="ps-2 pe-4">
   <div class="d-inline-block w-100 position-relative">
   <button id="guide-navigation-button" type="button" data-bs-toggle="collapse" data-bs-target="#guide-navigation" aria-controls="#guide-navigation" aria-expanded="false" class="dropdown-button border border-2">Samsung Knox developer guides</button>
@@ -276,411 +277,27 @@
   </ul>
   </nav>
 </aside></div>
-    <div class="l-main pt-md-6">
-      
-      <div class="l-content-top mb-4">
-        <div class="l-breadcrumb">
-          <a class="fw-light text-black" href="../../index.html">Home</a><span> /</span>
+        <div class="l-main pt-md-6">
+          
+          <div class="l-content-top mb-4">
+            <div class="l-breadcrumb">
+              <a class="fw-light text-black" href="../../index.html">Home</a><span> /</span>
 <a class="fw-light text-black" href="../../knox-deployment-program.html">Knox Deployment Program</a><span> /</span>
 
-        </div>
-        <div class="mt-4">
-          <h1>Tutorial &mdash; Knox Deployment Program (KDP) integration</h1>
-        </div>
-        
+            </div>
+            <div class="mt-4">
+              <h1>Tutorial &mdash; Knox Deployment Program (KDP) integration</h1>
+            </div>
+            
 
-  <p><span>Last updated November  14th, 2025</span></p>
+  <p><span>Last updated November  19th, 2025</span></p>
 
 
     
 
 </div>
-      <div class="l-content">
-        
-        <ul
-        class="nav nav-tabs d-flex align-items-center mt-3"
-        id="nav-tabs"
-        role="tablist"
-        >  
-        
-                
-                <li class="nav-item" role="presentation">
-                    <button
-                    class="tab-link active px-3 py-2 rounded-5"
-                    id="current-release-button"
-                    data-bs-toggle="tab"
-                    data-bs-target="#current-release-tab"
-                    type="button"
-                    role="tab"
-                    aria-controls="current-release"
-                    aria-selected="true"
-                    >
-                    25.07
-                    </button>
-                </li>
-        <li class="nav-item" role="presentation">
-                <button
-                class="tab-link  px-3 py-2 rounded-5"
-                id="upcoming-release-button"
-                data-bs-toggle="tab"
-                data-bs-target="#upcoming-release-tab"
-                type="button"
-                role="tab"
-                aria-controls="upcoming-release"
-                aria-selected="true"
-                >
-                25.11
-                </button>
-            </li>
-        </ul>
-        <div class="tab-content mb-6" id="nav-tab-content">
+          <div class="l-content">
             
-                
-
-
-
-
-
-<div class="tab-pane fade  show active  border border-grey-line rounded-3 overflow-hidden" id="current-release-tab" role="tabpanel" aria-labelledby="current-release-tab">
-  
-  
-    
-    <div class="tab-toc p-3 border-bottom border-grey-line">
-      <p class="fw-bold">On this tab</p>
-      <ul class="mt-2 mb-0 list-unstyled section-nav">
-      
-        
-        <li class="ms-0"><a href="#step-1-sign-up-and-get-approved-current-release">Step 1: Sign up and get approved</a>
-      
-        
-        <li class="ms-0"><a href="#step-2-request-access-to-the-cloud-apps-feature-current-release">Step 2: Request access to the Cloud Apps feature</a>
-      
-        
-        <li class="ms-0"><a href="#step-3-generate-and-test-your-access-token-current-release">Step 3: Generate and test your access token</a>
-      
-        
-        <li class="ms-0"><a href="#step-4-integrate-with-the-kdp-api-current-release">Step 4: Integrate with the KDP API</a>
-      
-        
-        <li class="ms-2"><a href="#upload-devices-current-release">Upload devices</a>
-      
-        
-        <li class="ms-2"><a href="#list-device-transaction-status-current-release">List device transaction status</a>
-      
-        
-        <li class="ms-2"><a href="#delete-devices-current-release">Delete devices</a>
-      
-        
-        <li class="ms-2"><a href="#list-devices-current-release">List devices</a>
-      
-        
-        <li class="ms-2"><a href="#list-resellers-customers-current-release">List reseller’s customers</a>
-      
-        
-        <li class="ms-2"><a href="#other-api-operations-current-release">Other API operations</a>
-      </ul>
-  </div>
-    
-  <div class="tab-content p-3">
-
-  
-
-
-
-
-      
-      
-      
-      
-      
-      
-      
-      
-        
-      
-      
-      
-      
-        
-      
-      
-      
-      
-        
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      <p>This tutorial covers how to integrate with KDP to upload customer devices that are sold through distributors, resellers, and carriers with their customer-side Samsung Knox services, such as <a href="https://www.samsungknox.com/en/solutions/it-solutions/knox-mobile-enrollment" target="_blank">Knox Mobile Enrollment</a> and <a href="https://www.samsungknox.com/en/solutions/it-solutions/knox-configure" target="_blank">Knox Configure</a>.</p>
-<h2 id="step-1-sign-up-and-get-approved-current-release">Step 1: Sign up and get approved</h2>
-<p>You must apply and be approved for both Knox Partner Program and KDP. To learn more, see <a href="../../../partner/knox-deployment-program/get-started/get-access-to-the-reseller-portal" target="_blank">Get access to the Reseller Portal</a>. Once you have been approved, you will be notified via email.</p>
-<h2 id="step-2-request-access-to-the-cloud-apps-feature-current-release">Step 2: Request access to the Cloud Apps feature</h2>
-<p>You will need to request access to the <strong>Cloud Apps</strong> feature in Knox Developer Portal.</p>
-<ol>
-<li>
-<p>From the Knox Partner Program dashboard, click <strong>Knox Developers</strong> to get approved for Knox Developer Portal access.</p>
-</li>
-<li>
-<p>Click the link again to open Knox Developer Portal, then click <strong>Support</strong>.</p>
-</li>
-<li>
-<p>On the <strong>Support</strong> page, under <strong>Technical Support</strong> click <strong>SUBMIT SUPPORT TICKET</strong>.</p>
-</li>
-<li>
-<p>Review and accept the options on the <strong>Request access to the support ticketing system</strong> page and click <strong>Submit</strong>.</p>
-</li>
-<li>
-<p>Click <strong>Create a Case</strong> to open the <strong>Case Creation</strong> dialog. In <strong>Step 1</strong>, the <strong>Account Name</strong> and <strong>Contact Name</strong> fields will be automatically populated using your account details.</p>
-</li>
-<li>
-<p>In <strong>Step 1</strong>:</p>
-<p>a. Select <strong>Web Service API</strong> as the <strong>Product</strong> value.</p>
-<p>b. Enter your current country as the <strong>Issue Location</strong> value.</p>
-<p>c. Leave the <strong>Severity</strong> level at default unless required.</p>
-</li>
-<li>
-<p>In <strong>Step 2</strong>:</p>
-<p>a. Enter &ldquo;Cloud Apps feature&rdquo; (without quotes) as the <strong>Subject</strong>.</p>
-<p>b. Enter a description of your use cases, and your intent to access the KDP API in the <strong>Description</strong> field.</p>
-<p>c. Upload or drop any supporting files as required.</p>
-<p>d. Click <strong>Submit</strong>.</p>
-</li>
-</ol>
-<p>Alternatively, send an email to <a href="mailto:knoxapi@samsungknox.com">knoxapi@samsungknox.com</a> with the subject &ldquo;Cloud Apps feature&rdquo; (without quotes). Include the following details in your email:</p>
-<ul>
-<li>Email address associated with your Samsung Knox account</li>
-<li>Company name</li>
-<li>Country</li>
-<li>Your intention to access KDP API for cloud apps</li>
-<li>Description of your use cases</li>
-</ul>
-<p>Once you have been granted access, you will be notified via email. When you subsequently log into the Developer Portal, you will see the <strong>Cloud Apps</strong> menu in the navigation pane.</p>
-<h2 id="step-3-generate-and-test-your-access-token-current-release">Step 3: Generate and test your access token</h2>
-<p>After you get access to the <strong>Cloud Apps</strong> feature:</p>
-<ol>
-<li>
-<p><a href="../../knox-cloud-authentication/knox-oauth-2-0-authentication/register-new-app">Register your app</a> to get its client ID and client secret.</p>
-<div class="notice-note"><p>Add the necessary <a href="../../knox-cloud-authentication/knox-oauth-2-0-authentication/scopes-for-knox-cloud-services-apis#knox-deployment-program">KDP scopes</a> while registering your app.</p></div>
-</li>
-<li>
-<p><a href="../../knox-cloud-authentication/knox-oauth-2-0-authentication/for-customers-and-msps/step-1-get-access-token">Generate an access token</a> using the client ID and client secret from step 1. You will need to add the access token as an <code>Authorization</code> header value in KDP API calls.</p>
-</li>
-<li>
-<p>Ensure that your access token is configured correctly by making a test call to <a href="../api/index.html#tag/Endpoints" target="_blank">any KDP API endpoint</a>.</p>
-</li>
-</ol>
-<h2 id="step-4-integrate-with-the-kdp-api-current-release">Step 4: Integrate with the KDP API</h2>
-<p>This section covers common KDP API use cases using client credentials authorization flow (2-legged OAuth 2.0) to access your own Knox cloud services.</p>
-<p>Some KDP operations involve performing actions against customer accounts. To test these scenarios, you&rsquo;ll need a separate Samsung Knox customer account. For details, see <a href="../../../admin/fundamentals/register-for-samsung-knox/create-a-samsung-knox-account/index.html" target="_blank">Create a Samsung Knox account</a>.</p>
-<h3 id="upload-devices-current-release">Upload devices</h3>
-<p>Upload devices to your customer&rsquo;s account with <a href="../api/index.html#tag/Endpoints/operation/uploadDevicesUsingPUT" target="_blank">PUT /kcs/v1/rp/devices/upload</a>.</p>
-<p>In the header, include your signed access token from the previous step. Then, make sure you include the following required body parameters:</p>
-<ul>
-<li><code>customerId</code> – ID of the customer to upload devices for.</li>
-<li><code>resellerId</code> – Your reseller ID.</li>
-<li><code>transactionId</code> – Unique transaction ID for this operation. You can later use this transaction ID to check the status of this operation.</li>
-<li><code>devices</code> - An array of device IMEIs, MEIDs, or Serial Numbers.</li>
-<li><code>type</code> -  Device type. <code>IMEI</code>, <code>MEID</code>, or <code>SN</code>.</li>
-</ul>
-<p>There are also optional parameters you can set for this request. To learn more, see the <a href="../api/index.html#tag/Endpoints/operation/uploadDevicesUsingPUT" target="_blank">KDP API reference</a>.</p>
-<p>Here&rsquo;s a cURL request example that uploads a device specified by its IMEI.</p>
-<div class="highlight"><pre tabindex="0" style=";-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>        curl --request PUT <span style="color:#b62;font-weight:bold">\
-</span></span></span><span style="display:flex;"><span><span style="color:#b62;font-weight:bold"></span>          --url https://api.samsungknox.com/kcs/v1/rp/devices/upload <span style="color:#b62;font-weight:bold">\
-</span></span></span><span style="display:flex;"><span><span style="color:#b62;font-weight:bold"></span>          --header <span style="color:#ba2121">&#39;Authorization: Bearer kz06....L09Wc&#39;</span> <span style="color:#b62;font-weight:bold">\
-</span></span></span><span style="display:flex;"><span><span style="color:#b62;font-weight:bold"></span>          --header <span style="color:#ba2121">&#39;content-type: application/json&#39;</span> <span style="color:#b62;font-weight:bold">\
-</span></span></span><span style="display:flex;"><span><span style="color:#b62;font-weight:bold"></span>          --data <span style="color:#ba2121">&#39;{
-</span></span></span><span style="display:flex;"><span><span style="color:#ba2121">          &#34;customerId&#34;: &#34;114....454&#34;,
-</span></span></span><span style="display:flex;"><span><span style="color:#ba2121">          &#34;resellerId&#34;: &#34;393....849&#34;,
-</span></span></span><span style="display:flex;"><span><span style="color:#ba2121">          &#34;transactionId&#34;: &#34;123000&#34;,
-</span></span></span><span style="display:flex;"><span><span style="color:#ba2121">          &#34;devices&#34;: [
-</span></span></span><span style="display:flex;"><span><span style="color:#ba2121">            &#34;35163899....236&#34;
-</span></span></span><span style="display:flex;"><span><span style="color:#ba2121">          ],
-</span></span></span><span style="display:flex;"><span><span style="color:#ba2121">          &#34;type&#34;: &#34;IMEI&#34;
-</span></span></span><span style="display:flex;"><span><span style="color:#ba2121">        }&#39;</span>
-</span></span></code></pre></div><p>Assuming the request was processed correctly, you should receive a response resembling the following:</p>
-<div class="highlight"><pre tabindex="0" style=";-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>        <span style="color:#666">{</span>
-</span></span><span style="display:flex;"><span>            <span style="color:#ba2121">&#34;transactionId&#34;</span>: <span style="color:#ba2121">&#34;123000&#34;</span>,
-</span></span><span style="display:flex;"><span>            <span style="color:#ba2121">&#34;state&#34;</span>: <span style="color:#ba2121">&#34;Progress&#34;</span>,
-</span></span><span style="display:flex;"><span>            <span style="color:#ba2121">&#34;code&#34;</span>: 2000000,
-</span></span><span style="display:flex;"><span>            <span style="color:#ba2121">&#34;message&#34;</span>: <span style="color:#ba2121">&#34;SUCCESS&#34;</span>,
-</span></span><span style="display:flex;"><span>            <span style="color:#ba2121">&#34;operationType&#34;</span>: <span style="color:#ba2121">&#34;UPLOAD&#34;</span>
-</span></span><span style="display:flex;"><span>        <span style="color:#666">}</span>
-</span></span></code></pre></div><div class="notice-note"><p>The upload operation is asynchronous. A success response implies that your upload request has been accepted for processing. You can use <strong>List device transaction status</strong> to view the current status of the upload.</p></div>
-<h3 id="list-device-transaction-status-current-release">List device transaction status</h3>
-<p>Get a list of device transaction statuses with <a href="../api/index.html#tag/Endpoints/operation/getDeviceTransactionStatusUsingGET" target="_blank">GET /kcs/v1/rp/devices/status</a>.</p>
-<p>In the header, include your signed access token from the previous step. Then, make sure you include the <code>resellerId</code> as a query parameter in your request. There are also optional query parameters you can set for filtering. To learn more, see the <a href="../api/index.html#tag/Endpoints/operation/getDeviceTransactionStatusUsingGET" target="_blank">KDP API reference</a>.</p>
-<p>Here&rsquo;s a cURL request example that calls this operation.</p>
-<div class="highlight"><pre tabindex="0" style=";-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>        curl --request GET <span style="color:#b62;font-weight:bold">\
-</span></span></span><span style="display:flex;"><span><span style="color:#b62;font-weight:bold"></span>          --url https://api.samsungknox.com/kcs/v1/rp/devices/status?resellerId<span style="color:#666">=</span><span style="color:#ba2121">&#34;393....849&#34;</span> <span style="color:#b62;font-weight:bold">\
-</span></span></span><span style="display:flex;"><span><span style="color:#b62;font-weight:bold"></span>          --header <span style="color:#ba2121">&#39;Authorization: Bearer kz06....L09Wc&#39;</span>
-</span></span></code></pre></div><p>The response will indicate the current status of device transations for the specified reseller. For example, assuming the upload has completed:</p>
-<div class="highlight"><pre tabindex="0" style=";-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>        <span style="color:#666">{</span>
-</span></span><span style="display:flex;"><span>          <span style="color:#ba2121">&#34;devices&#34;</span>: <span style="color:#666">{</span>
-</span></span><span style="display:flex;"><span>            <span style="color:#ba2121">&#34;totalCount&#34;</span>: 1,
-</span></span><span style="display:flex;"><span>            <span style="color:#ba2121">&#34;totalPage&#34;</span>: 1,
-</span></span><span style="display:flex;"><span>            <span style="color:#ba2121">&#34;pageNum&#34;</span>: 0,
-</span></span><span style="display:flex;"><span>            <span style="color:#ba2121">&#34;transactions&#34;</span>: <span style="color:#666">[</span>
-</span></span><span style="display:flex;"><span>              <span style="color:#666">{</span>
-</span></span><span style="display:flex;"><span>                <span style="color:#ba2121">&#34;transactionId&#34;</span>: <span style="color:#ba2121">&#34;123000&#34;</span>,
-</span></span><span style="display:flex;"><span>                <span style="color:#ba2121">&#34;state&#34;</span>: <span style="color:#ba2121">&#34;Complete&#34;</span>,
-</span></span><span style="display:flex;"><span>                <span style="color:#ba2121">&#34;type&#34;</span>: <span style="color:#ba2121">&#34;Put&#34;</span>,
-</span></span><span style="display:flex;"><span>                <span style="color:#ba2121">&#34;operationType&#34;</span>: <span style="color:#ba2121">&#34;UPLOAD&#34;</span>
-</span></span><span style="display:flex;"><span>              <span style="color:#666">}</span>
-</span></span><span style="display:flex;"><span>            <span style="color:#666">]</span>
-</span></span><span style="display:flex;"><span>          <span style="color:#666">}</span>
-</span></span><span style="display:flex;"><span>        <span style="color:#666">}</span>
-</span></span></code></pre></div><h3 id="delete-devices-current-release">Delete devices</h3>
-<p>Delete devices with <a href="../api/index.html#tag/Endpoints/operation/deleteDevicesUsingPUT" target="_blank">PUT /kcs/v1/rp/devices/delete</a>.</p>
-<p>In the header, include your signed access token from the previous step. Then, make sure you include the following required body parameters:</p>
-<ul>
-<li><code>customerId</code> – ID of the customer to delete devices for.</li>
-<li><code>resellerId</code> – Your reseller ID.</li>
-<li><code>transactionId</code> – Unique transaction ID for the current operation. You can later use this transaction ID to check the status of this operation.</li>
-<li><code>removeTransactionId</code> -  Transaction ID of a device upload operation. Allows you to delete devices from that specific upload. Required if <code>devices</code> is not provided.</li>
-<li><code>devices</code> - An array of device IMEIs or Serial Numbers to be deleted. Required if <code>removeTransactionId</code> is not provided.</li>
-<li><code>type</code> - Device type. <code>IMEI</code>, <code>MEID</code>, or <code>SN</code>. Required if <code>devices</code> is provided and <code>removeTransactionId</code> is not provided.</li>
-</ul>
-<p>There are also optional parameters you can set for this request. To learn more, see the <a href="../api/index.html#tag/Endpoints/operation/deleteDevicesUsingPUT" target="_blank">Knox Deployment Program API reference</a>.</p>
-<div class="highlight"><pre tabindex="0" style=";-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>        curl --request PUT <span style="color:#b62;font-weight:bold">\
-</span></span></span><span style="display:flex;"><span><span style="color:#b62;font-weight:bold"></span>          --url https://api.samsungknox.com/kcs/v1/rp/devices/delete <span style="color:#b62;font-weight:bold">\ </span>
-</span></span><span style="display:flex;"><span>          --header <span style="color:#ba2121">&#39;Authorization: Bearer kz06....L09Wc&#39;</span> <span style="color:#b62;font-weight:bold">\ </span>
-</span></span><span style="display:flex;"><span>          --header <span style="color:#ba2121">&#39;content-type: application/json&#39;</span> <span style="color:#b62;font-weight:bold">\ </span>
-</span></span><span style="display:flex;"><span>          --data <span style="color:#ba2121">&#39;{ 
-</span></span></span><span style="display:flex;"><span><span style="color:#ba2121">          &#34;customerId&#34;: &#34;114....454&#34;,
-</span></span></span><span style="display:flex;"><span><span style="color:#ba2121">          &#34;resellerId&#34;: &#34;393....849&#34;, 
-</span></span></span><span style="display:flex;"><span><span style="color:#ba2121">          &#34;transactionId&#34;: &#34;345000&#34;, 
-</span></span></span><span style="display:flex;"><span><span style="color:#ba2121">          &#34;devices&#34;: [
-</span></span></span><span style="display:flex;"><span><span style="color:#ba2121">            &#34;35163899....236&#34;
-</span></span></span><span style="display:flex;"><span><span style="color:#ba2121">          ],
-</span></span></span><span style="display:flex;"><span><span style="color:#ba2121">          &#34;type&#34;: &#34;IMEI&#34;
-</span></span></span><span style="display:flex;"><span><span style="color:#ba2121">          }&#39;</span>
-</span></span></code></pre></div><p>Assuming the request was processed correctly, you should receive a response resembling the following:</p>
-<div class="highlight"><pre tabindex="0" style=";-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>        <span style="color:#666">{</span>
-</span></span><span style="display:flex;"><span>            <span style="color:#ba2121">&#34;transactionId&#34;</span>: <span style="color:#ba2121">&#34;345000&#34;</span>,
-</span></span><span style="display:flex;"><span>            <span style="color:#ba2121">&#34;state&#34;</span>: <span style="color:#ba2121">&#34;Progress&#34;</span>,
-</span></span><span style="display:flex;"><span>            <span style="color:#ba2121">&#34;code&#34;</span>: 2000000,
-</span></span><span style="display:flex;"><span>            <span style="color:#ba2121">&#34;message&#34;</span>: <span style="color:#ba2121">&#34;SUCCESS&#34;</span>,
-</span></span><span style="display:flex;"><span>            <span style="color:#ba2121">&#34;operationType&#34;</span>: <span style="color:#ba2121">&#34;DELETE&#34;</span>
-</span></span><span style="display:flex;"><span>        <span style="color:#666">}</span>
-</span></span></code></pre></div><h3 id="list-devices-current-release">List devices</h3>
-<p>Get a list of devices uploaded with <a href="../api/index.html#tag/Endpoints/operation/getDevicesUsingGET" target="_blank">GET /kcs/v1/rp/devices</a>.</p>
-<p>In the header, include your signed access token from the previous step. Then, make sure you include the <code>resellerId</code> as a query parameter in your request. There are also optional query parameters you can set for filtering. To learn more, see the <a href="../api/index.html#tag/Endpoints/operation/getDevicesUsingGET" target="_blank">KDP API reference</a>.</p>
-<p>Here&rsquo;s a cURL request example that calls this operation:</p>
-<div class="highlight"><pre tabindex="0" style=";-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>        curl --request GET <span style="color:#b62;font-weight:bold">\
-</span></span></span><span style="display:flex;"><span><span style="color:#b62;font-weight:bold"></span>          --url https://api.samsungknox.com/kcs/v1/rp/devices?resellerId<span style="color:#666">=</span><span style="color:#ba2121">&#34;393....849&#34;</span> <span style="color:#b62;font-weight:bold">\
-</span></span></span><span style="display:flex;"><span><span style="color:#b62;font-weight:bold"></span>          --header <span style="color:#ba2121">&#39;Authorization: Bearer kz06....L09Wc&#39;</span>
-</span></span></code></pre></div><p>You should see a response resembling the following:</p>
-<div class="highlight"><pre tabindex="0" style=";-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>        <span style="color:#666">{</span>
-</span></span><span style="display:flex;"><span>            <span style="color:#ba2121">&#34;code&#34;</span>: <span style="color:#ba2121">&#34;2000000&#34;</span>,
-</span></span><span style="display:flex;"><span>            <span style="color:#ba2121">&#34;message&#34;</span>: <span style="color:#ba2121">&#34;SUCCESS&#34;</span>,
-</span></span><span style="display:flex;"><span>            <span style="color:#ba2121">&#34;pageNum&#34;</span>: 0,
-</span></span><span style="display:flex;"><span>            <span style="color:#ba2121">&#34;pageSize&#34;</span>: 100,
-</span></span><span style="display:flex;"><span>            <span style="color:#ba2121">&#34;totalCount&#34;</span>: 1,
-</span></span><span style="display:flex;"><span>            <span style="color:#ba2121">&#34;totalPages&#34;</span>: 1,
-</span></span><span style="display:flex;"><span>            <span style="color:#ba2121">&#34;size&#34;</span>: 1,
-</span></span><span style="display:flex;"><span>            <span style="color:#ba2121">&#34;devices&#34;</span>: <span style="color:#666">[</span>
-</span></span><span style="display:flex;"><span>                <span style="color:#666">{</span>
-</span></span><span style="display:flex;"><span>                    <span style="color:#ba2121">&#34;id&#34;</span>: <span style="color:#ba2121">&#34;68c21875cca00dfa936d4e49&#34;</span>,
-</span></span><span style="display:flex;"><span>                    <span style="color:#ba2121">&#34;createTime&#34;</span>: 1757550709832,
-</span></span><span style="display:flex;"><span>                    <span style="color:#ba2121">&#34;mei&#34;</span>: <span style="color:#ba2121">&#34;35163899....236&#34;</span>,
-</span></span><span style="display:flex;"><span>                    <span style="color:#ba2121">&#34;customerName&#34;</span>: <span style="color:#ba2121">&#34;Demo-Customer&#34;</span>,
-</span></span><span style="display:flex;"><span>                    <span style="color:#ba2121">&#34;customerId&#34;</span>: <span style="color:#ba2121">&#34;114....454&#34;</span>,
-</span></span><span style="display:flex;"><span>                    <span style="color:#ba2121">&#34;meid&#34;</span>: <span style="color:#ba2121">&#34;0890648729....1715&#34;</span>,
-</span></span><span style="display:flex;"><span>                    <span style="color:#ba2121">&#34;model&#34;</span>: <span style="color:#ba2121">&#34;Engineering Model&#34;</span>,
-</span></span><span style="display:flex;"><span>                    <span style="color:#ba2121">&#34;state&#34;</span>: <span style="color:#ba2121">&#34;Verified&#34;</span>,
-</span></span><span style="display:flex;"><span>                    <span style="color:#ba2121">&#34;uploadId&#34;</span>: <span style="color:#ba2121">&#34;8ff9a094-feeb-4705-bf2e-53d1f66eada3&#34;</span>
-</span></span><span style="display:flex;"><span>                <span style="color:#666">}</span>
-</span></span><span style="display:flex;"><span>            <span style="color:#666">]</span>
-</span></span><span style="display:flex;"><span>        <span style="color:#666">}</span>
-</span></span></code></pre></div><h3 id="list-resellers-customers-current-release">List reseller&rsquo;s customers</h3>
-<p>Get a list of customers with <a href="../api/index.html#tag/Endpoints/operation/getAssociatedCustomersUsingGET" target="_blank">GET /kcs/v1/rp/customers/list</a>.</p>
-<p>In the header, include your signed access token from the previous step. Then, make sure you include the <code>resellerId</code> as a query parameter in your request. There are also optional query parameters you can set for filtering. To learn more, see the <a href="../api/index.html#tag/Endpoints/operation/getAssociatedCustomersUsingGET" target="_blank">KDP API reference</a>.</p>
-<p>For example:</p>
-<div class="highlight"><pre tabindex="0" style=";-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>        curl --request GET <span style="color:#b62;font-weight:bold">\
-</span></span></span><span style="display:flex;"><span><span style="color:#b62;font-weight:bold"></span>          --url https://api.samsungknox.com/kcs/v1/rp/customers/list?resellerId<span style="color:#666">=</span><span style="color:#ba2121">&#34;393....849&#34;</span> <span style="color:#b62;font-weight:bold">\
-</span></span></span><span style="display:flex;"><span><span style="color:#b62;font-weight:bold"></span>          --header <span style="color:#ba2121">&#39;Authorization: Bearer kz06....L09Wc&#39;</span>
-</span></span></code></pre></div><p>Assuming there were no errors, your response will resemble the following:</p>
-<div class="highlight"><pre tabindex="0" style=";-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>        <span style="color:#666">{</span>
-</span></span><span style="display:flex;"><span>          <span style="color:#ba2121">&#34;totalCount&#34;</span>: 1,
-</span></span><span style="display:flex;"><span>          <span style="color:#ba2121">&#34;pageNum&#34;</span>: 0,
-</span></span><span style="display:flex;"><span>          <span style="color:#ba2121">&#34;customers&#34;</span>: <span style="color:#666">[</span>
-</span></span><span style="display:flex;"><span>            <span style="color:#666">{</span>
-</span></span><span style="display:flex;"><span>              <span style="color:#ba2121">&#34;name&#34;</span>: <span style="color:#ba2121">&#34;Demo-Customer&#34;</span>,
-</span></span><span style="display:flex;"><span>              <span style="color:#ba2121">&#34;customerId&#34;</span>: <span style="color:#ba2121">&#34;114....454&#34;</span>
-</span></span><span style="display:flex;"><span>            <span style="color:#666">}</span>
-</span></span><span style="display:flex;"><span>          <span style="color:#666">]</span>
-</span></span><span style="display:flex;"><span>        <span style="color:#666">}</span>
-</span></span></code></pre></div><h3 id="other-api-operations-current-release">Other API operations</h3>
-<p>Evaluate any other endpoints that you want to integrate against. For more information, see the <a href="../api/index.html" target="_blank">KDP API reference</a>.</p>
-<p>As a participating Knox reseller, you are responsible for uploading devices purchased by your customers for access to Knox Mobile Enrollment, Knox Configure, and other Knox cloud services. The association between the reseller and the customer is automatically created during a device&rsquo;s first upload based on their <code>customerId</code>.</p>
-</div>
-  
-</div>
-            
-            
-
-
-
-    
-        
-    
-
-
-
-<div class="tab-pane fade  border border-grey-line rounded-3 overflow-hidden" id="upcoming-release-tab" role="tabpanel" aria-labelledby="upcoming-release-tab">
-  
-  <div class="tab-toc bg-light p-3 border-bottom border-grey-line">
-    <p> This document was updated for the <a href=../../../admin/uat>Knox cloud services 25.11 UAT</a>.</p>
-    
-  </div>
-  
-  
-    
-    <div class="tab-toc p-3 border-bottom border-grey-line">
-      <p class="fw-bold">On this tab</p>
-      <ul class="mt-2 mb-0 list-unstyled section-nav">
-      
-        
-        <li class="ms-0"><a href="#step-1-sign-up-and-get-approved-upcoming-release">Step 1: Sign up and get approved</a>
-      
-        
-        <li class="ms-0"><a href="#step-2-request-access-to-the-cloud-apps-feature-upcoming-release">Step 2: Request access to the Cloud Apps feature</a>
-      
-        
-        <li class="ms-0"><a href="#step-3-generate-and-test-your-access-token-upcoming-release">Step 3: Generate and test your access token</a>
-      
-        
-        <li class="ms-0"><a href="#step-4-integrate-with-the-kdp-api-upcoming-release">Step 4: Integrate with the KDP API</a>
-      
-        
-        <li class="ms-2"><a href="#upload-devices-upcoming-release">Upload devices</a>
-      
-        
-        <li class="ms-2"><a href="#list-device-transaction-status-upcoming-release">List device transaction status</a>
-      
-        
-        <li class="ms-2"><a href="#delete-devices-upcoming-release">Delete devices</a>
-      
-        
-        <li class="ms-2"><a href="#list-devices-upcoming-release">List devices</a>
-      
-        
-        <li class="ms-2"><a href="#list-resellers-customers-upcoming-release">List reseller’s customers</a>
-      
-        
-        <li class="ms-2"><a href="#other-api-operations-upcoming-release">Other API operations</a>
-      </ul>
-  </div>
-    
-  <div class="tab-content p-3">
 
   
 
@@ -726,9 +343,9 @@
       
       
       <p>This tutorial covers how to integrate with KDP to upload customer devices that are sold through distributors, resellers, and carriers with their customer-side Samsung Knox services, such as <a href="https://www.samsungknox.com/en/solutions/it-solutions/knox-mobile-enrollment" target="_blank">Knox Mobile Enrollment</a> and <a href="https://www.samsungknox.com/en/solutions/it-solutions/knox-configure" target="_blank">Knox Configure</a>.</p>
-<h2 id="step-1-sign-up-and-get-approved-upcoming-release">Step 1: Sign up and get approved</h2>
+<h2 id="step-1-sign-up-and-get-approved">Step 1: Sign up and get approved</h2>
 <p>You must apply and be approved for both Knox Partner Program and KDP. To learn more, see <a href="../../../partner/knox-deployment-program/get-started/get-access-to-the-reseller-portal" target="_blank">Get access to the Reseller Portal</a>. Once you have been approved, you will be notified via email.</p>
-<h2 id="step-2-request-access-to-the-cloud-apps-feature-upcoming-release">Step 2: Request access to the Cloud Apps feature</h2>
+<h2 id="step-2-request-access-to-the-cloud-apps-feature">Step 2: Request access to the Cloud Apps feature</h2>
 <p>You will need to request access to the <strong>Cloud Apps</strong> feature in Knox Developer Portal.</p>
 <ol>
 <li>
@@ -769,7 +386,7 @@
 <li>Description of your use cases</li>
 </ul>
 <p>Once you have been granted access, you will be notified via email. When you subsequently log into the Developer Portal, you will see the <strong>Cloud Apps</strong> menu in the navigation pane.</p>
-<h2 id="step-3-generate-and-test-your-access-token-upcoming-release">Step 3: Generate and test your access token</h2>
+<h2 id="step-3-generate-and-test-your-access-token">Step 3: Generate and test your access token</h2>
 <p>After you get access to the <strong>Cloud Apps</strong> feature:</p>
 <ol>
 <li>
@@ -783,10 +400,10 @@
 <p>Ensure that your access token is configured correctly by making a test call to <a href="../api/index.html#tag/Endpoints" target="_blank">any KDP API endpoint</a>.</p>
 </li>
 </ol>
-<h2 id="step-4-integrate-with-the-kdp-api-upcoming-release">Step 4: Integrate with the KDP API</h2>
+<h2 id="step-4-integrate-with-the-kdp-api">Step 4: Integrate with the KDP API</h2>
 <p>This section covers common KDP API use cases using client credentials authorization flow (2-legged OAuth 2.0) to access your own Knox cloud services.</p>
 <p>Some KDP operations involve performing actions against customer accounts. To test these scenarios, you&rsquo;ll need a separate Samsung Knox customer account. For details, see <a href="../../../admin/fundamentals/register-for-samsung-knox/create-a-samsung-knox-account/index.html" target="_blank">Create a Samsung Knox account</a>.</p>
-<h3 id="upload-devices-upcoming-release">Upload devices</h3>
+<h3 id="upload-devices">Upload devices</h3>
 <p>Upload devices to your customer&rsquo;s account with <a href="../api/index.html#tag/Endpoints/operation/uploadDevicesUsingPUT" target="_blank">PUT /kcs/v1/rp/devices/upload</a>.</p>
 <p>In the header, include your signed access token from the previous step. Then, make sure you include the following required body parameters:</p>
 <ul>
@@ -797,7 +414,7 @@
 <li><code>type</code> -  Device type. <code>IMEI</code>, <code>MEID</code>, or <code>SN</code>.</li>
 </ul>
 <p>There are also optional parameters you can set for this request. To learn more, see the <a href="../api/index.html#tag/Endpoints/operation/uploadDevicesUsingPUT" target="_blank">KDP API reference</a>.</p>
-<div class="notice-note"><p>Devices that were previously deleted from Knox services can be <a href="../../../admin/knox-admin-portal/how-to-guides/manage-devices/register-devices-to-knox-services/index.html#re-register-devices-upcoming-release" target="_blank">re-registered by customers themselves</a>, as long as the devices are already registered in at least one service within their Knox account. However, if a device was <a href="../../../admin/knox-admin-portal/how-to-guides/manage-devices/register-devices-to-knox-services#device-is-deleted-from-knox-guard-but-not-other-services-upcoming-release" target="_blank">deleted from Knox Guard but not from other services</a>, then the customer can either re-upload it to Knox Guard by performing a CSV upload, or you can re-upload it on their behalf after <a href="#delete-devices">deleting</a> the device from all Knox services. Deleting a device also deletes its configuration.</p></div>
+<div class="notice-note"><p>Devices that were previously deleted from Knox services can be <a href="../../../admin/knox-admin-portal/how-to-guides/manage-devices/register-devices-to-knox-services/index.html#re-register-devices" target="_blank">re-registered by customers themselves</a>, as long as the devices are already registered in at least one service within their Knox account. However, if a device was <a href="../../../admin/knox-admin-portal/how-to-guides/manage-devices/register-devices-to-knox-services#device-is-deleted-from-knox-guard-but-not-other-services" target="_blank">deleted from Knox Guard but not from other services</a>, then the customer can either re-upload it to Knox Guard by performing a CSV upload, or you can re-upload it on their behalf after <a href="#delete-devices">deleting</a> the device from all Knox services. Deleting a device also deletes its configuration.</p></div>
 <p>Here&rsquo;s a cURL request example that uploads a device specified by its IMEI.</p>
 <div class="highlight"><pre tabindex="0" style=";-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>        curl --request PUT <span style="color:#b62;font-weight:bold">\
 </span></span></span><span style="display:flex;"><span><span style="color:#b62;font-weight:bold"></span>          --url https://api.samsungknox.com/kcs/v1/rp/devices/upload <span style="color:#b62;font-weight:bold">\
@@ -821,7 +438,7 @@
 </span></span><span style="display:flex;"><span>            <span style="color:#ba2121">&#34;operationType&#34;</span>: <span style="color:#ba2121">&#34;UPLOAD&#34;</span>
 </span></span><span style="display:flex;"><span>        <span style="color:#666">}</span>
 </span></span></code></pre></div><div class="notice-note"><p>The upload operation is asynchronous. A success response implies that your upload request has been accepted for processing. You can use <strong>List device transaction status</strong> to view the current status of the upload.</p></div>
-<h3 id="list-device-transaction-status-upcoming-release">List device transaction status</h3>
+<h3 id="list-device-transaction-status">List device transaction status</h3>
 <p>Get a list of device transaction statuses with <a href="../api/index.html#tag/Endpoints/operation/getDeviceTransactionStatusUsingGET" target="_blank">GET /kcs/v1/rp/devices/status</a>.</p>
 <p>In the header, include your signed access token from the previous step. Then, make sure you include the <code>resellerId</code> as a query parameter in your request. There are also optional query parameters you can set for filtering. To learn more, see the <a href="../api/index.html#tag/Endpoints/operation/getDeviceTransactionStatusUsingGET" target="_blank">KDP API reference</a>.</p>
 <p>Here&rsquo;s a cURL request example that calls this operation.</p>
@@ -844,7 +461,7 @@
 </span></span><span style="display:flex;"><span>            <span style="color:#666">]</span>
 </span></span><span style="display:flex;"><span>          <span style="color:#666">}</span>
 </span></span><span style="display:flex;"><span>        <span style="color:#666">}</span>
-</span></span></code></pre></div><h3 id="delete-devices-upcoming-release">Delete devices</h3>
+</span></span></code></pre></div><h3 id="delete-devices">Delete devices</h3>
 <p>Delete devices with <a href="../api/index.html#tag/Endpoints/operation/deleteDevicesUsingPUT" target="_blank">PUT /kcs/v1/rp/devices/delete</a>.</p>
 <p>In the header, include your signed access token from the previous step. Then, make sure you include the following required body parameters:</p>
 <ul>
@@ -877,7 +494,7 @@
 </span></span><span style="display:flex;"><span>            <span style="color:#ba2121">&#34;message&#34;</span>: <span style="color:#ba2121">&#34;SUCCESS&#34;</span>,
 </span></span><span style="display:flex;"><span>            <span style="color:#ba2121">&#34;operationType&#34;</span>: <span style="color:#ba2121">&#34;DELETE&#34;</span>
 </span></span><span style="display:flex;"><span>        <span style="color:#666">}</span>
-</span></span></code></pre></div><h3 id="list-devices-upcoming-release">List devices</h3>
+</span></span></code></pre></div><h3 id="list-devices">List devices</h3>
 <p>Get a list of devices uploaded with <a href="../api/index.html#tag/Endpoints/operation/getDevicesUsingGET" target="_blank">GET /kcs/v1/rp/devices</a>.</p>
 <p>In the header, include your signed access token from the previous step. Then, make sure you include the <code>resellerId</code> as a query parameter in your request. There are also optional query parameters you can set for filtering. To learn more, see the <a href="../api/index.html#tag/Endpoints/operation/getDevicesUsingGET" target="_blank">KDP API reference</a>.</p>
 <p>Here&rsquo;s a cURL request example that calls this operation:</p>
@@ -907,7 +524,7 @@
 </span></span><span style="display:flex;"><span>                <span style="color:#666">}</span>
 </span></span><span style="display:flex;"><span>            <span style="color:#666">]</span>
 </span></span><span style="display:flex;"><span>        <span style="color:#666">}</span>
-</span></span></code></pre></div><h3 id="list-resellers-customers-upcoming-release">List reseller&rsquo;s customers</h3>
+</span></span></code></pre></div><h3 id="list-resellers-customers">List reseller&rsquo;s customers</h3>
 <p>Get a list of customers with <a href="../api/index.html#tag/Endpoints/operation/getAssociatedCustomersUsingGET" target="_blank">GET /kcs/v1/rp/customers/list</a>.</p>
 <p>In the header, include your signed access token from the previous step. Then, make sure you include the <code>resellerId</code> as a query parameter in your request. There are also optional query parameters you can set for filtering. To learn more, see the <a href="../api/index.html#tag/Endpoints/operation/getAssociatedCustomersUsingGET" target="_blank">KDP API reference</a>.</p>
 <p>For example:</p>
@@ -925,19 +542,38 @@
 </span></span><span style="display:flex;"><span>            <span style="color:#666">}</span>
 </span></span><span style="display:flex;"><span>          <span style="color:#666">]</span>
 </span></span><span style="display:flex;"><span>        <span style="color:#666">}</span>
-</span></span></code></pre></div><h3 id="other-api-operations-upcoming-release">Other API operations</h3>
+</span></span></code></pre></div><h3 id="other-api-operations">Other API operations</h3>
 <p>Evaluate any other endpoints that you want to integrate against. For more information, see the <a href="../api/index.html" target="_blank">KDP API reference</a>.</p>
 <p>As a participating Knox reseller, you are responsible for uploading devices purchased by your customers for access to Knox Mobile Enrollment, Knox Configure, and other Knox cloud services. The association between the reseller and the customer is automatically created during a device&rsquo;s first upload based on their <code>customerId</code>.</p>
-</div>
-  
-</div>
-        </div>
 
+            
+          </div>
+          <div class="l-toh">
+            
+  <h2 class="body-4 fw-bold mt-0">On this page</h2>
+<aside class="table-of-headings">
+    <nav id="TableOfContents">
+  <ul>
+    <li><a href="#step-1-sign-up-and-get-approved">Step 1: Sign up and get approved</a></li>
+    <li><a href="#step-2-request-access-to-the-cloud-apps-feature">Step 2: Request access to the Cloud Apps feature</a></li>
+    <li><a href="#step-3-generate-and-test-your-access-token">Step 3: Generate and test your access token</a></li>
+    <li><a href="#step-4-integrate-with-the-kdp-api">Step 4: Integrate with the KDP API</a>
+      <ul>
+        <li><a href="#upload-devices">Upload devices</a></li>
+        <li><a href="#list-device-transaction-status">List device transaction status</a></li>
+        <li><a href="#delete-devices">Delete devices</a></li>
+        <li><a href="#list-devices">List devices</a></li>
+        <li><a href="#list-resellers-customers">List reseller&rsquo;s customers</a></li>
+        <li><a href="#other-api-operations">Other API operations</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+</aside>
 
-      </div>
-
-    </div> 
-  </div><div>
+          </div>
+        </div> 
+      </div><div>
   <div id="feedbackQuestion" class="py-4 border-top text-center">
     <p class="body-4 mb-2">Is this page helpful?</p>
     <button id="feedbackYes" class="button-icon me-4">
@@ -955,6 +591,7 @@
 
 
 
+    
   </main>
   
     <footer class="border-top">

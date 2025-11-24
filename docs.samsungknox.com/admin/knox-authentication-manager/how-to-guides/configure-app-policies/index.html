@@ -56,7 +56,7 @@
 
   
 
-<script onload="initBot()" defer src="https://dc-chbt.samsungknox.com/copilot/index.js?noCache=1763169933"></script>
+<script onload="initBot()" defer src="https://dc-chbt.samsungknox.com/copilot/index.js?noCache=1763773599"></script>
 <script defer>
     function initBot(){
       const relPath = "\/knox-authentication-manager\/how-to-guides\/configure-app-policies\/";
@@ -433,7 +433,7 @@
             </div>
             
 
-  <p><span>Last updated July  30th, 2025</span></p>
+  <p><span>Last updated November  19th, 2025</span></p>
 
 
     
@@ -579,26 +579,42 @@
             </div>
         </td>
         <td>
-            <p>Any numerical value from 1 &mdash; 36. If left unset, the default is <strong>3 months</strong>. One month is defined as 30 days.</p>
-            <p>To set in days, enter any numerical value from 1 &mdash; 1080 and append <strong>d</strong> to the number (for example, 14d).</p>
+            <p>Any numerical value from 1 &ndash; 36. If left unset, the default is <strong>3 months</strong>. One month is defined as 30 days.</p>
+            <p>To set in days, enter any numerical value from 1 &ndash; 1080 and append <strong>d</strong> to the number (for example, 14d).</p>
         </td>
     </tr>
     <tr>
         <td>
-            <p>Manually delete user profile</p>
+            <p>Manually delete user profiles</p>
             <code>doKAMManualDeleteUserProfile</code>
         </td>
         <td>
             No
         </td>
         <td>
-            <p>Deletes a single user's credentials and profile data across all devices. This includes their username, password, PIN, face biometrics, and work app data.</p>
+            <p>Deletes user credentials and profile data across all synced devices. This includes their username, password, PIN, face biometrics, and work app data.</p>
             <div class="notice-note">
                 <p>This policy applies only to Knox Authentication Manager v1.8 and higher.</p>
             </div>
         </td>
         <td>
-            Enter the user's Entra ID.
+            Enter a comma-delimited list of usernames.
+        </td>
+    </tr>
+    <tr>
+        <td>
+            <p>Automatically re-sign back in to apps using KAM credentials without prompting</p>
+            <code>doKAMAutoReLoginWorkApps</code>
+        </td>
+        <td>
+            No
+        </td>
+        <td>
+            <p>Skips prompt that asks if Knox Authentication Manager credentials should be used to sign back in to work apps.</p>
+            <p>If set to <strong>True</strong>, device users are automatically signed back in to apps they've previously authenticated. As a result, they cannot sign out of those apps.</p>
+        </td>
+        <td>
+            <strong>True</strong> or <strong>False</strong> (default)
         </td>
     </tr>
 </table></div>
@@ -654,12 +670,12 @@
             <code>doKAMShowDeviceSerialNumber</code>
         </td>
         <td>
-            Yes
+            No
         </td>
         <td>
             <p>Displays the device's serial number on the sign-in screen.</p>
             <div class="notice-note">
-                <p>This policy applies only to Knox Authentication Manager v1.7 and higher.</p>
+                <p>This policy applies only to Knox Authentication Manager v1.7 and higher and devices running Android 15 or lower*.</p>
             </div>
         </td>
         <td>
@@ -682,6 +698,7 @@
         </td>
     </tr>
 </table></div>
+<p>*As of v1.10, this policy is temporarily unsupported on devices running Android 16.</p>
 <h2 id="manage-sign-in-controls">Manage sign in controls</h2>
 <div class="overflow-auto my-3"><table>
     <tr>
@@ -699,11 +716,12 @@
         <td>The name of your UEM or EMM</td>
         <td>
             <ul>
-                <li><strong>Omnissa Workspace ONE with launcher login screen</strong> (default)</li>
+                <li><strong>Omnissa Workspace ONE with launcher login screen</strong></li>
                 <li><strong>Omnissa Workspace ONE without launcher login screen</strong></li>
                 <li><strong>Microsoft Intune with Managed Home Screen</strong></li>
                 <li><strong>Microsoft Intune without Managed Home Screen</strong></li>
                 <li><strong>Samsung Knox Manage/SOTI MobiControl</strong></li>
+                <li>None (default)</li>
             </ul>
         </td>
     </tr>
@@ -716,9 +734,10 @@
         <td>Determines how users sign in to Knox Authentication Manager. </td>
         <td>
             <ul>
-                <li><strong>PIN+Face</strong> (default) &mdash; Users sign into the app by first entering a PIN number, then scanning their face. If you select this option, you must also select <strong>Yes</strong> in the following field to confirm that you agree to the biometric privacy notification.</li>
+                <li><strong>PIN+Face</strong> &mdash; Users sign into the app by first entering a PIN number, then scanning their face. If you select this option, you must also select <strong>Yes</strong> in the following field to confirm that you agree to the biometric privacy notification.</li>
                 <li><strong>PIN only</strong> &mdash; Users sign into the app using their PIN number only.</li>
                 <li><strong>Manual</strong> &mdash; Users sign into the app using their identity provider credentials (for example, their Microsoft Entra ID username and password).</li>
+                <li>None (default)</li>
             </ul>
         </td>
     </tr>
@@ -750,6 +769,7 @@
                 <li><strong>4</strong></li>
                 <li><strong>6</strong></li>
                 <li><strong>8</strong></li>
+                <li>None (default)</li>
             </ul>
         </td>
     </tr>
@@ -766,7 +786,7 @@
         <tr>
         <td>
             <p>Enable syncing</p>
-            code>doKAMSyncEnable</code>
+            <code>doKAMSyncEnable</code>
         </td>
         <td>Yes</td>
         <td>
@@ -796,8 +816,9 @@
         <td>Determines how device sync groups are defined.</td>
         <td>
             <ul>
-                <li><strong>Group ID</strong> (default) &mdash; Devices sync when they're in the same admin-defined group.</li>
+                <li><strong>Group ID</strong> &mdash; Devices sync when they're in the same admin-defined group.</li>
                 <li><strong>Wi-Fi Subnet</strong> &mdash; Devices sync when they're on the same Wi-Fi subnet.</li>
+                <li>None (default) </li>
             </ul>
         </td>
     </tr>
@@ -911,7 +932,7 @@
             <code>doKAMAutoLogoutOnCharge</code>
         </td>
         <td>
-            Yes
+            No
         </td>
         <td>
             Determines whether Knox Authentication Manager automatically signs out the current user when a device is charged (user can cancel).
@@ -926,7 +947,7 @@
             <code>doKAMAutoLogoutOnScreenOffAfter</code>
         </td>
         <td>
-            Yes
+            No
         </td>
         <td>
             Specifies how many minutes a device screen must remain off before Knox Authentication Manager automatically signs out the current user.
@@ -942,7 +963,7 @@
             <code>doKAMCleanupOnLogout</code>
         </td>
         <td>
-            Yes
+            No
         </td>
         <td>
             Allows the removal of app and account information when users sign out, to ensure that they don't have access to the previous user's signed-in apps and data.
@@ -968,21 +989,6 @@
     </tr>
     <tr>
         <td>
-            <p>App notification on sign out</p>
-            <code>doKAMOnLogoutNotification</code>
-        </td>
-        <td>
-            Yes
-        </td>
-        <td>
-            When signing out, Knox Authentication Manager will send a notification to any app specified by the <strong>Apps to receive notification on sign out (package names)</strong> policy.
-        </td>
-        <td>
-            <strong>True</strong> or <strong>False</strong> (default)
-        </td>
-    </tr>
-    <tr>
-        <td>
             <p>Apps to receive notification on sign out (package names)</p>
             <code>doKAMOnLogoutNotificationApps</code>
         </td>
@@ -1002,7 +1008,7 @@
             <code>doKAMCleanupOnLogin</code>
         </td>
         <td>
-            Yes
+            No
         </td>
         <td>
             Allows the removal of app and account information when users sign in, to ensure that they don't have access to the previous user's signed-in apps and data.
@@ -1020,7 +1026,7 @@
             No
         </td>
         <td>
-            Specifies the package names of apps &mdash; as a comma-delimited list &mdash; you want to clean up after users sign in.You must set <strong>Clean-up upon sign in</strong> to <strong>True</strong> for this policy to work.
+            Specifies the package names of apps &mdash; as a comma-delimited list &mdash; you want to clean up after users sign in. You must set <strong>Clean-up upon sign in</strong> to <strong>True</strong> for this policy to work.
         </td>
         <td>
             <p>Enter app package names separated by commas. If left unset, the default packages included are:</p>
@@ -1044,7 +1050,7 @@
             <code>doKAMAuthToUnlockDevice</code>
         </td>
         <td>
-            Yes
+            No
         </td>
         <td>
             <p>Determines if users can reverify their sign-in to locked devices using Knox Authentication Manager credentials.</p>
@@ -1060,7 +1066,7 @@
             <code>doKAMLightweightLauncherReverifyAfter</code>
         </td>
         <td>
-            Yes
+            No
         </td>
         <td>
             The time period after the screen is turned off before the user must reverify their identity on the device.
@@ -1076,11 +1082,11 @@
             <code>doKAMReverifyMethod</code>
         </td>
         <td>
-            Yes
+            No
         </td>
         <td>
             <p>Determines how users reverify their sign-in to a locked device.</p>
-            <p>You must set <strong>Use KAM reverification to unlock device</strong> to <strong>True</strong> for this policy to work. </p>
+            <p>You must set <strong>Use KAM reverification to unlock device</strong> to <strong>True</strong> or ensure <strong>Reverification time (mins)</strong> is set for this policy to work.</p>
             <div class="notice-note">
                 <p>If <strong>Reverification method</strong> conflicts with the <strong>Main sign in method</strong>, an error occurs and the authentication mode set by the <strong>Main sign in method</strong> policy is used by default. For more information, see <a href="https://docs.samsungknox.com/admin/knox-authentication-manager/kbas/kba-1464-updates-to-the-reverification-method-policy">​Updates to the Reverification method policy</a>.</p>
             </div>
@@ -1100,16 +1106,18 @@
             <code>doKAMShowUsernameOnReverifyScreen</code>
         </td>
         <td>
-            Yes
+            No
         </td>
         <td>
-            Displays the name of the current user on the app's reverification screen.
+            <p>Displays the name of the current user on the app's reverification screen.</p>
+            <p>You must set <strong>Use KAM reverification to unlock device</strong> to <strong>True</strong> or ensure <strong>Reverification time (mins)</strong> is set for this policy to work.</p>
         </td>
         <td>
             <strong>True</strong> or <strong>False</strong> (default)
         </td>
     </tr>
-</table></div><div class="footnotes" role="doc-endnotes">
+</table></div>
+<div class="footnotes" role="doc-endnotes">
 <hr>
 <ol>
 <li id="fn:1">
