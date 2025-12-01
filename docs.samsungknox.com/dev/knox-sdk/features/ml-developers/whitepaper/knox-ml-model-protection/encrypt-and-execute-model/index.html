@@ -195,7 +195,7 @@
       
       <li>
         <div>
-          <a class="body-5 text-black fw-light" href="../../../../../../knox-sdk.html">Introduction</a>
+          <a class="body-5 text-black fw-light" href="../../../../../index.html">Introduction</a>
         </div>
       </li>
         
@@ -2991,7 +2991,7 @@
           <div class="l-content-top mb-4">
             <div class="l-breadcrumb">
               <a class="fw-light text-black" href="../../../../../../index.html">Home</a><span> /</span>
-<a class="fw-light text-black" href="../../../../../../knox-sdk.html">Knox SDK</a><span> /</span>
+<a class="fw-light text-black" href="../../../../../index.html">Knox SDK</a><span> /</span>
 <a class="fw-light text-black" href="../../../../index.html">Features</a><span> /</span>
 <a class="fw-light text-black" href="../../../index.html">ML Developers</a><span> /</span>
 <a class="fw-light text-black" href="../../index.html">Whitepaper</a><span> /</span>
@@ -3044,7 +3044,7 @@
 <p>The Encrypted ML Package file may be publicly disclosed without exposing the underlying ML model to blackbox or whitebox attacks. As a result, it can be deployed to apps through any means. In common cases, it may be bundled with the app or library that uses the model, or it may be hosted on a public-facing server.</p>
 <p>The Wrapped ML Models are protected against whitebox attacks from all third party apps, but protection against blackbox attacks depends on the integrity of whitelisted apps in the policy file. If you whitelist an app and allow it to use your ML model, that app can perform blackbox attacks against your ML model.</p>
 <h2 id="on-device-execution">On-device execution</h2>
-<p>Apps can <a href="../../../knox-sdk-for-model-protection-deployment">load and execute</a> the Encrypted ML Package file using the <a href="../../../../../../knox-sdk.html">Knox SDK</a>, which is accessible through the <a href="https://partner.samsungknox.com/" target="_blank">Knox Portal Partner Program</a>. Knox SDK provides the following <a href="../../../../../../../devref/knox-sdk/reference/com/samsung/android/knox/ex/knoxAI/package-summary.html" target="_blank">ML Protection APIs</a>:</p>
+<p>Apps can <a href="../../../knox-sdk-for-model-protection-deployment">load and execute</a> the Encrypted ML Package file using the <a href="../../../../../index.html">Knox SDK</a>, which is accessible through the <a href="https://partner.samsungknox.com/" target="_blank">Knox Portal Partner Program</a>. Knox SDK provides the following <a href="../../../../../../../devref/knox-sdk/reference/com/samsung/android/knox/ex/knoxAI/package-summary.html" target="_blank">ML Protection APIs</a>:</p>
 <p><strong>Initialization</strong> &mdash; The <a href="../../../../../../../devref/knox-sdk/reference/com/samsung/android/knox/ex/knoxAI/KnoxAiSession.html" target="_blank">KnoxAiManager.getKeyProvisioning()</a> method checks if the Knox ML Service was initialized. This process provisions all necessary Model Origin Keys. During this process, the Model Origin Key is transferred from an HSM to the Knox ML Trusted Applet, as decribed in <a href="../securing-ml-models#wrapping-model-files">Wrapping model files</a>.</p>
 <p><strong>Creating a session</strong> &mdash; When loading and executing an ML model, system processes and hardware accelerators need to cache information to maintain low latency. This cached information is associated with a session object. An application creates this session object by calling the <a href="../../../../../../../devref/knox-sdk/reference/com/samsung/android/knox/ex/knoxAI/KnoxAiSession.html" target="_blank">KnoxAiManager.createKnoxAiSession()</a> method. On creation, the Knox ML Service internally associates the session object with the calling application process. On every subsequent call, the Knox ML Service validates that the calling application process has access to the provided session object.</p>
 <p><strong>Loading an Encrypted ML Package file</strong> &mdash; An app can load an Encrypted ML Package within a session using either a shared memory buffer or a file descriptor shared using Binder. When loading a model, the Knox ML Service checks the provided policy file to ensure that the calling application’s package name, developer key, and version code match an allow rule in the policy file. To retrieve the Model Decryption Key, the the Knox ML Service interacts with the Knox ML Trusted Applet, which has access to the Model Origin Key. The Knox ML Service is whitelisted so it can interact with the Knox ML Trusted Applet for this purpose. The Knox Knox ML Trusted Applet derives the Model Decryption Key, and returns it to the Knox ML Service. The Knox ML Service then decrypts the Wrapped ML Model and provides it to the necessary hardware accelerators.</p>
