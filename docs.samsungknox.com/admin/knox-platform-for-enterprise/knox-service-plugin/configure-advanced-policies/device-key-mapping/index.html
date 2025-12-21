@@ -56,7 +56,7 @@
 
   
 
-<script onload="initBot()" defer src="https://dc-chbt.samsungknox.com/copilot/index.js?noCache=1765493423"></script>
+<script onload="initBot()" defer src="https://dc-chbt.samsungknox.com/copilot/index.js?noCache=1766166982"></script>
 <script defer>
     function initBot(){
       const relPath = "\/knox-platform-for-enterprise\/knox-service-plugin\/configure-advanced-policies\/device-key-mapping\/";
@@ -1121,7 +1121,7 @@
             <div class="l-breadcrumb">
               <a class="fw-light text-black" href="../../../../index.html">Home</a><span> /</span>
 <a class="fw-light text-black" href="../../../../knox-platform-for-enterprise.html">Knox Platform for Enterprise</a><span> /</span>
-<a class="fw-light text-black" href="../../../knox-service-plugin">Knox Service Plugin</a><span> /</span>
+<a class="fw-light text-black" href="../../index.html">Knox Service Plugin</a><span> /</span>
 <a class="fw-light text-black" href="../index.html">Configure advanced policies</a><span> /</span>
 
             </div>
@@ -1130,7 +1130,7 @@
             </div>
             
 
-  <p><span>Last updated September  2nd, 2025</span></p>
+  <p><span>Last updated December  19th, 2025</span></p>
 
 
     
@@ -1149,6 +1149,16 @@
       
       
       
+        
+      
+      
+      
+      
+        
+      
+      
+      
+      
       
         
       
@@ -1163,6 +1173,34 @@
         <h2 id="overview">Overview</h2>
 <p>Hardware keys on both rugged and non-rugged devices can be mapped to app functions. For example, you could press the side key on a non-rugged device to launch a push-to-talk (PTT) app, or press the top key on a rugged device to launch a camera or navigation app.</p>
 <p>This <a href="https://developer.android.com/reference/android/content/Intent" target="_blank">intent</a> doesn&rsquo;t replace the intents available for rugged devices, and works alongside them.</p>
+<p>To enable <strong>Device key mapping</strong> policies:</p>
+<ol>
+<li>
+<p>Go to your Knox Service Plugin app configuration on your EMM, and enable device-wide policy controls or work profile policy controls depending on how your devices are deployed.</p>
+<div class="overflow-auto my-3"><table>
+<thead>
+<tr>
+<th>Base setting in managed configuration</th>
+<th>Value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Device-wide policies &gt; Enable device policy controls</td>
+<td>To configure for company-owned devices (fully-managed or with a work profile), set to <strong>True</strong>.</td>
+</tr>
+<tr>
+<td>Work profile policies &gt; Enable work profile policies</td>
+<td>To configure for personal devices with a work profile, set to <strong>True</strong>.</td>
+</tr>
+</tbody>
+</table></div>
+</li>
+<li>
+<p>Go to the <strong>Device Key Mapping</strong> section and set <strong>Enable Key Mapping</strong> to <strong>True</strong>.</p>
+</li>
+</ol>
+<p>Now you can map device keys for <a href="#device-key-mapping-for-rugged-devices">rugged</a> and <a href="#device-key-mapping-for-non-rugged-devices">non-rugged</a> devices.</p>
 <h2 id="device-key-mapping-for-non-rugged-devices">Device key mapping for non-rugged devices</h2>
 <p>You can map the side key on non-rugged Samsung devices.</p>
 <h3 id="device-support">Device support</h3>
@@ -1183,16 +1221,17 @@
 <p>Disable Bixby with your UEM. You can also do this using Knox Service Plugin by adding the Bixby package <code>com.samsung.android.bixby.agent</code> to the <strong>Disable Application without user interaction</strong> policy. For details, see <a href="../application-management-policies/index.html" target="_blank">Application management policies</a>.</p>
 </li>
 <li>
-<p>In the Knox Service Plugin managed configuration, go to <strong>Device Key Mapping</strong> and set <strong>Enable Key Mapping</strong> to <strong>True</strong>. Then configure the following under <strong>Side Key Mapping for specific application</strong>:</p>
+<p>In the Knox Service Plugin managed configuration, go to <strong>Device Key Mapping</strong> and configure the following under <strong>Side Key Mapping for specific application</strong>:</p>
 <ul>
 <li><strong>Package Name</strong> &mdash; Enter the package name of the app that will receive the intent when the side key is pressed.</li>
+<li><strong>Select Key Action</strong> &mdash; Set <strong>Press</strong> to send the app intent once the side key is pressed down. Set <strong>Press and Hold</strong> to send the app intent only when it&rsquo;s pressed and held. The <strong>Press and Hold</strong> option is only supported on devices running Android 14 and higher. Devices below Android 14 can only send intents the moment the side key is pressed.</li>
 <li><strong>Use Samsung Intent</strong> &mdash; Set <strong>True</strong> to use a Samsung Intent. Otherwise, set <strong>False</strong> to define your own intent below.</li>
 <li><strong>Intent for Key press</strong> &mdash; Specify the intent to be sent when the side key is pressed.</li>
 <li><strong>Intent for Key release</strong> &mdash; Specify the intent to be sent when the side key is released.</li>
 </ul>
 </li>
 </ol>
-<div class="notice-note"><p>You can also prevent device users from modifying side key behavior with <a href="../deep-settings-customization">Deep Settings Customization</a>.</p></div>
+<div class="notice-tip"><p>You can also prevent device users from modifying side key behavior with <a href="../deep-settings-customization">Deep Settings Customization</a>.</p></div>
 <h3 id="independent-software-vendor-isv-partners">Independent software vendor (ISV) partners</h3>
 <p>If you&rsquo;re an ISV partner, see <a href="https://docs.samsungknox.com/admin/knox-platform-for-enterprise/knox-service-plugin/kbas/kba-773-knox-service-plugin-side-key-mapping">Knox Service Plugin managed side key mapping for non-rugged devices</a> for detailed information about setting up side key mapping on non-rugged devices.</p>
 <h2 id="device-key-mapping-for-rugged-devices">Device key mapping for rugged devices</h2>
