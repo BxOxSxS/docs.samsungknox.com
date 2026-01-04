@@ -56,7 +56,7 @@
 
   
 
-<script onload="initBot()" defer src="https://dc-chbt.samsungknox.com/copilot/index.js?noCache=1766166980"></script>
+<script onload="initBot()" defer src="https://dc-chbt.samsungknox.com/copilot/index.js?noCache=1767220065"></script>
 <script defer>
     function initBot(){
       const relPath = "\/knox-efota\/on-premises\/get-started\/step-7-create-and-assign-a-campaign\/";
@@ -1272,7 +1272,7 @@
             </div>
             
 
-  <p><span>Last updated July  19th, 2024</span></p>
+  <p><span>Last updated December  30th, 2025</span></p>
 
 
     
@@ -1300,238 +1300,84 @@
       
       
       
-        
-      
-      
-      
-      
-        
-      
-      
-      
-      
-        
-      
-      
-      
-      
-        
-      
-      
-      
-      
-        
-      
-      
-      
-      
-        
-      
-      
-      
-      
-        <p>Now you can create and assign a campaign to target devices.</p>
+        <p>To apply a firmware update to devices, you must create a campaign and specify which firmware version is pushed to your devices, and configure policies that control firmware download and installation.</p>
 <ol>
 <li>
 <p><a href="../step-1-access-the-knox-e-fota-on-premises-server">Sign in to your Knox E-FOTA On-Premises server</a>.</p>
 </li>
 <li>
 <p>Go to <strong>Campaigns</strong> and then click <strong>Create Campaign</strong>.</p>
-
-    
-    
-    
-    
-    
-    
-    
-    <p><img src="../../../assets/create-campaign-23-11.png" class="img-fluid img-thumbnail" alt="campaign page" /></p>
 </li>
-<li>
-<p>Fill in your <strong>Basic info</strong>:</p>
-<ol>
-<li>
+</ol>
+<p>Fill in the following campaign information.</p>
+<h2 id="basic-info">Basic info</h2>
 <p>Enter a unique name for the campaign and a description of what the campaign is for.</p>
-
-        
-        
-        
-        
-        
-        
-        
-        <p><img src="../../../assets/basic.png" class="img-fluid img-thumbnail" alt="campaign information" /></p>
-</li>
-<li>
-<p>Click <strong>NEXT</strong>.</p>
-</li>
-</ol>
-</li>
-<li>
-<p>Fill in your <strong>Target firmware</strong>:</p>
+<h2 id="target-firmware">Target firmware</h2>
+<p>Each row of the <strong>Target firmware</strong> table represents a target device group and the firmware version policy applied to those devices.</p>
 <ol>
 <li>
-<p>Select the model and sales code corresponding to the target devices. Under <strong>FIRMWARE VERSION</strong>, select one of the following options:</p>
-<div class="overflow-auto my-3"><table>
-<thead>
-<tr>
-<th>Firmware version</th>
-<th>Description</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>Latest firmware</td>
-<td>Automatically push the latest firmware version to the corresponding devices.</td>
-</tr>
-<tr>
-<td>Lock current firmware</td>
-<td>Keep the current firmware version.</td>
-</tr>
-<tr>
-<td>Select from firmware list</td>
-<td>Select a firmware version to push to the corresponding devices.</td>
-</tr>
-</tbody>
-</table></div>
+<p>Select the model and sales code combination that specifies your target devices. Under <strong>FIRMWARE VERSION</strong>, select one of the following options:</p>
+<ul>
+<li><strong>Latest firmware</strong> &mdash; Automatically push the latest firmware version to your target devices.</li>
+<li><strong>Lock current firmware</strong> &mdash; Keep the current firmware version.</li>
+<li><strong>Select from firmware list</strong> &mdash; Select a specific firmware version to push to your target devices. Only the firmware versions that are compatible with your selected combination of model and sales code are available.</li>
+</ul>
 </li>
 <li>
-<p>Select the target firmware on the next page and click <strong>SELECT</strong>. The campaign page opens.</p>
-</li>
-<li>
-<p>Click <strong>ADD ANOTHER ROW</strong> and repeat this step to assign as many firmware versions to the campaign as needed.</p>
-
-        
-        
-        
-        
-        
-        
-        
-        <p><img src="../../../assets/target-firmware.png" class="img-fluid img-thumbnail" alt="target firmware" /></p>
-</li>
-<li>
-<p>Click <strong>NEXT</strong>.</p>
+<p>Click <strong>ADD ANOTHER ROW</strong> to target another set of devices and assign them to a firmware version policy.</p>
 </li>
 </ol>
+<h2 id="policy">Policy</h2>
+<p>You can define policies that govern firmware download and installation.</p>
+<h4 id="network-and-speed">Network and speed</h4>
+<ul>
+<li><strong>Download network</strong> &mdash; Select which networks devices can use to download firmware.
+<ul>
+<li><strong>Wi-Fi only</strong> &mdash; Only download firmware over Wi-Fi.</li>
+<li><strong>Any (Wi-Fi or Mobile)</strong> &mdash; Allow firmware downloads over Wi-Fi and mobile networks. This option also allows downloads over VPNs and private networks. To allow firmware downloads while roaming, select <strong>Allow download while roaming</strong>.</li>
+</ul>
 </li>
-<li>
-<p>Fill in your <strong>Policy</strong>:</p>
+<li><strong>Max bandwidth</strong> &mdash; Allocate a maximum bandwidth per device for firmware downloads in MBit/s, where 0 MBit/s represents unlimited bandwidth.</li>
+</ul>
+<h4 id="device-condition">Device condition</h4>
+<p>You can specify conditions required for firmware installation.</p>
+<ul>
+<li>Specify how much battery charge a device must have before it can begin installing the update.</li>
+<li>Only install firmware if the device is connected to a charging dock.</li>
+</ul>
+<h4 id="postpone-installation">Postpone installation</h4>
+<p>Enable this option to allow devices users to postpone firmware installation. You can set the maximum number of times they&rsquo;re allowed to postpone the installation before any pending firmware begin to install.</p>
+<h2 id="schedule">Schedule</h2>
+<p>You can define a schedule for firmware download and installation.</p>
+<ul>
+<li><strong>Campaign period</strong> &mdash; Set the date range when devices in the campaign can start to download and install the update.</li>
+<li><strong>Repeat on selected days</strong> &mdash; Set the days of the week you want firmware updates to occur.</li>
+<li><strong>Installation hours</strong> &mdash; Set a time window that determines when during the day devices can begin installing firmware. This timeframe is based on the device&rsquo;s timezone. If you want firmware updates to install at any time of the day, set the firmware installation period to identical values:
+<ul>
+<li><strong>From</strong> &mdash; 00</li>
+<li><strong>To</strong> &mdash; 00
+<div class="notice-note"><p>Devices will start installation during this period, but there’s no guarantee that installation will end within this period.</p></div></li>
+</ul>
+</li>
+<li><strong>Download hours</strong> &mdash; Set a time window that determines when during the day devices can start downloading firmware. You can allow downloads to occur at one of the following periods:
+<ul>
+<li><strong>Same as installation hours</strong> &mdash; Set the firmware download period to be the same as the firmware installation period.</li>
+<li><strong>Anytime</strong> &mdash; Allow firmware downloads at any time.</li>
+<li><strong>Specific hours</strong> &mdash; Set a firmware download period that&rsquo;s different from the firmware installation period.</li>
+</ul>
+</li>
+<li><strong>Gradual campaign rollout</strong> &mdash; Configure a gradual campaign rollout that deploys in randomized daily batches instead of all devices at once. You can control the rollout rate as a percentage of total devices. This feature allows you to monitor device updates progressively, so you can discover and troubleshoot firmware issues before they spread to all devices.
+<ul>
+<li>Changes to either the rollout rate, target firmware version, or campaign status during gradual rollout will reset the rollout start date of all assigned devices.</li>
+<li>Rolling out a campaign to devices newly assigned during the gradual rollout doesn&rsquo;t reset the rollout start date of devices that were already assigned the campaign, preventing any delay in pushing firmware updates.</li>
+</ul>
+</li>
+</ul>
+<h2 id="activate-your-campaign">Activate your campaign</h2>
+<p>Once you&rsquo;ve finished entering your campaign information, click <strong>CREATE</strong>. You new campaign appears on the <strong>Campaigns</strong> list.</p>
+<p>To assign the campaign to your devices:</p>
 <ol>
-<li>
-<p>Configure your <strong>Network and speed</strong>:</p>
- <div class="overflow-auto my-3"><table>
-     <tr>
-         <th scope="col">Field</th>
-         <th scope="col">Description</th>
-     </tr>
-     <tr>
-         <td>Download network</td>
-         <td>
-             <p>Select which networks devices can use to download firmware.
-             <ul>
-                 <li><strong>Wi-Fi only</strong> — Only download firmware over Wi-Fi.</li>
-                 <li><strong>Any (Wi-Fi or Mobile)</strong> — Allow firmware downloads over Wi-Fi and mobile networks. This option also allows downloads over VPNs and private networks. To allow firmware downloads while roaming, select <strong>Allow download while roaming</strong>.</li>
-             </ul>
-             <img src="../../../assets/download-network.png" style="width: 50%; height: 50%" alt="Download network setting">
-         </td>
-     </tr>
-     <tr>
-         <td>Max bandwidth</td>
-         <td>Allocate a maximum bandwidth per device for firmware downloads in MBit/s, where 0 MBit/s represents unlimited bandwidth.</td>
-     </tr>
- </table></div>
-</li>
-<li>
-<p>Configure your <strong>Device condition</strong>. Specify how much battery charge a device must have before it can begin installing the update. You can also prevent firmware installation on devices that aren&rsquo;t connected to a charging dock.</p>
-
-        
-        
-        
-        
-        
-        
-        
-        <p><img src="../../../assets/battery-level-for-installation.png" class="img-fluid img-thumbnail" alt="minimum battery level for installation" /></p>
-</li>
-<li>
-<p>Configure <strong>Postpone installation</strong> if you want to allow the device user to postpone the installation. Set the maximum number of times they&rsquo;re allowed to postpone the installation before any pending firmware begins installing.</p>
-
-        
-        
-        
-        
-        
-        
-        
-        <p><img src="../../../assets/postpone-installation-23-11.png" class="img-fluid img-thumbnail" alt="postpone firmware installation" /></p>
-</li>
-<li>
-<p>Click <strong>NEXT</strong> once you&rsquo;ve configured all the policy settings.</p>
-</li>
-</ol>
-</li>
-<li>
-<p>Fill in your <strong>Schedule</strong>:</p>
- <div class="overflow-auto my-3"><table>
-     <tr>
-         <th scope="col">Field</th>
-         <th scope="col">Description</th>
-     </tr>
-     <tr>
-         <td>Campaign period</td>
-         <td>Set the dates when devices in the campaign can start to download and install the update.</td>
-     </tr>
-     <tr>
-         <td>Repeat on weekdays</td>
-         <td>Set the days of the week you want firmware updates to occur.</td>
-     </tr>
-     <tr>
-         <td>Installation hours</td>
-         <td>
-             <p>Set the timeframe within the campaign period when the devices in the campaign can start installing the update. This timeframe is based on the device's timezone.</p>
-             <p>If you want firmware updates to install at any time of the day, set the firmware installation period to identical values:</p>
-             <ul>
-                 <li><strong>From</strong> &mdash; 00</li>
-                 <li><strong>To</strong> &mdash; 00</li>
-             </ul>
-             <div class="notice-note">
-                 <div class="ms-3 mb-3 py-2 text-grey">
-                     <p>Devices will <strong>start</strong> installation during this period, but there's no guarantee that installation will end within this period.</p>
-                 </div>
-             </div>
-         </td>
-     </tr>
-     <tr>
-         <td>Download hours</td>
-         <td>
-             <p>Set the timeframe within the campaign period when the devices in the campaign can start downloading the firmware. You can allow downloads to occur at one of the following periods:</p>
-             <ul>
-                 <li><strong>Same as installation hours</strong>: Set the firmware download period to be the same as the firmware installation period.</li>
-                 <li><strong>Anytime</strong> &mdash; Allow firmware downloads at any time.</li>
-                 <li><strong>Specific hours</strong> &mdash; Set the firmware download period to be different from the firmware installation period.</li>
-             </ul>
-         </td>
-     </tr>
- </table></div>
-
-    
-    
-    
-    
-    
-    
-    
-    <p><img src="../../../assets/schedule-firmware-updates.png" class="img-fluid img-thumbnail" alt="schedule firmware updates" /></p>
-</li>
-<li>
-<p>Click <strong>CREATE</strong>. The console creates the campaign and adds it to the <strong>Campaigns</strong> list. A notification confirms that the operation completed.</p>
-</li>
-</ol>
-<h2 id="assign-an-existing-campaign-to-devices">Assign an existing campaign to devices</h2>
-<p>To assign an existing campaign to devices:</p>
-<ol>
-<li>Go to <strong>Devices</strong>.</li>
+<li>Go to the <a href="../../features/manage-devices"><strong>Devices</strong></a> page.</li>
 <li>Select the devices you want to assign.</li>
 <li>Click <strong>ACTIONS</strong> &gt; <strong>Assign Campaign</strong>.</li>
 <li>Select a running campaign to assign the devices to.</li>
@@ -1549,7 +1395,15 @@
 <aside class="table-of-headings">
     <nav id="TableOfContents">
   <ul>
-    <li><a href="#assign-an-existing-campaign-to-devices">Assign an existing campaign to devices</a></li>
+    <li><a href="#basic-info">Basic info</a></li>
+    <li><a href="#target-firmware">Target firmware</a></li>
+    <li><a href="#policy">Policy</a>
+      <ul>
+        <li></li>
+      </ul>
+    </li>
+    <li><a href="#schedule">Schedule</a></li>
+    <li><a href="#activate-your-campaign">Activate your campaign</a></li>
     <li><a href="#tutorial-progress">Tutorial progress</a></li>
   </ul>
 </nav>
