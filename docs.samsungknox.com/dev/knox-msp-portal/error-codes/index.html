@@ -56,7 +56,7 @@
 
   
 
-<script onload="initBot()" defer src="https://dc-chbt.samsungknox.com/copilot/index.js?noCache=1768427481"></script>
+<script onload="initBot()" defer src="https://dc-chbt.samsungknox.com/copilot/index.js?noCache=1769627221"></script>
 <script defer>
     function initBot(){
       const relPath = "\/knox-msp-portal\/error-codes\/";
@@ -262,7 +262,7 @@
             </div>
             
 
-  <p><span>Last updated June  26th, 2024</span></p>
+  <p><span>Last updated January  28th, 2025</span></p>
 
 
     
@@ -275,7 +275,7 @@
 
 
 
-<p>The Knox MSP Portal API uses conventional HTTP response codes to indicate the success or failure of a request. A 2XX response code indicates success, a 4XX response code indicates a client-side error due to the request inputs, and a 5XX response code indicates a server-side error. There are also custom error codes specific to the Knox MSP Portal API listed below.</p>
+<p>The Knox MSP Portal API uses conventional HTTP response codes to indicate the success or failure of a request. A 2XX response code indicates success, a 4XX response code indicates a client-side error due to request inputs, and a 5XX response code indicates a server-side error. There are also custom error codes specific to the Knox MSP Portal API, which are listed below.</p>
 <h2 id="error-object">Error object</h2>
 <p>Each error response contains a JSON body with additional information about the error. The error objects contain the following attributes:</p>
 <div class="overflow-auto my-3"><table>
@@ -335,6 +335,11 @@
 <td>The request was successfully received.</td>
 </tr>
 <tr>
+<td>206</td>
+<td>Partial Content</td>
+<td>The request was partially successful.</td>
+</tr>
+<tr>
 <td>400</td>
 <td>Bad Request</td>
 <td>The client has issued an invalid request. Verify your request (for instance, check validation errors in your request payload).</td>
@@ -353,11 +358,6 @@
 <td>404</td>
 <td>Not Found</td>
 <td>The requested path or the specified user does not exist.</td>
-</tr>
-<tr>
-<td>409</td>
-<td>Conflict</td>
-<td>The request could not be completed due to a conflict with the current state of the target resource.</td>
 </tr>
 <tr>
 <td>500</td>
@@ -501,6 +501,26 @@
 <td>4002124</td>
 <td>MSP_CANNOT_MANAGE_KG</td>
 <td>This MSP doesn&rsquo;t manage Knox Guard, please remove Knox Guard from the managed services list.</td>
+</tr>
+<tr>
+<td>4002127</td>
+<td>INVALID_KG_TENANT_INFO</td>
+<td>You must pass a valid Knox Guard Domain Type (Financing, Enterprise, Insurance, Others).</td>
+</tr>
+<tr>
+<td>4002128</td>
+<td>INVALID_KG_TENANT_TYPE_FINANCING_OTHERS</td>
+<td>You must pass a valid Knox Guard Tenant Type (Normal, Payg).</td>
+</tr>
+<tr>
+<td>4002129</td>
+<td>INVALID_KG_PHONE_EMAIL</td>
+<td>For Financing Domain Type, a valid email address or phone number must be provided.</td>
+</tr>
+<tr>
+<td>4002130</td>
+<td>INVALID_KG_TENANT_TYPE_EMPTY</td>
+<td>For Enterprise and Insurance Domain Types, Tenant Type must not be set.</td>
 </tr>
 </tbody>
 </table></div>
