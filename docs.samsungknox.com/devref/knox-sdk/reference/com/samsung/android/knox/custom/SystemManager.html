@@ -159,9 +159,9 @@
     </select>
   </div>
   <script>
-   var SINCE_DATA = [ '1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12', '13', '14', '15', '16', '17', '18', '19', '20', '21', '22', '23', '24', '25', '26', '27', '28', '29', '30', '31', '32', '33', '34', '35', '36', '37', '38', '39' ];
+   var SINCE_DATA = [ '1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12', '13', '14', '15', '16', '17', '18', '19', '20', '21', '22', '23', '24', '25', '26', '27', '28', '29', '30', '31', '32', '33', '34', '35', '36', '37', '38', '39', '40' ];
     
-    var SINCE_LABELS = [ '1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12', '13', '14', '15', '16', '17', '18', '19', '20', '21', '22', '23', '24', '25', '26', '27', '28', '29', '30', '31', '32', '33', '34', '35', '36', '37', '38', '39' ];
+    var SINCE_LABELS = [ '1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12', '13', '14', '15', '16', '17', '18', '19', '20', '21', '22', '23', '24', '25', '26', '27', '28', '29', '30', '31', '32', '33', '34', '35', '36', '37', '38', '39', '40' ];
     buildApiLevelSelector();
     addLoadEvent(changeApiLevel);
   </script>
@@ -2643,11 +2643,7 @@ Summary:
         <td class="jd-linkcol" width="100%"><nobr>
         <span class="sympad"><a href="SystemManager.html#setCallScreenDisabledItems(boolean, int)">setCallScreenDisabledItems</a></span>(boolean status, int elements)</nobr>
         
-        <div class="jd-descrdiv">
-      <em>
-  Deprecated
-      in API level 37
-</em></div>
+        <div class="jd-descrdiv">This method turns on/off UI elements in the call screen on the device.</div>
   
   </td></tr>
 
@@ -4474,7 +4470,8 @@ From class
       <table class="jd-tagtable">
         <tr>
           <th>page</td>
-          <td>The home screen to place the shortcut onto.</td>
+          <td>The home screen to place the shortcut onto.
+                      Max page value allowed is 5</td>
         </tr>
         <tr>
           <th>posX</td>
@@ -13020,7 +13017,8 @@ From class
         </tr>
         <tr>
           <th>volumeLevel</td>
-          <td>The new volume level (stream dependent).</td>
+          <td>The new volume level (stream dependent) and it may differ depending on the model.
+ The API may not work if the volumeLevel is not correct.</td>
         </tr>
       </table>
   </div>
@@ -13042,7 +13040,10 @@ From class
       <h5 class="jd-tagtitle">Usage</h5>
       <table class="jd-tagtable">  
         <tr>
-            <td><pre>
+            <td><p>
+        <br><b>NOTE:</b> if the <code><a href="CustomDeviceManager.html#RINGER">RINGER</a></code> is muted, both <code><a href="CustomDeviceManager.html#NOTIFICATIONS">NOTIFICATIONS</a></code> and <code><a href="CustomDeviceManager.html#SYSTEM_SOUNDS">SYSTEM_SOUNDS</a></code> will also be muted on Android 16 and higher.
+        <p>
+ <pre>
  try {
      CustomDeviceManager cdm = CustomDeviceManager.getInstance();
      SystemManager kcsm = cdm.getSystemManager();
@@ -13731,13 +13732,7 @@ From class
 
       </div>
     <div class="jd-details-descr">
-      <p>
-  <p class="caution-deprecated">
       
-  Deprecated 
-      in API level 37
-
-  </p>
 
   <div class="jd-tagdata jd-tagdescr"><p>This method turns on/off UI elements in the call screen on the device. The method only turns on/off
  those items that are included in the elements list, all other items are left untouched.
@@ -13760,6 +13755,7 @@ From class
            <code><a href="CustomDeviceManager.html#CALL_SCREEN_INCALL_BLUETOOTH">CALL_SCREEN_INCALL_BLUETOOTH</a></code>       | <br>
            <code><a href="CustomDeviceManager.html#CALL_SCREEN_ENDCALL_CONTACTS">CALL_SCREEN_ENDCALL_CONTACTS</a></code>       | <br>
            <code><a href="CustomDeviceManager.html#CALL_SCREEN_ENDCALL_CALL_BUTTONS">CALL_SCREEN_ENDCALL_CALL_BUTTONS</a></code>   | <br>
+           <code><a href="CustomDeviceManager.html#CALL_SCREEN_INCALL_RECORD">CALL_SCREEN_INCALL_RECORD</a></code>          | <br>
            <code><a href="CustomDeviceManager.html#CALL_SCREEN_ALL">CALL_SCREEN_ALL</a></code> (= all of the above)</td>
         </tr>
       </table>
@@ -13818,7 +13814,8 @@ From class
       <h5 class="jd-tagtitle">Multiuser Environment</h5>
       <table class="jd-tagtable">  
         <tr>
-            <td><a href="../../../../../../multiuser/multiuser.html">Global Scope</a></td>
+            <td><a href="../../../../../../multiuser/multiuser.html">Global Scope</a>
+</td>
         </tr>
       </table>
   </div>
@@ -14799,8 +14796,7 @@ From class
                 <a href="https://developer.android.com/reference/android/view/KeyEvent.html#KEYCODE_POWER#KEYCODE_POWER">KeyEvent.KEYCODE_POWER</a> <br>
                 <a href="https://developer.android.com/reference/android/view/KeyEvent.html#KEYCODE_HEADSETHOOK#KEYCODE_HEADSETHOOK">KeyEvent.KEYCODE_HEADSETHOOK</a> <br>
                 <code><a href="../kpcc/KPCCManager.html#KEYCODE_PTT">KEYCODE_PTT</a></code></a> <br>
-                <code><a href="../kpcc/KPCCManager.html#KEYCODE_EMERGENCY">KEYCODE_EMERGENCY</a></code></a> <br>
-                NOTE: <a href="https://developer.android.com/reference/android/view/KeyEvent.html#KEYCODE_BACK#KEYCODE_BACK">KeyEvent.KEYCODE_BACK</a> no longer works on B OS. <br></td>
+                <code><a href="../kpcc/KPCCManager.html#KEYCODE_EMERGENCY">KEYCODE_EMERGENCY</a></code></a> <br></td>
         </tr>
         <tr>
           <th>reportType</td>
@@ -15084,7 +15080,8 @@ From class
  <a href="https://developer.android.com/reference/android/view/KeyEvent.html#KEYCODE_BACK#KEYCODE_BACK">KeyEvent.KEYCODE_BACK</a> <br>
  <a href="https://developer.android.com/reference/android/view/KeyEvent.html#KEYCODE_MENU#KEYCODE_MENU">KeyEvent.KEYCODE_MENU</a> <br>
  <a href="https://developer.android.com/reference/android/view/KeyEvent.html#KEYCODE_APP_SWITCH#KEYCODE_APP_SWITCH">KeyEvent.KEYCODE_APP_SWITCH</a> <br>
- <a href="https://developer.android.com/reference/android/view/KeyEvent.html#KEYCODE_POWER#KEYCODE_POWER">KeyEvent.KEYCODE_POWER</a> <br></p></div>
+ <a href="https://developer.android.com/reference/android/view/KeyEvent.html#KEYCODE_POWER#KEYCODE_POWER">KeyEvent.KEYCODE_POWER</a> <br>
+ NOTE: <a href="https://developer.android.com/reference/android/view/KeyEvent.html#KEYCODE_BACK#KEYCODE_BACK">KeyEvent.KEYCODE_BACK</a> no longer works on B OS. <br></p></div>
   <div class="jd-tagdata">
       <h5 class="jd-tagtitle">Parameters</h5>
       <table class="jd-tagtable">
@@ -21213,7 +21210,7 @@ From class
 <A NAME="navbar_top"></A>
 
 <div id="footer">
-<a href="http://www.samsung.com">Samsung Electronics</a>.<br/>SDK API level 39 - July 2 2025
+<a href="http://www.samsung.com">Samsung Electronics</a>.<br/>SDK API level 40 - January 13 2026
 </div> <!-- end footer -->
 
 </div> <!-- jd-content -->
