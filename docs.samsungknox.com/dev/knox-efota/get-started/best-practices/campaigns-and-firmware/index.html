@@ -56,7 +56,7 @@
 
   
 
-<script onload="initBot()" defer src="https://dc-chbt.samsungknox.com/copilot/index.js?noCache=1770422923"></script>
+<script onload="initBot()" defer src="https://dc-chbt.samsungknox.com/copilot/index.js?noCache=1771013281"></script>
 <script defer>
     function initBot(){
       const relPath = "\/knox-efota\/get-started\/best-practices\/campaigns-and-firmware\/";
@@ -142,9 +142,7 @@
   <span>Web services</span>
   <ul>
     <li>
-  <a href="../../../../knox-cloud-authentication" >Knox cloud services authentication</a>
-  <ul>
-    </ul>
+  <a href="../../../../knox-cloud-authentication" >Knox Cloud API Authentication</a>
   </li>
 <li>
   <a href="../../../../knox-webhook-notification" >Knox Webhook Notification</a>
@@ -340,7 +338,7 @@
             <div class="l-breadcrumb">
               <a class="fw-light text-black" href="../../../../index.html">Home</a><span> /</span>
 <a class="fw-light text-black" href="../../../../knox-efota.html">Knox E-FOTA</a><span> /</span>
-<a class="fw-light text-black" href="../../../get-started">Get started</a><span> /</span>
+<a class="fw-light text-black" href="../../index.html">Get started</a><span> /</span>
 <a class="fw-light text-black" href="../index.html">Knox E-FOTA best practices</a><span> /</span>
 
             </div>
@@ -790,8 +788,8 @@
 <thead>
 <tr>
 <th>Campaign termination action</th>
-<th>Result</th>
 <th>Trigger</th>
+<th>Result</th>
 <th>Assigned devices</th>
 <th>Status</th>
 <th>Visibility on Knox E-FOTA</th>
@@ -801,8 +799,8 @@
 <tbody>
 <tr>
 <td>Campaign expiration</td>
-<td>Policies of the campaign are no longer applied (The device will complete any ongoing firmware installations first).</td>
 <td>The end date of the campaign period passes.</td>
+<td>Policies of the campaign are no longer applied (The device will complete any ongoing firmware installations first).</td>
 <td>Devices remain assigned to the campaign.</td>
 <td>Expired</td>
 <td>Yes</td>
@@ -810,8 +808,8 @@
 </tr>
 <tr>
 <td>Campaign cancellation</td>
-<td>Policies of the campaign are no longer applied (The device will complete any ongoing firmware installations first).</td>
 <td>Your customer cancels the campaign.</td>
+<td>Policies of the campaign are no longer applied (The device will complete any ongoing firmware installations first).</td>
 <td>Devices remain assigned to the campaign.</td>
 <td>Cancelled</td>
 <td>Yes</td>
@@ -819,8 +817,8 @@
 </tr>
 <tr>
 <td>Campaign deletion</td>
-<td>Policies of the campaign are no longer applied (The device will complete any ongoing firmware installations first).</td>
 <td>Your customer deletes the campaign.</td>
+<td>Policies of the campaign are no longer applied (The device will complete any ongoing firmware installations first).</td>
 <td>Devices are unassigned from the campaign.</td>
 <td>-</td>
 <td>No</td>
@@ -828,24 +826,18 @@
 </tr>
 </tbody>
 </table></div>
-<h2 id="assign-a-campaign">Assign a campaign</h2>
-<p>After creating a campaign and setting its firmware policies, your customer can proceed to assign the campaign to their devices. This will apply all campaign settings and its firmware policies to the devices it is assigned to. If the campaign has no firmware policy for assigned devices, the &ldquo;lock current firmware&rdquo; policy is applied by default, and can be updated at any time.</p>
-<p>Use <a href="../../../api#tag/Assign/paths/~1campaigns~1{campaignId}~1bulkAssign/post">POST /campaigns/{campaignId}/bulkAssign</a> to allow your customers to assign a list of devices to a specified campaign. This endpoint allows customers to assign up to 1000 devices at once to a campaign. If any devices are already assigned to the specified campaign, the Knox E-FOTA API response indicates which devices are already assigned.</p>
-<p>Every 24 hours from when the campaign was activated, the Knox E-FOTA client app on the assigned devices automatically polls the Knox E-FOTA server to check for any policy changes made to the campaign.</p>
-<h2 id="unassign-a-campaign">Unassign a campaign</h2>
-<p>If your customers no longer want their devices to be compliant with campaign policies, they can unassign the campaign. When devices are unassigned from their campaign, the lock current firmware policy is applied to them by default.</p>
-<p>Use <a href="../../../api#tag/Assign/paths/~1campaigns~1{campaignId}~1bulkUnassign/post">POST /campaigns/{campaignId}/bulkUnassign</a> to allow your customer to unassign a list of devices from a specified campaign. This endpoint allows customers to unassign up to 1000 devices at once. If any devices are already in an unassigned state, the Knox E-FOTA API response will indicate that those devices are already unassigned.</p>
 <h2 id="firmware-policies">Firmware policies</h2>
 <p>After creating their campaign, your customer can proceed to add firmware policies for that campaign. Firmware policies allow your customer to manage firmware for devices assigned to a campaign.</p>
 <p>Use <a href="../../../api#tag/Firmware-policy/paths/~1campaigns~1{campaignId}~1firmwares/put">PUT /campaigns/{campaignId}/firmwares</a> to allow your customers to set firmware policies for a specified campaign.</p>
-<p>Knox E-FOTA provides 4 firmware policies.</p>
+<p>When creating a firmware policy, your customer must define how they want to control firmware versions, and which devices are being targeted.</p>
+<p>Knox E-FOTA provides 4 policies for controlling firmware versions.</p>
 <ul>
 <li><strong>Lock current firmware</strong> &mdash; Maintain the current firmware version. This is the default firmware policy.</li>
 <li><strong>Latest any</strong> &mdash; Push latest firmware available to devices.</li>
 <li><strong>Latest up to</strong> &mdash; Push latest firmware available within a specified Android OS version.</li>
 <li><strong>Select from firmware list</strong> &mdash; Push a specific firmware version to devices.</li>
 </ul>
-<p>Each firmware policy targets devices with a specific combination of device model, sales code, and CSC. This is because this combination of device information determines what firmware is available for each device. This means separate firmware policies must be created according to the different types of devices uploaded to Knox E-FOTA.</p>
+<p>Each firmware policy targets devices with a specific combination of device model, sales code, and CSC, because this combination of device information determines what firmware is available for each device. This means separate firmware policies must be created according to the different types of devices uploaded to Knox E-FOTA.</p>
 <p>For example, two separate firmware policies are needed to target these two unique combinations of device model, sales code, and CSC:</p>
 <ul>
 <li>SM-G986N / KOO / OKR &mdash; Latest Any</li>
@@ -914,7 +906,7 @@ Customers can only set firmware policies for devices enrolled to Knox E-FOTA, be
 <h3 id="what-is-a-csc">What is a CSC?</h3>
 <p>A Country Specific Code (CSC) is an essential component of Samsung firmware binaries, and it contains customized settings, system configurations, localizations, and geo-specific configurations such as the system language, APN settings, and carrier-branding. You can allow your customer to see the CSCs for a given device model and sales code with <a href="../../../api#tag/Device/paths/~1devices~1csc/get">GET /devices/csc</a>.</p>
 <h3 id="get-device-information-for-firmware-policies">Get device information for firmware policies</h3>
-<p>To create a firmware policy, your customer needs to find the device model name, sales code, and CSC of the devices they want to target their firmware policy for. You can provide this information to your customer with the following endpoints.</p>
+<p>To create a firmware policy, your customer needs to find the device model name, sales code, and CSC of the devices they want to target. You can provide this information to your customer with the following endpoints.</p>
 <ul>
 <li>Use <a href="../../../api#tag/Device/paths/~1devices~1models/get">GET /devices/models</a> to retrieve a list of all device models in your customer&rsquo;s pool of devices on Knox E-FOTA.</li>
 <li>Use <a href="../../../api#tag/Device/paths/~1devices~1salesCodes/get">GET /devices/salesCodes</a> to retrieve a list of sales codes for a given device model.</li>
@@ -1057,7 +1049,7 @@ Customers can only set firmware policies for devices enrolled to Knox E-FOTA, be
 
 <h3 id="get-available-firmware-list">Get available firmware list</h3>
 <p>Your customers may want to see all available firmware for a given combination of device model, sales code, and CSC. You can provide them with this information using <a href="../../../api#tag/FOTA/paths/~1fota/get">GET /fota</a>, which returns a list of all firmware for the given combination, and the firmware list can be filtered based on different filter parameters.</p>
-<p>This feature is particularly useful for when your customer wants to use the &ldquo;Select from firmware list&rdquo; policy, because it lets them see what firmware is available their devices. When calling <a href="../../../api#tag/Firmware-policy/paths/~1campaigns~1{campaignId}~1firmwares/put">PUT /campaigns/{campaignId}/firmwares</a> to set the &ldquo;Select from firmware list&rdquo; policy, the <code>firmwareVersion</code> should be set to the <code>toFirmwareVersion</code> returned from <a href="../../../api#tag/FOTA/paths/~1fota/get">GET /fota</a>.</p>
+<p>This feature is especially useful when your customer wants to use the &ldquo;Select from firmware list&rdquo; policy, because it lets them see what firmware is available their devices. When calling <a href="../../../api#tag/Firmware-policy/paths/~1campaigns~1{campaignId}~1firmwares/put">PUT /campaigns/{campaignId}/firmwares</a> to set the &ldquo;Select from firmware list&rdquo; policy, the <code>firmwareVersion</code> should be set to the <code>toFirmwareVersion</code> returned from <a href="../../../api#tag/FOTA/paths/~1fota/get">GET /fota</a>.</p>
 <h3 id="get-firmware-policy">Get firmware policy</h3>
 <p>You can allow your customers to see the firmware policies of a given campaign with <a href="../../../api#tag/Firmware-policy/paths/~1campaigns~1{campaignId}~1firmwares/get">GET /campaigns/{campaignId}/firmwares</a>.</p>
 <p>Here is a Java code sample for getting the firmware policy of a campaign:</p>
@@ -1108,6 +1100,13 @@ Customers can only set firmware policies for devices enrolled to Knox E-FOTA, be
 </div>
 </div>
 
+<h2 id="assign-a-campaign">Assign a campaign</h2>
+<p>After creating a campaign and setting its firmware policies, your customer can proceed to assign the campaign to their devices. This will apply all campaign settings and its firmware policies to the devices it is assigned to. If the campaign has no firmware policy for assigned devices, the &ldquo;lock current firmware&rdquo; policy is applied by default, and can be updated at any time.</p>
+<p>Use <a href="../../../api#tag/Assign/paths/~1campaigns~1{campaignId}~1bulkAssign/post">POST /campaigns/{campaignId}/bulkAssign</a> to allow your customers to assign a list of devices to a specified campaign. This endpoint allows customers to assign up to 1000 devices at once to a campaign. If any devices are already assigned to the specified campaign, the Knox E-FOTA API response indicates which devices are already assigned.</p>
+<p>Every 24 hours from when the campaign was activated, the Knox E-FOTA client app on the assigned devices automatically polls the Knox E-FOTA server to check for any policy changes made to the campaign.</p>
+<h2 id="unassign-a-campaign">Unassign a campaign</h2>
+<p>If your customers no longer want their devices to be compliant with campaign policies, they can unassign the campaign. When devices are unassigned from their campaign, the lock current firmware policy is applied to them by default.</p>
+<p>Use <a href="../../../api#tag/Assign/paths/~1campaigns~1{campaignId}~1bulkUnassign/post">POST /campaigns/{campaignId}/bulkUnassign</a> to allow your customer to unassign a list of devices from a specified campaign. This endpoint allows customers to unassign up to 1000 devices at once. If any devices are already in an unassigned state, the Knox E-FOTA API response will indicate that those devices are already unassigned.</p>
 <h2 id="next-step">Next step</h2>
 <p>Next, we&rsquo;ll cover how you can help your customers monitor and troubleshoot devices on Knox E-FOTA.</p>
 <a href="../monitoring-and-troubleshooting"  class="btn d-inline-block button-subtle">Monitoring and troubleshooting</a>
@@ -1131,8 +1130,6 @@ Customers can only set firmware policies for devices enrolled to Knox E-FOTA, be
     <li><a href="#delete-a-campaign">Delete a campaign</a></li>
     <li><a href="#cancel-a-campaign">Cancel a campaign</a></li>
     <li><a href="#campaign-termination-behavior">Campaign termination behavior</a></li>
-    <li><a href="#assign-a-campaign">Assign a campaign</a></li>
-    <li><a href="#unassign-a-campaign">Unassign a campaign</a></li>
     <li><a href="#firmware-policies">Firmware policies</a>
       <ul>
         <li><a href="#what-is-a-csc">What is a CSC?</a></li>
@@ -1141,6 +1138,8 @@ Customers can only set firmware policies for devices enrolled to Knox E-FOTA, be
         <li><a href="#get-firmware-policy">Get firmware policy</a></li>
       </ul>
     </li>
+    <li><a href="#assign-a-campaign">Assign a campaign</a></li>
+    <li><a href="#unassign-a-campaign">Unassign a campaign</a></li>
     <li><a href="#next-step">Next step</a></li>
   </ul>
 </nav>

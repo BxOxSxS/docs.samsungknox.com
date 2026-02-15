@@ -56,7 +56,7 @@
 
   
 
-<script onload="initBot()" defer src="https://dc-chbt.samsungknox.com/copilot/index.js?noCache=1770422923"></script>
+<script onload="initBot()" defer src="https://dc-chbt.samsungknox.com/copilot/index.js?noCache=1771013281"></script>
 <script defer>
     function initBot(){
       const relPath = "\/knox-deployment-program\/migrating-from-knox-deployment-program-gen1-apis-to-gen2\/";
@@ -142,9 +142,7 @@
   <span>Web services</span>
   <ul>
     <li>
-  <a href="../../knox-cloud-authentication" >Knox cloud services authentication</a>
-  <ul>
-    </ul>
+  <a href="../../knox-cloud-authentication" >Knox Cloud API Authentication</a>
   </li>
 <li>
   <a href="../../knox-webhook-notification" >Knox Webhook Notification</a>
@@ -204,20 +202,7 @@
     
     
     <div class="d-flex justify-content-between">
-      <a class="body-5 text-black fw-light" href="../tutorial-knox-deployment-program-integration/index.html">Tutorial &mdash; Knox Deployment Program integration</a>
-    </div>
-    
-    </li>
-  
-        
-          
-  
-  
-    <li class="mt-2">
-    
-    
-    <div class="d-flex justify-content-between">
-      <a class="body-5 text-black fw-light" href="../comparing-gen2-and-gen1-knox-deployment-program-apis/index.html">Comparing Gen1 and Gen2 APIs</a>
+      <a class="body-5 text-black fw-light" href="../tutorial-knox-deployment-program-integration/index.html">Get started</a>
     </div>
     
     </li>
@@ -288,7 +273,7 @@
             </div>
             
 
-  <p><span>Last updated September  15th, 2025</span></p>
+  <p><span>Last updated February  10th, 2026</span></p>
 
 
     
@@ -311,148 +296,286 @@
       
       
       
+      
         
       
       
       
       
-        <p>This guide covers how to migrate from Knox Deployment Program (KDP) Gen1 API to Gen2 API, which is the latest generation. The Gen2 API features restructured endpoints to simplify your workflow and enhance security.</p>
-<h2 id="server-urlchange">Server URL change</h2>
-<p>For the migration, the following Gen1 API servers must be whitelisted in your network firewall:</p>
-<ul>
-<li>https://eu-be-reseller.samsungknox.com (EU server)</li>
-<li>https://us-be-reseller.samsungknox.com (US server)</li>
-</ul>
-<p>To the following server will be used instead for Gen2, which also needs to be whitelisted in your firewall:</p>
-<ul>
-<li>https://api.samsungknox.com/kcs/v1/rp (global server)</li>
-</ul>
-<div class="notice-note"><p>During migration or development, please use the new Gen2 server URL to test the APIs. You can stop using the Gen1 server URL once your Gen2 solution is live.</p></div>
-<h2 id="authentication-changes">Authentication changes</h2>
-<p>To authenticate Gen2 API calls, you need to:</p>
-<ul>
+        
+      
+      
+      
+      
+        
+      
+      
+      
+      
+        
+      
+      
+      
+      
+        
+      
+      
+      
+      
+      
+      
+        
+      
+      
+      
+      <p>This guide covers the differences between the legacy Gen1 API and the latest Gen2 API for Knox Deployment Program, and helps facilitate a smooth migration to Gen2. Compared to Gen1, the Gen2 API features streamlined device provisioning flows (unified endpoints for single-tier and two-tier provisioning), improved error handling, and enhanced authentication security.</p>
+<h2 id="before-you-begin">Before you begin</h2>
+<ol>
 <li>
-<p><a href="../tutorial-knox-deployment-program-integration#step-2-request-access-to-the-cloud-apps-feature">Request access to <strong>Cloud Apps</strong></a></p>
+<p>Before starting the migration process, make sure you can <a href="../../fundamentals/sign-in-to-knox-developer-account">sign in to your Knox Developer account</a>.</p>
+<ul>
+<li>If you aren&rsquo;t sure if you have access, or get a &ldquo;You don&rsquo;t have access&rdquo; error when you try to sign in, ask the super admin of your KDP tenant sign in first and then try again.</li>
+</ul>
+</li>
+<li>
+<p>Once you are signed in, verify that you can view the <strong>Cloud Apps</strong> menu on the navigation pane of <a href="https://developer.samsungknox.com/dashboard" target="_blank">Knox Developer portal</a>.</p>
+<ul>
+<li>If you&rsquo;re unable to view the <strong>Cloud Apps</strong> menu or need assistance, <a href="../../fundamentals/support">create a Support ticket</a> with the subject line &ldquo;<strong>KDP Gen1 API migration</strong>&rdquo;. Make sure to provide your company name, resller ID, and a brief description of the issue you&rsquo;re facing.</li>
+</ul>
+</li>
+</ol>
+<h2 id="authentication-changes">Authentication changes</h2>
+<p>The legacy Gen1 API uses an <code>X-WSM-API-TOKEN</code> to authenticate your calls. The Gen2 API leverages <a href="../../knox-cloud-authentication/knox-oauth-2-0-authentication/index.html">Knox OAuth 2.0 Authentication</a>, using an <code>Authorization</code> bearer token for call authentication.</p>
+<p>Proceed to:</p>
+<ol>
+<li>
+<p><a href="../../knox-cloud-authentication/knox-oauth-2-0-authentication/register-new-app">Register a Cloud App</a> to get its client ID and secret.</p>
 </li>
 <li>
 <p><a href="../tutorial-knox-deployment-program-integration#step-3-generate-and-test-your-access-token">Generate an access token</a></p>
 </li>
+</ol>
+<h2 id="base-url-differences">Base URL differences</h2>
+<p>The Gen1 API is accessed through regional servers:</p>
+<ul>
+<li><code>https://eu-be-reseller.samsungknox.com</code> (EU server)</li>
+<li><code>https://us-be-reseller.samsungknox.com</code> (US server)</li>
 </ul>
-<h2 id="api-message-payload-and-response-format-changes">API message payload and response format changes</h2>
-<p>For overall mapping of Gen1 API to Gen2, please read the REST API Comparison section in <a href="../comparing-gen2-and-gen1-knox-deployment-program-apis#rest-api-comparison">this article</a>.</p>
-<p>Differences in Gen1 and Gen2 request payloads and response formats are described below.</p>
-<h3 id="for-uploaddelete-device">For upload/delete device</h3>
-<p>In Gen1:</p>
-<div class="highlight"><pre tabindex="0" style=";-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>    <span style="color:#666">{</span>
-</span></span><span style="display:flex;"><span>      <span style="color:#ba2121">&#34;transactionId&#34;</span>: <span style="color:#ba2121">&#34;244303&#34;</span>,
-</span></span><span style="display:flex;"><span>      <span style="color:#ba2121">&#34;resellerId&#34;</span>: <span style="color:#ba2121">&#34;468....925&#34;</span>,
-</span></span><span style="display:flex;"><span>      <span style="color:#ba2121">&#34;customerId&#34;</span>: <span style="color:#ba2121">&#34;12....321&#34;</span>,
-</span></span><span style="display:flex;"><span>      <span style="color:#ba2121">&#34;transactionType&#34;</span>: <span style="color:#ba2121">&#34;New&#34;</span>,
-</span></span><span style="display:flex;"><span>      <span style="color:#ba2121">&#34;devices&#34;</span>: <span style="color:#666">{</span>
-</span></span><span style="display:flex;"><span>        <span style="color:#ba2121">&#34;type&#34;</span>: <span style="color:#ba2121">&#34;IMEI&#34;</span>,
-</span></span><span style="display:flex;"><span>        <span style="color:#ba2121">&#34;list&#34;</span>: <span style="color:#666">[</span><span style="color:#ba2121">&#34;35180000....702&#34;</span>
-</span></span><span style="display:flex;"><span>        <span style="color:#666">]</span>
-</span></span><span style="display:flex;"><span>      <span style="color:#666">}</span>
-</span></span><span style="display:flex;"><span>    <span style="color:#666">}</span>
-</span></span></code></pre></div><p>In Gen2, <code>transactionType</code> has been removed (now identified by endpoint), and <code>type</code> has been moved to the parent level:</p>
-<div class="highlight"><pre tabindex="0" style=";-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>    <span style="color:#666">{</span>
-</span></span><span style="display:flex;"><span>      <span style="color:#ba2121">&#34;transactionId&#34;</span>: <span style="color:#ba2121">&#34;244303&#34;</span>,
-</span></span><span style="display:flex;"><span>      <span style="color:#ba2121">&#34;resellerId&#34;</span>: <span style="color:#ba2121">&#34;460....925&#34;</span>,
-</span></span><span style="display:flex;"><span>      <span style="color:#ba2121">&#34;customerId&#34;</span>: <span style="color:#ba2121">&#34;12....321&#34;</span>,
-</span></span><span style="display:flex;"><span>      <span style="color:#ba2121">&#34;type&#34;</span>: <span style="color:#ba2121">&#34;IMEI&#34;</span>,
-</span></span><span style="display:flex;"><span>      <span style="color:#ba2121">&#34;devices&#34;</span>: <span style="color:#666">[</span>
-</span></span><span style="display:flex;"><span>        <span style="color:#ba2121">&#34;35182610....702&#34;</span>
-</span></span><span style="display:flex;"><span>      <span style="color:#666">]</span>
-</span></span><span style="display:flex;"><span>    <span style="color:#666">}</span>
-</span></span></code></pre></div><h3 id="for-list-devices">For list devices</h3>
-<p>In Gen1:</p>
-<div class="highlight"><pre tabindex="0" style=";-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>    <span style="color:#666">{</span>
-</span></span><span style="display:flex;"><span>      <span style="color:#ba2121">&#34;totalCount&#34;</span>: 0,
-</span></span><span style="display:flex;"><span>      <span style="color:#ba2121">&#34;totalPage&#34;</span>: 0,
-</span></span><span style="display:flex;"><span>      <span style="color:#ba2121">&#34;pageNum&#34;</span>: 0,
-</span></span><span style="display:flex;"><span>      <span style="color:#ba2121">&#34;devices&#34;</span>: <span style="color:#666">[{</span>
-</span></span><span style="display:flex;"><span>        <span style="color:#ba2121">&#34;imei&#34;</span>: <span style="color:#ba2121">&#34;35719261....112&#34;</span>
-</span></span><span style="display:flex;"><span>      <span style="color:#666">}]</span>
-</span></span><span style="display:flex;"><span>    <span style="color:#666">}</span>
-</span></span></code></pre></div><p>In Gen2, <code>totalPage</code> was changed to <code>totalPages</code>, which additionally includes new fields:</p>
-<div class="highlight"><pre tabindex="0" style=";-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>    <span style="color:#666">{</span>
-</span></span><span style="display:flex;"><span>      <span style="color:#ba2121">&#34;code&#34;</span>: <span style="color:#ba2121">&#34;2000000&#34;</span>,
-</span></span><span style="display:flex;"><span>      <span style="color:#ba2121">&#34;message&#34;</span>: <span style="color:#ba2121">&#34;SUCCESS&#34;</span>,
-</span></span><span style="display:flex;"><span>      <span style="color:#ba2121">&#34;pageNum&#34;</span>: 0,
-</span></span><span style="display:flex;"><span>      <span style="color:#ba2121">&#34;pageSize&#34;</span>: 1000000,
-</span></span><span style="display:flex;"><span>      <span style="color:#ba2121">&#34;totalCount&#34;</span>: 0,
-</span></span><span style="display:flex;"><span>      <span style="color:#ba2121">&#34;totalPages&#34;</span>: 0,
-</span></span><span style="display:flex;"><span>        <span style="color:#ba2121">&#34;size&#34;</span>: 0,
-</span></span><span style="display:flex;"><span>        <span style="color:#ba2121">&#34;devices&#34;</span>: <span style="color:#666">[{</span>
-</span></span><span style="display:flex;"><span>          <span style="color:#ba2121">&#34;id&#34;</span>: <span style="color:#ba2121">&#34;6012afe85f18342e67ee9126&#34;</span>,
-</span></span><span style="display:flex;"><span>          <span style="color:#ba2121">&#34;createTime&#34;</span>: 1611837416372,
-</span></span><span style="display:flex;"><span>          <span style="color:#ba2121">&#34;mei&#34;</span>: <span style="color:#ba2121">&#34;35182600....702&#34;</span>,
-</span></span><span style="display:flex;"><span>          <span style="color:#ba2121">&#34;customerName&#34;</span>: <span style="color:#ba2121">&#34;Demo-Customer&#34;</span>,
-</span></span><span style="display:flex;"><span>          <span style="color:#ba2121">&#34;customerId&#34;</span>: <span style="color:#ba2121">&#34;460....586&#34;</span>,
-</span></span><span style="display:flex;"><span>          <span style="color:#ba2121">&#34;serialNumber&#34;</span>: <span style="color:#ba2121">&#34;R3OO....KLD&#34;</span>,
-</span></span><span style="display:flex;"><span>          <span style="color:#ba2121">&#34;meid&#34;</span>: <span style="color:#ba2121">&#34;08907750000....280&#34;</span>,
-</span></span><span style="display:flex;"><span>          <span style="color:#ba2121">&#34;model&#34;</span>: <span style="color:#ba2121">&#34;SM-G981B/DS&#34;</span>,
-</span></span><span style="display:flex;"><span>          <span style="color:#ba2121">&#34;state&#34;</span>: <span style="color:#ba2121">&#34;Verified&#34;</span>,
-</span></span><span style="display:flex;"><span>          <span style="color:#ba2121">&#34;uploadId&#34;</span>: <span style="color:#ba2121">&#34;ddb71b6c-3aef-4d54-b1f4-b86480aa447d&#34;</span>
-</span></span><span style="display:flex;"><span>        <span style="color:#666">}]</span>
-</span></span><span style="display:flex;"><span>    <span style="color:#666">}</span>
-</span></span></code></pre></div><h3 id="for-check-transaction-status-message">For check transaction status message</h3>
-<p>In Gen1:</p>
-<div class="highlight"><pre tabindex="0" style=";-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>    <span style="color:#666">{</span>
-</span></span><span style="display:flex;"><span>      <span style="color:#ba2121">&#34;totalCount&#34;</span>: 2,
-</span></span><span style="display:flex;"><span>      <span style="color:#ba2121">&#34;totalPage&#34;</span>: 1,
-</span></span><span style="display:flex;"><span>      <span style="color:#ba2121">&#34;pageNum&#34;</span>: 0,
-</span></span><span style="display:flex;"><span>      <span style="color:#ba2121">&#34;transactions&#34;</span>: <span style="color:#666">[{</span>
-</span></span><span style="display:flex;"><span>        <span style="color:#ba2121">&#34;transactionId&#34;</span>: <span style="color:#ba2121">&#34;7500657464&#34;</span>,
-</span></span><span style="display:flex;"><span>        <span style="color:#ba2121">&#34;state&#34;</span>: <span style="color:#ba2121">&#34;Complete&#34;</span>,
-</span></span><span style="display:flex;"><span>        <span style="color:#ba2121">&#34;type&#34;</span>: <span style="color:#ba2121">&#34;Put&#34;</span>,
-</span></span><span style="display:flex;"><span>        <span style="color:#ba2121">&#34;devices&#34;</span>: <span style="color:#666">[{</span>
-</span></span><span style="display:flex;"><span>          <span style="color:#ba2121">&#34;imei&#34;</span>: <span style="color:#ba2121">&#34;80721262....673&#34;</span>
-</span></span><span style="display:flex;"><span>        <span style="color:#666">}</span>, <span style="color:#666">{</span>
-</span></span><span style="display:flex;"><span>          <span style="color:#ba2121">&#34;imei&#34;</span>: <span style="color:#ba2121">&#34;2197517....444&#34;</span>
-</span></span><span style="display:flex;"><span>        <span style="color:#666">}</span>, <span style="color:#666">{</span>
-</span></span><span style="display:flex;"><span>          <span style="color:#ba2121">&#34;imei&#34;</span>: <span style="color:#ba2121">&#34;4064950....126&#34;</span>,
-</span></span><span style="display:flex;"><span>          <span style="color:#ba2121">&#34;code&#34;</span>: 4092100,
-</span></span><span style="display:flex;"><span>          <span style="color:#ba2121">&#34;message&#34;</span>: <span style="color:#ba2121">&#34;RESELLER_DEVICE_ALREADY_EXISTS&#34;</span>,
-</span></span><span style="display:flex;"><span>          <span style="color:#ba2121">&#34;data&#34;</span>: <span style="color:#ba2121">&#34;device imei[09743614....341] already exists&#34;</span>
-</span></span><span style="display:flex;"><span>        <span style="color:#666">}]</span>
-</span></span><span style="display:flex;"><span>      <span style="color:#666">}]</span>
-</span></span><span style="display:flex;"><span>    <span style="color:#666">}</span>
-</span></span></code></pre></div><p>In Gen2, everything now appears within a new <code>devices</code> object:</p>
-<div class="highlight"><pre tabindex="0" style=";-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>      <span style="color:#666">{</span>
-</span></span><span style="display:flex;"><span>        <span style="color:#ba2121">&#34;devices&#34;</span>: <span style="color:#666">{</span>
-</span></span><span style="display:flex;"><span>          <span style="color:#ba2121">&#34;totalCount&#34;</span>: 1,
-</span></span><span style="display:flex;"><span>          <span style="color:#ba2121">&#34;totalPage&#34;</span>: 1,
-</span></span><span style="display:flex;"><span>          <span style="color:#ba2121">&#34;pageNum&#34;</span>: 0,
-</span></span><span style="display:flex;"><span>          <span style="color:#ba2121">&#34;transactions&#34;</span>: <span style="color:#666">[{</span>
-</span></span><span style="display:flex;"><span>            <span style="color:#ba2121">&#34;transactionId&#34;</span>: <span style="color:#ba2121">&#34;246903&#34;</span>,
-</span></span><span style="display:flex;"><span>            <span style="color:#ba2121">&#34;state&#34;</span>: <span style="color:#ba2121">&#34;Complete&#34;</span>,
-</span></span><span style="display:flex;"><span>            <span style="color:#ba2121">&#34;type&#34;</span>: <span style="color:#ba2121">&#34;Put&#34;</span>,
-</span></span><span style="display:flex;"><span>            <span style="color:#ba2121">&#34;operationType&#34;</span>: <span style="color:#ba2121">&#34;UPLOAD&#34;</span>,
-</span></span><span style="display:flex;"><span>            <span style="color:#ba2121">&#34;devices&#34;</span>: <span style="color:#666">[{</span>
-</span></span><span style="display:flex;"><span>              <span style="color:#ba2121">&#34;imei&#34;</span>: <span style="color:#ba2121">&#34;35182611....643&#34;</span>,
-</span></span><span style="display:flex;"><span>              <span style="color:#ba2121">&#34;code&#34;</span>: 40000004,
-</span></span><span style="display:flex;"><span>              <span style="color:#ba2121">&#34;message&#34;</span>: <span style="color:#ba2121">&#34;DEVICE_INVALID&#34;</span>,
-</span></span><span style="display:flex;"><span>              <span style="color:#ba2121">&#34;data&#34;</span>: <span style="color:#ba2121">&#34;The specified device is not valid.&#34;</span>
-</span></span><span style="display:flex;"><span>            <span style="color:#666">}]</span>
-</span></span><span style="display:flex;"><span>          <span style="color:#666">}]</span>
-</span></span><span style="display:flex;"><span>        <span style="color:#666">}</span>
-</span></span><span style="display:flex;"><span>      <span style="color:#666">}</span>
-</span></span></code></pre></div><p>The inner <code>devices</code> object contains information about failed transactions. If none of the transactions failed, it will not be included in the response &mdash; as below:</p>
-<div class="highlight"><pre tabindex="0" style=";-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>      <span style="color:#666">{</span>
-</span></span><span style="display:flex;"><span>        <span style="color:#ba2121">&#34;devices&#34;</span>: <span style="color:#666">{</span>
-</span></span><span style="display:flex;"><span>          <span style="color:#ba2121">&#34;totalCount&#34;</span>: 1,
-</span></span><span style="display:flex;"><span>          <span style="color:#ba2121">&#34;totalPage&#34;</span>: 1,
-</span></span><span style="display:flex;"><span>          <span style="color:#ba2121">&#34;pageNum&#34;</span>: 0,
-</span></span><span style="display:flex;"><span>          <span style="color:#ba2121">&#34;transactions&#34;</span>: <span style="color:#666">[{</span>
-</span></span><span style="display:flex;"><span>            <span style="color:#ba2121">&#34;transactionId&#34;</span>: <span style="color:#ba2121">&#34;248603&#34;</span>,
-</span></span><span style="display:flex;"><span>            <span style="color:#ba2121">&#34;state&#34;</span>: <span style="color:#ba2121">&#34;Complete&#34;</span>,
-</span></span><span style="display:flex;"><span>            <span style="color:#ba2121">&#34;type&#34;</span>: <span style="color:#ba2121">&#34;Put&#34;</span>,
-</span></span><span style="display:flex;"><span>            <span style="color:#ba2121">&#34;operationType&#34;</span>: <span style="color:#ba2121">&#34;UPLOAD&#34;</span>
-</span></span><span style="display:flex;"><span>          <span style="color:#666">}]</span>
-</span></span><span style="display:flex;"><span>        <span style="color:#666">}</span>
-</span></span><span style="display:flex;"><span>      <span style="color:#666">}</span>
-</span></span></code></pre></div>
+<p>The Gen2 API uses a different server URL &mdash; ensure the Gen2 global server URL is included in your firewall exceptions:</p>
+<ul>
+<li><code>https://api.samsungknox.com/kcs/v1/rp</code> (global server)</li>
+</ul>
+<h2 id="endpoint-comparison">Endpoint comparison</h2>
+<p>The following table shows how existing Gen1 API endpoints map to Gen2:</p>
+<div class="overflow-auto my-3"><table>
+<thead>
+<tr>
+<th>Feature</th>
+<th>Gen 1 (v1 &amp; v2)</th>
+<th>Gen 2</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Upload / save devices</strong></td>
+<td><code>PUT /bulkenroll/v1/reseller/devices</code><br><code>PUT /bulkenroll/v2/reseller/devices</code></td>
+<td><code>PUT /kcs/v1/rp/devices/upload</code></td>
+</tr>
+<tr>
+<td><strong>Delete devices</strong></td>
+<td><code>PUT /bulkenroll/v1/reseller/devices/delete</code></td>
+<td><code>PUT /kcs/v1/rp/devices/delete</code></td>
+</tr>
+<tr>
+<td><strong>Query transaction status</strong></td>
+<td><code>GET /bulkenroll/v1/reseller/devices/status</code><br><code>GET /bulkenroll/v2/reseller/devices/status</code></td>
+<td><code>GET /kcs/v1/rp/devices/status</code></td>
+</tr>
+<tr>
+<td><strong>Retrieve customer details</strong></td>
+<td><code>POST /bulkenroll/v1/reseller/customers</code></td>
+<td><code>GET /kcs/v1/rp/customers/list</code></td>
+</tr>
+<tr>
+<td><strong>Retrieve reseller details</strong></td>
+<td><code>POST /bulkenroll/v1/reseller/resellers</code></td>
+<td>N/A</td>
+</tr>
+<tr>
+<td><strong>Retrieve a list of devices</strong></td>
+<td><code>GET /bulkenroll/v1/reseller/devices</code></td>
+<td><code>GET /kcs/v1/rp/devices</code></td>
+</tr>
+<tr>
+<td><strong>Retrieve KME profile aliases</strong></td>
+<td>N/A</td>
+<td><code>GET /kcs/v1/rp/profilealias/kme</code></td>
+</tr>
+</tbody>
+</table></div>
+<p>The <strong>Retrieve reseller details</strong> Gen1 feature (<code>POST /bulkenroll/v1/reseller/resellers</code>) isn&rsquo;t relevant to most distributors, resellers, and carriers, and therefore isn&rsquo;t supported in Gen2. If you are currently using this functionality, please create a <a href="../../fundamentals/support">support ticket</a> for migration assistance.</p>
+<p>The <strong>Retrieve KME profile aliases</strong> Gen2 feature (<code>GET /kcs/v1/rp/profilealias/kme</code>) is a new endpoint that allows you to retrieve a list of Knox Mobile Enrollment (KME) profile aliases associated with your reseller ID. When <a href="../api/index.html#tag/Endpoints/operation/uploadDevicesUsingPUT" target="_blank">uploading customer devices</a>, you can include the KME profile alias associated with that customer.</p>
+<div class="notice-tip"><p>Ask your customers to create KME profile aliases while <a href="../../../admin/knox-admin-portal/how-to-guides/manage-resellers/index.html#manage-reseller-preferences" target="_blank">managing their reseller preferences</a> in Knox Admin Portal, then share the aliases with you. A customer can create a maximum of 10 profile aliases.</p></div>
+<h2 id="api-payload-and-format-comparison">API payload and format comparison</h2>
+<p>The following sections highlight key changes between commonly used Gen1 and Gen2 API calls.</p>
+<div class="notice-important"><p>The comparisons provided below are for illustrative purposes only, and do not cover all possible optional fields, responses, or errors cases. For comprehensive API documentation see <a href="../api">Gen2 API reference</a>.</p></div>
+<hr>
+<h3 id="upload-devices">Upload devices</h3>
+<p>For details on uploading devices using the Gen2 API, see <a href="../api/index.html#tag/Endpoints/operation/uploadDevicesUsingPUT" target="_blank">Upload devices</a>.</p>
+<h4 id="request-body">Request body</h4>
+<p>The Gen1 payload has a <code>transactionType</code> field which is not supported for Gen2. On the other hand, the Gen2 payload has a <code>profileAliases</code> array which is not supported for Gen1. Each <code>profileAlias</code> Gen2 object includes the name of the profile alias and the service ID.</p>
+<div class="overflow-auto my-3"><table>
+<thead>
+<tr>
+<th>Gen1 Upload Devices Request Body</th>
+<th>Gen2 Upload Devices Request Body</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><pre><code>{<br>  &ldquo;transactionId&rdquo;: &ldquo;transaction123&rdquo;,<br>  &ldquo;resellerId&rdquo;: &ldquo;1111111&rdquo;,<br>  &ldquo;customerId&rdquo;: &ldquo;2222222&rdquo;,<br>  &ldquo;vendorId&rdquo;: &ldquo;3333333&rdquo;,<br>  &ldquo;transactionType&rdquo;: &ldquo;New&rdquo;,<br>  &ldquo;orderNo&rdquo;: &ldquo;Order123&rdquo;,<br>  &ldquo;orderTime&rdquo;: 1542405655,<br>  &ldquo;devices&rdquo;: {<br>    &ldquo;type&rdquo;: &ldquo;IMEI&rdquo;,<br>    &ldquo;list&rdquo;: [<br>      &ldquo;35163899&hellip;.236&rdquo;,<br>      &ldquo;35163899&hellip;.123&rdquo;,<br>      &ldquo;35163899&hellip;.456&rdquo;<br>    ]<br>  }<br>}</code></pre></td>
+<td><pre><code>{<br>  &ldquo;transactionId&rdquo;: &ldquo;transaction123&rdquo;,<br>  &ldquo;resellerId&rdquo;: &ldquo;1111111&rdquo;,<br>  &ldquo;customerId&rdquo;: &ldquo;2222222&rdquo;,<br>  &ldquo;vendorId&rdquo;: &ldquo;3333333&rdquo;,<br>  &ldquo;orderNo&rdquo;: &ldquo;ORD34152345&rdquo;,<br>  &ldquo;orderTime&rdquo;: 1542405655,<br>  &ldquo;type&rdquo;: &ldquo;IMEI&rdquo;,<br>  &ldquo;devices&rdquo;: [<br>    &ldquo;35163899&hellip;.236&rdquo;,<br>    &ldquo;35163899&hellip;.123&rdquo;,<br>    &ldquo;35163899&hellip;.456&rdquo;<br>  ],<br>  &ldquo;profileAliases&rdquo;: [<br>    {<br>      &ldquo;profileAlias&rdquo;: &ldquo;profile_a&rdquo;,<br>      &ldquo;serviceId&rdquo;: &ldquo;kme_service_id&rdquo;<br>    }<br>  ]<br>}</code></pre></td>
+</tr>
+</tbody>
+</table></div>
+<h4 id="success-response">Success response</h4>
+<p>The Gen2 success response always includes the <code>operationType</code> field, indicating an upload operation. The Gen1 response does not include a corresponding field.</p>
+<div class="overflow-auto my-3"><table>
+<thead>
+<tr>
+<th>Gen 1</th>
+<th>Gen 2</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><pre><code>{<br>  &ldquo;transactionId&rdquo;: &ldquo;transaction123&rdquo;,<br>  &ldquo;state&rdquo;: &ldquo;Progress&rdquo;,<br>  &ldquo;code&rdquo;: 2000000,<br>  &ldquo;message&rdquo;: &ldquo;SUCCESS&rdquo;<br>}</code></pre></td>
+<td><pre><code>{<br>  &ldquo;transactionId&rdquo;: &ldquo;transaction123&rdquo;,<br>  &ldquo;state&rdquo;: &ldquo;Progress&rdquo;,<br>  &ldquo;code&rdquo;: 2000000,<br>  &ldquo;message&rdquo;: &ldquo;SUCCESS&rdquo;,<br>  &ldquo;operationType&rdquo;: &ldquo;UPLOAD&rdquo;<br>}</code></pre></td>
+</tr>
+</tbody>
+</table></div>
+<h4 id="error-response">Error response</h4>
+<p>The Gen1 error response includes <code>transactionId</code> and <code>state</code>, which don&rsquo;t appear for Gen2.</p>
+<div class="overflow-auto my-3"><table>
+<thead>
+<tr>
+<th>Gen 1</th>
+<th>Gen 2</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><pre><code>{<br>  &ldquo;transactionId&rdquo;: &ldquo;transaction123&rdquo;,<br>  &ldquo;state&rdquo;: &ldquo;Rejected&rdquo;,<br>  &ldquo;code&rdquo;: 4002101,<br>  &ldquo;message&rdquo;: &ldquo;RESELLER_ID_MISSING&rdquo;,<br>  &ldquo;data&rdquo;: &ldquo;reseller id is missing&rdquo;<br>}</code></pre></td>
+<td><pre><code>{<br>  &ldquo;code&rdquo;: 4010000,<br>  &ldquo;message&rdquo;: &ldquo;AUTHORIZATION_FAIL&rdquo;,<br>  &ldquo;data&rdquo;: &ldquo;Invalid Api Key&rdquo;<br>}</code></pre></td>
+</tr>
+</tbody>
+</table></div>
+<hr>
+<h3 id="delete-devices">Delete devices</h3>
+<p>For details on deleting devices using the Gen2 API, see <a href="../api/index.html#tag/Endpoints/operation/deleteDevicesUsingPUT" target="_blank">Delete devices</a>.</p>
+<h4 id="request-body-1">Request body</h4>
+<p>The Gen1 payload has a <code>transactionType</code> field which is not supported for Gen2.</p>
+<div class="overflow-auto my-3"><table>
+<thead>
+<tr>
+<th>Gen 1</th>
+<th>Gen 2</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><pre><code>{<br>  &ldquo;transactionId&rdquo;: &ldquo;transaction123&rdquo;,<br>  &ldquo;resellerId&rdquo;: &ldquo;1111111&rdquo;,<br>  &ldquo;customerId&rdquo;: &ldquo;2222222&rdquo;,<br>  &ldquo;vendorId&rdquo;: &ldquo;3333333&rdquo;,<br>  &ldquo;transactionType&rdquo;: &ldquo;Delete&rdquo;,<br>  &ldquo;devices&rdquo;: {<br>    &ldquo;type&rdquo;: &ldquo;IMEI&rdquo;,<br>    &ldquo;list&rdquo;: [<br>      &ldquo;35163899&hellip;.236&rdquo;,<br>      &ldquo;35163899&hellip;.123&rdquo;,<br>      &ldquo;35163899&hellip;.456&rdquo;<br>    ]<br>  }<br>}</code></pre></td>
+<td><pre><code>{<br>  &ldquo;transactionId&rdquo;: &ldquo;transaction123&rdquo;,<br>  &ldquo;resellerId&rdquo;: &ldquo;1111111&rdquo;,<br>  &ldquo;customerId&rdquo;: &ldquo;2222222&rdquo;,<br>  &ldquo;vendorId&rdquo;: &ldquo;3333333&rdquo;,<br>  &ldquo;type&rdquo;: &ldquo;IMEI&rdquo;,<br>  &ldquo;devices&rdquo;: [<br>    &ldquo;35163899&hellip;.236&rdquo;,<br>    &ldquo;35163899&hellip;.123&rdquo;,<br>    &ldquo;35163899&hellip;.456&rdquo;<br>  ]<br>}</code></pre></td>
+</tr>
+</tbody>
+</table></div>
+<h4 id="success-response-1">Success response</h4>
+<p>The Gen2 success response always includes the <code>operationType</code> field, indicating a delete operation. The Gen1 response does not include a corresponding field.</p>
+<div class="overflow-auto my-3"><table>
+<thead>
+<tr>
+<th>Gen 1</th>
+<th>Gen 2</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><pre><code>{<br>  &ldquo;transactionId&rdquo;: &ldquo;transaction123&rdquo;,<br>  &ldquo;state&rdquo;: &ldquo;Progress&rdquo;,<br>  &ldquo;code&rdquo;: 2000000,<br>  &ldquo;message&rdquo;: &ldquo;SUCCESS&rdquo;<br>}</code></pre></td>
+<td><pre><code>{<br>  &ldquo;transactionId&rdquo;: &ldquo;transaction123&rdquo;,<br>  &ldquo;state&rdquo;: &ldquo;Progress&rdquo;,<br>  &ldquo;code&rdquo;: 2000000,<br>  &ldquo;message&rdquo;: &ldquo;SUCCESS&rdquo;,<br>  &ldquo;operationType&rdquo;: &ldquo;DELETE&rdquo;<br>}</code></pre></td>
+</tr>
+</tbody>
+</table></div>
+<h4 id="error-response-1">Error response</h4>
+<p>The Gen1 error response includes <code>transactionId</code> and <code>state</code>, which don&rsquo;t appear for Gen2.</p>
+<div class="overflow-auto my-3"><table>
+<thead>
+<tr>
+<th>Gen 1</th>
+<th>Gen 2</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><pre><code>{<br>  &ldquo;transactionId&rdquo;: &ldquo;transaction123&rdquo;,<br>  &ldquo;state&rdquo;: &ldquo;Rejected&rdquo;,<br>  &ldquo;code&rdquo;: 4002101,<br>  &ldquo;message&rdquo;: &ldquo;RESELLER_ID_MISSING&rdquo;,<br>  &ldquo;data&rdquo;: &ldquo;reseller id is missing&rdquo;<br>}</code></pre></td>
+<td><pre><code>{<br>  &ldquo;code&rdquo;: 4010000,<br>  &ldquo;message&rdquo;: &ldquo;AUTHORIZATION_FAIL&rdquo;,<br>  &ldquo;data&rdquo;: &ldquo;Invalid Api Key&rdquo;<br>}</code></pre></td>
+</tr>
+</tbody>
+</table></div>
+<hr>
+<h3 id="get-transaction-status">Get transaction status</h3>
+<p>For details on retrieving transcation statuses using the Gen2 API, see <a href="../api/index.html#tag/Endpoints/operation/getDeviceTransactionStatusUsingGET" target="_blank">List device transaction status</a>.</p>
+<h4 id="mandatory-query-parameters">Mandatory query parameters</h4>
+<p>Since it&rsquo;s a GET call, there is no request body for either the Gen1 or Gen2 API. Both APIs have the same mandatory parameter.</p>
+<div class="overflow-auto my-3"><table>
+<thead>
+<tr>
+<th>Gen 1</th>
+<th>Gen 2</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>resellerId</code></td>
+<td><code>resellerId</code></td>
+</tr>
+</tbody>
+</table></div>
+<h4 id="success-response-2">Success response</h4>
+<p>The Gen2 success response always includes the <code>operationType</code> field, which indicates if it was an upload or delete operation. The Gen1 response does not include a corresponding field. For both Gen1 and Gen2 APIs, operation-level error messages for transactions appear within <code>transaction</code> objects.</p>
+<div class="overflow-auto my-3"><table>
+<thead>
+<tr>
+<th>Gen 1</th>
+<th>Gen 2</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><pre><code>{<br>  &ldquo;totalCount&rdquo;: 2,<br>  &ldquo;totalPage&rdquo;: 1,<br>  &ldquo;pageNum&rdquo;: 0,<br>  &ldquo;transactions&rdquo;: [<br>    {<br>      &ldquo;transactionId&rdquo;: &ldquo;transaction123&rdquo;,<br>      &ldquo;state&rdquo;: &ldquo;Complete&rdquo;,<br>      &ldquo;type&rdquo;: &ldquo;Put&rdquo;,<br>      &ldquo;devices&rdquo;: [<br>        { &ldquo;imei&rdquo;: &ldquo;35163899&hellip;.236&rdquo; },<br>        { &ldquo;imei&rdquo;: &ldquo;35163899&hellip;.136&rdquo; }<br>      ]<br>    },<br>    {<br>      &ldquo;transactionId&rdquo;: &ldquo;transaction456&rdquo;,<br>      &ldquo;state&rdquo;: &ldquo;Complete&rdquo;,<br>      &ldquo;type&rdquo;: &ldquo;Put&rdquo;,<br>      &ldquo;devices&rdquo;: [<br>        { &ldquo;imei&rdquo;: &ldquo;35163899&hellip;.123&rdquo; },<br>        {<br>          &ldquo;imei&rdquo;: &ldquo;35163899&hellip;.456&rdquo;,<br>          &ldquo;code&rdquo;: 4000000,<br>          &ldquo;message&rdquo;: &ldquo;RESOURCE_INVALID_PARAM&rdquo;,<br>          &ldquo;data&rdquo;: &ldquo;This device [35163899&hellip;.456] invalid&rdquo;<br>        }<br>      ]<br>    }<br>  ]<br>}</code></pre></td>
+<td><pre><code>{<br>  &ldquo;devices&rdquo;: {<br>    &ldquo;totalCount&rdquo;: 2,<br>    &ldquo;totalPage&rdquo;: 1,<br>    &ldquo;pageNum&rdquo;: 0,<br>    &ldquo;transactions&rdquo;: [<br>      {<br>        &ldquo;transactionId&rdquo;: &ldquo;transaction123&rdquo;,<br>        &ldquo;state&rdquo;: &ldquo;Complete&rdquo;,<br>        &ldquo;type&rdquo;: &ldquo;Put&rdquo;,<br>        &ldquo;operationType&rdquo;: &ldquo;UPLOAD&rdquo;<br>        <br>      },<br>      {<br>        &ldquo;transactionId&rdquo;: &ldquo;transaction456&rdquo;,<br>        &ldquo;state&rdquo;: &ldquo;Complete&rdquo;,<br>        &ldquo;type&rdquo;: &ldquo;Put&rdquo;,<br>        &ldquo;operationType&rdquo;: &ldquo;UPLOAD&rdquo;,<br>        &ldquo;devices&rdquo;: [<br>          {<br>            &ldquo;imei&rdquo;: &ldquo;35163899&hellip;.456&rdquo;,<br>            &ldquo;code&rdquo;: 4000004,<br>            &ldquo;message&rdquo;: &ldquo;DEVICE_INVALID&rdquo;,<br>            &ldquo;data&rdquo;: &ldquo;The specified device is not valid.&quot;<br>          }<br>        ]<br>      }<br>    ]<br>  }<br>}</code></pre></td>
+</tr>
+</tbody>
+</table></div>
+<h4 id="error-response-2">Error response</h4>
+<p>The Gen1 error response for the call itself includes <code>transactionId</code> and <code>state</code>, which don&rsquo;t appear for Gen2.</p>
+<div class="overflow-auto my-3"><table>
+<thead>
+<tr>
+<th>Gen 1</th>
+<th>Gen 2</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><pre><code>{<br>  &ldquo;transactionId&rdquo;: &ldquo;transaction123&rdquo;,<br>  &ldquo;state&rdquo;: &ldquo;Rejected&rdquo;,<br>  &ldquo;code&rdquo;: 4002101,<br>  &ldquo;message&rdquo;: &ldquo;RESELLER_ID_MISSING&rdquo;,<br>  &ldquo;data&rdquo;: &ldquo;reseller id is missing&rdquo;<br>}</code></pre></td>
+<td><pre><code>{<br>  &ldquo;code&rdquo;: 4010000,<br>  &ldquo;message&rdquo;: &ldquo;AUTHORIZATION_FAIL&rdquo;,<br>  &ldquo;data&rdquo;: &ldquo;Invalid Api Key&rdquo;<br>}</code></pre></td>
+</tr>
+</tbody>
+</table></div>
+<hr>
+<h2 id="error-codes">Error codes</h2>
+<p>Gen1 and Gen2 error codes are different. You will need to make code changes accordingly. For details on Gen2 errors, see <a href="../troubleshooting-for-knox-deployment-program/index.html" target="_blank">Troubleshooting for Knox Deployment Program</a>.</p>
+
             
           </div>
           <div class="l-toh">
@@ -461,15 +584,18 @@
 <aside class="table-of-headings">
     <nav id="TableOfContents">
   <ul>
-    <li><a href="#server-urlchange">Server URL change</a></li>
+    <li><a href="#before-you-begin">Before you begin</a></li>
     <li><a href="#authentication-changes">Authentication changes</a></li>
-    <li><a href="#api-message-payload-and-response-format-changes">API message payload and response format changes</a>
+    <li><a href="#base-url-differences">Base URL differences</a></li>
+    <li><a href="#endpoint-comparison">Endpoint comparison</a></li>
+    <li><a href="#api-payload-and-format-comparison">API payload and format comparison</a>
       <ul>
-        <li><a href="#for-uploaddelete-device">For upload/delete device</a></li>
-        <li><a href="#for-list-devices">For list devices</a></li>
-        <li><a href="#for-check-transaction-status-message">For check transaction status message</a></li>
+        <li><a href="#upload-devices">Upload devices</a></li>
+        <li><a href="#delete-devices">Delete devices</a></li>
+        <li><a href="#get-transaction-status">Get transaction status</a></li>
       </ul>
     </li>
+    <li><a href="#error-codes">Error codes</a></li>
   </ul>
 </nav>
 </aside>

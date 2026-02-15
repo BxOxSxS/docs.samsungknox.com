@@ -56,7 +56,7 @@
 
   
 
-<script onload="initBot()" defer src="https://dc-chbt.samsungknox.com/copilot/index.js?noCache=1770422923"></script>
+<script onload="initBot()" defer src="https://dc-chbt.samsungknox.com/copilot/index.js?noCache=1771013281"></script>
 <script defer>
     function initBot(){
       const relPath = "\/knox-efota\/get-started\/authentication-for-knox-efota\/";
@@ -142,9 +142,7 @@
   <span>Web services</span>
   <ul>
     <li>
-  <a href="../../../knox-cloud-authentication" >Knox cloud services authentication</a>
-  <ul>
-    </ul>
+  <a href="../../../knox-cloud-authentication" >Knox Cloud API Authentication</a>
   </li>
 <li>
   <a href="../../../knox-webhook-notification" >Knox Webhook Notification</a>
@@ -340,7 +338,7 @@
             <div class="l-breadcrumb">
               <a class="fw-light text-black" href="../../../index.html">Home</a><span> /</span>
 <a class="fw-light text-black" href="../../../knox-efota.html">Knox E-FOTA</a><span> /</span>
-<a class="fw-light text-black" href="../../get-started">Get started</a><span> /</span>
+<a class="fw-light text-black" href="../index.html">Get started</a><span> /</span>
 
             </div>
             <div class="mt-4">
@@ -348,7 +346,7 @@
             </div>
             
 
-  <p><span>Last updated March  18th, 2025</span></p>
+  <p><span>Last updated February  12th, 2026</span></p>
 
 
     
@@ -438,9 +436,9 @@
       
         <p>Before you can access the Knox E-FOTA API, you must set up <a href="../../../knox-cloud-authentication/knox-oauth-2-0-authentication">Knox OAuth 2.0 Authentication</a>. This guide will cover how to set up authentication for secure access to the Knox E-FOTA API.</p>
 <div class="notice-note"><p>UAT test accounts require a different security certificate. To use UAT test accounts, please contact Samsung support.</p></div>
-<h2 id="register-an-app">Register an app</h2>
-<p>The first step of Knox OAuth 2.0 Authentication is to register your application. See the full steps on how to <a href="../../../knox-cloud-authentication/knox-oauth-2-0-authentication/register-new-app">Register new app</a>.</p>
-<p>OAuth 2.0 scopes are used to specify the level of access your application has to your customer&rsquo;s Knox E-FOTA resources. When you register your application, make sure you add the required scopes so your application can access various features of Knox E-FOTA.</p>
+<h2 id="register-a-cloud-app">Register a cloud app</h2>
+<p>The first step of Knox OAuth 2.0 Authentication is to register your cloud application. See the full steps on how to <a href="../../../knox-cloud-authentication/knox-oauth-2-0-authentication/register-new-app">Register a new cloud app</a>.</p>
+<p>OAuth 2.0 scopes are used to specify the level of access your cloud application has to your customer&rsquo;s Knox E-FOTA resources. When you register your cloud application, make sure you add the required scopes so your application can access various features of Knox E-FOTA.</p>
 <p>You can request more granular access permissions by only adding scopes for specific Knox E-FOTA operations. If multiple scopes are requested, the user must consent to all of them and may not select individual scopes. For a superior customer experience, please ensure that your application requests the least number of scope permissions.</p>
 <p>Here is a list of scopes you can add for Knox E-FOTA:</p>
 <div class="overflow-auto my-3"><table>
@@ -586,7 +584,7 @@
 <p>If this is a first-time request, the permission request timed out, or if permission was manually revoked by your customer, their browser is redirected to Samsung&rsquo;s authorization consent page. If your customer has already granted permission previously, this authorization page is bypassed and your customer is immediately redirected to the URL provided in the <code>redirect_uri</code> query parameter.</p>
 </li>
 <li>
-<p>Once redirected, your customer is prompted to log in to their Samsung Account or through an IdP.</p>
+<p>On Samsung&rsquo;s authorization consent page, your customer is prompted to log in to their Samsung Account or through an IdP.</p>
 </li>
 <li>
 <p>When your customer logs in, they are shown an access request page which identifies your application and outlines the particular permissions and scopes that your application is requesting. Here, they can choose which permissions to grant, and click <strong>Allow</strong> to approve your application&rsquo;s request to access their Knox E-FOTA resources on their behalf.</p>
@@ -711,7 +709,7 @@
     <p><img src="../../assets/access-requested-blocked.png" class="image-block-scale-50 img-thumbnail" alt="Access request page for end customer" /></p>
 </li>
 <li>
-<p>When your customer completes the authorization process, their browser is redirected to the URL provided in the <code>redirect_uri</code> query parameter. When this happens, your app is given an authorization code, which is used to exchange for an access token. To protect customer data, authorization codes have a short expiration time. You can configure the authorization code expiration time between 1 and 5 minutes when you <a href="../../../knox-cloud-authentication/knox-oauth-2-0-authentication/register-new-app">register your app</a>.</p>
+<p>When your customer completes the authorization process, their browser is redirected to the URL provided in the <code>redirect_uri</code> query parameter. When this happens, your app is given an authorization code, which is used to exchange for an access token. To protect customer data, authorization codes have a short expiration time. You can configure the authorization code expiration time between 1 and 5 minutes when you <a href="../../../knox-cloud-authentication/knox-oauth-2-0-authentication/register-new-app">register a cloud app</a>.</p>
 </li>
 </ol>
 <div class="notice-note"><ul><li><p>This approval process ensures that Samsung customers are aware of what level of granularity an application may access or action it may perform on their behalf. For example, <code>ke</code> scope will grant access to all Knox E-FOTA related actions and resources, while <code>ke.campaign</code> will only grant access to campaign related actions and resources.</p></li><li><p>If the scope permissions change in your app, your customers must re-authenticate to ensure that they have explicitly granted your application all of the permissions that it is requesting on their behalf.</p></li><li><p>If Knox E-FOTA is connected to your UEM console, your customer might encounter an issue where the EMM group sync feature is unavailable on their Knox E-FOTA console. On the console, the following warning is displayed:</p><blockquote><p>EMM group sync features are unavailable because your data is being managed outside Knox E-FOTA.</p></blockquote><p>If EMM group sync is unavailable, all EMM groups stop syncing, and the EMM instances are disconnected from Knox E-FOTA.</p></li></ul></div>
@@ -725,7 +723,7 @@
 <p>For more information, refer to the <a href="../../../knox-cloud-authentication/knox-oauth-2-0-authentication/knox-oauth-2-0-authentication-api#tag/Authorization-server/operation/getAuthorize">Authorization server API reference</a>.</p>
 <h3 id="step-2-exchange-authorization-code-for-an-access-token">Step 2: Exchange authorization code for an access token</h3>
 <p>The next step is to get an access token for your application using the authorization code from the previous step. See how to <a href="../../../knox-cloud-authentication/knox-oauth-2-0-authentication/for-uem-partners/step-2-get-access-and-refresh-tokens">Get access and refresh tokens</a>.</p>
-<p>To protect customer data, access tokens have an expiration time. You can configure the access token expiration time between 1 and 60 minutes when you <a href="../../../knox-cloud-authentication/knox-oauth-2-0-authentication/register-new-app">register your app</a>.</p>
+<p>To protect customer data, access tokens have an expiration time. You can configure the access token expiration time between 1 and 60 minutes when you <a href="../../../knox-cloud-authentication/knox-oauth-2-0-authentication/register-new-app">register a cloud app</a>.</p>
 <p>Here is a Java code sample that requests an access token:</p>
 
 <div class="accordion  mt-6 mb-4">
@@ -893,7 +891,7 @@
 
 <h3 id="step-4-refresh-access-token">Step 4: Refresh access token</h3>
 <p>To protect customer data, access tokens are only valid for a limited time. To avoid having to send your customers through the authorization process again, the <a href="../../../knox-cloud-authentication/knox-oauth-2-0-authentication/knox-oauth-2-0-authentication-api#tag/Authorization-server/operation/postToken">Knox OAuth 2.0 Authentication API</a> also provides a refresh token along with the access token in step 2.</p>
-<p>As long as it&rsquo;s valid, you can use the refresh token obtained to request for another access token without needing an authorization code, which means your customers won&rsquo;t have to go through the authorization process in step 1 again. The refresh token expiration time can be configured between 60 minutes and 90 days, and you can set this value when you <a href="../../../knox-cloud-authentication/knox-oauth-2-0-authentication/register-new-app">register your app</a>.</p>
+<p>As long as it&rsquo;s valid, you can use the refresh token obtained to request for another access token without needing an authorization code, which means your customers won&rsquo;t have to go through the authorization process in step 1 again. The refresh token expiration time can be configured between 60 minutes and 90 days, and you can set this value when you <a href="../../../knox-cloud-authentication/knox-oauth-2-0-authentication/register-new-app">register a cloud app</a>.</p>
 <p>Here is a Java code sample that requests for an access token using a refresh token:</p>
 
 <div class="accordion  mt-6 mb-4">
@@ -1024,7 +1022,7 @@
 <aside class="table-of-headings">
     <nav id="TableOfContents">
   <ul>
-    <li><a href="#register-an-app">Register an app</a></li>
+    <li><a href="#register-a-cloud-app">Register a cloud app</a></li>
     <li><a href="#3-legged-knox-oauth-20-authentication">3-legged Knox OAuth 2.0 Authentication</a>
       <ul>
         <li><a href="#step-1-request-an-authorization-code">Step 1: Request an authorization code</a></li>
