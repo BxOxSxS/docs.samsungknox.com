@@ -56,7 +56,7 @@
 
   
 
-<script onload="initBot()" defer src="https://dc-chbt.samsungknox.com/copilot/index.js?noCache=1772239241"></script>
+<script onload="initBot()" defer src="https://dc-chbt.samsungknox.com/copilot/index.js?noCache=1772832708"></script>
 <script defer>
     function initBot(){
       const relPath = "\/knox-sdk\/features\/independent-software-vendors-da\/network-platform-analytics\/npa-isv-integration\/";
@@ -3052,7 +3052,7 @@
           <div class="l-content-top mb-4">
             <div class="l-breadcrumb">
               <a class="fw-light text-black" href="../../../../../index.html">Home</a><span> /</span>
-<a class="fw-light text-black" href="../../../../../knox-sdk.html">Knox SDK</a><span> /</span>
+<a class="fw-light text-black" href="../../../../index.html">Knox SDK</a><span> /</span>
 <a class="fw-light text-black" href="../../../index.html">Features</a><span> /</span>
 <a class="fw-light text-black" href="../../index.html">Independent Software Vendors (DA)</a><span> /</span>
 <a class="fw-light text-black" href="../index.html">Network Platform Analytics</a><span> /</span>
@@ -3183,12 +3183,12 @@
 </li>
 <li>
 <p>Upon successful registration, call <code>NetworkAnalytics.start</code></p>
-<div class="highlight"><pre tabindex="0" style=";-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span>NetworkAnalytics mNap <span style="color:#666">=</span> NetworkAnalytics<span style="color:#666">.</span><span style="color:#7d9029">getInstance</span><span style="color:#666">(</span>mContext<span style="color:#666">);</span>
-</span></span><span style="display:flex;"><span>    <span style="color:#008000;font-weight:bold">if</span> <span style="color:#666">(</span>mNap <span style="color:#666">!=</span> <span style="color:#008000;font-weight:bold">null</span><span style="color:#666">)</span>
-</span></span><span style="display:flex;"><span>        <span style="color:#666">{</span>
-</span></span><span style="display:flex;"><span>            mNap<span style="color:#666">.</span><span style="color:#7d9029">start</span><span style="color:#666">(</span><span style="color:#ba2121">&#34;testing&#34;</span><span style="color:#666">);</span>
-</span></span><span style="display:flex;"><span>        <span style="color:#666">}</span>
-</span></span></code></pre></div><p>A successful call means the NPA framework binds to a service in the NPA client using the action <code>package_name.NetworkAnalyticsConstants.VENDOR_BIND_ACTION</code>.</p>
+<div class="highlight"><pre tabindex="0" style=";-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-java" data-lang="java"><span style="display:flex;"><span>NetworkAnalytics<span style="color:#bbb"> </span>mNap<span style="color:#bbb"> </span><span style="color:#666">=</span><span style="color:#bbb"> </span>NetworkAnalytics.<span style="color:#7d9029">getInstance</span>(mContext);<span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb">    </span><span style="color:#008000;font-weight:bold">if</span><span style="color:#bbb"> </span>(mNap<span style="color:#bbb"> </span><span style="color:#666">!=</span><span style="color:#bbb"> </span><span style="color:#008000;font-weight:bold">null</span>)<span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb">        </span>{<span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb">            </span>mNap.<span style="color:#7d9029">start</span>(<span style="color:#ba2121">&#34;testing&#34;</span>);<span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb">        </span>}<span style="color:#bbb">
+</span></span></span></code></pre></div><p>A successful call means the NPA framework binds to a service in the NPA client using the action <code>package_name.NetworkAnalyticsConstants.VENDOR_BIND_ACTION</code>.</p>
 <p>For example, if the package name is <code>com.samsung.test.networkmonitor_denali</code>, then the bind action is <code>com.samsung.test.networkmonitor_denali_namonitoraction</code>.</p>
 </li>
 <li>
@@ -3196,37 +3196,37 @@
 </li>
 </ol>
 <p>The NPA framework calls the <code>onActivateProfile()</code> API in the binder object and notifies the NPA client that the profile has been updated to receive data points. The framework then starts calling <code>onDataAvailable()</code> in the binder object at regular intervals depending on the data flow. The <code>onDataAvailable()</code> API contains the data-point information.</p>
-<div class="highlight"><pre tabindex="0" style=";-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#666">&lt;</span>service<span style="color:#666">&gt;</span>
-</span></span><span style="display:flex;"><span>  android<span style="color:#666">:</span>name<span style="color:#666">=</span><span style="color:#ba2121">&#34;$package_name.NPAService&#34;</span>
-</span></span><span style="display:flex;"><span>  android<span style="color:#666">:</span>enabled<span style="color:#666">=</span><span style="color:#ba2121">&#34;true&#34;</span>
-</span></span><span style="display:flex;"><span>  android<span style="color:#666">:</span>exported<span style="color:#666">=</span><span style="color:#ba2121">&#34;true&#34;</span><span style="color:#666">&gt;</span>
-</span></span><span style="display:flex;"><span>  <span style="color:#666">&lt;</span>intent<span style="color:#666">-</span>filter<span style="color:#666">&gt;</span>
-</span></span><span style="display:flex;"><span>    <span style="color:#666">&lt;</span>action android<span style="color:#666">:</span>name<span style="color:#666">=</span><span style="color:#ba2121">&#34;$package_name_namonitoraction&#34;</span> <span style="color:#666">/&gt;</span>
-</span></span><span style="display:flex;"><span>  <span style="color:#666">&lt;/</span>intent<span style="color:#666">-</span>filter<span style="color:#666">&gt;</span>
-</span></span><span style="display:flex;"><span><span style="color:#666">&lt;/</span>service<span style="color:#666">&gt;</span>
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#008000;font-weight:bold">public</span> <span style="color:#008000;font-weight:bold">class</span> <span style="color:#00f;font-weight:bold">NPAService</span> <span style="color:#008000;font-weight:bold">extends</span> Service <span style="color:#666">{</span>
-</span></span><span style="display:flex;"><span>  <span style="color:#a2f">@Override</span>
-</span></span><span style="display:flex;"><span>  <span style="color:#008000;font-weight:bold">public</span> IBinder <span style="color:#00f">onBind</span><span style="color:#666">(</span>Intent intent<span style="color:#666">)</span> <span style="color:#666">{</span>
-</span></span><span style="display:flex;"><span>    <span style="color:#008000;font-weight:bold">return</span> getBinder<span style="color:#666">();</span>
-</span></span><span style="display:flex;"><span>  <span style="color:#666">}</span> 
-</span></span><span style="display:flex;"><span>            <span style="color:#008000;font-weight:bold">private</span> INetworkAnalyticsService<span style="color:#666">.</span><span style="color:#7d9029">Stub</span> <span style="color:#00f">getBinder</span><span style="color:#666">()</span> <span style="color:#666">{</span>
-</span></span><span style="display:flex;"><span>    <span style="color:#008000;font-weight:bold">return</span> <span style="color:#008000;font-weight:bold">new</span> INetworkAnalyticsService<span style="color:#666">.</span><span style="color:#7d9029">Stub</span><span style="color:#666">()</span> <span style="color:#666">{</span>
-</span></span><span style="display:flex;"><span>      <span style="color:#a2f">@Override</span>
-</span></span><span style="display:flex;"><span>         <span style="color:#008000;font-weight:bold">public</span> <span style="color:#b00040">int</span> <span style="color:#00f">onDeactivateProfile</span><span style="color:#666">(</span>String profileName<span style="color:#666">,</span> <span style="color:#b00040">int</span> userId<span style="color:#666">)</span> <span style="color:#008000;font-weight:bold">throws</span> RemoteException<span style="color:#666">{</span>
-</span></span><span style="display:flex;"><span>          <span style="color:#008000;font-weight:bold">return</span> <span style="color:#666">0</span><span style="color:#666">;</span>
-</span></span><span style="display:flex;"><span>      <span style="color:#666">}</span>
-</span></span><span style="display:flex;"><span>            <span style="color:#a2f">@Override</span>
-</span></span><span style="display:flex;"><span>            <span style="color:#008000;font-weight:bold">public</span> <span style="color:#b00040">void</span> <span style="color:#00f">onDataAvailable</span><span style="color:#666">(</span>String profileName<span style="color:#666">,</span> List<span style="color:#666">&lt;</span>String<span style="color:#666">&gt;</span> data<span style="color:#666">)</span> <span style="color:#008000;font-weight:bold">throws</span> RemoteException <span style="color:#666">{</span>
-</span></span><span style="display:flex;"><span>      <span style="color:#666">}</span>
-</span></span><span style="display:flex;"><span>        <span style="color:#a2f">@Override</span>
-</span></span><span style="display:flex;"><span>        <span style="color:#008000;font-weight:bold">public</span> <span style="color:#b00040">int</span> <span style="color:#00f">onActivateProfile</span><span style="color:#666">(</span>String jsonProfile<span style="color:#666">,</span> <span style="color:#b00040">int</span> userId<span style="color:#666">,</span> String uniqueId<span style="color:#666">)</span> <span style="color:#008000;font-weight:bold">throws</span> RemoteException <span style="color:#666">{</span>
-</span></span><span style="display:flex;"><span>          <span style="color:#008000;font-weight:bold">return</span> <span style="color:#666">0</span><span style="color:#666">;</span>
-</span></span><span style="display:flex;"><span>      <span style="color:#666">}</span>
-</span></span><span style="display:flex;"><span>    <span style="color:#666">};</span>
-</span></span><span style="display:flex;"><span>  <span style="color:#666">}</span>
-</span></span><span style="display:flex;"><span><span style="color:#666">}</span>
-</span></span></code></pre></div><h2 id="stop-collecting-data">Stop Collecting Data</h2>
+<div class="highlight"><pre tabindex="0" style=";-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#666">&lt;</span>service<span style="color:#666">&gt;</span><span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb">  </span>android:name<span style="color:#666">=</span><span style="color:#ba2121">&#34;$package_name.NPAService&#34;</span><span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb">  </span>android:enabled<span style="color:#666">=</span><span style="color:#ba2121">&#34;true&#34;</span><span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb">  </span>android:exported<span style="color:#666">=</span><span style="color:#ba2121">&#34;true&#34;</span><span style="color:#666">&gt;</span><span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb">  </span><span style="color:#666">&lt;</span>intent<span style="color:#666">-</span>filter<span style="color:#666">&gt;</span><span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb">    </span><span style="color:#666">&lt;</span>action<span style="color:#bbb"> </span>android:name<span style="color:#666">=</span><span style="color:#ba2121">&#34;$package_name_namonitoraction&#34;</span><span style="color:#bbb"> </span><span style="color:#666">/&gt;</span><span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb">  </span><span style="color:#666">&lt;/</span>intent<span style="color:#666">-</span>filter<span style="color:#666">&gt;</span><span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#666">&lt;/</span>service<span style="color:#666">&gt;</span><span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#008000;font-weight:bold">public</span><span style="color:#bbb"> </span><span style="color:#008000;font-weight:bold">class</span> <span style="color:#00f;font-weight:bold">NPAService</span><span style="color:#bbb"> </span><span style="color:#008000;font-weight:bold">extends</span><span style="color:#bbb"> </span>Service<span style="color:#bbb"> </span>{<span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb">  </span><span style="color:#a2f">@Override</span><span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb">  </span><span style="color:#008000;font-weight:bold">public</span><span style="color:#bbb"> </span>IBinder<span style="color:#bbb"> </span><span style="color:#00f">onBind</span>(Intent<span style="color:#bbb"> </span>intent)<span style="color:#bbb"> </span>{<span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb">    </span><span style="color:#008000;font-weight:bold">return</span><span style="color:#bbb"> </span>getBinder();<span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb">  </span>}<span style="color:#bbb"> 
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb">            </span><span style="color:#008000;font-weight:bold">private</span><span style="color:#bbb"> </span>INetworkAnalyticsService.<span style="color:#7d9029">Stub</span><span style="color:#bbb"> </span><span style="color:#00f">getBinder</span>()<span style="color:#bbb"> </span>{<span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb">    </span><span style="color:#008000;font-weight:bold">return</span><span style="color:#bbb"> </span><span style="color:#008000;font-weight:bold">new</span><span style="color:#bbb"> </span>INetworkAnalyticsService.<span style="color:#7d9029">Stub</span>()<span style="color:#bbb"> </span>{<span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb">      </span><span style="color:#a2f">@Override</span><span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb">         </span><span style="color:#008000;font-weight:bold">public</span><span style="color:#bbb"> </span><span style="color:#b00040">int</span><span style="color:#bbb"> </span><span style="color:#00f">onDeactivateProfile</span>(String<span style="color:#bbb"> </span>profileName,<span style="color:#bbb"> </span><span style="color:#b00040">int</span><span style="color:#bbb"> </span>userId)<span style="color:#bbb"> </span><span style="color:#008000;font-weight:bold">throws</span><span style="color:#bbb"> </span>RemoteException{<span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb">          </span><span style="color:#008000;font-weight:bold">return</span><span style="color:#bbb"> </span>0;<span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb">      </span>}<span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb">            </span><span style="color:#a2f">@Override</span><span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb">            </span><span style="color:#008000;font-weight:bold">public</span><span style="color:#bbb"> </span><span style="color:#b00040">void</span><span style="color:#bbb"> </span><span style="color:#00f">onDataAvailable</span>(String<span style="color:#bbb"> </span>profileName,<span style="color:#bbb"> </span>List<span style="color:#666">&lt;</span>String<span style="color:#666">&gt;</span><span style="color:#bbb"> </span>data)<span style="color:#bbb"> </span><span style="color:#008000;font-weight:bold">throws</span><span style="color:#bbb"> </span>RemoteException<span style="color:#bbb"> </span>{<span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb">      </span>}<span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb">        </span><span style="color:#a2f">@Override</span><span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb">        </span><span style="color:#008000;font-weight:bold">public</span><span style="color:#bbb"> </span><span style="color:#b00040">int</span><span style="color:#bbb"> </span><span style="color:#00f">onActivateProfile</span>(String<span style="color:#bbb"> </span>jsonProfile,<span style="color:#bbb"> </span><span style="color:#b00040">int</span><span style="color:#bbb"> </span>userId,<span style="color:#bbb"> </span>String<span style="color:#bbb"> </span>uniqueId)<span style="color:#bbb"> </span><span style="color:#008000;font-weight:bold">throws</span><span style="color:#bbb"> </span>RemoteException<span style="color:#bbb"> </span>{<span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb">          </span><span style="color:#008000;font-weight:bold">return</span><span style="color:#bbb"> </span>0;<span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb">      </span>}<span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb">    </span>};<span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb">  </span>}<span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span>}<span style="color:#bbb">
+</span></span></span></code></pre></div><h2 id="stop-collecting-data">Stop Collecting Data</h2>
 <p>The following steps explain how the NPA client can detect when a profile is unregistered by the EMM. When this happens, the NPA framework responds to the change by stopping data flows to the NPA client.</p>
 <ol>
 <li>
@@ -3242,13 +3242,13 @@
 </ol>
 <h2 id="stop-collecting-data-without-unregistering-the-profile">Stop Collecting Data Without Unregistering the Profile</h2>
 <p>The NPA client can call <a href="../../../../../../devref/knox-sdk/reference/com/samsung/android/knox/net/nap/NetworkAnalytics.html#stop(java.lang.String)" target="_blank"><code>NetworkAnalytics.stop</code></a> to stop observing data flows.</p>
-<div class="highlight"><pre tabindex="0" style=";-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#408080;font-style:italic">// Use the same instance of the NetworkAnalytics class as when
-</span></span></span><span style="display:flex;"><span><span style="color:#408080;font-style:italic">// starting data collection
-</span></span></span><span style="display:flex;"><span><span style="color:#408080;font-style:italic"></span>NetworkAnalytics<span style="color:#666">.</span><span style="color:#7d9029">getInstance</span><span style="color:#666">(</span>mContext<span style="color:#666">);</span>
-</span></span><span style="display:flex;"><span>    <span style="color:#008000;font-weight:bold">if</span><span style="color:#666">(</span>mNap <span style="color:#666">!=</span> <span style="color:#008000;font-weight:bold">null</span><span style="color:#666">)</span> <span style="color:#666">{</span>
-</span></span><span style="display:flex;"><span>            mNap<span style="color:#666">.</span><span style="color:#7d9029">stop</span><span style="color:#666">(</span><span style="color:#ba2121">&#34;testing&#34;</span><span style="color:#666">);</span>
-</span></span><span style="display:flex;"><span>            <span style="color:#666">}</span>
-</span></span></code></pre></div><p>The NPA framework calls <code>onDeactivateProfile()</code> in the binder object to notify the NPA client that the profile has been successfully deactivated and that the client will not receive any further data flows.</p>
+<div class="highlight"><pre tabindex="0" style=";-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#408080;font-style:italic">// Use the same instance of the NetworkAnalytics class as when</span><span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#408080;font-style:italic">// starting data collection</span><span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span>NetworkAnalytics.<span style="color:#7d9029">getInstance</span>(mContext);<span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb">    </span><span style="color:#008000;font-weight:bold">if</span>(mNap<span style="color:#bbb"> </span><span style="color:#666">!=</span><span style="color:#bbb"> </span><span style="color:#008000;font-weight:bold">null</span>)<span style="color:#bbb"> </span>{<span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb">            </span>mNap.<span style="color:#7d9029">stop</span>(<span style="color:#ba2121">&#34;testing&#34;</span>);<span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb">            </span>}<span style="color:#bbb">
+</span></span></span></code></pre></div><p>The NPA framework calls <code>onDeactivateProfile()</code> in the binder object to notify the NPA client that the profile has been successfully deactivated and that the client will not receive any further data flows.</p>
 <h2 id="retrieve-profile-details-configured-by-the-emm">Retrieve Profile Details Configured by the EMM</h2>
 <p>The NPA client can retrieve the profile details through the <code>getJsonProfile()</code> call from the profile object. The profile object is available through a call to the <code>getProfiles()</code> API of the <code>NetworkAnalytics</code> class.</p>
 <p>See <a href="../../../mdm-providers/data/network-platform-analytics/npa-emm-integration">JSON format</a> for a complete description of the message format.</p>

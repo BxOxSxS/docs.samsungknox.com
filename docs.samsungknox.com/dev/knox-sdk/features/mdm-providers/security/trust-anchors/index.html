@@ -56,7 +56,7 @@
 
   
 
-<script onload="initBot()" defer src="https://dc-chbt.samsungknox.com/copilot/index.js?noCache=1772239241"></script>
+<script onload="initBot()" defer src="https://dc-chbt.samsungknox.com/copilot/index.js?noCache=1772832708"></script>
 <script defer>
     function initBot(){
       const relPath = "\/knox-sdk\/features\/mdm-providers\/security\/trust-anchors\/";
@@ -3052,7 +3052,7 @@
           <div class="l-content-top mb-4">
             <div class="l-breadcrumb">
               <a class="fw-light text-black" href="../../../../../index.html">Home</a><span> /</span>
-<a class="fw-light text-black" href="../../../../../knox-sdk.html">Knox SDK</a><span> /</span>
+<a class="fw-light text-black" href="../../../../index.html">Knox SDK</a><span> /</span>
 <a class="fw-light text-black" href="../../../index.html">Features</a><span> /</span>
 <a class="fw-light text-black" href="../../index.html">MDM Providers</a><span> /</span>
 <a class="fw-light text-black" href="../index.html">Security</a><span> /</span>
@@ -3639,12 +3639,12 @@
 <h2 id="knox-trust-anchor-examples">Knox Trust Anchor Examples</h2>
 <h4 id="install-credentials">Install credentials</h4>
 <p>The following API allows credentials installation without user interaction to any of the Android Credential Storages, such as Default, Wi-Fi, or VPN and Apps.</p>
-<div class="highlight"><pre tabindex="0" style=";-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span>SecurityPolicy<span style="color:#666">.</span><span style="color:#7d9029">installCertificateToKeystore</span> <span style="color:#666">(</span>String type<span style="color:#666">,</span> <span style="color:#b00040">byte</span><span style="color:#666">[]</span> value<span style="color:#666">,</span> String name<span style="color:#666">,</span> String password<span style="color:#666">,</span><span style="color:#b00040">int</span> keystore<span style="color:#666">)</span>
-</span></span></code></pre></div><p>Installed credentials are automatically trusted by the system if they are not blocked by the trusted or untrusted certificate list.</p>
+<div class="highlight"><pre tabindex="0" style=";-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-java" data-lang="java"><span style="display:flex;"><span>SecurityPolicy.<span style="color:#7d9029">installCertificateToKeystore</span><span style="color:#bbb"> </span>(String<span style="color:#bbb"> </span>type,<span style="color:#bbb"> </span><span style="color:#b00040">byte</span><span style="color:#666">[]</span><span style="color:#bbb"> </span>value,<span style="color:#bbb"> </span>String<span style="color:#bbb"> </span>name,<span style="color:#bbb"> </span>String<span style="color:#bbb"> </span>password,<span style="color:#b00040">int</span><span style="color:#bbb"> </span>keystore)<span style="color:#bbb">
+</span></span></span></code></pre></div><p>Installed credentials are automatically trusted by the system if they are not blocked by the trusted or untrusted certificate list.</p>
 <h4 id="remove-credentials">Remove credentials</h4>
 <p>The following API allows credentials removal without user interaction to any of the Android Credential Storages, such as Default, Wi-Fi, or VPN and Apps.</p>
-<div class="highlight"><pre tabindex="0" style=";-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span>SecurityPolicy<span style="color:#666">.</span><span style="color:#7d9029">deleteCertificateFromKeystore</span> <span style="color:#666">(</span>CertificateInfo certInfo<span style="color:#666">,</span> <span style="color:#b00040">int</span> keystore<span style="color:#666">)</span>
-</span></span></code></pre></div><h4 id="manage-trusted-certificate-lists">Manage trusted certificate lists</h4>
+<div class="highlight"><pre tabindex="0" style=";-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-java" data-lang="java"><span style="display:flex;"><span>SecurityPolicy.<span style="color:#7d9029">deleteCertificateFromKeystore</span><span style="color:#bbb"> </span>(CertificateInfo<span style="color:#bbb"> </span>certInfo,<span style="color:#bbb"> </span><span style="color:#b00040">int</span><span style="color:#bbb"> </span>keystore)<span style="color:#bbb">
+</span></span></span></code></pre></div><h4 id="manage-trusted-certificate-lists">Manage trusted certificate lists</h4>
 <p>The following APIs allow control over the trusted certificates list:</p>
 <ul>
 <li><code>CertificatePolicy.addTrustedCaCertificateList(List&lt;X509Certificate&gt; certificates) CertificatePolicy.removeTrustedCaCertificateList(List&lt;X509Certificate&gt; certificates)</code></li>
@@ -3655,153 +3655,153 @@
 <ol>
 <li>Get instance of CertificatePolicy and SecurityPolicy:</li>
 </ol>
-<div class="highlight"><pre tabindex="0" style=";-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span>EnterpriseDeviceManager edm <span style="color:#666">=</span> <span style="color:#666">(</span>EnterpriseDeviceManager<span style="color:#666">)</span> Context<span style="color:#666">.</span><span style="color:#7d9029">getSystemService</span><span style="color:#666">(</span>EnterpriseDeviceManager<span style="color:#666">.</span><span style="color:#7d9029">ENTERPRISE_POLICY_SERVICE</span><span style="color:#666">);</span>
-</span></span><span style="display:flex;"><span>SecurityPolicy securityPolicy <span style="color:#666">=</span> edm<span style="color:#666">.</span><span style="color:#7d9029">getSecurityPolicy</span><span style="color:#666">();</span>
-</span></span><span style="display:flex;"><span>CertificatePolicy certPolicy <span style="color:#666">=</span> CertificatePolicy<span style="color:#666">.</span><span style="color:#7d9029">getInstance</span><span style="color:#666">(</span>Context<span style="color:#666">);</span>
-</span></span></code></pre></div><ol start="2">
+<div class="highlight"><pre tabindex="0" style=";-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-java" data-lang="java"><span style="display:flex;"><span>EnterpriseDeviceManager<span style="color:#bbb"> </span>edm<span style="color:#bbb"> </span><span style="color:#666">=</span><span style="color:#bbb"> </span>(EnterpriseDeviceManager)<span style="color:#bbb"> </span>Context.<span style="color:#7d9029">getSystemService</span>(EnterpriseDeviceManager.<span style="color:#7d9029">ENTERPRISE_POLICY_SERVICE</span>);<span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span>SecurityPolicy<span style="color:#bbb"> </span>securityPolicy<span style="color:#bbb"> </span><span style="color:#666">=</span><span style="color:#bbb"> </span>edm.<span style="color:#7d9029">getSecurityPolicy</span>();<span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span>CertificatePolicy<span style="color:#bbb"> </span>certPolicy<span style="color:#bbb"> </span><span style="color:#666">=</span><span style="color:#bbb"> </span>CertificatePolicy.<span style="color:#7d9029">getInstance</span>(Context);<span style="color:#bbb">
+</span></span></span></code></pre></div><ol start="2">
 <li>Install two certificates:</li>
 </ol>
-<div class="highlight"><pre tabindex="0" style=";-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span>String cert1 <span style="color:#666">=</span> <span style="color:#ba2121">&#34;/sdcard/example1.crt&#34;</span><span style="color:#666">;</span>
-</span></span><span style="display:flex;"><span>String cert2 <span style="color:#666">=</span> <span style="color:#ba2121">&#34;/sdcard/example2.crt&#34;</span><span style="color:#666">;</span>
-</span></span><span style="display:flex;"><span>String cert3 <span style="color:#666">=</span> <span style="color:#ba2121">&#34;/sdcard/example3.crt&#34;</span><span style="color:#666">;</span>
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#666">/**</span>
-</span></span><span style="display:flex;"><span>  <span style="color:#666">*</span> Install cert1 and cert2<span style="color:#666">,</span> as Trust List is empty both certs will be
-</span></span><span style="display:flex;"><span>  <span style="color:#666">*</span> installed and they are trusted by the system<span style="color:#666">.</span>
-</span></span><span style="display:flex;"><span>  _<span style="color:#666">/</span>
-</span></span><span style="display:flex;"><span><span style="color:#b00040">byte</span><span style="color:#666">[]</span> cert1Data <span style="color:#666">=</span> getByteArray<span style="color:#666">(</span>cert1<span style="color:#666">);</span>
-</span></span><span style="display:flex;"><span><span style="color:#b00040">boolean</span> result <span style="color:#666">=</span> securityPolicy<span style="color:#666">.</span><span style="color:#7d9029">installCertificateToKeystore</span><span style="color:#666">(</span>SecurityPolicy<span style="color:#666">.</span><span style="color:#7d9029">TYPE_CERTIFICATE</span><span style="color:#666">,</span> cert1Data<span style="color:#666">,</span> <span style="color:#ba2121">&#34;alias1&#34;</span><span style="color:#666">,</span> <span style="color:#ba2121">&#34;cert_password&#34;</span><span style="color:#666">,</span> SecurityPolicy<span style="color:#666">.</span><span style="color:#7d9029">KEYSTORE_DEFAULT</span><span style="color:#666">);</span>
-</span></span><span style="display:flex;"><span><span style="color:#b00040">byte</span><span style="color:#666">[]</span> cert2Data <span style="color:#666">=</span> getByteArray<span style="color:#666">(</span>cert2<span style="color:#666">);</span>
-</span></span><span style="display:flex;"><span>result <span style="color:#666">=</span> securityPolicy<span style="color:#666">.</span><span style="color:#7d9029">installCertificateToKeystore</span><span style="color:#666">(</span>SecurityPolicy<span style="color:#666">.</span><span style="color:#7d9029">TYPE_CERTIFICATE</span><span style="color:#666">,</span> cert2Data<span style="color:#666">,</span> <span style="color:#ba2121">&#34;alias2&#34;</span><span style="color:#666">,</span> <span style="color:#ba2121">&#34;cert_password&#34;</span><span style="color:#666">,</span> SecurityPolicy<span style="color:#666">.</span><span style="color:#7d9029">KEYSTORE_DEFAULT</span><span style="color:#666">);</span>
-</span></span></code></pre></div><ol start="3">
+<div class="highlight"><pre tabindex="0" style=";-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-java" data-lang="java"><span style="display:flex;"><span>String<span style="color:#bbb"> </span>cert1<span style="color:#bbb"> </span><span style="color:#666">=</span><span style="color:#bbb"> </span><span style="color:#ba2121">&#34;/sdcard/example1.crt&#34;</span>;<span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span>String<span style="color:#bbb"> </span>cert2<span style="color:#bbb"> </span><span style="color:#666">=</span><span style="color:#bbb"> </span><span style="color:#ba2121">&#34;/sdcard/example2.crt&#34;</span>;<span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span>String<span style="color:#bbb"> </span>cert3<span style="color:#bbb"> </span><span style="color:#666">=</span><span style="color:#bbb"> </span><span style="color:#ba2121">&#34;/sdcard/example3.crt&#34;</span>;<span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#666">/**</span><span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb">  </span><span style="color:#666">*</span><span style="color:#bbb"> </span>Install<span style="color:#bbb"> </span>cert1<span style="color:#bbb"> </span>and<span style="color:#bbb"> </span>cert2,<span style="color:#bbb"> </span>as<span style="color:#bbb"> </span>Trust<span style="color:#bbb"> </span>List<span style="color:#bbb"> </span>is<span style="color:#bbb"> </span>empty<span style="color:#bbb"> </span>both<span style="color:#bbb"> </span>certs<span style="color:#bbb"> </span>will<span style="color:#bbb"> </span>be<span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb">  </span><span style="color:#666">*</span><span style="color:#bbb"> </span>installed<span style="color:#bbb"> </span>and<span style="color:#bbb"> </span>they<span style="color:#bbb"> </span>are<span style="color:#bbb"> </span>trusted<span style="color:#bbb"> </span>by<span style="color:#bbb"> </span>the<span style="color:#bbb"> </span>system.<span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb">  </span>_<span style="color:#666">/</span><span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#b00040">byte</span><span style="color:#666">[]</span><span style="color:#bbb"> </span>cert1Data<span style="color:#bbb"> </span><span style="color:#666">=</span><span style="color:#bbb"> </span>getByteArray(cert1);<span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#b00040">boolean</span><span style="color:#bbb"> </span>result<span style="color:#bbb"> </span><span style="color:#666">=</span><span style="color:#bbb"> </span>securityPolicy.<span style="color:#7d9029">installCertificateToKeystore</span>(SecurityPolicy.<span style="color:#7d9029">TYPE_CERTIFICATE</span>,<span style="color:#bbb"> </span>cert1Data,<span style="color:#bbb"> </span><span style="color:#ba2121">&#34;alias1&#34;</span>,<span style="color:#bbb"> </span><span style="color:#ba2121">&#34;cert_password&#34;</span>,<span style="color:#bbb"> </span>SecurityPolicy.<span style="color:#7d9029">KEYSTORE_DEFAULT</span>);<span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#b00040">byte</span><span style="color:#666">[]</span><span style="color:#bbb"> </span>cert2Data<span style="color:#bbb"> </span><span style="color:#666">=</span><span style="color:#bbb"> </span>getByteArray(cert2);<span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span>result<span style="color:#bbb"> </span><span style="color:#666">=</span><span style="color:#bbb"> </span>securityPolicy.<span style="color:#7d9029">installCertificateToKeystore</span>(SecurityPolicy.<span style="color:#7d9029">TYPE_CERTIFICATE</span>,<span style="color:#bbb"> </span>cert2Data,<span style="color:#bbb"> </span><span style="color:#ba2121">&#34;alias2&#34;</span>,<span style="color:#bbb"> </span><span style="color:#ba2121">&#34;cert_password&#34;</span>,<span style="color:#bbb"> </span>SecurityPolicy.<span style="color:#7d9029">KEYSTORE_DEFAULT</span>);<span style="color:#bbb">
+</span></span></span></code></pre></div><ol start="3">
 <li>Add one certificate to the Trusted List:</li>
 </ol>
-<div class="highlight"><pre tabindex="0" style=";-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span> <span style="color:#666">/*</span>_
-</span></span><span style="display:flex;"><span>   <span style="color:#666">*</span> After adding a certificate to the Trust List<span style="color:#666">,</span> only system pre<span style="color:#666">-</span>loaded
-</span></span><span style="display:flex;"><span>   <span style="color:#666">*</span> certificates and certificates in the trusted list will be trusted<span style="color:#666">.</span>
-</span></span><span style="display:flex;"><span>   <span style="color:#666">*</span> In <span style="color:#008000;font-weight:bold">this</span> <span style="color:#008000;font-weight:bold">case</span> cert2 will be uninstalled<span style="color:#666">,</span> as it is not trusted anymore
-</span></span><span style="display:flex;"><span>   <span style="color:#666">*</span> Once it becomes trusted again it will be automatically reinstalled<span style="color:#666">.</span>
-</span></span><span style="display:flex;"><span>   _<span style="color:#666">/</span>
-</span></span><span style="display:flex;"><span>   List trustedList <span style="color:#666">=</span> createX509CertificateList<span style="color:#666">(</span>cert1<span style="color:#666">);</span>
-</span></span><span style="display:flex;"><span>   certPolicy<span style="color:#666">.</span><span style="color:#7d9029">addTrustedCaCertificateList</span><span style="color:#666">(</span>trustedList<span style="color:#666">);</span>
-</span></span></code></pre></div><ol start="4">
+<div class="highlight"><pre tabindex="0" style=";-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#bbb"> </span><span style="color:#666">/*</span>_<span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb">   </span><span style="color:#666">*</span><span style="color:#bbb"> </span>After<span style="color:#bbb"> </span>adding<span style="color:#bbb"> </span>a<span style="color:#bbb"> </span>certificate<span style="color:#bbb"> </span>to<span style="color:#bbb"> </span>the<span style="color:#bbb"> </span>Trust<span style="color:#bbb"> </span>List,<span style="color:#bbb"> </span>only<span style="color:#bbb"> </span>system<span style="color:#bbb"> </span>pre<span style="color:#666">-</span>loaded<span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb">   </span><span style="color:#666">*</span><span style="color:#bbb"> </span>certificates<span style="color:#bbb"> </span>and<span style="color:#bbb"> </span>certificates<span style="color:#bbb"> </span>in<span style="color:#bbb"> </span>the<span style="color:#bbb"> </span>trusted<span style="color:#bbb"> </span>list<span style="color:#bbb"> </span>will<span style="color:#bbb"> </span>be<span style="color:#bbb"> </span>trusted.<span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb">   </span><span style="color:#666">*</span><span style="color:#bbb"> </span>In<span style="color:#bbb"> </span><span style="color:#008000;font-weight:bold">this</span><span style="color:#bbb"> </span><span style="color:#008000;font-weight:bold">case</span><span style="color:#bbb"> </span>cert2<span style="color:#bbb"> </span>will<span style="color:#bbb"> </span>be<span style="color:#bbb"> </span>uninstalled,<span style="color:#bbb"> </span>as<span style="color:#bbb"> </span>it<span style="color:#bbb"> </span>is<span style="color:#bbb"> </span>not<span style="color:#bbb"> </span>trusted<span style="color:#bbb"> </span>anymore<span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb">   </span><span style="color:#666">*</span><span style="color:#bbb"> </span>Once<span style="color:#bbb"> </span>it<span style="color:#bbb"> </span>becomes<span style="color:#bbb"> </span>trusted<span style="color:#bbb"> </span>again<span style="color:#bbb"> </span>it<span style="color:#bbb"> </span>will<span style="color:#bbb"> </span>be<span style="color:#bbb"> </span>automatically<span style="color:#bbb"> </span>reinstalled.<span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb">   </span>_<span style="color:#666">/</span><span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb">   </span>List<span style="color:#bbb"> </span>trustedList<span style="color:#bbb"> </span><span style="color:#666">=</span><span style="color:#bbb"> </span>createX509CertificateList(cert1);<span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb">   </span>certPolicy.<span style="color:#7d9029">addTrustedCaCertificateList</span>(trustedList);<span style="color:#bbb">
+</span></span></span></code></pre></div><ol start="4">
 <li>Installation of a certificate that is not on the Trusted List fails:</li>
 </ol>
-<div class="highlight"><pre tabindex="0" style=";-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span>  <span style="color:#408080;font-style:italic">/*_
+<div class="highlight"><pre tabindex="0" style=";-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#bbb">  </span><span style="color:#408080;font-style:italic">/*_
 </span></span></span><span style="display:flex;"><span><span style="color:#408080;font-style:italic">    * Installation of cert3 will fail as it is not in the Trusted
 </span></span></span><span style="display:flex;"><span><span style="color:#408080;font-style:italic">    * Credentials List.
-</span></span></span><span style="display:flex;"><span><span style="color:#408080;font-style:italic">    */</span>
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>    <span style="color:#b00040">byte</span><span style="color:#666">[]</span> cert3Data <span style="color:#666">=</span> getByteArray<span style="color:#666">(</span>cert3<span style="color:#666">);</span>
-</span></span><span style="display:flex;"><span>    result <span style="color:#666">=</span> securityPolicy<span style="color:#666">.</span><span style="color:#7d9029">installCertificateToKeystore</span><span style="color:#666">(</span>SecurityPolicy<span style="color:#666">.</span><span style="color:#7d9029">TYPE_CERTIFICATE</span><span style="color:#666">,</span> cert3Data<span style="color:#666">,</span> <span style="color:#ba2121">&#34;alias3&#34;</span><span style="color:#666">,</span> <span style="color:#ba2121">&#34;cert_password&#34;</span><span style="color:#666">,</span>SecurityPolicy<span style="color:#666">.</span><span style="color:#7d9029">KEYSTORE_DEFAULT</span><span style="color:#666">);</span>
-</span></span></code></pre></div><h4 id="pre-loaded-system-certificates">Pre-loaded system certificates</h4>
+</span></span></span><span style="display:flex;"><span><span style="color:#408080;font-style:italic">    */</span><span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb">    </span><span style="color:#b00040">byte</span><span style="color:#666">[]</span><span style="color:#bbb"> </span>cert3Data<span style="color:#bbb"> </span><span style="color:#666">=</span><span style="color:#bbb"> </span>getByteArray(cert3);<span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb">    </span>result<span style="color:#bbb"> </span><span style="color:#666">=</span><span style="color:#bbb"> </span>securityPolicy.<span style="color:#7d9029">installCertificateToKeystore</span>(SecurityPolicy.<span style="color:#7d9029">TYPE_CERTIFICATE</span>,<span style="color:#bbb"> </span>cert3Data,<span style="color:#bbb"> </span><span style="color:#ba2121">&#34;alias3&#34;</span>,<span style="color:#bbb"> </span><span style="color:#ba2121">&#34;cert_password&#34;</span>,SecurityPolicy.<span style="color:#7d9029">KEYSTORE_DEFAULT</span>);<span style="color:#bbb">
+</span></span></span></code></pre></div><h4 id="pre-loaded-system-certificates">Pre-loaded system certificates</h4>
 <p>The following examples illustrate how to enable or disable pre-loaded system certificates in user(personal) space and container space:</p>
 <p>B</p>
 <p>The following sample code illustrates how to disable all pre-loaded system certificates in user space (personal space):</p>
 <ol>
 <li>
 <p>Get instances of SecurityPolicy and CertificatePolicy:</p>
-<div class="highlight"><pre tabindex="0" style=";-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span>EnterpriseDeviceManager edm <span style="color:#666">=</span> <span style="color:#666">(</span>EnterpriseDeviceManager<span style="color:#666">)</span>getSystemService<span style="color:#666">(</span>EnterpriseDeviceManager<span style="color:#666">.</span><span style="color:#7d9029">ENTERPRISE_POLICY_SERVICE</span><span style="color:#666">);</span>
-</span></span><span style="display:flex;"><span>SecurityPolicy securityPolicy <span style="color:#666">=</span> edm<span style="color:#666">.</span><span style="color:#7d9029">getSecurityPolicy</span><span style="color:#666">();</span>
-</span></span><span style="display:flex;"><span>CertificatePolicy certPolicy <span style="color:#666">=</span> CertificatePolicy<span style="color:#666">.</span><span style="color:#7d9029">getInstance</span><span style="color:#666">(</span>context<span style="color:#666">);</span>
-</span></span></code></pre></div></li>
+<div class="highlight"><pre tabindex="0" style=";-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-java" data-lang="java"><span style="display:flex;"><span>EnterpriseDeviceManager<span style="color:#bbb"> </span>edm<span style="color:#bbb"> </span><span style="color:#666">=</span><span style="color:#bbb"> </span>(EnterpriseDeviceManager)getSystemService(EnterpriseDeviceManager.<span style="color:#7d9029">ENTERPRISE_POLICY_SERVICE</span>);<span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span>SecurityPolicy<span style="color:#bbb"> </span>securityPolicy<span style="color:#bbb"> </span><span style="color:#666">=</span><span style="color:#bbb"> </span>edm.<span style="color:#7d9029">getSecurityPolicy</span>();<span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span>CertificatePolicy<span style="color:#bbb"> </span>certPolicy<span style="color:#bbb"> </span><span style="color:#666">=</span><span style="color:#bbb"> </span>CertificatePolicy.<span style="color:#7d9029">getInstance</span>(context);<span style="color:#bbb">
+</span></span></span></code></pre></div></li>
 <li>
 <p>Get all system certificates:</p>
-<div class="highlight"><pre tabindex="0" style=";-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span>List<span style="color:#666">&lt;</span>CertificateInfo<span style="color:#666">&gt;</span> list <span style="color:#666">=</span> securityPolicy<span style="color:#666">.</span><span style="color:#7d9029">getCertificatesFromKeystore</span>
-</span></span><span style="display:flex;"><span>        <span style="color:#666">(</span>SecurityPolicy<span style="color:#666">.</span><span style="color:#7d9029">KEYSTORE_DEFAULT</span><span style="color:#666">);</span>
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>ArrayList<span style="color:#666">&lt;</span>CertificateInfo<span style="color:#666">&gt;</span> systemCerts <span style="color:#666">=</span> <span style="color:#008000;font-weight:bold">new</span>   
-</span></span><span style="display:flex;"><span>                    ArrayList<span style="color:#666">&lt;</span>CertificateInfo<span style="color:#666">&gt;();</span>
-</span></span><span style="display:flex;"><span>    <span style="color:#008000;font-weight:bold">for</span><span style="color:#666">(</span>CertificateInfo cert <span style="color:#666">:</span> list<span style="color:#666">)</span> <span style="color:#666">{</span>
-</span></span><span style="display:flex;"><span>    <span style="color:#008000;font-weight:bold">if</span><span style="color:#666">(</span>cert<span style="color:#666">.</span><span style="color:#7d9029">getSystemPreloaded</span><span style="color:#666">())</span> <span style="color:#666">{</span>
-</span></span><span style="display:flex;"><span>        systemCerts<span style="color:#666">.</span><span style="color:#7d9029">add</span><span style="color:#666">(</span>cert<span style="color:#666">);</span>
-</span></span><span style="display:flex;"><span>    <span style="color:#666">}</span>
-</span></span><span style="display:flex;"><span><span style="color:#666">}</span>
-</span></span></code></pre></div></li>
+<div class="highlight"><pre tabindex="0" style=";-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-java" data-lang="java"><span style="display:flex;"><span>List<span style="color:#666">&lt;</span>CertificateInfo<span style="color:#666">&gt;</span><span style="color:#bbb"> </span>list<span style="color:#bbb"> </span><span style="color:#666">=</span><span style="color:#bbb"> </span>securityPolicy.<span style="color:#7d9029">getCertificatesFromKeystore</span><span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb">        </span>(SecurityPolicy.<span style="color:#7d9029">KEYSTORE_DEFAULT</span>);<span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span>ArrayList<span style="color:#666">&lt;</span>CertificateInfo<span style="color:#666">&gt;</span><span style="color:#bbb"> </span>systemCerts<span style="color:#bbb"> </span><span style="color:#666">=</span><span style="color:#bbb"> </span><span style="color:#008000;font-weight:bold">new</span><span style="color:#bbb">   
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb">                    </span>ArrayList<span style="color:#666">&lt;</span>CertificateInfo<span style="color:#666">&gt;</span>();<span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb">    </span><span style="color:#008000;font-weight:bold">for</span>(CertificateInfo<span style="color:#bbb"> </span>cert<span style="color:#bbb"> </span>:<span style="color:#bbb"> </span>list)<span style="color:#bbb"> </span>{<span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb">    </span><span style="color:#008000;font-weight:bold">if</span>(cert.<span style="color:#7d9029">getSystemPreloaded</span>())<span style="color:#bbb"> </span>{<span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb">        </span>systemCerts.<span style="color:#7d9029">add</span>(cert);<span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb">    </span>}<span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span>}<span style="color:#bbb">
+</span></span></span></code></pre></div></li>
 <li>
 <p>Convert CertificateInfo list to X509Certificate list:</p>
-<div class="highlight"><pre tabindex="0" style=";-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span>ArrayList<span style="color:#666">&lt;</span>X509Certificate<span style="color:#666">&gt;</span> X509SystemCerts <span style="color:#666">=</span> <span style="color:#008000;font-weight:bold">new</span>   
-</span></span><span style="display:flex;"><span>                    ArrayList<span style="color:#666">&lt;</span>X509Certificate<span style="color:#666">&gt;();</span>
-</span></span><span style="display:flex;"><span><span style="color:#008000;font-weight:bold">for</span><span style="color:#666">(</span>CertificateInfo systemCert <span style="color:#666">:</span> systemCerts<span style="color:#666">)</span> <span style="color:#666">{</span>
-</span></span><span style="display:flex;"><span>    <span style="color:#008000;font-weight:bold">if</span><span style="color:#666">(</span>systemCert<span style="color:#666">.</span><span style="color:#7d9029">getCertificate</span><span style="color:#666">()</span> <span style="color:#008000;font-weight:bold">instanceof</span> X509Certificate<span style="color:#666">)</span> <span style="color:#666">{</span>
-</span></span><span style="display:flex;"><span>    X509SystemCerts<span style="color:#666">.</span><span style="color:#7d9029">add</span><span style="color:#666">((</span>X509Certificate<span style="color:#666">)</span> systemCert<span style="color:#666">.</span><span style="color:#7d9029">getCertificate</span><span style="color:#666">());</span>
-</span></span><span style="display:flex;"><span>    <span style="color:#666">}</span>  
-</span></span><span style="display:flex;"><span><span style="color:#666">}</span>
-</span></span></code></pre></div></li>
+<div class="highlight"><pre tabindex="0" style=";-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-java" data-lang="java"><span style="display:flex;"><span>ArrayList<span style="color:#666">&lt;</span>X509Certificate<span style="color:#666">&gt;</span><span style="color:#bbb"> </span>X509SystemCerts<span style="color:#bbb"> </span><span style="color:#666">=</span><span style="color:#bbb"> </span><span style="color:#008000;font-weight:bold">new</span><span style="color:#bbb">   
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb">                    </span>ArrayList<span style="color:#666">&lt;</span>X509Certificate<span style="color:#666">&gt;</span>();<span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#008000;font-weight:bold">for</span>(CertificateInfo<span style="color:#bbb"> </span>systemCert<span style="color:#bbb"> </span>:<span style="color:#bbb"> </span>systemCerts)<span style="color:#bbb"> </span>{<span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb">    </span><span style="color:#008000;font-weight:bold">if</span>(systemCert.<span style="color:#7d9029">getCertificate</span>()<span style="color:#bbb"> </span><span style="color:#008000;font-weight:bold">instanceof</span><span style="color:#bbb"> </span>X509Certificate)<span style="color:#bbb"> </span>{<span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb">    </span>X509SystemCerts.<span style="color:#7d9029">add</span>((X509Certificate)<span style="color:#bbb"> </span>systemCert.<span style="color:#7d9029">getCertificate</span>());<span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb">    </span>}<span style="color:#bbb">  
+</span></span></span><span style="display:flex;"><span>}<span style="color:#bbb">
+</span></span></span></code></pre></div></li>
 <li>
 <p>Disable system pre-loaded certificates using Untrusted Certificates List:</p>
-<div class="highlight"><pre tabindex="0" style=";-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#b00040">boolean</span> result <span style="color:#666">=</span> certPolicy<span style="color:#666">.</span><span style="color:#7d9029">addUntrustedCertificateList</span><span style="color:#666">(</span>X509SystemCerts<span style="color:#666">);</span>
-</span></span></code></pre></div></li>
+<div class="highlight"><pre tabindex="0" style=";-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#b00040">boolean</span><span style="color:#bbb"> </span>result<span style="color:#bbb"> </span><span style="color:#666">=</span><span style="color:#bbb"> </span>certPolicy.<span style="color:#7d9029">addUntrustedCertificateList</span>(X509SystemCerts);<span style="color:#bbb">
+</span></span></span></code></pre></div></li>
 </ol>
 <p><strong>Example 2</strong></p>
 <p>The following sample sample code illustrates how to enable all previously disabled system certificates in user space (personal space):</p>
 <ol>
 <li>
 <p>Get instance of CertificatePolicy:</p>
-<div class="highlight"><pre tabindex="0" style=";-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span>CertificatePolicy certPolicy <span style="color:#666">=</span> CertificatePolicy<span style="color:#666">.</span><span style="color:#7d9029">getInstance</span><span style="color:#666">(</span>context<span style="color:#666">);</span>
-</span></span></code></pre></div></li>
+<div class="highlight"><pre tabindex="0" style=";-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-java" data-lang="java"><span style="display:flex;"><span>CertificatePolicy<span style="color:#bbb"> </span>certPolicy<span style="color:#bbb"> </span><span style="color:#666">=</span><span style="color:#bbb"> </span>CertificatePolicy.<span style="color:#7d9029">getInstance</span>(context);<span style="color:#bbb">
+</span></span></span></code></pre></div></li>
 <li>
 <p>Re-enable system pre-loaded certificates cleaning Untrusted Certificates List:</p>
-<div class="highlight"><pre tabindex="0" style=";-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#b00040">boolean</span> result <span style="color:#666">=</span> certPolicy<span style="color:#666">.</span><span style="color:#7d9029">clearUntrustedCertificateList</span><span style="color:#666">();</span>
-</span></span></code></pre></div></li>
+<div class="highlight"><pre tabindex="0" style=";-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#b00040">boolean</span><span style="color:#bbb"> </span>result<span style="color:#bbb"> </span><span style="color:#666">=</span><span style="color:#bbb"> </span>certPolicy.<span style="color:#7d9029">clearUntrustedCertificateList</span>();<span style="color:#bbb">
+</span></span></span></code></pre></div></li>
 </ol>
 <p><strong>Example 3</strong></p>
 <p>The following sample code illustrates how to disable all pre-loaded system certificates for container:</p>
 <ol>
 <li>
 <p>Get instances of SecurityPolicy and CertificatePolicy from KnoxContainerManager:</p>
-<div class="highlight"><pre tabindex="0" style=";-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span>EnterpriseKnoxManager ekm <span style="color:#666">=</span> EnterpriseKnoxManager<span style="color:#666">.</span><span style="color:#7d9029">getInstance</span><span style="color:#666">();</span>
-</span></span><span style="display:flex;"><span><span style="color:#408080;font-style:italic">// When you create container successfully, containerID will be returned 
-</span></span></span><span style="display:flex;"><span><span style="color:#408080;font-style:italic">// using intent. Use this containerID in below API.
-</span></span></span><span style="display:flex;"><span><span style="color:#408080;font-style:italic"></span>KnoxContainerManager kcm <span style="color:#666">=</span> ekm<span style="color:#666">.</span><span style="color:#7d9029">getKnoxContainerManager</span><span style="color:#666">(</span>Context<span style="color:#666">,</span> 
-</span></span><span style="display:flex;"><span>containerID<span style="color:#666">);</span>
-</span></span><span style="display:flex;"><span>SecurityPolicy securityPolicy <span style="color:#666">=</span> kcm<span style="color:#666">.</span><span style="color:#7d9029">getSecurityPolicy</span><span style="color:#666">();</span>
-</span></span><span style="display:flex;"><span>CertificatePolicy certPolicy <span style="color:#666">=</span> kcm<span style="color:#666">.</span><span style="color:#7d9029">getCertificatePolicy</span><span style="color:#666">();</span>
-</span></span></code></pre></div></li>
+<div class="highlight"><pre tabindex="0" style=";-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-java" data-lang="java"><span style="display:flex;"><span>EnterpriseKnoxManager<span style="color:#bbb"> </span>ekm<span style="color:#bbb"> </span><span style="color:#666">=</span><span style="color:#bbb"> </span>EnterpriseKnoxManager.<span style="color:#7d9029">getInstance</span>();<span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#408080;font-style:italic">// When you create container successfully, containerID will be returned </span><span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#408080;font-style:italic">// using intent. Use this containerID in below API.</span><span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span>KnoxContainerManager<span style="color:#bbb"> </span>kcm<span style="color:#bbb"> </span><span style="color:#666">=</span><span style="color:#bbb"> </span>ekm.<span style="color:#7d9029">getKnoxContainerManager</span>(Context,<span style="color:#bbb"> 
+</span></span></span><span style="display:flex;"><span>containerID);<span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span>SecurityPolicy<span style="color:#bbb"> </span>securityPolicy<span style="color:#bbb"> </span><span style="color:#666">=</span><span style="color:#bbb"> </span>kcm.<span style="color:#7d9029">getSecurityPolicy</span>();<span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span>CertificatePolicy<span style="color:#bbb"> </span>certPolicy<span style="color:#bbb"> </span><span style="color:#666">=</span><span style="color:#bbb"> </span>kcm.<span style="color:#7d9029">getCertificatePolicy</span>();<span style="color:#bbb">
+</span></span></span></code></pre></div></li>
 <li>
 <p>Get all system certificates:</p>
-<div class="highlight"><pre tabindex="0" style=";-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span>List<span style="color:#666">&lt;</span>CertificateInfo<span style="color:#666">&gt;</span> list <span style="color:#666">=</span> securityPolicy<span style="color:#666">.</span><span style="color:#7d9029">getCertificatesFromKeystore</span>
-</span></span><span style="display:flex;"><span>        <span style="color:#666">(</span>SecurityPolicy<span style="color:#666">.</span><span style="color:#7d9029">KEYSTORE_DEFAULT</span><span style="color:#666">);</span>
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>ArrayList<span style="color:#666">&lt;</span>CertificateInfo<span style="color:#666">&gt;</span> systemCerts <span style="color:#666">=</span> <span style="color:#008000;font-weight:bold">new</span>   
-</span></span><span style="display:flex;"><span>                    ArrayList<span style="color:#666">&lt;</span>CertificateInfo<span style="color:#666">&gt;();</span>
-</span></span><span style="display:flex;"><span>    <span style="color:#008000;font-weight:bold">for</span><span style="color:#666">(</span>CertificateInfo cert <span style="color:#666">:</span> list<span style="color:#666">)</span> <span style="color:#666">{</span>
-</span></span><span style="display:flex;"><span>    <span style="color:#008000;font-weight:bold">if</span><span style="color:#666">(</span>cert<span style="color:#666">.</span><span style="color:#7d9029">getSystemPreloaded</span><span style="color:#666">())</span> <span style="color:#666">{</span>
-</span></span><span style="display:flex;"><span>        systemCerts<span style="color:#666">.</span><span style="color:#7d9029">add</span><span style="color:#666">(</span>cert<span style="color:#666">);</span>
-</span></span><span style="display:flex;"><span>    <span style="color:#666">}</span>
-</span></span><span style="display:flex;"><span><span style="color:#666">}</span>
-</span></span></code></pre></div></li>
+<div class="highlight"><pre tabindex="0" style=";-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-java" data-lang="java"><span style="display:flex;"><span>List<span style="color:#666">&lt;</span>CertificateInfo<span style="color:#666">&gt;</span><span style="color:#bbb"> </span>list<span style="color:#bbb"> </span><span style="color:#666">=</span><span style="color:#bbb"> </span>securityPolicy.<span style="color:#7d9029">getCertificatesFromKeystore</span><span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb">        </span>(SecurityPolicy.<span style="color:#7d9029">KEYSTORE_DEFAULT</span>);<span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span>ArrayList<span style="color:#666">&lt;</span>CertificateInfo<span style="color:#666">&gt;</span><span style="color:#bbb"> </span>systemCerts<span style="color:#bbb"> </span><span style="color:#666">=</span><span style="color:#bbb"> </span><span style="color:#008000;font-weight:bold">new</span><span style="color:#bbb">   
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb">                    </span>ArrayList<span style="color:#666">&lt;</span>CertificateInfo<span style="color:#666">&gt;</span>();<span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb">    </span><span style="color:#008000;font-weight:bold">for</span>(CertificateInfo<span style="color:#bbb"> </span>cert<span style="color:#bbb"> </span>:<span style="color:#bbb"> </span>list)<span style="color:#bbb"> </span>{<span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb">    </span><span style="color:#008000;font-weight:bold">if</span>(cert.<span style="color:#7d9029">getSystemPreloaded</span>())<span style="color:#bbb"> </span>{<span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb">        </span>systemCerts.<span style="color:#7d9029">add</span>(cert);<span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb">    </span>}<span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span>}<span style="color:#bbb">
+</span></span></span></code></pre></div></li>
 <li>
 <p>Convert CertificateInfo list to X509Certificate list:</p>
-<div class="highlight"><pre tabindex="0" style=";-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span>ArrayList<span style="color:#666">&lt;</span>X509Certificate<span style="color:#666">&gt;</span> X509SystemCerts <span style="color:#666">=</span> <span style="color:#008000;font-weight:bold">new</span>   
-</span></span><span style="display:flex;"><span>                    ArrayList<span style="color:#666">&lt;</span>X509Certificate<span style="color:#666">&gt;();</span>
-</span></span><span style="display:flex;"><span><span style="color:#008000;font-weight:bold">for</span><span style="color:#666">(</span>CertificateInfo systemCert <span style="color:#666">:</span> systemCerts<span style="color:#666">)</span> <span style="color:#666">{</span>
-</span></span><span style="display:flex;"><span>    <span style="color:#008000;font-weight:bold">if</span><span style="color:#666">(</span>systemCert<span style="color:#666">.</span><span style="color:#7d9029">getCertificate</span><span style="color:#666">()</span> <span style="color:#008000;font-weight:bold">instanceof</span> X509Certificate<span style="color:#666">)</span> <span style="color:#666">{</span>
-</span></span><span style="display:flex;"><span>    X509SystemCerts<span style="color:#666">.</span><span style="color:#7d9029">add</span><span style="color:#666">((</span>X509Certificate<span style="color:#666">)</span>systemCert<span style="color:#666">.</span><span style="color:#7d9029">getCertificate</span><span style="color:#666">());</span>
-</span></span><span style="display:flex;"><span>    <span style="color:#666">}</span>
-</span></span><span style="display:flex;"><span><span style="color:#666">}</span>
-</span></span></code></pre></div></li>
+<div class="highlight"><pre tabindex="0" style=";-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-java" data-lang="java"><span style="display:flex;"><span>ArrayList<span style="color:#666">&lt;</span>X509Certificate<span style="color:#666">&gt;</span><span style="color:#bbb"> </span>X509SystemCerts<span style="color:#bbb"> </span><span style="color:#666">=</span><span style="color:#bbb"> </span><span style="color:#008000;font-weight:bold">new</span><span style="color:#bbb">   
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb">                    </span>ArrayList<span style="color:#666">&lt;</span>X509Certificate<span style="color:#666">&gt;</span>();<span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#008000;font-weight:bold">for</span>(CertificateInfo<span style="color:#bbb"> </span>systemCert<span style="color:#bbb"> </span>:<span style="color:#bbb"> </span>systemCerts)<span style="color:#bbb"> </span>{<span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb">    </span><span style="color:#008000;font-weight:bold">if</span>(systemCert.<span style="color:#7d9029">getCertificate</span>()<span style="color:#bbb"> </span><span style="color:#008000;font-weight:bold">instanceof</span><span style="color:#bbb"> </span>X509Certificate)<span style="color:#bbb"> </span>{<span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb">    </span>X509SystemCerts.<span style="color:#7d9029">add</span>((X509Certificate)systemCert.<span style="color:#7d9029">getCertificate</span>());<span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb">    </span>}<span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span>}<span style="color:#bbb">
+</span></span></span></code></pre></div></li>
 <li>
 <p>Disable system pre-loaded certificates using Untrusted Certificates List:</p>
-<div class="highlight"><pre tabindex="0" style=";-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#b00040">boolean</span> result <span style="color:#666">=</span> certPolicy<span style="color:#666">.</span><span style="color:#7d9029">addUntrustedCertificateList</span><span style="color:#666">(</span>X509SystemCerts<span style="color:#666">);</span>
-</span></span></code></pre></div></li>
+<div class="highlight"><pre tabindex="0" style=";-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#b00040">boolean</span><span style="color:#bbb"> </span>result<span style="color:#bbb"> </span><span style="color:#666">=</span><span style="color:#bbb"> </span>certPolicy.<span style="color:#7d9029">addUntrustedCertificateList</span>(X509SystemCerts);<span style="color:#bbb">
+</span></span></span></code></pre></div></li>
 </ol>
 <p><strong>Example 4</strong></p>
 <p>The following sample code illustrates how to re-enable all pre-loaded system certificates for container:</p>
 <ol>
 <li>
 <p>Get instances of CertificatePolicy from KnoxContainerManager:</p>
-<div class="highlight"><pre tabindex="0" style=";-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span>EnterpriseKnoxManager ekm <span style="color:#666">=</span> EnterpriseKnoxManager<span style="color:#666">.</span><span style="color:#7d9029">getInstance</span><span style="color:#666">();</span>
-</span></span><span style="display:flex;"><span><span style="color:#408080;font-style:italic">// When you create container successfully, containerID will be returned 
-</span></span></span><span style="display:flex;"><span><span style="color:#408080;font-style:italic">// using intent. Use this containerID in below API.
-</span></span></span><span style="display:flex;"><span><span style="color:#408080;font-style:italic"></span>KnoxContainerManager kcm <span style="color:#666">=</span> ekm<span style="color:#666">.</span><span style="color:#7d9029">getKnoxContainerManager</span><span style="color:#666">(</span>Context<span style="color:#666">,</span> 
-</span></span><span style="display:flex;"><span>containerID<span style="color:#666">);</span>
-</span></span><span style="display:flex;"><span>CertificatePolicy certPolicy <span style="color:#666">=</span> kcm<span style="color:#666">.</span><span style="color:#7d9029">getCertificatePolicy</span><span style="color:#666">();</span>
-</span></span></code></pre></div></li>
+<div class="highlight"><pre tabindex="0" style=";-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-java" data-lang="java"><span style="display:flex;"><span>EnterpriseKnoxManager<span style="color:#bbb"> </span>ekm<span style="color:#bbb"> </span><span style="color:#666">=</span><span style="color:#bbb"> </span>EnterpriseKnoxManager.<span style="color:#7d9029">getInstance</span>();<span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#408080;font-style:italic">// When you create container successfully, containerID will be returned </span><span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#408080;font-style:italic">// using intent. Use this containerID in below API.</span><span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span>KnoxContainerManager<span style="color:#bbb"> </span>kcm<span style="color:#bbb"> </span><span style="color:#666">=</span><span style="color:#bbb"> </span>ekm.<span style="color:#7d9029">getKnoxContainerManager</span>(Context,<span style="color:#bbb"> 
+</span></span></span><span style="display:flex;"><span>containerID);<span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span>CertificatePolicy<span style="color:#bbb"> </span>certPolicy<span style="color:#bbb"> </span><span style="color:#666">=</span><span style="color:#bbb"> </span>kcm.<span style="color:#7d9029">getCertificatePolicy</span>();<span style="color:#bbb">
+</span></span></span></code></pre></div></li>
 <li>
 <p>Re-enable system pre-loaded certificates cleaning Untrusted Certificates List:</p>
-<div class="highlight"><pre tabindex="0" style=";-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#b00040">boolean</span> result <span style="color:#666">=</span> certPolicy<span style="color:#666">.</span><span style="color:#7d9029">clearUntrustedCertificateList</span><span style="color:#666">();</span>
-</span></span></code></pre></div></li>
+<div class="highlight"><pre tabindex="0" style=";-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#b00040">boolean</span><span style="color:#bbb"> </span>result<span style="color:#bbb"> </span><span style="color:#666">=</span><span style="color:#bbb"> </span>certPolicy.<span style="color:#7d9029">clearUntrustedCertificateList</span>();<span style="color:#bbb">
+</span></span></span></code></pre></div></li>
 </ol>
 <h4 id="monitor-trusted-credential-store-using-audit-logs">Monitor trusted credential store using audit logs</h4>
 <p>The following examples illustrate how to monitor trusted credential store using audit logs:</p>
@@ -3810,98 +3810,98 @@
 <ol>
 <li>
 <p>Get instances of AuditLog, SecurityPolicy, and CertificatePolicy:</p>
-<div class="highlight"><pre tabindex="0" style=";-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span>EnterpriseDeviceManager edm <span style="color:#666">=</span> EnterpriseDeviceManager<span style="color:#666">.</span><span style="color:#7d9029">getInstance</span><span style="color:#666">(</span>context<span style="color:#666">);</span>
-</span></span><span style="display:flex;"><span>SecurityPolicy securityPolicy <span style="color:#666">=</span> edm<span style="color:#666">.</span><span style="color:#7d9029">getSecurityPolicy</span><span style="color:#666">();</span>
-</span></span><span style="display:flex;"><span>AuditLog auditLogService <span style="color:#666">=</span> AuditLog<span style="color:#666">.</span><span style="color:#7d9029">getInstance</span><span style="color:#666">(</span>Context<span style="color:#666">);</span>    
-</span></span><span style="display:flex;"><span>CertificatePolicy certPolicy <span style="color:#666">=</span> CertificatePolicy<span style="color:#666">.</span><span style="color:#7d9029">getInstance</span><span style="color:#666">(</span>context<span style="color:#666">);</span>
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#408080;font-style:italic">// get SecurityPolicy also for container, to trigger container events
-</span></span></span><span style="display:flex;"><span><span style="color:#408080;font-style:italic"></span>EnterpriseKnoxManager ekm <span style="color:#666">=</span> EnterpriseKnoxManager<span style="color:#666">.</span><span style="color:#7d9029">getInstance</span><span style="color:#666">();</span>
-</span></span><span style="display:flex;"><span><span style="color:#408080;font-style:italic">// When you create container successfully, containerID will be returned 
-</span></span></span><span style="display:flex;"><span><span style="color:#408080;font-style:italic">// using intent. Use this containerID in below API.
-</span></span></span><span style="display:flex;"><span><span style="color:#408080;font-style:italic"></span>KnoxContainerManager kcm <span style="color:#666">=</span> ekm<span style="color:#666">.</span><span style="color:#7d9029">getKnoxContainerManager</span><span style="color:#666">(</span>Context<span style="color:#666">,</span> 
-</span></span><span style="display:flex;"><span>containerID<span style="color:#666">);</span>
-</span></span><span style="display:flex;"><span>SecurityPolicy containerSecurityPolicy <span style="color:#666">=</span> kcm<span style="color:#666">.</span><span style="color:#7d9029">getSecurityPolicy</span><span style="color:#666">();</span>
-</span></span></code></pre></div></li>
+<div class="highlight"><pre tabindex="0" style=";-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-java" data-lang="java"><span style="display:flex;"><span>EnterpriseDeviceManager<span style="color:#bbb"> </span>edm<span style="color:#bbb"> </span><span style="color:#666">=</span><span style="color:#bbb"> </span>EnterpriseDeviceManager.<span style="color:#7d9029">getInstance</span>(context);<span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span>SecurityPolicy<span style="color:#bbb"> </span>securityPolicy<span style="color:#bbb"> </span><span style="color:#666">=</span><span style="color:#bbb"> </span>edm.<span style="color:#7d9029">getSecurityPolicy</span>();<span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span>AuditLog<span style="color:#bbb"> </span>auditLogService<span style="color:#bbb"> </span><span style="color:#666">=</span><span style="color:#bbb"> </span>AuditLog.<span style="color:#7d9029">getInstance</span>(Context);<span style="color:#bbb">    
+</span></span></span><span style="display:flex;"><span>CertificatePolicy<span style="color:#bbb"> </span>certPolicy<span style="color:#bbb"> </span><span style="color:#666">=</span><span style="color:#bbb"> </span>CertificatePolicy.<span style="color:#7d9029">getInstance</span>(context);<span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#408080;font-style:italic">// get SecurityPolicy also for container, to trigger container events</span><span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span>EnterpriseKnoxManager<span style="color:#bbb"> </span>ekm<span style="color:#bbb"> </span><span style="color:#666">=</span><span style="color:#bbb"> </span>EnterpriseKnoxManager.<span style="color:#7d9029">getInstance</span>();<span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#408080;font-style:italic">// When you create container successfully, containerID will be returned </span><span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#408080;font-style:italic">// using intent. Use this containerID in below API.</span><span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span>KnoxContainerManager<span style="color:#bbb"> </span>kcm<span style="color:#bbb"> </span><span style="color:#666">=</span><span style="color:#bbb"> </span>ekm.<span style="color:#7d9029">getKnoxContainerManager</span>(Context,<span style="color:#bbb"> 
+</span></span></span><span style="display:flex;"><span>containerID);<span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span>SecurityPolicy<span style="color:#bbb"> </span>containerSecurityPolicy<span style="color:#bbb"> </span><span style="color:#666">=</span><span style="color:#bbb"> </span>kcm.<span style="color:#7d9029">getSecurityPolicy</span>();<span style="color:#bbb">
+</span></span></span></code></pre></div></li>
 <li>
 <p>Enable AuditLog:</p>
-<div class="highlight"><pre tabindex="0" style=";-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#b00040">boolean</span> ret <span style="color:#666">=</span> auditLogService<span style="color:#666">.</span><span style="color:#7d9029">enableAuditLog</span><span style="color:#666">();</span>
-</span></span></code></pre></div></li>
+<div class="highlight"><pre tabindex="0" style=";-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#b00040">boolean</span><span style="color:#bbb"> </span>ret<span style="color:#bbb"> </span><span style="color:#666">=</span><span style="color:#bbb"> </span>auditLogService.<span style="color:#7d9029">enableAuditLog</span>();<span style="color:#bbb">
+</span></span></span></code></pre></div></li>
 <li>
 <p>Trigger some Trusted credentials events to check to AuditLog messages later:</p>
-<div class="highlight"><pre tabindex="0" style=";-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span>String filePath <span style="color:#666">=</span> <span style="color:#ba2121">&#34;/sdcard/class3.crt&#34;</span><span style="color:#666">;</span>
-</span></span><span style="display:flex;"><span><span style="color:#b00040">byte</span><span style="color:#666">[]</span> certData <span style="color:#666">=</span> getByteArray<span style="color:#666">(</span>filePath<span style="color:#666">);</span>
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#b00040">boolean</span> result <span style="color:#666">=</span> securityPolicy<span style="color:#666">.</span><span style="color:#7d9029">installCertificateToKeystore</span>
-</span></span><span style="display:flex;"><span>            <span style="color:#666">(</span>SecurityPolicy<span style="color:#666">.</span><span style="color:#7d9029">TYPE_CERTIFICATE</span><span style="color:#666">,</span> certData<span style="color:#666">,</span> <span style="color:#ba2121">&#34;alias&#34;</span><span style="color:#666">,</span> 
-</span></span><span style="display:flex;"><span>            <span style="color:#ba2121">&#34;cert_password&#34;</span><span style="color:#666">,</span> SecurityPolicy<span style="color:#666">.</span><span style="color:#7d9029">KEYSTORE_FOR_WIFI</span><span style="color:#666">);</span>
-</span></span><span style="display:flex;"><span>result <span style="color:#666">=</span> containerSecurityPolicy<span style="color:#666">.</span><span style="color:#7d9029">installCertificateToKeystore</span>
-</span></span><span style="display:flex;"><span>            <span style="color:#666">(</span>SecurityPolicy<span style="color:#666">.</span><span style="color:#7d9029">TYPE_CERTIFICATE</span><span style="color:#666">,</span> certData<span style="color:#666">,</span> <span style="color:#ba2121">&#34;alias&#34;</span><span style="color:#666">,</span> 
-</span></span><span style="display:flex;"><span>            <span style="color:#ba2121">&#34;cert_password&#34;</span><span style="color:#666">,</span> SecurityPolicy<span style="color:#666">.</span><span style="color:#7d9029">KEYSTORE_DEFAULT</span><span style="color:#666">);</span>
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>X509Certificate cert<span style="color:#666">;</span>
-</span></span><span style="display:flex;"><span><span style="color:#008000;font-weight:bold">try</span> <span style="color:#666">{</span>
-</span></span><span style="display:flex;"><span>    CertificateFactory certFactory <span style="color:#666">=</span>   
-</span></span><span style="display:flex;"><span>            CertificateFactory<span style="color:#666">.</span><span style="color:#7d9029">getInstance</span><span style="color:#666">(</span><span style="color:#ba2121">&#34;X.509&#34;</span><span style="color:#666">);</span>
-</span></span><span style="display:flex;"><span>    InputStream in <span style="color:#666">=</span> <span style="color:#008000;font-weight:bold">new</span> ByteArrayInputStream<span style="color:#666">(</span>certData<span style="color:#666">);</span>
-</span></span><span style="display:flex;"><span>    cert <span style="color:#666">=</span> <span style="color:#666">(</span>X509Certificate<span style="color:#666">)</span> certFactory<span style="color:#666">.</span><span style="color:#7d9029">generateCertificate</span><span style="color:#666">(</span>in<span style="color:#666">);</span>
-</span></span><span style="display:flex;"><span><span style="color:#666">}</span> <span style="color:#008000;font-weight:bold">catch</span> <span style="color:#666">(</span>CertificateException certEx<span style="color:#666">)</span> <span style="color:#666">{</span>
-</span></span><span style="display:flex;"><span>    Log<span style="color:#666">.</span><span style="color:#7d9029">w</span><span style="color:#666">(</span>TAG<span style="color:#666">,</span> <span style="color:#ba2121">&#34;certificate factory exception&#34;</span><span style="color:#666">,</span> certEx<span style="color:#666">);</span>
-</span></span><span style="display:flex;"><span>    <span style="color:#008000;font-weight:bold">return</span><span style="color:#666">;</span>
-</span></span><span style="display:flex;"><span><span style="color:#666">}</span>
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>ArrayList<span style="color:#666">&lt;</span>X509Certificate<span style="color:#666">&gt;</span> X509CertsList <span style="color:#666">=</span> <span style="color:#008000;font-weight:bold">new</span>   
-</span></span><span style="display:flex;"><span>                    ArrayList<span style="color:#666">&lt;</span>X509Certificate<span style="color:#666">&gt;();</span>
-</span></span><span style="display:flex;"><span>X509CertsList<span style="color:#666">.</span><span style="color:#7d9029">add</span><span style="color:#666">(</span>cert<span style="color:#666">);</span>
-</span></span><span style="display:flex;"><span>result <span style="color:#666">=</span> certPolicy<span style="color:#666">.</span><span style="color:#7d9029">addUntrustedCertificateList</span><span style="color:#666">(</span>X509CertsList<span style="color:#666">);</span>
-</span></span><span style="display:flex;"><span>result <span style="color:#666">=</span> certPolicy<span style="color:#666">.</span><span style="color:#7d9029">removeUntrustedCertificateList</span><span style="color:#666">(</span>X509CertsList<span style="color:#666">);</span>
-</span></span></code></pre></div></li>
+<div class="highlight"><pre tabindex="0" style=";-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-java" data-lang="java"><span style="display:flex;"><span>String<span style="color:#bbb"> </span>filePath<span style="color:#bbb"> </span><span style="color:#666">=</span><span style="color:#bbb"> </span><span style="color:#ba2121">&#34;/sdcard/class3.crt&#34;</span>;<span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#b00040">byte</span><span style="color:#666">[]</span><span style="color:#bbb"> </span>certData<span style="color:#bbb"> </span><span style="color:#666">=</span><span style="color:#bbb"> </span>getByteArray(filePath);<span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#b00040">boolean</span><span style="color:#bbb"> </span>result<span style="color:#bbb"> </span><span style="color:#666">=</span><span style="color:#bbb"> </span>securityPolicy.<span style="color:#7d9029">installCertificateToKeystore</span><span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb">            </span>(SecurityPolicy.<span style="color:#7d9029">TYPE_CERTIFICATE</span>,<span style="color:#bbb"> </span>certData,<span style="color:#bbb"> </span><span style="color:#ba2121">&#34;alias&#34;</span>,<span style="color:#bbb"> 
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb">            </span><span style="color:#ba2121">&#34;cert_password&#34;</span>,<span style="color:#bbb"> </span>SecurityPolicy.<span style="color:#7d9029">KEYSTORE_FOR_WIFI</span>);<span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span>result<span style="color:#bbb"> </span><span style="color:#666">=</span><span style="color:#bbb"> </span>containerSecurityPolicy.<span style="color:#7d9029">installCertificateToKeystore</span><span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb">            </span>(SecurityPolicy.<span style="color:#7d9029">TYPE_CERTIFICATE</span>,<span style="color:#bbb"> </span>certData,<span style="color:#bbb"> </span><span style="color:#ba2121">&#34;alias&#34;</span>,<span style="color:#bbb"> 
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb">            </span><span style="color:#ba2121">&#34;cert_password&#34;</span>,<span style="color:#bbb"> </span>SecurityPolicy.<span style="color:#7d9029">KEYSTORE_DEFAULT</span>);<span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span>X509Certificate<span style="color:#bbb"> </span>cert;<span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#008000;font-weight:bold">try</span><span style="color:#bbb"> </span>{<span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb">    </span>CertificateFactory<span style="color:#bbb"> </span>certFactory<span style="color:#bbb"> </span><span style="color:#666">=</span><span style="color:#bbb">   
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb">            </span>CertificateFactory.<span style="color:#7d9029">getInstance</span>(<span style="color:#ba2121">&#34;X.509&#34;</span>);<span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb">    </span>InputStream<span style="color:#bbb"> </span>in<span style="color:#bbb"> </span><span style="color:#666">=</span><span style="color:#bbb"> </span><span style="color:#008000;font-weight:bold">new</span><span style="color:#bbb"> </span>ByteArrayInputStream(certData);<span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb">    </span>cert<span style="color:#bbb"> </span><span style="color:#666">=</span><span style="color:#bbb"> </span>(X509Certificate)<span style="color:#bbb"> </span>certFactory.<span style="color:#7d9029">generateCertificate</span>(in);<span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span>}<span style="color:#bbb"> </span><span style="color:#008000;font-weight:bold">catch</span><span style="color:#bbb"> </span>(CertificateException<span style="color:#bbb"> </span>certEx)<span style="color:#bbb"> </span>{<span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb">    </span>Log.<span style="color:#7d9029">w</span>(TAG,<span style="color:#bbb"> </span><span style="color:#ba2121">&#34;certificate factory exception&#34;</span>,<span style="color:#bbb"> </span>certEx);<span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb">    </span><span style="color:#008000;font-weight:bold">return</span>;<span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span>}<span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span>ArrayList<span style="color:#666">&lt;</span>X509Certificate<span style="color:#666">&gt;</span><span style="color:#bbb"> </span>X509CertsList<span style="color:#bbb"> </span><span style="color:#666">=</span><span style="color:#bbb"> </span><span style="color:#008000;font-weight:bold">new</span><span style="color:#bbb">   
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb">                    </span>ArrayList<span style="color:#666">&lt;</span>X509Certificate<span style="color:#666">&gt;</span>();<span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span>X509CertsList.<span style="color:#7d9029">add</span>(cert);<span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span>result<span style="color:#bbb"> </span><span style="color:#666">=</span><span style="color:#bbb"> </span>certPolicy.<span style="color:#7d9029">addUntrustedCertificateList</span>(X509CertsList);<span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span>result<span style="color:#bbb"> </span><span style="color:#666">=</span><span style="color:#bbb"> </span>certPolicy.<span style="color:#7d9029">removeUntrustedCertificateList</span>(X509CertsList);<span style="color:#bbb">
+</span></span></span></code></pre></div></li>
 <li>
 <p>Before get the logs, register a BroadcastReceiver to know when AuditLog dump file is finished:</p>
-<div class="highlight"><pre tabindex="0" style=";-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span>BroadcastReceiver receiver <span style="color:#666">=</span> <span style="color:#008000;font-weight:bold">new</span> BroadcastReceiver<span style="color:#666">()</span> <span style="color:#666">{</span>
-</span></span><span style="display:flex;"><span>        <span style="color:#a2f">@Override</span>
-</span></span><span style="display:flex;"><span>        <span style="color:#008000;font-weight:bold">public</span> <span style="color:#b00040">void</span> <span style="color:#00f">onReceive</span><span style="color:#666">(</span>Context context<span style="color:#666">,</span> Intent intent<span style="color:#666">)</span> <span style="color:#666">{</span>
-</span></span><span style="display:flex;"><span>        <span style="color:#008000;font-weight:bold">if</span><span style="color:#666">(</span>intent<span style="color:#666">.</span><span style="color:#7d9029">getAction</span><span style="color:#666">().</span><span style="color:#7d9029">equals</span><span style="color:#666">(</span>AuditLog<span style="color:#666">.</span><span style="color:#7d9029">ACTION_DUMP_LOG_RESULT</span><span style="color:#666">)){</span> 
-</span></span><span style="display:flex;"><span>            <span style="color:#408080;font-style:italic">// do something when log file is ready
-</span></span></span><span style="display:flex;"><span><span style="color:#408080;font-style:italic"></span>        <span style="color:#666">}</span>
-</span></span><span style="display:flex;"><span>        <span style="color:#666">}</span>
-</span></span><span style="display:flex;"><span><span style="color:#666">}</span>
-</span></span><span style="display:flex;"><span>IntentFilter receiveFilter <span style="color:#666">=</span> <span style="color:#008000;font-weight:bold">new</span> IntentFilter<span style="color:#666">();</span>
-</span></span><span style="display:flex;"><span>receiveFilter<span style="color:#666">.</span><span style="color:#7d9029">addAction</span><span style="color:#666">(</span>AuditLog<span style="color:#666">.</span><span style="color:#7d9029">ACTION_DUMP_LOG_RESULT</span><span style="color:#666">);</span>
-</span></span><span style="display:flex;"><span>Context<span style="color:#666">.</span><span style="color:#7d9029">registerReceiver</span><span style="color:#666">(</span>receiver<span style="color:#666">,</span> receiveFilter<span style="color:#666">,</span> 
-</span></span><span style="display:flex;"><span>            <span style="color:#ba2121">&#34;com.samsung.android.knox.permission.KNOX_AUDIT_LOG&#34;</span><span style="color:#666">,</span> <span style="color:#008000;font-weight:bold">null</span><span style="color:#666">);</span>
-</span></span></code></pre></div></li>
+<div class="highlight"><pre tabindex="0" style=";-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-java" data-lang="java"><span style="display:flex;"><span>BroadcastReceiver<span style="color:#bbb"> </span>receiver<span style="color:#bbb"> </span><span style="color:#666">=</span><span style="color:#bbb"> </span><span style="color:#008000;font-weight:bold">new</span><span style="color:#bbb"> </span>BroadcastReceiver()<span style="color:#bbb"> </span>{<span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb">        </span><span style="color:#a2f">@Override</span><span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb">        </span><span style="color:#008000;font-weight:bold">public</span><span style="color:#bbb"> </span><span style="color:#b00040">void</span><span style="color:#bbb"> </span><span style="color:#00f">onReceive</span>(Context<span style="color:#bbb"> </span>context,<span style="color:#bbb"> </span>Intent<span style="color:#bbb"> </span>intent)<span style="color:#bbb"> </span>{<span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb">        </span><span style="color:#008000;font-weight:bold">if</span>(intent.<span style="color:#7d9029">getAction</span>().<span style="color:#7d9029">equals</span>(AuditLog.<span style="color:#7d9029">ACTION_DUMP_LOG_RESULT</span>)){<span style="color:#bbb"> 
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb">            </span><span style="color:#408080;font-style:italic">// do something when log file is ready</span><span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb">        </span>}<span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb">        </span>}<span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span>}<span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span>IntentFilter<span style="color:#bbb"> </span>receiveFilter<span style="color:#bbb"> </span><span style="color:#666">=</span><span style="color:#bbb"> </span><span style="color:#008000;font-weight:bold">new</span><span style="color:#bbb"> </span>IntentFilter();<span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span>receiveFilter.<span style="color:#7d9029">addAction</span>(AuditLog.<span style="color:#7d9029">ACTION_DUMP_LOG_RESULT</span>);<span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span>Context.<span style="color:#7d9029">registerReceiver</span>(receiver,<span style="color:#bbb"> </span>receiveFilter,<span style="color:#bbb"> 
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb">            </span><span style="color:#ba2121">&#34;com.samsung.android.knox.permission.KNOX_AUDIT_LOG&#34;</span>,<span style="color:#bbb"> </span><span style="color:#008000;font-weight:bold">null</span>);<span style="color:#bbb">
+</span></span></span></code></pre></div></li>
 <li>
 <p>Dump AuditLog file:</p>
-<div class="highlight"><pre tabindex="0" style=";-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#008000;font-weight:bold">if</span> <span style="color:#666">(</span>auditLogService<span style="color:#666">.</span><span style="color:#7d9029">isAuditLogEnabled</span><span style="color:#666">())</span> <span style="color:#666">{</span>
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>    String filterRegex <span style="color:#666">=</span> <span style="color:#008000;font-weight:bold">null</span><span style="color:#666">;</span>
-</span></span><span style="display:flex;"><span>    String path <span style="color:#666">=</span> <span style="color:#ba2121">&#34;/mnt/sdcard/dump.gz&#34;</span><span style="color:#666">;</span>
-</span></span><span style="display:flex;"><span>    File dFile <span style="color:#666">=</span> <span style="color:#008000;font-weight:bold">new</span> File<span style="color:#666">(</span>path<span style="color:#666">);</span>
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>    <span style="color:#408080;font-style:italic">// Check if the file already exist
-</span></span></span><span style="display:flex;"><span><span style="color:#408080;font-style:italic"></span>    <span style="color:#008000;font-weight:bold">if</span> <span style="color:#666">(</span>dFile<span style="color:#666">.</span><span style="color:#7d9029">exists</span><span style="color:#666">())</span> <span style="color:#666">{</span>
-</span></span><span style="display:flex;"><span>        dFile<span style="color:#666">.</span><span style="color:#7d9029">delete</span><span style="color:#666">();</span>
-</span></span><span style="display:flex;"><span>    <span style="color:#666">}</span>
-</span></span><span style="display:flex;"><span>    ParcelFileDescriptor outputFile <span style="color:#666">=</span> <span style="color:#008000;font-weight:bold">null</span><span style="color:#666">;</span>
-</span></span><span style="display:flex;"><span>    <span style="color:#008000;font-weight:bold">try</span> <span style="color:#666">{</span>
-</span></span><span style="display:flex;"><span>        outputFile <span style="color:#666">=</span> ParcelFileDescriptor<span style="color:#666">.</span><span style="color:#7d9029">open</span><span style="color:#666">(</span>dFile<span style="color:#666">,</span>  
-</span></span><span style="display:flex;"><span>                ParcelFileDescriptor<span style="color:#666">.</span><span style="color:#7d9029">MODE_READ_WRITE</span>
-</span></span><span style="display:flex;"><span>                <span style="color:#666">|</span> ParcelFileDescriptor<span style="color:#666">.</span><span style="color:#7d9029">MODE_CREATE</span> 
-</span></span><span style="display:flex;"><span>                <span style="color:#666">|</span> ParcelFileDescriptor<span style="color:#666">.</span><span style="color:#7d9029">MODE_TRUNCATE</span><span style="color:#666">);</span>
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>        auditLogService<span style="color:#666">.</span><span style="color:#7d9029">dumpLogFile</span><span style="color:#666">(-</span><span style="color:#666">1</span><span style="color:#666">,</span> <span style="color:#666">-</span><span style="color:#666">1</span><span style="color:#666">,</span> 
-</span></span><span style="display:flex;"><span>                                filterRegex<span style="color:#666">,</span> outputFile<span style="color:#666">);</span>
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>    <span style="color:#666">}</span> <span style="color:#008000;font-weight:bold">catch</span> <span style="color:#666">(</span>FileNotFoundException e<span style="color:#666">)</span> <span style="color:#666">{</span>
-</span></span><span style="display:flex;"><span>        Log<span style="color:#666">.</span><span style="color:#7d9029">w</span><span style="color:#666">(</span>TAG<span style="color:#666">,</span> <span style="color:#ba2121">&#34;FileNotFoundException: &#34;</span> <span style="color:#666">+</span> e<span style="color:#666">);</span>
-</span></span><span style="display:flex;"><span>    <span style="color:#666">}</span> <span style="color:#008000;font-weight:bold">catch</span> <span style="color:#666">(</span>SecurityException e<span style="color:#666">)</span> <span style="color:#666">{</span>
-</span></span><span style="display:flex;"><span>        Log<span style="color:#666">.</span><span style="color:#7d9029">w</span><span style="color:#666">(</span>TAG<span style="color:#666">,</span> <span style="color:#ba2121">&#34;SecurityException: &#34;</span> <span style="color:#666">+</span> e<span style="color:#666">);</span>
-</span></span><span style="display:flex;"><span>    <span style="color:#666">}</span>
-</span></span><span style="display:flex;"><span><span style="color:#666">}</span> <span style="color:#008000;font-weight:bold">else</span> <span style="color:#666">{</span>
-</span></span><span style="display:flex;"><span>    Log<span style="color:#666">.</span><span style="color:#7d9029">w</span><span style="color:#666">(</span>TAG<span style="color:#666">,</span> <span style="color:#ba2121">&#34;AuditLog is not Running &#34;</span><span style="color:#666">);</span>
-</span></span><span style="display:flex;"><span><span style="color:#666">}</span>
-</span></span></code></pre></div></li>
+<div class="highlight"><pre tabindex="0" style=";-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#008000;font-weight:bold">if</span><span style="color:#bbb"> </span>(auditLogService.<span style="color:#7d9029">isAuditLogEnabled</span>())<span style="color:#bbb"> </span>{<span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb">    </span>String<span style="color:#bbb"> </span>filterRegex<span style="color:#bbb"> </span><span style="color:#666">=</span><span style="color:#bbb"> </span><span style="color:#008000;font-weight:bold">null</span>;<span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb">    </span>String<span style="color:#bbb"> </span>path<span style="color:#bbb"> </span><span style="color:#666">=</span><span style="color:#bbb"> </span><span style="color:#ba2121">&#34;/mnt/sdcard/dump.gz&#34;</span>;<span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb">    </span>File<span style="color:#bbb"> </span>dFile<span style="color:#bbb"> </span><span style="color:#666">=</span><span style="color:#bbb"> </span><span style="color:#008000;font-weight:bold">new</span><span style="color:#bbb"> </span>File(path);<span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb">    </span><span style="color:#408080;font-style:italic">// Check if the file already exist</span><span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb">    </span><span style="color:#008000;font-weight:bold">if</span><span style="color:#bbb"> </span>(dFile.<span style="color:#7d9029">exists</span>())<span style="color:#bbb"> </span>{<span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb">        </span>dFile.<span style="color:#7d9029">delete</span>();<span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb">    </span>}<span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb">    </span>ParcelFileDescriptor<span style="color:#bbb"> </span>outputFile<span style="color:#bbb"> </span><span style="color:#666">=</span><span style="color:#bbb"> </span><span style="color:#008000;font-weight:bold">null</span>;<span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb">    </span><span style="color:#008000;font-weight:bold">try</span><span style="color:#bbb"> </span>{<span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb">        </span>outputFile<span style="color:#bbb"> </span><span style="color:#666">=</span><span style="color:#bbb"> </span>ParcelFileDescriptor.<span style="color:#7d9029">open</span>(dFile,<span style="color:#bbb">  
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb">                </span>ParcelFileDescriptor.<span style="color:#7d9029">MODE_READ_WRITE</span><span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb">                </span><span style="color:#666">|</span><span style="color:#bbb"> </span>ParcelFileDescriptor.<span style="color:#7d9029">MODE_CREATE</span><span style="color:#bbb"> 
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb">                </span><span style="color:#666">|</span><span style="color:#bbb"> </span>ParcelFileDescriptor.<span style="color:#7d9029">MODE_TRUNCATE</span>);<span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb">        </span>auditLogService.<span style="color:#7d9029">dumpLogFile</span>(<span style="color:#666">-</span>1,<span style="color:#bbb"> </span><span style="color:#666">-</span>1,<span style="color:#bbb"> 
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb">                                </span>filterRegex,<span style="color:#bbb"> </span>outputFile);<span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb">    </span>}<span style="color:#bbb"> </span><span style="color:#008000;font-weight:bold">catch</span><span style="color:#bbb"> </span>(FileNotFoundException<span style="color:#bbb"> </span>e)<span style="color:#bbb"> </span>{<span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb">        </span>Log.<span style="color:#7d9029">w</span>(TAG,<span style="color:#bbb"> </span><span style="color:#ba2121">&#34;FileNotFoundException: &#34;</span><span style="color:#bbb"> </span><span style="color:#666">+</span><span style="color:#bbb"> </span>e);<span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb">    </span>}<span style="color:#bbb"> </span><span style="color:#008000;font-weight:bold">catch</span><span style="color:#bbb"> </span>(SecurityException<span style="color:#bbb"> </span>e)<span style="color:#bbb"> </span>{<span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb">        </span>Log.<span style="color:#7d9029">w</span>(TAG,<span style="color:#bbb"> </span><span style="color:#ba2121">&#34;SecurityException: &#34;</span><span style="color:#bbb"> </span><span style="color:#666">+</span><span style="color:#bbb"> </span>e);<span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb">    </span>}<span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span>}<span style="color:#bbb"> </span><span style="color:#008000;font-weight:bold">else</span><span style="color:#bbb"> </span>{<span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb">    </span>Log.<span style="color:#7d9029">w</span>(TAG,<span style="color:#bbb"> </span><span style="color:#ba2121">&#34;AuditLog is not Running &#34;</span>);<span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span>}<span style="color:#bbb">
+</span></span></span></code></pre></div></li>
 <li>
 <p>Check the log message in the dumped file.</p>
 </li>
@@ -3910,58 +3910,58 @@
 <p>The following log messages are present on the AuditLog file after triggering the events in Step 3 (see above):</p>
 <div class="notice-note"><p>Characters in <span style="color: #ff0000;">RED</span> refers to the UserId of the user that triggered an AuditLog event, 0 is the Owner User, 100 is the Container, -1 refers to Global Scope events related to all users. The descriptions listed in the following section are not part of the audit messages, instead they are comments that explain the message.</p></div>
 <div class="overflow-auto my-3"><table>
-<thead>
-<tr>
-<th>Log message</th>
-<th>Description</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>1452614882432 5/2/1/3585/<span style="color: #ff0000;">0</span>/AuditLogService/AuditLog status has changed to enable</td>
-<td>This event refers to the enabling AuditLog</td>
-</tr>
-<tr>
-<td>1452614952723 5/1/1/3585/<span style="color: #ff0000;">0</span>/SecurityPolicy/Admin com.samsung.edmtest1 has requested to install a certificate. Keystore(s) : Wi-Fi, Name : valid</td>
-<td>This event refers to the call securityPolicy.installCertificateToKeystore(..)</td>
-</tr>
-<tr>
-<td>1452614952753 5/1/1/3585/<span style="color: #ff0000;">-1</span>/KeyStore/Installing certificate succeeded. Keystore : Wi-Fi, Alias : CACERT_valid, Subject : CN=CAcert Class 3 Root, OU=http://www.CAcert.org, O=CAcert Inc., Issuer : OID.1.2.840.113549.1.9.1=#1612737570706F7274406361636572742E6F7267, CN=CA Cert Signing Authority, OU=http://www.cacert.org, O=Root CA [logged by: system/android.uid.system:1000, pid: 3585]</td>
-<td>This event is triggered when certificate from call securityPolicy.installCertificateToKeystore(..) is actually installed in the system. -1 is logged as UserId because the call requested installation for Wi-Fi Credential Storage that is Global Scope.</td>
-</tr>
-<tr>
-<td>1452614997098 5/1/1/3585/<span style="color: #ff0000;">100</span> /SecurityPolicy/Admin com.samsung.edmtest1 has requested to install a certificate. Keystore(s) : Default, Name : valid</td>
-<td>This refers to call containerSecurityPolicy.installCertificateToKeystore(…), notice that because installation was requested to the container UserId is 100 here.</td>
-</tr>
-<tr>
-<td>1452614997220 5/1/1/32687/<span style="color: #ff0000;">100</span> /KeyChainService/Installing certificate succeeded. Keystore : Default, Alias : user:e5662767.0, Subject : CN=CAcert Class 3 Root, OU=http://www.CAcert.org, O=CAcert Inc., Issuer : OID.1.2.840.113549.1.9.1=#1612737570706F7274406361636572742E6F7267, CN=CA Cert Signing Authority, OU=http://www.cacert.org, O=Root CA</td>
-<td>This event is triggered when certificate from call containerSecurityPolicy.installCertificateToKeystore(..) is actually installed in the system.</td>
-</tr>
-<tr>
-<td>1452615083751 5/1/1/3585/<span style="color: #ff0000;">0</span>/CertificatePolicy/Admin com.samsung.edmtest1 has added a certificate to the untrusted DB. Subject : CN=CAcert Class 3 Root, OU=http://www.CAcert.org, O=CAcert Inc., Issuer : OID.1.2.840.113549.1.9.1=#1612737570706F7274406361636572742E6F7267, CN=CA Cert Signing Authority, OU=http://www.cacert.org, O=Root CA</td>
-<td>This refers to call <code>certPolicy.addUntrustedCertificateList (…)</code>. Message says that a certificate was added to Untrusted Certificates List.</td>
-</tr>
-<tr>
-<td>1452615083860 5/1/1/3585/<span style="color: #ff0000;">-1</span>/KeyStore/Deleting certificate succeeded. Keystore : Wi-Fi, Alias : CACERT_valid, Subject : CN=CAcert Class 3 Root, OU=http://www.CAcert.org, O=CAcert Inc. [logged by: system/android.uid.system:1000, pid: 3585]</td>
-<td>This log is a side-effect of adding the certificate to Untrusted Certificates List. The certificate previously installed is being removed from Wi-Fi Credential Storage as it not trusted anymore.</td>
-</tr>
-<tr>
-<td>1452615087139 5/1/1/32687/<span style="color: #ff0000;">100</span>/KeyChainService/Deleting certificate succeeded. Keystore : Default, Alias : user:e5662767.0, Subject : CN=CAcert Class 3 Root, OU=http://www.CAcert.org, O=CAcert Inc., Issuer : OID.1.2.840.113549.1.9.1=#1612737570706F7274406361636572742E6F7267, CN=CA Cert Signing Authority, OU=http://www.cacert.org, O=Root CA</td>
-<td>This log is a side-effect of adding the certificate to Untrusted Certificates List. The certificate previously installed is being removed from container&rsquo;s Default Credential Storage as it not trusted anymore.</td>
-</tr>
-<tr>
-<td>1452615091257 5/1/1/3585/<span style="color: #ff0000;">0</span>/CertificatePolicy/Admin com.samsung.edmtest1 has removed a certificate from the untrusted DB. Subject : CN=CAcert Class 3 Root, OU=http://www.CAcert.org, O=CAcert Inc., Issuer : OID.1.2.840.113549.1.9.1=#1612737570706F7274406361636572742E6F7267, CN=CA Cert Signing Authority, OU=http://www.cacert.org, O=Root CA</td>
-<td>This refers to call certPolicy.removeUntrustedCertificateList (…). Message says that a certificate was removed from Untrusted Certificates List.</td>
-</tr>
-<tr>
-<td>1452615091322 5/1/1/3585/<span style="color: #ff0000;">-1</span> /KeyStore/Installing certificate succeeded. Keystore : Wi-Fi, Alias : CACERT_valid, Subject : CN=CAcert Class 3 Root, OU=http://www.CAcert.org, O=CAcert Inc., Issuer : OID.1.2.840.113549.1.9.1=#1612737570706F7274406361636572742E6F7267, CN=CA Cert Signing Authority, OU=http://www.cacert.org, O=Root CA [logged by: system/android.uid.system:1000, pid: 3585]</td>
-<td>This log is a side-effect of removing the certificate from Untrusted Certificates List. The certificate previously removed when it was added to the Untrusted Certificates List is being reinstalled to Wi-Fi Credential Storage as it is trusted again.</td>
-</tr>
-<tr>
-<td>1452615091473 5/1/1/32687/<span style="color: #ff0000;">100</span> /KeyChainService/Installing certificate succeeded. Keystore : Default, Alias : user:e5662767.0, Subject : CN=CAcert Class 3 Root, OU=http://www.CAcert.org, O=CAcert Inc., Issuer : OID.1.2.840.113549.1.9.1=#1612737570706F7274406361636572742E6F7267, CN=CA Cert Signing Authority, OU=http://www.cacert.org, O=Root CA</td>
-<td>This log is a side-effect of removing the certificate from Untrusted Certificates List. The certificate previously removed when it was added to the Untrusted Certificates List is being reinstalled to Container&rsquo;s Default Credential Storage as it is trusted again.</td>
-</tr>
-</tbody>
+  <thead>
+      <tr>
+          <th>Log message</th>
+          <th>Description</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td>1452614882432 5/2/1/3585/<span style="color: #ff0000;">0</span>/AuditLogService/AuditLog status has changed to enable</td>
+          <td>This event refers to the enabling AuditLog</td>
+      </tr>
+      <tr>
+          <td>1452614952723 5/1/1/3585/<span style="color: #ff0000;">0</span>/SecurityPolicy/Admin com.samsung.edmtest1 has requested to install a certificate. Keystore(s) : Wi-Fi, Name : valid</td>
+          <td>This event refers to the call securityPolicy.installCertificateToKeystore(..)</td>
+      </tr>
+      <tr>
+          <td>1452614952753 5/1/1/3585/<span style="color: #ff0000;">-1</span>/KeyStore/Installing certificate succeeded. Keystore : Wi-Fi, Alias : CACERT_valid, Subject : CN=CAcert Class 3 Root, OU=http://www.CAcert.org, O=CAcert Inc., Issuer : OID.1.2.840.113549.1.9.1=#1612737570706F7274406361636572742E6F7267, CN=CA Cert Signing Authority, OU=http://www.cacert.org, O=Root CA [logged by: system/android.uid.system:1000, pid: 3585]</td>
+          <td>This event is triggered when certificate from call securityPolicy.installCertificateToKeystore(..) is actually installed in the system. -1 is logged as UserId because the call requested installation for Wi-Fi Credential Storage that is Global Scope.</td>
+      </tr>
+      <tr>
+          <td>1452614997098 5/1/1/3585/<span style="color: #ff0000;">100</span> /SecurityPolicy/Admin com.samsung.edmtest1 has requested to install a certificate. Keystore(s) : Default, Name : valid</td>
+          <td>This refers to call containerSecurityPolicy.installCertificateToKeystore(…), notice that because installation was requested to the container UserId is 100 here.</td>
+      </tr>
+      <tr>
+          <td>1452614997220 5/1/1/32687/<span style="color: #ff0000;">100</span> /KeyChainService/Installing certificate succeeded. Keystore : Default, Alias : user:e5662767.0, Subject : CN=CAcert Class 3 Root, OU=http://www.CAcert.org, O=CAcert Inc., Issuer : OID.1.2.840.113549.1.9.1=#1612737570706F7274406361636572742E6F7267, CN=CA Cert Signing Authority, OU=http://www.cacert.org, O=Root CA</td>
+          <td>This event is triggered when certificate from call containerSecurityPolicy.installCertificateToKeystore(..) is actually installed in the system.</td>
+      </tr>
+      <tr>
+          <td>1452615083751 5/1/1/3585/<span style="color: #ff0000;">0</span>/CertificatePolicy/Admin com.samsung.edmtest1 has added a certificate to the untrusted DB. Subject : CN=CAcert Class 3 Root, OU=http://www.CAcert.org, O=CAcert Inc., Issuer : OID.1.2.840.113549.1.9.1=#1612737570706F7274406361636572742E6F7267, CN=CA Cert Signing Authority, OU=http://www.cacert.org, O=Root CA</td>
+          <td>This refers to call <code>certPolicy.addUntrustedCertificateList (…)</code>. Message says that a certificate was added to Untrusted Certificates List.</td>
+      </tr>
+      <tr>
+          <td>1452615083860 5/1/1/3585/<span style="color: #ff0000;">-1</span>/KeyStore/Deleting certificate succeeded. Keystore : Wi-Fi, Alias : CACERT_valid, Subject : CN=CAcert Class 3 Root, OU=http://www.CAcert.org, O=CAcert Inc. [logged by: system/android.uid.system:1000, pid: 3585]</td>
+          <td>This log is a side-effect of adding the certificate to Untrusted Certificates List. The certificate previously installed is being removed from Wi-Fi Credential Storage as it not trusted anymore.</td>
+      </tr>
+      <tr>
+          <td>1452615087139 5/1/1/32687/<span style="color: #ff0000;">100</span>/KeyChainService/Deleting certificate succeeded. Keystore : Default, Alias : user:e5662767.0, Subject : CN=CAcert Class 3 Root, OU=http://www.CAcert.org, O=CAcert Inc., Issuer : OID.1.2.840.113549.1.9.1=#1612737570706F7274406361636572742E6F7267, CN=CA Cert Signing Authority, OU=http://www.cacert.org, O=Root CA</td>
+          <td>This log is a side-effect of adding the certificate to Untrusted Certificates List. The certificate previously installed is being removed from container&rsquo;s Default Credential Storage as it not trusted anymore.</td>
+      </tr>
+      <tr>
+          <td>1452615091257 5/1/1/3585/<span style="color: #ff0000;">0</span>/CertificatePolicy/Admin com.samsung.edmtest1 has removed a certificate from the untrusted DB. Subject : CN=CAcert Class 3 Root, OU=http://www.CAcert.org, O=CAcert Inc., Issuer : OID.1.2.840.113549.1.9.1=#1612737570706F7274406361636572742E6F7267, CN=CA Cert Signing Authority, OU=http://www.cacert.org, O=Root CA</td>
+          <td>This refers to call certPolicy.removeUntrustedCertificateList (…). Message says that a certificate was removed from Untrusted Certificates List.</td>
+      </tr>
+      <tr>
+          <td>1452615091322 5/1/1/3585/<span style="color: #ff0000;">-1</span> /KeyStore/Installing certificate succeeded. Keystore : Wi-Fi, Alias : CACERT_valid, Subject : CN=CAcert Class 3 Root, OU=http://www.CAcert.org, O=CAcert Inc., Issuer : OID.1.2.840.113549.1.9.1=#1612737570706F7274406361636572742E6F7267, CN=CA Cert Signing Authority, OU=http://www.cacert.org, O=Root CA [logged by: system/android.uid.system:1000, pid: 3585]</td>
+          <td>This log is a side-effect of removing the certificate from Untrusted Certificates List. The certificate previously removed when it was added to the Untrusted Certificates List is being reinstalled to Wi-Fi Credential Storage as it is trusted again.</td>
+      </tr>
+      <tr>
+          <td>1452615091473 5/1/1/32687/<span style="color: #ff0000;">100</span> /KeyChainService/Installing certificate succeeded. Keystore : Default, Alias : user:e5662767.0, Subject : CN=CAcert Class 3 Root, OU=http://www.CAcert.org, O=CAcert Inc., Issuer : OID.1.2.840.113549.1.9.1=#1612737570706F7274406361636572742E6F7267, CN=CA Cert Signing Authority, OU=http://www.cacert.org, O=Root CA</td>
+          <td>This log is a side-effect of removing the certificate from Untrusted Certificates List. The certificate previously removed when it was added to the Untrusted Certificates List is being reinstalled to Container&rsquo;s Default Credential Storage as it is trusted again.</td>
+      </tr>
+  </tbody>
 </table></div>
 <div class="notice-note"><p>Although AuditLog is classified as a User scope feature, in the log messages above there are some messages from container. Prior to Knox 2.6 AuditLog was Global Scope and could be enforced only from Owner space. To keep backwards compatibility, when AuditLog is applied from Owner space it still working as Global Scope. Logs will contain info from all users and Workspaces owned by the admin that enabled the feature.</p></div>
 

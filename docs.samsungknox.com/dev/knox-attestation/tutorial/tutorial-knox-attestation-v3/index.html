@@ -56,7 +56,7 @@
 
   
 
-<script onload="initBot()" defer src="https://dc-chbt.samsungknox.com/copilot/index.js?noCache=1772239240"></script>
+<script onload="initBot()" defer src="https://dc-chbt.samsungknox.com/copilot/index.js?noCache=1772832708"></script>
 <script defer>
     function initBot(){
       const relPath = "\/knox-attestation\/tutorial\/tutorial-knox-attestation-v3\/";
@@ -191,7 +191,7 @@
       
       <li>
         <div>
-          <a class="body-5 text-black fw-light" href="../../../knox-attestation.html">Introduction</a>
+          <a class="body-5 text-black fw-light" href="../../index.html">Introduction</a>
         </div>
       </li>
         
@@ -304,7 +304,7 @@
           <div class="l-content-top mb-4">
             <div class="l-breadcrumb">
               <a class="fw-light text-black" href="../../../index.html">Home</a><span> /</span>
-<a class="fw-light text-black" href="../../../knox-attestation.html">Knox Attestation</a><span> /</span>
+<a class="fw-light text-black" href="../../index.html">Knox Attestation</a><span> /</span>
 <a class="fw-light text-black" href="../index.html">Tutorial</a><span> /</span>
 
             </div>
@@ -368,7 +368,7 @@
 <h2 id="set-up-a-server">Set up a server</h2>
 <p>In the following examples, we use an Apache server on a Linux operating system with PHP as the scripting language. You can set up such a web server from scratch quite simply. If you don’t have a web server, you can enroll in a free or trial cloud service to get quick access to one.</p>
 <p>If you are new to web server setup, here are some basic Linux commands to set up the server:</p>
-<div class="highlight"><pre tabindex="0" style=";-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>install Ubuntu 14.0
+<div class="highlight"><pre tabindex="0" style=";-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>install Ubuntu 14.0
 </span></span><span style="display:flex;"><span>sudo apt-get update
 </span></span><span style="display:flex;"><span>sudo apt-get install apache2
 </span></span><span style="display:flex;"><span>sudo apt-get install php5 libapache2-mod-php5 php5-mcrypt php5-curl
@@ -431,7 +431,7 @@
     
   <div class="tab-content p-3"><h3 id="get-a-nonce-from-the-attestation-server-get-a-nonce-from-the-attestation-server">Get a nonce from the Attestation server</h3>
 <p>In your web script, build the request to get a nonce from the Attestation Server. Our sample app does this using PHP, which you can find in the file nonces.php:</p>
-<div class="highlight"><pre tabindex="0" style=";-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-php" data-lang="php"><span style="display:flex;"><span><span style="color:#19177c">$curl</span> <span style="color:#666">=</span> curl_init();
+<div class="highlight"><pre tabindex="0" style=";-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-php" data-lang="php"><span style="display:flex;"><span><span style="color:#19177c">$curl</span> <span style="color:#666">=</span> curl_init();
 </span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span>curl_setopt(<span style="color:#19177c">$curl</span>, CURLOPT_URL, <span style="color:#ba2121">&#34;https://attest.samsungknox.com/v3/nonces&#34;</span>;
 </span></span><span style="display:flex;"><span>curl_setopt(<span style="color:#19177c">$curl</span>, CURLOPT_POST, <span style="color:#666">1</span>);
@@ -469,11 +469,11 @@
   <div class="tab-content p-3"><h3 id="get-a-nonce-from-your-web-script-get-a-nonce-from-web-script">Get a nonce from your web script</h3>
 <p>In your Android app, request a nonce from your web server. On the web server, you need a script to take the request and forward it to Samsung’s Attestation server.</p>
 <p>In the sample Attestation app, there is a script called <code>nonces.php</code> that does this:</p>
-<div class="highlight"><pre tabindex="0" style=";-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-php" data-lang="php"><span style="display:flex;"><span><span style="color:#408080;font-style:italic">// identify the URL of your web server
-</span></span></span><span style="display:flex;"><span><span style="color:#408080;font-style:italic"></span><span style="color:#008000;font-weight:bold">private</span> <span style="color:#008000;font-weight:bold">static</span> <span style="color:#008000;font-weight:bold">final</span> String URL_MDM_SERVER_NONCE <span style="color:#666">=</span> <span style="color:#ba2121">&#34;http://attestation.example.com/nonces&#34;</span>;
+<div class="highlight"><pre tabindex="0" style=";-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-php" data-lang="php"><span style="display:flex;"><span><span style="color:#408080;font-style:italic">// identify the URL of your web server
+</span></span></span><span style="display:flex;"><span><span style="color:#008000;font-weight:bold">private</span> <span style="color:#008000;font-weight:bold">static</span> <span style="color:#008000;font-weight:bold">final</span> String URL_MDM_SERVER_NONCE <span style="color:#666">=</span> <span style="color:#ba2121">&#34;http://attestation.example.com/nonces&#34;</span>;
 </span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span><span style="color:#408080;font-style:italic">// through HTTP, send a nonce request to your web server
-</span></span></span><span style="display:flex;"><span><span style="color:#408080;font-style:italic"></span>String response <span style="color:#666">=</span> HttpClient<span style="color:#666">.</span>getInstance()<span style="color:#666">.</span>getNonce(URL_MDM_SERVER_NONCE, <span style="color:#ba2121">&#34;ATTESTATION_KEY&#34;</span>, <span style="color:#ba2121">&#34;REQUEST_ID&#34;</span>));
+</span></span></span><span style="display:flex;"><span>String response <span style="color:#666">=</span> HttpClient<span style="color:#666">.</span>getInstance()<span style="color:#666">.</span>getNonce(URL_MDM_SERVER_NONCE, <span style="color:#ba2121">&#34;ATTESTATION_KEY&#34;</span>, <span style="color:#ba2121">&#34;REQUEST_ID&#34;</span>));
 </span></span></code></pre></div><p>In this example, we use a string variable called <code>response</code> to store the resulting nonce. Later, you will parse the <code>response</code> into a JSON object and pass it to the Attestation agent on the device.</p>
 
   </div>
@@ -483,52 +483,52 @@
 <p>For details about the syntax of the REST API calls to the Attestation Server, see the <a href="../../api-reference/api">Attestation REST API reference</a>.</p>
 <h2 id="start-attestation">Start attestation</h2>
 <p>Start attestation using <a href="../../../../devref/knox-sdk/reference/com/samsung/android/knox/integrity/EnhancedAttestationPolicy.html" target="_blank"><code>EnhancedAttestationPolicy</code></a>.</p>
-<div class="highlight"><pre tabindex="0" style=";-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#408080;font-style:italic">// import EnterpriseKnoxManager
-</span></span></span><span style="display:flex;"><span><span style="color:#408080;font-style:italic">// import EnhancedAttestationPolicy
-</span></span></span><span style="display:flex;"><span><span style="color:#408080;font-style:italic">// import EnhancedAttestationPolicyCallback
-</span></span></span><span style="display:flex;"><span><span style="color:#408080;font-style:italic"></span>
-</span></span><span style="display:flex;"><span><span style="color:#008000;font-weight:bold">import</span> <span style="color:#00f;font-weight:bold">com.samsung.android.knox.EnterpriseKnoxManager</span><span style="color:#666">;</span>
-</span></span><span style="display:flex;"><span><span style="color:#008000;font-weight:bold">import</span> <span style="color:#00f;font-weight:bold">com.samsung.android.knox.integrity.EnhancedAttestationPolicy</span><span style="color:#666">;</span>
-</span></span><span style="display:flex;"><span><span style="color:#008000;font-weight:bold">import</span> <span style="color:#00f;font-weight:bold">com.samsung.android.knox.integrity.EnhancedAttestationPolicyCallback</span><span style="color:#666">;</span>
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#408080;font-style:italic">// declare EnhancedAttestationPolicy to call api
-</span></span></span><span style="display:flex;"><span><span style="color:#408080;font-style:italic"></span><span style="color:#008000;font-weight:bold">private</span> EnhancedAttestationPolicy mPolicy<span style="color:#666">;</span>
-</span></span><span style="display:flex;"><span>EnterpriseKnoxManager ekm <span style="color:#666">=</span> EnterpriseKnoxManager<span style="color:#666">.</span><span style="color:#7d9029">getInstance</span><span style="color:#666">(</span>context<span style="color:#666">);</span>
-</span></span><span style="display:flex;"><span>mPolicy <span style="color:#666">=</span> ekm<span style="color:#666">.</span><span style="color:#7d9029">getEnhancedAttestationPolicy</span><span style="color:#666">();</span>
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#408080;font-style:italic">//make callback to receive attestation result
-</span></span></span><span style="display:flex;"><span><span style="color:#408080;font-style:italic"></span>EnhancedAttestationPolicyCallback cb <span style="color:#666">=</span> <span style="color:#008000;font-weight:bold">new</span> EnhancedAttestationPolicyCallback<span style="color:#666">()</span> <span style="color:#666">{</span>
-</span></span><span style="display:flex;"><span> <span style="color:#a2f">@Override</span>
-</span></span><span style="display:flex;"><span> <span style="color:#008000;font-weight:bold">public</span> <span style="color:#b00040">void</span> <span style="color:#00f">onAttestationFinished</span><span style="color:#666">(</span><span style="color:#008000;font-weight:bold">final</span> EnhancedAttestationResult result<span style="color:#666">)</span> <span style="color:#666">{}</span>
-</span></span><span style="display:flex;"><span><span style="color:#666">};</span>
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#408080;font-style:italic">// call startAttestation (AUK is vendor Unique Key)
-</span></span></span><span style="display:flex;"><span><span style="color:#408080;font-style:italic"></span>mPolicy<span style="color:#666">.</span><span style="color:#7d9029">startAttestation</span><span style="color:#666">(</span>AUK<span style="color:#666">,</span> nonce<span style="color:#666">,</span> cb<span style="color:#666">);</span>
-</span></span></code></pre></div><h2 id="handle-attestation-result">Handle attestation result</h2>
+<div class="highlight"><pre tabindex="0" style=";-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#408080;font-style:italic">// import EnterpriseKnoxManager</span><span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#408080;font-style:italic">// import EnhancedAttestationPolicy</span><span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#408080;font-style:italic">// import EnhancedAttestationPolicyCallback</span><span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#008000;font-weight:bold">import</span><span style="color:#bbb"> </span><span style="color:#00f;font-weight:bold">com.samsung.android.knox.EnterpriseKnoxManager</span>;<span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#008000;font-weight:bold">import</span><span style="color:#bbb"> </span><span style="color:#00f;font-weight:bold">com.samsung.android.knox.integrity.EnhancedAttestationPolicy</span>;<span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#008000;font-weight:bold">import</span><span style="color:#bbb"> </span><span style="color:#00f;font-weight:bold">com.samsung.android.knox.integrity.EnhancedAttestationPolicyCallback</span>;<span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#408080;font-style:italic">// declare EnhancedAttestationPolicy to call api</span><span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#008000;font-weight:bold">private</span><span style="color:#bbb"> </span>EnhancedAttestationPolicy<span style="color:#bbb"> </span>mPolicy;<span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span>EnterpriseKnoxManager<span style="color:#bbb"> </span>ekm<span style="color:#bbb"> </span><span style="color:#666">=</span><span style="color:#bbb"> </span>EnterpriseKnoxManager.<span style="color:#7d9029">getInstance</span>(context);<span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span>mPolicy<span style="color:#bbb"> </span><span style="color:#666">=</span><span style="color:#bbb"> </span>ekm.<span style="color:#7d9029">getEnhancedAttestationPolicy</span>();<span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#408080;font-style:italic">//make callback to receive attestation result</span><span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span>EnhancedAttestationPolicyCallback<span style="color:#bbb"> </span>cb<span style="color:#bbb"> </span><span style="color:#666">=</span><span style="color:#bbb"> </span><span style="color:#008000;font-weight:bold">new</span><span style="color:#bbb"> </span>EnhancedAttestationPolicyCallback()<span style="color:#bbb"> </span>{<span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb"> </span><span style="color:#a2f">@Override</span><span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb"> </span><span style="color:#008000;font-weight:bold">public</span><span style="color:#bbb"> </span><span style="color:#b00040">void</span><span style="color:#bbb"> </span><span style="color:#00f">onAttestationFinished</span>(<span style="color:#008000;font-weight:bold">final</span><span style="color:#bbb"> </span>EnhancedAttestationResult<span style="color:#bbb"> </span>result)<span style="color:#bbb"> </span>{}<span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span>};<span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#408080;font-style:italic">// call startAttestation (AUK is vendor Unique Key)</span><span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span>mPolicy.<span style="color:#7d9029">startAttestation</span>(AUK,<span style="color:#bbb"> </span>nonce,<span style="color:#bbb"> </span>cb);<span style="color:#bbb">
+</span></span></span></code></pre></div><h2 id="handle-attestation-result">Handle attestation result</h2>
 <p>Your app handles the <code>attestation result</code> by passing it to the <code>Callback</code> method. This method handles the result sent by the <a href="../../../../devref/knox-sdk/reference/com/samsung/android/knox/integrity/EnhancedAttestationPolicy.html" target="_blank"><code>EnhancedAttestationPolicy</code></a>.</p>
-<div class="highlight"><pre tabindex="0" style=";-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#408080;font-style:italic">/// import package that defines constants for values returned by EnhancedAttestationResult
-</span></span></span><span style="display:flex;"><span><span style="color:#408080;font-style:italic"></span><span style="color:#008000;font-weight:bold">import</span> <span style="color:#00f;font-weight:bold">com.samsung.android.knox.integrity.EnhancedAttestationResult</span>
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>EnhancedAttestationPolicyCallback cb <span style="color:#666">=</span> <span style="color:#008000;font-weight:bold">new</span> EnhancedAttestationPolicyCallback<span style="color:#666">()</span> <span style="color:#666">{</span>
-</span></span><span style="display:flex;"><span> <span style="color:#a2f">@Override</span>
-</span></span><span style="display:flex;"><span> <span style="color:#008000;font-weight:bold">public</span> <span style="color:#b00040">void</span> <span style="color:#00f">onAttestationFinished</span><span style="color:#666">(</span><span style="color:#008000;font-weight:bold">final</span> EnhancedAttestationResult result<span style="color:#666">)</span> <span style="color:#666">{</span>
-</span></span><span style="display:flex;"><span>  <span style="color:#008000;font-weight:bold">if</span> <span style="color:#666">(</span>result<span style="color:#666">.</span><span style="color:#7d9029">getError</span><span style="color:#666">()</span> <span style="color:#666">==</span> EnhancedAttestationResult<span style="color:#666">.</span><span style="color:#7d9029">ERROR_NONE</span><span style="color:#666">)</span> <span style="color:#666">{</span>
-</span></span><span style="display:flex;"><span>   Log<span style="color:#666">.</span><span style="color:#7d9029">i</span><span style="color:#666">(</span>TAG<span style="color:#666">,</span> <span style="color:#ba2121">&#34;attest: onSuccess&#34;</span><span style="color:#666">);</span>
-</span></span><span style="display:flex;"><span>   <span style="color:#408080;font-style:italic">//should compare nonce to unique Id.
-</span></span></span><span style="display:flex;"><span><span style="color:#408080;font-style:italic"></span>   <span style="color:#008000;font-weight:bold">if</span> <span style="color:#666">(</span>nonce<span style="color:#666">.</span><span style="color:#7d9029">equals</span><span style="color:#666">(</span>result<span style="color:#666">.</span><span style="color:#7d9029">getUniqueId</span><span style="color:#666">()))</span> <span style="color:#666">{</span>
-</span></span><span style="display:flex;"><span>    <span style="color:#408080;font-style:italic">//nonce verification success
-</span></span></span><span style="display:flex;"><span><span style="color:#408080;font-style:italic"></span>   <span style="color:#666">}</span>
-</span></span><span style="display:flex;"><span>  <span style="color:#666">...</span>
-</span></span><span style="display:flex;"><span>  <span style="color:#666">}</span> <span style="color:#008000;font-weight:bold">else</span> <span style="color:#666">{</span>
-</span></span><span style="display:flex;"><span>   Log<span style="color:#666">.</span><span style="color:#7d9029">i</span><span style="color:#666">(</span>TAG<span style="color:#666">,</span> <span style="color:#ba2121">&#34;attest: onFailure&#34;</span><span style="color:#666">);</span>
-</span></span><span style="display:flex;"><span>   <span style="color:#008000;font-weight:bold">if</span> <span style="color:#666">(</span>nonce<span style="color:#666">.</span><span style="color:#7d9029">equals</span><span style="color:#666">(</span>result<span style="color:#666">.</span><span style="color:#7d9029">getUniqueId</span><span style="color:#666">()))</span> <span style="color:#666">{</span>
-</span></span><span style="display:flex;"><span>    <span style="color:#408080;font-style:italic">//nonce verification success
-</span></span></span><span style="display:flex;"><span><span style="color:#408080;font-style:italic"></span>   <span style="color:#666">}</span>
-</span></span><span style="display:flex;"><span>  <span style="color:#666">...</span>
-</span></span><span style="display:flex;"><span>  <span style="color:#666">}</span>
-</span></span><span style="display:flex;"><span> <span style="color:#666">}</span>
-</span></span><span style="display:flex;"><span><span style="color:#666">};</span>
-</span></span></code></pre></div><h3 id="get-verdict">Get verdict</h3>
+<div class="highlight"><pre tabindex="0" style=";-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#408080;font-style:italic">/// import package that defines constants for values returned by EnhancedAttestationResult</span><span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#008000;font-weight:bold">import</span><span style="color:#bbb"> </span><span style="color:#00f;font-weight:bold">com.samsung.android.knox.integrity.EnhancedAttestationResult</span><span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span>EnhancedAttestationPolicyCallback<span style="color:#bbb"> </span>cb<span style="color:#bbb"> </span><span style="color:#666">=</span><span style="color:#bbb"> </span><span style="color:#008000;font-weight:bold">new</span><span style="color:#bbb"> </span>EnhancedAttestationPolicyCallback()<span style="color:#bbb"> </span>{<span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb"> </span><span style="color:#a2f">@Override</span><span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb"> </span><span style="color:#008000;font-weight:bold">public</span><span style="color:#bbb"> </span><span style="color:#b00040">void</span><span style="color:#bbb"> </span><span style="color:#00f">onAttestationFinished</span>(<span style="color:#008000;font-weight:bold">final</span><span style="color:#bbb"> </span>EnhancedAttestationResult<span style="color:#bbb"> </span>result)<span style="color:#bbb"> </span>{<span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb">  </span><span style="color:#008000;font-weight:bold">if</span><span style="color:#bbb"> </span>(result.<span style="color:#7d9029">getError</span>()<span style="color:#bbb"> </span><span style="color:#666">==</span><span style="color:#bbb"> </span>EnhancedAttestationResult.<span style="color:#7d9029">ERROR_NONE</span>)<span style="color:#bbb"> </span>{<span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb">   </span>Log.<span style="color:#7d9029">i</span>(TAG,<span style="color:#bbb"> </span><span style="color:#ba2121">&#34;attest: onSuccess&#34;</span>);<span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb">   </span><span style="color:#408080;font-style:italic">//should compare nonce to unique Id.</span><span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb">   </span><span style="color:#008000;font-weight:bold">if</span><span style="color:#bbb"> </span>(nonce.<span style="color:#7d9029">equals</span>(result.<span style="color:#7d9029">getUniqueId</span>()))<span style="color:#bbb"> </span>{<span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb">    </span><span style="color:#408080;font-style:italic">//nonce verification success</span><span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb">   </span>}<span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb">  </span>...<span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb">  </span>}<span style="color:#bbb"> </span><span style="color:#008000;font-weight:bold">else</span><span style="color:#bbb"> </span>{<span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb">   </span>Log.<span style="color:#7d9029">i</span>(TAG,<span style="color:#bbb"> </span><span style="color:#ba2121">&#34;attest: onFailure&#34;</span>);<span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb">   </span><span style="color:#008000;font-weight:bold">if</span><span style="color:#bbb"> </span>(nonce.<span style="color:#7d9029">equals</span>(result.<span style="color:#7d9029">getUniqueId</span>()))<span style="color:#bbb"> </span>{<span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb">    </span><span style="color:#408080;font-style:italic">//nonce verification success</span><span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb">   </span>}<span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb">  </span>...<span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb">  </span>}<span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb"> </span>}<span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span>};<span style="color:#bbb">
+</span></span></span></code></pre></div><h3 id="get-verdict">Get verdict</h3>
 <ul
   class="nav nav-tabs d-flex align-items-center mt-3"
   id="nav-tabs"
@@ -583,8 +583,8 @@
     
   <div class="tab-content p-3"><h3 id="get-a-verdict-from-web-script-get-a-verdict-from-web-script">Get a verdict from web script</h3>
 <p>Send the result (unique Id) to your web server using the HTTP protocol. On the web server, you need a script to take the unique id which should be same as nonce and forward it to Samsung’s Attestation server. In the sample Attestation app, there is a script called <code>measurements.php</code> that does the following:</p>
-<div class="highlight"><pre tabindex="0" style=";-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-php" data-lang="php"><span style="display:flex;"><span><span style="color:#408080;font-style:italic">// identify the URL of your web server
-</span></span></span><span style="display:flex;"><span><span style="color:#408080;font-style:italic"></span><span style="color:#008000;font-weight:bold">private</span> <span style="color:#008000;font-weight:bold">static</span> <span style="color:#008000;font-weight:bold">final</span> String URL_MDM_SERVER_MEASUREMENTS <span style="color:#666">=</span> <span style="color:#ba2121">&#34;http://attestation.example.com/attestations/&#34;</span>;
+<div class="highlight"><pre tabindex="0" style=";-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-php" data-lang="php"><span style="display:flex;"><span><span style="color:#408080;font-style:italic">// identify the URL of your web server
+</span></span></span><span style="display:flex;"><span><span style="color:#008000;font-weight:bold">private</span> <span style="color:#008000;font-weight:bold">static</span> <span style="color:#008000;font-weight:bold">final</span> String URL_MDM_SERVER_MEASUREMENTS <span style="color:#666">=</span> <span style="color:#ba2121">&#34;http://attestation.example.com/attestations/&#34;</span>;
 </span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span>String response <span style="color:#666">=</span> HttpClient<span style="color:#666">.</span>getInstance()<span style="color:#666">.</span>getAttestationStatus(URL_MDM_SERVER_MEASUREMENTS <span style="color:#666">+</span> nonce, <span style="color:#ba2121">&#34;ATTESTATION_KEY&#34;</span>, <span style="color:#ba2121">&#34;REQUEST_ID&#34;</span>);
 </span></span></code></pre></div><p>In this example, we use a string variable called <code>response</code> to store the resulting verdict. Later, you will parse the <code>response</code> into a JSON object and display the verdict details.</p>
@@ -606,7 +606,7 @@
     
   <div class="tab-content p-3"><h3 id="get-a-verdict-from-the-attestation-server-get-a-verdict-from-attestation-server">Get a verdict from the Attestation server</h3>
 <p>In the web script, build a request to get the attestation verdict from the Attestation server. Our sample code does this using PHP, which you can find in the source code file <code>measurements.php</code> :</p>
-<div class="highlight"><pre tabindex="0" style=";-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-php" data-lang="php"><span style="display:flex;"><span><span style="color:#19177c">$curl</span> <span style="color:#666">=</span> curl_init();
+<div class="highlight"><pre tabindex="0" style=";-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-php" data-lang="php"><span style="display:flex;"><span><span style="color:#19177c">$curl</span> <span style="color:#666">=</span> curl_init();
 </span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span>curl_setopt(<span style="color:#19177c">$curl</span>, CURLOPT_URL, <span style="color:#ba2121">&#34;https://attest.samsungknox.com/v3/attestations/&#34;</span><span style="color:#666">.</span><span style="color:#19177c">$nonce</span>);
 </span></span><span style="display:flex;"><span>curl_setopt(<span style="color:#19177c">$curl</span>, CURLOPT_SSL_VERIFYPEER, <span style="color:#008000;font-weight:bold">false</span>);
@@ -631,41 +631,41 @@
 <h2 id="display-the-verdict">Display the verdict</h2>
 <p>You can process the verdict in either the web script or Android app.</p>
 <p>Here, we use the Android app to convert the attestation response into a <code>JSONObject</code> to extract the results of the attestation, including the attestation verdict:</p>
-<div class="highlight"><pre tabindex="0" style=";-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#408080;font-style:italic">//Parsing result of attestation
-</span></span></span><span style="display:flex;"><span><span style="color:#408080;font-style:italic"></span>JsonObject <span style="color:#666">=</span> <span style="color:#008000;font-weight:bold">new</span> JSONObject<span style="color:#666">(</span>mAttestationStatus<span style="color:#666">);</span>
-</span></span><span style="display:flex;"><span>Gson gson <span style="color:#666">=</span> <span style="color:#008000;font-weight:bold">new</span> GsonBuilder<span style="color:#666">().</span><span style="color:#7d9029">disableHtmlEscaping</span><span style="color:#666">().</span><span style="color:#7d9029">create</span><span style="color:#666">();</span>
-</span></span><span style="display:flex;"><span>EAResultInfo eAResultInfo <span style="color:#666">=</span> gson<span style="color:#666">.</span><span style="color:#7d9029">fromJson</span><span style="color:#666">(</span>mAttestationStatus<span style="color:#666">.</span><span style="color:#7d9029">responseData</span><span style="color:#666">,</span> EAResultInfo<span style="color:#666">.</span><span style="color:#7d9029">class</span><span style="color:#666">);</span>
-</span></span><span style="display:flex;"><span>eAResultInfo<span style="color:#666">.</span><span style="color:#7d9029">toString</span><span style="color:#666">();</span>
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#008000;font-weight:bold">public</span> <span style="color:#008000;font-weight:bold">static</span> <span style="color:#008000;font-weight:bold">class</span> <span style="color:#00f;font-weight:bold">EAResultInfo</span> <span style="color:#666">{</span>
-</span></span><span style="display:flex;"><span>    <span style="color:#b00040">int</span> version<span style="color:#666">;</span>
-</span></span><span style="display:flex;"><span>    String nonce<span style="color:#666">;</span>
-</span></span><span style="display:flex;"><span>    String verdict<span style="color:#666">;</span>
-</span></span><span style="display:flex;"><span>    <span style="color:#b00040">int</span> warrantyFuseState<span style="color:#666">;</span>
-</span></span><span style="display:flex;"><span>    <span style="color:#b00040">int</span> trustBootState<span style="color:#666">;</span>
-</span></span><span style="display:flex;"><span>    <span style="color:#b00040">int</span> deviceIdState<span style="color:#666">;</span>
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>    App app<span style="color:#666">;</span>
-</span></span><span style="display:flex;"><span>    <span style="color:#b00040">long</span> timestamp<span style="color:#666">;</span>
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>    <span style="color:#008000;font-weight:bold">public</span> String <span style="color:#00f">toString</span><span style="color:#666">()</span> <span style="color:#666">{</span>
-</span></span><span style="display:flex;"><span>        <span style="color:#008000;font-weight:bold">return</span> <span style="color:#ba2121">&#34;Version: &#34;</span> <span style="color:#666">+</span> version <span style="color:#666">+</span>
-</span></span><span style="display:flex;"><span>        <span style="color:#ba2121">&#34;\nNonce: &#34;</span> <span style="color:#666">+</span> nonce <span style="color:#666">+</span>
-</span></span><span style="display:flex;"><span>        <span style="color:#ba2121">&#34;\n\nVerdict: &#34;</span> <span style="color:#666">+</span> verdict <span style="color:#666">+</span>
-</span></span><span style="display:flex;"><span>        <span style="color:#ba2121">&#34;\nWarranty bit: &#34;</span> <span style="color:#666">+</span> warrantyFuseState <span style="color:#666">+</span>
-</span></span><span style="display:flex;"><span>        <span style="color:#ba2121">&#34;\nTrust boot: &#34;</span> <span style="color:#666">+</span> trustBootState <span style="color:#666">+</span>
-</span></span><span style="display:flex;"><span>        <span style="color:#ba2121">&#34;\nDevice id Attestation: &#34;</span> <span style="color:#666">+</span> deviceIdState <span style="color:#666">+</span>
-</span></span><span style="display:flex;"><span>        <span style="color:#ba2121">&#34;\n\nTimeStamp: &#34;</span> <span style="color:#666">+</span> timestamp <span style="color:#666">+</span>
-</span></span><span style="display:flex;"><span>        <span style="color:#ba2121">&#34;\n\nApp package: &#34;</span> <span style="color:#666">+</span> app<span style="color:#666">.</span><span style="color:#7d9029">pkg</span> <span style="color:#666">+</span>
-</span></span><span style="display:flex;"><span>        <span style="color:#ba2121">&#34;\n\nApp signature: &#34;</span> <span style="color:#666">+</span> app<span style="color:#666">.</span><span style="color:#7d9029">signature</span><span style="color:#666">;</span>
-</span></span><span style="display:flex;"><span>        <span style="color:#666">}</span>
-</span></span><span style="display:flex;"><span>        
-</span></span><span style="display:flex;"><span>    <span style="color:#008000;font-weight:bold">static</span> <span style="color:#008000;font-weight:bold">class</span> <span style="color:#00f;font-weight:bold">App</span> <span style="color:#666">{</span>
-</span></span><span style="display:flex;"><span>        String pkg<span style="color:#666">;</span>
-</span></span><span style="display:flex;"><span>        String signature<span style="color:#666">;</span>
-</span></span><span style="display:flex;"><span>        <span style="color:#666">}</span>
-</span></span><span style="display:flex;"><span>    <span style="color:#666">}</span>
-</span></span></code></pre></div><p>For details about the fields returned in the result, see the <a href="../../api-reference/api">Attestation REST API reference</a>.</p>
+<div class="highlight"><pre tabindex="0" style=";-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#408080;font-style:italic">//Parsing result of attestation</span><span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span>JsonObject<span style="color:#bbb"> </span><span style="color:#666">=</span><span style="color:#bbb"> </span><span style="color:#008000;font-weight:bold">new</span><span style="color:#bbb"> </span>JSONObject(mAttestationStatus);<span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span>Gson<span style="color:#bbb"> </span>gson<span style="color:#bbb"> </span><span style="color:#666">=</span><span style="color:#bbb"> </span><span style="color:#008000;font-weight:bold">new</span><span style="color:#bbb"> </span>GsonBuilder().<span style="color:#7d9029">disableHtmlEscaping</span>().<span style="color:#7d9029">create</span>();<span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span>EAResultInfo<span style="color:#bbb"> </span>eAResultInfo<span style="color:#bbb"> </span><span style="color:#666">=</span><span style="color:#bbb"> </span>gson.<span style="color:#7d9029">fromJson</span>(mAttestationStatus.<span style="color:#7d9029">responseData</span>,<span style="color:#bbb"> </span>EAResultInfo.<span style="color:#7d9029">class</span>);<span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span>eAResultInfo.<span style="color:#7d9029">toString</span>();<span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#008000;font-weight:bold">public</span><span style="color:#bbb"> </span><span style="color:#008000;font-weight:bold">static</span><span style="color:#bbb"> </span><span style="color:#008000;font-weight:bold">class</span> <span style="color:#00f;font-weight:bold">EAResultInfo</span><span style="color:#bbb"> </span>{<span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb">    </span><span style="color:#b00040">int</span><span style="color:#bbb"> </span>version;<span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb">    </span>String<span style="color:#bbb"> </span>nonce;<span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb">    </span>String<span style="color:#bbb"> </span>verdict;<span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb">    </span><span style="color:#b00040">int</span><span style="color:#bbb"> </span>warrantyFuseState;<span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb">    </span><span style="color:#b00040">int</span><span style="color:#bbb"> </span>trustBootState;<span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb">    </span><span style="color:#b00040">int</span><span style="color:#bbb"> </span>deviceIdState;<span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb">    </span>App<span style="color:#bbb"> </span>app;<span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb">    </span><span style="color:#b00040">long</span><span style="color:#bbb"> </span>timestamp;<span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb">    </span><span style="color:#008000;font-weight:bold">public</span><span style="color:#bbb"> </span>String<span style="color:#bbb"> </span><span style="color:#00f">toString</span>()<span style="color:#bbb"> </span>{<span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb">        </span><span style="color:#008000;font-weight:bold">return</span><span style="color:#bbb"> </span><span style="color:#ba2121">&#34;Version: &#34;</span><span style="color:#bbb"> </span><span style="color:#666">+</span><span style="color:#bbb"> </span>version<span style="color:#bbb"> </span><span style="color:#666">+</span><span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb">        </span><span style="color:#ba2121">&#34;\nNonce: &#34;</span><span style="color:#bbb"> </span><span style="color:#666">+</span><span style="color:#bbb"> </span>nonce<span style="color:#bbb"> </span><span style="color:#666">+</span><span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb">        </span><span style="color:#ba2121">&#34;\n\nVerdict: &#34;</span><span style="color:#bbb"> </span><span style="color:#666">+</span><span style="color:#bbb"> </span>verdict<span style="color:#bbb"> </span><span style="color:#666">+</span><span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb">        </span><span style="color:#ba2121">&#34;\nWarranty bit: &#34;</span><span style="color:#bbb"> </span><span style="color:#666">+</span><span style="color:#bbb"> </span>warrantyFuseState<span style="color:#bbb"> </span><span style="color:#666">+</span><span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb">        </span><span style="color:#ba2121">&#34;\nTrust boot: &#34;</span><span style="color:#bbb"> </span><span style="color:#666">+</span><span style="color:#bbb"> </span>trustBootState<span style="color:#bbb"> </span><span style="color:#666">+</span><span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb">        </span><span style="color:#ba2121">&#34;\nDevice id Attestation: &#34;</span><span style="color:#bbb"> </span><span style="color:#666">+</span><span style="color:#bbb"> </span>deviceIdState<span style="color:#bbb"> </span><span style="color:#666">+</span><span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb">        </span><span style="color:#ba2121">&#34;\n\nTimeStamp: &#34;</span><span style="color:#bbb"> </span><span style="color:#666">+</span><span style="color:#bbb"> </span>timestamp<span style="color:#bbb"> </span><span style="color:#666">+</span><span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb">        </span><span style="color:#ba2121">&#34;\n\nApp package: &#34;</span><span style="color:#bbb"> </span><span style="color:#666">+</span><span style="color:#bbb"> </span>app.<span style="color:#7d9029">pkg</span><span style="color:#bbb"> </span><span style="color:#666">+</span><span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb">        </span><span style="color:#ba2121">&#34;\n\nApp signature: &#34;</span><span style="color:#bbb"> </span><span style="color:#666">+</span><span style="color:#bbb"> </span>app.<span style="color:#7d9029">signature</span>;<span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb">        </span>}<span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb">        
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb">    </span><span style="color:#008000;font-weight:bold">static</span><span style="color:#bbb"> </span><span style="color:#008000;font-weight:bold">class</span> <span style="color:#00f;font-weight:bold">App</span><span style="color:#bbb"> </span>{<span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb">        </span>String<span style="color:#bbb"> </span>pkg;<span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb">        </span>String<span style="color:#bbb"> </span>signature;<span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb">        </span>}<span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb">    </span>}<span style="color:#bbb">
+</span></span></span></code></pre></div><p>For details about the fields returned in the result, see the <a href="../../api-reference/api">Attestation REST API reference</a>.</p>
 <p>A <strong>verdict</strong> of:</p>
 <ul>
 <li><strong>Yes</strong> &mdash; indicates that the device passed the integrity checks</li>

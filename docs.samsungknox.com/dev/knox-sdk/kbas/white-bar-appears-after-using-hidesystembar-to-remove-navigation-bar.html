@@ -56,7 +56,7 @@
 
   
 
-<script onload="initBot()" defer src="https://dc-chbt.samsungknox.com/copilot/index.js?noCache=1772239241"></script>
+<script onload="initBot()" defer src="https://dc-chbt.samsungknox.com/copilot/index.js?noCache=1772832708"></script>
 <script defer>
     function initBot(){
       const relPath = "\/knox-sdk\/kbas\/white-bar-appears-after-using-hidesystembar-to-remove-navigation-bar\/";
@@ -3061,7 +3061,7 @@
           <div class="l-content-top mb-4">
             <div class="l-breadcrumb">
               <a class="fw-light text-black" href="../../index.html">Home</a><span> /</span>
-<a class="fw-light text-black" href="../../knox-sdk.html">Knox SDK</a><span> /</span>
+<a class="fw-light text-black" href="../index.html">Knox SDK</a><span> /</span>
 <a class="fw-light text-black" href="index.html">Knox SDK knowledge base articles</a><span> /</span>
 
             </div>
@@ -3098,20 +3098,20 @@
 </ul>
 <h2 id="overview">Overview</h2>
 <p>After using the Knox SDK API <code>KioskMode.hideSystemBar()</code> in Android 9, the navigation bar is hidden and replaced by a white bar. Below is some sample code demonstrating the API usage:</p>
-<div class="highlight"><pre tabindex="0" style=";-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span>EnterpriseDeviceManager edm <span style="color:#666">=</span> EnterpriseDeviceManager<span style="color:#666">.</span><span style="color:#7d9029">getInstance</span><span style="color:#666">(</span><span style="color:#008000;font-weight:bold">this</span><span style="color:#666">);</span>
-</span></span><span style="display:flex;"><span>KioskMode km <span style="color:#666">=</span> edm<span style="color:#666">.</span><span style="color:#7d9029">getKioskMode</span><span style="color:#666">();</span>
-</span></span><span style="display:flex;"><span>km<span style="color:#666">.</span><span style="color:#7d9029">hideSystemBar</span><span style="color:#666">(</span><span style="color:#008000;font-weight:bold">true</span><span style="color:#666">);</span>
-</span></span></code></pre></div><p>When the above is invoked, the status bar and the navigation bar are hidden.</p>
+<div class="highlight"><pre tabindex="0" style=";-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-java" data-lang="java"><span style="display:flex;"><span>EnterpriseDeviceManager<span style="color:#bbb"> </span>edm<span style="color:#bbb"> </span><span style="color:#666">=</span><span style="color:#bbb"> </span>EnterpriseDeviceManager.<span style="color:#7d9029">getInstance</span>(<span style="color:#008000;font-weight:bold">this</span>);<span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span>KioskMode<span style="color:#bbb"> </span>km<span style="color:#bbb"> </span><span style="color:#666">=</span><span style="color:#bbb"> </span>edm.<span style="color:#7d9029">getKioskMode</span>();<span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span>km.<span style="color:#7d9029">hideSystemBar</span>(<span style="color:#008000;font-weight:bold">true</span>);<span style="color:#bbb">
+</span></span></span></code></pre></div><p>When the above is invoked, the status bar and the navigation bar are hidden.</p>
 <h2 id="cause">Cause</h2>
 <p>By API design, the top status bar and navigation buttons are hidden with the white space appearing in its place.</p>
 <h2 id="resolution">Resolution</h2>
 <p>This is expected Knox API behaviour, as the purpose of the API is only to hide the status bar and navigation buttons from view.</p>
 <h2 id="workaround">Workaround</h2>
 <p>To ensure the white bar is removed while still hiding the navigation buttons, invoke <code>SystemManager.setStatusBarMode()</code> instead. The following is an example of how to do this:</p>
-<div class="highlight"><pre tabindex="0" style=";-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span>CustomDeviceManager cdm <span style="color:#666">=</span> CustomDeviceManager<span style="color:#666">.</span><span style="color:#7d9029">getInstance</span><span style="color:#666">();</span>
-</span></span><span style="display:flex;"><span>SystemManager sm <span style="color:#666">=</span> cdm<span style="color:#666">.</span><span style="color:#7d9029">getSystemManager</span><span style="color:#666">();</span>
-</span></span><span style="display:flex;"><span>sm<span style="color:#666">.</span><span style="color:#7d9029">setStatusBarMode</span><span style="color:#666">(</span>CustomDeviceManager<span style="color:#666">.</span><span style="color:#7d9029">HIDE</span><span style="color:#666">);</span>
-</span></span></code></pre></div><div class="notice-note"><p>You must have a KPE Premium license to use the <code>CustomDeviceManager</code> object.</p></div>
+<div class="highlight"><pre tabindex="0" style=";-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-java" data-lang="java"><span style="display:flex;"><span>CustomDeviceManager<span style="color:#bbb"> </span>cdm<span style="color:#bbb"> </span><span style="color:#666">=</span><span style="color:#bbb"> </span>CustomDeviceManager.<span style="color:#7d9029">getInstance</span>();<span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span>SystemManager<span style="color:#bbb"> </span>sm<span style="color:#bbb"> </span><span style="color:#666">=</span><span style="color:#bbb"> </span>cdm.<span style="color:#7d9029">getSystemManager</span>();<span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span>sm.<span style="color:#7d9029">setStatusBarMode</span>(CustomDeviceManager.<span style="color:#7d9029">HIDE</span>);<span style="color:#bbb">
+</span></span></span></code></pre></div><div class="notice-note"><p>You must have a KPE Premium license to use the <code>CustomDeviceManager</code> object.</p></div>
 <h2 id="additional-information">Additional information</h2>
 <p>Use either <code>KioskMode.hideSystemBar(boolean)</code> or <code>SystemManager.setStatusBarMode(int)</code>, but not both.</p>
 <ol>

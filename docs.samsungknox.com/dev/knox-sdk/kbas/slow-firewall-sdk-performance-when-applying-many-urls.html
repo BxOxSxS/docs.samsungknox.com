@@ -56,7 +56,7 @@
 
   
 
-<script onload="initBot()" defer src="https://dc-chbt.samsungknox.com/copilot/index.js?noCache=1772239241"></script>
+<script onload="initBot()" defer src="https://dc-chbt.samsungknox.com/copilot/index.js?noCache=1772832708"></script>
 <script defer>
     function initBot(){
       const relPath = "\/knox-sdk\/kbas\/slow-firewall-sdk-performance-when-applying-many-urls\/";
@@ -3061,7 +3061,7 @@
           <div class="l-content-top mb-4">
             <div class="l-breadcrumb">
               <a class="fw-light text-black" href="../../index.html">Home</a><span> /</span>
-<a class="fw-light text-black" href="../../knox-sdk.html">Knox SDK</a><span> /</span>
+<a class="fw-light text-black" href="../index.html">Knox SDK</a><span> /</span>
 <a class="fw-light text-black" href="index.html">Knox SDK knowledge base articles</a><span> /</span>
 
             </div>
@@ -3097,12 +3097,12 @@
 </ul>
 <h2 id="overview">Overview</h2>
 <p>Some customers are reporting that when using the Firewall SDK to write 300 URLs and IPs, it takes 25 seconds. The expected duration is within 5 seconds. The URLs and IP are added to the allowlist by calling the <code>Firewall()</code> method:</p>
-<div class="highlight"><pre tabindex="0" style=";-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span>removeDomainFilterRules CLEAR_ALL
-</span></span><span style="display:flex;"><span><span style="color:#00f">addDomainFilterRules</span><span style="color:#666">(</span>all <span style="color:#666">300</span> URLs<span style="color:#666">)</span>
-</span></span><span style="display:flex;"><span>clearRules FIREWALL_ALL_RULES<span style="color:#666">.</span>
-</span></span><span style="display:flex;"><span><span style="color:#00f">addRules</span><span style="color:#666">(</span>all IPs<span style="color:#666">)</span>
-</span></span><span style="display:flex;"><span>enableFirewall<span style="color:#666">(</span><span style="color:#008000;font-weight:bold">true</span><span style="color:#666">);</span>
-</span></span></code></pre></div><h2 id="cause">Cause</h2>
+<div class="highlight"><pre tabindex="0" style=";-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-java" data-lang="java"><span style="display:flex;"><span>removeDomainFilterRules<span style="color:#bbb"> </span>CLEAR_ALL<span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#00f">addDomainFilterRules</span>(all<span style="color:#bbb"> </span>300<span style="color:#bbb"> </span>URLs)<span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span>clearRules<span style="color:#bbb"> </span>FIREWALL_ALL_RULES.<span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#00f">addRules</span>(all<span style="color:#bbb"> </span>IPs)<span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span>enableFirewall(<span style="color:#008000;font-weight:bold">true</span>);<span style="color:#bbb">
+</span></span></span></code></pre></div><h2 id="cause">Cause</h2>
 <p>This issue occurs because the Firewall SDK is currently implemented in fork mode. For example, when executing addDomainFilterRules(), each URL creates an iptable command. Each command is then executed in the Knox framework through shell command. If there are 300 URLs, the iptable command executes 300 times, resulting in slow performance.</p>
 <h2 id="resolution">Resolution</h2>
 <p>Use <code>iptables-restore</code> instead of iptable commands, which significantly improves performance.</p>

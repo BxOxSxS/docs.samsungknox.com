@@ -56,7 +56,7 @@
 
   
 
-<script onload="initBot()" defer src="https://dc-chbt.samsungknox.com/copilot/index.js?noCache=1772239240"></script>
+<script onload="initBot()" defer src="https://dc-chbt.samsungknox.com/copilot/index.js?noCache=1772832708"></script>
 <script defer>
     function initBot(){
       const relPath = "\/knox-deployment-program\/migrating-from-knox-deployment-program-gen1-apis-to-gen2\/";
@@ -368,50 +368,50 @@
 <h2 id="endpoint-comparison">Endpoint comparison</h2>
 <p>The following table shows how existing Gen1 API endpoints map to Gen2:</p>
 <div class="overflow-auto my-3"><table>
-<thead>
-<tr>
-<th>Feature</th>
-<th>Gen 1 (v1 &amp; v2)</th>
-<th>Gen 2</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><strong>Upload / save devices</strong></td>
-<td><code>PUT /bulkenroll/v1/reseller/devices</code><br><code>PUT /bulkenroll/v2/reseller/devices</code></td>
-<td><code>PUT /kcs/v1/rp/devices/upload</code></td>
-</tr>
-<tr>
-<td><strong>Delete devices</strong></td>
-<td><code>PUT /bulkenroll/v1/reseller/devices/delete</code></td>
-<td><code>PUT /kcs/v1/rp/devices/delete</code></td>
-</tr>
-<tr>
-<td><strong>Query transaction status</strong></td>
-<td><code>GET /bulkenroll/v1/reseller/devices/status</code><br><code>GET /bulkenroll/v2/reseller/devices/status</code></td>
-<td><code>GET /kcs/v1/rp/devices/status</code></td>
-</tr>
-<tr>
-<td><strong>Retrieve customer details</strong></td>
-<td><code>POST /bulkenroll/v1/reseller/customers</code></td>
-<td><code>GET /kcs/v1/rp/customers/list</code></td>
-</tr>
-<tr>
-<td><strong>Retrieve reseller details</strong></td>
-<td><code>POST /bulkenroll/v1/reseller/resellers</code></td>
-<td>N/A</td>
-</tr>
-<tr>
-<td><strong>Retrieve a list of devices</strong></td>
-<td><code>GET /bulkenroll/v1/reseller/devices</code></td>
-<td><code>GET /kcs/v1/rp/devices</code></td>
-</tr>
-<tr>
-<td><strong>Retrieve KME profile aliases</strong></td>
-<td>N/A</td>
-<td><code>GET /kcs/v1/rp/profilealias/kme</code></td>
-</tr>
-</tbody>
+  <thead>
+      <tr>
+          <th>Feature</th>
+          <th>Gen 1 (v1 &amp; v2)</th>
+          <th>Gen 2</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td><strong>Upload / save devices</strong></td>
+          <td><code>PUT /bulkenroll/v1/reseller/devices</code><br><code>PUT /bulkenroll/v2/reseller/devices</code></td>
+          <td><code>PUT /kcs/v1/rp/devices/upload</code></td>
+      </tr>
+      <tr>
+          <td><strong>Delete devices</strong></td>
+          <td><code>PUT /bulkenroll/v1/reseller/devices/delete</code></td>
+          <td><code>PUT /kcs/v1/rp/devices/delete</code></td>
+      </tr>
+      <tr>
+          <td><strong>Query transaction status</strong></td>
+          <td><code>GET /bulkenroll/v1/reseller/devices/status</code><br><code>GET /bulkenroll/v2/reseller/devices/status</code></td>
+          <td><code>GET /kcs/v1/rp/devices/status</code></td>
+      </tr>
+      <tr>
+          <td><strong>Retrieve customer details</strong></td>
+          <td><code>POST /bulkenroll/v1/reseller/customers</code></td>
+          <td><code>GET /kcs/v1/rp/customers/list</code></td>
+      </tr>
+      <tr>
+          <td><strong>Retrieve reseller details</strong></td>
+          <td><code>POST /bulkenroll/v1/reseller/resellers</code></td>
+          <td>N/A</td>
+      </tr>
+      <tr>
+          <td><strong>Retrieve a list of devices</strong></td>
+          <td><code>GET /bulkenroll/v1/reseller/devices</code></td>
+          <td><code>GET /kcs/v1/rp/devices</code></td>
+      </tr>
+      <tr>
+          <td><strong>Retrieve KME profile aliases</strong></td>
+          <td>N/A</td>
+          <td><code>GET /kcs/v1/rp/profilealias/kme</code></td>
+      </tr>
+  </tbody>
 </table></div>
 <p>The <strong>Retrieve reseller details</strong> Gen1 feature (<code>POST /bulkenroll/v1/reseller/resellers</code>) isn&rsquo;t relevant to most distributors, resellers, and carriers, and therefore isn&rsquo;t supported in Gen2. If you are currently using this functionality, please create a <a href="../../fundamentals/support">support ticket</a> for migration assistance.</p>
 <p>The <strong>Retrieve KME profile aliases</strong> Gen2 feature (<code>GET /kcs/v1/rp/profilealias/kme</code>) is a new endpoint that allows you to retrieve a list of Knox Mobile Enrollment (KME) profile aliases associated with your reseller ID. When <a href="../api/index.html#tag/Endpoints/operation/uploadDevicesUsingPUT" target="_blank">uploading customer devices</a>, you can include the KME profile alias associated with that customer.</p>
@@ -425,50 +425,50 @@
 <h4 id="request-body">Request body</h4>
 <p>The Gen1 payload has a <code>transactionType</code> field which is not supported for Gen2. On the other hand, the Gen2 payload has a <code>profileAliases</code> array which is not supported for Gen1. Each <code>profileAlias</code> Gen2 object includes the name of the profile alias and the service ID.</p>
 <div class="overflow-auto my-3"><table>
-<thead>
-<tr>
-<th>Gen1 Upload Devices Request Body</th>
-<th>Gen2 Upload Devices Request Body</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><pre><code>{<br>  &ldquo;transactionId&rdquo;: &ldquo;transaction123&rdquo;,<br>  &ldquo;resellerId&rdquo;: &ldquo;1111111&rdquo;,<br>  &ldquo;customerId&rdquo;: &ldquo;2222222&rdquo;,<br>  &ldquo;vendorId&rdquo;: &ldquo;3333333&rdquo;,<br>  &ldquo;transactionType&rdquo;: &ldquo;New&rdquo;,<br>  &ldquo;orderNo&rdquo;: &ldquo;Order123&rdquo;,<br>  &ldquo;orderTime&rdquo;: 1542405655,<br>  &ldquo;devices&rdquo;: {<br>    &ldquo;type&rdquo;: &ldquo;IMEI&rdquo;,<br>    &ldquo;list&rdquo;: [<br>      &ldquo;35163899&hellip;.236&rdquo;,<br>      &ldquo;35163899&hellip;.123&rdquo;,<br>      &ldquo;35163899&hellip;.456&rdquo;<br>    ]<br>  }<br>}</code></pre></td>
-<td><pre><code>{<br>  &ldquo;transactionId&rdquo;: &ldquo;transaction123&rdquo;,<br>  &ldquo;resellerId&rdquo;: &ldquo;1111111&rdquo;,<br>  &ldquo;customerId&rdquo;: &ldquo;2222222&rdquo;,<br>  &ldquo;vendorId&rdquo;: &ldquo;3333333&rdquo;,<br>  &ldquo;orderNo&rdquo;: &ldquo;ORD34152345&rdquo;,<br>  &ldquo;orderTime&rdquo;: 1542405655,<br>  &ldquo;type&rdquo;: &ldquo;IMEI&rdquo;,<br>  &ldquo;devices&rdquo;: [<br>    &ldquo;35163899&hellip;.236&rdquo;,<br>    &ldquo;35163899&hellip;.123&rdquo;,<br>    &ldquo;35163899&hellip;.456&rdquo;<br>  ],<br>  &ldquo;profileAliases&rdquo;: [<br>    {<br>      &ldquo;profileAlias&rdquo;: &ldquo;profile_a&rdquo;,<br>      &ldquo;serviceId&rdquo;: &ldquo;kme_service_id&rdquo;<br>    }<br>  ]<br>}</code></pre></td>
-</tr>
-</tbody>
+  <thead>
+      <tr>
+          <th>Gen1 Upload Devices Request Body</th>
+          <th>Gen2 Upload Devices Request Body</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td><pre><code>{<br>  &ldquo;transactionId&rdquo;: &ldquo;transaction123&rdquo;,<br>  &ldquo;resellerId&rdquo;: &ldquo;1111111&rdquo;,<br>  &ldquo;customerId&rdquo;: &ldquo;2222222&rdquo;,<br>  &ldquo;vendorId&rdquo;: &ldquo;3333333&rdquo;,<br>  &ldquo;transactionType&rdquo;: &ldquo;New&rdquo;,<br>  &ldquo;orderNo&rdquo;: &ldquo;Order123&rdquo;,<br>  &ldquo;orderTime&rdquo;: 1542405655,<br>  &ldquo;devices&rdquo;: {<br>    &ldquo;type&rdquo;: &ldquo;IMEI&rdquo;,<br>    &ldquo;list&rdquo;: [<br>      &ldquo;35163899&hellip;.236&rdquo;,<br>      &ldquo;35163899&hellip;.123&rdquo;,<br>      &ldquo;35163899&hellip;.456&rdquo;<br>    ]<br>  }<br>}</code></pre></td>
+          <td><pre><code>{<br>  &ldquo;transactionId&rdquo;: &ldquo;transaction123&rdquo;,<br>  &ldquo;resellerId&rdquo;: &ldquo;1111111&rdquo;,<br>  &ldquo;customerId&rdquo;: &ldquo;2222222&rdquo;,<br>  &ldquo;vendorId&rdquo;: &ldquo;3333333&rdquo;,<br>  &ldquo;orderNo&rdquo;: &ldquo;ORD34152345&rdquo;,<br>  &ldquo;orderTime&rdquo;: 1542405655,<br>  &ldquo;type&rdquo;: &ldquo;IMEI&rdquo;,<br>  &ldquo;devices&rdquo;: [<br>    &ldquo;35163899&hellip;.236&rdquo;,<br>    &ldquo;35163899&hellip;.123&rdquo;,<br>    &ldquo;35163899&hellip;.456&rdquo;<br>  ],<br>  &ldquo;profileAliases&rdquo;: [<br>    {<br>      &ldquo;profileAlias&rdquo;: &ldquo;profile_a&rdquo;,<br>      &ldquo;serviceId&rdquo;: &ldquo;kme_service_id&rdquo;<br>    }<br>  ]<br>}</code></pre></td>
+      </tr>
+  </tbody>
 </table></div>
 <h4 id="success-response">Success response</h4>
 <p>The Gen2 success response always includes the <code>operationType</code> field, indicating an upload operation. The Gen1 response does not include a corresponding field.</p>
 <div class="overflow-auto my-3"><table>
-<thead>
-<tr>
-<th>Gen 1</th>
-<th>Gen 2</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><pre><code>{<br>  &ldquo;transactionId&rdquo;: &ldquo;transaction123&rdquo;,<br>  &ldquo;state&rdquo;: &ldquo;Progress&rdquo;,<br>  &ldquo;code&rdquo;: 2000000,<br>  &ldquo;message&rdquo;: &ldquo;SUCCESS&rdquo;<br>}</code></pre></td>
-<td><pre><code>{<br>  &ldquo;transactionId&rdquo;: &ldquo;transaction123&rdquo;,<br>  &ldquo;state&rdquo;: &ldquo;Progress&rdquo;,<br>  &ldquo;code&rdquo;: 2000000,<br>  &ldquo;message&rdquo;: &ldquo;SUCCESS&rdquo;,<br>  &ldquo;operationType&rdquo;: &ldquo;UPLOAD&rdquo;<br>}</code></pre></td>
-</tr>
-</tbody>
+  <thead>
+      <tr>
+          <th>Gen 1</th>
+          <th>Gen 2</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td><pre><code>{<br>  &ldquo;transactionId&rdquo;: &ldquo;transaction123&rdquo;,<br>  &ldquo;state&rdquo;: &ldquo;Progress&rdquo;,<br>  &ldquo;code&rdquo;: 2000000,<br>  &ldquo;message&rdquo;: &ldquo;SUCCESS&rdquo;<br>}</code></pre></td>
+          <td><pre><code>{<br>  &ldquo;transactionId&rdquo;: &ldquo;transaction123&rdquo;,<br>  &ldquo;state&rdquo;: &ldquo;Progress&rdquo;,<br>  &ldquo;code&rdquo;: 2000000,<br>  &ldquo;message&rdquo;: &ldquo;SUCCESS&rdquo;,<br>  &ldquo;operationType&rdquo;: &ldquo;UPLOAD&rdquo;<br>}</code></pre></td>
+      </tr>
+  </tbody>
 </table></div>
 <h4 id="error-response">Error response</h4>
 <p>The Gen1 error response includes <code>transactionId</code> and <code>state</code>, which don&rsquo;t appear for Gen2.</p>
 <div class="overflow-auto my-3"><table>
-<thead>
-<tr>
-<th>Gen 1</th>
-<th>Gen 2</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><pre><code>{<br>  &ldquo;transactionId&rdquo;: &ldquo;transaction123&rdquo;,<br>  &ldquo;state&rdquo;: &ldquo;Rejected&rdquo;,<br>  &ldquo;code&rdquo;: 4002101,<br>  &ldquo;message&rdquo;: &ldquo;RESELLER_ID_MISSING&rdquo;,<br>  &ldquo;data&rdquo;: &ldquo;reseller id is missing&rdquo;<br>}</code></pre></td>
-<td><pre><code>{<br>  &ldquo;code&rdquo;: 4010000,<br>  &ldquo;message&rdquo;: &ldquo;AUTHORIZATION_FAIL&rdquo;,<br>  &ldquo;data&rdquo;: &ldquo;Invalid Api Key&rdquo;<br>}</code></pre></td>
-</tr>
-</tbody>
+  <thead>
+      <tr>
+          <th>Gen 1</th>
+          <th>Gen 2</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td><pre><code>{<br>  &ldquo;transactionId&rdquo;: &ldquo;transaction123&rdquo;,<br>  &ldquo;state&rdquo;: &ldquo;Rejected&rdquo;,<br>  &ldquo;code&rdquo;: 4002101,<br>  &ldquo;message&rdquo;: &ldquo;RESELLER_ID_MISSING&rdquo;,<br>  &ldquo;data&rdquo;: &ldquo;reseller id is missing&rdquo;<br>}</code></pre></td>
+          <td><pre><code>{<br>  &ldquo;code&rdquo;: 4010000,<br>  &ldquo;message&rdquo;: &ldquo;AUTHORIZATION_FAIL&rdquo;,<br>  &ldquo;data&rdquo;: &ldquo;Invalid Api Key&rdquo;<br>}</code></pre></td>
+      </tr>
+  </tbody>
 </table></div>
 <hr>
 <h3 id="delete-devices">Delete devices</h3>
@@ -476,50 +476,50 @@
 <h4 id="request-body-1">Request body</h4>
 <p>The Gen1 payload has a <code>transactionType</code> field which is not supported for Gen2.</p>
 <div class="overflow-auto my-3"><table>
-<thead>
-<tr>
-<th>Gen 1</th>
-<th>Gen 2</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><pre><code>{<br>  &ldquo;transactionId&rdquo;: &ldquo;transaction123&rdquo;,<br>  &ldquo;resellerId&rdquo;: &ldquo;1111111&rdquo;,<br>  &ldquo;customerId&rdquo;: &ldquo;2222222&rdquo;,<br>  &ldquo;vendorId&rdquo;: &ldquo;3333333&rdquo;,<br>  &ldquo;transactionType&rdquo;: &ldquo;Delete&rdquo;,<br>  &ldquo;devices&rdquo;: {<br>    &ldquo;type&rdquo;: &ldquo;IMEI&rdquo;,<br>    &ldquo;list&rdquo;: [<br>      &ldquo;35163899&hellip;.236&rdquo;,<br>      &ldquo;35163899&hellip;.123&rdquo;,<br>      &ldquo;35163899&hellip;.456&rdquo;<br>    ]<br>  }<br>}</code></pre></td>
-<td><pre><code>{<br>  &ldquo;transactionId&rdquo;: &ldquo;transaction123&rdquo;,<br>  &ldquo;resellerId&rdquo;: &ldquo;1111111&rdquo;,<br>  &ldquo;customerId&rdquo;: &ldquo;2222222&rdquo;,<br>  &ldquo;vendorId&rdquo;: &ldquo;3333333&rdquo;,<br>  &ldquo;type&rdquo;: &ldquo;IMEI&rdquo;,<br>  &ldquo;devices&rdquo;: [<br>    &ldquo;35163899&hellip;.236&rdquo;,<br>    &ldquo;35163899&hellip;.123&rdquo;,<br>    &ldquo;35163899&hellip;.456&rdquo;<br>  ]<br>}</code></pre></td>
-</tr>
-</tbody>
+  <thead>
+      <tr>
+          <th>Gen 1</th>
+          <th>Gen 2</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td><pre><code>{<br>  &ldquo;transactionId&rdquo;: &ldquo;transaction123&rdquo;,<br>  &ldquo;resellerId&rdquo;: &ldquo;1111111&rdquo;,<br>  &ldquo;customerId&rdquo;: &ldquo;2222222&rdquo;,<br>  &ldquo;vendorId&rdquo;: &ldquo;3333333&rdquo;,<br>  &ldquo;transactionType&rdquo;: &ldquo;Delete&rdquo;,<br>  &ldquo;devices&rdquo;: {<br>    &ldquo;type&rdquo;: &ldquo;IMEI&rdquo;,<br>    &ldquo;list&rdquo;: [<br>      &ldquo;35163899&hellip;.236&rdquo;,<br>      &ldquo;35163899&hellip;.123&rdquo;,<br>      &ldquo;35163899&hellip;.456&rdquo;<br>    ]<br>  }<br>}</code></pre></td>
+          <td><pre><code>{<br>  &ldquo;transactionId&rdquo;: &ldquo;transaction123&rdquo;,<br>  &ldquo;resellerId&rdquo;: &ldquo;1111111&rdquo;,<br>  &ldquo;customerId&rdquo;: &ldquo;2222222&rdquo;,<br>  &ldquo;vendorId&rdquo;: &ldquo;3333333&rdquo;,<br>  &ldquo;type&rdquo;: &ldquo;IMEI&rdquo;,<br>  &ldquo;devices&rdquo;: [<br>    &ldquo;35163899&hellip;.236&rdquo;,<br>    &ldquo;35163899&hellip;.123&rdquo;,<br>    &ldquo;35163899&hellip;.456&rdquo;<br>  ]<br>}</code></pre></td>
+      </tr>
+  </tbody>
 </table></div>
 <h4 id="success-response-1">Success response</h4>
 <p>The Gen2 success response always includes the <code>operationType</code> field, indicating a delete operation. The Gen1 response does not include a corresponding field.</p>
 <div class="overflow-auto my-3"><table>
-<thead>
-<tr>
-<th>Gen 1</th>
-<th>Gen 2</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><pre><code>{<br>  &ldquo;transactionId&rdquo;: &ldquo;transaction123&rdquo;,<br>  &ldquo;state&rdquo;: &ldquo;Progress&rdquo;,<br>  &ldquo;code&rdquo;: 2000000,<br>  &ldquo;message&rdquo;: &ldquo;SUCCESS&rdquo;<br>}</code></pre></td>
-<td><pre><code>{<br>  &ldquo;transactionId&rdquo;: &ldquo;transaction123&rdquo;,<br>  &ldquo;state&rdquo;: &ldquo;Progress&rdquo;,<br>  &ldquo;code&rdquo;: 2000000,<br>  &ldquo;message&rdquo;: &ldquo;SUCCESS&rdquo;,<br>  &ldquo;operationType&rdquo;: &ldquo;DELETE&rdquo;<br>}</code></pre></td>
-</tr>
-</tbody>
+  <thead>
+      <tr>
+          <th>Gen 1</th>
+          <th>Gen 2</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td><pre><code>{<br>  &ldquo;transactionId&rdquo;: &ldquo;transaction123&rdquo;,<br>  &ldquo;state&rdquo;: &ldquo;Progress&rdquo;,<br>  &ldquo;code&rdquo;: 2000000,<br>  &ldquo;message&rdquo;: &ldquo;SUCCESS&rdquo;<br>}</code></pre></td>
+          <td><pre><code>{<br>  &ldquo;transactionId&rdquo;: &ldquo;transaction123&rdquo;,<br>  &ldquo;state&rdquo;: &ldquo;Progress&rdquo;,<br>  &ldquo;code&rdquo;: 2000000,<br>  &ldquo;message&rdquo;: &ldquo;SUCCESS&rdquo;,<br>  &ldquo;operationType&rdquo;: &ldquo;DELETE&rdquo;<br>}</code></pre></td>
+      </tr>
+  </tbody>
 </table></div>
 <h4 id="error-response-1">Error response</h4>
 <p>The Gen1 error response includes <code>transactionId</code> and <code>state</code>, which don&rsquo;t appear for Gen2.</p>
 <div class="overflow-auto my-3"><table>
-<thead>
-<tr>
-<th>Gen 1</th>
-<th>Gen 2</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><pre><code>{<br>  &ldquo;transactionId&rdquo;: &ldquo;transaction123&rdquo;,<br>  &ldquo;state&rdquo;: &ldquo;Rejected&rdquo;,<br>  &ldquo;code&rdquo;: 4002101,<br>  &ldquo;message&rdquo;: &ldquo;RESELLER_ID_MISSING&rdquo;,<br>  &ldquo;data&rdquo;: &ldquo;reseller id is missing&rdquo;<br>}</code></pre></td>
-<td><pre><code>{<br>  &ldquo;code&rdquo;: 4010000,<br>  &ldquo;message&rdquo;: &ldquo;AUTHORIZATION_FAIL&rdquo;,<br>  &ldquo;data&rdquo;: &ldquo;Invalid Api Key&rdquo;<br>}</code></pre></td>
-</tr>
-</tbody>
+  <thead>
+      <tr>
+          <th>Gen 1</th>
+          <th>Gen 2</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td><pre><code>{<br>  &ldquo;transactionId&rdquo;: &ldquo;transaction123&rdquo;,<br>  &ldquo;state&rdquo;: &ldquo;Rejected&rdquo;,<br>  &ldquo;code&rdquo;: 4002101,<br>  &ldquo;message&rdquo;: &ldquo;RESELLER_ID_MISSING&rdquo;,<br>  &ldquo;data&rdquo;: &ldquo;reseller id is missing&rdquo;<br>}</code></pre></td>
+          <td><pre><code>{<br>  &ldquo;code&rdquo;: 4010000,<br>  &ldquo;message&rdquo;: &ldquo;AUTHORIZATION_FAIL&rdquo;,<br>  &ldquo;data&rdquo;: &ldquo;Invalid Api Key&rdquo;<br>}</code></pre></td>
+      </tr>
+  </tbody>
 </table></div>
 <hr>
 <h3 id="get-transaction-status">Get transaction status</h3>
@@ -527,50 +527,50 @@
 <h4 id="mandatory-query-parameters">Mandatory query parameters</h4>
 <p>Since it&rsquo;s a GET call, there is no request body for either the Gen1 or Gen2 API. Both APIs have the same mandatory parameter.</p>
 <div class="overflow-auto my-3"><table>
-<thead>
-<tr>
-<th>Gen 1</th>
-<th>Gen 2</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><code>resellerId</code></td>
-<td><code>resellerId</code></td>
-</tr>
-</tbody>
+  <thead>
+      <tr>
+          <th>Gen 1</th>
+          <th>Gen 2</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td><code>resellerId</code></td>
+          <td><code>resellerId</code></td>
+      </tr>
+  </tbody>
 </table></div>
 <h4 id="success-response-2">Success response</h4>
 <p>The Gen2 success response always includes the <code>operationType</code> field, which indicates if it was an upload or delete operation. The Gen1 response does not include a corresponding field. For both Gen1 and Gen2 APIs, operation-level error messages for transactions appear within <code>transaction</code> objects.</p>
 <div class="overflow-auto my-3"><table>
-<thead>
-<tr>
-<th>Gen 1</th>
-<th>Gen 2</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><pre><code>{<br>  &ldquo;totalCount&rdquo;: 2,<br>  &ldquo;totalPage&rdquo;: 1,<br>  &ldquo;pageNum&rdquo;: 0,<br>  &ldquo;transactions&rdquo;: [<br>    {<br>      &ldquo;transactionId&rdquo;: &ldquo;transaction123&rdquo;,<br>      &ldquo;state&rdquo;: &ldquo;Complete&rdquo;,<br>      &ldquo;type&rdquo;: &ldquo;Put&rdquo;,<br>      &ldquo;devices&rdquo;: [<br>        { &ldquo;imei&rdquo;: &ldquo;35163899&hellip;.236&rdquo; },<br>        { &ldquo;imei&rdquo;: &ldquo;35163899&hellip;.136&rdquo; }<br>      ]<br>    },<br>    {<br>      &ldquo;transactionId&rdquo;: &ldquo;transaction456&rdquo;,<br>      &ldquo;state&rdquo;: &ldquo;Complete&rdquo;,<br>      &ldquo;type&rdquo;: &ldquo;Put&rdquo;,<br>      &ldquo;devices&rdquo;: [<br>        { &ldquo;imei&rdquo;: &ldquo;35163899&hellip;.123&rdquo; },<br>        {<br>          &ldquo;imei&rdquo;: &ldquo;35163899&hellip;.456&rdquo;,<br>          &ldquo;code&rdquo;: 4000000,<br>          &ldquo;message&rdquo;: &ldquo;RESOURCE_INVALID_PARAM&rdquo;,<br>          &ldquo;data&rdquo;: &ldquo;This device [35163899&hellip;.456] invalid&rdquo;<br>        }<br>      ]<br>    }<br>  ]<br>}</code></pre></td>
-<td><pre><code>{<br>  &ldquo;devices&rdquo;: {<br>    &ldquo;totalCount&rdquo;: 2,<br>    &ldquo;totalPage&rdquo;: 1,<br>    &ldquo;pageNum&rdquo;: 0,<br>    &ldquo;transactions&rdquo;: [<br>      {<br>        &ldquo;transactionId&rdquo;: &ldquo;transaction123&rdquo;,<br>        &ldquo;state&rdquo;: &ldquo;Complete&rdquo;,<br>        &ldquo;type&rdquo;: &ldquo;Put&rdquo;,<br>        &ldquo;operationType&rdquo;: &ldquo;UPLOAD&rdquo;<br>        <br>      },<br>      {<br>        &ldquo;transactionId&rdquo;: &ldquo;transaction456&rdquo;,<br>        &ldquo;state&rdquo;: &ldquo;Complete&rdquo;,<br>        &ldquo;type&rdquo;: &ldquo;Put&rdquo;,<br>        &ldquo;operationType&rdquo;: &ldquo;UPLOAD&rdquo;,<br>        &ldquo;devices&rdquo;: [<br>          {<br>            &ldquo;imei&rdquo;: &ldquo;35163899&hellip;.456&rdquo;,<br>            &ldquo;code&rdquo;: 4000004,<br>            &ldquo;message&rdquo;: &ldquo;DEVICE_INVALID&rdquo;,<br>            &ldquo;data&rdquo;: &ldquo;The specified device is not valid.&quot;<br>          }<br>        ]<br>      }<br>    ]<br>  }<br>}</code></pre></td>
-</tr>
-</tbody>
+  <thead>
+      <tr>
+          <th>Gen 1</th>
+          <th>Gen 2</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td><pre><code>{<br>  &ldquo;totalCount&rdquo;: 2,<br>  &ldquo;totalPage&rdquo;: 1,<br>  &ldquo;pageNum&rdquo;: 0,<br>  &ldquo;transactions&rdquo;: [<br>    {<br>      &ldquo;transactionId&rdquo;: &ldquo;transaction123&rdquo;,<br>      &ldquo;state&rdquo;: &ldquo;Complete&rdquo;,<br>      &ldquo;type&rdquo;: &ldquo;Put&rdquo;,<br>      &ldquo;devices&rdquo;: [<br>        { &ldquo;imei&rdquo;: &ldquo;35163899&hellip;.236&rdquo; },<br>        { &ldquo;imei&rdquo;: &ldquo;35163899&hellip;.136&rdquo; }<br>      ]<br>    },<br>    {<br>      &ldquo;transactionId&rdquo;: &ldquo;transaction456&rdquo;,<br>      &ldquo;state&rdquo;: &ldquo;Complete&rdquo;,<br>      &ldquo;type&rdquo;: &ldquo;Put&rdquo;,<br>      &ldquo;devices&rdquo;: [<br>        { &ldquo;imei&rdquo;: &ldquo;35163899&hellip;.123&rdquo; },<br>        {<br>          &ldquo;imei&rdquo;: &ldquo;35163899&hellip;.456&rdquo;,<br>          &ldquo;code&rdquo;: 4000000,<br>          &ldquo;message&rdquo;: &ldquo;RESOURCE_INVALID_PARAM&rdquo;,<br>          &ldquo;data&rdquo;: &ldquo;This device [35163899&hellip;.456] invalid&rdquo;<br>        }<br>      ]<br>    }<br>  ]<br>}</code></pre></td>
+          <td><pre><code>{<br>  &ldquo;devices&rdquo;: {<br>    &ldquo;totalCount&rdquo;: 2,<br>    &ldquo;totalPage&rdquo;: 1,<br>    &ldquo;pageNum&rdquo;: 0,<br>    &ldquo;transactions&rdquo;: [<br>      {<br>        &ldquo;transactionId&rdquo;: &ldquo;transaction123&rdquo;,<br>        &ldquo;state&rdquo;: &ldquo;Complete&rdquo;,<br>        &ldquo;type&rdquo;: &ldquo;Put&rdquo;,<br>        &ldquo;operationType&rdquo;: &ldquo;UPLOAD&rdquo;<br>        <br>      },<br>      {<br>        &ldquo;transactionId&rdquo;: &ldquo;transaction456&rdquo;,<br>        &ldquo;state&rdquo;: &ldquo;Complete&rdquo;,<br>        &ldquo;type&rdquo;: &ldquo;Put&rdquo;,<br>        &ldquo;operationType&rdquo;: &ldquo;UPLOAD&rdquo;,<br>        &ldquo;devices&rdquo;: [<br>          {<br>            &ldquo;imei&rdquo;: &ldquo;35163899&hellip;.456&rdquo;,<br>            &ldquo;code&rdquo;: 4000004,<br>            &ldquo;message&rdquo;: &ldquo;DEVICE_INVALID&rdquo;,<br>            &ldquo;data&rdquo;: &ldquo;The specified device is not valid.&quot;<br>          }<br>        ]<br>      }<br>    ]<br>  }<br>}</code></pre></td>
+      </tr>
+  </tbody>
 </table></div>
 <h4 id="error-response-2">Error response</h4>
 <p>The Gen1 error response for the call itself includes <code>transactionId</code> and <code>state</code>, which don&rsquo;t appear for Gen2.</p>
 <div class="overflow-auto my-3"><table>
-<thead>
-<tr>
-<th>Gen 1</th>
-<th>Gen 2</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><pre><code>{<br>  &ldquo;transactionId&rdquo;: &ldquo;transaction123&rdquo;,<br>  &ldquo;state&rdquo;: &ldquo;Rejected&rdquo;,<br>  &ldquo;code&rdquo;: 4002101,<br>  &ldquo;message&rdquo;: &ldquo;RESELLER_ID_MISSING&rdquo;,<br>  &ldquo;data&rdquo;: &ldquo;reseller id is missing&rdquo;<br>}</code></pre></td>
-<td><pre><code>{<br>  &ldquo;code&rdquo;: 4010000,<br>  &ldquo;message&rdquo;: &ldquo;AUTHORIZATION_FAIL&rdquo;,<br>  &ldquo;data&rdquo;: &ldquo;Invalid Api Key&rdquo;<br>}</code></pre></td>
-</tr>
-</tbody>
+  <thead>
+      <tr>
+          <th>Gen 1</th>
+          <th>Gen 2</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td><pre><code>{<br>  &ldquo;transactionId&rdquo;: &ldquo;transaction123&rdquo;,<br>  &ldquo;state&rdquo;: &ldquo;Rejected&rdquo;,<br>  &ldquo;code&rdquo;: 4002101,<br>  &ldquo;message&rdquo;: &ldquo;RESELLER_ID_MISSING&rdquo;,<br>  &ldquo;data&rdquo;: &ldquo;reseller id is missing&rdquo;<br>}</code></pre></td>
+          <td><pre><code>{<br>  &ldquo;code&rdquo;: 4010000,<br>  &ldquo;message&rdquo;: &ldquo;AUTHORIZATION_FAIL&rdquo;,<br>  &ldquo;data&rdquo;: &ldquo;Invalid Api Key&rdquo;<br>}</code></pre></td>
+      </tr>
+  </tbody>
 </table></div>
 <hr>
 <h2 id="error-codes">Error codes</h2>

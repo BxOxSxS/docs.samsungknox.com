@@ -56,7 +56,7 @@
 
   
 
-<script onload="initBot()" defer src="https://dc-chbt.samsungknox.com/copilot/index.js?noCache=1772239241"></script>
+<script onload="initBot()" defer src="https://dc-chbt.samsungknox.com/copilot/index.js?noCache=1772832708"></script>
 <script defer>
     function initBot(){
       const relPath = "\/knox-sdk\/features\/mdm-providers\/vpn\/vpn-profile-configuration\/";
@@ -3052,7 +3052,7 @@
           <div class="l-content-top mb-4">
             <div class="l-breadcrumb">
               <a class="fw-light text-black" href="../../../../../index.html">Home</a><span> /</span>
-<a class="fw-light text-black" href="../../../../../knox-sdk.html">Knox SDK</a><span> /</span>
+<a class="fw-light text-black" href="../../../../index.html">Knox SDK</a><span> /</span>
 <a class="fw-light text-black" href="../../../index.html">Features</a><span> /</span>
 <a class="fw-light text-black" href="../../index.html">MDM Providers</a><span> /</span>
 <a class="fw-light text-black" href="../index.html">VPN</a><span> /</span>
@@ -3149,9 +3149,9 @@
 <ol>
 <li>
 <p>The EMM agent has to get the instance of the GenericVpnPolicy object in the KnoxManager class by passing the VPN vendor&rsquo;s package name as parameter.</p>
-<div class="highlight"><pre tabindex="0" style=";-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span>EnterpriseKnoxManager ekm <span style="color:#666">=</span> EnterpriseKnoxManager<span style="color:#666">.</span><span style="color:#7d9029">getInstance</span><span style="color:#666">();</span>
-</span></span><span style="display:flex;"><span>GenericVpnPolicy gm <span style="color:#666">=</span> ekm<span style="color:#666">.</span><span style="color:#7d9029">getGenericVpnPolicy</span><span style="color:#666">(</span>$vpn_client_packageName<span style="color:#666">,</span>$userId where VPN client is installed<span style="color:#666">);</span>
-</span></span></code></pre></div><p>After this code executes, the framework tries to bind to the VPN vendor&rsquo;s application. When the binding succeeds, the framework sends a broadcast message to the EMM agent.</p>
+<div class="highlight"><pre tabindex="0" style=";-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-java" data-lang="java"><span style="display:flex;"><span>EnterpriseKnoxManager<span style="color:#bbb"> </span>ekm<span style="color:#bbb"> </span><span style="color:#666">=</span><span style="color:#bbb"> </span>EnterpriseKnoxManager.<span style="color:#7d9029">getInstance</span>();<span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span>GenericVpnPolicy<span style="color:#bbb"> </span>gm<span style="color:#bbb"> </span><span style="color:#666">=</span><span style="color:#bbb"> </span>ekm.<span style="color:#7d9029">getGenericVpnPolicy</span>($vpn_client_packageName,$userId<span style="color:#bbb"> </span>where<span style="color:#bbb"> </span>VPN<span style="color:#bbb"> </span>client<span style="color:#bbb"> </span>is<span style="color:#bbb"> </span>installed);<span style="color:#bbb">
+</span></span></span></code></pre></div><p>After this code executes, the framework tries to bind to the VPN vendor&rsquo;s application. When the binding succeeds, the framework sends a broadcast message to the EMM agent.</p>
 </li>
 <li>
 <p>The EMM agent has to listen for the intent action <code>com.samsung.android.mdm.VPN_BIND_RESULT</code> that contains the following information:</p>
@@ -3159,18 +3159,18 @@
 <li><code>vpn_bind_vendor</code> provides the VPN vendor&rsquo;s package name</li>
 <li><code>vpn_bind_status</code> returns <code>true</code> or <code>false</code>, specifying whether the bind to the VPN vendor&rsquo;s application was successful or not.</li>
 </ul>
-<div class="highlight"><pre tabindex="0" style=";-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#008000;font-weight:bold">public</span> <span style="color:#008000;font-weight:bold">class</span> <span style="color:#00f;font-weight:bold">VPNBindReciever</span> <span style="color:#008000;font-weight:bold">extends</span> BroadcastReceiver <span style="color:#666">{</span>
-</span></span><span style="display:flex;"><span>    <span style="color:#008000;font-weight:bold">public</span> <span style="color:#008000;font-weight:bold">static</span> <span style="color:#008000;font-weight:bold">final</span> String ACTION_BIND_RESULT <span style="color:#666">=</span> <span style="color:#ba2121">&#34;com.samsung.android.mdm.VPN_BIND_RESULT&#34;</span><span style="color:#666">;</span>
-</span></span><span style="display:flex;"><span>    <span style="color:#008000;font-weight:bold">public</span> <span style="color:#008000;font-weight:bold">static</span> <span style="color:#008000;font-weight:bold">final</span> String BIND_VENDOR <span style="color:#666">=</span> <span style="color:#ba2121">&#34;vpn_bind_vendor&#34;</span><span style="color:#666">;</span>
-</span></span><span style="display:flex;"><span>    <span style="color:#008000;font-weight:bold">public</span> <span style="color:#008000;font-weight:bold">static</span> <span style="color:#008000;font-weight:bold">final</span> String BIND_STATUS <span style="color:#666">=</span> <span style="color:#ba2121">&#34;vpn_bind_status&#34;</span><span style="color:#666">;</span>
-</span></span><span style="display:flex;"><span>    <span style="color:#008000;font-weight:bold">public</span> <span style="color:#b00040">void</span> <span style="color:#00f">onReceive</span><span style="color:#666">(</span>Context context<span style="color:#666">,</span> Intent intent<span style="color:#666">)</span> <span style="color:#666">{</span>
-</span></span><span style="display:flex;"><span>        <span style="color:#008000;font-weight:bold">if</span> <span style="color:#666">(</span>intent<span style="color:#666">.</span><span style="color:#7d9029">getAction</span><span style="color:#666">().</span><span style="color:#7d9029">equalsIgnoreCase</span><span style="color:#666">(</span>ACTION_BIND_RESULT<span style="color:#666">))</span> <span style="color:#666">{</span>
-</span></span><span style="display:flex;"><span>            String vendorName <span style="color:#666">=</span> intent<span style="color:#666">.</span><span style="color:#7d9029">getExtra</span><span style="color:#666">(</span>BIND_VENDOR<span style="color:#666">);</span>
-</span></span><span style="display:flex;"><span>            <span style="color:#b00040">boolean</span> status <span style="color:#666">=</span> intent<span style="color:#666">.</span><span style="color:#7d9029">getExtra</span><span style="color:#666">(</span>BIND_STATUS<span style="color:#666">);</span>
-</span></span><span style="display:flex;"><span>        <span style="color:#666">}</span>
-</span></span><span style="display:flex;"><span>    <span style="color:#666">}</span>
-</span></span><span style="display:flex;"><span><span style="color:#666">}</span>
-</span></span></code></pre></div></li>
+<div class="highlight"><pre tabindex="0" style=";-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#008000;font-weight:bold">public</span><span style="color:#bbb"> </span><span style="color:#008000;font-weight:bold">class</span> <span style="color:#00f;font-weight:bold">VPNBindReciever</span><span style="color:#bbb"> </span><span style="color:#008000;font-weight:bold">extends</span><span style="color:#bbb"> </span>BroadcastReceiver<span style="color:#bbb"> </span>{<span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb">    </span><span style="color:#008000;font-weight:bold">public</span><span style="color:#bbb"> </span><span style="color:#008000;font-weight:bold">static</span><span style="color:#bbb"> </span><span style="color:#008000;font-weight:bold">final</span><span style="color:#bbb"> </span>String<span style="color:#bbb"> </span>ACTION_BIND_RESULT<span style="color:#bbb"> </span><span style="color:#666">=</span><span style="color:#bbb"> </span><span style="color:#ba2121">&#34;com.samsung.android.mdm.VPN_BIND_RESULT&#34;</span>;<span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb">    </span><span style="color:#008000;font-weight:bold">public</span><span style="color:#bbb"> </span><span style="color:#008000;font-weight:bold">static</span><span style="color:#bbb"> </span><span style="color:#008000;font-weight:bold">final</span><span style="color:#bbb"> </span>String<span style="color:#bbb"> </span>BIND_VENDOR<span style="color:#bbb"> </span><span style="color:#666">=</span><span style="color:#bbb"> </span><span style="color:#ba2121">&#34;vpn_bind_vendor&#34;</span>;<span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb">    </span><span style="color:#008000;font-weight:bold">public</span><span style="color:#bbb"> </span><span style="color:#008000;font-weight:bold">static</span><span style="color:#bbb"> </span><span style="color:#008000;font-weight:bold">final</span><span style="color:#bbb"> </span>String<span style="color:#bbb"> </span>BIND_STATUS<span style="color:#bbb"> </span><span style="color:#666">=</span><span style="color:#bbb"> </span><span style="color:#ba2121">&#34;vpn_bind_status&#34;</span>;<span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb">    </span><span style="color:#008000;font-weight:bold">public</span><span style="color:#bbb"> </span><span style="color:#b00040">void</span><span style="color:#bbb"> </span><span style="color:#00f">onReceive</span>(Context<span style="color:#bbb"> </span>context,<span style="color:#bbb"> </span>Intent<span style="color:#bbb"> </span>intent)<span style="color:#bbb"> </span>{<span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb">        </span><span style="color:#008000;font-weight:bold">if</span><span style="color:#bbb"> </span>(intent.<span style="color:#7d9029">getAction</span>().<span style="color:#7d9029">equalsIgnoreCase</span>(ACTION_BIND_RESULT))<span style="color:#bbb"> </span>{<span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb">            </span>String<span style="color:#bbb"> </span>vendorName<span style="color:#bbb"> </span><span style="color:#666">=</span><span style="color:#bbb"> </span>intent.<span style="color:#7d9029">getExtra</span>(BIND_VENDOR);<span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb">            </span><span style="color:#b00040">boolean</span><span style="color:#bbb"> </span>status<span style="color:#bbb"> </span><span style="color:#666">=</span><span style="color:#bbb"> </span>intent.<span style="color:#7d9029">getExtra</span>(BIND_STATUS);<span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb">        </span>}<span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb">    </span>}<span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span>}<span style="color:#bbb">
+</span></span></span></code></pre></div></li>
 <li>
 <p>Once the received value of <code>vpn_bind_status</code> is <code>true</code>, then the APIs present in the <code>GenericVpnPolicy</code> class need to be called with the reference to <code>GenericVpnPolicyObject (gm);</code></p>
 </li>

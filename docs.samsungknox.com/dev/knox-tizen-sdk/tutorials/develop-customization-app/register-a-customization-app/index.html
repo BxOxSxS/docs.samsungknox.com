@@ -56,7 +56,7 @@
 
   
 
-<script onload="initBot()" defer src="https://dc-chbt.samsungknox.com/copilot/index.js?noCache=1772239241"></script>
+<script onload="initBot()" defer src="https://dc-chbt.samsungknox.com/copilot/index.js?noCache=1772832709"></script>
 <script defer>
     function initBot(){
       const relPath = "\/knox-tizen-sdk\/tutorials\/develop-customization-app\/register-a-customization-app\/";
@@ -191,7 +191,7 @@
       
       <li>
         <div>
-          <a class="body-5 text-black fw-light" href="../../../../knox-tizen-sdk.html">Introduction</a>
+          <a class="body-5 text-black fw-light" href="../../../index.html">Introduction</a>
         </div>
       </li>
         
@@ -481,7 +481,7 @@
           <div class="l-content-top mb-4">
             <div class="l-breadcrumb">
               <a class="fw-light text-black" href="../../../../index.html">Home</a><span> /</span>
-<a class="fw-light text-black" href="../../../../knox-tizen-sdk.html">Knox Tizen SDK</a><span> /</span>
+<a class="fw-light text-black" href="../../../index.html">Knox Tizen SDK</a><span> /</span>
 <a class="fw-light text-black" href="../../index.html">Tutorials</a><span> /</span>
 <a class="fw-light text-black" href="../index.html">Develop customization app</a><span> /</span>
 
@@ -505,15 +505,15 @@
 
 <p>For the Knox Custom client app to set or apply policies on the Gear device, you must first register the app.</p>
 <p>To register the client app, call <code>knox_custom_register_client (const char *pkg_name)</code> API method.</p>
-<div class="highlight"><pre tabindex="0" style=";-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#b00040">int</span> ret <span style="color:#666">=</span> KNOX_RESULT_SUCCESS<span style="color:#666">;</span>
-</span></span><span style="display:flex;"><span>ret <span style="color:#666">=</span> knox_custom_register_client<span style="color:#666">(</span><span style="color:#ba2121">&#34;com.samsung.knox_custom_test_tool&#34;</span><span style="color:#666">);</span>
-</span></span></code></pre></div><p>Once the app is registered, call <code>knox_custom_get_service (void)</code> or the <code>knox_custom_get_service_ext (const char *pkg_name)</code> to verify if the app is registered, and also to get the service from the Knox Custom server daemon.</p>
-<div class="highlight"><pre tabindex="0" style=";-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#b00040">int</span> ret <span style="color:#666">=</span> knox_custom_get_service_ext<span style="color:#666">(</span><span style="color:#ba2121">&#34;com.samsung.knox_custom_test_tool&#34;</span><span style="color:#666">);</span>
-</span></span><span style="display:flex;"><span><span style="color:#008000;font-weight:bold">if</span> <span style="color:#666">(</span>ret <span style="color:#666">==</span> KNOX_RESULT_SUCCESS<span style="color:#666">)</span> <span style="color:#666">{</span>
-</span></span><span style="display:flex;"><span>  call Knox Custom APIs
-</span></span><span style="display:flex;"><span><span style="color:#666">}</span>
-</span></span><span style="display:flex;"><span>knox_custom_release_service<span style="color:#666">();</span>
-</span></span></code></pre></div><h2 id="to-de-register">To de-register</h2>
+<div class="highlight"><pre tabindex="0" style=";-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#b00040">int</span><span style="color:#bbb"> </span>ret<span style="color:#bbb"> </span><span style="color:#666">=</span><span style="color:#bbb"> </span>KNOX_RESULT_SUCCESS;<span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span>ret<span style="color:#bbb"> </span><span style="color:#666">=</span><span style="color:#bbb"> </span>knox_custom_register_client(<span style="color:#ba2121">&#34;com.samsung.knox_custom_test_tool&#34;</span>);<span style="color:#bbb">
+</span></span></span></code></pre></div><p>Once the app is registered, call <code>knox_custom_get_service (void)</code> or the <code>knox_custom_get_service_ext (const char *pkg_name)</code> to verify if the app is registered, and also to get the service from the Knox Custom server daemon.</p>
+<div class="highlight"><pre tabindex="0" style=";-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#b00040">int</span><span style="color:#bbb"> </span>ret<span style="color:#bbb"> </span><span style="color:#666">=</span><span style="color:#bbb"> </span>knox_custom_get_service_ext(<span style="color:#ba2121">&#34;com.samsung.knox_custom_test_tool&#34;</span>);<span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#008000;font-weight:bold">if</span><span style="color:#bbb"> </span>(ret<span style="color:#bbb"> </span><span style="color:#666">==</span><span style="color:#bbb"> </span>KNOX_RESULT_SUCCESS)<span style="color:#bbb"> </span>{<span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb">  </span>call<span style="color:#bbb"> </span>Knox<span style="color:#bbb"> </span>Custom<span style="color:#bbb"> </span>APIs<span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span>}<span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span>knox_custom_release_service();<span style="color:#bbb">
+</span></span></span></code></pre></div><h2 id="to-de-register">To de-register</h2>
 <p>Call the <code>knox_custom_deregister_client (const char *pkg_name)</code> API method to de-register the client app.</p>
 <div class="notice-note"><p>The policies set by the client app will remain as is even if the app is de-registered that is, there will be no change in the state of Gear device.</p></div>
 

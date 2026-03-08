@@ -56,7 +56,7 @@
 
   
 
-<script onload="initBot()" defer src="https://dc-chbt.samsungknox.com/copilot/index.js?noCache=1772239241"></script>
+<script onload="initBot()" defer src="https://dc-chbt.samsungknox.com/copilot/index.js?noCache=1772832708"></script>
 <script defer>
     function initBot(){
       const relPath = "\/knox-sdk\/features\/mdm-providers\/security\/password\/";
@@ -3052,7 +3052,7 @@
           <div class="l-content-top mb-4">
             <div class="l-breadcrumb">
               <a class="fw-light text-black" href="../../../../../index.html">Home</a><span> /</span>
-<a class="fw-light text-black" href="../../../../../knox-sdk.html">Knox SDK</a><span> /</span>
+<a class="fw-light text-black" href="../../../../index.html">Knox SDK</a><span> /</span>
 <a class="fw-light text-black" href="../../../index.html">Features</a><span> /</span>
 <a class="fw-light text-black" href="../../index.html">MDM Providers</a><span> /</span>
 <a class="fw-light text-black" href="../index.html">Security</a><span> /</span>
@@ -3135,10 +3135,10 @@
 </ol>
 <div class="notice-note"><p>Workspace prompts users to set their password when it launches.</p></div>
 <p>After the user changes the device or profile password, the <code>onPasswordChanged()</code> method is called as a result of receiving the <code>ACTION_PASSWORD_CHANGED</code>status. EMMs can implement this method to know when password has been set. Use the following sample code to get the userId of the user that changed the password.</p>
-<div class="highlight"><pre tabindex="0" style=";-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span>Public <span style="color:#b00040">void</span> <span style="color:#00f">onPasswordChanged</span><span style="color:#666">(</span>Context context<span style="color:#666">,</span> Intent intent<span style="color:#666">,</span> UserHandle user<span style="color:#666">)</span> <span style="color:#666">{</span>
-</span></span><span style="display:flex;"><span> <span style="color:#b00040">int</span> containerId <span style="color:#666">=</span> intent<span style="color:#666">.</span><span style="color:#7d9029">getExtras</span><span style="color:#666">().</span><span style="color:#7d9029">getInt</span><span style="color:#666">(</span><span style="color:#ba2121">&#34;android.intent.extra.USER_ID&#34;</span><span style="color:#666">);</span>
-</span></span><span style="display:flex;"><span><span style="color:#666">}</span>
-</span></span></code></pre></div><p>After receiving notification of password change and determining the user that changed the password EMMs can proceed to configure or provision items that require password. For example, after this notification EMMs can start provisioning certificates.</p>
+<div class="highlight"><pre tabindex="0" style=";-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-java" data-lang="java"><span style="display:flex;"><span>Public<span style="color:#bbb"> </span><span style="color:#b00040">void</span><span style="color:#bbb"> </span><span style="color:#00f">onPasswordChanged</span>(Context<span style="color:#bbb"> </span>context,<span style="color:#bbb"> </span>Intent<span style="color:#bbb"> </span>intent,<span style="color:#bbb"> </span>UserHandle<span style="color:#bbb"> </span>user)<span style="color:#bbb"> </span>{<span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb"> </span><span style="color:#b00040">int</span><span style="color:#bbb"> </span>containerId<span style="color:#bbb"> </span><span style="color:#666">=</span><span style="color:#bbb"> </span>intent.<span style="color:#7d9029">getExtras</span>().<span style="color:#7d9029">getInt</span>(<span style="color:#ba2121">&#34;android.intent.extra.USER_ID&#34;</span>);<span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span>}<span style="color:#bbb">
+</span></span></span></code></pre></div><p>After receiving notification of password change and determining the user that changed the password EMMs can proceed to configure or provision items that require password. For example, after this notification EMMs can start provisioning certificates.</p>
 <h2 id="password-updates">Password updates</h2>
 <ul
   class="nav nav-tabs d-flex align-items-center mt-3"
@@ -3284,25 +3284,25 @@
 <p>Enforcing password in Workspace 3.2.1</p>
 <h3 id="enforcing-password-in-workspace-30---32">Enforcing password in Workspace 3.0 - 3.2</h3>
 <p>Knox SDK v3.0 password rules have been modified to extend the functionality of upgrading from an Android PO to a Knox Workspace. As a result, the Workspace password flow has changed and passwords are not enabled by default. This also allows developers to customize their own authentication solution. To ensure a user sets a password on their container, insert the code below in the AdminReceiver class.</p>
-<div class="highlight"><pre tabindex="0" style=";-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#a2f">@Override</span>
-</span></span><span style="display:flex;"><span><span style="color:#008000;font-weight:bold">public</span> <span style="color:#b00040">void</span> <span style="color:#00f">onProfileProvisioningComplete</span><span style="color:#666">(</span>Context context<span style="color:#666">,</span> Intent intent<span style="color:#666">)</span> <span style="color:#666">{</span> 
-</span></span><span style="display:flex;"><span>  <span style="color:#666">...</span>
-</span></span><span style="display:flex;"><span>   EnterpriseDeviceManager edm <span style="color:#666">=</span> EnterpriseDeviceManager<span style="color:#666">.</span><span style="color:#7d9029">getInstance</span><span style="color:#666">(</span>context<span style="color:#666">);</span>
-</span></span><span style="display:flex;"><span>   PasswordPolicy pp <span style="color:#666">=</span> edm<span style="color:#666">.</span><span style="color:#7d9029">getPasswordPolicy</span><span style="color:#666">();</span>
-</span></span><span style="display:flex;"><span>   pp<span style="color:#666">.</span><span style="color:#7d9029">enforcePwdChange</span><span style="color:#666">();</span>
-</span></span><span style="display:flex;"><span><span style="color:#666">}</span>
-</span></span></code></pre></div><p>Now a user is prompted to create a password prior to entering the container when a PO is upgraded to a Knox container, with the license activation method.</p>
+<div class="highlight"><pre tabindex="0" style=";-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#a2f">@Override</span><span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#008000;font-weight:bold">public</span><span style="color:#bbb"> </span><span style="color:#b00040">void</span><span style="color:#bbb"> </span><span style="color:#00f">onProfileProvisioningComplete</span>(Context<span style="color:#bbb"> </span>context,<span style="color:#bbb"> </span>Intent<span style="color:#bbb"> </span>intent)<span style="color:#bbb"> </span>{<span style="color:#bbb"> 
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb">  </span>...<span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb">   </span>EnterpriseDeviceManager<span style="color:#bbb"> </span>edm<span style="color:#bbb"> </span><span style="color:#666">=</span><span style="color:#bbb"> </span>EnterpriseDeviceManager.<span style="color:#7d9029">getInstance</span>(context);<span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb">   </span>PasswordPolicy<span style="color:#bbb"> </span>pp<span style="color:#bbb"> </span><span style="color:#666">=</span><span style="color:#bbb"> </span>edm.<span style="color:#7d9029">getPasswordPolicy</span>();<span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb">   </span>pp.<span style="color:#7d9029">enforcePwdChange</span>();<span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span>}<span style="color:#bbb">
+</span></span></span></code></pre></div><p>Now a user is prompted to create a password prior to entering the container when a PO is upgraded to a Knox container, with the license activation method.</p>
 <p>The container can also be configured to set a password lock delay using <a href="../../../../../../devref/knox-sdk/reference/com/samsung/android/knox/container/BasePasswordPolicy.html#setMaximumTimeToLock(android.content.ComponentName, long)" target="_blank"><code>setMaximumTimeToLock</code></a>.</p>
-<div class="highlight"><pre tabindex="0" style=";-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span>newConfig<span style="color:#666">.</span><span style="color:#7d9029">setMaximumTimeToLock</span><span style="color:#666">(</span><span style="color:#666">10</span><span style="color:#666">);</span>
-</span></span></code></pre></div><h3 id="set-password-in-workspace-29-and-below">Set Password in Workspace 2.9 and below</h3>
+<div class="highlight"><pre tabindex="0" style=";-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-java" data-lang="java"><span style="display:flex;"><span>newConfig.<span style="color:#7d9029">setMaximumTimeToLock</span>(10);<span style="color:#bbb">
+</span></span></span></code></pre></div><h3 id="set-password-in-workspace-29-and-below">Set Password in Workspace 2.9 and below</h3>
 <p>If you are using Knox SDK v.2.9 or lower, password is enabled by default. For more information on setting the password in such cases, see the following section.</p>
 <p>To set a password for a Knox Workspace, ensure that the container is configured properly prior to being created. This example clones a <code>knox-b2b</code> <a href="../../workspaces/about-containers">container</a>.</p>
-<div class="highlight"><pre tabindex="0" style=";-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span>KnoxConfigurationType predefinedConfiguration <span style="color:#666">=</span> KnoxContainerManager<span style="color:#666">.</span><span style="color:#7d9029">getConfigurationTypeByName</span><span style="color:#666">(</span><span style="color:#ba2121">&#34;knox-b2b&#34;</span><span style="color:#666">);</span>
-</span></span><span style="display:flex;"><span>KnoxConfigurationType newConfig <span style="color:#666">=</span> predefinedConfiguration<span style="color:#666">.</span><span style="color:#7d9029">clone</span><span style="color:#666">(</span><span style="color:#ba2121">&#34;custom&#34;</span><span style="color:#666">);</span> <span style="color:#408080;font-style:italic">//Clones and assigns a new name
-</span></span></span><span style="display:flex;"><span><span style="color:#408080;font-style:italic"></span>newConfig<span style="color:#666">.</span><span style="color:#7d9029">setPasswordQuality</span><span style="color:#666">(</span>DevicePolicyManager<span style="color:#666">.</span><span style="color:#7d9029">PASSWORD_QUALITY_SOMETHING</span><span style="color:#666">);</span>
-</span></span><span style="display:flex;"><span>KnoxContainerManager<span style="color:#666">.</span><span style="color:#7d9029">addConfigurationType</span><span style="color:#666">(</span><span style="color:#008000;font-weight:bold">this</span><span style="color:#666">,</span>newConfig<span style="color:#666">);</span>
-</span></span><span style="display:flex;"><span>KnoxContainerManager<span style="color:#666">.</span><span style="color:#7d9029">createContainer</span><span style="color:#666">(</span><span style="color:#ba2121">&#34;custom&#34;</span><span style="color:#666">);</span>
-</span></span></code></pre></div><h3 id="change-password-on-device-side">Change Password on device side</h3>
+<div class="highlight"><pre tabindex="0" style=";-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-java" data-lang="java"><span style="display:flex;"><span>KnoxConfigurationType<span style="color:#bbb"> </span>predefinedConfiguration<span style="color:#bbb"> </span><span style="color:#666">=</span><span style="color:#bbb"> </span>KnoxContainerManager.<span style="color:#7d9029">getConfigurationTypeByName</span>(<span style="color:#ba2121">&#34;knox-b2b&#34;</span>);<span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span>KnoxConfigurationType<span style="color:#bbb"> </span>newConfig<span style="color:#bbb"> </span><span style="color:#666">=</span><span style="color:#bbb"> </span>predefinedConfiguration.<span style="color:#7d9029">clone</span>(<span style="color:#ba2121">&#34;custom&#34;</span>);<span style="color:#bbb"> </span><span style="color:#408080;font-style:italic">//Clones and assigns a new name</span><span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span>newConfig.<span style="color:#7d9029">setPasswordQuality</span>(DevicePolicyManager.<span style="color:#7d9029">PASSWORD_QUALITY_SOMETHING</span>);<span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span>KnoxContainerManager.<span style="color:#7d9029">addConfigurationType</span>(<span style="color:#008000;font-weight:bold">this</span>,newConfig);<span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span>KnoxContainerManager.<span style="color:#7d9029">createContainer</span>(<span style="color:#ba2121">&#34;custom&#34;</span>);<span style="color:#bbb">
+</span></span></span></code></pre></div><h3 id="change-password-on-device-side">Change Password on device side</h3>
 <p>The following configurations must be enforced by the IT admin:</p>
 <ul>
 <li>Set password change timeout</li>
@@ -3328,17 +3328,17 @@
 </li>
 <li>
 <p>Enforce a password change with <code>enforcePwdChange</code>.</p>
-<div class="highlight"><pre tabindex="0" style=";-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span>EnterpriseDeviceManager edm <span style="color:#666">=</span> EnterpriseDeviceManager<span style="color:#666">.</span><span style="color:#7d9029">getInstance</span><span style="color:#666">(</span>context<span style="color:#666">);</span>
-</span></span><span style="display:flex;"><span>PasswordPolicy passwordPolicy <span style="color:#666">=</span> edm<span style="color:#666">.</span><span style="color:#7d9029">getPasswordPolicy</span><span style="color:#666">();</span>
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>passwordPolicy<span style="color:#666">.</span><span style="color:#7d9029">setPasswordChangeTimeout</span><span style="color:#666">(</span><span style="color:#666">60</span><span style="color:#666">);</span> 
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#408080;font-style:italic">//EDMTestsAdmin extends DeviceAdminReceiver and is notified when password expires
-</span></span></span><span style="display:flex;"><span><span style="color:#408080;font-style:italic"></span>ComponentName enterpriseDeviceAdmin <span style="color:#666">=</span> <span style="color:#008000;font-weight:bold">new</span> ComponentName<span style="color:#666">(</span>context<span style="color:#666">,</span> EDMTestsAdmin<span style="color:#666">.</span><span style="color:#7d9029">class</span><span style="color:#666">);</span> 
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>passwordPolicy<span style="color:#666">.</span><span style="color:#7d9029">setPasswordExpires</span><span style="color:#666">(</span>enterpriseDeviceAdmin<span style="color:#666">,</span> <span style="color:#666">10</span><span style="color:#666">);</span>
-</span></span><span style="display:flex;"><span>passwordPolicy<span style="color:#666">.</span><span style="color:#7d9029">enforcePwdChange</span><span style="color:#666">();</span>
-</span></span></code></pre></div></li>
+<div class="highlight"><pre tabindex="0" style=";-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-java" data-lang="java"><span style="display:flex;"><span>EnterpriseDeviceManager<span style="color:#bbb"> </span>edm<span style="color:#bbb"> </span><span style="color:#666">=</span><span style="color:#bbb"> </span>EnterpriseDeviceManager.<span style="color:#7d9029">getInstance</span>(context);<span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span>PasswordPolicy<span style="color:#bbb"> </span>passwordPolicy<span style="color:#bbb"> </span><span style="color:#666">=</span><span style="color:#bbb"> </span>edm.<span style="color:#7d9029">getPasswordPolicy</span>();<span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span>passwordPolicy.<span style="color:#7d9029">setPasswordChangeTimeout</span>(60);<span style="color:#bbb"> 
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#408080;font-style:italic">//EDMTestsAdmin extends DeviceAdminReceiver and is notified when password expires</span><span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span>ComponentName<span style="color:#bbb"> </span>enterpriseDeviceAdmin<span style="color:#bbb"> </span><span style="color:#666">=</span><span style="color:#bbb"> </span><span style="color:#008000;font-weight:bold">new</span><span style="color:#bbb"> </span>ComponentName(context,<span style="color:#bbb"> </span>EDMTestsAdmin.<span style="color:#7d9029">class</span>);<span style="color:#bbb"> 
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span>passwordPolicy.<span style="color:#7d9029">setPasswordExpires</span>(enterpriseDeviceAdmin,<span style="color:#bbb"> </span>10);<span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span>passwordPolicy.<span style="color:#7d9029">enforcePwdChange</span>();<span style="color:#bbb">
+</span></span></span></code></pre></div></li>
 </ol>
 
             

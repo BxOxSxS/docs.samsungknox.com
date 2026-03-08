@@ -56,7 +56,7 @@
 
   
 
-<script onload="initBot()" defer src="https://dc-chbt.samsungknox.com/copilot/index.js?noCache=1772239241"></script>
+<script onload="initBot()" defer src="https://dc-chbt.samsungknox.com/copilot/index.js?noCache=1772832708"></script>
 <script defer>
     function initBot(){
       const relPath = "\/knox-sdk\/features\/mdm-providers\/accounts\/email-accounts\/";
@@ -3052,7 +3052,7 @@
           <div class="l-content-top mb-4">
             <div class="l-breadcrumb">
               <a class="fw-light text-black" href="../../../../../index.html">Home</a><span> /</span>
-<a class="fw-light text-black" href="../../../../../knox-sdk.html">Knox SDK</a><span> /</span>
+<a class="fw-light text-black" href="../../../../index.html">Knox SDK</a><span> /</span>
 <a class="fw-light text-black" href="../../../index.html">Features</a><span> /</span>
 <a class="fw-light text-black" href="../../index.html">MDM Providers</a><span> /</span>
 <a class="fw-light text-black" href="../index.html">Accounts</a><span> /</span>
@@ -3257,52 +3257,52 @@
 </li>
 <li>
 <p>Enter the required account settings.</p>
-<div class="highlight"><pre tabindex="0" style=";-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#b00040">long</span>  accountId <span style="color:#666">=</span> <span style="color:#666">-</span><span style="color:#666">1</span><span style="color:#666">;</span>
-</span></span><span style="display:flex;"><span>EnterpriseDeviceManager edm <span style="color:#666">=</span> EnterpriseDeviceManager<span style="color:#666">.</span><span style="color:#7d9029">getInstance</span><span style="color:#666">(</span>context<span style="color:#666">);</span>
-</span></span><span style="display:flex;"><span>EmailAccountPolicy  emailAccountPolicy <span style="color:#666">=</span> edm<span style="color:#666">.</span><span style="color:#7d9029">getEmailAccountPolicy</span><span style="color:#666">();</span>
-</span></span><span style="display:flex;"><span><span style="color:#008000;font-weight:bold">try</span> <span style="color:#666">{</span>
-</span></span><span style="display:flex;"><span>        accountId <span style="color:#666">=</span> emailAccountPolicy<span style="color:#666">.</span><span style="color:#7d9029">addNewAccount</span><span style="color:#666">(</span><span style="color:#008000;font-weight:bold">new</span> EmailAccount<span style="color:#666">(</span>
-</span></span><span style="display:flex;"><span>            <span style="color:#ba2121">&#34;testemail@gmail.com&#34;</span><span style="color:#666">,</span><span style="color:#ba2121">&#34;pop3&#34;</span><span style="color:#666">,</span><span style="color:#ba2121">&#34;pop.gmail.com&#34;</span><span style="color:#666">,</span> <span style="color:#666">995</span><span style="color:#666">,</span>
-</span></span><span style="display:flex;"><span>            <span style="color:#ba2121">&#34;testemail@gmail.com&#34;</span><span style="color:#666">,</span> <span style="color:#008000;font-weight:bold">null</span><span style="color:#666">,</span><span style="color:#ba2121">&#34;smtp&#34;</span><span style="color:#666">,</span> <span style="color:#ba2121">&#34;smtp.gmail.com&#34;</span><span style="color:#666">,</span><span style="color:#666">465</span><span style="color:#666">,</span>
-</span></span><span style="display:flex;"><span>            <span style="color:#ba2121">&#34;testemail@gmail.com&#34;</span><span style="color:#666">,</span><span style="color:#008000;font-weight:bold">null</span><span style="color:#666">));</span>
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>        <span style="color:#008000;font-weight:bold">if</span><span style="color:#666">(</span>accountId <span style="color:#666">&gt;=</span> <span style="color:#666">0</span><span style="color:#666">){</span>
-</span></span><span style="display:flex;"><span>            Log<span style="color:#666">.</span><span style="color:#7d9029">d</span><span style="color:#666">(</span>TAG<span style="color:#666">,</span><span style="color:#ba2121">&#34; Adding a new email account has succeeded!&#34;</span><span style="color:#666">);</span>
-</span></span><span style="display:flex;"><span>            <span style="color:#408080;font-style:italic">// Administrator needs to call sendAccountsChangedBroadcast() API
-</span></span></span><span style="display:flex;"><span><span style="color:#408080;font-style:italic"></span>            <span style="color:#408080;font-style:italic">// to notify regarding email account addition.
-</span></span></span><span style="display:flex;"><span><span style="color:#408080;font-style:italic"></span>            emailAccountPolicy<span style="color:#666">.</span><span style="color:#7d9029">sendAccountsChangedBroadcast</span><span style="color:#666">();</span>
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>        <span style="color:#666">}</span><span style="color:#008000;font-weight:bold">else</span><span style="color:#666">{</span>
-</span></span><span style="display:flex;"><span>            Log<span style="color:#666">.</span><span style="color:#7d9029">d</span><span style="color:#666">(</span>TAG<span style="color:#666">,</span><span style="color:#ba2121">&#34; Adding a new email account failed.&#34;</span><span style="color:#666">);</span>
-</span></span><span style="display:flex;"><span>        <span style="color:#666">}</span>
-</span></span><span style="display:flex;"><span><span style="color:#666">}</span> <span style="color:#008000;font-weight:bold">catch</span><span style="color:#666">(</span>SecurityException e<span style="color:#666">)</span> <span style="color:#666">{</span>
-</span></span><span style="display:flex;"><span>    Log<span style="color:#666">.</span><span style="color:#7d9029">w</span><span style="color:#666">(</span>TAG<span style="color:#666">,</span><span style="color:#ba2121">&#34;SecurityException: &#34;</span><span style="color:#666">+</span>e<span style="color:#666">);</span>
-</span></span><span style="display:flex;"><span><span style="color:#666">}</span>
-</span></span></code></pre></div></li>
+<div class="highlight"><pre tabindex="0" style=";-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#b00040">long</span><span style="color:#bbb">  </span>accountId<span style="color:#bbb"> </span><span style="color:#666">=</span><span style="color:#bbb"> </span><span style="color:#666">-</span>1;<span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span>EnterpriseDeviceManager<span style="color:#bbb"> </span>edm<span style="color:#bbb"> </span><span style="color:#666">=</span><span style="color:#bbb"> </span>EnterpriseDeviceManager.<span style="color:#7d9029">getInstance</span>(context);<span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span>EmailAccountPolicy<span style="color:#bbb">  </span>emailAccountPolicy<span style="color:#bbb"> </span><span style="color:#666">=</span><span style="color:#bbb"> </span>edm.<span style="color:#7d9029">getEmailAccountPolicy</span>();<span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#008000;font-weight:bold">try</span><span style="color:#bbb"> </span>{<span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb">        </span>accountId<span style="color:#bbb"> </span><span style="color:#666">=</span><span style="color:#bbb"> </span>emailAccountPolicy.<span style="color:#7d9029">addNewAccount</span>(<span style="color:#008000;font-weight:bold">new</span><span style="color:#bbb"> </span>EmailAccount(<span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb">            </span><span style="color:#ba2121">&#34;testemail@gmail.com&#34;</span>,<span style="color:#ba2121">&#34;pop3&#34;</span>,<span style="color:#ba2121">&#34;pop.gmail.com&#34;</span>,<span style="color:#bbb"> </span>995,<span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb">            </span><span style="color:#ba2121">&#34;testemail@gmail.com&#34;</span>,<span style="color:#bbb"> </span><span style="color:#008000;font-weight:bold">null</span>,<span style="color:#ba2121">&#34;smtp&#34;</span>,<span style="color:#bbb"> </span><span style="color:#ba2121">&#34;smtp.gmail.com&#34;</span>,465,<span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb">            </span><span style="color:#ba2121">&#34;testemail@gmail.com&#34;</span>,<span style="color:#008000;font-weight:bold">null</span>));<span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb">        </span><span style="color:#008000;font-weight:bold">if</span>(accountId<span style="color:#bbb"> </span><span style="color:#666">&gt;=</span><span style="color:#bbb"> </span>0){<span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb">            </span>Log.<span style="color:#7d9029">d</span>(TAG,<span style="color:#ba2121">&#34; Adding a new email account has succeeded!&#34;</span>);<span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb">            </span><span style="color:#408080;font-style:italic">// Administrator needs to call sendAccountsChangedBroadcast() API</span><span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb">            </span><span style="color:#408080;font-style:italic">// to notify regarding email account addition.</span><span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb">            </span>emailAccountPolicy.<span style="color:#7d9029">sendAccountsChangedBroadcast</span>();<span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb">        </span>}<span style="color:#008000;font-weight:bold">else</span>{<span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb">            </span>Log.<span style="color:#7d9029">d</span>(TAG,<span style="color:#ba2121">&#34; Adding a new email account failed.&#34;</span>);<span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb">        </span>}<span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span>}<span style="color:#bbb"> </span><span style="color:#008000;font-weight:bold">catch</span>(SecurityException<span style="color:#bbb"> </span>e)<span style="color:#bbb"> </span>{<span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb">    </span>Log.<span style="color:#7d9029">w</span>(TAG,<span style="color:#ba2121">&#34;SecurityException: &#34;</span><span style="color:#666">+</span>e);<span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span>}<span style="color:#bbb">
+</span></span></span></code></pre></div></li>
 </ol>
 <h3 id="set-up-an-exchange-account">Set up an Exchange account</h3>
 <p>This API remotely configures a Microsoft Exchange ActiveSync account on the user&rsquo;s device without user interaction. Most of these settings can be changed by the user except <code>domain</code> and <code>username</code>.</p>
 <p>Use <a href="../../../../../../devref/knox-sdk/reference/com/samsung/android/knox/accounts/ExchangeAccountPolicy.html#addNewAccount" target="_blank">ExchangeAccountPolicy.addNewAccount</a> to add exchange accounts the device or Workspace.</p>
-<div class="highlight"><pre tabindex="0" style=";-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#b00040">long</span>  accountId <span style="color:#666">=</span> <span style="color:#666">-</span><span style="color:#666">1</span><span style="color:#666">;</span>
-</span></span><span style="display:flex;"><span> EnterpriseDeviceManager edm <span style="color:#666">=</span> EnterpriseDeviceManager<span style="color:#666">.</span><span style="color:#7d9029">getInstance</span><span style="color:#666">(</span>context<span style="color:#666">);</span>
-</span></span><span style="display:flex;"><span>  ExchangeAccountPolicy  exchangeAccountPolicy <span style="color:#666">=</span> edm<span style="color:#666">.</span>
-</span></span><span style="display:flex;"><span>                         <span style="color:#00f">getExchangeAccountPolicy</span><span style="color:#666">();</span>
-</span></span><span style="display:flex;"><span>  <span style="color:#008000;font-weight:bold">try</span> <span style="color:#666">{</span>
-</span></span><span style="display:flex;"><span>     accountId <span style="color:#666">=</span>  exchangeAccountPolicy<span style="color:#666">.</span><span style="color:#7d9029">addNewAccount</span><span style="color:#666">(</span><span style="color:#008000;font-weight:bold">new</span> ExchangeAccount<span style="color:#666">(</span>
-</span></span><span style="display:flex;"><span>                 <span style="color:#ba2121">&#34;testeasid@easserver.com&#34;</span><span style="color:#666">,</span> <span style="color:#ba2121">&#34;testeasid&#34;</span><span style="color:#666">,</span><span style="color:#ba2121">&#34;easDomain&#34;</span><span style="color:#666">,</span> <span style="color:#ba2121">&#34;easserver.com&#34;</span><span style="color:#666">,</span>
-</span></span><span style="display:flex;"><span>                 <span style="color:#ba2121">&#34;Password@123&#34;</span><span style="color:#666">));</span>
-</span></span><span style="display:flex;"><span>     <span style="color:#008000;font-weight:bold">if</span><span style="color:#666">(</span>accountId <span style="color:#666">&gt;=</span> <span style="color:#666">0</span><span style="color:#666">){</span>
-</span></span><span style="display:flex;"><span>         Log<span style="color:#666">.</span><span style="color:#7d9029">d</span><span style="color:#666">(</span>TAG<span style="color:#666">,</span><span style="color:#ba2121">&#34;Add a new exchange account with base parameters succeeded!&#34;</span><span style="color:#666">);</span>
-</span></span><span style="display:flex;"><span>         <span style="color:#408080;font-style:italic">// Administrator needs to call sendAccountsChangedBroadcast() API
-</span></span></span><span style="display:flex;"><span><span style="color:#408080;font-style:italic"></span>         <span style="color:#408080;font-style:italic">// to notify about the Microsoft Exchange account addition.
-</span></span></span><span style="display:flex;"><span><span style="color:#408080;font-style:italic"></span>         exchangeAccountPolicy<span style="color:#666">.</span><span style="color:#7d9029">sendAccountsChangedBroadcast</span><span style="color:#666">();</span>
-</span></span><span style="display:flex;"><span>      <span style="color:#666">}</span><span style="color:#008000;font-weight:bold">else</span><span style="color:#666">{</span>
-</span></span><span style="display:flex;"><span>          Log<span style="color:#666">.</span><span style="color:#7d9029">d</span><span style="color:#666">(</span>TAG<span style="color:#666">,</span><span style="color:#ba2121">&#34; Add a new exchange account with base parameters failed.&#34;</span><span style="color:#666">);</span>
-</span></span><span style="display:flex;"><span>      <span style="color:#666">}</span>
-</span></span><span style="display:flex;"><span>  <span style="color:#666">}</span> <span style="color:#008000;font-weight:bold">catch</span><span style="color:#666">(</span>SecurityException e<span style="color:#666">)</span> <span style="color:#666">{</span>
-</span></span><span style="display:flex;"><span>      Log<span style="color:#666">.</span><span style="color:#7d9029">w</span><span style="color:#666">(</span>TAG<span style="color:#666">,</span><span style="color:#ba2121">&#34;SecurityException: &#34;</span><span style="color:#666">+</span>e<span style="color:#666">);</span>
-</span></span><span style="display:flex;"><span>  <span style="color:#666">}</span> 
-</span></span></code></pre></div><h3 id="set-up-an-exchange-account-inside-workspace-with-a-certificate">Set up an Exchange account inside Workspace with a certificate</h3>
+<div class="highlight"><pre tabindex="0" style=";-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#b00040">long</span><span style="color:#bbb">  </span>accountId<span style="color:#bbb"> </span><span style="color:#666">=</span><span style="color:#bbb"> </span><span style="color:#666">-</span>1;<span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb"> </span>EnterpriseDeviceManager<span style="color:#bbb"> </span>edm<span style="color:#bbb"> </span><span style="color:#666">=</span><span style="color:#bbb"> </span>EnterpriseDeviceManager.<span style="color:#7d9029">getInstance</span>(context);<span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb">  </span>ExchangeAccountPolicy<span style="color:#bbb">  </span>exchangeAccountPolicy<span style="color:#bbb"> </span><span style="color:#666">=</span><span style="color:#bbb"> </span>edm.<span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb">                         </span><span style="color:#00f">getExchangeAccountPolicy</span>();<span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb">  </span><span style="color:#008000;font-weight:bold">try</span><span style="color:#bbb"> </span>{<span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb">     </span>accountId<span style="color:#bbb"> </span><span style="color:#666">=</span><span style="color:#bbb">  </span>exchangeAccountPolicy.<span style="color:#7d9029">addNewAccount</span>(<span style="color:#008000;font-weight:bold">new</span><span style="color:#bbb"> </span>ExchangeAccount(<span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb">                 </span><span style="color:#ba2121">&#34;testeasid@easserver.com&#34;</span>,<span style="color:#bbb"> </span><span style="color:#ba2121">&#34;testeasid&#34;</span>,<span style="color:#ba2121">&#34;easDomain&#34;</span>,<span style="color:#bbb"> </span><span style="color:#ba2121">&#34;easserver.com&#34;</span>,<span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb">                 </span><span style="color:#ba2121">&#34;Password@123&#34;</span>));<span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb">     </span><span style="color:#008000;font-weight:bold">if</span>(accountId<span style="color:#bbb"> </span><span style="color:#666">&gt;=</span><span style="color:#bbb"> </span>0){<span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb">         </span>Log.<span style="color:#7d9029">d</span>(TAG,<span style="color:#ba2121">&#34;Add a new exchange account with base parameters succeeded!&#34;</span>);<span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb">         </span><span style="color:#408080;font-style:italic">// Administrator needs to call sendAccountsChangedBroadcast() API</span><span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb">         </span><span style="color:#408080;font-style:italic">// to notify about the Microsoft Exchange account addition.</span><span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb">         </span>exchangeAccountPolicy.<span style="color:#7d9029">sendAccountsChangedBroadcast</span>();<span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb">      </span>}<span style="color:#008000;font-weight:bold">else</span>{<span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb">          </span>Log.<span style="color:#7d9029">d</span>(TAG,<span style="color:#ba2121">&#34; Add a new exchange account with base parameters failed.&#34;</span>);<span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb">      </span>}<span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb">  </span>}<span style="color:#bbb"> </span><span style="color:#008000;font-weight:bold">catch</span>(SecurityException<span style="color:#bbb"> </span>e)<span style="color:#bbb"> </span>{<span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb">      </span>Log.<span style="color:#7d9029">w</span>(TAG,<span style="color:#ba2121">&#34;SecurityException: &#34;</span><span style="color:#666">+</span>e);<span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb">  </span>}<span style="color:#bbb"> 
+</span></span></span></code></pre></div><h3 id="set-up-an-exchange-account-inside-workspace-with-a-certificate">Set up an Exchange account inside Workspace with a certificate</h3>
 <p>For this scenario, we set up Exchange inside Workspace using a client certificate and configure the following:</p>
 <ul>
 <li>Use SSL</li>
@@ -3335,27 +3335,27 @@
 <p>Call <a href="../../../../../../devref/knox-sdk/reference/com/samsung/android/knox/accounts/ExchangeAccountPolicy.html#setForceSMIMECertificateAlias(long, java.lang.String, java.lang.String, int)" target="_blank">SetForceSMIECertificateForEncryption</a> and pass in <code>accountID</code>, certificate path and the certificate password.</p>
 </li>
 </ol>
-<div class="highlight"><pre tabindex="0" style=";-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#408080;font-style:italic">//Get the Knox container manager object
-</span></span></span><span style="display:flex;"><span><span style="color:#408080;font-style:italic"></span>EnterpriseKnoxManager ekm <span style="color:#666">=</span> EnterpriseKnoxManager<span style="color:#666">.</span><span style="color:#7d9029">getInstance</span><span style="color:#666">();</span>
-</span></span><span style="display:flex;"><span>KnoxContainerManager kmcm <span style="color:#666">=</span> ekm<span style="color:#666">.</span><span style="color:#7d9029">getKnoxContainerManager</span><span style="color:#666">(</span>mContext<span style="color:#666">,</span> containerID<span style="color:#666">);</span>
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#408080;font-style:italic">//create Exchange account policy and add accounts
-</span></span></span><span style="display:flex;"><span><span style="color:#408080;font-style:italic"></span>
-</span></span><span style="display:flex;"><span>ExchangeAccountPolicy<span style=""> </span> eap <span style="color:#666">=</span> kcm<span style="color:#666">.</span><span style="color:#7d9029">getExchangeAccountPolicy</span><span style="color:#666">();</span>
-</span></span><span style="display:flex;"><span>ExchangeAccount account <span style="color:#666">=</span> <span style="color:#008000;font-weight:bold">new</span> ExchangeAccount<span style="color:#666">(</span><span style="color:#ba2121">&#34;test@eas.com&#34;</span><span style="color:#666">,</span> <span style="color:#ba2121">&#34;user&#34;</span><span style="color:#666">,</span> <span style="color:#ba2121">&#34;domain&#34;</span><span style="color:#666">,</span><span style="color:#ba2121">&#34;eas.server.com&#34;</span><span style="color:#666">,</span> <span style="color:#ba2121">&#34;password&#34;</span><span style="color:#666">);</span>
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#408080;font-style:italic">//set SSL to true and sync interval to 2 minutes
-</span></span></span><span style="display:flex;"><span><span style="color:#408080;font-style:italic"></span>account<span style="color:#666">.</span><span style="color:#7d9029">UseSSL</span> <span style="color:#666">=</span> <span style="color:#008000;font-weight:bold">true</span><span style="color:#666">;</span>
-</span></span><span style="display:flex;"><span>account<span style="color:#666">.</span><span style="color:#7d9029">SyncInterval</span> <span style="color:#666">=</span> <span style="color:#666">2</span><span style="color:#666">;</span>
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#408080;font-style:italic">//add new accounts with previous configurations
-</span></span></span><span style="display:flex;"><span><span style="color:#408080;font-style:italic"></span>eap<span style="color:#666">.</span><span style="color:#7d9029">addNewAccount</span><span style="color:#666">(</span>account<span style="color:#666">);</span>
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#408080;font-style:italic">//pass in certificate details to setForceSMIMECertificateForEncryption API
-</span></span></span><span style="display:flex;"><span><span style="color:#408080;font-style:italic"></span>String certPath <span style="color:#666">=</span> <span style="color:#ba2121">&#34;/mnt/sdcard/cert.p12&#34;</span><span style="color:#666">;</span>
-</span></span><span style="display:flex;"><span>String certPwd <span style="color:#666">=</span> <span style="color:#ba2121">&#34;ins3cur3p4ss&#34;</span><span style="color:#666">;</span>
-</span></span><span style="display:flex;"><span>eap<span style="color:#666">.</span><span style="color:#7d9029">setForceSMIMECertificateForEncryption</span><span style="color:#666">(</span>accountId<span style="color:#666">,</span> certPath<span style="color:#666">,</span> certPwd<span style="color:#666">);</span>
-</span></span></code></pre></div>
+<div class="highlight"><pre tabindex="0" style=";-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#408080;font-style:italic">//Get the Knox container manager object</span><span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span>EnterpriseKnoxManager<span style="color:#bbb"> </span>ekm<span style="color:#bbb"> </span><span style="color:#666">=</span><span style="color:#bbb"> </span>EnterpriseKnoxManager.<span style="color:#7d9029">getInstance</span>();<span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span>KnoxContainerManager<span style="color:#bbb"> </span>kmcm<span style="color:#bbb"> </span><span style="color:#666">=</span><span style="color:#bbb"> </span>ekm.<span style="color:#7d9029">getKnoxContainerManager</span>(mContext,<span style="color:#bbb"> </span>containerID);<span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#408080;font-style:italic">//create Exchange account policy and add accounts</span><span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span>ExchangeAccountPolicy<span style="color:#bbb">  </span>eap<span style="color:#bbb"> </span><span style="color:#666">=</span><span style="color:#bbb"> </span>kcm.<span style="color:#7d9029">getExchangeAccountPolicy</span>();<span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span>ExchangeAccount<span style="color:#bbb"> </span>account<span style="color:#bbb"> </span><span style="color:#666">=</span><span style="color:#bbb"> </span><span style="color:#008000;font-weight:bold">new</span><span style="color:#bbb"> </span>ExchangeAccount(<span style="color:#ba2121">&#34;test@eas.com&#34;</span>,<span style="color:#bbb"> </span><span style="color:#ba2121">&#34;user&#34;</span>,<span style="color:#bbb"> </span><span style="color:#ba2121">&#34;domain&#34;</span>,<span style="color:#ba2121">&#34;eas.server.com&#34;</span>,<span style="color:#bbb"> </span><span style="color:#ba2121">&#34;password&#34;</span>);<span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#408080;font-style:italic">//set SSL to true and sync interval to 2 minutes</span><span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span>account.<span style="color:#7d9029">UseSSL</span><span style="color:#bbb"> </span><span style="color:#666">=</span><span style="color:#bbb"> </span><span style="color:#008000;font-weight:bold">true</span>;<span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span>account.<span style="color:#7d9029">SyncInterval</span><span style="color:#bbb"> </span><span style="color:#666">=</span><span style="color:#bbb"> </span>2;<span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#408080;font-style:italic">//add new accounts with previous configurations</span><span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span>eap.<span style="color:#7d9029">addNewAccount</span>(account);<span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#408080;font-style:italic">//pass in certificate details to setForceSMIMECertificateForEncryption API</span><span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span>String<span style="color:#bbb"> </span>certPath<span style="color:#bbb"> </span><span style="color:#666">=</span><span style="color:#bbb"> </span><span style="color:#ba2121">&#34;/mnt/sdcard/cert.p12&#34;</span>;<span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span>String<span style="color:#bbb"> </span>certPwd<span style="color:#bbb"> </span><span style="color:#666">=</span><span style="color:#bbb"> </span><span style="color:#ba2121">&#34;ins3cur3p4ss&#34;</span>;<span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span>eap.<span style="color:#7d9029">setForceSMIMECertificateForEncryption</span>(accountId,<span style="color:#bbb"> </span>certPath,<span style="color:#bbb"> </span>certPwd);<span style="color:#bbb">
+</span></span></span></code></pre></div>
             
           </div>
           <div class="l-toh">

@@ -56,7 +56,7 @@
 
   
 
-<script onload="initBot()" defer src="https://dc-chbt.samsungknox.com/copilot/index.js?noCache=1772239241"></script>
+<script onload="initBot()" defer src="https://dc-chbt.samsungknox.com/copilot/index.js?noCache=1772832708"></script>
 <script defer>
     function initBot(){
       const relPath = "\/knox-sdk\/features\/independent-software-vendors-da\/sensitive-data-protection-sdp\/";
@@ -3052,7 +3052,7 @@
           <div class="l-content-top mb-4">
             <div class="l-breadcrumb">
               <a class="fw-light text-black" href="../../../../index.html">Home</a><span> /</span>
-<a class="fw-light text-black" href="../../../../knox-sdk.html">Knox SDK</a><span> /</span>
+<a class="fw-light text-black" href="../../../index.html">Knox SDK</a><span> /</span>
 <a class="fw-light text-black" href="../../index.html">Features</a><span> /</span>
 <a class="fw-light text-black" href="../index.html">Independent Software Vendors (DA)</a><span> /</span>
 
@@ -3087,46 +3087,46 @@
 <p>Internal messaging apps used by employees often transmit confidential data between co-workers or clients; this can include pictures, invoices, emails or contracts. Knox SDP ensures sensitive data stored within the app is inaccessible until the device owner unlocks it. Your data can be protected if a device is lost, stolen or shared with the wrong individual.</p>
 <p>There are 2 ways Knox can mark your data to help keep it secure &mdash; protected or sensitive.</p>
 <div class="overflow-auto my-3"><table>
-<thead>
-<tr>
-<th>Feature</th>
-<th>Activation</th>
-<th>Accessibility</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><strong>Protected Data</strong></td>
-<td>By default for data in a Knox container</td>
-<td>Accessible after device boots up normally</td>
-</tr>
-<tr>
-<td><strong>Sensitive Data</strong></td>
-<td>By SDP APIs</td>
-<td>Accessible only when in SDP unlocked state</td>
-</tr>
-</tbody>
+  <thead>
+      <tr>
+          <th>Feature</th>
+          <th>Activation</th>
+          <th>Accessibility</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td><strong>Protected Data</strong></td>
+          <td>By default for data in a Knox container</td>
+          <td>Accessible after device boots up normally</td>
+      </tr>
+      <tr>
+          <td><strong>Sensitive Data</strong></td>
+          <td>By SDP APIs</td>
+          <td>Accessible only when in SDP unlocked state</td>
+      </tr>
+  </tbody>
 </table></div>
 <h2 id="how-sdp-works">How SDP works</h2>
 <h3 id="sdp-packages">SDP packages</h3>
 <p>There are 2 packages you can use with SDP:</p>
 <div class="overflow-auto my-3"><table>
-<thead>
-<tr>
-<th>Package</th>
-<th>Function</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>com.samsung.android.knox.sdp</td>
-<td>Provides classes that allows you to mark application data as sensitive and other utility functions.</td>
-</tr>
-<tr>
-<td>com.samsung.android.knox.sdp.core</td>
-<td>Provides classes that allow you to create and control SDP engines.</td>
-</tr>
-</tbody>
+  <thead>
+      <tr>
+          <th>Package</th>
+          <th>Function</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td>com.samsung.android.knox.sdp</td>
+          <td>Provides classes that allows you to mark application data as sensitive and other utility functions.</td>
+      </tr>
+      <tr>
+          <td>com.samsung.android.knox.sdp.core</td>
+          <td>Provides classes that allow you to create and control SDP engines.</td>
+      </tr>
+  </tbody>
 </table></div>
 <p>The Samsung Knox SDK provides the following three key classes to manage SDP.</p>
 <ul>
@@ -3167,7 +3167,7 @@
 </li>
 <li>
 <p>Open <strong>AndroidManifest.xml</strong> and locate the <code>&lt;application&gt;</code> element. Add the following child <code>&lt;meta-data&gt;</code>. Doing so enables SDP for your app.</p>
-<div class="highlight"><pre tabindex="0" style=";-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-json" data-lang="json"><span style="display:flex;"><span><span style="">&lt;android&gt;meta-data</span> <span style="">android:name=</span><span style="color:#ba2121">&#34;sdp&#34;</span> <span style="">android:value=</span><span style="color:#ba2121">&#34;enabled&#34;</span><span style="">&lt;/android&gt;</span>
+<div class="highlight"><pre tabindex="0" style=";-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-json" data-lang="json"><span style="display:flex;"><span><span style="">&lt;android&gt;meta-data</span> <span style="">android:name=</span><span style="color:#ba2121">&#34;sdp&#34;</span> <span style="">android:value=</span><span style="color:#ba2121">&#34;enabled&#34;</span><span style="">&lt;/android&gt;</span>
 </span></span></code></pre></div></li>
 <li>
 <p>Create a <code>BroadcastReceiver</code> class. This class allows you to display custom text to see if your license activation is successful.</p>
@@ -3182,43 +3182,43 @@
 <h3 id="create-the-default-sdp-engine">Create the default SDP engine</h3>
 <p>The Knox framework automatically creates the SDP default engine upon the workspace creation. No additional coding is required.</p>
 <h3 id="create-the-custom-sdp-engine">Create the Custom SDP engine</h3>
-<div class="highlight"><pre tabindex="0" style=";-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#408080;font-style:italic">//Create SdpCreationParam
-</span></span></span><span style="display:flex;"><span><span style="color:#408080;font-style:italic"></span>
-</span></span><span style="display:flex;"><span><span style="color:#b00040">int</span> flag <span style="color:#666">=</span> SdpEngineConstants<span style="color:#666">.</span><span style="color:#7d9029">Flags</span><span style="color:#666">.</span><span style="color:#7d9029">SDP_MDFPP</span><span style="color:#666">;</span>
-</span></span><span style="display:flex;"><span>SdpCreationParamBuilder sdpCreationParamBuilder <span style="color:#666">=</span> <span style="color:#008000;font-weight:bold">new</span> SdpCreationParamBuilder<span style="color:#666">(</span>myapp<span style="color:#666">.</span><span style="color:#7d9029">alias</span><span style="color:#666">,</span> flag<span style="color:#666">);</span>
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>builder<span style="color:#666">.</span><span style="color:#7d9029">addPrivilegedApp</span><span style="color:#666">(</span><span style="color:#008000;font-weight:bold">new</span> SdpDomain<span style="color:#666">(</span><span style="color:#ba2121">&#34;myapp.alias&#34;</span><span style="color:#666">,</span> <span style="color:#ba2121">&#34;com.myapp.keyguard&#34;</span><span style="color:#666">));</span>
-</span></span><span style="display:flex;"><span>builder<span style="color:#666">.</span><span style="color:#7d9029">addPrivilegedApp</span><span style="color:#666">(</span><span style="color:#008000;font-weight:bold">new</span> SdpDomain<span style="color:#666">(</span><span style="color:#ba2121">&#34;myapp.alias&#34;</span><span style="color:#666">,</span> <span style="color:#ba2121">&#34;com.myapp.agent&#34;</span><span style="color:#666">));</span>
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#408080;font-style:italic">//addEngine
-</span></span></span><span style="display:flex;"><span><span style="color:#408080;font-style:italic"></span>
-</span></span><span style="display:flex;"><span>SdpEngine<span style="color:#666">.</span><span style="color:#7d9029">getInstance</span><span style="color:#666">().</span><span style="color:#7d9029">addEngine</span><span style="color:#666">(</span>builder<span style="color:#666">.</span><span style="color:#7d9029">getParam</span><span style="color:#666">(),</span> password<span style="color:#666">,</span> resetToken<span style="color:#666">)</span>
-</span></span></code></pre></div><h4 id="custom-engine-----lock">Custom Engine &mdash; Lock</h4>
+<div class="highlight"><pre tabindex="0" style=";-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#408080;font-style:italic">//Create SdpCreationParam</span><span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#b00040">int</span><span style="color:#bbb"> </span>flag<span style="color:#bbb"> </span><span style="color:#666">=</span><span style="color:#bbb"> </span>SdpEngineConstants.<span style="color:#7d9029">Flags</span>.<span style="color:#7d9029">SDP_MDFPP</span>;<span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span>SdpCreationParamBuilder<span style="color:#bbb"> </span>sdpCreationParamBuilder<span style="color:#bbb"> </span><span style="color:#666">=</span><span style="color:#bbb"> </span><span style="color:#008000;font-weight:bold">new</span><span style="color:#bbb"> </span>SdpCreationParamBuilder(myapp.<span style="color:#7d9029">alias</span>,<span style="color:#bbb"> </span>flag);<span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span>builder.<span style="color:#7d9029">addPrivilegedApp</span>(<span style="color:#008000;font-weight:bold">new</span><span style="color:#bbb"> </span>SdpDomain(<span style="color:#ba2121">&#34;myapp.alias&#34;</span>,<span style="color:#bbb"> </span><span style="color:#ba2121">&#34;com.myapp.keyguard&#34;</span>));<span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span>builder.<span style="color:#7d9029">addPrivilegedApp</span>(<span style="color:#008000;font-weight:bold">new</span><span style="color:#bbb"> </span>SdpDomain(<span style="color:#ba2121">&#34;myapp.alias&#34;</span>,<span style="color:#bbb"> </span><span style="color:#ba2121">&#34;com.myapp.agent&#34;</span>));<span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#408080;font-style:italic">//addEngine</span><span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span>SdpEngine.<span style="color:#7d9029">getInstance</span>().<span style="color:#7d9029">addEngine</span>(builder.<span style="color:#7d9029">getParam</span>(),<span style="color:#bbb"> </span>password,<span style="color:#bbb"> </span>resetToken)<span style="color:#bbb">
+</span></span></span></code></pre></div><h4 id="custom-engine--lock">Custom Engine &mdash; Lock</h4>
 <p>The SDP engine maintains its encryption key based on its lock state. When a user requests to unlock it with a password, the SDP framework retrieves the key for decryption and keeps it in memory until it&rsquo;s locked. We strongly recommend you have a password timeout code in your system in order to protect data when it&rsquo;s not in use. Keys for encryption are available since boot, so you can still create new sensitive data regardless of the lock state.</p>
 <p>To lock an SDP engine, use <code>sdpEngine.lock(&quot;myapp.alias&quot;);</code>.</p>
-<div class="highlight"><pre tabindex="0" style=";-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#408080;font-style:italic">//recommended code for lock()
-</span></span></span><span style="display:flex;"><span><span style="color:#408080;font-style:italic"></span>
-</span></span><span style="display:flex;"><span>sdpEngine <span style="color:#666">=</span> SdpEngine<span style="color:#666">.</span><span style="color:#7d9029">getInstance</span><span style="color:#666">();</span>
-</span></span><span style="display:flex;"><span>sdpEngine<span style="color:#666">.</span><span style="color:#7d9029">lock</span><span style="color:#666">(</span><span style="color:#ba2121">&#34;myapp.alias&#34;</span><span style="color:#666">);</span>
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#408080;font-style:italic">//recommended code for unlock()
-</span></span></span><span style="display:flex;"><span><span style="color:#408080;font-style:italic"></span>sdpEngine <span style="color:#666">=</span> SdpEngine<span style="color:#666">.</span><span style="color:#7d9029">getInstance</span><span style="color:#666">();</span>
-</span></span><span style="display:flex;"><span>sdpEngine<span style="color:#666">.</span><span style="color:#7d9029">unlock</span><span style="color:#666">(</span><span style="color:#ba2121">&#34;myapp.alias&#34;</span><span style="color:#666">,</span> <span style="color:#ba2121">&#34;my_password&#34;</span><span style="color:#666">);</span>
-</span></span></code></pre></div><h4 id="custom-engine-----changeresetpassword">Custom Engine &mdash;  Change/reset/password</h4>
+<div class="highlight"><pre tabindex="0" style=";-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#408080;font-style:italic">//recommended code for lock()</span><span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span>sdpEngine<span style="color:#bbb"> </span><span style="color:#666">=</span><span style="color:#bbb"> </span>SdpEngine.<span style="color:#7d9029">getInstance</span>();<span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span>sdpEngine.<span style="color:#7d9029">lock</span>(<span style="color:#ba2121">&#34;myapp.alias&#34;</span>);<span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#408080;font-style:italic">//recommended code for unlock()</span><span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span>sdpEngine<span style="color:#bbb"> </span><span style="color:#666">=</span><span style="color:#bbb"> </span>SdpEngine.<span style="color:#7d9029">getInstance</span>();<span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span>sdpEngine.<span style="color:#7d9029">unlock</span>(<span style="color:#ba2121">&#34;myapp.alias&#34;</span>,<span style="color:#bbb"> </span><span style="color:#ba2121">&#34;my_password&#34;</span>);<span style="color:#bbb">
+</span></span></span></code></pre></div><h4 id="custom-engine--changeresetpassword">Custom Engine &mdash;  Change/reset/password</h4>
 <p>Changing the password is only allowed in an unlocked state. This is the normal scenario when a user inserts an old password and update to a new password.</p>
 <p>If a user forgets the password, it can be reset with <code>resetPassword()</code>. This requires a new password and a reset token that you provided during engine creation using <code>addEngine()</code>. We recommend you don&rsquo;t store this reset token in the device but on your private server. If you don&rsquo;t have a server, you can take a back up-PIN from the user (If the user forgets this PIN, the engine cannot be unlocked, and the data is erased.)</p>
-<div class="highlight"><pre tabindex="0" style=";-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#408080;font-style:italic">//recommended code for setPassword()
-</span></span></span><span style="display:flex;"><span><span style="color:#408080;font-style:italic"></span>
-</span></span><span style="display:flex;"><span>SdpEngine sdpEngine<span style="color:#666">;</span>
-</span></span><span style="display:flex;"><span>sdpEngine <span style="color:#666">=</span> SdpEngine<span style="color:#666">.</span><span style="color:#7d9029">getInstance</span><span style="color:#666">();</span>
-</span></span><span style="display:flex;"><span>sdpEngine<span style="color:#666">.</span><span style="color:#7d9029">setPassword</span><span style="color:#666">(</span><span style="color:#ba2121">&#34;myapp.alias&#34;</span><span style="color:#666">,</span> <span style="color:#ba2121">&#34;new_password&#34;</span><span style="color:#666">);</span>
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#408080;font-style:italic">//recommended code for resetPassword()
-</span></span></span><span style="display:flex;"><span><span style="color:#408080;font-style:italic"></span>
-</span></span><span style="display:flex;"><span>SdpEngine sdpEngine<span style="color:#666">;</span>
-</span></span><span style="display:flex;"><span>sdpEngine <span style="color:#666">=</span> SdpEngine<span style="color:#666">.</span><span style="color:#7d9029">getInstance</span><span style="color:#666">();</span>
-</span></span><span style="display:flex;"><span>sdpEngine<span style="color:#666">.</span><span style="color:#7d9029">resetPassword</span><span style="color:#666">(</span><span style="color:#ba2121">&#34;myapp.alias&#34;</span><span style="color:#666">,</span> <span style="color:#ba2121">&#34;new_password&#34;</span><span style="color:#666">,</span> <span style="color:#ba2121">&#34;my_reset_token&#34;</span><span style="color:#666">);</span>
-</span></span></code></pre></div><h4 id="custom-engine----access-restriction">Custom Engine &mdash; Access restriction</h4>
+<div class="highlight"><pre tabindex="0" style=";-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#408080;font-style:italic">//recommended code for setPassword()</span><span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span>SdpEngine<span style="color:#bbb"> </span>sdpEngine;<span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span>sdpEngine<span style="color:#bbb"> </span><span style="color:#666">=</span><span style="color:#bbb"> </span>SdpEngine.<span style="color:#7d9029">getInstance</span>();<span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span>sdpEngine.<span style="color:#7d9029">setPassword</span>(<span style="color:#ba2121">&#34;myapp.alias&#34;</span>,<span style="color:#bbb"> </span><span style="color:#ba2121">&#34;new_password&#34;</span>);<span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#408080;font-style:italic">//recommended code for resetPassword()</span><span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span>SdpEngine<span style="color:#bbb"> </span>sdpEngine;<span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span>sdpEngine<span style="color:#bbb"> </span><span style="color:#666">=</span><span style="color:#bbb"> </span>SdpEngine.<span style="color:#7d9029">getInstance</span>();<span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span>sdpEngine.<span style="color:#7d9029">resetPassword</span>(<span style="color:#ba2121">&#34;myapp.alias&#34;</span>,<span style="color:#bbb"> </span><span style="color:#ba2121">&#34;new_password&#34;</span>,<span style="color:#bbb"> </span><span style="color:#ba2121">&#34;my_reset_token&#34;</span>);<span style="color:#bbb">
+</span></span></span></code></pre></div><h4 id="custom-engine-access-restriction">Custom Engine &mdash; Access restriction</h4>
 <p>There are three components to SDP design if you need to create a custom engine:</p>
 <ul>
 <li><strong>The engine owner</strong> &mdash; creates the engine. Grants privileges to apps to control the engine.</li>
@@ -3226,29 +3226,29 @@
 <li><strong>The app user</strong> &mdash; marks user data as sensitive.</li>
 </ul>
 <p>During engine creation, the app that invokes <code>addEngine</code> is the engine owner. You configure privileged apps by calling <code>SdpCreationParam.addPrivilegedApp()</code>. <code>SdpDomain</code> represents the app installed in the system to apply policies.</p>
-<div class="highlight"><pre tabindex="0" style=";-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#b00040">int</span> flag <span style="color:#666">=</span> SdpEngineConstants<span style="color:#666">.</span><span style="color:#7d9029">Flags</span><span style="color:#666">.</span><span style="color:#7d9029">SDP_MDFPP</span><span style="color:#666">;</span>
-</span></span><span style="display:flex;"><span>SdpCreationParamBuilder sdpCreationParamBuilder <span style="color:#666">=</span> <span style="color:#008000;font-weight:bold">new</span> SdpCreationParamBuilder<span style="color:#666">(</span>myapp<span style="color:#666">.</span><span style="color:#7d9029">alias</span><span style="color:#666">,</span> flag<span style="color:#666">);</span>
-</span></span><span style="display:flex;"><span>builder<span style="color:#666">.</span><span style="color:#7d9029">addPrivilegedApp</span><span style="color:#666">(</span><span style="color:#008000;font-weight:bold">new</span> SdpDomain<span style="color:#666">(</span><span style="color:#ba2121">&#34;myapp.alias&#34;</span><span style="color:#666">,</span> <span style="color:#ba2121">&#34;com.myapp.keyguard&#34;</span><span style="color:#666">));</span>
-</span></span><span style="display:flex;"><span>builder<span style="color:#666">.</span><span style="color:#7d9029">addPrivilegedApp</span><span style="color:#666">(</span><span style="color:#008000;font-weight:bold">new</span> SdpDomain<span style="color:#666">(</span><span style="color:#ba2121">&#34;myapp.alias&#34;</span><span style="color:#666">,</span> <span style="color:#ba2121">&#34;com.myapp.agent&#34;</span><span style="color:#666">));</span>
-</span></span></code></pre></div><h3 id="package-data-deletion">Package, data deletion</h3>
+<div class="highlight"><pre tabindex="0" style=";-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#b00040">int</span><span style="color:#bbb"> </span>flag<span style="color:#bbb"> </span><span style="color:#666">=</span><span style="color:#bbb"> </span>SdpEngineConstants.<span style="color:#7d9029">Flags</span>.<span style="color:#7d9029">SDP_MDFPP</span>;<span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span>SdpCreationParamBuilder<span style="color:#bbb"> </span>sdpCreationParamBuilder<span style="color:#bbb"> </span><span style="color:#666">=</span><span style="color:#bbb"> </span><span style="color:#008000;font-weight:bold">new</span><span style="color:#bbb"> </span>SdpCreationParamBuilder(myapp.<span style="color:#7d9029">alias</span>,<span style="color:#bbb"> </span>flag);<span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span>builder.<span style="color:#7d9029">addPrivilegedApp</span>(<span style="color:#008000;font-weight:bold">new</span><span style="color:#bbb"> </span>SdpDomain(<span style="color:#ba2121">&#34;myapp.alias&#34;</span>,<span style="color:#bbb"> </span><span style="color:#ba2121">&#34;com.myapp.keyguard&#34;</span>));<span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span>builder.<span style="color:#7d9029">addPrivilegedApp</span>(<span style="color:#008000;font-weight:bold">new</span><span style="color:#bbb"> </span>SdpDomain(<span style="color:#ba2121">&#34;myapp.alias&#34;</span>,<span style="color:#bbb"> </span><span style="color:#ba2121">&#34;com.myapp.agent&#34;</span>));<span style="color:#bbb">
+</span></span></span></code></pre></div><h3 id="package-data-deletion">Package, data deletion</h3>
 <p>The Android framework supports the ability to delete cache/data for end users. To remove data, users go to <strong>Settings</strong> &gt; <strong>Application Manager</strong>. Encrypted directories are removed for the app accordingly.</p>
 <h3 id="set-data-as-sensitive">Set data as sensitive</h3>
 <p>At this point your SDP engine is ready to protect your data. You just need to call the <code>setSensitive</code> API on that data.</p>
 <h4 id="setting-files-as-sensitive">Setting files as sensitive</h4>
 <p>Construct a new <code>SdpFileSystem</code> object which can be used to manipulate file(s) as sensitive. You can call <code>setSensitive</code> for files at any point of time.</p>
-<div class="highlight"><pre tabindex="0" style=";-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span>String alias <span style="color:#666">=</span> <span style="color:#ba2121">&#34;sdpDemo&#34;</span><span style="color:#666">;</span> <span style="color:#408080;font-style:italic">// in case of default engine alias will be null.
-</span></span></span><span style="display:flex;"><span><span style="color:#408080;font-style:italic"></span>SdpFileSystem sdpFileSystem <span style="color:#666">=</span> <span style="color:#008000;font-weight:bold">new</span> SdpFileSystem<span style="color:#666">(</span>Context<span style="color:#666">,</span> alias<span style="color:#666">);</span>
-</span></span><span style="display:flex;"><span>File file <span style="color:#666">=</span> <span style="color:#008000;font-weight:bold">new</span> File<span style="color:#666">(</span>sdpFileSystem<span style="color:#666">.</span><span style="color:#7d9029">getFilesDir</span><span style="color:#666">(),</span> <span style="color:#ba2121">&#34;file_path&#34;</span><span style="color:#666">);</span>
-</span></span><span style="display:flex;"><span>sdpFileSystem<span style="color:#666">.</span><span style="color:#7d9029">setSensitive</span><span style="color:#666">(</span>file<span style="color:#666">)</span>
-</span></span></code></pre></div><h4 id="setting-database-columns-as-sensitive">Setting database columns as sensitive</h4>
+<div class="highlight"><pre tabindex="0" style=";-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-java" data-lang="java"><span style="display:flex;"><span>String<span style="color:#bbb"> </span>alias<span style="color:#bbb"> </span><span style="color:#666">=</span><span style="color:#bbb"> </span><span style="color:#ba2121">&#34;sdpDemo&#34;</span>;<span style="color:#bbb"> </span><span style="color:#408080;font-style:italic">// in case of default engine alias will be null.</span><span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span>SdpFileSystem<span style="color:#bbb"> </span>sdpFileSystem<span style="color:#bbb"> </span><span style="color:#666">=</span><span style="color:#bbb"> </span><span style="color:#008000;font-weight:bold">new</span><span style="color:#bbb"> </span>SdpFileSystem(Context,<span style="color:#bbb"> </span>alias);<span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span>File<span style="color:#bbb"> </span>file<span style="color:#bbb"> </span><span style="color:#666">=</span><span style="color:#bbb"> </span><span style="color:#008000;font-weight:bold">new</span><span style="color:#bbb"> </span>File(sdpFileSystem.<span style="color:#7d9029">getFilesDir</span>(),<span style="color:#bbb"> </span><span style="color:#ba2121">&#34;file_path&#34;</span>);<span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span>sdpFileSystem.<span style="color:#7d9029">setSensitive</span>(file)<span style="color:#bbb">
+</span></span></span></code></pre></div><h4 id="setting-database-columns-as-sensitive">Setting database columns as sensitive</h4>
 <p>You can call the <code>setSensitive</code> API only in the unlocked state. It&rsquo;s recommended that after SDP engine creation you can call <code>setSensitive</code> on database columns that you want to protect:</p>
-<div class="highlight"><pre tabindex="0" style=";-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span>String alias <span style="color:#666">=</span> <span style="color:#ba2121">&#34;sdpDemo&#34;</span><span style="color:#666">;</span> <span style="color:#408080;font-style:italic">// in case of default engine alias will be null.
-</span></span></span><span style="display:flex;"><span><span style="color:#408080;font-style:italic"></span>SdpDatabase sdpColumn <span style="color:#666">=</span> <span style="color:#008000;font-weight:bold">new</span> SdpDatabase<span style="color:#666">(</span>alias<span style="color:#666">);</span>
-</span></span><span style="display:flex;"><span>List <span style="color:#666">&lt;</span> String <span style="color:#666">&gt;</span> columnsList <span style="color:#666">=</span> <span style="color:#008000;font-weight:bold">new</span> ArrayList <span style="color:#666">&lt;</span> String <span style="color:#666">&gt;</span> <span style="color:#666">();</span>
-</span></span><span style="display:flex;"><span>columnsList<span style="color:#666">.</span><span style="color:#7d9029">add</span><span style="color:#666">(</span><span style="color:#ba2121">&#34;column1&#34;</span><span style="color:#666">);</span>
-</span></span><span style="display:flex;"><span>columnsList<span style="color:#666">.</span><span style="color:#7d9029">add</span><span style="color:#666">(</span><span style="color:#ba2121">&#34;column2&#34;</span><span style="color:#666">);</span>
-</span></span><span style="display:flex;"><span>sdpColumn<span style="color:#666">.</span><span style="color:#7d9029">setSensitive</span><span style="color:#666">(</span>mDb<span style="color:#666">,</span> <span style="color:#008000;font-weight:bold">null</span><span style="color:#666">,</span> <span style="color:#ba2121">&#34;table_name&#34;</span><span style="color:#666">,</span> columnsList<span style="color:#666">);</span>
-</span></span></code></pre></div>
+<div class="highlight"><pre tabindex="0" style=";-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-java" data-lang="java"><span style="display:flex;"><span>String<span style="color:#bbb"> </span>alias<span style="color:#bbb"> </span><span style="color:#666">=</span><span style="color:#bbb"> </span><span style="color:#ba2121">&#34;sdpDemo&#34;</span>;<span style="color:#bbb"> </span><span style="color:#408080;font-style:italic">// in case of default engine alias will be null.</span><span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span>SdpDatabase<span style="color:#bbb"> </span>sdpColumn<span style="color:#bbb"> </span><span style="color:#666">=</span><span style="color:#bbb"> </span><span style="color:#008000;font-weight:bold">new</span><span style="color:#bbb"> </span>SdpDatabase(alias);<span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span>List<span style="color:#bbb"> </span><span style="color:#666">&lt;</span><span style="color:#bbb"> </span>String<span style="color:#bbb"> </span><span style="color:#666">&gt;</span><span style="color:#bbb"> </span>columnsList<span style="color:#bbb"> </span><span style="color:#666">=</span><span style="color:#bbb"> </span><span style="color:#008000;font-weight:bold">new</span><span style="color:#bbb"> </span>ArrayList<span style="color:#bbb"> </span><span style="color:#666">&lt;</span><span style="color:#bbb"> </span>String<span style="color:#bbb"> </span><span style="color:#666">&gt;</span><span style="color:#bbb"> </span>();<span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span>columnsList.<span style="color:#7d9029">add</span>(<span style="color:#ba2121">&#34;column1&#34;</span>);<span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span>columnsList.<span style="color:#7d9029">add</span>(<span style="color:#ba2121">&#34;column2&#34;</span>);<span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span>sdpColumn.<span style="color:#7d9029">setSensitive</span>(mDb,<span style="color:#bbb"> </span><span style="color:#008000;font-weight:bold">null</span>,<span style="color:#bbb"> </span><span style="color:#ba2121">&#34;table_name&#34;</span>,<span style="color:#bbb"> </span>columnsList);<span style="color:#bbb">
+</span></span></span></code></pre></div>
             
           </div>
           <div class="l-toh">

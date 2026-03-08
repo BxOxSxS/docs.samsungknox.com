@@ -56,7 +56,7 @@
 
   
 
-<script onload="initBot()" defer src="https://dc-chbt.samsungknox.com/copilot/index.js?noCache=1772230350"></script>
+<script onload="initBot()" defer src="https://dc-chbt.samsungknox.com/copilot/index.js?noCache=1772825465"></script>
 <script defer>
     function initBot(){
       const relPath = "\/knox-efota\/features\/install-firmware-with-app-intent\/";
@@ -1355,7 +1355,7 @@
 <div class="tab-pane fade  show active  border border-grey-line rounded-3 overflow-hidden" id="tab-1" role="tabpanel" aria-labelledby="tab-1-tab">
   
   
-  <div class="tab-content p-3"><div class="highlight"><pre tabindex="0" style=";-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-groovy" data-lang="groovy"><span style="display:flex;"><span><span style="color:#666">&lt;</span>build<span style="color:#666">.</span><span style="color:#7d9029">gradle</span><span style="color:#666">&gt;</span>
+  <div class="tab-content p-3"><div class="highlight"><pre tabindex="0" style=";-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-groovy" data-lang="groovy"><span style="display:flex;"><span><span style="color:#666">&lt;</span>build<span style="color:#666">.</span><span style="color:#7d9029">gradle</span><span style="color:#666">&gt;</span>
 </span></span><span style="display:flex;"><span>android <span style="color:#666">{</span>
 </span></span><span style="display:flex;"><span>    buildFeatures <span style="color:#666">{</span>
 </span></span><span style="display:flex;"><span>        aidl <span style="color:#666">=</span> <span style="color:#008000;font-weight:bold">true</span>
@@ -1406,48 +1406,48 @@
 <div class="tab-pane fade  show active  border border-grey-line rounded-3 overflow-hidden" id="tab-2" role="tabpanel" aria-labelledby="tab-2-tab">
   
   
-  <div class="tab-content p-3"><div class="highlight"><pre tabindex="0" style=";-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#008000;font-weight:bold">public</span> <span style="color:#008000;font-weight:bold">class</span> <span style="color:#00f;font-weight:bold">MainActivity</span> <span style="color:#008000;font-weight:bold">extends</span> AppCompatActivity <span style="color:#666">{</span>
-</span></span><span style="display:flex;"><span><span style="color:#008000;font-weight:bold">private</span> IInstallAuthenticator mService<span style="color:#666">;</span>
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#008000;font-weight:bold">private</span> <span style="color:#008000;font-weight:bold">final</span> ServiceConnection mConnection <span style="color:#666">=</span> <span style="color:#008000;font-weight:bold">new</span> ServiceConnection<span style="color:#666">()</span> <span style="color:#666">{</span>
-</span></span><span style="display:flex;"><span>        <span style="color:#408080;font-style:italic">// Called when the connection with the service is established
-</span></span></span><span style="display:flex;"><span><span style="color:#408080;font-style:italic"></span>    <span style="color:#a2f">@Override</span>
-</span></span><span style="display:flex;"><span>    <span style="color:#008000;font-weight:bold">public</span> <span style="color:#b00040">void</span> <span style="color:#00f">onServiceConnected</span><span style="color:#666">(</span>ComponentName className<span style="color:#666">,</span> IBinder service<span style="color:#666">)</span> <span style="color:#666">{</span>
-</span></span><span style="display:flex;"><span>    mService <span style="color:#666">=</span> IInstallAuthenticator<span style="color:#666">.</span><span style="color:#7d9029">Stub</span><span style="color:#666">.</span><span style="color:#7d9029">asInterface</span><span style="color:#666">(</span>service<span style="color:#666">);</span>
-</span></span><span style="display:flex;"><span>    <span style="color:#666">}</span>
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>    <span style="color:#a2f">@Override</span>
-</span></span><span style="display:flex;"><span>    <span style="color:#008000;font-weight:bold">public</span> <span style="color:#b00040">void</span> <span style="color:#00f">onServiceDisconnected</span><span style="color:#666">(</span>ComponentName className<span style="color:#666">)</span> <span style="color:#666">{</span>
-</span></span><span style="display:flex;"><span>    mService <span style="color:#666">=</span> <span style="color:#008000;font-weight:bold">null</span><span style="color:#666">;</span>
-</span></span><span style="display:flex;"><span>    <span style="color:#666">}</span>
-</span></span><span style="display:flex;"><span><span style="color:#666">};</span>
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#a2f">@Override</span>
-</span></span><span style="display:flex;"><span><span style="color:#008000;font-weight:bold">protected</span> <span style="color:#b00040">void</span> <span style="color:#00f">onCreate</span><span style="color:#666">(</span>Bundle savedInstanceState<span style="color:#666">)</span> <span style="color:#666">{</span>
-</span></span><span style="display:flex;"><span>        Button button <span style="color:#666">=</span> <span style="color:#666">(</span>Button<span style="color:#666">)</span>findViewById<span style="color:#666">(</span>R<span style="color:#666">.</span><span style="color:#7d9029">id</span><span style="color:#666">.</span><span style="color:#7d9029">bind</span><span style="color:#666">);</span>
-</span></span><span style="display:flex;"><span>        button<span style="color:#666">.</span><span style="color:#7d9029">setOnClickListener</span><span style="color:#666">(</span>mBindListener<span style="color:#666">);</span>
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>        <span style="color:#408080;font-style:italic">// Bind to the service
-</span></span></span><span style="display:flex;"><span><span style="color:#408080;font-style:italic"></span>        Intent intent <span style="color:#666">=</span> <span style="color:#008000;font-weight:bold">new</span> Intent<span style="color:#666">();</span>
-</span></span><span style="display:flex;"><span>        intent<span style="color:#666">.</span><span style="color:#7d9029">setAction</span><span style="color:#666">(</span><span style="color:#ba2121">&#34;com.samsung.android.knox.intent.action.UPDATE_FIRMWARE&#34;</span><span style="color:#666">);</span>
-</span></span><span style="display:flex;"><span>        intent<span style="color:#666">.</span><span style="color:#7d9029">setComponent</span><span style="color:#666">(</span><span style="color:#008000;font-weight:bold">new</span> ComponentName<span style="color:#666">(</span><span style="color:#ba2121">&#34;com.samsung.android.knox.efota&#34;</span><span style="color:#666">,</span> <span style="color:#ba2121">&#34;com.samsung.android.knox.efota.services.InstallAuthenticator&#34;</span><span style="color:#666">));</span>
-</span></span><span style="display:flex;"><span>        bindService<span style="color:#666">(</span>intent<span style="color:#666">,</span> mConnection<span style="color:#666">,</span> Context<span style="color:#666">.</span><span style="color:#7d9029">BIND_AUTO_CREATE</span><span style="color:#666">);</span>
-</span></span><span style="display:flex;"><span>    <span style="color:#666">}</span>
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#a2f">@Override</span>
-</span></span><span style="display:flex;"><span><span style="color:#008000;font-weight:bold">protected</span> <span style="color:#b00040">void</span> <span style="color:#00f">onDestroy</span><span style="color:#666">()</span> <span style="color:#666">{</span>
-</span></span><span style="display:flex;"><span>    <span style="color:#008000;font-weight:bold">super</span><span style="color:#666">.</span><span style="color:#7d9029">onDestroy</span><span style="color:#666">();</span>
-</span></span><span style="display:flex;"><span>    unbindService<span style="color:#666">(</span>mConnection<span style="color:#666">);</span>
-</span></span><span style="display:flex;"><span><span style="color:#666">}</span>
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>    <span style="color:#008000;font-weight:bold">private</span> OnClickListener mBindListener <span style="color:#666">=</span> <span style="color:#008000;font-weight:bold">new</span> OnClickListener<span style="color:#666">()</span> <span style="color:#666">{</span>
-</span></span><span style="display:flex;"><span>        <span style="color:#008000;font-weight:bold">public</span> <span style="color:#b00040">void</span> <span style="color:#00f">onClick</span><span style="color:#666">(</span>View v<span style="color:#666">)</span> <span style="color:#666">{</span>
-</span></span><span style="display:flex;"><span>        <span style="color:#408080;font-style:italic">// Trigger firmware installation
-</span></span></span><span style="display:flex;"><span><span style="color:#408080;font-style:italic"></span>        mService<span style="color:#666">.</span><span style="color:#7d9029">verifyCallerAndStartInstall</span><span style="color:#666">();</span>
-</span></span><span style="display:flex;"><span>        <span style="color:#666">}</span>
-</span></span><span style="display:flex;"><span>    <span style="color:#666">};</span>
-</span></span><span style="display:flex;"><span><span style="color:#666">}</span>
-</span></span></code></pre></div>
+  <div class="tab-content p-3"><div class="highlight"><pre tabindex="0" style=";-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#008000;font-weight:bold">public</span><span style="color:#bbb"> </span><span style="color:#008000;font-weight:bold">class</span> <span style="color:#00f;font-weight:bold">MainActivity</span><span style="color:#bbb"> </span><span style="color:#008000;font-weight:bold">extends</span><span style="color:#bbb"> </span>AppCompatActivity<span style="color:#bbb"> </span>{<span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#008000;font-weight:bold">private</span><span style="color:#bbb"> </span>IInstallAuthenticator<span style="color:#bbb"> </span>mService;<span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#008000;font-weight:bold">private</span><span style="color:#bbb"> </span><span style="color:#008000;font-weight:bold">final</span><span style="color:#bbb"> </span>ServiceConnection<span style="color:#bbb"> </span>mConnection<span style="color:#bbb"> </span><span style="color:#666">=</span><span style="color:#bbb"> </span><span style="color:#008000;font-weight:bold">new</span><span style="color:#bbb"> </span>ServiceConnection()<span style="color:#bbb"> </span>{<span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb">        </span><span style="color:#408080;font-style:italic">// Called when the connection with the service is established</span><span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb">    </span><span style="color:#a2f">@Override</span><span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb">    </span><span style="color:#008000;font-weight:bold">public</span><span style="color:#bbb"> </span><span style="color:#b00040">void</span><span style="color:#bbb"> </span><span style="color:#00f">onServiceConnected</span>(ComponentName<span style="color:#bbb"> </span>className,<span style="color:#bbb"> </span>IBinder<span style="color:#bbb"> </span>service)<span style="color:#bbb"> </span>{<span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb">    </span>mService<span style="color:#bbb"> </span><span style="color:#666">=</span><span style="color:#bbb"> </span>IInstallAuthenticator.<span style="color:#7d9029">Stub</span>.<span style="color:#7d9029">asInterface</span>(service);<span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb">    </span>}<span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb">    </span><span style="color:#a2f">@Override</span><span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb">    </span><span style="color:#008000;font-weight:bold">public</span><span style="color:#bbb"> </span><span style="color:#b00040">void</span><span style="color:#bbb"> </span><span style="color:#00f">onServiceDisconnected</span>(ComponentName<span style="color:#bbb"> </span>className)<span style="color:#bbb"> </span>{<span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb">    </span>mService<span style="color:#bbb"> </span><span style="color:#666">=</span><span style="color:#bbb"> </span><span style="color:#008000;font-weight:bold">null</span>;<span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb">    </span>}<span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span>};<span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#a2f">@Override</span><span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#008000;font-weight:bold">protected</span><span style="color:#bbb"> </span><span style="color:#b00040">void</span><span style="color:#bbb"> </span><span style="color:#00f">onCreate</span>(Bundle<span style="color:#bbb"> </span>savedInstanceState)<span style="color:#bbb"> </span>{<span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb">        </span>Button<span style="color:#bbb"> </span>button<span style="color:#bbb"> </span><span style="color:#666">=</span><span style="color:#bbb"> </span>(Button)findViewById(R.<span style="color:#7d9029">id</span>.<span style="color:#7d9029">bind</span>);<span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb">        </span>button.<span style="color:#7d9029">setOnClickListener</span>(mBindListener);<span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb">        </span><span style="color:#408080;font-style:italic">// Bind to the service</span><span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb">        </span>Intent<span style="color:#bbb"> </span>intent<span style="color:#bbb"> </span><span style="color:#666">=</span><span style="color:#bbb"> </span><span style="color:#008000;font-weight:bold">new</span><span style="color:#bbb"> </span>Intent();<span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb">        </span>intent.<span style="color:#7d9029">setAction</span>(<span style="color:#ba2121">&#34;com.samsung.android.knox.intent.action.UPDATE_FIRMWARE&#34;</span>);<span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb">        </span>intent.<span style="color:#7d9029">setComponent</span>(<span style="color:#008000;font-weight:bold">new</span><span style="color:#bbb"> </span>ComponentName(<span style="color:#ba2121">&#34;com.samsung.android.knox.efota&#34;</span>,<span style="color:#bbb"> </span><span style="color:#ba2121">&#34;com.samsung.android.knox.efota.services.InstallAuthenticator&#34;</span>));<span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb">        </span>bindService(intent,<span style="color:#bbb"> </span>mConnection,<span style="color:#bbb"> </span>Context.<span style="color:#7d9029">BIND_AUTO_CREATE</span>);<span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb">    </span>}<span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#a2f">@Override</span><span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#008000;font-weight:bold">protected</span><span style="color:#bbb"> </span><span style="color:#b00040">void</span><span style="color:#bbb"> </span><span style="color:#00f">onDestroy</span>()<span style="color:#bbb"> </span>{<span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb">    </span><span style="color:#008000;font-weight:bold">super</span>.<span style="color:#7d9029">onDestroy</span>();<span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb">    </span>unbindService(mConnection);<span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span>}<span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb">    </span><span style="color:#008000;font-weight:bold">private</span><span style="color:#bbb"> </span>OnClickListener<span style="color:#bbb"> </span>mBindListener<span style="color:#bbb"> </span><span style="color:#666">=</span><span style="color:#bbb"> </span><span style="color:#008000;font-weight:bold">new</span><span style="color:#bbb"> </span>OnClickListener()<span style="color:#bbb"> </span>{<span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb">        </span><span style="color:#008000;font-weight:bold">public</span><span style="color:#bbb"> </span><span style="color:#b00040">void</span><span style="color:#bbb"> </span><span style="color:#00f">onClick</span>(View<span style="color:#bbb"> </span>v)<span style="color:#bbb"> </span>{<span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb">        </span><span style="color:#408080;font-style:italic">// Trigger firmware installation</span><span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb">        </span>mService.<span style="color:#7d9029">verifyCallerAndStartInstall</span>();<span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb">        </span>}<span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb">    </span>};<span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span>}<span style="color:#bbb">
+</span></span></span></code></pre></div>
   </div>
   
 </div>

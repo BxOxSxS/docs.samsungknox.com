@@ -56,7 +56,7 @@
 
   
 
-<script onload="initBot()" defer src="https://dc-chbt.samsungknox.com/copilot/index.js?noCache=1772239241"></script>
+<script onload="initBot()" defer src="https://dc-chbt.samsungknox.com/copilot/index.js?noCache=1772832708"></script>
 <script defer>
     function initBot(){
       const relPath = "\/knox-sdk\/features\/mdm-providers\/security\/seams\/";
@@ -3052,7 +3052,7 @@
           <div class="l-content-top mb-4">
             <div class="l-breadcrumb">
               <a class="fw-light text-black" href="../../../../../index.html">Home</a><span> /</span>
-<a class="fw-light text-black" href="../../../../../knox-sdk.html">Knox SDK</a><span> /</span>
+<a class="fw-light text-black" href="../../../../index.html">Knox SDK</a><span> /</span>
 <a class="fw-light text-black" href="../../../index.html">Features</a><span> /</span>
 <a class="fw-light text-black" href="../../index.html">MDM Providers</a><span> /</span>
 <a class="fw-light text-black" href="../index.html">Security</a><span> /</span>
@@ -3087,13 +3087,13 @@
 </ol>
 <h3 id="active-se-for-android-protection-for-third-party-containers">Active SE for Android protection for third-party containers</h3>
 <p>In order to use this API, the MDM should work with Samsung to define the requirements for the SE for Android domain-based protection. Once the requirements are established, Samsung implements the feature for the MDM. A FOTA upgrade is required to use this feature once development is complete.</p>
-<div class="highlight"><pre tabindex="0" style=";-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span>seams<span style="color:#666">.</span><span style="color:#7d9029">createSEContainer</span><span style="color:#666">();</span>
-</span></span><span style="display:flex;"><span>seams<span style="color:#666">.</span><span style="color:#7d9029">addAppToContainer</span> <span style="color:#666">(</span>packageName<span style="color:#666">,</span> certificate<span style="color:#666">,</span> containerID<span style="color:#666">,</span> appType<span style="color:#666">);</span>
-</span></span><span style="display:flex;"><span><span style="color:#408080;font-style:italic">// Use GENERIC_SECURED_APPTYPE = 3 for container app
-</span></span></span><span style="display:flex;"><span><span style="color:#408080;font-style:italic">// Use GENERIC_TRUSTED_APPTYPE = 4 for the app that can communicate with container app
-</span></span></span><span style="display:flex;"><span><span style="color:#408080;font-style:italic"></span>seams<span style="color:#666">.</span><span style="color:#7d9029">removeAppFromContainer</span><span style="color:#666">(</span>packageName<span style="color:#666">,</span> certificate<span style="color:#666">);</span>
-</span></span><span style="display:flex;"><span>seams<span style="color:#666">.</span><span style="color:#7d9029">removeSEContainer</span><span style="color:#666">();</span>
-</span></span></code></pre></div><h3 id="create-seams-workspace-with-clipboard-protection">Create SEAMS Workspace with clipboard protection</h3>
+<div class="highlight"><pre tabindex="0" style=";-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-java" data-lang="java"><span style="display:flex;"><span>seams.<span style="color:#7d9029">createSEContainer</span>();<span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span>seams.<span style="color:#7d9029">addAppToContainer</span><span style="color:#bbb"> </span>(packageName,<span style="color:#bbb"> </span>certificate,<span style="color:#bbb"> </span>containerID,<span style="color:#bbb"> </span>appType);<span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#408080;font-style:italic">// Use GENERIC_SECURED_APPTYPE = 3 for container app</span><span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#408080;font-style:italic">// Use GENERIC_TRUSTED_APPTYPE = 4 for the app that can communicate with container app</span><span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span>seams.<span style="color:#7d9029">removeAppFromContainer</span>(packageName,<span style="color:#bbb"> </span>certificate);<span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span>seams.<span style="color:#7d9029">removeSEContainer</span>();<span style="color:#bbb">
+</span></span></span></code></pre></div><h3 id="create-seams-workspace-with-clipboard-protection">Create SEAMS Workspace with clipboard protection</h3>
 <p>Currently any information copied into the clipboard while inside an app installed in a SEAMS Workspace (either generic container or Good container) can be copied outside of the container. This ability poses a security risk since data inside the container can be exported out of the container very easily. The Knox Workspace already provides the ability to control the isolation of the clipboard across the container&rsquo;s boundary; starting with the Knox 2.6 release, this feature exposes the same controls to the SEAMS containers.</p>
 <p>Currently, apps within generic / Good secontainer share the user 0 clipboard. This means the data copied into the clipboard can be seen by any app on the device including Knox Workspace (default MDM policy supports shared clipboard). Clipboard isolation for generic/Good secontainer has been added to prevent this data leakage.</p>
 <p>You can add clipboard isolation for a generic/Good secontainer to prevent clipboard data leakage.</p>
@@ -3112,14 +3112,14 @@
 <li>At the same time, the copied data should not be visible to non-container applications to protect the data.</li>
 </ul>
 <h4 id="apiusage">API usage</h4>
-<div class="highlight"><pre tabindex="0" style=";-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span>SEAMS seams <span style="color:#666">=</span> SEAMS<span style="color:#666">.</span><span style="color:#7d9029">getInstance</span><span style="color:#666">(</span>context<span style="color:#666">);</span>
-</span></span><span style="display:flex;"><span><span style="color:#008000;font-weight:bold">try</span> <span style="color:#666">{</span>
-</span></span><span style="display:flex;"><span>    <span style="color:#408080;font-style:italic">// replace SE Linux policy
-</span></span></span><span style="display:flex;"><span><span style="color:#408080;font-style:italic"></span>    seams<span style="color:#666">.</span><span style="color:#7d9029">setSEContainerClipboardMode</span><span style="color:#666">(</span><span style="color:#b00040">int</span> containerID<span style="color:#666">,</span> <span style="color:#b00040">int</span> mode<span style="color:#666">);</span>
-</span></span><span style="display:flex;"><span><span style="color:#666">}</span> <span style="color:#008000;font-weight:bold">catch</span> <span style="color:#666">(</span>SecurityException e<span style="color:#666">)</span> <span style="color:#666">{</span>
-</span></span><span style="display:flex;"><span>    Log<span style="color:#666">.</span><span style="color:#7d9029">e</span><span style="color:#666">(</span>TAG<span style="color:#666">,</span> <span style="color:#ba2121">&#34;SecurityException: &#34;</span> <span style="color:#666">+</span> e<span style="color:#666">);</span>
-</span></span><span style="display:flex;"><span><span style="color:#666">}</span>
-</span></span></code></pre></div><h3 id="enable-se-container-clipboard-isolation">Enable SE container clipboard isolation</h3>
+<div class="highlight"><pre tabindex="0" style=";-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-java" data-lang="java"><span style="display:flex;"><span>SEAMS<span style="color:#bbb"> </span>seams<span style="color:#bbb"> </span><span style="color:#666">=</span><span style="color:#bbb"> </span>SEAMS.<span style="color:#7d9029">getInstance</span>(context);<span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#008000;font-weight:bold">try</span><span style="color:#bbb"> </span>{<span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb">    </span><span style="color:#408080;font-style:italic">// replace SE Linux policy</span><span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb">    </span>seams.<span style="color:#7d9029">setSEContainerClipboardMode</span>(<span style="color:#b00040">int</span><span style="color:#bbb"> </span>containerID,<span style="color:#bbb"> </span><span style="color:#b00040">int</span><span style="color:#bbb"> </span>mode);<span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span>}<span style="color:#bbb"> </span><span style="color:#008000;font-weight:bold">catch</span><span style="color:#bbb"> </span>(SecurityException<span style="color:#bbb"> </span>e)<span style="color:#bbb"> </span>{<span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb">    </span>Log.<span style="color:#7d9029">e</span>(TAG,<span style="color:#bbb"> </span><span style="color:#ba2121">&#34;SecurityException: &#34;</span><span style="color:#bbb"> </span><span style="color:#666">+</span><span style="color:#bbb"> </span>e);<span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span>}<span style="color:#bbb">
+</span></span></span></code></pre></div><h3 id="enable-se-container-clipboard-isolation">Enable SE container clipboard isolation</h3>
 <p>This feature is disabled by default and can be enabled by calling the following APIs:</p>
 <ul>
 <li><code>boolean isShareClipboardDataToOwnerAllowed (ContextInfo cxtInfo)</code></li>

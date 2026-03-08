@@ -56,7 +56,7 @@
 
   
 
-<script onload="initBot()" defer src="https://dc-chbt.samsungknox.com/copilot/index.js?noCache=1772239241"></script>
+<script onload="initBot()" defer src="https://dc-chbt.samsungknox.com/copilot/index.js?noCache=1772832708"></script>
 <script defer>
     function initBot(){
       const relPath = "\/knox-sdk\/features\/mdm-providers\/keystores\/tima-ccm-keystores\/ccm-examples\/ccm-operations\/";
@@ -3052,7 +3052,7 @@
           <div class="l-content-top mb-4">
             <div class="l-breadcrumb">
               <a class="fw-light text-black" href="../../../../../../../index.html">Home</a><span> /</span>
-<a class="fw-light text-black" href="../../../../../../../knox-sdk.html">Knox SDK</a><span> /</span>
+<a class="fw-light text-black" href="../../../../../../index.html">Knox SDK</a><span> /</span>
 <a class="fw-light text-black" href="../../../../../index.html">Features</a><span> /</span>
 <a class="fw-light text-black" href="../../../../index.html">MDM Providers</a><span> /</span>
 <a class="fw-light text-black" href="../../../index.html">Keystores</a><span> /</span>
@@ -3099,8 +3099,8 @@
 <li>Adding a package to the CCM allowlist</li>
 <li>Removing a CCM profile</li>
 </ul>
-<div class="highlight"><pre tabindex="0" style=";-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#408080;font-style:italic">/**** installing certificate (by an application/package in the allowlist) ****/</span>
-</span></span><span style="display:flex;"><span><span style="color:#408080;font-style:italic">/* A profile that must be used to control access to this certificate _/
+<div class="highlight"><pre tabindex="0" style=";-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#408080;font-style:italic">/**** installing certificate (by an application/package in the allowlist) ****/</span><span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#408080;font-style:italic">/* A profile that must be used to control access to this certificate _/
 </span></span></span><span style="display:flex;"><span><span style="color:#408080;font-style:italic">
 </span></span></span><span style="display:flex;"><span><span style="color:#408080;font-style:italic">CertificateProfile certProfile = new CertificateProfile();
 </span></span></span><span style="display:flex;"><span><span style="color:#408080;font-style:italic">certProfile.isCSRResponse = false; // true, if this is a response to a Certificate Signing Request
@@ -3118,55 +3118,55 @@
 </span></span></span><span style="display:flex;"><span><span style="color:#408080;font-style:italic">/_ install the certificate with the following arguments: 
 </span></span></span><span style="display:flex;"><span><span style="color:#408080;font-style:italic"> * certProfile : a Certificate profile
 </span></span></span><span style="display:flex;"><span><span style="color:#408080;font-style:italic">* certBytes : the certificate bytes (byte array)
-</span></span></span><span style="display:flex;"><span><span style="color:#408080;font-style:italic">* certPwd : password to decrypt the private key in the certificate  */</span>
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#b00040">boolean</span> ret <span style="color:#666">=</span> mCCM<span style="color:#666">.</span><span style="color:#7d9029">installCertificate</span><span style="color:#666">(</span>profile<span style="color:#666">,</span> object_buffer<span style="color:#666">,</span> certPwd<span style="color:#666">);</span>
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#408080;font-style:italic">/**** delete an existing certificate ****/</span>
-</span></span><span style="display:flex;"><span><span style="color:#b00040">boolean</span> ret <span style="color:#666">=</span> mCCM<span style="color:#666">.</span><span style="color:#7d9029">deleteCertificate</span><span style="color:#666">(</span>alias<span style="color:#666">);</span> <span style="color:#408080;font-style:italic">// delete the certificate associated with the alias
-</span></span></span><span style="display:flex;"><span><span style="color:#408080;font-style:italic"></span>
-</span></span><span style="display:flex;"><span><span style="color:#408080;font-style:italic">/**** get the CCM Profile that was set during CCM initialization ****/</span>
-</span></span><span style="display:flex;"><span><span style="color:#408080;font-style:italic">/* get the CCM Profile based on the current container context */</span>
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>CCMProfile profile <span style="color:#666">=</span> <span style="color:#008000;font-weight:bold">new</span> CCMProfile<span style="color:#666">();</span>
-</span></span><span style="display:flex;"><span><span style="color:#b00040">boolean</span> ret <span style="color:#666">=</span> mCCM<span style="color:#666">.</span><span style="color:#7d9029">getCCMProfile</span><span style="color:#666">(</span>profile<span style="color:#666">);</span> <span style="color:#408080;font-style:italic">// profile object contains all the configuration
-</span></span></span><span style="display:flex;"><span><span style="color:#408080;font-style:italic"></span>
-</span></span><span style="display:flex;"><span><span style="color:#408080;font-style:italic">/**** to know if CCM is accessible for a package ****/</span>
-</span></span><span style="display:flex;"><span><span style="color:#b00040">boolean</span> ret <span style="color:#666">=</span> mCCM<span style="color:#666">.</span><span style="color:#7d9029">isCCMPolicyEnabledForPackage</span><span style="color:#666">(</span>packageName<span style="color:#666">);</span>
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#408080;font-style:italic">/**** Add a package to the allowlist ****/</span>
-</span></span><span style="display:flex;"><span><span style="color:#b00040">boolean</span> ret <span style="color:#666">=</span> mCCM<span style="color:#666">.</span><span style="color:#7d9029">addPackageToExemptList</span><span style="color:#666">(</span>packageName<span style="color:#666">);</span>
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#408080;font-style:italic">/**** Remove a package from the allowlist ****/</span>
-</span></span><span style="display:flex;"><span><span style="color:#b00040">boolean</span> ret <span style="color:#666">=</span> mCCM<span style="color:#666">.</span><span style="color:#7d9029">addPackageToExemptList</span><span style="color:#666">(</span>packageName<span style="color:#666">);</span>
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#408080;font-style:italic">/**** delete the profile to disable usage of CCM - deletes all certificate data too essentialy disabling CCM ****/</span>
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#408080;font-style:italic">/* deletes the profile associated with the current container context */</span>
-</span></span><span style="display:flex;"><span><span style="color:#b00040">boolean</span> ret <span style="color:#666">=</span> mCCM<span style="color:#666">.</span><span style="color:#7d9029">deleteCCMProfile</span><span style="color:#666">();</span>
-</span></span></code></pre></div><h2 id="ccm-configurations">CCM configurations</h2>
+</span></span></span><span style="display:flex;"><span><span style="color:#408080;font-style:italic">* certPwd : password to decrypt the private key in the certificate  */</span><span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#b00040">boolean</span><span style="color:#bbb"> </span>ret<span style="color:#bbb"> </span><span style="color:#666">=</span><span style="color:#bbb"> </span>mCCM.<span style="color:#7d9029">installCertificate</span>(profile,<span style="color:#bbb"> </span>object_buffer,<span style="color:#bbb"> </span>certPwd);<span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#408080;font-style:italic">/**** delete an existing certificate ****/</span><span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#b00040">boolean</span><span style="color:#bbb"> </span>ret<span style="color:#bbb"> </span><span style="color:#666">=</span><span style="color:#bbb"> </span>mCCM.<span style="color:#7d9029">deleteCertificate</span>(alias);<span style="color:#bbb"> </span><span style="color:#408080;font-style:italic">// delete the certificate associated with the alias</span><span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#408080;font-style:italic">/**** get the CCM Profile that was set during CCM initialization ****/</span><span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#408080;font-style:italic">/* get the CCM Profile based on the current container context */</span><span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span>CCMProfile<span style="color:#bbb"> </span>profile<span style="color:#bbb"> </span><span style="color:#666">=</span><span style="color:#bbb"> </span><span style="color:#008000;font-weight:bold">new</span><span style="color:#bbb"> </span>CCMProfile();<span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#b00040">boolean</span><span style="color:#bbb"> </span>ret<span style="color:#bbb"> </span><span style="color:#666">=</span><span style="color:#bbb"> </span>mCCM.<span style="color:#7d9029">getCCMProfile</span>(profile);<span style="color:#bbb"> </span><span style="color:#408080;font-style:italic">// profile object contains all the configuration</span><span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#408080;font-style:italic">/**** to know if CCM is accessible for a package ****/</span><span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#b00040">boolean</span><span style="color:#bbb"> </span>ret<span style="color:#bbb"> </span><span style="color:#666">=</span><span style="color:#bbb"> </span>mCCM.<span style="color:#7d9029">isCCMPolicyEnabledForPackage</span>(packageName);<span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#408080;font-style:italic">/**** Add a package to the allowlist ****/</span><span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#b00040">boolean</span><span style="color:#bbb"> </span>ret<span style="color:#bbb"> </span><span style="color:#666">=</span><span style="color:#bbb"> </span>mCCM.<span style="color:#7d9029">addPackageToExemptList</span>(packageName);<span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#408080;font-style:italic">/**** Remove a package from the allowlist ****/</span><span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#b00040">boolean</span><span style="color:#bbb"> </span>ret<span style="color:#bbb"> </span><span style="color:#666">=</span><span style="color:#bbb"> </span>mCCM.<span style="color:#7d9029">addPackageToExemptList</span>(packageName);<span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#408080;font-style:italic">/**** delete the profile to disable usage of CCM - deletes all certificate data too essentialy disabling CCM ****/</span><span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#408080;font-style:italic">/* deletes the profile associated with the current container context */</span><span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#b00040">boolean</span><span style="color:#bbb"> </span>ret<span style="color:#bbb"> </span><span style="color:#666">=</span><span style="color:#bbb"> </span>mCCM.<span style="color:#7d9029">deleteCCMProfile</span>();<span style="color:#bbb">
+</span></span></span></code></pre></div><h2 id="ccm-configurations">CCM configurations</h2>
 <p>This topic explains the essential scenarios for enterprises along with the associated configuration and operational details.</p>
 <p>The following conditions must be present for this use case example:</p>
 <ul>
 <li>CCM is enabled</li>
 <li>Upon MDM decision, all certificate-based apps use CCM for their certificate storage</li>
 </ul>
-<div class="highlight"><pre tabindex="0" style=";-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#408080;font-style:italic">/**** get ClientCertificateManager handle ****/</span>
-</span></span><span style="display:flex;"><span>ClientCertificateManager mCCM <span style="color:#666">=</span> <span style="color:#008000;font-weight:bold">null</span><span style="color:#666">;</span>
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#408080;font-style:italic">/* get CCM Policy based on container context */</span>
-</span></span><span style="display:flex;"><span><span style="color:#008000;font-weight:bold">if</span> <span style="color:#666">(</span>mContainerId <span style="color:#666">!=</span> Constants<span style="color:#666">.</span><span style="color:#7d9029">LEGACY_CONTAINER_ID</span> <span style="color:#666">&amp;&amp;</span> mContainerId <span style="color:#666">!=</span> Constants<span style="color:#666">.</span><span style="color:#7d9029">DEVICE_CONTAINER_ID</span><span style="color:#666">)</span> <span style="color:#666">{</span>
-</span></span><span style="display:flex;"><span>                mContMgr <span style="color:#666">=</span> EnterpriseKnoxManager<span style="color:#666">.</span><span style="color:#7d9029">getInstance</span><span style="color:#666">()</span>
-</span></span><span style="display:flex;"><span>                                               <span style="color:#666">.</span><span style="color:#7d9029">getKnoxContainerManager</span><span style="color:#666">(</span><span style="color:#008000;font-weight:bold">this</span><span style="color:#666">.</span><span style="color:#7d9029">getApplicationContext</span><span style="color:#666">(),</span>
-</span></span><span style="display:flex;"><span>                                                   mContainerId<span style="color:#666">);</span>
-</span></span><span style="display:flex;"><span>                mCCM <span style="color:#666">=</span> mContMgr<span style="color:#666">.</span><span style="color:#7d9029">getClientCertificateManagerPolicy</span><span style="color:#666">();</span>
-</span></span><span style="display:flex;"><span><span style="color:#666">}</span> <span style="color:#008000;font-weight:bold">else</span> <span style="color:#666">{</span>
-</span></span><span style="display:flex;"><span>                mCCM <span style="color:#666">=</span> mEKM<span style="color:#666">.</span><span style="color:#7d9029">getClientCertificateManagerPolicy</span><span style="color:#666">(</span>Context<span style="color:#666">);</span>
-</span></span><span style="display:flex;"><span><span style="color:#666">}</span>
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#408080;font-style:italic">/****** We need to set a profile before we can start using CCM (Initialization) ****/</span>
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#408080;font-style:italic">/* Configure the CCMProfile before we call the setCCMProfile _/
+<div class="highlight"><pre tabindex="0" style=";-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#408080;font-style:italic">/**** get ClientCertificateManager handle ****/</span><span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span>ClientCertificateManager<span style="color:#bbb"> </span>mCCM<span style="color:#bbb"> </span><span style="color:#666">=</span><span style="color:#bbb"> </span><span style="color:#008000;font-weight:bold">null</span>;<span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#408080;font-style:italic">/* get CCM Policy based on container context */</span><span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#008000;font-weight:bold">if</span><span style="color:#bbb"> </span>(mContainerId<span style="color:#bbb"> </span><span style="color:#666">!=</span><span style="color:#bbb"> </span>Constants.<span style="color:#7d9029">LEGACY_CONTAINER_ID</span><span style="color:#bbb"> </span><span style="color:#666">&amp;&amp;</span><span style="color:#bbb"> </span>mContainerId<span style="color:#bbb"> </span><span style="color:#666">!=</span><span style="color:#bbb"> </span>Constants.<span style="color:#7d9029">DEVICE_CONTAINER_ID</span>)<span style="color:#bbb"> </span>{<span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb">                </span>mContMgr<span style="color:#bbb"> </span><span style="color:#666">=</span><span style="color:#bbb"> </span>EnterpriseKnoxManager.<span style="color:#7d9029">getInstance</span>()<span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb">                                               </span>.<span style="color:#7d9029">getKnoxContainerManager</span>(<span style="color:#008000;font-weight:bold">this</span>.<span style="color:#7d9029">getApplicationContext</span>(),<span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb">                                                   </span>mContainerId);<span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb">                </span>mCCM<span style="color:#bbb"> </span><span style="color:#666">=</span><span style="color:#bbb"> </span>mContMgr.<span style="color:#7d9029">getClientCertificateManagerPolicy</span>();<span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span>}<span style="color:#bbb"> </span><span style="color:#008000;font-weight:bold">else</span><span style="color:#bbb"> </span>{<span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb">                </span>mCCM<span style="color:#bbb"> </span><span style="color:#666">=</span><span style="color:#bbb"> </span>mEKM.<span style="color:#7d9029">getClientCertificateManagerPolicy</span>(Context);<span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span>}<span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#408080;font-style:italic">/****** We need to set a profile before we can start using CCM (Initialization) ****/</span><span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#408080;font-style:italic">/* Configure the CCMProfile before we call the setCCMProfile _/
 </span></span></span><span style="display:flex;"><span><span style="color:#408080;font-style:italic">CCMProfile profile = new CCMProfile();
 </span></span></span><span style="display:flex;"><span><span style="color:#408080;font-style:italic">
 </span></span></span><span style="display:flex;"><span><span style="color:#408080;font-style:italic">/_ configure the access control method for this profile. 
@@ -3183,9 +3183,9 @@
 </span></span></span><span style="display:flex;"><span><span style="color:#408080;font-style:italic">profile.whiteListAllPackages = true;
 </span></span></span><span style="display:flex;"><span><span style="color:#408080;font-style:italic">
 </span></span></span><span style="display:flex;"><span><span style="color:#408080;font-style:italic">
-</span></span></span><span style="display:flex;"><span><span style="color:#408080;font-style:italic">/_ set the CCM profile using setCCMProfile API */</span>
-</span></span><span style="display:flex;"><span>mCCM<span style="color:#666">.</span><span style="color:#7d9029">setCCMProfile</span><span style="color:#666">(</span>profile<span style="color:#666">);</span>
-</span></span></code></pre></div>
+</span></span></span><span style="display:flex;"><span><span style="color:#408080;font-style:italic">/_ set the CCM profile using setCCMProfile API */</span><span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span>mCCM.<span style="color:#7d9029">setCCMProfile</span>(profile);<span style="color:#bbb">
+</span></span></span></code></pre></div>
             
           </div>
           <div class="l-toh">

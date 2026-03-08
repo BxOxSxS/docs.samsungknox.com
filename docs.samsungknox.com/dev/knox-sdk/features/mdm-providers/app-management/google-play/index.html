@@ -56,7 +56,7 @@
 
   
 
-<script onload="initBot()" defer src="https://dc-chbt.samsungknox.com/copilot/index.js?noCache=1772239241"></script>
+<script onload="initBot()" defer src="https://dc-chbt.samsungknox.com/copilot/index.js?noCache=1772832708"></script>
 <script defer>
     function initBot(){
       const relPath = "\/knox-sdk\/features\/mdm-providers\/app-management\/google-play\/";
@@ -3052,7 +3052,7 @@
           <div class="l-content-top mb-4">
             <div class="l-breadcrumb">
               <a class="fw-light text-black" href="../../../../../index.html">Home</a><span> /</span>
-<a class="fw-light text-black" href="../../../../../knox-sdk.html">Knox SDK</a><span> /</span>
+<a class="fw-light text-black" href="../../../../index.html">Knox SDK</a><span> /</span>
 <a class="fw-light text-black" href="../../../index.html">Features</a><span> /</span>
 <a class="fw-light text-black" href="../../index.html">MDM Providers</a><span> /</span>
 <a class="fw-light text-black" href="../index.html">App management</a><span> /</span>
@@ -3109,25 +3109,25 @@
 </li>
 <li>
 <p>Use <code>addPackageToInstallWhiteList</code> to add Google store package as an approved installer inside the container &mdash; <code>com.android.vending</code></p>
-<div class="highlight"><pre tabindex="0" style=";-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span>EnterpriseKnoxManager ekm <span style="color:#666">=</span> EnterpriseKnoxManager<span style="color:#666">.</span><span style="color:#7d9029">getInstance</span><span style="color:#666">();</span>
-</span></span><span style="display:flex;"><span>KnoxContainerManager kmcm <span style="color:#666">=</span> ekm<span style="color:#666">.</span><span style="color:#7d9029">getKnoxContainerManager</span><span style="color:#666">(</span>mContext<span style="color:#666">,</span> containerID<span style="color:#666">);</span>
-</span></span><span style="display:flex;"><span>ApplicationPolicy appPolicy <span style="color:#666">=</span> kmcm<span style="color:#666">.</span><span style="color:#7d9029">getApplicationPolicy</span><span style="color:#666">();</span>
-</span></span><span style="display:flex;"><span><span style="color:#008000;font-weight:bold">try</span> <span style="color:#666">{</span>
-</span></span><span style="display:flex;"><span><span style="color:#b00040">boolean</span> result <span style="color:#666">=</span> appPolicy<span style="color:#666">.</span><span style="color:#7d9029">setEnableApplication</span><span style="color:#666">(</span><span style="color:#ba2121">&#34;com.android.vending&#34;</span><span style="color:#666">);</span> 
-</span></span><span style="display:flex;"><span><span style="color:#b00040">boolean</span> result <span style="color:#666">=</span> appPolicy<span style="color:#666">.</span><span style="color:#7d9029">setEnableApplication</span><span style="color:#666">(</span><span style="color:#ba2121">&#34;com.google.android.gms&#34;</span><span style="color:#666">);</span> 
-</span></span><span style="display:flex;"><span><span style="color:#b00040">boolean</span> result <span style="color:#666">=</span> appPolicy<span style="color:#666">.</span><span style="color:#7d9029">setEnableApplication</span><span style="color:#666">(</span><span style="color:#ba2121">&#34;com.google.android.gsf&#34;</span><span style="color:#666">);</span> 
-</span></span><span style="display:flex;"><span><span style="color:#b00040">boolean</span> result <span style="color:#666">=</span> appPolicy<span style="color:#666">.</span><span style="color:#7d9029">setEnableApplication</span><span style="color:#666">(</span><span style="color:#ba2121">&#34;com.google.android.gsf.login&#34;</span><span style="color:#666">);</span> 
-</span></span><span style="display:flex;"><span><span style="color:#408080;font-style:italic">// To grant installation permission inside container.
-</span></span></span><span style="display:flex;"><span><span style="color:#408080;font-style:italic"></span><span style="color:#b00040">boolean</span> result <span style="color:#666">=</span> ccp<span style="color:#666">.</span><span style="color:#7d9029">addPackageToInstallWhiteList</span><span style="color:#666">(</span><span style="color:#ba2121">&#34;com.android.vending&#34;</span><span style="color:#666">);</span>
-</span></span><span style="display:flex;"><span><span style="color:#008000;font-weight:bold">if</span> <span style="color:#666">(</span><span style="color:#008000;font-weight:bold">true</span> <span style="color:#666">==</span> result<span style="color:#666">)</span> <span style="color:#666">{</span>
-</span></span><span style="display:flex;"><span>Log<span style="color:#666">.</span><span style="color:#7d9029">d</span><span style="color:#666">(</span>TAG<span style="color:#666">,</span> <span style="color:#ba2121">&#34; Enabling an application package has been successful!&#34;</span><span style="color:#666">);</span>
-</span></span><span style="display:flex;"><span><span style="color:#666">}</span> <span style="color:#008000;font-weight:bold">else</span> <span style="color:#666">{</span>
-</span></span><span style="display:flex;"><span>Log<span style="color:#666">.</span><span style="color:#7d9029">w</span><span style="color:#666">(</span>TAG<span style="color:#666">,</span> <span style="color:#ba2121">&#34; Enabling an application package has failed.&#34;</span><span style="color:#666">);</span>
-</span></span><span style="display:flex;"><span><span style="color:#666">}</span>
-</span></span><span style="display:flex;"><span><span style="color:#666">}</span> <span style="color:#008000;font-weight:bold">catch</span> <span style="color:#666">(</span>SecurityException e<span style="color:#666">)</span> <span style="color:#666">{</span>
-</span></span><span style="display:flex;"><span>Log<span style="color:#666">.</span><span style="color:#7d9029">w</span><span style="color:#666">(</span>TAG<span style="color:#666">,</span> <span style="color:#ba2121">&#34;SecurityException: &#34;</span> <span style="color:#666">+</span> e<span style="color:#666">);</span>
-</span></span><span style="display:flex;"><span><span style="color:#666">}</span>
-</span></span></code></pre></div></li>
+<div class="highlight"><pre tabindex="0" style=";-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-java" data-lang="java"><span style="display:flex;"><span>EnterpriseKnoxManager<span style="color:#bbb"> </span>ekm<span style="color:#bbb"> </span><span style="color:#666">=</span><span style="color:#bbb"> </span>EnterpriseKnoxManager.<span style="color:#7d9029">getInstance</span>();<span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span>KnoxContainerManager<span style="color:#bbb"> </span>kmcm<span style="color:#bbb"> </span><span style="color:#666">=</span><span style="color:#bbb"> </span>ekm.<span style="color:#7d9029">getKnoxContainerManager</span>(mContext,<span style="color:#bbb"> </span>containerID);<span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span>ApplicationPolicy<span style="color:#bbb"> </span>appPolicy<span style="color:#bbb"> </span><span style="color:#666">=</span><span style="color:#bbb"> </span>kmcm.<span style="color:#7d9029">getApplicationPolicy</span>();<span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#008000;font-weight:bold">try</span><span style="color:#bbb"> </span>{<span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#b00040">boolean</span><span style="color:#bbb"> </span>result<span style="color:#bbb"> </span><span style="color:#666">=</span><span style="color:#bbb"> </span>appPolicy.<span style="color:#7d9029">setEnableApplication</span>(<span style="color:#ba2121">&#34;com.android.vending&#34;</span>);<span style="color:#bbb"> 
+</span></span></span><span style="display:flex;"><span><span style="color:#b00040">boolean</span><span style="color:#bbb"> </span>result<span style="color:#bbb"> </span><span style="color:#666">=</span><span style="color:#bbb"> </span>appPolicy.<span style="color:#7d9029">setEnableApplication</span>(<span style="color:#ba2121">&#34;com.google.android.gms&#34;</span>);<span style="color:#bbb"> 
+</span></span></span><span style="display:flex;"><span><span style="color:#b00040">boolean</span><span style="color:#bbb"> </span>result<span style="color:#bbb"> </span><span style="color:#666">=</span><span style="color:#bbb"> </span>appPolicy.<span style="color:#7d9029">setEnableApplication</span>(<span style="color:#ba2121">&#34;com.google.android.gsf&#34;</span>);<span style="color:#bbb"> 
+</span></span></span><span style="display:flex;"><span><span style="color:#b00040">boolean</span><span style="color:#bbb"> </span>result<span style="color:#bbb"> </span><span style="color:#666">=</span><span style="color:#bbb"> </span>appPolicy.<span style="color:#7d9029">setEnableApplication</span>(<span style="color:#ba2121">&#34;com.google.android.gsf.login&#34;</span>);<span style="color:#bbb"> 
+</span></span></span><span style="display:flex;"><span><span style="color:#408080;font-style:italic">// To grant installation permission inside container.</span><span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#b00040">boolean</span><span style="color:#bbb"> </span>result<span style="color:#bbb"> </span><span style="color:#666">=</span><span style="color:#bbb"> </span>ccp.<span style="color:#7d9029">addPackageToInstallWhiteList</span>(<span style="color:#ba2121">&#34;com.android.vending&#34;</span>);<span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#008000;font-weight:bold">if</span><span style="color:#bbb"> </span>(<span style="color:#008000;font-weight:bold">true</span><span style="color:#bbb"> </span><span style="color:#666">==</span><span style="color:#bbb"> </span>result)<span style="color:#bbb"> </span>{<span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span>Log.<span style="color:#7d9029">d</span>(TAG,<span style="color:#bbb"> </span><span style="color:#ba2121">&#34; Enabling an application package has been successful!&#34;</span>);<span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span>}<span style="color:#bbb"> </span><span style="color:#008000;font-weight:bold">else</span><span style="color:#bbb"> </span>{<span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span>Log.<span style="color:#7d9029">w</span>(TAG,<span style="color:#bbb"> </span><span style="color:#ba2121">&#34; Enabling an application package has failed.&#34;</span>);<span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span>}<span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span>}<span style="color:#bbb"> </span><span style="color:#008000;font-weight:bold">catch</span><span style="color:#bbb"> </span>(SecurityException<span style="color:#bbb"> </span>e)<span style="color:#bbb"> </span>{<span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span>Log.<span style="color:#7d9029">w</span>(TAG,<span style="color:#bbb"> </span><span style="color:#ba2121">&#34;SecurityException: &#34;</span><span style="color:#bbb"> </span><span style="color:#666">+</span><span style="color:#bbb"> </span>e);<span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span>}<span style="color:#bbb">
+</span></span></span></code></pre></div></li>
 </ol>
 <h2 id="example">Enable Google play for work</h2>
 <p>Android&rsquo;s Work Profile (AWP; formerly known as <em>Android for Work</em>) offers Play for Work as a mechanism to deploy work apps to managed profiles. IT admins can navigate to the Google Play store Admin Console and silently deploy applications on the target employee devices. You can find details <a href="https://www.google.com/work/android/features/applications.html" target="_blank">here</a>.</p>
@@ -3147,22 +3147,22 @@
 </li>
 <li>
 <p>Use container API, <a href="../../../../../../devref/knox-sdk/reference/com/samsung/android/knox/application/ApplicationPolicy.html#setAfWProxy(boolean, com.samsung.android.knox.AppIdentity, android.os.Bundle)" target="_blank"><code>setAfwProxy</code></a> and provide required app details.</p>
-<div class="highlight"><pre tabindex="0" style=";-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#408080;font-style:italic">//Create the EnterpriseDeviceManager and Knox ContainerManager
-</span></span></span><span style="display:flex;"><span><span style="color:#408080;font-style:italic"></span>EnterpriseKnoxManager ekm <span style="color:#666">=</span> EnterpriseKnoxManager<span style="color:#666">.</span><span style="color:#7d9029">getInstance</span><span style="color:#666">(</span>context<span style="color:#666">);</span>
-</span></span><span style="display:flex;"><span>KnoxContainerManager kcm <span style="color:#666">=</span> ekm<span style="color:#666">.</span><span style="color:#7d9029">getKnoxContainerManager</span><span style="color:#666">(</span>Context<span style="color:#666">,</span> containerID<span style="color:#666">);</span>
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#408080;font-style:italic">//Get application policy
-</span></span></span><span style="display:flex;"><span><span style="color:#408080;font-style:italic"></span>ApplicationPolicy appPolicy <span style="color:#666">=</span> kcm<span style="color:#666">.</span><span style="color:#7d9029">getApplicationPolicy</span><span style="color:#666">();</span>
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#408080;font-style:italic">//Install proxy app
-</span></span></span><span style="display:flex;"><span><span style="color:#408080;font-style:italic"></span>appPolicy<span style="color:#666">.</span><span style="color:#7d9029">installApplication</span><span style="color:#666">(</span>com<span style="color:#666">.</span><span style="color:#7d9029">proxyapp</span><span style="color:#666">.</span><span style="color:#7d9029">packagename</span><span style="color:#666">);</span>
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>AppIdentity proxyAdminIdentity <span style="color:#666">=</span> <span style="color:#008000;font-weight:bold">new</span> AppIdentity<span style="color:#666">(</span><span style="color:#ba2121">&#34;com.abc.xyz&#34;</span><span style="color:#666">,</span> signatureBytes<span style="color:#666">);</span>
-</span></span><span style="display:flex;"><span>Bundle dataBundle <span style="color:#666">=</span> <span style="color:#008000;font-weight:bold">new</span> Bundle<span style="color:#666">();</span>
-</span></span><span style="display:flex;"><span>dataBundle<span style="color:#666">.</span><span style="color:#7d9029">putInt</span><span style="color:#666">(</span>PROXY_FLAGS<span style="color:#666">,</span> FLAG_ALLOW_PROXY_FOR_PFW<span style="color:#666">);</span>
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>appPolicy<span style="color:#666">.</span><span style="color:#7d9029">setAfWProxy</span><span style="color:#666">(</span><span style="color:#008000;font-weight:bold">true</span><span style="color:#666">,</span> proxyAdminIdentity<span style="color:#666">,</span> dataBundle<span style="color:#666">);</span>
-</span></span></code></pre></div></li>
+<div class="highlight"><pre tabindex="0" style=";-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#408080;font-style:italic">//Create the EnterpriseDeviceManager and Knox ContainerManager</span><span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span>EnterpriseKnoxManager<span style="color:#bbb"> </span>ekm<span style="color:#bbb"> </span><span style="color:#666">=</span><span style="color:#bbb"> </span>EnterpriseKnoxManager.<span style="color:#7d9029">getInstance</span>(context);<span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span>KnoxContainerManager<span style="color:#bbb"> </span>kcm<span style="color:#bbb"> </span><span style="color:#666">=</span><span style="color:#bbb"> </span>ekm.<span style="color:#7d9029">getKnoxContainerManager</span>(Context,<span style="color:#bbb"> </span>containerID);<span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#408080;font-style:italic">//Get application policy</span><span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span>ApplicationPolicy<span style="color:#bbb"> </span>appPolicy<span style="color:#bbb"> </span><span style="color:#666">=</span><span style="color:#bbb"> </span>kcm.<span style="color:#7d9029">getApplicationPolicy</span>();<span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#408080;font-style:italic">//Install proxy app</span><span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span>appPolicy.<span style="color:#7d9029">installApplication</span>(com.<span style="color:#7d9029">proxyapp</span>.<span style="color:#7d9029">packagename</span>);<span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span>AppIdentity<span style="color:#bbb"> </span>proxyAdminIdentity<span style="color:#bbb"> </span><span style="color:#666">=</span><span style="color:#bbb"> </span><span style="color:#008000;font-weight:bold">new</span><span style="color:#bbb"> </span>AppIdentity(<span style="color:#ba2121">&#34;com.abc.xyz&#34;</span>,<span style="color:#bbb"> </span>signatureBytes);<span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span>Bundle<span style="color:#bbb"> </span>dataBundle<span style="color:#bbb"> </span><span style="color:#666">=</span><span style="color:#bbb"> </span><span style="color:#008000;font-weight:bold">new</span><span style="color:#bbb"> </span>Bundle();<span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span>dataBundle.<span style="color:#7d9029">putInt</span>(PROXY_FLAGS,<span style="color:#bbb"> </span>FLAG_ALLOW_PROXY_FOR_PFW);<span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span>appPolicy.<span style="color:#7d9029">setAfWProxy</span>(<span style="color:#008000;font-weight:bold">true</span>,<span style="color:#bbb"> </span>proxyAdminIdentity,<span style="color:#bbb"> </span>dataBundle);<span style="color:#bbb">
+</span></span></span></code></pre></div></li>
 </ol>
 <p>When the user signs-in using the enterprise account, the Play for Work interface is populated.</p>
 <div class="notice-note"><p>This option is useful for EMM vendors that have multiple internal apps and services for each OEM. They can create a small proxy app and install it inside Knox and at the same time keep the main EMM app unaltered.</p></div>
@@ -3177,10 +3177,10 @@
 <ul>
 <li>Supported account types can be retrieved from getSupportedAccountTypes(), for example, supported Google account is &ldquo;com.google&rdquo;.</li>
 </ul>
-<div class="highlight"><pre tabindex="0" style=";-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span>KnoxContainerManager kcm <span style="color:#666">=</span> ekm<span style="color:#666">.</span><span style="color:#7d9029">getKnoxContainerManager</span><span style="color:#666">(</span>Context<span style="color:#666">,</span> containerID<span style="color:#666">);</span>
-</span></span><span style="display:flex;"><span>blackList<span style="color:#666">.</span><span style="color:#7d9029">add</span><span style="color:#666">(</span><span style="color:#ba2121">&#34;.*@gmail.com&#34;</span><span style="color:#666">);</span> 
-</span></span><span style="display:flex;"><span>kcm<span style="color:#666">.</span><span style="color:#7d9029">getDeviceAccountPolicy</span><span style="color:#666">().</span><span style="color:#7d9029">addAccountsToAdditionWhiteList</span><span style="color:#666">(</span><span style="color:#ba2121">&#34;com.google&#34;</span><span style="color:#666">);</span>
-</span></span></code></pre></div></li>
+<div class="highlight"><pre tabindex="0" style=";-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-java" data-lang="java"><span style="display:flex;"><span>KnoxContainerManager<span style="color:#bbb"> </span>kcm<span style="color:#bbb"> </span><span style="color:#666">=</span><span style="color:#bbb"> </span>ekm.<span style="color:#7d9029">getKnoxContainerManager</span>(Context,<span style="color:#bbb"> </span>containerID);<span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span>blackList.<span style="color:#7d9029">add</span>(<span style="color:#ba2121">&#34;.*@gmail.com&#34;</span>);<span style="color:#bbb"> 
+</span></span></span><span style="display:flex;"><span>kcm.<span style="color:#7d9029">getDeviceAccountPolicy</span>().<span style="color:#7d9029">addAccountsToAdditionWhiteList</span>(<span style="color:#ba2121">&#34;com.google&#34;</span>);<span style="color:#bbb">
+</span></span></span></code></pre></div></li>
 </ol>
 <p>This ensures that only allowed accounts can be used to sign in to Play for Work.</p>
 

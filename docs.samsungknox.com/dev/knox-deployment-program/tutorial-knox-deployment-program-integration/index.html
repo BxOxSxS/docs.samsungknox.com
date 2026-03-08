@@ -56,7 +56,7 @@
 
   
 
-<script onload="initBot()" defer src="https://dc-chbt.samsungknox.com/copilot/index.js?noCache=1772239240"></script>
+<script onload="initBot()" defer src="https://dc-chbt.samsungknox.com/copilot/index.js?noCache=1772832708"></script>
 <script defer>
     function initBot(){
       const relPath = "\/knox-deployment-program\/tutorial-knox-deployment-program-integration\/";
@@ -405,11 +405,11 @@
 <p>There are also optional parameters you can set for this request. To learn more, see the <a href="../api/index.html#tag/Endpoints/operation/uploadDevicesUsingPUT" target="_blank">KDP API reference</a>.</p>
 <div class="notice-note"><p>Devices that were previously deleted from Knox services can be <a href="../../../admin/knox-admin-portal/how-to-guides/manage-devices/register-devices-to-knox-services/index.html#re-register-devices" target="_blank">re-registered by customers themselves</a>, as long as the devices are already registered in at least one service within their Knox account. However, if a device was <a href="../../../admin/knox-admin-portal/how-to-guides/manage-devices/register-devices-to-knox-services#device-is-deleted-from-knox-guard-but-not-other-services" target="_blank">deleted from Knox Guard but not from other services</a>, then the customer can either re-upload it to Knox Guard by performing a CSV upload, or you can re-upload it on their behalf after <a href="#delete-devices">deleting</a> the device from all Knox services. Deleting a device also deletes its configuration.</p></div>
 <p>Here&rsquo;s a cURL request example that uploads a device specified by its IMEI.</p>
-<div class="highlight"><pre tabindex="0" style=";-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>        curl --request PUT <span style="color:#b62;font-weight:bold">\
-</span></span></span><span style="display:flex;"><span><span style="color:#b62;font-weight:bold"></span>          --url https://api.samsungknox.com/kcs/v1/rp/devices/upload <span style="color:#b62;font-weight:bold">\
-</span></span></span><span style="display:flex;"><span><span style="color:#b62;font-weight:bold"></span>          --header <span style="color:#ba2121">&#39;Authorization: Bearer kz06....L09Wc&#39;</span> <span style="color:#b62;font-weight:bold">\
-</span></span></span><span style="display:flex;"><span><span style="color:#b62;font-weight:bold"></span>          --header <span style="color:#ba2121">&#39;content-type: application/json&#39;</span> <span style="color:#b62;font-weight:bold">\
-</span></span></span><span style="display:flex;"><span><span style="color:#b62;font-weight:bold"></span>          --data <span style="color:#ba2121">&#39;{
+<div class="highlight"><pre tabindex="0" style=";-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>        curl --request PUT <span style="color:#b62;font-weight:bold">\
+</span></span></span><span style="display:flex;"><span>          --url https://api.samsungknox.com/kcs/v1/rp/devices/upload <span style="color:#b62;font-weight:bold">\
+</span></span></span><span style="display:flex;"><span>          --header <span style="color:#ba2121">&#39;Authorization: Bearer kz06....L09Wc&#39;</span> <span style="color:#b62;font-weight:bold">\
+</span></span></span><span style="display:flex;"><span>          --header <span style="color:#ba2121">&#39;content-type: application/json&#39;</span> <span style="color:#b62;font-weight:bold">\
+</span></span></span><span style="display:flex;"><span>          --data <span style="color:#ba2121">&#39;{
 </span></span></span><span style="display:flex;"><span><span style="color:#ba2121">          &#34;customerId&#34;: &#34;114....454&#34;,
 </span></span></span><span style="display:flex;"><span><span style="color:#ba2121">          &#34;resellerId&#34;: &#34;393....849&#34;,
 </span></span></span><span style="display:flex;"><span><span style="color:#ba2121">          &#34;transactionId&#34;: &#34;123000&#34;,
@@ -419,7 +419,7 @@
 </span></span></span><span style="display:flex;"><span><span style="color:#ba2121">          &#34;type&#34;: &#34;IMEI&#34;
 </span></span></span><span style="display:flex;"><span><span style="color:#ba2121">        }&#39;</span>
 </span></span></code></pre></div><p>Assuming the request was processed correctly, you should receive a response resembling the following:</p>
-<div class="highlight"><pre tabindex="0" style=";-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>        <span style="color:#666">{</span>
+<div class="highlight"><pre tabindex="0" style=";-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>        <span style="color:#666">{</span>
 </span></span><span style="display:flex;"><span>            <span style="color:#ba2121">&#34;transactionId&#34;</span>: <span style="color:#ba2121">&#34;123000&#34;</span>,
 </span></span><span style="display:flex;"><span>            <span style="color:#ba2121">&#34;state&#34;</span>: <span style="color:#ba2121">&#34;Progress&#34;</span>,
 </span></span><span style="display:flex;"><span>            <span style="color:#ba2121">&#34;code&#34;</span>: 2000000,
@@ -431,11 +431,11 @@
 <p>Get a list of device transaction statuses with <a href="../api/index.html#tag/Endpoints/operation/getDeviceTransactionStatusUsingGET" target="_blank">GET /kcs/v1/rp/devices/status</a>.</p>
 <p>In the header, include your signed access token from the previous step. Then, make sure you include the <code>resellerId</code> as a query parameter in your request. There are also optional query parameters you can set for filtering. To learn more, see the <a href="../api/index.html#tag/Endpoints/operation/getDeviceTransactionStatusUsingGET" target="_blank">KDP API reference</a>.</p>
 <p>Here&rsquo;s a cURL request example that calls this operation.</p>
-<div class="highlight"><pre tabindex="0" style=";-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>        curl --request GET <span style="color:#b62;font-weight:bold">\
-</span></span></span><span style="display:flex;"><span><span style="color:#b62;font-weight:bold"></span>          --url https://api.samsungknox.com/kcs/v1/rp/devices/status?resellerId<span style="color:#666">=</span><span style="color:#ba2121">&#34;393....849&#34;</span> <span style="color:#b62;font-weight:bold">\
-</span></span></span><span style="display:flex;"><span><span style="color:#b62;font-weight:bold"></span>          --header <span style="color:#ba2121">&#39;Authorization: Bearer kz06....L09Wc&#39;</span>
+<div class="highlight"><pre tabindex="0" style=";-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>        curl --request GET <span style="color:#b62;font-weight:bold">\
+</span></span></span><span style="display:flex;"><span>          --url https://api.samsungknox.com/kcs/v1/rp/devices/status?resellerId<span style="color:#666">=</span><span style="color:#ba2121">&#34;393....849&#34;</span> <span style="color:#b62;font-weight:bold">\
+</span></span></span><span style="display:flex;"><span>          --header <span style="color:#ba2121">&#39;Authorization: Bearer kz06....L09Wc&#39;</span>
 </span></span></code></pre></div><p>The response will indicate the current status of device transations for the specified reseller. For example, assuming the upload has completed:</p>
-<div class="highlight"><pre tabindex="0" style=";-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>        <span style="color:#666">{</span>
+<div class="highlight"><pre tabindex="0" style=";-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>        <span style="color:#666">{</span>
 </span></span><span style="display:flex;"><span>          <span style="color:#ba2121">&#34;devices&#34;</span>: <span style="color:#666">{</span>
 </span></span><span style="display:flex;"><span>            <span style="color:#ba2121">&#34;totalCount&#34;</span>: 1,
 </span></span><span style="display:flex;"><span>            <span style="color:#ba2121">&#34;totalPage&#34;</span>: 1,
@@ -462,8 +462,8 @@
 <li><code>type</code> - Device type. <code>IMEI</code>, <code>MEID</code>, or <code>SN</code>. Required if <code>devices</code> is provided and <code>removeTransactionId</code> is not provided.</li>
 </ul>
 <p>There are also optional parameters you can set for this request. To learn more, see the <a href="../api/index.html#tag/Endpoints/operation/deleteDevicesUsingPUT" target="_blank">Knox Deployment Program API reference</a>.</p>
-<div class="highlight"><pre tabindex="0" style=";-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>        curl --request PUT <span style="color:#b62;font-weight:bold">\
-</span></span></span><span style="display:flex;"><span><span style="color:#b62;font-weight:bold"></span>          --url https://api.samsungknox.com/kcs/v1/rp/devices/delete <span style="color:#b62;font-weight:bold">\ </span>
+<div class="highlight"><pre tabindex="0" style=";-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>        curl --request PUT <span style="color:#b62;font-weight:bold">\
+</span></span></span><span style="display:flex;"><span>          --url https://api.samsungknox.com/kcs/v1/rp/devices/delete <span style="color:#b62;font-weight:bold">\ </span>
 </span></span><span style="display:flex;"><span>          --header <span style="color:#ba2121">&#39;Authorization: Bearer kz06....L09Wc&#39;</span> <span style="color:#b62;font-weight:bold">\ </span>
 </span></span><span style="display:flex;"><span>          --header <span style="color:#ba2121">&#39;content-type: application/json&#39;</span> <span style="color:#b62;font-weight:bold">\ </span>
 </span></span><span style="display:flex;"><span>          --data <span style="color:#ba2121">&#39;{ 
@@ -476,7 +476,7 @@
 </span></span></span><span style="display:flex;"><span><span style="color:#ba2121">          &#34;type&#34;: &#34;IMEI&#34;
 </span></span></span><span style="display:flex;"><span><span style="color:#ba2121">          }&#39;</span>
 </span></span></code></pre></div><p>Assuming the request was processed correctly, you should receive a response resembling the following:</p>
-<div class="highlight"><pre tabindex="0" style=";-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>        <span style="color:#666">{</span>
+<div class="highlight"><pre tabindex="0" style=";-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>        <span style="color:#666">{</span>
 </span></span><span style="display:flex;"><span>            <span style="color:#ba2121">&#34;transactionId&#34;</span>: <span style="color:#ba2121">&#34;345000&#34;</span>,
 </span></span><span style="display:flex;"><span>            <span style="color:#ba2121">&#34;state&#34;</span>: <span style="color:#ba2121">&#34;Progress&#34;</span>,
 </span></span><span style="display:flex;"><span>            <span style="color:#ba2121">&#34;code&#34;</span>: 2000000,
@@ -487,11 +487,11 @@
 <p>Get a list of devices uploaded with <a href="../api/index.html#tag/Endpoints/operation/getDevicesUsingGET" target="_blank">GET /kcs/v1/rp/devices</a>.</p>
 <p>In the header, include your signed access token from the previous step. Then, make sure you include the <code>resellerId</code> as a query parameter in your request. There are also optional query parameters you can set for filtering. To learn more, see the <a href="../api/index.html#tag/Endpoints/operation/getDevicesUsingGET" target="_blank">KDP API reference</a>.</p>
 <p>Here&rsquo;s a cURL request example that calls this operation:</p>
-<div class="highlight"><pre tabindex="0" style=";-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>        curl --request GET <span style="color:#b62;font-weight:bold">\
-</span></span></span><span style="display:flex;"><span><span style="color:#b62;font-weight:bold"></span>          --url https://api.samsungknox.com/kcs/v1/rp/devices?resellerId<span style="color:#666">=</span><span style="color:#ba2121">&#34;393....849&#34;</span> <span style="color:#b62;font-weight:bold">\
-</span></span></span><span style="display:flex;"><span><span style="color:#b62;font-weight:bold"></span>          --header <span style="color:#ba2121">&#39;Authorization: Bearer kz06....L09Wc&#39;</span>
+<div class="highlight"><pre tabindex="0" style=";-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>        curl --request GET <span style="color:#b62;font-weight:bold">\
+</span></span></span><span style="display:flex;"><span>          --url https://api.samsungknox.com/kcs/v1/rp/devices?resellerId<span style="color:#666">=</span><span style="color:#ba2121">&#34;393....849&#34;</span> <span style="color:#b62;font-weight:bold">\
+</span></span></span><span style="display:flex;"><span>          --header <span style="color:#ba2121">&#39;Authorization: Bearer kz06....L09Wc&#39;</span>
 </span></span></code></pre></div><p>You should see a response resembling the following:</p>
-<div class="highlight"><pre tabindex="0" style=";-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>        <span style="color:#666">{</span>
+<div class="highlight"><pre tabindex="0" style=";-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>        <span style="color:#666">{</span>
 </span></span><span style="display:flex;"><span>            <span style="color:#ba2121">&#34;code&#34;</span>: <span style="color:#ba2121">&#34;2000000&#34;</span>,
 </span></span><span style="display:flex;"><span>            <span style="color:#ba2121">&#34;message&#34;</span>: <span style="color:#ba2121">&#34;SUCCESS&#34;</span>,
 </span></span><span style="display:flex;"><span>            <span style="color:#ba2121">&#34;pageNum&#34;</span>: 0,
@@ -517,11 +517,11 @@
 <p>Get a list of customers with <a href="../api/index.html#tag/Endpoints/operation/getAssociatedCustomersUsingGET" target="_blank">GET /kcs/v1/rp/customers/list</a>.</p>
 <p>In the header, include your signed access token from the previous step. Then, make sure you include the <code>resellerId</code> as a query parameter in your request. There are also optional query parameters you can set for filtering. To learn more, see the <a href="../api/index.html#tag/Endpoints/operation/getAssociatedCustomersUsingGET" target="_blank">KDP API reference</a>.</p>
 <p>For example:</p>
-<div class="highlight"><pre tabindex="0" style=";-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>        curl --request GET <span style="color:#b62;font-weight:bold">\
-</span></span></span><span style="display:flex;"><span><span style="color:#b62;font-weight:bold"></span>          --url https://api.samsungknox.com/kcs/v1/rp/customers/list?resellerId<span style="color:#666">=</span><span style="color:#ba2121">&#34;393....849&#34;</span> <span style="color:#b62;font-weight:bold">\
-</span></span></span><span style="display:flex;"><span><span style="color:#b62;font-weight:bold"></span>          --header <span style="color:#ba2121">&#39;Authorization: Bearer kz06....L09Wc&#39;</span>
+<div class="highlight"><pre tabindex="0" style=";-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>        curl --request GET <span style="color:#b62;font-weight:bold">\
+</span></span></span><span style="display:flex;"><span>          --url https://api.samsungknox.com/kcs/v1/rp/customers/list?resellerId<span style="color:#666">=</span><span style="color:#ba2121">&#34;393....849&#34;</span> <span style="color:#b62;font-weight:bold">\
+</span></span></span><span style="display:flex;"><span>          --header <span style="color:#ba2121">&#39;Authorization: Bearer kz06....L09Wc&#39;</span>
 </span></span></code></pre></div><p>Assuming there were no errors, your response will resemble the following:</p>
-<div class="highlight"><pre tabindex="0" style=";-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>        <span style="color:#666">{</span>
+<div class="highlight"><pre tabindex="0" style=";-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>        <span style="color:#666">{</span>
 </span></span><span style="display:flex;"><span>          <span style="color:#ba2121">&#34;totalCount&#34;</span>: 1,
 </span></span><span style="display:flex;"><span>          <span style="color:#ba2121">&#34;pageNum&#34;</span>: 0,
 </span></span><span style="display:flex;"><span>          <span style="color:#ba2121">&#34;customers&#34;</span>: <span style="color:#666">[</span>

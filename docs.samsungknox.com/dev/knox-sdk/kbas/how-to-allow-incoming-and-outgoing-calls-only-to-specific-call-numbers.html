@@ -56,7 +56,7 @@
 
   
 
-<script onload="initBot()" defer src="https://dc-chbt.samsungknox.com/copilot/index.js?noCache=1772239241"></script>
+<script onload="initBot()" defer src="https://dc-chbt.samsungknox.com/copilot/index.js?noCache=1772832708"></script>
 <script defer>
     function initBot(){
       const relPath = "\/knox-sdk\/kbas\/how-to-allow-incoming-and-outgoing-calls-only-to-specific-call-numbers\/";
@@ -3061,7 +3061,7 @@
           <div class="l-content-top mb-4">
             <div class="l-breadcrumb">
               <a class="fw-light text-black" href="../../index.html">Home</a><span> /</span>
-<a class="fw-light text-black" href="../../knox-sdk.html">Knox SDK</a><span> /</span>
+<a class="fw-light text-black" href="../index.html">Knox SDK</a><span> /</span>
 <a class="fw-light text-black" href="index.html">Knox SDK knowledge base articles</a><span> /</span>
 
             </div>
@@ -3105,28 +3105,28 @@
 </ol>
 <h2 id="how-do-i-block-incomingoutgoing-calls-for-all-numbers">How do I block incoming/outgoing calls for all numbers?</h2>
 <p>Use Knox SDK’s setOutgoingCallRestriction and setIncomingCallRestriction APIs to block all incoming and outgoing calls, as specified below:</p>
-<div class="highlight"><pre tabindex="0" style=";-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span>EnterpriseDeviceManager edm <span style="color:#666">=</span> EnterpriseDeviceManager<span style="color:#666">.</span><span style="color:#7d9029">getInstance</span><span style="color:#666">(</span>context<span style="color:#666">);</span>
-</span></span><span style="display:flex;"><span>PhoneRestrictionPolicy phoneRestrictionPolicy <span style="color:#666">=</span> edm<span style="color:#666">.</span><span style="color:#7d9029">getPhoneRestrictionPolicy</span><span style="color:#666">();</span>
-</span></span><span style="display:flex;"><span><span style="color:#008000;font-weight:bold">try</span> <span style="color:#666">{</span>
-</span></span><span style="display:flex;"><span>    phoneRestrictionPolicy<span style="color:#666">.</span><span style="color:#7d9029">setOutgoingCallRestriction</span><span style="color:#666">(</span><span style="color:#ba2121">&#34;._&#34;</span><span style="color:#666">);</span>
-</span></span><span style="display:flex;"><span>    phoneRestrictionPolicy<span style="color:#666">.</span><span style="color:#7d9029">setIncomingCallRestriction</span><span style="color:#666">(</span><span style="color:#ba2121">&#34;._&#34;</span><span style="color:#666">);</span>
-</span></span><span style="display:flex;"><span><span style="color:#666">}</span> <span style="color:#008000;font-weight:bold">catch</span> <span style="color:#666">(</span>SecurityException e<span style="color:#666">)</span> <span style="color:#666">{</span>
-</span></span><span style="display:flex;"><span>    Log<span style="color:#666">.</span><span style="color:#7d9029">w</span><span style="color:#666">(</span>TAG<span style="color:#666">,</span> <span style="color:#ba2121">&#34;SecurityException: &#34;</span> <span style="color:#666">+</span> e<span style="color:#666">);</span>
-</span></span><span style="display:flex;"><span><span style="color:#666">}</span>
-</span></span></code></pre></div><h2 id="how-do-i-allow-only-specific-numbers-for-incomingoutgoing-calls">How do I allow only specific numbers for incoming/outgoing calls?</h2>
+<div class="highlight"><pre tabindex="0" style=";-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-java" data-lang="java"><span style="display:flex;"><span>EnterpriseDeviceManager<span style="color:#bbb"> </span>edm<span style="color:#bbb"> </span><span style="color:#666">=</span><span style="color:#bbb"> </span>EnterpriseDeviceManager.<span style="color:#7d9029">getInstance</span>(context);<span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span>PhoneRestrictionPolicy<span style="color:#bbb"> </span>phoneRestrictionPolicy<span style="color:#bbb"> </span><span style="color:#666">=</span><span style="color:#bbb"> </span>edm.<span style="color:#7d9029">getPhoneRestrictionPolicy</span>();<span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#008000;font-weight:bold">try</span><span style="color:#bbb"> </span>{<span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb">    </span>phoneRestrictionPolicy.<span style="color:#7d9029">setOutgoingCallRestriction</span>(<span style="color:#ba2121">&#34;._&#34;</span>);<span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb">    </span>phoneRestrictionPolicy.<span style="color:#7d9029">setIncomingCallRestriction</span>(<span style="color:#ba2121">&#34;._&#34;</span>);<span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span>}<span style="color:#bbb"> </span><span style="color:#008000;font-weight:bold">catch</span><span style="color:#bbb"> </span>(SecurityException<span style="color:#bbb"> </span>e)<span style="color:#bbb"> </span>{<span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb">    </span>Log.<span style="color:#7d9029">w</span>(TAG,<span style="color:#bbb"> </span><span style="color:#ba2121">&#34;SecurityException: &#34;</span><span style="color:#bbb"> </span><span style="color:#666">+</span><span style="color:#bbb"> </span>e);<span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span>}<span style="color:#bbb">
+</span></span></span></code></pre></div><h2 id="how-do-i-allow-only-specific-numbers-for-incomingoutgoing-calls">How do I allow only specific numbers for incoming/outgoing calls?</h2>
 <p>Use <code>addOutgoingCallExceptionPattern</code> and <code>addIncomingCallExceptionPattern</code> to allow calls to specific numbers only, as shown below:</p>
 <p>If the country code is <code>+9</code> and mobile number that needs to be allowed for incoming and outgoing calls is <code>9999999999</code>, use the below code:</p>
-<div class="highlight"><pre tabindex="0" style=";-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span>EnterpriseDeviceManager edm <span style="color:#666">=</span> EnterpriseDeviceManager<span style="color:#666">.</span><span style="color:#7d9029">getInstance</span> <span style="color:#666">(</span>context<span style="color:#666">);</span>
-</span></span><span style="display:flex;"><span>PhoneRestrictionPolicy phoneRestrictionPolicy <span style="color:#666">=</span> edm<span style="color:#666">.</span><span style="color:#7d9029">getPhoneRestrictionPolicy</span><span style="color:#666">();</span>
-</span></span><span style="display:flex;"><span><span style="color:#008000;font-weight:bold">try</span> <span style="color:#666">{</span>
-</span></span><span style="display:flex;"><span>    phoneRestrictionPolicy<span style="color:#666">.</span><span style="color:#7d9029">setOutgoingCallRestriction</span> <span style="color:#666">(</span><span style="color:#ba2121">&#34;._&#34;</span><span style="color:#666">);</span>
-</span></span><span style="display:flex;"><span>    phoneRestrictionPolicy<span style="color:#666">.</span><span style="color:#7d9029">addOutgoingCallExceptionPattern</span><span style="color:#666">(</span><span style="color:#ba2121">&#34;\\+919999999999&#34;</span><span style="color:#666">);</span>
-</span></span><span style="display:flex;"><span>    phoneRestrictionPolicy<span style="color:#666">.</span><span style="color:#7d9029">setIncomingCallRestriction</span><span style="color:#666">(</span><span style="color:#ba2121">&#34;._&#34;</span><span style="color:#666">);</span>
-</span></span><span style="display:flex;"><span>    phoneRestrictionPolicy<span style="color:#666">.</span><span style="color:#7d9029">addIncomingCallExceptionsPattern</span><span style="color:#666">(</span><span style="color:#ba2121">&#34;\\+919999999999&#34;</span><span style="color:#666">);</span>
-</span></span><span style="display:flex;"><span><span style="color:#666">}</span> <span style="color:#008000;font-weight:bold">catch</span> <span style="color:#666">(</span>SecurityException e<span style="color:#666">)</span> <span style="color:#666">{</span>
-</span></span><span style="display:flex;"><span>    Log<span style="color:#666">.</span><span style="color:#7d9029">w</span><span style="color:#666">(</span>TAG<span style="color:#666">,</span> <span style="color:#ba2121">&#34;SecurityException: &#34;</span> <span style="color:#666">+</span> e<span style="color:#666">);</span>
-</span></span><span style="display:flex;"><span><span style="color:#666">}</span>
-</span></span></code></pre></div><h2 id="additional-information">Additional information</h2>
+<div class="highlight"><pre tabindex="0" style=";-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-java" data-lang="java"><span style="display:flex;"><span>EnterpriseDeviceManager<span style="color:#bbb"> </span>edm<span style="color:#bbb"> </span><span style="color:#666">=</span><span style="color:#bbb"> </span>EnterpriseDeviceManager.<span style="color:#7d9029">getInstance</span><span style="color:#bbb"> </span>(context);<span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span>PhoneRestrictionPolicy<span style="color:#bbb"> </span>phoneRestrictionPolicy<span style="color:#bbb"> </span><span style="color:#666">=</span><span style="color:#bbb"> </span>edm.<span style="color:#7d9029">getPhoneRestrictionPolicy</span>();<span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#008000;font-weight:bold">try</span><span style="color:#bbb"> </span>{<span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb">    </span>phoneRestrictionPolicy.<span style="color:#7d9029">setOutgoingCallRestriction</span><span style="color:#bbb"> </span>(<span style="color:#ba2121">&#34;._&#34;</span>);<span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb">    </span>phoneRestrictionPolicy.<span style="color:#7d9029">addOutgoingCallExceptionPattern</span>(<span style="color:#ba2121">&#34;\\+919999999999&#34;</span>);<span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb">    </span>phoneRestrictionPolicy.<span style="color:#7d9029">setIncomingCallRestriction</span>(<span style="color:#ba2121">&#34;._&#34;</span>);<span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb">    </span>phoneRestrictionPolicy.<span style="color:#7d9029">addIncomingCallExceptionsPattern</span>(<span style="color:#ba2121">&#34;\\+919999999999&#34;</span>);<span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span>}<span style="color:#bbb"> </span><span style="color:#008000;font-weight:bold">catch</span><span style="color:#bbb"> </span>(SecurityException<span style="color:#bbb"> </span>e)<span style="color:#bbb"> </span>{<span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb">    </span>Log.<span style="color:#7d9029">w</span>(TAG,<span style="color:#bbb"> </span><span style="color:#ba2121">&#34;SecurityException: &#34;</span><span style="color:#bbb"> </span><span style="color:#666">+</span><span style="color:#bbb"> </span>e);<span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span>}<span style="color:#bbb">
+</span></span></span></code></pre></div><h2 id="additional-information">Additional information</h2>
 <p>To read more about the Knox SDK, please refer to the <a href="../../../devref/knox-sdk/reference/packages.html" target="_blank">Knox SDK API reference</a>.</p>
 <a href="index.html"  class="btn d-inline-block button-subtle">Back to KBAs</a>
 

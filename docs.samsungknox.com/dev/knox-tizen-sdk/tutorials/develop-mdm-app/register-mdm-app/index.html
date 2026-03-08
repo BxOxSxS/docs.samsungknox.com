@@ -56,7 +56,7 @@
 
   
 
-<script onload="initBot()" defer src="https://dc-chbt.samsungknox.com/copilot/index.js?noCache=1772239241"></script>
+<script onload="initBot()" defer src="https://dc-chbt.samsungknox.com/copilot/index.js?noCache=1772832709"></script>
 <script defer>
     function initBot(){
       const relPath = "\/knox-tizen-sdk\/tutorials\/develop-mdm-app\/register-mdm-app\/";
@@ -191,7 +191,7 @@
       
       <li>
         <div>
-          <a class="body-5 text-black fw-light" href="../../../../knox-tizen-sdk.html">Introduction</a>
+          <a class="body-5 text-black fw-light" href="../../../index.html">Introduction</a>
         </div>
       </li>
         
@@ -481,7 +481,7 @@
           <div class="l-content-top mb-4">
             <div class="l-breadcrumb">
               <a class="fw-light text-black" href="../../../../index.html">Home</a><span> /</span>
-<a class="fw-light text-black" href="../../../../knox-tizen-sdk.html">Knox Tizen SDK</a><span> /</span>
+<a class="fw-light text-black" href="../../../index.html">Knox Tizen SDK</a><span> /</span>
 <a class="fw-light text-black" href="../../index.html">Tutorials</a><span> /</span>
 <a class="fw-light text-black" href="../index.html">Develop MDM app</a><span> /</span>
 
@@ -506,27 +506,27 @@
 <p>For the MDM client app to set or apply policies on the Gear device, you must first register the app. To register the client app, call <code>mdm_register_client ( const char * pkg_name )</code> API method.</p>
 <p>And, call the <code>mdm_result_t mdm_get_service ( void )</code> API method to connect to MDM server daemon, and get the caller information.</p>
 <p>Example:</p>
-<div class="highlight"><pre tabindex="0" style=";-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#408080;font-style:italic">// The package name of the app to register as an MDM client
-</span></span></span><span style="display:flex;"><span><span style="color:#408080;font-style:italic"></span><span style="">#</span>
-</span></span><span style="display:flex;"><span>define PACKAGE_NAME <span style="color:#ba2121">&#34;org.example.wearbletutorial&#34;</span>
-</span></span><span style="display:flex;"><span> <span style="color:#666">...</span>
-</span></span><span style="display:flex;"><span>  <span style="color:#408080;font-style:italic">// Register MDM client
-</span></span></span><span style="display:flex;"><span><span style="color:#408080;font-style:italic"></span>  <span style="color:#008000;font-weight:bold">if</span> <span style="color:#666">(</span>mdm_register_client<span style="color:#666">(</span>PACKAGE_NAME<span style="color:#666">)</span> <span style="color:#666">==</span> MDM_RESULT_SUCCESS<span style="color:#666">)</span> <span style="color:#666">{</span>
-</span></span><span style="display:flex;"><span>    <span style="color:#408080;font-style:italic">// Connect to the MDM server daemon, and verify that the
-</span></span></span><span style="display:flex;"><span><span style="color:#408080;font-style:italic"></span>    <span style="color:#408080;font-style:italic">// app is authorized to get MDM client information
-</span></span></span><span style="display:flex;"><span><span style="color:#408080;font-style:italic"></span>    <span style="color:#008000;font-weight:bold">if</span> <span style="color:#666">(</span>mdm_get_service<span style="color:#666">()</span> <span style="color:#666">==</span> MDM_RESULT_SUCCESS<span style="color:#666">)</span> <span style="color:#666">{</span>
-</span></span><span style="display:flex;"><span>      <span style="color:#408080;font-style:italic">// App is authorized; register callback
-</span></span></span><span style="display:flex;"><span><span style="color:#408080;font-style:italic"></span>      mdm_register_client_callback<span style="color:#666">(</span>MDM_LICENSE_CB<span style="color:#666">,</span> __license_callback_<span style="color:#666">,</span> NULL<span style="color:#666">,</span> NULL<span style="color:#666">);</span>
-</span></span><span style="display:flex;"><span>    <span style="color:#666">}</span> <span style="color:#008000;font-weight:bold">else</span> <span style="color:#666">{</span>
-</span></span><span style="display:flex;"><span>      <span style="color:#408080;font-style:italic">// Could not connect to daemon or app is not authorized
-</span></span></span><span style="display:flex;"><span><span style="color:#408080;font-style:italic"></span>      <span style="color:#408080;font-style:italic">// to get MDM client information
-</span></span></span><span style="display:flex;"><span><span style="color:#408080;font-style:italic"></span>      <span style="color:#008000;font-weight:bold">return</span> <span style="color:#008000;font-weight:bold">false</span><span style="color:#666">;</span>
-</span></span><span style="display:flex;"><span>    <span style="color:#666">}</span>
-</span></span><span style="display:flex;"><span>  <span style="color:#666">}</span> <span style="color:#008000;font-weight:bold">else</span> <span style="color:#666">{</span>
-</span></span><span style="display:flex;"><span>    <span style="color:#408080;font-style:italic">// Failed to register the client
-</span></span></span><span style="display:flex;"><span><span style="color:#408080;font-style:italic"></span>    <span style="color:#008000;font-weight:bold">return</span> <span style="color:#008000;font-weight:bold">false</span><span style="color:#666">;</span>
-</span></span><span style="display:flex;"><span>  <span style="color:#666">}</span>
-</span></span></code></pre></div><h2 id="to-de-register">To de-register</h2>
+<div class="highlight"><pre tabindex="0" style=";-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#408080;font-style:italic">// The package name of the app to register as an MDM client</span><span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="">#</span><span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span>define<span style="color:#bbb"> </span>PACKAGE_NAME<span style="color:#bbb"> </span><span style="color:#ba2121">&#34;org.example.wearbletutorial&#34;</span><span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb"> </span>...<span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb">  </span><span style="color:#408080;font-style:italic">// Register MDM client</span><span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb">  </span><span style="color:#008000;font-weight:bold">if</span><span style="color:#bbb"> </span>(mdm_register_client(PACKAGE_NAME)<span style="color:#bbb"> </span><span style="color:#666">==</span><span style="color:#bbb"> </span>MDM_RESULT_SUCCESS)<span style="color:#bbb"> </span>{<span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb">    </span><span style="color:#408080;font-style:italic">// Connect to the MDM server daemon, and verify that the</span><span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb">    </span><span style="color:#408080;font-style:italic">// app is authorized to get MDM client information</span><span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb">    </span><span style="color:#008000;font-weight:bold">if</span><span style="color:#bbb"> </span>(mdm_get_service()<span style="color:#bbb"> </span><span style="color:#666">==</span><span style="color:#bbb"> </span>MDM_RESULT_SUCCESS)<span style="color:#bbb"> </span>{<span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb">      </span><span style="color:#408080;font-style:italic">// App is authorized; register callback</span><span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb">      </span>mdm_register_client_callback(MDM_LICENSE_CB,<span style="color:#bbb"> </span>__license_callback_,<span style="color:#bbb"> </span>NULL,<span style="color:#bbb"> </span>NULL);<span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb">    </span>}<span style="color:#bbb"> </span><span style="color:#008000;font-weight:bold">else</span><span style="color:#bbb"> </span>{<span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb">      </span><span style="color:#408080;font-style:italic">// Could not connect to daemon or app is not authorized</span><span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb">      </span><span style="color:#408080;font-style:italic">// to get MDM client information</span><span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb">      </span><span style="color:#008000;font-weight:bold">return</span><span style="color:#bbb"> </span><span style="color:#008000;font-weight:bold">false</span>;<span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb">    </span>}<span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb">  </span>}<span style="color:#bbb"> </span><span style="color:#008000;font-weight:bold">else</span><span style="color:#bbb"> </span>{<span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb">    </span><span style="color:#408080;font-style:italic">// Failed to register the client</span><span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb">    </span><span style="color:#008000;font-weight:bold">return</span><span style="color:#bbb"> </span><span style="color:#008000;font-weight:bold">false</span>;<span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb">  </span>}<span style="color:#bbb">
+</span></span></span></code></pre></div><h2 id="to-de-register">To de-register</h2>
 <p>Call the <code>mdm_deregister_client ( const char * pkg_name )</code> API method to de-register the client app. And, call the <code>mdm_release_service ( void )</code> API method to release the resources.</p>
 
             

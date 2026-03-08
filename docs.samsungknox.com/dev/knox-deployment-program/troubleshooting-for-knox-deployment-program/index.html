@@ -56,7 +56,7 @@
 
   
 
-<script onload="initBot()" defer src="https://dc-chbt.samsungknox.com/copilot/index.js?noCache=1772239240"></script>
+<script onload="initBot()" defer src="https://dc-chbt.samsungknox.com/copilot/index.js?noCache=1772832708"></script>
 <script defer>
     function initBot(){
       const relPath = "\/knox-deployment-program\/troubleshooting-for-knox-deployment-program\/";
@@ -497,7 +497,7 @@
 <h2 id="common-error-responses">Common error responses</h2>
 <h3 id="failure-reported-within-device-transaction-status">Failure reported within device transaction status</h3>
 <p>The following example is a <code>200 OK</code> response for <a href="../api/index.html#tag/Endpoints/operation/getDeviceTransactionStatusUsingGET" target="_blank">List device transaction status</a>, but includes a transaction-specific error. In this particular scenario, the specified device is invalid, so you need to provide the correct IMEI and <a href="../api/index.html#tag/Endpoints/operation/uploadDevicesUsingPUT" target="_blank">re-upload it</a>.</p>
-<div class="highlight"><pre tabindex="0" style=";-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-json" data-lang="json"><span style="display:flex;"><span>      {
+<div class="highlight"><pre tabindex="0" style=";-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-json" data-lang="json"><span style="display:flex;"><span>      {
 </span></span><span style="display:flex;"><span>        <span style="color:#008000;font-weight:bold">&#34;devices&#34;</span>: {
 </span></span><span style="display:flex;"><span>          <span style="color:#008000;font-weight:bold">&#34;totalCount&#34;</span>: <span style="color:#666">1</span>,
 </span></span><span style="display:flex;"><span>          <span style="color:#008000;font-weight:bold">&#34;totalPage&#34;</span>: <span style="color:#666">1</span>,
@@ -518,7 +518,7 @@
 </span></span><span style="display:flex;"><span>      }
 </span></span></code></pre></div><h3 id="devices-fail-to-re-upload">Devices fail to re-upload</h3>
 <p>If you <a href="../api/index.html#tag/Endpoints/operation/uploadDevicesUsingPUT" target="_blank">upload</a> existing devices to additional Knox services, the <a href="../api/index.html#tag/Endpoints/operation/getDeviceTransactionStatusUsingGET" target="_blank">List device transaction status</a> will reveal that the devices failed to re-upload due to <code>DEVICE_DUPLICATE</code> errors. The response body will resemble the following:</p>
-<div class="highlight"><pre tabindex="0" style=";-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-json" data-lang="json"><span style="display:flex;"><span>        {
+<div class="highlight"><pre tabindex="0" style=";-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-json" data-lang="json"><span style="display:flex;"><span>        {
 </span></span><span style="display:flex;"><span>            <span style="color:#008000;font-weight:bold">&#34;devices&#34;</span>: {
 </span></span><span style="display:flex;"><span>                <span style="color:#008000;font-weight:bold">&#34;totalCount&#34;</span>: <span style="color:#666">1</span>,
 </span></span><span style="display:flex;"><span>                <span style="color:#008000;font-weight:bold">&#34;totalPage&#34;</span>: <span style="color:#666">1</span>,
@@ -564,7 +564,7 @@
 <div class="notice-note"><p>Deleting a device also deletes its configuration. Customers will need to re-configure devices following re-upload.</p></div>
 <h3 id="customer-id-is-invalid">Customer ID is invalid</h3>
 <p>If the customer ID you provided while <a href="../api/index.html#tag/Endpoints/operation/uploadDevicesUsingPUT" target="_blank">uploading devices</a> is incorrect, you will get a <code>400 Bad Request</code> status with an error response resembling the following JSON. Ask the customer to provide you with their correct customer ID (which can be found by clicking on their profile icon on their Samsung Knox account), and try re-uploading the device.</p>
-<div class="highlight"><pre tabindex="0" style=";-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-json" data-lang="json"><span style="display:flex;"><span>        {
+<div class="highlight"><pre tabindex="0" style=";-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-json" data-lang="json"><span style="display:flex;"><span>        {
 </span></span><span style="display:flex;"><span>            <span style="color:#008000;font-weight:bold">&#34;errorId&#34;</span>: <span style="color:#ba2121">&#34;8B29A680442642C98D1AAF0ADD4733CF&#34;</span>,
 </span></span><span style="display:flex;"><span>            <span style="color:#008000;font-weight:bold">&#34;code&#34;</span>: <span style="color:#666">40000011</span>,
 </span></span><span style="display:flex;"><span>            <span style="color:#008000;font-weight:bold">&#34;message&#34;</span>: <span style="color:#ba2121">&#34;CUSTOMER_ID_INVALID&#34;</span>,
@@ -572,12 +572,12 @@
 </span></span><span style="display:flex;"><span>        }
 </span></span></code></pre></div><h3 id="unauthorized-requests">Unauthorized requests</h3>
 <p>For any endpoint, if your access token has expired then you will get a <code>401 Unauthorized</code> error, along with a brief JSON message. Simply <a href="../../knox-cloud-authentication/knox-oauth-2-0-authentication/knox-oauth-2-0-authentication-api/index.html#tag/Authorization-server/operation/getAuthorize" target="_blank">get a new access token</a>, and use the new token as the <code>Authorization</code> header value in your KDP API calls.</p>
-<div class="highlight"><pre tabindex="0" style=";-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-json" data-lang="json"><span style="display:flex;"><span>        {
+<div class="highlight"><pre tabindex="0" style=";-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-json" data-lang="json"><span style="display:flex;"><span>        {
 </span></span><span style="display:flex;"><span>            <span style="color:#008000;font-weight:bold">&#34;error&#34;</span>: <span style="color:#ba2121">&#34;Invalid authentication token&#34;</span>
 </span></span><span style="display:flex;"><span>        }
 </span></span></code></pre></div><h3 id="invalid-reseller-id">Invalid reseller ID</h3>
 <p>If the reseller ID you&rsquo;ve provided is incorrect (for instance, while <a href="../api/index.html#tag/Endpoints/operation/getAssociatedCustomersUsingGET" target="_blank">retrieving a list of your customers</a>), you will get an error resembling the following. Use the correct reseller ID, which can be found from the KDP dashboard, and try again.</p>
-<div class="highlight"><pre tabindex="0" style=";-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-json" data-lang="json"><span style="display:flex;"><span>        {
+<div class="highlight"><pre tabindex="0" style=";-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-json" data-lang="json"><span style="display:flex;"><span>        {
 </span></span><span style="display:flex;"><span>            <span style="color:#008000;font-weight:bold">&#34;errorId&#34;</span>: <span style="color:#ba2121">&#34;6C8B29A65F7845BC8ECD174F4D8B29A6&#34;</span>,
 </span></span><span style="display:flex;"><span>            <span style="color:#008000;font-weight:bold">&#34;code&#34;</span>: <span style="color:#666">40000010</span>,
 </span></span><span style="display:flex;"><span>            <span style="color:#008000;font-weight:bold">&#34;message&#34;</span>: <span style="color:#ba2121">&#34;RESELLER_ID_INVALID&#34;</span>,
@@ -585,7 +585,7 @@
 </span></span><span style="display:flex;"><span>        }
 </span></span></code></pre></div><h3 id="internal-server-errors">Internal server errors</h3>
 <p>Server errors will return a <code>500 Internal Server Error</code> status, and an error message resembling the following. If you get a server error, try again later.</p>
-<div class="highlight"><pre tabindex="0" style=";-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-json" data-lang="json"><span style="display:flex;"><span>        {
+<div class="highlight"><pre tabindex="0" style=";-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-json" data-lang="json"><span style="display:flex;"><span>        {
 </span></span><span style="display:flex;"><span>            <span style="color:#008000;font-weight:bold">&#34;errorId&#34;</span>: <span style="color:#ba2121">&#34;6C989F5B5F7845BC8ECD174F4D91D192&#34;</span>,
 </span></span><span style="display:flex;"><span>            <span style="color:#008000;font-weight:bold">&#34;code&#34;</span>: <span style="color:#666">50000000</span>,
 </span></span><span style="display:flex;"><span>            <span style="color:#008000;font-weight:bold">&#34;message&#34;</span>:<span style="color:#ba2121">&#34;INTERNAL_SERVER_ERROR&#34;</span>,

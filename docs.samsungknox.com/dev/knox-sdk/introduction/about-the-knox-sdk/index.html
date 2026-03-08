@@ -56,7 +56,7 @@
 
   
 
-<script onload="initBot()" defer src="https://dc-chbt.samsungknox.com/copilot/index.js?noCache=1772239241"></script>
+<script onload="initBot()" defer src="https://dc-chbt.samsungknox.com/copilot/index.js?noCache=1772832708"></script>
 <script defer>
     function initBot(){
       const relPath = "\/knox-sdk\/introduction\/about-the-knox-sdk\/";
@@ -3052,7 +3052,7 @@
           <div class="l-content-top mb-4">
             <div class="l-breadcrumb">
               <a class="fw-light text-black" href="../../../index.html">Home</a><span> /</span>
-<a class="fw-light text-black" href="../../../knox-sdk.html">Knox SDK</a><span> /</span>
+<a class="fw-light text-black" href="../../index.html">Knox SDK</a><span> /</span>
 <a class="fw-light text-black" href="../index.html">Introduction</a><span> /</span>
 
             </div>
@@ -3110,26 +3110,26 @@
 <p>See the <a href="../../../../devref/knox-sdk/reference/packages.html" target="_blank">Knox SDK API reference</a> for a full overview of all the classes and packages contained in the Knox SDK.</p>
 <h3 id="public-interface-to-get-policy-objects">Public interface to get policy objects</h3>
 <div class="overflow-auto my-3"><table>
-<thead>
-<tr>
-<th>Class</th>
-<th>Description</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><a href="../../../../devref/knox-sdk/reference/com/samsung/android/knox/EnterpriseDeviceManager.html" target="_blank">EnterpriseDeviceManager</a></td>
-<td>Public interface for managing policies enforced on a device.</td>
-</tr>
-<tr>
-<td><a href="../../../../devref/knox-sdk/reference/com/samsung/android/knox/EnterpriseKnoxManager.html" target="_blank">EnterpriseKnoxManager</a></td>
-<td>Public interface for managing premium policies enforced on a device.</td>
-</tr>
-<tr>
-<td><a href="../../../../devref/knox-sdk/reference/com/samsung/android/knox/custom/CustomDeviceManager.html" target="_blank">CustomDeviceManager</a></td>
-<td>Public interface for device customization.</td>
-</tr>
-</tbody>
+  <thead>
+      <tr>
+          <th>Class</th>
+          <th>Description</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td><a href="../../../../devref/knox-sdk/reference/com/samsung/android/knox/EnterpriseDeviceManager.html" target="_blank">EnterpriseDeviceManager</a></td>
+          <td>Public interface for managing policies enforced on a device.</td>
+      </tr>
+      <tr>
+          <td><a href="../../../../devref/knox-sdk/reference/com/samsung/android/knox/EnterpriseKnoxManager.html" target="_blank">EnterpriseKnoxManager</a></td>
+          <td>Public interface for managing premium policies enforced on a device.</td>
+      </tr>
+      <tr>
+          <td><a href="../../../../devref/knox-sdk/reference/com/samsung/android/knox/custom/CustomDeviceManager.html" target="_blank">CustomDeviceManager</a></td>
+          <td>Public interface for device customization.</td>
+      </tr>
+  </tbody>
 </table></div>
 <p>These classes provide a large number of device management capabilities at the system level, allowing enterprises to enforce enterprise specific policies by providing a finer-grained control over employee devices.</p>
 <p>See <a href="../../features/mdm-providers/workspaces/about-containers">About containers</a> for more information on how <code>EnterpriseKnoxManager</code> can be used.</p>
@@ -3142,16 +3142,16 @@
 <li>Call the relevant API from <code>EnterpriseDeviceManager</code>.</li>
 </ol>
 <p>For example, through <code>EnterpriseDeviceManager</code>, you access the <code>RestrictionPolicy</code> class. Inside <code>RestrictionPolicy</code>, you disable camera with <code>SetCameraState</code>.</p>
-<div class="highlight"><pre tabindex="0" style=";-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-kotlin" data-lang="kotlin"><span style="display:flex;"><span>EnterpriseDeviceManager edm = <span style="color:#00f;font-weight:bold">EnterpriseDeviceManager</span>.getInstance(context);
+<div class="highlight"><pre tabindex="0" style=";-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-kotlin" data-lang="kotlin"><span style="display:flex;"><span>EnterpriseDeviceManager edm = <span style="color:#00f;font-weight:bold">EnterpriseDeviceManager</span>.getInstance(context);
 </span></span><span style="display:flex;"><span>RestrictionPolicy restrictionPolicy = edm.getRestrictionPolicy();
 </span></span><span style="display:flex;"><span><span style="color:#008000;font-weight:bold">try</span> {
 </span></span><span style="display:flex;"><span>    <span style="color:#408080;font-style:italic">// Disable camera. Other applications that use the camera cannot
-</span></span></span><span style="display:flex;"><span><span style="color:#408080;font-style:italic"></span>    <span style="color:#408080;font-style:italic">// use it.
-</span></span></span><span style="display:flex;"><span><span style="color:#408080;font-style:italic"></span>    boolean result = restrictionPolicy.setCameraState(<span style="color:#008000;font-weight:bold">false</span>);
+</span></span></span><span style="display:flex;"><span>    <span style="color:#408080;font-style:italic">// use it.
+</span></span></span><span style="display:flex;"><span>    boolean result = restrictionPolicy.setCameraState(<span style="color:#008000;font-weight:bold">false</span>);
 </span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span>    <span style="color:#008000;font-weight:bold">if</span> (<span style="color:#008000;font-weight:bold">true</span> <span style="color:#666">==</span> result) {
 </span></span><span style="display:flex;"><span>        <span style="color:#408080;font-style:italic">// Camera is disabled and cannot be enabled by user.
-</span></span></span><span style="display:flex;"><span><span style="color:#408080;font-style:italic"></span>    }
+</span></span></span><span style="display:flex;"><span>    }
 </span></span><span style="display:flex;"><span>} <span style="color:#008000;font-weight:bold">catch</span> (SecurityException e) {
 </span></span><span style="display:flex;"><span>    <span style="color:#00f;font-weight:bold">Log</span>.w(TAG, <span style="color:#ba2121">&#34;SecurityException: &#34;</span> + e);
 </span></span><span style="display:flex;"><span>}
@@ -3163,19 +3163,19 @@
 </ol>
 <div class="notice-note"><p>You must replace the <code>ContainerID</code> variable with your real containerID.</p></div>
 <p>For example, through <code>EnterpriseDeviceManager</code>, you access <code>KnoxContainerManager</code>. Inside the <code>KnoxContainerManager</code> you access the <code>restrictionPolicy</code> class and disable camera with <code>SetCameraState</code>.</p>
-<div class="highlight"><pre tabindex="0" style=";-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-kotlin" data-lang="kotlin"><span style="display:flex;"><span><span style="color:#408080;font-style:italic">// When you create container successfully, containerID will be returned via intent.
+<div class="highlight"><pre tabindex="0" style=";-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-kotlin" data-lang="kotlin"><span style="display:flex;"><span><span style="color:#408080;font-style:italic">// When you create container successfully, containerID will be returned via intent.
 </span></span></span><span style="display:flex;"><span><span style="color:#408080;font-style:italic">// Use this containerID in below API.
-</span></span></span><span style="display:flex;"><span><span style="color:#408080;font-style:italic"></span>EnterpriseKnoxManager ekm = <span style="color:#00f;font-weight:bold">EnterpriseKnoxManager</span>.getInstance(context);
+</span></span></span><span style="display:flex;"><span>EnterpriseKnoxManager ekm = <span style="color:#00f;font-weight:bold">EnterpriseKnoxManager</span>.getInstance(context);
 </span></span><span style="display:flex;"><span>KnoxContainerManager kcm = ekm.getKnoxContainerManager(containerID) 
 </span></span><span style="display:flex;"><span>RestrictionPolicy restrictionPolicy = kcm.getRestrictionPolicy();
 </span></span><span style="display:flex;"><span><span style="color:#008000;font-weight:bold">try</span> {
 </span></span><span style="display:flex;"><span>    <span style="color:#408080;font-style:italic">// Disable camera. Other applications that use the camera cannot
-</span></span></span><span style="display:flex;"><span><span style="color:#408080;font-style:italic"></span>    <span style="color:#408080;font-style:italic">// use it.
-</span></span></span><span style="display:flex;"><span><span style="color:#408080;font-style:italic"></span>    boolean result = restrictionPolicy.setCameraState(<span style="color:#008000;font-weight:bold">false</span>);
+</span></span></span><span style="display:flex;"><span>    <span style="color:#408080;font-style:italic">// use it.
+</span></span></span><span style="display:flex;"><span>    boolean result = restrictionPolicy.setCameraState(<span style="color:#008000;font-weight:bold">false</span>);
 </span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span>    <span style="color:#008000;font-weight:bold">if</span> (<span style="color:#008000;font-weight:bold">true</span> <span style="color:#666">==</span> result) {
 </span></span><span style="display:flex;"><span>        <span style="color:#408080;font-style:italic">// Camera is disabled and cannot be enabled by user.
-</span></span></span><span style="display:flex;"><span><span style="color:#408080;font-style:italic"></span>    }
+</span></span></span><span style="display:flex;"><span>    }
 </span></span><span style="display:flex;"><span>} <span style="color:#008000;font-weight:bold">catch</span> (SecurityException e) {
 </span></span><span style="display:flex;"><span>    <span style="color:#00f;font-weight:bold">Log</span>.w(TAG, <span style="color:#ba2121">&#34;SecurityException: &#34;</span> + e);
 </span></span><span style="display:flex;"><span>}

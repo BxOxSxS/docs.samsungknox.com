@@ -56,7 +56,7 @@
 
   
 
-<script onload="initBot()" defer src="https://dc-chbt.samsungknox.com/copilot/index.js?noCache=1772239241"></script>
+<script onload="initBot()" defer src="https://dc-chbt.samsungknox.com/copilot/index.js?noCache=1772832708"></script>
 <script defer>
     function initBot(){
       const relPath = "\/knox-sdk\/features\/mdm-providers\/vpn\/vpn-chaining\/";
@@ -3052,7 +3052,7 @@
           <div class="l-content-top mb-4">
             <div class="l-breadcrumb">
               <a class="fw-light text-black" href="../../../../../index.html">Home</a><span> /</span>
-<a class="fw-light text-black" href="../../../../../knox-sdk.html">Knox SDK</a><span> /</span>
+<a class="fw-light text-black" href="../../../../index.html">Knox SDK</a><span> /</span>
 <a class="fw-light text-black" href="../../../index.html">Features</a><span> /</span>
 <a class="fw-light text-black" href="../../index.html">MDM Providers</a><span> /</span>
 <a class="fw-light text-black" href="../index.html">VPN</a><span> /</span>
@@ -3098,10 +3098,10 @@
 <ol>
 <li>
 <p>The EMM agent has to get the instance of the <code>GenericVpnPolicy</code> object in the KnoxManager class for each client by passing the VPN vendor&rsquo;s package name as parameter.</p>
-<div class="highlight"><pre tabindex="0" style=";-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span>EnterpriseKnoxManager ekm <span style="color:#666">=</span> EnterpriseKnoxManager<span style="color:#666">.</span><span style="color:#7d9029">getInstance</span><span style="color:#666">();</span>
-</span></span><span style="display:flex;"><span>GenericVpnPolicy gm1 <span style="color:#666">=</span> ekm<span style="color:#666">.</span><span style="color:#7d9029">getGenericVpnPolicy</span><span style="color:#666">(</span>$vpn_client_1_packageName<span style="color:#666">,</span>$userId where VPN client <span style="color:#666">1</span> is installed<span style="color:#666">);</span>
-</span></span><span style="display:flex;"><span>GenericVpnPolicy gm2 <span style="color:#666">=</span> ekm<span style="color:#666">.</span><span style="color:#7d9029">getGenericVpnPolicy</span><span style="color:#666">(</span>$vpn_client_2_packageName<span style="color:#666">,</span>$userId where VPN client <span style="color:#666">2</span> is installed<span style="color:#666">);</span> 
-</span></span></code></pre></div><p>Once the above code executes, the framework tries to bind to the VPN vendor&rsquo;s application. When the binding succeeds, the framework sends a broadcast message to the EMM agent.</p>
+<div class="highlight"><pre tabindex="0" style=";-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-java" data-lang="java"><span style="display:flex;"><span>EnterpriseKnoxManager<span style="color:#bbb"> </span>ekm<span style="color:#bbb"> </span><span style="color:#666">=</span><span style="color:#bbb"> </span>EnterpriseKnoxManager.<span style="color:#7d9029">getInstance</span>();<span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span>GenericVpnPolicy<span style="color:#bbb"> </span>gm1<span style="color:#bbb"> </span><span style="color:#666">=</span><span style="color:#bbb"> </span>ekm.<span style="color:#7d9029">getGenericVpnPolicy</span>($vpn_client_1_packageName,$userId<span style="color:#bbb"> </span>where<span style="color:#bbb"> </span>VPN<span style="color:#bbb"> </span>client<span style="color:#bbb"> </span>1<span style="color:#bbb"> </span>is<span style="color:#bbb"> </span>installed);<span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span>GenericVpnPolicy<span style="color:#bbb"> </span>gm2<span style="color:#bbb"> </span><span style="color:#666">=</span><span style="color:#bbb"> </span>ekm.<span style="color:#7d9029">getGenericVpnPolicy</span>($vpn_client_2_packageName,$userId<span style="color:#bbb"> </span>where<span style="color:#bbb"> </span>VPN<span style="color:#bbb"> </span>client<span style="color:#bbb"> </span>2<span style="color:#bbb"> </span>is<span style="color:#bbb"> </span>installed);<span style="color:#bbb"> 
+</span></span></span></code></pre></div><p>Once the above code executes, the framework tries to bind to the VPN vendor&rsquo;s application. When the binding succeeds, the framework sends a broadcast message to the EMM agent.</p>
 </li>
 <li>
 <p>The EMM agent has to listen for the intent action <code>com.samsung.android.mdm.VPN_BIND_RESULT</code> which has the following information:</p>
@@ -3109,54 +3109,54 @@
 <li>vpn_bind_vendor provides the VPN vendor&rsquo;s package name</li>
 <li>vpn_bind_status returns true or false, specifying whether the bind to the VPN vendor&rsquo;s application was successful or not.</li>
 </ul>
-<div class="highlight"><pre tabindex="0" style=";-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#008000;font-weight:bold">public</span> <span style="color:#008000;font-weight:bold">class</span> <span style="color:#00f;font-weight:bold">VPNBindReciever</span> <span style="color:#008000;font-weight:bold">extends</span> BroadcastReceiver <span style="color:#666">{</span>
-</span></span><span style="display:flex;"><span>    <span style="color:#008000;font-weight:bold">public</span> <span style="color:#008000;font-weight:bold">static</span> <span style="color:#008000;font-weight:bold">final</span> String ACTION_BIND_RESULT <span style="color:#666">=</span> <span style="color:#ba2121">&#34;com.samsung.android.mdm.VPN_BIND_RESULT&#34;</span><span style="color:#666">;</span>
-</span></span><span style="display:flex;"><span>    <span style="color:#008000;font-weight:bold">public</span> <span style="color:#008000;font-weight:bold">static</span> <span style="color:#008000;font-weight:bold">final</span> String BIND_VENDOR <span style="color:#666">=</span> <span style="color:#ba2121">&#34;vpn_bind_vendor&#34;</span><span style="color:#666">;</span>
-</span></span><span style="display:flex;"><span>    <span style="color:#008000;font-weight:bold">public</span> <span style="color:#008000;font-weight:bold">static</span> <span style="color:#008000;font-weight:bold">final</span> String BIND_STATUS <span style="color:#666">=</span> <span style="color:#ba2121">&#34;vpn_bind_status&#34;</span><span style="color:#666">;</span>
-</span></span><span style="display:flex;"><span>    <span style="color:#008000;font-weight:bold">public</span> <span style="color:#b00040">void</span> <span style="color:#00f">onReceive</span><span style="color:#666">(</span>Context context<span style="color:#666">,</span> Intent intent<span style="color:#666">)</span> <span style="color:#666">{</span>
-</span></span><span style="display:flex;"><span>        <span style="color:#008000;font-weight:bold">if</span> <span style="color:#666">(</span>intent<span style="color:#666">.</span><span style="color:#7d9029">getAction</span><span style="color:#666">().</span><span style="color:#7d9029">equalsIgnoreCase</span><span style="color:#666">(</span>ACTION_BIND_RESULT<span style="color:#666">))</span> <span style="color:#666">{</span>
-</span></span><span style="display:flex;"><span>            String vendorName <span style="color:#666">=</span> intent<span style="color:#666">.</span><span style="color:#7d9029">getExtra</span><span style="color:#666">(</span>BIND_VENDOR<span style="color:#666">);</span>
-</span></span><span style="display:flex;"><span>            <span style="color:#b00040">boolean</span> status <span style="color:#666">=</span> intent<span style="color:#666">.</span><span style="color:#7d9029">getExtra</span><span style="color:#666">(</span>BIND_STATUS<span style="color:#666">);</span>
-</span></span><span style="display:flex;"><span>        <span style="color:#666">}</span>
-</span></span><span style="display:flex;"><span>    <span style="color:#666">}</span>
-</span></span><span style="display:flex;"><span><span style="color:#666">}</span>
-</span></span></code></pre></div></li>
+<div class="highlight"><pre tabindex="0" style=";-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#008000;font-weight:bold">public</span><span style="color:#bbb"> </span><span style="color:#008000;font-weight:bold">class</span> <span style="color:#00f;font-weight:bold">VPNBindReciever</span><span style="color:#bbb"> </span><span style="color:#008000;font-weight:bold">extends</span><span style="color:#bbb"> </span>BroadcastReceiver<span style="color:#bbb"> </span>{<span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb">    </span><span style="color:#008000;font-weight:bold">public</span><span style="color:#bbb"> </span><span style="color:#008000;font-weight:bold">static</span><span style="color:#bbb"> </span><span style="color:#008000;font-weight:bold">final</span><span style="color:#bbb"> </span>String<span style="color:#bbb"> </span>ACTION_BIND_RESULT<span style="color:#bbb"> </span><span style="color:#666">=</span><span style="color:#bbb"> </span><span style="color:#ba2121">&#34;com.samsung.android.mdm.VPN_BIND_RESULT&#34;</span>;<span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb">    </span><span style="color:#008000;font-weight:bold">public</span><span style="color:#bbb"> </span><span style="color:#008000;font-weight:bold">static</span><span style="color:#bbb"> </span><span style="color:#008000;font-weight:bold">final</span><span style="color:#bbb"> </span>String<span style="color:#bbb"> </span>BIND_VENDOR<span style="color:#bbb"> </span><span style="color:#666">=</span><span style="color:#bbb"> </span><span style="color:#ba2121">&#34;vpn_bind_vendor&#34;</span>;<span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb">    </span><span style="color:#008000;font-weight:bold">public</span><span style="color:#bbb"> </span><span style="color:#008000;font-weight:bold">static</span><span style="color:#bbb"> </span><span style="color:#008000;font-weight:bold">final</span><span style="color:#bbb"> </span>String<span style="color:#bbb"> </span>BIND_STATUS<span style="color:#bbb"> </span><span style="color:#666">=</span><span style="color:#bbb"> </span><span style="color:#ba2121">&#34;vpn_bind_status&#34;</span>;<span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb">    </span><span style="color:#008000;font-weight:bold">public</span><span style="color:#bbb"> </span><span style="color:#b00040">void</span><span style="color:#bbb"> </span><span style="color:#00f">onReceive</span>(Context<span style="color:#bbb"> </span>context,<span style="color:#bbb"> </span>Intent<span style="color:#bbb"> </span>intent)<span style="color:#bbb"> </span>{<span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb">        </span><span style="color:#008000;font-weight:bold">if</span><span style="color:#bbb"> </span>(intent.<span style="color:#7d9029">getAction</span>().<span style="color:#7d9029">equalsIgnoreCase</span>(ACTION_BIND_RESULT))<span style="color:#bbb"> </span>{<span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb">            </span>String<span style="color:#bbb"> </span>vendorName<span style="color:#bbb"> </span><span style="color:#666">=</span><span style="color:#bbb"> </span>intent.<span style="color:#7d9029">getExtra</span>(BIND_VENDOR);<span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb">            </span><span style="color:#b00040">boolean</span><span style="color:#bbb"> </span>status<span style="color:#bbb"> </span><span style="color:#666">=</span><span style="color:#bbb"> </span>intent.<span style="color:#7d9029">getExtra</span>(BIND_STATUS);<span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb">        </span>}<span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb">    </span>}<span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span>}<span style="color:#bbb">
+</span></span></span></code></pre></div></li>
 <li>
 <p>Once the received value of vpn_bind_status is true for VPN client 1, calls to GenericVpnPolicy object must reference GenericVpnPolicyObject(gm1). The same is true when vpn_bin_status is true for VPN client 2 GenericVpnPolicyObject(gm2).</p>
 </li>
 </ol>
 <h3 id="the">The Dual-Chain VPN Profile for a Main User, Per-App Configuration</h3>
 <p>The instructions for using this dual-chain VPN configuration is based on the following device profile:</p>
-<div class="highlight"><pre tabindex="0" style=";-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span>gm1<span style="color:#666">.</span><span style="color:#7d9029">createVpnProfile</span><span style="color:#666">(</span>String profileInfo<span style="color:#666">):</span>
-</span></span><span style="display:flex;"><span>    <span style="color:#ba2121">&#34;KNOX_VPN_PARAMETERS&#34;</span><span style="color:#666">:{</span>
-</span></span><span style="display:flex;"><span>        <span style="color:#ba2121">&#34;profile_attribute&#34;</span><span style="color:#666">:{</span>
-</span></span><span style="display:flex;"><span>            <span style="color:#ba2121">&#34;profileName&#34;</span><span style="color:#666">:</span><span style="color:#ba2121">&#34;outer&#34;</span><span style="color:#666">,</span>
-</span></span><span style="display:flex;"><span>            <span style="color:#ba2121">&#34;host&#34;</span><span style="color:#666">:</span><span style="color:#ba2121">&#34;66.8.250.85&#34;</span><span style="color:#666">,</span>
-</span></span><span style="display:flex;"><span>            <span style="color:#ba2121">&#34;vpn_type&#34;</span><span style="color:#666">:</span><span style="color:#ba2121">&#34;ipsec&#34;</span><span style="color:#666">,</span>
-</span></span><span style="display:flex;"><span>            <span style="color:#ba2121">&#34;vpn_route_type&#34;</span><span style="color:#666">:</span><span style="color:#666">1</span>
-</span></span><span style="display:flex;"><span>        <span style="color:#666">},</span>
-</span></span><span style="display:flex;"><span>        <span style="color:#ba2121">&#34;knox&#34;</span><span style="color:#666">:{</span>
-</span></span><span style="display:flex;"><span>             chaining_enabled<span style="color:#666">:</span><span style="color:#666">0</span>
-</span></span><span style="display:flex;"><span>        <span style="color:#666">},</span>
-</span></span><span style="display:flex;"><span>        <span style="color:#ba2121">&#34;vendor&#34;</span><span style="color:#666">:{</span>
-</span></span><span style="display:flex;"><span>        <span style="color:#666">}</span>
-</span></span><span style="display:flex;"><span>    <span style="color:#666">}</span>
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>gm2<span style="color:#666">.</span><span style="color:#7d9029">createVpnProfile</span><span style="color:#666">(</span>String profileInfo<span style="color:#666">);</span>
-</span></span><span style="display:flex;"><span>    <span style="color:#ba2121">&#34;KNOX_VPN_PARAMETERS&#34;</span><span style="color:#666">:{</span>
-</span></span><span style="display:flex;"><span>        <span style="color:#ba2121">&#34;profile_attribute&#34;</span><span style="color:#666">:{</span>
-</span></span><span style="display:flex;"><span>            <span style="color:#ba2121">&#34;profileName&#34;</span><span style="color:#666">:</span><span style="color:#ba2121">&#34;inner&#34;</span><span style="color:#666">,</span>
-</span></span><span style="display:flex;"><span>            <span style="color:#ba2121">&#34;host&#34;</span><span style="color:#666">:</span><span style="color:#ba2121">&#34;66.8.250.86&#34;</span><span style="color:#666">,</span>
-</span></span><span style="display:flex;"><span>            <span style="color:#ba2121">&#34;vpn_type&#34;</span><span style="color:#666">:</span><span style="color:#ba2121">&#34;ipsec&#34;</span><span style="color:#666">,</span>
-</span></span><span style="display:flex;"><span>            <span style="color:#ba2121">&#34;vpn_route_type&#34;</span><span style="color:#666">:</span><span style="color:#666">1</span>
-</span></span><span style="display:flex;"><span>        <span style="color:#666">},</span>
-</span></span><span style="display:flex;"><span>        <span style="color:#ba2121">&#34;knox&#34;</span><span style="color:#666">:{</span>
-</span></span><span style="display:flex;"><span>             chaining_enabled<span style="color:#666">:</span><span style="color:#666">1</span>
-</span></span><span style="display:flex;"><span>        <span style="color:#666">},</span>
-</span></span><span style="display:flex;"><span>        <span style="color:#ba2121">&#34;vendor&#34;</span><span style="color:#666">:{</span>
-</span></span><span style="display:flex;"><span>        <span style="color:#666">}</span>
-</span></span><span style="display:flex;"><span>    <span style="color:#666">}</span>
-</span></span></code></pre></div><h3 id="manage2">Manage Dual-Chain VPN for Main User Per-App Connections</h3>
+<div class="highlight"><pre tabindex="0" style=";-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-java" data-lang="java"><span style="display:flex;"><span>gm1.<span style="color:#7d9029">createVpnProfile</span>(String<span style="color:#bbb"> </span>profileInfo):<span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb">    </span><span style="color:#ba2121">&#34;KNOX_VPN_PARAMETERS&#34;</span>:{<span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb">        </span><span style="color:#ba2121">&#34;profile_attribute&#34;</span>:{<span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb">            </span><span style="color:#ba2121">&#34;profileName&#34;</span>:<span style="color:#ba2121">&#34;outer&#34;</span>,<span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb">            </span><span style="color:#ba2121">&#34;host&#34;</span>:<span style="color:#ba2121">&#34;66.8.250.85&#34;</span>,<span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb">            </span><span style="color:#ba2121">&#34;vpn_type&#34;</span>:<span style="color:#ba2121">&#34;ipsec&#34;</span>,<span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb">            </span><span style="color:#ba2121">&#34;vpn_route_type&#34;</span>:1<span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb">        </span>},<span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb">        </span><span style="color:#ba2121">&#34;knox&#34;</span>:{<span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb">             </span>chaining_enabled:0<span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb">        </span>},<span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb">        </span><span style="color:#ba2121">&#34;vendor&#34;</span>:{<span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb">        </span>}<span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb">    </span>}<span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span>gm2.<span style="color:#7d9029">createVpnProfile</span>(String<span style="color:#bbb"> </span>profileInfo);<span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb">    </span><span style="color:#ba2121">&#34;KNOX_VPN_PARAMETERS&#34;</span>:{<span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb">        </span><span style="color:#ba2121">&#34;profile_attribute&#34;</span>:{<span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb">            </span><span style="color:#ba2121">&#34;profileName&#34;</span>:<span style="color:#ba2121">&#34;inner&#34;</span>,<span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb">            </span><span style="color:#ba2121">&#34;host&#34;</span>:<span style="color:#ba2121">&#34;66.8.250.86&#34;</span>,<span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb">            </span><span style="color:#ba2121">&#34;vpn_type&#34;</span>:<span style="color:#ba2121">&#34;ipsec&#34;</span>,<span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb">            </span><span style="color:#ba2121">&#34;vpn_route_type&#34;</span>:1<span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb">        </span>},<span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb">        </span><span style="color:#ba2121">&#34;knox&#34;</span>:{<span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb">             </span>chaining_enabled:1<span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb">        </span>},<span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb">        </span><span style="color:#ba2121">&#34;vendor&#34;</span>:{<span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb">        </span>}<span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb">    </span>}<span style="color:#bbb">
+</span></span></span></code></pre></div><h3 id="manage2">Manage Dual-Chain VPN for Main User Per-App Connections</h3>
 <p>The following instructions explain how to create, start, stop and remove the dual-chain VPN connection.</p>
 <h4 id="create-and-start-a-dual-chain-vpn-connection">Create and Start a Dual-Chain VPN Connection</h4>
 <p>The EMM agent must make the following calls to start a VPN connection under the dual-chain configuration described above.</p>
@@ -3198,10 +3198,10 @@ The packageList must only contain the package name of VPN client 2.</li>
 <ol>
 <li>
 <p>The EMM agent has to get the instance of the <code>GenericVpnPolicy</code> object in the KnoxManager class for each client by passing the VPN vendor&rsquo;s package name as parameter.</p>
-<div class="highlight"><pre tabindex="0" style=";-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span>EnterpriseKnoxManager ekm <span style="color:#666">=</span> EnterpriseKnoxManager<span style="color:#666">.</span><span style="color:#7d9029">getInstance</span><span style="color:#666">();</span>
-</span></span><span style="display:flex;"><span>GenericVpnPolicy gm1 <span style="color:#666">=</span> ekm<span style="color:#666">.</span><span style="color:#7d9029">getGenericVpnPolicy</span><span style="color:#666">(</span>$vpn_client_1_packageName<span style="color:#666">,</span>$userId where VPN client <span style="color:#666">1</span> is installed<span style="color:#666">);</span>
-</span></span><span style="display:flex;"><span>GenericVpnPolicy gm2 <span style="color:#666">=</span> ekm<span style="color:#666">.</span><span style="color:#7d9029">getGenericVpnPolicy</span><span style="color:#666">(</span>$vpn_client_2_packageName<span style="color:#666">,</span>$userId where VPN client <span style="color:#666">2</span> is installed<span style="color:#666">);</span> 
-</span></span></code></pre></div><p>Once the above code executes, the framework tries to bind to the VPN vendor&rsquo;s application. When the binding succeeds, the framework sends a broadcast message to the EMM agent.</p>
+<div class="highlight"><pre tabindex="0" style=";-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-java" data-lang="java"><span style="display:flex;"><span>EnterpriseKnoxManager<span style="color:#bbb"> </span>ekm<span style="color:#bbb"> </span><span style="color:#666">=</span><span style="color:#bbb"> </span>EnterpriseKnoxManager.<span style="color:#7d9029">getInstance</span>();<span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span>GenericVpnPolicy<span style="color:#bbb"> </span>gm1<span style="color:#bbb"> </span><span style="color:#666">=</span><span style="color:#bbb"> </span>ekm.<span style="color:#7d9029">getGenericVpnPolicy</span>($vpn_client_1_packageName,$userId<span style="color:#bbb"> </span>where<span style="color:#bbb"> </span>VPN<span style="color:#bbb"> </span>client<span style="color:#bbb"> </span>1<span style="color:#bbb"> </span>is<span style="color:#bbb"> </span>installed);<span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span>GenericVpnPolicy<span style="color:#bbb"> </span>gm2<span style="color:#bbb"> </span><span style="color:#666">=</span><span style="color:#bbb"> </span>ekm.<span style="color:#7d9029">getGenericVpnPolicy</span>($vpn_client_2_packageName,$userId<span style="color:#bbb"> </span>where<span style="color:#bbb"> </span>VPN<span style="color:#bbb"> </span>client<span style="color:#bbb"> </span>2<span style="color:#bbb"> </span>is<span style="color:#bbb"> </span>installed);<span style="color:#bbb"> 
+</span></span></span></code></pre></div><p>Once the above code executes, the framework tries to bind to the VPN vendor&rsquo;s application. When the binding succeeds, the framework sends a broadcast message to the EMM agent.</p>
 </li>
 <li>
 <p>The EMM agent has to listen for the intent action &ldquo;com.samsung.android.mdm.VPN_BIND_RESULT&rdquo; which has the following information:</p>
@@ -3209,54 +3209,54 @@ The packageList must only contain the package name of VPN client 2.</li>
 <li>vpn_bind_vendor provides the VPN vendor&rsquo;s package name</li>
 <li>vpn_bind_status returns true or false, specifying whether the bind to the VPN vendor&rsquo;s application was successful or not.</li>
 </ul>
-<div class="highlight"><pre tabindex="0" style=";-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#008000;font-weight:bold">public</span> <span style="color:#008000;font-weight:bold">class</span> <span style="color:#00f;font-weight:bold">VPNBindReceiver</span> <span style="color:#008000;font-weight:bold">extends</span> BroadcastReceiver <span style="color:#666">{</span>
-</span></span><span style="display:flex;"><span>    <span style="color:#008000;font-weight:bold">public</span> <span style="color:#008000;font-weight:bold">static</span> <span style="color:#008000;font-weight:bold">final</span> String ACTION_BIND_RESULT <span style="color:#666">=</span> <span style="color:#ba2121">&#34;com.samsung.android.mdm.VPN_BIND_RESULT&#34;</span><span style="color:#666">;</span>
-</span></span><span style="display:flex;"><span>    <span style="color:#008000;font-weight:bold">public</span> <span style="color:#008000;font-weight:bold">static</span> <span style="color:#008000;font-weight:bold">final</span> String BIND_VENDOR <span style="color:#666">=</span> <span style="color:#ba2121">&#34;vpn_bind_vendor&#34;</span><span style="color:#666">;</span>
-</span></span><span style="display:flex;"><span>    <span style="color:#008000;font-weight:bold">public</span> <span style="color:#008000;font-weight:bold">static</span> <span style="color:#008000;font-weight:bold">final</span> String BIND_STATUS <span style="color:#666">=</span> <span style="color:#ba2121">&#34;vpn_bind_status&#34;</span><span style="color:#666">;</span>
-</span></span><span style="display:flex;"><span>    <span style="color:#008000;font-weight:bold">public</span> <span style="color:#b00040">void</span> <span style="color:#00f">onReceive</span><span style="color:#666">(</span>Context context<span style="color:#666">,</span> Intent intent<span style="color:#666">)</span> <span style="color:#666">{</span>
-</span></span><span style="display:flex;"><span>        <span style="color:#008000;font-weight:bold">if</span> <span style="color:#666">(</span>intent<span style="color:#666">.</span><span style="color:#7d9029">getAction</span><span style="color:#666">().</span><span style="color:#7d9029">equalsIgnoreCase</span><span style="color:#666">(</span>ACTION_BIND_RESULT<span style="color:#666">))</span> <span style="color:#666">{</span>
-</span></span><span style="display:flex;"><span>            String vendorName <span style="color:#666">=</span> intent<span style="color:#666">.</span><span style="color:#7d9029">getExtra</span><span style="color:#666">(</span>BIND_VENDOR<span style="color:#666">);</span>
-</span></span><span style="display:flex;"><span>            <span style="color:#b00040">boolean</span> status <span style="color:#666">=</span> intent<span style="color:#666">.</span><span style="color:#7d9029">getExtra</span><span style="color:#666">(</span>BIND_STATUS<span style="color:#666">);</span>
-</span></span><span style="display:flex;"><span>        <span style="color:#666">}</span>
-</span></span><span style="display:flex;"><span>    <span style="color:#666">}</span>
-</span></span><span style="display:flex;"><span><span style="color:#666">}</span>
-</span></span></code></pre></div></li>
+<div class="highlight"><pre tabindex="0" style=";-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#008000;font-weight:bold">public</span><span style="color:#bbb"> </span><span style="color:#008000;font-weight:bold">class</span> <span style="color:#00f;font-weight:bold">VPNBindReceiver</span><span style="color:#bbb"> </span><span style="color:#008000;font-weight:bold">extends</span><span style="color:#bbb"> </span>BroadcastReceiver<span style="color:#bbb"> </span>{<span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb">    </span><span style="color:#008000;font-weight:bold">public</span><span style="color:#bbb"> </span><span style="color:#008000;font-weight:bold">static</span><span style="color:#bbb"> </span><span style="color:#008000;font-weight:bold">final</span><span style="color:#bbb"> </span>String<span style="color:#bbb"> </span>ACTION_BIND_RESULT<span style="color:#bbb"> </span><span style="color:#666">=</span><span style="color:#bbb"> </span><span style="color:#ba2121">&#34;com.samsung.android.mdm.VPN_BIND_RESULT&#34;</span>;<span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb">    </span><span style="color:#008000;font-weight:bold">public</span><span style="color:#bbb"> </span><span style="color:#008000;font-weight:bold">static</span><span style="color:#bbb"> </span><span style="color:#008000;font-weight:bold">final</span><span style="color:#bbb"> </span>String<span style="color:#bbb"> </span>BIND_VENDOR<span style="color:#bbb"> </span><span style="color:#666">=</span><span style="color:#bbb"> </span><span style="color:#ba2121">&#34;vpn_bind_vendor&#34;</span>;<span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb">    </span><span style="color:#008000;font-weight:bold">public</span><span style="color:#bbb"> </span><span style="color:#008000;font-weight:bold">static</span><span style="color:#bbb"> </span><span style="color:#008000;font-weight:bold">final</span><span style="color:#bbb"> </span>String<span style="color:#bbb"> </span>BIND_STATUS<span style="color:#bbb"> </span><span style="color:#666">=</span><span style="color:#bbb"> </span><span style="color:#ba2121">&#34;vpn_bind_status&#34;</span>;<span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb">    </span><span style="color:#008000;font-weight:bold">public</span><span style="color:#bbb"> </span><span style="color:#b00040">void</span><span style="color:#bbb"> </span><span style="color:#00f">onReceive</span>(Context<span style="color:#bbb"> </span>context,<span style="color:#bbb"> </span>Intent<span style="color:#bbb"> </span>intent)<span style="color:#bbb"> </span>{<span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb">        </span><span style="color:#008000;font-weight:bold">if</span><span style="color:#bbb"> </span>(intent.<span style="color:#7d9029">getAction</span>().<span style="color:#7d9029">equalsIgnoreCase</span>(ACTION_BIND_RESULT))<span style="color:#bbb"> </span>{<span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb">            </span>String<span style="color:#bbb"> </span>vendorName<span style="color:#bbb"> </span><span style="color:#666">=</span><span style="color:#bbb"> </span>intent.<span style="color:#7d9029">getExtra</span>(BIND_VENDOR);<span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb">            </span><span style="color:#b00040">boolean</span><span style="color:#bbb"> </span>status<span style="color:#bbb"> </span><span style="color:#666">=</span><span style="color:#bbb"> </span>intent.<span style="color:#7d9029">getExtra</span>(BIND_STATUS);<span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb">        </span>}<span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb">    </span>}<span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span>}<span style="color:#bbb">
+</span></span></span></code></pre></div></li>
 <li>
 <p>Once the received value of vpn_bind_status is true for VPN client 1, calls to GenericVpnPolicy object must reference GenericVpnPolicyObject(gm1). The same is true when vpn_bin_status is true for VPN client 2 GenericVpnPolicyObject(gm2).</p>
 </li>
 </ol>
 <h3 id="the">The Dual-Chain VPN Profile for a Main-User Wide VPN Configuration</h3>
 <p>The instructions for using this dual-chain VPN configuration is based on the following device profile:</p>
-<div class="highlight"><pre tabindex="0" style=";-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span>gm1<span style="color:#666">.</span><span style="color:#7d9029">createVpnProfile</span><span style="color:#666">(</span>String profileInfo<span style="color:#666">):</span>
-</span></span><span style="display:flex;"><span>    <span style="color:#ba2121">&#34;KNOX_VPN_PARAMETERS&#34;</span><span style="color:#666">:{</span>
-</span></span><span style="display:flex;"><span>        <span style="color:#ba2121">&#34;profile_attribute&#34;</span><span style="color:#666">:{</span>
-</span></span><span style="display:flex;"><span>            <span style="color:#ba2121">&#34;profileName&#34;</span><span style="color:#666">:</span><span style="color:#ba2121">&#34;outer&#34;</span><span style="color:#666">,</span>
-</span></span><span style="display:flex;"><span>            <span style="color:#ba2121">&#34;host&#34;</span><span style="color:#666">:</span><span style="color:#ba2121">&#34;66.8.250.85&#34;</span><span style="color:#666">,</span>
-</span></span><span style="display:flex;"><span>            <span style="color:#ba2121">&#34;vpn_type&#34;</span><span style="color:#666">:</span><span style="color:#ba2121">&#34;ipsec&#34;</span><span style="color:#666">,</span>
-</span></span><span style="display:flex;"><span>            <span style="color:#ba2121">&#34;vpn_route_type&#34;</span><span style="color:#666">:</span><span style="color:#666">1</span>
-</span></span><span style="display:flex;"><span>        <span style="color:#666">},</span>
-</span></span><span style="display:flex;"><span>        <span style="color:#ba2121">&#34;knox&#34;</span><span style="color:#666">:{</span>
-</span></span><span style="display:flex;"><span>             chaining_enabled<span style="color:#666">:</span><span style="color:#666">0</span>
-</span></span><span style="display:flex;"><span>        <span style="color:#666">},</span>
-</span></span><span style="display:flex;"><span>        <span style="color:#ba2121">&#34;vendor&#34;</span><span style="color:#666">:{</span>
-</span></span><span style="display:flex;"><span>        <span style="color:#666">}</span>
-</span></span><span style="display:flex;"><span>    <span style="color:#666">}</span>
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>gm2<span style="color:#666">.</span><span style="color:#7d9029">createVpnProfile</span><span style="color:#666">(</span>String profileInfo<span style="color:#666">);</span>
-</span></span><span style="display:flex;"><span>    <span style="color:#ba2121">&#34;KNOX_VPN_PARAMETERS&#34;</span><span style="color:#666">:{</span>
-</span></span><span style="display:flex;"><span>        <span style="color:#ba2121">&#34;profile_attribute&#34;</span><span style="color:#666">:{</span>
-</span></span><span style="display:flex;"><span>            <span style="color:#ba2121">&#34;profileName&#34;</span><span style="color:#666">:</span><span style="color:#ba2121">&#34;inner&#34;</span><span style="color:#666">,</span>
-</span></span><span style="display:flex;"><span>            <span style="color:#ba2121">&#34;host&#34;</span><span style="color:#666">:</span><span style="color:#ba2121">&#34;66.8.250.86&#34;</span><span style="color:#666">,</span>
-</span></span><span style="display:flex;"><span>            <span style="color:#ba2121">&#34;vpn_type&#34;</span><span style="color:#666">:</span><span style="color:#ba2121">&#34;ipsec&#34;</span><span style="color:#666">,</span>
-</span></span><span style="display:flex;"><span>            <span style="color:#ba2121">&#34;vpn_route_type&#34;</span><span style="color:#666">:</span><span style="color:#666">1</span>
-</span></span><span style="display:flex;"><span>        <span style="color:#666">},</span>
-</span></span><span style="display:flex;"><span>        <span style="color:#ba2121">&#34;knox&#34;</span><span style="color:#666">:{</span>
-</span></span><span style="display:flex;"><span>             chaining_enabled<span style="color:#666">:</span><span style="color:#666">1</span>
-</span></span><span style="display:flex;"><span>        <span style="color:#666">},</span>
-</span></span><span style="display:flex;"><span>        <span style="color:#ba2121">&#34;vendor&#34;</span><span style="color:#666">:{</span>
-</span></span><span style="display:flex;"><span>        <span style="color:#666">}</span>
-</span></span><span style="display:flex;"><span>    <span style="color:#666">}</span>
-</span></span></code></pre></div><h3 id="manage2">Manage Dual-Chain VPN for Main-User Wide Connections</h3>
+<div class="highlight"><pre tabindex="0" style=";-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-java" data-lang="java"><span style="display:flex;"><span>gm1.<span style="color:#7d9029">createVpnProfile</span>(String<span style="color:#bbb"> </span>profileInfo):<span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb">    </span><span style="color:#ba2121">&#34;KNOX_VPN_PARAMETERS&#34;</span>:{<span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb">        </span><span style="color:#ba2121">&#34;profile_attribute&#34;</span>:{<span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb">            </span><span style="color:#ba2121">&#34;profileName&#34;</span>:<span style="color:#ba2121">&#34;outer&#34;</span>,<span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb">            </span><span style="color:#ba2121">&#34;host&#34;</span>:<span style="color:#ba2121">&#34;66.8.250.85&#34;</span>,<span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb">            </span><span style="color:#ba2121">&#34;vpn_type&#34;</span>:<span style="color:#ba2121">&#34;ipsec&#34;</span>,<span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb">            </span><span style="color:#ba2121">&#34;vpn_route_type&#34;</span>:1<span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb">        </span>},<span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb">        </span><span style="color:#ba2121">&#34;knox&#34;</span>:{<span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb">             </span>chaining_enabled:0<span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb">        </span>},<span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb">        </span><span style="color:#ba2121">&#34;vendor&#34;</span>:{<span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb">        </span>}<span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb">    </span>}<span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span>gm2.<span style="color:#7d9029">createVpnProfile</span>(String<span style="color:#bbb"> </span>profileInfo);<span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb">    </span><span style="color:#ba2121">&#34;KNOX_VPN_PARAMETERS&#34;</span>:{<span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb">        </span><span style="color:#ba2121">&#34;profile_attribute&#34;</span>:{<span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb">            </span><span style="color:#ba2121">&#34;profileName&#34;</span>:<span style="color:#ba2121">&#34;inner&#34;</span>,<span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb">            </span><span style="color:#ba2121">&#34;host&#34;</span>:<span style="color:#ba2121">&#34;66.8.250.86&#34;</span>,<span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb">            </span><span style="color:#ba2121">&#34;vpn_type&#34;</span>:<span style="color:#ba2121">&#34;ipsec&#34;</span>,<span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb">            </span><span style="color:#ba2121">&#34;vpn_route_type&#34;</span>:1<span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb">        </span>},<span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb">        </span><span style="color:#ba2121">&#34;knox&#34;</span>:{<span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb">             </span>chaining_enabled:1<span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb">        </span>},<span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb">        </span><span style="color:#ba2121">&#34;vendor&#34;</span>:{<span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb">        </span>}<span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb">    </span>}<span style="color:#bbb">
+</span></span></span></code></pre></div><h3 id="manage2">Manage Dual-Chain VPN for Main-User Wide Connections</h3>
 <p>The following instructions explain how to create, start, stop and remove the dual-chain VPN connection.</p>
 <h4 id="create-and-start-a-dual-chain-vpn-connection-1">Create and Start a Dual-Chain VPN Connection</h4>
 <p>The EMM agent must make the following calls to start a VPN connection under the dual-chain configuration described above.</p>
@@ -3297,10 +3297,10 @@ The packageList must only contain the package name of VPN client 2.</li>
 <ol>
 <li>
 <p>The EMM agent has to get the instance of the <code>GenericVpnPolicy</code> object in the KnoxManager class for each client by passing the VPN vendor&rsquo;s package name as parameter.</p>
-<div class="highlight"><pre tabindex="0" style=";-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span>EnterpriseKnoxManager ekm <span style="color:#666">=</span> EnterpriseKnoxManager<span style="color:#666">.</span><span style="color:#7d9029">getInstance</span><span style="color:#666">();</span>
-</span></span><span style="display:flex;"><span>GenericVpnPolicy gm1 <span style="color:#666">=</span> ekm<span style="color:#666">.</span><span style="color:#7d9029">getGenericVpnPolicy</span><span style="color:#666">(</span>$vpn_client_1_packageName<span style="color:#666">,</span>$userId where VPN client <span style="color:#666">1</span> is installed<span style="color:#666">);</span>
-</span></span><span style="display:flex;"><span>GenericVpnPolicy gm2 <span style="color:#666">=</span> ekm<span style="color:#666">.</span><span style="color:#7d9029">getGenericVpnPolicy</span><span style="color:#666">(</span>$vpn_client_2_packageName<span style="color:#666">,</span>$userId where VPN client <span style="color:#666">2</span> is installed<span style="color:#666">);</span> 
-</span></span></code></pre></div><p>Once the above code executes, the framework tries to bind to the VPN vendor&rsquo;s application. When the binding succeeds, the framework sends a broadcast message to the EMM agent.</p>
+<div class="highlight"><pre tabindex="0" style=";-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-java" data-lang="java"><span style="display:flex;"><span>EnterpriseKnoxManager<span style="color:#bbb"> </span>ekm<span style="color:#bbb"> </span><span style="color:#666">=</span><span style="color:#bbb"> </span>EnterpriseKnoxManager.<span style="color:#7d9029">getInstance</span>();<span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span>GenericVpnPolicy<span style="color:#bbb"> </span>gm1<span style="color:#bbb"> </span><span style="color:#666">=</span><span style="color:#bbb"> </span>ekm.<span style="color:#7d9029">getGenericVpnPolicy</span>($vpn_client_1_packageName,$userId<span style="color:#bbb"> </span>where<span style="color:#bbb"> </span>VPN<span style="color:#bbb"> </span>client<span style="color:#bbb"> </span>1<span style="color:#bbb"> </span>is<span style="color:#bbb"> </span>installed);<span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span>GenericVpnPolicy<span style="color:#bbb"> </span>gm2<span style="color:#bbb"> </span><span style="color:#666">=</span><span style="color:#bbb"> </span>ekm.<span style="color:#7d9029">getGenericVpnPolicy</span>($vpn_client_2_packageName,$userId<span style="color:#bbb"> </span>where<span style="color:#bbb"> </span>VPN<span style="color:#bbb"> </span>client<span style="color:#bbb"> </span>2<span style="color:#bbb"> </span>is<span style="color:#bbb"> </span>installed);<span style="color:#bbb"> 
+</span></span></span></code></pre></div><p>Once the above code executes, the framework tries to bind to the VPN vendor&rsquo;s application. When the binding succeeds, the framework sends a broadcast message to the EMM agent.</p>
 </li>
 <li>
 <p>The EMM agent has to listen for the intent action <code>com.samsung.android.mdm.VPN_BIND_RESULT</code> which has the following information:</p>
@@ -3308,54 +3308,54 @@ The packageList must only contain the package name of VPN client 2.</li>
 <li>vpn_bind_vendor provides the VPN vendor&rsquo;s package name</li>
 <li>vpn_bind_status returns true or false, specifying whether the bind to the VPN vendor&rsquo;s application was successful or not.</li>
 </ul>
-<div class="highlight"><pre tabindex="0" style=";-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#008000;font-weight:bold">public</span> <span style="color:#008000;font-weight:bold">class</span> <span style="color:#00f;font-weight:bold">VPNBindReciever</span> <span style="color:#008000;font-weight:bold">extends</span> BroadcastReceiver <span style="color:#666">{</span>
-</span></span><span style="display:flex;"><span>    <span style="color:#008000;font-weight:bold">public</span> <span style="color:#008000;font-weight:bold">static</span> <span style="color:#008000;font-weight:bold">final</span> String ACTION_BIND_RESULT <span style="color:#666">=</span> <span style="color:#ba2121">&#34;com.samsung.android.mdm.VPN_BIND_RESULT&#34;</span><span style="color:#666">;</span>
-</span></span><span style="display:flex;"><span>    <span style="color:#008000;font-weight:bold">public</span> <span style="color:#008000;font-weight:bold">static</span> <span style="color:#008000;font-weight:bold">final</span> String BIND_VENDOR <span style="color:#666">=</span> <span style="color:#ba2121">&#34;vpn_bind_vendor&#34;</span><span style="color:#666">;</span>
-</span></span><span style="display:flex;"><span>    <span style="color:#008000;font-weight:bold">public</span> <span style="color:#008000;font-weight:bold">static</span> <span style="color:#008000;font-weight:bold">final</span> String BIND_STATUS <span style="color:#666">=</span> <span style="color:#ba2121">&#34;vpn_bind_status&#34;</span><span style="color:#666">;</span>
-</span></span><span style="display:flex;"><span>    <span style="color:#008000;font-weight:bold">public</span> <span style="color:#b00040">void</span> <span style="color:#00f">onReceive</span><span style="color:#666">(</span>Context context<span style="color:#666">,</span> Intent intent<span style="color:#666">)</span> <span style="color:#666">{</span>
-</span></span><span style="display:flex;"><span>        <span style="color:#008000;font-weight:bold">if</span> <span style="color:#666">(</span>intent<span style="color:#666">.</span><span style="color:#7d9029">getAction</span><span style="color:#666">().</span><span style="color:#7d9029">equalsIgnoreCase</span><span style="color:#666">(</span>ACTION_BIND_RESULT<span style="color:#666">))</span> <span style="color:#666">{</span>
-</span></span><span style="display:flex;"><span>            String vendorName <span style="color:#666">=</span> intent<span style="color:#666">.</span><span style="color:#7d9029">getExtra</span><span style="color:#666">(</span>BIND_VENDOR<span style="color:#666">);</span>
-</span></span><span style="display:flex;"><span>            <span style="color:#b00040">boolean</span> status <span style="color:#666">=</span> intent<span style="color:#666">.</span><span style="color:#7d9029">getExtra</span><span style="color:#666">(</span>BIND_STATUS<span style="color:#666">);</span>
-</span></span><span style="display:flex;"><span>        <span style="color:#666">}</span>
-</span></span><span style="display:flex;"><span>    <span style="color:#666">}</span>
-</span></span><span style="display:flex;"><span><span style="color:#666">}</span>
-</span></span></code></pre></div></li>
+<div class="highlight"><pre tabindex="0" style=";-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#008000;font-weight:bold">public</span><span style="color:#bbb"> </span><span style="color:#008000;font-weight:bold">class</span> <span style="color:#00f;font-weight:bold">VPNBindReciever</span><span style="color:#bbb"> </span><span style="color:#008000;font-weight:bold">extends</span><span style="color:#bbb"> </span>BroadcastReceiver<span style="color:#bbb"> </span>{<span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb">    </span><span style="color:#008000;font-weight:bold">public</span><span style="color:#bbb"> </span><span style="color:#008000;font-weight:bold">static</span><span style="color:#bbb"> </span><span style="color:#008000;font-weight:bold">final</span><span style="color:#bbb"> </span>String<span style="color:#bbb"> </span>ACTION_BIND_RESULT<span style="color:#bbb"> </span><span style="color:#666">=</span><span style="color:#bbb"> </span><span style="color:#ba2121">&#34;com.samsung.android.mdm.VPN_BIND_RESULT&#34;</span>;<span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb">    </span><span style="color:#008000;font-weight:bold">public</span><span style="color:#bbb"> </span><span style="color:#008000;font-weight:bold">static</span><span style="color:#bbb"> </span><span style="color:#008000;font-weight:bold">final</span><span style="color:#bbb"> </span>String<span style="color:#bbb"> </span>BIND_VENDOR<span style="color:#bbb"> </span><span style="color:#666">=</span><span style="color:#bbb"> </span><span style="color:#ba2121">&#34;vpn_bind_vendor&#34;</span>;<span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb">    </span><span style="color:#008000;font-weight:bold">public</span><span style="color:#bbb"> </span><span style="color:#008000;font-weight:bold">static</span><span style="color:#bbb"> </span><span style="color:#008000;font-weight:bold">final</span><span style="color:#bbb"> </span>String<span style="color:#bbb"> </span>BIND_STATUS<span style="color:#bbb"> </span><span style="color:#666">=</span><span style="color:#bbb"> </span><span style="color:#ba2121">&#34;vpn_bind_status&#34;</span>;<span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb">    </span><span style="color:#008000;font-weight:bold">public</span><span style="color:#bbb"> </span><span style="color:#b00040">void</span><span style="color:#bbb"> </span><span style="color:#00f">onReceive</span>(Context<span style="color:#bbb"> </span>context,<span style="color:#bbb"> </span>Intent<span style="color:#bbb"> </span>intent)<span style="color:#bbb"> </span>{<span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb">        </span><span style="color:#008000;font-weight:bold">if</span><span style="color:#bbb"> </span>(intent.<span style="color:#7d9029">getAction</span>().<span style="color:#7d9029">equalsIgnoreCase</span>(ACTION_BIND_RESULT))<span style="color:#bbb"> </span>{<span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb">            </span>String<span style="color:#bbb"> </span>vendorName<span style="color:#bbb"> </span><span style="color:#666">=</span><span style="color:#bbb"> </span>intent.<span style="color:#7d9029">getExtra</span>(BIND_VENDOR);<span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb">            </span><span style="color:#b00040">boolean</span><span style="color:#bbb"> </span>status<span style="color:#bbb"> </span><span style="color:#666">=</span><span style="color:#bbb"> </span>intent.<span style="color:#7d9029">getExtra</span>(BIND_STATUS);<span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb">        </span>}<span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb">    </span>}<span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span>}<span style="color:#bbb">
+</span></span></span></code></pre></div></li>
 <li>
 <p>Once the received value of vpn_bind_status is true for VPN client 1, calls to GenericVpnPolicy object must reference GenericVpnPolicyObject(gm1). The same is true when vpn_bin_status is true for VPN client 2 GenericVpnPolicyObject(gm2).</p>
 </li>
 </ol>
 <h3 id="the">The Dual-Chain VPN Profile for a CL Container User, Per-App VPN Configuration</h3>
 <p>The instructions for using this dual-chain VPN configuration is based on the following device profile:</p>
-<div class="highlight"><pre tabindex="0" style=";-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span>gm1<span style="color:#666">.</span><span style="color:#7d9029">createVpnProfile</span><span style="color:#666">(</span>String profileInfo<span style="color:#666">):</span>
-</span></span><span style="display:flex;"><span>    <span style="color:#ba2121">&#34;KNOX_VPN_PARAMETERS&#34;</span><span style="color:#666">:{</span>
-</span></span><span style="display:flex;"><span>        <span style="color:#ba2121">&#34;profile_attribute&#34;</span><span style="color:#666">:{</span>
-</span></span><span style="display:flex;"><span>            <span style="color:#ba2121">&#34;profileName&#34;</span><span style="color:#666">:</span><span style="color:#ba2121">&#34;outer&#34;</span><span style="color:#666">,</span>
-</span></span><span style="display:flex;"><span>            <span style="color:#ba2121">&#34;host&#34;</span><span style="color:#666">:</span><span style="color:#ba2121">&#34;66.8.250.85&#34;</span><span style="color:#666">,</span>
-</span></span><span style="display:flex;"><span>            <span style="color:#ba2121">&#34;vpn_type&#34;</span><span style="color:#666">:</span><span style="color:#ba2121">&#34;ipsec&#34;</span><span style="color:#666">,</span>
-</span></span><span style="display:flex;"><span>            <span style="color:#ba2121">&#34;vpn_route_type&#34;</span><span style="color:#666">:</span><span style="color:#666">1</span>
-</span></span><span style="display:flex;"><span>        <span style="color:#666">},</span>
-</span></span><span style="display:flex;"><span>        <span style="color:#ba2121">&#34;knox&#34;</span><span style="color:#666">:{</span>
-</span></span><span style="display:flex;"><span>             chaining_enabled<span style="color:#666">:</span><span style="color:#666">0</span>
-</span></span><span style="display:flex;"><span>        <span style="color:#666">},</span>
-</span></span><span style="display:flex;"><span>        <span style="color:#ba2121">&#34;vendor&#34;</span><span style="color:#666">:{</span>
-</span></span><span style="display:flex;"><span>        <span style="color:#666">}</span>
-</span></span><span style="display:flex;"><span>    <span style="color:#666">}</span>
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>gm2<span style="color:#666">.</span><span style="color:#7d9029">createVpnProfile</span><span style="color:#666">(</span>String profileInfo<span style="color:#666">);</span>
-</span></span><span style="display:flex;"><span>    <span style="color:#ba2121">&#34;KNOX_VPN_PARAMETERS&#34;</span><span style="color:#666">:{</span>
-</span></span><span style="display:flex;"><span>        <span style="color:#ba2121">&#34;profile_attribute&#34;</span><span style="color:#666">:{</span>
-</span></span><span style="display:flex;"><span>            <span style="color:#ba2121">&#34;profileName&#34;</span><span style="color:#666">:</span><span style="color:#ba2121">&#34;inner&#34;</span><span style="color:#666">,</span>
-</span></span><span style="display:flex;"><span>            <span style="color:#ba2121">&#34;host&#34;</span><span style="color:#666">:</span><span style="color:#ba2121">&#34;66.8.250.86&#34;</span><span style="color:#666">,</span>
-</span></span><span style="display:flex;"><span>            <span style="color:#ba2121">&#34;vpn_type&#34;</span><span style="color:#666">:</span><span style="color:#ba2121">&#34;ipsec&#34;</span><span style="color:#666">,</span>
-</span></span><span style="display:flex;"><span>            <span style="color:#ba2121">&#34;vpn_route_type&#34;</span><span style="color:#666">:</span><span style="color:#666">1</span>
-</span></span><span style="display:flex;"><span>        <span style="color:#666">},</span>
-</span></span><span style="display:flex;"><span>        <span style="color:#ba2121">&#34;knox&#34;</span><span style="color:#666">:{</span>
-</span></span><span style="display:flex;"><span>             chaining_enabled<span style="color:#666">:</span><span style="color:#666">1</span>
-</span></span><span style="display:flex;"><span>        <span style="color:#666">},</span>
-</span></span><span style="display:flex;"><span>        <span style="color:#ba2121">&#34;vendor&#34;</span><span style="color:#666">:{</span>
-</span></span><span style="display:flex;"><span>        <span style="color:#666">}</span>
-</span></span><span style="display:flex;"><span>    <span style="color:#666">}</span>
-</span></span></code></pre></div><h3 id="manage2">Manage Dual-Chain VPN for CL Container User, Per-App Connections</h3>
+<div class="highlight"><pre tabindex="0" style=";-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-java" data-lang="java"><span style="display:flex;"><span>gm1.<span style="color:#7d9029">createVpnProfile</span>(String<span style="color:#bbb"> </span>profileInfo):<span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb">    </span><span style="color:#ba2121">&#34;KNOX_VPN_PARAMETERS&#34;</span>:{<span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb">        </span><span style="color:#ba2121">&#34;profile_attribute&#34;</span>:{<span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb">            </span><span style="color:#ba2121">&#34;profileName&#34;</span>:<span style="color:#ba2121">&#34;outer&#34;</span>,<span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb">            </span><span style="color:#ba2121">&#34;host&#34;</span>:<span style="color:#ba2121">&#34;66.8.250.85&#34;</span>,<span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb">            </span><span style="color:#ba2121">&#34;vpn_type&#34;</span>:<span style="color:#ba2121">&#34;ipsec&#34;</span>,<span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb">            </span><span style="color:#ba2121">&#34;vpn_route_type&#34;</span>:1<span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb">        </span>},<span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb">        </span><span style="color:#ba2121">&#34;knox&#34;</span>:{<span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb">             </span>chaining_enabled:0<span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb">        </span>},<span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb">        </span><span style="color:#ba2121">&#34;vendor&#34;</span>:{<span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb">        </span>}<span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb">    </span>}<span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span>gm2.<span style="color:#7d9029">createVpnProfile</span>(String<span style="color:#bbb"> </span>profileInfo);<span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb">    </span><span style="color:#ba2121">&#34;KNOX_VPN_PARAMETERS&#34;</span>:{<span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb">        </span><span style="color:#ba2121">&#34;profile_attribute&#34;</span>:{<span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb">            </span><span style="color:#ba2121">&#34;profileName&#34;</span>:<span style="color:#ba2121">&#34;inner&#34;</span>,<span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb">            </span><span style="color:#ba2121">&#34;host&#34;</span>:<span style="color:#ba2121">&#34;66.8.250.86&#34;</span>,<span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb">            </span><span style="color:#ba2121">&#34;vpn_type&#34;</span>:<span style="color:#ba2121">&#34;ipsec&#34;</span>,<span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb">            </span><span style="color:#ba2121">&#34;vpn_route_type&#34;</span>:1<span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb">        </span>},<span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb">        </span><span style="color:#ba2121">&#34;knox&#34;</span>:{<span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb">             </span>chaining_enabled:1<span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb">        </span>},<span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb">        </span><span style="color:#ba2121">&#34;vendor&#34;</span>:{<span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb">        </span>}<span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb">    </span>}<span style="color:#bbb">
+</span></span></span></code></pre></div><h3 id="manage2">Manage Dual-Chain VPN for CL Container User, Per-App Connections</h3>
 <p>The following instructions explain how to create, start, stop and remove the dual-chain VPN connection.</p>
 <h4 id="create-and-start-a-dual-chain-vpn-connection-2">Create and Start a Dual-Chain VPN Connection</h4>
 <p>The EMM agent must make the following calls to start a VPN connection under the dual-chain configuration described above.</p>
@@ -3396,10 +3396,10 @@ The packageList must only contain the package name of VPN client 2.</li>
 <ol>
 <li>
 <p>The EMM agent has to get the instance of the <code>GenericVpnPolicy</code> object in the KnoxManager class for each client by passing the VPN vendor&rsquo;s package name as parameter.</p>
-<div class="highlight"><pre tabindex="0" style=";-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span>EnterpriseKnoxManager ekm <span style="color:#666">=</span> EnterpriseKnoxManager<span style="color:#666">.</span><span style="color:#7d9029">getInstance</span><span style="color:#666">();</span>
-</span></span><span style="display:flex;"><span>GenericVpnPolicy gm1 <span style="color:#666">=</span> ekm<span style="color:#666">.</span><span style="color:#7d9029">getGenericVpnPolicy</span><span style="color:#666">(</span>$vpn_client_1_packageName<span style="color:#666">,</span>$userId where VPN client <span style="color:#666">1</span> is installed<span style="color:#666">);</span>
-</span></span><span style="display:flex;"><span>GenericVpnPolicy gm2 <span style="color:#666">=</span> ekm<span style="color:#666">.</span><span style="color:#7d9029">getGenericVpnPolicy</span><span style="color:#666">(</span>$vpn_client_2_packageName<span style="color:#666">,</span>$userId where VPN client <span style="color:#666">2</span> is installed<span style="color:#666">);</span> 
-</span></span></code></pre></div><p>Once the above code executes, the framework tries to bind to the VPN vendor&rsquo;s application. When the binding succeeds, the framework sends a broadcast message to the EMM agent.</p>
+<div class="highlight"><pre tabindex="0" style=";-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-java" data-lang="java"><span style="display:flex;"><span>EnterpriseKnoxManager<span style="color:#bbb"> </span>ekm<span style="color:#bbb"> </span><span style="color:#666">=</span><span style="color:#bbb"> </span>EnterpriseKnoxManager.<span style="color:#7d9029">getInstance</span>();<span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span>GenericVpnPolicy<span style="color:#bbb"> </span>gm1<span style="color:#bbb"> </span><span style="color:#666">=</span><span style="color:#bbb"> </span>ekm.<span style="color:#7d9029">getGenericVpnPolicy</span>($vpn_client_1_packageName,$userId<span style="color:#bbb"> </span>where<span style="color:#bbb"> </span>VPN<span style="color:#bbb"> </span>client<span style="color:#bbb"> </span>1<span style="color:#bbb"> </span>is<span style="color:#bbb"> </span>installed);<span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span>GenericVpnPolicy<span style="color:#bbb"> </span>gm2<span style="color:#bbb"> </span><span style="color:#666">=</span><span style="color:#bbb"> </span>ekm.<span style="color:#7d9029">getGenericVpnPolicy</span>($vpn_client_2_packageName,$userId<span style="color:#bbb"> </span>where<span style="color:#bbb"> </span>VPN<span style="color:#bbb"> </span>client<span style="color:#bbb"> </span>2<span style="color:#bbb"> </span>is<span style="color:#bbb"> </span>installed);<span style="color:#bbb"> 
+</span></span></span></code></pre></div><p>Once the above code executes, the framework tries to bind to the VPN vendor&rsquo;s application. When the binding succeeds, the framework sends a broadcast message to the EMM agent.</p>
 </li>
 <li>
 <p>The EMM agent has to listen for the intent action &ldquo;com.samsung.android.mdm.VPN_BIND_RESULT&rdquo; which has the following information:</p>
@@ -3407,54 +3407,54 @@ The packageList must only contain the package name of VPN client 2.</li>
 <li>vpn_bind_vendor provides the VPN vendor&rsquo;s package name</li>
 <li>vpn_bind_status returns true or false, specifying whether the bind to the VPN vendor&rsquo;s application was successful or not.</li>
 </ul>
-<div class="highlight"><pre tabindex="0" style=";-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#008000;font-weight:bold">public</span> <span style="color:#008000;font-weight:bold">class</span> <span style="color:#00f;font-weight:bold">VPNBindReciever</span> <span style="color:#008000;font-weight:bold">extends</span> BroadcastReceiver <span style="color:#666">{</span>
-</span></span><span style="display:flex;"><span>    <span style="color:#008000;font-weight:bold">public</span> <span style="color:#008000;font-weight:bold">static</span> <span style="color:#008000;font-weight:bold">final</span> String ACTION_BIND_RESULT <span style="color:#666">=</span> <span style="color:#ba2121">&#34;com.samsung.android.mdm.VPN_BIND_RESULT&#34;</span><span style="color:#666">;</span>
-</span></span><span style="display:flex;"><span>    <span style="color:#008000;font-weight:bold">public</span> <span style="color:#008000;font-weight:bold">static</span> <span style="color:#008000;font-weight:bold">final</span> String BIND_VENDOR <span style="color:#666">=</span> <span style="color:#ba2121">&#34;vpn_bind_vendor&#34;</span><span style="color:#666">;</span>
-</span></span><span style="display:flex;"><span>    <span style="color:#008000;font-weight:bold">public</span> <span style="color:#008000;font-weight:bold">static</span> <span style="color:#008000;font-weight:bold">final</span> String BIND_STATUS <span style="color:#666">=</span> <span style="color:#ba2121">&#34;vpn_bind_status&#34;</span><span style="color:#666">;</span>
-</span></span><span style="display:flex;"><span>    <span style="color:#008000;font-weight:bold">public</span> <span style="color:#b00040">void</span> <span style="color:#00f">onReceive</span><span style="color:#666">(</span>Context context<span style="color:#666">,</span> Intent intent<span style="color:#666">)</span> <span style="color:#666">{</span>
-</span></span><span style="display:flex;"><span>        <span style="color:#008000;font-weight:bold">if</span> <span style="color:#666">(</span>intent<span style="color:#666">.</span><span style="color:#7d9029">getAction</span><span style="color:#666">().</span><span style="color:#7d9029">equalsIgnoreCase</span><span style="color:#666">(</span>ACTION_BIND_RESULT<span style="color:#666">))</span> <span style="color:#666">{</span>
-</span></span><span style="display:flex;"><span>            String vendorName <span style="color:#666">=</span> intent<span style="color:#666">.</span><span style="color:#7d9029">getExtra</span><span style="color:#666">(</span>BIND_VENDOR<span style="color:#666">);</span>
-</span></span><span style="display:flex;"><span>            <span style="color:#b00040">boolean</span> status <span style="color:#666">=</span> intent<span style="color:#666">.</span><span style="color:#7d9029">getExtra</span><span style="color:#666">(</span>BIND_STATUS<span style="color:#666">);</span>
-</span></span><span style="display:flex;"><span>        <span style="color:#666">}</span>
-</span></span><span style="display:flex;"><span>    <span style="color:#666">}</span>
-</span></span><span style="display:flex;"><span><span style="color:#666">}</span>
-</span></span></code></pre></div></li>
+<div class="highlight"><pre tabindex="0" style=";-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#008000;font-weight:bold">public</span><span style="color:#bbb"> </span><span style="color:#008000;font-weight:bold">class</span> <span style="color:#00f;font-weight:bold">VPNBindReciever</span><span style="color:#bbb"> </span><span style="color:#008000;font-weight:bold">extends</span><span style="color:#bbb"> </span>BroadcastReceiver<span style="color:#bbb"> </span>{<span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb">    </span><span style="color:#008000;font-weight:bold">public</span><span style="color:#bbb"> </span><span style="color:#008000;font-weight:bold">static</span><span style="color:#bbb"> </span><span style="color:#008000;font-weight:bold">final</span><span style="color:#bbb"> </span>String<span style="color:#bbb"> </span>ACTION_BIND_RESULT<span style="color:#bbb"> </span><span style="color:#666">=</span><span style="color:#bbb"> </span><span style="color:#ba2121">&#34;com.samsung.android.mdm.VPN_BIND_RESULT&#34;</span>;<span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb">    </span><span style="color:#008000;font-weight:bold">public</span><span style="color:#bbb"> </span><span style="color:#008000;font-weight:bold">static</span><span style="color:#bbb"> </span><span style="color:#008000;font-weight:bold">final</span><span style="color:#bbb"> </span>String<span style="color:#bbb"> </span>BIND_VENDOR<span style="color:#bbb"> </span><span style="color:#666">=</span><span style="color:#bbb"> </span><span style="color:#ba2121">&#34;vpn_bind_vendor&#34;</span>;<span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb">    </span><span style="color:#008000;font-weight:bold">public</span><span style="color:#bbb"> </span><span style="color:#008000;font-weight:bold">static</span><span style="color:#bbb"> </span><span style="color:#008000;font-weight:bold">final</span><span style="color:#bbb"> </span>String<span style="color:#bbb"> </span>BIND_STATUS<span style="color:#bbb"> </span><span style="color:#666">=</span><span style="color:#bbb"> </span><span style="color:#ba2121">&#34;vpn_bind_status&#34;</span>;<span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb">    </span><span style="color:#008000;font-weight:bold">public</span><span style="color:#bbb"> </span><span style="color:#b00040">void</span><span style="color:#bbb"> </span><span style="color:#00f">onReceive</span>(Context<span style="color:#bbb"> </span>context,<span style="color:#bbb"> </span>Intent<span style="color:#bbb"> </span>intent)<span style="color:#bbb"> </span>{<span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb">        </span><span style="color:#008000;font-weight:bold">if</span><span style="color:#bbb"> </span>(intent.<span style="color:#7d9029">getAction</span>().<span style="color:#7d9029">equalsIgnoreCase</span>(ACTION_BIND_RESULT))<span style="color:#bbb"> </span>{<span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb">            </span>String<span style="color:#bbb"> </span>vendorName<span style="color:#bbb"> </span><span style="color:#666">=</span><span style="color:#bbb"> </span>intent.<span style="color:#7d9029">getExtra</span>(BIND_VENDOR);<span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb">            </span><span style="color:#b00040">boolean</span><span style="color:#bbb"> </span>status<span style="color:#bbb"> </span><span style="color:#666">=</span><span style="color:#bbb"> </span>intent.<span style="color:#7d9029">getExtra</span>(BIND_STATUS);<span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb">        </span>}<span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb">    </span>}<span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span>}<span style="color:#bbb">
+</span></span></span></code></pre></div></li>
 <li>
 <p>Once the received value of vpn_bind_status is true for VPN client 1, calls to GenericVpnPolicy object must reference GenericVpnPolicyObject(gm1). The same is true when vpn_bin_status is true for VPN client 2 GenericVpnPolicyObject(gm2).</p>
 </li>
 </ol>
 <h3 id="the">The Dual-Chain VPN Profile for a CL Container-Wide Configuration</h3>
 <p>The instructions for using this dual-chain VPN configuration is based on the following device profile:</p>
-<div class="highlight"><pre tabindex="0" style=";-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span>gm1<span style="color:#666">.</span><span style="color:#7d9029">createVpnProfile</span><span style="color:#666">(</span>String profileInfo<span style="color:#666">):</span>
-</span></span><span style="display:flex;"><span>    <span style="color:#ba2121">&#34;KNOX_VPN_PARAMETERS&#34;</span><span style="color:#666">:{</span>
-</span></span><span style="display:flex;"><span>        <span style="color:#ba2121">&#34;profile_attribute&#34;</span><span style="color:#666">:{</span>
-</span></span><span style="display:flex;"><span>            <span style="color:#ba2121">&#34;profileName&#34;</span><span style="color:#666">:</span><span style="color:#ba2121">&#34;outer&#34;</span><span style="color:#666">,</span>
-</span></span><span style="display:flex;"><span>            <span style="color:#ba2121">&#34;host&#34;</span><span style="color:#666">:</span><span style="color:#ba2121">&#34;66.8.250.85&#34;</span><span style="color:#666">,</span>
-</span></span><span style="display:flex;"><span>            <span style="color:#ba2121">&#34;vpn_type&#34;</span><span style="color:#666">:</span><span style="color:#ba2121">&#34;ipsec&#34;</span><span style="color:#666">,</span>
-</span></span><span style="display:flex;"><span>            <span style="color:#ba2121">&#34;vpn_route_type&#34;</span><span style="color:#666">:</span><span style="color:#666">1</span>
-</span></span><span style="display:flex;"><span>        <span style="color:#666">},</span>
-</span></span><span style="display:flex;"><span>        <span style="color:#ba2121">&#34;knox&#34;</span><span style="color:#666">:{</span>
-</span></span><span style="display:flex;"><span>             chaining_enabled<span style="color:#666">:</span><span style="color:#666">0</span>
-</span></span><span style="display:flex;"><span>        <span style="color:#666">},</span>
-</span></span><span style="display:flex;"><span>        <span style="color:#ba2121">&#34;vendor&#34;</span><span style="color:#666">:{</span>
-</span></span><span style="display:flex;"><span>        <span style="color:#666">}</span>
-</span></span><span style="display:flex;"><span>    <span style="color:#666">}</span>
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>gm2<span style="color:#666">.</span><span style="color:#7d9029">createVpnProfile</span><span style="color:#666">(</span>String profileInfo<span style="color:#666">);</span>
-</span></span><span style="display:flex;"><span>    <span style="color:#ba2121">&#34;KNOX_VPN_PARAMETERS&#34;</span><span style="color:#666">:{</span>
-</span></span><span style="display:flex;"><span>        <span style="color:#ba2121">&#34;profile_attribute&#34;</span><span style="color:#666">:{</span>
-</span></span><span style="display:flex;"><span>            <span style="color:#ba2121">&#34;profileName&#34;</span><span style="color:#666">:</span><span style="color:#ba2121">&#34;inner&#34;</span><span style="color:#666">,</span>
-</span></span><span style="display:flex;"><span>            <span style="color:#ba2121">&#34;host&#34;</span><span style="color:#666">:</span><span style="color:#ba2121">&#34;66.8.250.86&#34;</span><span style="color:#666">,</span>
-</span></span><span style="display:flex;"><span>            <span style="color:#ba2121">&#34;vpn_type&#34;</span><span style="color:#666">:</span><span style="color:#ba2121">&#34;ipsec&#34;</span><span style="color:#666">,</span>
-</span></span><span style="display:flex;"><span>            <span style="color:#ba2121">&#34;vpn_route_type&#34;</span><span style="color:#666">:</span><span style="color:#666">1</span>
-</span></span><span style="display:flex;"><span>        <span style="color:#666">},</span>
-</span></span><span style="display:flex;"><span>        <span style="color:#ba2121">&#34;knox&#34;</span><span style="color:#666">:{</span>
-</span></span><span style="display:flex;"><span>             chaining_enabled<span style="color:#666">:</span><span style="color:#666">1</span>
-</span></span><span style="display:flex;"><span>        <span style="color:#666">},</span>
-</span></span><span style="display:flex;"><span>        <span style="color:#ba2121">&#34;vendor&#34;</span><span style="color:#666">:{</span>
-</span></span><span style="display:flex;"><span>        <span style="color:#666">}</span>
-</span></span><span style="display:flex;"><span>    <span style="color:#666">}</span>
-</span></span></code></pre></div><h3 id="manage2">Manage Dual-Chain VPN for CL Container-Wide Connections</h3>
+<div class="highlight"><pre tabindex="0" style=";-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-java" data-lang="java"><span style="display:flex;"><span>gm1.<span style="color:#7d9029">createVpnProfile</span>(String<span style="color:#bbb"> </span>profileInfo):<span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb">    </span><span style="color:#ba2121">&#34;KNOX_VPN_PARAMETERS&#34;</span>:{<span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb">        </span><span style="color:#ba2121">&#34;profile_attribute&#34;</span>:{<span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb">            </span><span style="color:#ba2121">&#34;profileName&#34;</span>:<span style="color:#ba2121">&#34;outer&#34;</span>,<span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb">            </span><span style="color:#ba2121">&#34;host&#34;</span>:<span style="color:#ba2121">&#34;66.8.250.85&#34;</span>,<span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb">            </span><span style="color:#ba2121">&#34;vpn_type&#34;</span>:<span style="color:#ba2121">&#34;ipsec&#34;</span>,<span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb">            </span><span style="color:#ba2121">&#34;vpn_route_type&#34;</span>:1<span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb">        </span>},<span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb">        </span><span style="color:#ba2121">&#34;knox&#34;</span>:{<span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb">             </span>chaining_enabled:0<span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb">        </span>},<span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb">        </span><span style="color:#ba2121">&#34;vendor&#34;</span>:{<span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb">        </span>}<span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb">    </span>}<span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span>gm2.<span style="color:#7d9029">createVpnProfile</span>(String<span style="color:#bbb"> </span>profileInfo);<span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb">    </span><span style="color:#ba2121">&#34;KNOX_VPN_PARAMETERS&#34;</span>:{<span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb">        </span><span style="color:#ba2121">&#34;profile_attribute&#34;</span>:{<span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb">            </span><span style="color:#ba2121">&#34;profileName&#34;</span>:<span style="color:#ba2121">&#34;inner&#34;</span>,<span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb">            </span><span style="color:#ba2121">&#34;host&#34;</span>:<span style="color:#ba2121">&#34;66.8.250.86&#34;</span>,<span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb">            </span><span style="color:#ba2121">&#34;vpn_type&#34;</span>:<span style="color:#ba2121">&#34;ipsec&#34;</span>,<span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb">            </span><span style="color:#ba2121">&#34;vpn_route_type&#34;</span>:1<span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb">        </span>},<span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb">        </span><span style="color:#ba2121">&#34;knox&#34;</span>:{<span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb">             </span>chaining_enabled:1<span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb">        </span>},<span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb">        </span><span style="color:#ba2121">&#34;vendor&#34;</span>:{<span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb">        </span>}<span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb">    </span>}<span style="color:#bbb">
+</span></span></span></code></pre></div><h3 id="manage2">Manage Dual-Chain VPN for CL Container-Wide Connections</h3>
 <p>The following instructions explain how to create, start, stop and remove the dual-chain VPN connection.</p>
 <h4 id="create-and-start-a-dual-chain-vpn-connection-3">Create and Start a Dual-Chain VPN Connection</h4>
 <p>The EMM agent must make the following calls to start a VPN connection under the dual-chain configuration described above.</p>
@@ -3494,10 +3494,10 @@ The packageList must only contain the package name of VPN client 2.</li>
 <ol>
 <li>
 <p>The EMM agent has to get the instance of the <code>GenericVpnPolicy</code> object in the KnoxManager class for each client by passing the VPN vendor&rsquo;s package name as parameter.</p>
-<div class="highlight"><pre tabindex="0" style=";-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span>EnterpriseKnoxManager ekm <span style="color:#666">=</span> EnterpriseKnoxManager<span style="color:#666">.</span><span style="color:#7d9029">getInstance</span><span style="color:#666">();</span>
-</span></span><span style="display:flex;"><span>GenericVpnPolicy gm1 <span style="color:#666">=</span> ekm<span style="color:#666">.</span><span style="color:#7d9029">getGenericVpnPolicy</span><span style="color:#666">(</span>$vpn_client_1_packageName<span style="color:#666">,</span>$userId where VPN client <span style="color:#666">1</span> is installed<span style="color:#666">);</span>
-</span></span><span style="display:flex;"><span>GenericVpnPolicy gm2 <span style="color:#666">=</span> ekm<span style="color:#666">.</span><span style="color:#7d9029">getGenericVpnPolicy</span><span style="color:#666">(</span>$vpn_client_2_packageName<span style="color:#666">,</span>$userId where VPN client <span style="color:#666">2</span> is installed<span style="color:#666">);</span> 
-</span></span></code></pre></div><p>Once the above code executes, the framework tries to bind to the VPN vendor&rsquo;s application. When the binding succeeds, the framework sends a broadcast message to the EMM agent.</p>
+<div class="highlight"><pre tabindex="0" style=";-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-java" data-lang="java"><span style="display:flex;"><span>EnterpriseKnoxManager<span style="color:#bbb"> </span>ekm<span style="color:#bbb"> </span><span style="color:#666">=</span><span style="color:#bbb"> </span>EnterpriseKnoxManager.<span style="color:#7d9029">getInstance</span>();<span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span>GenericVpnPolicy<span style="color:#bbb"> </span>gm1<span style="color:#bbb"> </span><span style="color:#666">=</span><span style="color:#bbb"> </span>ekm.<span style="color:#7d9029">getGenericVpnPolicy</span>($vpn_client_1_packageName,$userId<span style="color:#bbb"> </span>where<span style="color:#bbb"> </span>VPN<span style="color:#bbb"> </span>client<span style="color:#bbb"> </span>1<span style="color:#bbb"> </span>is<span style="color:#bbb"> </span>installed);<span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span>GenericVpnPolicy<span style="color:#bbb"> </span>gm2<span style="color:#bbb"> </span><span style="color:#666">=</span><span style="color:#bbb"> </span>ekm.<span style="color:#7d9029">getGenericVpnPolicy</span>($vpn_client_2_packageName,$userId<span style="color:#bbb"> </span>where<span style="color:#bbb"> </span>VPN<span style="color:#bbb"> </span>client<span style="color:#bbb"> </span>2<span style="color:#bbb"> </span>is<span style="color:#bbb"> </span>installed);<span style="color:#bbb"> 
+</span></span></span></code></pre></div><p>Once the above code executes, the framework tries to bind to the VPN vendor&rsquo;s application. When the binding succeeds, the framework sends a broadcast message to the EMM agent.</p>
 </li>
 <li>
 <p>The EMM agent has to listen for the intent action &ldquo;com.samsung.android.mdm.VPN_BIND_RESULT&rdquo; which has the following information:</p>
@@ -3505,54 +3505,54 @@ The packageList must only contain the package name of VPN client 2.</li>
 <li>vpn_bind_vendor provides the VPN vendor&rsquo;s package name</li>
 <li>vpn_bind_status returns true or false, specifying whether the bind to the VPN vendor&rsquo;s application was successful or not.</li>
 </ul>
-<div class="highlight"><pre tabindex="0" style=";-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#008000;font-weight:bold">public</span> <span style="color:#008000;font-weight:bold">class</span> <span style="color:#00f;font-weight:bold">VPNBindReciever</span> <span style="color:#008000;font-weight:bold">extends</span> BroadcastReceiver <span style="color:#666">{</span>
-</span></span><span style="display:flex;"><span>    <span style="color:#008000;font-weight:bold">public</span> <span style="color:#008000;font-weight:bold">static</span> <span style="color:#008000;font-weight:bold">final</span> String ACTION_BIND_RESULT <span style="color:#666">=</span> <span style="color:#ba2121">&#34;com.samsung.android.mdm.VPN_BIND_RESULT&#34;</span><span style="color:#666">;</span>
-</span></span><span style="display:flex;"><span>    <span style="color:#008000;font-weight:bold">public</span> <span style="color:#008000;font-weight:bold">static</span> <span style="color:#008000;font-weight:bold">final</span> String BIND_VENDOR <span style="color:#666">=</span> <span style="color:#ba2121">&#34;vpn_bind_vendor&#34;</span><span style="color:#666">;</span>
-</span></span><span style="display:flex;"><span>    <span style="color:#008000;font-weight:bold">public</span> <span style="color:#008000;font-weight:bold">static</span> <span style="color:#008000;font-weight:bold">final</span> String BIND_STATUS <span style="color:#666">=</span> <span style="color:#ba2121">&#34;vpn_bind_status&#34;</span><span style="color:#666">;</span>
-</span></span><span style="display:flex;"><span>    <span style="color:#008000;font-weight:bold">public</span> <span style="color:#b00040">void</span> <span style="color:#00f">onReceive</span><span style="color:#666">(</span>Context context<span style="color:#666">,</span> Intent intent<span style="color:#666">)</span> <span style="color:#666">{</span>
-</span></span><span style="display:flex;"><span>        <span style="color:#008000;font-weight:bold">if</span> <span style="color:#666">(</span>intent<span style="color:#666">.</span><span style="color:#7d9029">getAction</span><span style="color:#666">().</span><span style="color:#7d9029">equalsIgnoreCase</span><span style="color:#666">(</span>ACTION_BIND_RESULT<span style="color:#666">))</span> <span style="color:#666">{</span>
-</span></span><span style="display:flex;"><span>            String vendorName <span style="color:#666">=</span> intent<span style="color:#666">.</span><span style="color:#7d9029">getExtra</span><span style="color:#666">(</span>BIND_VENDOR<span style="color:#666">);</span>
-</span></span><span style="display:flex;"><span>            <span style="color:#b00040">boolean</span> status <span style="color:#666">=</span> intent<span style="color:#666">.</span><span style="color:#7d9029">getExtra</span><span style="color:#666">(</span>BIND_STATUS<span style="color:#666">);</span>
-</span></span><span style="display:flex;"><span>        <span style="color:#666">}</span>
-</span></span><span style="display:flex;"><span>    <span style="color:#666">}</span>
-</span></span><span style="display:flex;"><span><span style="color:#666">}</span>
-</span></span></code></pre></div></li>
+<div class="highlight"><pre tabindex="0" style=";-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#008000;font-weight:bold">public</span><span style="color:#bbb"> </span><span style="color:#008000;font-weight:bold">class</span> <span style="color:#00f;font-weight:bold">VPNBindReciever</span><span style="color:#bbb"> </span><span style="color:#008000;font-weight:bold">extends</span><span style="color:#bbb"> </span>BroadcastReceiver<span style="color:#bbb"> </span>{<span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb">    </span><span style="color:#008000;font-weight:bold">public</span><span style="color:#bbb"> </span><span style="color:#008000;font-weight:bold">static</span><span style="color:#bbb"> </span><span style="color:#008000;font-weight:bold">final</span><span style="color:#bbb"> </span>String<span style="color:#bbb"> </span>ACTION_BIND_RESULT<span style="color:#bbb"> </span><span style="color:#666">=</span><span style="color:#bbb"> </span><span style="color:#ba2121">&#34;com.samsung.android.mdm.VPN_BIND_RESULT&#34;</span>;<span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb">    </span><span style="color:#008000;font-weight:bold">public</span><span style="color:#bbb"> </span><span style="color:#008000;font-weight:bold">static</span><span style="color:#bbb"> </span><span style="color:#008000;font-weight:bold">final</span><span style="color:#bbb"> </span>String<span style="color:#bbb"> </span>BIND_VENDOR<span style="color:#bbb"> </span><span style="color:#666">=</span><span style="color:#bbb"> </span><span style="color:#ba2121">&#34;vpn_bind_vendor&#34;</span>;<span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb">    </span><span style="color:#008000;font-weight:bold">public</span><span style="color:#bbb"> </span><span style="color:#008000;font-weight:bold">static</span><span style="color:#bbb"> </span><span style="color:#008000;font-weight:bold">final</span><span style="color:#bbb"> </span>String<span style="color:#bbb"> </span>BIND_STATUS<span style="color:#bbb"> </span><span style="color:#666">=</span><span style="color:#bbb"> </span><span style="color:#ba2121">&#34;vpn_bind_status&#34;</span>;<span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb">    </span><span style="color:#008000;font-weight:bold">public</span><span style="color:#bbb"> </span><span style="color:#b00040">void</span><span style="color:#bbb"> </span><span style="color:#00f">onReceive</span>(Context<span style="color:#bbb"> </span>context,<span style="color:#bbb"> </span>Intent<span style="color:#bbb"> </span>intent)<span style="color:#bbb"> </span>{<span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb">        </span><span style="color:#008000;font-weight:bold">if</span><span style="color:#bbb"> </span>(intent.<span style="color:#7d9029">getAction</span>().<span style="color:#7d9029">equalsIgnoreCase</span>(ACTION_BIND_RESULT))<span style="color:#bbb"> </span>{<span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb">            </span>String<span style="color:#bbb"> </span>vendorName<span style="color:#bbb"> </span><span style="color:#666">=</span><span style="color:#bbb"> </span>intent.<span style="color:#7d9029">getExtra</span>(BIND_VENDOR);<span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb">            </span><span style="color:#b00040">boolean</span><span style="color:#bbb"> </span>status<span style="color:#bbb"> </span><span style="color:#666">=</span><span style="color:#bbb"> </span>intent.<span style="color:#7d9029">getExtra</span>(BIND_STATUS);<span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb">        </span>}<span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb">    </span>}<span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span>}<span style="color:#bbb">
+</span></span></span></code></pre></div></li>
 <li>
 <p>Once the received value of vpn_bind_status is true for VPN client 1, calls to GenericVpnPolicy object must reference GenericVpnPolicyObject(gm1). The same is true when vpn_bin_status is true for VPN client 2 GenericVpnPolicyObject(gm2).</p>
 </li>
 </ol>
 <h3 id="the">The Dual-Chain VPN Profile for a BYOD, Per-App Configuration</h3>
 <p>The instructions for using this dual-chain VPN configuration is based on the following device profile:</p>
-<div class="highlight"><pre tabindex="0" style=";-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span>gm1<span style="color:#666">.</span><span style="color:#7d9029">createVpnProfile</span><span style="color:#666">(</span>String profileInfo<span style="color:#666">):</span>
-</span></span><span style="display:flex;"><span>    <span style="color:#ba2121">&#34;KNOX_VPN_PARAMETERS&#34;</span><span style="color:#666">:{</span>
-</span></span><span style="display:flex;"><span>        <span style="color:#ba2121">&#34;profile_attribute&#34;</span><span style="color:#666">:{</span>
-</span></span><span style="display:flex;"><span>            <span style="color:#ba2121">&#34;profileName&#34;</span><span style="color:#666">:</span><span style="color:#ba2121">&#34;outer&#34;</span><span style="color:#666">,</span>
-</span></span><span style="display:flex;"><span>            <span style="color:#ba2121">&#34;host&#34;</span><span style="color:#666">:</span><span style="color:#ba2121">&#34;66.8.250.85&#34;</span><span style="color:#666">,</span>
-</span></span><span style="display:flex;"><span>            <span style="color:#ba2121">&#34;vpn_type&#34;</span><span style="color:#666">:</span><span style="color:#ba2121">&#34;ipsec&#34;</span><span style="color:#666">,</span>
-</span></span><span style="display:flex;"><span>            <span style="color:#ba2121">&#34;vpn_route_type&#34;</span><span style="color:#666">:</span><span style="color:#666">1</span>
-</span></span><span style="display:flex;"><span>        <span style="color:#666">},</span>
-</span></span><span style="display:flex;"><span>        <span style="color:#ba2121">&#34;knox&#34;</span><span style="color:#666">:{</span>
-</span></span><span style="display:flex;"><span>             chaining_enabled<span style="color:#666">:</span><span style="color:#666">0</span>
-</span></span><span style="display:flex;"><span>        <span style="color:#666">},</span>
-</span></span><span style="display:flex;"><span>        <span style="color:#ba2121">&#34;vendor&#34;</span><span style="color:#666">:{</span>
-</span></span><span style="display:flex;"><span>        <span style="color:#666">}</span>
-</span></span><span style="display:flex;"><span>    <span style="color:#666">}</span>
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>gm2<span style="color:#666">.</span><span style="color:#7d9029">createVpnProfile</span><span style="color:#666">(</span>String profileInfo<span style="color:#666">);</span>
-</span></span><span style="display:flex;"><span>    <span style="color:#ba2121">&#34;KNOX_VPN_PARAMETERS&#34;</span><span style="color:#666">:{</span>
-</span></span><span style="display:flex;"><span>        <span style="color:#ba2121">&#34;profile_attribute&#34;</span><span style="color:#666">:{</span>
-</span></span><span style="display:flex;"><span>            <span style="color:#ba2121">&#34;profileName&#34;</span><span style="color:#666">:</span><span style="color:#ba2121">&#34;inner&#34;</span><span style="color:#666">,</span>
-</span></span><span style="display:flex;"><span>            <span style="color:#ba2121">&#34;host&#34;</span><span style="color:#666">:</span><span style="color:#ba2121">&#34;66.8.250.86&#34;</span><span style="color:#666">,</span>
-</span></span><span style="display:flex;"><span>            <span style="color:#ba2121">&#34;vpn_type&#34;</span><span style="color:#666">:</span><span style="color:#ba2121">&#34;ipsec&#34;</span><span style="color:#666">,</span>
-</span></span><span style="display:flex;"><span>            <span style="color:#ba2121">&#34;vpn_route_type&#34;</span><span style="color:#666">:</span><span style="color:#666">1</span>
-</span></span><span style="display:flex;"><span>        <span style="color:#666">},</span>
-</span></span><span style="display:flex;"><span>        <span style="color:#ba2121">&#34;knox&#34;</span><span style="color:#666">:{</span>
-</span></span><span style="display:flex;"><span>             chaining_enabled<span style="color:#666">:</span><span style="color:#666">1</span>
-</span></span><span style="display:flex;"><span>        <span style="color:#666">},</span>
-</span></span><span style="display:flex;"><span>        <span style="color:#ba2121">&#34;vendor&#34;</span><span style="color:#666">:{</span>
-</span></span><span style="display:flex;"><span>        <span style="color:#666">}</span>
-</span></span><span style="display:flex;"><span>    <span style="color:#666">}</span>
-</span></span></code></pre></div><h3 id="manage2">Manage Dual-Chain VPN for BYOD, Per-App Connections</h3>
+<div class="highlight"><pre tabindex="0" style=";-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-java" data-lang="java"><span style="display:flex;"><span>gm1.<span style="color:#7d9029">createVpnProfile</span>(String<span style="color:#bbb"> </span>profileInfo):<span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb">    </span><span style="color:#ba2121">&#34;KNOX_VPN_PARAMETERS&#34;</span>:{<span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb">        </span><span style="color:#ba2121">&#34;profile_attribute&#34;</span>:{<span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb">            </span><span style="color:#ba2121">&#34;profileName&#34;</span>:<span style="color:#ba2121">&#34;outer&#34;</span>,<span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb">            </span><span style="color:#ba2121">&#34;host&#34;</span>:<span style="color:#ba2121">&#34;66.8.250.85&#34;</span>,<span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb">            </span><span style="color:#ba2121">&#34;vpn_type&#34;</span>:<span style="color:#ba2121">&#34;ipsec&#34;</span>,<span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb">            </span><span style="color:#ba2121">&#34;vpn_route_type&#34;</span>:1<span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb">        </span>},<span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb">        </span><span style="color:#ba2121">&#34;knox&#34;</span>:{<span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb">             </span>chaining_enabled:0<span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb">        </span>},<span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb">        </span><span style="color:#ba2121">&#34;vendor&#34;</span>:{<span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb">        </span>}<span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb">    </span>}<span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span>gm2.<span style="color:#7d9029">createVpnProfile</span>(String<span style="color:#bbb"> </span>profileInfo);<span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb">    </span><span style="color:#ba2121">&#34;KNOX_VPN_PARAMETERS&#34;</span>:{<span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb">        </span><span style="color:#ba2121">&#34;profile_attribute&#34;</span>:{<span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb">            </span><span style="color:#ba2121">&#34;profileName&#34;</span>:<span style="color:#ba2121">&#34;inner&#34;</span>,<span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb">            </span><span style="color:#ba2121">&#34;host&#34;</span>:<span style="color:#ba2121">&#34;66.8.250.86&#34;</span>,<span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb">            </span><span style="color:#ba2121">&#34;vpn_type&#34;</span>:<span style="color:#ba2121">&#34;ipsec&#34;</span>,<span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb">            </span><span style="color:#ba2121">&#34;vpn_route_type&#34;</span>:1<span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb">        </span>},<span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb">        </span><span style="color:#ba2121">&#34;knox&#34;</span>:{<span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb">             </span>chaining_enabled:1<span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb">        </span>},<span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb">        </span><span style="color:#ba2121">&#34;vendor&#34;</span>:{<span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb">        </span>}<span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb">    </span>}<span style="color:#bbb">
+</span></span></span></code></pre></div><h3 id="manage2">Manage Dual-Chain VPN for BYOD, Per-App Connections</h3>
 <p>The following instructions explain how to create, start, stop and remove the dual-chain VPN connection.</p>
 <h4 id="create-and-start-a-dual-chain-vpn-connection-4">Create and Start a Dual-Chain VPN Connection</h4>
 <p>The EMM agent must make the following calls to start a VPN connection under the dual-chain configuration described above.</p>
@@ -3592,10 +3592,10 @@ The packageList must only contain the package name of VPN client 2.</li>
 <ol>
 <li>
 <p>The EMM agent has to get the instance of the <code>GenericVpnPolicy</code> object in the KnoxManager class for each client by passing the VPN vendor&rsquo;s package name as parameter.</p>
-<div class="highlight"><pre tabindex="0" style=";-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span>EnterpriseKnoxManager ekm <span style="color:#666">=</span> EnterpriseKnoxManager<span style="color:#666">.</span><span style="color:#7d9029">getInstance</span><span style="color:#666">();</span>
-</span></span><span style="display:flex;"><span>GenericVpnPolicy gm1 <span style="color:#666">=</span> ekm<span style="color:#666">.</span><span style="color:#7d9029">getGenericVpnPolicy</span><span style="color:#666">(</span>$vpn_client_1_packageName<span style="color:#666">,</span>$userId where VPN client <span style="color:#666">1</span> is installed<span style="color:#666">);</span>
-</span></span><span style="display:flex;"><span>GenericVpnPolicy gm2 <span style="color:#666">=</span> ekm<span style="color:#666">.</span><span style="color:#7d9029">getGenericVpnPolicy</span><span style="color:#666">(</span>$vpn_client_2_packageName<span style="color:#666">,</span>$userId where VPN client <span style="color:#666">2</span> is installed<span style="color:#666">);</span> 
-</span></span></code></pre></div><p>Once the above code executes, the framework tries to bind to the VPN vendor&rsquo;s application. When the binding succeeds, the framework sends a broadcast message to the EMM agent.</p>
+<div class="highlight"><pre tabindex="0" style=";-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-java" data-lang="java"><span style="display:flex;"><span>EnterpriseKnoxManager<span style="color:#bbb"> </span>ekm<span style="color:#bbb"> </span><span style="color:#666">=</span><span style="color:#bbb"> </span>EnterpriseKnoxManager.<span style="color:#7d9029">getInstance</span>();<span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span>GenericVpnPolicy<span style="color:#bbb"> </span>gm1<span style="color:#bbb"> </span><span style="color:#666">=</span><span style="color:#bbb"> </span>ekm.<span style="color:#7d9029">getGenericVpnPolicy</span>($vpn_client_1_packageName,$userId<span style="color:#bbb"> </span>where<span style="color:#bbb"> </span>VPN<span style="color:#bbb"> </span>client<span style="color:#bbb"> </span>1<span style="color:#bbb"> </span>is<span style="color:#bbb"> </span>installed);<span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span>GenericVpnPolicy<span style="color:#bbb"> </span>gm2<span style="color:#bbb"> </span><span style="color:#666">=</span><span style="color:#bbb"> </span>ekm.<span style="color:#7d9029">getGenericVpnPolicy</span>($vpn_client_2_packageName,$userId<span style="color:#bbb"> </span>where<span style="color:#bbb"> </span>VPN<span style="color:#bbb"> </span>client<span style="color:#bbb"> </span>2<span style="color:#bbb"> </span>is<span style="color:#bbb"> </span>installed);<span style="color:#bbb"> 
+</span></span></span></code></pre></div><p>Once the above code executes, the framework tries to bind to the VPN vendor&rsquo;s application. When the binding succeeds, the framework sends a broadcast message to the EMM agent.</p>
 </li>
 <li>
 <p>The EMM agent has to listen for the intent action &ldquo;com.samsung.android.mdm.VPN_BIND_RESULT&rdquo; which has the following information:</p>
@@ -3603,54 +3603,54 @@ The packageList must only contain the package name of VPN client 2.</li>
 <li>vpn_bind_vendor provides the VPN vendor&rsquo;s package name</li>
 <li>vpn_bind_status returns true or false, specifying whether the bind to the VPN vendor&rsquo;s application was successful or not.</li>
 </ul>
-<div class="highlight"><pre tabindex="0" style=";-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#008000;font-weight:bold">public</span> <span style="color:#008000;font-weight:bold">class</span> <span style="color:#00f;font-weight:bold">VPNBindReciever</span> <span style="color:#008000;font-weight:bold">extends</span> BroadcastReceiver <span style="color:#666">{</span>
-</span></span><span style="display:flex;"><span>    <span style="color:#008000;font-weight:bold">public</span> <span style="color:#008000;font-weight:bold">static</span> <span style="color:#008000;font-weight:bold">final</span> String ACTION_BIND_RESULT <span style="color:#666">=</span> <span style="color:#ba2121">&#34;com.samsung.android.mdm.VPN_BIND_RESULT&#34;</span><span style="color:#666">;</span>
-</span></span><span style="display:flex;"><span>    <span style="color:#008000;font-weight:bold">public</span> <span style="color:#008000;font-weight:bold">static</span> <span style="color:#008000;font-weight:bold">final</span> String BIND_VENDOR <span style="color:#666">=</span> <span style="color:#ba2121">&#34;vpn_bind_vendor&#34;</span><span style="color:#666">;</span>
-</span></span><span style="display:flex;"><span>    <span style="color:#008000;font-weight:bold">public</span> <span style="color:#008000;font-weight:bold">static</span> <span style="color:#008000;font-weight:bold">final</span> String BIND_STATUS <span style="color:#666">=</span> <span style="color:#ba2121">&#34;vpn_bind_status&#34;</span><span style="color:#666">;</span>
-</span></span><span style="display:flex;"><span>    <span style="color:#008000;font-weight:bold">public</span> <span style="color:#b00040">void</span> <span style="color:#00f">onReceive</span><span style="color:#666">(</span>Context context<span style="color:#666">,</span> Intent intent<span style="color:#666">)</span> <span style="color:#666">{</span>
-</span></span><span style="display:flex;"><span>        <span style="color:#008000;font-weight:bold">if</span> <span style="color:#666">(</span>intent<span style="color:#666">.</span><span style="color:#7d9029">getAction</span><span style="color:#666">().</span><span style="color:#7d9029">equalsIgnoreCase</span><span style="color:#666">(</span>ACTION_BIND_RESULT<span style="color:#666">))</span> <span style="color:#666">{</span>
-</span></span><span style="display:flex;"><span>            String vendorName <span style="color:#666">=</span> intent<span style="color:#666">.</span><span style="color:#7d9029">getExtra</span><span style="color:#666">(</span>BIND_VENDOR<span style="color:#666">);</span>
-</span></span><span style="display:flex;"><span>            <span style="color:#b00040">boolean</span> status <span style="color:#666">=</span> intent<span style="color:#666">.</span><span style="color:#7d9029">getExtra</span><span style="color:#666">(</span>BIND_STATUS<span style="color:#666">);</span>
-</span></span><span style="display:flex;"><span>        <span style="color:#666">}</span>
-</span></span><span style="display:flex;"><span>    <span style="color:#666">}</span>
-</span></span><span style="display:flex;"><span><span style="color:#666">}</span>
-</span></span></code></pre></div></li>
+<div class="highlight"><pre tabindex="0" style=";-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#008000;font-weight:bold">public</span><span style="color:#bbb"> </span><span style="color:#008000;font-weight:bold">class</span> <span style="color:#00f;font-weight:bold">VPNBindReciever</span><span style="color:#bbb"> </span><span style="color:#008000;font-weight:bold">extends</span><span style="color:#bbb"> </span>BroadcastReceiver<span style="color:#bbb"> </span>{<span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb">    </span><span style="color:#008000;font-weight:bold">public</span><span style="color:#bbb"> </span><span style="color:#008000;font-weight:bold">static</span><span style="color:#bbb"> </span><span style="color:#008000;font-weight:bold">final</span><span style="color:#bbb"> </span>String<span style="color:#bbb"> </span>ACTION_BIND_RESULT<span style="color:#bbb"> </span><span style="color:#666">=</span><span style="color:#bbb"> </span><span style="color:#ba2121">&#34;com.samsung.android.mdm.VPN_BIND_RESULT&#34;</span>;<span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb">    </span><span style="color:#008000;font-weight:bold">public</span><span style="color:#bbb"> </span><span style="color:#008000;font-weight:bold">static</span><span style="color:#bbb"> </span><span style="color:#008000;font-weight:bold">final</span><span style="color:#bbb"> </span>String<span style="color:#bbb"> </span>BIND_VENDOR<span style="color:#bbb"> </span><span style="color:#666">=</span><span style="color:#bbb"> </span><span style="color:#ba2121">&#34;vpn_bind_vendor&#34;</span>;<span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb">    </span><span style="color:#008000;font-weight:bold">public</span><span style="color:#bbb"> </span><span style="color:#008000;font-weight:bold">static</span><span style="color:#bbb"> </span><span style="color:#008000;font-weight:bold">final</span><span style="color:#bbb"> </span>String<span style="color:#bbb"> </span>BIND_STATUS<span style="color:#bbb"> </span><span style="color:#666">=</span><span style="color:#bbb"> </span><span style="color:#ba2121">&#34;vpn_bind_status&#34;</span>;<span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb">    </span><span style="color:#008000;font-weight:bold">public</span><span style="color:#bbb"> </span><span style="color:#b00040">void</span><span style="color:#bbb"> </span><span style="color:#00f">onReceive</span>(Context<span style="color:#bbb"> </span>context,<span style="color:#bbb"> </span>Intent<span style="color:#bbb"> </span>intent)<span style="color:#bbb"> </span>{<span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb">        </span><span style="color:#008000;font-weight:bold">if</span><span style="color:#bbb"> </span>(intent.<span style="color:#7d9029">getAction</span>().<span style="color:#7d9029">equalsIgnoreCase</span>(ACTION_BIND_RESULT))<span style="color:#bbb"> </span>{<span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb">            </span>String<span style="color:#bbb"> </span>vendorName<span style="color:#bbb"> </span><span style="color:#666">=</span><span style="color:#bbb"> </span>intent.<span style="color:#7d9029">getExtra</span>(BIND_VENDOR);<span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb">            </span><span style="color:#b00040">boolean</span><span style="color:#bbb"> </span>status<span style="color:#bbb"> </span><span style="color:#666">=</span><span style="color:#bbb"> </span>intent.<span style="color:#7d9029">getExtra</span>(BIND_STATUS);<span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb">        </span>}<span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb">    </span>}<span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span>}<span style="color:#bbb">
+</span></span></span></code></pre></div></li>
 <li>
 <p>Once the received value of vpn_bind_status is true for VPN client 1, calls to GenericVpnPolicy object must reference GenericVpnPolicyObject(gm1). The same is true when vpn_bin_status is true for VPN client 2 GenericVpnPolicyObject(gm2).</p>
 </li>
 </ol>
 <h3 id="the">The Dual-Chain VPN Profile for a BYOD User-Wide Configuration</h3>
 <p>The instructions for using this dual-chain VPN configuration is based on the following device profile:</p>
-<div class="highlight"><pre tabindex="0" style=";-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span>gm1<span style="color:#666">.</span><span style="color:#7d9029">createVpnProfile</span><span style="color:#666">(</span>String profileInfo<span style="color:#666">):</span>
-</span></span><span style="display:flex;"><span>    <span style="color:#ba2121">&#34;KNOX_VPN_PARAMETERS&#34;</span><span style="color:#666">:{</span>
-</span></span><span style="display:flex;"><span>        <span style="color:#ba2121">&#34;profile_attribute&#34;</span><span style="color:#666">:{</span>
-</span></span><span style="display:flex;"><span>            <span style="color:#ba2121">&#34;profileName&#34;</span><span style="color:#666">:</span><span style="color:#ba2121">&#34;outer&#34;</span><span style="color:#666">,</span>
-</span></span><span style="display:flex;"><span>            <span style="color:#ba2121">&#34;host&#34;</span><span style="color:#666">:</span><span style="color:#ba2121">&#34;66.8.250.85&#34;</span><span style="color:#666">,</span>
-</span></span><span style="display:flex;"><span>            <span style="color:#ba2121">&#34;vpn_type&#34;</span><span style="color:#666">:</span><span style="color:#ba2121">&#34;ipsec&#34;</span><span style="color:#666">,</span>
-</span></span><span style="display:flex;"><span>            <span style="color:#ba2121">&#34;vpn_route_type&#34;</span><span style="color:#666">:</span><span style="color:#666">1</span>
-</span></span><span style="display:flex;"><span>        <span style="color:#666">},</span>
-</span></span><span style="display:flex;"><span>        <span style="color:#ba2121">&#34;knox&#34;</span><span style="color:#666">:{</span>
-</span></span><span style="display:flex;"><span>             chaining_enabled<span style="color:#666">:</span><span style="color:#666">0</span>
-</span></span><span style="display:flex;"><span>        <span style="color:#666">},</span>
-</span></span><span style="display:flex;"><span>        <span style="color:#ba2121">&#34;vendor&#34;</span><span style="color:#666">:{</span>
-</span></span><span style="display:flex;"><span>        <span style="color:#666">}</span>
-</span></span><span style="display:flex;"><span>    <span style="color:#666">}</span>
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>gm2<span style="color:#666">.</span><span style="color:#7d9029">createVpnProfile</span><span style="color:#666">(</span>String profileInfo<span style="color:#666">);</span>
-</span></span><span style="display:flex;"><span>    <span style="color:#ba2121">&#34;KNOX_VPN_PARAMETERS&#34;</span><span style="color:#666">:{</span>
-</span></span><span style="display:flex;"><span>        <span style="color:#ba2121">&#34;profile_attribute&#34;</span><span style="color:#666">:{</span>
-</span></span><span style="display:flex;"><span>            <span style="color:#ba2121">&#34;profileName&#34;</span><span style="color:#666">:</span><span style="color:#ba2121">&#34;inner&#34;</span><span style="color:#666">,</span>
-</span></span><span style="display:flex;"><span>            <span style="color:#ba2121">&#34;host&#34;</span><span style="color:#666">:</span><span style="color:#ba2121">&#34;66.8.250.86&#34;</span><span style="color:#666">,</span>
-</span></span><span style="display:flex;"><span>            <span style="color:#ba2121">&#34;vpn_type&#34;</span><span style="color:#666">:</span><span style="color:#ba2121">&#34;ipsec&#34;</span><span style="color:#666">,</span>
-</span></span><span style="display:flex;"><span>            <span style="color:#ba2121">&#34;vpn_route_type&#34;</span><span style="color:#666">:</span><span style="color:#666">1</span>
-</span></span><span style="display:flex;"><span>        <span style="color:#666">},</span>
-</span></span><span style="display:flex;"><span>        <span style="color:#ba2121">&#34;knox&#34;</span><span style="color:#666">:{</span>
-</span></span><span style="display:flex;"><span>             chaining_enabled<span style="color:#666">:</span><span style="color:#666">1</span>
-</span></span><span style="display:flex;"><span>        <span style="color:#666">},</span>
-</span></span><span style="display:flex;"><span>        <span style="color:#ba2121">&#34;vendor&#34;</span><span style="color:#666">:{</span>
-</span></span><span style="display:flex;"><span>        <span style="color:#666">}</span>
-</span></span><span style="display:flex;"><span>    <span style="color:#666">}</span>
-</span></span></code></pre></div><h3 id="manage2">Manage Dual-Chain VPN for BYOD User-Wide Connections</h3>
+<div class="highlight"><pre tabindex="0" style=";-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-java" data-lang="java"><span style="display:flex;"><span>gm1.<span style="color:#7d9029">createVpnProfile</span>(String<span style="color:#bbb"> </span>profileInfo):<span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb">    </span><span style="color:#ba2121">&#34;KNOX_VPN_PARAMETERS&#34;</span>:{<span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb">        </span><span style="color:#ba2121">&#34;profile_attribute&#34;</span>:{<span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb">            </span><span style="color:#ba2121">&#34;profileName&#34;</span>:<span style="color:#ba2121">&#34;outer&#34;</span>,<span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb">            </span><span style="color:#ba2121">&#34;host&#34;</span>:<span style="color:#ba2121">&#34;66.8.250.85&#34;</span>,<span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb">            </span><span style="color:#ba2121">&#34;vpn_type&#34;</span>:<span style="color:#ba2121">&#34;ipsec&#34;</span>,<span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb">            </span><span style="color:#ba2121">&#34;vpn_route_type&#34;</span>:1<span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb">        </span>},<span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb">        </span><span style="color:#ba2121">&#34;knox&#34;</span>:{<span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb">             </span>chaining_enabled:0<span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb">        </span>},<span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb">        </span><span style="color:#ba2121">&#34;vendor&#34;</span>:{<span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb">        </span>}<span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb">    </span>}<span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span>gm2.<span style="color:#7d9029">createVpnProfile</span>(String<span style="color:#bbb"> </span>profileInfo);<span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb">    </span><span style="color:#ba2121">&#34;KNOX_VPN_PARAMETERS&#34;</span>:{<span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb">        </span><span style="color:#ba2121">&#34;profile_attribute&#34;</span>:{<span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb">            </span><span style="color:#ba2121">&#34;profileName&#34;</span>:<span style="color:#ba2121">&#34;inner&#34;</span>,<span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb">            </span><span style="color:#ba2121">&#34;host&#34;</span>:<span style="color:#ba2121">&#34;66.8.250.86&#34;</span>,<span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb">            </span><span style="color:#ba2121">&#34;vpn_type&#34;</span>:<span style="color:#ba2121">&#34;ipsec&#34;</span>,<span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb">            </span><span style="color:#ba2121">&#34;vpn_route_type&#34;</span>:1<span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb">        </span>},<span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb">        </span><span style="color:#ba2121">&#34;knox&#34;</span>:{<span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb">             </span>chaining_enabled:1<span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb">        </span>},<span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb">        </span><span style="color:#ba2121">&#34;vendor&#34;</span>:{<span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb">        </span>}<span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb">    </span>}<span style="color:#bbb">
+</span></span></span></code></pre></div><h3 id="manage2">Manage Dual-Chain VPN for BYOD User-Wide Connections</h3>
 <p>The following instructions explain how to create, start, stop and remove the dual-chain VPN connection.</p>
 <h4 id="create-and-start-a-dual-chain-vpn-connection-5">Create and Start a Dual-Chain VPN Connection</h4>
 <p>The EMM agent must make the following calls to start a VPN connection under the dual-chain configuration described above.</p>
@@ -3690,10 +3690,10 @@ The packageList must only contain the package name of VPN client 2.</li>
 <ol>
 <li>
 <p>The EMM agent has to get the instance of the <code>GenericVpnPolicy</code> object in the KnoxManager class for each client by passing the VPN vendor&rsquo;s package name as parameter.</p>
-<div class="highlight"><pre tabindex="0" style=";-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span>EnterpriseKnoxManager ekm <span style="color:#666">=</span> EnterpriseKnoxManager<span style="color:#666">.</span><span style="color:#7d9029">getInstance</span><span style="color:#666">();</span>
-</span></span><span style="display:flex;"><span>GenericVpnPolicy gm1 <span style="color:#666">=</span> ekm<span style="color:#666">.</span><span style="color:#7d9029">getGenericVpnPolicy</span><span style="color:#666">(</span>$vpn_client_1_packageName<span style="color:#666">,</span>$userId where VPN client <span style="color:#666">1</span> is installed<span style="color:#666">);</span>
-</span></span><span style="display:flex;"><span>GenericVpnPolicy gm2 <span style="color:#666">=</span> ekm<span style="color:#666">.</span><span style="color:#7d9029">getGenericVpnPolicy</span><span style="color:#666">(</span>$vpn_client_2_packageName<span style="color:#666">,</span>$userId where VPN client <span style="color:#666">2</span> is installed<span style="color:#666">);</span> 
-</span></span></code></pre></div><p>Once the above code executes, the framework tries to bind to the VPN vendor&rsquo;s application. When the binding succeeds, the framework sends a broadcast message to the EMM agent.</p>
+<div class="highlight"><pre tabindex="0" style=";-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-java" data-lang="java"><span style="display:flex;"><span>EnterpriseKnoxManager<span style="color:#bbb"> </span>ekm<span style="color:#bbb"> </span><span style="color:#666">=</span><span style="color:#bbb"> </span>EnterpriseKnoxManager.<span style="color:#7d9029">getInstance</span>();<span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span>GenericVpnPolicy<span style="color:#bbb"> </span>gm1<span style="color:#bbb"> </span><span style="color:#666">=</span><span style="color:#bbb"> </span>ekm.<span style="color:#7d9029">getGenericVpnPolicy</span>($vpn_client_1_packageName,$userId<span style="color:#bbb"> </span>where<span style="color:#bbb"> </span>VPN<span style="color:#bbb"> </span>client<span style="color:#bbb"> </span>1<span style="color:#bbb"> </span>is<span style="color:#bbb"> </span>installed);<span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span>GenericVpnPolicy<span style="color:#bbb"> </span>gm2<span style="color:#bbb"> </span><span style="color:#666">=</span><span style="color:#bbb"> </span>ekm.<span style="color:#7d9029">getGenericVpnPolicy</span>($vpn_client_2_packageName,$userId<span style="color:#bbb"> </span>where<span style="color:#bbb"> </span>VPN<span style="color:#bbb"> </span>client<span style="color:#bbb"> </span>2<span style="color:#bbb"> </span>is<span style="color:#bbb"> </span>installed);<span style="color:#bbb"> 
+</span></span></span></code></pre></div><p>Once the above code executes, the framework tries to bind to the VPN vendor&rsquo;s application. When the binding succeeds, the framework sends a broadcast message to the EMM agent.</p>
 </li>
 <li>
 <p>The EMM agent has to listen for the intent action &ldquo;com.samsung.android.mdm.VPN_BIND_RESULT&rdquo; which has the following information:</p>
@@ -3701,54 +3701,54 @@ The packageList must only contain the package name of VPN client 2.</li>
 <li>vpn_bind_vendor provides the VPN vendor&rsquo;s package name</li>
 <li>vpn_bind_status returns true or false, specifying whether the bind to the VPN vendor&rsquo;s application was successful or not.</li>
 </ul>
-<div class="highlight"><pre tabindex="0" style=";-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#008000;font-weight:bold">public</span> <span style="color:#008000;font-weight:bold">class</span> <span style="color:#00f;font-weight:bold">VPNBindReciever</span> <span style="color:#008000;font-weight:bold">extends</span> BroadcastReceiver <span style="color:#666">{</span>
-</span></span><span style="display:flex;"><span>    <span style="color:#008000;font-weight:bold">public</span> <span style="color:#008000;font-weight:bold">static</span> <span style="color:#008000;font-weight:bold">final</span> String ACTION_BIND_RESULT <span style="color:#666">=</span> <span style="color:#ba2121">&#34;com.samsung.android.mdm.VPN_BIND_RESULT&#34;</span><span style="color:#666">;</span>
-</span></span><span style="display:flex;"><span>    <span style="color:#008000;font-weight:bold">public</span> <span style="color:#008000;font-weight:bold">static</span> <span style="color:#008000;font-weight:bold">final</span> String BIND_VENDOR <span style="color:#666">=</span> <span style="color:#ba2121">&#34;vpn_bind_vendor&#34;</span><span style="color:#666">;</span>
-</span></span><span style="display:flex;"><span>    <span style="color:#008000;font-weight:bold">public</span> <span style="color:#008000;font-weight:bold">static</span> <span style="color:#008000;font-weight:bold">final</span> String BIND_STATUS <span style="color:#666">=</span> <span style="color:#ba2121">&#34;vpn_bind_status&#34;</span><span style="color:#666">;</span>
-</span></span><span style="display:flex;"><span>    <span style="color:#008000;font-weight:bold">public</span> <span style="color:#b00040">void</span> <span style="color:#00f">onReceive</span><span style="color:#666">(</span>Context context<span style="color:#666">,</span> Intent intent<span style="color:#666">)</span> <span style="color:#666">{</span>
-</span></span><span style="display:flex;"><span>        <span style="color:#008000;font-weight:bold">if</span> <span style="color:#666">(</span>intent<span style="color:#666">.</span><span style="color:#7d9029">getAction</span><span style="color:#666">().</span><span style="color:#7d9029">equalsIgnoreCase</span><span style="color:#666">(</span>ACTION_BIND_RESULT<span style="color:#666">))</span> <span style="color:#666">{</span>
-</span></span><span style="display:flex;"><span>            String vendorName <span style="color:#666">=</span> intent<span style="color:#666">.</span><span style="color:#7d9029">getExtra</span><span style="color:#666">(</span>BIND_VENDOR<span style="color:#666">);</span>
-</span></span><span style="display:flex;"><span>            <span style="color:#b00040">boolean</span> status <span style="color:#666">=</span> intent<span style="color:#666">.</span><span style="color:#7d9029">getExtra</span><span style="color:#666">(</span>BIND_STATUS<span style="color:#666">);</span>
-</span></span><span style="display:flex;"><span>        <span style="color:#666">}</span>
-</span></span><span style="display:flex;"><span>    <span style="color:#666">}</span>
-</span></span><span style="display:flex;"><span><span style="color:#666">}</span>
-</span></span></code></pre></div></li>
+<div class="highlight"><pre tabindex="0" style=";-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#008000;font-weight:bold">public</span><span style="color:#bbb"> </span><span style="color:#008000;font-weight:bold">class</span> <span style="color:#00f;font-weight:bold">VPNBindReciever</span><span style="color:#bbb"> </span><span style="color:#008000;font-weight:bold">extends</span><span style="color:#bbb"> </span>BroadcastReceiver<span style="color:#bbb"> </span>{<span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb">    </span><span style="color:#008000;font-weight:bold">public</span><span style="color:#bbb"> </span><span style="color:#008000;font-weight:bold">static</span><span style="color:#bbb"> </span><span style="color:#008000;font-weight:bold">final</span><span style="color:#bbb"> </span>String<span style="color:#bbb"> </span>ACTION_BIND_RESULT<span style="color:#bbb"> </span><span style="color:#666">=</span><span style="color:#bbb"> </span><span style="color:#ba2121">&#34;com.samsung.android.mdm.VPN_BIND_RESULT&#34;</span>;<span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb">    </span><span style="color:#008000;font-weight:bold">public</span><span style="color:#bbb"> </span><span style="color:#008000;font-weight:bold">static</span><span style="color:#bbb"> </span><span style="color:#008000;font-weight:bold">final</span><span style="color:#bbb"> </span>String<span style="color:#bbb"> </span>BIND_VENDOR<span style="color:#bbb"> </span><span style="color:#666">=</span><span style="color:#bbb"> </span><span style="color:#ba2121">&#34;vpn_bind_vendor&#34;</span>;<span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb">    </span><span style="color:#008000;font-weight:bold">public</span><span style="color:#bbb"> </span><span style="color:#008000;font-weight:bold">static</span><span style="color:#bbb"> </span><span style="color:#008000;font-weight:bold">final</span><span style="color:#bbb"> </span>String<span style="color:#bbb"> </span>BIND_STATUS<span style="color:#bbb"> </span><span style="color:#666">=</span><span style="color:#bbb"> </span><span style="color:#ba2121">&#34;vpn_bind_status&#34;</span>;<span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb">    </span><span style="color:#008000;font-weight:bold">public</span><span style="color:#bbb"> </span><span style="color:#b00040">void</span><span style="color:#bbb"> </span><span style="color:#00f">onReceive</span>(Context<span style="color:#bbb"> </span>context,<span style="color:#bbb"> </span>Intent<span style="color:#bbb"> </span>intent)<span style="color:#bbb"> </span>{<span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb">        </span><span style="color:#008000;font-weight:bold">if</span><span style="color:#bbb"> </span>(intent.<span style="color:#7d9029">getAction</span>().<span style="color:#7d9029">equalsIgnoreCase</span>(ACTION_BIND_RESULT))<span style="color:#bbb"> </span>{<span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb">            </span>String<span style="color:#bbb"> </span>vendorName<span style="color:#bbb"> </span><span style="color:#666">=</span><span style="color:#bbb"> </span>intent.<span style="color:#7d9029">getExtra</span>(BIND_VENDOR);<span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb">            </span><span style="color:#b00040">boolean</span><span style="color:#bbb"> </span>status<span style="color:#bbb"> </span><span style="color:#666">=</span><span style="color:#bbb"> </span>intent.<span style="color:#7d9029">getExtra</span>(BIND_STATUS);<span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb">        </span>}<span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb">    </span>}<span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span>}<span style="color:#bbb">
+</span></span></span></code></pre></div></li>
 <li>
 <p>Once the received value of vpn_bind_status is true for VPN client 1, calls to GenericVpnPolicy object must reference GenericVpnPolicyObject(gm1). The same is true when vpn_bin_status is true for VPN client 2 GenericVpnPolicyObject(gm2).</p>
 </li>
 </ol>
 <h3 id="the">The Dual-Chain VPN Profile for a Cross-User, Per-App Configuration</h3>
 <p>The instructions for using this dual-chain VPN configuration is based on the following device profile:</p>
-<div class="highlight"><pre tabindex="0" style=";-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span>gm1<span style="color:#666">.</span><span style="color:#7d9029">createVpnProfile</span><span style="color:#666">(</span>String profileInfo<span style="color:#666">):</span>
-</span></span><span style="display:flex;"><span>    <span style="color:#ba2121">&#34;KNOX_VPN_PARAMETERS&#34;</span><span style="color:#666">:{</span>
-</span></span><span style="display:flex;"><span>        <span style="color:#ba2121">&#34;profile_attribute&#34;</span><span style="color:#666">:{</span>
-</span></span><span style="display:flex;"><span>            <span style="color:#ba2121">&#34;profileName&#34;</span><span style="color:#666">:</span><span style="color:#ba2121">&#34;outer&#34;</span><span style="color:#666">,</span>
-</span></span><span style="display:flex;"><span>            <span style="color:#ba2121">&#34;host&#34;</span><span style="color:#666">:</span><span style="color:#ba2121">&#34;66.8.250.85&#34;</span><span style="color:#666">,</span>
-</span></span><span style="display:flex;"><span>            <span style="color:#ba2121">&#34;vpn_type&#34;</span><span style="color:#666">:</span><span style="color:#ba2121">&#34;ipsec&#34;</span><span style="color:#666">,</span>
-</span></span><span style="display:flex;"><span>            <span style="color:#ba2121">&#34;vpn_route_type&#34;</span><span style="color:#666">:</span><span style="color:#666">1</span>
-</span></span><span style="display:flex;"><span>        <span style="color:#666">},</span>
-</span></span><span style="display:flex;"><span>        <span style="color:#ba2121">&#34;knox&#34;</span><span style="color:#666">:{</span>
-</span></span><span style="display:flex;"><span>             chaining_enabled<span style="color:#666">:</span><span style="color:#666">0</span>
-</span></span><span style="display:flex;"><span>        <span style="color:#666">},</span>
-</span></span><span style="display:flex;"><span>        <span style="color:#ba2121">&#34;vendor&#34;</span><span style="color:#666">:{</span>
-</span></span><span style="display:flex;"><span>        <span style="color:#666">}</span>
-</span></span><span style="display:flex;"><span>    <span style="color:#666">}</span>
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>gm2<span style="color:#666">.</span><span style="color:#7d9029">createVpnProfile</span><span style="color:#666">(</span>String profileInfo<span style="color:#666">);</span>
-</span></span><span style="display:flex;"><span>    <span style="color:#ba2121">&#34;KNOX_VPN_PARAMETERS&#34;</span><span style="color:#666">:{</span>
-</span></span><span style="display:flex;"><span>        <span style="color:#ba2121">&#34;profile_attribute&#34;</span><span style="color:#666">:{</span>
-</span></span><span style="display:flex;"><span>            <span style="color:#ba2121">&#34;profileName&#34;</span><span style="color:#666">:</span><span style="color:#ba2121">&#34;inner&#34;</span><span style="color:#666">,</span>
-</span></span><span style="display:flex;"><span>            <span style="color:#ba2121">&#34;host&#34;</span><span style="color:#666">:</span><span style="color:#ba2121">&#34;66.8.250.86&#34;</span><span style="color:#666">,</span>
-</span></span><span style="display:flex;"><span>            <span style="color:#ba2121">&#34;vpn_type&#34;</span><span style="color:#666">:</span><span style="color:#ba2121">&#34;ipsec&#34;</span><span style="color:#666">,</span>
-</span></span><span style="display:flex;"><span>            <span style="color:#ba2121">&#34;vpn_route_type&#34;</span><span style="color:#666">:</span><span style="color:#666">1</span>
-</span></span><span style="display:flex;"><span>        <span style="color:#666">},</span>
-</span></span><span style="display:flex;"><span>        <span style="color:#ba2121">&#34;knox&#34;</span><span style="color:#666">:{</span>
-</span></span><span style="display:flex;"><span>             chaining_enabled<span style="color:#666">:</span><span style="color:#666">1</span>
-</span></span><span style="display:flex;"><span>        <span style="color:#666">},</span>
-</span></span><span style="display:flex;"><span>        <span style="color:#ba2121">&#34;vendor&#34;</span><span style="color:#666">:{</span>
-</span></span><span style="display:flex;"><span>        <span style="color:#666">}</span>
-</span></span><span style="display:flex;"><span>    <span style="color:#666">}</span>
-</span></span></code></pre></div><h3 id="manage2">Manage Dual-Chain VPN for Cross-User Per-App Connections</h3>
+<div class="highlight"><pre tabindex="0" style=";-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-java" data-lang="java"><span style="display:flex;"><span>gm1.<span style="color:#7d9029">createVpnProfile</span>(String<span style="color:#bbb"> </span>profileInfo):<span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb">    </span><span style="color:#ba2121">&#34;KNOX_VPN_PARAMETERS&#34;</span>:{<span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb">        </span><span style="color:#ba2121">&#34;profile_attribute&#34;</span>:{<span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb">            </span><span style="color:#ba2121">&#34;profileName&#34;</span>:<span style="color:#ba2121">&#34;outer&#34;</span>,<span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb">            </span><span style="color:#ba2121">&#34;host&#34;</span>:<span style="color:#ba2121">&#34;66.8.250.85&#34;</span>,<span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb">            </span><span style="color:#ba2121">&#34;vpn_type&#34;</span>:<span style="color:#ba2121">&#34;ipsec&#34;</span>,<span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb">            </span><span style="color:#ba2121">&#34;vpn_route_type&#34;</span>:1<span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb">        </span>},<span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb">        </span><span style="color:#ba2121">&#34;knox&#34;</span>:{<span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb">             </span>chaining_enabled:0<span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb">        </span>},<span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb">        </span><span style="color:#ba2121">&#34;vendor&#34;</span>:{<span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb">        </span>}<span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb">    </span>}<span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span>gm2.<span style="color:#7d9029">createVpnProfile</span>(String<span style="color:#bbb"> </span>profileInfo);<span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb">    </span><span style="color:#ba2121">&#34;KNOX_VPN_PARAMETERS&#34;</span>:{<span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb">        </span><span style="color:#ba2121">&#34;profile_attribute&#34;</span>:{<span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb">            </span><span style="color:#ba2121">&#34;profileName&#34;</span>:<span style="color:#ba2121">&#34;inner&#34;</span>,<span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb">            </span><span style="color:#ba2121">&#34;host&#34;</span>:<span style="color:#ba2121">&#34;66.8.250.86&#34;</span>,<span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb">            </span><span style="color:#ba2121">&#34;vpn_type&#34;</span>:<span style="color:#ba2121">&#34;ipsec&#34;</span>,<span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb">            </span><span style="color:#ba2121">&#34;vpn_route_type&#34;</span>:1<span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb">        </span>},<span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb">        </span><span style="color:#ba2121">&#34;knox&#34;</span>:{<span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb">             </span>chaining_enabled:1<span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb">        </span>},<span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb">        </span><span style="color:#ba2121">&#34;vendor&#34;</span>:{<span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb">        </span>}<span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb">    </span>}<span style="color:#bbb">
+</span></span></span></code></pre></div><h3 id="manage2">Manage Dual-Chain VPN for Cross-User Per-App Connections</h3>
 <p>The following instructions explain how to create, start, stop and remove the dual-chain VPN connection.</p>
 <h4 id="create-and-start-a-dual-chain-vpn-connection-6">Create and Start a Dual-Chain VPN Connection</h4>
 <p>The EMM agent must make the following calls to start a VPN connection under the dual-chain configuration described above.</p>
@@ -3790,10 +3790,10 @@ where $container-id is owned by the EMM agent.</li>
 <ol>
 <li>
 <p>The EMM agent has to get the instance of the <code>GenericVpnPolicy</code> object in the KnoxManager class for each client by passing the VPN vendor&rsquo;s package name as parameter.</p>
-<div class="highlight"><pre tabindex="0" style=";-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span>EnterpriseKnoxManager ekm <span style="color:#666">=</span> EnterpriseKnoxManager<span style="color:#666">.</span><span style="color:#7d9029">getInstance</span><span style="color:#666">();</span>
-</span></span><span style="display:flex;"><span>GenericVpnPolicy gm1 <span style="color:#666">=</span> ekm<span style="color:#666">.</span><span style="color:#7d9029">getGenericVpnPolicy</span><span style="color:#666">(</span>$vpn_client_1_packageName<span style="color:#666">,</span>$userId where VPN client <span style="color:#666">1</span> is installed<span style="color:#666">);</span>
-</span></span><span style="display:flex;"><span>GenericVpnPolicy gm2 <span style="color:#666">=</span> ekm<span style="color:#666">.</span><span style="color:#7d9029">getGenericVpnPolicy</span><span style="color:#666">(</span>$vpn_client_2_packageName<span style="color:#666">,</span>$userId where VPN client <span style="color:#666">2</span> is installed<span style="color:#666">);</span>
-</span></span></code></pre></div><p>Once the above code executes, the framework tries to bind to the VPN vendor&rsquo;s application. When the binding succeeds, the framework sends a broadcast message to the EMM agent.</p>
+<div class="highlight"><pre tabindex="0" style=";-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-java" data-lang="java"><span style="display:flex;"><span>EnterpriseKnoxManager<span style="color:#bbb"> </span>ekm<span style="color:#bbb"> </span><span style="color:#666">=</span><span style="color:#bbb"> </span>EnterpriseKnoxManager.<span style="color:#7d9029">getInstance</span>();<span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span>GenericVpnPolicy<span style="color:#bbb"> </span>gm1<span style="color:#bbb"> </span><span style="color:#666">=</span><span style="color:#bbb"> </span>ekm.<span style="color:#7d9029">getGenericVpnPolicy</span>($vpn_client_1_packageName,$userId<span style="color:#bbb"> </span>where<span style="color:#bbb"> </span>VPN<span style="color:#bbb"> </span>client<span style="color:#bbb"> </span>1<span style="color:#bbb"> </span>is<span style="color:#bbb"> </span>installed);<span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span>GenericVpnPolicy<span style="color:#bbb"> </span>gm2<span style="color:#bbb"> </span><span style="color:#666">=</span><span style="color:#bbb"> </span>ekm.<span style="color:#7d9029">getGenericVpnPolicy</span>($vpn_client_2_packageName,$userId<span style="color:#bbb"> </span>where<span style="color:#bbb"> </span>VPN<span style="color:#bbb"> </span>client<span style="color:#bbb"> </span>2<span style="color:#bbb"> </span>is<span style="color:#bbb"> </span>installed);<span style="color:#bbb">
+</span></span></span></code></pre></div><p>Once the above code executes, the framework tries to bind to the VPN vendor&rsquo;s application. When the binding succeeds, the framework sends a broadcast message to the EMM agent.</p>
 </li>
 <li>
 <p>The EMM agent has to listen for the intent action <code>com.samsung.android.mdm.VPN_BIND_RESULT</code> which has the following information:</p>
@@ -3801,54 +3801,54 @@ where $container-id is owned by the EMM agent.</li>
 <li>vpn_bind_vendor provides the VPN vendor&rsquo;s package name</li>
 <li>vpn_bind_status returns true or false, specifying whether the bind to the VPN vendor&rsquo;s application was successful or not.</li>
 </ul>
-<div class="highlight"><pre tabindex="0" style=";-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#008000;font-weight:bold">public</span> <span style="color:#008000;font-weight:bold">class</span> <span style="color:#00f;font-weight:bold">VPNBindReciever</span> <span style="color:#008000;font-weight:bold">extends</span> BroadcastReceiver <span style="color:#666">{</span>
-</span></span><span style="display:flex;"><span>    <span style="color:#008000;font-weight:bold">public</span> <span style="color:#008000;font-weight:bold">static</span> <span style="color:#008000;font-weight:bold">final</span> String ACTION_BIND_RESULT <span style="color:#666">=</span> <span style="color:#ba2121">&#34;com.samsung.android.mdm.VPN_BIND_RESULT&#34;</span><span style="color:#666">;</span>
-</span></span><span style="display:flex;"><span>    <span style="color:#008000;font-weight:bold">public</span> <span style="color:#008000;font-weight:bold">static</span> <span style="color:#008000;font-weight:bold">final</span> String BIND_VENDOR <span style="color:#666">=</span> <span style="color:#ba2121">&#34;vpn_bind_vendor&#34;</span><span style="color:#666">;</span>
-</span></span><span style="display:flex;"><span>    <span style="color:#008000;font-weight:bold">public</span> <span style="color:#008000;font-weight:bold">static</span> <span style="color:#008000;font-weight:bold">final</span> String BIND_STATUS <span style="color:#666">=</span> <span style="color:#ba2121">&#34;vpn_bind_status&#34;</span><span style="color:#666">;</span>
-</span></span><span style="display:flex;"><span>    <span style="color:#008000;font-weight:bold">public</span> <span style="color:#b00040">void</span> <span style="color:#00f">onReceive</span><span style="color:#666">(</span>Context context<span style="color:#666">,</span> Intent intent<span style="color:#666">)</span> <span style="color:#666">{</span>
-</span></span><span style="display:flex;"><span>        <span style="color:#008000;font-weight:bold">if</span> <span style="color:#666">(</span>intent<span style="color:#666">.</span><span style="color:#7d9029">getAction</span><span style="color:#666">().</span><span style="color:#7d9029">equalsIgnoreCase</span><span style="color:#666">(</span>ACTION_BIND_RESULT<span style="color:#666">))</span> <span style="color:#666">{</span>
-</span></span><span style="display:flex;"><span>            String vendorName <span style="color:#666">=</span> intent<span style="color:#666">.</span><span style="color:#7d9029">getExtra</span><span style="color:#666">(</span>BIND_VENDOR<span style="color:#666">);</span>
-</span></span><span style="display:flex;"><span>            <span style="color:#b00040">boolean</span> status <span style="color:#666">=</span> intent<span style="color:#666">.</span><span style="color:#7d9029">getExtra</span><span style="color:#666">(</span>BIND_STATUS<span style="color:#666">);</span>
-</span></span><span style="display:flex;"><span>        <span style="color:#666">}</span>
-</span></span><span style="display:flex;"><span>    <span style="color:#666">}</span>
-</span></span><span style="display:flex;"><span><span style="color:#666">}</span>
-</span></span></code></pre></div></li>
+<div class="highlight"><pre tabindex="0" style=";-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#008000;font-weight:bold">public</span><span style="color:#bbb"> </span><span style="color:#008000;font-weight:bold">class</span> <span style="color:#00f;font-weight:bold">VPNBindReciever</span><span style="color:#bbb"> </span><span style="color:#008000;font-weight:bold">extends</span><span style="color:#bbb"> </span>BroadcastReceiver<span style="color:#bbb"> </span>{<span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb">    </span><span style="color:#008000;font-weight:bold">public</span><span style="color:#bbb"> </span><span style="color:#008000;font-weight:bold">static</span><span style="color:#bbb"> </span><span style="color:#008000;font-weight:bold">final</span><span style="color:#bbb"> </span>String<span style="color:#bbb"> </span>ACTION_BIND_RESULT<span style="color:#bbb"> </span><span style="color:#666">=</span><span style="color:#bbb"> </span><span style="color:#ba2121">&#34;com.samsung.android.mdm.VPN_BIND_RESULT&#34;</span>;<span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb">    </span><span style="color:#008000;font-weight:bold">public</span><span style="color:#bbb"> </span><span style="color:#008000;font-weight:bold">static</span><span style="color:#bbb"> </span><span style="color:#008000;font-weight:bold">final</span><span style="color:#bbb"> </span>String<span style="color:#bbb"> </span>BIND_VENDOR<span style="color:#bbb"> </span><span style="color:#666">=</span><span style="color:#bbb"> </span><span style="color:#ba2121">&#34;vpn_bind_vendor&#34;</span>;<span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb">    </span><span style="color:#008000;font-weight:bold">public</span><span style="color:#bbb"> </span><span style="color:#008000;font-weight:bold">static</span><span style="color:#bbb"> </span><span style="color:#008000;font-weight:bold">final</span><span style="color:#bbb"> </span>String<span style="color:#bbb"> </span>BIND_STATUS<span style="color:#bbb"> </span><span style="color:#666">=</span><span style="color:#bbb"> </span><span style="color:#ba2121">&#34;vpn_bind_status&#34;</span>;<span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb">    </span><span style="color:#008000;font-weight:bold">public</span><span style="color:#bbb"> </span><span style="color:#b00040">void</span><span style="color:#bbb"> </span><span style="color:#00f">onReceive</span>(Context<span style="color:#bbb"> </span>context,<span style="color:#bbb"> </span>Intent<span style="color:#bbb"> </span>intent)<span style="color:#bbb"> </span>{<span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb">        </span><span style="color:#008000;font-weight:bold">if</span><span style="color:#bbb"> </span>(intent.<span style="color:#7d9029">getAction</span>().<span style="color:#7d9029">equalsIgnoreCase</span>(ACTION_BIND_RESULT))<span style="color:#bbb"> </span>{<span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb">            </span>String<span style="color:#bbb"> </span>vendorName<span style="color:#bbb"> </span><span style="color:#666">=</span><span style="color:#bbb"> </span>intent.<span style="color:#7d9029">getExtra</span>(BIND_VENDOR);<span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb">            </span><span style="color:#b00040">boolean</span><span style="color:#bbb"> </span>status<span style="color:#bbb"> </span><span style="color:#666">=</span><span style="color:#bbb"> </span>intent.<span style="color:#7d9029">getExtra</span>(BIND_STATUS);<span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb">        </span>}<span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb">    </span>}<span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span>}<span style="color:#bbb">
+</span></span></span></code></pre></div></li>
 <li>
 <p>Once the received value of vpn_bind_status is true for VPN client 1, calls to GenericVpnPolicy object must reference GenericVpnPolicyObject(gm1). The same is true when vpn_bin_status is true for VPN client 2 GenericVpnPolicyObject(gm2).</p>
 </li>
 </ol>
 <h3 id="the">The Dual-Chain VPN Profile for a Cross User-Wide or Device Wide Configuration</h3>
 <p>The instructions for using this dual-chain VPN configuration is based on the following device profile:</p>
-<div class="highlight"><pre tabindex="0" style=";-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span>gm1<span style="color:#666">.</span><span style="color:#7d9029">createVpnProfile</span><span style="color:#666">(</span>String profileInfo<span style="color:#666">):</span>
-</span></span><span style="display:flex;"><span>    <span style="color:#ba2121">&#34;KNOX_VPN_PARAMETERS&#34;</span><span style="color:#666">:{</span>
-</span></span><span style="display:flex;"><span>        <span style="color:#ba2121">&#34;profile_attribute&#34;</span><span style="color:#666">:{</span>
-</span></span><span style="display:flex;"><span>            <span style="color:#ba2121">&#34;profileName&#34;</span><span style="color:#666">:</span><span style="color:#ba2121">&#34;outer&#34;</span><span style="color:#666">,</span>
-</span></span><span style="display:flex;"><span>            <span style="color:#ba2121">&#34;host&#34;</span><span style="color:#666">:</span><span style="color:#ba2121">&#34;66.8.250.85&#34;</span><span style="color:#666">,</span>
-</span></span><span style="display:flex;"><span>            <span style="color:#ba2121">&#34;vpn_type&#34;</span><span style="color:#666">:</span><span style="color:#ba2121">&#34;ipsec&#34;</span><span style="color:#666">,</span>
-</span></span><span style="display:flex;"><span>            <span style="color:#ba2121">&#34;vpn_route_type&#34;</span><span style="color:#666">:</span><span style="color:#666">1</span>
-</span></span><span style="display:flex;"><span>        <span style="color:#666">},</span>
-</span></span><span style="display:flex;"><span>        <span style="color:#ba2121">&#34;knox&#34;</span><span style="color:#666">:{</span>
-</span></span><span style="display:flex;"><span>             chaining_enabled<span style="color:#666">:</span><span style="color:#666">0</span>
-</span></span><span style="display:flex;"><span>        <span style="color:#666">},</span>
-</span></span><span style="display:flex;"><span>        <span style="color:#ba2121">&#34;vendor&#34;</span><span style="color:#666">:{</span>
-</span></span><span style="display:flex;"><span>        <span style="color:#666">}</span>
-</span></span><span style="display:flex;"><span>    <span style="color:#666">}</span>
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>gm2<span style="color:#666">.</span><span style="color:#7d9029">createVpnProfile</span><span style="color:#666">(</span>String profileInfo<span style="color:#666">);</span>
-</span></span><span style="display:flex;"><span>    <span style="color:#ba2121">&#34;KNOX_VPN_PARAMETERS&#34;</span><span style="color:#666">:{</span>
-</span></span><span style="display:flex;"><span>        <span style="color:#ba2121">&#34;profile_attribute&#34;</span><span style="color:#666">:{</span>
-</span></span><span style="display:flex;"><span>            <span style="color:#ba2121">&#34;profileName&#34;</span><span style="color:#666">:</span><span style="color:#ba2121">&#34;inner&#34;</span><span style="color:#666">,</span>
-</span></span><span style="display:flex;"><span>            <span style="color:#ba2121">&#34;host&#34;</span><span style="color:#666">:</span><span style="color:#ba2121">&#34;66.8.250.86&#34;</span><span style="color:#666">,</span>
-</span></span><span style="display:flex;"><span>            <span style="color:#ba2121">&#34;vpn_type&#34;</span><span style="color:#666">:</span><span style="color:#ba2121">&#34;ipsec&#34;</span><span style="color:#666">,</span>
-</span></span><span style="display:flex;"><span>            <span style="color:#ba2121">&#34;vpn_route_type&#34;</span><span style="color:#666">:</span><span style="color:#666">1</span>
-</span></span><span style="display:flex;"><span>        <span style="color:#666">},</span>
-</span></span><span style="display:flex;"><span>        <span style="color:#ba2121">&#34;knox&#34;</span><span style="color:#666">:{</span>
-</span></span><span style="display:flex;"><span>             chaining_enabled<span style="color:#666">:</span><span style="color:#666">1</span>
-</span></span><span style="display:flex;"><span>        <span style="color:#666">},</span>
-</span></span><span style="display:flex;"><span>        <span style="color:#ba2121">&#34;vendor&#34;</span><span style="color:#666">:{</span>
-</span></span><span style="display:flex;"><span>        <span style="color:#666">}</span>
-</span></span><span style="display:flex;"><span>    <span style="color:#666">}</span>
-</span></span></code></pre></div><h3 id="manage2">Manage Dual-Chain VPN for Cross User-Wide or Device-Wide Connections</h3>
+<div class="highlight"><pre tabindex="0" style=";-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-java" data-lang="java"><span style="display:flex;"><span>gm1.<span style="color:#7d9029">createVpnProfile</span>(String<span style="color:#bbb"> </span>profileInfo):<span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb">    </span><span style="color:#ba2121">&#34;KNOX_VPN_PARAMETERS&#34;</span>:{<span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb">        </span><span style="color:#ba2121">&#34;profile_attribute&#34;</span>:{<span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb">            </span><span style="color:#ba2121">&#34;profileName&#34;</span>:<span style="color:#ba2121">&#34;outer&#34;</span>,<span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb">            </span><span style="color:#ba2121">&#34;host&#34;</span>:<span style="color:#ba2121">&#34;66.8.250.85&#34;</span>,<span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb">            </span><span style="color:#ba2121">&#34;vpn_type&#34;</span>:<span style="color:#ba2121">&#34;ipsec&#34;</span>,<span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb">            </span><span style="color:#ba2121">&#34;vpn_route_type&#34;</span>:1<span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb">        </span>},<span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb">        </span><span style="color:#ba2121">&#34;knox&#34;</span>:{<span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb">             </span>chaining_enabled:0<span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb">        </span>},<span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb">        </span><span style="color:#ba2121">&#34;vendor&#34;</span>:{<span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb">        </span>}<span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb">    </span>}<span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span>gm2.<span style="color:#7d9029">createVpnProfile</span>(String<span style="color:#bbb"> </span>profileInfo);<span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb">    </span><span style="color:#ba2121">&#34;KNOX_VPN_PARAMETERS&#34;</span>:{<span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb">        </span><span style="color:#ba2121">&#34;profile_attribute&#34;</span>:{<span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb">            </span><span style="color:#ba2121">&#34;profileName&#34;</span>:<span style="color:#ba2121">&#34;inner&#34;</span>,<span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb">            </span><span style="color:#ba2121">&#34;host&#34;</span>:<span style="color:#ba2121">&#34;66.8.250.86&#34;</span>,<span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb">            </span><span style="color:#ba2121">&#34;vpn_type&#34;</span>:<span style="color:#ba2121">&#34;ipsec&#34;</span>,<span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb">            </span><span style="color:#ba2121">&#34;vpn_route_type&#34;</span>:1<span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb">        </span>},<span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb">        </span><span style="color:#ba2121">&#34;knox&#34;</span>:{<span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb">             </span>chaining_enabled:1<span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb">        </span>},<span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb">        </span><span style="color:#ba2121">&#34;vendor&#34;</span>:{<span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb">        </span>}<span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb">    </span>}<span style="color:#bbb">
+</span></span></span></code></pre></div><h3 id="manage2">Manage Dual-Chain VPN for Cross User-Wide or Device-Wide Connections</h3>
 <p>The following instructions explain how to create, start, stop and remove the dual-chain VPN connection.</p>
 <h4 id="create-and-start-a-dual-chain-vpn-connection-7">Create and Start a Dual-Chain VPN Connection</h4>
 <p>The EMM agent must make the following calls to start a VPN connection under the dual-chain configuration described above.</p>
