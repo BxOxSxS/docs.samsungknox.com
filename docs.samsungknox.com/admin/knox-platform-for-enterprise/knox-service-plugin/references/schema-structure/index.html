@@ -56,7 +56,7 @@
 
   
 
-<script onload="initBot()" defer src="https://dc-chbt.samsungknox.com/copilot/index.js?noCache=1773449722"></script>
+<script onload="initBot()" defer src="https://dc-chbt.samsungknox.com/copilot/index.js?noCache=1774046310"></script>
 <script defer>
     function initBot(){
       const relPath = "\/knox-platform-for-enterprise\/knox-service-plugin\/references\/schema-structure\/";
@@ -164,6 +164,9 @@
   </li>
 <li>
   <a href="../../../../uat" >User Acceptance Testing</a>
+  </li>
+<li>
+  <a href="https://docs.samsungknox.com/admin/glossary" >Glossary</a>
   </li>
 </ul>
     </nav>
@@ -1140,6 +1143,7 @@
             
 
   
+  
 
 
 
@@ -1168,37 +1172,17 @@
       
       
       
-        
-      
-      
-      
-      
-        
-      
-      
-      
-      
-        
-      
-      
-      
-      
-        
-      
-      
-      
-      
-        <p>This section provides an overview of the Knox Service Plugin (KSP) schema structure and general best practices.</p>
+        <p>This section provides an overview of the Knox Service Plugin schema structure and general best practices.</p>
 <p>The following image shows the high level categories of policies and common configurations. It has four main components:</p>
 <ol>
 <li>
-<p><strong>Basic elements</strong> &mdash; General operational controls for KSP. For example, turn on debug mode or input a KPE license key.</p>
+<p><strong>Basic elements</strong> &mdash; General operational controls for Knox Service Plugin. For example, turn on debug mode or enter a Knox Platform for Enterprise Premium license key.</p>
 </li>
 <li>
-<p><strong>Device-wide policies section</strong> &mdash; Device Owner (DO) policy controls. These are of global scope.</p>
+<p><strong>Device-wide policies</strong> &mdash; Policies applied to company owned devices. These devices are enrolled to an EMM during its initial setup, and they can be deployed as a <span class="glossary-term" data-term="Fully managed" data-link="../../../../glossary/a-f#fully-managed" data-definition="A corporate ownership model where the company maintains complete control over the entire device, enforcing strict...">fully managed</span> device, or as a company owned device with a work profile (WP-C).</p>
 </li>
 <li>
-<p><strong>Work profile policies section</strong> &mdash; Profile Owner (PO) policy controls. These apply to only the .</p>
+<p><strong>Work profile policies</strong> &mdash; Policies applied to personal devices (BYOD) with a work profile. These devices are enrolled to an EMM with a work profile after its initial setup.</p>
 </li>
 <li>
 <p><strong>Configurations</strong> &mdash; Specific configuration properties that are used in conjunction with policy controls. For example, VPN profile settings, APN settings, or DeX customization settings. These can be used on either device-wide policies or work profile policies.</p>
@@ -1216,44 +1200,20 @@
 <h2 id="schema-breakdown">Schema breakdown</h2>
 <h3 id="common-configurations">Common configurations</h3>
 <p>Each version of Knox Service Plugin includes a few common options. The features available within these options depend upon your Knox Service Plugin deployment mode, Knox Platform for Enterprise license status &mdash; whether you have a <a href="../../faq">Standard or a Premium license</a> &mdash; as well as the features available on your UEM console.</p>
-<div class="notice-note"><p>Device key mapping can be supported using either a KPE Premium, Knox Suite*, or Knox Platform for Customization (KPC)** license.</p><p>* For information on Knox Suite, go to: <a href="../../../../knox-suite">Knox Suite</a>.</p><p>** KPC is a light version of KPE focusing on customization capabilities.</p></div>
 <p>These common options are as follows:</p>
-<ol>
-<li>
-<p><strong>Profile name</strong> &mdash; A unique nickname you provide for a set of policy configurations. You can create many different profile names for various sets of configurations. Later, you can use the name for tracking and debugging purposes. We recommend using a name less than 50 characters in length, for example, <code>MyEnterprise Profile</code>.</p>
-</li>
-<li>
-<p><strong>KPE Premium License key</strong> &mdash; This is useful for consoles that do not have Knox Premium License activation built in as a native feature. When this field is used, KSP can activate the license for you when you push the configuration. If your UEM console has already activated a Knox Premium License on your device, there is no need to activate a license using this field. The following image is an example of this field.</p>
-
-    
-    
-    
-    
-    
-    
-    
-    <p><img src="../../assets/kpe-license.png" class="img-fluid img-thumbnail" alt="" /></p>
-<div class="notice-note"><p>You only need to input a license if you are using a premium policy. If you do not provide a license key and use a premium policy — or the key provided does not have necessary privileges — the KSP policy fails and <a href="../error-codes">produces an error message</a>.</p></div>
-</li>
-<li>
-<p><strong>Debug modes</strong> &mdash; When you turn on <a href="../../troubleshoot/debug-mode">debug mode</a>, you can view policy results and errors on the device through an app menu. We recommend enabling this mode only during test phases and not during final deployment. If you run into any KSP deployment issues, check this box to enable debug mode and try to perform the action again. You can also export the message and reach out to Knox Support for help to diagnose and fix your issue.</p>
-</li>
-<li>
-<p><strong>DO and PO policies</strong> &mdash; Depending upon your deployment mode, you need to enable device-wide or Work profile-wide policy controls. Do as follows:</p>
 <ul>
 <li>
-<p><strong>Device-wide policies</strong> &mdash; To enable or disable device-wide policies, use the <strong>Enable device policy controls</strong> field. Enable this option before using any of the Device-wide policies. If this option is disabled, KSP does not apply any policies in default user (User 0).</p>
+<p><strong>Profile name</strong> &mdash; A unique name you provide for a set of policy configurations. You can create many different profile names for various sets of configurations. Later, you can use the name for tracking and debugging purposes. We recommend using a name under 50 characters.</p>
 </li>
 <li>
-<p><strong>Work profile-wide policies</strong> &mdash; To enable or disable Work profile-wide policies, use the <strong>Enable work profile policy controls</strong> field. Enable this option before using any of the Device-wide policies. If this setting is disabled, KSP does not apply any policy changes inside the Work Profile.</p>
+<p><strong>Knox License key</strong> &mdash; If your EMM didn&rsquo;t activate a Knox Platform for Enterprise Premium license for you, you can enter your license key here, and Knox Service Plugin can activate your license for you when you push the configuration. If you have a Knox Platform for Enterprise <span class="glossary-term" data-term="Dual Data-At-Rest Encryption (DualDAR)" data-link="../../../../glossary/a-f#dual-data-at-rest-encryption-dualdar" data-definition="A security solution that protects sensitive enterprise data on Samsung Knox devices using two separate layers of...">DualDAR</span> key, enter it here to activate it.</p>
+</li>
+<li>
+<p><strong>Debug mode</strong> &mdash; When you turn on <a href="../../troubleshoot/debug-mode">debug mode</a>, the Knox Service Plugin app becomes visible on devices, where you can view policy configuration results and errors. We recommend enabling this mode only during test phases and not during final deployment. If you run into any Knox Service Plugin deployment issues, enable debug mode and perform the action again, then export the debug logs and reach out to support to help diagnose and fix your issue.</p>
 </li>
 </ul>
-</li>
-</ol>
 <h3 id="group-policy-control-flag">Group policy control flag</h3>
-<p>Every group has a control that enables or disables that policy group. By default every policy group is disabled. You must enable this control before setting any policy in the group. For example, before using any policy in the device-wide policy section, turn on the <strong>Enable device-wide policies</strong> control first. Further more, to use any device restrictions within the device-wide policy section, turn on <strong>Enable device restriction controls</strong> and then activate individual policies, such as <strong>Allow microphone</strong>, <strong>Allow Wi-Fi</strong> and so on.</p>
-<div class="notice-note"><p>Control groups are mandatory. Incorrect control group settings or deleting them from input configuration causes KSP to revoke policies or not process policies in that group.</p></div>
-<p>The following image illustrates a control group.</p>
+<p>Each policy group has a control that enables or disables it. By default, all policy groups are disabled, so you must enable the control before configuring any policies in that group. For example, to use policies under <strong>Device-wide policies</strong>, set <strong>Enable device-wide policies</strong> to <strong>True</strong>. To configure settings under <strong>Device restrictions</strong>, set <strong>Enable device restriction controls</strong> to <strong>True</strong>, then activate individual policies such as <strong>Allow microphone</strong> and <strong>Allow Wi-Fi</strong>.</p>
 
 
 
@@ -1264,46 +1224,37 @@
 
 <p><img src="../../assets/control-flag.png" class="img-fluid img-thumbnail" alt="" /></p>
 <h3 id="profile-configurations">Profile Configurations</h3>
-<p>You can save a group of configurations using a <strong>Profile Name</strong>. Once you save a group of configurations, you can reuse these configurations for as many deployments as you need.</p>
-<p>For example, in the following image, we have set the <strong>DeX profile name</strong> as <code>DeX profile 1</code>. Any configurations set are saved under the name <code>DeX profile 1</code>. When setting policies later, you can reference <code>DeX profile 1</code> to quickly set up devices with your saved configurations.</p>
-
-
-
-
-
-
-
-
-<p><img src="../../assets/configurations.png" class="img-fluid img-thumbnail" alt="" /></p>
+<p>Some Knox Service Plugin policies allow you to create and save multiple configuration profiles. Different policies may use their configuration in different ways.</p>
+<p>For certain policies, such as Wi-Fi policies, every configuration you create is applied simultaneously. For example, with Advanced Wi-Fi policies you create a separate configuration for each network SSID, and all of them take effect together. The device applies the appropriate configuration whenever it connects to a network that has a matching SSID.</p>
+<p>For other policies, such as VPN and firewall policies, you create multiple named configurations but select only one to apply at a time. This allows you to pre-define various settings (for example, a VPN profile for different offices) and then choose the appropriate one by name when deploying to devices.</p>
 <h2 id="recommended-practices">Recommended practices</h2>
 <ul>
 <li>
-<p><strong>Auto-install</strong> &mdash; Turn this feature on if your UEM supports it. This feature ensures all devices install KSP automatically when prompted.</p>
+<p><strong>Auto-install and run apps</strong> &mdash; Turn this feature on if your EMM supports it. This feature ensures all devices automatically install and run Knox Service Plugin, so your policies are automatically enforced on your devices.</p>
 </li>
 <li>
-<p><strong>Auto-update</strong> &mdash; Turn this feature on if your UEM supports it. This feature ensures that the KSP app is up to date on deployed devices. KSP is designed to be backward compatible. For example, a newer version of the app can handle older schema data, but older app versions can&rsquo;t handle new schema data.</p>
+<p><strong>Auto-update</strong> &mdash; Turn this feature on if your EMM supports it. This feature ensures that the Knox Service Plugin app is up to date on deployed devices. Knox Service Plugin is designed to be backward compatible. For example, a newer version of the app can handle older schema data, but older app versions can&rsquo;t handle new schema data.</p>
 </li>
 <li>
-<p><strong>Native console policies</strong> &mdash; Use your UEM console for any policy that is supported natively and use KSP to bridge any gaps.</p>
+<p><strong>Native console policies</strong> &mdash; Use the policies natively supported by your EMM, and use Knox Service Plugin for any additional device control policies that aren&rsquo;t supported by your EMM.</p>
 </li>
 <li>
-<p><strong>Test in small batches</strong> &mdash; Always test your KSP schema changes with a limited set of devices, debug the issues (if any) by enabling <a href="../../troubleshoot/debug-mode">debug mode</a>, then roll out to wider deployment.</p>
+<p><strong>Test in small batches</strong> &mdash; Always test your Knox Service Plugin schema changes with a limited set of devices, debug the issues by enabling <a href="../../troubleshoot/debug-mode">debug mode</a>, then roll out to wider deployment.</p>
 </li>
 </ul>
 <h2 id="special-cases">Special cases</h2>
 <h3 id="list-applications">List applications</h3>
 <p>Some fields allow you to specify more than one app to target. For example: when you select apps to allowlist for a proxy. To list out apps, use a comma-separated list of packages. For example <code>com.samsung.android.email.provider, com.sec.android.app.sbrowser</code>. To find a package name, look at the Google Play store URL or contact the app vendor.</p>
 <h3 id="uploading-files">Uploading files</h3>
-<p>Some Knox policies, such as DeX customization, require you to provide bulk data, such as an image file. However, OEMConfig specifications do not currently support file upload.</p>
+<p>Some Knox policies, such as DeX customization, require you to provide bulk data, such as an image file. However, OEMConfig specifications do not currently support file uploads.</p>
 <p>If you need to upload a file you can use one of the following two methods:</p>
 <ul>
 <li>
-<p><strong>Web URL</strong> &mdash; Upload the file to a cloud server and provide the web URL as an input string to KSP. Ensure that the URL is publicly accessible.</p>
-<div class="notice-note"><p>Some UEMs have a limitation on the number of characters you can enter in a string field. In such cases, you cannot use this approach to upload files.</p></div>
+<p><strong>Web URL</strong> &mdash; Upload the file to a cloud server and provide the web URL as an input string to Knox Service Plugin. Ensure that the URL is publicly accessible.</p>
 </li>
 <li>
-<p><strong>Push the image file to the local storage</strong> &mdash; Use the UEM console to push the image file to the local storage on the device and provide the file path on the device as the input string to KSP. Contact your UEM vendor to find out if they support this feature.</p>
-<div class="notice-note"><p>Push the image to your device before you install KSP and it attempts to apply any policies to the device.</p></div>
+<p><strong>Push the image file to the local storage</strong> &mdash; Use the UEM console to push the image file to the local storage on the device and provide the file path on the device as the input string to Knox Service Plugin. Contact your EMM vendor to find out if they support this feature.</p>
+<div class="notice-note"><p>Push the image to your device before you install Knox Service Plugin.</p></div>
 </li>
 </ul>
 

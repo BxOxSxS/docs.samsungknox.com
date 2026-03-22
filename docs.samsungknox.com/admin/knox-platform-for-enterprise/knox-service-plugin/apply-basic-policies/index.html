@@ -56,7 +56,7 @@
 
   
 
-<script onload="initBot()" defer src="https://dc-chbt.samsungknox.com/copilot/index.js?noCache=1773449722"></script>
+<script onload="initBot()" defer src="https://dc-chbt.samsungknox.com/copilot/index.js?noCache=1774046310"></script>
 <script defer>
     function initBot(){
       const relPath = "\/knox-platform-for-enterprise\/knox-service-plugin\/apply-basic-policies\/";
@@ -164,6 +164,9 @@
   </li>
 <li>
   <a href="../../../uat" >User Acceptance Testing</a>
+  </li>
+<li>
+  <a href="https://docs.samsungknox.com/admin/glossary" >Glossary</a>
   </li>
 </ul>
     </nav>
@@ -1139,6 +1142,7 @@
             
 
   
+  
 
 
 
@@ -1202,34 +1206,25 @@
       
       
       
-        
-      
-      
-      
-      
-        
-      
-      
-      
-      
-        <p>Before setting any policies, ensure you have met the following prerequisites. Refer to your UEM documentation for instructions on how to complete these steps.</p>
+        <p>Before setting any policies, ensure you have met the following prerequisites. Refer to your EMM documentation for instructions on how to complete these steps.</p>
 <ol>
 <li>
-<p>Your devices are set up in either a DO or PO deployment mode.</p>
+<p>Your devices are deployed with Android Enterprise as <span class="glossary-term" data-term="Fully managed" data-link="../../../glossary/a-f#fully-managed" data-definition="A corporate ownership model where the company maintains complete control over the entire device, enforcing strict...">fully managed</span> device, company-owned device with a work profile, or a personal device with a work profile.</p>
 </li>
 <li>
 <p>You have set up a Managed Google Play store.</p>
 </li>
 <li>
-<p>You have added KSP as an approved app.</p>
+<p>You have added Knox Service Plugin as an approved app on your EMM.</p>
 </li>
 </ol>
 <h2 id="set-a-standard-policy">Set a standard policy</h2>
-<h3 id="device-owner-do">Device Owner (DO)</h3>
-<p>This example demonstrates how to use a device-wide (DO) policy that requires a fingerprint as the minimum password strength. This configuration is applied to the entire device. You can repeat this sequence of steps for any policy that falls under the <strong>Device-wide policies (Device Owner)</strong> category.</p>
+<h3 id="device-wide-policies">Device-wide policies</h3>
+<p>These policies are applied to company owned devices. These devices are enrolled to an EMM during its initial setup, and they can be deployed as a fully managed device, or as a company owned device with a work profile (WP-C).</p>
+<p>This example demonstrates how to set a <strong>Device-wide policy</strong> that requires a fingerprint as the minimum password strength. This configuration is applied to the entire device. You can repeat this sequence of steps for any policy that falls under <strong>Device-wide policies</strong>.</p>
 <ol>
 <li>
-<p>In your supported UEM, under the <strong>Device-wide policies (Device Owner)</strong> category, turn on <strong>Device Wide Policy Controls</strong>.</p>
+<p>In the Knox Service Plugin managed configuration, under <strong>Device-wide policies</strong>, turn on <strong>Enable device policy controls</strong>.</p>
 </li>
 <li>
 <p>Under <strong>Password policy</strong> turn on <strong>Enable password policy controls with KSP</strong>.</p>
@@ -1238,7 +1233,7 @@
 <p>Under <strong>Biometric authentication</strong> turn on <strong>Enable fingerprint authentication</strong>.</p>
 </li>
 <li>
-<p>In your UEM, save the profile and push it to a device.</p>
+<p>In your EMM, save the profile and push it to a device.</p>
 </li>
 <li>
 <p>Your policies are now applied.</p>
@@ -1253,23 +1248,24 @@
     <p><img src="../assets/enable-finger-print.png" class="img-fluid img-thumbnail" alt="" /></p>
 </li>
 </ol>
-<h3 id="profile-owner-po">Profile Owner (PO)</h3>
-<p>This example demonstrates how to use a profile-wide policy that disables the Android <strong>Allow Share Via</strong> feature. The particular policies used in this section require a free <a href="../../before-you-begin/knox-platform-for-enterprise-licenses">Knox Platform for Enterprise Premium license key</a>. You can repeat this step sequence for any policy under the <strong>Work profile policies (Profile Owner)</strong> category.</p>
+<h3 id="work-profile-policies">Work profile policies</h3>
+<p>These policies are applied to personal devices (BYOD) with a work profile. These devices are enrolled to an EMM with a work profile after its initial setup.</p>
+<p>This example demonstrates how to use <strong>Work profile policies</strong> to set the Android <strong>Allow Share Via</strong> feature. The particular policies used in this section require a free <a href="../../before-you-begin/knox-platform-for-enterprise-licenses">Knox Platform for Enterprise Premium license key</a>. You can repeat this step sequence for other policies under the <strong>Work profile policies</strong>.</p>
 <ol>
 <li>
-<p>In your supported UEM, under the <strong>Work profile policies (Profile Owner)</strong> category, turn on <strong>Enable work profile policy controls</strong>.</p>
+<p>In the Knox Service Plugin managed configuration, under <strong>Work profile policies</strong>, turn on <strong>Enable work profile policy controls</strong>.</p>
 </li>
 <li>
 <p>Under <strong>Device Restrictions</strong> turn on <strong>Enable device restriction controls</strong>.</p>
 </li>
 <li>
-<p>If required, enter your <a href="../references/schema-structure">Knox Platform for Enterprise Premium License Key</a>. If your UEM natively supports Knox Platform for Enterprise Premium license activation, you don&rsquo;t need to fill out this field. Check with your UEM for more information.</p>
+<p>If required, enter your <a href="../references/schema-structure">Knox Platform for Enterprise Premium License Key</a>. If your EMM natively supports Knox Platform for Enterprise Premium license activation, you don&rsquo;t need to fill out this field. Check with your EMM for more information.</p>
 </li>
 <li>
 <p>Disable <strong>Allow Share Via option</strong>.</p>
 </li>
 <li>
-<p>In your UEM, save the profile and push it to a device.</p>
+<p>In your EMM, save the profile and push it to a device.</p>
 </li>
 <li>
 <p>Your policies are now applied.</p>
@@ -1303,10 +1299,10 @@
 <p>To target a specific app, you need to use the app package name in conjunction with a KSP policy.</p>
 <ol>
 <li>
-<p>In your supported UEM, under the <strong>Device-wide policies (Device Owner)</strong> category, turn on <strong>Enable application management controls</strong>.</p>
+<p>In the Knox Service Plugin managed configuration, under <strong>Device-wide policies</strong>, turn on <strong>Enable device policy controls</strong>.</p>
 </li>
 <li>
-<p>Under <strong>Application Management policies</strong>, enable <strong>Enable application management controls with KSP</strong>.</p>
+<p>Under <strong>Application Management policies</strong>, turn on <strong>Enable application management controls</strong>.</p>
 </li>
 <li>
 <p>Under <strong>Battery optimization</strong> insert the app package name you want to target, for example, <code>com.samsung.email.provider</code>.</p>
@@ -1343,10 +1339,7 @@
 <p>The first line of defense on a device is a strong device password. KSP offers granular controls for IT admins to enforce the use of a strong password as well as allow or block other authentication methods on a device. For example, let&rsquo;s turn off biometric authentication methods for devices as well as enforce a specific password policy.</p>
 <ol>
 <li>
-<p>In your supported UEM, under the <strong>Device-wide policies (Device Owner)</strong> category, next to Password Policy, click <strong>Configure</strong>.</p>
-</li>
-<li>
-<p>On the Password Policy page that opens, set the Enable password policy controls with KSP field to <strong>True</strong>.</p>
+<p>In the Knox Service Plugin managed configuration, go to <strong>Device-wide policies</strong> &gt; <strong>Password Policy</strong>, and turn on <strong>Enable password policy controls with KSP</strong>.</p>
 </li>
 <li>
 <p>Next to the Biometric authentication field, click <strong>Configure</strong>.</p>
@@ -1358,26 +1351,26 @@
 <p>Next to the Password Change field, click <strong>Configure</strong>.</p>
 </li>
 <li>
-<p>On the page that opens, set the Enforce password change field to <strong>True</strong>. When you set the Enforce password change field to True, the device user is forced to set up a password &mdash; if one was not already set up &mdash; or change the password, if a password was previously set on the device.</p>
+<p>On the page that opens, set the <strong>Enforce password change</strong> field to <strong>True</strong>. When you set the <strong>Enforce password change</strong> field to <strong>True</strong>, the device user is forced to set up a password &mdash; if one was not already set up &mdash; or change the password, if a password was previously set on the device.</p>
 </li>
 <li>
-<p>In the Password enforcement timeout field, set a value for the number of minutes up to which the user can cancel or delay the password change. We recommend setting a low value to enforce a password change in a timely fashion. Return to the Password policy page.</p>
+<p>In the <strong>Password enforcement timeout</strong> field, set a value for the number of minutes up to which the user can cancel or delay the password change. We recommend setting a low value to enforce a password change in a timely fashion. Return to the Password policy page.</p>
 </li>
 <li>
-<p>Next to the Password Restrictions field, click <strong>Configure</strong>.</p>
+<p>Next to the <strong>Password Restrictions</strong> field, click <strong>Configure</strong>.</p>
 </li>
 <li>
 <p>In the Maximum character sequence length field, set the maximum length of an alphabetic sequence that is allowed for a password.</p>
 </li>
 <li>
-<p>In your UEM, save the profile and push it to a device. Your policy is now updated.</p>
+<p>In your EMM, save the Knox Service Plugin managed configuration and push it to a device. Your policy is now updated.</p>
 </li>
 </ol>
 <h2 id="revoke-a-policy">Revoke a policy</h2>
 <p>Revoking a policy is simple. All you need to do is find the policy you previously enabled and toggle it back off. For example, let&rsquo;s turn Wi-Fi back on from our previous example.</p>
 <ol>
 <li>
-<p>In your supported UEM, under the <strong>Device-wide policies (Device Owner)</strong> category, turn on <strong>Device Wide Policy Controls</strong>.</p>
+<p>In the Knox Service Plugin managed configuration, under <strong>Device-wide policies</strong>, turn on <strong>Enable device policy controls</strong>.</p>
 </li>
 <li>
 <p>Find the previous policy you disabled, for example <strong>Allow Wi-Fi</strong>.</p>
@@ -1386,7 +1379,7 @@
 <p>Turn <strong>Allow Wi-Fi</strong> back on.</p>
 </li>
 <li>
-<p>In your UEM, save the profile and push it to a device.</p>
+<p>In your EMM, save the profile and push it to a device.</p>
 </li>
 <li>
 <p>Your policy is now updated.</p>
@@ -1403,7 +1396,7 @@
 </ol>
 <h3 id="revoke-a-group-of-policies">Revoke a group of policies</h3>
 <p>You can also revoke an entire group of polices if you turn off the respective group control flag. For example, if you turn off <strong>Enable device restriction controls</strong>, then all device restrictions are revoked.</p>
-<p>In addition, if a policy that is related to a configuration is disabled, all the configuration is revoked. For example, if <strong>Customize DeX Experience</strong> is turned off , then all settings applied from the <strong>DeX customization profile</strong> are revoked.</p>
+<p>In addition, if a policy that is related to a configuration is disabled, all the configuration is revoked. For example, if <strong>Customize DeX Experience</strong> is turned off , then all settings under the <strong>DeX customization profile</strong> are revoked.</p>
 <h2 id="test-and-debug-policies">Test and debug policies</h2>
 <p>To test your polices, you use a feature called <a href="../troubleshoot/debug-mode">Debug mode</a>.</p>
 <ol>
@@ -1435,12 +1428,7 @@
 <p>Deploy payloads gradually.</p>
 </li>
 <li>
-<p>Add only a small number of policy changes at a time.</p>
-<ul>
-<li>Push</li>
-<li>Test</li>
-<li>Ensure success</li>
-</ul>
+<p>Set policy changes in small batches and test them before setting more policies.</p>
 </li>
 <li>
 <p>Disable debug mode in production after testing.</p>
@@ -1449,37 +1437,9 @@
 <p>Assign unique profile names in KSP.</p>
 </li>
 </ol>
-<p>Settings can be configured in 2 main areas &mdash; the <strong>Device wide policies (DO and WP-C)</strong> and the <strong>Work profile policies (PO)</strong>.</p>
-
-
-
-
-
-
-
-
-<p><img src="../assets/ksp-main-app-config.png" class="img-fluid" alt="" /></p>
-<p>The sections below these DO and PO configurations are sub sections of the policy, and usually need to be enabled in the DO or PO prior to being configured in the policy.</p>
-
-
-
-
-
-
-
-
-<p><img src="../assets/ksp-policy-config.png" class="img-fluid" alt="" /></p>
-<p>Inside of each section of the policy, there are typically switches that turn on individual settings.</p>
-
-
-
-
-
-
-
-
-<p><img src="../assets/ksp-enable-flag.png" class="img-fluid" alt="" /></p>
-<div class="notice-note"><p>During configuration, make sure not to navigate back in your web browser, or you will lose your progress. If the EMM console splits into different sections, use the navigation controls inside the EMM to navigate. Navigation specifics vary based on your EMM.</p></div>
+<p>Settings can be configured in 2 main areas &mdash; the <strong>Device wide policies</strong> which apply to fully managed devices and company-owned devices with a work profile, and the <strong>Work profile policies</strong> which apply to personal devices (BYOD) with a work profile. The policy configurations at the bottom are for policies that support configuration profiles. Some Knox Service Plugin policies allow you to create and save multiple configuration profiles, and how they apply to your devices depends on specific policy behavior.</p>
+<p>For details about how the Knox Service Plugin policies are organized, see the <a href="../references/schema-structure">Schema structure</a>.</p>
+<div class="notice-note"><p>During configuration, make sure not to navigate back in your web browser, or you will lose your progress. If the EMM console splits configurations into different sections, use the navigation controls inside the EMM to navigate. Navigation specifics vary based on your EMM.</p></div>
 
             
           </div>
@@ -1491,8 +1451,8 @@
   <ul>
     <li><a href="#set-a-standard-policy">Set a standard policy</a>
       <ul>
-        <li><a href="#device-owner-do">Device Owner (DO)</a></li>
-        <li><a href="#profile-owner-po">Profile Owner (PO)</a></li>
+        <li><a href="#device-wide-policies">Device-wide policies</a></li>
+        <li><a href="#work-profile-policies">Work profile policies</a></li>
       </ul>
     </li>
     <li><a href="#set-multiple-policy-parameters">Set multiple policy parameters</a></li>
