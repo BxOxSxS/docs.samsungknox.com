@@ -56,7 +56,7 @@
 
   
 
-<script onload="initBot()" defer src="https://dc-chbt.samsungknox.com/copilot/index.js?noCache=1774029447"></script>
+<script onload="initBot()" defer src="https://dc-chbt.samsungknox.com/copilot/index.js?noCache=1774907089"></script>
 <script defer>
     function initBot(){
       const relPath = "\/knox-efota\/get-started\/authentication-for-knox-efota\/";
@@ -438,9 +438,9 @@
         <p>Before you can access the Knox E-FOTA API, you must set up <a href="../../../knox-cloud-authentication/knox-oauth-2-0-authentication">Knox OAuth 2.0 Authentication</a>. This guide will cover how to set up authentication for secure access to the Knox E-FOTA API.</p>
 <div class="notice-note"><p>UAT test accounts require a different security certificate. To use UAT test accounts, please contact Samsung support.</p></div>
 <h2 id="register-a-cloud-app">Register a cloud app</h2>
-<p>The first step of Knox OAuth 2.0 Authentication is to register your cloud application. See the full steps on how to <a href="../../../knox-cloud-authentication/knox-oauth-2-0-authentication/register-new-app">Register a new cloud app</a>.</p>
+<p>Before you begin, you must register your cloud application. See the full steps on how to <a href="../../../knox-cloud-authentication/knox-oauth-2-0-authentication/register-new-app">Register a new cloud app</a>.</p>
 <p>OAuth 2.0 scopes are used to specify the level of access your cloud application has to your customer&rsquo;s Knox E-FOTA resources. When you register your cloud application, make sure you add the required scopes so your application can access various features of Knox E-FOTA.</p>
-<p>You can request more granular access permissions by only adding scopes for specific Knox E-FOTA operations. If multiple scopes are requested, the user must consent to all of them and may not select individual scopes. For a superior customer experience, please ensure that your application requests the least number of scope permissions.</p>
+<p>You can request more granular access permissions by adding scopes for specific Knox E-FOTA operations. When your application requests multiple scopes, your customers must consent to all of them and can&rsquo;t select individual scopes. For the best customer experience, ensure your application requests only the minimum number of scope permissions required.</p>
 <p>Here is a list of scopes you can add for Knox E-FOTA:</p>
 <div class="overflow-auto my-3"><table>
   <thead>
@@ -585,10 +585,11 @@
 <p>If this is a first-time request, the permission request timed out, or if permission was manually revoked by your customer, their browser is redirected to Samsung&rsquo;s authorization consent page. If your customer has already granted permission previously, this authorization page is bypassed and your customer is immediately redirected to the URL provided in the <code>redirect_uri</code> query parameter.</p>
 </li>
 <li>
-<p>On Samsung&rsquo;s authorization consent page, your customer is prompted to log in to their Samsung Account or through an IdP.</p>
+<p>On the authorization consent page, your customer is prompted to sign in to their Samsung Knox account.
+<div class="notice-important"><p>The customer signing in must be the super admin of their Samsung Knox account.</p></div></p>
 </li>
 <li>
-<p>When your customer logs in, they are shown an access request page which identifies your application and outlines the particular permissions and scopes that your application is requesting. Here, they can choose which permissions to grant, and click <strong>Allow</strong> to approve your application&rsquo;s request to access their Knox E-FOTA resources on their behalf.</p>
+<p>When your customer logs in, they are shown an access request page which identifies your application and outlines the permissions and scopes that your application is requesting. Here, they can choose which permissions to grant, and click <strong>Allow</strong> to approve your application&rsquo;s request to access their Knox E-FOTA resources on their behalf.</p>
 
     
     
@@ -737,23 +738,23 @@
 
 
 <div id="exchange-auth-code-for-access-token-sample" class="accordion-item">
-  <h4 class="body-3  mt-0 " id="panelsStayOpen-heading5-0">
+  <h4 class="body-3  mt-0 " id="panelsStayOpen-heading6-0">
     <button
         class="accordion-button accordion-header fw-bold text-grey  collapsed "
         type="button"
         data-bs-toggle="collapse"
-        data-bs-target="#panelsStayOpen-collapse5-0"
+        data-bs-target="#panelsStayOpen-collapse6-0"
         aria-expanded="false"
-        aria-controls="panelsStayOpen-collapse5-0"
+        aria-controls="panelsStayOpen-collapse6-0"
     >
       <div>Code sample to get an access token
       </div>
     </button>
   </h4>
   <div
-      id="panelsStayOpen-collapse5-0"
+      id="panelsStayOpen-collapse6-0"
       class="accordion-collapse collapse "
-      aria-labelledby="panelsStayOpen-heading5-0"
+      aria-labelledby="panelsStayOpen-heading6-0"
     >
       <div class="accordion-body text-grey"><div class="highlight"><pre tabindex="0" style=";-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-Java" data-lang="Java"><span style="display:flex;"><span><span style="color:#008000;font-weight:bold">private</span><span style="color:#bbb"> </span>HttpResponse<span style="color:#666">&lt;</span>String<span style="color:#666">&gt;</span><span style="color:#bbb"> </span><span style="color:#00f">getAccessToken</span>(String<span style="color:#bbb"> </span>code)<span style="color:#bbb"> </span><span style="color:#008000;font-weight:bold">throws</span><span style="color:#bbb"> </span>URISyntaxException,<span style="color:#bbb"> </span>IOException,<span style="color:#bbb"> </span>InterruptedException<span style="color:#bbb"> </span>{<span style="color:#bbb">
 </span></span></span><span style="display:flex;"><span><span style="color:#bbb">    </span>String<span style="color:#bbb"> </span>redirectUri<span style="color:#bbb"> </span><span style="color:#666">=</span><span style="color:#bbb"> </span>SELF_URI<span style="color:#bbb"> </span><span style="color:#666">+</span><span style="color:#bbb"> </span><span style="color:#ba2121">&#34;redirect&#34;</span>;<span style="color:#bbb">
@@ -798,23 +799,23 @@
 
 
 <div id="exchange-auth-code-for-access-token-sample" class="accordion-item">
-  <h4 class="body-3  mt-0 " id="panelsStayOpen-heading5-1">
+  <h4 class="body-3  mt-0 " id="panelsStayOpen-heading6-1">
     <button
         class="accordion-button accordion-header fw-bold text-grey  collapsed "
         type="button"
         data-bs-toggle="collapse"
-        data-bs-target="#panelsStayOpen-collapse5-1"
+        data-bs-target="#panelsStayOpen-collapse6-1"
         aria-expanded="false"
-        aria-controls="panelsStayOpen-collapse5-1"
+        aria-controls="panelsStayOpen-collapse6-1"
     >
       <div>Code sample for redirects
       </div>
     </button>
   </h4>
   <div
-      id="panelsStayOpen-collapse5-1"
+      id="panelsStayOpen-collapse6-1"
       class="accordion-collapse collapse "
-      aria-labelledby="panelsStayOpen-heading5-1"
+      aria-labelledby="panelsStayOpen-heading6-1"
     >
       <div class="accordion-body text-grey"><div class="highlight"><pre tabindex="0" style=";-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-Java" data-lang="Java"><span style="display:flex;"><span><span style="color:#008000;font-weight:bold">public</span><span style="color:#bbb"> </span>String<span style="color:#bbb"> </span><span style="color:#00f">redirect</span>(<span style="color:#a2f">@RequestParam</span><span style="color:#bbb"> </span>String<span style="color:#bbb"> </span>code,<span style="color:#bbb">
 </span></span></span><span style="display:flex;"><span><span style="color:#bbb">                       </span><span style="color:#a2f">@RequestParam</span><span style="color:#bbb"> </span>String<span style="color:#bbb"> </span>state)<span style="color:#bbb"> </span><span style="color:#008000;font-weight:bold">throws</span><span style="color:#bbb"> </span>URISyntaxException,<span style="color:#bbb"> </span>IOException,<span style="color:#bbb"> </span>InterruptedException<span style="color:#bbb"> </span>{<span style="color:#bbb">
@@ -856,23 +857,23 @@
 
 
 <div id="call-e-fota-api-sample" class="accordion-item">
-  <h4 class="body-3  mt-0 " id="panelsStayOpen-heading6-0">
+  <h4 class="body-3  mt-0 " id="panelsStayOpen-heading7-0">
     <button
         class="accordion-button accordion-header fw-bold text-grey  collapsed "
         type="button"
         data-bs-toggle="collapse"
-        data-bs-target="#panelsStayOpen-collapse6-0"
+        data-bs-target="#panelsStayOpen-collapse7-0"
         aria-expanded="false"
-        aria-controls="panelsStayOpen-collapse6-0"
+        aria-controls="panelsStayOpen-collapse7-0"
     >
       <div>Code sample
       </div>
     </button>
   </h4>
   <div
-      id="panelsStayOpen-collapse6-0"
+      id="panelsStayOpen-collapse7-0"
       class="accordion-collapse collapse "
-      aria-labelledby="panelsStayOpen-heading6-0"
+      aria-labelledby="panelsStayOpen-heading7-0"
     >
       <div class="accordion-body text-grey"><div class="highlight"><pre tabindex="0" style=";-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-Java" data-lang="Java"><span style="display:flex;"><span><span style="color:#008000;font-weight:bold">private</span><span style="color:#bbb"> </span>HttpResponse<span style="color:#666">&lt;</span>String<span style="color:#666">&gt;</span><span style="color:#bbb"> </span><span style="color:#00f">getCampaignSchemas</span>(String<span style="color:#bbb"> </span>accessToken)<span style="color:#bbb"> </span><span style="color:#008000;font-weight:bold">throws</span><span style="color:#bbb"> </span>URISyntaxException,<span style="color:#bbb"> </span>IOException,<span style="color:#bbb"> </span>InterruptedException<span style="color:#bbb"> </span>{<span style="color:#bbb">
 </span></span></span><span style="display:flex;"><span><span style="color:#bbb">    </span>String<span style="color:#bbb"> </span>campaignSchemasUrl<span style="color:#bbb"> </span><span style="color:#666">=</span><span style="color:#bbb">  </span>apiUri<span style="color:#bbb"> </span><span style="color:#666">+</span><span style="color:#bbb"> </span><span style="color:#ba2121">&#34;campaignSchemas&#34;</span>;<span style="color:#bbb">
@@ -905,23 +906,23 @@
 
 
 <div id="refresh-access-token-sample" class="accordion-item">
-  <h4 class="body-3  mt-0 " id="panelsStayOpen-heading7-0">
+  <h4 class="body-3  mt-0 " id="panelsStayOpen-heading8-0">
     <button
         class="accordion-button accordion-header fw-bold text-grey  collapsed "
         type="button"
         data-bs-toggle="collapse"
-        data-bs-target="#panelsStayOpen-collapse7-0"
+        data-bs-target="#panelsStayOpen-collapse8-0"
         aria-expanded="false"
-        aria-controls="panelsStayOpen-collapse7-0"
+        aria-controls="panelsStayOpen-collapse8-0"
     >
       <div>Code sample
       </div>
     </button>
   </h4>
   <div
-      id="panelsStayOpen-collapse7-0"
+      id="panelsStayOpen-collapse8-0"
       class="accordion-collapse collapse "
-      aria-labelledby="panelsStayOpen-heading7-0"
+      aria-labelledby="panelsStayOpen-heading8-0"
     >
       <div class="accordion-body text-grey"><div class="highlight"><pre tabindex="0" style=";-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-Java" data-lang="Java"><span style="display:flex;"><span><span style="color:#008000;font-weight:bold">private</span><span style="color:#bbb"> </span>HttpResponse<span style="color:#666">&lt;</span>String<span style="color:#666">&gt;</span><span style="color:#bbb"> </span><span style="color:#00f">getTokenRefresh</span>(<span style="color:#bbb">
 </span></span></span><span style="display:flex;"><span><span style="color:#bbb">        </span>String<span style="color:#bbb"> </span>refreshToken)<span style="color:#bbb"> </span><span style="color:#008000;font-weight:bold">throws</span><span style="color:#bbb"> </span>URISyntaxException,<span style="color:#bbb"> </span>IOException,<span style="color:#bbb"> </span>InterruptedException<span style="color:#bbb"> </span>{<span style="color:#bbb">
@@ -959,23 +960,23 @@
 
 
 <div id="automatic-refresh-token-request" class="accordion-item">
-  <h4 class="body-3  mt-0 " id="panelsStayOpen-heading8-0">
+  <h4 class="body-3  mt-0 " id="panelsStayOpen-heading9-0">
     <button
         class="accordion-button accordion-header fw-bold text-grey  collapsed "
         type="button"
         data-bs-toggle="collapse"
-        data-bs-target="#panelsStayOpen-collapse8-0"
+        data-bs-target="#panelsStayOpen-collapse9-0"
         aria-expanded="false"
-        aria-controls="panelsStayOpen-collapse8-0"
+        aria-controls="panelsStayOpen-collapse9-0"
     >
       <div>Code sample
       </div>
     </button>
   </h4>
   <div
-      id="panelsStayOpen-collapse8-0"
+      id="panelsStayOpen-collapse9-0"
       class="accordion-collapse collapse "
-      aria-labelledby="panelsStayOpen-heading8-0"
+      aria-labelledby="panelsStayOpen-heading9-0"
     >
       <div class="accordion-body text-grey"><div class="highlight"><pre tabindex="0" style=";-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-Java" data-lang="Java"><span style="display:flex;"><span><span style="color:#008000;font-weight:bold">private</span><span style="color:#bbb"> </span>String<span style="color:#bbb"> </span><span style="color:#00f">getCampaignSchemas</span>()<span style="color:#bbb"> </span><span style="color:#008000;font-weight:bold">throws</span><span style="color:#bbb"> </span>URISyntaxException,<span style="color:#bbb"> </span>IOException,<span style="color:#bbb"> </span>InterruptedException<span style="color:#bbb"> </span>{<span style="color:#bbb">
 </span></span></span><span style="display:flex;"><span><span style="color:#bbb">    </span><span style="color:#408080;font-style:italic">//If our access token is expired we will get a new one.</span><span style="color:#bbb">
