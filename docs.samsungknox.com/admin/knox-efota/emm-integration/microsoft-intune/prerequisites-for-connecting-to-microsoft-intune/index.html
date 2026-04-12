@@ -56,7 +56,7 @@
 
   
 
-<script onload="initBot()" defer src="https://dc-chbt.samsungknox.com/copilot/index.js?noCache=1775085718"></script>
+<script onload="initBot()" defer src="https://dc-chbt.samsungknox.com/copilot/index.js?noCache=1775843363"></script>
 <script defer>
     function initBot(){
       const relPath = "\/knox-efota\/emm-integration\/microsoft-intune\/prerequisites-for-connecting-to-microsoft-intune\/";
@@ -1277,7 +1277,7 @@
             </div>
             
 
-  <p><span>Last updated July  25th, 2024</span></p>
+  <p><span>Last updated March  27th, 2026</span></p>
 
 
     
@@ -1297,16 +1297,6 @@
       
       
       
-        
-      
-      
-      
-      
-        
-      
-      
-      
-      
         <p>This section describes prerequisite procedures you need to perform before you can start connecting to Microsoft Intune.</p>
 <p>To connect to Microsoft Intune, you need:</p>
 <ul>
@@ -1315,22 +1305,25 @@
 <li>A tenant ID</li>
 <li>A client secret</li>
 </ul>
-<h2 id="Create">Step 1: Create a client ID and a tenant ID</h2>
+<h2 id="step-1-create-a-client-id-and-a-tenant-id">Step 1: Create a client ID and a tenant ID</h2>
 <ol>
 <li>
 <p>Sign in to <a href="https://portal.azure.com/" target="_blank">https://portal.azure.com</a>.</p>
 </li>
 <li>
-<p>Under <strong>Azure services</strong>, click <strong>Azure Active Directory</strong>.</p>
+<p>Click <strong>More services</strong>.</p>
 </li>
 <li>
-<p>In the left navigation, click <strong>App registrations</strong>.</p>
+<p>Under <strong>Identity</strong>, click <strong>App registrations</strong>.</p>
 </li>
 <li>
 <p>On the main screen, click <strong>New registration</strong>.</p>
 </li>
 <li>
-<p>In the <strong>Register an application</strong> screen, enter a user-facing display name for the app, for example, <strong>Knox E-FOTA</strong>. Keep the option <strong>Accounts in this organizational directory only</strong> selected.</p>
+<p>Enter a name for this application, for example, <strong>Knox E-FOTA</strong>.</p>
+</li>
+<li>
+<p>Set <strong>Supported account types</strong> to <strong>Single tenant only</strong>.</p>
 </li>
 <li>
 <p>Click <strong>Register</strong>. The Knox E-FOTA application is created. The client ID and tenant ID are displayed.</p>
@@ -1339,8 +1332,7 @@
 <p>Copy the values next to <strong>Application (client) ID</strong> and the <strong>Directory (tenant ID)</strong>.</p>
 </li>
 </ol>
-<h2 id="Create2">Step 2: Create a client secret</h2>
-<div class="notice-note"><p>This procedure is a continuation of <a href="#Create">Create a client ID and a tenant ID</a>.</p></div>
+<h2 id="step-2-create-a-client-secret">Step 2: Create a client secret</h2>
 <ol>
 <li>
 <p>In the left navigation, click <strong>Certificates &amp; secrets</strong>.</p>
@@ -1349,13 +1341,13 @@
 <p>In the main screen, under <strong>Client secrets</strong>, click <strong>New client secret</strong>.</p>
 </li>
 <li>
-<p>In the <strong>Add a client secret</strong> popup, do the following:</p>
+<p>Under <strong>Add a client secret</strong>, do the following:</p>
 <ol>
 <li>
 <p>Enter a description for the client secret, for example, <strong>Client secret for Knox E-FOTA</strong>.</p>
 </li>
 <li>
-<p>Under <strong>Expires</strong>, select <strong>Never</strong>.</p>
+<p>Under <strong>Expires</strong>, select <strong>24 months</strong>.</p>
 </li>
 <li>
 <p>Click <strong>Add</strong>. The new client secret is added under <strong>Client secrets</strong>.</p>
@@ -1367,7 +1359,6 @@
 </li>
 </ol>
 <h2 id="step-3-add-permissions-to-your-knox-e-fota-app-in-microsoft-azure">Step 3: Add permissions to your Knox E-FOTA app in Microsoft Azure</h2>
-<div class="notice-note"><p>This procedure is a continuation of <a href="#Create2">Create a client secret</a>.</p></div>
 <ol>
 <li>
 <p>In the left navigation, click <strong>API permissions</strong>.</p>
@@ -1376,7 +1367,7 @@
 <p>In the main screen, under <strong>Configured permissions</strong>, click <strong>Add a permission</strong>.</p>
 </li>
 <li>
-<p>In the <strong>Request API permissions</strong> popup, do the following:</p>
+<p>Under <strong>Request API permissions</strong>, do the following:</p>
 <ol>
 <li>
 <p>Click <strong>Microsoft Graph</strong>.</p>
@@ -1385,16 +1376,17 @@
 <p>Click <strong>Application permissions</strong>.</p>
 </li>
 <li>
-<p>Under <strong>Select permissions</strong>, select the following:</p>
-<div class="notice-note"><p>You can easily find these permissions by entering them in the search bar.</p></div>
+<p>Under <strong>Select permissions</strong>, select all of the following permissions:</p>
+<div class="notice-note"><p>You can find these permissions by entering them in the search bar.</p></div>
 <ul>
-<li><code>Device.Read.All</code></li>
-<li><code>Group.Read.All</code> or <code>GroupMember.Read.All</code></li>
-<li><code>DeviceManagementManagedDevices.Read.All</code></li>
+<li><code>User.read.all</code></li>
+<li><code>Group.read.all</code></li>
+<li><code>GroupMember.read.all</code></li>
+<li><code>DeviceManagementManagedDevices.read.all</code></li>
 </ul>
 </li>
 <li>
-<p>Click <strong>Add permissions</strong>. The permissions are saved for the app you registered in <a href="#Create">step 1</a>.</p>
+<p>Click <strong>Update permissions</strong>. The permissions are saved for the app you registered in <a href="#step-1-create-a-client-id-and-a-tenant-id">step 1</a>.</p>
 </li>
 </ol>
 </li>
@@ -1414,8 +1406,8 @@
 <aside class="table-of-headings">
     <nav id="TableOfContents">
   <ul>
-    <li><a href="#Create">Step 1: Create a client ID and a tenant ID</a></li>
-    <li><a href="#Create2">Step 2: Create a client secret</a></li>
+    <li><a href="#step-1-create-a-client-id-and-a-tenant-id">Step 1: Create a client ID and a tenant ID</a></li>
+    <li><a href="#step-2-create-a-client-secret">Step 2: Create a client secret</a></li>
     <li><a href="#step-3-add-permissions-to-your-knox-e-fota-app-in-microsoft-azure">Step 3: Add permissions to your Knox E-FOTA app in Microsoft Azure</a></li>
   </ul>
 </nav>
