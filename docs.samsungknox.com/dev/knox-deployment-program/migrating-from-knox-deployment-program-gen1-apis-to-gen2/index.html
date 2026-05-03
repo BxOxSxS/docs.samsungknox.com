@@ -1,0 +1,863 @@
+<!DOCTYPE html>
+<html lang="en">
+
+
+
+
+
+  
+
+
+
+
+
+
+  
+  
+<head>
+  <meta charset="utf-8">
+  
+  
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-CV8C3DHP6P"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-CV8C3DHP6P');
+  </script>
+  
+  <script>
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+    ga('create', 'UA-54474000-1', 'auto'); 
+    ga('send', 'pageview');
+  </script>
+  
+<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start': new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0], j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src='https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);})(window,document,'script','dataLayer','GTM-P24TWCG');</script><meta name="viewport" content="width=device-width,height=device-height,initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>Migrating from Gen1 to the Gen2 API  | Knox Deployment Program  | Samsung Knox Documentation</title>
+  <meta http-equiv="content-language" content="en">
+  <meta name="language" content="en">
+  <script src="../../assets/js/bundle.js"></script>
+  <link rel="stylesheet" href="../../styles/main.min.css">
+  <link rel="icon" href="../../favicon.ico" type="image/x-icon">
+  <link rel="icon" sizes="16x16" href="../../favicon-16x16.png" type="image/png">
+  <link rel="icon" sizes="32x32" href="../../favicon-32x32.png" type="image/png">
+  <link rel="manifest" href="../../manifest.json">
+  <link rel="apple-touch-icon" sizes="180x180" href="../../apple-touch-icon.png">
+  <link rel="mask-icon" href="../../safari-pinned-tab.svg" color="#5bbad5">
+  <meta name="theme-color" content="white">
+</head>
+<body id=ZgotmplZ>
+  
+    
+
+  
+
+<script onload="initBot()" defer src="https://dc-chbt.samsungknox.com/copilot/index.js?noCache=1777596413"></script>
+<script defer>
+    function initBot(){
+      const relPath = "\/knox-deployment-program\/migrating-from-knox-deployment-program-gen1-apis-to-gen2\/";
+      const prePath = relPath  === '/' ? "." : window.location.href.split(relPath)[0];
+      window.chatbot.init("https:\/\/dc-chbt.samsungknox.com", prePath + "/assets/styles/chatbot.css");
+    }
+</script>
+  
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-P24TWCG" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+  
+    <header>
+  <div class="container-xxl border-bottom">
+    <nav class="nav-top navbar navbar-expand-lg d-flex px-3">
+        <a class="navbar-brand" href="../../index.html">
+          <img src="../../svg/samsung_knox_doc_logo.svg" alt="Logo for Samsung Knox documentation">
+        </a>
+        <div class="collapse navbar-collapse">
+          <ul class="row align-items-center ms-10 mb-0 p-0">
+            
+            
+            <li class="navbar-nav col">
+              <a href="../../../admin/index.html" class="body-4 text-black fw-light pe-auto me-6 text-decoration-none ">Admin</a>
+            </li>
+            
+            <li class="navbar-nav col">
+              <a href="../../index.html" class="body-4 text-black fw-light pe-auto me-6 text-decoration-none fw-bold border-bottom border-2 border-black">Developer</a>
+            </li>
+            
+            <li class="navbar-nav col">
+              <a href="../../../partner/index.html" class="body-4 text-black fw-light pe-auto me-3 text-decoration-none ">Partner</a>
+            </li>
+            
+          </ul>
+        </div>
+        <div class="ms-auto">
+          <div class="collapse navbar-collapse">
+            <div class="head-search-wrapper ms-auto ">
+              <script async src="https://cse.google.com/cse.js?cx=9119a64f9020430ac"></script>
+<div class="gcse-search"></div>
+
+            </div>
+          </div>
+        </div>
+    </nav>
+  </div>
+</header>
+
+  
+  <main>
+    
+      <div class="container-xxl l-layout">
+        <div class="l-sidebar pt-md-6">
+          
+<aside class="ps-2 pe-4">
+  <div class="d-inline-block w-100 position-relative">
+  <button id="guide-navigation-button" type="button" data-bs-toggle="collapse" data-bs-target="#guide-navigation" aria-controls="#guide-navigation" aria-expanded="false" class="dropdown-button border border-2">Samsung Knox developer guides</button>
+  <div id="guide-navigation" class="collapse w-100 position-absolute dropdown">
+    <nav aria-labelledby="guide-navigation-button" class="dropdown-content">
+      <ul>
+      <li>
+  <a href="../../fundamentals" >Fundamentals</a>
+  </li>
+<li>
+  <span>Device apps</span>
+  <ul>
+    <li>
+  <a href="../../knox-sdk" >Knox SDK</a>
+  <ul>
+    </ul>
+  </li>
+<li>
+  <a href="../../knox-pos-sdk" >Knox POS SDK</a>
+  </li>
+<li>
+  <a href="../../knox-capture-sdk" >Knox Capture SDK</a>
+  </li>
+<li>
+  <a href="../../knox-tizen-sdk" >Knox Tizen SDK</a>
+  </li>
+</ul>
+  </li>
+<li>
+  <span>Web services</span>
+  <ul>
+    <li>
+  <a href="../../knox-cloud-authentication" >Knox Cloud API Authentication</a>
+  </li>
+<li>
+  <a href="../../knox-webhook-notification" >Knox Webhook Notification</a>
+  <ul>
+    </ul>
+  </li>
+<li>
+  <a href="../../knox-deployment-program" class="active-drop-item">Knox Deployment Program</a>
+  </li>
+<li>
+  <a href="../../knox-msp-portal" >Knox MSP Portal</a>
+  </li>
+<li>
+  <a href="../../knox-mobile-enrollment" >Knox Mobile Enrollment</a>
+  </li>
+<li>
+  <a href="../../knox-efota" >Knox E-FOTA</a>
+  </li>
+<li>
+  <a href="../../knox-configure" >Knox Configure</a>
+  </li>
+<li>
+  <a href="../../knox-manage" >Knox Manage</a>
+  </li>
+<li>
+  <a href="../../knox-attestation" >Knox Attestation</a>
+  </li>
+<li>
+  <a href="../../knox-guard" >Knox Guard</a>
+  <ul>
+    </ul>
+  </li>
+<li>
+  <a href="../../knox-asset-intelligence" >Knox Asset Intelligence</a>
+  </li>
+</ul>
+  </li>
+<li>
+  <a href="../../managed-configurations" >Managed configurations</a>
+  </li>
+</ul>
+    </nav>
+  </div>
+</div><h3 class="body-3 mt-4 ps-2">Knox Deployment Program</h3>
+  <nav class="side-nav">
+    <ul class="ps-2">
+      
+      
+      <li>
+        <div>
+          <a class="body-5 text-black fw-light" href="../../knox-deployment-program.html">Introduction</a>
+        </div>
+      </li>
+        
+          
+  
+  
+    <li class="mt-2">
+    
+    
+    <div class="d-flex justify-content-between">
+      <a class="body-5 text-black fw-light" href="../tutorial-knox-deployment-program-integration/index.html">Get started</a>
+    </div>
+    
+    </li>
+  
+        
+          
+  
+  
+    <li class="mt-2">
+    
+    
+    <div class="d-flex justify-content-between">
+      <a class="body-5 text-black active" href="index.html">Migrating from Gen1 to the Gen2 API</a>
+    </div>
+    
+    </li>
+  
+        
+          
+  
+  
+    <li class="mt-2">
+    
+    
+    <div class="d-flex justify-content-between">
+      <a class="body-5 text-black fw-light" href="../api/index.html">API reference</a>
+    </div>
+    
+    </li>
+  
+        
+          
+  
+  
+    <li class="mt-2">
+    
+    
+    <div class="d-flex justify-content-between">
+      <a class="body-5 text-black fw-light" href="../troubleshooting-for-knox-deployment-program/index.html">Troubleshooting</a>
+    </div>
+    
+    </li>
+  
+        
+          
+  
+  
+    <li class="mt-2">
+    
+    <div class="d-flex justify-content-between">
+      <a class="body-5 text-black fw-light" href="../release-notes/index.html">Release notes</a>
+    </div>
+      
+    </li>
+  </ul>
+  </nav>
+</aside></div>
+        <div class="l-main pt-md-6">
+          
+          <div class="l-content-top mb-4">
+            <div class="l-breadcrumb">
+              <a class="fw-light text-black" href="../../index.html">Home</a><span> /</span>
+<a class="fw-light text-black" href="../../knox-deployment-program.html">Knox Deployment Program</a><span> /</span>
+
+            </div>
+            <div class="mt-4">
+              <h1>Migrating from Gen1 to the Gen2 API</h1>
+            </div>
+            
+
+  <p><span>Last updated February  10th, 2026</span></p>
+
+
+    
+
+</div>
+          <div class="l-content">
+            
+
+  
+  
+
+
+
+
+      
+      
+      
+      
+        
+      
+      
+      
+      
+      
+        
+      
+      
+      
+      
+        
+      
+      
+      
+      
+        
+      
+      
+      
+      
+        
+      
+      
+      
+      
+        
+      
+      
+      
+      
+      
+      
+        
+      
+      
+      
+      <p>This guide covers the differences between the legacy Gen1 API and the latest Gen2 API for Knox Deployment Program, and helps facilitate a smooth migration to Gen2. Compared to Gen1, the Gen2 API features streamlined device provisioning flows (unified endpoints for single-tier and two-tier provisioning), improved error handling, and enhanced authentication security.</p>
+<h2 id="before-you-begin">Before you begin</h2>
+<ol>
+<li>
+<p>Before starting the migration process, make sure you can <a href="../../fundamentals/sign-in-to-knox-developer-account">sign in to your Knox Developer account</a>.</p>
+<ul>
+<li>If you aren&rsquo;t sure if you have access, or get a &ldquo;You don&rsquo;t have access&rdquo; error when you try to sign in, ask the super admin of your KDP tenant sign in first and then try again.</li>
+</ul>
+</li>
+<li>
+<p>Once you are signed in, verify that you can view the <strong>Cloud Apps</strong> menu on the navigation pane of <a href="https://developer.samsungknox.com/dashboard" target="_blank">Knox Developer portal</a>.</p>
+<ul>
+<li>If you&rsquo;re unable to view the <strong>Cloud Apps</strong> menu or need assistance, <a href="../../fundamentals/support">create a Support ticket</a> with the subject line &ldquo;<strong>KDP Gen1 API migration</strong>&rdquo;. Make sure to provide your company name, resller ID, and a brief description of the issue you&rsquo;re facing.</li>
+</ul>
+</li>
+</ol>
+<h2 id="authentication-changes">Authentication changes</h2>
+<p>The legacy Gen1 API uses an <code>X-WSM-API-TOKEN</code> to authenticate your calls. The Gen2 API leverages <a href="../../knox-cloud-authentication/knox-oauth-2-0-authentication/index.html">Knox OAuth 2.0 Authentication</a>, using an <code>Authorization</code> bearer token for call authentication.</p>
+<p>Proceed to:</p>
+<ol>
+<li>
+<p><a href="../../knox-cloud-authentication/knox-oauth-2-0-authentication/register-new-app">Register a Cloud App</a> to get its client ID and secret.</p>
+</li>
+<li>
+<p><a href="../tutorial-knox-deployment-program-integration#step-3-generate-and-test-your-access-token">Generate an access token</a></p>
+</li>
+</ol>
+<h2 id="base-url-differences">Base URL differences</h2>
+<p>The Gen1 API is accessed through regional servers:</p>
+<ul>
+<li><code>https://eu-be-reseller.samsungknox.com</code> (EU server)</li>
+<li><code>https://us-be-reseller.samsungknox.com</code> (US server)</li>
+</ul>
+<p>The Gen2 API uses a different server URL &mdash; ensure the Gen2 global server URL is included in your firewall exceptions:</p>
+<ul>
+<li><code>https://api.samsungknox.com/kcs/v1/rp</code> (global server)</li>
+</ul>
+<h2 id="endpoint-comparison">Endpoint comparison</h2>
+<p>The following table shows how existing Gen1 API endpoints map to Gen2:</p>
+<div class="overflow-auto my-3"><table>
+  <thead>
+      <tr>
+          <th>Feature</th>
+          <th>Gen 1 (v1 &amp; v2)</th>
+          <th>Gen 2</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td><strong>Upload / save devices</strong></td>
+          <td><code>PUT /bulkenroll/v1/reseller/devices</code><br><code>PUT /bulkenroll/v2/reseller/devices</code></td>
+          <td><code>PUT /kcs/v1/rp/devices/upload</code></td>
+      </tr>
+      <tr>
+          <td><strong>Delete devices</strong></td>
+          <td><code>PUT /bulkenroll/v1/reseller/devices/delete</code></td>
+          <td><code>PUT /kcs/v1/rp/devices/delete</code></td>
+      </tr>
+      <tr>
+          <td><strong>Query transaction status</strong></td>
+          <td><code>GET /bulkenroll/v1/reseller/devices/status</code><br><code>GET /bulkenroll/v2/reseller/devices/status</code></td>
+          <td><code>GET /kcs/v1/rp/devices/status</code></td>
+      </tr>
+      <tr>
+          <td><strong>Retrieve customer details</strong></td>
+          <td><code>POST /bulkenroll/v1/reseller/customers</code></td>
+          <td><code>GET /kcs/v1/rp/customers/list</code></td>
+      </tr>
+      <tr>
+          <td><strong>Retrieve reseller details</strong></td>
+          <td><code>POST /bulkenroll/v1/reseller/resellers</code></td>
+          <td>N/A</td>
+      </tr>
+      <tr>
+          <td><strong>Retrieve a list of devices</strong></td>
+          <td><code>GET /bulkenroll/v1/reseller/devices</code></td>
+          <td><code>GET /kcs/v1/rp/devices</code></td>
+      </tr>
+      <tr>
+          <td><strong>Retrieve KME profile aliases</strong></td>
+          <td>N/A</td>
+          <td><code>GET /kcs/v1/rp/profilealias/kme</code></td>
+      </tr>
+  </tbody>
+</table></div>
+<p>The <strong>Retrieve reseller details</strong> Gen1 feature (<code>POST /bulkenroll/v1/reseller/resellers</code>) isn&rsquo;t relevant to most distributors, resellers, and carriers, and therefore isn&rsquo;t supported in Gen2. If you are currently using this functionality, please create a <a href="../../fundamentals/support">support ticket</a> for migration assistance.</p>
+<p>The <strong>Retrieve KME profile aliases</strong> Gen2 feature (<code>GET /kcs/v1/rp/profilealias/kme</code>) is a new endpoint that allows you to retrieve a list of Knox Mobile Enrollment (KME) profile aliases associated with your reseller ID. When <a href="../api/index.html#tag/Endpoints/operation/uploadDevicesUsingPUT" target="_blank">uploading customer devices</a>, you can include the KME profile alias associated with that customer.</p>
+<div class="notice-tip"><p>Ask your customers to create KME profile aliases while <a href="../../../admin/knox-admin-portal/how-to-guides/manage-resellers/index.html#manage-reseller-preferences" target="_blank">managing their reseller preferences</a> in Knox Admin Portal, then share the aliases with you. A customer can create a maximum of 10 profile aliases.</p></div>
+<h2 id="api-payload-and-format-comparison">API payload and format comparison</h2>
+<p>The following sections highlight key changes between commonly used Gen1 and Gen2 API calls.</p>
+<div class="notice-important"><p>The comparisons provided below are for illustrative purposes only, and do not cover all possible optional fields, responses, or errors cases. For comprehensive API documentation see <a href="../api">Gen2 API reference</a>.</p></div>
+<hr>
+<h3 id="upload-devices">Upload devices</h3>
+<p>For details on uploading devices using the Gen2 API, see <a href="../api/index.html#tag/Endpoints/operation/uploadDevicesUsingPUT" target="_blank">Upload devices</a>.</p>
+<h4 id="request-body">Request body</h4>
+<p>The Gen1 payload has a <code>transactionType</code> field which is not supported for Gen2. On the other hand, the Gen2 payload has a <code>profileAliases</code> array which is not supported for Gen1. Each <code>profileAlias</code> Gen2 object includes the name of the profile alias and the service ID.</p>
+<div class="overflow-auto my-3"><table>
+  <thead>
+      <tr>
+          <th>Gen1 Upload Devices Request Body</th>
+          <th>Gen2 Upload Devices Request Body</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td><pre><code>{<br>  &ldquo;transactionId&rdquo;: &ldquo;transaction123&rdquo;,<br>  &ldquo;resellerId&rdquo;: &ldquo;1111111&rdquo;,<br>  &ldquo;customerId&rdquo;: &ldquo;2222222&rdquo;,<br>  &ldquo;vendorId&rdquo;: &ldquo;3333333&rdquo;,<br>  &ldquo;transactionType&rdquo;: &ldquo;New&rdquo;,<br>  &ldquo;orderNo&rdquo;: &ldquo;Order123&rdquo;,<br>  &ldquo;orderTime&rdquo;: 1542405655,<br>  &ldquo;devices&rdquo;: {<br>    &ldquo;type&rdquo;: &ldquo;IMEI&rdquo;,<br>    &ldquo;list&rdquo;: [<br>      &ldquo;35163899&hellip;.236&rdquo;,<br>      &ldquo;35163899&hellip;.123&rdquo;,<br>      &ldquo;35163899&hellip;.456&rdquo;<br>    ]<br>  }<br>}</code></pre></td>
+          <td><pre><code>{<br>  &ldquo;transactionId&rdquo;: &ldquo;transaction123&rdquo;,<br>  &ldquo;resellerId&rdquo;: &ldquo;1111111&rdquo;,<br>  &ldquo;customerId&rdquo;: &ldquo;2222222&rdquo;,<br>  &ldquo;vendorId&rdquo;: &ldquo;3333333&rdquo;,<br>  &ldquo;orderNo&rdquo;: &ldquo;ORD34152345&rdquo;,<br>  &ldquo;orderTime&rdquo;: 1542405655,<br>  &ldquo;type&rdquo;: &ldquo;IMEI&rdquo;,<br>  &ldquo;devices&rdquo;: [<br>    &ldquo;35163899&hellip;.236&rdquo;,<br>    &ldquo;35163899&hellip;.123&rdquo;,<br>    &ldquo;35163899&hellip;.456&rdquo;<br>  ],<br>  &ldquo;profileAliases&rdquo;: [<br>    {<br>      &ldquo;profileAlias&rdquo;: &ldquo;profile_a&rdquo;,<br>      &ldquo;serviceId&rdquo;: &ldquo;kme_service_id&rdquo;<br>    }<br>  ]<br>}</code></pre></td>
+      </tr>
+  </tbody>
+</table></div>
+<h4 id="success-response">Success response</h4>
+<p>The Gen2 success response always includes the <code>operationType</code> field, indicating an upload operation. The Gen1 response does not include a corresponding field.</p>
+<div class="overflow-auto my-3"><table>
+  <thead>
+      <tr>
+          <th>Gen 1</th>
+          <th>Gen 2</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td><pre><code>{<br>  &ldquo;transactionId&rdquo;: &ldquo;transaction123&rdquo;,<br>  &ldquo;state&rdquo;: &ldquo;Progress&rdquo;,<br>  &ldquo;code&rdquo;: 2000000,<br>  &ldquo;message&rdquo;: &ldquo;SUCCESS&rdquo;<br>}</code></pre></td>
+          <td><pre><code>{<br>  &ldquo;transactionId&rdquo;: &ldquo;transaction123&rdquo;,<br>  &ldquo;state&rdquo;: &ldquo;Progress&rdquo;,<br>  &ldquo;code&rdquo;: 2000000,<br>  &ldquo;message&rdquo;: &ldquo;SUCCESS&rdquo;,<br>  &ldquo;operationType&rdquo;: &ldquo;UPLOAD&rdquo;<br>}</code></pre></td>
+      </tr>
+  </tbody>
+</table></div>
+<h4 id="error-response">Error response</h4>
+<p>The Gen1 error response includes <code>transactionId</code> and <code>state</code>, which don&rsquo;t appear for Gen2.</p>
+<div class="overflow-auto my-3"><table>
+  <thead>
+      <tr>
+          <th>Gen 1</th>
+          <th>Gen 2</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td><pre><code>{<br>  &ldquo;transactionId&rdquo;: &ldquo;transaction123&rdquo;,<br>  &ldquo;state&rdquo;: &ldquo;Rejected&rdquo;,<br>  &ldquo;code&rdquo;: 4002101,<br>  &ldquo;message&rdquo;: &ldquo;RESELLER_ID_MISSING&rdquo;,<br>  &ldquo;data&rdquo;: &ldquo;reseller id is missing&rdquo;<br>}</code></pre></td>
+          <td><pre><code>{<br>  &ldquo;code&rdquo;: 4010000,<br>  &ldquo;message&rdquo;: &ldquo;AUTHORIZATION_FAIL&rdquo;,<br>  &ldquo;data&rdquo;: &ldquo;Invalid Api Key&rdquo;<br>}</code></pre></td>
+      </tr>
+  </tbody>
+</table></div>
+<hr>
+<h3 id="delete-devices">Delete devices</h3>
+<p>For details on deleting devices using the Gen2 API, see <a href="../api/index.html#tag/Endpoints/operation/deleteDevicesUsingPUT" target="_blank">Delete devices</a>.</p>
+<h4 id="request-body-1">Request body</h4>
+<p>The Gen1 payload has a <code>transactionType</code> field which is not supported for Gen2.</p>
+<div class="overflow-auto my-3"><table>
+  <thead>
+      <tr>
+          <th>Gen 1</th>
+          <th>Gen 2</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td><pre><code>{<br>  &ldquo;transactionId&rdquo;: &ldquo;transaction123&rdquo;,<br>  &ldquo;resellerId&rdquo;: &ldquo;1111111&rdquo;,<br>  &ldquo;customerId&rdquo;: &ldquo;2222222&rdquo;,<br>  &ldquo;vendorId&rdquo;: &ldquo;3333333&rdquo;,<br>  &ldquo;transactionType&rdquo;: &ldquo;Delete&rdquo;,<br>  &ldquo;devices&rdquo;: {<br>    &ldquo;type&rdquo;: &ldquo;IMEI&rdquo;,<br>    &ldquo;list&rdquo;: [<br>      &ldquo;35163899&hellip;.236&rdquo;,<br>      &ldquo;35163899&hellip;.123&rdquo;,<br>      &ldquo;35163899&hellip;.456&rdquo;<br>    ]<br>  }<br>}</code></pre></td>
+          <td><pre><code>{<br>  &ldquo;transactionId&rdquo;: &ldquo;transaction123&rdquo;,<br>  &ldquo;resellerId&rdquo;: &ldquo;1111111&rdquo;,<br>  &ldquo;customerId&rdquo;: &ldquo;2222222&rdquo;,<br>  &ldquo;vendorId&rdquo;: &ldquo;3333333&rdquo;,<br>  &ldquo;type&rdquo;: &ldquo;IMEI&rdquo;,<br>  &ldquo;devices&rdquo;: [<br>    &ldquo;35163899&hellip;.236&rdquo;,<br>    &ldquo;35163899&hellip;.123&rdquo;,<br>    &ldquo;35163899&hellip;.456&rdquo;<br>  ]<br>}</code></pre></td>
+      </tr>
+  </tbody>
+</table></div>
+<h4 id="success-response-1">Success response</h4>
+<p>The Gen2 success response always includes the <code>operationType</code> field, indicating a delete operation. The Gen1 response does not include a corresponding field.</p>
+<div class="overflow-auto my-3"><table>
+  <thead>
+      <tr>
+          <th>Gen 1</th>
+          <th>Gen 2</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td><pre><code>{<br>  &ldquo;transactionId&rdquo;: &ldquo;transaction123&rdquo;,<br>  &ldquo;state&rdquo;: &ldquo;Progress&rdquo;,<br>  &ldquo;code&rdquo;: 2000000,<br>  &ldquo;message&rdquo;: &ldquo;SUCCESS&rdquo;<br>}</code></pre></td>
+          <td><pre><code>{<br>  &ldquo;transactionId&rdquo;: &ldquo;transaction123&rdquo;,<br>  &ldquo;state&rdquo;: &ldquo;Progress&rdquo;,<br>  &ldquo;code&rdquo;: 2000000,<br>  &ldquo;message&rdquo;: &ldquo;SUCCESS&rdquo;,<br>  &ldquo;operationType&rdquo;: &ldquo;DELETE&rdquo;<br>}</code></pre></td>
+      </tr>
+  </tbody>
+</table></div>
+<h4 id="error-response-1">Error response</h4>
+<p>The Gen1 error response includes <code>transactionId</code> and <code>state</code>, which don&rsquo;t appear for Gen2.</p>
+<div class="overflow-auto my-3"><table>
+  <thead>
+      <tr>
+          <th>Gen 1</th>
+          <th>Gen 2</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td><pre><code>{<br>  &ldquo;transactionId&rdquo;: &ldquo;transaction123&rdquo;,<br>  &ldquo;state&rdquo;: &ldquo;Rejected&rdquo;,<br>  &ldquo;code&rdquo;: 4002101,<br>  &ldquo;message&rdquo;: &ldquo;RESELLER_ID_MISSING&rdquo;,<br>  &ldquo;data&rdquo;: &ldquo;reseller id is missing&rdquo;<br>}</code></pre></td>
+          <td><pre><code>{<br>  &ldquo;code&rdquo;: 4010000,<br>  &ldquo;message&rdquo;: &ldquo;AUTHORIZATION_FAIL&rdquo;,<br>  &ldquo;data&rdquo;: &ldquo;Invalid Api Key&rdquo;<br>}</code></pre></td>
+      </tr>
+  </tbody>
+</table></div>
+<hr>
+<h3 id="get-transaction-status">Get transaction status</h3>
+<p>For details on retrieving transcation statuses using the Gen2 API, see <a href="../api/index.html#tag/Endpoints/operation/getDeviceTransactionStatusUsingGET" target="_blank">List device transaction status</a>.</p>
+<h4 id="mandatory-query-parameters">Mandatory query parameters</h4>
+<p>Since it&rsquo;s a GET call, there is no request body for either the Gen1 or Gen2 API. Both APIs have the same mandatory parameter.</p>
+<div class="overflow-auto my-3"><table>
+  <thead>
+      <tr>
+          <th>Gen 1</th>
+          <th>Gen 2</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td><code>resellerId</code></td>
+          <td><code>resellerId</code></td>
+      </tr>
+  </tbody>
+</table></div>
+<h4 id="success-response-2">Success response</h4>
+<p>The Gen2 success response always includes the <code>operationType</code> field, which indicates if it was an upload or delete operation. The Gen1 response does not include a corresponding field. For both Gen1 and Gen2 APIs, operation-level error messages for transactions appear within <code>transaction</code> objects.</p>
+<div class="overflow-auto my-3"><table>
+  <thead>
+      <tr>
+          <th>Gen 1</th>
+          <th>Gen 2</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td><pre><code>{<br>  &ldquo;totalCount&rdquo;: 2,<br>  &ldquo;totalPage&rdquo;: 1,<br>  &ldquo;pageNum&rdquo;: 0,<br>  &ldquo;transactions&rdquo;: [<br>    {<br>      &ldquo;transactionId&rdquo;: &ldquo;transaction123&rdquo;,<br>      &ldquo;state&rdquo;: &ldquo;Complete&rdquo;,<br>      &ldquo;type&rdquo;: &ldquo;Put&rdquo;,<br>      &ldquo;devices&rdquo;: [<br>        { &ldquo;imei&rdquo;: &ldquo;35163899&hellip;.236&rdquo; },<br>        { &ldquo;imei&rdquo;: &ldquo;35163899&hellip;.136&rdquo; }<br>      ]<br>    },<br>    {<br>      &ldquo;transactionId&rdquo;: &ldquo;transaction456&rdquo;,<br>      &ldquo;state&rdquo;: &ldquo;Complete&rdquo;,<br>      &ldquo;type&rdquo;: &ldquo;Put&rdquo;,<br>      &ldquo;devices&rdquo;: [<br>        { &ldquo;imei&rdquo;: &ldquo;35163899&hellip;.123&rdquo; },<br>        {<br>          &ldquo;imei&rdquo;: &ldquo;35163899&hellip;.456&rdquo;,<br>          &ldquo;code&rdquo;: 4000000,<br>          &ldquo;message&rdquo;: &ldquo;RESOURCE_INVALID_PARAM&rdquo;,<br>          &ldquo;data&rdquo;: &ldquo;This device [35163899&hellip;.456] invalid&rdquo;<br>        }<br>      ]<br>    }<br>  ]<br>}</code></pre></td>
+          <td><pre><code>{<br>  &ldquo;devices&rdquo;: {<br>    &ldquo;totalCount&rdquo;: 2,<br>    &ldquo;totalPage&rdquo;: 1,<br>    &ldquo;pageNum&rdquo;: 0,<br>    &ldquo;transactions&rdquo;: [<br>      {<br>        &ldquo;transactionId&rdquo;: &ldquo;transaction123&rdquo;,<br>        &ldquo;state&rdquo;: &ldquo;Complete&rdquo;,<br>        &ldquo;type&rdquo;: &ldquo;Put&rdquo;,<br>        &ldquo;operationType&rdquo;: &ldquo;UPLOAD&rdquo;<br>        <br>      },<br>      {<br>        &ldquo;transactionId&rdquo;: &ldquo;transaction456&rdquo;,<br>        &ldquo;state&rdquo;: &ldquo;Complete&rdquo;,<br>        &ldquo;type&rdquo;: &ldquo;Put&rdquo;,<br>        &ldquo;operationType&rdquo;: &ldquo;UPLOAD&rdquo;,<br>        &ldquo;devices&rdquo;: [<br>          {<br>            &ldquo;imei&rdquo;: &ldquo;35163899&hellip;.456&rdquo;,<br>            &ldquo;code&rdquo;: 4000004,<br>            &ldquo;message&rdquo;: &ldquo;DEVICE_INVALID&rdquo;,<br>            &ldquo;data&rdquo;: &ldquo;The specified device is not valid.&quot;<br>          }<br>        ]<br>      }<br>    ]<br>  }<br>}</code></pre></td>
+      </tr>
+  </tbody>
+</table></div>
+<h4 id="error-response-2">Error response</h4>
+<p>The Gen1 error response for the call itself includes <code>transactionId</code> and <code>state</code>, which don&rsquo;t appear for Gen2.</p>
+<div class="overflow-auto my-3"><table>
+  <thead>
+      <tr>
+          <th>Gen 1</th>
+          <th>Gen 2</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td><pre><code>{<br>  &ldquo;transactionId&rdquo;: &ldquo;transaction123&rdquo;,<br>  &ldquo;state&rdquo;: &ldquo;Rejected&rdquo;,<br>  &ldquo;code&rdquo;: 4002101,<br>  &ldquo;message&rdquo;: &ldquo;RESELLER_ID_MISSING&rdquo;,<br>  &ldquo;data&rdquo;: &ldquo;reseller id is missing&rdquo;<br>}</code></pre></td>
+          <td><pre><code>{<br>  &ldquo;code&rdquo;: 4010000,<br>  &ldquo;message&rdquo;: &ldquo;AUTHORIZATION_FAIL&rdquo;,<br>  &ldquo;data&rdquo;: &ldquo;Invalid Api Key&rdquo;<br>}</code></pre></td>
+      </tr>
+  </tbody>
+</table></div>
+<hr>
+<h2 id="error-codes">Error codes</h2>
+<p>Gen1 and Gen2 error codes are different. You will need to make code changes accordingly. For details on Gen2 errors, see <a href="../troubleshooting-for-knox-deployment-program/index.html" target="_blank">Troubleshooting for Knox Deployment Program</a>.</p>
+
+            
+          </div>
+          <div class="l-toh">
+            
+  <h2 class="body-4 fw-bold mt-0">On this page</h2>
+<aside class="table-of-headings">
+    <nav id="TableOfContents">
+  <ul>
+    <li><a href="#before-you-begin">Before you begin</a></li>
+    <li><a href="#authentication-changes">Authentication changes</a></li>
+    <li><a href="#base-url-differences">Base URL differences</a></li>
+    <li><a href="#endpoint-comparison">Endpoint comparison</a></li>
+    <li><a href="#api-payload-and-format-comparison">API payload and format comparison</a>
+      <ul>
+        <li><a href="#upload-devices">Upload devices</a></li>
+        <li><a href="#delete-devices">Delete devices</a></li>
+        <li><a href="#get-transaction-status">Get transaction status</a></li>
+      </ul>
+    </li>
+    <li><a href="#error-codes">Error codes</a></li>
+  </ul>
+</nav>
+</aside>
+
+          </div>
+        </div> 
+      </div><div>
+  <div id="feedbackQuestion" class="py-4 border-top text-center">
+    <p class="body-4 mb-2">Is this page helpful?</p>
+    <button id="feedbackYes" class="button-icon me-4">
+      <span class="button-thumbs-up pe-4"></span> YES
+    </button>
+    <button id="feedbackNo" class="button-icon">
+      <span class="button-thumbs-down pe-4"></span> No
+    </button>
+  </div>
+</div>
+
+<div id="feedbackThanks" class="mt-6 border-top text-center" style="display: none">
+  <p class="body-4 pt-4">Thank you for your feedback!</p>
+</div>
+
+
+
+    
+  </main>
+  
+    <footer class="border-top">
+  
+  <div class="container footer">
+    <div class="row g-0 footer-top-section">
+      
+      <div class="col-sm-12 col-md-6 col-lg-3 footer-vertical-section">
+        <div class="d-flex justify-content-between align-items-center">
+          <a class="footer-section-title" data-bs-toggle="collapse" href="#item0" role="button" aria-expanded="false" aria-controls="item0"> 
+            <h6 class="body-3 fw-bold text-uppercase text-black pt-4">Knox Developer documentation</h6>
+          </a>
+          <a class="btn-toggle d-inline-flex d-lg-none rounded border-0 fw-light" data-bs-toggle="collapse" data-bs-target="#item0" aria-expanded="false"></a>
+        </div>
+        <div class="d-lg-block collapse" id="item0">
+          <ul class="nav flex-column">
+            
+            <li>
+              <a
+                href="../../fundamentals"
+                class="body-5 d-flex align-items-center text-black fw-light pe-auto text-decoration-none"
+                >Fundamentals</a
+              >
+            </li>
+            
+            <li>
+              <a
+                href="../../knox-sdk"
+                class="body-5 d-flex align-items-center text-black fw-light pe-auto text-decoration-none"
+                >Knox SDK</a
+              >
+            </li>
+            
+            <li>
+              <a
+                href="../../knox-pos-sdk"
+                class="body-5 d-flex align-items-center text-black fw-light pe-auto text-decoration-none"
+                >Knox POS SDK</a
+              >
+            </li>
+            
+            <li>
+              <a
+                href="../../knox-capture-sdk"
+                class="body-5 d-flex align-items-center text-black fw-light pe-auto text-decoration-none"
+                >Knox Capture SDK</a
+              >
+            </li>
+            
+            <li>
+              <a
+                href="../../knox-tizen-sdk"
+                class="body-5 d-flex align-items-center text-black fw-light pe-auto text-decoration-none"
+                >Knox Tizen SDK</a
+              >
+            </li>
+            
+            <li>
+              <a
+                href="../../knox-cloud-authentication"
+                class="body-5 d-flex align-items-center text-black fw-light pe-auto text-decoration-none"
+                >Knox Cloud Authentication</a
+              >
+            </li>
+            
+            <li>
+              <a
+                href="../../knox-webhook-notification"
+                class="body-5 d-flex align-items-center text-black fw-light pe-auto text-decoration-none"
+                >Knox Webhook Notification</a
+              >
+            </li>
+            
+            <li>
+              <a
+                href="../../knox-deployment-program"
+                class="body-5 d-flex align-items-center text-black fw-light pe-auto text-decoration-none"
+                >Knox Deployment Program</a
+              >
+            </li>
+            
+            <li>
+              <a
+                href="../../knox-msp-portal"
+                class="body-5 d-flex align-items-center text-black fw-light pe-auto text-decoration-none"
+                >Knox MSP Portal</a
+              >
+            </li>
+            
+            <li>
+              <a
+                href="../../knox-mobile-enrollment"
+                class="body-5 d-flex align-items-center text-black fw-light pe-auto text-decoration-none"
+                >Knox Mobile Enrollment</a
+              >
+            </li>
+            
+            <li>
+              <a
+                href="../../knox-configure"
+                class="body-5 d-flex align-items-center text-black fw-light pe-auto text-decoration-none"
+                >Knox Configure</a
+              >
+            </li>
+            
+            <li>
+              <a
+                href="../../knox-manage"
+                class="body-5 d-flex align-items-center text-black fw-light pe-auto text-decoration-none"
+                >Knox Manage</a
+              >
+            </li>
+            
+            <li>
+              <a
+                href="../../knox-attestation"
+                class="body-5 d-flex align-items-center text-black fw-light pe-auto text-decoration-none"
+                >Knox Attestation</a
+              >
+            </li>
+            
+            <li>
+              <a
+                href="../../knox-guard"
+                class="body-5 d-flex align-items-center text-black fw-light pe-auto text-decoration-none"
+                >Knox Guard</a
+              >
+            </li>
+            
+            <li>
+              <a
+                href="../../knox-asset-intelligence"
+                class="body-5 d-flex align-items-center text-black fw-light pe-auto text-decoration-none"
+                >Knox Asset Intelligence</a
+              >
+            </li>
+            
+            <li>
+              <a
+                href="../../managed-configurations"
+                class="body-5 d-flex align-items-center text-black fw-light pe-auto text-decoration-none"
+                >Managed configurations</a
+              >
+            </li>
+            
+          </ul>
+        </div>
+      </div>
+      
+      <div class="col-sm-12 col-md-6 col-lg-3 footer-vertical-section">
+        <div class="d-flex justify-content-between align-items-center">
+          <a class="footer-section-title" data-bs-toggle="collapse" href="#item1" role="button" aria-expanded="false" aria-controls="item1"> 
+            <h6 class="body-3 fw-bold text-uppercase text-black pt-4">Support</h6>
+          </a>
+          <a class="btn-toggle d-inline-flex d-lg-none rounded border-0 fw-light" data-bs-toggle="collapse" data-bs-target="#item1" aria-expanded="false"></a>
+        </div>
+        <div class="d-lg-block collapse" id="item1">
+          <ul class="nav flex-column">
+            
+            <li>
+              <a
+                href="https://developer.samsungknox.com/dashboard/support"
+                class="body-5 d-flex align-items-center text-black fw-light pe-auto text-decoration-none"
+                >Submit a support ticket</a
+              >
+            </li>
+            
+          </ul>
+        </div>
+      </div>
+      
+      <div class="col-sm-12 col-md-6 col-lg-3 footer-vertical-section">
+        <div class="d-flex justify-content-between align-items-center">
+          <a class="footer-section-title" data-bs-toggle="collapse" href="#item2" role="button" aria-expanded="false" aria-controls="item2"> 
+            <h6 class="body-3 fw-bold text-uppercase text-black pt-4">Samsung</h6>
+          </a>
+          <a class="btn-toggle d-inline-flex d-lg-none rounded border-0 fw-light" data-bs-toggle="collapse" data-bs-target="#item2" aria-expanded="false"></a>
+        </div>
+        <div class="d-lg-block collapse" id="item2">
+          <ul class="nav flex-column">
+            
+            <li>
+              <a
+                href="https://www.samsungknox.com/en"
+                class="body-5 d-flex align-items-center text-black fw-light pe-auto text-decoration-none"
+                >Samsung Knox</a
+              >
+            </li>
+            
+            <li>
+              <a
+                href="https://partner.samsungknox.com/"
+                class="body-5 d-flex align-items-center text-black fw-light pe-auto text-decoration-none"
+                >Samsung Knox Partner Program</a
+              >
+            </li>
+            
+            <li>
+              <a
+                href="https://developer.samsung.com/"
+                class="body-5 d-flex align-items-center text-black fw-light pe-auto text-decoration-none"
+                >Samsung Knox Developer</a
+              >
+            </li>
+            
+          </ul>
+        </div>
+      </div>
+      
+    </div>
+  </div>
+  <div class="container py-4 border-bottom border-top">
+    <p class="m-0"><small>Copyright © 1995-<script>document.write(new Date().getFullYear());</script><noscript>2023</noscript> SAMSUNG All Rights Reserved.</small></p>
+  </div>
+  <div class="container">
+    <div class="footer-bottom-section-row">
+      <div class="d-flex py-4 justify-content-between">
+        <div class="d-flex align-items-center">
+          
+          <p class="m-0 footer-bottom-section-item">
+            <a class="body-6 text-uppercase text-black" href="https://www2.samsungknox.com/en/privacy-policy-us">Privacy policy</a>
+          </p>
+          
+          <p class="m-0 footer-bottom-section-item">
+            <a class="body-6 text-uppercase text-black" href="https://www.samsungknox.com/en/legal">Legal</a>
+          </p>
+          
+        </div>
+      </div>
+    </div>
+  </div>
+</footer>
+
+  
+</body>
+
+</html>

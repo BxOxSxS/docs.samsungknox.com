@@ -1,0 +1,86 @@
+function monitorSchemaFormFields(){
+    const form = document.getElementById("mainForm");
+    form.addEventListener('input', updateSchemaFormFields);
+}
+
+function updateSchemaFormFields(){
+    const form = document.getElementById("mainForm");
+    const inputs = form.querySelectorAll('input,select');
+    inputs.forEach(input => {
+        if(input.hasAttribute('req') || input.hasAttribute('reqmap')) {
+            if(input.hasAttribute('req'))
+            {
+                const requiredFields = input.getAttribute('req').split(',');
+                allFilled = requiredFields.every(fieldName => {
+                    const requiredInput = form.querySelector(`[name="${fieldName.trim()}"]`);
+                    return (requiredInput !=null && requiredInput.value != '')
+                });
+            } else {
+                const requiredFields = input.getAttribute('reqmap').split(',');
+                allFilled = requiredFields.every(fieldName => {
+                    const requiredInput = form.querySelector(`[name="${fieldName.split('=')[0].trim()}"]`);
+                    return (requiredInput !=null && requiredInput.value == fieldName.split('=')[1].trim())
+                });
+            }
+
+            var display = allFilled ? "" : "none";
+            input.style.display = display;
+            form.querySelector(`label[for="${input.name}"]`).style.display = display;
+        }
+    });
+}
+
+function monitorFwPolicyFormFields(){
+    const form = document.getElementById("mainForm");
+    form.addEventListener('input', updateFwPolicyFormFields);
+}
+
+function updateFwPolicyFormFields(){
+    const form = document.getElementById("mainForm");
+    const inputs = form.querySelectorAll('input,select');
+    inputs.forEach(input => {
+        if(input.hasAttribute('reqmap')) {
+            const requiredFields = input.getAttribute('reqmap').split(',');
+            allFilled = requiredFields.every(fieldName => {
+                const requiredInput = form.querySelector(`[name="${fieldName.split('=')[0].trim()}"][group="${input.getAttribute("group")}"]`);
+                return (requiredInput !=null && requiredInput.value == fieldName.split('=')[1].trim());
+            });
+            input.readOnly = !allFilled;
+            input.style.backgroundColor = allFilled ? "#fff" : "#ccc";
+            input.value = allFilled ? input.value : "";
+        }
+    });
+}
+
+function addFields(button) {
+    var objectArray = button.closest('.objectArray');
+    var template = objectArray.querySelector('.template');
+    var newFields = template.cloneNode(true);
+    var fields = newFields.querySelectorAll('input, select');
+    var group = 0;
+    fields.forEach(function(field) {
+        if(group == 0)
+            group = document.querySelectorAll('input[name="'+field.name+'"]').length + 1;
+
+        if(field.name.includes('_type') || field.name.includes('_container'))
+            newFields.removeChild(field);
+        
+        field.setAttribute("group", group);
+        field.disabled = false;
+    });
+
+    newFields.style.display = '';
+    newFields.classList.remove('template');
+    newFields.setAttribute("group", group);
+
+    var buttonContainer = button.closest('div[role="group"]');
+    objectArray.insertBefore(newFields, buttonContainer);
+}
+
+function remFields(button) {
+    var objectArray = button.closest('.objectArray');
+    var items = objectArray.querySelectorAll('.objectArrayItem:not(.template)');
+    if(items.length > 0) {
+        items[items.length - 1].remove();
+    }
+}

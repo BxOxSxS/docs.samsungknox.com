@@ -1,0 +1,395 @@
+WEBVTT
+Kind: captions
+Language: en-GB
+
+00:00:06.366 --> 00:00:09.232
+Hello and welcome to the Knox video training series.
+
+00:00:09.500 --> 00:00:14.076
+In this video, we'll show you how to begin using Knox Authentication Manager. Let’s get started!
+
+00:00:14.076 --> 00:00:18.811
+Knox Authentication Manager is an application that lets your enterprise front line workers
+
+00:00:18.811 --> 00:00:22.712
+pick up any device in the fleet, sign in using facial recognition, 
+
+00:00:22.712 --> 00:00:25.394
+and launch their apps without signing in each time. 
+
+00:00:25.395 --> 00:00:30.984
+By the end of this video, you'll learn how to add and configure Knox Authentication Manager in your UEM, 
+
+00:00:30.985 --> 00:00:33.911
+deploy Knox Authentication Manager to your devices,  
+
+00:00:33.912 --> 00:00:37.685
+and use Knox Authentication Manager as an end-user.
+
+00:00:37.686 --> 00:00:40.907
+While Knox Authentication Manager works with 4 UEMs,
+
+00:00:40.907 --> 00:00:45.078
+this video will explain the deployment process using Samsung Knox Manage.
+
+00:00:45.078 --> 00:00:49.657
+Before you start using Knox Authentication Manager, you’ll need the following: 
+
+00:00:49.658 --> 00:00:51.803
+A valid Samsung Knox account.
+
+00:00:51.803 --> 00:00:57.175
+If you do not already have one, please go to samsungknox.com and click Get started to register. 
+
+00:00:57.175 --> 00:00:59.556
+A valid Knox Suite license. 
+
+00:00:59.557 --> 00:01:03.116
+You can watch our Getting started with Knox Suite video for more information.
+
+00:01:03.116 --> 00:01:09.366
+Knox Authentication Manager requires a network that allows devices to communicate with one another
+
+00:01:09.366 --> 00:01:15.366
+via Wi-Fi and reach Google Firebase. Both of these features are needed in order to coordinate device syncing.
+ 
+
+00:01:15.366 --> 00:01:22.366
+Additionally, Knox Authentication Manager is only compatible with select Samsung devices running Android 12 or higher.
+
+00:01:22.366 --> 00:01:25.032
+See the admin guide for more details.
+
+00:01:25.533 --> 00:01:30.299
+To use Knox Authentication Manager, you’ll need an account with one of following UEMs: 
+
+00:01:30.300 --> 00:01:36.100
+Knox Manage, VMware Workspace ONE, Microsoft Intune, or SOTI MobiControl.
+
+00:01:36.100 --> 00:01:41.700
+If you use SOTI MobiControl or Knox Manage, you’ll also need a Microsoft Azure Directory account.
+
+00:01:41.700 --> 00:01:48.233
+Additionally, each UEM needs to be setup (in its own way) to work with Knox Authentication Manager on devices:
+
+00:01:48.233 --> 00:01:51.466
+VMware uses the VMware Workspace ONE launcher,
+
+00:01:51.466 --> 00:01:54.432
+Intune uses the Microsoft Managed Home screen,
+
+00:01:54.433 --> 00:01:57.166
+Knox Manage sets devices in kiosk mode,
+
+00:01:57.166 --> 00:02:02.132
+and SOTI sets devices in Lockdown, which is similar to the Knox Manage kiosk mode.
+
+00:02:02.166 --> 00:02:08.616
+If you use SOTI or Knox Manage, you’ll first need to add Knox Authentication Manager to your Azure portal.
+
+00:02:08.616 --> 00:02:12.491
+Sign into your Azure portal and click on Azure Active Directory.
+
+00:02:12.491 --> 00:02:15.899
+Next, go to App registrations and click on New registration.
+
+00:02:17.500 --> 00:02:17.966
+Next, go to App registrations and click on New registration.
+
+00:02:17.966 --> 00:02:22.757
+You can simply enter a display name, ignore the default settings, and click Register.
+
+00:02:22.757 --> 00:02:22.965
+On the next page, go to Authentication.
+
+00:02:22.966 --> 00:02:25.466
+On the next page, go to Authentication.
+
+00:02:25.466 --> 00:02:25.632
+Once you’ve selected Android as a platform, see our admin guide to copy the package name and hash for Knox Authentication Manager. 
+ 
+
+00:02:25.633 --> 00:02:32.166
+Once you’ve selected Android as a platform, see our admin guide to copy the package name and hash for Knox Authentication Manager. 
+ 
+
+00:02:34.233 --> 00:02:40.899
+Click Configure, then Done. You’re now finished adding Knox Authentication Manager to your Azure portal.
+
+00:02:40.900 --> 00:02:44.900
+While you’re in your Azure portal, you can grab your tenant ID and client ID,
+
+00:02:44.900 --> 00:02:49.300
+which you’ll need when you’re setting the managed configuration for Knox Authentication Manager.
+
+00:02:49.300 --> 00:02:55.300
+For your tenant ID, navigate to Azure Active Directory and you’ll see your tenant ID in the page that opens.
+
+00:02:55.300 --> 00:02:57.533
+Copy it to a notepad for later.
+
+00:02:58.133 --> 00:03:05.966
+For the application ID, go to App registrations and copy your client ID from beside where Knox Authentication Manager is listed.
+ 
+
+00:03:06.633 --> 00:03:13.533
+Now you can switch to your UEM console. Next, we’re going to add Knox Authentication Manager as a managed app.
+
+00:03:13.533 --> 00:03:21.533
+In Knox Manage, navigate to Application and click Add. Select Android and Public-Managed Google Play, and then click Next.
+
+00:03:21.533 --> 00:03:26.066
+Search for Knox Authentication Manager using the search bar and click Select.
+
+00:03:26.400 --> 00:03:29.300
+Now click Save and Assign.
+
+00:03:29.733 --> 00:03:33.733
+Next, you’ll need to set the Knox Authentication Manager managed configuration.
+
+00:03:33.733 --> 00:03:37.733
+On the Assign Application page click Set Configuration. 
+ 
+
+00:03:37.733 --> 00:03:42.233
+In this video, we’ll only cover the settings you need to get started with Knox Authentication Manager.
+
+00:03:42.233 --> 00:03:50.466
+The rest of the settings you can leave as default or change as needed. Click on each section to expand its settings.
+
+00:03:50.466 --> 00:03:54.966
+This first section is Enable Knox Authentication Manager policy controls,
+
+00:03:54.966 --> 00:04:01.832
+which deals with basic settings such as inputting your Knox Suite license. First, set a name for your Managed Configuration.
+
+00:04:01.900 --> 00:04:09.700
+Next, enter your Knox Suite license key. If you have your Knox Admin Portal open, you can find this in the Licenses section.
+ 
+
+00:04:11.100 --> 00:04:17.891
+The next section is Manage Login controls, which sets how users sign-in to their shared device sessions:
+
+00:04:17.891 --> 00:04:24.349
+First, select the main login app for your UEM. For Knox Manage, select Other-Kiosk Mode.
+
+00:04:24.349 --> 00:04:30.807
+Next, select how you want users to sign-in to their shared device session, by face or manually.
+
+00:04:30.808 --> 00:04:34.231
+Manual sign-in gets users to enter their enterprise credentials
+
+00:04:34.232 --> 00:04:38.284
+while face sign in gets users to enter a PIN number and scan their face.
+
+00:04:38.284 --> 00:04:41.932
+In this video, we’ll show you how face-sign in works.
+
+00:04:43.200 --> 00:04:46.696
+The next section is Manage Kiosk Mode controls.
+
+00:04:46.696 --> 00:04:51.199
+This section is only necessary to fill if you’re using Knox Manage or SOTI.
+
+00:04:51.200 --> 00:04:55.200
+In the fields below, paste your tenant ID as well as your client ID
+
+00:04:55.200 --> 00:04:59.166
+that you copied from your Azure portal earlier.
+
+00:04:59.166 --> 00:05:04.057
+The last section is Manage Sync controls which controls how devices sync.
+
+00:05:04.058 --> 00:05:09.916
+First, enter the org ID. This defines how your devices are organized in your fleet.
+ 
+
+00:05:09.916 --> 00:05:15.937
+Next, decide whether your devices will sync when they have the same group ID or when they’re on the same Wi-Fi subnet.
+
+00:05:15.938 --> 00:05:21.166
+If you chose group ID, enter a group ID and a sync group key in the rows below.
+
+00:05:21.166 --> 00:05:27.166
+You can generate a 32 digit sync key by entering the command you see on screen into a terminal on your computer.
+
+00:05:28.533 --> 00:05:34.533
+Once you’re finished, save the configuration, add Knox Authentication Manager to a group, and click Assign.
+
+00:05:34.533 --> 00:05:43.333
+Now you can head back to Applications and add any other apps that you want users to use alongside Knox Authentication Manager.
+
+00:05:43.333 --> 00:05:47.166
+We’re going to add Google Chrome and Microsoft teams.
+
+00:05:48.166 --> 00:05:53.851
+The first step if you use SOTI or Knox Manage, is to create a Kiosk or Lockdown home screen. 
+
+00:05:53.852 --> 00:05:59.766
+Navigate to Kiosk, click Add, select Multiple App Kiosk, and then click Next. 
+
+00:05:59.766 --> 00:06:05.788
+Give your kiosk a name and add Knox Authentication Manager and any other apps you want users to have access to. 
+
+00:06:05.788 --> 00:06:09.299
+Click Save and you’re now finished creating a kiosk. 
+
+00:06:09.300 --> 00:06:13.219
+Next, we’re going to create a profile. Before you do that, 
+
+00:06:13.219 --> 00:06:19.471
+go to Applications and copy Knox Authentication Manager’s package name.
+ You’ll need this for your profile settings.
+
+00:06:19.471 --> 00:06:25.299
+Head to Profile and click Add. Give your profile a name, select Android Enterprise as your platform,
+
+00:06:25.300 --> 00:06:27.900
+and click Save and set policy.
+
+00:06:28.433 --> 00:06:31.046
+Go to Kiosk to set your kiosk settings.
+
+00:06:31.047 --> 00:06:34.868
+Under Kiosk App Settings, select Multi Apps Mode.
+
+00:06:39.366 --> 00:06:44.732
+Next, click on the Samsung Knox policies and scroll down to the Knox Service Plugin policies.
+
+00:06:46.627 --> 00:06:51.030
+We’re going to set two policies which will ensure that the Knox Authentication Manager app
+
+00:06:51.030 --> 00:06:54.593
+is always running on shared devices across user sessions.
+
+00:06:54.594 --> 00:06:58.283
+In the search bar, you can search for the package name for the auto launch policy
+
+00:06:58.284 --> 00:07:00.852
+which will auto launch Knox Authentication Manager.
+
+00:07:00.852 --> 00:07:04.940
+Enter the Knox Authentication Manager package name you just saved.
+
+00:07:04.941 --> 00:07:08.639
+The next policy is Force stop blocklist,
+
+00:07:08.640 --> 00:07:12.338
+which will stop users from force stopping Knox Authentication Manager.
+
+00:07:12.338 --> 00:07:20.067
+Enter the package name again. Your profile settings are all done. Click Save and Assign, select a group to add the profile to,
+
+00:07:20.068 --> 00:07:22.533
+then click Assign and Apply.
+
+00:07:22.533 --> 00:07:26.533
+Now that you've set Knox Authentication Manager in your UEM, 
+
+00:07:26.533 --> 00:07:29.919
+confirm that Knox Authentication Manager is deployed to your devices.
+
+00:07:29.920 --> 00:07:34.854
+Switch over to a device and see that it and your other apps were successfully deployed.
+
+00:07:34.855 --> 00:07:40.908
+This next section of the video will guide you through how a user would register an account with Knox Authentication Manager.
+
+00:07:40.908 --> 00:07:45.740
+You may need to click on Knox Authentication Manager and download it from Google Play. 
+
+00:07:45.741 --> 00:07:48.402
+Once it’s downloaded, you can open the app.
+
+00:07:48.402 --> 00:07:54.459
+Click Sign in or enroll. On the dialog, enter your enterprise username. 
+
+00:07:54.460 --> 00:07:59.148
+On the next screens, you’ll have to re-enter your enterprise username and enter your password. 
+
+00:07:59.149 --> 00:08:03.959
+Once you’ve signed in, you’ll receive a pop up asking if you’ll let Knox Authentication Manager
+
+00:08:03.959 --> 00:08:09.393
+use the Google Accessibility Service API to capture sign-in information. Tap Allow. 
+
+00:08:09.394 --> 00:08:15.966
+The next pop up will ask you if you consent to having Knox Authentication Manager collect and store your biometric data.
+
+00:08:16.800 --> 00:08:22.795
+Select the radio button and tap I Accept. You’ll be asked to enter and then re-enter a PIN number.
+
+00:08:22.795 --> 00:08:24.899
+Then, you’ll be asked to scan your face. 
+
+00:08:25.766 --> 00:08:31.999
+After this, there’s one more step. Go to any of your apps that require manual sign into. Sign into them.
+
+00:08:32.266 --> 00:08:38.066
+When Knox Authentication Manager asks if you’d like to save your sign-in information for that app, tap Save.
+
+00:08:38.133 --> 00:08:42.810
+Go back to Knox Authentication Manager and click the lines in the top left. 
+
+00:08:42.810 --> 00:08:43.332
+Under Manage credentials, you’ll see the app that you saved your credentials for. 
+
+00:08:43.333 --> 00:08:47.433
+Under Manage credentials, you’ll see the app that you saved your credentials for. 
+
+00:08:49.133 --> 00:08:52.289
+You’re now finished registering for Knox Authentication Manager.
+
+00:08:52.290 --> 00:08:59.699
+To sign out of Knox Authentication Manager if you use SOTI or Knox Manage, head to the app and tap Sign out on the home screen.
+
+00:09:00.466 --> 00:09:05.472
+For VMware and Intune, you can sign out by closing your UEM launcher. 
+
+00:09:05.473 --> 00:09:11.093
+Once you’re finished using a device for the day, you should always sign out so that it can properly sync with others.
+ 
+
+00:09:11.093 --> 00:09:15.757
+The next time you sign into Knox Authentication Manager, your sign-in will be much faster.
+
+00:09:15.757 --> 00:09:21.211
+Unlock your device or click on the Knox Authentication Manager app to pop up the sign in prompt.
+
+00:09:21.212 --> 00:09:27.299
+Enter your enterprise username and click Next. Now you can enter your PIN and scan your face to authenticate.
+
+00:09:27.500 --> 00:09:30.750
+Open the app or apps that you saved your credentials for
+
+00:09:30.750 --> 00:09:35.733
+and Knox Authentication Manager will automatically fill in your information and sign you in.
+Now we’ll show you how to test device syncing. Sign out of the first device. We’ll call that device A. 
+ 
+
+00:09:36.966 --> 00:09:43.053
+Now we’ll show you how to test device syncing. Sign out of the first device. We’ll call that device A. 
+ 
+
+00:09:43.054 --> 00:09:49.899
+Grab another device with Knox Authentication Manager installed that’s under the same organization and group ID as device A.
+
+00:09:49.900 --> 00:09:56.905
+We’ll call this one Device B. Make sure the previous user is signed out of Device B and plug in or dock the device.
+
+00:09:56.905 --> 00:10:04.799
+Plug in or dock device A as well. Once the devices have been charging for 1-2 minutes pick up device B and sign in.
+
+00:10:10.500 --> 00:10:18.000
+Knox Authentication Manager should automate your sign-in and you should be able to log in to any apps without re-entering your credentials.
+ 
+
+00:10:20.733 --> 00:10:24.941
+This concludes our video on getting started with Knox Authentication Manager.
+
+00:10:24.942 --> 00:10:30.194
+For more help with Knox Authentication Manager, please visit docs.samsungknox.com.
+
+00:10:30.194 --> 00:10:31.232
+Thanks for watching!
+
