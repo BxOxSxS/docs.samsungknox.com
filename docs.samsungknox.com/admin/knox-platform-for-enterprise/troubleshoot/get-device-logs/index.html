@@ -57,7 +57,7 @@
 
   
 
-<script onload="initBot()" defer src="https://dc-chbt.samsungknox.com/copilot/index.js?noCache=1778282257"></script>
+<script onload="initBot()" defer src="https://dc-chbt.samsungknox.com/copilot/index.js?noCache=1778882118"></script>
 <script defer>
     function initBot(){
       const relPath = "\/knox-platform-for-enterprise\/troubleshoot\/get-device-logs\/";
@@ -1113,7 +1113,7 @@
             </div>
             
 
-  <p><span>Last updated May  6th, 2026</span></p>
+  <p><span>Last updated May  13th, 2026</span></p>
 
 
     
@@ -1127,19 +1127,27 @@
 
 
 
-<p>This section shows how to get dumpstate logs from a device. Device log buffers clear after 15 minutes, make sure you reproduce the issue within this period of time.</p>
+
+      
+      
+      
+      
+        
+      
+      
+      
+      
+        <p>This section shows how to get dumpstate logs from a device. As device log buffers are only temporarily stored for a short period of time, we strongly recommend you collect device logs as soon as you reproduce the issue you&rsquo;re experiencing.</p>
 <p>On devices running Android 15 and higher, you may have to disable <strong>Auto Blocker</strong> before you can access SysDump. To do this, go to your device&rsquo;s settings, and disable <strong>Security and privacy</strong> &gt; <strong>Auto Blocker</strong>.</p>
 <h2 id="phone-dumpstate-logs">Phone dumpstate logs</h2>
+<div class="notice-note"><p>Before collecting logs, you may need to adjust the debug level of your device. You can review the <a href="#adjust-the-debug-level-of-your-device">debug level</a> section to determine whether this is necessary.</p></div>
+<p>To collect dumpstate logs on a phone:</p>
 <ol>
 <li>
-<p>In the <strong>Phone</strong> app, enter <code>*#9900#</code> to open SysDump.</p>
-<div class="notice-note"><p>You may need to adjust the debug level of your device if either:</p><ul><li>The issue persists and is consistently reproduced under the same conditions, even after rebooting the device.</li><li>The Samsung Knox support team has requested that you adjust the debug level to obtain more detailed information from the device.</li></ul><p>If either of the above conditions apply, set the <strong>Debug Level</strong> to <strong>Mid</strong> and wait for the device to restart.</p></div>
+<p>Try to reproduce the issue you&rsquo;re experiencing.</p>
 </li>
 <li>
-<p>Open the app you want to debug and reproduce your issue.</p>
-</li>
-<li>
-<p>Enter <code>*#9900#</code> again in the <strong>Phone</strong> app.</p>
+<p>Once you&rsquo;ve reproduced the issue, open the <strong>Phone</strong> app and enter <code>*#9900#</code> to open SysDump.</p>
 </li>
 <li>
 <p>Tap <strong>Run dumpstate/logcat</strong>.</p>
@@ -1151,24 +1159,21 @@
 <p>In the device&rsquo;s internal storage, navigate to the <code>/log</code> directory, and retrieve the <code>dumpState</code> ZIP file.</p>
 </li>
 <li>
-<p>(Recommended) Once completed, you can repeat step 1 and tap <strong>Delete dumpstate/logcat</strong> to free up space. Additionally, if you previously adjusted the debug level, set the <strong>Debug Level</strong> back to <strong>Low</strong>.</p>
+<p>(Recommended) Once you&rsquo;ve successfully retrieved the device logs, you can re-open SysDump and tap <strong>Delete dumpstate/logcat</strong> to free up space on your device. Additionally, if you previously adjusted the debug level, set the <strong>Debug Level</strong> back to <strong>Low</strong>.</p>
 </li>
 </ol>
 <h2 id="tablet-dumpstate-logs">Tablet dumpstate logs</h2>
+<div class="notice-note"><p>Before collecting logs, you may need to adjust the debug level of your device. You can review the <a href="#adjust-the-debug-level-of-your-device">Adjust the debug level of your device</a> section to determine whether it’s required.</p></div>
 <p>For Wi-Fi only devices that don&rsquo;t have the <strong>Phone</strong> app, you can get dumpstate logs as follows.</p>
 <ol>
 <li>
-<p>Open the <strong>Calculator</strong> app and enter <code>(+30012012732+</code> to switch to factory mode.</p>
+<p>Try to reproduce the issue you&rsquo;re experiencing.</p>
+</li>
+<li>
+<p>Once you&rsquo;ve reproduced the issue, open the <strong>Calculator</strong> app and enter <code>(+30012012732+</code> to switch to factory mode.</p>
 </li>
 <li>
 <p>Enter <code>*#9900#</code> to open SysDump.</p>
-<div class="notice-note"><p>You may need to adjust the debug level of your device if either:</p><ul><li>The issue persists and is consistently reproduced under the same conditions, even after rebooting the device.</li><li>The Samsung Knox support team has requested that you adjust the debug level to obtain more detailed information from the device.</li></ul><p>If either of the above conditions apply, set the <strong>Debug Level</strong> to <strong>Mid</strong> and wait for the device to restart.</p></div>
-</li>
-<li>
-<p>Reproduce your issue.</p>
-</li>
-<li>
-<p>Repeat steps 1 and 2 to open SysDump again.</p>
 </li>
 <li>
 <p>Tap <strong>Run dumpstate/logcat</strong>.</p>
@@ -1180,7 +1185,7 @@
 <p>In the device&rsquo;s internal storage, navigate to the <code>/log</code> directory, and retrieve the <code>dumpState</code> ZIP file.</p>
 </li>
 <li>
-<p>(Recommended) Once completed, you can repeat steps 1 and 2 and tap <strong>Delete dumpstate/logcat</strong> to free up space. Additionally, if you previously adjusted the debug level, set the <strong>Debug Level</strong> back to <strong>Low</strong>.</p>
+<p>(Recommended) Once you&rsquo;ve successfully retrieved the device logs, you can re-open SysDump and tap <strong>Delete dumpstate/logcat</strong> to free up space on your device. Additionally, if you previously adjusted the debug level, set the <strong>Debug Level</strong> back to <strong>Low</strong>.</p>
 </li>
 </ol>
 <h2 id="email-logs">Email logs</h2>
@@ -1219,6 +1224,18 @@
 </ul>
 </li>
 </ol>
+<h2 id="adjust-the-debug-level-of-your-device">Adjust the debug level of your device</h2>
+<p>By default, the debug level for phones and tablets is set to <strong>Low</strong>. You may need to adjust the debug level of your device if either:</p>
+<ul>
+<li>The issue persists and is consistently reproduced under the same conditions, even after rebooting the device.</li>
+<li>The Samsung Knox support team has requested that you adjust the debug level to obtain more detailed information from the device.</li>
+</ul>
+<p>If either of the above conditions apply, complete the appropriate steps to open SysDump:</p>
+<ul>
+<li>Phones: Open the <strong>Phone</strong> app and enter <code>*#9900#</code>.</li>
+<li>Tablets: Open the <strong>Calculator</strong> app and enter <code>(+30012012732+</code> to switch to factory mode, then enter <code>*#9900#</code>.</li>
+</ul>
+<p>In SysDump, set the <strong>Debug Level</strong> to <strong>Mid</strong> and wait for the device to restart. You can then proceed to reproduce the issue and collect dumpstate logs as required.</p>
 
             
           </div>
@@ -1231,6 +1248,7 @@
     <li><a href="#phone-dumpstate-logs">Phone dumpstate logs</a></li>
     <li><a href="#tablet-dumpstate-logs">Tablet dumpstate logs</a></li>
     <li><a href="#email-logs">Email logs</a></li>
+    <li><a href="#adjust-the-debug-level-of-your-device">Adjust the debug level of your device</a></li>
   </ul>
 </nav>
 </aside>
