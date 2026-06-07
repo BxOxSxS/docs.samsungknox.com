@@ -56,7 +56,7 @@
 
   
 
-<script onload="initBot()" defer src="https://dc-chbt.samsungknox.com/copilot/index.js?noCache=1780078025"></script>
+<script onload="initBot()" defer src="https://dc-chbt.samsungknox.com/copilot/index.js?noCache=1780613424"></script>
 <script defer>
     function initBot(){
       const relPath = "\/knox-efota\/error-codes\/";
@@ -352,7 +352,7 @@
             </div>
             
 
-  <p><span>Last updated November  19th, 2025</span></p>
+  <p><span>Last updated June  4th, 2026</span></p>
 
 
     
@@ -734,12 +734,12 @@
     <tr>
         <td>allowOrBlock</td>
         <td>You can only use 0, 1, or 2 for these values.</td>
-        <td><code>allowOrBlock</code> can only be either <code>0</code>, <code>1</code>, or <code>2</code>. Where <code>0</code> means <code>allowOrBlock</code> is disabled, <code>1</code> means it's an allowlist, and 2 means it's a blocklist.</td>
+        <td><code>allowOrBlock</code> must be either <code>0</code>, <code>1</code>, or <code>2</code>, where <code>0</code> means <code>allowOrBlock</code> is disabled, <code>1</code> means it's an allowlist, and 2 means it's a blocklist.</td>
     </tr>
     <tr>
         <td>allowOrBlock</td>
         <td>Make sure the values for allow or block is equal to 1 or 2.</td>
-        <td><code>allowOrBlock</code> must be <code>1</code> or <code>2</code> if you're also using the <code>ssidsForRestriction</code> field.</td>
+        <td><code>allowOrBlock</code> must be either <code>1</code> or <code>2</code> if you're also using the <code>ssidsForRestriction</code> parameter.</td>
     </tr>
     <tr>
         <td>ssidsForRestriction</br>.ssidForRestriction</td>
@@ -1084,12 +1084,12 @@
     <tr>
         <td>allowOrBlock</td>
         <td>You can only use 0, 1, or 2 for these values.</td>
-        <td><code>allowOrBlock</code> can only be either <code>0</code>, <code>1</code>, or <code>2</code>. Where <code>0</code> means <code>allowOrBlock</code> is disabled, <code>1</code> means it's an allowlist, and 2 means it's a blocklist.</td>
+        <td><code>allowOrBlock</code> must be either <code>0</code>, <code>1</code>, or <code>2</code>, where <code>0</code> means <code>allowOrBlock</code> is disabled, <code>1</code> means it's an allowlist, and <code>2</code> means it's a blocklist.</td>
     </tr>
     <tr>
         <td>allowOrBlock</td>
         <td>Make sure the values for allow or block is equal to 1 or 2.</td>
-        <td><code>allowOrBlock</code> must be <code>1</code> or <code>2</code> if you're also using the <code>ssidsForRestriction</code> field.</td>
+        <td><code>allowOrBlock</code> must be either <code>1</code> or <code>2</code> if you're also using the <code>ssidsForRestriction</code> parameter.</td>
     </tr>
     <tr>
         <td>ssidsForRestriction</br>.ssidForRestriction</td>
@@ -1248,10 +1248,38 @@
         <td>Invalid parameter(s) in the request. Check your parameters in your request according to the error message.</td>
     </tr>
     <tr>
-        <td>03002</td>
-        <td>CAMPAIGN_INVALID_REQUEST_DATA</td>
+        <td rowspan="8">03002</td>
+        <td rowspan="8">CAMPAIGN_INVALID_REQUEST_DATA</td>
         <td>Campaign name is not defined</td>
         <td>Make sure a campaign ID is included in the request.</td>
+    </tr>
+    <tr>
+        <td>When model is 'all', salesCode must also be 'all'</td>
+        <td>When using <code>all</code> for the <code>model</code> parameter, ensure that <code>salesCode</code> is also set to <code>all</code>. Check your firmware policy configuration.</td>
+    </tr>
+    <tr>
+        <td>When model is 'all', csc must also be 'all'</td>
+        <td>When using <code>all</code> for the <code>model</code> parameter, ensure that <code>csc</code> is also set to <code>all</code>. Check your firmware policy configuration.</td>
+    </tr>
+    <tr>
+        <td>When salesCode is 'all', csc must also be 'all'</td>
+        <td>When using <code>all</code> for the <code>salesCode</code> parameter, ensure that <code>csc</code> is also set to <code>all</code>. Check your firmware policy configuration.</td>
+    </tr>
+    <tr>
+        <td>Select policy is not available when using 'all' in model/salesCode/csc</td>
+        <td>The <code>select</code> policy type cannot be used when any of the device selection parameters (<code>model</code>, <code>salesCode</code>, <code>csc</code>) are set to <code>all</code>. Choose a different firmware selection policy or don't use <code>all</code> for device selection parameters.</td>
+    </tr>
+    <tr>
+        <td>Campaign target security patch is not defined</td>
+        <td>When using <code>LatestUpToSecurityPatch</code> firmware selection type, the <code>securityPatch</code> parameter must be specified. Provide a valid security patch date in YYYY-MM-DD format.</td>
+    </tr>
+    <tr>
+        <td>Invalid security patch format. Expected format: YYYY-MM-DD</td>
+        <td>The security patch date format is incorrect. Ensure the date follows the required format: YYYY-MM-DD (e.g., 2026-06-01).</td>
+    </tr>
+    <tr>
+        <td>Security patch date is out of valid range. Must be between 2020-01-01 and 12 months from current date.</td>
+        <td>The specified security patch date is outside the valid range. Select a date between 2020-01-01 and 12 months from the current date.</td>
     </tr>
 </table></div>
 <h3 id="device-error-codes">Device error codes</h3>
@@ -1856,7 +1884,7 @@
             
             <li>
               <a
-                href="../../fundamentals/support"
+                href="https://docs.samsungknox.com/dev/fundamentals/support"
                 class="body-5 d-flex align-items-center text-black fw-light pe-auto text-decoration-none"
                 >Get support</a
               >

@@ -1,0 +1,4238 @@
+<!DOCTYPE html>
+<html lang="en">
+
+
+
+
+
+  
+
+
+
+
+
+
+  
+  
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="description" content="Learn how to configure multiple devices at once using bulk actions in Knox Configure with CSV files for device management operations such as assignment, updates, deletion, tagging, rebooting, locking, and custom ID mapping.">
+  
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-CV8C3DHP6P"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-CV8C3DHP6P');
+  </script>
+  
+  <script>
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+    ga('create', 'UA-54474000-1', 'auto'); 
+    ga('send', 'pageview');
+  </script>
+  
+<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start': new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0], j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src='https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);})(window,document,'script','dataLayer','GTM-P24TWCG');</script><meta name="viewport" content="width=device-width,height=device-height,initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>Bulk device actions  | Knox Configure  | Samsung Knox Documentation</title>
+  <meta http-equiv="content-language" content="en">
+  <meta name="language" content="en">
+  <script src="../../../../assets/js/bundle.js"></script>
+  <link rel="stylesheet" href="../../../../styles/main.min.css">
+  <link rel="icon" href="../../../../favicon.ico" type="image/x-icon">
+  <link rel="icon" sizes="16x16" href="../../../../favicon-16x16.png" type="image/png">
+  <link rel="icon" sizes="32x32" href="../../../../favicon-32x32.png" type="image/png">
+  <link rel="manifest" href="../../../../manifest.json">
+  <link rel="apple-touch-icon" sizes="180x180" href="../../../../apple-touch-icon.png">
+  <link rel="mask-icon" href="../../../../safari-pinned-tab.svg" color="#5bbad5">
+  <meta name="theme-color" content="white">
+</head>
+<body id=ZgotmplZ>
+  
+    
+
+  
+
+<script onload="initBot()" defer src="https://dc-chbt.samsungknox.com/copilot/index.js?noCache=1780691837"></script>
+<script defer>
+    function initBot(){
+      const relPath = "\/knox-configure\/how-to-guides\/devices\/bulk-device-actions\/";
+      const prePath = relPath  === '/' ? "." : window.location.href.split(relPath)[0];
+      window.chatbot.init("https:\/\/dc-chbt.samsungknox.com", prePath + "/assets/styles/chatbot.css");
+    }
+</script>
+  
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-P24TWCG" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+  
+    <header>
+  <div class="container-xxl border-bottom">
+    <nav class="nav-top navbar navbar-expand-lg d-flex px-3">
+        <a class="navbar-brand" href="../../../../index.html">
+          <img src="../../../../svg/samsung_knox_doc_logo.svg" alt="Logo for Samsung Knox documentation">
+        </a>
+        <div class="collapse navbar-collapse">
+          <ul class="row align-items-center ms-10 mb-0 p-0">
+            
+            
+            <li class="navbar-nav col">
+              <a href="../../../../index.html" class="body-4 text-black fw-light pe-auto me-6 text-decoration-none fw-bold border-bottom border-2 border-black">Admin</a>
+            </li>
+            
+            <li class="navbar-nav col">
+              <a href="../../../../../dev/index.html" class="body-4 text-black fw-light pe-auto me-6 text-decoration-none ">Developer</a>
+            </li>
+            
+            <li class="navbar-nav col">
+              <a href="../../../../../partner/index.html" class="body-4 text-black fw-light pe-auto me-3 text-decoration-none ">Partner</a>
+            </li>
+            
+          </ul>
+        </div>
+        <div class="ms-auto">
+          <div class="collapse navbar-collapse">
+            <div class="head-search-wrapper ms-auto ">
+              <script async src="https://cse.google.com/cse.js?cx=67283aa7d0c29445b"></script>
+<div class="gcse-search"></div>
+
+            </div>
+          </div>
+        </div>
+    </nav>
+  </div>
+</header>
+
+  
+  <main>
+    <div class="container-xxl l-layout">
+    <div class="l-sidebar pt-md-6">
+      
+<aside class="ps-2 pe-4">
+  <div class="d-inline-block w-100 position-relative">
+  <button id="guide-navigation-button" type="button" data-bs-toggle="collapse" data-bs-target="#guide-navigation" aria-controls="#guide-navigation" aria-expanded="false" class="dropdown-button border border-2">Samsung Knox admin guides</button>
+  <div id="guide-navigation" class="collapse w-100 position-absolute dropdown">
+    <nav aria-labelledby="guide-navigation-button" class="dropdown-content">
+      <ul>
+      <li>
+  <a href="../../../../fundamentals" >Fundamentals</a>
+  </li>
+<li>
+  <a href="../../../../knox-admin-portal" >Knox Admin Portal</a>
+  </li>
+<li>
+  <a href="../../../../knox-suite" >Knox Suite</a>
+  <ul>
+    <li>
+  <a href="../../../../knox-platform-for-enterprise" >Knox Platform for Enterprise</a>
+  </li>
+<li>
+  <a href="../../../../knox-mobile-enrollment" >Knox Mobile Enrollment</a>
+  </li>
+<li>
+  <a href="../../../../knox-manage" >Knox Manage</a>
+  <ul>
+    </ul>
+  </li>
+<li>
+  <a href="../../../../knox-efota" >Knox E-FOTA</a>
+  </li>
+<li>
+  <a href="../../../../knox-asset-intelligence" >Knox Asset Intelligence</a>
+  <ul>
+    </ul>
+  </li>
+<li>
+  <a href="../../../../knox-remote-support" >Knox Remote Support</a>
+  </li>
+<li>
+  <a href="../../../../knox-capture" >Knox Capture</a>
+  </li>
+<li>
+  <a href="../../../../knox-authentication-manager" >Knox Authentication Manager</a>
+  </li>
+</ul>
+  </li>
+<li>
+  <a href="../../../../knox-configure" class="active-drop-item">Knox Configure</a>
+  </li>
+<li>
+  <a href="../../../../knox-guard" >Knox Guard</a>
+  </li>
+<li>
+  <a href="../../../../care-plus" >Samsung Care&#43; for Business</a>
+  </li>
+<li>
+  <a href="../../../../uat" >User Acceptance Testing</a>
+  </li>
+<li>
+  <a href="../../../../glossary" >Glossary</a>
+  </li>
+</ul>
+    </nav>
+  </div>
+</div><h3 class="body-3 mt-4 ps-2">Knox Configure</h3>
+  <nav class="side-nav">
+    <ul class="ps-2">
+      
+      
+      <li>
+        <div>
+          <a class="body-5 text-black fw-light" href="../../../../knox-configure.html">Introduction</a>
+        </div>
+      </li>
+        
+          
+  
+  
+    <li class="mt-2">
+    
+    <div class="d-flex justify-content-between">
+      <a class="body-5 text-black fw-light" href="../../../videos/index.html">How-to videos</a>
+    </div>
+      
+    </li>
+  
+        
+          
+  
+  
+    <li class="mt-2">
+    
+    <div class="d-flex justify-content-between cursor-pointer" data-bs-toggle="collapse" data-bs-target="#sub-knox-configure-get-started-get-started" aria-expanded="false">
+      <span class="body-5 text-black fw-light">Get started</span>
+      <a class="btn-toggle d-inline-flex rounded border-0 fw-light" data-bs-toggle="collapse" data-bs-target="#sub-knox-configure-get-started-get-started" aria-expanded="false"></a>
+    </div>
+      
+    <div class="collapse" id="sub-knox-configure-get-started-get-started">
+      <ul>
+      
+      
+  
+  
+    <li class="mt-2">
+    
+    
+    <div class="d-flex justify-content-between">
+      <a class="body-5 text-black fw-light" href="../../../get-started/create-first-setup-dynamic-profile/index.html">Create your first Setup/Dynamic profile</a>
+    </div>
+    
+    </li>
+  </ul>
+    </div></li>
+  
+        
+          
+  
+  
+    <li class="mt-2">
+    
+    <div class="d-flex justify-content-between cursor-pointer" data-bs-toggle="collapse" data-bs-target="#sub-knox-configure-how-to-guides-how-to-guides" aria-expanded="false">
+      <span class="body-5 text-black fw-light">How-to guides</span>
+      <a class="btn-toggle d-inline-flex rounded border-0 fw-light" data-bs-toggle="collapse" data-bs-target="#sub-knox-configure-how-to-guides-how-to-guides" aria-expanded="true"></a>
+    </div>
+      
+    <div class="show" id="sub-knox-configure-how-to-guides-how-to-guides">
+      <ul>
+      
+      
+  
+  
+    <li class="mt-2">
+    
+    <div class="d-flex justify-content-between cursor-pointer" data-bs-toggle="collapse" data-bs-target="#sub-knox-configure-how-to-guides-profiles-profiles" aria-expanded="false">
+      <span class="body-5 text-black fw-light">Profiles</span>
+      <a class="btn-toggle d-inline-flex rounded border-0 fw-light" data-bs-toggle="collapse" data-bs-target="#sub-knox-configure-how-to-guides-profiles-profiles" aria-expanded="false"></a>
+    </div>
+      
+    <div class="collapse" id="sub-knox-configure-how-to-guides-profiles-profiles">
+      <ul>
+      
+      
+  
+  
+    <li class="mt-2">
+    
+    
+    <div class="d-flex justify-content-between">
+      <a class="body-5 text-black fw-light" href="../../profiles/about-profiles/index.html">About profiles</a>
+    </div>
+    
+    </li>
+  
+  
+  
+    <li class="mt-2">
+    
+    
+    <div class="d-flex justify-content-between">
+      <a class="body-5 text-black fw-light" href="../../profiles/create-profiles/index.html">Create profiles</a>
+    </div>
+    
+    </li>
+  
+  
+  
+    <li class="mt-2">
+    
+    <div class="d-flex justify-content-between cursor-pointer" data-bs-toggle="collapse" data-bs-target="#sub-knox-configure-how-to-guides-profiles-configure-profile-settings-configure-profile-settings" aria-expanded="false">
+      <span class="body-5 text-black fw-light">Configure profile settings</span>
+      <a class="btn-toggle d-inline-flex rounded border-0 fw-light" data-bs-toggle="collapse" data-bs-target="#sub-knox-configure-how-to-guides-profiles-configure-profile-settings-configure-profile-settings" aria-expanded="false"></a>
+    </div>
+      
+    <div class="collapse" id="sub-knox-configure-how-to-guides-profiles-configure-profile-settings-configure-profile-settings">
+      <ul>
+      
+      
+  
+  
+    <li class="mt-2">
+    
+    
+    <div class="d-flex justify-content-between">
+      <a class="body-5 text-black fw-light" href="../../profiles/configure-profile-settings/navigating-settings/index.html">Navigating the settings</a>
+    </div>
+    
+    </li>
+  
+  
+  
+    <li class="mt-2">
+    
+    
+    <div class="d-flex justify-content-between">
+      <a class="body-5 text-black fw-light" href="../../profiles/configure-profile-settings/apps-content/index.html">Applications, widgets, and content</a>
+    </div>
+    
+    </li>
+  
+  
+  
+    <li class="mt-2">
+    
+    
+    <div class="d-flex justify-content-between">
+      <a class="body-5 text-black fw-light" href="../../profiles/configure-profile-settings/home-lock-screen/index.html">Home &amp; Lock screen</a>
+    </div>
+    
+    </li>
+  
+  
+  
+    <li class="mt-2">
+    
+    
+    <div class="d-flex justify-content-between">
+      <a class="body-5 text-black fw-light" href="../../profiles/configure-profile-settings/sound-display/index.html">Sound &amp; Display</a>
+    </div>
+    
+    </li>
+  
+  
+  
+    <li class="mt-2">
+    
+    
+    <div class="d-flex justify-content-between">
+      <a class="body-5 text-black fw-light" href="../../profiles/configure-profile-settings/device-settings/index.html">Device settings</a>
+    </div>
+    
+    </li>
+  
+  
+  
+    <li class="mt-2">
+    
+    
+    <div class="d-flex justify-content-between">
+      <a class="body-5 text-black fw-light" href="../../profiles/configure-profile-settings/restrictions/index.html">Restrictions</a>
+    </div>
+    
+    </li>
+  
+  
+  
+    <li class="mt-2">
+    
+    
+    <div class="d-flex justify-content-between">
+      <a class="body-5 text-black fw-light" href="../../profiles/configure-profile-settings/connectivity/index.html">Connectivity</a>
+    </div>
+    
+    </li>
+  
+  
+  
+    <li class="mt-2">
+    
+    
+    <div class="d-flex justify-content-between">
+      <a class="body-5 text-black fw-light" href="../../profiles/configure-profile-settings/advanced-features/index.html">Advanced features</a>
+    </div>
+    
+    </li>
+  
+  
+  
+    <li class="mt-2">
+    
+    
+    <div class="d-flex justify-content-between">
+      <a class="body-5 text-black fw-light" href="../../profiles/configure-profile-settings/samsung-kids/index.html">Samsung Kids</a>
+    </div>
+    
+    </li>
+  </ul>
+    </div></li>
+  
+  
+  
+    <li class="mt-2">
+    
+    
+    <div class="d-flex justify-content-between">
+      <a class="body-5 text-black fw-light" href="../../profiles/assign-devices-to-profile/index.html">Assign devices to profile</a>
+    </div>
+    
+    </li>
+  
+  
+  
+    <li class="mt-2">
+    
+    
+    <div class="d-flex justify-content-between">
+      <a class="body-5 text-black fw-light" href="../../profiles/manage-profiles/index.html">Manage profiles</a>
+    </div>
+    
+    </li>
+  
+  
+  
+    <li class="mt-2">
+    
+    
+    <div class="d-flex justify-content-between">
+      <a class="body-5 text-black fw-light" href="../../profiles/configure-prokiosk-mode/index.html">Configure ProKiosk mode</a>
+    </div>
+    
+    </li>
+  
+  
+  
+    <li class="mt-2">
+    
+    
+    <div class="d-flex justify-content-between">
+      <a class="body-5 text-black fw-light" href="../../profiles/about-shared-device/index.html">About Shared Device</a>
+    </div>
+    
+    </li>
+  </ul>
+    </div></li>
+  
+  
+  
+    <li class="mt-2">
+    
+    <div class="d-flex justify-content-between cursor-pointer" data-bs-toggle="collapse" data-bs-target="#sub-knox-configure-how-to-guides-devices-devices" aria-expanded="false">
+      <span class="body-5 text-black fw-light">Devices</span>
+      <a class="btn-toggle d-inline-flex rounded border-0 fw-light" data-bs-toggle="collapse" data-bs-target="#sub-knox-configure-how-to-guides-devices-devices" aria-expanded="true"></a>
+    </div>
+      
+    <div class="show" id="sub-knox-configure-how-to-guides-devices-devices">
+      <ul>
+      
+      
+  
+  
+    <li class="mt-2">
+    
+    
+    <div class="d-flex justify-content-between">
+      <a class="body-5 text-black fw-light" href="../assign-profile-to-devices/index.html">Assign profile to devices</a>
+    </div>
+    
+    </li>
+  
+  
+  
+    <li class="mt-2">
+    
+    
+    <div class="d-flex justify-content-between">
+      <a class="body-5 text-black fw-light" href="../manage-devices/index.html">Manage devices</a>
+    </div>
+    
+    </li>
+  
+  
+  
+    <li class="mt-2">
+    
+    
+    <div class="d-flex justify-content-between">
+      <a class="body-5 text-black fw-light" href="../perform-device-actions/index.html">Perform device actions</a>
+    </div>
+    
+    </li>
+  
+  
+  
+    <li class="mt-2">
+    
+    
+    <div class="d-flex justify-content-between">
+      <a class="body-5 text-black active" href="index.html">Bulk device actions</a>
+    </div>
+    
+    </li>
+  </ul>
+    </div></li>
+  
+  
+  
+    <li class="mt-2">
+    
+    <div class="d-flex justify-content-between cursor-pointer" data-bs-toggle="collapse" data-bs-target="#sub-knox-configure-how-to-guides-library-library" aria-expanded="false">
+      <span class="body-5 text-black fw-light">Library</span>
+      <a class="btn-toggle d-inline-flex rounded border-0 fw-light" data-bs-toggle="collapse" data-bs-target="#sub-knox-configure-how-to-guides-library-library" aria-expanded="false"></a>
+    </div>
+      
+    <div class="collapse" id="sub-knox-configure-how-to-guides-library-library">
+      <ul>
+      
+      
+  
+  
+    <li class="mt-2">
+    
+    
+    <div class="d-flex justify-content-between">
+      <a class="body-5 text-black fw-light" href="../../library/upload-an-app/index.html">Upload an app</a>
+    </div>
+    
+    </li>
+  
+  
+  
+    <li class="mt-2">
+    
+    
+    <div class="d-flex justify-content-between">
+      <a class="body-5 text-black fw-light" href="../../library/create-a-custom-animation-file/index.html">Create a custom animation file</a>
+    </div>
+    
+    </li>
+  
+  
+  
+    <li class="mt-2">
+    
+    
+    <div class="d-flex justify-content-between">
+      <a class="body-5 text-black fw-light" href="../../library/about-routine-applets/index.html">About routine applets</a>
+    </div>
+    
+    </li>
+  </ul>
+    </div></li>
+  
+  
+  
+    <li class="mt-2">
+    
+    <div class="d-flex justify-content-between cursor-pointer" data-bs-toggle="collapse" data-bs-target="#sub-knox-configure-how-to-guides-licenses-licenses" aria-expanded="false">
+      <span class="body-5 text-black fw-light">Licenses</span>
+      <a class="btn-toggle d-inline-flex rounded border-0 fw-light" data-bs-toggle="collapse" data-bs-target="#sub-knox-configure-how-to-guides-licenses-licenses" aria-expanded="false"></a>
+    </div>
+      
+    <div class="collapse" id="sub-knox-configure-how-to-guides-licenses-licenses">
+      <ul>
+      
+      
+  
+  
+    <li class="mt-2">
+    
+    
+    <div class="d-flex justify-content-between">
+      <a class="body-5 text-black fw-light" href="../../licenses/about-kc-licenses/index.html">About Knox Configure licenses</a>
+    </div>
+    
+    </li>
+  
+  
+  
+    <li class="mt-2">
+    
+    
+    <div class="d-flex justify-content-between">
+      <a class="body-5 text-black fw-light" href="../../licenses/manage-licenses/index.html">Manage licenses</a>
+    </div>
+    
+    </li>
+  </ul>
+    </div></li>
+  
+  
+  
+    <li class="mt-2">
+    
+    
+    <div class="d-flex justify-content-between">
+      <a class="body-5 text-black fw-light" href="../../manage-resellers/index.html">Manage resellers</a>
+    </div>
+    
+    </li>
+  
+  
+  
+    <li class="mt-2">
+    
+    
+    <div class="d-flex justify-content-between">
+      <a class="body-5 text-black fw-light" href="../../manage-admins-and-roles/index.html">Manage admins and roles</a>
+    </div>
+    
+    </li>
+  
+  
+  
+    <li class="mt-2">
+    
+    
+    <div class="d-flex justify-content-between">
+      <a class="body-5 text-black fw-light" href="../../activity-log/index.html">Activity log</a>
+    </div>
+    
+    </li>
+  
+  
+  
+    <li class="mt-2">
+    
+    
+    <div class="d-flex justify-content-between">
+      <a class="body-5 text-black fw-light" href="../../use-the-dashboard/index.html">Use the dashboard</a>
+    </div>
+    
+    </li>
+  
+  
+  
+    <li class="mt-2">
+    
+    <div class="d-flex justify-content-between cursor-pointer" data-bs-toggle="collapse" data-bs-target="#sub-knox-configure-how-to-guides-end-user-workflows-end-user-workflows" aria-expanded="false">
+      <span class="body-5 text-black fw-light">End user workflows</span>
+      <a class="btn-toggle d-inline-flex rounded border-0 fw-light" data-bs-toggle="collapse" data-bs-target="#sub-knox-configure-how-to-guides-end-user-workflows-end-user-workflows" aria-expanded="false"></a>
+    </div>
+      
+    <div class="collapse" id="sub-knox-configure-how-to-guides-end-user-workflows-end-user-workflows">
+      <ul>
+      
+      
+  
+  
+    <li class="mt-2">
+    
+    
+    <div class="d-flex justify-content-between">
+      <a class="body-5 text-black fw-light" href="../../end-user-workflows/enroll-a-device/index.html">Enroll a device</a>
+    </div>
+    
+    </li>
+  
+  
+  
+    <li class="mt-2">
+    
+    
+    <div class="d-flex justify-content-between">
+      <a class="body-5 text-black fw-light" href="../../end-user-workflows/use-the-configuration-service/index.html">Use the Configuration service</a>
+    </div>
+    
+    </li>
+  </ul>
+    </div></li>
+  
+  
+  
+    <li class="mt-2">
+    
+    
+    <div class="d-flex justify-content-between">
+      <a class="body-5 text-black fw-light" href="../../provide-feedback/index.html">Provide feedback</a>
+    </div>
+    
+    </li>
+  </ul>
+    </div></li>
+  
+        
+          
+  
+  
+    <li class="mt-2">
+    
+    <div class="d-flex justify-content-between cursor-pointer" data-bs-toggle="collapse" data-bs-target="#sub-knox-configure-troubleshoot-troubleshoot" aria-expanded="false">
+      <span class="body-5 text-black fw-light">Troubleshoot</span>
+      <a class="btn-toggle d-inline-flex rounded border-0 fw-light" data-bs-toggle="collapse" data-bs-target="#sub-knox-configure-troubleshoot-troubleshoot" aria-expanded="false"></a>
+    </div>
+      
+    <div class="collapse" id="sub-knox-configure-troubleshoot-troubleshoot">
+      <ul>
+      
+      
+  
+  
+    <li class="mt-2">
+    
+    
+    <div class="d-flex justify-content-between">
+      <a class="body-5 text-black fw-light" href="../../../troubleshoot/portal-side-errors/index.html">Portal-side errors</a>
+    </div>
+    
+    </li>
+  
+  
+  
+    <li class="mt-2">
+    
+    
+    <div class="d-flex justify-content-between">
+      <a class="body-5 text-black fw-light" href="../../../troubleshoot/device-side-errors/index.html">Device-side errors</a>
+    </div>
+    
+    </li>
+  
+  
+  
+    <li class="mt-2">
+    
+    
+    <div class="d-flex justify-content-between">
+      <a class="body-5 text-black fw-light" href="../../../troubleshoot/warning-messages/index.html">Warning messages</a>
+    </div>
+    
+    </li>
+  
+  
+  
+    <li class="mt-2">
+    
+    
+    <div class="d-flex justify-content-between">
+      <a class="body-5 text-black fw-light" href="../../../troubleshoot/get-support/index.html">Get support</a>
+    </div>
+    
+    </li>
+  </ul>
+    </div></li>
+  
+        
+          
+  
+  
+    <li class="mt-2">
+    
+    <div class="d-flex justify-content-between cursor-pointer" data-bs-toggle="collapse" data-bs-target="#sub-knox-configure-knox-configure-accessories-knox-configure-accessories" aria-expanded="false">
+      <span class="body-5 text-black fw-light">Knox Configure Accessories</span>
+      <a class="btn-toggle d-inline-flex rounded border-0 fw-light" data-bs-toggle="collapse" data-bs-target="#sub-knox-configure-knox-configure-accessories-knox-configure-accessories" aria-expanded="false"></a>
+    </div>
+      
+    <div class="collapse" id="sub-knox-configure-knox-configure-accessories-knox-configure-accessories">
+      <ul>
+      
+      
+  
+  
+    <li class="mt-2">
+    
+    
+    <div class="d-flex justify-content-between">
+      <a class="body-5 text-black fw-light" href="../../../knox-configure-accessories/introduction/index.html">Introduction</a>
+    </div>
+    
+    </li>
+  
+  
+  
+    <li class="mt-2">
+    
+    <div class="d-flex justify-content-between cursor-pointer" data-bs-toggle="collapse" data-bs-target="#sub-knox-configure-knox-configure-accessories-learning-guides-learning-guides" aria-expanded="false">
+      <span class="body-5 text-black fw-light">Learning guides</span>
+      <a class="btn-toggle d-inline-flex rounded border-0 fw-light" data-bs-toggle="collapse" data-bs-target="#sub-knox-configure-knox-configure-accessories-learning-guides-learning-guides" aria-expanded="false"></a>
+    </div>
+      
+    <div class="collapse" id="sub-knox-configure-knox-configure-accessories-learning-guides-learning-guides">
+      <ul>
+      
+      
+  
+  
+    <li class="mt-2">
+    
+    
+    <div class="d-flex justify-content-between">
+      <a class="body-5 text-black fw-light" href="../../../knox-configure-accessories/learning-guides/about-accessory-profiles/index.html">About Accessory profiles</a>
+    </div>
+    
+    </li>
+  
+  
+  
+    <li class="mt-2">
+    
+    
+    <div class="d-flex justify-content-between">
+      <a class="body-5 text-black fw-light" href="../../../knox-configure-accessories/learning-guides/about-the-accessory-license/index.html">About the Accessory license</a>
+    </div>
+    
+    </li>
+  
+  
+  
+    <li class="mt-2">
+    
+    
+    <div class="d-flex justify-content-between">
+      <a class="body-5 text-black fw-light" href="../../../knox-configure-accessories/learning-guides/about-accessory-profile-enrollment/index.html">About Accessory profile enrollment</a>
+    </div>
+    
+    </li>
+  
+  
+  
+    <li class="mt-2">
+    
+    
+    <div class="d-flex justify-content-between">
+      <a class="body-5 text-black fw-light" href="../../../knox-configure-accessories/learning-guides/about-accessory-profile-deletion/index.html">About Accessory profile deletion</a>
+    </div>
+    
+    </li>
+  
+  
+  
+    <li class="mt-2">
+    
+    
+    <div class="d-flex justify-content-between">
+      <a class="body-5 text-black fw-light" href="../../../knox-configure-accessories/learning-guides/about-device-and-accessory-states/index.html">About device and accessory states</a>
+    </div>
+    
+    </li>
+  
+  
+  
+    <li class="mt-2">
+    
+    
+    <div class="d-flex justify-content-between">
+      <a class="body-5 text-black fw-light" href="../../../knox-configure-accessories/learning-guides/license-details/index.html">License details</a>
+    </div>
+    
+    </li>
+  </ul>
+    </div></li>
+  
+  
+  
+    <li class="mt-2">
+    
+    <div class="d-flex justify-content-between cursor-pointer" data-bs-toggle="collapse" data-bs-target="#sub-knox-configure-knox-configure-accessories-how-to-guides-how-to-guides" aria-expanded="false">
+      <span class="body-5 text-black fw-light">How-to guides</span>
+      <a class="btn-toggle d-inline-flex rounded border-0 fw-light" data-bs-toggle="collapse" data-bs-target="#sub-knox-configure-knox-configure-accessories-how-to-guides-how-to-guides" aria-expanded="false"></a>
+    </div>
+      
+    <div class="collapse" id="sub-knox-configure-knox-configure-accessories-how-to-guides-how-to-guides">
+      <ul>
+      
+      
+  
+  
+    <li class="mt-2">
+    
+    
+    <div class="d-flex justify-content-between">
+      <a class="body-5 text-black fw-light" href="../../../knox-configure-accessories/how-to-guides/get-a-license/index.html">Get a license</a>
+    </div>
+    
+    </li>
+  
+  
+  
+    <li class="mt-2">
+    
+    
+    <div class="d-flex justify-content-between">
+      <a class="body-5 text-black fw-light" href="../../../knox-configure-accessories/how-to-guides/create-a-profile/index.html">Create a profile</a>
+    </div>
+    
+    </li>
+  
+  
+  
+    <li class="mt-2">
+    
+    
+    <div class="d-flex justify-content-between">
+      <a class="body-5 text-black fw-light" href="../../../knox-configure-accessories/how-to-guides/apply-custom-branding/index.html">Apply custom branding</a>
+    </div>
+    
+    </li>
+  </ul>
+    </div></li>
+  
+  
+  
+    <li class="mt-2">
+    
+    <div class="d-flex justify-content-between">
+      <a class="body-5 text-black fw-light" href="../../../knox-configure-accessories/release-notes/index.html">Release notes</a>
+    </div>
+      
+    </li>
+  </ul>
+    </div></li>
+  
+        
+          
+  
+  
+    <li class="mt-2">
+    
+    <div class="d-flex justify-content-between cursor-pointer" data-bs-toggle="collapse" data-bs-target="#sub-knox-configure-knox-configure-wearables-knox-configure-wearables" aria-expanded="false">
+      <span class="body-5 text-black fw-light">Knox Configure for Wearables</span>
+      <a class="btn-toggle d-inline-flex rounded border-0 fw-light" data-bs-toggle="collapse" data-bs-target="#sub-knox-configure-knox-configure-wearables-knox-configure-wearables" aria-expanded="false"></a>
+    </div>
+      
+    <div class="collapse" id="sub-knox-configure-knox-configure-wearables-knox-configure-wearables">
+      <ul>
+      
+      
+  
+  
+    <li class="mt-2">
+    
+    
+    <div class="d-flex justify-content-between">
+      <a class="body-5 text-black fw-light" href="../../../knox-configure-wearables/introduction/index.html">Introduction</a>
+    </div>
+    
+    </li>
+  
+  
+  
+    <li class="mt-2">
+    
+    <div class="d-flex justify-content-between cursor-pointer" data-bs-toggle="collapse" data-bs-target="#sub-knox-configure-knox-configure-wearables-get-started-get-started" aria-expanded="false">
+      <span class="body-5 text-black fw-light">Get started</span>
+      <a class="btn-toggle d-inline-flex rounded border-0 fw-light" data-bs-toggle="collapse" data-bs-target="#sub-knox-configure-knox-configure-wearables-get-started-get-started" aria-expanded="false"></a>
+    </div>
+      
+    <div class="collapse" id="sub-knox-configure-knox-configure-wearables-get-started-get-started">
+      <ul>
+      
+      
+  
+  
+    <li class="mt-2">
+    
+    
+    <div class="d-flex justify-content-between">
+      <a class="body-5 text-black fw-light" href="../../../knox-configure-wearables/get-started/set-up-your-account/index.html">Set up your account</a>
+    </div>
+    
+    </li>
+  
+  
+  
+    <li class="mt-2">
+    
+    
+    <div class="d-flex justify-content-between">
+      <a class="body-5 text-black fw-light" href="../../../knox-configure-wearables/get-started/create-a-profile/index.html">Create a profile</a>
+    </div>
+    
+    </li>
+  
+  
+  
+    <li class="mt-2">
+    
+    <div class="d-flex justify-content-between cursor-pointer" data-bs-toggle="collapse" data-bs-target="#sub-knox-configure-knox-configure-wearables-get-started-customize-your-profile-customize-your-profile" aria-expanded="false">
+      <span class="body-5 text-black fw-light">Customize your profile</span>
+      <a class="btn-toggle d-inline-flex rounded border-0 fw-light" data-bs-toggle="collapse" data-bs-target="#sub-knox-configure-knox-configure-wearables-get-started-customize-your-profile-customize-your-profile" aria-expanded="false"></a>
+    </div>
+      
+    <div class="collapse" id="sub-knox-configure-knox-configure-wearables-get-started-customize-your-profile-customize-your-profile">
+      <ul>
+      
+      
+  
+  
+    <li class="mt-2">
+    
+    
+    <div class="d-flex justify-content-between">
+      <a class="body-5 text-black fw-light" href="../../../knox-configure-wearables/get-started/customize-your-profile/setup-edition/index.html">Setup edition</a>
+    </div>
+    
+    </li>
+  
+  
+  
+    <li class="mt-2">
+    
+    
+    <div class="d-flex justify-content-between">
+      <a class="body-5 text-black fw-light" href="../../../knox-configure-wearables/get-started/customize-your-profile/dynamic-edition-normal-mode/index.html">Dynamic edition: Normal mode</a>
+    </div>
+    
+    </li>
+  
+  
+  
+    <li class="mt-2">
+    
+    
+    <div class="d-flex justify-content-between">
+      <a class="body-5 text-black fw-light" href="../../../knox-configure-wearables/get-started/customize-your-profile/dynamic-edition-prokiosk-mode/index.html">Dynamic edition: Prokiosk mode</a>
+    </div>
+    
+    </li>
+  
+  
+  
+    <li class="mt-2">
+    
+    
+    <div class="d-flex justify-content-between">
+      <a class="body-5 text-black fw-light" href="../../../knox-configure-wearables/get-started/customize-your-profile/custom-booting-and-shut-down-animations/index.html">Custom booting and shut down animations</a>
+    </div>
+    
+    </li>
+  </ul>
+    </div></li>
+  
+  
+  
+    <li class="mt-2">
+    
+    
+    <div class="d-flex justify-content-between">
+      <a class="body-5 text-black fw-light" href="../../../knox-configure-wearables/get-started/assign-a-profile-to-a-device/index.html">Assign a profile to a device</a>
+    </div>
+    
+    </li>
+  
+  
+  
+    <li class="mt-2">
+    
+    
+    <div class="d-flex justify-content-between">
+      <a class="body-5 text-black fw-light" href="../../../knox-configure-wearables/get-started/update-an-existing-profile/index.html">Update an existing profile</a>
+    </div>
+    
+    </li>
+  </ul>
+    </div></li>
+  
+  
+  
+    <li class="mt-2">
+    
+    <div class="d-flex justify-content-between cursor-pointer" data-bs-toggle="collapse" data-bs-target="#sub-knox-configure-knox-configure-wearables-features-features" aria-expanded="false">
+      <span class="body-5 text-black fw-light">Features</span>
+      <a class="btn-toggle d-inline-flex rounded border-0 fw-light" data-bs-toggle="collapse" data-bs-target="#sub-knox-configure-knox-configure-wearables-features-features" aria-expanded="false"></a>
+    </div>
+      
+    <div class="collapse" id="sub-knox-configure-knox-configure-wearables-features-features">
+      <ul>
+      
+      
+  
+  
+    <li class="mt-2">
+    
+    
+    <div class="d-flex justify-content-between">
+      <a class="body-5 text-black fw-light" href="../../../knox-configure-wearables/features/manage-admins-and-roles/index.html">Manage admins and roles</a>
+    </div>
+    
+    </li>
+  
+  
+  
+    <li class="mt-2">
+    
+    
+    <div class="d-flex justify-content-between">
+      <a class="body-5 text-black fw-light" href="../../../knox-configure-wearables/features/manage-licenses/index.html">Manage licenses</a>
+    </div>
+    
+    </li>
+  
+  
+  
+    <li class="mt-2">
+    
+    
+    <div class="d-flex justify-content-between">
+      <a class="body-5 text-black fw-light" href="../../../knox-configure-wearables/features/manage-apps/index.html">Manage apps</a>
+    </div>
+    
+    </li>
+  
+  
+  
+    <li class="mt-2">
+    
+    
+    <div class="d-flex justify-content-between">
+      <a class="body-5 text-black fw-light" href="../../../knox-configure-wearables/features/deploy-devices/index.html">Deploy devices</a>
+    </div>
+    
+    </li>
+  
+  
+  
+    <li class="mt-2">
+    
+    
+    <div class="d-flex justify-content-between">
+      <a class="body-5 text-black fw-light" href="../../../knox-configure-wearables/features/device-states/index.html">Device states</a>
+    </div>
+    
+    </li>
+  
+  
+  
+    <li class="mt-2">
+    
+    
+    <div class="d-flex justify-content-between">
+      <a class="body-5 text-black fw-light" href="../../../knox-configure-wearables/features/activity-log/index.html">Activity log</a>
+    </div>
+    
+    </li>
+  </ul>
+    </div></li>
+  
+  
+  
+    <li class="mt-2">
+    
+    <div class="d-flex justify-content-between">
+      <a class="body-5 text-black fw-light" href="../../../knox-configure-wearables/release-notes/index.html">Release notes</a>
+    </div>
+      
+    </li>
+  </ul>
+    </div></li>
+  
+        
+          
+  
+  
+    <li class="mt-2">
+    
+    <div class="d-flex justify-content-between">
+      <a class="body-5 text-black fw-light" href="../../../release-notes/index.html">Release notes</a>
+    </div>
+      
+    </li>
+  
+        
+          
+  
+  
+    <li class="mt-2">
+    
+    
+    <div class="d-flex justify-content-between">
+      <a class="body-5 text-black fw-light" href="../../../faq/index.html">FAQ</a>
+    </div>
+    
+    </li>
+  
+        
+          
+  
+  
+    <li class="mt-2">
+    
+    <div class="d-flex justify-content-between">
+      <a class="body-5 text-black fw-light" href="../../../kbas/index.html">KBAs</a>
+    </div>
+      
+    </li>
+  </ul>
+  </nav>
+</aside></div>
+    <div class="l-main pt-md-6">
+      
+      <div class="l-content-top mb-4">
+        <div class="l-breadcrumb">
+          <a class="fw-light text-black" href="../../../../index.html">Home</a><span> /</span>
+<a class="fw-light text-black" href="../../../../knox-configure.html">Knox Configure</a><span> /</span>
+<a class="fw-light text-black" href="../../index.html">How to guides</a><span> /</span>
+<a class="fw-light text-black" href="../index.html">Devices</a><span> /</span>
+
+        </div>
+        <div class="mt-4">
+          <h1>Bulk device actions</h1>
+        </div>
+        
+
+  <p><span>Last updated May  22nd, 2026</span></p>
+
+
+    
+
+</div>
+      <div class="l-content">
+        
+        <ul
+        class="nav nav-tabs d-flex align-items-center mt-3"
+        id="nav-tabs"
+        role="tablist"
+        >  
+        
+                
+                <li class="nav-item" role="presentation">
+                    <button
+                    class="tab-link active px-3 py-2 rounded-5"
+                    id="current-release-button"
+                    data-bs-toggle="tab"
+                    data-bs-target="#current-release-tab"
+                    type="button"
+                    role="tab"
+                    aria-controls="current-release"
+                    aria-selected="true"
+                    >
+                    25.11
+                    </button>
+                </li>
+        <li class="nav-item" role="presentation">
+                <button
+                class="tab-link  px-3 py-2 rounded-5"
+                id="upcoming-release-button"
+                data-bs-toggle="tab"
+                data-bs-target="#upcoming-release-tab"
+                type="button"
+                role="tab"
+                aria-controls="upcoming-release"
+                aria-selected="true"
+                >
+                26.06
+                </button>
+            </li>
+        </ul>
+        <div class="tab-content mb-6" id="nav-tab-content">
+            
+                
+
+
+
+
+
+<div class="tab-pane fade  show active  border border-grey-line rounded-3 overflow-hidden" id="current-release-tab" role="tabpanel" aria-labelledby="current-release-tab">
+  
+  
+    
+    <div class="tab-toc p-3 border-bottom border-grey-line">
+      <p class="fw-bold">On this tab</p>
+      <ul class="mt-2 mb-0 list-unstyled section-nav">
+      
+        
+        <li class="ms-0"><a href="#assign-or-un-assign-devices-in-bulk-current-release">Assign or un-assign devices in bulk</a>
+      
+        
+        <li class="ms-0"><a href="#push-profile-updates-in-bulk-current-release">Push profile updates in bulk</a>
+      
+        
+        <li class="ms-0"><a href="#delete-devices-in-bulk-current-release">Delete devices in bulk</a>
+      
+        
+        <li class="ms-0"><a href="#manage-tags-in-bulk-current-release">Manage tags in bulk</a>
+      
+        
+        <li class="ms-0"><a href="#reboot-or-factory-reset-devices-in-bulk-current-release">Reboot or factory reset devices in bulk</a>
+      
+        
+        <li class="ms-0"><a href="#lock-or-unlock-devices-in-bulk-current-release">Lock or unlock devices in bulk</a>
+      
+        
+        <li class="ms-0"><a href="#map-devices-to-custom-ids-in-bulk-current-release">Map devices to Custom IDs in bulk</a>
+      </ul>
+  </div>
+    
+  <div class="tab-content p-3">
+
+  
+  
+
+
+
+
+      
+      
+      
+      
+        
+      
+      
+      
+      
+        
+      
+      
+      
+      
+        
+      
+      
+      
+      
+        
+      
+      
+      
+      
+        
+      
+      
+      
+      
+        
+      
+      
+      
+      
+        
+      
+      
+      
+      
+        
+      
+      
+      
+      
+        
+      
+      
+      
+      
+        
+      
+      
+      
+      
+        <p>A properly formatted CSV file can be used to configure numerous devices in one bulk configuration operation. Bulk configuration operations options include assigning and un-assigning devices, pushing profile updates, managing device tags, locking and unlocking devices, deleting devices, rebooting and factory resetting devices, and assigning custom IDs.</p>
+<p>To bulk configure devices, click <strong>BULK ACTIONS</strong> on the <strong>Devices</strong> page.</p>
+<p>If you need instructions on how to prepare a CSV file for any bulk device operation, select one of the options displayed within the <strong>Bulk actions</strong> screen and click the <strong>Instructions for all bulk actions</strong> link displayed on the lower left-hand side, of the screen.</p>
+<p>Follow the directions on both the left and right side of the screen for preparing a CSV file with one device ID per row, then upload the CSV file to the portal. Do not include any empty rows within the CSV file as instructed. Click <strong>GOT IT</strong> to return to the bulk action screen.</p>
+<h2 id="assign-or-un-assign-devices-in-bulk-current-release">Assign or un-assign devices in bulk</h2>
+<p>When necessary, administrators can lock or unlock up to 10,000 devices in a single CSV bulk lock operation. Available devices display within the <strong>Devices</strong> screen &gt; <strong>DEVICES</strong> tab. Unassigned devices available for profile assignment are designated as Unassigned within the <strong>STATUS</strong> column. To list all devices, regardless of their state, refer to the <strong>CLEAR FILTER</strong> option at the bottom of the <strong>STATUS</strong> column drop-down menu.</p>
+<p>To assign or un-assign devices in bulk:</p>
+<ol>
+<li>
+<p>Select <strong>BULK ACTIONS</strong> from the bottom of the left-hand navigation menu.</p>
+</li>
+<li>
+<p>Select either <strong>ASSIGN DEVICES</strong> or <strong>UNASSIGN DEVICES</strong> depending on your organization&rsquo;s device assignment requirements.</p>
+
+    
+    
+    
+    
+    
+    
+      
+      
+      
+      
+      
+        
+        
+        
+        
+          
+        
+        
+      
+        
+        
+        
+        
+          
+        
+        
+      
+        
+        
+        
+        
+          
+        
+        
+      
+        
+        
+        
+        
+          
+        
+        
+      
+        
+        
+        
+        
+          
+        
+        
+      
+        
+        
+        
+        
+          
+        
+        
+      
+        
+        
+        
+        
+          
+        
+        
+      
+        
+        
+        
+          
+        
+        
+        
+      
+        
+        
+        
+          
+        
+        
+        
+      
+        
+        
+        
+          
+        
+        
+        
+      
+        
+        
+        
+          
+        
+        
+        
+      
+        
+        
+        
+          
+        
+        
+        
+      
+        
+        
+        
+          
+        
+        
+        
+      
+    
+    
+    <p><img src="../../../assets/assign_devices_in_bulk.png" class="image-block-scale-50 img-thumbnail" alt="Bulk device actions" /></p>
+</li>
+<li>
+<p>Browse for a properly formatted CSV file containing the existing device IDs you intend to assign or un-assign. If needed, select the <strong>Download CSV template</strong> link to utilize an existing template for easier creation and submission of the CSV file.</p>
+</li>
+<li>
+<p>If assigning devices, select both the profile and license the assigned devices will use with Knox Configure. Optionally, select <strong>Update configured devices without requesting end-user consent</strong> to assign devices without device user permission. By using this option, the user can still keep using their device while the IT admin makes the change or update. Once the update is made, IT admins can also check the status of the update without having to configure the user interface.</p>
+</li>
+<li>
+<p>Select <strong>SUBMIT</strong> to upload the file to the console. The change of the device state can be verified within the Devices screen by selecting the <strong>DEVICES</strong> tab and checking the <strong>STATUS</strong> column. The <strong>STATUS</strong> column can be filtered as needed.</p>
+</li>
+</ol>
+<h2 id="push-profile-updates-in-bulk-current-release">Push profile updates in bulk</h2>
+<p>Admins can bulk update up to 10,000 device configuration profiles using a properly formatted CSV file and significant save time when devices require the same profile update.</p>
+<p>To push device profile updates in bulk:</p>
+<ol>
+<li>
+<p>Select <strong>BULK ACTIONS</strong> from the bottom of the left-hand navigation menu.</p>
+</li>
+<li>
+<p><strong>PUSH PROFILE UPDATE</strong>.</p>
+</li>
+<li>
+<p>Browse for a properly formatted CSV file containing the IDs of the devices whose profile you intend to update. If needed, select the <strong>Download CSV template</strong> link to utilize an existing template for easier creation and submission of the CSV file.</p>
+</li>
+<li>
+<p>Within the <strong>Select items to push</strong> field, select whether <strong>Only changed items</strong> are updated for device profile pushes, or if a <strong>Full profile update</strong> is required to update the entire device profile.</p>
+</li>
+<li>
+<p>If you want to force device users to install the update when it is pushed to their devices, select <strong>Push update without requesting end user consent</strong>. If this option is left unselected, the device user can schedule the update to be installed overnight.</p>
+<p>The update notification sent to the device shows the total download size of the update to help the device user make an informed decision about when to apply it.</p>
+
+    
+    
+    
+    
+    
+    
+      
+      
+      
+      
+      
+        
+        
+        
+        
+          
+        
+        
+      
+        
+        
+        
+        
+          
+        
+        
+      
+        
+        
+        
+        
+          
+        
+        
+      
+        
+        
+        
+        
+          
+        
+        
+      
+        
+        
+        
+        
+          
+        
+        
+      
+        
+        
+        
+        
+          
+        
+        
+      
+        
+        
+        
+        
+          
+        
+        
+      
+        
+        
+        
+          
+        
+        
+        
+      
+        
+        
+        
+          
+        
+        
+        
+      
+        
+        
+        
+          
+        
+        
+        
+      
+        
+        
+        
+          
+        
+        
+        
+      
+        
+        
+        
+          
+        
+        
+        
+      
+        
+        
+        
+          
+        
+        
+        
+      
+    
+    
+    <p><img src="../../../assets/push-update-ready-2303.png" class="image-block-scale-50 img-thumbnail" alt="Push update available" /></p>
+<p>If an update is scheduled for overnight installation, the device attempts to apply the update between 2:00 AM and 5:00 AM according to the current time zone. If the device is in use during that time, it attempts to apply the update the next night during the same period. If the device fails to apply the update overnight for four consecutive days, the device will attempt to apply the update when the device is turned on and a network connection is available the next day.</p>
+
+    
+    
+    
+    
+    
+    
+      
+      
+      
+      
+      
+        
+        
+        
+        
+          
+        
+        
+      
+        
+        
+        
+        
+          
+        
+        
+      
+        
+        
+        
+        
+          
+        
+        
+      
+        
+        
+        
+        
+          
+        
+        
+      
+        
+        
+        
+        
+          
+        
+        
+      
+        
+        
+        
+        
+          
+        
+        
+      
+        
+        
+        
+        
+          
+        
+        
+      
+        
+        
+        
+          
+        
+        
+        
+      
+        
+        
+        
+          
+        
+        
+        
+      
+        
+        
+        
+          
+        
+        
+        
+      
+        
+        
+        
+          
+        
+        
+        
+      
+        
+        
+        
+          
+        
+        
+        
+      
+        
+        
+        
+          
+        
+        
+        
+      
+    
+    
+    <p><img src="../../../assets/push-update-download-2303.png" class="image-block-scale-50 img-thumbnail" alt="Download profile push update" /></p>
+</li>
+<li>
+<p>Select <strong>PUSH NOW</strong> to upload the file to the console without delay. Select <strong>SCHEDULE</strong> to upload the new device profile assignments at an admin determined time. The change of the device state can be verified within the Devices screen by selecting the <strong>DEVICES</strong> tab and checking the <strong>STATUS</strong> column. The <strong>STATUS</strong> column can be filtered as needed.</p>
+</li>
+</ol>
+<h2 id="delete-devices-in-bulk-current-release">Delete devices in bulk</h2>
+<p>Admins can upload a CSV file to delete up to 10,000 devices from Knox Configure administration. If any of the deleted devices are using a Dynamic (Per seat) license, the associated license seats are revoked, and available to assign to other devices.</p>
+<p>To delete devices in bulk:</p>
+<ol>
+<li>
+<p>Select <strong>BULK ACTIONS</strong> from the bottom of the left-hand navigation menu.</p>
+</li>
+<li>
+<p>Select <strong>DELETE DEVICES</strong>.</p>
+
+    
+    
+    
+    
+    
+    
+      
+      
+      
+      
+      
+        
+        
+        
+        
+          
+        
+        
+      
+        
+        
+        
+        
+          
+        
+        
+      
+        
+        
+        
+        
+          
+        
+        
+      
+        
+        
+        
+        
+          
+        
+        
+      
+        
+        
+        
+        
+          
+        
+        
+      
+        
+        
+        
+        
+          
+        
+        
+      
+        
+        
+        
+        
+          
+        
+        
+      
+        
+        
+        
+          
+        
+        
+        
+      
+        
+        
+        
+          
+        
+        
+        
+      
+        
+        
+        
+          
+        
+        
+        
+      
+        
+        
+        
+          
+        
+        
+        
+      
+        
+        
+        
+          
+        
+        
+        
+      
+        
+        
+        
+          
+        
+        
+        
+      
+    
+    
+    <p><img src="../../../assets/delete_devices.png" class="image-block-scale-50 img-thumbnail" alt="Remove devices" /></p>
+</li>
+<li>
+<p>Browse for a properly formatted CSV file containing the device IDs you intend to delete from Knox Configure. If needed, select the <strong>Download CSV template</strong> link to utilize an existing template for easier creation and submission of the CSV file.</p>
+</li>
+<li>
+<p>Select <strong>SUBMIT</strong> to upload the file to the console. The change of the device state can be verified within the Devices screen by selecting the <strong>DEVICES</strong> tab and checking the <strong>STATUS</strong> column. The <strong>STATUS</strong> column can be filtered as needed.</p>
+</li>
+</ol>
+<h2 id="manage-tags-in-bulk-current-release">Manage tags in bulk</h2>
+<p>Tags can be optionally applied to specific devices to organize and categorize them. Up to 10,000 devices can have their tags bulk managed using a properly formatted CSV file.</p>
+<p>Devices must be in an unassigned, profile assigned, error, cancelled by user, configured, failed to configure, updates pushed, or locked state to have tags managed in bulk with a CSV file.</p>
+<p>To manage device tags in bulk:</p>
+<ol>
+<li>
+<p>Select <strong>BULK ACTIONS</strong> from the bottom of the left-hand navigation menu.</p>
+</li>
+<li>
+<p>Select <strong>MANAGE DEVICE TAGS</strong>.</p>
+
+    
+    
+    
+    
+    
+    
+      
+      
+      
+      
+      
+        
+        
+        
+        
+          
+        
+        
+      
+        
+        
+        
+        
+          
+        
+        
+      
+        
+        
+        
+        
+          
+        
+        
+      
+        
+        
+        
+        
+          
+        
+        
+      
+        
+        
+        
+        
+          
+        
+        
+      
+        
+        
+        
+        
+          
+        
+        
+      
+        
+        
+        
+        
+          
+        
+        
+      
+        
+        
+        
+          
+        
+        
+        
+      
+        
+        
+        
+          
+        
+        
+        
+      
+        
+        
+        
+          
+        
+        
+        
+      
+        
+        
+        
+          
+        
+        
+        
+      
+        
+        
+        
+          
+        
+        
+        
+      
+        
+        
+        
+          
+        
+        
+        
+      
+    
+    
+    <p><img src="../../../assets/manage_device_tags.png" class="image-block-scale-50 img-thumbnail" alt="Device tags bulk" /></p>
+</li>
+<li>
+<p>Browse for a properly formatted CSV file containing the device IDs whose tags you intend to manage. If needed, select the <strong>Download CSV template</strong> link to utilize an existing template for easier creation and submission of the CSV file.</p>
+</li>
+<li>
+<p>Configure the CSV file with device IDs in one column and the tags to apply to a listed ID in the second column.</p>
+</li>
+<li>
+<p>Select the <strong>Overwrite existing tags</strong> option to overwrite existing device tag assignments with the tags in the uploaded CSV file.</p>
+</li>
+<li>
+<p>Select <strong>SUBMIT</strong> to upload the file to the console. The change of the device state can be verified within the Devices screen by selecting the <strong>DEVICES</strong> tab and checking the <strong>STATUS</strong> column. The <strong>STATUS</strong> column can be filtered as needed.</p>
+</li>
+</ol>
+<h2 id="reboot-or-factory-reset-devices-in-bulk-current-release">Reboot or factory reset devices in bulk</h2>
+<p>Admins can bulk reboot or factory reset up to 10,000 devices using either a Setup or <span class="glossary-term" data-term="Dynamic edition" data-link="../../../../glossary/a-f#dynamic-edition" data-definition="A Knox Configure license model that lets you deploy and update settings and app configurations on enrolled Samsung...">Dynamic edition</span> Knox Configure profile with a CSV file. A reboot push command can be triggered by an admin without the device user&rsquo;s consent. For information on rebooting or factory resetting individual devices, see <a href="../perform-device-actions">Perform device actions</a>.</p>
+<p>To reboot or factory reset devices in bulk:</p>
+<ol>
+<li>
+<p>Select <strong>BULK ACTIONS</strong> from the bottom of the left-hand navigation menu.</p>
+</li>
+<li>
+<p>Select <strong>REBOOT/FACTORY RESET DEVICES</strong>.</p>
+
+    
+    
+    
+    
+    
+    
+      
+      
+      
+      
+      
+        
+        
+        
+        
+          
+        
+        
+      
+        
+        
+        
+        
+          
+        
+        
+      
+        
+        
+        
+        
+          
+        
+        
+      
+        
+        
+        
+        
+          
+        
+        
+      
+        
+        
+        
+        
+          
+        
+        
+      
+        
+        
+        
+        
+          
+        
+        
+      
+        
+        
+        
+        
+          
+        
+        
+      
+        
+        
+        
+          
+        
+        
+        
+      
+        
+        
+        
+          
+        
+        
+        
+      
+        
+        
+        
+          
+        
+        
+        
+      
+        
+        
+        
+          
+        
+        
+        
+      
+        
+        
+        
+          
+        
+        
+        
+      
+        
+        
+        
+          
+        
+        
+        
+      
+    
+    
+    <p><img src="../../../assets/reset_reboot_devices.png" class="image-block-scale-50 img-thumbnail" alt="Reboot devices in bulk" /></p>
+</li>
+<li>
+<p>Browse for a properly formatted CSV file containing the device IDs you intend to reboot or factory reset. If needed, select the <strong>Download CSV template link</strong> to utilize an existing template for easier creation and submission of the CSV file.</p>
+</li>
+<li>
+<p>Refer to the <strong>Select action</strong> field and determine whether this bulk update is intended to Reboot devices or Factory reset devices.</p>
+</li>
+</ol>
+<ul>
+<li><strong>Reboot devices(s)</strong> &mdash; The device will be reset and maintain configurations previously set by the IT admin.</li>
+<li><strong>Factory reset device(s)</strong> &mdash; The device will be reset to factory standard specifications. This means the device will have no restrictions or customization once reset and will need to be configured again.</li>
+</ul>
+<ol start="5">
+<li>Select <strong>SUBMIT</strong> to upload the file to the console. The change of the device state can be verified within the Devices screen by selecting the <strong>DEVICES</strong> tab and checking the <strong>STATUS</strong> column. The <strong>STATUS</strong> column can be filtered as needed.</li>
+</ol>
+<h2 id="lock-or-unlock-devices-in-bulk-current-release">Lock or unlock devices in bulk</h2>
+<p>When necessary, administrators can lock or unlock up to 10,000 devices in a single CSV bulk lock operation. When a device locks, contact information (company name, phone number and Email) displays within the lock screen to assist the device user unlock their device. Additionally, the device&rsquo;s locked status displays within both the Knox Configure Dashboard and Profiles tab. For information on locking individual devices, see <a href="../perform-device-actions">Perform device actions</a>.</p>
+<p>To bulk lock or unlock devices in bulk:</p>
+<ol>
+<li>
+<p>Select <strong>BULK ACTIONS</strong> from the bottom of the left-hand navigation menu.</p>
+</li>
+<li>
+<p>Select either <strong>LOCK DEVICES</strong> or <strong>UNLOCK DEVICES</strong> depending on your organization&rsquo;s requirements.</p>
+
+    
+    
+    
+    
+    
+    
+      
+      
+      
+      
+      
+        
+        
+        
+        
+          
+        
+        
+      
+        
+        
+        
+        
+          
+        
+        
+      
+        
+        
+        
+        
+          
+        
+        
+      
+        
+        
+        
+        
+          
+        
+        
+      
+        
+        
+        
+        
+          
+        
+        
+      
+        
+        
+        
+        
+          
+        
+        
+      
+        
+        
+        
+        
+          
+        
+        
+      
+        
+        
+        
+          
+        
+        
+        
+      
+        
+        
+        
+          
+        
+        
+        
+      
+        
+        
+        
+          
+        
+        
+        
+      
+        
+        
+        
+          
+        
+        
+        
+      
+        
+        
+        
+          
+        
+        
+        
+      
+        
+        
+        
+          
+        
+        
+        
+      
+    
+    
+    <p><img src="../../../assets/lock_devices_bulk.png" class="image-block-scale-50 img-thumbnail" alt="Device unlock in bulk" /></p>
+</li>
+<li>
+<p>Browse for a properly formatted CSV file containing the device IDs you intend to lock or unlock. If needed, select the <strong>Download CSV template</strong> link to utilize an existing template for easier creation and submission of the CSV file.</p>
+</li>
+<li>
+<p>Select <strong>SUBMIT</strong> to upload the file to the console. The change of the device state can be verified within the Devices screen by selecting the <strong>DEVICES</strong> tab and checking the <strong>STATUS</strong> column. The <strong>STATUS</strong> column can be filtered as needed.</p>
+</li>
+</ol>
+<h2 id="map-devices-to-custom-ids-in-bulk-current-release">Map devices to Custom IDs in bulk</h2>
+<p>A <strong>Custom ID</strong> is an ID that you create to map to an device IMEI or SN, which are no longer accessible by device apps that are not DO or PO. Company apps deployed through KC can use it to identify the company approved device and allow use only for these devices.</p>
+<div class="notice-note"><p>Custom IDs can only be used for devices with Knox version 3.7 and higher.</p></div>
+<p>Custom IDs can be updated easily either individually for a device or in bulk. To see how to update it for a single device, see <a href="../manage-devices#view-device-log">Device details and logs</a>.</p>
+<p>To update Custom IDs in bulk:</p>
+<ol>
+<li>
+<p>Select <strong>BULK ACTIONS</strong> from the bottom of the left-hand navigation menu.</p>
+</li>
+<li>
+<p>Select <strong>CUSTOM ID</strong>, it is the last item in the screen (you might have to scroll down to see it).</p>
+
+    
+    
+    
+    
+    
+    
+      
+      
+      
+      
+      
+        
+        
+        
+        
+          
+        
+        
+      
+        
+        
+        
+        
+          
+        
+        
+      
+        
+        
+        
+        
+          
+        
+        
+      
+        
+        
+        
+        
+          
+        
+        
+      
+        
+        
+        
+        
+          
+        
+        
+      
+        
+        
+        
+        
+          
+        
+        
+      
+        
+        
+        
+        
+          
+        
+        
+      
+        
+        
+        
+          
+        
+        
+        
+      
+        
+        
+        
+          
+        
+        
+        
+      
+        
+        
+        
+          
+        
+        
+        
+      
+        
+        
+        
+          
+        
+        
+        
+      
+        
+        
+        
+          
+        
+        
+        
+      
+        
+        
+        
+          
+        
+        
+        
+      
+    
+    
+    <p><img src="../../../assets/custom-id-bulk.png" class="image-block-scale-50 img-thumbnail" alt="Update ID in bulk" /></p>
+</li>
+<li>
+<p>Browse for a properly formatted CSV file containing the device IDs in the first column and unique Custom ID in the second. If needed, select the <strong>Download CSV template</strong> link to utilize an existing template for easier creation and submission of the CSV file.</p>
+<div class="notice-note"><p>Custom IDs can’t contain spaces or special characters including the following: <code># / $ * % ^ & : \ ( ) + ? { } [ ] < ></code></p></div>
+</li>
+<li>
+<p>Select <strong>SUBMIT</strong> to upload the file to the console. The update can be verified within the Devices screen by selecting the <strong>DEVICES</strong> tab and checking the <strong>Device details</strong> column in <strong>Devices</strong> &gt; <strong>Device ID</strong>. The columns in Devices tab can also be edited to show devices by Custom ID. To do this, click on three dots and check Custom ID. You can also search devices using Custom ID.</p>
+</li>
+</ol>
+</div>
+  
+</div>
+            
+            
+
+
+
+    
+        
+    
+
+
+
+<div class="tab-pane fade  border border-grey-line rounded-3 overflow-hidden" id="upcoming-release-tab" role="tabpanel" aria-labelledby="upcoming-release-tab">
+  
+  <div class="tab-toc bg-light p-3 border-bottom border-grey-line">
+    <p> This document was updated for the <a href=../../../../uat>Knox cloud services 26.06 UAT</a>.</p>
+    
+  </div>
+  
+  
+    
+    <div class="tab-toc p-3 border-bottom border-grey-line">
+      <p class="fw-bold">On this tab</p>
+      <ul class="mt-2 mb-0 list-unstyled section-nav">
+      
+        
+        <li class="ms-0"><a href="#how-to-prepare-a-csv-file-upcoming-release">How to prepare a CSV file</a>
+      
+        
+        <li class="ms-0"><a href="#assign-devices-upcoming-release">Assign devices</a>
+      
+        
+        <li class="ms-0"><a href="#unassign-devices-upcoming-release">Unassign devices</a>
+      
+        
+        <li class="ms-0"><a href="#push-profile-updates-upcoming-release">Push profile updates</a>
+      
+        
+        <li class="ms-0"><a href="#manage-device-tags-upcoming-release">Manage device tags</a>
+      
+        
+        <li class="ms-0"><a href="#lock-and-unlock-devices-upcoming-release">Lock and unlock devices</a>
+      
+        
+        <li class="ms-0"><a href="#delete-devices-upcoming-release">Delete devices</a>
+      
+        
+        <li class="ms-0"><a href="#rebootfactory-reset-devices-upcoming-release">Reboot/Factory reset devices</a>
+      
+        
+        <li class="ms-0"><a href="#custom-id-upcoming-release">Custom ID</a>
+      </ul>
+  </div>
+    
+  <div class="tab-content p-3">
+
+  
+  
+
+
+
+
+      
+      
+      
+      
+        
+      
+      
+      
+      
+        
+      
+      
+      
+      
+        
+      
+      
+      
+      
+        
+      
+      
+      
+      
+        
+      
+      
+      
+      
+        
+      
+      
+      
+      
+        
+      
+      
+      
+      
+        
+      
+      
+      
+      
+        
+      
+      
+      
+      
+        
+      
+      
+      
+      
+        
+      
+      
+      
+      
+        
+      
+      
+      
+      
+        
+      
+      
+      
+      
+        
+      
+      
+      
+      
+        
+      
+      
+      
+      
+        
+      
+      
+      
+      
+        
+      
+      
+      
+      
+        
+      
+      
+      
+      
+        
+      
+      
+      
+      
+        
+      
+      
+      
+      
+        
+      
+      
+      
+      
+        <p>You can manage and configure multiple devices at the same time using a bulk device action. To perform a bulk action on your devices, go to the <strong>Devices</strong> page, then click the <strong>BULK ACTIONS</strong> tab.</p>
+<p>Bulk actions include the following:</p>
+<ul>
+<li><a href="#how-to-prepare-a-csv-file">How to prepare a CSV file</a></li>
+<li><a href="#assign-devices">Assign devices</a></li>
+<li><a href="#unassign-devices">Unassign devices</a></li>
+<li><a href="#push-profile-updates">Push profile updates</a></li>
+<li><a href="#manage-device-tags">Manage device tags</a></li>
+<li><a href="#lock-and-unlock-devices">Lock and unlock devices</a></li>
+<li><a href="#delete-devices">Delete devices</a></li>
+<li><a href="#rebootfactory-reset-devices">Reboot/Factory reset devices</a></li>
+<li><a href="#custom-id">Custom ID</a></li>
+</ul>
+
+
+
+
+
+
+
+  
+  
+  
+  
+  
+    
+    
+    
+    
+      
+    
+    
+  
+    
+    
+    
+    
+      
+    
+    
+  
+    
+    
+    
+    
+      
+    
+    
+  
+    
+    
+    
+      
+    
+    
+    
+  
+    
+    
+    
+      
+    
+    
+    
+  
+    
+    
+    
+      
+    
+    
+    
+  
+    
+    
+    
+      
+    
+    
+    
+  
+    
+    
+    
+      
+    
+    
+    
+  
+    
+    
+    
+      
+    
+    
+    
+  
+    
+    
+    
+      
+    
+    
+    
+  
+    
+    
+    
+      
+    
+    
+    
+  
+    
+    
+    
+      
+    
+    
+    
+  
+    
+    
+    
+      
+    
+    
+    
+  
+
+
+<p><img src="../../../assets/devices-bulk-actions-tab.jpg" class="image-block-scale-75 img-thumbnail" alt="Bulk actions tab" /></p>
+<h2 id="how-to-prepare-a-csv-file-upcoming-release">How to prepare a CSV file</h2>
+<p>A properly formatted CSV file is required to perform device bulk actions. When you click on a specific bulk action, you&rsquo;ll see an 
+<svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg"> <path d="M8.87498 4.7187C8.87498 5.20195 8.48322 5.5937 7.99998 5.5937C7.51673 5.5937 7.12498 5.20195 7.12498 4.7187C7.12498 4.23545 7.51673 3.8437 7.99998 3.8437C8.48322 3.8437 8.87498 4.23545 8.87498 4.7187Z" fill="#636363"/> <path d="M6.46873 6.49995C6.12355 6.49995 5.84373 6.77977 5.84373 7.12495C5.84373 7.47013 6.12355 7.74995 6.46873 7.74995H7.59373V11.5C7.59373 11.8451 7.87355 12.125 8.21873 12.125C8.5639 12.125 8.84373 11.8451 8.84373 11.5V7.12495C8.84373 6.77977 8.5639 6.49995 8.21873 6.49995H6.46873Z" fill="#636363"/> <path fill-rule="evenodd" clip-rule="evenodd" d="M8 15C11.866 15 15 11.866 15 8C15 4.13401 11.866 1 8 1C4.13401 1 1 4.13401 1 8C1 11.866 4.13401 15 8 15ZM8 13.75C11.1756 13.75 13.75 11.1756 13.75 8C13.75 4.82436 11.1756 2.25 8 2.25C4.82436 2.25 2.25 4.82436 2.25 8C2.25 11.1756 4.82436 13.75 8 13.75Z" fill="#636363"/> </svg>
+ (information) icon near the bottom left corner of the page. Click this icon for instructions on how to prepare a CSV file for your bulk device action.</p>
+
+
+
+
+
+
+
+  
+  
+  
+  
+  
+    
+    
+    
+    
+      
+    
+    
+  
+    
+    
+    
+    
+      
+    
+    
+  
+    
+    
+    
+    
+      
+    
+    
+  
+    
+    
+    
+      
+    
+    
+    
+  
+    
+    
+    
+      
+    
+    
+    
+  
+    
+    
+    
+      
+    
+    
+    
+  
+    
+    
+    
+      
+    
+    
+    
+  
+    
+    
+    
+      
+    
+    
+    
+  
+    
+    
+    
+      
+    
+    
+    
+  
+    
+    
+    
+      
+    
+    
+    
+  
+    
+    
+    
+      
+    
+    
+    
+  
+    
+    
+    
+      
+    
+    
+    
+  
+    
+    
+    
+      
+    
+    
+    
+  
+
+
+<p><img src="../../../assets/devices-bulk-action-instructions-button.jpg" class="image-block-scale-75 img-thumbnail" alt="Action instructions" /></p>
+<p>For Knox Configure bulk actions, the CSV file <em>must</em> be in a format containing one IMEI number per line, and not contain any comma characters.</p>
+<p>Correct CSV format:</p>
+<ul>
+<li>310156478946</li>
+<li>318946543413</li>
+<li>311489441213</li>
+</ul>
+<p>Incorrect CSV format:</p>
+<ul>
+<li>310156478946,</li>
+<li>318946543413,</li>
+<li>311489441213,</li>
+</ul>
+<div class="notice-tip"><p>This button appears on every bulk action page and provides the same set of instructions, regardless of the selected bulk action.</p></div>
+<h2 id="assign-devices-upcoming-release">Assign devices</h2>
+<p>The <strong>ASSIGN DEVICES</strong> bulk action lets you assign up to 10,000 devices to a single profile using a CSV file. To do this:</p>
+<ol>
+<li>
+<p>From the <strong>BULK ACTIONS</strong> tab, select <strong>ASSIGN DEVICES</strong>.</p>
+
+    
+    
+    
+    
+    
+    
+      
+      
+      
+      
+      
+        
+        
+        
+        
+          
+        
+        
+      
+        
+        
+        
+        
+          
+        
+        
+      
+        
+        
+        
+        
+          
+        
+        
+      
+        
+        
+        
+        
+          
+        
+        
+      
+        
+        
+        
+        
+          
+        
+        
+      
+        
+        
+        
+        
+          
+        
+        
+      
+        
+        
+        
+        
+          
+        
+        
+      
+        
+        
+        
+          
+        
+        
+        
+      
+        
+        
+        
+          
+        
+        
+        
+      
+        
+        
+        
+          
+        
+        
+        
+      
+        
+        
+        
+          
+        
+        
+        
+      
+        
+        
+        
+          
+        
+        
+        
+      
+        
+        
+        
+          
+        
+        
+        
+      
+    
+    
+    <p><img src="../../../assets/devices-bulk-actions-assign-profile.jpg" class="image-block-scale-50 img-thumbnail" alt="Bulk device actions assign devices to profile" /></p>
+</li>
+<li>
+<p>Click <strong>BROWSE</strong> to upload your prepared CSV file containing the device IMEI numbers you want to assign. If needed, click <strong>Download CSV template</strong>, then fill out the template with your device details.</p>
+</li>
+<li>
+<p>Select the profile and available license you want to associate with these devices.</p>
+</li>
+<li>
+<p>Select how you want to notify your device users of the profile assignment &mdash; whether you want to assign the profile silently, or if you want to request consent from the user.</p>
+<ul>
+<li>If you choose to request consent, you can also include a <span class="glossary-term" data-term="Custom notification" data-link="../../../../glossary/a-f#custom-notification" data-definition="A device management feature that enables admins to create and send personalized on-device messages to managed devices...">custom notification</span>, as well as a hyperlink to direct users to a website or help page for more information during the enrollment process.</li>
+</ul>
+</li>
+<li>
+<p>Click <strong>SUBMIT</strong>. Once a device is assigned to a profile, its shows as <strong>Configured</strong> in the <strong>DEVICE</strong> tab&rsquo;s <strong>STATUS</strong> column</p>
+</li>
+</ol>
+<h2 id="unassign-devices-upcoming-release">Unassign devices</h2>
+<p>The <strong>UNASSIGN DEVICES</strong> bulk action lets you unassign up to 10,000 devices from any of their associated profiles using a CSV file. When a profile is unassigned from the device, the following occurs:</p>
+<ul>
+<li>The device keeps all of its apps and content.</li>
+<li>Uninstalling a <span class="glossary-term" data-term="Dynamic edition" data-link="../../../../glossary/a-f#dynamic-edition" data-definition="A Knox Configure license model that lets you deploy and update settings and app configurations on enrolled Samsung...">Dynamic edition</span> profile from a device revokes the (Dynamic edition) license seat, allowing it to be used again with another device.</li>
+</ul>
+
+
+
+
+
+
+
+  
+  
+  
+  
+  
+    
+    
+    
+    
+      
+    
+    
+  
+    
+    
+    
+    
+      
+    
+    
+  
+    
+    
+    
+    
+      
+    
+    
+  
+    
+    
+    
+    
+      
+    
+    
+  
+    
+    
+    
+    
+      
+    
+    
+  
+    
+    
+    
+    
+      
+    
+    
+  
+    
+    
+    
+    
+      
+    
+    
+  
+    
+    
+    
+      
+    
+    
+    
+  
+    
+    
+    
+      
+    
+    
+    
+  
+    
+    
+    
+      
+    
+    
+    
+  
+    
+    
+    
+      
+    
+    
+    
+  
+    
+    
+    
+      
+    
+    
+    
+  
+    
+    
+    
+      
+    
+    
+    
+  
+
+
+<p><img src="../../../assets/devices-bulk-action-unassign.jpg" class="image-block-scale-50 img-thumbnail" alt="Remove devices" /></p>
+<p>To unassign devices using a bulk action:</p>
+<ol>
+<li>
+<p>From the <strong>BULK ACTIONS</strong> tab, click UNASSIGN DEVICES.</p>
+</li>
+<li>
+<p>Click <strong>BROWSE</strong> to upload your prepared CSV file containing the device IMEI numbers you want to assign. If needed, click <strong>Download CSV template</strong>, then fill out the template with your device details.</p>
+</li>
+<li>
+<p>Click SUBMIT to unassign your devices from their respective profiles.</p>
+</li>
+</ol>
+<h2 id="push-profile-updates-upcoming-release">Push profile updates</h2>
+<p>The <strong>PUSH PROFILE UPDATE</strong> bulk action lets you push the latest profile configuration for up to 10,000 devices at a time, using a CSV file. This bulk action is particularly useful for when you have multiple updated profiles, and you want to push them to different devices in the fleet. See <a href="../../profiles/manage-profiles#defer-profile-updates">Defer profile updates</a> to learn how to save your profile changes before using this bulk action.</p>
+<p>To push device profile updates in bulk:</p>
+<ol>
+<li>
+<p>From the <strong>BULK ACTIONS</strong> tab, select <strong>PUSH PROFILE UPDATE</strong>.</p>
+
+    
+    
+    
+    
+    
+    
+      
+      
+      
+      
+      
+        
+        
+        
+        
+          
+        
+        
+      
+        
+        
+        
+        
+          
+        
+        
+      
+        
+        
+        
+        
+          
+        
+        
+      
+        
+        
+        
+        
+          
+        
+        
+      
+        
+        
+        
+        
+          
+        
+        
+      
+        
+        
+        
+        
+          
+        
+        
+      
+        
+        
+        
+        
+          
+        
+        
+      
+        
+        
+        
+          
+        
+        
+        
+      
+        
+        
+        
+          
+        
+        
+        
+      
+        
+        
+        
+          
+        
+        
+        
+      
+        
+        
+        
+          
+        
+        
+        
+      
+        
+        
+        
+          
+        
+        
+        
+      
+        
+        
+        
+          
+        
+        
+        
+      
+    
+    
+    <p><img src="../../../assets/devices-bulk-action-push-update.jpg" class="image-block-scale-50 img-thumbnail" alt="profile update in bulk" /></p>
+</li>
+<li>
+<p>Click <strong>BROWSE</strong> to upload your prepared CSV file containing the device IMEI numbers you want to assign. If needed, click <strong>Download CSV template</strong>, then fill out the template with your device details.</p>
+</li>
+<li>
+<p>In the <strong>Select items to push</strong> field, select <strong>Only changed items</strong> if you only want to push the latest changes since the last update, or <strong>Full profile update</strong> if you want to push the entire profile to your devices.</p>
+</li>
+<li>
+<p>Select how you want to notify your device users of the profile update &mdash; whether you want to update the profile silently, or if you want to request consent from the user.</p>
+<ul>
+<li>If you choose to request consent, you can also include a custom notification, as well as a hyperlink to direct users to a website or help page for more information during the update process.</li>
+</ul>
+</li>
+<li>
+<p>Select <strong>PUSH NOW</strong> to begin updating your devices immediately, or <strong>SCHEDULE</strong> to select a date and time for the server to push the update.</p>
+</li>
+</ol>
+<h2 id="manage-device-tags-upcoming-release">Manage device tags</h2>
+<p>The <strong>MANAGE DEVICE TAGS</strong> bulk action lets you add unique text labels to help organize devices in your fleet. Using a CSV file, you can add up to 10 unique tags and assign them to up to 10,000 devices at a time.</p>
+<p>To manage device tags in bulk:</p>
+<ol>
+<li>
+<p>From the <strong>BULK ACTIONS</strong> tab, select <strong>MANAGE DEVICE TAGS</strong>.</p>
+
+    
+    
+    
+    
+    
+    
+      
+      
+      
+      
+      
+        
+        
+        
+        
+          
+        
+        
+      
+        
+        
+        
+        
+          
+        
+        
+      
+        
+        
+        
+        
+          
+        
+        
+      
+        
+        
+        
+        
+          
+        
+        
+      
+        
+        
+        
+        
+          
+        
+        
+      
+        
+        
+        
+        
+          
+        
+        
+      
+        
+        
+        
+        
+          
+        
+        
+      
+        
+        
+        
+          
+        
+        
+        
+      
+        
+        
+        
+          
+        
+        
+        
+      
+        
+        
+        
+          
+        
+        
+        
+      
+        
+        
+        
+          
+        
+        
+        
+      
+        
+        
+        
+          
+        
+        
+        
+      
+        
+        
+        
+          
+        
+        
+        
+      
+    
+    
+    <p><img src="../../../assets/devices-bulk-actions-manage-tags.jpg" class="image-block-scale-50 img-thumbnail" alt="Device tags bulk" /></p>
+</li>
+<li>
+<p>Click <strong>BROWSE</strong> to upload your prepared CSV file containing the device IMEI numbers you want to assign. If needed, click <strong>Download CSV template</strong>, then fill out the template with your device details. For this bulk action, your CSV file must contain the device IDs in the first column, and the tags in the second column.</p>
+</li>
+<li>
+<p>If you already have tags assigned to devices in your fleet, you can select <strong>Overwrite existing tags</strong> to replace them with the new tags in the CSV file.</p>
+</li>
+<li>
+<p>In the additional tags field, you can add tags that weren&rsquo;t included in the CSV file. Note that you can only add up to 10 tags in total.</p>
+</li>
+<li>
+<p>Click <strong>SUBMIT</strong> to assign the tags to your devices.</p>
+</li>
+</ol>
+<h2 id="lock-and-unlock-devices-upcoming-release">Lock and unlock devices</h2>
+<p>You can lock or unlock up to 10,000 devices at a time using a CSV file. When a device is locked, your company&rsquo;s contact information is shown on the screen, and the user is unable to perform any task other than entering an unlock code or dialing an emergency number. To learn more about locking devices, see <a href="../perform-device-actions#lock-devices">Perform device actions</a>.</p>
+<p>To bulk lock or unlock devices in bulk:</p>
+<ol>
+<li>
+<p>From the <strong>BULK ACTIONS</strong> tab, select either <strong>LOCK DEVICES</strong> or <strong>UNLOCK DEVICES</strong>.</p>
+
+    
+    
+    
+    
+    
+    
+      
+      
+      
+      
+      
+        
+        
+        
+        
+          
+        
+        
+      
+        
+        
+        
+        
+          
+        
+        
+      
+        
+        
+        
+        
+          
+        
+        
+      
+        
+        
+        
+        
+          
+        
+        
+      
+        
+        
+        
+        
+          
+        
+        
+      
+        
+        
+        
+        
+          
+        
+        
+      
+        
+        
+        
+        
+          
+        
+        
+      
+        
+        
+        
+          
+        
+        
+        
+      
+        
+        
+        
+          
+        
+        
+        
+      
+        
+        
+        
+          
+        
+        
+        
+      
+        
+        
+        
+          
+        
+        
+        
+      
+        
+        
+        
+          
+        
+        
+        
+      
+        
+        
+        
+          
+        
+        
+        
+      
+    
+    
+    <p><img src="../../../assets/devices-bulk-actions-lock.jpg" class="image-block-scale-50 img-thumbnail" alt="Device unlock in bulk" /></p>
+</li>
+<li>
+<p>Click <strong>BROWSE</strong> to upload your prepared CSV file containing the device IMEI numbers you want to assign. If needed, click <strong>Download CSV template</strong>, then fill out the template with your device details.</p>
+</li>
+<li>
+<p>Click <strong>SUBMIT</strong> to lock or unlock your devices in bulk.</p>
+</li>
+</ol>
+<h2 id="delete-devices-upcoming-release">Delete devices</h2>
+<p>The <strong>DELETE DEVICES</strong> bulk action lets you delete up to 10,000 devices from the Knox Configure service using a CSV file. To delete your devices using a bulk action:</p>
+<ol>
+<li>
+<p>From the <strong>BULK ACTIONS</strong> tab, select either <strong>DELETE DEVICES</strong>.</p>
+
+    
+    
+    
+    
+    
+    
+      
+      
+      
+      
+      
+        
+        
+        
+        
+          
+        
+        
+      
+        
+        
+        
+        
+          
+        
+        
+      
+        
+        
+        
+        
+          
+        
+        
+      
+        
+        
+        
+        
+          
+        
+        
+      
+        
+        
+        
+        
+          
+        
+        
+      
+        
+        
+        
+        
+          
+        
+        
+      
+        
+        
+        
+        
+          
+        
+        
+      
+        
+        
+        
+          
+        
+        
+        
+      
+        
+        
+        
+          
+        
+        
+        
+      
+        
+        
+        
+          
+        
+        
+        
+      
+        
+        
+        
+          
+        
+        
+        
+      
+        
+        
+        
+          
+        
+        
+        
+      
+        
+        
+        
+          
+        
+        
+        
+      
+    
+    
+    <p><img src="../../../assets/delete_devices.png" class="image-block-scale-50 img-thumbnail" alt="delete devices" /></p>
+</li>
+<li>
+<p>Click <strong>BROWSE</strong> to upload your prepared CSV file containing the device IMEI numbers you want to assign. If needed, click <strong>Download CSV template</strong>, then fill out the template with your device details.</p>
+</li>
+<li>
+<p>Click <strong>SUBMIT</strong> to delete your devices from Knox Configure. If any devices are currently using a Dynamic edition license seat, the associated license seats is revoked and made available for assigning to other devices.</p>
+</li>
+</ol>
+<h2 id="rebootfactory-reset-devices-upcoming-release">Reboot/Factory reset devices</h2>
+<p>The <strong>REBOOT/FACTORY RESET DEVICES</strong> bulk action lets you remotely reboot or factory reset up to 10,000 devices using a CSV file. For information on rebooting or factory resetting individual devices, see <a href="../perform-device-actions#factory-reset-and-esim-deletion">Perform device actions</a>.</p>
+<p>To reboot or factory reset devices in bulk:</p>
+<ol>
+<li>
+<p>From the <strong>BULK ACTIONS</strong>, select <strong>REBOOT/FACTORY RESET DEVICES</strong>.</p>
+
+    
+    
+    
+    
+    
+    
+      
+      
+      
+      
+      
+        
+        
+        
+        
+          
+        
+        
+      
+        
+        
+        
+        
+          
+        
+        
+      
+        
+        
+        
+        
+          
+        
+        
+      
+        
+        
+        
+        
+          
+        
+        
+      
+        
+        
+        
+        
+          
+        
+        
+      
+        
+        
+        
+        
+          
+        
+        
+      
+        
+        
+        
+        
+          
+        
+        
+      
+        
+        
+        
+          
+        
+        
+        
+      
+        
+        
+        
+          
+        
+        
+        
+      
+        
+        
+        
+          
+        
+        
+        
+      
+        
+        
+        
+          
+        
+        
+        
+      
+        
+        
+        
+          
+        
+        
+        
+      
+        
+        
+        
+          
+        
+        
+        
+      
+    
+    
+    <p><img src="../../../assets/reset_reboot_devices.png" class="image-block-scale-50 img-thumbnail" alt="Reboot devices in bulk" /></p>
+</li>
+<li>
+<p>Click <strong>BROWSE</strong> to upload your prepared CSV file containing the device IMEI numbers you want to reboot or factory reset. If needed, click <strong>Download CSV template</strong>, then fill out the template with your device details.</p>
+</li>
+<li>
+<p>Under <strong>Select action</strong>, choose an option:</p>
+<ul>
+<li><strong>Reboot devices(s)</strong> &mdash; The devices will shut down and and restart, maintaining its current configuration.</li>
+<li><strong>Factory reset device(s)</strong> &mdash; The device will be reset to factory settings, removing all of its current configuration settings. Once reset, you&rsquo;ll have to assign a profile again if you want to apply a configuration.</li>
+<li>F<strong>actory reset and eSIM deletion</strong> &mdash; The device will be reset to factory settings, and the eSIM will be deleted from the device. Once reset, you&rsquo;ll have to assign a profile again if you want to apply a configuration, and install a new eSIM if you want to make calls or access a mobile data network.</li>
+</ul>
+</li>
+<li>
+<p>Click <strong>SUBMIT</strong> to perform the reboot or factory reset action.</p>
+</li>
+</ol>
+<h2 id="custom-id-upcoming-release">Custom ID</h2>
+<p>The <strong>CUSTOM ID</strong> bulk action lets you add a unique text label to help identify devices in your fleet. Using a CSV file, you can add custom IDs that are up to 50 characters long, and assign them to up to 10,000 devices at a time.</p>
+<div class="notice-note"><p>Custom IDs can only be used for devices with Knox version 3.7 and higher.</p></div>
+<p>To add custom IDs in bulk:</p>
+<ol>
+<li>
+<p>From the <strong>BULK ACTIONS</strong>, select <strong>CUSTOM ID</strong>.</p>
+
+    
+    
+    
+    
+    
+    
+      
+      
+      
+      
+      
+        
+        
+        
+        
+          
+        
+        
+      
+        
+        
+        
+        
+          
+        
+        
+      
+        
+        
+        
+        
+          
+        
+        
+      
+        
+        
+        
+        
+          
+        
+        
+      
+        
+        
+        
+        
+          
+        
+        
+      
+        
+        
+        
+        
+          
+        
+        
+      
+        
+        
+        
+        
+          
+        
+        
+      
+        
+        
+        
+          
+        
+        
+        
+      
+        
+        
+        
+          
+        
+        
+        
+      
+        
+        
+        
+          
+        
+        
+        
+      
+        
+        
+        
+          
+        
+        
+        
+      
+        
+        
+        
+          
+        
+        
+        
+      
+        
+        
+        
+          
+        
+        
+        
+      
+    
+    
+    <p><img src="../../../assets/devices-bulk-actions-custom-id.jpg" class="image-block-scale-50 img-thumbnail" alt="Update ID in bulk" /></p>
+</li>
+<li>
+<p>Click <strong>BROWSE</strong> to upload your prepared CSV file containing the device IMEI numbers you want to reboot or factory reset. If needed, click <strong>Download CSV template</strong>, then fill out the template with your device details. For this bulk action, your CSV file must contain the device IDs in the first column, and the tags in the second column.</p>
+<div class="notice-note"><p>Custom IDs can’t contain spaces or special characters including the following: <code># / $ * % ^ & : \ ( ) + ? { } [ ] < ></code></p></div>
+</li>
+<li>
+<p>Click <strong>SUBMIT</strong> to assign the custom ID to your devices. If a device already has an existing custom ID, it will be overwritten with the new value in the CSV file.</p>
+</li>
+</ol>
+</div>
+  
+</div>
+        </div>
+
+
+      </div>
+
+    </div> 
+  </div><div>
+  <div id="feedbackQuestion" class="py-4 border-top text-center">
+    <p class="body-4 mb-2">Is this page helpful?</p>
+    <button id="feedbackYes" class="button-icon me-4">
+      <span class="button-thumbs-up pe-4"></span> YES
+    </button>
+    <button id="feedbackNo" class="button-icon">
+      <span class="button-thumbs-down pe-4"></span> No
+    </button>
+  </div>
+</div>
+
+<div id="feedbackThanks" class="mt-6 border-top text-center" style="display: none">
+  <p class="body-4 pt-4">Thank you for your feedback!</p>
+</div>
+
+
+
+  </main>
+  
+    <footer class="border-top">
+  
+  <div class="container footer">
+    <div class="row g-0 footer-top-section">
+      
+      <div class="col-sm-12 col-md-6 col-lg-3 footer-vertical-section">
+        <div class="d-flex justify-content-between align-items-center">
+          <a class="footer-section-title" data-bs-toggle="collapse" href="#item0" role="button" aria-expanded="false" aria-controls="item0"> 
+            <h6 class="body-3 fw-bold text-uppercase text-black pt-4">Knox admin documentation</h6>
+          </a>
+          <a class="btn-toggle d-inline-flex d-lg-none rounded border-0 fw-light" data-bs-toggle="collapse" data-bs-target="#item0" aria-expanded="false"></a>
+        </div>
+        <div class="d-lg-block collapse" id="item0">
+          <ul class="nav flex-column">
+            
+            <li>
+              <a
+                href="../../../../fundamentals"
+                class="body-5 d-flex align-items-center text-black fw-light pe-auto text-decoration-none"
+                >Fundamentals</a
+              >
+            </li>
+            
+            <li>
+              <a
+                href="../../../../knox-admin-portal"
+                class="body-5 d-flex align-items-center text-black fw-light pe-auto text-decoration-none"
+                >Knox Admin Portal</a
+              >
+            </li>
+            
+            <li>
+              <a
+                href="../../../../knox-suite"
+                class="body-5 d-flex align-items-center text-black fw-light pe-auto text-decoration-none"
+                >Knox Suite</a
+              >
+            </li>
+            
+            <li>
+              <a
+                href="../../../../knox-platform-for-enterprise"
+                class="body-5 d-flex align-items-center text-black fw-light pe-auto text-decoration-none"
+                >Knox Platform for Enterprise</a
+              >
+            </li>
+            
+            <li>
+              <a
+                href="../../../../knox-mobile-enrollment"
+                class="body-5 d-flex align-items-center text-black fw-light pe-auto text-decoration-none"
+                >Knox Mobile Enrollment</a
+              >
+            </li>
+            
+            <li>
+              <a
+                href="../../../../knox-manage"
+                class="body-5 d-flex align-items-center text-black fw-light pe-auto text-decoration-none"
+                >Knox Manage</a
+              >
+            </li>
+            
+            <li>
+              <a
+                href="../../../../knox-efota"
+                class="body-5 d-flex align-items-center text-black fw-light pe-auto text-decoration-none"
+                >Knox E-FOTA</a
+              >
+            </li>
+            
+            <li>
+              <a
+                href="../../../../knox-asset-intelligence"
+                class="body-5 d-flex align-items-center text-black fw-light pe-auto text-decoration-none"
+                >Knox Asset Intelligence</a
+              >
+            </li>
+            
+            <li>
+              <a
+                href="../../../../knox-remote-support"
+                class="body-5 d-flex align-items-center text-black fw-light pe-auto text-decoration-none"
+                >Knox Remote Support</a
+              >
+            </li>
+            
+            <li>
+              <a
+                href="../../../../knox-capture"
+                class="body-5 d-flex align-items-center text-black fw-light pe-auto text-decoration-none"
+                >Knox Capture</a
+              >
+            </li>
+            
+            <li>
+              <a
+                href="../../../../knox-authentication-manager"
+                class="body-5 d-flex align-items-center text-black fw-light pe-auto text-decoration-none"
+                >Knox Authentication Manager</a
+              >
+            </li>
+            
+            <li>
+              <a
+                href="../../../../knox-configure"
+                class="body-5 d-flex align-items-center text-black fw-light pe-auto text-decoration-none"
+                >Knox Configure</a
+              >
+            </li>
+            
+            <li>
+              <a
+                href="../../../../knox-guard"
+                class="body-5 d-flex align-items-center text-black fw-light pe-auto text-decoration-none"
+                >Knox Guard</a
+              >
+            </li>
+            
+            <li>
+              <a
+                href="../../../../care-plus"
+                class="body-5 d-flex align-items-center text-black fw-light pe-auto text-decoration-none"
+                >Samsung Care&#43; for Business</a
+              >
+            </li>
+            
+            <li>
+              <a
+                href="../../../../uat"
+                class="body-5 d-flex align-items-center text-black fw-light pe-auto text-decoration-none"
+                >User Acceptance Testing</a
+              >
+            </li>
+            
+          </ul>
+        </div>
+      </div>
+      
+      <div class="col-sm-12 col-md-6 col-lg-3 footer-vertical-section">
+        <div class="d-flex justify-content-between align-items-center">
+          <a class="footer-section-title" data-bs-toggle="collapse" href="#item1" role="button" aria-expanded="false" aria-controls="item1"> 
+            <h6 class="body-3 fw-bold text-uppercase text-black pt-4">Support</h6>
+          </a>
+          <a class="btn-toggle d-inline-flex d-lg-none rounded border-0 fw-light" data-bs-toggle="collapse" data-bs-target="#item1" aria-expanded="false"></a>
+        </div>
+        <div class="d-lg-block collapse" id="item1">
+          <ul class="nav flex-column">
+            
+            <li>
+              <a
+                href="https://www2.samsungknox.com/support"
+                class="body-5 d-flex align-items-center text-black fw-light pe-auto text-decoration-none"
+                >Submit a support ticket</a
+              >
+            </li>
+            
+          </ul>
+        </div>
+      </div>
+      
+      <div class="col-sm-12 col-md-6 col-lg-3 footer-vertical-section">
+        <div class="d-flex justify-content-between align-items-center">
+          <a class="footer-section-title" data-bs-toggle="collapse" href="#item2" role="button" aria-expanded="false" aria-controls="item2"> 
+            <h6 class="body-3 fw-bold text-uppercase text-black pt-4">Samsung</h6>
+          </a>
+          <a class="btn-toggle d-inline-flex d-lg-none rounded border-0 fw-light" data-bs-toggle="collapse" data-bs-target="#item2" aria-expanded="false"></a>
+        </div>
+        <div class="d-lg-block collapse" id="item2">
+          <ul class="nav flex-column">
+            
+            <li>
+              <a
+                href="https://www.samsungknox.com/en"
+                class="body-5 d-flex align-items-center text-black fw-light pe-auto text-decoration-none"
+                >Samsung Knox</a
+              >
+            </li>
+            
+            <li>
+              <a
+                href="https://partner.samsungknox.com/"
+                class="body-5 d-flex align-items-center text-black fw-light pe-auto text-decoration-none"
+                >Samsung Knox Partner Program</a
+              >
+            </li>
+            
+            <li>
+              <a
+                href="https://developer.samsungknox.com"
+                class="body-5 d-flex align-items-center text-black fw-light pe-auto text-decoration-none"
+                >Samsung Knox Developers</a
+              >
+            </li>
+            
+          </ul>
+        </div>
+      </div>
+      
+    </div>
+  </div>
+  <div class="container py-4 border-bottom border-top">
+    <p class="m-0"><small>Copyright © 1995-<script>document.write(new Date().getFullYear());</script><noscript>2024</noscript> SAMSUNG All Rights Reserved.</small></p>
+  </div>
+  <div class="container">
+    <div class="footer-bottom-section-row">
+      <div class="d-flex py-4 justify-content-between">
+        <div class="d-flex align-items-center">
+          
+          <p class="m-0 footer-bottom-section-item">
+            <a class="body-6 text-uppercase text-black" href="https://www2.samsungknox.com/en/privacy-policy-us">Privacy policy</a>
+          </p>
+          
+          <p class="m-0 footer-bottom-section-item">
+            <a class="body-6 text-uppercase text-black" href="https://www.samsungknox.com/en/legal">Legal</a>
+          </p>
+          
+        </div>
+      </div>
+    </div>
+  </div>
+</footer>
+
+  
+</body>
+
+</html>
