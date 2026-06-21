@@ -56,7 +56,7 @@
 
   
 
-<script onload="initBot()" defer src="https://dc-chbt.samsungknox.com/copilot/index.js?noCache=1781135531"></script>
+<script onload="initBot()" defer src="https://dc-chbt.samsungknox.com/copilot/index.js?noCache=1781738096"></script>
 <script defer>
     function initBot(){
       const relPath = "\/knox-efota\/release-notes\/24-06\/";
@@ -142,6 +142,14 @@
   <span>Cloud service APIs</span>
   <ul>
     <li>
+  <span>Common APIs</span>
+  <ul>
+    <li>
+  <a href="../../common-apis/tag-api" >Tag API</a>
+  </li>
+</ul>
+  </li>
+<li>
   <a href="../../knox-asset-intelligence" >Knox Asset Intelligence</a>
   </li>
 <li>
@@ -198,7 +206,7 @@
       
       <li>
         <div>
-          <a class="body-5 text-black fw-light" href="../index.html">Introduction</a>
+          <a class="body-5 text-black fw-light" href="../../knox-efota.html">Introduction</a>
         </div>
       </li>
         
@@ -307,7 +315,7 @@
     
     
     <div class="d-flex justify-content-between">
-      <a class="body-5 text-black fw-light" href="../api.html">API reference</a>
+      <a class="body-5 text-black fw-light" href="../api/index.html">API reference</a>
     </div>
     
     </li>
@@ -353,7 +361,7 @@
           <div class="l-content-top mb-4">
             <div class="l-breadcrumb">
               <a class="fw-light text-black" href="../../index.html">Home</a><span> /</span>
-<a class="fw-light text-black" href="../index.html">Knox E-FOTA</a><span> /</span>
+<a class="fw-light text-black" href="../../knox-efota.html">Knox E-FOTA</a><span> /</span>
 <a class="fw-light text-black" href="index.html">Knox E-FOTA release notes</a><span> /</span>
 
             </div>
@@ -424,16 +432,16 @@
         <h2 id="new">New</h2>
 <h3 id="configure-gradual-rollout">Configure gradual rollout</h3>
 <p>With this release of the Knox E-FOTA API, you can configure a gradual firmware rollout across devices on a campaign. Gradual rollout installs firmware to assigned devices in daily batches, instead of all at once. This feature allows you to identify issues with firmware rollout as they arise, so that problematic or erroneous patches aren&rsquo;t pushed to all devices at once.</p>
-<p>You can configure this setting when you <a href="https://docs.samsungknox.com/dev/knox-efota/api#tag/Campaign/paths/~1campaigns/post#tag/Campaign/paths/~1campaigns/post">create</a> or <a href="https://docs.samsungknox.com/dev/knox-efota/api#tag/Campaign/paths/~1campaigns~1%7bcampaignId%7d/put#tag/Campaign/paths/~1campaigns~1{campaignId}/put">update</a> a campaign. Enable this setting with <code>gradualRolloutOn</code>, and configure the size of the daily batches as a percentage with the <code>gradualRolloutNumber</code> body parameter.</p>
+<p>You can configure this setting when you <a href="../api#tag/Campaign/paths/~1campaigns/post">create</a> or <a href="../api#tag/Campaign/paths/~1campaigns~1{campaignId}/put">update</a> a campaign. Enable this setting with <code>gradualRolloutOn</code>, and configure the size of the daily batches as a percentage with the <code>gradualRolloutNumber</code> body parameter.</p>
 <h3 id="configure-firmware-downloads-over-specific-ssids">Configure firmware downloads over specific SSIDs</h3>
 <p>With this release of the Knox E-FOTA API, you can configure a campaign to throttle firmware download speeds and allow or block downloads on specific SSIDs. This level of granular control allows you to manage network usage for firmware downloads, and prevent firmware downloads over unauthorized networks.</p>
-<p>You can configure this setting when you <a href="https://docs.samsungknox.com/dev/knox-efota/api#tag/Campaign/paths/~1campaigns/post#tag/Campaign/paths/~1campaigns/post">create</a> or <a href="https://docs.samsungknox.com/dev/knox-efota/api#tag/Campaign/paths/~1campaigns~1%7bcampaignId%7d/put#tag/Campaign/paths/~1campaigns~1{campaignId}/put">update</a> a campaign. In the request body, throttle SSIDs with the <code>ssidThrottling</code> parameter, and configure an SSID allowlist or blocklist with <code>allowOrBlock</code> and <code>ssidsForRestriction</code> parameters.</p>
+<p>You can configure this setting when you <a href="../api#tag/Campaign/paths/~1campaigns/post">create</a> or <a href="../api#tag/Campaign/paths/~1campaigns~1{campaignId}/put">update</a> a campaign. In the request body, throttle SSIDs with the <code>ssidThrottling</code> parameter, and configure an SSID allowlist or blocklist with <code>allowOrBlock</code> and <code>ssidsForRestriction</code> parameters.</p>
 <h3 id="configure-custom-firmware-download-time-window">Configure custom firmware download time window</h3>
 <p>With this release of the Knox E-FOTA API, you can configure a campaign to only download firmware within a specified timeframe. This feature allows you to schedule firmware downloads outside peak hours of device and network usage, resulting in smoother network operations during high-demand periods.</p>
-<p>You can configure this setting when you <a href="https://docs.samsungknox.com/dev/knox-efota/api#tag/Campaign/paths/~1campaigns/post#tag/Campaign/paths/~1campaigns/post">create</a> or <a href="https://docs.samsungknox.com/dev/knox-efota/api#tag/Campaign/paths/~1campaigns~1%7bcampaignId%7d/put#tag/Campaign/paths/~1campaigns~1{campaignId}/put">update</a> a campaign. In the request body, set the <code>downloadTime</code> parameter to <code>3</code>, and configure a timeframe with <code>fromDownload</code> and <code>toDownload</code> parameters.</p>
+<p>You can configure this setting when you <a href="../api#tag/Campaign/paths/~1campaigns/post">create</a> or <a href="../api#tag/Campaign/paths/~1campaigns~1{campaignId}/put">update</a> a campaign. In the request body, set the <code>downloadTime</code> parameter to <code>3</code>, and configure a timeframe with <code>fromDownload</code> and <code>toDownload</code> parameters.</p>
 <h3 id="skip-privacy-policy-on-knox-e-fota-client">Skip privacy policy on Knox E-FOTA client</h3>
 <p>With this release of the Knox E-FOTA API, you can configure Knox E-FOTA to skip the privacy policy agreement during Knox E-FOTA client enrollment. If configured, no action is needed from the device user when the device is enrolled in Knox E-FOTA, streamlining the setup process.</p>
-<p>You can configure this setting with the <a href="https://docs.samsungknox.com/dev/knox-efota/api#tag/Tenant/paths/~1privacyPolicy/put#tag/Tenant/paths/~1privacyPolicy/put">PUT /privacyPolicy</a> operation, and get the current configuration with <a href="https://docs.samsungknox.com/dev/knox-efota/api#tag/Tenant/paths/~1privacyPolicy/get#tag/Tenant/paths/~1privacyPolicy/get">GET /privacyPolicy</a>.</p>
+<p>You can configure this setting with the <a href="../api#tag/Tenant/paths/~1privacyPolicy/put">PUT /privacyPolicy</a> operation, and get the current configuration with <a href="../api#tag/Tenant/paths/~1privacyPolicy/get">GET /privacyPolicy</a>.</p>
 <a href="index.html"  class="btn d-inline-block button-subtle">Back to release notes</a>
 
             
@@ -630,7 +638,7 @@
             
             <li>
               <a
-                href="../../fundamentals/support"
+                href="https://docs.samsungknox.com/dev/fundamentals/support"
                 class="body-5 d-flex align-items-center text-black fw-light pe-auto text-decoration-none"
                 >Get support</a
               >
