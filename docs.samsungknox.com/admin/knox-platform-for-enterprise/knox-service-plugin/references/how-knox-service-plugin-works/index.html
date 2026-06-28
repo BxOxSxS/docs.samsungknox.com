@@ -57,7 +57,7 @@
 
   
 
-<script onload="initBot()" defer src="https://dc-chbt.samsungknox.com/copilot/index.js?noCache=1781907286"></script>
+<script onload="initBot()" defer src="https://dc-chbt.samsungknox.com/copilot/index.js?noCache=1782513857"></script>
 <script defer>
     function initBot(){
       const relPath = "\/knox-platform-for-enterprise\/knox-service-plugin\/references\/how-knox-service-plugin-works\/";
@@ -191,7 +191,7 @@
     <li class="mt-2">
     
     <div class="d-flex justify-content-between">
-      <a class="body-5 text-black fw-light" href="../../../videos/index.html">How-to videos</a>
+      <a class="body-5 text-black fw-light" href="../../../videos.html">How-to videos</a>
     </div>
       
     </li>
@@ -1114,7 +1114,7 @@
             </div>
             
 
-  <p><span>Last updated July  26th, 2023</span></p>
+  <p><span>Last updated June  1st, 2026</span></p>
 
 
     
@@ -1134,16 +1134,6 @@
       
       
       
-        
-      
-      
-      
-      
-        
-      
-      
-      
-      
       
         
       
@@ -1159,30 +1149,26 @@
 <p><strong>IT admins</strong> &mdash; Configure the options available to Knox Platform for Enterprise deployments using Knox Service Plugin.</p>
 </li>
 </ul>
-<h2 id="how-knox-service-plugin-works">How Knox Service Plugin works</h2>
-<p>Knox Service Plugin is built on top of Android&rsquo;s standard called <a href="https://www.blog.google/products/android-enterprise/oemconfig-supports-enterprise-device-features/" target="_blank">OEMConfig</a>. OEMConfig is a feature that lets you create and remotely push configurations to apps through an XML schema file that is hosted in an app on Google Play. This architecture means that any UEM that complies with the OEMConfig standard can support Knox Service Plugin.</p>
-<p>Here is an overview of how Knox Service Plugin works.</p>
+<p>Knox Service Plugin allows you to configure and control device behavior from your UEM console, and is built on top of Android&rsquo;s <a href="https://www.blog.google/products/android-enterprise/oemconfig-supports-enterprise-device-features/" target="_blank">OEMConfig</a> standard. You can remotely create and push Knox Service Plugin managed configurations that define device control policies and settings. These configurations are pushed to your devices over Managed Google Play, which means any UEM that complies with the OEMConfig standard can support Knox Service Plugin.</p>
+<p>Here is an overview of how you can configure device behavior with Knox Service Plugin.</p>
 <ol>
 <li>
-<p>App developers implement logic to support managed configurations in their apps. They use an XML schema file to define which app settings IT admins can remotely configure in their Android app. This schema is linked to the app&rsquo;s manifest file. After each update, app developers push their app to Managed Google Play.</p>
+<p>On your UEM console, add the Knox Service Plugin app from Managed Google Play. UEMs that support OEMConfig should allow you to modify the Knox Service Plugin managed configuration.</p>
 </li>
 <li>
-<p>UEM developers pull the managed configuration schemas from apps on Managed Google Play. UEM consoles then use these XML schemas to allow IT admins to specify how they want to configure app settings. After the IT admin saves their configuration, the UEM pushes the configuration to Managed Google Play.</p>
+<p>Configure Knox Service Plugin policies to control device behavior and save your settings. The UEM pushes the configuration to Managed Google Play.</p>
 </li>
 <li>
-<p>Once an app configuration is updated and pushed to Managed Google Play, the app is updated on all applicable devices to reflect the new configuration.</p>
+<p>When your devices are enrolled to your UEM, it installs and runs Knox Service Plugin, which applies your device control policies.</p>
+</li>
+<li>
+<p>You can modify the Knox Service Plugin configuration and push it through your UEM. The updated policies are sent to your devices and are applied accordingly.</p>
+</li>
+<li>
+<p>Samsung publishes updates to the <a href="https://play.google.com/store/apps/details?id=com.samsung.android.knox.kpu" target="_blank">Knox Service Plugin app</a> on Managed Google Play. Your UEM will automatically retrieve the latest Knox Service Plugin app from Managed Google Play and push it to your devices. You can use your UEM&rsquo;s policies to control Knox Service Plugin app version as needed.</p>
 </li>
 </ol>
-
-
-
-
-
-
-
-
-<p><img src="../../assets/oem-config.png" class="img-fluid img-thumbnail" alt="Image depicting how KSP works" /></p>
-<p>The following image is an example of a Knox Service Plugin policy in a UEM console.</p>
+<p>Here is an example of a Knox Service Plugin policy in a UEM console.</p>
 
 
 
@@ -1192,32 +1178,7 @@
 
 
 <p><img src="../../assets/enable-finger-print.png" class="img-fluid img-thumbnail" alt="Image showing a sample KSP policy" /></p>
-<div class="notice-note"><p>The implementation, appearance, and menu structure of how these policies look varies depending upon your UEM and its console. For UEM-specific help, refer to your UEM vendor’s documentation.</p></div>
-<h2 id="deployment-process">Deployment process</h2>
-<p>The Knox Service Plugin deployment process is as follows:</p>
-<ol>
-<li>
-<p>Samsung publishes the latest <a href="https://play.google.com/store/apps/details?id=com.samsung.android.knox.kpu" target="_blank">Knox Service Plugin app</a> to Google Play.</p>
-</li>
-<li>
-<p>IT admins use their compatible UEM console &mdash; that supports a managed Google Play store &mdash; to search for Knox Service Plugin. For a list of UEM partners that support Knox Service Plugin, see <a href="../../get-started/minimum-requirements#supported-uems">Supported UEMs</a>.</p>
-</li>
-<li>
-<p>The UEM Console renders the applicable Knox features and policies using OEMConfig.</p>
-</li>
-<li>
-<p>IT admins use the UEM console to set up policies in the form of managed configurations. These policies are then saved and published to any managed enterprise devices.</p>
-</li>
-<li>
-<p>When a user&rsquo;s device is being provisioned, the UEM invokes the managed Google Play Store, which in turn installs Knox Service Plugin and pushes the managed configuration to the device.</p>
-</li>
-<li>
-<p>After installation is complete, Knox Service Plugin runs in the background on the device. Knox Service Plugin applies the relevant Knox policies and returns the result of the configuration process using Google&rsquo;s Feedback SDK.</p>
-</li>
-<li>
-<p>IT admins can view any configuration failures and associated error messages on the UEM Console, provided the UEM is equipped to handle the result that KSP generates and sends back using the feedback SDK.</p>
-</li>
-</ol>
+<p>The implementation, appearance, and menu structure of these policies vary depending upon your UEM vendor. For specific instructions on how to add an app and configure its managed configuration, refer to your UEM vendor&rsquo;s documentation.</p>
 
 
 
@@ -1232,15 +1193,7 @@
           </div>
           <div class="l-toh">
             
-  <h2 class="body-4 fw-bold mt-0">On this page</h2>
-<aside class="table-of-headings">
-    <nav id="TableOfContents">
-  <ul>
-    <li><a href="#how-knox-service-plugin-works">How Knox Service Plugin works</a></li>
-    <li><a href="#deployment-process">Deployment process</a></li>
-  </ul>
-</nav>
-</aside>
+  
 
           </div>
         </div> 
