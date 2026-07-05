@@ -56,7 +56,7 @@
 
   
 
-<script onload="initBot()" defer src="https://dc-chbt.samsungknox.com/copilot/index.js?noCache=1782513685"></script>
+<script onload="initBot()" defer src="https://dc-chbt.samsungknox.com/copilot/index.js?noCache=1783110639"></script>
 <script defer>
     function initBot(){
       const relPath = "\/knox-sdk\/kbas\/how-to-allow-access-to-wi-fi-wlan-in-prokiosk-mode-with-the-knox-sdk\/";
@@ -2906,9 +2906,8 @@
 <p>This article provides sample code to mask the Settings app so that users can only access the Wi-Fi/WLAN module.</p>
 <h2 id="how-do-i-allow-users-access-to-wi-fi--wlan-in-prokiosk-mode-using-the-knox-sdk">How do I allow users access to Wi-Fi / WLAN in ProKiosk mode using the Knox SDK?</h2>
 <p>In your UEM solution, set ProKiosk mode as shown:</p>
-<div class="highlight"><pre tabindex="0" style=";-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-java" data-lang="java"><span style="display:flex;"><span>pkm.<span style="color:#7d9029">setProKioskState</span>(<span style="color:#008000;font-weight:bold">true</span>,<span style="color:#bbb"> </span><span style="color:#ba2121">&#34;12345&#34;</span>);<span style="color:#bbb">
-</span></span></span><span style="display:flex;"><span>pkm.<span style="color:#7d9029">setSettingsEnabledItems</span>(<span style="color:#008000;font-weight:bold">true</span>,<span style="color:#bbb"> </span>CustomDeviceManager.<span style="color:#7d9029">PRO_KIOSK_SETTINGS_WIFI</span>)<span style="color:#bbb">
-</span></span></span><span style="display:flex;"><span>pkm.<span style="color:#7d9029">setHomeActivity</span>(<span style="color:#bbb"> </span><span style="color:#ba2121">&#34;com.xxx.xxx&#34;</span>);<span style="color:#bbb">
+<div class="highlight"><pre tabindex="0" style=";-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-java" data-lang="java"><span style="display:flex;"><span>pkm.<span style="color:#7d9029">startProKioskMode</span>(<span style="color:#bbb"> </span><span style="color:#ba2121">&#34;com.xxx.xxx&#34;</span>,<span style="color:#bbb"> </span><span style="color:#ba2121">&#34;12345&#34;</span>);<span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span>pkm.<span style="color:#7d9029">setSettingsEnabledItems</span>(<span style="color:#008000;font-weight:bold">true</span>,<span style="color:#bbb"> </span>CustomDeviceManager.<span style="color:#7d9029">PRO_KIOSK_SETTINGS_WIFI</span>)<span style="color:#bbb">
 </span></span></span></code></pre></div><p>Then, access the Wi-Fi/WLAN module using the code below:</p>
 <div class="highlight"><pre tabindex="0" style=";-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-java" data-lang="java"><span style="display:flex;"><span>Intent<span style="color:#bbb"> </span>intent<span style="color:#bbb"> </span><span style="color:#666">=</span><span style="color:#bbb"> </span><span style="color:#008000;font-weight:bold">new</span><span style="color:#bbb"> </span>Intent(Settings.<span style="color:#7d9029">ACTION_WIFI_SETTINGS</span>);<span style="color:#bbb">
 </span></span></span><span style="display:flex;"><span>startActivity(intent);<span style="color:#bbb">
