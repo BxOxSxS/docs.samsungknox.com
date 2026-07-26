@@ -57,7 +57,7 @@
 
   
 
-<script onload="initBot()" defer src="https://dc-chbt.samsungknox.com/copilot/index.js?noCache=1784317010"></script>
+<script onload="initBot()" defer src="https://dc-chbt.samsungknox.com/copilot/index.js?noCache=1784937438"></script>
 <script defer>
     function initBot(){
       const relPath = "\/knox-capture\/how-to-guides\/use-intent-output\/";
@@ -621,8 +621,8 @@
 <li>IT admins must configure Knox Capture&rsquo;s <strong>Intent output</strong> feature accordingly.</li>
 </ul>
 <p>The information in this section is divided into <a href="#business-app-developers">instructions for business app developers</a> and <a href="#knox-capture-admins">instructions for Knox Capture admins</a>.</p>
-<h2 id="business-app-developers">For business app developers</h2>
-<h3 id="edit-androidmanifest-xml-file">Edit the AndroidManifest.xml file</h3>
+<h2 id="for-business-app-developers">For business app developers</h2>
+<h3 id="edit-the-androidmanifestxml-file">Edit the AndroidManifest.xml file</h3>
 <p>For your business app to parse the scanned data, you need to set up Knox Capture to send it the correct intent output. To do so, edit AndroidManifest.xml to define the package name, intent action and category. Knox Capture offers three different methods for your app to receive an Android intent. Refer to <a href="#intent-output-settings">Intent output settings</a> for more details.</p>
 <p>The following is a snippet demonstrating the manifest information to edit. Ensure you replace any dummy strings with ones relevant to your app.</p>
 <pre tabindex="0"><code>PackageName =
@@ -649,14 +649,14 @@ AndroidManifest.xml
     &lt;/intent-filter&gt;
 &lt;/receiver&gt;
 </code></pre><p>Properly defining the intent filter information ensures that after each successful scan, Knox Capture delivers the intent to your business app through the chosen method.</p>
-<h3 id="whats-included-intent-output">What&rsquo;s included in the intent output</h3>
+<h3 id="whats-included-in-the-intent-output">What&rsquo;s included in the intent output</h3>
 <p>After a successful scan, the configured intent triggers and is sent to the business app along with the following key information.</p>
-<h4 id="test-mode-staus">Test mode status</h4>
+<h4 id="test-mode-status">Test mode status</h4>
 <p>If <strong>Send via startActivity</strong> is selected as the intent delivery, test mode can be affected. If test mode is active, the intent is not sent and the business app is not launched. Instead, the following error message appears, notifying you that test mode is active: <code>Not Start Activity in TestMode!</code></p>
 <p>The key/value pair that signifies test mode status is as follows:</p>
 <pre tabindex="0"><code>Key:= ProfileConstants.KEY_INTENT_TEST_MODE=&#34;intent_in_testmode&#34;
 Value:= true/false : whether Knox Capture test mode is on.
-</code></pre><h4 id="list-scanned-bundles">The list of scanned bundles</h4>
+</code></pre><h4 id="the-list-of-scanned-bundles">The list of scanned bundles</h4>
 <p>The key/value pair that contains the scanned barcode data is as follows:</p>
 <pre tabindex="0"><code>Key:= ProfileConstants.INTENT_OUTPUT_SCANNED_BUNDLE_LIST= &#34;com.samsung.smartscan.scanned_bundle_list&#34;
 Value:= bundle list : the scanned barcode data
@@ -665,7 +665,7 @@ const val INTENT_OUTPUT_UNPROCESSED_STRING_DATA = &#34;com.samsung.smartscan.unp
 const val INTENT_OUTPUT_SYMBLOGY_TYPE = &#34;com.samsung.smartscan.symblogy_type&#34;
 const val INTENT_OUTPUT_SCAN_SOURCE = &#34;com.samsung.smartscan.scan_source&#34;
 const val INTENT_OUTPUT_SCANNER_TYPE = &#34;com.samsung.smartscan.scanner_type&#34;
-</code></pre><h4 id="bundle-structure">The bundle structure</h4>
+</code></pre><h4 id="the-bundle-structure">The bundle structure</h4>
 <pre tabindex="0"><code>{
     &#34;com.samsung.smartscan.scanner_type&#34;: scanner type
     &#34;com.samsung.smartscan.symblogy_type&#34;: barcode symbology, like EAN13
@@ -674,7 +674,7 @@ const val INTENT_OUTPUT_SCANNER_TYPE = &#34;com.samsung.smartscan.scanner_type&#
 }
 
 const val KEY_SCANNER_TYPE_CAMERA = &#34;camera&#34;
-</code></pre><h3 id="reading-intent-output-information">Reading the intent output information</h3>
+</code></pre><h3 id="reading-the-intent-output-information">Reading the intent output information</h3>
 <p>The following code snippet, written in Kotlin, demonstrates how to get and read the data sent from Knox Capture.</p>
 <pre tabindex="0"><code>fun getAllExtraInfo(intent: Intent):String{
     val sb = StringBuilder()
@@ -713,7 +713,7 @@ const val KEY_SCANNER_TYPE_CAMERA = &#34;camera&#34;
 <li><strong>Intent delivery</strong> &mdash; <code>Send via startActivity</code></li>
 <li><strong>Component information</strong> &mdash; <code>test.smartscan</code></li>
 </ul>
-<h2 id="knox-capture-admins">For Knox Capture admins</h2>
+<h2 id="for-knox-capture-admins">For Knox Capture admins</h2>
 <p>To set up intent output:</p>
 <ol>
 <li>
@@ -760,15 +760,15 @@ const val KEY_SCANNER_TYPE_CAMERA = &#34;camera&#34;
 <aside class="table-of-headings">
     <nav id="TableOfContents">
   <ul>
-    <li><a href="#business-app-developers">For business app developers</a>
+    <li><a href="#for-business-app-developers">For business app developers</a>
       <ul>
-        <li><a href="#edit-androidmanifest-xml-file">Edit the AndroidManifest.xml file</a></li>
-        <li><a href="#whats-included-intent-output">What&rsquo;s included in the intent output</a></li>
-        <li><a href="#reading-intent-output-information">Reading the intent output information</a></li>
+        <li><a href="#edit-the-androidmanifestxml-file">Edit the AndroidManifest.xml file</a></li>
+        <li><a href="#whats-included-in-the-intent-output">What&rsquo;s included in the intent output</a></li>
+        <li><a href="#reading-the-intent-output-information">Reading the intent output information</a></li>
         <li><a href="#knox-capture-configuration">Knox Capture configuration</a></li>
       </ul>
     </li>
-    <li><a href="#knox-capture-admins">For Knox Capture admins</a></li>
+    <li><a href="#for-knox-capture-admins">For Knox Capture admins</a></li>
     <li><a href="#intent-output-settings">Intent output settings</a></li>
   </ul>
 </nav>
