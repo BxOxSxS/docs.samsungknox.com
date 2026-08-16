@@ -57,7 +57,7 @@
 
   
 
-<script onload="initBot()" defer src="https://dc-chbt.samsungknox.com/copilot/index.js?noCache=1786129722"></script>
+<script onload="initBot()" defer src="https://dc-chbt.samsungknox.com/copilot/index.js?noCache=1786555628"></script>
 <script defer>
     function initBot(){
       const relPath = "\/knox-sdk\/features\/system-integrators\/customization\/prokiosk\/overview\/";
@@ -2861,7 +2861,7 @@
           <div class="l-content-top mb-4">
             <div class="l-breadcrumb">
               <a class="fw-light text-black" href="../../../../../../index.html">Home</a><span> /</span>
-<a class="fw-light text-black" href="../../../../../../knox-sdk.html">Knox SDK</a><span> /</span>
+<a class="fw-light text-black" href="../../../../../index.html">Knox SDK</a><span> /</span>
 <a class="fw-light text-black" href="../../../../index.html">Features</a><span> /</span>
 <a class="fw-light text-black" href="../../../index.html">System Integrators</a><span> /</span>
 <a class="fw-light text-black" href="../../index.html">Customization</a><span> /</span>
@@ -2894,7 +2894,9 @@
       
       
       
+      
         
+      
       
       
       
@@ -2967,15 +2969,17 @@
 </span></span></span><span style="display:flex;"><span>}<span style="color:#bbb">
 </span></span></span></code></pre></div><h2 id="enter-prokiosk-mode">Enter ProKiosk Mode</h2>
 <p>After activating your Knox Platform for Enterprise (KPE) license key, you can use the Knox SDK to enable Pro Kiosk mode on the device.</p>
-<p>To activate ProKiosk mode, call the <code>ProKioskManager</code> method <code>setProKioskState(true,passCode)</code>, where <code>passCode</code> is a pass code that you set up to disable ProKiosk mode and revert to full device access. To enable ProKiosk mode in <code>MainActivity.onClick()</code>:</p>
+<p>To activate ProKiosk mode, call the <code>ProKioskManager</code> method <a href="../../../../../../../devref/knox-sdk/reference/com/samsung/android/knox/custom/ProKioskManager.html#startProKioskMode(java.lang.String, java.lang.String)" target="_blank"><code>startProKioskMode</code></a><code>(packageName,passCode)</code>, where <code>packageName</code> is the name of the package to be set as the home application of ProKiosk and <code>passCode</code> is a pass code that you set up to stop ProKiosk mode and revert to full device access. To enable ProKiosk mode in <code>MainActivity.onClick()</code>:</p>
 <div class="highlight"><pre tabindex="0" style=";-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#408080;font-style:italic">// The passcode is defined at start of MainActivity:</span><span style="color:#bbb">
 </span></span></span><span style="display:flex;"><span><span style="color:#008000;font-weight:bold">private</span><span style="color:#bbb"> </span><span style="color:#008000;font-weight:bold">final</span><span style="color:#bbb"> </span>String<span style="color:#bbb"> </span>mPassCode<span style="color:#bbb"> </span><span style="color:#666">=</span><span style="color:#bbb"> </span><span style="color:#ba2121">&#34;12345&#34;</span>;<span style="color:#bbb">
 </span></span></span><span style="display:flex;"><span><span style="color:#008000;font-weight:bold">try</span><span style="color:#bbb"> </span>{<span style="color:#bbb">
 </span></span></span><span style="display:flex;"><span><span style="color:#bbb">    </span><span style="color:#b00040">int</span><span style="color:#bbb"> </span>result<span style="color:#bbb"> </span><span style="color:#666">=</span><span style="color:#bbb"> </span>0;<span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb">    </span>String<span style="color:#bbb"> </span>packageName<span style="color:#bbb"> </span><span style="color:#666">=</span><span style="color:#bbb"> </span><span style="color:#ba2121">&#34;com.sec.android.app.sbrowser&#34;</span>;<span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb">
 </span></span></span><span style="display:flex;"><span><span style="color:#bbb">    </span><span style="color:#408080;font-style:italic">// Enable ProKiosk mode</span><span style="color:#bbb">
 </span></span></span><span style="display:flex;"><span><span style="color:#bbb">    </span>CustomDeviceManager<span style="color:#bbb"> </span>cdm<span style="color:#bbb"> </span><span style="color:#666">=</span><span style="color:#bbb"> </span>CustomDeviceManager.<span style="color:#7d9029">getInstance</span>();<span style="color:#bbb">
 </span></span></span><span style="display:flex;"><span><span style="color:#bbb">    </span>ProKioskManager<span style="color:#bbb"> </span>pkm<span style="color:#bbb"> </span><span style="color:#666">=</span><span style="color:#bbb"> </span>cdm.<span style="color:#7d9029">getProKioskManager</span>();<span style="color:#bbb">
-</span></span></span><span style="display:flex;"><span><span style="color:#bbb">    </span>result<span style="color:#bbb"> </span><span style="color:#666">=</span><span style="color:#bbb"> </span>pkm.<span style="color:#7d9029">setProKioskState</span>(<span style="color:#008000;font-weight:bold">true</span>,<span style="color:#bbb"> </span>mPassCode);<span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb">    </span>result<span style="color:#bbb"> </span><span style="color:#666">=</span><span style="color:#bbb"> </span>pkm.<span style="color:#7d9029">startProKioskMode</span>(packageName,<span style="color:#bbb"> </span>mPassCode);<span style="color:#bbb">
 </span></span></span><span style="display:flex;"><span><span style="color:#bbb">
 </span></span></span><span style="display:flex;"><span><span style="color:#bbb">    </span><span style="color:#408080;font-style:italic">// ProKiosk mode enabled, now enable the &#39;OFF&#39; button and disable the &#39;ON&#39; button</span><span style="color:#bbb">
 </span></span></span><span style="display:flex;"><span><span style="color:#bbb">    </span>((Button)findViewById(R.<span style="color:#7d9029">id</span>.<span style="color:#7d9029">buttonProKioskOFF</span>)).<span style="color:#7d9029">setEnabled</span>(<span style="color:#008000;font-weight:bold">true</span>);<span style="color:#bbb">
@@ -2990,14 +2994,14 @@
 </span></span></span></code></pre></div><p>For details about all the other device settings that you can control in ProKiosk mode, browse the <a href="../../../../../../../devref/knox-sdk/reference/packages.html" target="_blank">Knox SDK API reference</a> for the package <code>com.samsung.android.knox.custom</code>.</p>
 <h2 id="exit-prokiosk-mode">Exit ProKiosk Mode</h2>
 <p>You should ensure that your app includes a way to exit ProKiosk Mode. You need to be out of these modes to perform device maintenance, such as software updates, and use other device functionality outside of the app.</p>
-<p>To exit ProKiosk mode, call <code>setProKioskState(false,passCode)</code>.</p>
+<p>To exit ProKiosk mode, call <a href="../../../../../../../devref/knox-sdk/reference/com/samsung/android/knox/custom/ProKioskManager.html#stopProKioskMode(java.lang.String)" target="_blank"><code>stopProKioskMode</code></a><code>(passCode)</code>.</p>
 <p>To set this up in <code>MainActivity.onClick()</code>:</p>
 <div class="highlight"><pre tabindex="0" style=";-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#008000;font-weight:bold">try</span><span style="color:#bbb"> </span>{<span style="color:#bbb">
 </span></span></span><span style="display:flex;"><span><span style="color:#bbb">    </span><span style="color:#b00040">int</span><span style="color:#bbb"> </span>result<span style="color:#bbb"> </span><span style="color:#666">=</span><span style="color:#bbb"> </span>0;<span style="color:#bbb">
-</span></span></span><span style="display:flex;"><span><span style="color:#bbb">    </span><span style="color:#408080;font-style:italic">// Disable ProKiosk mode</span><span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb">    </span><span style="color:#408080;font-style:italic">// Exit ProKiosk mode</span><span style="color:#bbb">
 </span></span></span><span style="display:flex;"><span><span style="color:#bbb">    </span>CustomDeviceManager<span style="color:#bbb"> </span>cdm<span style="color:#bbb"> </span><span style="color:#666">=</span><span style="color:#bbb"> </span>CustomDeviceManager.<span style="color:#7d9029">getInstance</span>();<span style="color:#bbb">
 </span></span></span><span style="display:flex;"><span><span style="color:#bbb">    </span>ProKioskManager<span style="color:#bbb"> </span>pkm<span style="color:#bbb"> </span><span style="color:#666">=</span><span style="color:#bbb"> </span>cdm.<span style="color:#7d9029">getProKioskManager</span>();<span style="color:#bbb">
-</span></span></span><span style="display:flex;"><span><span style="color:#bbb">    </span>result<span style="color:#bbb"> </span><span style="color:#666">=</span><span style="color:#bbb"> </span>pkm.<span style="color:#7d9029">setProKioskState</span>(<span style="color:#008000;font-weight:bold">false</span>,<span style="color:#bbb"> </span>mPassCode);<span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb">    </span>result<span style="color:#bbb"> </span><span style="color:#666">=</span><span style="color:#bbb"> </span>pkm.<span style="color:#7d9029">stopProKioskMode</span>(mPassCode);<span style="color:#bbb">
 </span></span></span><span style="display:flex;"><span><span style="color:#bbb">
 </span></span></span><span style="display:flex;"><span><span style="color:#bbb">    </span><span style="color:#408080;font-style:italic">// ProKiosk mode disabled, now enable the &#39;ON&#39; button and disable &#39;OFF&#39; button</span><span style="color:#bbb">
 </span></span></span><span style="display:flex;"><span><span style="color:#bbb">    </span>((Button)findViewById(R.<span style="color:#7d9029">id</span>.<span style="color:#7d9029">buttonProKioskON</span>)).<span style="color:#7d9029">setEnabled</span>(<span style="color:#008000;font-weight:bold">true</span>);<span style="color:#bbb">
@@ -3200,7 +3204,7 @@
             
             <li>
               <a
-                href="https://docs.samsungknox.com/dev/fundamentals/support"
+                href="../../../../../../fundamentals/support"
                 class="body-5 d-flex align-items-center text-black fw-light pe-auto text-decoration-none"
                 >Get support</a
               >
