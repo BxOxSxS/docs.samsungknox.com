@@ -11,12 +11,12 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - name: Checkout repo
-      uses: actions/checkout@v4
+      uses: actions/checkout@v7.0.1
       with:
         fetch-depth: 1
     - name: Get current date
       id: date
-      run: echo "::set-output name=date::$(date +%d.%m.%Y)"
+      run: echo "date=$(date +%d.%m.%Y)" >> "$GITHUB_OUTPUT"
     - name: Install wget2
       run: |
         sudo apt update
@@ -31,7 +31,7 @@ jobs:
         tar acf 'docs.samsungknox.com_${{ steps.date.outputs.date }}.tar' docs.samsungknox.com
         zstd --ultra -3 'docs.samsungknox.com_${{ steps.date.outputs.date }}.tar'
     - name: Archive file
-      uses: actions/upload-artifact@v4
+      uses: actions/upload-artifact@v7.0.1
       with:
         name: 'docs.samsungknox.com_${{ steps.date.outputs.date }}'
         path: 'docs.samsungknox.com_${{ steps.date.outputs.date }}.tar.zst'
@@ -41,14 +41,14 @@ jobs:
         find docs.samsungknox.com -name '*.apk' -delete
         find docs.samsungknox.com -size +100M -delete
     - name: Add files and commit
-      uses: EndBug/add-and-commit@v9
+      uses: EndBug/add-and-commit@v11.1.1
       with:
         author_name: github-actions
         author_email: 41898282+github-actions[bot]@users.noreply.github.com
         message: 'Update ${{ steps.date.outputs.date }}'
         add: '.'
     - name: Update badge
-      uses: RubbaBoy/BYOB@v1.2.0
+      uses: RubbaBoy/BYOB@v1.3.0
       with:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         NAME: Update
