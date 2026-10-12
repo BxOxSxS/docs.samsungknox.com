@@ -44,13 +44,36 @@ jobs:
         rm -rf docs.samsungknox.com_${{ steps.date.outputs.date }}.tar.zst docs.samsungknox.com_${{ steps.date.outputs.date }}.tar
         find docs.samsungknox.com -name '*.apk' -delete
         find docs.samsungknox.com -size +100M -delete
-    - name: Add files and commit
-      uses: EndBug/add-and-commit@v11.1.1
-      with:
-        author_name: github-actions
-        author_email: 41898282+github-actions[bot]@users.noreply.github.com
-        message: 'Update ${{ steps.date.outputs.date }}'
-        add: '.'
+    - name: Add files and commit in batches
+      shell: bash
+      run: |
+        set -euo pipefail
+
+        git config user.name "github-actions"
+        git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+
+        git add -A
+
+        mapfile -d '' files < <(git diff --cached --name-only -z)
+
+        git reset
+
+        batch_size=500
+        total_files=${#files[@]}
+        total_batches=$(( (total_files + batch_size - 1) / batch_size ))
+
+        for ((i=0; i<total_files; i+=batch_size)); do
+          batch=( "${files[@]:i:batch_size}" )
+          batch_number=$((i / batch_size + 1))
+
+          git add -A -- "${batch[@]}"
+
+          if ! git diff --cached --quiet; then
+            git commit -m "Update ${{ steps.date.outputs.date }} batch ${batch_number}/${total_batches}"
+            git push origin HEAD
+          fi
+        done
+
     - name: Update badge
       uses: RubbaBoy/BYOB@v1.3.0
       with:
