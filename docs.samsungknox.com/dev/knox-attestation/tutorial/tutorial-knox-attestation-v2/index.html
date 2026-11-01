@@ -364,6 +364,8 @@
       
       
       
+      
+      
         
       
       
@@ -626,10 +628,11 @@
 </span></span></span><span style="display:flex;"><span>String<span style="color:#bbb"> </span>response<span style="color:#bbb"> </span><span style="color:#666">=</span><span style="color:#bbb"> </span>HttpClient.<span style="color:#7d9029">getInstance</span>().<span style="color:#7d9029">getNonce</span>(URL_MDM_SERVER_NONCE,<span style="color:#bbb"> </span>mEditApiKey.<span style="color:#7d9029">getText</span>().<span style="color:#7d9029">toString</span>());<span style="color:#bbb">
 </span></span></span></code></pre></div><p>In this example, we use a string variable called <code>response</code> to store the resulting nonce. Later, you will parse the <code>response</code> into a JSON object and pass it to the Attestation agent on the device.</p>
 <h4 id="get-a-nonce-from-the-attestation-server">Get a nonce from the Attestation server</h4>
+<div class="notice-note"><p>The Knox Attestation Server base URL depends on your region:</p><div class="overflow-auto my-3"><table>  <thead>      <tr>          <th>Region</th>          <th>Base URL</th>      </tr>  </thead>  <tbody>      <tr>          <td>US</td>          <td><a href="https://us-attest-api.secb2b.com" target="_blank">https://us-attest-api.secb2b.com</a></td>      </tr>      <tr>          <td>EU</td>          <td><a href="https://eu-attest-api.secb2b.com" target="_blank">https://eu-attest-api.secb2b.com</a></td>      </tr>  </tbody></table></div><p>The code examples in this tutorial use the US endpoint. If your deployment is in the EU region, use the EU base URL instead.</p></div>
 <p>In your web script, build the request to get a nonce from the Attestation Server. Our sample app does this using PHP, which you can find in the file nonces.php:</p>
 <div class="highlight"><pre tabindex="0" style=";-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-php" data-lang="php"><span style="display:flex;"><span><span style="color:#19177c">$curl</span> <span style="color:#666">=</span> curl_init();
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>curl_setopt(<span style="color:#19177c">$curl</span>, CURLOPT_URL,<span style="color:#ba2121">&#34;https://attest-api.secb2b.com/v2/nonces&#34;</span>);
+</span></span><span style="display:flex;"><span>curl_setopt(<span style="color:#19177c">$curl</span>, CURLOPT_URL,<span style="color:#ba2121">&#34;https://us-attest-api.secb2b.com/v2/nonces&#34;</span>);
 </span></span><span style="display:flex;"><span>curl_setopt(<span style="color:#19177c">$curl</span>, CURLOPT_POST, <span style="color:#666">1</span>);
 </span></span><span style="display:flex;"><span>curl_setopt(<span style="color:#19177c">$curl</span>, CURLOPT_SSL_VERIFYPEER, <span style="color:#008000;font-weight:bold">false</span>);
 </span></span><span style="display:flex;"><span>curl_setopt(<span style="color:#19177c">$curl</span>, CURLOPT_RETURNTRANSFER, <span style="color:#008000;font-weight:bold">false</span>);
@@ -651,7 +654,7 @@
 <h4 id="get-a-verdict-from-the-attestation-server">Get a verdict from the Attestation server</h4>
 <p>In the web script, build a request to get the attestation verdict from the Attestation server. Our sample code does this using PHP, which you can find in the source code file <code>measurements.php</code>:</p>
 <div class="highlight"><pre tabindex="0" style=";-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-php" data-lang="php"><span style="display:flex;"><span><span style="color:#19177c">$curl</span> <span style="color:#666">=</span> curl_init();
-</span></span><span style="display:flex;"><span>curl_setopt(<span style="color:#19177c">$curl</span>, CURLOPT_URL, <span style="color:#ba2121">&#34;https://attest-api.secb2b.com/v2/blobs?nonce=&#34;</span><span style="color:#666">.</span><span style="color:#19177c">$nonce</span>);
+</span></span><span style="display:flex;"><span>curl_setopt(<span style="color:#19177c">$curl</span>, CURLOPT_URL, <span style="color:#ba2121">&#34;https://us-attest-api.secb2b.com/v2/blobs?nonce=&#34;</span><span style="color:#666">.</span><span style="color:#19177c">$nonce</span>);
 </span></span><span style="display:flex;"><span>curl_setopt(<span style="color:#19177c">$curl</span>, CURLOPT_POST, <span style="color:#666">1</span>);
 </span></span><span style="display:flex;"><span>curl_setopt(<span style="color:#19177c">$curl</span>, CURLOPT_POSTFIELDS, <span style="color:#19177c">$entityBody</span>); <span style="color:#408080;font-style:italic">//Post Fields
 </span></span></span><span style="display:flex;"><span>curl_setopt(<span style="color:#19177c">$curl</span>, CURLOPT_SSL_VERIFYPEER, <span style="color:#008000;font-weight:bold">false</span>);
@@ -1045,7 +1048,7 @@
             
             <li>
               <a
-                href="../../../fundamentals/support"
+                href="https://docs.samsungknox.com/dev/fundamentals/support"
                 class="body-5 d-flex align-items-center text-black fw-light pe-auto text-decoration-none"
                 >Get support</a
               >
