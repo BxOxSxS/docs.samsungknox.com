@@ -42,14 +42,15 @@
   <meta name="language" content="en">
   <script src="../../../assets/js/bundle.js"></script>
   <link rel="stylesheet" href="../../../styles/main.min.css">
-  <link rel="icon" href="../../../favicon.ico" type="image/x-icon">
+  
+    <link rel="icon" href="../../../favicon.ico" type="image/x-icon">
   <link rel="icon" sizes="16x16" href="../../../favicon-16x16.png" type="image/png">
   <link rel="icon" sizes="32x32" href="../../../favicon-32x32.png" type="image/png">
   <link rel="manifest" href="../../../manifest.json">
   <link rel="apple-touch-icon" sizes="180x180" href="../../../apple-touch-icon.png">
   <link rel="mask-icon" href="../../../safari-pinned-tab.svg" color="#5bbad5">
   <meta name="theme-color" content="white">
-</head>
+
 <body id=ZgotmplZ>
   
   
@@ -617,7 +618,7 @@
             </div>
             
 
-  <p><span>Last updated November  19th, 2025</span></p>
+  <p><span>Last updated November  3rd, 2026</span></p>
 
 
     
@@ -651,6 +652,17 @@
       
       
       
+      
+        
+      
+      
+      
+      
+        
+      
+      
+      
+      
         
       
       
@@ -659,7 +671,7 @@
         <div class="notice-important"><p>This page is intended for partners who are <strong>not</strong> Knox Managed Service Providers (MSP) or Samsung device resellers. If you’re an MSP or device reseller, use the management features in the MSP Portal or Reseller Portal.</p></div>
 <h2 id="manage-admins">Manage admins</h2>
 <p>The <strong>Admins</strong> page displays when you sign in with Samsung account for Business. Here, you can view current admins, invite new admins to your partner account, review pending invitations, and deactivate admins from your account.</p>
-<p>In the left sidebar of the Knox Partner Portal, click <strong>Admins</strong> to view a list of admins for all supported Knox Partner Program services.</p>
+<p>In the left sidebar of the Knox Partner Portal, click <strong>Admins</strong> to view a list of admins for all supported Knox Partner Program services. The super admin, who created the account, is shown with a crown next to their name.</p>
 
 
 
@@ -669,10 +681,82 @@
 
 
 <p><img src="../../assets/kpp-admins-list-sab.png" class="img-fluid img-thumbnail" alt="The admins list on the Admins page." /></p>
-<div class="notice-note"><p>The admins list is synced across all Knox Partner services.</p></div>
+<p>The admins list is synced across all Knox Partner services, and displays the following:</p>
+<div class="overflow-auto my-3"><table>
+    <tr>
+        <th scope="col">Column</th>
+        <th scope="col">Description</th>
+    </tr>
+    <tr>
+        <td><strong>NAME</strong></td>
+        <td>The admin's first and last name.</td>
+    </tr>
+    <tr>
+        <td><strong>ACCOUNT ID</strong></td>
+        <td>
+        <p>The admin's account ID.</p>
+        </td>
+    </tr>
+    <tr>
+        <td><strong>WORK EMAIL</strong></td>
+        <td>
+        <p>The email address assigned to the admin. The admin receives their invitation and all communications through this email.</p>
+        </td>
+    </tr>
+    <tr>
+        <td><strong>SAMSUNG ACCOUNT FOR BUSINESS STATUS</strong></td>
+        <td>
+        <p>The state of the admin's account in Samsung account for Business.</p>
+                <ul style='list-style-type:disc;'>
+                    <li><strong>Active</strong> &mdash; The admin has signed up, and is verified with Samsung account for Business.</li>
+                    <li><strong>Pending</strong> &mdash; The admin was invited to Samsung account for Business, but has not yet completed the sign up process.</li>
+                    <li><strong>Locked</strong> &mdash; The admin has been locked from their account due to too many incorrect password attempts.</li>
+                    <li><strong>Blocked</strong> &mdash; The admin was given access to Samsung account for Business, but another Admin or Location manager has deactivated the admin's account. Blocked admins can be reactivated at any time by an Admin or Location manager.</li>
+                    <li><strong>Awaiting update</strong> &mdash; The admin must to change their email address in Samsung account to avoid conflict with Samsung account for Business. This status displays only during the <a href="https://docs.samsungknox.com/partner/knox-partner-program/switch-the-sign-in-method/switch-to-samsung-account-for-business">switch to Samsung account for Business process</a>.</li>
+                    <li><strong>Failed to switch</strong> &mdash; The admin failed to switch from Samsung account to Samsung account for Business. This status displays only during the <a href="https://docs.samsungknox.com/partner/knox-partner-program/switch-the-sign-in-method/switch-to-samsung-account-for-business">switch to Samsung account for Business process</a>.</li>
+                    <li><strong>Pending deletion</strong> &mdash; The admin's account is scheduled for deletion, but can be reverted within the 30 day grace period.</li>
+                    <li><strong>Deleted</strong> &mdash; The admin's account is permanently deleted.</li>
+                </ul>
+            <div class="notice-note">
+            <p>You can manage the admin's account status in the Samsung account for Business console. For more information, see the <a href="https://account.samsung.com/business/documents/admins/manage-users/overview/">documentation for Samsung account for Business</a>.</p>
+            </div>
+        </td>
+    </tr>
+    <tr>
+        <td><strong>KNOX PARTNER PROGRAM SERVICE STATUS</strong></td>
+        <td>
+        <p>The admin's status in the Knox Partner Portal.</p>
+            <ul style='list-style-type:disc;'>
+                <li><strong>Active</strong> &mdash; The admin has signed up, and has access to the Knox Partner Portal.</li>
+                <li><strong>Pending</strong> &mdash; The admin was invited to the Knox Partner Portal, but has not yet completed the sign up process.</li>
+                <li><strong>Blocked</strong> &mdash; The admin was given access to the Knox Partner Portal, but the super admin has deactivated the admin's account. Blocked admins can be reactivated at any time by the super admin.</li>
+                <li><strong>Revoked</strong> &mdash; The admin was invited to the Knox Partner Portal, but the super admin canceled the invitation before the admin could sign up.</li>
+            </ul>
+        </td>
+    </tr>
+    <tr>
+        <td><strong>SOURCE TYPE</strong></td>
+        <td>
+        <p>The method in which the admin was added to the Knox Partner Portal.</p>
+            <ul style='list-style-type:disc;'>
+                <li><strong>Manual</strong> &mdash; The admin was invited through the Knox Partner Portal or added through Samsung account for Business console.</li>
+                <li><strong>Synced</strong> &mdash; The admin was added through an identity provider.</li>
+            </ul>
+        </td>
+    </tr>
+    <tr>
+        <td><strong>AUTHENTICATION TYPE</strong></td>
+        <td>
+        <p>The method in which the admin is signed in to the Knox Partner Portal.</p>
+            <ul style='list-style-type:disc;'>
+                <li><strong>Samsung</strong> &mdash; The admin is signed in through the Knox Partner Portal.</li>
+                <li><strong>Identity provider</strong> &mdash; The admin is signed in through an identity provider, such as Microsoft Entra ID, Okta, or Ping.</li>
+            </ul>
+        </td>
+    </tr>
+</table></div>
 <h3 id="invite-an-admin">Invite an admin</h3>
-<p>You can invite individuals to your Knox Partner Portal as admins.</p>
-<p>To invite an admin:</p>
+<p>You can invite an individual to your Knox Partner Portal as an admin. To do this:</p>
 <ol>
 <li>
 <p>Click <strong>ACTIONS</strong> &gt; <strong>Invite admin</strong>. The <strong>Invite admin</strong> dialog displays.</p>
@@ -882,12 +966,15 @@
 </li>
 <li>
 <p>Modify the admin’s details as required.</p>
+<ul>
+<li>You can click <strong>Manage account</strong> to edit account details associated with the Samsung account for Business console.</li>
+</ul>
 </li>
 <li>
 <p>Click <strong>SAVE</strong>.</p>
 </li>
 </ol>
-<div class="notice-tip"><p>You can click <strong>Manage account</strong> to edit account details associated with the Samsung account for Business console.</p></div>
+<div class="notice-note"><p>You won’t be able to edit an admin’s details if their Samsung account for Business status is <strong>Blocked</strong> or <strong>Pending deletion</strong>, or if their account exists in the Samsung account for Business but they haven’t been invited to the Knox Partner Program yet.</p></div>
 <h3 id="deactivate-an-admin">Deactivate an admin</h3>
 <p>If you want to prevent an admin from accessing the Knox Partner Portal, you can deactivate their account, changing their <strong>Knox Partner Program</strong> status to <strong>Inactive</strong>. You can only deactivate admins with the <strong>Active</strong> status.</p>
 <p>To deactivate an admin:</p>
