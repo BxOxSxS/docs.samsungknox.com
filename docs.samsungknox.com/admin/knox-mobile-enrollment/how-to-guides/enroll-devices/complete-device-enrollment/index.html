@@ -17,7 +17,7 @@
 <head>
   <meta charset="utf-8">
   
-  <meta name="description" content="Learn how to complete device enrollment with Knox Mobile Enrollment through out-of-box experience (OOBE), QR code, or Samsung account for Business methods.">
+  <meta name="description" content="Learn how to complete device enrollment with Knox Mobile Enrollment through out-of-box experience (OOBE), QR code, or user sign-in methods.">
   
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-CV8C3DHP6P"></script>
   <script>
@@ -43,14 +43,15 @@
   <meta name="language" content="en">
   <script src="../../../../assets/js/bundle.js"></script>
   <link rel="stylesheet" href="../../../../styles/main.min.css">
-  <link rel="icon" href="../../../../favicon.ico" type="image/x-icon">
+  
+    <link rel="icon" href="../../../../favicon.ico" type="image/x-icon">
   <link rel="icon" sizes="16x16" href="../../../../favicon-16x16.png" type="image/png">
   <link rel="icon" sizes="32x32" href="../../../../favicon-32x32.png" type="image/png">
   <link rel="manifest" href="../../../../manifest.json">
   <link rel="apple-touch-icon" sizes="180x180" href="../../../../apple-touch-icon.png">
   <link rel="mask-icon" href="../../../../safari-pinned-tab.svg" color="#5bbad5">
   <meta name="theme-color" content="white">
-</head>
+
 <body id=ZgotmplZ>
   
   
@@ -714,12 +715,22 @@
       
       
         
-      <p>To complete the device enrollment process, the device user needs to simply turn on the device and follow a series of on-screen instructions.</p>
+      
+      
+      
+      
+      
+        
+      
+      
+      
+      
+        <p>To complete the device enrollment process, the device user needs to simply turn on the device and follow a series of on-screen instructions.</p>
 <p>Depending on the size of your device fleet and whether or not you purchased the devices from a reseller, you can use the following enrollment methods:</p>
 <ul>
-<li><a href="#out-of-box-experience-oobe">Out-of-box experience (OOBE)</a> &mdash; Ideal for large device fleets. Suitable for enrolling reseller-uploaded devices.</li>
-<li><a href="#qr-code">QR code</a> &mdash; Best suited for small device fleets. Suitable for both reseller-uploaded and non-reseller uploaded devices.</li>
-<li><a href="#enroll-by-user-sign-in">User sign-in</a> &mdash; Enroll fully managed devices that&rsquo;ve already completed set-up into Knox E-FOTA or Knox Asset Intelligence, simply by having a user sign in to <span class="glossary-term" data-term="Samsung Account for Business" data-link="../../../../glossary/n-s#samsung-account-for-business" data-definition="An identity and access management (IAM) platform designed to be at the core of IT operations, acting as a secure...">Samsung account for Business</span> on the device. Suitable for fully managed devices already in use.</li>
+<li><a href="#out-of-box-experience-oobe">Out-of-box experience (OOBE)</a>: Ideal for large device fleets. Suitable for enrolling reseller-uploaded devices.</li>
+<li><a href="#qr-code">QR code</a>: Best suited for small device fleets. Suitable for both reseller-uploaded and non-reseller uploaded devices.</li>
+<li><a href="#enroll-by-user-sign-in">User sign-in</a>: Enroll fully managed devices that&rsquo;ve already completed set-up into Knox E-FOTA or Knox Asset Intelligence, simply by having a user sign in to <span class="glossary-term" data-term="Samsung Account for Business" data-link="../../../../glossary/n-s#samsung-account-for-business" data-definition="An identity and access management (IAM) platform designed to be at the core of IT operations, acting as a secure...">Samsung account for Business</span> on the device. Suitable for fully managed devices already in use.</li>
 </ul>
 <p>This page provides an overview of each method along with instructions for device users to complete enrollment.</p>
 <h2 id="out-of-box-experience-oobe">Out-of-box experience (OOBE)</h2>
@@ -756,7 +767,39 @@
 </ol>
 <h2 id="enroll-by-user-sign-in">Enroll by user sign-in</h2>
 <p>If your company uses Samsung account for Business, you can enroll a fully managed device that&rsquo;s already completed set-up into Knox E-FOTA or Knox Asset Intelligence, simply by having a user sign in on the device.</p>
-<p>Once you’ve assigned the enrollment profile to the user, all they need to do is sign in to their Samsung account for Business on the device. The selected Knox services will automatically install on the device.</p>
+<p>To enroll a device through user sign-in:</p>
+<ul>
+<li>The device must be running Android 17 OS or later.</li>
+<li>You must enable Samsung account for Business on the device using Knox Service Plugin.</li>
+</ul>
+<p>Once you&rsquo;ve <a href="../../manage-profiles/assign-profiles">assigned the enrollment profile</a> to the user, all they need to do is sign in to their Samsung account for Business on the device. The selected Knox services will automatically install on the device.</p>
+<h3 id="enable-samsung-account-for-business-using-knox-service-plugin">Enable Samsung account for Business using Knox Service Plugin</h3>
+<p>To allow device users to sign in with Samsung account for Business, configure the following settings in your EMM solution:</p>
+<ol>
+<li>
+<p>In the Knox Service Plugin app configuration, under <strong>Device-wide policies</strong>, set <strong>Enable device policy controls</strong> to <strong>True</strong>.</p>
+</li>
+<li>
+<p>In <strong>Device-wide-policies</strong>, set <strong>Device Account Policy</strong> &gt; <strong>Enable Device Account Policy controls</strong> to <strong>True</strong>.</p>
+</li>
+<li>
+<p>In the <strong>Samsung account configuration</strong> field, select <strong>Samsung account for Business</strong>.</p>
+</li>
+<li>
+<p>Save the configuration profile in your EMM and push it to your devices.</p>
+</li>
+</ol>
+<p>For an example of how to configure these policies using Knox Manage, see the <a href="https://docs.samsungknox.com/admin/knox-manage/videos/configure-sab-in-km">Configure Samsung account for Business</a> video.</p>
+<h3 id="user-sign-in-for-device-users">User sign-in for device users</h3>
+<p>To enroll a device into Knox services through user sign-in, the device user must sign in to the device using their Samsung account for Business credentials. If a user is currently signed in to the device with a personal <span class="glossary-term" data-term="Samsung account" data-link="../../../../glossary/n-s#samsung-account" data-definition="A personal account that enables users to access Samsung&amp;rsquo;s consumer services, products, and applications. Samsung...">Samsung account</span>, they must first sign out of the device.</p>
+<ol>
+<li>Open the <strong>Settings</strong> app on the device.</li>
+<li>Tap <strong>Sign in to your Galaxy</strong> at the top of the <strong>Settings</strong> screen.</li>
+<li>Tap <strong>Email or phone number</strong>.</li>
+<li>When prompted, they must enter their Samsung account for Business credentials, then tap <strong>Continue</strong>. A <strong>This device will be company-owned</strong> pop-up displays.</li>
+<li>Review the disclaimer on the pop-up. To proceed, tap <strong>Sign in</strong>.</li>
+</ol>
+<p>Once signed in to the device, the Knox services assigned to the user automatically install on the device.</p>
 
             
           </div>
@@ -778,7 +821,12 @@
         <li><a href="#qr-code-enrollment-for-device-users">QR code enrollment for device users</a></li>
       </ul>
     </li>
-    <li><a href="#enroll-by-user-sign-in">Enroll by user sign-in</a></li>
+    <li><a href="#enroll-by-user-sign-in">Enroll by user sign-in</a>
+      <ul>
+        <li><a href="#enable-samsung-account-for-business-using-knox-service-plugin">Enable Samsung account for Business using Knox Service Plugin</a></li>
+        <li><a href="#user-sign-in-for-device-users">User sign-in for device users</a></li>
+      </ul>
+    </li>
   </ul>
 </nav>
 </aside>
