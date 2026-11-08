@@ -43,14 +43,15 @@
   <meta name="language" content="en">
   <script src="../../../assets/js/bundle.js"></script>
   <link rel="stylesheet" href="../../../styles/main.min.css">
-  <link rel="icon" href="../../../favicon.ico" type="image/x-icon">
+  
+    <link rel="icon" href="../../../favicon.ico" type="image/x-icon">
   <link rel="icon" sizes="16x16" href="../../../favicon-16x16.png" type="image/png">
   <link rel="icon" sizes="32x32" href="../../../favicon-32x32.png" type="image/png">
   <link rel="manifest" href="../../../manifest.json">
   <link rel="apple-touch-icon" sizes="180x180" href="../../../apple-touch-icon.png">
   <link rel="mask-icon" href="../../../safari-pinned-tab.svg" color="#5bbad5">
   <meta name="theme-color" content="white">
-</head>
+
 <body id=ZgotmplZ>
   
   
@@ -5574,7 +5575,7 @@
           <div class="l-content-top mb-4">
             <div class="l-breadcrumb">
               <a class="fw-light text-black" href="../../../index.html">Home</a><span> /</span>
-<a class="fw-light text-black" href="../../../knox-manage.html">Knox Manage</a><span> /</span>
+<a class="fw-light text-black" href="../../../knox-manage">Knox Manage</a><span> /</span>
 <a class="fw-light text-black" href="../index.html">Knox Manage knowledge base articles</a><span> /</span>
 
             </div>
@@ -5583,7 +5584,7 @@
             </div>
             
 
-  <p><span>Last updated October  13th, 2026</span></p>
+  <p><span>Last updated November  4th, 2026</span></p>
 
 
     
@@ -5616,7 +5617,7 @@
       
       
         <p>Go to the <a href="../../../knox-mobile-enrollment">Knox Mobile Enrollment admin guide</a> for detailed information on how to integrate this service with Knox Manage.</p>
-<p>You will need to enter the following data during the setup process:</p>
+<p>You must enter the following data during the setup process:</p>
 <h2 id="emm-server-uri">EMM Server URI</h2>
 <div class="overflow-auto my-3"><table>
   <thead>
@@ -5690,11 +5691,6 @@
         <td><code>M</code></td>
     </tr>
     <tr>
-        <td><code>AllowModifyUserId</code></td>
-        <td>String</td>
-        <td><code>Allow</code> (user ID is editable) or <code>Disallow</code> (user ID is read-only)</td>
-    </tr>
-    <tr>
         <td><code>AllowModifyTenantId</code></td>
         <td>String</td>
         <td><code>Allow</code> (tenant ID is editable) or <code>Disallow</code> (tenant ID is read-only)</td>
@@ -5719,7 +5715,7 @@
 </span></span></code></pre></div><p>To configure additional parameters to automatically enroll the device in a particular mode, your JSON data entry may look like this:</p>
 <div class="highlight"><pre tabindex="0" style=";-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-json" data-lang="json"><span style="display:flex;"><span>{
 </span></span><span style="display:flex;"><span>    <span style="color:#008000;font-weight:bold">&#34;tenantId&#34;</span>: <span style="color:#ba2121">&#34;knoxteam.samsung.com&#34;</span>,
-</span></span><span style="display:flex;"><span>    <span style="color:#008000;font-weight:bold">&#34;AllowModifyUserId&#34;</span>: <span style="color:#ba2121">&#34;Disallow&#34;</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#008000;font-weight:bold">&#34;AllowModifyTenantId&#34;</span>: <span style="color:#ba2121">&#34;Disallow&#34;</span>,
 </span></span><span style="display:flex;"><span>    <span style="color:#008000;font-weight:bold">&#34;Mode&#34;</span>: <span style="color:#ba2121">&#34;DO&#34;</span>
 </span></span><span style="display:flex;"><span>}
 </span></span></code></pre></div><div class="notice-note"><p>If you reconfigure parameters after device enrollment, you may have to factory reset devices and repeat the enrollment process for your changes to take effect.</p></div>
@@ -5727,7 +5723,14 @@
 <div class="highlight"><pre tabindex="0" style=";-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-json" data-lang="json"><span style="display:flex;"><span>{
 </span></span><span style="display:flex;"><span>    <span style="color:#008000;font-weight:bold">&#34;com.google.android.apps.work.clouddpc.EXTRA_ENROLLMENT_TOKEN&#34;</span>:<span style="color:#ba2121">&#34;ABCDEFGH&#34;</span>
 </span></span><span style="display:flex;"><span>}
-</span></span></code></pre></div>
+</span></span></code></pre></div><p>To prevent device users from changing the tenant ID while allowing them to enter their user ID, leave the <strong>User ID</strong> field blank in Knox Mobile Enrollment. Your JSON data entry may look like this:</p>
+<div class="highlight"><pre tabindex="0" style=";-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-json" data-lang="json"><span style="display:flex;"><span>{
+</span></span><span style="display:flex;"><span>    <span style="color:#008000;font-weight:bold">&#34;tenantId&#34;</span>: <span style="color:#ba2121">&#34;knoxteam.samsung.com&#34;</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#008000;font-weight:bold">&#34;AllowModifyTenantId&#34;</span>: <span style="color:#ba2121">&#34;Disallow&#34;</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#008000;font-weight:bold">&#34;Mode&#34;</span>: <span style="color:#ba2121">&#34;DO&#34;</span>
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><div class="notice-important"><p>Starting with the Knox Manage 26.06 release, if a user ID is pre-populated in Knox Mobile Enrollment, it appears as <code>UserID@tenantID</code> on the device and can’t be modified during enrollment. If the pre-populated user ID or tenant ID is incorrect, the device user can tap the device’s back key to return to the pre-login screen and perform a factory reset.</p></div>
+
             
           </div>
           <div class="l-toh">
