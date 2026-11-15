@@ -1124,7 +1124,7 @@
     
     
     <div class="d-flex justify-content-between">
-      <a class="body-5 text-black fw-light" href="../../connect-with-identity-providers/configure-knox-manage-as-a-compliance-partner-for-microsoft-intune.html">Configure Knox Manage as a compliance partner for Microsoft Intune</a>
+      <a class="body-5 text-black fw-light" href="../../connect-with-identity-providers/configure-microsoft-entra-id-conditional-access-with-knox-manage-device-compliance.html">Configure Microsoft Entra ID Conditional Access with Knox Manage device compliance</a>
     </div>
     
     </li>
@@ -5566,7 +5566,7 @@
           <div class="l-content-top mb-4">
             <div class="l-breadcrumb">
               <a class="fw-light text-black" href="../../../../index.html">Home</a><span> /</span>
-<a class="fw-light text-black" href="../../../../knox-manage">Knox Manage</a><span> /</span>
+<a class="fw-light text-black" href="../../../../knox-manage.html">Knox Manage</a><span> /</span>
 <a class="fw-light text-black" href="../../index.html">New Knox Manage console</a><span> /</span>
 <a class="fw-light text-black" href="../index.html">Manage rules</a><span> /</span>
 
@@ -5576,7 +5576,7 @@
             </div>
             
 
-  <p><span>Last updated October  21st, 2026</span></p>
+  <p><span>Last updated November  6th, 2026</span></p>
 
 
     
@@ -5628,7 +5628,8 @@
       
         <p>Rules trigger specific actions on a device once predefined conditions are met. There are two kinds of rules: <strong>General</strong> and <strong>Compliance</strong>.</p>
 <p>General rules reduce the need to continuously apply actions or policy settings. For example, you can set a condition to lock devices once they leave a specific geographical radius or apply a profile to them on certain days of the week. This makes general rules ideal for scenarios where you need different device behaviors in specific situations.</p>
-<p>Compliance rules define the security conditions a device must meet to be considered non-compliant. If devices meet the security conditions assigned to them, then preset actions are triggered &mdash; such as a notification to IT admins. Compliance is re-evaluated automatically as device properties change or rules are updated. When Knox Manage is integrated with Microsoft Intune as a Compliance Partner, access to protected resources, such as Microsoft 365 apps, is also granted or blocked. See <a href="https://docs.samsungknox.com/admin/knox-manage/new-console/connect-with-identity-providers/configure-knox-manage-as-a-compliance-partner-for-microsoft-intune">Configure Knox Manage as a compliance partner for Microsoft Intune</a> to learn more.</p>
+<p>Compliance rules define the security conditions a device must meet to be considered non-compliant. If devices meet the security conditions assigned to them, then preset actions are triggered &mdash; such as a notification to IT admins. Compliance is re-evaluated automatically as device properties change or rules are updated. When Knox Manage is integrated with Microsoft Intune as a Compliance Partner, access to protected resources, such as Microsoft 365 apps, is also granted or blocked. See <a href="https://docs.samsungknox.com/admin/knox-manage/new-console/connect-with-identity-providers/configure-microsoft-entra-id-conditional-access-with-knox-manage-device-compliance">Configure Knox Manage as a compliance partner for Microsoft Intune</a> to learn more.</p>
+<p>You can set up to 100 rules at a time.</p>
 <h2 id="create-a-general-rule">Create a general rule</h2>
 <p>General rules operate similarly to <a href="../../../original-console/configure/profile/set-up-profiles/configure-events-for-profiles/create-and-associate-event-types">event profiles</a> in the original console, but offer more actions. While event profiles only push profiles to devices once they meet the predefined conditions, rules also let you perform the following actions on devices: <strong>Remove all managed apps</strong>, <strong>Lock devices</strong>, <strong>Reboot devices</strong>, and <strong>Send push notification to devices</strong>.</p>
 <p>If you have assigned an event profile to a group in the original console, you must unassign it before you can assign a rule in the new console.</p>
@@ -6055,7 +6056,7 @@ Enter a <strong>Rule name</strong> and an optional <strong>Description</strong>.
 <p>The SIM condition applies rules when a physical SIM card is inserted or removed. No additional configurations are needed to set this condition. On devices where a device has more than one SIM, this condition is dependent on the device’s Authenticated SIM only. You can learn the Authenticated SIM for a device by navigating to its details panel.</p>
 <p>No additional configurations are needed to set this condition.</p>
 <h3 id="device-connection-keepalive">Device Connection (Keepalive)</h3>
-<p>The device connection condition applies rules based on the device&rsquo;s connection status to the Knox Manage server, similar to the keepalive feature in the original console.</p>
+<p>The device connection condition applies rules based on the device&rsquo;s connection status to the Knox Manage server, similar to the keepalive feature in the original console. You can have up to 25 rules with this condition at a time.</p>
 <div class="notice-note"><p>To prevent duplicate configurations, if you  set up keepalive in the original console , you can’t configure this rule unless you delete the configuration . The opposite also applies.</p></div>
 <p>Under <strong>Check for device communication</strong>, set the number of days a device needs to communicate to the Knox Manage server within. If the device doesn&rsquo;t communicate for longer than this period, than the rule triggers.</p>
 </li>
@@ -6089,7 +6090,8 @@ Enter a <strong>Rule name</strong> and an optional <strong>Description</strong>.
 <li><strong>Non-compliant</strong> &mdash; The device violates at least one of the compliance conditions assigned to it.</li>
 <li><strong>Not assigned</strong> &mdash; No compliance rules are assigned to the device. The compliance status of these devices isn&rsquo;t reported to Microsoft Entra ID.</li>
 </ul>
-<p>Rules are re-evaluated whenever a device property changes, not on a fixed schedule. Since enrolled devices update attributes like the <strong>Last seen</strong> property approximately every four hours, all devices are re-evaluated at least that often, even without other property changes.</p>
+<p>Rules are re-evaluated whenever a device property changes, not on a fixed schedule. Since enrolled devices update attributes like the <strong>Last seen</strong> property approximately every four hours, all online devices are re-evaluated at least that often, even without other property changes.</p>
+<p>You can have up to 25 compliance rules configured at a time.</p>
 <p>To create a compliance rule:</p>
 <ol>
 <li>Go to the <strong>Rules</strong> page and click <strong>CREATE RULE</strong>.</li>
