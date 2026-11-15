@@ -175,7 +175,7 @@
       
       <li>
         <div>
-          <a class="body-5 text-black fw-light" href="../../../../../fundamentals.html">Introduction</a>
+          <a class="body-5 text-black fw-light" href="../../../../../fundamentals">Introduction</a>
         </div>
       </li>
         
@@ -1175,7 +1175,7 @@
           <div class="l-content-top mb-4">
             <div class="l-breadcrumb">
               <a class="fw-light text-black" href="../../../../../index.html">Home</a><span> /</span>
-<a class="fw-light text-black" href="../../../../../fundamentals.html">Introduction</a><span> /</span>
+<a class="fw-light text-black" href="../../../../../fundamentals">Introduction</a><span> /</span>
 <a class="fw-light text-black" href="../../../index.html">Samsung Knox white papers</a><span> /</span>
 <a class="fw-light text-black" href="../../index.html">Samsung Knox Mobile Security</a><span> /</span>
 <a class="fw-light text-black" href="../index.html">System Security</a><span> /</span>
@@ -1299,8 +1299,8 @@
 <div class="notice-note"><p>Currently, DualDAR only secures data placed inside the designated Work Profile.</p></div>
 <p>The DualDAR solution provides two separate layers of encryption and key generation; the outer layer and the inner layer. All data placed inside the Work Profile is dually encrypted by both layers:</p>
 <ul>
-<li><strong>Outer layer</strong>: The outer layer of the DualDAR solution is built on top of Android&rsquo;s FBE and enhanced by Samsung to meet MDFPP requirements. This layer is implemented through the System on a Chip (SoC) dedicated to flash storage encryption. In this context, the SoC could be Qualcomm Integrated Crypto Engine (ICE) or Exynos Flash Memory Protector (FMP). Data encryption at this layer is AES 256 XTS and file encryption keys are encrypted using AES-GCM 256.</li>
-<li><strong>Inner layer</strong>:  The inner layer of encryption is based on a framework that allows an independent third party to install a separate cryptographic module. If no third-party module is installed, a separate inner layer of encryption is secured by a FIPS 140-2 certified cryptographic module included with the Samsung Knox framework.</li>
+<li><strong>Outer layer</strong>: The outer layer of the DualDAR solution is built on top of Android&rsquo;s FBE and enhanced by Samsung to meet MDFPP requirements. This layer is implemented through the System on a Chip (SoC) dedicated to flash storage encryption. In this context, the SoC could be Qualcomm Integrated Crypto Engine (ICE) or Exynos Flash Memory Protector (FMP).</li>
+<li><strong>Inner layer</strong>: The inner layer of encryption is based on a framework that allows an independent third party to install a separate cryptographic module. If no third party module is installed, the inner layer encrypts file contents with AES-256-CBC and protects the file encryption keys with AES-GCM 256 using Samsung Cryptographic validated FIPS 140-3 modules.</li>
 </ul>
 <p>DualDAR is supported on the Galaxy S10, N10, S20, and subsequent flagship models, and is compatible with Android FBE.</p>
 
@@ -1335,7 +1335,7 @@
 <ul>
 <li><strong>Mitigate risks of implementation flaws</strong>:  DualDAR reduces the likelihood of unauthorized data access by mitigating the risks that arise from vulnerabilities in a single encryption layer. While one of the many methods available for unauthorized data access may crack through a single layer of encryption, the chances are very low that such vulnerabilities are available on both layers of encryption.</li>
 <li><strong>Mitigate risks of password configuration flaws</strong>:  Both layers of encryption on a DualDAR configured device use separate and distinct authentication methods to allow access. This separation of authentication methods reduces the likelihood that a single misplaced or misconfigured password is exploited on both layers of data encryption at the same time. Two layers of encryption and two methods of authentication ensure that encrypted data remains protected even in the event of breach on one layer.</li>
-<li><strong>Provide access using strict security evaluation criteria</strong>: DualDAR meets the standards laid out in the FIPS 140 certification requirements. Both the inner and outer layers use FIPS 140 certified cryptographic modules. GCM is used to encrypt the key while data is encrypted using XTS or CBC.</li>
+<li><strong>Provide access using strict security evaluation criteria</strong>: In the inner layer, AES-GCM protects the file encryption keys and AES-CBS encrypts the file contents.</li>
 <li><strong>Ease of deployment</strong>:  DualDAR leverages the in-built Android FBE framework and builds additional layers of security on top of this framework. This solution is available on devices that use a work container in profile owner (PO) mode and fully managed devices that include a PO mode. For more information on configuring this solution for your supported device, see <a href="../../../../../../dev/knox-sdk/features/mdm-providers/data/dualdar-encryption/dualdar-architecture/index.html" target="_blank">DualDAR architecture</a>.</li>
 <li><strong>Customize the second layer of encryption</strong>:  DualDAR allows IT admins to implement third party encryption solutions at the inner layer of encryption. This freedom of implementation means IT admins can use and configure any third-party cryptographic modules, including solutions that meet FIPS 140 certification criteria.</li>
 <li><strong>Flexible deployment methods</strong>:  IT admins can implement and configure DualDAR on all kinds of devices, including Bring Your Own Device (BYOD) and company-issued devices. DualDAR is compatible with both device using a work container in PO mode and fully managed devices that include a PO mode. This flexibility means IT admins can use this superior data security solution on a wide variety of devices within their enterprise.</li>
