@@ -2849,7 +2849,7 @@
           <div class="l-content-top mb-4">
             <div class="l-breadcrumb">
               <a class="fw-light text-black" href="../../../../../../index.html">Home</a><span> /</span>
-<a class="fw-light text-black" href="../../../../../index.html">Knox SDK</a><span> /</span>
+<a class="fw-light text-black" href="../../../../../../knox-sdk.html">Knox SDK</a><span> /</span>
 <a class="fw-light text-black" href="../../../../index.html">Features</a><span> /</span>
 <a class="fw-light text-black" href="../../../index.html">MDM Providers</a><span> /</span>
 <a class="fw-light text-black" href="../../index.html">Data</a><span> /</span>
@@ -3011,7 +3011,7 @@
 
 
 <p><img src="../../../../../assets/ddar.png" class="image-block-scale-60 img-thumbnail" alt="ddar.png" /></p>
-<p>The Samsung Knox DualDAR solution provides two separate layers of encryption and key generation. All data placed inside the Workspace is dually encrypted by both layers. The outer layer of the DualDAR solution is built on top of Android&rsquo;s FBE and enhanced by Samsung to meet MDFPP requirements. The inner layer of encryption is based on a framework that will allow an independent third party to install a separate cryptographic module. If no third party module is installed, an separate inner layer of encryption is secured by a FIPS 140-2 certified cryptographic module included by the Samsung Knox framework.</p>
+<p>The Samsung Knox DualDAR solution provides two separate layers of encryption and key generation. All data placed inside the Workspace is dually encrypted by both layers. The outer layer of the DualDAR solution is built on top of Android&rsquo;s FBE and enhanced by Samsung to meet MDFPP requirements. The inner layer of encryption is based on a framework that will allow an independent third party to install a separate cryptographic module. If no third-party module is installed, the inner layer encrypts file contents with AES-256-CBC and protects the file encryption keys with AES-GCM 256 using Samsung Cryptographic validated FIPS 140-3 modules.</p>
 <p>Inside the workspace there are two storage locations available to an app, Credential Encrypted (CE) storage and Device Encrypted (DE) storage. The Workspace storage is DualDAR protected and works as CE storage, from an apps standpoint. The Knox framework prevents apps from writing data to any storage space that is not protected by DualDAR.</p>
 <h2 id="architecture">Architecture</h2>
 <p>Samsung Knox DualDAR leverages Android File Based Encryption (FBE) architecture. On a FBE enabled device, every device has two storage locations available to an app:</p>
@@ -3024,9 +3024,9 @@
 <p>Samsung Knox DualDAR Workspace container storage works as CE storage from an application standpoint. Knox framework will prevent applications from writing data to non-DualDAR protected DE storage. For certain use cases, where an app is aware of both CE and DE storages and needs to write unclassified content to DE storage, the Knox framework allows IT admins to vet/allow an app so it has permission to write to DE storage. This ensures that no app will write sensitive or classified content to DE storage without IT admin approval.</p>
 <h3 id="encryption-layers">Encryption layers</h3>
 <h4 id="outer-layer">Outer layer</h4>
-<p>The outer layer of Samsung Knox DualDAR is built on Android FBE and enhanced by Samsung to meet MDFPP requirements. This layer is implemented through the SoC dedicated to flash storage encryption. Where the SoC could be Qualcomm Integrated Crypto Engine (ICE) or Exynos Flash Memory Protector (FMP). Data encryption at this layer is AES 256 XTS and file encryption keys are encrypted using AES-GCM 256.</p>
+<p>The outer layer of Samsung Knox DualDAR is built on Android FBE and enhanced by Samsung to meet MDFPP requirements. This layer is implemented through the SoC dedicated to flash storage encryption. Where the SoC could be Qualcomm Integrated Crypto Engine (ICE) or Exynos Flash Memory Protector (FMP).</p>
 <h4 id="inner-layer">Inner layer</h4>
-<p>The inner layer of encryption is based on a framework that will allow an independent third party to install a separate cryptographic module. If no third party module is installed, the inner layer of encryption is performed by a FIPS 140-2 certified cryptographic module included on the device by Samsung. For the Samsung included FIPS certified cryptographic module, data encryption at this layer will be AES XTS 256. File encryption keys are encrypted using AES-GCM 256. It is expected that third party crypto modules would also be FIPS 140-2 validated, though this is up to the customer and vendor providing the library.</p>
+<p>The inner layer of encryption is based on a framework that will allow an independent third party to install a separate cryptographic module. If no third-party module is installed, the inner layer encrypts file contents with AES-256-CBC and protects the file encryption keys with AES-GCM 256 using Samsung Cryptographic validated FIPS 140-3 modules. In the inner layer, AES-GCM protects the file encryption keys and AES-CBS encrypts the file contents. File encryption keys are encrypted using AES-GCM 256. It is expected that third party crypto modules would also be FIPS 140-3 validated, though this is up to the customer and vendor providing the library.</p>
 <h3 id="data-lock-concept">Data Lock Concept</h3>
 <p>When the Workspace container is configured for DualDAR, access to app data inside the container will only be available when the container is unlocked (i.e. the user is actively using the container). When the container (or device as a whole) is locked, the container encryption keys are evicted from memory. In a data lock state, the Samsung device remains powered on but the user is locked out of both the Workspace and device. All sensitive data is protected in Credential Encrypted (CE) storage within the Workspace. CE storage is not available until the user provides both their device and Workspace credentials. The Samsung device can enter this state under two conditions:</p>
 <ol>
@@ -3061,9 +3061,8 @@
             
           </div>
           <div class="l-toh">
-            
+            <div class="toh-scroll" style="height: 100%; overflow-y: auto; padding-right: 0.5rem;">
   
-<div style="height: 100%; overflow-y: auto;">
 <h2 class="body-4 fw-bold mt-0">On this page</h2>
 <aside class="table-of-headings" style="height: auto">
     <nav id="TableOfContents">
@@ -3086,7 +3085,6 @@
 </nav>
 </aside>
   
-</div>
 </div>
 
 
@@ -3264,7 +3262,7 @@
             
             <li>
               <a
-                href="../../../../../../fundamentals/support"
+                href="https://docs.samsungknox.com/dev/fundamentals/support"
                 class="body-5 d-flex align-items-center text-black fw-light pe-auto text-decoration-none"
                 >Get support</a
               >
