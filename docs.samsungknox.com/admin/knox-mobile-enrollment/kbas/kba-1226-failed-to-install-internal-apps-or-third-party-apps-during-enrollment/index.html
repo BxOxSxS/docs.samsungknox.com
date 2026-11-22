@@ -17,7 +17,7 @@
 <head>
   <meta charset="utf-8">
   
-  <meta name="description" content="Some users may encounter an issue with the service provider update for True Single SKU (TSS) devices. Learn about TSS setup, and how to resolve the issue.">
+  <meta name="description" content="IT admins might encounter an issue where enrollment fails when installing third-party apps to your device fleet. Learn how to resolve the issue.">
   
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-CV8C3DHP6P"></script>
   <script>
@@ -38,7 +38,7 @@
   
 <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start': new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0], j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src='https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);})(window,document,'script','dataLayer','GTM-P24TWCG');</script><meta name="viewport" content="width=device-width,height=device-height,initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title>Service provider update interrupts the KME enrollment process  | Knox Mobile Enrollment  | Samsung Knox Documentation</title>
+  <title>Failed to install internal apps or third-party apps during enrollment  | Knox Mobile Enrollment  | Samsung Knox Documentation</title>
   <meta http-equiv="content-language" content="en">
   <meta name="language" content="en">
   <script src="../../../assets/js/bundle.js"></script>
@@ -519,11 +519,11 @@
       <a class="body-5 text-black fw-light" href="../index.html">KBAs</a>
     </div>
       
-    <div id="sub-knox-mobile-enrollment-kbas-kba-524-service-provider-update-interrupts-kme-enrollment">
+    <div id="sub-knox-mobile-enrollment-kbas-kba-1226-failed-to-install-internal-apps-or-third-party-apps-during-enrollment">
       <ul>
         <li>
           <div class="d-flex justify-content-between">
-            <a class="body-5 text-black active" href="index.html">Service provider update interrupts the KME enrollment process</a>
+            <a class="body-5 text-black active" href="index.html">Failed to install internal apps or third-party apps during enrollment</a>
           </div>
         </li>
       </ul>
@@ -674,11 +674,11 @@
 
             </div>
             <div class="mt-4">
-              <h1>Service provider update interrupts the KME enrollment process</h1>
+              <h1>Failed to install internal apps or third-party apps during enrollment</h1>
             </div>
             
 
-  <p><span>Last updated October  5th, 2023</span></p>
+  <p><span>Last updated August  16th, 2024</span></p>
 
 
     
@@ -690,7 +690,7 @@
     
   <p>Categories:</p>
 <div class="kba-tags">
-    <a class="d-inline-block px-5 py-2 me-2 mt-2 fw-bold text-samsung-blue bg-samsung-light-blue" href="../tags/enrollment/index.html">Enrollment</a></div>
+    <a class="d-inline-block px-5 py-2 me-2 mt-2 fw-bold text-samsung-blue bg-samsung-light-blue" href="../tags/device/index.html">Device</a></div>
   </div>
           <div class="l-content">
             
@@ -701,313 +701,37 @@
 
 
 
-      
-      
-      
-      
-        
-      
-      
-      
-      
-        
-      
-      
-      
-      
-        <h2 id="environment">Environment</h2>
+      <h2 id="environment">Environment</h2>
 <ul>
 <li>Knox Mobile Enrollment</li>
-<li>True Single SKU (TSS) devices</li>
+<li>Knox E-FOTA</li>
+<li>Android zero-touch enrollment</li>
+<li>Android Enterprise</li>
 </ul>
 <h2 id="overview">Overview</h2>
-<p>New True Single SKU devices require a one-time restart to complete the setup process. Customers using these devices in conjunction with Knox Mobile Enrollment have reported experiencing an issue where the enrollment data isn&rsquo;t passed to their chosen EMM after the restart. Due to this behavior, the device user must manually intervene.</p>
-<h2 id="what-is-true-single-sku">What is True Single SKU?</h2>
-<p>When you purchase a new Galaxy device, it will come pre-loaded with network-specific features and services, depending on where the device has been purchased from. This is because most devices have a specific service provider or SKU that indicates which network they are connected to. With True Single SKU, new devices have a common service provider. This means that when the device is set up, it will determine what service provider is being used and apply the specific service provider SKU.</p>
-<p>True Single SKU devices will connect to a server during the initial setup to get information about the service provider. After setup has finished, the device will restart to apply the network specific features and services.</p>
+<p>If your device fleet is already enrolled in Knox E-FOTA, you might encounter an issue where you&rsquo;re unable to install third-party apps during the EMM enrollment process. This issue was detected for both Knox Mobile Enrollment or Android zero-touch users.</p>
 <h2 id="cause">Cause</h2>
-<p>During SKU setup, the device restarts, which can interrupt the Knox Mobile Enrollment flow, which in turn prevents vital enrollment data from passing to your EMM.</p>
+<p>This issue is due to the <a href="../../../../devref/knox-sdk/reference/com/samsung/android/knox/restriction/RestrictionPolicy.html#setAllowNonMarketApps(boolean)" target="_blank">setAllowNonMarketApps()</a> method being set to <strong>false</strong>. As a result, the device can&rsquo;t install third-party apps until the enrollment process completes.</p>
 <h2 id="resolution">Resolution</h2>
-<p>The device setup process has been updated to complete the service provider update after the TSS setup. The following is the setup process order:</p>
-<ol>
-<li>
-<p><a href="../../how-to-guides/enroll-devices/complete-device-enrollment">Begin enrolling the device</a> through Knox Mobile Enrollment.</p>
-</li>
-<li>
-<p>After the device is connected to a Wi-Fi APN, the True Single SKU setup begins.</p>
-
-    
-    
-    
-    
-    
-    
-      
-      
-      
-      
-      
-        
-        
-        
-        
-          
-        
-        
-      
-        
-        
-        
-        
-          
-        
-        
-      
-        
-        
-        
-        
-          
-        
-        
-      
-        
-        
-        
-        
-          
-        
-        
-      
-        
-        
-        
-        
-          
-        
-        
-      
-        
-        
-        
-        
-          
-        
-        
-      
-        
-        
-        
-        
-          
-        
-        
-      
-        
-        
-        
-        
-          
-        
-        
-      
-        
-        
-        
-          
-        
-        
-        
-      
-        
-        
-        
-          
-        
-        
-        
-      
-        
-        
-        
-          
-        
-        
-        
-      
-        
-        
-        
-          
-        
-        
-        
-      
-        
-        
-        
-          
-        
-        
-        
-      
-    
-    
-    <p><img src="../../assets/kba-967-service-provider-setup-screen.png" class="image-block-scale-40 img-thumbnail" alt="Service provider update" /></p>
-</li>
-<li>
-<p>When prompted, restart the device.</p>
-</li>
-<li>
-<p>Complete device enrollment with Knox Mobile Enrollment.</p>
-</li>
-</ol>
-<p>If the service provider update is interrupted during the True Single SKU setup, the wizard notifies you. One possible error message is:</p>
-<blockquote>
-<p>There was a problem connecting. Service provider features will be set up later when your phone is able to connect.</p>
-</blockquote>
-<p>After an interruption, if you proceed through the on-screen instructions, you&rsquo;re presented with the option on the home screen to postpone the setup by tapping <strong>Remind in 30 minutes</strong>.</p>
-
-
-
-
-
-
-
-  
-  
-  
-  
-  
-    
-    
-    
-    
-      
-    
-    
-  
-    
-    
-    
-    
-      
-    
-    
-  
-    
-    
-    
-    
-      
-    
-    
-  
-    
-    
-    
-    
-      
-    
-    
-  
-    
-    
-    
-    
-      
-    
-    
-  
-    
-    
-    
-    
-      
-    
-    
-  
-    
-    
-    
-    
-      
-    
-    
-  
-    
-    
-    
-    
-      
-    
-    
-  
-    
-    
-    
-      
-    
-    
-    
-  
-    
-    
-    
-      
-    
-    
-    
-  
-    
-    
-    
-      
-    
-    
-    
-  
-    
-    
-    
-      
-    
-    
-    
-  
-    
-    
-    
-      
-    
-    
-    
-  
-
-
-<p><img src="../../assets/kba-967-service-provider-setup-postpone.png" class="image-block-scale-40 img-thumbnail" alt="service provider update popup" /></p>
-<p>Postponing it allows Knox Mobile Enrollment to complete device enrollment, without any interruptions.</p>
+<p>This issue was resolved in the Knox cloud services 23.12 release. We recommend that you use Knox Mobile Enrollment to enroll your devices into your EMM if you want to install third-party apps during the enrollment process.</p>
 
             
           </div>
           <div class="l-toh">
-            
+            <div class="toh-scroll" style="height: 100%; overflow-y: auto; padding-right: 0.5rem;">
   
-<div style="height: 100%; overflow-y: auto;">
 <h2 class="body-4 fw-bold mt-0">On this page</h2>
 <aside class="table-of-headings" style="height: auto">
     <nav id="TableOfContents">
   <ul>
     <li><a href="#environment">Environment</a></li>
     <li><a href="#overview">Overview</a></li>
-    <li><a href="#what-is-true-single-sku">What is True Single SKU?</a></li>
     <li><a href="#cause">Cause</a></li>
     <li><a href="#resolution">Resolution</a></li>
   </ul>
 </nav>
 </aside>
   
-</div>
 </div>
 
 
